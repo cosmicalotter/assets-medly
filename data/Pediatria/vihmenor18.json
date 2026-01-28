@@ -1,0 +1,98 @@
+{
+  "titulo": "Diagnóstico en menores de 18 meses (Fig. 1)",
+  "version": "GPC 2014 - Colombia",
+  "nodo_inicial": "pregunta_cv_4_semanas",
+  "nodos": {
+    "pregunta_cv_4_semanas": {
+      "tipo": "pregunta",
+      "texto": "Niña o niño expuesto a VIH desde el nacimiento. Solicitar carga viral a las 4 semanas de edad. ¿Cuál es el resultado?",
+      "estilo": "normal",
+      "opciones": [
+        {
+          "texto": "≥ 5.000 copias/mL",
+          "siguiente_nodo": "pregunta_segunda_prueba_inmediata"
+        },
+        {
+          "texto": "Entre 50 y < 5.000 copias/mL",
+          "siguiente_nodo": "advertencia_repetir_inmediatamente"
+        },
+        {
+          "texto": "< 50 copias/mL",
+          "siguiente_nodo": "pregunta_cv_4_meses"
+        }
+      ]
+    },
+    "advertencia_repetir_inmediatamente": {
+      "tipo": "pregunta",
+      "texto": "Carga viral en rango intermedio. Repetir carga viral inmediatamente. ¿Cuál es el resultado de esta repetición?",
+      "estilo": "advertencia",
+      "opciones": [
+        {
+          "texto": "≥ 5.000 copias/mL",
+          "siguiente_nodo": "pregunta_segunda_prueba_inmediata"
+        },
+        {
+          "texto": "< 5.000 copias/mL",
+          "siguiente_nodo": "pregunta_cv_4_meses"
+        }
+      ]
+    },
+    "pregunta_cv_4_meses": {
+      "tipo": "pregunta",
+      "texto": "Repita carga viral a los 4 meses de edad. ¿Cuál es el resultado?",
+      "estilo": "normal",
+      "opciones": [
+        {
+          "texto": "≥ 5.000 copias/mL",
+          "siguiente_nodo": "pregunta_segunda_prueba_inmediata"
+        },
+        {
+          "texto": "< 5.000 copias/mL (o < 50)",
+          "siguiente_nodo": "resultado_descartado"
+        }
+      ]
+    },
+    "pregunta_segunda_prueba_inmediata": {
+      "tipo": "pregunta",
+      "texto": "Resultado presuntivo positivo. Realizar SEGUNDA carga viral inmediata para confirmar. \n\nNota (1): Notificar al Sivigila. Iniciar tratamiento antirretroviral SIN esperar este reporte y remitir a infectólogo.",
+      "estilo": "peligro",
+      "opciones": [
+        {
+          "texto": "≥ 5.000 copias/mL",
+          "siguiente_nodo": "resultado_confirmado_vih"
+        },
+        {
+          "texto": "< 5.000 copias/mL",
+          "siguiente_nodo": "pregunta_tercera_prueba"
+        }
+      ]
+    },
+    "pregunta_tercera_prueba": {
+      "tipo": "pregunta",
+      "texto": "Discordancia en resultados. Realizar TERCERA carga viral al mes. \n\nNota (3): Situación poco frecuente, requiere remisión a médico infectólogo o experto.",
+      "estilo": "advertencia",
+      "opciones": [
+        {
+          "texto": "≥ 5.000 copias/mL",
+          "siguiente_nodo": "resultado_confirmado_vih"
+        },
+        {
+          "texto": "< 5.000 copias/mL",
+          "siguiente_nodo": "resultado_descartado"
+        }
+      ]
+    },
+    "resultado_confirmado_vih": {
+      "tipo": "resultado",
+      "texto": "DIAGNÓSTICO CONFIRMADO DE INFECCIÓN POR VIH.\n\nNota (2): Brindar asesoría y remitir al paciente para manejo integral con médico experto/infectólogo.",
+      "estilo": "peligro",
+      "opciones": []
+    },
+    "resultado_descartado": {
+      "tipo": "resultado",
+      "texto": "Se descarta infección por VIH (bajo este algoritmo). Continuar seguimiento clínico y descarte definitivo según guías (serología a los 18 meses).",
+      "estilo": "exito",
+      "opciones": []
+    }
+  }
+}

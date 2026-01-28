@@ -1,0 +1,67 @@
+{
+  "titulo": "Sífilis Gestacional",
+  "version": "Guía Colombia 2024",
+  "nodoInicial": "pregunta_1",
+  "nodos": {
+    "pregunta_1": {
+      "tipo": "pregunta",
+      "texto": "¿La paciente tiene historia clínica de alergia a la penicilina o reacción anafiláctica previa?",
+      "opciones": [
+        { "texto": "SÍ, es alérgica", "siguiente_nodo": "alerta_desensibilizar" },
+        { "texto": "NO, no es alérgica", "siguiente_nodo": "pregunta_estadio" }
+      ]
+    },
+    "alerta_desensibilizar": {
+      "tipo": "resultado",
+      "estilo": "peligro",
+      "texto": "🚨 ALERTA CRÍTICA\n\nLa penicilina es el único tratamiento eficaz para prevenir la sífilis congénita.\n\nCONDUCTA:\n1. No usar macrólidos ni otros antibióticos.\n2. Iniciar protocolo de desensibilización (Oral o IV).\n3. Administrar Penicilina Benzatínica."
+    },
+    "pregunta_estadio": {
+      "tipo": "pregunta",
+      "texto": "¿Cuál es el estadio clínico de la sífilis?",
+      "calculadora_id": "wooddownes.json",
+      "opciones": [
+        { "texto": "Temprana (Primaria, Secundaria, Latente < 1 año)", "siguiente_nodo": "tx_temprana" },
+        { "texto": "Tardía (Latente > 1 año o desconocida)", "siguiente_nodo": "tx_tardia" },
+        {"texto":  "Prueba segunda opción", "siguiente_nodo": "tx_secundario" }
+      ]
+    },
+    "tx_temprana": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "texto": "✅ TRATAMIENTO ESTÁNDAR\n\nPenicilina Benzatínica 2.400.000 UI IM\n(Dosis Única).\n\nSeguimiento serológico mensual.",
+      "imagen": "algoritmo/gifdeprueba.gif",
+      "referencias": [
+        {
+          "titulo": "Guía Práctica Clínica (MinSalud)",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/profesionales%20salud.pdf",
+          "imagen_evidencia": "evidencia_sifilis_01.png"
+        }
+      ]
+    },
+    "tx_secundario": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "texto": "Prueba de segunda opción",
+      "referencias": [
+        {
+          "titulo": "Prueba - pag 2",
+          "url": "https://www.google.com",
+          "imagen_evidencia": "evidencia_sifilis_01.png"
+        }
+      ]
+    },
+    "tx_tardia": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "texto": "⚠️ TRATAMIENTO EXTENDIDO\n\nPenicilina Benzatínica 2.400.000 UI IM\n(Una dosis semanal por 3 semanas).\nTotal: 7.200.000 UI.",
+      "enlaces": [
+        {
+          "texto": "✨ Ve a tx tres dosis",
+          "archivo_objetivo": "sifilisnew.json",
+          "nodo_objetivo": "tx_tres_dosis"
+        }
+      ]
+    }
+  }
+}

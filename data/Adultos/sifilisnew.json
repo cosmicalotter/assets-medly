@@ -1,0 +1,90 @@
+{
+  "titulo": "Sífilis Gestacional (Versión 2)",
+  "version": "Nueva UX",
+  "nodos_iniciales": ["raiz_diagnostico", "raiz_tratamiento"],
+  "nodos": {
+
+    "raiz_diagnostico": {
+      "tipo": "pregunta",
+      "texto": "🔍 DIAGNÓSTICO\n\n¿Cuál es el resultado de la prueba treponémica rápida?",
+      "estilo": "normal",
+      "opciones": [
+        { "texto": "Positiva (+)", "siguiente_nodo": "dx_prueba_no_trep" },
+        { "texto": "Negativa (-)", "siguiente_nodo": "dx_descartar" }
+      ]
+    },
+
+    "dx_prueba_no_trep": {
+      "tipo": "pregunta",
+      "texto": "Solicitar VDRL/RPR (No treponémica). ¿Resultado?",
+      "estilo": "advertencia",
+      "opciones": [
+        { "texto": "Reactiva (Cualquier título)", "siguiente_nodo": "res_caso_probable" },
+        { "texto": "No Reactiva", "siguiente_nodo": "res_cicatriz" }
+      ]
+    },
+
+    "res_caso_probable": {
+      "tipo": "resultado",
+      "texto": "✅ CASO CONFIRMADO (Sífilis Activa)\n\nIniciar tratamiento inmediatamente y notificar.",
+      "estilo": "exito",
+      "opciones": []
+    },
+
+    "res_cicatriz": {
+      "tipo": "resultado",
+      "texto": "⚠️ POSIBLE CICATRIZ SEROLÓGICA\n\nEvaluar historia de tratamiento previo.",
+      "estilo": "normal",
+      "opciones": []
+    },
+
+    "dx_descartar": {
+      "tipo": "resultado",
+      "texto": "✅ NO HAY SÍFILIS ACTUAL\n\nRepetir tamizaje en el siguiente trimestre.",
+      "estilo": "exito",
+      "opciones": []
+    },
+
+
+    "raiz_tratamiento": {
+      "tipo": "pregunta",
+      "texto": "💊 TRATAMIENTO\n\n¿Historia de alergia a la penicilina?",
+      "estilo": "normal",
+      "opciones": [
+        { "texto": "SÍ, alérgica", "siguiente_nodo": "tx_alergia" },
+        { "texto": "NO", "siguiente_nodo": "tx_estadio" }
+      ]
+    },
+
+    "tx_estadio": {
+      "tipo": "pregunta",
+      "texto": "¿Estadío Clínico?",
+      "estilo": "normal",
+      "opciones": [
+        { "texto": "Temprana (< 1 año)", "siguiente_nodo": "tx_dosis_unica" },
+        { "texto": "Tardía / Desconocida", "siguiente_nodo": "tx_tres_dosis" }
+      ]
+    },
+
+    "tx_dosis_unica": {
+      "tipo": "resultado",
+      "texto": "✅ Penicilina Benzatínica 2.400.000 UI IM\n(Dosis Única)",
+      "estilo": "exito",
+      "opciones": []
+    },
+
+    "tx_tres_dosis": {
+      "tipo": "resultado",
+      "texto": "⚠️ Penicilina Benzatínica 2.400.000 UI IM\n(1 dosis semanal por 3 semanas)",
+      "estilo": "advertencia",
+      "opciones": []
+    },
+
+    "tx_alergia": {
+      "tipo": "resultado",
+      "texto": "🚨 DESENSIBILIZACIÓN OBLIGATORIA\n\nLa penicilina es el único tto efectivo en embarazo.",
+      "estilo": "peligro",
+      "opciones": []
+    }
+  }
+}

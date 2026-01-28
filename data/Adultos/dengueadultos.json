@@ -1,0 +1,274 @@
+{
+  "titulo": "Dengue: Guía de Manejo Clínico",
+  "version": "Minsalud Colombia / OPS / OMS (2020-2024)",
+  "nodos_iniciales": [
+    "raiz_generalidades",
+    "raiz_diagnostico",
+    "raiz_tratamiento"
+  ],
+  "nodos": {
+    "raiz_generalidades": {
+      "tipo": "pregunta",
+      "texto": "Generalidades y Epidemiología",
+      "estilo": "normal",
+      "opciones": [
+        {
+          "texto": "Etiología y Vector",
+          "siguiente_nodo": "gen_etiologia"
+        },
+        {
+          "texto": "Fases de la Enfermedad",
+          "siguiente_nodo": "gen_fases"
+        }
+      ]
+    },
+    "gen_etiologia": {
+      "tipo": "resultado",
+      "texto": "🦠 ETIOLOGÍA Y VECTOR\n\n- **Agente:** Virus del Dengue (DENV), Flavivirus. 4 serotipos (DENV-1 a 4).\n- **Inmunidad:** Homóloga de por vida; heterotípica temporal (~2 años).\n- **Riesgo:** Infección secundaria aumenta riesgo de Dengue Grave (ADE).\n- **Vector:** *Aedes aegypti* (principal, urbano, diurno) y *Aedes albopictus*.\n- **Transmisión:** Picadura de hembra infectada. Incubación extrínseca 7-14 días.",
+      "estilo": "normal",
+      "referencias": [
+        {
+          "titulo": "Generalidades - Pág 1-2",
+          "url": ""
+        }
+      ],
+      "opciones": []
+    },
+    "gen_fases": {
+      "tipo": "resultado",
+      "texto": "📉 FASES DE LA ENFERMEDAD\n\n1. **Fase Febril (2-7 días):** Viremia alta, fiebre súbita, deshidratación. Riesgo de convulsiones en niños.\n2. **Fase Crítica (Defervescencia):** Ocurre al caer la fiebre (días 3-7). Riesgo máximo de **extravasación de plasma**, choque y daño de órganos.\n3. **Fase de Recuperación:** Reabsorción de líquidos, estabilización hemodinámica, posible rash (\"islas blancas en mar rojo\").",
+      "estilo": "advertencia",
+      "opciones": []
+    },
+    "raiz_diagnostico": {
+      "tipo": "pregunta",
+      "texto": "Abordaje Diagnóstico",
+      "estilo": "normal",
+      "opciones": [
+        {
+          "texto": "Definición de Caso Sospechoso",
+          "siguiente_nodo": "dx_caso_sospechoso"
+        },
+        {
+          "texto": "Pruebas de Laboratorio (Tiempos)",
+          "siguiente_nodo": "dx_laboratorio"
+        },
+        {
+          "texto": "Diagnóstico Diferencial (Zika/Chik)",
+          "siguiente_nodo": "dx_diferencial"
+        }
+      ]
+    },
+    "dx_caso_sospechoso": {
+      "tipo": "pregunta",
+      "texto": "¿Cumple criterios de Caso Sospechoso?",
+      "estilo": "normal",
+      "referencias": [
+        {
+          "titulo": "Definición de Caso - Pág 2",
+          "url": ""
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí (Ver Criterios)",
+          "siguiente_nodo": "dx_criterios_detalle"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "dx_descarte"
+        }
+      ]
+    },
+    "dx_criterios_detalle": {
+      "tipo": "resultado",
+      "texto": "📋 CRITERIOS CLÍNICOS\n\nPersona de zona endémica (últimos 14 días) con **Fiebre Aguda (2-7 días)** + 2 o más de:\n\n- Náuseas / Vómitos.\n- Exantema (rash).\n- Cefalea / Dolor retroorbitario.\n- Mialgia / Artralgia.\n- Petequias o Prueba de torniquete (+).\n- Leucopenia.\n\n*Nota: En niños, cualquier cuadro febril agudo sin foco aparente en zona endémica.*",
+      "estilo": "exito",
+      "opciones": [
+        {
+          "texto": "Ir a Clasificación y Tratamiento",
+          "siguiente_nodo": "raiz_tratamiento"
+        }
+      ]
+    },
+    "dx_laboratorio": {
+      "tipo": "pregunta",
+      "texto": "¿Cuántos días de evolución tiene la fiebre?",
+      "estilo": "normal",
+      "opciones": [
+        {
+          "texto": "1 a 5 días (Fase Aguda)",
+          "siguiente_nodo": "dx_lab_aguda"
+        },
+        {
+          "texto": "5 a 6 días o más (Fase Convaleciente)",
+          "siguiente_nodo": "dx_lab_convaleciente"
+        }
+      ]
+    },
+    "dx_lab_aguda": {
+      "tipo": "resultado",
+      "texto": "🧪 PRUEBAS DIRECTAS (Día 1-5)\n\n- **Antígeno NS1:** Diagnóstico temprano.\n- **RT-PCR:** Confirmación y serotipificación.\n- **Aislamiento Viral:** Gold standard (investigación).\n\n*Utilidad: Detectar virus o antígenos durante la viremia.*",
+      "estilo": "normal",
+      "ranking": 1,
+      "opciones": []
+    },
+    "dx_lab_convaleciente": {
+      "tipo": "resultado",
+      "texto": "🩸 PRUEBAS INDIRECTAS (Desde día 5-6)\n\n- **IgM (Serología):** Diagnóstico en fase convaleciente.\n- **IgG:** Diferencia infección primaria vs secundaria (títulos altos tempranos en secundaria).\n\n*Nota: No esperar resultados para iniciar tratamiento.*",
+      "estilo": "normal",
+      "ranking": 2,
+      "opciones": []
+    },
+    "dx_diferencial": {
+      "tipo": "resultado",
+      "texto": "🔍 DIFERENCIAL: DENGUE vs CHIKUNGUNYA vs ZIKA\n\n- **Dengue:** Mialgia intensa (\"quiebrahuesos\"), trombocitopenia marcada, riesgo de choque/sangrado.\n- **Chikungunya:** Artralgia severa/incapacitante (poliarticular), inicio abrupto.\n- **Zika:** Exantema pruriginoso temprano, conjuntivitis no purulenta, fiebre baja/ausente. Riesgo microcefalia/Guillain-Barré.",
+      "estilo": "normal",
+      "opciones": []
+    },
+    "dx_descarte": {
+      "tipo": "resultado",
+      "texto": "Considere otros diagnósticos:\n- Malaria\n- Leptospirosis\n- Influenza / COVID-19\n- Rickettsiosis\n- Sepsis bacteriana",
+      "estilo": "normal",
+      "opciones": []
+    },
+    "raiz_tratamiento": {
+      "tipo": "pregunta",
+      "texto": "Clasificación de Gravedad y Manejo",
+      "estilo": "normal",
+      "referencias": [
+        {
+          "titulo": "Algoritmo de Abordaje - Pág 8",
+          "url": ""
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar Signos de Gravedad",
+          "siguiente_nodo": "tx_evaluacion_gravedad"
+        },
+        {
+          "texto": "Principios Generales (DOs & DON'Ts)",
+          "siguiente_nodo": "tx_principios"
+        }
+      ]
+    },
+    "tx_principios": {
+      "tipo": "resultado",
+      "texto": "⚠️ PRINCIPIOS DE MANEJO (DOs & DON'Ts)\n\n✅ **SÍ:**\n- Monitorizar signos de alarma y hemodinamia.\n- Usar Acetaminofén para fiebre/dolor.\n- Hidratación oral agresiva si tolera.\n\n❌ **NO (Contraindicado):**\n- **Corticosteroides:** Aumentan riesgo sangrado GI e hiperglicemia.\n- **AINEs (Ibuprofeno, Diclofenaco, Aspirina):** Riesgo de sangrado.\n- **Transfusión de plaquetas profiláctica:** No disminuye riesgo de sangrado grave.\n- **Solución salina 0.45%:** Riesgo de edema.",
+      "estilo": "advertencia",
+      "ranking": 1,
+      "opciones": []
+    },
+    "tx_evaluacion_gravedad": {
+      "tipo": "pregunta",
+      "texto": "Evaluación Escalonada: ¿Presenta el paciente criterios de DENGUE GRAVE?",
+      "estilo": "peligro",
+      "opciones": [
+        {
+          "texto": "Sí (Choque, Sangrado grave, Daño órganos)",
+          "siguiente_nodo": "tx_grupo_c"
+        },
+        {
+          "texto": "No, pero tiene SIGNOS DE ALARMA",
+          "siguiente_nodo": "tx_grupo_b2"
+        },
+        {
+          "texto": "No, pero tiene COMORBILIDAD / RIESGO SOCIAL",
+          "siguiente_nodo": "tx_grupo_b1"
+        },
+        {
+          "texto": "No (Sin signos de alarma ni comorbilidades)",
+          "siguiente_nodo": "tx_grupo_a"
+        }
+      ]
+    },
+    "tx_grupo_a": {
+      "tipo": "resultado",
+      "texto": "✅ GRUPO A: DENGUE SIN SIGNOS DE ALARMA\n(Manejo Ambulatorio)\n\n**Criterios:** Tolera vía oral, diuresis normal, sin riesgo social.\n\n**Manejo:**\n- Reposo en cama.\n- **Hidratación oral abundante** (Sales, jugos, leche, sopas).\n- Acetaminofén (Adultos: 500mg c/6h; Niños: 10-15mg/kg c/6h).\n- **Educación:** Consultar si aparecen signos de alarma (especialmente al caer la fiebre).\n- Uso de mosquitero.\n\n**Seguimiento:** Evaluación cada 24-48h + Hemograma.",
+      "estilo": "exito",
+      "ranking": 1,
+      "opciones": []
+    },
+    "tx_grupo_b1": {
+      "tipo": "resultado",
+      "texto": "🏥 GRUPO B1: DENGUE SIN SIGNOS DE ALARMA + COMORBILIDAD\n(Hospitalización / Observación)\n\n**Criterios:**\n- Embarazo, <1 año, >65 años.\n- Obesidad mórbida, Diabetes, HTA, Daño renal, Coagulopatías.\n- Riesgo social (vive solo, lejos).\n\n**Manejo:**\n- Hidratación oral supervisada.\n- Si no tolera oral: Iniciar cristaloides IV a mantenimiento (2-4 ml/kg/h).\n- Vigilancia estricta de signos de alarma.",
+      "estilo": "advertencia",
+      "ranking": 2,
+      "opciones": []
+    },
+    "tx_grupo_b2": {
+      "tipo": "pregunta",
+      "texto": "🚨 GRUPO B2: DENGUE CON SIGNOS DE ALARMA (DCSA)\n(Hospitalización Inmediata)",
+      "estilo": "peligro",
+      "opciones": [
+        {
+          "texto": "Ver Signos de Alarma",
+          "siguiente_nodo": "tx_signos_alarma_lista"
+        },
+        {
+          "texto": "Ver Algoritmo de Fluidos IV",
+          "siguiente_nodo": "tx_algoritmo_b2"
+        }
+      ]
+    },
+    "tx_signos_alarma_lista": {
+      "tipo": "resultado",
+      "texto": "🚩 SIGNOS DE ALARMA (Inicio de fase crítica)\n\n1. Dolor abdominal intenso y continuo.\n2. Vómitos persistentes (≥3 en 1h o ≥4 en 6h).\n3. Acumulación clínica de líquidos (ascitis, derrame).\n4. Sangrado de mucosas.\n5. Letargo o irritabilidad.\n6. Hipotensión postural (lipotimia).\n7. Hepatomegalia >2cm.\n8. Aumento progresivo del hematocrito con caída de plaquetas.",
+      "estilo": "peligro",
+      "opciones": [
+        {
+          "texto": "Iniciar Tratamiento IV",
+          "siguiente_nodo": "tx_algoritmo_b2"
+        }
+      ]
+    },
+    "tx_algoritmo_b2": {
+      "tipo": "resultado",
+      "texto": "💧 PROTOCOLO DE FLUIDOS GRUPO B2\n\n1. **Carga Inicial:** Cristaloides isotónicos (Lactato Ringer o SSN 0.9%) a **10 ml/kg en 1 hora**.\n2. **Reevaluar:**\n   - **Mejoría:** Reducir goteo gradualmente (5-7 ml/kg/h -> 3-5 -> 2-4).\n   - **NO Mejoría:** Repetir carga 10 ml/kg (hasta 2 veces más).\n   - **Empeoramiento:** Si hay signos de choque -> Manejar como Grupo C.",
+      "estilo": "advertencia",
+      "ranking": 1,
+      "opciones": []
+    },
+    "tx_grupo_c": {
+      "tipo": "pregunta",
+      "texto": "🆘 GRUPO C: DENGUE GRAVE (Choque / Sangrado)\n(Manejo en UCI / Reanimación)",
+      "estilo": "peligro",
+      "opciones": [
+        {
+          "texto": "Criterios de Gravedad",
+          "siguiente_nodo": "tx_criterios_gravedad"
+        },
+        {
+          "texto": "Algoritmo de Choque",
+          "siguiente_nodo": "tx_algoritmo_choque"
+        }
+      ]
+    },
+    "tx_criterios_gravedad": {
+      "tipo": "resultado",
+      "texto": "🔴 CRITERIOS DE DENGUE GRAVE\n\n1. **Extravasación severa de plasma:**\n   - Síndrome de Choque por Dengue (SCD): Pulso débil, taquicardia, llenado capilar >2s, presión de pulso ≤20 mmHg.\n   - Distrés respiratorio por acumulación de líquidos.\n2. **Sangrado Grave:** Hematemesis, melena, metrorragia, sangrado SNC.\n3. **Compromiso Grave de Órganos:** AST/ALT >1000, alteración conciencia, miocarditis.",
+      "estilo": "peligro",
+      "opciones": []
+    },
+    "tx_algoritmo_choque": {
+      "tipo": "resultado",
+      "texto": "⚡ REANIMACIÓN EN CHOQUE (GRUPO C)\n\n1. **ABC + Oxígeno.**\n2. **Bolo Inicial:** Cristaloide isotónico **20 ml/kg en 15-30 min**.\n3. **Reevaluar:**\n   - **Mejoría:** Reducir a 10 ml/kg/h y descender gradualmente.\n   - **NO Mejoría:** Segundo bolo 20 ml/kg. Si persiste, tercer bolo.\n   - **Choque Refractario:** Considerar coloides, vasopresores o transfusión (si Hto baja bruscamente = hemorragia).",
+      "estilo": "peligro",
+      "ranking": 1,
+      "referencias": [
+        {
+          "titulo": "Algoritmo Choque - Pág 6",
+          "url": ""
+        }
+      ],
+      "opciones": []
+    },
+    "tx_criterios_alta": {
+      "tipo": "resultado",
+      "texto": "🏠 CRITERIOS DE ALTA (Grupos B y C)\n\nDebe cumplir TODOS:\n- Ausencia de fiebre por 48h (sin antipiréticos).\n- Mejoría clínica visible y buen apetito.\n- Hemodinamia estable y diuresis normal.\n- Sin dificultad respiratoria.\n- Plaquetas >50,000/mm³ (tendencia ascendente).\n- Hematocrito estable.",
+      "estilo": "exito",
+      "opciones": []
+    }
+  }
+}
