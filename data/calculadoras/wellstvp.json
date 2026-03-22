@@ -1,13 +1,13 @@
 {
   "titulo": "Criterios de Wells para TEP",
-  "descripcion": "Evalúa la probabilidad pretest de tromboembolismo pulmonar (TEP) en pacientes con síntomas sugestivos, permitiendo estratificar el riesgo y guiar el manejo diagnóstico (uso de Dímero-D o angio-TAC).",
+  "descripcion": "Evalúa la probabilidad pretest de tromboembolismo pulmonar (TEP) para guiar el uso de Dímero-D o Angio-TAC. ⚠️ NOTA: Solo aplique en pacientes con sospecha clínica real.",
   "referencias": [
     {
-      "titulo": "Excluding Pulmonary Embolism at the Bedside without Diagnostic Imaging: Management of Patients with Suspected Pulmonary Embolism",
+      "titulo": "Excluding Pulmonary Embolism at the Bedside",
       "url": "https://pubmed.ncbi.nlm.nih.gov/11453709/"
     },
     {
-      "titulo": "Prospective Validation of Wells Criteria in the Evaluation of Patients With Suspected Pulmonary Embolism",
+      "titulo": "Prospective Validation of Wells Criteria",
       "url": "https://pubmed.ncbi.nlm.nih.gov/15520710/"
     }
   ],
@@ -19,11 +19,11 @@
   ],
   "filas": [
     {
-      "nombre": "Signos Clínicos TVP",
+      "nombre": "Clínica de TVP",
       "descripciones": ["No", "-", "-", "Sí"]
     },
     {
-      "nombre": "TEP Dx Principal",
+      "nombre": "TEP Dx más probable",
       "descripciones": ["No", "-", "-", "Sí"]
     },
     {
@@ -31,11 +31,11 @@
       "descripciones": ["No", "-", "Sí", "-"]
     },
     {
-      "nombre": "Cx o Inmovilización",
+      "nombre": "Cirugía/Inmovilizado",
       "descripciones": ["No", "-", "Sí", "-"]
     },
     {
-      "nombre": "TVP/TEP Previo",
+      "nombre": "TVP/TEP previo",
       "descripciones": ["No", "-", "Sí", "-"]
     },
     {
@@ -48,8 +48,26 @@
     }
   ],
   "resultados": [
-    {"min": 0, "max": 1.5, "categoria": "Riesgo Bajo", "match_opcion_index": -1, "color": "verde"},
-    {"min": 2, "max": 6, "categoria": "Riesgo Moderado", "match_opcion_index": -1, "color": "naranja"},
-    {"min": 6.5, "max": 12.5, "categoria": "Riesgo Alto", "match_opcion_index": -1, "color": "rojo"}
+    {
+      "min": 0, "max": 1.5, 
+      "categoria": "Riesgo Bajo", 
+      "match_opcion_index": -1, 
+      "color": "verde",
+      "approach": "Aplicar regla PERC o pedir Dímero-D"
+    },
+    {
+      "min": 2, "max": 6, 
+      "categoria": "Riesgo Moderado", 
+      "match_opcion_index": -1, 
+      "color": "naranja",
+      "approach": "Solicitar Dímero-D (Alta Sensibilidad)"
+    },
+    {
+      "min": 6.5, "max": 12.5, 
+      "categoria": "Riesgo Alto", 
+      "match_opcion_index": -1, 
+      "color": "rojo",
+      "approach": "Realizar Angio-TAC de tórax directamente"
+    }
   ]
 }
