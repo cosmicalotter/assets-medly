@@ -1,0 +1,185 @@
+{
+  "titulo": "Pulmonary Embolism Severity Index (PESI)",
+  "descripcion": "Modelo de estratificación clínica para predecir la mortalidad a 30 días en pacientes con tromboembolismo pulmonar (TEP) y guiar el manejo ambulatorio o intrahospitalario. ⚠️ NOTA: A ESTE PUNTAJE SE LE DEBE SUMAR LA EDAD DEL PACIENTE EN AÑOS (1 año = 1 punto). LAS FILAS A CONTINUACIÓN SOLO EVALÚAN LOS CRITERIOS CLÍNICOS ADICIONALES.",
+  "referencias": [
+    {
+      "titulo": "Derivation and Validation of a Prognostic Model for Pulmonary Embolism. Am J Respir Crit Care Med 2005.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16020800/"
+    },
+    {
+      "titulo": "Prospective validation of the Pulmonary Embolism Severity Index. A clinical prognostic model for pulmonary embolism.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18989542/"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 10,
+      "titulo": "10",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 20,
+      "titulo": "20",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 30,
+      "titulo": "30",
+      "color": "naranja"
+    },
+    {
+      "puntos": 60,
+      "titulo": "60",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Sexo masculino",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Cáncer",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Falla cardíaca",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Enf. pulmonar crónica",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "FC ≥ 110",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "PAS < 100",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí",
+        "-"
+      ]
+    },
+    {
+      "nombre": "FR ≥ 30",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Temp < 36°C",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Estado mental alterado",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "-",
+        "Sí"
+      ]
+    },
+    {
+      "nombre": "SatO2 < 90%",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 65,
+      "categoria": "Clase I (Muy Bajo)",
+      "match_opcion_index": -1,
+      "color": "verde",
+      "approach": "Considerar manejo ambulatorio o alta temprana"
+    },
+    {
+      "min": 66,
+      "max": 85,
+      "categoria": "Clase II (Bajo)",
+      "match_opcion_index": -1,
+      "color": "verde",
+      "approach": "Considerar manejo ambulatorio o alta temprana"
+    },
+    {
+      "min": 86,
+      "max": 105,
+      "categoria": "Clase III (Intermedio)",
+      "match_opcion_index": -1,
+      "color": "amarillo",
+      "approach": "Ingreso hospitalario para manejo y vigilancia"
+    },
+    {
+      "min": 106,
+      "max": 125,
+      "categoria": "Clase IV (Alto)",
+      "match_opcion_index": -1,
+      "color": "naranja",
+      "approach": "Ingreso hospitalario, considerar cuidados intermedios"
+    },
+    {
+      "min": 126,
+      "max": 999,
+      "categoria": "Clase V (Muy Alto)",
+      "match_opcion_index": -1,
+      "color": "rojo",
+      "approach": "Ingreso a UCI o monitorización estricta"
+    }
+  ]
+}
