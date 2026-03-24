@@ -1,0 +1,32 @@
+name: Actualizar Fecha Firebase
+
+# Esto indica que se ejecutará cada vez que hagas "push" a la rama main o master
+on:
+  push:
+    branches:
+      - main
+      - master
+    # Opcional: Si solo quieres que se actualice cuando modificas los .json de tu data
+    # paths:
+    #   - 'assets/data/**.json'
+
+jobs:
+  update-firebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar Firebase Admin SDK
+        run: npm install firebase-admin
+
+      - name: Ejecutar script de actualización de fecha
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node update_firebase_date.js
