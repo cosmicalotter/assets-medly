@@ -1,0 +1,45 @@
+{
+  "titulo": "Tasa de Filtración Glomerular (CKD-EPI 2021)",
+  "descripcion": "Estima la TFG basándose en creatinina sérica, edad y sexo, omitiendo la raza según las guías clínicas actuales (Inker et al., NEJM 2021).",
+  "tipoCalculo": "formula",
+  "formula": "142 * ((0.5 * ((scr/kappa) + 1 - abs((scr/kappa) - 1)))^alpha) * ((0.5 * ((scr/kappa) + 1 + abs((scr/kappa) - 1)))^-1.200) * (0.9938^edad) * factor_sexo",
+  "secciones": [
+    {
+      "nombre": "Datos del paciente",
+      "elementos": [
+        {
+          "id": "edad",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "Años"
+        },
+        {
+          "id": "sexo",
+          "tipo": "opciones",
+          "label": "Sexo",
+          "opciones": [
+            { "label": "Femenino", "valoresVariables": { "kappa": 0.7, "alpha": -0.241, "factor_sexo": 1.012 } },
+            { "label": "Masculino", "valoresVariables": { "kappa": 0.9, "alpha": -0.302, "factor_sexo": 1 } }
+          ]
+        },
+        {
+          "id": "scr",
+          "tipo": "input_numero",
+          "label": "Creatinina Sérica",
+          "unidad": "mg/dL"
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 90, "max": 999, "categoria": "G1: Normal o alta", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 60, "max": 89, "categoria": "G2: Ligeramente disminuida", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 45, "max": 59, "categoria": "G3a: Ligera a moderadamente disminuida", "color": "naranja", "matchOpcionIndex": 3 },
+    { "min": 30, "max": 44, "categoria": "G3b: Moderada a severamente disminuida", "color": "naranja", "matchOpcionIndex": 4 },
+    { "min": 15, "max": 29, "categoria": "G4: Severamente disminuida", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 0, "max": 14.99, "categoria": "G5: Falla renal", "color": "rojo", "matchOpcionIndex": 6 }
+  ],
+  "referencias": [
+    { "titulo": "New Creatinine- and Cystatin C–Based Equations to Estimate GFR without Race (NEJM 2021)", "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2102953" }
+  ]
+}
