@@ -2,7 +2,7 @@
   "titulo": "Tasa de Filtración Glomerular (CKD-EPI 2021)",
   "descripcion": "Estima la TFG basándose en creatinina sérica, edad y sexo, omitiendo la raza según las guías clínicas actuales (Inker et al., NEJM 2021).",
   "tipoCalculo": "formula",
-  "formula": "142 * ((0.5 * (scr/kappa + 1 - sqrt((scr/kappa - 1)^2)))^alpha) * (1 / ((0.5 * (scr/kappa + 1 + sqrt((scr/kappa - 1)^2)))^1.2)) * (0.9938^edad) * factor_sexo",
+  "formula": "142 * ((0.5 * (scr/kappa + 1 - abs(scr/kappa - 1)))^alpha) * ((0.5 * (scr/kappa + 1 + abs(scr/kappa - 1)))^(-1.200)) * (0.9938^edad) * factorSexo",
   "secciones": [
     {
       "nombre": "Datos del paciente",
@@ -18,8 +18,8 @@
           "tipo": "opciones",
           "label": "Sexo",
           "opciones": [
-            { "label": "Femenino", "valoresVariables": { "kappa": 0.7, "alpha": -0.241, "factor_sexo": 1.012 } },
-            { "label": "Masculino", "valoresVariables": { "kappa": 0.9, "alpha": -0.302, "factor_sexo": 1 } }
+            { "label": "Femenino", "valoresVariables": { "kappa": 0.7, "alpha": -0.241, "factorSexo": 1.012 } },
+            { "label": "Masculino", "valoresVariables": { "kappa": 0.9, "alpha": -0.302, "factorSexo": 1 } }
           ]
         },
         {
@@ -38,8 +38,5 @@
     { "min": 30, "max": 44, "categoria": "G3b: Moderada a severamente disminuida", "color": "naranja", "matchOpcionIndex": 4 },
     { "min": 15, "max": 29, "categoria": "G4: Severamente disminuida", "color": "rojo", "matchOpcionIndex": 5 },
     { "min": 0, "max": 14.99, "categoria": "G5: Falla renal", "color": "rojo", "matchOpcionIndex": 6 }
-  ],
-  "referencias": [
-    { "titulo": "New Creatinine- and Cystatin C–Based Equations to Estimate GFR without Race (NEJM 2021)", "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2102953" }
   ]
 }
