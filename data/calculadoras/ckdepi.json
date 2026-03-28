@@ -2,7 +2,7 @@
   "titulo": "Tasa de Filtración Glomerular (CKD-EPI 2021)",
   "descripcion": "Estima la TFG basándose en creatinina sérica, edad y sexo, omitiendo la raza según las guías clínicas actuales (Inker et al., NEJM 2021).",
   "tipoCalculo": "formula",
-  "formula": "142 * ((0.5 * ((scr/kappa) + 1 - sqrt(((scr/kappa) - 1)^2)))^alpha) * ((0.5 * ((scr/kappa) + 1 + sqrt(((scr/kappa) - 1)^2)))^(-1.200)) * (0.9938^edad) * factor_sexo",
+  "formula": "142 * ((0.5 * (scr/kappa + 1 - sqrt((scr/kappa - 1)^2)))^alpha) * (1 / ((0.5 * (scr/kappa + 1 + sqrt((scr/kappa - 1)^2)))^1.2)) * (0.9938^edad) * factor_sexo",
   "secciones": [
     {
       "nombre": "Datos del paciente",
