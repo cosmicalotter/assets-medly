@@ -1,0 +1,65 @@
+{
+  "titulo": "Aclaramiento de Creatinina (Cockcroft-Gault)",
+  "descripcion": "Estima la tasa de filtración glomerular a partir de la creatinina sérica, edad, peso y sexo, útil para ajuste de dosis de fármacos.",
+  "tipoCalculo": "formula",
+  "formula": "(((140 - edad) * peso) / (72 * scr)) * factorSexo",
+  "secciones": [
+    {
+      "nombre": "Datos Demográficos",
+      "elementos": [
+        {
+          "id": "sexo",
+          "tipo": "opciones",
+          "label": "Sexo",
+          "opciones": [
+            { "label": "Femenino", "valoresVariables": { "factorSexo": 0.85 } },
+            { "label": "Masculino", "valoresVariables": { "factorSexo": 1.0 } }
+          ]
+        },
+        {
+          "id": "edad",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "años"
+        },
+        {
+          "id": "peso",
+          "tipo": "input_numero",
+          "label": "Peso",
+          "unidad": "kg"
+        }
+      ]
+    },
+    {
+      "nombre": "Laboratorios",
+      "elementos": [
+        {
+          "id": "scr",
+          "tipo": "input_numero",
+          "label": "Creatinina sérica",
+          "unidad": "mg/dL"
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 90, "max": 9999, "categoria": "Normal o alto (G1)", "color": "verde", "approach": "Manejo rutinario" },
+    { "min": 60, "max": 89.9, "categoria": "Ligeramente disminuido (G2)", "color": "amarillo", "approach": "Vigilancia clínica" },
+    { "min": 30, "max": 59.9, "categoria": "Moderadamente disminuido (G3)", "color": "naranja", "approach": "Ajustar dosis fármacos" },
+    { "min": 0, "max": 29.9, "categoria": "Severamente disminuido (G4-G5)", "color": "rojo", "approach": "Referir a nefrología" }
+  ],
+  "referencias": [
+    {
+      "titulo": "Prediction of creatinine clearance from serum creatinine (Cockcroft & Gault, 1976)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1244564/"
+    },
+    {
+      "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+    },
+    {
+      "titulo": "KDOQI US Commentary on the KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD ",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39556063/"
+    }
+  ]
+}
