@@ -2,52 +2,29 @@
   "titulo": "Score GRACE",
   "descripcion": "Estima mortalidad intrahospitalaria y a 6 meses en Síndrome Coronario Agudo (SCA).",
   "tipoCalculo": "formula",
-  "formula": "pAge + pHR + pSBP + pCreat + pKillip + pArrest + pST + pEnz",
+  "formula": "grace_puntos",
+  "prefijoResultado": "Puntos",
   "secciones": [
     {
       "nombre": "Datos Clínicos",
       "elementos": [
         {
-          "id": "edad",
-          "tipo": "opciones",
-          "label": "Edad (Años)",
-          "opciones": [
-            { "label": "< 40", "valoresVariables": { "pAge": 0 } },
-            { "label": "40 - 49", "valoresVariables": { "pAge": 18 } },
-            { "label": "50 - 59", "valoresVariables": { "pAge": 36 } },
-            { "label": "60 - 69", "valoresVariables": { "pAge": 55 } },
-            { "label": "70 - 79", "valoresVariables": { "pAge": 73 } },
-            { "label": "80 - 89", "valoresVariables": { "pAge": 91 } },
-            { "label": "≥ 90", "valoresVariables": { "pAge": 100 } }
-          ]
+          "id": "anios",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "años"
         },
         {
           "id": "fc",
-          "tipo": "opciones",
+          "tipo": "input_numero",
           "label": "Frecuencia Cardíaca",
-          "opciones": [
-            { "label": "< 50", "valoresVariables": { "pHR": 0 } },
-            { "label": "50 - 69", "valoresVariables": { "pHR": 3 } },
-            { "label": "70 - 89", "valoresVariables": { "pHR": 9 } },
-            { "label": "90 - 109", "valoresVariables": { "pHR": 15 } },
-            { "label": "110 - 149", "valoresVariables": { "pHR": 24 } },
-            { "label": "150 - 199", "valoresVariables": { "pHR": 38 } },
-            { "label": "≥ 200", "valoresVariables": { "pHR": 46 } }
-          ]
+          "unidad": "lpm"
         },
         {
           "id": "pas",
-          "tipo": "opciones",
+          "tipo": "input_numero",
           "label": "Presión Sistólica",
-          "opciones": [
-            { "label": "≥ 200", "valoresVariables": { "pSBP": 0 } },
-            { "label": "160 - 199", "valoresVariables": { "pSBP": 10 } },
-            { "label": "140 - 159", "valoresVariables": { "pSBP": 24 } },
-            { "label": "120 - 139", "valoresVariables": { "pSBP": 34 } },
-            { "label": "100 - 119", "valoresVariables": { "pSBP": 43 } },
-            { "label": "80 - 99", "valoresVariables": { "pSBP": 53 } },
-            { "label": "< 80", "valoresVariables": { "pSBP": 58 } }
-          ]
+          "unidad": "mmHg"
         },
         {
           "id": "killip",
@@ -76,17 +53,9 @@
       "elementos": [
         {
           "id": "creatinina",
-          "tipo": "opciones",
-          "label": "Creatinina (mg/dL)",
-          "opciones": [
-            { "label": "0 - 0.39", "valoresVariables": { "pCreat": 1 } },
-            { "label": "0.40 - 0.79", "valoresVariables": { "pCreat": 4 } },
-            { "label": "0.80 - 1.19", "valoresVariables": { "pCreat": 7 } },
-            { "label": "1.20 - 1.59", "valoresVariables": { "pCreat": 10 } },
-            { "label": "1.60 - 1.99", "valoresVariables": { "pCreat": 13 } },
-            { "label": "2.00 - 3.99", "valoresVariables": { "pCreat": 21 } },
-            { "label": "≥ 4.0", "valoresVariables": { "pCreat": 28 } }
-          ]
+          "tipo": "input_numero",
+          "label": "Creatinina",
+          "unidad": "mg/dL"
         },
         {
           "id": "st",
@@ -110,27 +79,9 @@
     }
   ],
   "resultados": [
-    {
-      "min": 0,
-      "max": 108,
-      "categoria": "Riesgo Bajo",
-      "color": "verde",
-      "approach": "Manejo conservador inicial"
-    },
-    {
-      "min": 109,
-      "max": 140,
-      "categoria": "Riesgo Intermedio",
-      "color": "amarillo",
-      "approach": "Estrategia invasiva temprana"
-    },
-    {
-      "min": 141,
-      "max": 400,
-      "categoria": "Riesgo Alto",
-      "color": "rojo",
-      "approach": "Estrategia invasiva urgente"
-    }
+    { "min": 0, "max": 108, "categoria": "Riesgo Bajo", "color": "verde", "approach": "Manejo conservador inicial" },
+    { "min": 109, "max": 140, "categoria": "Riesgo Intermedio", "color": "amarillo", "approach": "Estrategia invasiva temprana" },
+    { "min": 141, "max": 999, "categoria": "Riesgo Alto", "color": "rojo", "approach": "Estrategia invasiva urgente" }
   ],
   "referencias": [
     {
