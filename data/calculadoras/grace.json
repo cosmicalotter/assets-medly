@@ -1,6 +1,6 @@
 {
-  "titulo": "Score GRACE",
-  "descripcion": "Estima mortalidad intrahospitalaria y a 6 meses en Síndrome Coronario Agudo (SCA).",
+  "titulo": "Score GRACE (Mortalidad a 6 meses)",
+  "descripcion": "Estima la mortalidad a los 6 meses del ingreso en pacientes con Síndrome Coronario Agudo (SCA).",
   "tipoCalculo": "formula",
   "formula": "grace_puntos",
   "prefijoResultado": "Puntos",
@@ -32,9 +32,9 @@
           "label": "Clase Killip",
           "opciones": [
             { "label": "I", "valoresVariables": { "pKillip": 0 } },
-            { "label": "II", "valoresVariables": { "pKillip": 20 } },
-            { "label": "III", "valoresVariables": { "pKillip": 39 } },
-            { "label": "IV", "valoresVariables": { "pKillip": 59 } }
+            { "label": "II", "valoresVariables": { "pKillip": 14 } },
+            { "label": "III", "valoresVariables": { "pKillip": 27 } },
+            { "label": "IV", "valoresVariables": { "pKillip": 40 } }
           ]
         },
         {
@@ -43,7 +43,7 @@
           "label": "Paro al ingreso",
           "opciones": [
             { "label": "No", "valoresVariables": { "pArrest": 0 } },
-            { "label": "Sí", "valoresVariables": { "pArrest": 39 } }
+            { "label": "Sí", "valoresVariables": { "pArrest": 30 } }
           ]
         }
       ]
@@ -63,7 +63,7 @@
           "label": "Desviación ST",
           "opciones": [
             { "label": "No", "valoresVariables": { "pST": 0 } },
-            { "label": "Sí", "valoresVariables": { "pST": 28 } }
+            { "label": "Sí", "valoresVariables": { "pST": 20 } }
           ]
         },
         {
@@ -72,16 +72,16 @@
           "label": "Enzimas elevadas",
           "opciones": [
             { "label": "No", "valoresVariables": { "pEnz": 0 } },
-            { "label": "Sí", "valoresVariables": { "pEnz": 14 } }
+            { "label": "Sí", "valoresVariables": { "pEnz": 11 } }
           ]
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 0, "max": 108, "categoria": "Riesgo Bajo", "color": "verde", "approach": "Manejo conservador inicial" },
-    { "min": 109, "max": 140, "categoria": "Riesgo Intermedio", "color": "amarillo", "approach": "Estrategia invasiva temprana" },
-    { "min": 141, "max": 999, "categoria": "Riesgo Alto", "color": "rojo", "approach": "Estrategia invasiva urgente" }
+    { "min": 0, "max": 88, "categoria": "Riesgo Bajo (<3%)", "color": "verde", "approach": "Manejo conservador inicial" },
+    { "min": 89, "max": 118, "categoria": "Riesgo Intermedio (3-8%)", "color": "amarillo", "approach": "Estrategia invasiva temprana" },
+    { "min": 119, "max": 999, "categoria": "Riesgo Alto (>8%)", "color": "rojo", "approach": "Estrategia invasiva urgente" }
   ],
   "referencias": [
     {
