@@ -1,0 +1,125 @@
+{
+  "titulo": "Score AIR (Appendicitis Inflammatory Response)",
+  "descripcion": "El Score AIR es una escala clínica y de laboratorio diseñada para estratificar el riesgo de apendicitis aguda. Ha demostrado superar al Score de Alvarado al incluir la Proteína C Reactiva (PCR) y al graduar la severidad de los signos clínicos.\n\nInterpretación de puntos:\n- 0 a 4 puntos: Baja probabilidad de apendicitis.\n- 5 a 8 puntos: Riesgo indeterminado.\n- 9 a 12 puntos: Alta probabilidad de apendicitis avanzada.",
+  "tipoCalculo": "formula",
+  "prefijoResultado": "Total",
+  "sufijoResultado": "puntos",
+  "formula": "dolorFid + vomitos + defensa + fiebre + leucocitos + pmn + pcr",
+  "secciones": [
+    {
+      "nombre": "Hallazgos Clínicos",
+      "elementos": [
+        {
+          "id": "dolorFid",
+          "tipo": "opciones",
+          "label": "Dolor en FID",
+          "opciones": [
+            { "label": "No", "puntos": 0 },
+            { "label": "Sí", "puntos": 1 }
+          ]
+        },
+        {
+          "id": "vomitos",
+          "tipo": "opciones",
+          "label": "Vómitos",
+          "opciones": [
+            { "label": "No", "puntos": 0 },
+            { "label": "Sí", "puntos": 1 }
+          ]
+        },
+        {
+          "id": "defensa",
+          "tipo": "opciones",
+          "label": "Defensa o Rebote",
+          "opciones": [
+            { "label": "Ausente", "puntos": 0 },
+            { "label": "Leve", "puntos": 1 },
+            { "label": "Moderada", "puntos": 2 },
+            { "label": "Fuerte", "puntos": 3 }
+          ]
+        },
+        {
+          "id": "fiebre",
+          "tipo": "opciones",
+          "label": "Temp ≥ 38.5°C",
+          "opciones": [
+            { "label": "No", "puntos": 0 },
+            { "label": "Sí", "puntos": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estudios de Laboratorio",
+      "elementos": [
+        {
+          "id": "leucocitos",
+          "tipo": "opciones",
+          "label": "Leucocitos",
+          "opciones": [
+            { "label": "< 10", "puntos": 0 },
+            { "label": "10 - 14.9", "puntos": 1 },
+            { "label": "≥ 15", "puntos": 2 }
+          ]
+        },
+        {
+          "id": "pmn",
+          "tipo": "opciones",
+          "label": "Polimorfonucleares",
+          "opciones": [
+            { "label": "< 70%", "puntos": 0 },
+            { "label": "70 - 84%", "puntos": 1 },
+            { "label": "≥ 85%", "puntos": 2 }
+          ]
+        },
+        {
+          "id": "pcr",
+          "tipo": "opciones",
+          "label": "PCR",
+          "opciones": [
+            { "label": "< 10", "puntos": 0 },
+            { "label": "10 - 49", "puntos": 1 },
+            { "label": "≥ 50", "puntos": 2 }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 4,
+      "categoria": "Riesgo Bajo",
+      "color": "verde",
+      "approach": "Alta médica con seguimiento ambulatorio clínico."
+    },
+    {
+      "min": 5,
+      "max": 8,
+      "categoria": "Riesgo Indeterminado",
+      "color": "amarillo",
+      "approach": "Observación intrahospitalaria, re-evaluación e imágenes diagnósticas."
+    },
+    {
+      "min": 9,
+      "max": 12,
+      "categoria": "Riesgo Alto",
+      "color": "rojo",
+      "approach": "Exploración quirúrgica temprana."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "The Appendicitis Inflammatory Response Score: A Tool for the Diagnosis of Acute Appendicitis that Outperforms the Alvarado Score",
+      "url": "https://doi.org/10.1007/s00268-008-9649-y"
+    },
+    {
+      "titulo": "Evaluation of the Appendicitis Inflammatory Response Score for Patients with Acute Appendicitis",
+      "url": "https://doi.org/10.1007/s00268-012-1521-4"
+    },
+    {
+      "titulo": "Randomized clinical trial of Appendicitis Inflammatory Response score-based management of patients with suspected appendicitis",
+      "url": "https://doi.org/10.1002/bjs.10637"
+    }
+  ]
+}
