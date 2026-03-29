@@ -1,0 +1,67 @@
+{
+  "titulo": "Score de Bishop",
+  "descripcion": "Evalúa la madurez cervical y predice la probabilidad de éxito en la inducción del trabajo de parto a término.",
+  "tipoCalculo": "suma",
+  "prefijoResultado": "Total",
+  "sufijoResultado": "puntos",
+  "referencias": [
+    { "titulo": "Bishop EH. Pelvic Scoring for Elective Induction. Obstet Gynecol. 1964; 24:266-8.", "url": "https://pubmed.ncbi.nlm.nih.gov/14199536/" },
+    { "titulo": "Laughon SK, et al. Using a Simplified Bishop Score to Predict Vaginal Delivery. Obstet Gynecol. 2011; 117(4): 805-811.", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3297470/" },
+    { "titulo": "Newman RB, et al. Preterm Prediction Study: Comparison of the Cervical Score and Bishop Score. Obstet Gynecol. 2008; 112(3): 508-515.", "url": "https://pubmed.ncbi.nlm.nih.gov/18757646/" }
+  ],
+  "columnas": [
+    {"puntos": 0, "titulo": "0", "color": "rojo"},
+    {"puntos": 1, "titulo": "1", "color": "naranja"},
+    {"puntos": 2, "titulo": "2", "color": "amarillo"},
+    {"puntos": 3, "titulo": "3", "color": "verde"}
+  ],
+  "filas": [
+    {
+      "nombre": "EXAMEN FÍSICO",
+      "descripciones": ["-", "-", "-", "-"]
+    },
+    {
+      "nombre": "Dilatación",
+      "descripciones": ["Cerrado", "1 - 2 cm", "3 - 4 cm", "≥ 5 cm"]
+    },
+    {
+      "nombre": "Borramiento",
+      "descripciones": ["0 - 30%", "40 - 50%", "60 - 70%", "≥ 80%"]
+    },
+    {
+      "nombre": "Estación",
+      "descripciones": ["-3", "-2", "-1 o 0", "+1 o +2"]
+    },
+    {
+      "nombre": "Consistencia",
+      "descripciones": ["Firme", "Media", "Blanda", "-"]
+    },
+    {
+      "nombre": "Posición",
+      "descripciones": ["Posterior", "Media", "Anterior", "-"]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 5,
+      "categoria": "Cérvix Desfavorable",
+      "color": "rojo",
+      "approach": "Maduración cervical recomendada"
+    },
+    {
+      "min": 6,
+      "max": 8,
+      "categoria": "Cérvix Intermedio",
+      "color": "amarillo",
+      "approach": "Considerar maduración o inducción clínica"
+    },
+    {
+      "min": 9,
+      "max": 13,
+      "categoria": "Cérvix Favorable",
+      "color": "verde",
+      "approach": "Inducción directa (oxitocina/amniotomía)"
+    }
+  ]
+}

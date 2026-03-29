@@ -1,0 +1,222 @@
+{
+  "titulo": "Criterios IDSA/ATS para NAC Severa",
+  "descripcion": "Evalúa la gravedad de la Neumonía Adquirida en la Comunidad (NAC) para definir la necesidad de ingreso a la Unidad de Cuidados Intensivos (UCI).",
+  "tipoCalculo": "formula",
+  "prefijoResultado": "Puntaje:",
+  "sufijoResultado": "puntos",
+  "formula": "shock + vm + fr + pafi + rx + neuro + bun + leuco + plaq + temp + pa",
+  "secciones": [
+    {
+      "nombre": "Criterios Mayores",
+      "elementos": [
+        {
+          "id": "shock",
+          "tipo": "opciones",
+          "label": "Shock séptico",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 10
+            }
+          ]
+        },
+        {
+          "id": "vm",
+          "tipo": "opciones",
+          "label": "Ventilación mecánica",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios Menores",
+      "elementos": [
+        {
+          "id": "fr",
+          "tipo": "opciones",
+          "label": "FR ≥30 rpm",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "pafi",
+          "tipo": "opciones",
+          "label": "PaO2/FiO2 ≤250",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "rx",
+          "tipo": "opciones",
+          "label": "Infiltrados multilobares",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "neuro",
+          "tipo": "opciones",
+          "label": "Confusión/Desorientación",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "bun",
+          "tipo": "opciones",
+          "label": "BUN ≥20 mg/dL",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "leuco",
+          "tipo": "opciones",
+          "label": "Leucopenia <4000",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "plaq",
+          "tipo": "opciones",
+          "label": "Trombocitopenia <100000",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "temp",
+          "tipo": "opciones",
+          "label": "Hipotermia <36°C",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "pa",
+          "tipo": "opciones",
+          "label": "Hipotensión con fluidoterapia",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 2,
+      "categoria": "NAC No Severa",
+      "color": "verde",
+      "approach": "Manejo en sala general"
+    },
+    {
+      "min": 3,
+      "max": 9,
+      "categoria": "NAC Severa (Criterios Menores)",
+      "color": "naranja",
+      "approach": "Considerar ingreso a UCI"
+    },
+    {
+      "min": 10,
+      "max": 29,
+      "categoria": "NAC Severa (Criterio Mayor)",
+      "color": "rojo",
+      "approach": "Ingreso directo a UCI"
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Diagnosis and Treatment of Adults with Community-acquired Pneumonia. An Official Clinical Practice Guideline of the ATS and IDSA (2019)",
+      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST"
+    },
+    {
+      "titulo": "Infectious Diseases Society of America/American Thoracic Society Consensus Guidelines on the Management of Community-Acquired Pneumonia in Adults (2007)",
+      "url": "https://academic.oup.com/cid/article/44/Supplement_2/S27/372079"
+    },
+    {
+      "titulo": "Validation and clinical implications of the IDSA/ATS minor criteria for severe community-acquired pneumonia. Thorax (2009)",
+      "url": "https://thorax.bmj.com/content/64/7/598"
+    }
+  ]
+}

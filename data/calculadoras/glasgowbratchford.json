@@ -1,146 +1,184 @@
 {
-  "titulo": "Escala de Glasgow-Blatchford",
-  "descripcion": "Escala clínica para clasificar a los pacientes con hemorragia digestiva alta (HDA) no variceal. Se basa únicamente en variables clínicas y de laboratorio para identificar tempranamente qué pacientes requieren intervención clínica (transfusión de sangre, endoscopia o manejo quirúrgico) y cuáles pueden ser manejados de forma ambulatoria. Un puntaje > 0 se considera de alto riesgo.",
-  "referencias": [
+  "titulo": "Score de Glasgow-Blatchford (GBS)",
+  "descripcion": "Estratifica el riesgo de requerir intervención médica (endoscopia, transfusión o cirugía) en pacientes con hemorragia digestiva alta no variceal.",
+  "tipoCalculo": "formula",
+  "prefijoResultado": "Total",
+  "sufijoResultado": "puntos",
+  "formula": "bun_puntos + pas_puntos + fc_puntos + hb + melena + sincope + hepatopatia + icc",
+  "secciones": [
     {
-      "titulo": "A risk score to predict need for treatment for uppergastrointestinal haemorrhage",
-      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(00)02816-6/abstract/"
-    },
-    {
-      "titulo": "Risk scoring systems to predict need for clinical intervention for patients with nonvariceal upper gastrointestinal tract bleeding ",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17870480//"
-    }
-  ],
-  "columnas": [
-    {
-      "puntos": 0,
-      "titulo": "0",
-      "color": "verde"
-    },
-    {
-      "puntos": 1,
-      "titulo": "1",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 2,
-      "titulo": "2",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 3,
-      "titulo": "3",
-      "color": "naranja"
-    },
-    {
-      "puntos": 4,
-      "titulo": "4",
-      "color": "rojo"
-    },
-    {
-      "puntos": 6,
-      "titulo": "6",
-      "color": "rojo"
-    }
-  ],
-  "filas": [
-    {
-      "nombre": "BUN (mg/dL)",
-      "descripciones": [
-        "< 18.2",
-        "-",
-        "≥ 18.2 a < 22.4",
-        "≥ 22.4 a < 28",
-        "≥ 28 a < 70",
-        "≥ 70"
+      "nombre": "Laboratorio",
+      "elementos": [
+        {
+          "id": "bun",
+          "tipo": "input_numero",
+          "label": "BUN",
+          "unidad": "mg/dL",
+          "intervalos": [
+            {
+              "max": 18.19,
+              "puntos": 0
+            },
+            {
+              "min": 18.2,
+              "max": 22.39,
+              "puntos": 2
+            },
+            {
+              "min": 22.4,
+              "max": 27.99,
+              "puntos": 3
+            },
+            {
+              "min": 28.0,
+              "max": 69.99,
+              "puntos": 4
+            },
+            {
+              "min": 70.0,
+              "puntos": 6
+            }
+          ]
+        },
+        {
+          "id": "hb",
+          "tipo": "opciones",
+          "label": "Hemoglobina (Hb)",
+          "opciones": [
+            {
+              "label": "≥ 13 (H) o ≥ 12 (M)",
+              "puntos": 0
+            },
+            {
+              "label": "12 - 12.9 (Hombres)",
+              "puntos": 1
+            },
+            {
+              "label": "10 - 11.9 (Mujeres)",
+              "puntos": 1
+            },
+            {
+              "label": "10 - 11.9 (Hombres)",
+              "puntos": 3
+            },
+            {
+              "label": "< 10 (Ambos)",
+              "puntos": 6
+            }
+          ]
+        }
       ]
     },
     {
-      "nombre": "Hb Hombres (g/dL)",
-      "descripciones": [
-        "≥ 13",
-        "≥ 12 a < 13",
-        "-",
-        "≥ 10 a < 12",
-        "-",
-        "< 10"
+      "nombre": "Signos Vitales",
+      "elementos": [
+        {
+          "id": "pas",
+          "tipo": "input_numero",
+          "label": "PAS",
+          "unidad": "mmHg",
+          "intervalos": [
+            {
+              "max": 89.99,
+              "puntos": 3
+            },
+            {
+              "min": 90.0,
+              "max": 99.99,
+              "puntos": 2
+            },
+            {
+              "min": 100.0,
+              "max": 109.99,
+              "puntos": 1
+            },
+            {
+              "min": 110.0,
+              "puntos": 0
+            }
+          ]
+        },
+        {
+          "id": "fc",
+          "tipo": "input_numero",
+          "label": "Frec. Cardíaca",
+          "unidad": "lpm",
+          "intervalos": [
+            {
+              "max": 99.99,
+              "puntos": 0
+            },
+            {
+              "min": 100.0,
+              "puntos": 1
+            }
+          ]
+        }
       ]
     },
     {
-      "nombre": "Hb Mujeres (g/dL)",
-      "descripciones": [
-        "≥ 12",
-        "≥ 10 a < 12",
-        "-",
-        "-",
-        "-",
-        "< 10"
-      ]
-    },
-    {
-      "nombre": "TA sistólica (mm Hg)",
-      "descripciones": [
-        "≥ 109",
-        "≥ 100 a < 109",
-        "≥ 90 a < 99",
-        "< 90",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "FC ≥ 100 lpm",
-      "descripciones": [
-        "No",
-        "Sí",
-        "-",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Presentación con Melena",
-      "descripciones": [
-        "No",
-        "Sí",
-        "-",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Presentación con Síncope",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Enfermedad Hepática",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Insuficiencia Cardíaca",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-",
-        "-"
+      "nombre": "Clínica y Comorbilidades",
+      "elementos": [
+        {
+          "id": "melena",
+          "tipo": "opciones",
+          "label": "Melena",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "sincope",
+          "tipo": "opciones",
+          "label": "Síncope",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 2
+            }
+          ]
+        },
+        {
+          "id": "hepatopatia",
+          "tipo": "opciones",
+          "label": "Enf. Hepática",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 2
+            }
+          ]
+        },
+        {
+          "id": "icc",
+          "tipo": "opciones",
+          "label": "Falla Cardíaca",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 2
+            }
+          ]
+        }
       ]
     }
   ],
@@ -148,16 +186,30 @@
     {
       "min": 0,
       "max": 0,
-      "categoria": "Riesgo Bajo (Manejo ambulatorio posible)",
-      "match_opcion_index": -1,
-      "color": "verde"
+      "categoria": "Riesgo Bajo",
+      "color": "verde",
+      "approach": "Alta médica, manejo ambulatorio sin requerir endoscopia de urgencia."
     },
     {
       "min": 1,
       "max": 23,
-      "categoria": "Alto Riesgo (Requiere intervención clínica)",
-      "match_opcion_index": -1,
-      "color": "rojo"
+      "categoria": "Alto Riesgo",
+      "color": "rojo",
+      "approach": "Ingreso hospitalario. Considerar endoscopia e intervención clínica."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Blatchford O, et al. A risk score to predict need for treatment for upper-gastrointestinal haemorrhage. Lancet. 2000;356(9238):1318-21.",
+      "url": "https://doi.org/10.1016/S0140-6736(00)02816-6"
+    },
+    {
+      "titulo": "Chen IC, et al. Risk scoring systems to predict need for clinical intervention for patients with nonvariceal upper gastrointestinal tract bleeding. Am J Emerg Med. 2007;25(7):774-9.",
+      "url": "https://doi.org/10.1016/j.ajem.2006.12.024"
+    },
+    {
+      "titulo": "Laine L, Jensen DM. Management of patients with ulcer bleeding. Am J Gastroenterol. 2012;107(3):345-60.",
+      "url": "https://doi.org/10.1038/ajg.2011.480"
     }
   ]
 }
