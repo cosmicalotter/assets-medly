@@ -1,20 +1,6 @@
 {
   "titulo": "Accidente Cerebrovascular Isquémico Agudo",
-  "version": "Marzo 2026",
-  "referencias": [
-    {
-      "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the AHA/ASA",
-      "url": "https://www.ahajournals.org/journal/str"
-    },
-    {
-      "titulo": "Guía de Práctica Clínica ACV Isquémico Colombia",
-      "url": "gpc.minsalud.gov.co"
-    },
-    {
-      "titulo": "AMBOSS & Lecturio: Ischemic Stroke Overview",
-      "url": "Local PDF"
-    }
-  ],
+  "version": "2026 AHA/ASA Guidelines",
   "nodoInicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
@@ -33,137 +19,214 @@
     },
     "nodo_diagnostico": {
       "tipo": "pregunta",
-      "texto": "Ruta Diagnóstica. Seleccione la fase a evaluar:",
+      "texto": "Diagnóstico",
       "opciones": [
         {
-          "texto": "Evaluación Inicial",
-          "siguiente_nodo": "diag_eval_inicial"
-        },
-        {
-          "texto": "Escalas Clínicas",
-          "siguiente_nodo": "diag_escalas"
-        },
-        {
-          "texto": "Neuroimagen",
-          "siguiente_nodo": "diag_neuroimagen"
-        }
-      ]
-    },
-    "diag_eval_inicial": {
-      "tipo": "info",
-      "texto": "- Vía aérea y O2 (mantener >94%).\n- Accesos IV periféricos.\n- Glucometría inmediata (tratar si <60 mg/dL, simulador de ACV).\n- Definir 'Tiempo Cero' (última vez visto en estado basal normal).",
-      "enlaces": [
-        {
-          "texto": "Ver Algoritmo de Triage",
-          "archivo_objetivo": "TODO_LINK_triage_acv.json"
-        }
-      ]
-    },
-    "diag_escalas": {
-      "tipo": "info",
-      "texto": "- Prehospitalario: LAPSS o Cincinnati.\n- Hospitalario: Escala NIHSS para medir severidad y guiar terapia.\n- ACV Menor: NIHSS <= 3 (no discapacitante).\n- ACV Severo: NIHSS > 25.",
-      "enlaces": [
-        {
-          "texto": "Calculadora NIHSS",
-          "archivo_objetivo": "TODO_CALC_nihss.json"
-        },
-        {
-          "texto": "Escala LAPSS",
-          "archivo_objetivo": "TODO_CALC_lapss.json"
-        }
-      ]
-    },
-    "diag_neuroimagen": {
-      "tipo": "info",
-      "texto": "- TC Cráneo Simple: Meta <20 min. Excluir hemorragia. Evaluar ASPECTS.\n- Angio-TC: Identificar Oclusión de Gran Vaso (LVO) para trombectomía.\n- RM (DWI/FLAIR): Útil en ACV del despertar para identificar 'mismatch'.",
-      "imagen": "TODO_IMG_aspects_tc_score.png",
-      "enlaces": [
-        {
-          "texto": "Calculadora ASPECTS",
-          "archivo_objetivo": "TODO_CALC_aspects.json"
+          "texto": "Iniciar Evaluación",
+          "siguiente_nodo": "diag_paso_1_abc"
         }
       ]
     },
     "nodo_tratamiento": {
       "tipo": "pregunta",
-      "texto": "Ruta de Tratamiento. Seleccione la estrategia:",
+      "texto": "Tratamiento",
       "opciones": [
         {
-          "texto": "Medidas Generales y Metas",
-          "siguiente_nodo": "trat_medidas"
-        },
-        {
-          "texto": "Trombolisis Intravenosa (IVT)",
-          "siguiente_nodo": "trat_trombolisis"
-        },
-        {
-          "texto": "Trombectomía Mecánica (EVT)",
-          "siguiente_nodo": "trat_trombectomia"
-        },
-        {
-          "texto": "Antiagregación y Prev. Secundaria",
-          "siguiente_nodo": "trat_antiagregacion"
+          "texto": "Iniciar Manejo",
+          "siguiente_nodo": "trat_paso_1_tiempo"
         }
       ]
     },
-    "trat_medidas": {
-      "tipo": "info",
-      "texto": "- Presión Arterial: <185/110 mmHg si candidato a IVT/EVT. Permisiva <220/120 mmHg si no hay terapia de reperfusión.\n- Glucosa: Mantener 140-180 mg/dL (evitar control estricto 80-130 por riesgo de hipoglucemia).\n- Temperatura: Normotermia (<38 C).",
-      "enlaces": [
-        {
-          "texto": "Protocolo Antihipertensivos IV",
-          "archivo_objetivo": "TODO_CALC_antihipertensivos_iv.json"
-        }
-      ]
-    },
-    "trat_trombolisis": {
+    "diag_paso_1_abc": {
       "tipo": "pregunta",
-      "texto": "Trombolisis IV (IVT). Seleccione un apartado:",
+      "texto": "- Estabilización ABCDE y soporte de vía aérea si requiere.\n- Toma de signos vitales completos.\n- Glucometría capilar urgente.\n¿Glucosa anormal (<60 o >400 mg/dL)?",
       "opciones": [
         {
-          "texto": "Criterios e Indicaciones",
-          "siguiente_nodo": "trombolisis_criterios"
+          "texto": "Sí",
+          "siguiente_nodo": "diag_corregir_glucosa"
         },
         {
-          "texto": "Fármacos y Dosis (AHA 2026)",
-          "siguiente_nodo": "trombolisis_dosis"
+          "texto": "No",
+          "siguiente_nodo": "diag_activar_codigo"
         }
       ]
     },
-    "trombolisis_criterios": {
-      "tipo": "info",
-      "texto": "- Ventana estándar: <4.5 horas desde tiempo cero. Déficit discapacitante.\n- Ventana extendida (4.5-9h o despertar): Requiere mismatch en RM (DWI/FLAIR) o TC Perfusión.\n- Descartar hemorragia, neurocirugía reciente o coagulopatía activa.",
+    "diag_corregir_glucosa": {
+      "tipo": "pregunta",
+      "texto": "- Corregir glucosa inmediatamente.\n- Reevaluar déficit neurológico.\n¿El déficit neurológico focal persiste tras la corrección?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_activar_codigo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_fin_mimic"
+        }
+      ]
+    },
+    "diag_fin_mimic": {
+      "tipo": "informacion",
+      "texto": "- Considerar Stroke Mimic (ej. hipoglucemia severa).\n- Observación clínica y manejo de patología de base."
+    },
+    "diag_activar_codigo": {
+      "tipo": "pregunta",
+      "texto": "- Activar Código Stroke.\n- Determinar hora exacta de último visto normal (LKN).\n- Calcular escala NIHSS para severidad.",
+      "calculadora_id": "TODO_CALC_nihss.json",
+      "opciones": [
+        {
+          "texto": "Avanzar a Neuroimagen",
+          "siguiente_nodo": "diag_imagen"
+        }
+      ]
+    },
+    "diag_imagen": {
+      "tipo": "pregunta",
+      "texto": "- Realizar TAC cráneo simple urgente (meta <25 min).\n- Descartar hemorragia intracraneal.\n- Calcular ASPECTS para isquemia temprana.\n¿Hay presencia de hemorragia?",
+      "calculadora_id": "TODO_CALC_aspects.json",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_hemorragia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_angio_tac"
+        }
+      ]
+    },
+    "diag_hemorragia": {
+      "tipo": "informacion",
+      "texto": "- Diagnóstico de ACV Hemorrágico.\n- Detener protocolo isquémico.\n- Control estricto de TA y valoración por Neurocirugía.",
       "enlaces": [
         {
-          "texto": "Checklist Contraindicaciones tPA",
-          "archivo_objetivo": "TODO_CALC_criterios_exclusion_tpa.json"
+          "texto": "Ir a algoritmo de ACV Hemorrágico",
+          "archivo_objetivo": "TODO_LINK_acv_hemorragico.json"
         }
       ]
     },
-    "trombolisis_dosis": {
-      "tipo": "info",
-      "texto": "- Elección AHA 2026: Tenecteplasa (TNK) 0.25 mg/kg IV en bolo único (Dosis máxima 25 mg).\n- Alternativa: Alteplasa 0.9 mg/kg (10% en bolo de 1 min, 90% en infusión de 1 hora. Dosis máxima 90 mg).\n- Monitoreo estricto de PA post-infusión (<180/105 mmHg).",
-      "enlaces": [
+    "diag_angio_tac": {
+      "tipo": "pregunta",
+      "texto": "- Realizar AngioTAC de cuello y cerebro para detectar Oclusión de Gran Vaso (LVO).\n- No retrasar trombolisis por esperar creatinina.",
+      "opciones": [
         {
-          "texto": "Calculadora Dosis Fibrinolíticos",
-          "archivo_objetivo": "TODO_CALC_dosis_tnk_tpa.json"
+          "texto": "Ir a Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
         }
       ]
     },
-    "trat_trombectomia": {
-      "tipo": "info",
-      "texto": "- Indicado en Oclusión de Gran Vaso (LVO) en ACI o segmento M1.\n- Ventana Temprana (<6h): NIHSS >=6, ASPECTS >=6.\n- Ventana Extendida (6-24h): Requiere mismatch clínico-imagenológico documentado por CTP o RM (Criterios DAWN / DEFUSE-3).\n- No retrasar IVT esperando EVT.",
-      "imagen": "TODO_IMG_algoritmo_evt_24h.png"
-    },
-    "trat_antiagregacion": {
-      "tipo": "info",
-      "texto": "- Iniciar 24h post-reperfusión si la TC control descarta sangrado.\n- ACV Menor (NIHSS <=3) o TIA Alto Riesgo: DAPT (Aspirina + Clopidogrel o Ticagrelor) por 21 días, luego monoterapia.\n- ACV Moderado/Mayor: SAPT (Aspirina 160-300 mg/día).\n- Anticoagulación (FA): Diferir inicio según tamaño del infarto.",
-      "enlaces": [
+    "trat_paso_1_tiempo": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar tiempo desde último visto normal (LKN).\n¿El tiempo LKN es menor a 4.5 horas?",
+      "opciones": [
         {
-          "texto": "Manejo Antiplaquetario Dual (CHANCE/POINT)",
-          "archivo_objetivo": "TODO_LINK_dapt_protocol.json"
+          "texto": "Sí (< 4.5 h)",
+          "siguiente_nodo": "trat_eval_trombolisis"
+        },
+        {
+          "texto": "No (4.5 - 24 h o Despertar)",
+          "siguiente_nodo": "trat_eval_ventana_extendida"
         }
       ]
+    },
+    "trat_eval_trombolisis": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar contraindicaciones absolutas para Trombolisis IV.\n- Requiere TA < 185/110 mmHg.\n¿Es candidato a Trombolisis IV?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_admin_trombolisis"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_eval_lvo_temprana"
+        }
+      ]
+    },
+    "trat_admin_trombolisis": {
+      "tipo": "pregunta",
+      "texto": "- Control TA <185/110 mmHg previo a infusión.\n- 1ra línea: Tenecteplasa 0.25 mg/kg (máx 25 mg) en bolo único.\n- Alternativa: Alteplasa 0.9 mg/kg (10% bolo, 90% infusión en 1h).\n- Mantener TA post-trombolisis <180/105 mmHg.",
+      "opciones": [
+        {
+          "texto": "Evaluar Trombectomía",
+          "siguiente_nodo": "trat_eval_lvo_temprana"
+        }
+      ]
+    },
+    "trat_eval_lvo_temprana": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar resultados de AngioTAC.\n¿Presenta LVO en circulación anterior/basilar, NIHSS >=6 y ASPECTS >=3?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_admin_trombectomia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_manejo_medico_secundario"
+        }
+      ]
+    },
+    "trat_eval_ventana_extendida": {
+      "tipo": "pregunta",
+      "texto": "- Ventana 4.5 - 24h o ACV del despertar.\n- Realizar TAC de Perfusión o RM.\n¿Demuestra LVO con tejido salvable (mismatch clínico-radiológico o de perfusión)?",
+      "imagen": "TODO_IMG_criterios_mismatch_perfusión.png",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_admin_trombectomia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_manejo_medico_secundario"
+        }
+      ]
+    },
+    "trat_admin_trombectomia": {
+      "tipo": "pregunta",
+      "texto": "- Traslado directo a sala de angiografía para Trombectomía Endovascular (EVT).\n- No esperar respuesta a trombolisis IV si se administró.\n- Meta TA post-EVT: Sistólica < 140-160 mmHg (individualizar).",
+      "opciones": [
+        {
+          "texto": "Continuar Manejo de Soporte",
+          "siguiente_nodo": "trat_manejo_medico_secundario"
+        }
+      ]
+    },
+    "trat_manejo_medico_secundario": {
+      "tipo": "pregunta",
+      "texto": "- ACV isquémico no cardioembólico.\n¿Presenta déficit menor (NIHSS <= 5) o AIT de alto riesgo, SIN haber recibido trombolisis?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_dapt"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_sapt"
+        }
+      ]
+    },
+    "trat_dapt": {
+      "tipo": "informacion",
+      "texto": "- Iniciar DAPT (Aspirina + Clopidogrel o Ticagrelor) en las primeras 24h.\n- Duración: 21 a 30 días, luego continuar con SAPT.\n- Ingreso a Stroke Unit para prevención secundaria, estatinas de alta intensidad y rehabilitación temprana."
+    },
+    "trat_sapt": {
+      "tipo": "informacion",
+      "texto": "- Iniciar monoterapia antiplaquetaria (Aspirina) en 24-48h.\n- Nota: Esperar 24h post-trombolisis y realizar TAC control previo a antiagregación.\n- Ingreso a Stroke Unit para control de TA, estatinas y prevención secundaria."
     }
-  }
+  },
+  "referencias": [
+    {
+      "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the AHA/ASA",
+      "url": "https://www.ahajournals.org/doi/suppl/10.1161/STR.0000000000000513"
+    },
+    {
+      "titulo": "Overview of stroke - AMBOSS",
+      "url": "https://next.amboss.com/us/article/UR0bmf"
+    },
+    {
+      "titulo": "Guía de Práctica Clínica ACV Isquémico, Colombia 2015",
+      "url": "gpc.minsalud.gov.co"
+    }
+  ]
 }
