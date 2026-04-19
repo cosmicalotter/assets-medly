@@ -7,13 +7,30 @@
       "tipo": "pregunta",
       "texto": "Hipertensión arterial",
       "opciones": [
-        { "texto": "Diagnóstico", "siguiente_nodo": "diag_paso_1" },
-        { "texto": "Tratamiento", "siguiente_nodo": "trat_paso_1" }
+        { "texto": "", "siguiente_nodo": "nodo_diagnostico" },
+        { "texto": "", "siguiente_nodo": "nodo_tratamiento" }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "diag_paso_1" }
+      ]
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "trat_paso_1" }
       ]
     },
     "diag_paso_1": {
       "tipo": "pregunta",
-      "texto": "- Iniciar Evaluación Clínica.\n- Medición de TA en consulta con técnica estandarizada.\n- Promediar últimas 2 mediciones.\n¿**TA en consulta >=130/80 mmHg (AHA) o >=140/90 mmHg (ESC)**?",
+      "texto": "- Medición de TA en consulta con técnica estandarizada y dispositivo validado.\n- Promediar últimas 2 mediciones.",
+      "pie_nodo": "¿**TA en consulta >=130/80 mmHg (AHA) o >=140/90 mmHg (ESC)**?",
       "opciones": [
         { "texto": "Sí", "siguiente_nodo": "diag_paso_2_conf" },
         { "texto": "No", "siguiente_nodo": "diag_paso_2_normal" }
@@ -21,11 +38,13 @@
     },
     "diag_paso_2_normal": {
       "tipo": "informativo",
-      "texto": "- TA normal o elevada sin criterios de hipertensión.\n- Promover estilo de vida saludable.\n- Reevaluar rutinariamente en **1 a 3 años**."
+      "texto": "- TA normal o elevada sin criterios de hipertensión.\n- Promover estilo de vida saludable.",
+      "pie_nodo": "Reevaluar rutinariamente en **1 a 3 años**."
     },
     "diag_paso_2_conf": {
       "tipo": "pregunta",
-      "texto": "- Descartar HTA de bata blanca o enmascarada.\n- Realizar monitoreo fuera de consulta (MAPA 24h o AMPA domiciliaria).\n¿**Promedio MAPA/AMPA confirma TA >=130/80 mmHg**?",
+      "texto": "- Descartar HTA de bata blanca o enmascarada.\n- Realizar monitoreo fuera de consulta (MAPA 24h o AMPA domiciliaria).",
+      "pie_nodo": "¿**Promedio MAPA/AMPA confirma TA >=130/80 mmHg**?",
       "opciones": [
         { "texto": "Sí", "siguiente_nodo": "diag_paso_3_eval" },
         { "texto": "No", "siguiente_nodo": "diag_bata_blanca" }
@@ -33,11 +52,13 @@
     },
     "diag_bata_blanca": {
       "tipo": "informativo",
-      "texto": "- Diagnóstico de HTA de bata blanca.\n- No requiere fármacos de inicio.\n- Monitoreo anual de TA y estilo de vida."
+      "texto": "- Diagnóstico de HTA de bata blanca.\n- No requiere fármacos de inicio.",
+      "pie_nodo": "Monitoreo anual de TA y estilo de vida."
     },
     "diag_paso_3_eval": {
       "tipo": "pregunta",
-      "texto": "- Solicitar labs: Na, K, Ca, Cr, eTFG, perfil lipídico, glucosa/HbA1c, TSH, EGO, RAC en orina.\n- Realizar ECG de 12 derivaciones.\n¿**Existen datos de HTA secundaria (joven, resistente, hipopotasemia)**?",
+      "texto": "- Solicitar labs: Na, K, Ca, Cr, eTFG, perfil lipídico, glucosa/HbA1c, TSH, EGO, RAC en orina.\n- Realizar ECG de 12 derivaciones.",
+      "pie_nodo": "¿**Existen datos de HTA secundaria (joven, resistente, hipopotasemia)**?",
       "opciones": [
         { "texto": "Sí", "siguiente_nodo": "diag_secundaria" },
         { "texto": "No", "siguiente_nodo": "diag_riesgo" }
@@ -45,98 +66,119 @@
     },
     "diag_secundaria": {
       "tipo": "informativo",
-      "texto": "- Sospecha de causa secundaria.\n- Solicitar índice aldosterona/renina, USG renal Doppler o polisomnografía según clínica.\n- Derivar a especialista."
+      "texto": "- Sospecha de causa secundaria.\n- Solicitar índice aldosterona/renina, USG renal Doppler o polisomnografía según clínica.",
+      "pie_nodo": "Derivar a especialista."
     },
     "diag_riesgo": {
       "tipo": "informativo",
       "texto": "- HTA Primaria confirmada.\n- Estratificar riesgo cardiovascular a 10 años (calculadora PREVENT o SCORE2).\n- Evaluar daño a órgano blanco (HVI, ERC, retinopatía).",
       "calculadora_id": "TODO_CALC_PREVENT_SCORE2.json",
-      "opciones": [
-        { "texto": "Ir a Tratamiento", "siguiente_nodo": "trat_paso_1" }
+      "enlaces": [
+        { "texto": "✨ Ir al Tratamiento Médico", "archivo_objetivo": "hipertension_arterial.json", "nodo_objetivo": "trat_paso_1" }
       ]
     },
     "trat_paso_1": {
       "tipo": "pregunta",
-      "texto": "- Aplicar dieta DASH y restricción de Na **<1500-2000 mg/día**.\n- Actividad física **>=150 min/sem** y control de peso.\n¿**Cuál es el escenario clínico y hemodinámico del paciente**?",
+      "texto": "- Aplicar dieta DASH y restricción de Na **<1500-2000 mg/día**.\n- Actividad física **>=150 min/sem** y control de peso.",
+      "pie_nodo": "¿**Cuál es el escenario clínico y hemodinámico del paciente**?",
       "opciones": [
         { "texto": "Emergencia (TA >180/120)", "siguiente_nodo": "trat_emergencia" },
         { "texto": "TA >=140/90 mmHg", "siguiente_nodo": "trat_estadio2" },
-        { "texto": "TA 130-139 Riesgo CV Alto", "siguiente_nodo": "trat_estadio1_alto" },
-        { "texto": "TA 130-139 Riesgo CV Bajo", "siguiente_nodo": "trat_estadio1_bajo" }
+        { "texto": "TA 130-139 Alto Riesgo", "siguiente_nodo": "trat_estadio1_alto" },
+        { "texto": "TA 130-139 Riesgo Bajo", "siguiente_nodo": "trat_estadio1_bajo" }
       ]
     },
     "trat_estadio1_bajo": {
       "tipo": "informativo",
-      "texto": "- Tratamiento no farmacológico intensivo.\n- Reevaluar TA en **3 a 6 meses**.\n- Si persiste **>130/80 mmHg**, iniciar monoterapia."
+      "texto": "- Tratamiento no farmacológico intensivo.\n- Reevaluar TA en **3 a 6 meses**.",
+      "pie_nodo": "Si persiste **>130/80 mmHg**, iniciar monoterapia."
     },
     "trat_estadio1_alto": {
       "tipo": "informativo",
-      "texto": "- Iniciar monoterapia de primera línea.\n- Opciones: IECA, ARA-II, Calcioantagonista (BCC) o Tiazida.\n- Ajustar dosis mensual hasta meta.",
+      "texto": "- Iniciar monoterapia de primera línea.\n- Opciones: IECA, ARA-II, Calcioantagonista (BCC) o Tiazida.",
+      "pie_nodo": "Ajustar dosis mensual hasta meta.",
       "opciones": [
-        { "texto": "Evaluar Control y Metas", "siguiente_nodo": "trat_control" }
+        { "texto": "Evaluar Metas", "siguiente_nodo": "trat_control" }
       ]
     },
     "trat_estadio2": {
       "tipo": "informativo",
       "texto": "- Iniciar terapia dual de primera línea.\n- Preferir combinación en píldora única.\n- Prohibido combinar IECA con ARA-II.",
+      "pie_nodo": "Ajustar dosis mensual hasta meta.",
       "opciones": [
-        { "texto": "Evaluar Control y Metas", "siguiente_nodo": "trat_control" }
+        { "texto": "Evaluar Metas", "siguiente_nodo": "trat_control" }
       ]
     },
     "trat_control": {
       "tipo": "pregunta",
-      "texto": "- Meta general: TA **<130/80 mmHg** (AHA) o **120-129/70-79 mmHg** (ESC).\n- Reevaluar en **4 semanas**.\n¿**Se alcanzó la meta terapéutica de TA**?",
+      "texto": "- Meta general: TA **<130/80 mmHg** (AHA) o **120-129/70-79 mmHg** (ESC).\n- Reevaluar en **4 semanas**.",
+      "pie_nodo": "¿**Se alcanzó la meta terapéutica de TA**?",
       "opciones": [
         { "texto": "Sí", "siguiente_nodo": "trat_exito" },
         { "texto": "No", "siguiente_nodo": "trat_escalar" }
       ]
     },
     "trat_exito": {
+      "estilo": "exito",
       "tipo": "informativo",
-      "texto": "- Continuar esquema actual.\n- Vigilar función renal, Na y K séricos.\n- Seguimiento cada **3 a 6 meses**."
+      "texto": "- Continuar esquema actual.\n- Vigilar función renal, Na y K séricos.",
+      "pie_nodo": "Seguimiento cada **3 a 6 meses**."
     },
     "trat_escalar": {
       "tipo": "pregunta",
-      "texto": "- Optimizar dosis o añadir tercer fármaco (IECA/ARA-II + BCC + Tiazida).\n- Verificar adherencia al tratamiento.\n¿**Persiste TA > Meta con 3 fármacos a dosis máxima tolerada**?",
+      "texto": "- Optimizar dosis o añadir tercer fármaco (IECA/ARA-II + BCC + Tiazida).\n- Verificar adherencia al tratamiento.",
+      "pie_nodo": "¿**Persiste TA > Meta con 3 fármacos a dosis máxima tolerada**?",
       "opciones": [
         { "texto": "Sí", "siguiente_nodo": "trat_resistente" },
         { "texto": "No", "siguiente_nodo": "trat_exito" }
       ]
     },
     "trat_resistente": {
+      "estilo": "advertencia",
       "tipo": "informativo",
-      "texto": "- HTA Resistente confirmada.\n- Añadir **Espironolactona 25-50 mg/día** si K **<5.0 mEq/L** y TFG **>=45 ml/min**.\n- Considerar derivación a especialista."
+      "texto": "- HTA Resistente confirmada.\n- Añadir **Espironolactona 25-50 mg/día** si K **<5.0 mEq/L** y TFG **>=45 ml/min**.",
+      "pie_nodo": "Considerar derivación a especialista."
     },
     "trat_emergencia": {
+      "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "- Ingreso a UCI y tratamiento IV.\n- Determinar órgano blanco afectado.\n¿**Cuál es el diagnóstico específico**?",
+      "texto": "- Ingreso a UCI, monitoreo continuo y tratamiento IV.\n- Determinar órgano blanco afectado.",
+      "pie_nodo": "¿**Cuál es el diagnóstico específico de la emergencia**?",
       "opciones": [
         { "texto": "Disección Aórtica", "siguiente_nodo": "em_aorta" },
         { "texto": "EVC Isquémico", "siguiente_nodo": "em_evc_isq" },
-        { "texto": "Hemorragia Intracerebral", "siguiente_nodo": "em_hic" },
-        { "texto": "Edema pulmonar / Otro", "siguiente_nodo": "em_otro" }
+        { "texto": "Hemorragia Intracraneal", "siguiente_nodo": "em_hic" },
+        { "texto": "SCA / Otro", "siguiente_nodo": "em_otro" }
       ]
     },
     "em_aorta": {
+      "estilo": "peligro",
       "tipo": "informativo",
-      "texto": "- Reducir TA sistólica **<120 mmHg** y FC **<60 lpm** en los primeros **20 minutos**.\n- Medicación: **Esmolol** seguido de vasodilatador."
+      "texto": "- Reducir TA sistólica **<120 mmHg** y FC **<60 lpm** en los primeros **20 minutos**.",
+      "pie_nodo": "Medicación: **Esmolol** seguido de vasodilatador."
     },
     "em_evc_isq": {
+      "estilo": "peligro",
       "tipo": "informativo",
-      "texto": "- Candidatos trombolisis: TA **<185/110 mmHg**.\n- No candidatos: Reducir 15% solo si TA **>220/120 mmHg**.\n- Opciones: **Labetalol** o **Nicardipino** IV."
+      "texto": "- Candidatos trombolisis: Reducir TA **<185/110 mmHg**.\n- No candidatos: Reducir 15% solo si TA **>220/120 mmHg**.",
+      "pie_nodo": "Opciones: **Labetalol** o **Nicardipino** IV."
     },
     "em_hic": {
+      "estilo": "peligro",
       "tipo": "informativo",
-      "texto": "- Si TA 150-220 mmHg: reducir cuidadosamente a **130-140 mmHg**.\n- Opciones: **Nicardipino**, **Clevidipino** o **Labetalol** IV."
+      "texto": "- Si TA sistólica 150-220 mmHg: reducir cuidadosamente a **130-140 mmHg**.",
+      "pie_nodo": "Opciones: **Nicardipino**, **Clevidipino** o **Labetalol** IV."
     },
     "em_otro": {
+      "estilo": "peligro",
       "tipo": "informativo",
-      "texto": "- Reducir TA máximo **25%** en la **primera hora**.\n- Opciones: **Nitroglicerina**, **Clevidipino** o **Nicardipino** IV."
+      "texto": "- Reducir TA máximo **25%** en la **primera hora**.\n- Si estable, reducir a **160/100 mmHg** en las siguientes **2 a 6 horas**.",
+      "pie_nodo": "Opciones: **Nitroglicerina**, **Clevidipino** o **Nicardipino** IV."
     }
   },
   "referencias": [
     {
-      "titulo": "Guía ESC 2024 sobre la hipertensión",
+      "titulo": "Guía ESC 2024 sobre el manejo de la presión arterial",
       "url": "TODO_LINK_GuiaESC2024.pdf"
     }
   ]
