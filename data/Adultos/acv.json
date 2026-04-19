@@ -1,355 +1,169 @@
 {
-  "titulo": "Manejo Integral del Ataque Cerebrovascular (ACV) Isquémico Agudo",
-  "version": "Actualizado según Guías AHA/ASA 2026 y GPC Colombia",
-  "nodoInicial": "inicio_ruta",
+  "titulo": "Accidente Cerebrovascular Isquémico Agudo",
+  "version": "Marzo 2026",
+  "referencias": [
+    {
+      "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the AHA/ASA",
+      "url": "https://www.ahajournals.org/journal/str"
+    },
+    {
+      "titulo": "Guía de Práctica Clínica ACV Isquémico Colombia",
+      "url": "gpc.minsalud.gov.co"
+    },
+    {
+      "titulo": "AMBOSS & Lecturio: Ischemic Stroke Overview",
+      "url": "Local PDF"
+    }
+  ],
+  "nodoInicial": "nodo_raiz",
   "nodos": {
-    "inicio_ruta": {
+    "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "Evaluación Inicial del ACV Agudo. Seleccione la ruta clínica a seguir según el estado de la evaluación del paciente:",
+      "texto": "Accidente Cerebrovascular Isquémico Agudo",
       "opciones": [
         {
-          "texto": "Ruta de Diagnóstico (Evaluación inicial, neuroimagen, exclusión de imitadores)",
-          "siguiente_nodo": "ruta_diagnostica"
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
         },
         {
-          "texto": "Ruta de Tratamiento (Trombolisis, Trombectomía, Manejo médico)",
-          "siguiente_nodo": "ruta_tratamiento"
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
         }
       ]
     },
-    "ruta_diagnostica": {
+    "nodo_diagnostico": {
       "tipo": "pregunta",
-      "texto": "Prioridad 1: ABC, estabilización y descarte de imitadores. \n\n1. Asegurar vía aérea y oxigenación (Meta: SpO2 > 94%).\n2. Obtener acceso IV y laboratorios urgentes.\n3. Realizar Glucometría capilar inmediata (POC).\n\n¿Cuál es el resultado de la glucosa capilar?",
+      "texto": "Ruta Diagnóstica. Seleccione la fase a evaluar:",
       "opciones": [
         {
-          "texto": "Glucosa anormal (< 60 mg/dL o > 400 mg/dL)",
-          "siguiente_nodo": "diag_glucosa_anormal"
+          "texto": "Evaluación Inicial",
+          "siguiente_nodo": "diag_eval_inicial"
         },
         {
-          "texto": "Glucosa normal (60 - 400 mg/dL)",
-          "siguiente_nodo": "diag_evaluacion_inicial"
+          "texto": "Escalas Clínicas",
+          "siguiente_nodo": "diag_escalas"
+        },
+        {
+          "texto": "Neuroimagen",
+          "siguiente_nodo": "diag_neuroimagen"
         }
       ]
     },
-    "diag_glucosa_anormal": {
-      "tipo": "resultado",
-      "estilo": "advertencia",
-      "texto": "Manejo de Glucosa y Reevaluación:\n\n- Corregir inmediatamente la hipoglucemia (< 60 mg/dL) o hiperglucemia severa (> 400 mg/dL).\n- Reevaluar el déficit neurológico tras la corrección.\n- Si el déficit revierte por completo, considere un imitador de ACV (Stroke mimic).\n- Si el déficit focal, súbito y discapacitante PERSISTE, continúe el protocolo de ACV sin demoras.",
+    "diag_eval_inicial": {
+      "tipo": "info",
+      "texto": "- Vía aérea y O2 (mantener >94%).\n- Accesos IV periféricos.\n- Glucometría inmediata (tratar si <60 mg/dL, simulador de ACV).\n- Definir 'Tiempo Cero' (última vez visto en estado basal normal).",
       "enlaces": [
         {
-          "texto": "Continuar a evaluación clínica de ACV",
-          "archivo_objetivo": "diag_evaluacion_inicial"
+          "texto": "Ver Algoritmo de Triage",
+          "archivo_objetivo": "TODO_LINK_triage_acv.json"
         }
       ]
     },
-    "diag_evaluacion_inicial": {
+    "diag_escalas": {
+      "tipo": "info",
+      "texto": "- Prehospitalario: LAPSS o Cincinnati.\n- Hospitalario: Escala NIHSS para medir severidad y guiar terapia.\n- ACV Menor: NIHSS <= 3 (no discapacitante).\n- ACV Severo: NIHSS > 25.",
+      "enlaces": [
+        {
+          "texto": "Calculadora NIHSS",
+          "archivo_objetivo": "TODO_CALC_nihss.json"
+        },
+        {
+          "texto": "Escala LAPSS",
+          "archivo_objetivo": "TODO_CALC_lapss.json"
+        }
+      ]
+    },
+    "diag_neuroimagen": {
+      "tipo": "info",
+      "texto": "- TC Cráneo Simple: Meta <20 min. Excluir hemorragia. Evaluar ASPECTS.\n- Angio-TC: Identificar Oclusión de Gran Vaso (LVO) para trombectomía.\n- RM (DWI/FLAIR): Útil en ACV del despertar para identificar 'mismatch'.",
+      "imagen": "TODO_IMG_aspects_tc_score.png",
+      "enlaces": [
+        {
+          "texto": "Calculadora ASPECTS",
+          "archivo_objetivo": "TODO_CALC_aspects.json"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
       "tipo": "pregunta",
-      "calculadora_id": "calculadora_nihss.json",
-      "texto": "Evaluación Clínica y Ventana Terapéutica:\n\n1. Determine la hora exacta de inicio de los síntomas o la 'Última Vez Visto Bien' (LKN - Last Known Normal).\n2. Calcule el puntaje NIHSS para determinar la severidad.\n\n¿Se ha solicitado la neuroimagen urgente (idealmente < 25 min desde la puerta)?",
+      "texto": "Ruta de Tratamiento. Seleccione la estrategia:",
       "opciones": [
         {
-          "texto": "Sí, el paciente está en neuroimagen",
-          "siguiente_nodo": "diag_imagen"
+          "texto": "Medidas Generales y Metas",
+          "siguiente_nodo": "trat_medidas"
+        },
+        {
+          "texto": "Trombolisis Intravenosa (IVT)",
+          "siguiente_nodo": "trat_trombolisis"
+        },
+        {
+          "texto": "Trombectomía Mecánica (EVT)",
+          "siguiente_nodo": "trat_trombectomia"
+        },
+        {
+          "texto": "Antiagregación y Prev. Secundaria",
+          "siguiente_nodo": "trat_antiagregacion"
         }
       ]
     },
-    "diag_imagen": {
+    "trat_medidas": {
+      "tipo": "info",
+      "texto": "- Presión Arterial: <185/110 mmHg si candidato a IVT/EVT. Permisiva <220/120 mmHg si no hay terapia de reperfusión.\n- Glucosa: Mantener 140-180 mg/dL (evitar control estricto 80-130 por riesgo de hipoglucemia).\n- Temperatura: Normotermia (<38 C).",
+      "enlaces": [
+        {
+          "texto": "Protocolo Antihipertensivos IV",
+          "archivo_objetivo": "TODO_CALC_antihipertensivos_iv.json"
+        }
+      ]
+    },
+    "trat_trombolisis": {
       "tipo": "pregunta",
-      "calculadora_id": "calculadora_aspects.json",
-      "imagen": "assets/img_tc_aspects.png",
-      "texto": "Evaluación por Neuroimagen (TAC de cráneo simple + AngioTAC de vasos de cuello y cráneo):\n\n- El objetivo primario de la TAC simple es descartar hemorragia intracraneal (HIC).\n- Evaluar signos tempranos de isquemia y calcular ASPECTS.\n\n¿Se evidencia Hemorragia Intracraneal en la TAC simple?",
+      "texto": "Trombolisis IV (IVT). Seleccione un apartado:",
       "opciones": [
         {
-          "texto": "Sí, hay evidencia de hemorragia",
-          "siguiente_nodo": "diag_hemorragia"
+          "texto": "Criterios e Indicaciones",
+          "siguiente_nodo": "trombolisis_criterios"
         },
         {
-          "texto": "No hay hemorragia (se visualiza isquemia o TAC normal)",
-          "siguiente_nodo": "diag_isquemia"
+          "texto": "Fármacos y Dosis (AHA 2026)",
+          "siguiente_nodo": "trombolisis_dosis"
         }
       ]
     },
-    "diag_hemorragia": {
-      "tipo": "resultado",
-      "estilo": "peligro",
-      "texto": "ACV Hemorrágico (HIC / HSA):\n\n- La terapia de reperfusión (Trombolisis / Trombectomía) está ABSOLUTAMENTE CONTRAINDICADA.\n- Interconsulta urgente con Neurocirugía.\n- Control estricto de presión arterial (Meta PAS < 140-160 mmHg).\n- Revertir anticoagulación si aplica.",
+    "trombolisis_criterios": {
+      "tipo": "info",
+      "texto": "- Ventana estándar: <4.5 horas desde tiempo cero. Déficit discapacitante.\n- Ventana extendida (4.5-9h o despertar): Requiere mismatch en RM (DWI/FLAIR) o TC Perfusión.\n- Descartar hemorragia, neurocirugía reciente o coagulopatía activa.",
       "enlaces": [
         {
-          "texto": "Cambiar a protocolo de ACV Hemorrágico",
-          "archivo_objetivo": "acv_hemorragico_manejo.json"
+          "texto": "Checklist Contraindicaciones tPA",
+          "archivo_objetivo": "TODO_CALC_criterios_exclusion_tpa.json"
         }
       ]
     },
-    "diag_isquemia": {
-      "tipo": "pregunta",
-      "texto": "Evaluación de Oclusión de Gran Vaso (LVO):\n\nRevisar la AngioTAC (CTA) o AngioRM. ¿Existe una oclusión de gran vaso en circulación anterior (ACI, M1, M2 proximal) o posterior (Basilar)?\n\nNota: No retrase la trombolisis IV esperando los resultados de la creatinina para la AngioTAC si no hay sospecha de falla renal severa.",
-      "opciones": [
-        {
-          "texto": "Sí, se confirma Oclusión de Gran Vaso (LVO)",
-          "siguiente_nodo": "diag_fin_lvo"
-        },
-        {
-          "texto": "No hay Oclusión de Gran Vaso evidente",
-          "siguiente_nodo": "diag_fin_nolvo"
-        }
-      ]
-    },
-    "diag_fin_lvo": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "texto": "Diagnóstico Establecido: ACV Isquémico Agudo con Oclusión de Gran Vaso (LVO).\n\n- El paciente es potencial candidato a Trombolisis IV (IVT) y a Trombectomía Mecánica Endovascular (EVT).\n- Avise de inmediato al equipo de Neurointervencionismo.",
+    "trombolisis_dosis": {
+      "tipo": "info",
+      "texto": "- Elección AHA 2026: Tenecteplasa (TNK) 0.25 mg/kg IV en bolo único (Dosis máxima 25 mg).\n- Alternativa: Alteplasa 0.9 mg/kg (10% en bolo de 1 min, 90% en infusión de 1 hora. Dosis máxima 90 mg).\n- Monitoreo estricto de PA post-infusión (<180/105 mmHg).",
       "enlaces": [
         {
-          "texto": "Ir a la Ruta de Tratamiento",
-          "archivo_objetivo": "ruta_tratamiento"
+          "texto": "Calculadora Dosis Fibrinolíticos",
+          "archivo_objetivo": "TODO_CALC_dosis_tnk_tpa.json"
         }
       ]
     },
-    "diag_fin_nolvo": {
-      "tipo": "resultado",
-      "estilo": "info",
-      "texto": "Diagnóstico Establecido: ACV Isquémico Agudo sin Oclusión de Gran Vaso (No LVO / Vaso Pequeño).\n\n- El paciente es potencial candidato a Trombolisis IV (IVT) o manejo médico óptimo según la temporalidad y severidad.",
+    "trat_trombectomia": {
+      "tipo": "info",
+      "texto": "- Indicado en Oclusión de Gran Vaso (LVO) en ACI o segmento M1.\n- Ventana Temprana (<6h): NIHSS >=6, ASPECTS >=6.\n- Ventana Extendida (6-24h): Requiere mismatch clínico-imagenológico documentado por CTP o RM (Criterios DAWN / DEFUSE-3).\n- No retrasar IVT esperando EVT.",
+      "imagen": "TODO_IMG_algoritmo_evt_24h.png"
+    },
+    "trat_antiagregacion": {
+      "tipo": "info",
+      "texto": "- Iniciar 24h post-reperfusión si la TC control descarta sangrado.\n- ACV Menor (NIHSS <=3) o TIA Alto Riesgo: DAPT (Aspirina + Clopidogrel o Ticagrelor) por 21 días, luego monoterapia.\n- ACV Moderado/Mayor: SAPT (Aspirina 160-300 mg/día).\n- Anticoagulación (FA): Diferir inicio según tamaño del infarto.",
       "enlaces": [
         {
-          "texto": "Ir a la Ruta de Tratamiento",
-          "archivo_objetivo": "ruta_tratamiento"
+          "texto": "Manejo Antiplaquetario Dual (CHANCE/POINT)",
+          "archivo_objetivo": "TODO_LINK_dapt_protocol.json"
         }
       ]
-    },
-    "ruta_tratamiento": {
-      "tipo": "pregunta",
-      "texto": "Decisión Terapéutica basada en el Tiempo.\n\n¿Cuál es el tiempo transcurrido desde la 'Última Vez Visto Bien' (LKN)?",
-      "opciones": [
-        {
-          "texto": "Menos de 4.5 horas",
-          "siguiente_nodo": "trat_4_5h"
-        },
-        {
-          "texto": "Entre 4.5 horas y 24 horas (o ACV del despertar)",
-          "siguiente_nodo": "trat_4_5_24h"
-        },
-        {
-          "texto": "Más de 24 horas",
-          "siguiente_nodo": "trat_mas_24h"
-        }
-      ]
-    },
-    "trat_4_5h": {
-      "tipo": "pregunta",
-      "texto": "Evaluación para Trombolisis Intravenosa (IVT) < 4.5 hrs:\n\nRevise contraindicaciones absolutas:\n- Presión Arterial sostenida > 185/110 mmHg.\n- Plaquetas < 100,000, INR > 1.7, TP > 15s o TTPa > 40s.\n- Uso de anticoagulantes directos (DOAC) en las ultimas 48 horas.\n- Trauma craneal severo o ACV isquémico en los últimos 3 meses.\n- Sangrado activo o historia de HIC.\n- Déficit neurológico leve NO discapacitante (Ej. NIHSS <= 5 con solo alteración sensitiva).\n\n¿Presenta alguna contraindicación para IVT?",
-      "opciones": [
-        {
-          "texto": "Sí, PA > 185/110 mmHg (Única contraindicación actual)",
-          "siguiente_nodo": "trat_bajar_pa"
-        },
-        {
-          "texto": "Sí, presenta otras contraindicaciones absolutas",
-          "siguiente_nodo": "trat_no_ivt"
-        },
-        {
-          "texto": "No, es ELEGIBLE para IVT",
-          "siguiente_nodo": "trat_ivt_elegible"
-        }
-      ]
-    },
-    "trat_bajar_pa": {
-      "tipo": "resultado",
-      "estilo": "advertencia",
-      "texto": "Manejo Activo de la Presión Arterial:\n\n- Reducir la PA por debajo de 185/110 mmHg antes de iniciar IVT.\n- Fármacos sugeridos: Labetalol 10-20 mg IV (puede repetirse) o infusión de Nicardipino 5 mg/h IV o Clevidipino 1-2 mg/h IV.\n- Si la PA no se controla de forma segura, se contraindica la IVT.\n- Una vez controlada, mantener < 180/105 mmHg durante y después del trombolítico.",
-      "enlaces": [
-        {
-          "texto": "PA Controlada: Proceder a elegir Trombolítico",
-          "archivo_objetivo": "trat_ivt_elegible"
-        },
-        {
-          "texto": "PA Refractaria: Considerar NO IVT",
-          "archivo_objetivo": "trat_no_ivt"
-        }
-      ]
-    },
-    "trat_ivt_elegible": {
-      "tipo": "pregunta",
-      "texto": "Paciente ELEGIBLE para Trombolisis IV (IVT).\nSegún las guías AHA/ASA 2026, el Tenecteplase es recomendado con perfil de eficacia/seguridad igual o superior al Alteplase, con la ventaja del bolo único.\n\nDosis:\n- Tenecteplase (TNK): 0.25 mg/kg (Máx 25 mg) en bolo IV único.\n- Alteplase (tPA): 0.9 mg/kg (Máx 90 mg); 10% en bolo de 1 min, 90% en infusión de 1 hora.\n\n¿Tiene el paciente una Oclusión de Gran Vaso (LVO) documentada?",
-      "opciones": [
-        {
-          "texto": "Sí, tiene LVO",
-          "siguiente_nodo": "trat_ivt_mas_evt"
-        },
-        {
-          "texto": "No tiene LVO",
-          "siguiente_nodo": "trat_ivt_solo"
-        }
-      ]
-    },
-    "trat_ivt_mas_evt": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline for the Early Management of AIS, Seccion 4.7.1"
-        }
-      ],
-      "texto": "Terapia Puente (Bridging Therapy): IVT + Trombectomía Mecánica (EVT)\n\n- Administrar el Trombolítico IV inmediatamente (TNK o tPA).\n- NO espere a evaluar respuesta clínica; traslade inmediatamente a la sala de angiografía para EVT.\n- Mantener PAS < 180/105 mmHg tras la infusión.\n- Monitoreo neurológico estricto cada 15 min.\n- Si LVO en M1 o ACI, el NNT para beneficio funcional es altamente favorable.",
-      "enlaces": [
-        {
-          "texto": "Ir a cuidados post-intervención",
-          "archivo_objetivo": "cuidados_uci_stroke.json"
-        }
-      ]
-    },
-    "trat_ivt_solo": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline for the Early Management of AIS, Seccion 4.6.2"
-        }
-      ],
-      "texto": "Trombolisis Intravenosa Exclusiva\n\n- Administrar Trombolítico IV (TNK o tPA).\n- Ingreso a Unidad de ACV (Stroke Unit) o UCI.\n- Monitorización neurológica (escala NIHSS) y de PA (meta < 180/105 mmHg) cada 15 min por 2h, cada 30 min por 6h, y cada hora hasta 24h.\n- Evitar antiagregantes y anticoagulantes en las primeras 24 horas.\n- Solicitar TAC/RMN de control a las 24 horas antes de iniciar terapia antitrombótica.",
-      "enlaces": [
-        {
-          "texto": "Ir a cuidados post-trombolisis",
-          "archivo_objetivo": "cuidados_uci_stroke.json"
-        }
-      ]
-    },
-    "trat_no_ivt": {
-      "tipo": "pregunta",
-      "texto": "El paciente NO es candidato a Trombolisis IV.\n\n¿Se ha documentado una Oclusión de Gran Vaso (LVO) en la neuroimagen?",
-      "opciones": [
-        {
-          "texto": "Sí, LVO presente",
-          "siguiente_nodo": "trat_evt_directo"
-        },
-        {
-          "texto": "No hay LVO",
-          "siguiente_nodo": "trat_medico_agudo"
-        }
-      ]
-    },
-    "trat_evt_directo": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline, Seccion 4.7.2"
-        }
-      ],
-      "texto": "Trombectomía Mecánica Primaria (Direct to EVT)\n\n- Traslado inmediato a sala de neurointervencionismo.\n- Criterios ideales (0-6h): LVO en circulación anterior (ACI, M1), NIHSS >= 6, ASPECTS 3-10, mRS previo 0-1.\n- Mantener PA permisiva o según protocolo del centro hasta recanalización (frecuentemente meta <= 185/110 mmHg para el procedimiento).\n- Tras EVT exitoso (TICI 2b/3), meta estricta de PA según indicación institucional (usualmente PAS < 140 o < 160 para prevenir reperfusión hemorrágica).",
-      "enlaces": [
-        {
-          "texto": "Ir a cuidados post-Trombectomía",
-          "archivo_objetivo": "cuidados_uci_stroke.json"
-        }
-      ]
-    },
-    "trat_medico_agudo": {
-      "tipo": "pregunta",
-      "calculadora_id": "calculadora_abcd2.json",
-      "texto": "Manejo Médico Agudo.\n\nClasifique la severidad clínica del ACV para decidir la estrategia antiplaquetaria:\n\n¿El paciente presenta un ACV Menor no cardioembólico (NIHSS <= 5) o un TIA de alto riesgo (ABCD2 >= 4)?",
-      "opciones": [
-        {
-          "texto": "Sí, ACV Menor o TIA Alto Riesgo",
-          "siguiente_nodo": "trat_dapt"
-        },
-        {
-          "texto": "No, ACV Mayor (NIHSS > 5) o fuente cardioembólica",
-          "siguiente_nodo": "trat_sapt"
-        }
-      ]
-    },
-    "trat_dapt": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline, Seccion 4.8 (Antiplatelet Treatment)"
-        }
-      ],
-      "texto": "Terapia Antiagregante Dual (DAPT) Temprana:\n\n- Iniciar en las primeras 24 horas del inicio de síntomas.\n- Opción 1: Clopidogrel (Bolo 300-600 mg, luego 75 mg/día) + Aspirina (50-325 mg/día) durante 21 días, seguido de monoterapia.\n- Opción 2: Ticagrelor (Bolo 180 mg, luego 90 mg BID) + Aspirina durante 30 días, seguido de monoterapia.\n- Mantener Presión Arterial permisiva (hasta 220/120 mmHg) en las primeras 48-72 hrs a menos que haya daño de órgano blanco.\n- Iniciar Estatina de alta intensidad.",
-      "enlaces": [
-        {
-          "texto": "Ir a Prevención Secundaria",
-          "archivo_objetivo": "prevencion_secundaria.json"
-        }
-      ]
-    },
-    "trat_sapt": {
-      "tipo": "resultado",
-      "estilo": "info",
-      "texto": "Manejo Médico Convencional (Monoterapia):\n\n- Iniciar Aspirina (160-300 mg) en las primeras 48 horas.\n- Si la fuente es cardioembólica (Ej. Fibrilación Auricular), diferir la anticoagulación plena según regla de severidad (Ej. regla de 1-3-6-12 días, o guiado por DOAC temprano según ensayo ELAN).\n- Permitir Hipertensión Permisiva: NO tratar la PA a menos que supere 220/120 mmHg (bajar un 15% en las primeras 24h si supera el límite).\n- Estatina de alta intensidad, control de glucosa, prevención de TVP/TEP y tamizaje de disfagia.",
-      "enlaces": [
-        {
-          "texto": "Ir a Protocolos de Unidad de Stroke",
-          "archivo_objetivo": "stroke_unit_care.json"
-        }
-      ]
-    },
-    "trat_4_5_24h": {
-      "tipo": "pregunta",
-      "texto": "Ventana Extendida (4.5 a 24 hrs o Wake-Up Stroke).\nEl paciente requiere imágenes avanzadas de perfusión (CTP, RM DWI-FLAIR o RM DWI-PWI) para identificar tejido salvable (zona de penumbra).\n\n¿Qué revela la imagen avanzada?",
-      "opciones": [
-        {
-          "texto": "Oclusión de Gran Vaso (LVO) + Mismatch Clínico/Radiológico favorable (Criterios DAWN/DEFUSE-3)",
-          "siguiente_nodo": "trat_evt_extendido"
-        },
-        {
-          "texto": "No hay LVO, pero ventana de 4.5 - 9 hrs (o despertar) con Mismatch DWI/FLAIR positivo",
-          "siguiente_nodo": "trat_ivt_extendido"
-        },
-        {
-          "texto": "Núcleo isquémico (Core) masivo, sin penumbra salvable, o imagen no concluyente",
-          "siguiente_nodo": "trat_manejo_medico_tardio"
-        }
-      ]
-    },
-    "trat_evt_extendido": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline, Seccion 4.7.2 (DAWN/DEFUSE-3/AURORA trials)"
-        }
-      ],
-      "texto": "Trombectomía Mecánica en Ventana Extendida (6-24 hrs):\n\n- Indicación Fuerte: Pacientes con LVO anterior, NIHSS >= 6, que cumplen criterios volumétricos de tejido salvable (Mismatch perfusion-core) evaluado por software automatizado (Ej. RAPID).\n- Traslado urgente a sala de Neurointervencionismo.\n- El beneficio ha demostrado ser abrumadoramente superior al manejo médico en estos candidatos meticulosamente seleccionados.",
-      "enlaces": [
-        {
-          "texto": "Ir a cuidados post-Trombectomía",
-          "archivo_objetivo": "cuidados_uci_stroke.json"
-        }
-      ]
-    },
-    "trat_ivt_extendido": {
-      "tipo": "resultado",
-      "estilo": "advertencia",
-      "referencias": [
-        {
-          "titulo": "AHA/ASA 2026 Guideline, Seccion 4.6.3 (WAKE-UP, EXTEND trials)"
-        }
-      ],
-      "texto": "Trombolisis Intravenosa en Ventana Extendida / Wake-up Stroke:\n\n- Criterio WAKE-UP: ACV al despertar o inicio desconocido < 4.5h desde el reconocimiento, con restricción en DWI de RMN pero SIN hiperintensidad en FLAIR (Mismatch DWI-FLAIR).\n- Criterio EXTEND (4.5 a 9 hrs): Uso de CTP o RM PWI/DWI que demuestre tejido salvable (Core < 70ml, Mismatch ratio > 1.2, Mismatch volume > 10ml).\n- Si cumple criterios estrictos, considerar administración de Trombolisis IV para mejorar desenlace funcional.",
-      "enlaces": [
-        {
-          "texto": "Ir a monitoreo post-IVT",
-          "archivo_objetivo": "cuidados_uci_stroke.json"
-        }
-      ]
-    },
-    "trat_manejo_medico_tardio": {
-      "tipo": "resultado",
-      "estilo": "info",
-      "texto": "Manejo Médico y Soporte General (Fuera de Terapias de Reperfusión):\n\n- Antiagregación temprana (Aspirina vs DAPT según severidad).\n- Control de comorbilidades agudas y estabilización.\n- Monitoreo estricto por alto riesgo de edema cerebral o transformación hemorrágica en infartos grandes (vigilar signos de herniación, considerar craniectomía descompresiva si aplica).\n- Rehabilitación temprana (después de 24h), prevención de TVP y úlceras por presión.",
-      "enlaces": [
-        {
-          "texto": "Ir a Prevención Secundaria y Rehabilitación",
-          "archivo_objetivo": "rehabilitacion_acv.json"
-        }
-      ]
-    },
-    "trat_mas_24h": {
-      "tipo": "resultado",
-      "estilo": "info",
-      "texto": "Fase Aguda Tardía (> 24 horas del inicio):\n\n- Las terapias de reperfusión (IVT o EVT) no están indicadas y confieren más riesgo que beneficio.\n- Ingreso a Unidad de ACV (Stroke Unit).\n- Iniciar Prevención Secundaria (Aspirina, Clopidogrel o Anticoagulación según etiología TOAST).\n- Control agresivo de factores de riesgo: Estatinas, antihipertensivos (reiniciar si el paciente está neurológicamente estable y PA > 140/90), control glucémico.\n- Tamizaje estricto de disfagia antes de iniciar vía oral.\n- Rehabilitación multidisciplinaria integral."
     }
   }
 }
