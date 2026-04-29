@@ -1,0 +1,237 @@
+{
+  "titulo": "Hemorragia de Vías Digestivas Altas (HVDA)",
+  "version": "2024",
+  "carpeta_evidencia": "hvda",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Manejo Integral de la Hemorragia de Vías Digestivas Altas (HVDA)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Estratificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_abcde"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento Médico y Endoscópico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_medidas_preendoscopicas"
+        }
+      ]
+    },
+    "diag_evaluacion_abcde": {
+      "tipo": "pregunta",
+      "texto": "- Asegurar vía aérea (considerar intubación si hematemesis masiva o alteración del estado mental).\n- Establecer 2 accesos venosos periféricos de gran calibre.\n- Tomar cuadro hemático, pruebas cruzadas, BUN, creatinina y pruebas de coagulación.",
+      "pie_nodo": "¿Existe inestabilidad hemodinámica (**FC > 100 lpm, PAS < 90 mmHg**) o choque hipovolémico?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_inestable"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_estable_calculo_riesgo"
+        }
+      ]
+    },
+    "diag_inestable": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Iniciar reanimación con cristaloides (**500-1000 mL en 30 min**).\n- Activar protocolo de transfusión masiva si el sangrado es exanguinante.\n- Programar endoscopia urgente (tras estabilización inicial).",
+      "enlaces": [
+        {
+          "texto": "Ir a Manejo Preendoscópico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_medidas_preendoscopicas"
+        }
+      ]
+    },
+    "diag_estable_calculo_riesgo": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar antecedentes de úlcera, cirrosis, uso de AINEs o anticoagulantes.\n- Calcular puntaje de Glasgow-Blatchford (GBS) para predecir riesgo de intervención o muerte.",
+      "pie_nodo": "¿Cuál es la puntuación Glasgow-Blatchford (GBS)?",
+      "calculadora_id": "TODO_CALC_glasgow_blatchford.json",
+      "opciones": [
+        {
+          "texto": "GBS 0 - 1 (Riesgo muy bajo)",
+          "siguiente_nodo": "diag_alta_temprana"
+        },
+        {
+          "texto": "GBS >= 2 (Riesgo moderado/alto)",
+          "siguiente_nodo": "diag_ingreso_hospitalario"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/Fulltext/2021/05000/ACG_Clinical_Guideline__Upper_Gastrointestinal_and.14.aspx",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de tabla de Glasgow-Blatchford Score"
+        }
+      ]
+    },
+    "diag_alta_temprana": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Alta hospitalaria directa desde urgencias.\n- Iniciar IBP oral de forma ambulatoria.\n- Programar seguimiento ambulatorio y endoscopia diferida si está indicada."
+    },
+    "diag_ingreso_hospitalario": {
+      "tipo": "pregunta",
+      "texto": "- Ingresar a sala de hospitalización o monitorización.\n- Evaluar la posible etiología clínica del sangrado (variceal vs. no variceal).",
+      "pie_nodo": "¿Existen signos de hepatopatía crónica, hipertensión portal o sospecha de sangrado variceal?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_sospecha_variceal"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medidas_preendoscopicas"
+        }
+      ]
+    },
+    "diag_sospecha_variceal": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Iniciar **Octreotida 50 mcg** en bolo IV, seguido de infusión de **50 mcg/h**.\n- Administrar profilaxis antibiótica con **Ceftriaxona 1 g** IV al día.\n- Endoscopia antes de **12 horas**.",
+      "enlaces": [
+        {
+          "texto": "Ver protocolo de Sangrado Variceal",
+          "archivo_objetivo": "TODO_LINK_sangrado_variceal.json"
+        }
+      ]
+    },
+    "trat_medidas_preendoscopicas": {
+      "tipo": "pregunta",
+      "texto": "- Terapia restrictiva de transfusión: transfundir si **Hb < 7 g/dL** (o **< 8 g/dL** en enfermedad cardiovascular).\n- Considerar IBP en bolo IV (**Esomeprazol 80 mg**).\n- Administrar **Eritromicina 250 mg IV** 30 a 90 min antes de la endoscopia.",
+      "pie_nodo": "¿Se realizó la endoscopia (EGD) en las primeras **24 horas**?",
+      "opciones": [
+        {
+          "texto": "Sí, clasificar hallazgos",
+          "siguiente_nodo": "trat_clasificacion_forrest"
+        },
+        {
+          "texto": "No es posible/Contraindicada",
+          "siguiente_nodo": "trat_alternativa_angio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/Fulltext/2021/05000/ACG_Clinical_Guideline__Upper_Gastrointestinal_and.14.aspx"
+        }
+      ]
+    },
+    "trat_alternativa_angio": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Realizar Angiografía por TC (AngioTAC) de abdomen.\n- Si se identifica sangrado arterial activo, proceder a Angiografía por catéter con embolización."
+    },
+    "trat_clasificacion_forrest": {
+      "tipo": "pregunta",
+      "texto": "- Diagnóstico endoscópico de úlcera péptica.\n- Evaluar estigmas de sangrado reciente (Clasificación de Forrest).",
+      "pie_nodo": "¿Qué clasificación de Forrest presenta la úlcera?",
+      "imagen": "TODO_IMG: Tabla e imágenes visuales de la clasificación de Forrest",
+      "opciones": [
+        {
+          "texto": "Forrest Ia, Ib, IIa (Alto Riesgo)",
+          "siguiente_nodo": "trat_endoscopia_alto_riesgo"
+        },
+        {
+          "texto": "Forrest IIb (Coágulo Adherido)",
+          "siguiente_nodo": "trat_endoscopia_coagulo"
+        },
+        {
+          "texto": "Forrest IIc, III (Bajo Riesgo)",
+          "siguiente_nodo": "trat_endoscopia_bajo_riesgo"
+        }
+      ]
+    },
+    "trat_endoscopia_alto_riesgo": {
+      "tipo": "pregunta",
+      "texto": "- Aplicar terapia endoscópica DUAL (ej. **Adrenalina 1:10,000** + Termocoagulación o Clips).\n- Iniciar dosis altas de IBP (**Esomeprazol 80 mg** IV bolo, luego **8 mg/h** infusión continua por **72 horas**).",
+      "pie_nodo": "¿El paciente presenta resangrado clínico posterior a la terapia?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resangrado"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_mantenimiento_alta"
+        }
+      ]
+    },
+    "trat_endoscopia_coagulo": {
+      "tipo": "pregunta",
+      "texto": "- Considerar irrigación vigorosa para remover coágulo.\n- Si el coágulo se remueve y revela vaso visible, tratar como alto riesgo.\n- Administrar IBP a dosis altas por **72 horas**.",
+      "pie_nodo": "¿Presenta resangrado clínico?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resangrado"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_mantenimiento_alta"
+        }
+      ]
+    },
+    "trat_endoscopia_bajo_riesgo": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- NO requiere terapia hemostática endoscópica.\n- Iniciar dieta oral tempranamente.\n- Prescribir IBP vía oral a dosis estándar (ej. **Omeprazol 40 mg/día**) y dar alta hospitalaria."
+    },
+    "trat_resangrado": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Inestabilidad hemodinámica recurrente o caída de hemoglobina.\n- Optimizar reanimación.",
+      "pie_nodo": "¿Se logró hemostasia con una segunda endoscopia (Second-look)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_mantenimiento_alta"
+        },
+        {
+          "texto": "No (Falla endoscópica)",
+          "siguiente_nodo": "trat_falla_endoscopica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of Patients With Ulcer Bleeding",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4231512/",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo de resangrado post-EGD"
+        }
+      ]
+    },
+    "trat_falla_endoscopica": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Indicar Embolización Arterial Transcatéter (TAE) de urgencia.\n- Si TAE no está disponible o falla, proceder a tratamiento quirúrgico (ej. ligadura del vaso o gastrectomía parcial)."
+    },
+    "trat_mantenimiento_alta": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Tras las **72 horas** de infusión, cambiar a IBP oral dos veces al día por **2 semanas**.\n- Evaluar e iniciar erradicación de *H. pylori* si la biopsia/prueba es positiva.\n- Suspender AINEs si es posible, o combinar con IBP profiláctico."
+    }
+  }
+}
