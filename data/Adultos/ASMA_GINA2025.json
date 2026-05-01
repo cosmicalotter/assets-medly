@@ -1,0 +1,307 @@
+{
+  "titulo": "Manejo de Asma en Adultos y Adolescentes (GINA 2025)",
+  "version": "2025",
+  "carpeta_evidencia": "asmaadultos",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "GUÍA GINA 2025 PARA ASMA EN ADULTOS",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_paso_1"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_evaluacion_inicial"
+        }
+      ]
+    },
+    "diag_paso_1": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de sibilancias, opresión torácica, disnea y tos.\n- Confirmar variabilidad de los síntomas en tiempo e intensidad.\n- Suspender broncodilatadores antes de pruebas objetivas.",
+      "pie_nodo": "¿Se dispone de Espirometría basal o flujómetro (PEF)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_espiro"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_espiro_negativo"
+        }
+      ]
+    },
+    "diag_espiro": {
+      "tipo": "pregunta",
+      "texto": "- Realizar espirometría basal y evaluar cociente **FEV1/FVC <0.7**.\n- Administrar **Salbutamol 400 mcg** y esperar 10-15 minutos.\n- Documentar reversibilidad broncodilatadora.",
+      "pie_nodo": "¿Aumento del **FEV1 >= 12% y >= 200 mL** desde el basal?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_espiro_negativo"
+        }
+      ]
+    },
+    "diag_espiro_negativo": {
+      "tipo": "pregunta",
+      "texto": "- Repetir prueba durante sintomatología o evaluar flujometría domiciliaria.\n- Medir Fracción Exhalada de Óxido Nítrico (**FeNO**) y Eosinófilos en sangre.\n- Considerar prueba de provocación bronquial (Metacolina/Manitol).",
+      "pie_nodo": "¿Variabilidad diurna del PEF **>10%** o FeNO **>50 ppb** con síntomas típicos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_diferencial"
+        }
+      ]
+    },
+    "diag_diferencial": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Considerar diagnósticos diferenciales (EPOC, falla cardíaca, disfunción cuerdas vocales).\n- Derivar a neumología si los síntomas persisten o son atípicos.\n- Realizar radiografía de tórax o tomografía según sospecha."
+    },
+    "diag_confirmado": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de Asma confirmado.\n- Iniciar evaluación integral de control de síntomas y riesgo futuro.\n- Educar sobre técnica inhalatoria y plan de acción escrito.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_evaluacion_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Global Strategy for Asthma Management and Prevention (2025 update)",
+          "url": "https://ginasthma.org/reports/",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del flujograma diagnóstico inicial de GINA 2025"
+        }
+      ]
+    },
+    "trat_evaluacion_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar vía aérea, respiración y estado hemodinámico (ABCDE).\n- Indagar sobre control de síntomas crónicos y exacerbaciones previas.\n- Medir **SaO2** y signos vitales.",
+      "pie_nodo": "¿El paciente presenta síntomas de una Exacerbación Aguda?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_exac_triage"
+        },
+        {
+          "texto": "No (Crónico)",
+          "siguiente_nodo": "trat_cronico"
+        }
+      ]
+    },
+    "trat_exac_triage": {
+      "tipo": "pregunta",
+      "texto": "- Clasificar la severidad de la crisis asmática.\n- Medir Flujo Espiratorio Máximo (**PEF**) si es posible.\n- Descartar neumotórax o anafilaxia.",
+      "pie_nodo": "¿Habla entrecortado, agitado/somnoliento, **FR >30 rpm**, **FC >120 lpm** o **SaO2 <90%**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_exac_severa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_exac_leve_mod"
+        }
+      ]
+    },
+    "trat_exac_severa": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Administrar **Oxígeno** para target de **93-95%** e iniciar traslado a UCI.\n- Administrar **Salbutamol + Ipratropio** nebulizados o pMDI continuo.\n- Iniciar **Corticosteroide Sistémico IV** y considerar **Sulfato de Magnesio 2g IV**.",
+      "imagen": "TODO_IMG: Flujograma de manejo de exacerbación severa y traslado a urgencias mayores"
+    },
+    "trat_exac_leve_mod": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Administrar **Salbutamol 4-10 puffs** con espaciador cada 20 min por 1 hora.\n- Iniciar **Prednisolona oral 40-50 mg** diarios por 5-7 días.\n- Mantener **SaO2 93-95%** con cánula nasal si es necesario.",
+      "pie_nodo": "¿Mejoría clínica evidente y **PEF >60-80%** a la hora de tratamiento?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_exac_alta"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_exac_severa"
+        }
+      ]
+    },
+    "trat_exac_alta": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Alta con ciclo de **Prednisolona oral 40-50 mg/día** hasta completar 5-7 días.\n- Escalar a, o iniciar, corticoide inhalado (**ICS**) preferiblemente en terapia MART.\n- Agendar cita de seguimiento en 2-7 días.",
+      "enlaces": [
+        {
+          "texto": "Evaluar terapia de mantenimiento post-crisis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico"
+        }
+      ]
+    },
+    "trat_cronico": {
+      "tipo": "pregunta",
+      "texto": "- La estrategia Track 1 utiliza **ICS-Formoterol** como mantenimiento y rescate (antiinflamatorio).\n- La estrategia Track 2 utiliza **SABA** o **ICS-SABA** a demanda (requiere muy buena adherencia).\n- GINA 2025 recomienda encarecidamente Track 1 por reducir exacerbaciones severas.",
+      "pie_nodo": "¿Qué estrategia (Track) utilizará según disponibilidad y perfil del paciente?",
+      "opciones": [
+        {
+          "texto": "Track 1 (Preferida)",
+          "siguiente_nodo": "trat_track1"
+        },
+        {
+          "texto": "Track 2 (Alternativa)",
+          "siguiente_nodo": "trat_track2"
+        }
+      ]
+    },
+    "trat_track1": {
+      "tipo": "pregunta",
+      "texto": "- Régimen antiinflamatorio de rescate (AIR) con **ICS-Formoterol a dosis bajas**.\n- Reduce un 65% el riesgo de exacerbaciones comparado con SABA solo.\n- Evaluar la carga sintomática inicial del paciente.",
+      "pie_nodo": "¿Cuál es la frecuencia de síntomas del paciente al diagnóstico?",
+      "opciones": [
+        {
+          "texto": "Infrecuentes (< 4 días/sem)",
+          "siguiente_nodo": "trat_t1_step1_2"
+        },
+        {
+          "texto": "Casi diarios o nocturnos >=1/sem",
+          "siguiente_nodo": "trat_t1_step3"
+        },
+        {
+          "texto": "Diarios, exacerbación reciente o FEV1 bajo",
+          "siguiente_nodo": "trat_t1_step4"
+        }
+      ]
+    },
+    "trat_t1_step1_2": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Steps 1-2: **Budesonida-Formoterol 200/6 mcg** 1 puff solo a demanda (AIR-only).\n- Máximo absoluto de **72 mcg/día** de formoterol (12 inhalaciones).\n- No requiere esquema fijo de mantenimiento.",
+      "referencias": [
+        {
+          "titulo": "GINA 2025 Track 1 Steps 1-2 Treatment",
+          "url": "https://ginasthma.org/reports/",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de dosis para Track 1 (Steps 1 y 2)"
+        }
+      ]
+    },
+    "trat_t1_step3": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Step 3 (MART dosis bajas): **Budesonida-Formoterol 200/6 mcg** 1 puff cada 12 horas.\n- Usar 1 puff adicional de rescate ante síntomas o previo al ejercicio.\n- Máximo absoluto de **72 mcg/día** de formoterol (12 inhalaciones totales)."
+    },
+    "trat_t1_step4": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Iniciar Step 4 (MART dosis medias): **Budesonida-Formoterol 200/6 mcg** 2 puffs cada 12 horas.\n- Usar 1 puff adicional de rescate ante síntomas.\n- Monitorizar adherencia y técnica de inhalación.",
+      "pie_nodo": "¿Persisten síntomas descontrolados o exacerbaciones frecuentes tras 3-6 meses?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_t1_step5"
+        },
+        {
+          "texto": "No (Estable)",
+          "siguiente_nodo": "trat_mantenimiento_estable"
+        }
+      ]
+    },
+    "trat_t1_step5": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Step 5: Considerar Asma Severa o Difícil de Tratar; derivar a especialista.\n- Adicionar **LAMA** (ej. Tiotropio) a terapia base.\n- Evaluar biomarcadores (IgE, Eosinófilos **>=150-300 /uL**, FeNO **>50 ppb**) para Terapia Biológica.",
+      "imagen": "TODO_IMG: Árbol de decisión de GINA para Asma Severa (Step 5)"
+    },
+    "trat_track2": {
+      "tipo": "pregunta",
+      "texto": "- Track 2: Rescate exclusivo con **SABA a demanda** o **ICS-SABA** combinado.\n- Requiere adherencia estricta al corticoide de mantenimiento diario.\n- NO usar SABA como monoterapia sin un ICS debido a riesgo de muerte.",
+      "pie_nodo": "¿Cuál es la frecuencia de síntomas del paciente al diagnóstico?",
+      "opciones": [
+        {
+          "texto": "Infrecuentes (< 2 días/sem)",
+          "siguiente_nodo": "trat_t2_step1"
+        },
+        {
+          "texto": "2-5 días por semana",
+          "siguiente_nodo": "trat_t2_step2"
+        },
+        {
+          "texto": "Casi diarios o nocturnos >=1/sem",
+          "siguiente_nodo": "trat_t2_step3"
+        },
+        {
+          "texto": "Diarios, exacerbación reciente o FEV1 bajo",
+          "siguiente_nodo": "trat_t2_step4"
+        }
+      ]
+    },
+    "trat_t2_step1": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Iniciar Step 1: Tomar **ICS a dosis baja** simultáneamente cada vez que use el **SABA** de rescate.\n- Usar inhaladores separados de ICS y SABA, o combinación en un solo dispositivo si está disponible.\n- Monitorear riesgo de sobreuso de rescate."
+    },
+    "trat_t2_step2": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Step 2: **ICS diario a dosis bajas** de mantenimiento (ej. Fluticasona 100-250 mcg/día).\n- Usar **SABA a demanda** (ej. Salbutamol **100-200 mcg**) para síntomas.\n- Evaluar riesgo de falta de adherencia al controlador."
+    },
+    "trat_t2_step3": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Step 3: **ICS-LABA a dosis bajas** diario (ej. Fluticasona-Salmeterol 100/50 mcg cada 12h).\n- Usar **SABA a demanda** para control de síntomas rápidos.\n- Revisar factores de riesgo modificables."
+    },
+    "trat_t2_step4": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Iniciar Step 4: **ICS-LABA a dosis medias** diario de mantenimiento.\n- Usar **SABA a demanda** para síntomas agudos.\n- Verificar técnica del dispositivo y factores ambientales.",
+      "pie_nodo": "¿Persiste mal control a pesar de adherencia documentada por 3 meses?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_t1_step5"
+        },
+        {
+          "texto": "No (Estable)",
+          "siguiente_nodo": "trat_mantenimiento_estable"
+        }
+      ]
+    },
+    "trat_mantenimiento_estable": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Mantener esquema actual y reevaluar en 2-3 meses.\n- Si permanece estable, considerar Step-Down (bajar la dosis en un 25-50%).\n- NO suspender el corticoide inhalado por completo."
+    }
+  }
+}
