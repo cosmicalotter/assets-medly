@@ -1,0 +1,312 @@
+{
+  "titulo": "Abordaje Analítico del Líquido Pleural",
+  "version": "2024",
+  "carpeta_evidencia": "liquidopleural",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "ANÁLISIS DEL LÍQUIDO PLEURAL Y DERRAME PLEURAL",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_inicial"
+        }
+      ]
+    },
+    "diag_evaluacion_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Realizar toracocentesis diagnóstica.\n- Solicitar citoquímico, recuento celular, cultivo y citología.\n- Aplicar **Criterios de Light**.",
+      "pie_nodo": "¿Cumple al menos 1 Criterio de Light (**Proteínas LP/S > 0.5**, **LDH LP/S > 0.6**, **LDH LP > 2/3 LSN**)?",
+      "calculadora_id": "TODO_CALC_criterios_light.json",
+      "opciones": [
+        {
+          "texto": "Sí (Exudado)",
+          "siguiente_nodo": "diag_exudado"
+        },
+        {
+          "texto": "No (Trasudado)",
+          "siguiente_nodo": "diag_trasudado"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "The Art of Pleural Fluid Analysis",
+          "url": "https://journals.lww.com/clinpulm/Abstract/2013/03000/The_Art_of_Pleural_Fluid_Analysis.1.aspx",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de los criterios de Light y parámetros bioquímicos iniciales."
+        }
+      ]
+    },
+    "diag_trasudado": {
+      "tipo": "pregunta",
+      "texto": "- Sospechar etiología sistémica: Falla Cardíaca, Cirrosis, Síndrome Nefrótico.\n- Evaluar contexto clínico y uso de fármacos.",
+      "pie_nodo": "¿Derrame atípico o uso previo de **diuréticos** con clasificación dudosa?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_falso_exudado"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_falla_cardiaca"
+        }
+      ]
+    },
+    "diag_falso_exudado": {
+      "tipo": "pregunta",
+      "texto": "- Medir gradiente de albúmina y biomarcadores.\n- Determinar **NT-proBNP** en líquido pleural (LP).",
+      "pie_nodo": "¿Gradiente Albúmina Suero-LP **> 1.2 g/dL** o NT-proBNP LP **> 1500 pg/mL**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_falla_cardiaca"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_trasudados_raros"
+        }
+      ]
+    },
+    "diag_falla_cardiaca": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Confirmación de Derrame Pleural por Falla Cardíaca (o hidrotórax hepático si cirrosis).\n- Optimizar manejo médico subyacente.",
+      "enlaces": [
+        {
+          "texto": "Ir al Manejo de Falla Cardíaca",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_falla_cardiaca"
+        }
+      ]
+    },
+    "diag_trasudados_raros": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Descartar Urinotórax: **Creatinina LP/Suero > 1** y pH bajo.\n- Descartar Fístula Cefalorraquídea: Presencia de **Beta-2-transferrina**.\n- Descartar Derrame por Diálisis: **Glucosa LP > 300 mg/dL**.",
+      "imagen": "TODO_IMG: Tabla de características de trasudados menos comunes (urinotórax, fístula, diálisis)."
+    },
+    "diag_exudado": {
+      "tipo": "pregunta",
+      "texto": "- Identificar predominio celular en líquido pleural.\n- Revisar niveles de glucosa, pH y marcadores inflamatorios.",
+      "pie_nodo": "¿Cuál es el predominio celular principal?",
+      "opciones": [
+        {
+          "texto": "Polimorfonucleares (PMN)",
+          "siguiente_nodo": "diag_pmn"
+        },
+        {
+          "texto": "Linfocitos o Eosinófilos",
+          "siguiente_nodo": "diag_linfocitos"
+        }
+      ]
+    },
+    "diag_pmn": {
+      "tipo": "pregunta",
+      "texto": "- Sospechar proceso agudo: Infección parapneumónica, Tromboembolismo, Pancreatitis.\n- Revisar parámetros bioquímicos de severidad.",
+      "pie_nodo": "¿Presenta **pH < 7.20**, **Glucosa < 60 mg/dL**, LDH elevada o cultivo positivo?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_empiema"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_pmn_otros"
+        }
+      ]
+    },
+    "diag_empiema": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: Derrame Paraneumónico Complicado o Empiema.\n- Requiere intervención inmediata para evitar fibrosis.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento de Empiema",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_empiema"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "British Thoracic Society pleural disease guideline 2010",
+          "url": "https://thorax.bmj.com/content/65/Suppl_2/ii41",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del algoritmo de manejo de infección pleural (pH y drenaje)."
+        }
+      ]
+    },
+    "diag_pmn_otros": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar ruptura esofágica, fístula pancreática o Tromboembolismo Pulmonar (TEP).\n- Solicitar amilasa en LP y AngioTAC de tórax.",
+      "pie_nodo": "¿Amilasa **> 100,000 UI/L** (pancreática) o pH **5-7** con amilasa salival elevada?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_pancreatitis_ruptura"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_tep_infarto"
+        }
+      ]
+    },
+    "diag_pancreatitis_ruptura": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Pancreatitis con fístula (Amilasa > 100,000) o Ruptura esofágica (Amilasa salival y pH bajo).\n- Requiere valoración quirúrgica urgente.",
+      "imagen": "TODO_IMG: Esquema de diagnóstico diferencial de derrames con amilasa elevada."
+    },
+    "diag_tep_infarto": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Considerar Derrame secundario a **Tromboembolismo Pulmonar (TEP)**.\n- Confirmar diagnóstico con AngioTAC y evaluar anticoagulación.",
+      "enlaces": [
+        {
+          "texto": "Ver protocolo de TEP",
+          "archivo_objetivo": "TODO_LINK_protocolo_tep.json"
+        }
+      ]
+    },
+    "diag_linfocitos": {
+      "tipo": "pregunta",
+      "texto": "- Sospechar proceso crónico: Tuberculosis, Malignidad, Artritis Reumatoide o Quilotórax.\n- Analizar ADA, citología y perfil lipídico en LP.",
+      "pie_nodo": "¿Presenta **ADA elevado (>40 UI/L)** y relación Linfocitos/Neutrófilos **> 0.75**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_tuberculosis"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_linf_otros"
+        }
+      ]
+    },
+    "diag_tuberculosis": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico probable: Pleuresía Tuberculosa.\n- Confirmar con biopsia pleural (granulomas caseificantes) o cultivo de Lowenstein.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento de Tuberculosis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_tb"
+        }
+      ]
+    },
+    "diag_linf_otros": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar aspecto del líquido (lechoso, seroso, hemorrágico).\n- Solicitar Citología (Neoplasia), Triglicéridos y Factor Reumatoide.",
+      "pie_nodo": "¿Líquido lechoso/turbio con Triglicéridos **> 110 mg/dL** o presencia de quilomicrones?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_quilotórax"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_malignidad_ar"
+        }
+      ]
+    },
+    "diag_quilotórax": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Quilotórax** (obstrucción o trauma del conducto torácico).\n- Descartar Linfoma, traumatismo iatrogénico o Linfangioleiomiomatosis.",
+      "enlaces": [
+        {
+          "texto": "Ir al Manejo del Quilotórax",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_quilotórax"
+        }
+      ]
+    },
+    "diag_malignidad_ar": {
+      "tipo": "informativo",
+      "texto": "- Si Glucosa **< 50 mg/dL**, pH **< 7.20** y LDH **> 1000**: Descartar Artritis Reumatoide (FR elevado en LP).\n- Si Citología positiva o sospecha de Mesotelioma (Mesotelina elevada): Derivar a Toracoscopia.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento Neoplásico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_neoplasico"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_menu"
+        }
+      ]
+    },
+    "trat_menu": {
+      "tipo": "pregunta",
+      "texto": "- El manejo depende exclusivamente de la etiología confirmada por el análisis del líquido pleural.",
+      "pie_nodo": "Seleccione la etiología a tratar:",
+      "opciones": [
+        {
+          "texto": "Derrame Complicado / Empiema",
+          "siguiente_nodo": "trat_empiema"
+        },
+        {
+          "texto": "Falla Cardíaca",
+          "siguiente_nodo": "trat_falla_cardiaca"
+        },
+        {
+          "texto": "Hemotórax",
+          "siguiente_nodo": "trat_hemotorax"
+        },
+        {
+          "texto": "Pleuresía TB",
+          "siguiente_nodo": "trat_tb"
+        },
+        {
+          "texto": "Neoplásico / Quilotórax",
+          "siguiente_nodo": "trat_neoplasico"
+        }
+      ]
+    },
+    "trat_empiema": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Insertar **Tubo de Tórax** para drenaje cerrado.\n- Iniciar antibioticoterapia empírica de amplio espectro.\n- Considerar fibrinolíticos intrapleurales si hay tabicaciones.",
+      "imagen": "TODO_IMG: Ilustración de colocación de tubo de tórax y sistema de drenaje."
+    },
+    "trat_falla_cardiaca": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Optimizar terapia médica guiada por guías (IECA/ARA, Beta-bloqueadores, iSGLT2).\n- Administrar **Diuréticos de asa** (Ej. Furosemida) y vigilar respuesta radiológica.\n- Evitar toracocentesis repetitivas salvo disnea severa."
+    },
+    "trat_hemotorax": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico con Hematocrito LP/S **> 0.5**.\n- Colocar tubo de tórax grueso (**> 28 Fr**).\n- Valorar toracotomía si drenaje inicial **> 1500 mL** o **> 200 mL/h** por 4 hrs."
+    },
+    "trat_tb": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar terapia antifímica estándar (**Isoniazida, Rifampicina, Pirazinamida, Etambutol**).\n- Realizar seguimiento estrecho de la resolución del derrame y toxicidad hepática."
+    },
+    "trat_neoplasico": {
+      "tipo": "informativo",
+      "texto": "- Evaluar pronóstico y reexpansión pulmonar.\n- Indicar **Pleurodesis química** (talco) o catéter pleural tunelizado si hay atrapamiento pulmonar.\n- Quilotórax: Dieta pobre en grasas, triglicéridos de cadena media, o ligadura del conducto torácico.",
+      "imagen": "TODO_IMG: Algoritmo de decisión entre pleurodesis y catéter tunelizado."
+    }
+  }
+}
