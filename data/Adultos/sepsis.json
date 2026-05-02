@@ -1,0 +1,260 @@
+{
+  "titulo": "Sepsis",
+  "version": "2024",
+  "carpeta_evidencia": "sepsis",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Sepsis y Shock Séptico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_sospecha_inicial"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_hora_1"
+        }
+      ]
+    },
+    "diag_sospecha_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar vía aérea, oxigenación y accesos venosos.\n- Tomar signos vitales completos y evaluar estado mental.",
+      "pie_nodo": "¿Existe sospecha de infección y signos de respuesta sistémica (taquicardia, fiebre, taquipnea)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_tamizaje_laboratorios"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_diferenciales"
+        }
+      ]
+    },
+    "diag_diferenciales": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Buscar causas alternativas de deterioro (shock hipovolémico, cardiogénico, obstructivo o tóxico).\n- Reevaluar clínicamente si el estado cambia."
+    },
+    "diag_tamizaje_laboratorios": {
+      "tipo": "pregunta",
+      "texto": "- Aplicar herramienta de tamizaje clínico (NEWS, MEWS o SIRS).\n- Extraer laboratorios: Hemograma, función renal, hepática y coagulación.\n- Medir **Lactato sérico** de urgencia.",
+      "pie_nodo": "¿Evidencia de **Lactato > 2.0 mmol/L** o disfunción orgánica clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_criterios_sofa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_infeccion_no_complicada"
+        }
+      ],
+      "calculadora_id": "TODO_CALC_news2.json"
+    },
+    "diag_infeccion_no_complicada": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Paciente con infección no complicada.\n- Diferir antibióticos empíricos si la sospecha de sepsis es baja.\n- Monitorización clínica frecuente.",
+      "imagen": "TODO_IMG: Gráfico de categorización de riesgo de infección vs sepsis"
+    },
+    "diag_criterios_sofa": {
+      "tipo": "pregunta",
+      "texto": "- Calcular puntuación SOFA.\n- Requiere parámetros: **PaO2/FiO2**, **Plaquetas**, **Bilirrubina**, **PAM**, **Glasgow** y **Creatinina**.",
+      "pie_nodo": "¿Existe un incremento agudo del **SOFA >= 2 puntos**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_evaluar_shock"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_infeccion_no_complicada"
+        }
+      ],
+      "calculadora_id": "TODO_CALC_sofa.json",
+      "referencias": [
+        {
+          "titulo": "The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3)",
+          "url": "https://jamanetwork.com/journals/jama/fullarticle/2492881",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 1 de Sepsis-3 mostrando los criterios del score SOFA"
+        }
+      ]
+    },
+    "diag_evaluar_shock": {
+      "tipo": "pregunta",
+      "texto": "- Sepsis confirmada (disfunción orgánica por respuesta desregulada).\n- Evaluar estado hemodinámico tras reanimación inicial con fluidos.",
+      "pie_nodo": "¿Requiere vasopresores para mantener **PAM >= 65 mmHg** Y persiste con **Lactato > 2.0 mmol/L**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_confirmacion_shock"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_confirmacion_sepsis"
+        }
+      ]
+    },
+    "diag_confirmacion_shock": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de **Shock Séptico** establecido.\n- Altísimo riesgo de mortalidad (mayor al 40%).\n- Activar respuesta rápida y trasladar a UCI.",
+      "enlaces": [
+        {
+          "texto": "Iniciar protocolo de tratamiento urgente",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_hora_1"
+        }
+      ]
+    },
+    "diag_confirmacion_sepsis": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de **Sepsis** establecido.\n- Elevado riesgo de deterioro rápido.",
+      "enlaces": [
+        {
+          "texto": "Iniciar paquete de medidas terapéuticas",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_hora_1"
+        }
+      ]
+    },
+    "trat_hora_1": {
+      "tipo": "pregunta",
+      "texto": "- Obtener 2 frascos de hemocultivos (aerobio y anaerobio) periféricos antes de la terapia antimicrobiana.\n- Iniciar antibióticos IV de amplio espectro dentro de la primera **1 hora** tras el reconocimiento.",
+      "pie_nodo": "¿El paciente cursa con hipotensión (**PAM < 65 mmHg**) o **Lactato >= 4.0 mmol/L**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resucitacion_fluidos"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_control_foco_antibiotico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021",
+          "url": "https://journals.lww.com/ccmjournal/Fulltext/2021/11000/Surviving_Sepsis_Campaign__International.21.aspx",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del algoritmo de tratamiento de 1 hora del Surviving Sepsis Campaign"
+        }
+      ]
+    },
+    "trat_resucitacion_fluidos": {
+      "tipo": "pregunta",
+      "texto": "- Infundir **30 mL/kg** de **Cristaloides balanceados** (ej. Ringer Lactato) IV en las primeras **3 horas**.\n- Monitorizar respuesta mediante parámetros dinámicos y tiempo de llenado capilar.",
+      "pie_nodo": "¿La hipotensión persiste (**PAM < 65 mmHg**) o hay signos de mala perfusión post-fluidos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_vasopresores"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_control_foco_antibiotico"
+        }
+      ]
+    },
+    "trat_vasopresores": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Iniciar **Norepinefrina** IV de primera línea.\n- Titular para objetivo de **PAM >= 65 mmHg** (Considerar meta de **60-65 mmHg** en pacientes **>= 65 años**).",
+      "pie_nodo": "¿Se requieren dosis crecientes de Norepinefrina para mantener la meta de presión arterial?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_vasopresor_escalonamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_control_foco_antibiotico"
+        }
+      ]
+    },
+    "trat_vasopresor_escalonamiento": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Añadir **Vasopresina** IV hasta **0.03 unidades/minuto**.\n- Considerar añadir **Epinefrina** IV si la PAM continúa inadecuada.",
+      "pie_nodo": "¿Presenta shock refractario con hipoperfusión tisular persistente?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_adyuvantes_rescate"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_control_foco_antibiotico"
+        }
+      ]
+    },
+    "trat_adyuvantes_rescate": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Iniciar **Hidrocortisona 200 mg/día** IV por shock refractario.\n- Si existe disfunción cardíaca documentada, añadir **Dobutamina** IV.\n- En casos ultrarrefractarios, evaluar uso de **Azul de Metileno** IV como rescate.",
+      "enlaces": [
+        {
+          "texto": "Continuar a Control del Foco",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_control_foco_antibiotico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
+          "url": "https://journals.lww.com/ccmjournal/Fulltext/9900/Surviving_Sepsis_Campaign__International.526.aspx",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones actualizadas 2026 para el uso de inotrópicos y Azul de Metileno"
+        }
+      ]
+    },
+    "trat_control_foco_antibiotico": {
+      "tipo": "pregunta",
+      "texto": "- Realizar intervención física para control del foco infeccioso (drenaje, debridamiento, remoción de dispositivo) dentro de las **6 a 12 horas**.\n- Optimizar soporte respiratorio (HFNC o Ventilación Mecánica Protectiva con volumen corriente de **6 mL/kg**).",
+      "pie_nodo": "¿Existe mejoría clínica, estabilización hemodinámica y aislamiento microbiológico?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_desescalamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_falla_terapeutica"
+        }
+      ]
+    },
+    "trat_desescalamiento": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Desescalar antimicrobianos según susceptibilidad guiada por cultivos.\n- Suspender antibióticos empíricos innecesarios (e.g., antifúngicos si no se confirman, anti-anaerobios si no hay riesgo).\n- Iniciar nutrición enteral temprana y profilaxis antitrombótica con **Heparina de bajo peso molecular**."
+    },
+    "trat_falla_terapeutica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Sospechar foco infeccioso oculto o no controlado adecuadamente.\n- Considerar presencia de patógenos Multidrogorresistentes (MDR) o superinfección fúngica.\n- Repetir cultivos, expandir imágenes diagnósticas e interconsultar a enfermedades infecciosas y cirugía.",
+      "imagen": "TODO_IMG: Algoritmo de falla de respuesta al tratamiento en sepsis"
+    }
+  }
+}
