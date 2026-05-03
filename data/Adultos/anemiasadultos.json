@@ -1,0 +1,558 @@
+{
+  "titulo": "Abordaje de Anemias en Adultos",
+  "version": "2024",
+  "carpeta_evidencia": "anemiasadultos",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Abordaje diagnóstico y terapéutico de las anemias en el paciente adulto.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "577",
+          "imagen_evidencia": "evidencia_anemias_sem_577.png",
+          "texto": "Las anemias constituyen un síndrome importante en Atención Primaria tanto por su repercusión clínica como por la considerable frecuencia de presentación."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "578",
+          "imagen_evidencia": "evidencia_anemias_sem_578.png",
+          "texto": "Figura 1. Enfoque inicial de las anemias detallando la evaluación inicial con base en hemograma y niveles de Hb."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_seleccion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "102-103",
+          "imagen_evidencia": "evidencia_anemias_aafp_102.png",
+          "texto": "Sección de Tratamiento (Treatment) detallando las indicaciones de terapia férrica oral y parenteral."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Confirmar diagnóstico de anemia: **Hb < 130 g/L** en hombres y **Hb < 120 g/L** en mujeres no gestantes.\n- Solicitar Hemograma completo, Frotis de sangre periférica y Reticulocitos.\n- Valorar síntomas: disnea, taquicardia, palidez, astenia.",
+      "pie_nodo": "¿Cuál es el Volumen Corpuscular Medio (VCM)?",
+      "opciones": [
+        {
+          "texto": "Microcítica (< 80 fL)",
+          "siguiente_nodo": "diag_microcitica"
+        },
+        {
+          "texto": "Normocítica (80 - 100 fL)",
+          "siguiente_nodo": "diag_normocitica"
+        },
+        {
+          "texto": "Macrocítica (> 100 fL)",
+          "siguiente_nodo": "diag_macrocitica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guideline on haemoglobin cutoffs to define anaemia in individuals and populations - WHO",
+          "url": "https://www.who.int/publications/i/item/9789240088542",
+          "paginas": "xi",
+          "imagen_evidencia": "evidencia_anemias_who_xi.png",
+          "texto": "Table 2. Haemoglobin cutoffs to define anaemia in individuals and populations: Adults, 15-65 years, nonpregnant women <120 g/L, men <130 g/L."
+        },
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "578",
+          "imagen_evidencia": "evidencia_anemias_sem_578_vcm.png",
+          "texto": "Criterios morfológicos: Anemia microcítica: VCM < 80 fl, Normocítica: VCM 80 - 100 fl, Macrocítica: VCM > 100 fl."
+        }
+      ]
+    },
+    "diag_microcitica": {
+      "tipo": "pregunta",
+      "texto": "- Solicitar perfil férrico: Ferritina sérica, Hierro sérico, Capacidad de fijación (TIBC) e Índice de Saturación de Transferrina (IST).",
+      "pie_nodo": "¿Cuál es el nivel de Ferritina Sérica?",
+      "opciones": [
+        {
+          "texto": "< 30 ng/mL",
+          "siguiente_nodo": "diag_micro_ferropenica"
+        },
+        {
+          "texto": "> 100 ng/mL (o > 50 con inflamación)",
+          "siguiente_nodo": "diag_micro_cronica_o_talasemia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "98-99",
+          "imagen_evidencia": "evidencia_anemias_aafp_99.png",
+          "texto": "Figure 1: Algorithm for diagnosis of iron deficiency anemia. Usa puntos de corte de Ferritina <= 30 ng/mL para diagnóstico y >= 100 ng/mL para descartarlo."
+        }
+      ]
+    },
+    "diag_micro_ferropenica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Anemia Ferropénica**.\n- Es mandatorio buscar sangrado oculto (endoscopia/colonoscopia en hombres y mujeres posmenopáusicas) o evaluar pérdidas ginecológicas.",
+      "pie_nodo": "Iniciar reposición de hierro y buscar causa subyacente.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento de Ferropenia",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_ferropenica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "98-101",
+          "imagen_evidencia": "evidencia_anemias_aafp_101.png",
+          "texto": "Figure 2: Algorithm for evaluation of iron deficiency anemia. Indica la necesidad de endoscopia alta y colonoscopia en hombres y mujeres posmenopáusicas."
+        }
+      ]
+    },
+    "diag_micro_cronica_o_talasemia": {
+      "tipo": "pregunta",
+      "texto": "- Ferritina normal o alta excluye ferropenia pura.\n- Evaluar índice de saturación de transferrina (IST) y recuento de eritrocitos.",
+      "pie_nodo": "¿Recuento de eritrocitos elevado con Hb normal/baja y ADE normal?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_micro_talasemia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_micro_enfcronica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "580",
+          "imagen_evidencia": "evidencia_anemias_sem_580_tabla3.png",
+          "texto": "Tabla 3. Diagnóstico diferencial entre anemias microcíticas, comparando niveles de Ferritina, Sideremia y Transferrina."
+        }
+      ]
+    },
+    "diag_micro_talasemia": {
+      "estilo": "informativo",
+      "texto": "- Diagnóstico probable: **Rasgo Talasémico** (Alfa o Beta).\n- Confirmar con electroforesis de hemoglobina (aumento de HbA2 o HbF en Beta-talasemia).",
+      "pie_nodo": "Derivar a hematología. No requiere hierro empírico.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "580-581",
+          "imagen_evidencia": "evidencia_anemias_sem_581_fig2.png",
+          "texto": "Figura 2. Estudio analítico de las talasemias y perfil de Hb (Elevación de Hb A2 o Hb F). Número de hematíes elevado (poliglobulia paradójica)."
+        }
+      ]
+    },
+    "diag_micro_enfcronica": {
+      "estilo": "informativo",
+      "texto": "- Diagnóstico probable: **Anemia por Enfermedad Crónica** (inflamatoria, infecciosa o neoplásica).\n- Hierro sérico bajo, TIBC bajo, Ferritina normal/alta.",
+      "enlaces": [
+        {
+          "texto": "Ir al Manejo de Enfermedad Crónica",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronica_renal"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "582",
+          "imagen_evidencia": "evidencia_anemias_sem_582.png",
+          "texto": "Diagnóstico de laboratorio: Hiposideremia sin ferropenia... ferritina normal o elevada por liberación de sus depósitos, por la inflamación o necrosis celular."
+        }
+      ]
+    },
+    "diag_normocitica": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar recuento de **Reticulocitos** absolutos y corregidos.\n- Solicitar perfil hemolítico (LDH, bilirrubina indirecta, haptoglobina) y perfil renal/hepático.",
+      "pie_nodo": "¿Reticulocitos elevados (Anemia Regenerativa)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_normo_regenerativa"
+        },
+        {
+          "texto": "No (Bajos o normales)",
+          "siguiente_nodo": "diag_normo_arregenerativa"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "581-582",
+          "imagen_evidencia": "evidencia_anemias_sem_582_normo.png",
+          "texto": "Anemias normocíticas (VCM 80-100 fl). En el estudio de laboratorio se valora el recuento de reticulocitos para determinar si son regenerativas o hiporregenerativas."
+        }
+      ]
+    },
+    "diag_normo_regenerativa": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Sugiere destrucción periférica (Hemólisis) o pérdida aguda (Sangrado agudo).\n- Evaluar tolerancia hemodinámica.",
+      "pie_nodo": "¿Existen datos de hemólisis (LDH alta, Bilirrubina Indirecta alta, Haptoglobina baja)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_hemolisis"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_sangrado_agudo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "578",
+          "imagen_evidencia": "evidencia_anemias_sem_578_regen.png",
+          "texto": "Anemia regenerativa: número de reticulocitos aumentado. El origen de la anemia es por fallo periférico... ocurre en sangrado, hiperesplenismo y estados hemolíticos."
+        }
+      ]
+    },
+    "diag_hemolisis": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Anemia Hemolítica**.\n- Realizar Test de Coombs Directo para diferenciar autoinmune de no autoinmune.\n- Evaluar frotis por esquistocitos (microangiopatía).",
+      "pie_nodo": "Derivar a Hematología urgentemente.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "584-585",
+          "imagen_evidencia": "evidencia_anemias_sem_585.png",
+          "texto": "Tabla 5. Diagnóstico de laboratorio de las anemias hemolíticas: Bilirrubina indirecta alta, LDH alta, Haptoglobina baja. Coombs directo positivo en autoinmunes."
+        }
+      ]
+    },
+    "diag_sangrado_agudo": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Sangrado Agudo**.\n- Evaluar signos de shock hipovolémico (hipotensión ortostática, taquicardia).\n- Buscar fuente activa (GI, trauma, ginecológica).",
+      "pie_nodo": "Reanimación hídrica y control del sangrado.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "583-584",
+          "imagen_evidencia": "evidencia_anemias_sem_584.png",
+          "texto": "Tabla 4. Signos y síntomas de pérdida de sangre: Hipotensión ortostática, taquicardia con ejercicio/reposo, síncope, shock."
+        }
+      ]
+    },
+    "diag_normo_arregenerativa": {
+      "tipo": "informativo",
+      "texto": "- Sugiere fallo central medular.\n- Descartar **Insuficiencia Renal Crónica** (valorar TFG y Creatinina).\n- Descartar **Enfermedad Crónica** (inflamatoria, endocrina).\n- Si se asocia a pancitopenia, sospechar **Anemia Aplásica** o mieloptisis (requiere biopsia de médula ósea).",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Enfermedad Crónica/Renal",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronica_renal"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "578, 585",
+          "imagen_evidencia": "evidencia_anemias_sem_585_arregen.png",
+          "texto": "Anemia arregenerativa: número de reticulocitos disminuido o ausentes. Sugiere fallo central. En Anemia Aplásica hay pancitopenia y requiere biopsia de médula."
+        }
+      ]
+    },
+    "diag_macrocitica": {
+      "tipo": "pregunta",
+      "texto": "- Solicitar niveles de Vitamina B12 y Ácido Fólico.\n- Solicitar pruebas de función hepática (AST, ALT, GGT) y TSH.\n- Indagar sobre consumo crónico de alcohol.",
+      "pie_nodo": "¿Existe déficit de B12 o Folato?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_macro_megaloblastica"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_macro_no_megaloblastica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "586",
+          "imagen_evidencia": "evidencia_anemias_sem_586.png",
+          "texto": "Anemias Macrocíticas (VCM > 100 fl). Causas más frecuentes: consumo excesivo de alcohol y patología asociada, y anemias megaloblásticas por déficit de folatos o vitamina B12."
+        }
+      ]
+    },
+    "diag_macro_megaloblastica": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Anemia Megaloblástica**.\n- Frotis muestra neutrófilos hipersegmentados y macroovalocitos.\n- Considerar anemia perniciosa si hay déficit de B12 aislado severo.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Megaloblástica",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_megaloblastica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "587-588",
+          "imagen_evidencia": "evidencia_anemias_sem_588.png",
+          "texto": "En el examen del frotis sanguíneo vemos distintas formas (poiquilocitos) y tamaños... encontramos hipersegmentación de los neutrófilos (pleocariocitosis)."
+        }
+      ]
+    },
+    "diag_macro_no_megaloblastica": {
+      "tipo": "pregunta",
+      "texto": "- Descartar causas secundarias: Hipotiroidismo, Hepatopatía crónica, Alcoholismo severo, o fármacos (metotrexato, anticonvulsivantes).",
+      "pie_nodo": "¿Se identificó etiología secundaria o consumo de tóxicos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_macro_secundaria"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_macro_mielodisplasia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "587",
+          "imagen_evidencia": "evidencia_anemias_sem_587_fig4.png",
+          "texto": "Figura 4. Enfoque diagnóstico de una anemia macrocítica. Valora clínica sugestiva de alcohol, hepatopatías, hipotiroidismo, fármacos y EPOC."
+        }
+      ]
+    },
+    "diag_macro_secundaria": {
+      "estilo": "exito",
+      "texto": "- Manejo etiológico: Abstinencia de alcohol, sustitución tiroidea (levotiroxina) o manejo de hepatopatía de base.",
+      "pie_nodo": "Monitorizar respuesta hematológica.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "589-590",
+          "imagen_evidencia": "evidencia_anemias_sem_590.png",
+          "texto": "El tratamiento consiste en la abstinencia del alcohol... En hepatopatías y en hipotiroidismo, el tratamiento corresponde a la patología de base o sustitución."
+        }
+      ]
+    },
+    "diag_macro_mielodisplasia": {
+      "estilo": "advertencia",
+      "texto": "- Sospechar **Síndrome Mielodisplásico** o Anemia Refractaria, especialmente en ancianos con citopenias adicionales.",
+      "pie_nodo": "Derivar para aspirado y biopsia de médula ósea.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "588-589",
+          "imagen_evidencia": "evidencia_anemias_sem_589.png",
+          "texto": "Anemias refractarias y síndromes mielodisplásicos... El estudio de la médula ósea es la técnica de diagnóstico y tipificación; requiere derivación al hematólogo."
+        }
+      ]
+    },
+    "trat_seleccion": {
+      "tipo": "pregunta",
+      "texto": "- El manejo depende estrictamente de la confirmación etiológica obtenida en la fase diagnóstica.",
+      "pie_nodo": "¿Qué tipo de anemia requiere manejo terapéutico?",
+      "opciones": [
+        {
+          "texto": "Ferropénica",
+          "siguiente_nodo": "trat_ferropenica"
+        },
+        {
+          "texto": "Megaloblástica",
+          "siguiente_nodo": "trat_megaloblastica"
+        },
+        {
+          "texto": "Por Enfermedad Crónica / Renal",
+          "siguiente_nodo": "trat_cronica_renal"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "102",
+          "imagen_evidencia": "evidencia_anemias_aafp_102_trat.png",
+          "texto": "Patients with an underlying condition that causes iron deficiency anemia should be treated or referred... before starting specific therapies."
+        }
+      ]
+    },
+    "trat_ferropenica": {
+      "tipo": "pregunta",
+      "texto": "- Objetivo: Corregir anemia y repletar depósitos de hierro.\n- En hombres y posmenopáusicas: referir para descarte de malignidad GI paralelamente al tratamiento.",
+      "pie_nodo": "¿Existe mala tolerancia digestiva, sangrado severo refractario, EII activa o cirugía bariátrica previa?",
+      "opciones": [
+        {
+          "texto": "Sí (Indicación de Hierro IV)",
+          "siguiente_nodo": "trat_ferro_iv"
+        },
+        {
+          "texto": "No (Tolerancia oral adecuada)",
+          "siguiente_nodo": "trat_ferro_oral"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "102",
+          "imagen_evidencia": "evidencia_anemias_aafp_102_iv.png",
+          "texto": "Parenteral therapy may be used in patients who cannot tolerate or absorb oral preparations, such as those with GI effects, worsening inflammatory bowel disease, or bariatric surgery."
+        }
+      ]
+    },
+    "trat_ferro_oral": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar **Hierro elemental 100-200 mg/día** en adultos (vía oral), preferentemente en ayunas.\n- Valorar mejoría de Hb a las 4 semanas.\n- Continuar terapia **3 a 6 meses** después de la normalización de Hb y Ferritina para rellenar depósitos.",
+      "imagen": "TODO_IMG: Tabla o esquema de dosis de formulaciones orales de hierro",
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "102",
+          "imagen_evidencia": "evidencia_anemias_aafp_102_oral.png",
+          "texto": "The dosage of elemental iron required to treat iron deficiency anemia in adults is 120 mg per day for three months."
+        },
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "580",
+          "imagen_evidencia": "evidencia_anemias_sem_580.png",
+          "texto": "Pauta inicial: Fe elemental 100-200 mg/día en adultos... la duración del mismo será como mínimo de 3 a 6 meses para asegurar la reposición de depósitos."
+        }
+      ]
+    },
+    "trat_ferro_iv": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Administrar **Hierro Intravenoso** (ej. Hierro Sucrosa, Ferumoxytol o Gluconato Férrico Sodio).\n- Calcular dosis total a infundir según peso y déficit de Hb.\n- Monitorizar estrictamente durante la infusión por riesgo de reacciones adversas (anafilaxia).",
+      "pie_nodo": "Vigilar perfil férrico a las 4-8 semanas pos-infusión.",
+      "referencias": [
+        {
+          "titulo": "Iron Deficiency Anemia: Evaluation and Management - AAFP",
+          "url": "https://www.aafp.org/afp/2013/0115/p98.html",
+          "paginas": "102-103",
+          "imagen_evidencia": "evidencia_anemias_aafp_103.png",
+          "texto": "Table 3 muestra dosis y formulaciones intravenosas como Sodium ferric gluconate, Iron sucrose, Ferumoxytol, y precauciones por anafilaxia."
+        }
+      ]
+    },
+    "trat_megaloblastica": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- PRECAUCIÓN: Tratar un déficit de B12 solo con folato empeorará el daño neurológico.\n- Se debe establecer claramente cuál es el déficit predominante.",
+      "pie_nodo": "¿El déficit confirmado es de B12 o de Ácido Fólico?",
+      "opciones": [
+        {
+          "texto": "Déficit de Vitamina B12",
+          "siguiente_nodo": "trat_mega_b12"
+        },
+        {
+          "texto": "Déficit de Ácido Fólico",
+          "siguiente_nodo": "trat_mega_folato"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "588",
+          "imagen_evidencia": "evidencia_anemias_sem_588_prec.png",
+          "texto": "Para iniciar el tratamiento [con ácido fólico] previamente hay que excluir un déficit asociado de vitamina B12 por riesgo de desencadenar manifestaciones neurológicas."
+        }
+      ]
+    },
+    "trat_mega_b12": {
+      "estilo": "exito",
+      "texto": "- Administrar **Cianocobalamina 1000 mcg** IM diario la primera semana, seguido de dosis semanales y luego mensuales de por vida.\n- En casos de síntomas neurológicos, las dosis semanales se extienden por los primeros 6 meses.",
+      "pie_nodo": "Se espera crisis reticulocitaria a los 4-8 días de inicio.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "588",
+          "imagen_evidencia": "evidencia_anemias_sem_588_b12.png",
+          "texto": "En casos de anemia perniciosa el tratamiento se realiza con cianocobalamina... 1000 µg por vía intramuscular; dosis diaria la primera semana, luego dosis semanales, y mensual de por vida."
+        }
+      ]
+    },
+    "trat_mega_folato": {
+      "estilo": "exito",
+      "texto": "- Administrar **Ácido Fólico 5 mg/día** vía oral.\n- Duración: hasta normalizar hematología o corregir la causa subyacente. De por vida si la causa es incurable.",
+      "pie_nodo": "Monitorizar reticulocitos y hematocrito.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "588",
+          "imagen_evidencia": "evidencia_anemias_sem_588_folato.png",
+          "texto": "Ácido fólico oral a dosis de 5 mg/día hasta curar la causa y normalizar hematología; en casos incurables de por vida."
+        }
+      ]
+    },
+    "trat_cronica_renal": {
+      "tipo": "informativo",
+      "texto": "- Tratar de base el trastorno inflamatorio o infeccioso subyacente.\n- En Anemia por ERC (Insuficiencia Renal Crónica): Descartar ferropenia primero y tratarla si Ferritina **< 100 ng/mL** o IST **< 20%**.\n- Administrar **Eritropoyetina recombinante (rhEPO)** bajo supervisión especializada si se cumplen criterios.",
+      "pie_nodo": "Evitar transfusiones innecesarias para no generar alosensibilización.",
+      "referencias": [
+        {
+          "titulo": "Anemias - SEMERGEN",
+          "url": null,
+          "paginas": "583",
+          "imagen_evidencia": "evidencia_anemias_sem_583_erc.png",
+          "texto": "El tratamiento ha mejorado notablemente desde la utilización de la rhEPO... La ferropenia puede producir una resistencia a la acción de la rhEPO, por tanto debe corregirse siempre que se detecte."
+        }
+      ]
+    }
+  }
+}
