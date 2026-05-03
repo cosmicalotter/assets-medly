@@ -1,66 +1,658 @@
 {
-  "titulo": "Sífilis Gestacional",
-  "version": "Guía Colombia 2024",
-  "carpeta_evidencia": "sifilis",
-  "nodoInicial": "pregunta_1",
+  "titulo": "Algoritmo de Diagnóstico y Tratamiento de Sífilis (Adultos)",
+  "version": "2024",
+  "carpeta_evidencia": "sifilisadultos",
+  "nodoInicial": "nodo_raiz",
   "nodos": {
-    "pregunta_1": {
+    "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "¿La paciente tiene historia clínica de alergia a la penicilina o reacción anafiláctica previa?",
+      "texto": "SÍFILIS EN ADULTOS (GUÍAS CDC / OMS)",
       "opciones": [
-        { "texto": "SÍ, es alérgica", "siguiente_nodo": "alerta_desensibilizar" },
-        { "texto": "NO, no es alérgica", "siguiente_nodo": "pregunta_estadio" }
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "10",
+          "imagen_evidencia": "who_syphilis_pag10.png",
+          "texto": "Syphilis is a bacterial STI caused by Treponema pallidum that results in substantial morbidity and mortality. Untreated, the disease lasts many years and is divided into stages."
+        }
       ]
     },
-    "alerta_desensibilizar": {
-      "tipo": "resultado",
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2.png",
+          "texto": "Diagnostic Considerations: A presumptive diagnosis of syphilis requires use of two laboratory serologic tests: a nontreponemal test... and a treponemal test."
+        }
+      ]
+    },
+    "diag_inicio": {
+      "tipo": "pregunta",
+      "texto": "- Realizar evaluación clínica buscando úlceras indoloras (chancro), rash en palmas/plantas o adenopatías.\n- Interrogar sobre déficit visual, auditivo o alteraciones neurológicas.",
+      "pie_nodo": "¿El paciente presenta síntomas neurológicos, visuales (Ej. panuveítis) o auditivos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_neuro_ocular"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_algoritmos_serologicos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "1-2",
+          "imagen_evidencia": "cdc_syphilis_pag1_2.png",
+          "texto": "Primary syphilis classically presents as a single painless ulcer... Secondary syphilis manifestations can include skin rash... Infection of the visual system (ocular syphilis) or auditory system (otosyphilis) can occur at any stage."
+        }
+      ]
+    },
+    "diag_neuro_ocular": {
       "estilo": "peligro",
-      "texto": "🚨 ALERTA CRÍTICA\n\nLa penicilina es el único tratamiento eficaz para prevenir la sífilis congénita.\n\nCONDUCTA:\n1. No usar macrólidos ni otros antibióticos.\n2. Iniciar protocolo de desensibilización (Oral o IV).\n3. Administrar Penicilina Benzatínica."
+      "tipo": "informativo",
+      "texto": "- Realizar examen oftalmológico o neurológico completo.\n- Realizar **Punción Lumbar** para evaluación de LCR (**VDRL en LCR**, recuento de leucocitos y proteínas).\n- Referir a especialista para manejo de neurosífilis u otosífilis de forma urgente.",
+      "imagen": "TODO_IMG: Fotografía de fondo de ojo con panuveítis sifilítica",
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "3",
+          "imagen_evidencia": "cdc_syphilis_pag3.png",
+          "texto": "Cerebrospinal Fluid Evaluation: Further testing with CSF evaluation is warranted for persons with clinical signs of neurosyphilis... Diagnosis of neurosyphilis depends on a combination of CSF tests (e.g., CSF cell count, protein, or reactive CSF-VDRL)."
+        }
+      ]
     },
-    "pregunta_estadio": {
+    "diag_algoritmos_serologicos": {
       "tipo": "pregunta",
-      "texto": "¿Cuál es el estadio clínico de la sífilis?",
-      "calculadora_id": "wooddownes.json",
+      "texto": "- El diagnóstico presuntivo requiere dos pruebas serológicas: una **No Treponémica** y una **Treponémica**.",
+      "pie_nodo": "¿Qué algoritmo de tamizaje inicial utiliza su laboratorio?",
       "opciones": [
-        { "texto": "Temprana (Primaria, Secundaria, Latente < 1 año)", "siguiente_nodo": "tx_temprana" },
-        { "texto": "Tardía (Latente > 1 año o desconocida)", "siguiente_nodo": "tx_tardia" },
-        {"texto":  "Prueba segunda opción", "siguiente_nodo": "tx_secundario" }
-      ]
-    },
-    "tx_temprana": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "texto": "✅ TRATAMIENTO ESTÁNDAR\n\nPenicilina Benzatínica 2.400.000 UI IM\n(Dosis Única).\n\nSeguimiento serológico mensual.",
-      "imagen": "Rioni_river_-_Georgia_(Europe).jpg",
+        {
+          "texto": "Algoritmo Tradicional",
+          "siguiente_nodo": "diag_tradicional"
+        },
+        {
+          "texto": "Algoritmo Reverso",
+          "siguiente_nodo": "diag_inverso"
+        }
+      ],
       "referencias": [
         {
-          "titulo": "Guía Práctica Clínica (MinSalud)",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/profesionales%20salud.pdf",
-          "imagen_evidencia": "evidencia_sifilis_01.png"
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_tests.png",
+          "texto": "A presumptive diagnosis of syphilis requires use of two laboratory serologic tests: a nontreponemal test... and a treponemal test... Use of only one type of serologic test is insufficient for diagnosis."
         }
       ]
     },
-    "tx_secundario": {
-      "tipo": "resultado",
-      "estilo": "exito",
-      "texto": "Prueba de segunda opción",
+    "diag_tradicional": {
+      "tipo": "pregunta",
+      "texto": "- Realizar prueba **No Treponémica inicial (VDRL o RPR)**.",
+      "pie_nodo": "¿Cuál es el resultado de la prueba No Treponémica?",
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_trad_treponemica"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_descartado_temprana"
+        }
+      ],
       "referencias": [
         {
-          "titulo": "Prueba - pag 2",
-          "url": "https://www.google.com",
-          "imagen_evidencia": "evidencia_sifilis_01.png"
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_tradicional.png",
+          "texto": "Nontreponemal Tests and Traditional Algorithm: persons with a reactive nontreponemal test should always receive a treponemal test to confirm the syphilis diagnosis (i.e., traditional algorithm)."
         }
       ]
     },
-    "tx_tardia": {
-      "tipo": "resultado",
+    "diag_descartado_temprana": {
       "estilo": "advertencia",
-      "texto": "⚠️ TRATAMIENTO EXTENDIDO\n\nPenicilina Benzatínica 2.400.000 UI IM\n(Una dosis semanal por 3 semanas).\nTotal: 7.200.000 UI.",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de sífilis improbable.\n- Si existe alta sospecha clínica de sífilis primaria (chancro reciente en ventana inmunológica), repetir prueba en **2 a 4 semanas**.",
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_falseneg.png",
+          "texto": "Use of only one type of serologic test (nontreponemal or treponemal) is insufficient for diagnosis and can result in false-negative results among persons tested during primary syphilis."
+        }
+      ]
+    },
+    "diag_trad_treponemica": {
+      "tipo": "pregunta",
+      "texto": "- Título obtenido en prueba **No Treponémica** documentado.\n- Realizar prueba **Treponémica confirmatoria (TP-PA o FTA-ABS)**.",
+      "pie_nodo": "¿Cuál es el resultado de la prueba Treponémica?",
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_falso_positivo_rpr"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_conf.png",
+          "texto": "Therefore, persons with a reactive nontreponemal test should always receive a treponemal test to confirm the syphilis diagnosis."
+        }
+      ]
+    },
+    "diag_falso_positivo_rpr": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Falso positivo biológico de la prueba No Treponémica (por embarazo, edad avanzada, autoinmunidad, infecciones virales).\n- **Descartar sífilis**. No requiere tratamiento para sífilis.",
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_falsepos.png",
+          "texto": "False-positive nontreponemal test results can be associated with multiple medical conditions and factors unrelated to syphilis, including other infections (e.g., HIV), autoimmune conditions, vaccinations, injecting drug use, pregnancy, and older age."
+        }
+      ]
+    },
+    "diag_inverso": {
+      "tipo": "pregunta",
+      "texto": "- Realizar prueba **Treponémica automatizada inicial (EIA o CIA)**.",
+      "pie_nodo": "¿Cuál es el resultado de la prueba Treponémica automatizada?",
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_inv_nt"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_descartado"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_reverse.png",
+          "texto": "Treponemal Tests and Reverse Sequence Algorithm: Clinical laboratories sometimes screen syphilis serologic samples by using automated treponemal immunoassays, typically by EIA or CIA."
+        }
+      ]
+    },
+    "diag_descartado": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Ausencia de anticuerpos treponémicos.\n- **Descartar sífilis** (excepto en exposición de muy alto riesgo reciente, donde se justifica re-test).",
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2-3",
+          "imagen_evidencia": "cdc_syphilis_pag3_discard.png",
+          "texto": "If the second treponemal test is negative... and the epidemiologic risk and clinical probability for syphilis are low, further evaluation or treatment is not indicated."
+        }
+      ]
+    },
+    "diag_inv_nt": {
+      "tipo": "pregunta",
+      "texto": "- Realizar prueba cuantitativa **No Treponémica (VDRL o RPR) refleja**.",
+      "pie_nodo": "¿Cuál es el resultado de la prueba No Treponémica?",
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_inv_tp_pa_discordante"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_reverse_nt.png",
+          "texto": "Persons with a positive treponemal screening test should have a standard quantitative nontreponemal test with titer performed reflexively by the laboratory to guide patient management decisions."
+        }
+      ]
+    },
+    "diag_inv_tp_pa_discordante": {
+      "tipo": "pregunta",
+      "texto": "- Resultados discordantes (EIA+ / RPR-).\n- Realizar **segunda prueba Treponémica** basada en antígenos distintos, preferiblemente **TP-PA**.",
+      "pie_nodo": "¿Cuál es el resultado de la segunda prueba Treponémica (TP-PA)?",
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_eval_historica"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_falso_positivo_eia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2-3",
+          "imagen_evidencia": "cdc_syphilis_pag3_discordant.png",
+          "texto": "If the nontreponemal test is negative, the laboratory should perform a treponemal test different from the one used for initial testing, preferably TP-PA or treponemal assay based on different antigens... to adjudicate the results."
+        }
+      ]
+    },
+    "diag_falso_positivo_eia": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Probable falso positivo de la prueba EIA/CIA inicial si el riesgo epidemiológico es bajo.\n- **No requiere tratamiento adicional**.",
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "3",
+          "imagen_evidencia": "cdc_syphilis_pag3_falsepos_eia.png",
+          "texto": "If the second treponemal test is negative (e.g., EIA reactive, RPR nonreactive, TP-PA nonreactive) and the epidemiologic risk and clinical probability for syphilis are low, further evaluation or treatment is not indicated."
+        }
+      ]
+    },
+    "diag_eval_historica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Confirmación de infección pasada tratada o sífilis latente/temprana actual.\n- Si existe antecedente documentado de tratamiento y bajo riesgo de re-exposición, no requiere nuevo manejo.\n- Si **no hay historia de tratamiento**, derivar al algoritmo de tratamiento como Sífilis de duración desconocida/Tardía.",
       "enlaces": [
         {
-          "texto": "✨ Ve a tx tres dosis",
-          "archivo_objetivo": "sifilisnew.json",
-          "nodo_objetivo": "tx_tres_dosis"
+          "texto": "Ir a Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "3",
+          "imagen_evidencia": "cdc_syphilis_pag3_history.png",
+          "texto": "If a second treponemal test is positive... persons with a history of previous treatment will require no further management... Those without a history of treatment for syphilis should be offered treatment... treated for syphilis of unknown duration or late latent syphilis."
+        }
+      ]
+    },
+    "diag_confirmado": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- **Diagnóstico de Sífilis Confirmado** (Prueba Treponémica y No Treponémica reactivas).\n- Diluir el suero para reportar el título máximo (Ej. 1:16, 1:32) para establecer línea base de seguimiento.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "2",
+          "imagen_evidencia": "cdc_syphilis_pag2_titer.png",
+          "texto": "Serum should be diluted to identify the highest titer, and results should be reported quantitatively. A fourfold change in titer... is considered necessary for demonstrating a clinically significant difference."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_treatment.png",
+          "texto": "Treatment: Penicillin G, administered parenterally, is the preferred drug for treating patients in all stages of syphilis."
+        }
+      ]
+    },
+    "trat_inicio": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar condición general del paciente.",
+      "pie_nodo": "¿La paciente está embarazada?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_estadio_emb"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_estadio_adulto"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "11-12",
+          "imagen_evidencia": "who_syphilis_pag11_12_groups.png",
+          "texto": "The recommendations summarized in Table 1 apply to all adults and adolescents... including pregnant women... Specific recommendations apply based on pregnancy status."
+        }
+      ]
+    },
+    "trat_estadio_adulto": {
+      "tipo": "pregunta",
+      "texto": "- Clasificar según temporalidad de infección.",
+      "pie_nodo": "¿Cuál es el estadio clínico de la sífilis?",
+      "opciones": [
+        {
+          "texto": "Sífilis Temprana (Primaria, Secundaria, Latente < 2 años)",
+          "siguiente_nodo": "trat_temp_alergia"
+        },
+        {
+          "texto": "Sífilis Tardía (Latente > 2 años o de duración desconocida)",
+          "siguiente_nodo": "trat_tard_alergia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "10",
+          "imagen_evidencia": "who_syphilis_pag10_stages.png",
+          "texto": "Early syphilis consists of primary syphilis, secondary syphilis and early latent syphilis, while late syphilis consists of late latent syphilis and tertiary syphilis... early latent syphilis is defined as infection for less than two years while late latent syphilis is... two years or more."
+        }
+      ]
+    },
+    "trat_temp_alergia": {
+      "tipo": "pregunta",
+      "texto": "- Se considera sífilis temprana a la infección menor a **2 años de duración** (según guías OMS).",
+      "pie_nodo": "¿El paciente reporta alergia a la penicilina?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_temp_alternativa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_temp_penicilina"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "20",
+          "imagen_evidencia": "who_syphilis_pag20_early.png",
+          "texto": "4.1 EARLY SYPHILIS (PRIMARY, SECONDARY AND EARLY LATENT SYPHILIS OF NOT MORE THAN TWO YEARS' DURATION)"
+        }
+      ]
+    },
+    "trat_temp_penicilina": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Administrar **Benzatina Penicilina G 2.4 millones UI** por vía IM en **dosis única**.\n- Educar sobre posible reacción febril de **Jarisch-Herxheimer** en las primeras 24 horas.",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "20",
+          "imagen_evidencia": "who_syphilis_pag20_rec1.png",
+          "texto": "RECOMMENDATION 1: In adults and adolescents with early syphilis, the WHO STI guideline recommends benzathine penicillin G 2.4 million units once intramuscularly over no treatment."
+        },
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_jh.png",
+          "texto": "The Jarisch-Herxheimer reaction is an acute febrile reaction frequently accompanied by headache, myalgia, and fever that can occur within the first 24 hours after the initiation of any syphilis therapy."
+        }
+      ]
+    },
+    "trat_temp_alternativa": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Administrar **Doxiciclina 100 mg** vía oral cada **12 horas** por **14 días**.\n- Segunda línea: **Ceftriaxona 1 g** IM/IV diario por **10 a 14 días**.\n- Circunstancias especiales: Azitromicina 2 g vía oral dosis única (solo si se asegura susceptibilidad local).",
+      "imagen": "TODO_IMG: Icono de alternativas a penicilina",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "20",
+          "imagen_evidencia": "who_syphilis_pag20_rec2.png",
+          "texto": "When benzathine or procaine penicillin cannot be used (e.g. due to penicillin allergy)... the WHO STI guideline suggests using doxycycline 100 mg twice daily orally for 14 days or ceftriaxone 1 g intramuscularly once daily for 10–14 days, or, in special circumstances, azithromycin 2 g once orally."
+        }
+      ]
+    },
+    "trat_tard_alergia": {
+      "tipo": "pregunta",
+      "texto": "- Se considera sífilis latente tardía aquella de **más de 2 años** o de tiempo de evolución **desconocido**.",
+      "pie_nodo": "¿El paciente reporta alergia a la penicilina?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_tard_alternativa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_tard_penicilina"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_late.png",
+          "texto": "4.2 LATE SYPHILIS (INFECTION OF MORE THAN TWO YEARS' DURATION WITHOUT EVIDENCE OF TREPONEMAL INFECTION)"
+        }
+      ]
+    },
+    "trat_tard_penicilina": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Administrar **Benzatina Penicilina G 2.4 millones UI** IM una vez por semana por **3 semanas consecutivas**.\n- Dosis total: **7.2 millones UI**.\n- El intervalo entre dosis **NUNCA debe exceder los 14 días**.",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_rec5.png",
+          "texto": "RECOMMENDATION 5: In adults and adolescents with late syphilis or unknown stage of syphilis, the WHO STI guideline recommends benzathine penicillin G 2.4 million units intramuscularly once weekly for three consecutive weeks... Remarks: The interval between consecutive doses of benzathine penicillin should not exceed 14 days."
+        }
+      ]
+    },
+    "trat_tard_alternativa": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Administrar **Doxiciclina 100 mg** vía oral cada **12 horas** por **30 días**.\n- Asegurar estricta adherencia al tratamiento.",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_rec6.png",
+          "texto": "When benzathine or procaine penicillin cannot be used (e.g. due to penicillin allergy)... the WHO STI guideline suggests using doxycycline 100 mg twice daily orally for 30 days."
+        }
+      ]
+    },
+    "trat_estadio_emb": {
+      "tipo": "pregunta",
+      "texto": "- Todo tratamiento durante el embarazo prioriza prevención de sífilis congénita.",
+      "pie_nodo": "¿Cuál es el estadio clínico en la embarazada?",
+      "opciones": [
+        {
+          "texto": "Sífilis Temprana (Primaria, Secundaria, Latente temprana)",
+          "siguiente_nodo": "trat_emb_temp_alergia"
+        },
+        {
+          "texto": "Sífilis Tardía (Latente tardía o duración desconocida)",
+          "siguiente_nodo": "trat_emb_tard_alergia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "21-22",
+          "imagen_evidencia": "who_syphilis_pag21_22_pregnant.png",
+          "texto": "PREGNANT WOMEN: Recommendations divided into Early Syphilis (Recommendation 3 and 4) and Late Syphilis (Recommendation 7 and 8) for pregnant women."
+        }
+      ]
+    },
+    "trat_emb_temp_alergia": {
+      "tipo": "pregunta",
+      "texto": "- La Penicilina G parenteral es la ÚNICA terapia documentada eficaz durante el embarazo.",
+      "pie_nodo": "¿La gestante reporta alergia a la penicilina?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_emb_temp_alternativa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_emb_temp_penicilina"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_pregnancy.png",
+          "texto": "Special Considerations: Pregnancy. Parenteral penicillin G is the only therapy with documented efficacy for syphilis during pregnancy."
+        }
+      ]
+    },
+    "trat_emb_temp_penicilina": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Administrar **Benzatina Penicilina G 2.4 millones UI** IM en **dosis única**.\n- Vigilar monitorización fetal por riesgo de estrés fetal inducido por reacción de Jarisch-Herxheimer.",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "21",
+          "imagen_evidencia": "who_syphilis_pag21_rec3.png",
+          "texto": "RECOMMENDATION 3: In pregnant women with early syphilis, the WHO STI guideline recommends benzathine penicillin G 2.4 million units once intramuscularly over no treatment."
+        },
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_jh_pregnancy.png",
+          "texto": "The Jarisch-Herxheimer reaction might induce early labor or cause fetal distress in pregnant women; however, this should not prevent or delay therapy."
+        }
+      ]
+    },
+    "trat_emb_temp_alternativa": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Indicación principal: **DESENSIBILIZAR A LA PENICILINA** y tratar con Benzatina Penicilina G.\n- **¡DOXICICLINA CONTRAINDICADA EN EMBARAZO!**\n- Alternativa excepcional (no trata al feto): **Eritromicina 500 mg** PO 4 veces/día por **14 días** o **Ceftriaxona 1 g** IM/IV diario por **10-14 días**. El neonato deberá recibir tratamiento al nacer.",
+      "imagen": "TODO_IMG: Señal de alerta embarazo/doxiciclina",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "21",
+          "imagen_evidencia": "who_syphilis_pag21_rec4.png",
+          "texto": "RECOMMENDATION 4... suggests using, with caution, erythromycin 500 mg orally four times daily for 14 days or ceftriaxone 1 g... Remarks: Although erythromycin and azithromycin treat the pregnant women, they do not cross the placental barrier completely and as a result the fetus is not treated... Doxycycline should not be used in pregnant women."
+        },
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_desensitize.png",
+          "texto": "Pregnant women with syphilis at any stage who report penicillin allergy should be desensitized and treated with penicillin."
+        }
+      ]
+    },
+    "trat_emb_tard_alergia": {
+      "tipo": "pregunta",
+      "texto": "- Requiere esquema de larga duración para proteger a la madre y evitar sífilis congénita.",
+      "pie_nodo": "¿La gestante reporta alergia a la penicilina?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_emb_tard_alternativa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_emb_tard_penicilina"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_preg_late.png",
+          "texto": "PREGNANT WOMEN (Late Syphilis): Evaluating treatment for late syphilis or unknown stage of syphilis in pregnant women."
+        }
+      ]
+    },
+    "trat_emb_tard_penicilina": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Administrar **Benzatina Penicilina G 2.4 millones UI** IM una vez por semana durante **3 semanas consecutivas**.\n- Si se omiten más de **14 días** entre dosis, se debe reiniciar el esquema completo.",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_rec7.png",
+          "texto": "RECOMMENDATION 7: In pregnant women with late syphilis or unknown stage of syphilis, the WHO STI guideline recommends benzathine penicillin G 2.4 million units intramuscularly once weekly for three consecutive weeks... Remarks: The interval between consecutive doses of benzathine penicillin should not exceed 14 days."
+        }
+      ]
+    },
+    "trat_emb_tard_alternativa": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Indicación principal: **DESENSIBILIZAR A LA PENICILINA** de forma obligatoria y tratar con Penicilina.\n- Alternativa extrema si no es posible (alta precaución): **Eritromicina 500 mg** PO 4 veces/día por **30 días**.\n- Los macrólidos no cruzan barrera placentaria de forma efectiva; el feto no se tratará. **El neonato requerirá abordaje y manejo estricto al nacer.**",
+      "referencias": [
+        {
+          "titulo": "WHO Guidelines for the Treatment of Treponema pallidum (syphilis), 2016",
+          "url": "http://www.who.int/reproductivehealth/publications/rtis/syphilis-treatment-guidelines/en/",
+          "paginas": "22",
+          "imagen_evidencia": "who_syphilis_pag22_rec8.png",
+          "texto": "RECOMMENDATION 8... suggests using, with caution, erythromycin 500 mg orally four times daily for 30 days. Remarks: Although erythromycin treats the pregnant women, it does not cross the placental barrier completely and as a result the fetus is not treated. It is therefore necessary to treat the newborn infant soon after delivery... Doxycycline should not be used in pregnant women."
+        },
+        {
+          "titulo": "CDC STI Treatment Guidelines, 2021 - Syphilis",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
+          "paginas": "4",
+          "imagen_evidencia": "cdc_syphilis_pag4_desensitize_late.png",
+          "texto": "Pregnant women with syphilis at any stage who report penicillin allergy should be desensitized and treated with penicillin."
         }
       ]
     }
