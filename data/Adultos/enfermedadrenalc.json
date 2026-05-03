@@ -1,0 +1,369 @@
+{
+  "titulo": "Evaluación y Manejo de la Enfermedad Renal Crónica (KDIGO 2024)",
+  "version": "2024",
+  "carpeta_evidencia": "enfermedadrenalc",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "- Algoritmo clínico basado en las guías KDIGO 2024.\n- Abarca diagnóstico, estadificación y manejo terapéutico.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S117-S135",
+          "imagen_evidencia": "null",
+          "texto": "Esta guía clínica proporciona recomendaciones y puntos de práctica basados en evidencia para la evaluación y el manejo de la Enfermedad Renal Crónica (ERC)."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Estadificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S149",
+          "imagen_evidencia": "null",
+          "texto": "Capítulo 1: Evaluación de la ERC. Detección, evaluación, estadificación y cronicidad."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Solicitar creatinina sérica para estimar TFG (eGFRcr).\n- Solicitar cociente albúmina/creatinina en orina (UACR).",
+      "pie_nodo": "¿Se confirma eGFR **< 60 ml/min/1.73m2** o UACR **>= 30 mg/g** persistente por **>= 3 meses**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_clasificacion_cga"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_descartar_erc"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S137, S149",
+          "imagen_evidencia": "null",
+          "texto": "Practice Point 1.1.1.1: Evaluar a personas en riesgo y con ERC utilizando medición de albúmina en orina y TFG. La ERC se define como anormalidades de estructura o función renal presentes por un mínimo de 3 meses."
+        }
+      ]
+    },
+    "diag_descartar_erc": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Descartar Enfermedad Renal Crónica.\n- Evaluar Lesión Renal Aguda (LRA) si es de reciente inicio.\n- Monitorear anualmente si existen factores de riesgo.",
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S149",
+          "imagen_evidencia": "null",
+          "texto": "Practice Point 1.1.3.2: No asumir cronicidad basado en un solo nivel anormal de eGFR o ACR, el hallazgo podría ser resultado de un evento reciente de injuria renal aguda (AKI) o enfermedad renal aguda (AKD)."
+        }
+      ]
+    },
+    "diag_clasificacion_cga": {
+      "tipo": "pregunta",
+      "texto": "- Establecer etiología (Causa).\n- Clasificar por categoría de filtración (G1-G5).\n- Clasificar por categoría de albuminuria (A1-A3).",
+      "pie_nodo": "¿La etiología es incierta, existe hematuria persistente o sospecha de patología glomerular?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_biopsia_renal"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_confirmacion_final"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S137",
+          "imagen_evidencia": "null",
+          "texto": "La ERC se clasifica basándose en la Causa, categoría de TFG (G1-G5) y categoría de Albuminuria (A1-A3), abreviado como CGA."
+        }
+      ]
+    },
+    "diag_biopsia_renal": {
+      "tipo": "informativo",
+      "texto": "- Considerar biopsia renal guiada por ultrasonido.\n- Considerar cistatina C o panel genético si está indicado.",
+      "imagen": "TODO_IMG: Algoritmo de pruebas adicionales para evaluación de la causa de ERC",
+      "enlaces": [
+        {
+          "texto": "Continuar a Tratamiento Médico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S150",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de selección de pruebas adicionales (Tabla 6)",
+          "texto": "Recommendation 1.1.4.1: Sugerimos realizar una biopsia renal como prueba diagnóstica aceptable y segura para evaluar la causa y guiar decisiones terapéuticas cuando sea clínicamente apropiado (2D)."
+        }
+      ]
+    },
+    "diag_confirmacion_final": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico y estadificación confirmados.\n- Evaluar el riesgo de progresión y complicaciones.",
+      "calculadora_id": "TODO_CALC_kidney_failure_risk_equation_kfre.json",
+      "enlaces": [
+        {
+          "texto": "Continuar a Tratamiento Médico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S156",
+          "imagen_evidencia": "null",
+          "texto": "Recommendation 2.2.1: En personas con ERC G3-G5, recomendamos utilizar una ecuación de riesgo externamente validada para estimar el riesgo absoluto de falla renal (1A)."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Manejo y Tratamiento Farmacológico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_estilo_vida"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S156",
+          "imagen_evidencia": "null",
+          "texto": "Capítulo 3: Retrasar la progresión de la ERC y manejar sus complicaciones. Estrategia de tratamiento integral para modificar riesgos."
+        }
+      ]
+    },
+    "trat_estilo_vida": {
+      "tipo": "informativo",
+      "texto": "- Restringir ingesta de sodio a **< 2 g/día**.\n- Mantener ingesta de proteínas en **0.8 g/kg/día** (estadios G3-G5).\n- Recomendar cese de tabaquismo y actividad física moderada.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_presion_arterial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S156-S157",
+          "imagen_evidencia": "null",
+          "texto": "Rec 3.2.2.1: Actividad física de intensidad moderada al menos 150 min/semana. Rec 3.3.1.1: Mantener ingesta de proteínas en 0.8 g/kg/día en adultos con ERC G3-G5. Rec 3.3.2.1: Ingesta de sodio <2 g/día."
+        }
+      ]
+    },
+    "trat_presion_arterial": {
+      "tipo": "pregunta",
+      "texto": "- Establecer meta de presión arterial sistólica **< 120 mmHg**.",
+      "pie_nodo": "¿Paciente con UACR **>= 300 mg/g** (o **>= 30 mg/g** si tiene diabetes)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_pa_rasi"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_pa_otros"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S158",
+          "imagen_evidencia": "null",
+          "texto": "Recommendation 3.4.1: Sugerimos que adultos con presión alta y ERC sean tratados con una meta de presión sistólica (PAS) < 120 mmHg cuando sea tolerada."
+        }
+      ]
+    },
+    "trat_pa_rasi": {
+      "tipo": "informativo",
+      "texto": "- Iniciar **IECA** o **ARA II** a la dosis máxima tolerada.\n- Monitorizar creatinina y potasio en **2-4 semanas** tras inicio.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_evaluar_diabetes"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S158-S159",
+          "imagen_evidencia": "null",
+          "texto": "Rec 3.6.1 y 3.6.3: Recomendamos iniciar RASi (IECA o ARA II) en personas con ERC y albuminuria severamente incrementada (A3) sin diabetes, o moderada/severa con diabetes. P.P. 3.6.2: Monitorizar PA, creatinina y potasio en 2-4 semanas."
+        }
+      ]
+    },
+    "trat_pa_otros": {
+      "tipo": "informativo",
+      "texto": "- Considerar **Calcioantagonistas dihidropiridínicos** o **Diuréticos**.\n- Individualizar esquema antihipertensivo.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_evaluar_diabetes"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S206",
+          "imagen_evidencia": "null",
+          "texto": "Figura 18: Enfoque holístico. De otra manera (sin albuminuria significativa), calcioantagonistas dihidropiridínicos (CCB) o diuréticos también pueden ser considerados como terapia de primera línea."
+        }
+      ]
+    },
+    "trat_evaluar_diabetes": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar comorbilidades metabólicas.",
+      "pie_nodo": "¿El paciente tiene diagnóstico de Diabetes Mellitus tipo 2?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_sglt2i"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_riesgo_cv_lipidos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S159",
+          "imagen_evidencia": "null",
+          "texto": "Sección 3.7: Inhibidores del cotransportador sodio-glucosa 2 (SGLT2i). La recomendación aborda el inicio de estas terapias dependientes de la presencia o ausencia de diabetes."
+        }
+      ]
+    },
+    "trat_sglt2i": {
+      "tipo": "informativo",
+      "texto": "- Iniciar **iSGLT2** si eGFR **>= 20 ml/min/1.73m2**.\n- Considerar **Finerenona** si UACR **>= 30 mg/g** y K+ **<= 4.8 mmol/L**.\n- Si no se logran metas glucémicas, considerar **ArGLP-1**.",
+      "imagen": "TODO_IMG: Algoritmo de terapias modificadoras de enfermedad en ERC y DM2",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_riesgo_cv_lipidos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2022 Clinical Practice Guideline for Diabetes Management in CKD",
+          "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+          "paginas": "993, S159-S160",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del enfoque holístico para tratar pacientes con diabetes y ERC (Figura 3)",
+          "texto": "Rec 3.7.1: Recomendamos tratar pacientes con T2D, ERC y eGFR >= 20 con SGLT2i. Rec 3.8.1: Sugerimos antagonista del receptor mineralocorticoide no esteroideo (finerenona). Rec 3.9.1: Sugerimos GLP-1 RA de acción prolongada si no se alcanzan metas."
+        }
+      ]
+    },
+    "trat_riesgo_cv_lipidos": {
+      "tipo": "informativo",
+      "texto": "- Iniciar **Estatinas** en adultos **>= 50 años** o con alto riesgo CV.\n- No iniciar estatinas si el paciente ya está en diálisis.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_complicaciones_metabolicas"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S162",
+          "imagen_evidencia": "null",
+          "texto": "Rec 3.15.1.1 y 3.15.1.2: En adultos >= 50 años con eGFR <60 o >=60, recomendamos tratamiento con estatina o combinación estatina/ezetimiba (excluyendo aquellos en diálisis crónica)."
+        }
+      ]
+    },
+    "trat_complicaciones_metabolicas": {
+      "tipo": "pregunta",
+      "texto": "- Abordar anemia si Hb **< 10 g/dL** (Hierro IV o AEE según depósitos).\n- Tratar hiperuricemia sintomática y acidosis si HCO3 **< 18 mmol/L**.",
+      "pie_nodo": "¿El paciente tiene eGFR **< 30 ml/min/1.73m2** (G4-G5) o riesgo de falla a 2 años **> 10%**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_referencia_nefrologia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_mantenimiento_exito"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease / KDIGO 2026 Anemia Guideline",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S160, S161",
+          "imagen_evidencia": "null",
+          "texto": "P.P. 3.10.1: Considerar tratamiento si bicarbonato < 18 mmol/L. Rec 3.14.1: Ofrecer reducción de ácido úrico si hay hiperuricemia sintomática. (Guía de anemia: umbral razonable para inicio de ESA si Hb <= 9-10 g/dL)."
+        }
+      ]
+    },
+    "trat_referencia_nefrologia": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Referir a nefrología para manejo multidisciplinario temprano.\n- Iniciar educación para terapia de reemplazo renal o manejo conservador.\n- Planificar acceso vascular si el riesgo a 2 años es **> 40%**.",
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S156",
+          "imagen_evidencia": "null",
+          "texto": "P.P. 2.2.2: Riesgo de falla a 2 años > 10% puede usarse para referir a cuidado multidisciplinario. P.P. 2.2.3: Riesgo a 2 años > 40% determina educación sobre modalidad, planificación de acceso vascular o trasplante."
+        }
+      ]
+    },
+    "trat_mantenimiento_exito": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Continuar seguimiento en atención primaria o medicina interna.\n- Monitorear eGFR y UACR al menos anualmente.\n- Evitar el uso de fármacos nefrotóxicos (ej. **AINEs**).",
+      "referencias": [
+        {
+          "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "paginas": "S155, S247",
+          "imagen_evidencia": "null",
+          "texto": "P.P. 2.1.1: Evaluar albuminuria y TFG al menos anualmente. Tabla 31: Ejemplos de medicaciones con nefrotoxicidad documentada (ej. AINEs) y alternativas no nefrotóxicas."
+        }
+      ]
+    }
+  }
+}
