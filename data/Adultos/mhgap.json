@@ -1,0 +1,363 @@
+{
+  "titulo": "Atención mhGAP para Trastornos Mentales, Neurológicos y por Consumo de Sustancias",
+  "version": "2.0 (2017)",
+  "carpeta_evidencia": "mhgap",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "GUÍA DE INTERVENCIÓN MHGAP",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "nodo_diagnostico" },
+        { "texto": "", "siguiente_nodo": "nodo_tratamiento" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de intervención mhGAP 2.0",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "1-3",
+          "imagen_evidencia": "evidencia_mhgap_pag1_3.png",
+          "texto": "Guía para los trastornos mentales, neurológicos y por consumo de sustancias en el nivel de atención de salud no especializada."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Evaluación Clínica y Diferencial",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "diag_emergencias" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Evaluación",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "17-18",
+          "imagen_evidencia": "evidencia_mhgap_pag17_18.png",
+          "texto": "Realice una evaluación para determinar si existe un trastorno mental, neurológico o por consumo de sustancias (MNS)."
+        }
+      ]
+    },
+    "diag_emergencias": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar signos de autolesión o hemorragia.\n- Identificar convulsiones continuas.\n- Observar agitación extrema o estupor.",
+      "pie_nodo": "¿Presenta el paciente **manifestaciones de urgencia**?",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "diag_tipo_emergencia" },
+        { "texto": "No", "siguiente_nodo": "diag_master_chart" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Cuadro de Urgencias",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "18",
+          "imagen_evidencia": "evidencia_mhgap_pag18.png",
+          "texto": "Manifestaciones de casos de urgencia: Acto de autolesión, convulsiones continuas, comportamiento agitado o agresivo."
+        }
+      ]
+    },
+    "diag_tipo_emergencia": {
+      "tipo": "pregunta",
+      "texto": "- Revisar estado de conciencia.\n- Evaluar movimientos involuntarios tónicos o clónicos.",
+      "pie_nodo": "¿Se trata de una **convulsión aguda**?",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "enlace_trata_se" },
+        { "texto": "No", "siguiente_nodo": "enlace_trata_sui" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Casos de Urgencia EPI",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "18, 61",
+          "imagen_evidencia": "evidencia_mhgap_pag61.png",
+          "texto": "Identificar si la persona sufre convulsiones o está rígida y no responde."
+        }
+      ]
+    },
+    "enlace_trata_se": {
+      "tipo": "informativo",
+      "texto": "- Priorizar vía aérea y oxigenación.",
+      "pie_nodo": "Proceder al protocolo de emergencia convulsiva.",
+      "enlaces": [
+        { "texto": "Ir al Tratamiento de Convulsiones", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_se_paso1" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Manejo Inicial EPI",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "61",
+          "imagen_evidencia": "evidencia_mhgap_pag61.png",
+          "texto": "Examine las vías respiratorias, la respiración y la circulación (ABC)."
+        }
+      ]
+    },
+    "enlace_trata_sui": {
+      "tipo": "informativo",
+      "texto": "- Retirar medios de autolesión.\n- Asegurar vigilancia constante.",
+      "pie_nodo": "Proceder al protocolo de autolesión/suicidio.",
+      "enlaces": [
+        { "texto": "Ver protocolo SUI", "archivo_objetivo": "TODO_LINK_sui_protocolo.json" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Manejo SUI",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "144",
+          "imagen_evidencia": "evidencia_mhgap_pag144.png",
+          "texto": "Elimine los medios de autolesión/suicidio. No deje sola a la persona. Supervise y asigne a un miembro del personal o familiar."
+        }
+      ]
+    },
+    "diag_master_chart": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar ánimo deprimido por **>2 semanas**.\n- Identificar creencias falsas fijas o alucinaciones.\n- Descartar causas físicas (anemia, hipotiroidismo).",
+      "pie_nodo": "¿Sospecha de **Depresión (DEP)** o **Psicosis (PSI)**?",
+      "opciones": [
+        { "texto": "Depresión", "siguiente_nodo": "diag_dep_confirmacion" },
+        { "texto": "Psicosis", "siguiente_nodo": "diag_psi_confirmacion" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Esquema Principal",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "24",
+          "imagen_evidencia": "evidencia_mhgap_pag24.png",
+          "texto": "Manifestaciones comunes de Depresión (ánimo deprimido, pérdida de interés) y Psicosis (creencias falsas, alucinaciones)."
+        }
+      ]
+    },
+    "diag_dep_confirmacion": {
+      "tipo": "pregunta",
+      "texto": "- Verificar falta de energía y problemas de sueño.\n- Evaluar dificultad en funcionamiento diario.",
+      "pie_nodo": "¿Presenta **antecedentes de manía** (ánimo elevado, poca necesidad de sueño)?",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "diag_bipolar" },
+        { "texto": "No", "siguiente_nodo": "diag_dep_pura" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Evaluación Depresión",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "29-32",
+          "imagen_evidencia": "evidencia_mhgap_pag32.png",
+          "texto": "¿Hay antecedentes de manía? (Elevación del estado de ánimo, irritabilidad, disminución de necesidad de sueño)."
+        }
+      ]
+    },
+    "diag_bipolar": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Considerar episodio depresivo en **Trastorno Bipolar**.",
+      "pie_nodo": "Evitar antidepresivos en monoterapia; riesgo de manía.",
+      "enlaces": [
+        { "texto": "Ir al Tratamiento Bipolar", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_psi_bipolar" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Consejo Clínico DEP 1",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "32",
+          "imagen_evidencia": "evidencia_mhgap_pag32.png",
+          "texto": "Las personas con episodio depresivo en trastorno bipolar corren riesgo de manía. El tratamiento es diferente. Aplique Protocolo 2."
+        }
+      ]
+    },
+    "diag_dep_pura": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Confirmación diagnóstica de **Depresión**.",
+      "enlaces": [
+        { "texto": "Ver Tratamiento Depresión", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_dep_inicial" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Diagnóstico DEP",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "33",
+          "imagen_evidencia": "evidencia_mhgap_pag33.png",
+          "texto": "Si tiene antecedentes de depresión y síntomas actuales: 'Es probable que sea Depresión'."
+        }
+      ]
+    },
+    "diag_psi_confirmacion": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Evaluar síntomas positivos (delirios, alucinaciones).\n- Evaluar síntomas negativos (apatía, aislamiento).",
+      "pie_nodo": "Descartar Delirium por causa médica aguda.",
+      "enlaces": [
+        { "texto": "Ver Tratamiento Psicosis", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_psi_main" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Evaluación Psicosis",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "43, 45",
+          "imagen_evidencia": "evidencia_mhgap_pag43_45.png",
+          "texto": "Evalúe si existen trastornos físicos (delirio por infección o efectos de medicamentos). Sospeche psicosis si tiene al menos dos síntomas (delirios, alucinaciones, lenguaje desorganizado)."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Protocolos de Manejo Farmacológico y Psicosocial",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "trata_se_paso1" },
+        { "texto": "", "siguiente_nodo": "trata_dep_inicial" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Trate los trastornos MNS",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "19",
+          "imagen_evidencia": "evidencia_mhgap_pag19.png",
+          "texto": "Pasos del manejo: Plan de tratamiento colaborativo, intervenciones psicosociales y farmacológicas."
+        }
+      ]
+    },
+    "trata_se_paso1": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Aplicar protocolo **ABCDE**.\n- Canalizar vía venosa si es posible.",
+      "pie_nodo": "¿Persiste la convulsión después de **10 minutos**?",
+      "imagen": "TODO_IMG: Posición de seguridad lateral para paciente convulsivo",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "trata_se_meds" },
+        { "texto": "No", "siguiente_nodo": "trata_se_estabilizado" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Emergencia EPI",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "61, 63",
+          "imagen_evidencia": "evidencia_mhgap_pag63.png",
+          "texto": "¿Se han detenido las convulsiones en el lapso de 10 minutos después de la primera dosis?"
+        }
+      ]
+    },
+    "trata_se_meds": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Diazepam** IV: **10 mg** (adultos) o **0.2-0.5 mg/kg** (niños).\n- Si no hay IV, **Diazepam rectal** (10 mg) o **Midazolam** IM/intranasal.",
+      "pie_nodo": "Máximo **2 dosis** de benzodiacepinas. Si falla, es Status Epilepticus.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Manejo de Emergencia",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "62",
+          "imagen_evidencia": "evidencia_mhgap_pag62.png",
+          "texto": "Medicación de urgencia: Diazepam IV 10mg o rectal. Midazolam oral/intranasal."
+        }
+      ],
+      "enlaces": [
+        { "texto": "Ver fármacos de segunda línea", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_se_segunda_linea" }
+      ]
+    },
+    "trata_se_segunda_linea": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Valproato sódico**: **20 mg/kg** IV en **30 min**.\n- **Fenobarbital**: **15-20 mg/kg** IV a **100 mg/min**.\n- **Fenitoína**: **15-20 mg/kg** IV a **50 mg/min**.",
+      "pie_nodo": "Requiere monitoreo de signos vitales estrecho.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Status Epilepticus",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "64",
+          "imagen_evidencia": "evidencia_mhgap_pag64.png",
+          "texto": "Administre: Valproato sódico 20 mg/kg, Fenobarbital 15-20 mg/kg o Fenitoína 15-20 mg/kg."
+        }
+      ]
+    },
+    "trata_dep_inicial": {
+      "tipo": "informativo",
+      "texto": "- Psicoeducación (la depresión no es pereza).\n- Promover higiene del sueño y actividad física.\n- Evaluación de apoyo social.",
+      "pie_nodo": "¿Paciente con **síntomas graves** o respuesta nula a manejo psicosocial?",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "trata_dep_farmaco" },
+        { "texto": "No", "siguiente_nodo": "trata_dep_seguimiento" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Intervenciones Psicosociales DEP",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "35",
+          "imagen_evidencia": "evidencia_mhgap_pag35.png",
+          "texto": "Psicoeducación, reducción de estrés y fortalecimiento de apoyos sociales. Promover funcionamiento en actividades diarias."
+        }
+      ]
+    },
+    "trata_dep_farmaco": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- **Fluoxetina**: Iniciar **10-20 mg/día**.\n- **Amitriptilina**: **25-50 mg** al acostarse (evitar en ancianos/cardiópatas).",
+      "pie_nodo": "Mantener tratamiento **9 a 12 meses** tras remisión de síntomas.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Cuadro 1: Antidepresivos",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "36-37",
+          "imagen_evidencia": "evidencia_mhgap_pag37.png",
+          "texto": "Fluoxetina: iniciar 10mg/día. Amitriptilina: evitar en cardiópatas/ancianos por efectos secundarios graves."
+        }
+      ]
+    },
+    "trata_psi_main": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- **Haloperidol**: **1.5-3 mg/día** (oral) o **2 mg** (IM para agitación).\n- **Risperidona**: **1 mg/día**, aumentar gradualmente.",
+      "pie_nodo": "Vigilar efectos extrapiramidales (usar **Biperideno** si aparecen).",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Antipsicóticos",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "49-51",
+          "imagen_evidencia": "evidencia_mhgap_pag50.png",
+          "texto": "Comience con dosis baja. Monitoree efectos extrapiramidales (acatisia, temblor). Use anticolinérgicos (Biperideno) si es necesario."
+        }
+      ]
+    },
+    "trata_psi_bipolar": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Litio**: **300-600 mg/día** (requiere litemia **0.6-1.0 mEq/L**).\n- **Valproato**: **500 mg/día** inicial (preferido en VIH+).",
+      "pie_nodo": "Suspender antidepresivos de inmediato si hay viraje a manía.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Manejo Manía",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "49, 51",
+          "imagen_evidencia": "evidencia_mhgap_pag51.png",
+          "texto": "Litio o valproato como estabilizadores. DESCONTINUAR ANTIDEPRESIVOS para prevenir riesgo de manía."
+        }
+      ]
+    },
+    "trata_se_estabilizado": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar mantenimiento con **Carbamazepina** o **Fenitoína**.\n- Citar a control en **3 a 6 meses**.",
+      "pie_nodo": "Educar sobre prohibición de conducción de vehículos.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Seguimiento EPI",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "71, 75",
+          "imagen_evidencia": "evidencia_mhgap_pag75.png",
+          "texto": "Mantenimiento con antiepilépticos. Consulta de seguimiento cada 3 ó 6 meses."
+        }
+      ]
+    },
+    "trata_dep_seguimiento": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Terapia de resolución de problemas.\n- Cita de seguimiento en **2 a 4 semanas**.",
+      "pie_nodo": "Evaluar riesgo de suicidio en cada contacto.",
+      "referencias": [
+        {
+          "titulo": "Guía mhGAP 2.0 - Seguimiento DEP",
+          "url": "https://iris.paho.org/handle/10665.2/34071",
+          "paginas": "38",
+          "imagen_evidencia": "evidencia_mhgap_pag38.png",
+          "texto": "Haga la segunda cita para no más de una semana después (si es grave) o 2-4 semanas. Monitoree riesgo de suicidio."
+        }
+      ]
+    }
+  }
+}
