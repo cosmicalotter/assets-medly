@@ -1,0 +1,369 @@
+{
+  "titulo": "Hipoglucemia en Adultos",
+  "version": "2026",
+  "carpeta_evidencia": "hipoglucemiaad",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Evaluación y Manejo de la Hipoglucemia (ADA 2026)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: 6. Glycemic Goals, Hypoglycemia, and Hyperglycemic Crises",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S132",
+          "imagen_evidencia": "evidencia_ada2026_sec6_inicio.png",
+          "texto": "Sección enfocada en la evaluación del estado glucémico, prevención y manejo de la hipoglucemia y crisis hiperglucémicas."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Clasificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Definitions and Event Rates",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139",
+          "imagen_evidencia": "evidencia_ada2026_clasificacion_hipo.png",
+          "texto": "La hipoglucemia se define como glucosa <70 mg/dL y se estratifica en 3 niveles de severidad."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de síntomas autonómicos o neuroglucopénicos.\n- Medir glucosa capilar o venosa.",
+      "pie_nodo": "¿Cuál es el nivel de glucosa o la presentación clínica?",
+      "opciones": [
+        {
+          "texto": "54 a 69 mg/dL",
+          "siguiente_nodo": "diag_nivel_1"
+        },
+        {
+          "texto": "<54 mg/dL",
+          "siguiente_nodo": "diag_nivel_2"
+        },
+        {
+          "texto": "Alteración severa estado mental/físico",
+          "siguiente_nodo": "diag_nivel_3"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Table 6.4—Classification of hypoglycemia",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139",
+          "imagen_evidencia": "evidencia_ada2026_table6_4.png",
+          "texto": "Tabla 6.4: Criterios y descripción glucémica para la clasificación de los niveles de hipoglucemia."
+        }
+      ]
+    },
+    "diag_nivel_1": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Clasificación: Hipoglucemia Nivel 1.\n- Glucosa **<70 mg/dL** y **>=54 mg/dL**.\n- Umbral clínico de alerta y respuesta adrenérgica.",
+      "pie_nodo": "Avanzar a flujograma de tratamiento.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_eval_consciencia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Table 6.4—Classification of hypoglycemia",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139",
+          "imagen_evidencia": "evidencia_ada2026_nivel1.png",
+          "texto": "Level 1: Glucose <70 mg/dL (<3.9 mmol/L) and >=54 mg/dL (>=3.0 mmol/L). Es considerado un umbral clínicamente importante."
+        }
+      ]
+    },
+    "diag_nivel_2": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Clasificación: Hipoglucemia Nivel 2.\n- Glucosa **<54 mg/dL**.\n- Umbral para el inicio de síntomas neuroglucopénicos.",
+      "pie_nodo": "Avanzar a flujograma de tratamiento.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_eval_consciencia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Table 6.4—Classification of hypoglycemia",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139",
+          "imagen_evidencia": "evidencia_ada2026_nivel2.png",
+          "texto": "Level 2: Glucose <54 mg/dL (<3.0 mmol/L). Es el umbral donde comienzan los síntomas neuroglucopénicos."
+        }
+      ]
+    },
+    "diag_nivel_3": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Clasificación: Hipoglucemia Nivel 3 (Severa).\n- Alteración severa del estado mental o físico independientemente del nivel de glucosa.\n- Requiere asistencia de un tercero para la recuperación.",
+      "pie_nodo": "Avanzar a tratamiento de emergencia.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Severo",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_inconsciente"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Table 6.4—Classification of hypoglycemia",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139",
+          "imagen_evidencia": "evidencia_ada2026_nivel3.png",
+          "texto": "Level 3: A severe event characterized by altered mental and/or physical status requiring assistance for treatment, irrespective of glucose level."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Manejo y Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_eval_consciencia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S141",
+          "imagen_evidencia": "evidencia_ada2026_tratamiento.png",
+          "texto": "Directrices para el tratamiento de la hipoglucemia con carbohidratos de acción rápida o glucagón según el nivel de consciencia."
+        }
+      ]
+    },
+    "trat_eval_consciencia": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar el estado neurológico del paciente.\n- Confirmar reflejo de deglución intacto y vía aérea segura.",
+      "pie_nodo": "¿El paciente está alerta y puede tragar de forma segura?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_consciente"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_inconsciente"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S141",
+          "imagen_evidencia": "evidencia_ada2026_eval_consciencia.png",
+          "texto": "Emergency medical services should be called for people who are unalert or unable to administer carbohydrates... The use of glucagon is indicated for the treatment of hypoglycemia in people unable or unwilling to consume carbohydrates by mouth."
+        }
+      ]
+    },
+    "trat_consciente": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Aplicar la regla de los 15 gramos.\n- Administrar **15 g** de carbohidratos de acción rápida por vía oral.\n- Preferir **Glucosa** pura; evitar fuentes altas en grasas o proteínas.",
+      "imagen": "TODO_IMG: Ilustración de fuentes equivalentes a 15 g de carbohidratos rápidos",
+      "pie_nodo": "Esperar **15 min** y reevaluar. ¿La glucosa sigue siendo **<70 mg/dL**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_repetir_15g"
+        },
+        {
+          "texto": "No (Resuelta)",
+          "siguiente_nodo": "trat_resolucion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Recommendation 6.15 & Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S138, S141",
+          "imagen_evidencia": "evidencia_ada2026_regla15g.png",
+          "texto": "Glucose is the preferred treatment for the conscious individual... Avoid using foods or beverages high in fat and/or protein... For most individuals, 15 g carbohydrates should be ingested."
+        }
+      ]
+    },
+    "trat_repetir_15g": {
+      "tipo": "pregunta",
+      "texto": "- Repetir la administración de **15 g** de carbohidratos de acción rápida.",
+      "pie_nodo": "Esperar **15 min**. ¿Se resuelve la hipoglucemia tras esta segunda dosis?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resolucion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_refractaria"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Recommendation 6.15 & Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S138, S141",
+          "imagen_evidencia": "evidencia_ada2026_repetir15g.png",
+          "texto": "Fifteen minutes after initial treatment, repeat the treatment if hypoglycemia persists. Individuals should be counseled to recheck their glucose 15 min after ingesting carbohydrates and to repeat carbohydrate ingestion..."
+        }
+      ]
+    },
+    "trat_refractaria": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Hipoglucemia persistente a pesar de tratamiento oral.\n- Considerar administración de **Glucagón** o **Dextrosa** intravenosa.\n- Mantener evaluación clínica continua.",
+      "pie_nodo": "Avanzar a la evaluación de causas.",
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S141",
+          "imagen_evidencia": "evidencia_ada2026_hipo_refractaria.png",
+          "texto": "...and seek care for ongoing hypoglycemia. Emergency medical services should be called for people who are unalert or unable to administer carbohydrates."
+        }
+      ]
+    },
+    "trat_inconsciente": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Activar el Servicio de Emergencias Médicas (SEM).\n- Administrar **Glucagón** (intranasal o inyectable).\n- Si hay acceso intravenoso establecido, administrar **Dextrosa** IV.",
+      "imagen": "TODO_IMG: Esquema de administración de glucagón intranasal o IM",
+      "pie_nodo": "Monitorear glucosa cada **15 min**. ¿Recupera consciencia y la glucosa es **>70 mg/dL**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resolucion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_inconsciente_persistente"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Recommendation 6.16 & Glucagon",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S138, S141",
+          "imagen_evidencia": "evidencia_ada2026_glucagon.png",
+          "texto": "Glucagon should be prescribed for all individuals taking insulin or at high risk for hypoglycemia... The use of glucagon is indicated for the treatment of hypoglycemia in people unable or unwilling to consume carbohydrates by mouth."
+        }
+      ]
+    },
+    "trat_inconsciente_persistente": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Mantener soporte vital avanzado e infusión continua de **Dextrosa**.\n- Evaluar otras causas subyacentes de la alteración del estado mental (ej. neurológicas, tóxicas).",
+      "pie_nodo": "Derivar para manejo hospitalario intensivo.",
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S141",
+          "imagen_evidencia": "evidencia_ada2026_ems.png",
+          "texto": "Emergency medical services should be called for people who are unalert or unable to administer carbohydrates."
+        }
+      ]
+    },
+    "trat_resolucion": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Episodio hipoglucémico estabilizado.\n- Indicar el consumo inmediato de un snack o comida completa para prevenir la recurrencia.",
+      "pie_nodo": "Avanzar a estrategias de prevención a largo plazo.",
+      "enlaces": [
+        {
+          "texto": "Ir a Prevención",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "prevencion_evaluacion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Treatment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S141",
+          "imagen_evidencia": "evidencia_ada2026_snack.png",
+          "texto": "Ongoing insulin activity or insulin secretagogues may lead to recurrent hypoglycemia unless more food is ingested after recovery."
+        }
+      ]
+    },
+    "prevencion_evaluacion": {
+      "tipo": "pregunta",
+      "texto": "- Investigar factores precipitantes (ej. exceso de **Insulina**, omisión de comidas, ejercicio, uso de sulfonilureas o falla renal).\n- Evaluar la percepción de síntomas del paciente.",
+      "pie_nodo": "¿El paciente presenta alteración en la percepción de hipoglucemia o alto riesgo de recurrencia?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "prevencion_alto_riesgo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "prevencion_basica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Hypoglycemia Risk Assessment",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S139-S140",
+          "imagen_evidencia": "evidencia_ada2026_risk_assessment.png",
+          "texto": "Individuals at risk for hypoglycemia should also be screened for impaired hypoglycemia awareness at least yearly... Hypoglycemia history should be assessed at every clinical encounter and should include hypoglycemic event frequency, severity, precipitants..."
+        }
+      ]
+    },
+    "prevencion_alto_riesgo": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Desintensificar el régimen de **Insulina** o suspender secretagogos (ej. sulfonilureas).\n- Implementar Monitoreo Continuo de Glucosa (MCG) con alarmas activadas.\n- Considerar metas glucémicas menos estrictas (ej. A1C **<8%** o mayor).",
+      "pie_nodo": "Referir a programas de reentrenamiento de consciencia de hipoglucemia.",
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Recommendation 6.6 & 6.14",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S135, S138, S142",
+          "imagen_evidencia": "evidencia_ada2026_high_risk_prev.png",
+          "texto": "Deintensify hypoglycemia-causing medications... for individuals who are at high risk for hypoglycemia. Use of CGM is beneficial and recommended... Individuals with impaired hypoglycemia awareness should be offered training to reestablish awareness."
+        }
+      ]
+    },
+    "prevencion_basica": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Ajustar dosis del fármaco causal según corresponda.\n- Reforzar educación sobre la regla de los **15 g** en familiares y el paciente.\n- Asegurar prescripción activa y disponibilidad de **Glucagón**.",
+      "pie_nodo": "Mantener seguimiento clínico regular.",
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes - ADA 2026: Recommendation 6.16 & 6.18",
+          "url": "https://doi.org/10.2337/dc26-S006",
+          "paginas": "S138",
+          "imagen_evidencia": "evidencia_ada2026_prev_basica.png",
+          "texto": "Glucagon should be prescribed for all individuals taking insulin or at high risk for hypoglycemia... All individuals taking insulin or at risk for hypoglycemia should receive structured education for hypoglycemia prevention and treatment."
+        }
+      ]
+    }
+  }
+}
