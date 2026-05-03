@@ -1,0 +1,282 @@
+{
+  "titulo": "Manejo de la Pancreatitis Aguda (Guías ACG 2024 / AGA 2018)",
+  "version": "2024",
+  "carpeta_evidencia": "pancreatitis",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "PANCREATITIS AGUDA",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "419",
+          "imagen_evidencia": "acg_2024_pag419_intro.png",
+          "texto": "Acute pancreatitis (AP), defined as acute inflammation of the pancreas, is one of the most common diseases of the gastrointestinal tract leading to hospital admission in the United States."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_criterios"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "420",
+          "imagen_evidencia": "acg_2024_pag420_diag_scope.png",
+          "texto": "In these guidelines, we first discuss the diagnosis, etiology, and severity of AP."
+        }
+      ]
+    },
+    "diag_criterios": {
+      "tipo": "pregunta",
+      "texto": "- Dolor abdominal sugerente (epigástrico irradiado a espalda).\n- **Amilasa o Lipasa > 3 veces el límite superior normal**.\n- Hallazgos de pancreatitis en imagen transversal (TC o RM).",
+      "pie_nodo": "¿El paciente cumple con al menos **2 de los 3** criterios?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_estratificacion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alt_dx"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "420",
+          "imagen_evidencia": "acg_2024_pag420_criterios.png",
+          "texto": "The diagnosis of AP most often is established by identification of 2 of the 3 following criteria: (i) abdominal pain consistent with the disease, (ii) serum amylase and/or lipase greater than 3 times the upper limit of normal, and/or (iii) characteristic findings from abdominal imaging."
+        }
+      ]
+    },
+    "diag_alt_dx": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Ampliar diagnóstico diferencial (isquemia mesentérica, perforación, IAM).\n- Reevaluar causa del dolor u origen de hiperamilasemia.",
+      "pie_nodo": "Considerar interconsulta a especialidad pertinente.",
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "420",
+          "imagen_evidencia": "acg_2024_pag420_alt_dx.png",
+          "texto": "Pain described as dull, colicky, or located in the lower abdominal region is not consistent with AP and suggests an alternative etiology... In the absence of abdominal pain consistent with the disease, elevations of amylase and lipase do not predict the development of AP."
+        }
+      ]
+    },
+    "diag_estratificacion": {
+      "tipo": "informativo",
+      "texto": "- Buscar etiología: USG biliar, niveles de Triglicéridos (corte **>1000 mg/dL**), calcio.\n- En **>40 años** sin etiología clara, sospechar y descartar tumor pancreático.\n- Evaluar riesgo: **SIRS**, **BUN > 20 mg/dL**, **Hematocrito > 44%**.",
+      "pie_nodo": "Continuar con estratificación y decisiones terapéuticas.",
+      "calculadora_id": "TODO_CALC_criterios_sirs.json",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "422-425",
+          "imagen_evidencia": "acg_2024_pag425_tabla4_riesgo.png",
+          "texto": "Key concepts: serum triglyceride should be obtained and considered the etiology, preferably if greater than 1,000 mg/dL. In patients older than 40 years... a pancreatic tumor should be considered. Table 4: Clinical findings associated with a severe course: BUN >20, HCT >44, SIRS."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_gravedad_clasif"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "422",
+          "imagen_evidencia": "acg_2024_pag422_trat_scope.png",
+          "texto": "Initial management. Table 3. Key concepts in AP... Hemodynamic status and risk assessment should be performed to stratify patients into higher-risk and lower-risk categories."
+        }
+      ]
+    },
+    "trat_gravedad_clasif": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar estado hemodinámico y signos de disfunción orgánica.\n- Identificar clínica de pancreatitis severa predicha.",
+      "pie_nodo": "¿Presenta falla orgánica, hipovolemia profunda o criterios de **SIRS**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_severa_cuidados"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_leve_manejo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "424",
+          "imagen_evidencia": "acg_2024_pag424_eval_gravedad.png",
+          "texto": "Hemodynamic status and risk assessment should be performed... Patients with organ failure and/or the systemic inflammatory response syndrome (SIRS) should preferably be admitted to a monitored bed setting."
+        }
+      ]
+    },
+    "trat_severa_cuidados": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Ingreso a cama monitorizada / UCI. Hidratar con **Lactato de Ringer** y reevaluar BUN a las **6 horas**.\n- Nutrición enteral temprana (SNG/SNJ) en **24-48 horas**; evitar Nutrición Parenteral Total.\n- **Evitar antibióticos profilácticos** de rutina en necrosis estéril.",
+      "pie_nodo": "¿Presenta evidencia de Colangitis Aguda o alta sospecha de Necrosis Infectada?",
+      "imagen": "TODO_IMG: Esquema visual de la resucitación de fluidos guiada por BUN",
+      "opciones": [
+        {
+          "texto": "Colangitis Aguda",
+          "siguiente_nodo": "trat_colangitis"
+        },
+        {
+          "texto": "Necrosis Infectada",
+          "siguiente_nodo": "trat_necrosis_infectada"
+        },
+        {
+          "texto": "Ninguna / Evolución Tórpida",
+          "siguiente_nodo": "trat_reeval_72h"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "426-430",
+          "imagen_evidencia": "acg_2024_pag426_manejo_severo.png",
+          "texto": "We suggest moderately aggressive fluid resuscitation... using lactated Ringer solution. Fluid volumes need to be reassessed at frequent intervals within 6 hours. Enteral nutrition in moderately severe or severe AP seems to prevent infectious complications... Parenteral nutrition should be avoided. We suggest against prophylactic antibiotics in patients with severe AP."
+        }
+      ]
+    },
+    "trat_colangitis": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Realizar **CPRE de urgencia (<24 horas)**.\n- Administrar antibióticos sistémicos terapéuticos según guías de sepsis biliar.",
+      "pie_nodo": "Monitoreo continuo en UCI tras la descompresión biliar.",
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "422-428",
+          "imagen_evidencia": "acg_2024_pag428_cpre.png",
+          "texto": "In patients with AP complicated by cholangitis, early ERCP within the first 24 hr has been shown to decrease morbidity and mortality."
+        }
+      ]
+    },
+    "trat_necrosis_infectada": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Iniciar antibióticos empíricos de penetración pancreática (**Carbapenémicos**, **Quinolonas** o **Metronidazol**).\n- Evitar aspiración con aguja fina (PAAF) de rutina guiada por TC.\n- Retrasar drenaje/cirugía preferiblemente **al menos 4 semanas** para permitir maduración de la pared (WON).",
+      "pie_nodo": "En pacientes estables, priorizar abordaje Step-Up mínimamente invasivo.",
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "429-432",
+          "imagen_evidencia": "acg_2024_pag429_necrosis.png",
+          "texto": "We suggest against fine-needle aspiration (FNA) in suspected infected necrosis... antibiotics known to penetrate pancreatic necrosis (carbapenems, quinolones, cephalosporins, and metronidazole)... We suggest delaying any intervention in stable patients with pancreatic necrosis, preferably 4 wk, to allow for the wall of collection to mature."
+        }
+      ]
+    },
+    "trat_reeval_72h": {
+      "tipo": "informativo",
+      "texto": "- Reevaluar clínicamente al paciente.\n- Si el paciente NO mejora pasadas **48-72 horas**, realizar **TC de abdomen con contraste** o RM para evaluar complicaciones anatómicas o necrosis.",
+      "pie_nodo": "Si se confirma necrosis asintomática (estéril), mantener manejo médico conservador.",
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "421-422",
+          "imagen_evidencia": "acg_2024_pag421_tc.png",
+          "texto": "We suggest that early/at admission routine CT not be performed... and should be reserved for patients in whom the diagnosis is unclear or who fail to improve clinically within the first 48-72 hours after hospital admission... CT or MRI is recommended to assess local complications such as pancreatic necrosis."
+        }
+      ]
+    },
+    "trat_leve_manejo": {
+      "estilo": "informativo",
+      "tipo": "pregunta",
+      "texto": "- Hidratación intravenosa moderadamente agresiva con **Lactato de Ringer**.\n- Inicio temprano de vía oral (**24-48 horas**) con **dieta sólida baja en grasa** (evitar dietas líquidas prolongadas).",
+      "pie_nodo": "¿La etiología confirmada o sospechada es biliar (litiasis)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_leve_biliar"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_alta_leve_seguimiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "426-430",
+          "imagen_evidencia": "acg_2024_pag430_dieta.png",
+          "texto": "We suggest using lactated Ringer solution over normal saline... In patients with mild AP, we suggest early oral feeding (within 24-48 hours) as tolerated... initial oral feeding with low-fat solid diet rather than a stepwise liquid to solid approach."
+        }
+      ]
+    },
+    "trat_leve_biliar": {
+      "tipo": "informativo",
+      "texto": "- Planificar **Colecistectomía durante la misma hospitalización** (antes del alta) para prevenir complicaciones recurrentes.\n- Suspender CPRE si no hay evidencia de obstrucción persistente o colangitis.",
+      "pie_nodo": "Proceder con evaluación prequirúrgica.",
+      "referencias": [
+        {
+          "titulo": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis",
+          "url": "https://doi.org/10.14309/ajg.0000000000002645",
+          "paginas": "428-431",
+          "imagen_evidencia": "acg_2024_pag431_colecistectomia.png",
+          "texto": "Patients with mild acute biliary pancreatitis should undergo cholecystectomy early, preferably before discharge... We suggest medical therapy over early (within the first 72 hours) ERCP in acute biliary pancreatitis without cholangitis."
+        }
+      ]
+    },
+    "trat_alta_leve_seguimiento": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Mantener dieta tolerada y planificar alta médica.\n- Si origen es alcohólico, realizar intervención breve para el cese del consumo durante el ingreso.\n- En hipertrigliceridemia, iniciar fibratos y control estricto de lípidos ambulatorio.",
+      "pie_nodo": "Seguimiento por consulta externa.",
+      "referencias": [
+        {
+          "titulo": "AGA Institute Guideline on Initial Management of Acute Pancreatitis / ACG Guidelines 2024",
+          "url": "https://doi.org/10.1053/j.gastro.2018.01.032",
+          "paginas": "1100 (AGA) / 423 (ACG)",
+          "imagen_evidencia": "aga_2018_pag1100_alcohol.png",
+          "texto": "AGA Recommendation 8: In patients with acute alcoholic pancreatitis, the AGA recommends brief alcohol intervention during admission... ACG 2024: A fasting TG level should be reevaluated 1 month after discharge when hypertriglyceridemia is suspected."
+        }
+      ]
+    }
+  }
+}
