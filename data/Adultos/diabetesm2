@@ -1,0 +1,207 @@
+{
+  "titulo": "Manejo y Diagnóstico de la Diabetes Mellitus Tipo 2",
+  "version": "2026",
+  "carpeta_evidencia": "diabetesm2",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "informativo",
+      "texto": "- Algoritmo clínico basado en los Estándares de Cuidado en Diabetes de la ADA 2026.\n- Enfoque en diagnóstico oportuno y tratamiento farmacológico individualizado.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Introduction and Methodology",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S1-S5",
+          "imagen_evidencia": "evidencia_ada2026_intro_s1.png",
+          "texto": "The ADA 'Standards of Care in Diabetes' serves as a comprehensive resource... It outlines key elements of diabetes care, sets treatment goals, and provides tools to assess care quality."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_sintomas"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Diagnosis and Classification of Diabetes",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S27",
+          "imagen_evidencia": "evidencia_ada2026_diag_s27.png",
+          "texto": "Diabetes may be diagnosed based on A1C or plasma glucose criteria. Plasma glucose criteria include either the fasting plasma glucose (FPG), 2-h plasma glucose (2-h PG) during a 75-g oral glucose tolerance test (OGTT), or random glucose accompanied by classic symptoms."
+        }
+      ]
+    },
+    "diag_eval_sintomas": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar síntomas clásicos de hiperglucemia (poliuria, polidipsia, pérdida de peso inexplicable).\n- Descartar crisis hiperglucémica (Cetoacidosis Diabética o Estado Hiperosmolar).",
+      "pie_nodo": "¿El paciente presenta síntomas clásicos o signos de crisis hiperglucémica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_glucosa_azar"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_tamizaje_directo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Diagnosis and Classification of Diabetes",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S27-S28",
+          "imagen_evidencia": "evidencia_ada2026_diag_sintomas_s28.png",
+          "texto": "Recommendation 2.1a: Diagnose diabetes based on A1C or plasma glucose criteria... or random glucose accompanied by classic hyperglycemic symptoms or crises (Table 2.1)."
+        }
+      ]
+    },
+    "diag_glucosa_azar": {
+      "tipo": "pregunta",
+      "texto": "- Tomar muestra de glucosa plasmática al azar inmediatamente.",
+      "pie_nodo": "¿El resultado de la glucosa al azar es **>= 200 mg/dL (11.1 mmol/L)**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_dm2_confirmada"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_tamizaje_directo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Table 2.1—Criteria for the diagnosis of diabetes in nonpregnant individuals",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S28",
+          "imagen_evidencia": "evidencia_ada2026_table2_1_s28.png",
+          "texto": "In an individual with classic symptoms of hyperglycemia or hyperglycemic crisis, a random plasma glucose >=200 mg/dL (>=11.1 mmol/L)."
+        }
+      ]
+    },
+    "diag_dm2_confirmada": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de **Diabetes Mellitus Tipo 2** establecido de forma inequívoca.\n- Iniciar educación en automanejo (DSMES) y evaluación integral de comorbilidades.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Comprehensive Medical Evaluation and Assessment of Comorbidities",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S63",
+          "imagen_evidencia": "evidencia_ada2026_eval_s63.png",
+          "texto": "Recommendation 4.3: A complete medical evaluation should be performed at the initial visit and follow-up, as appropriate, to: Confirm the diagnosis and classify diabetes... Assess glycemic status and previous and current treatment... Evaluate for diabetes complications, potential comorbid conditions, and overall health status."
+        }
+      ]
+    },
+    "diag_tamizaje_directo": {
+      "tipo": "pregunta",
+      "texto": "- Solicitar una de las siguientes pruebas: Glucosa Plasmática en Ayunas (**FPG**), Hemoglobina Glucosilada (**A1C**), o Prueba de Tolerancia Oral a la Glucosa (**PTOG** con 75g).",
+      "pie_nodo": "¿FPG **>= 126 mg/dL**, A1C **>= 6.5%**, o PTOG 2h **>= 200 mg/dL**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_confirmar_prueba"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_eval_prediabetes"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Table 2.1—Criteria for the diagnosis of diabetes",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S28",
+          "imagen_evidencia": "evidencia_ada2026_table2_1_s28.png",
+          "texto": "A1C >=6.5%... OR FPG >=126 mg/dL... OR 2-h PG >=200 mg/dL during OGTT."
+        }
+      ]
+    },
+    "diag_confirmar_prueba": {
+      "tipo": "pregunta",
+      "texto": "- Confirmar el diagnóstico repitiendo la prueba anormal o realizando una prueba diferente.\n- Si hay dos pruebas discordantes, repetir únicamente aquella que arrojó un resultado anormal.",
+      "pie_nodo": "¿La segunda prueba confirma niveles en rango de diabetes?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_dm2_confirmada"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_eval_prediabetes"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Diagnosis and Classification of Diabetes",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S27-S30",
+          "imagen_evidencia": "evidencia_ada2026_confirm_s30.png",
+          "texto": "Recommendation 2.1b: In the absence of unequivocal hyperglycemia (e.g., hyperglycemic crises), diagnosis requires confirmatory testing (Table 2.1). ... On the other hand, if an individual has discordant results from two different tests, then the test result that is above the diagnostic cut point should be repeated."
+        }
+      ]
+    },
+    "diag_eval_prediabetes": {
+      "tipo": "pregunta",
+      "texto": "- Revisar si los resultados cumplen criterios de riesgo incrementado.",
+      "pie_nodo": "¿FPG **100-125 mg/dL**, A1C **5.7-6.4%**, o PTOG 2h **140-199 mg/dL**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_prediabetes"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_normal"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Table 2.2—Criteria defining prediabetes in nonpregnant individuals",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S28",
+          "imagen_evidencia": "evidencia_ada2026_table2_2_s28.png",
+          "texto": "A1C 5.7–6.4% ... OR FPG 100 mg/dL to 125 mg/dL (IFG) ... OR 2-h PG during 75-g OGTT 140 mg/dL to 199 mg/dL (IGT)."
+        }
+      ]
+    },
+    "diag_prediabetes": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de **Prediabetes**.\n- Iniciar intervenciones intensivas de estilo de vida (pérdida de peso de **5-7%** y **150 min/semana** de actividad física).\n- Considerar uso de **Metformina** si IMC **>= 35 kg/m2**, edad de 25-59 años, antecedente de DMG o progresión rápida.",
+      "imagen": "TODO_IMG: Infografía de prevención de diabetes y cambios de estilo de vida",
+      "referencias": [
+        {
+          "titulo": "Standards of Care in Diabetes—2026: Prevention or Delay of Diabetes and Associated Comorbidities",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "paginas": "S51-S53",
+          "imagen_evidencia": "evidencia_ada2026_prevencion_s51_s53.png",
+          "texto": "Recommendation 3.3: Refer adults with overweight or obesity at high risk of type 2 diabetes to a diabetes prevention program to achieve and maintain a weight reduction of at least 5-7% of initial body weight... and >=150 min/week of moderate-intensity physical activity. Recommendation 3.7: Metformin for the prevention of type 2 diabetes should be considered... especially those aged 25-59 years with BMI >=35 kg/m2, higher fasting plasma glucose... and in individuals with prior gestational diabetes mellitus."
+        }
+      ]
+    },
+    "diag_normal": {
+      "estilo": "exito",
+      "tipo": "informativo",
