@@ -1,0 +1,425 @@
+{
+  "titulo": "Crisis Convulsiva y Estatus Epiléptico",
+  "version": "2024",
+  "carpeta_evidencia": "crisisyestatusadultos",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Crisis Convulsiva y Estatus Epiléptico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES) / Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": null,
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_epilepsia_raiz.png",
+          "texto": "Guías base del abordaje de estatus epiléptico y manejo de primera crisis no provocada en adultos."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_diag_eval.png",
+          "texto": "Figure 1. Proposed treatment algorithm for status epilepticus. Interventions for emergency department, in-patient setting, or prehospital setting."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Estabilización **ABCDE**, oxigenación y monitorización de **signos vitales**.\n- Toma de **glucosa capilar** e intento de acceso IV.\n- Cronometrar desde el inicio clínico de la crisis.",
+      "pie_nodo": "¿Cuál es la duración continua de la crisis convulsiva?",
+      "opciones": [
+        {
+          "texto": "< 5 minutos (Crisis autolimitada)",
+          "siguiente_nodo": "diag_primera_crisis"
+        },
+        {
+          "texto": ">= 5 minutos (Estatus Epiléptico)",
+          "siguiente_nodo": "diag_estatus_glucosa"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_eval_inicial_pag11.png",
+          "texto": "0-5 min Stabilization phase: Stabilize patient (airway, breathing, circulation, disability - neurologic exam). Time seizure from its onset, monitor vital signs. Assess oxygenation... Initiate ECG monitoring. Collect finger stick blood glucose. Attempt IV access."
+        }
+      ]
+    },
+    "diag_primera_crisis": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Realizar historia clínica y exploración neurológica.\n- Descartar causa provocadora aguda (metabólica, tóxica, infecciosa).\n- Solicitar **EEG** y **Neuroimagen (RM o TC)**.",
+      "pie_nodo": "¿Se trata de una primera crisis no provocada en un adulto?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_eval_riesgo_recurrencia"
+        },
+        {
+          "texto": "No (Crisis provocada o recurrente)",
+          "siguiente_nodo": "diag_crisis_provocada"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": null,
+          "paginas": "1-3",
+          "imagen_evidencia": "evidencia_primera_crisis_pag1_3.png",
+          "texto": "We excluded studies of provoked seizures, which are defined as seizures due to an acute symptomatic condition... clinical variables associated with an increased risk of seizure recurrence following an unprovoked first seizure include a prior brain lesion or insult causing the seizure, an EEG with epileptiform abnormalities... a significant brain-imaging abnormality."
+        }
+      ]
+    },
+    "diag_eval_riesgo_recurrencia": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- El riesgo de recurrencia es mayor en los primeros **2 años (21%-45%)**.\n- Factores de alto riesgo: **Daño cerebral previo**, **EEG epileptiforme**, **Anormalidad en neuroimagen** o **Crisis nocturna**.",
+      "imagen": "TODO_IMG: Tabla con factores de riesgo para recurrencia de crisis tras un primer evento no provocado",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento de Primera Crisis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_primera_crisis"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": "https://n.neurology.org/content/84/16/1705",
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_riesgo_recurrencia_pag1.png",
+          "texto": "Adults with an unprovoked first seizure should be informed that their seizure recurrence risk is greatest early within the first 2 years (21%–45%) (Level A), and clinical variables associated with increased risk may include a prior brain insult (Level A), an EEG with epileptiform abnormalities (Level A), a significant brain-imaging abnormality (Level B), and a nocturnal seizure (Level B)."
+        }
+      ]
+    },
+    "diag_crisis_provocada": {
+      "tipo": "informativo",
+      "texto": "- Tratar la causa subyacente de la provocación aguda.\n- El tratamiento antiepiléptico crónico generalmente no está indicado si el factor desencadenante es reversible.",
+      "imagen": "TODO_IMG: Esquema de causas reversibles de crisis convulsivas (electrolitos, drogas, infecciones)",
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": null,
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_crisis_provocada_pag1.png",
+          "texto": "Excluded studies of provoked seizures, which are defined as seizures due to an acute symptomatic condition (e.g., a metabolic or toxic disturbance, cerebral trauma, stroke) and differ in prognosis from unprovoked seizures."
+        }
+      ]
+    },
+    "diag_estatus_glucosa": {
+      "tipo": "pregunta",
+      "texto": "- Extraer sangre para electrolitos, tóxicos y niveles de anticonvulsivantes.\n- Evaluar la glucosa capilar obtenida en la estabilización inicial.",
+      "pie_nodo": "¿La glucosa capilar es < 60 mg/dL?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_hipoglucemia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_estatus_confirmado"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_glucosa_pag11.png",
+          "texto": "Attempt IV access and collect electrolytes, hematology, toxicology screen, (if appropriate) anticonvulsant drug levels... Collect finger stick blood glucose. If glucose < 60 mg/dl then..."
+        }
+      ]
+    },
+    "diag_hipoglucemia": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Adultos: **100 mg de Tiamina IV** seguidos de **50 ml de Dextrosa al 50% IV**.\n- Niños >= 2 años: **2 ml/kg de Dextrosa al 25% IV**.\n- Niños < 2 años: **4 ml/kg de Dextrosa al 12.5% IV**.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento del Estatus Epiléptico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_estatus_epileptico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_hipoglucemia_pag11.png",
+          "texto": "If glucose < 60 mg/dl then: Adults: 100 mg thiamine IV then 50 ml D50W IV. Children ≥ 2 years: 2 ml/kg D25W IV. Children < 2 years: 4 ml/kg D12.5W."
+        }
+      ]
+    },
+    "diag_estatus_confirmado": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico clínico de **Estatus Epiléptico Convulsivo** establecido.\n- Iniciar de forma inmediata el algoritmo de tratamiento farmacológico por fases.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento del Estatus Epiléptico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_estatus_epileptico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "2",
+          "imagen_evidencia": "evidencia_estatus_confirmado_pag2.png",
+          "texto": "status treatment protocols have used a 5-minute definition to minimize both the risk of seizures reaching 30 minutes and the adverse outcomes associated with needlessly intervening on brief, self-limited seizures."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_seleccion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "AES / AAN Guidelines",
+          "url": null,
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_tratamiento_general.png",
+          "texto": "Algoritmos de tratamiento farmacológico para primera crisis no provocada y estatus epiléptico."
+        }
+      ]
+    },
+    "trat_seleccion": {
+      "tipo": "pregunta",
+      "texto": "- Seleccione el escenario clínico a tratar basado en la evaluación inicial.",
+      "pie_nodo": "¿Qué condición presenta el paciente?",
+      "opciones": [
+        {
+          "texto": "Primera Crisis No Provocada",
+          "siguiente_nodo": "trat_primera_crisis"
+        },
+        {
+          "texto": "Estatus Epiléptico (>= 5 min)",
+          "siguiente_nodo": "trat_estatus_epileptico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "AES / AAN Guidelines",
+          "url": null,
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_trat_seleccion.png",
+          "texto": "Bifurcación clínica basada en las guías de la AAN para crisis única y la AES para crisis continuas (>5 min)."
+        }
+      ]
+    },
+    "trat_primera_crisis": {
+      "tipo": "pregunta",
+      "texto": "- El FAE inmediato reduce el riesgo de recurrencia en **2 años** pero no afecta la remisión a largo plazo (>3 años).\n- Los efectos adversos (FAE) oscilan entre **7% y 31%** (leves y reversibles).",
+      "pie_nodo": "¿Se decide iniciar tratamiento con FAE inmediato tras valorar riesgos/beneficios?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_iniciar_fae"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_diferir_fae"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": null,
+          "paginas": "1",
+          "imagen_evidencia": "evidencia_fae_primera_crisis_pag1.png",
+          "texto": "Immediate antiepileptic drug (AED) therapy, as compared with delay of treatment pending a second seizure, is likely to reduce recurrence risk within the first 2 years (Level B)... Over a longer term (>3 years), immediate AED treatment is unlikely to improve prognosis as measured by sustained seizure remission... risk of AED adverse events (AEs) may range from 7% to 31%."
+        }
+      ]
+    },
+    "trat_iniciar_fae": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar monoterapia con Fármaco Antiepiléptico (FAE) adaptado al paciente.\n- Informar que previene recurrencias tempranas, pero no cambia el pronóstico de remisión a largo plazo.",
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": "https://n.neurology.org/content/84/16/1705",
+          "paginas": "1, 5",
+          "imagen_evidencia": "evidencia_iniciar_fae_pag5.png",
+          "texto": "Clinicians should advise patients that, although immediate AED therapy... is likely to reduce the risk of a seizure recurrence in the 2 years subsequent to a first seizure (Level B), it may not improve QOL (Level C)... unlikely to improve the prognosis for sustained seizure remission (Level B)."
+        }
+      ]
+    },
+    "trat_diferir_fae": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diferir FAE hasta evidenciar una segunda crisis.\n- Proveer consejería estricta sobre restricciones para conducir y medidas de seguridad.",
+      "referencias": [
+        {
+          "titulo": "Management of an unprovoked first seizure in adults (AAN/AES)",
+          "url": null,
+          "paginas": "6",
+          "imagen_evidencia": "evidencia_diferir_fae_pag6.png",
+          "texto": "deferred antiepileptic drug treatment pending a seizure recurrence... patients who were not immediately treated with AEDs were more likely to be restricted from driving."
+        }
+      ]
+    },
+    "trat_estatus_epileptico": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- **Fase de Terapia Inicial (Minutos 5-20)**.\n- Seleccionar primera línea basada en la vía de administración disponible.",
+      "pie_nodo": "¿El paciente cuenta con acceso intravenoso (IV) establecido?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_estatus_iv"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_estatus_no_iv"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_terapia_inicial_pag11.png",
+          "texto": "5-20 min Initial therapy phase. A benzodiazepine is the initial therapy of choice (Level A). Choose one of the following 3 equivalent first line options with dosing and frequency based on established IV access."
+        }
+      ]
+    },
+    "trat_estatus_iv": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Administrar **Lorazepam IV 0.1 mg/kg (máx 4 mg)** o **Diazepam IV 0.15-0.2 mg/kg (máx 10 mg)**.\n- Puede repetirse una sola vez si la crisis continúa.",
+      "pie_nodo": "¿La crisis convulsiva persiste al llegar al minuto 20?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_estatus_segunda_linea"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_estatus_exito"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical-care/clinical-guidance",
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_estatus_iv_pag11.png",
+          "texto": "Intravenous lorazepam (0.1 mg/kg/dose, max: 4 mg/dose, may repeat dose once, Level A) OR Intravenous diazepam (0.15-0.2 mg/kg/dose, max: 10 mg/dose, may repeat dose once, Level A)."
+        }
+      ]
+    },
+    "trat_estatus_no_iv": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Administrar **Midazolam IM 10 mg (>40 kg)** o **Diazepam rectal 0.2-0.5 mg/kg (máx 20 mg)**.\n- Alternativas: Midazolam intranasal o bucal.",
+      "pie_nodo": "¿La crisis convulsiva persiste al llegar al minuto 20?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_estatus_segunda_linea"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_estatus_exito"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_estatus_no_iv_pag11.png",
+          "texto": "Intramuscular midazolam (10 mg for > 40 kg, 5 mg for 13-40 kg, single dose, Level A)... Rectal diazepam (0.2-0.5 mg/kg, max: 20 mg/dose, single dose, Level B) OR Intranasal midazolam (Level B), buccal midazolam (Level B)."
+        }
+      ]
+    },
+    "trat_estatus_segunda_linea": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- **Fase de Segunda Terapia (Minutos 20-40)**.\n- Administrar Dosis Única: **Fosfenitoína IV 20 mg PE/kg** (máx 1500mg) o **Ácido Valproico IV 40 mg/kg** (máx 3000mg) o **Levetiracetam IV 60 mg/kg** (máx 4500mg).",
+      "pie_nodo": "¿La crisis convulsiva persiste al llegar al minuto 40?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_estatus_tercera_linea"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_estatus_exito"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical-care/clinical-guidance",
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_segunda_linea_pag11.png",
+          "texto": "20-40 min Second therapy phase. Choose one of the following second line options and give as a single dose: Intravenous fosphenytoin (20 mg PE/kg, max: 1500 mg PE/dose, single dose, Level U) OR Intravenous valproic acid (40 mg/kg, max: 3000 mg/dose, single dose, Level B) OR Intravenous levetiracetam (60 mg/kg, max: 4500 mg/dose, single dose, Level U)."
+        }
+      ]
+    },
+    "trat_estatus_tercera_linea": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Fase de Tercera Terapia (Minutos 40-60)**.\n- Repetir segunda línea o usar dosis anestésicas (**Tiopental, Midazolam, Pentobarbital, Propofol**).\n- Se requiere **monitorización continua con EEG** y asegurar vía aérea.",
+      "imagen": "TODO_IMG: Fotografía de un paciente con monitorización EEG continua en UCI",
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_tercera_linea_pag11.png",
+          "texto": "40-60 min Third therapy phase. There is no clear evidence to guide therapy in this phase (Level U): Choices include: repeat second line therapy or anesthetic doses of either thiopental, midazolam, pentobarbital, or propofol (all with continuous EEG monitoring)."
+        }
+      ]
+    },
+    "trat_estatus_exito": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Crisis controlada.\n- Iniciar cuidado médico sintomático y continuar búsqueda y tratamiento de la etiología subyacente.",
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": null,
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_estatus_exito_pag11.png",
+          "texto": "Does seizure continue? No -> If patient at baseline, then symptomatic medical care."
+        }
+      ]
+    }
+  }
+}
