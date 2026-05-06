@@ -1,0 +1,352 @@
+{
+  "titulo": "Síndrome de Parto Pretérmino",
+  "version": "2020",
+  "carpeta_evidencia": "partopretermino",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Síndrome de Parto Pretérmino y Amenaza de Parto Pretérmino (SEGO)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "1-2",
+          "imagen_evidencia": "evidencia_app_pag1_2.png",
+          "texto": "Documento principal que aborda el Síndrome de Parto Pretérmino y Amenaza de Parto Pretérmino."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_estado_clinico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "4",
+          "imagen_evidencia": "evidencia_app_pag4.png",
+          "texto": "Sección de diagnóstico general y abordaje inicial de la paciente."
+        }
+      ]
+    },
+    "diag_estado_clinico": {
+      "tipo": "pregunta",
+      "texto": "1. Valorar el motivo de consulta de la gestante.\n2. Realizar anamnesis detallada (historia obstétrica previa, abortos tardíos, partos pretérmino, cirugías cervicales).",
+      "pie_nodo": "¿Presenta la gestante dinámica uterina regular con modificaciones cervicales entre las **22.0 y 36.6 semanas** (Sintomática)?",
+      "nota_adicional": "El manejo y algoritmo difiere drásticamente si se trata de cribado preventivo en gestante asintomática o manejo agudo de una amenaza de parto pretérmino.",
+      "opciones": [
+        {
+          "texto": "Sí (Sintomática)",
+          "siguiente_nodo": "diag_sintomatica"
+        },
+        {
+          "texto": "No (Asintomática)",
+          "siguiente_nodo": "diag_asintomatica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "4-5",
+          "imagen_evidencia": "evidencia_app_pag4_5.png",
+          "texto": "Diferenciación entre cribado en gestante asintomática y manejo agudo de amenaza de parto pretérmino (APP) entre las 22.0 y 36.6 semanas."
+        }
+      ]
+    },
+    "diag_asintomatica": {
+      "tipo": "pregunta",
+      "texto": "- Revisar antecedentes de riesgo: conización, anomalías uterinas, parto pretérmino previo.\n- Realizar cribado ecográfico con medición de longitud cervical transvaginal (ideal entre las **18.0 y 24.0 semanas**).",
+      "pie_nodo": "¿Presenta cérvix corto (**<= 25 mm**) o tiene historia de parto pretérmino previo?",
+      "imagen": "TODO_IMG: Esquema de medición ecográfica transvaginal correcta de la longitud cervical",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_alto_riesgo_asintomatica"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_bajo_riesgo_asintomatica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "5-6",
+          "imagen_evidencia": "evidencia_app_pag5_6.png",
+          "texto": "Cribado ecográfico con medición de longitud cervical transvaginal idealmente entre las 18.0 y 24.0 semanas. Definición de cérvix corto <= 25 mm."
+        }
+      ]
+    },
+    "diag_bajo_riesgo_asintomatica": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Continuar control prenatal gestacional habitual.\n- No se recomienda realizar cribado universal de vaginosis bacteriana ni de bacteriuria asintomática.\n- No se recomienda suplementación profiláctica con omega-3 ni progesterona en población de bajo riesgo.",
+      "nota_adicional": "La evidencia actual respecto al cribado universal de la longitud cervical en gestantes asintomáticas es baja, considerándose una recomendación débil.",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "6",
+          "imagen_evidencia": "evidencia_app_pag6.png",
+          "texto": "Recomendaciones en bajo riesgo: no cribado universal de vaginosis/bacteriuria, no suplementación profiláctica con omega-3 ni progesterona."
+        }
+      ]
+    },
+    "diag_alto_riesgo_asintomatica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Clasificar a la paciente según antecedente previo (historia obstétrica) y el tipo de embarazo (único o múltiple).",
+      "pie_nodo": "Ir a rama de tratamiento para definir profilaxis.",
+      "enlaces": [
+        {
+          "texto": "Ver opciones de profilaxis asintomática",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_profilaxis_asintomatica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "6-7",
+          "imagen_evidencia": "evidencia_app_pag6_7.png",
+          "texto": "Clasificación de riesgo basado en historia obstétrica previa y tipo de embarazo (único o múltiple)."
+        }
+      ]
+    },
+    "diag_sintomatica": {
+      "tipo": "pregunta",
+      "texto": "1. Estabilizar y realizar registro cardiotocográfico (NST) para valorar dinámica uterina.\n2. Realizar especuloscopia y tacto vaginal.\n3. Solicitar Hemograma, PCR, Sistemático de orina y Cultivo vagino-rectal para SGB.\n4. Realizar ecografía transvaginal para estimar la longitud cervical actual.",
+      "pie_nodo": "¿Longitud cervical indica alto riesgo inminente (ej. embarazo único: **<= 25 mm** <27.6 sem; **<= 20 mm** 28.0-31.6 sem; **<= 15 mm** >32.0 sem)?",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "7-8",
+          "imagen_evidencia": "evidencia_app_tablaIV.png",
+          "texto": "Manejo de gestante sintomática y puntos de corte de longitud cervical ecográfica según edad gestacional (Tabla IV)."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_ingreso_app"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alta_app"
+        }
+      ]
+    },
+    "diag_alta_app": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Considerar alta hospitalaria, dada la alta probabilidad de parto espontáneo nula en los siguientes 7 días.\n- No se recomienda el reposo absoluto.\n- No se recomienda el uso de progesterona tras un episodio de amenaza de parto pretérmino superado.",
+      "nota_adicional": "Solo el 10% de las gestantes que ingresan por amenaza de parto pretérmino parirán en los siguientes 7 días.",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "8-9",
+          "imagen_evidencia": "evidencia_app_pag8_9.png",
+          "texto": "Criterios de alta hospitalaria por bajo riesgo inminente de parto en 7 días y no recomendación de progesterona tras APP superada."
+        }
+      ]
+    },
+    "diag_ingreso_app": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Tramitar ingreso hospitalario urgente por Amenaza de Parto Pretérmino (APP).\n- Considerar amniocentesis diagnóstica en casos refractarios a tocolíticos, < 32 semanas o sospecha de infección intraamniótica subclínica (Glucosa **< 5 mg/dL**, Interleucina-6 **>= 2.6 ng/mL**, Leucocitos **>= 50 células/campo**).",
+      "enlaces": [
+        {
+          "texto": "Ir a Manejo de APP (Sintomática)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_manejo_app"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "9",
+          "imagen_evidencia": "evidencia_app_pag9.png",
+          "texto": "Criterios de ingreso por APP y consideración de amniocentesis diagnóstica para descartar infección intraamniótica subclínica."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_menu"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_app_pag10.png",
+          "texto": "Introducción a las líneas de tratamiento clínico."
+        }
+      ]
+    },
+    "trat_menu": {
+      "tipo": "pregunta",
+      "texto": "- Seleccionar el escenario clínico que requiere abordaje terapéutico.",
+      "pie_nodo": "¿Qué línea de tratamiento clínico se requiere?",
+      "opciones": [
+        {
+          "texto": "Profilaxis en asintomática",
+          "siguiente_nodo": "trat_profilaxis_asintomatica"
+        },
+        {
+          "texto": "Manejo agudo (Amenaza de Parto Pretérmino)",
+          "siguiente_nodo": "trat_manejo_app"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_app_pag10_menu.png",
+          "texto": "División clínica entre opciones de profilaxis en pacientes asintomáticas y el manejo agudo de la APP."
+        }
+      ]
+    },
+    "trat_profilaxis_asintomatica": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar tipo de gestación para dirigir la recomendación.",
+      "pie_nodo": "¿Se trata de embarazo único o múltiple?",
+      "opciones": [
+        {
+          "texto": "Único",
+          "siguiente_nodo": "trat_profilaxis_unico"
+        },
+        {
+          "texto": "Múltiple (Gemelar)",
+          "siguiente_nodo": "trat_profilaxis_multiple"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "10-11",
+          "imagen_evidencia": "evidencia_app_pag10_11.png",
+          "texto": "La indicación de profilaxis difiere y debe individualizarse según se trate de gestación única o múltiple."
+        }
+      ]
+    },
+    "trat_profilaxis_unico": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Cérvix **<= 25 mm** (con o sin historia de parto previo): Administrar **Progesterona natural micronizada 200 mg/24h** por vía vaginal.\n- Historia de >= 3 abortos tardíos o partos pretérmino: Realizar **Cerclaje por historia obstétrica** entre las **13 y 16 semanas**.\n- Cérvix **<= 25 mm** y antecedente de parto pretérmino: Realizar **Cerclaje indicado por ecografía**.",
+      "nota_adicional": "Existe controversia actual con el pesario cervical en gestaciones únicas con cérvix corto, por lo que la guía SEGO emite una recomendación débil en contra de su uso sistemático.",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "11-12",
+          "imagen_evidencia": "evidencia_app_pag11_12.png",
+          "texto": "Indicaciones de progesterona micronizada 200 mg, cerclaje por historia clínica o por hallazgos ecográficos en embarazos únicos."
+        }
+      ]
+    },
+    "trat_profilaxis_multiple": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- No se recomienda de rutina el uso de cerclaje, pesario ni progesterona vaginal como tratamientos profilácticos universales en embarazo múltiple.\n- Excepción: Considerar cerclaje únicamente ante hallazgos en exploración física (dilatación asintomática > 1-2 cm).",
+      "nota_adicional": "En gemelares con cérvix corto la evidencia para uso de progesterona micronizada es contradictoria y de recomendación débil.",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "12-13",
+          "imagen_evidencia": "evidencia_app_pag12_13.png",
+          "texto": "Contraindicación de uso rutinario de cerclaje, pesario o progesterona en embarazo múltiple salvo dilatación asintomática en exploración."
+        }
+      ]
+    },
+    "trat_manejo_app": {
+      "tipo": "pregunta",
+      "texto": "1. Administrar terapia tocolítica durante **48 horas** (**Nifedipino**, **Atosiban**, o **Indometacina** si **< 24.0 semanas**).\n2. Administrar tanda de corticoides antenatales si la gestación se encuentra entre las **24.0 y 34.0 semanas** (individualizar hasta las **34.6 semanas**).\n3. Administrar Sulfato de Magnesio como neuroprotector si se prevé parto inminente antes de las **32.0 semanas**.\n4. Iniciar tratamiento antibiótico profiláctico únicamente si hay rotura prematura de membranas, corioamnionitis, o cultivo SGB positivo.",
+      "pie_nodo": "¿Ver dosificación exacta de fármacos y manejo intraparto?",
+      "nota_adicional": "Los tocolíticos no mejoran per se el pronóstico neonatal. Su único fin es retrasar el parto para permitir la acción completa de corticoides y el sulfato de magnesio.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_app_dosis"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "14-17",
+          "imagen_evidencia": "evidencia_app_pag14_17.png",
+          "texto": "Directrices sobre terapia tocolítica (48h), maduración con corticoides, neuroprotección con sulfato de magnesio y uso racional de antibióticos."
+        }
+      ]
+    },
+    "trat_app_dosis": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Corticoides**: **Betametasona 12 mg IM** c/24h (2 dosis) o **Dexametasona 6 mg IV** c/12h (4 dosis).\n- **Sulfato de Magnesio**: Bolo inicial de **4 g IV**, seguido de mantenimiento a **1 g/h IV** durante máximo 12 horas (suspender si no se prevé parto). Iniciar idealmente **4 horas** antes del parto.\n- **Tocolítico Atosiban**: Bolo **0.9 mL IV** en 1 min, seguido de **24 mL/h** por 3 horas, y mantenimiento **8 mL/h** por 45 horas.",
+      "imagen": "TODO_IMG: Tabla ilustrativa de dosis de tocolíticos y sulfato de magnesio",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "16-18",
+          "imagen_evidencia": "evidencia_app_tablaVII.png",
+          "texto": "Dosis exactas de corticoides, esquemas de tocolíticos (Atosiban) y protocolo de sulfato de magnesio como neuroprotector (Tabla VII)."
+        }
+      ],
+      "pie_nodo": "Continuar a recomendaciones intraparto",
+      "opciones": [
+        {
+          "texto": "Avanzar a Intraparto",
+          "siguiente_nodo": "trat_intraparto"
+        }
+      ]
+    },
+    "trat_intraparto": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "1. Asegurar nacimiento en centro de Nivel III con disponibilidad de UCIN.\n2. Realizar clampaje tardío del cordón umbilical esperando al menos **30 segundos** si el estado clínico del neonato lo permite.\n3. Aplicar medidas de termorregulación: temperatura de paritorio a **26 C** y uso de bolsas isotérmicas para neonatos **< 32 semanas** o **< 1500 g**.",
+      "nota_adicional": "Respecto a la vía de parto entre 23.0 y 25.6 semanas en presentación podálica, se debe individualizar. Si hay presentación cefálica, la vía vaginal es de elección si no hay contraindicaciones.",
+      "referencias": [
+        {
+          "titulo": "Guía de Asistencia Práctica: Parto pretérmino. SEGO 2020",
+          "url": null,
+          "paginas": "19-20",
+          "imagen_evidencia": "evidencia_app_pag19_20.png",
+          "texto": "Recomendaciones sobre asistencia intraparto: necesidad de nacimiento en Nivel III, clampaje tardío del cordón y medidas estrictas de termorregulación."
+        }
+      ]
+    }
+  }
+}
