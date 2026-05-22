@@ -1,0 +1,27 @@
+{
+  "clusters": [
+    { "id": "C1", "nombre": "Riesgo hemorrágico" },
+    { "id": "C2", "nombre": "Riesgo arrítmico / QT" },
+    { "id": "C10", "nombre": "Margen terapéutico estrecho" }
+  ],
+  "diccionario": [
+    { "id": "f1", "nombre": "Digoxina", "categorias": ["digoxina"] },
+    { "id": "f2", "nombre": "Amiodarona", "categorias": ["amiodarona"] }
+  ],
+  "reglas": [
+    {
+      "idDDI": "DDI-1",
+      "condicionA": "digoxina",
+      "condicionB": "amiodarona",
+      "tipoInteraccion": "pkPd",
+      "severidad": "critico",
+      "clusterPrincipalId": "C10",
+      "clusterSecundarioId": "C2",
+      "mecanismoFarmacologico": "Inhibición P-gp y CYP por amiodarona...",
+      "danoPotencial": "Toxicidad por digoxina...",
+      "conductaSugerida": "Monitorizar niveles séricos...",
+      "requiereMonitoreo": true,
+      "parametrosVigilar": ["Digoxinemia", "ECG", "FC"]
+    }
+  ]
+}
