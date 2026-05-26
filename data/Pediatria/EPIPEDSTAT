@@ -1,0 +1,409 @@
+{
+  "titulo": "Epilepsia Pediátrica y Status Epilepticus",
+  "version": "2025",
+  "carpeta_evidencia": "epilepsiapediatrica",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "EVALUACIÓN Y MANEJO DE LA EPILEPSIA PEDIÁTRICA",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "9-41",
+          "imagen_evidencia": "TODO_EVIDENCIA: Portada de la guía NICE NG217",
+          "texto": "Guía integral sobre el diagnóstico, evaluación y manejo general de las epilepsias en pediatría y adultos."
+        },
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "1-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Portada del AES Guideline para Status Epilepticus",
+          "texto": "Guía de la American Epilepsy Society enfocada en el abordaje secuencial del Status Epilepticus."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "- Iniciar abordaje diagnóstico del paciente pediátrico con sospecha de crisis convulsiva.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_estabilizacion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "9-13",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 1. Diagnosis and assessment of epilepsy",
+          "texto": "Recomendaciones sobre la evaluación inicial tras una primera crisis y derivación urgente a especialista."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "- Iniciar manejo terapéutico farmacológico.",
+      "pie_nodo": "¿Qué escenario clínico presenta el paciente pediátrico?",
+      "opciones": [
+        {
+          "texto": "Status Epilepticus (Convulsión > 5 min)",
+          "siguiente_nodo": "trat_se_fase1"
+        },
+        {
+          "texto": "Espasmos Infantiles (< 2 años)",
+          "siguiente_nodo": "trat_espasmos"
+        },
+        {
+          "texto": "Crisis Tónico-Clónicas o Focales",
+          "siguiente_nodo": "trat_tcsg"
+        },
+        {
+          "texto": "Crisis de Ausencia",
+          "siguiente_nodo": "trat_ausencias"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "41-69",
+          "imagen_evidencia": "TODO_EVIDENCIA: Índice de la sección de tratamiento de síndromes epilépticos",
+          "texto": "Estratificación del tratamiento de acuerdo con el tipo de convulsión (focal, generalizada, ausencias, espasmos)."
+        }
+      ]
+    },
+    "diag_estabilizacion": {
+      "tipo": "pregunta",
+      "texto": "1. Estabilización inicial **ABCDE**.\n2. Medir glucometría capilar inmediata.\n3. Cronometrar la duración de la crisis.",
+      "pie_nodo": "¿La crisis convulsiva lleva más de **5 minutos** activa?",
+      "nota_adicional": "Cualquier convulsión que dure más de 5 minutos debe ser manejada como Status Epilepticus debido al riesgo de daño neuronal y resistencia a fármacos.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_derivar_status"
+        },
+        {
+          "texto": "No (Crisis autolimitada)",
+          "siguiente_nodo": "diag_evaluacion_clinica"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "2, 11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo Figura 1: Fase de estabilización 0-5 min",
+          "texto": "Fase de estabilización (0-5 min) incluye soporte vital, monitorización de signos vitales, evaluación de oxigenación y toma de glucometría. Definición operacional de SE iniciada a los 5 minutos."
+        }
+      ]
+    },
+    "diag_derivar_status": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Manejar como **Status Epilepticus** de forma emergente.",
+      "enlaces": [
+        {
+          "texto": "Ir al algoritmo de Tratamiento (Status Epilepticus)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_se_fase1"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "2",
+          "imagen_evidencia": "TODO_EVIDENCIA: Definición operacional de status epilepticus",
+          "texto": "Definición operacional de 5 minutos (t1) para el inicio del tratamiento de Status Epilepticus convulsivo."
+        }
+      ]
+    },
+    "diag_evaluacion_clinica": {
+      "tipo": "pregunta",
+      "texto": "1. Realizar anamnesis detallada (solicitar videos caseros si existen).\n2. Realizar examen neurológico completo.\n3. Realizar **ECG de 12 derivaciones** para descartar síncope cardiogénico.\n4. Evaluar factores de riesgo para recurrencia.",
+      "pie_nodo": "¿Se confirma la sospecha clínica de primera crisis epiléptica no provocada?",
+      "nota_adicional": "El ECG es obligatorio para descartar arritmias o prolongación del QT que pueden simular crisis epilépticas (ej. síndrome de Stokes-Adams).",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_estudios_complementarios"
+        },
+        {
+          "texto": "No (síncope, trastorno del movimiento, etc.)",
+          "siguiente_nodo": "diag_fin_no_epilepsia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "11-12",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones 1.2.1 a 1.2.2 sobre anamnesis y ECG",
+          "texto": "Tomar historia detallada, examen físico y usar videos testigos. Realizar ECG de 12 derivaciones para identificar condiciones cardíacas que mimeticen crisis."
+        }
+      ]
+    },
+    "diag_estudios_complementarios": {
+      "tipo": "pregunta",
+      "texto": "1. Solicitar **EEG de rutina** (idealmente en las primeras **72 horas**). Si es normal, considerar EEG con privación de sueño.\n2. Solicitar **Resonancia Magnética (RM) cerebral** bajo protocolo de epilepsia en un plazo máximo de **6 semanas**.\n3. Derivar de forma urgente (< 2 semanas) a neuropediatría.",
+      "pie_nodo": "¿El paciente tiene < **2 años** al inicio de las crisis, retraso del desarrollo o características de un fenotipo sindrómico severo?",
+      "nota_adicional": "No se recomienda la Tomografía Computarizada (TC) de rutina para epilepsia establecida a menos que exista sospecha de lesión neurológica aguda (ej. trauma, sangrado).",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_genetica"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_fin_epilepsia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "9, 12-14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones de derivación, EEG e imagen (MRI)",
+          "texto": "Derivar urgentemente <2 semanas tras la primera crisis. Realizar EEG idealmente en 72 horas (no para descartar epilepsia). Ofrecer MRI en menos de 6 semanas bajo protocolo de epilepsia. TC no recomendada de rutina."
+        }
+      ]
+    },
+    "diag_genetica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Solicitar **Secuenciación del Genoma Completo (WGS)**.\n- Discutir el caso en equipo multidisciplinario terciario.",
+      "nota_adicional": "El diagnóstico genético temprano en encefalopatías epilépticas (ej. Síndrome de Dravet por mutación SCN1A) previene el uso de fármacos contraindicados que exacerban las crisis.",
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "14-15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 1.4 Genetic Testing",
+          "texto": "Considerar WGS (Whole-genome sequencing) para pacientes con epilepsia de causa desconocida iniciada antes de los 2 años o con fenotipos sindrómicos/discapacidad intelectual."
+        }
+      ]
+    },
+    "diag_fin_epilepsia": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Continuar seguimiento ambulatorio por neuropediatría.\n- Decidir inicio de tratamiento farmacológico basado en riesgo de recurrencia y preferencias de la familia.",
+      "enlaces": [
+        {
+          "texto": "Ir a opciones de Tratamiento Crónico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "25-29",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 4.1-4.2 When to start antiseizure medication",
+          "texto": "Iniciar medicación anticrisis una vez confirmado el diagnóstico o tras primera crisis si hay alteración estructural, anormalidad inequívoca en EEG o déficit neurológico."
+        }
+      ]
+    },
+    "diag_fin_no_epilepsia": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Derivar a la especialidad correspondiente (ej. cardiología, psiquiatría, o pediatría general).\n- No iniciar fármacos anticrisis.",
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "12",
+          "imagen_evidencia": "TODO_EVIDENCIA: Evaluación de condiciones cardíacas o metabólicas",
+          "texto": "La evaluación debe identificar condiciones cardíacas que mimeticen crisis epilépticas (ECG) o disturbios metabólicos como hipoglucemia."
+        }
+      ]
+    },
+    "trat_se_fase1": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "1. Fase de estabilización (**0 - 5 minutos**).\n2. Soporte respiratorio (oxígeno) y hemodinámico.\n3. Obtener acceso IV si es posible.\n4. Tratar hipoglucemia u otras causas reversibles.",
+      "pie_nodo": "¿Se cuenta con acceso Intravenoso (IV) establecido?",
+      "nota_adicional": "No demorar la terapia inicial intentando conseguir un acceso IV si no se logra rápidamente.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_se_fase2_iv"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_se_fase2_im"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "10-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 0-5 min",
+          "texto": "0-5 min Stabilization phase: Estabilizar vía aérea, respiración, circulación, monitorizar signos vitales y ECG. Tratar hipoglucemia si glucosa <60 mg/dl."
+        }
+      ]
+    },
+    "trat_se_fase2_iv": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "1. Fase de terapia inicial (**5 - 20 minutos**).\n2. Administrar **Lorazepam** IV **0.1 mg/kg** (máx. 4 mg) o **Diazepam** IV **0.15 - 0.2 mg/kg** (máx. 10 mg).\n3. Reevaluar a los 5 minutos; si la crisis persiste, repetir la dosis una sola vez.",
+      "pie_nodo": "¿Cesan las crisis convulsivas?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_se_exito"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_se_fase3"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "10-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 5-20 min IV",
+          "texto": "Opciones equivalentes de primera línea IV: Lorazepam IV (0.1 mg/kg, máx 4 mg/dosis, se puede repetir una vez) o Diazepam IV (0.15-0.2 mg/kg, máx 10 mg/dosis, se puede repetir una vez)."
+        }
+      ]
+    },
+    "trat_se_fase2_im": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "1. Fase de terapia inicial (**5 - 20 minutos**).\n2. Administrar **Midazolam** IM **0.2 mg/kg** (máx. 10 mg para >40kg, 5 mg para 13-40kg).\n3. Alternativas: **Midazolam** bucal/intranasal o **Diazepam** rectal.",
+      "pie_nodo": "¿Cesan las crisis convulsivas?",
+      "nota_adicional": "El Midazolam IM ha demostrado superioridad en efectividad frente al Lorazepam IV cuando no hay un acceso venoso previo establecido (Nivel A de evidencia, Estudio RAMPART).",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_se_exito"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_se_fase3"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "1, 10-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 5-20 min IM/No-IV",
+          "texto": "Midazolam IM es nivel A para prehospitalario sin vía IV (10 mg >40 kg, 5 mg 13-40 kg). Otras alternativas Nivel B: Diazepam rectal, Midazolam intranasal/bucal."
+        }
+      ]
+    },
+    "trat_se_fase3": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "1. Fase de segunda terapia (**20 - 40 minutos**).\n2. Administrar **Levetiracetam** IV (**60 mg/kg**, máx. 4500 mg) O **Valproato sódico** IV (**40 mg/kg**, máx. 3000 mg) O **Fosfenitoína** IV (**20 mg PE/kg**, máx. 1500 mg PE).\n3. Monitorizar esfuerzo respiratorio y signos vitales.",
+      "pie_nodo": "¿Cesan las crisis convulsivas?",
+      "nota_adicional": "Levetiracetam suele preferirse como segunda línea por su rapidez de preparación y menor tasa de efectos adversos cardiorrespiratorios comparado con la fenitoína/fosfenitoína.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_se_exito"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_se_fase4"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "10-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Segunda fase 20-40 min",
+          "texto": "Opciones de segunda línea (administrar como dosis única): Fosfenitoína IV (20 mg PE/kg, máx 1500 mg), Ácido valproico IV (40 mg/kg, máx 3000 mg), Levetiracetam IV (60 mg/kg, máx 4500 mg)."
+        }
+      ]
+    },
+    "trat_se_fase4": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Fase de tercera terapia (**40 - 60 minutos**, Status Refractario).\n2. Considerar repetición de segunda línea o anestésicos (**Tiopental**, **Midazolam**, **Pentobarbital**, o **Propofol**).\n3. Proceder a intubación endotraqueal y traslado a UCI con monitoreo EEG continuo.",
+      "nota_adicional": "El paciente requerirá cuidado neurocrítico exhaustivo. En esta fase la prioridad es detener el daño neuronal mediante supresión de brotes en el EEG.",
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "10-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Tercera fase 40-60 min",
+          "texto": "Fase de tercera terapia (40-60 min). No hay evidencia clara para guiar esta fase. Opciones: repetir terapia de segunda línea o dosis anestésicas de tiopental, midazolam, pentobarbital o propofol (con EEG continuo)."
+        }
+      ]
+    },
+    "trat_se_exito": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Crisis controladas.\n- Monitorizar estrechamente por depresión respiratoria inducida por fármacos.\n- Determinar etiología desencadenante y ajustar pauta de mantenimiento crónica.",
+      "referencias": [
+        {
+          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
+          "url": "https://www.aesnet.org/clinical_resources/guidelines",
+          "paginas": "8, 10",
+          "imagen_evidencia": "TODO_EVIDENCIA: Mención a efectos adversos",
+          "texto": "Vigilar depresión respiratoria, que es el evento adverso clínico más significativo derivado de la terapia anticonvulsivante (benzodiacepinas) y del status epilepticus per se."
+        }
+      ]
+    },
+    "trat_espasmos": {
+      "tipo": "informativo",
+      "texto": "1. Derivar urgentemente a un neurólogo pediatra (idealmente en < **24 horas**).\n2. Iniciar terapia combinada: **Prednisolona** oral a altas dosis + **Vigabatrina**.\n3. Realizar EEG de sueño a las 2 semanas de iniciar tratamiento.",
+      "nota_adicional": "Si el paciente tiene Esclerosis Tuberosa, utilizar Vigabatrina como monoterapia de primera línea. En el resto de casos, la terapia combinada es la elección recomendada.",
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "62-63",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones 6.3.1 a 6.3.6 sobre espasmos infantiles",
+          "texto": "Derivar urgentemente (<24h). Terapia de primera línea: combinación de prednisolona oral en altas dosis y vigabatrina. Si la etiología es Esclerosis Tuberosa, vigabatrina sola como primera línea."
+        }
+      ]
+    },
+    "trat_tcsg": {
+      "tipo": "informativo",
+      "texto": "- Iniciar monoterapia de primera línea.\n- Opciones: **Levetiracetam**, **Lamotrigina**, o **Valproato sódico**.",
+      "nota_adicional": "ADVERTENCIA MHRA: El valproato NO debe iniciarse en mujeres o niñas con potencial fértil a menos que no haya otra alternativa tolerada y se cumpla con un estricto Programa de Prevención de Embarazo. Tampoco en varones < 55 años sin discusión exhaustiva de riesgos de fertilidad.",
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "41-42",
+          "imagen_evidencia": "TODO_EVIDENCIA: Box 2: Medidas de seguridad de MHRA y Recomendación 5.1.1",
+          "texto": "Opciones de primera línea: lamotrigina, levetiracetam o valproato sódico. Cumplir estrictamente con las normativas MHRA para la prescripción de valproato sódico en pacientes menores de 55 años (ambos sexos)."
+        }
+      ]
+    },
+    "trat_ausencias": {
+      "tipo": "informativo",
+      "texto": "- Iniciar monoterapia de primera línea.\n- Fármaco de elección: **Etosuximida**.\n- Alternativas de segunda línea: Valproato sódico, Lamotrigina o Levetiracetam.",
+      "nota_adicional": "Evitar estrictamente el uso de Carbamazepina, Gabapentina, Oxcarbazepina, Fenitoína o Pregabalina, ya que pueden exacerbar las crisis de ausencia y las crisis mioclónicas.",
+      "referencias": [
+        {
+          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "paginas": "48-49",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 5.3 Absence seizures",
+          "texto": "Ofrecer etosuximida como tratamiento de primera línea para crisis de ausencia. Evitar carbamazepina, gabapentina, oxcarbazepina, fenobarbital, fenitoína, pregabalina, tiagabina o vigabatrina por exacerbación de crisis."
+        }
+      ]
+    }
+  }
+}
