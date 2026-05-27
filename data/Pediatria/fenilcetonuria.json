@@ -1,0 +1,295 @@
+{
+  "titulo": "Abordaje de la Deficiencia de Fenilalanina Hidroxilasa (PAH)",
+  "version": "2025",
+  "carpeta_evidencia": "fenilcetonuria",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "MANEJO DE LA DEFICIENCIA DE PAH (PKU)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "1",
+          "imagen_evidencia": "TODO_EVIDENCIA: Encabezado de GeneReviews Arnold G, Vockley J 2025",
+          "texto": "Definición y resumen de las características clínicas de la deficiencia de PAH, incluyendo formas tratadas desde el nacimiento y tardías."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Evaluación Inicial",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_sospecha"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "3",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección Diagnosis GeneReviews",
+          "texto": "Guías recientemente publicadas por la ACMG (Smith et al 2025) para el diagnóstico y manejo de la deficiencia de PAH."
+        }
+      ]
+    },
+    "diag_sospecha": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar resultado de tamizaje neonatal (NBS) mediante espectrometría de masas en tándem (**MS/MS**) realizado entre las **24 y 72 horas** de vida.\n2. Identificar si existe un individuo sintomático (discapacidad intelectual, olor a ratón, eccema, microcefalia).",
+      "pie_nodo": "¿**Resultado de tamizaje alterado o clínica sugerente**?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_bioquimico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "3",
+          "imagen_evidencia": "TODO_EVIDENCIA: Escenario 1 y 2 de diagnóstico",
+          "texto": "El NBS se basa en gotas de sangre seca recolectadas entre las 24-72h post-parto. Los hallazgos clínicos incluyen epilepsia, olor corporal a ratón, eccema y disminución de pigmentación."
+        }
+      ]
+    },
+    "diag_bioquimico": {
+      "tipo": "pregunta",
+      "texto": "1. Realizar análisis de aminoácidos en plasma cuantitativo.\n2. Calcular la relación fenilalanina:tirosina (**Phe:Tyr**).",
+      "pie_nodo": "¿**Phe >120 μmol/L y relación Phe:Tyr ≥3**?",
+      "nota_adicional": "No se debe iniciar la restricción dietética de Phe hasta que se hayan enviado las muestras para las pruebas confirmatorias.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_diferencial"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_descarte"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "4",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios de Biochemical Testing",
+          "texto": "El diagnóstico bioquímico se establece con concentraciones de Phe >120 umol/L y una relación Phe:Tyr ≥3."
+        }
+      ]
+    },
+    "diag_descarte": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de deficiencia de PAH poco probable.\n- Considerar otras causas de hiperfenilalaninemia transitoria o errores innatos del metabolismo.",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "4",
+          "imagen_evidencia": "TODO_EVIDENCIA: Establecimiento del diagnóstico",
+          "texto": "Si no se cumplen los criterios bioquímicos y de relación Phe:Tyr, se deben considerar diagnósticos alternativos."
+        }
+      ]
+    },
+    "diag_diferencial": {
+      "tipo": "pregunta",
+      "texto": "1. Realizar ensayo cuantitativo de pterinas (neopterina y biopterina) en orina o sangre.\n2. Medir actividad de la dihidropteridina reductasa (**DHPR**) en gota de sangre seca.",
+      "pie_nodo": "¿**Defectos en síntesis o reciclaje de biopterina**?",
+      "nota_adicional": "Aproximadamente el **2%** de las hiperfenilalaninemias se deben a deficiencia de **BH4**, la cual requiere un tratamiento distinto (precursores de neurotransmisores).",
+      "opciones": [
+        {
+          "texto": "No (PAH)",
+          "siguiente_nodo": "diag_molecular"
+        },
+        {
+          "texto": "Sí (BH4)",
+          "enlaces": [
+            {
+              "texto": "Ver deficiencia de BH4",
+              "archivo_objetivo": "TODO_LINK_bh4_deficiency.json"
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "4, 9",
+          "imagen_evidencia": "TODO_EVIDENCIA: Diagnóstico diferencial de BH4",
+          "texto": "Es obligatorio descartar defectos en el metabolismo de la biopterina mediante el ensayo de pterinas y actividad de DHPR. Las deficiencias de BH4 representan el 2% de los casos de HPA."
+        }
+      ]
+    },
+    "diag_molecular": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Realizar estudio genético molecular del gen **PAH**.\n- Confirmar variantes patogénicas biallelicas para informar manejo y asesoramiento genético.",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "5, 6",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 1 Molecular Genetic Testing",
+          "texto": "El análisis de secuencia detecta del 95-99% de las variantes patogénicas. Se recomienda para confirmar el diagnóstico y predecir la severidad o respuesta a biopterina."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento y Seguimiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trata_umbral"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "10",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección Management GeneReviews",
+          "texto": "El manejo debe ser coordinado por un centro de especialidad metabólica e idealmente iniciar la dieta en la primera semana de vida."
+        }
+      ]
+    },
+    "trata_umbral": {
+      "tipo": "pregunta",
+      "texto": "Evaluar niveles de fenilalanina (Phe) en sangre sin tratamiento.",
+      "pie_nodo": "¿**Concentración de Phe >360 μmol/L**?",
+      "opciones": [
+        {
+          "texto": "Sí (>360)",
+          "siguiente_nodo": "trata_intensivo"
+        },
+        {
+          "texto": "No (120-360)",
+          "siguiente_nodo": "trata_benigno"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "2, 10",
+          "imagen_evidencia": "TODO_EVIDENCIA: Umbral de tratamiento 360 umol/L",
+          "texto": "Las guías de la ACMG recomiendan tratamiento de por vida para todos los individuos con concentraciones de Phe sin tratamiento >360 umol/L."
+        }
+      ]
+    },
+    "trata_benigno": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: Hiperfenilalaninemia benigna (**HPA**).\n- No requiere restricción dietética inmediata.\n- Realizar monitoreo regular cada **1-2 años** para asegurar que no se cruce el umbral de tratamiento.",
+      "pie_nodo": "Vigilancia estrecha los primeros **2 años** de vida.",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "10",
+          "imagen_evidencia": "TODO_EVIDENCIA: Manejo de HPA benigna",
+          "texto": "En individuos con Phe entre 120 y 360 umol/L, no se recomienda tratamiento inmediato pero sí monitoreo regular hasta al menos los dos años de edad."
+        }
+      ]
+    },
+    "trata_intensivo": {
+      "tipo": "pregunta",
+      "texto": "1. Iniciar dieta restringida en Phe de por vida.\n2. Suplementar con fórmula médica libre de Phe (aminoácidos o glicomacropéptido).\n3. Evitar **Aspartame** (edulcorante artificial).",
+      "pie_nodo": "¿**Paciente adulto con Phe >600 μmol/L a pesar de dieta**?",
+      "imagen": "TODO_IMG: Infografía de alimentos permitidos y prohibidos en PKU",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trata_farmaco_adulto"
+        },
+        {
+          "texto": "No/Pediátrico",
+          "siguiente_nodo": "trata_farmaco_general"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "11, 16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Dieta y Aspartame",
+          "texto": "El pilar del tratamiento es la dieta restringida en Phe y suplementos libres de Phe. Se debe evitar el aspartame ya que se metaboliza en Phe y aspartato."
+        }
+      ]
+    },
+    "trata_farmaco_general": {
+      "tipo": "informativo",
+      "texto": "- Considerar prueba de respuesta a **Sapropterina** (BH4 sintética) o **Sepiapterina**.\n- Dosis máxima de **Sepiapterina**: **60 mg/kg/día**.\n- El objetivo es aumentar la tolerancia a la Phe natural en la dieta.",
+      "nota_adicional": "Entre el **25% y 50%** de los pacientes responden a la Sapropterina.",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 3 Terapias dirigidas",
+          "texto": "La sapropterina es responsiva en el 25-50% de los casos. La sepiapterina tiene mayor biodisponibilidad y se dosifica hasta 60 mg/kg/día."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Ver manejo en embarazo",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trata_embarazo"
+        }
+      ]
+    },
+    "trata_farmaco_adulto": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Evaluar terapia de sustitución enzimática con **Pegvaliase**.\n- Requiere esquema de inducción, titulación y mantenimiento.\n- Monitorear reacciones de hipersensibilidad.",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "12",
+          "imagen_evidencia": "TODO_EVIDENCIA: Uso de Pegvaliase",
+          "texto": "Pegvaliase está aprobado para adultos con niveles de Phe >600 umol/L incontrolados con el manejo existente."
+        }
+      ]
+    },
+    "trata_embarazo": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Preconcepción: Mantener Phe **<360 μmol/L** por **3 meses** previos.\n2. Gestación: Mantener Phe entre **120 y 360 μmol/L**.\n3. Monitorear ingesta de proteínas y nutrientes críticos.",
+      "pie_nodo": "Riesgo elevado de Síndrome de Fenilcetonuria Materna (MPKU).",
+      "nota_adicional": "El MPKU causa microcefalia (**>90%** si Phe >360 sin control), defectos cardíacos congénitos y discapacidad intelectual en el feto.",
+      "imagen": "TODO_IMG: Tabla de riesgos fetales según niveles de Phe materna",
+      "referencias": [
+        {
+          "titulo": "Phenylalanine Hydroxylase Deficiency - GeneReviews",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK1504/",
+          "paginas": "7, 14, 15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Manejo del embarazo y MPKU",
+          "texto": "El mantenimiento de Phe <360 umol/L preconcepcional y entre 120-360 umol/L durante el embarazo es crítico para prevenir el síndrome MPKU."
+        }
+      ]
+    }
+  }
+}
