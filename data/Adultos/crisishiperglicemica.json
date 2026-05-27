@@ -1,0 +1,313 @@
+{
+  "titulo": "Crisis Hiperglicémicas en Adultos (CAD y EHH)",
+  "version": "2024",
+  "carpeta_evidencia": "crisishiperglicemica",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "CRISIS HIPERGLICÉMICAS EN ADULTOS",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1257",
+          "imagen_evidencia": "TODO_EVIDENCIA: Introducción sobre CAD y EHH pag 1257",
+          "texto": "La cetoacidosis diabética (CAD) y el estado hiperglucémico hiperosmolar (EHH) son las dos emergencias hiperglucémicas agudas más graves y potencialmente mortales."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Clasificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_triada"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1261-1262",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 3 - Criterios diagnósticos pag 1261",
+          "texto": "El diagnóstico de CAD debe basarse en tres criterios: hiperglucemia, cetosis y acidosis metabólica."
+        }
+      ]
+    },
+    "diag_triada": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar **Glucosa plasmática**.\n2. Medir **Cetonas** (preferiblemente **beta-hidroxibutirato** en sangre).\n3. Evaluar **Estado Ácido-Base** (pH y bicarbonato).\n4. Calcular **Osmolaridad sérica efectiva** [2xNa + (Glucosa/18)].",
+      "pie_nodo": "¿Cuál es el perfil predominante?",
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1262",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 2 - Criterios diagnósticos detallados",
+          "texto": "Se recomienda la medición directa de beta-hidroxibutirato en sangre (punto de atención o laboratorio) sobre la reacción de nitroprusiato en orina."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "CAD (Cetoacidosis Diabética)",
+          "siguiente_nodo": "diag_cad_severidad"
+        },
+        {
+          "texto": "EHH (Estado Hiperosmolar)",
+          "siguiente_nodo": "diag_ehh_confirmar"
+        }
+      ]
+    },
+    "diag_cad_severidad": {
+      "tipo": "pregunta",
+      "texto": "- **Glucosa** >200 mg/dL (o antecedente de diabetes).\n- **Beta-hidroxibutirato** >=3.0 mmol/L (o cetonuria >=2+).\n- **Acidosis metabólica** (pH <7.3 o HCO3 <18 mmol/L).",
+      "pie_nodo": "¿Estado mental del paciente?",
+      "calculadora_id": "TODO_CALC_anion_gap.json",
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1263",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 2 - Clasificación de severidad CAD",
+          "texto": "La severidad de la CAD se clasifica como leve, moderada o grave según la magnitud de la acidosis metabólica y la presencia de alteración del estado mental."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Alerta (CAD Leve/Moderada)",
+          "siguiente_nodo": "enlace_tratamiento"
+        },
+        {
+          "texto": "Estupor/Coma (CAD Severa)",
+          "siguiente_nodo": "diag_cad_severa"
+        }
+      ]
+    },
+    "diag_cad_severa": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **pH** <7.0.\n- **Bicarbonato** <10 mmol/L.\n- **Anion Gap** elevado.\n- Requiere manejo en **UCI**.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1263, 1264",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 2 - CAD Severa e indicaciones de UCI",
+          "texto": "Individuos con CAD severa o aquellos con estado mental alterado deben ser tratados en la unidad de cuidados intensivos (UCI)."
+        }
+      ]
+    },
+    "diag_ehh_confirmar": {
+      "tipo": "informativo",
+      "texto": "- **Glucosa** >=600 mg/dL.\n- **Osmolaridad efectiva** >300 mOsm/kg.\n- **pH** >=7.3 y **HCO3** >=15 mmol/L.\n- **Cetonas** negativas o levemente positivas.",
+      "pie_nodo": "Proceder a rehidratación agresiva.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1262",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios diagnósticos EHH Figura 2B",
+          "texto": "El EHH se caracteriza por hiperglucemia severa, hiperosmolalidad y deshidratación en ausencia de cetosis o acidosis significativa."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_prioridad_k"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 4 - Tratamiento recomendado",
+          "texto": "El manejo de CAD y EHH incluye la administración de fluidos intravenosos, insulina y electrolitos, así como el tratamiento de la causa desencadenante."
+        }
+      ]
+    },
+    "trat_prioridad_k": {
+      "tipo": "pregunta",
+      "texto": "1. Iniciar **0.9% NaCl** (1.0 L/h inicial según estado volémico).\n2. Obtener niveles de **Potasio (K+)** antes de iniciar insulina.",
+      "pie_nodo": "¿Nivel de **Potasio (K+)** sérico?",
+      "nota_adicional": "La insulina desplaza el potasio al espacio intracelular; iniciarla con hipopotasemia puede causar arritmias fatales.",
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264, 1266",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 4 - Algoritmo de tratamiento (columna Potasio)",
+          "texto": "Se recomienda medir el potasio sérico cada 2-4 h. No iniciar insulina si el potasio es <3.5 mmol/L."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "<3.5 mmol/L",
+          "siguiente_nodo": "trat_k_bajo"
+        },
+        {
+          "texto": "3.5 - 5.0 mmol/L",
+          "siguiente_nodo": "trat_insulina_fase1"
+        },
+        {
+          "texto": ">5.0 mmol/L",
+          "siguiente_nodo": "trat_insulina_directa"
+        }
+      ]
+    },
+    "trat_k_bajo": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- **Diferir el inicio de insulina**.\n- Administrar **20-40 mEq/h de Potasio** hasta que K+ sea >3.5 mmol/L.\n- Monitorizar **K+ cada hora**.",
+      "pie_nodo": "Una vez corregido el K+, iniciar insulina.",
+      "enlaces": [
+        {
+          "texto": "Reiniciar flujo de insulina",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_insulina_fase1"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264, 1266",
+          "imagen_evidencia": "TODO_EVIDENCIA: Manejo de hipopotasemia severa",
+          "texto": "Si el potasio es <3.5 mmol/L, el reemplazo debe comenzar a una tasa de 10-20 mmol/h y la terapia con insulina debe retrasarse hasta que el nivel supere los 3.5 mmol/L."
+        }
+      ]
+    },
+    "trat_insulina_fase1": {
+      "tipo": "informativo",
+      "texto": "- Iniciar **Insulina regular IV** a **0.1 U/kg/h**.\n- Reponer **Potasio**: Añadir 20-30 mEq de K+ en cada litro de solución IV para mantener meta de **4.0-5.0 mmol/L**.\n- Monitorizar **Glucosa capilar cada 1-2 h**.",
+      "imagen": "TODO_IMG: Algoritmo de infusión de insulina 2024",
+      "pie_nodo": "Meta: Descenso de glucosa 50-70 mg/dL por hora.",
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264, 1265",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 4 y sección de Insulina pag 1265",
+          "texto": "La infusión continua de insulina de acción corta a 0.1 unidades/kg/h es la opción preferida."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Glucosa alcanza <250 mg/dL",
+          "siguiente_nodo": "trat_ajuste_dextrosa"
+        }
+      ]
+    },
+    "trat_insulina_directa": {
+      "tipo": "informativo",
+      "texto": "- Iniciar **Insulina regular IV** a **0.1 U/kg/h**.\n- No administrar potasio inicialmente.\n- Checar electrolitos cada 2 h.",
+      "enlaces": [
+        {
+          "texto": "Continuar a ajuste de glucosa",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_ajuste_dextrosa"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264, 1266",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo de potasio >5.0",
+          "texto": "Si el potasio es >5.0 mmol/L, iniciar insulina pero no administrar potasio; checar niveles cada 2 h."
+        }
+      ]
+    },
+    "trat_ajuste_dextrosa": {
+      "tipo": "informativo",
+      "texto": "1. Cambiar solución a **Dextrosa 5% o 10%** con **0.45% NaCl**.\n2. Ajustar infusión de insulina a **0.02-0.05 U/kg/h**.\n3. Mantener glucosa entre **150-200 mg/dL** en CAD o **200-250 mg/dL** en EHH hasta resolución.",
+      "pie_nodo": "¿Se cumplen criterios de resolución?",
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264, 1265",
+          "imagen_evidencia": "TODO_EVIDENCIA: Transición a dextrosa en Figura 4",
+          "texto": "Cuando la glucosa cae por debajo de 250 mg/dL, se debe añadir dextrosa al 5-10% a la infusión salina y reducir la tasa de insulina a 0.05 unidades/kg/h."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_resolucion"
+        }
+      ]
+    },
+    "trat_resolucion": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- **Resolución CAD**: pH >7.3, HCO3 >=18, Cetonas séricas <0.6 mmol/L.\n- **Resolución EHH**: Osmolaridad <300 mOsm/kg, recuperación de conciencia, glucosa <250.\n- **Transición**: Iniciar **Insulina SC** al menos **1-2 h antes** de suspender la infusión IV.",
+      "nota_adicional": "En pacientes insulinopénicos (DM1), calcular dosis total diaria (TDD) usualmente entre 0.5-0.6 U/kg/día.",
+      "enlaces": [
+        {
+          "texto": "Ver protocolo de Transición a Insulina SC",
+          "archivo_objetivo": "TODO_LINK_transicion_insulina.json"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1267",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios de resolución y Figura 5",
+          "texto": "La resolución de la CAD se define como lograr cetonas plasmáticas <0.6 mmol/L y pH venoso >=7.3 o bicarbonato >=18 mmol/L. Es vital permitir un solapamiento de 1-2 h entre la insulina SC e IV."
+        }
+      ]
+    },
+    "enlace_tratamiento": {
+      "tipo": "informativo",
+      "texto": "Paciente estable para inicio de protocolo estándar.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "paginas": "1264",
+          "imagen_evidencia": "TODO_EVIDENCIA: Manejo en unidades no críticas",
+          "texto": "La mayoría de las personas con CAD leve o moderada pueden tratarse en el departamento de emergencias o en una unidad de cuidados intermedios."
+        }
+      ]
+    }
+  }
+}
