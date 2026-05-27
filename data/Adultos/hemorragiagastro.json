@@ -1,0 +1,372 @@
+{
+  "titulo": "Manejo de Hemorragia de Vías Digestivas Altas y Bajas",
+  "version": "2024",
+  "carpeta_evidencia": "hemorragiagastro",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "HEMORRAGIA GASTROINTESTINAL AGUDA (HGIA)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "899",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la introducción sobre la carga de enfermedad de UGIB",
+          "texto": "La hemorragia gastrointestinal es el diagnóstico gastrointestinal más común que requiere hospitalización en EE. UU., con más de 500,000 admisiones anuales."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "tipo": "informativo",
+      "texto": "Diagnóstico y Triaje",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "459-460",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 1 sobre evaluación inicial y estratificación",
+          "texto": "Se debe realizar una historia clínica enfocada, examen físico y evaluación de laboratorio al momento de la presentación para evaluar la gravedad y posible etiología."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluación **ABCDE**.\n2. Identificar forma de presentación: Hematemesis, melena, hematoquecia o rectorragia.\n3. Evaluar estabilidad hemodinámica: **Frecuencia cardíaca**, **Presión Arterial** y perfusión.",
+      "pie_nodo": "¿Existe **Inestabilidad Hemodinámica** o sospecha de origen superior?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_triaje_ugib"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_triaje_lgib"
+        }
+      ],
+      "nota_adicional": "La hematoquecia asociada a inestabilidad hemodinámica sugiere un origen de vías digestivas altas (HVDA) en el 15% de los casos.",
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "459, 462",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del párrafo sobre hematochezia e inestabilidad hemodinámica",
+          "texto": "Aproximadamente el 15% de los pacientes con presunta hemorragia de vías bajas tienen una fuente superior. La hematoquecia con inestabilidad hemodinámica amerita endoscopia superior."
+        }
+      ]
+    },
+    "diag_triaje_ugib": {
+      "tipo": "pregunta",
+      "texto": "Realizar estratificación de riesgo para HVDA.",
+      "pie_nodo": "¿Puntaje de **Glasgow-Blatchford Score (GBS)**?",
+      "calculadora_id": "TODO_CALC_glasgow_blatchford.json",
+      "opciones": [
+        {
+          "texto": "0 a 1 (Riesgo muy bajo)",
+          "siguiente_nodo": "diag_alta_ugib"
+        },
+        {
+          "texto": ">= 2 (Riesgo alto)",
+          "siguiente_nodo": "diag_ingreso_ugib"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "900-901",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 2 con el puntaje de Glasgow-Blatchford",
+          "texto": "Sugerimos la evaluación de riesgo en urgencias para identificar pacientes de muy bajo riesgo (ej. GBS 0-1) que pueden ser egresados con seguimiento externo."
+        }
+      ]
+    },
+    "diag_alta_ugib": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Considerar egreso hospitalario.\n- Seguimiento ambulatorio por Gastroenterología.",
+      "enlaces": [
+        {
+          "texto": "Ver soporte inicial",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_soporte"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "901",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación de riesgo 1",
+          "texto": "Pacientes clasificados como riesgo muy bajo (GBS 0-1) deben ser egresados con seguimiento ambulatorio en lugar de ser admitidos."
+        }
+      ]
+    },
+    "diag_ingreso_ugib": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Hospitalización.\n- Monitorización continua.\n- Preparar para endoscopia.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "905",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección de tiempo de endoscopia",
+          "texto": "Para pacientes hospitalizados con hemorragia gastrointestinal superior, sugerimos endoscopia dentro de las 24 horas tras la presentación."
+        }
+      ]
+    },
+    "diag_triaje_lgib": {
+      "tipo": "pregunta",
+      "texto": "Estratificación de riesgo para Hemorragia de Vías Digestivas Bajas (HVDB).",
+      "pie_nodo": "¿Factores de mal pronóstico (Edad **>60 años**, comorbilidades, creatinina elevada, anemia severa)?",
+      "opciones": [
+        {
+          "texto": "Presentes",
+          "siguiente_nodo": "diag_ingreso_lgib"
+        },
+        {
+          "texto": "Ausentes",
+          "siguiente_nodo": "diag_manej_externo_lgib"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "462, 463",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 3 sobre factores de riesgo para mal pronóstico en LGIB",
+          "texto": "Los factores identificados para mal pronóstico incluyen inestabilidad hemodinámica, edad >60 años, comorbilidades, creatinina elevada y anemia (Hto ≤35%)."
+        }
+      ]
+    },
+    "diag_ingreso_lgib": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Admitir para colonoscopia previa preparación.\n- Considerar angio-TC si el sangrado es masivo y no permite preparación.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "460, 465",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 12 sobre preparación de colon",
+          "texto": "Una vez estable, la colonoscopia debe realizarse tras limpieza adecuada del colon (4-6L de PEG). No se recomienda la colonoscopia sin preparación."
+        }
+      ]
+    },
+    "diag_manej_externo_lgib": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Estudio electivo.\n- Colonoscopia ambulatoria tras purga colonica.",
+      "enlaces": [
+        {
+          "texto": "Ver soporte inicial",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_soporte"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "460",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 15 sobre pacientes de bajo riesgo",
+          "texto": "En pacientes sin características de alto riesgo, la colonoscopia debe realizarse como el siguiente procedimiento disponible tras purga colónica."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "tipo": "informativo",
+      "texto": "Tratamiento y Reanimación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_soporte"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "900",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la lista de declaraciones de la guía sobre tratamiento",
+          "texto": "Resumen de recomendaciones para transfusión, terapia médica pre-endoscópica y hemostasia."
+        }
+      ]
+    },
+    "trat_soporte": {
+      "tipo": "informativo",
+      "texto": "1. Acceso venoso periférico de gran calibre (2 vías).\n2. Expansión de volumen con cristaloides según necesidad.\n3. Transfusión de glóbulos rojos: Meta de **Hemoglobina >7 g/dL**.\n4. Si existe enfermedad cardiovascular severa: Meta **Hemoglobina >8-9 g/dL**.\n5. Suspender **AINEs** de forma inmediata.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_farmacos"
+        }
+      ],
+      "nota_adicional": "Una política restrictiva de transfusión reduce el riesgo de resangrado y mortalidad en comparación con una liberal.",
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "903",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación sobre transfusión de glóbulos rojos",
+          "texto": "Sugerimos una política restrictiva de transfusión con un umbral de 7 g/dL para pacientes con UGIB. En pacientes con enfermedad cardiovascular previa, un umbral de 8 g/dL es razonable."
+        }
+      ]
+    },
+    "trat_farmacos": {
+      "tipo": "informativo",
+      "texto": "- **Eritromicina 250 mg** IV infusión (20-30 min) antes de la endoscopia para mejorar visualización.\n- **Omeprazol 80 mg** IV en bolo seguido de **8 mg/h** en infusión continua (o **40 mg** cada 12h IV) para HVDA sospechada.\n- En pacientes con cirrosis/várices: Iniciar **Octreotida** o **Terlipresina**.",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_endoscopia"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Ver protocolo de Cirrosis",
+          "archivo_objetivo": "TODO_LINK_cirrosis.json"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "903-904, 912",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre eritromicina y dosificación de IBP",
+          "texto": "Sugerimos una infusión de eritromicina antes de la endoscopia. El régimen continuo de IBP recomendado es bolo de 80mg seguido de 8mg/h por 3 días."
+        }
+      ]
+    },
+    "trat_endoscopia": {
+      "tipo": "pregunta",
+      "texto": "- Endoscopia digestiva alta (HVDA) o Colonoscopia (HVDB).\n- Tiempo: Realizar dentro de las primeras **24 horas** tras la presentación.",
+      "pie_nodo": "¿Hallazgo de estigmas de alto riesgo (Forrest Ia, Ib, IIa, IIb)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_hemostasia"
+        },
+        {
+          "texto": "No (Bajo riesgo)",
+          "siguiente_nodo": "trat_egreso_post"
+        }
+      ],
+      "imagen": "TODO_IMG: Clasificación de Forrest para úlceras pépticas",
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "900, 907-908",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 6 sobre terapia endoscópica",
+          "texto": "Recomendamos terapia endoscópica para úlceras con sangrado activo a chorro (spurting), babeo activo (oozing) y vasos visibles no sangrantes."
+        }
+      ]
+    },
+    "trat_hemostasia": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "Realizar terapia endoscópica:\n1. Bipolar/Térmica o Clips.\n2. **Epinefrina** (No usar sola, siempre combinar).\n3. Polvo hemostático **TC-325** en sangrado activo difuso.\n4. **OTSC** en sangrado recurrente.",
+      "pie_nodo": "¿Fallo en el control endoscópico?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_rescate"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_mantenimiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "908-910, 912",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de las recomendaciones 8, 10 y 11 sobre modalidades hemostáticas",
+          "texto": "Recomendamos electrocoagulación bipolar, sonda de calor o etanol. La epinefrina no debe usarse sola. El polvo TC-325 se sugiere para sangrado activo."
+        }
+      ]
+    },
+    "trat_mantenimiento": {
+      "tipo": "informativo",
+      "texto": "- Mantener **IBP alta dosis** (IV o VO) por **72 horas**.\n- Dieta líquida clara precoz.\n- Continuar **IBP 40 mg** cada 12h VO hasta completar **2 semanas** post-endoscopia (en pacientes de alto riesgo).",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_egreso_post"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "911-912",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 13 y 14 sobre terapia post-endoscópica",
+          "texto": "Recomendamos IBP a dosis altas continuamente o intermitentemente por 3 días tras hemostasia exitosa. Sugerimos continuar IBP dos veces al día hasta 2 semanas después."
+        }
+      ]
+    },
+    "trat_rescate": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. **Embolización transcatéter (TAE)** por radiología intervencionista (Opción preferida).\n2. Cirugía de urgencia (Si TAE no está disponible o falla).",
+      "nota_adicional": "La TAE muestra menores complicaciones que la cirugía, aunque el riesgo de resangrado puede ser mayor.",
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding 2021",
+          "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+          "paginas": "900, 914",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 16 sobre falla de terapia endoscópica",
+          "texto": "Sugerimos que los pacientes que han fallado a la terapia endoscópica sean tratados a continuación con embolización arterial transcatéter."
+        }
+      ]
+    },
+    "trat_egreso_post": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar **IBP** dosis estándar VO.\n- Evaluar erradicación de **H. pylori** en HVDA.\n- Reiniciar antiagregación (**Aspirina**) para prevención secundaria lo antes posible (idealmente en **<7 días**) una vez lograda la hemostasia.",
+      "referencias": [
+        {
+          "titulo": "ACG Clinical Guideline: Management of Patients With Acute Lower Gastrointestinal Bleeding 2016",
+          "url": "https://journals.lww.com/ajg/fulltext/2016/03000/acg_clinical_guideline__management_of_patients.12.aspx",
+          "paginas": "461, 471",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación 27 sobre reinicio de antiagregantes",
+          "texto": "La terapia antiplaquetaria con agentes distintos a la aspirina debe reanudarse lo antes posible y al menos dentro de los 7 días (la aspirina no debe descontinuarse)."
+        }
+      ]
+    }
+  }
+}
