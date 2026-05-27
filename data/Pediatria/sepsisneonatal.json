@@ -1,0 +1,541 @@
+{
+  "titulo": "Sepsis Neonatal (EOS y LOS)",
+  "version": "2025",
+  "carpeta_evidencia": "sepsisneonatal",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "SEPSIS NEONATAL",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_paso_1"
+        }
+      ]
+    },
+    "diag_paso_1": {
+      "tipo": "pregunta",
+      "texto": "1. Estabilización hemodinámica inicial.\n2. Evaluar signos clínicos (inestabilidad térmica, distrés respiratorio, letargia, mala alimentación, taquicardia).\n3. Revisar historia obstétrica y factores de riesgo maternos (colonización por SGB, rotura prematura de membranas, fiebre materna, corioamnionitis).",
+      "pie_nodo": "¿Cuál es el tiempo de inicio del cuadro clínico o la sospecha de infección?",
+      "nota_adicional": "La presentación clínica es inespecífica. Las alteraciones de la frecuencia cardíaca con variabilidad disminuida pueden preceder el diagnóstico clínico por horas o días.",
+      "opciones": [
+        {
+          "texto": "≤ 72 horas de vida (Sepsis Temprana - EOS)",
+          "siguiente_nodo": "diag_eos_edad_gestacional"
+        },
+        {
+          "texto": "> 72 horas de vida (Sepsis Tardía - LOS)",
+          "siguiente_nodo": "diag_los"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "2, 5",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de definición EOS vs LOS y presentación clínica",
+          "texto": "EOS se define como infección en los primeros 7 días (o <72h si están hospitalizados desde el nacimiento). LOS ocurre después de las 72h. Presentación clínica es inespecífica; la alteración de la frecuencia cardíaca puede preceder el diagnóstico de LOS por horas o días."
+        }
+      ]
+    },
+    "diag_eos_edad_gestacional": {
+      "tipo": "pregunta",
+      "texto": "1. Confirmar factores de riesgo prenatales o intraparto.\n2. Estratificar el abordaje diagnóstico según la inmadurez inmunológica.",
+      "pie_nodo": "¿Cuál es la edad gestacional del neonato?",
+      "opciones": [
+        {
+          "texto": "≥ 35 semanas",
+          "siguiente_nodo": "diag_eos_termino"
+        },
+        {
+          "texto": "< 35 semanas (Prematuro)",
+          "siguiente_nodo": "diag_eos_prematuro"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "5, 7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte estratificación de guías de la AAP por edad gestacional",
+          "texto": "Las guías actualizadas de la AAP recomiendan enfoques diferentes para el manejo de neonatos con riesgo de EOS nacidos a ≥35 semanas de gestación respecto a los nacidos a ≤34 6/7 semanas."
+        }
+      ]
+    },
+    "diag_eos_termino": {
+      "tipo": "pregunta",
+      "texto": "- Realizar evaluación exhaustiva del estado clínico actual del neonato.",
+      "pie_nodo": "¿El neonato presenta signos de enfermedad clínica o inestabilidad grave al nacer (Ill-appearing)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_eos_termino_ill"
+        },
+        {
+          "texto": "No (Aparentemente sano)",
+          "siguiente_nodo": "diag_eos_termino_well"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de Enhanced Observation clinical condition",
+          "texto": "Evaluación clínica primaria: los neonatos que nacen con apariencia de enfermedad tienen alto riesgo de EOS y reciben tratamiento empírico. Los aparentemente sanos pueden ser observados."
+        }
+      ]
+    },
+    "diag_eos_termino_ill": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Obtener **Hemocultivo** (volumen mínimo recomendado de **1 mL**).\n- Realizar Punción Lumbar para cultivo de LCR (si el estado hemodinámico lo permite y no retrasa el inicio del tratamiento).\n- Iniciar antibioticoterapia empírica inmediatamente.",
+      "nota_adicional": "Un hemocultivo positivo es el estándar de oro, pero su negatividad no descarta la sepsis. Un volumen de 1 mL optimiza la detección incluso con bacteriemias muy bajas (1-10 CFU/mL).",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7, 12, 13",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte con recomendaciones de hemocultivo y punción lumbar en neonatos sintomáticos",
+          "texto": "Neonatos enfermos al nacer reciben antibióticos empíricos tras obtener hemocultivo (mínimo 1 mL de volumen para óptima detección). La punción lumbar se indica en sintomáticos de alto riesgo si la condición lo permite."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Sepsis Temprana (EOS)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_eos"
+        }
+      ]
+    },
+    "diag_eos_termino_well": {
+      "tipo": "pregunta",
+      "texto": "- Utilizar herramienta de estratificación de riesgo categórico o multivariado.\n- Evaluar factores: Temperatura materna, estado de Estreptococo del Grupo B (SGB), tiempo de rotura de membranas (ROM), e idoneidad de la profilaxis antibiótica intraparto (IAP).",
+      "calculadora_id": "TODO_CALC_neonatalsepsiscalculator.json",
+      "pie_nodo": "¿Qué nivel de riesgo arroja la calculadora de Sepsis Neonatal Temprana (EOS Calculator)?",
+      "opciones": [
+        {
+          "texto": "Alto riesgo (Recomendación: Hemocultivo + Antibióticos empíricos)",
+          "siguiente_nodo": "diag_eos_calculadora_alto"
+        },
+        {
+          "texto": "Riesgo intermedio (Recomendación: Hemocultivo + Observación)",
+          "siguiente_nodo": "diag_eos_calculadora_intermedio"
+        },
+        {
+          "texto": "Bajo riesgo (Recomendación: Solo observación / Cuidado de rutina)",
+          "siguiente_nodo": "diag_eos_calculadora_bajo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "6-7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del Multivariate Risk Assessment (Neonatal Early-Onset Sepsis Calculator)",
+          "texto": "El uso de la Calculadora de Sepsis Temprana Neonatal evalúa factores objetivos como temperatura intraparto, estado de colonización materna por SGB, duración de la rotura de membranas y profilaxis antibiótica intraparto."
+        }
+      ]
+    },
+    "diag_eos_calculadora_alto": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Obtener **Hemocultivo**.\n- Iniciar antibioticoterapia empírica sin demoras.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Sepsis Temprana (EOS)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_eos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de indicación de tratamiento empírico para riesgo alto",
+          "texto": "Según la calculadora, neonatos con riesgo de EOS estimado en ≥ 3 por 1000 nacidos vivos deben ser tratados empíricamente con antibióticos tras obtener hemocultivo."
+        }
+      ]
+    },
+    "diag_eos_calculadora_intermedio": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Obtener **Hemocultivo**.\n- Mantener en observación clínica seriada cada **4 a 6 horas** durante las primeras **48 horas** de vida.\n- NO iniciar antibióticos empíricos a menos que desarrolle signos clínicos de enfermedad.",
+      "nota_adicional": "El tratamiento antibiótico innecesario en neonatos aumenta el riesgo de disbiosis, enterocolitis necrotizante (NEC) y displasia broncopulmonar.",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "5, 7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de riesgos por antibióticos empíricos innecesarios y pautas de monitorización",
+          "texto": "Infantes con riesgo ≥ 1 por 1000 deben ser observados clínicamente e investigados con hemocultivo. El tratamiento antibiótico innecesario es factor de riesgo para disbiosis, enterocolitis necrotizante (NEC) y displasia broncopulmonar."
+        }
+      ]
+    },
+    "diag_eos_calculadora_bajo": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Proporcionar cuidado neonatal de rutina.\n- Fomentar lactancia materna y alta hospitalaria temprana si cumple el resto de los criterios.",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre la reducción de riesgo en neonatos sanos a término",
+          "texto": "Los lactantes a término y prematuros tardíos con apariencia sana al nacer tienen una reducción del 60-70% en el riesgo de EOS, permitiendo observación sin requerir mayor intervención."
+        }
+      ]
+    },
+    "diag_eos_prematuro": {
+      "tipo": "pregunta",
+      "texto": "- El riesgo de EOS en neonatos < 35 semanas se determina por las circunstancias del nacimiento.",
+      "pie_nodo": "¿El nacimiento fue por cesárea debido a indicaciones maternas NO infecciosas (ej. preeclampsia, insuficiencia placentaria) SIN trabajo de parto ni rotura de membranas antes del parto?",
+      "opciones": [
+        {
+          "texto": "Sí (Circunstancias de bajo riesgo)",
+          "siguiente_nodo": "diag_eos_prematuro_bajo"
+        },
+        {
+          "texto": "No (Circunstancias de alto riesgo: Trabajo de parto prematuro, PPROM, Corioamnionitis)",
+          "siguiente_nodo": "diag_eos_prematuro_alto"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7-8",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de evaluación para neonatos <35 semanas (Table 1)",
+          "texto": "El predictor más fuerte de EOS es la edad gestacional. Se debe distinguir a los prematuros de bajo riesgo de los de alto riesgo evaluando detalladamente las circunstancias del parto prematuro."
+        }
+      ]
+    },
+    "diag_eos_prematuro_bajo": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Realizar monitorización clínica estrecha.\n- Tomar hemocultivo solo si la transición clínica es dudosa.\n- No se recomiendan los antibióticos empíricos de forma mandatoria.",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7-8",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de recomendaciones para Low-Risk Preterm Infants",
+          "texto": "Bajo riesgo: indicaciones maternas no infecciosas (preeclampsia, insuficiencia placentaria), parto por cesárea, ausencia de trabajo de parto o rotura de membranas. Requieren monitorización clínica sin antibióticos empíricos obligatorios."
+        }
+      ]
+    },
+    "diag_eos_prematuro_alto": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Obtener **Hemocultivo**.\n- Obtener LCR si la condición clínica lo permite.\n- Iniciar antibioticoterapia empírica de manera inmediata.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Sepsis Temprana (EOS)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_eos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "8",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de recomendaciones para High-Risk Preterm Infants",
+          "texto": "Alto riesgo: incompetencia cervical, trabajo de parto prematuro, PPROM, corioamnionitis. Estos neonatos deben someterse a evaluación para EOS con hemocultivo y tratamiento antibiótico empírico."
+        }
+      ]
+    },
+    "diag_los": {
+      "tipo": "pregunta",
+      "texto": "- Revisar historial por permanencia prolongada en UCIN.\n- Identificar fuentes nosocomiales (Catéteres venosos centrales, nutrición parenteral, ventilación mecánica).",
+      "pie_nodo": "¿El paciente presenta clínica sugerente de sepsis o deterioro agudo (ej. apneas nuevas, bradicardia, inestabilidad glucémica, distermia)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_los_workup"
+        },
+        {
+          "texto": "No, se trata de una anomalía aislada de laboratorio u otro motivo",
+          "siguiente_nodo": "diag_los_observar"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "3",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de etiología y transmisión de LOS",
+          "texto": "LOS es usualmente causada por organismos transmitidos horizontalmente (nosocomiales). Catéteres venosos, dispositivos médicos invasivos y nutrición parenteral son fuentes comunes de exposición."
+        }
+      ]
+    },
+    "diag_los_observar": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Vigilar clínicamente de cerca.\n- Repetir laboratorios en **12 a 24 horas** si persiste la duda.\n- No iniciar antibióticos de manera profiláctica sin clínica evidente.",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "7, 15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre observación para evitar intervenciones innecesarias",
+          "texto": "Se recomienda la observación clínica cuidadosa y evitar el uso generalizado de antibióticos empíricos si el neonato no presenta un deterioro o síntomas consistentes con sepsis clínica real."
+        }
+      ]
+    },
+    "diag_los_workup": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Tomar **Hemocultivo** (Asegurar muestra central a través de catéter venoso y periférica).\n- Realizar **Punción Lumbar** rutinariamente.\n- Obtener **Urocultivo** (vía punción suprapúbica o cateterismo).\n- Extraer panel de biomarcadores: Biometría hemática completa (índice Inmaduros:Totales [I:T] > **0.22**), Proteína C Reactiva (PCR) seriada y Procalcitonina (PCT).",
+      "nota_adicional": "En la sepsis de inicio tardío (LOS), la incidencia de meningitis asociada es significativamente mayor (1-12%), por lo que la punción lumbar y el urocultivo son estudios mandatarios, a diferencia de la EOS donde el urocultivo rutinario no se indica inicialmente.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Sepsis Tardía (LOS)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_los"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "13, 16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de indicaciones de punción lumbar y urocultivo en LOS",
+          "texto": "En LOS, la punción lumbar debe ser parte de la evaluación rutinaria debido a que la meningitis (1-12%) puede ocurrir sin sepsis hematógena evidente. El urocultivo debe obtenerse rutinariamente. Un índice I:T > 0.22 en prematuros tiene valor predictivo."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_inicio"
+        }
+      ]
+    },
+    "trat_inicio": {
+      "tipo": "pregunta",
+      "texto": "1. Garantizar permeabilidad de la vía aérea y oxigenación adecuada.\n2. Administrar bolos de cristaloides a razón de **10-20 mL/kg** si hay signos de choque (hipotensión, pobre perfusión).\n3. Considerar inicio de inotrópicos si el choque es refractario a fluidos.",
+      "pie_nodo": "¿Qué subtipo de sepsis neonatal se abordará empíricamente?",
+      "opciones": [
+        {
+          "texto": "Sepsis Temprana (EOS) - Inicio ≤ 72h",
+          "siguiente_nodo": "trat_eos"
+        },
+        {
+          "texto": "Sepsis Tardía (LOS) - Inicio > 72h",
+          "siguiente_nodo": "trat_los"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "2, 15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del manejo hemodinámico y de choque séptico neonatal",
+          "texto": "El manejo del choque séptico y disfunción multiorgánica requiere resucitación adecuada con volumen (fluidos intravenosos) y manejo urgente con vasopresores/inotrópicos para lograr la estabilización hemodinámica."
+        }
+      ]
+    },
+    "trat_eos": {
+      "tipo": "pregunta",
+      "texto": "- Iniciar terapia endovenosa empírica con **Ampicilina** + **Gentamicina**.\n- Este esquema cubre los principales patógenos: Streptococcus del grupo B (SGB), Escherichia coli y Listeria monocytogenes.",
+      "nota_adicional": "Se deben EVITAR las cefalosporinas de tercera generación como primera línea empírica ya que aumentan el riesgo de resistencia antimicrobiana e infecciones fúngicas invasivas, excepto si se sospecha fuertemente de una infección del SNC.",
+      "pie_nodo": "¿Existen hallazgos clínicos o en LCR de Meningitis por microorganismos Gram-negativos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_eos_meningitis"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_eos_reevaluar"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "15-16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de esquemas empíricos en EOS",
+          "texto": "Tratamiento empírico inicial para sospecha de EOS: combinación de Ampicilina y un aminoglucósido (ej. gentamicina). Las cefalosporinas de tercera generación deben evitarse rutinariamente por aumentar el riesgo de resistencia y de infecciones fúngicas invasivas."
+        },
+        {
+          "titulo": "Progress in Diagnosis and Treatment of Neonatal Sepsis: A Review Article (J Nepal Med Assoc 2022)",
+          "url": "",
+          "paginas": "321",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte con sugerencia de Ampicilina y gentamicina empíricos",
+          "texto": "La combinación de ampicilina y gentamicina es efectiva para tratar la mayoría de los organismos comunes implicados en la sepsis temprana."
+        }
+      ]
+    },
+    "trat_eos_meningitis": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Añadir **Cefotaxima** IV al régimen de Ampicilina y Gentamicina.\n- Ajustar tratamiento según el resultado del antibiograma una vez disponible el cultivo.",
+      "siguiente_nodo": "trat_eos_reevaluar",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre adición de cefalosporina en sospecha de meningitis Gram-negativa",
+          "texto": "Si se sospecha firmemente de meningitis por microorganismos Gram-negativos, se debe añadir una cefalosporina de tercera o cuarta generación (ej. cefotaxima) al régimen."
+        }
+      ]
+    },
+    "trat_eos_reevaluar": {
+      "tipo": "pregunta",
+      "texto": "- Mantener vigilancia estrecha del neonato en la unidad correspondiente.\n- Revisar crecimiento microbiológico en cultivos.",
+      "pie_nodo": "¿Resultados de los hemocultivos y clínica a las 36-48 horas?",
+      "opciones": [
+        {
+          "texto": "Cultivos Negativos y Neonato asintomático / mejorado",
+          "siguiente_nodo": "trat_suspender_exito"
+        },
+        {
+          "texto": "Cultivo Positivo (Sepsis Confirmada)",
+          "siguiente_nodo": "trat_continuar_dirigido"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre evaluación de hemocultivos a las 36-48 horas",
+          "texto": "Una vez que los hemocultivos reportan negatividad tras 36-48 horas de incubación, se recomienda la evaluación para el cese de la terapia antimicrobiana, salvo evidencia de infección de sitio específico."
+        }
+      ]
+    },
+    "trat_los": {
+      "tipo": "pregunta",
+      "texto": "1. Identificar el entorno probable de contagio para guiar cobertura empírica.\n2. Considerar retirar catéteres venosos centrales sospechosos.",
+      "pie_nodo": "¿Es una sepsis nosocomial originada en la UCIN (alta prevalencia de Estafilococo Coagulasa Negativo [SCoN] y Gram-negativos hospitalarios) o adquirida en comunidad?",
+      "opciones": [
+        {
+          "texto": "Sepsis Nosocomial (Adquirida en UCIN)",
+          "siguiente_nodo": "trat_los_nosocomial"
+        },
+        {
+          "texto": "Sepsis Comunitaria",
+          "siguiente_nodo": "trat_los_comunitaria"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre elección empírica en LOS por origen",
+          "texto": "La elección del tratamiento inicial para LOS depende directamente de factores como el origen (adquisición en comunidad vs nosocomial). Los principales microorganismos involucrados son CoNS, S. aureus y bacterias Gram-negativas."
+        }
+      ]
+    },
+    "trat_los_comunitaria": {
+      "tipo": "informativo",
+      "texto": "- Iniciar empíricamente **Ampicilina** IV + **Gentamicina** IV.\n- Si existe alta sospecha de meningitis comunitaria, evaluar agregar **Cefotaxima** IV.",
+      "siguiente_nodo": "trat_eos_reevaluar",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de tratamiento para LOS adquirida en comunidad",
+          "texto": "El tratamiento inicial sugerido para sepsis tardía adquirida en la comunidad típicamente incluye un beta-lactámico (usualmente ampicilina) junto a un aminoglucósido. Cefotaxima se añade al haber sospecha clínica de meningitis."
+        }
+      ]
+    },
+    "trat_los_nosocomial": {
+      "tipo": "pregunta",
+      "texto": "- Administrar **Vancomicina** IV + **Gentamicina** IV (o Amikacina).\n- Opcional: Reemplazar vancomicina por beta-lactámico antiestafilocócico (**Nafcilina**) si la epidemiología local lo permite y no hay altos índices de SARM.",
+      "pie_nodo": "¿El neonato presenta factores de altísimo riesgo fúngico (Muy Bajo Peso al Nacer <1000g, nutrición parenteral prolongada, catéter venoso central crónico, exposición a cefalosporinas de 3era generación) con shock refractario?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_los_fungico"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_eos_reevaluar"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del tratamiento para LOS nosocomial",
+          "texto": "En la configuración de una sepsis nosocomial, dadas las altas tasas por CoNS (resistentes a beta-lactámicos), la vancomicina (o nafcilina) combinada con un aminoglucósido (gentamicina o amikacina) es considerada una elección inicial razonable."
+        }
+      ]
+    },
+    "trat_los_fungico": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Añadir terapia antifúngica empírica inmediata con **Anfotericina B** desoxicolato IV.\n- Retirar el catéter venoso central sin excepción si se sospecha candidemia o se aísla Candida spp.",
+      "nota_adicional": "Infecciones por Candida (ej. C. albicans, C. parapsilosis y la emergente C. auris) causan alta morbimortalidad en extremos prematuros de la UCIN.",
+      "siguiente_nodo": "trat_eos_reevaluar",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "3, 4, 16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de indicaciones sobre infección por Candida en VLBW",
+          "texto": "Si se sospecha fuertemente la presencia de Candida spp. (especialmente en pacientes VLBW con exposición prolongada a antibióticos y CVC), se recomienda la terapia empírica inicial con Anfotericina B desoxicolato y debe retirarse/limitarse el uso del catéter."
+        }
+      ]
+    },
+    "trat_continuar_dirigido": {
+      "tipo": "informativo",
+      "texto": "1. Escalar o desescalar el espectro antibiótico basándose en la sensibilidad del antibiograma de manera estricta.\n2. Completar curso general de tratamiento:\n- Bacteriemia sin foco claro: **7 a 10 días**.\n- Meningitis confirmada: **14 a 21 días**.\n- Osteomielitis/Infección profunda: **3 a 4 semanas** mínimo.",
+      "nota_adicional": "Vigilar nefrotoxicidad y ototoxicidad si se mantienen aminoglucósidos o vancomicina. Considerar niveles séricos valle de vancomicina si está en uso.",
+      "referencias": [
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre duración del tratamiento dirigido",
+          "texto": "Ciertos expertos proponen que un curso de 10 días (7-10 días) es suficiente para bacteriemia general en la mayoría de los casos, extendiéndose hacia 2 a 3 semanas (14-21 días) o más para infecciones fúngicas o de Gram-negativos detectadas en sangre o LCR."
+        }
+      ]
+    },
+    "trat_suspender_exito": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- **Suspender tratamiento antibiótico de inmediato** a las 36-48 horas de cultivos negativos.\n- La normalidad clínica respaldada por cultivos y PCR seriada en descenso exime de continuar la pauta antibiótica.",
+      "referencias": [
+        {
+          "titulo": "AAP Management of Neonates with Suspected or Proven Early-Onset Bacterial Sepsis",
+          "url": "https://publications.aap.org/pediatrics/article/142/6/e20182894/38531",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de guías AAP sobre suspensión a las 36-48 h"
+        },
+        {
+          "titulo": "Neonatal Sepsis: A Comprehensive Review (Antibiotics 2025)",
+          "url": "https://doi.org/10.3390/antibiotics14010006",
+          "paginas": "15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre suspensión terapéutica por hemocultivo negativo",
+          "texto": "Si los hemocultivos reportan resultado negativo en el transcurso de 36-48 horas de incubación, se recomienda inequívocamente el cese temprano de la antibioticoterapia en el infante, en ausencia de enfermedad de sitio específico."
+        }
+      ]
+    }
+  }
+}
