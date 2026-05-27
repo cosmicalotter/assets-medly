@@ -1,0 +1,415 @@
+{
+  "titulo": "Evaluación y Tratamiento de Síndromes Coronarios Agudos (SCA)",
+  "version": "2023-2024",
+  "carpeta_evidencia": "sindromecoronario",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Algoritmo de Toma de Decisiones Clínicas: Síndrome Coronario Agudo",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "9",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1. Ilustración central sobre el espectro de los SCA.",
+          "texto": "Los síndromes coronarios agudos (SCA) engloban un espectro de entidades que incluyen a pacientes que presentan cambios recientes en los signos o síntomas clínicos, con o sin cambios en el electrocardiograma de 12 derivaciones (ECG) y con o sin elevaciones agudas de la concentración de troponina cardiaca."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico Clínico Inicial",
+      "opciones": [
+        {
+          "texto": "Evaluación de Dolor Torácico",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 4. Perspectiva general del triaje inicial y diagnóstico.",
+          "texto": "El dolor torácico agudo es el síntoma principal que lleva a considerar con prontitud un diagnóstico clínico de SCA y a iniciar pruebas diagnósticas siguiendo algoritmos específicos."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar y estabilizar ABCDE.\n2. Adquirir e interpretar un **ECG de 12 derivaciones** en los primeros **10 minutos** del contacto médico.\n3. Extraer muestra sanguínea para medición de troponina (preferentemente **hs-cTn**).",
+      "pie_nodo": "¿El ECG inicial muestra **elevación persistente del segmento ST** o un patrón equivalente (ej. nuevo bloqueo de rama izquierda)?",
+      "nota_adicional": "El dolor torácico puede ser atípico en mujeres, ancianos y pacientes con diabetes. Se debe evitar el uso del término 'atípico' y categorizar el dolor como de origen cardíaco, posiblemente cardíaco o no cardíaco.",
+      "opciones": [
+        {
+          "texto": "Sí (Sospecha de IAMCEST)",
+          "siguiente_nodo": "diag_iamcest"
+        },
+        {
+          "texto": "No (Sospecha de SCASEST)",
+          "siguiente_nodo": "diag_scasest"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001029",
+          "paginas": "e381-e382",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo de manejo del dolor torácico dirigido por ECG.",
+          "texto": "En todos los pacientes que presentan dolor torácico agudo... se debe adquirir y revisar un ECG para descartar STEMI dentro de los 10 minutos de la llegada."
+        },
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "18",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 1. Recomendaciones sobre herramientas clínicas y diagnósticas.",
+          "texto": "Se recomienda el registro y la interpretación del ECG lo antes posible (< 10 min) durante el PCM."
+        }
+      ]
+    },
+    "diag_iamcest": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico presuntivo de IAMCEST.\n- Iniciar monitorización electrocardiográfica continua.\n- Tener desfibrilador disponible inmediatamente.",
+      "pie_nodo": "Proceder con la activación inmediata de la red de reperfusión coronaria.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento IAMCEST",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_iamcest"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "18",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 1. Recomendaciones sobre ECG y monitorización.",
+          "texto": "Se recomienda la monitorización electrocardiográfica continua y la disponibilidad de un desfibrilador tan pronto como sea posible para todos los pacientes con sospecha de IAMCEST."
+        }
+      ]
+    },
+    "diag_scasest": {
+      "tipo": "pregunta",
+      "texto": "1. Aplicar vía de decisión clínica (CDP) usando escalas de riesgo (ej. HEART, GRACE).\n2. Utilizar el algoritmo de la ESC de 0 h / 1 h o 0 h / 2 h apoyado en la medición de **hs-cTn**.",
+      "pie_nodo": "¿Cuál es el resultado de la clasificación según el delta y niveles absolutos de hs-cTn?",
+      "nota_adicional": "El uso de algoritmos rápidos permite el alta segura de una gran proporción de pacientes (rule-out) o la derivación expedita a monitorización invasiva (rule-in), minimizando estancias hospitalarias prolongadas.",
+      "calculadora_id": "TODO_CALC_GRACE_Score.json",
+      "imagen": "TODO_IMG: Algoritmo 0h/1h de la ESC para descarte o confirmación de SCASEST.",
+      "opciones": [
+        {
+          "texto": "Regla de descarte (Rule-out)",
+          "siguiente_nodo": "diag_rule_out"
+        },
+        {
+          "texto": "Zona de observación",
+          "siguiente_nodo": "diag_observacion"
+        },
+        {
+          "texto": "Regla de confirmación (Rule-in)",
+          "siguiente_nodo": "diag_rule_in"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "20",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla sobre pruebas de sangre y biomarcadores.",
+          "texto": "Se recomienda emplear los algoritmos de la ESC con mediciones seriadas de hs-cTn (0 h/1 h o 0 h/2 h) para confirmar o descartar el IAMSEST."
+        }
+      ]
+    },
+    "diag_rule_out": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de IAM excluido con alta confiabilidad (VNP > 99%).\n- El paciente es de bajo riesgo (MACE a 30 días < 1%).",
+      "pie_nodo": "Considere el alta domiciliaria temprana. Evalúe pruebas ambulatorias (angio-TAC coronario o prueba de estrés) según persistencia de síntomas.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "21",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 3.3.4.1.1 sobre Descartar.",
+          "texto": "El valor predictivo negativo para el infarto de miocardio en pacientes en los que se descartó el diagnóstico (asignados a la vía 'descartar') superó el 99%."
+        }
+      ]
+    },
+    "diag_observacion": {
+      "tipo": "informativo",
+      "texto": "- Mantener al paciente en observación clínica en el servicio de urgencias.\n- Realizar Ecocardiografía transtorácica urgente.\n- Repetir medición de **hs-cTn a las 3 h**.",
+      "pie_nodo": "Si la ecocardiografía o la hs-cTn a las 3 horas indican isquemia aguda, derivar a regla de confirmación. De lo contrario, proceder a evaluación complementaria.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "21",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 3.3.4.1.3. sobre la vía de Observación.",
+          "texto": "Los pacientes que no cumplen los criterios de descarte o confirmación del diagnóstico deben permanecer en observación... se recomienda una tercera determinación de cTn a las 3 h (± ecocardiograma) como siguiente paso."
+        }
+      ]
+    },
+    "diag_rule_in": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de Infarto de Miocardio Sin Elevación del ST (IAMSEST) confirmado.\n- Solicitar traslado a Unidad de Cuidados Intensivos Cardiológicos (UCCI/UCC).",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento SCASEST",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_scasest_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "21",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 3.3.4.1.2 sobre Confirmar.",
+          "texto": "La gran mayoría de los pacientes seleccionados para el grupo de confirmación del diagnóstico requieren ingreso hospitalario y coronariografía invasiva."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento Integral y Reperfusión",
+      "opciones": [
+        {
+          "texto": "Seleccionar Escenario Clínico",
+          "siguiente_nodo": "trat_inicio_seleccion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Título de la sección 5 sobre Tratamiento en fase aguda.",
+          "texto": "Tratamiento en la fase aguda de los pacientes con síndrome coronario agudo."
+        }
+      ]
+    },
+    "trat_inicio_seleccion": {
+      "tipo": "pregunta",
+      "texto": "Seleccione el síndrome clínico para iniciar el algoritmo de tratamiento y reperfusión:",
+      "pie_nodo": "¿El paciente presenta IAMCEST o SCASEST?",
+      "opciones": [
+        {
+          "texto": "IAMCEST",
+          "siguiente_nodo": "trat_iamcest"
+        },
+        {
+          "texto": "SCASEST",
+          "siguiente_nodo": "trat_scasest_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 5.1 Selección de estrategia invasiva.",
+          "texto": "Dependiendo de la evaluación electrocardiográfica inicial... los pacientes con sospecha de SCA se clasifican como: Pacientes con diagnóstico inicial de IAMCEST o Pacientes con diagnóstico inicial de SCASEST."
+        }
+      ]
+    },
+    "trat_iamcest": {
+      "tipo": "pregunta",
+      "texto": "- Administrar oxígeno suplementario solo si **SaO2 < 90%**.\n- Administrar analgesia si hay dolor intenso (ej. **Morfina 5-10 mg** IV).\n- Iniciar Terapia Antiagregante Plaquetaria Doble (DAPT): **Aspirina 150-300 mg** VO y un inhibidor P2Y12 potente (**Prasugrel 60 mg** o **Ticagrelor 180 mg** VO).",
+      "pie_nodo": "¿Es factible realizar una Intervención Coronaria Percutánea (ICP) primaria en los primeros **120 minutos** desde el diagnóstico?",
+      "nota_adicional": "Los opiáceos IV pueden retrasar la absorción y disminuir la efectividad de los antiagregantes orales; úselos de forma prudente.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_iamcest_icp"
+        },
+        {
+          "texto": "No (Retraso anticipado > 120 min)",
+          "siguiente_nodo": "trat_iamcest_fibrinolisis"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "25-27",
+          "imagen_evidencia": "TODO_EVIDENCIA: Secciones 4.2.2.1, 4.2.2.3, y Figura 7 sobre tiempos isquémicos.",
+          "texto": "Se recomienda la administración de oxígeno a los pacientes con SCA e hipoxemia (saturación de oxígeno < 90%). Se debe considerar morfina para alivio del dolor. Estrategia de reperfusión: ICP si es posible en los primeros 120 min."
+        }
+      ]
+    },
+    "trat_iamcest_icp": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Trasladar directamente a la sala de hemodinámica (evitar el paso por Urgencias/UCI si el centro tiene ICP 24/7).\n- Iniciar anticoagulación parenteral en sala: **Heparina no fraccionada (HNF) 70-100 UI/kg IV** en bolo (o Enoxaparina/Bivalirudina).\n- Realizar ICP primaria usando abordaje radial sistémico y Stents Farmacoactivos (SFA).",
+      "nota_adicional": "Si la angiografía muestra arterias coronarias sin obstrucción (< 50%), evalúe posibles causas de MINOCA usando imagen intracoronaria y considere Resonancia Magnética Cardíaca (RMC).",
+      "pie_nodo": "Mantener DAPT como estándar durante **12 meses** post-SCA, ajustando según el riesgo isquémico y hemorrágico (ARC-HBR).",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "34-50",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 6 de dosis de anticoagulantes y Tabla 11 sobre acceso radial.",
+          "texto": "HNF Tratamiento inicial: bolo i.v. de 70-100 U/kg. El acceso radial es la técnica recomendada de acceso, excepto cuando existan razones... que lo desaconsejen."
+        }
+      ]
+    },
+    "trat_iamcest_fibrinolisis": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "- Administrar fibrinolítico específico para fibrina (ej. **Tenecteplasa** o **Alteplasa**) en los primeros **10 minutos** del diagnóstico.\n- Administrar DAPT: **Aspirina 150-300 mg** VO y **Clopidogrel 300 mg** VO (en lugar de inhibidores potentes del P2Y12).\n- Administrar anticoagulación complementaria con **Enoxaparina IV seguida de SC** o **HNF IV**.",
+      "pie_nodo": "¿Hubo criterios clínicos y electrocardiográficos de reperfusión exitosa (resolución del segmento ST > 50% a los 60-90 minutos)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_post_lysis_exito"
+        },
+        {
+          "texto": "No (Sospecha de reoclusión, dolor persistente o shock)",
+          "siguiente_nodo": "trat_post_lysis_rescate"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "30-33",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 6 y Sección 5.3.1.1 sobre Fibrinolisis prehospitalaria.",
+          "texto": "El objetivo es iniciar el tratamiento fibrinolítico en los primeros 10 min del diagnóstico. Dosis de carga de Clopidogrel de 300 mg para fibrinolisis."
+        }
+      ]
+    },
+    "trat_post_lysis_exito": {
+      "tipo": "informativo",
+      "texto": "- Trasladar invariablemente al paciente a un centro con capacidad de ICP.\n- Realizar angiografía coronaria sistemática de forma temprana (entre **2 a 24 horas** tras la fibrinolisis exitosa) seguida de ICP si anatómicamente procede.",
+      "pie_nodo": "Asegurar la continuación de terapia anticoagulante y antiagregante.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "30-31",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 5.3.1.2 Angiografía e intervención coronaria percutánea tras fibrinolisis.",
+          "texto": "Los pacientes en los que la fibrinolisis ha sido eficaz deben someterse a una coronariografía invasiva temprana (en las primeras 2-24 h desde la administración del bolo de fibrinolíticos)."
+        }
+      ]
+    },
+    "trat_post_lysis_rescate": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Activación urgente de traslado a centro con capacidad de hemodinámica.\n- Realizar angiografía invasiva inmediata y proceder a **ICP de rescate**.\n- No repetir la dosis de medicación fibrinolítica.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "31",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 4. Recomendaciones sobre el tratamiento de reperfusión.",
+          "texto": "La ICP de rescate está recomendada después de la fibrinolisis fallida (resolución del segmento ST < 50% en los primeros 60-90 min tras la administración de fibrinolisis) o en presencia de inestabilidad hemodinámica..."
+        }
+      ]
+    },
+    "trat_scasest_inicio": {
+      "tipo": "pregunta",
+      "texto": "- Administrar oxígeno si **SaO2 < 90%**.\n- Administrar **Aspirina 150-300 mg** VO de inmediato.\n- Iniciar anticoagulación parenteral sistémica: **Fondaparinux 2.5 mg SC diarios** (o **Enoxaparina 1 mg/kg SC cada 12 h** si no se anticipa angiografía < 24 h; use **HNF** si angiografía < 24 h).",
+      "pie_nodo": "¿El paciente presenta criterios de RIESGO MUY ALTO (shock cardiogénico, inestabilidad hemodinámica, arritmias letales, dolor torácico recurrente/refractario o complicaciones mecánicas)?",
+      "nota_adicional": "El pretratamiento rutinario con inhibidores P2Y12 NO se recomienda en SCASEST con anatomía desconocida si se planea estrategia invasiva temprana (< 24 h). Reserve el inhibidor P2Y12 para cuando se defina la lesión en sala de hemodinámica.",
+      "opciones": [
+        {
+          "texto": "Sí (Riesgo Muy Alto)",
+          "siguiente_nodo": "trat_scasest_muy_alto"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_scasest_eval_alto"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "35-36",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 6.1.2.3 Resumen de estrategias de pretratamiento y 6.2.2 sobre Anticoagulación SCASEST.",
+          "texto": "Para pacientes con un diagnóstico inicial de SCASEST no se recomienda el pretratamiento con un inhibidor del P2Y12 antes de conocer la anatomía coronaria... Para este grupo, cuando se anticipa estrategia no temprana se prefiere fondaparinux."
+        }
+      ]
+    },
+    "trat_scasest_muy_alto": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Estrategia invasiva INMEDIATA.\n- Trasladar para coronariografía urgente y posible ICP en **< 2 horas** desde el diagnóstico.",
+      "pie_nodo": "En pacientes complicados con shock cardiogénico y anatomía multivaso, restrinja la ICP únicamente a la arteria responsable del infarto durante el procedimiento inicial.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "29-32",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 8 y Tabla 4 sobre Selección de la estrategia invasiva SCASEST.",
+          "texto": "Estrategia invasiva inmediata para el síndrome coronario agudo sin elevación del segmento ST: en casos de inestabilidad hemodinámica o shock cardiogénico, dolor recurrente/refractario... En shock cardiogénico multivaso, restrinja ICP a la arteria responsable."
+        }
+      ]
+    },
+    "trat_scasest_eval_alto": {
+      "tipo": "pregunta",
+      "texto": "1. Valorar cambios electrocardiográficos dinámicos.\n2. Confirmar el IAMSEST mediante curva enzimática de hs-cTn.\n3. Determinar riesgo mediante score de GRACE.",
+      "pie_nodo": "¿El paciente cumple algún criterio de RIESGO ALTO (Diagnóstico de IAMSEST confirmado, cambios dinámicos del segmento ST/Onda T, o GRACE > 140)?",
+      "opciones": [
+        {
+          "texto": "Sí (Riesgo Alto)",
+          "siguiente_nodo": "trat_scasest_alto"
+        },
+        {
+          "texto": "No (Riesgo Intermedio / Bajo)",
+          "siguiente_nodo": "trat_scasest_bajo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "29",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 8. Criterios de Riesgo Alto en SCASEST.",
+          "texto": "Criterios de Riesgo Alto: Diagnóstico confirmado de IAMSEST, Puntuación GRACE > 140, Cambios dinámicos del segmento ST o de la onda T."
+        }
+      ]
+    },
+    "trat_scasest_alto": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Estrategia invasiva TEMPRANA.\n- Realizar angiografía invasiva en las primeras **24 horas** del ingreso.\n- Administrar DAPT (Aspirina + Prasugrel/Ticagrelor) inmediatamente tras conocer la anatomía coronaria en la sala de hemodinámica.",
+      "pie_nodo": "Si hay comorbilidades como ERC grave, use profilaxis para prevención de nefropatía inducida por contraste y seleccione medios isoosmolares o de baja osmolaridad.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "29-32",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 8 y Recomendaciones SCASEST.",
+          "texto": "Debe considerarse una estrategia invasiva temprana (primeras 24 h) para pacientes con al menos uno de los siguientes criterios de riesgo alto."
+        }
+      ]
+    },
+    "trat_scasest_bajo": {
+      "tipo": "informativo",
+      "texto": "- Estrategia invasiva SELECTIVA.\n- Considerar realizar Angio-TAC coronario o prueba funcional de isquemia no invasiva (ej. Ecocardiografía de estrés, RMC, PET/SPECT) antes de plantear abordaje invasivo.\n- Optimizar terapia preventiva secundaria.",
+      "pie_nodo": "El paciente puede ser manejado acorde a las directrices de síndrome coronario crónico si se descarta inestabilidad inminente.",
+      "referencias": [
+        {
+          "titulo": "Guía ESC 2023 sobre el diagnóstico y tratamiento de los síndromes coronarios agudos",
+          "url": "https://academic.oup.com/eurheartj/article/44/38/3720/7243202",
+          "paginas": "30",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 5.2.3.1 y 5.2.4 Resumen de estrategias invasivas.",
+          "texto": "Para pacientes sin características de riesgo muy alto o alto y un índice bajo de sospecha de SCASEST se recomienda una estrategia invasiva selectiva después de realizar pruebas de isquemia o de detectar enfermedad coronaria obstructiva mediante angio-TAC coronario."
+        }
+      ]
+    }
+  }
+}
