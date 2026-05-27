@@ -1,0 +1,332 @@
+{
+  "titulo": "Manejo de la Deshidratación Pediátrica",
+  "version": "2024",
+  "carpeta_evidencia": "deshidratacion",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Evaluación y Tratamiento de la Deshidratación en Pediatría",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "125",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del inicio del Capítulo 5 sobre Diarrea",
+          "texto": "The three essential elements in the management of all children with diarrhoea are rehydration therapy, zinc supplementation and counselling for continued feeding and prevention."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Clasificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "127",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección 5.2 Acute diarrhoea - Assessing dehydration",
+          "texto": "For all children with diarrhoea, their hydration status should be classified as severe dehydration, some dehydration or no dehydration and appropriate treatment given."
+        }
+      ]
+    },
+    "diag_evaluacion_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar el estado general: buscar letargo o inconsciencia.\n- Examinar los ojos: buscar hundimiento severo.\n- Evaluar la capacidad de beber: observar si no puede beber o bebe muy mal.\n- Realizar el pliegue cutáneo en el abdomen: observar si el retorno es muy lento (**>= 2 segundos**).",
+      "pie_nodo": "¿El paciente presenta DOS o MÁS de los signos mencionados?",
+      "nota_adicional": "La presencia de letargo o inconsciencia exige siempre comprobar la glucemia capilar para descartar hipoglucemia concomitante.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_deshidratacion_grave"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_evaluacion_moderada"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 12 con signos de deshidratación severa",
+          "texto": "Severe dehydration: Two or more of the following signs: lethargy or unconsciousness, sunken eyes, unable to drink or drinks poorly, skin pinch goes back very slowly (>= 2 s)."
+        }
+      ]
+    },
+    "diag_deshidratacion_grave": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Clasificar como **Deshidratación Grave**.\n2. Solicitar ayuda de inmediato y preparar equipo de reanimación.\n3. Asegurar acceso intravenoso (IV) o intraóseo (IO) urgente.",
+      "pie_nodo": "Proceder de inmediato con el esquema de rehidratación agresiva.",
+      "enlaces": [
+        {
+          "texto": "Ir al Plan C (Deshidratación Grave)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_plan_c"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128-129",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección 5.2.1 Severe dehydration",
+          "texto": "Children with severe dehydration require rapid IV rehydration with close monitoring... Give fluids for severe dehydration (see diarrhoea treatment plan C in hospital, p. 131)."
+        }
+      ]
+    },
+    "diag_evaluacion_moderada": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar el estado general: buscar inquietud o irritabilidad.\n- Examinar los ojos: buscar hundimiento.\n- Evaluar la sed: observar si bebe ávidamente o parece sediento.\n- Realizar el pliegue cutáneo en el abdomen: observar si el retorno es lento (pero **< 2 segundos**).",
+      "pie_nodo": "¿El paciente presenta DOS o MÁS de estos signos?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_deshidratacion_alguna"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_sin_deshidratacion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 12 con signos de alguna deshidratación",
+          "texto": "Some dehydration: Two or more of the following signs: restlessness, irritability, sunken eyes, drinks eagerly, thirsty, skin pinch goes back slowly."
+        }
+      ]
+    },
+    "diag_deshidratacion_alguna": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "1. Clasificar como **Algún grado de deshidratación**.\n2. Iniciar Terapia de Rehidratación Oral (TRO) en la clínica bajo supervisión.",
+      "pie_nodo": "Avanzar al plan terapéutico correspondiente.",
+      "enlaces": [
+        {
+          "texto": "Ir al Plan B (Algún grado de deshidratación)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_plan_b"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128, 132",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección 5.2.2 Some dehydration",
+          "texto": "Give fluid and food for some dehydration (see diarrhoea treatment plan B, p. 135)... children with some dehydration should be given ORS solution for the first 4 h at a clinic, while the child is monitored."
+        }
+      ]
+    },
+    "diag_sin_deshidratacion": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. Clasificar como **Sin deshidratación clínica**.\n2. Educar a los cuidadores sobre prevención en el hogar.",
+      "pie_nodo": "Avanzar a las recomendaciones de mantenimiento.",
+      "enlaces": [
+        {
+          "texto": "Ir al Plan A (Prevención en casa)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_plan_a"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128, 134",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección 5.2.3 No dehydration",
+          "texto": "No dehydration: Not enough signs to classify as some or severe dehydration. Give fluid and food to treat diarrhoea at home (see diarrhoea treatment plan A, p. 138)."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Planes de Tratamiento (A, B y C)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_seleccion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 12 indicando los planes A, B y C",
+          "texto": "Classification of the severity of dehydration in children with diarrhoea and treatment assignments (Plan A, B, C)."
+        }
+      ]
+    },
+    "trat_seleccion": {
+      "tipo": "pregunta",
+      "texto": "- Identificar la clasificación clínica de deshidratación del paciente para aplicar el protocolo correcto.",
+      "pie_nodo": "¿Qué plan terapéutico requiere el paciente?",
+      "opciones": [
+        {
+          "texto": "Deshidratación Grave (Plan C)",
+          "siguiente_nodo": "trat_plan_c"
+        },
+        {
+          "texto": "Algún grado de deshidratación (Plan B)",
+          "siguiente_nodo": "trat_plan_b"
+        },
+        {
+          "texto": "Sin deshidratación (Plan A)",
+          "siguiente_nodo": "trat_plan_a"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "128",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 12 con selección de plan",
+          "texto": "Treatment depends on classification: Severe dehydration -> Plan C; Some dehydration -> Plan B; No dehydration -> Plan A."
+        }
+      ]
+    },
+    "trat_plan_c": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "texto": "1. Canalizar vía IV o IO inmediatamente.\n2. Preparar **100 ml/kg** de **Ringer Lactato** (de elección) o **Solución Salina Normal al 0.9%**.\n3. Si el paciente puede beber, administrar Sales de Rehidratación Oral (SRO) a **5 ml/kg/hora** mientras se establece el goteo IV.",
+      "pie_nodo": "¿Cuál es la edad del paciente?",
+      "nota_adicional": "Prohibido el uso de Dextrosa al 5% sola o soluciones hipotónicas (0.18% NaCl) para reanimación hídrica por riesgo de hiponatremia y edema cerebral.",
+      "imagen": "TODO_IMG: Esquema de líquidos intravenosos y vías de acceso periféricas en pediatría",
+      "opciones": [
+        {
+          "texto": "Lactante (< 12 meses)",
+          "siguiente_nodo": "trat_plan_c_lactante"
+        },
+        {
+          "texto": "Niño (12 meses a 5 años)",
+          "siguiente_nodo": "trat_plan_c_nino"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "129, 131",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del Chart 13 y notas sobre soluciones isotónicas",
+          "texto": "Start IV fluids immediately... Give 100 ml/kg Ringer’s lactate solution (or, if not available, normal saline)... Do not use 5% glucose (dextrose) solution or 0.18% saline with 5% dextrose solution, as they increase the risk for hyponatraemia, which can cause cerebral oedema."
+        }
+      ]
+    },
+    "trat_plan_c_lactante": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Administrar **30 ml/kg** en **1 hora**.\n2. Administrar **70 ml/kg** en las siguientes **5 horas**.\n3. Evaluar el pulso radial y estado de conciencia cada **15-30 minutos**.",
+      "pie_nodo": "Repetir el bolo inicial de 30 ml/kg si el pulso radial sigue siendo muy débil o indetectable.",
+      "nota_adicional": "A las 6 horas, realizar una evaluación completa para reclasificar el estado de hidratación y cambiar al Plan A, B o repetir C si es necesario.",
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "130-131",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 13 y Chart 13 para lactantes",
+          "texto": "Infants (< 12 months): First give 30 ml/kg in: 1 h. Then give 70 ml/kg in: 5 h. Reassess the child every 15–30 min... Reassess an infant after 6 h and classify dehydration."
+        }
+      ]
+    },
+    "trat_plan_c_nino": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Administrar **30 ml/kg** en **30 minutos**.\n2. Administrar **70 ml/kg** en las siguientes **2.5 horas**.\n3. Evaluar el pulso radial y estado de conciencia cada **15-30 minutos**.",
+      "pie_nodo": "Repetir el bolo inicial de 30 ml/kg si el pulso radial sigue siendo muy débil o indetectable.",
+      "nota_adicional": "A las 3 horas, realizar una evaluación completa para reclasificar el estado de hidratación y cambiar al Plan A, B o repetir C si es necesario.",
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "130-131",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la Tabla 13 y Chart 13 para niños",
+          "texto": "Children (12 months to 5 years): First give 30 ml/kg in: 30 min. Then give 70 ml/kg in: 2.5 h. Reassess the child every 15–30 min... Reassess a child after 3 h and classify dehydration."
+        }
+      ]
+    },
+    "trat_plan_b": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "1. Administrar Sales de Rehidratación Oral (SRO) en la clínica durante un periodo de **4 horas**.\n2. Calcular volumen: Peso (kg) x **75 ml**.\n3. Mostrar al cuidador cómo administrar sorbos frecuentes con taza o cuchara.\n4. Si el paciente vomita, pausar **10 minutos** y retomar la administración más lentamente.",
+      "pie_nodo": "Reevaluar rigurosamente a las 4 horas.",
+      "calculadora_id": "TODO_CALC_volumen_sro_plan_b.json",
+      "nota_adicional": "Si el paciente es amamantado, la lactancia debe continuar a demanda sin restricciones durante el proceso de rehidratación.",
+      "enlaces": [
+        {
+          "texto": "Continuar a Suplementación Obligatoria",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_zinc"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "135",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del Chart 14: Diarrhoea treatment plan B",
+          "texto": "Determine amount of ORS to give during first 4 h... approximate amount of ORS required (in ml) can also be calculated by multiplying the child’s weight (in kg) by 75. If the child vomits, wait 10 min, then continue, but more slowly. Continue breastfeeding whenever the child wants. After 4 h: Reassess the child..."
+        }
+      ]
+    },
+    "trat_plan_a": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. Dar más líquidos de lo habitual. Por cada deposición diarreica reponer: **50-100 ml** (< 2 años) o **100-200 ml** (>= 2 años).\n2. Continuar con alimentación habitual para prevenir la desnutrición.\n3. Educar sobre signos de alarma (no bebe, empeora, sangre en heces, fiebre alta) para retorno inmediato.",
+      "pie_nodo": "Proveer sobres de SRO para el hogar.",
+      "enlaces": [
+        {
+          "texto": "Continuar a Suplementación Obligatoria",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_zinc"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "138",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del Chart 15: Diarrhoea treatment plan A",
+          "texto": "Give as much extra fluid as the child will take... <= 2 years: 50–100 ml after each loose stool; >= 2 years: 100–200 ml after each loose stool... Counsel the mother on the four rules of home treatment: give extra fluid, give zinc supplements, continue feeding, know when to return."
+        }
+      ]
+    },
+    "trat_zinc": {
+      "tipo": "informativo",
+      "texto": "1. Prescribir suplementación con **Zinc** obligatoria ininterrumpida por **10 a 14 días**.\n2. En lactantes <= 6 meses: Administrar **10 mg/día**.\n3. En niños > 6 meses: Administrar **20 mg/día**.",
+      "pie_nodo": "Completar la prescripción y dar alta con recomendaciones.",
+      "nota_adicional": "El tratamiento con Zinc es fundamental. Acorta la duración del episodio diarreico, disminuye su gravedad y reduce el riesgo de nuevos episodios en los 2 a 3 meses subsiguientes.",
+      "referencias": [
+        {
+          "titulo": "Pocket book of hospital care for children: guidelines for the management of common childhood illnesses – 2nd ed. (WHO)",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "paginas": "133, 138",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la dosificación de suplementos de zinc en el Chart 15 y sección de soporte",
+          "texto": "Give zinc supplements. Tell the mother how much zinc to give: <= 6 months: half tablet (10 mg) per day for 10–14 days; >= 6 months: one tablet (20 mg) per day for 10–14 days. Zinc is an important micronutrient... reduces the duration and severity of the episode, and lowers the incidence of diarrhoea in the following 2–3 months."
+        }
+      ]
+    }
+  }
+}
