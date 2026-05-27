@@ -1,0 +1,425 @@
+{
+  "titulo": "Algoritmo de Manejo de la Insuficiencia Cardíaca (Aguda y Crónica)",
+  "version": "2024",
+  "carpeta_evidencia": "fallacardiaca",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Insuficiencia Cardíaca (Aguda y Crónica)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e895",
+          "imagen_evidencia": "TODO_EVIDENCIA: Titulo y Preamble AHA 2022",
+          "texto": "Guideline for the Management of Heart Failure: A Report of the American College of Cardiology/American Heart Association Joint Committee."
+        },
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca aguda y cronica",
+          "url": null,
+          "paginas": "e1",
+          "imagen_evidencia": "TODO_EVIDENCIA: Portada Guia ESC 2021",
+          "texto": "Desarrollada por el Grupo de Trabajo de la Sociedad Europea de Cardiologia (ESC) de diagnostico y tratamiento de la insuficiencia cardiaca aguda y cronica."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e908",
+          "imagen_evidencia": "TODO_EVIDENCIA: Section 4 Initial and Serial Evaluation",
+          "texto": "Initial and Serial Evaluation: Clinical Assessment: History and Physical Examination."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "- Realizar historia clínica detallada y examen físico (buscar signos de congestión y/o hipoperfusión).\n- Solicitar **ECG de 12 derivaciones**.\n- Tomar laboratorios iniciales incluyendo péptidos natriuréticos (**BNP** o **NT-proBNP**).\n- Solicitar radiografía de tórax.",
+      "pie_nodo": "¿Existe elevación de péptidos natriuréticos (BNP >= 35 pg/mL o NT-proBNP >= 125 pg/mL en contexto ambulatorio; umbrales mayores en agudo) o la sospecha clínica es muy alta?",
+      "nota_adicional": "Los péptidos natriuréticos tienen un alto valor predictivo negativo. Umbrales para descompensación aguda: BNP > 100 pg/mL, NT-proBNP > 300 pg/mL.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_ecocardiograma"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_descartar_ic"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e910-e911",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo de diagnostico basado en peptidos natriureticos",
+          "texto": "Measurement of BNP and NT-proBNP levels is useful to support a diagnosis or exclusion of HF. TTE should be performed during initial evaluation."
+        },
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e13-e14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1 Algoritmo diagnostico de la IC",
+          "texto": "Determinacion de peptidos natriureticos... BNP < 35 pg/ml, NT-proBNP < 125 pg/ml hacen poco probable el diagnostico."
+        }
+      ]
+    },
+    "diag_descartar_ic": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Considerar diagnósticos alternativos (enfermedad pulmonar, anemia, enfermedad renal, etc.).\n- Revaluar si los síntomas persisten o cambian las condiciones clínicas.",
+      "pie_nodo": "Derivar a especialidad correspondiente según los hallazgos.",
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1 Algoritmo de diagnostico",
+          "texto": "Insuficiencia cardiaca poco probable -> Considere otro diagnostico."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e910",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 6 Causas de elevacion de PN",
+          "texto": "Selected Potential Causes of Elevated Natriuretic Peptide Levels: Noncardiac (Advancing age, Anemia, Renal failure, Obstructive sleep apnea...)"
+        }
+      ]
+    },
+    "diag_ecocardiograma": {
+      "tipo": "pregunta",
+      "texto": "- Realizar **Ecocardiograma Transtorácico (ETT)** para evaluar estructura, función sistólica/diastólica y válvulas.\n- Clasificar la insuficiencia cardíaca según la Fracción de Eyección del Ventrículo Izquierdo (FEVI).",
+      "pie_nodo": "¿Cuál es el valor de la FEVI reportado?",
+      "imagen": "TODO_IMG: Ecocardiograma mostrando disfunción ventricular izquierda",
+      "opciones": [
+        {
+          "texto": "FEVI <= 40%",
+          "siguiente_nodo": "diag_hfref"
+        },
+        {
+          "texto": "FEVI 41 - 49%",
+          "siguiente_nodo": "diag_hfmref"
+        },
+        {
+          "texto": "FEVI >= 50%",
+          "siguiente_nodo": "diag_hfpef"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e11-e14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 3 Definiciones de la IC segun FEVI",
+          "texto": "La identificacion de la disfuncion cardiaca subyacente es fundamental... Se propone la clasificacion de la IC en IC-FEr (<=40%), IC-FElr (41-49%) e IC-FEp (>=50%)."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e901",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table 4 Classification of HF by LVEF",
+          "texto": "Table 4. Classification of HF by LVEF: HFrEF (<=40%), HFmrEF (41-49%), HFpEF (>=50%)."
+        }
+      ]
+    },
+    "diag_hfref": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Insuficiencia Cardíaca con Fracción de Eyección Reducida (HFrEF)**.\n- Evaluar etiología subyacente (isquémica vs no isquémica).\n- Enviar a inicio de terapia médica óptima modificadora de la enfermedad (GDMT).",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Crónico HFrEF",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico_hfref"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e901",
+          "imagen_evidencia": "TODO_EVIDENCIA: Definicion de HFrEF",
+          "texto": "HFrEF is defined as LVEF <=40%. Patients should receive GDMT."
+        },
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e17",
+          "imagen_evidencia": "TODO_EVIDENCIA: Seccion 5 IC-FEr",
+          "texto": "El diagnostico de IC-FEr requiere que haya sintomas y signos de IC y fraccion de eyeccion reducida (FEVI <= 40%)."
+        }
+      ]
+    },
+    "diag_hfmref": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Insuficiencia Cardíaca con Fracción de Eyección Ligeramente Reducida (HFmrEF)**.\n- Requiere presencia de síntomas más evidencia de presiones de llenado elevadas o cardiopatía estructural.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Crónico HFmrEF/HFpEF",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico_hfpef"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e905",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios para HFmrEF",
+          "texto": "HFmrEF: LVEF 41%-49%. Evidence of spontaneous or provokable increased LV filling pressures."
+        },
+        {
+          "titulo": "Actualizacion 2023 de la Guia ESC 2021 sobre insuficiencia cardiaca",
+          "url": null,
+          "paginas": "6",
+          "imagen_evidencia": "TODO_EVIDENCIA: Definicion de IC-FElr en Tabla 3 actualizada",
+          "texto": "Definicion de insuficiencia cardiaca con fraccion de eyeccion ligeramente reducida: FEVI 41-49%."
+        }
+      ]
+    },
+    "diag_hfpef": {
+      "tipo": "informativo",
+      "texto": "- Diagnóstico: **Insuficiencia Cardíaca con Fracción de Eyección Preservada (HFpEF)**.\n- Requiere síntomas de IC y evidencia objetiva de disfunción diastólica o presiones de llenado elevadas (por ETT, péptidos natriuréticos o cateterismo).\n- Evaluar puntaje H2FPEF o HFA-PEFF.",
+      "calculadora_id": "TODO_CALC_h2fpef.json",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Crónico HFmrEF/HFpEF",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico_hfpef"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e905-e906",
+          "imagen_evidencia": "TODO_EVIDENCIA: Scores H2FPEF y HFA-PEFF",
+          "texto": "A clinical composite score to diagnose HFpEF, the H2FPEF score... The European Society of Cardiology has developed a diagnostic algorithm... HFA-PEFF."
+        },
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e27",
+          "imagen_evidencia": "TODO_EVIDENCIA: Diagnostico IC-FEc",
+          "texto": "El diagnostico de la IC-FEc... algoritmos diagnosticos basados en escalas (H2FPEF y HFA-PEFF)."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_agudo_vs_cronico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e928",
+          "imagen_evidencia": "TODO_EVIDENCIA: Seccion Tratamiento",
+          "texto": "Pharmacological Treatment for HFrEF... Diuretics and Decongestion Strategies."
+        }
+      ]
+    },
+    "trat_agudo_vs_cronico": {
+      "tipo": "pregunta",
+      "texto": "- Determinar el estado clínico actual del paciente.\n- Evaluar presencia de congestión severa, edema pulmonar agudo o inestabilidad hemodinámica.",
+      "pie_nodo": "¿El paciente presenta Insuficiencia Cardíaca Aguda descompensada (requiere hospitalización / urgencias)?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_agudo_eval"
+        },
+        {
+          "texto": "No (Crónico/Estable)",
+          "siguiente_nodo": "trat_cronico_fevi"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e41",
+          "imagen_evidencia": "TODO_EVIDENCIA: Seccion 11 ICA",
+          "texto": "La ICA se define como la aparicion rapida o gradual de signos o sintomas de IC, lo bastante graves para que el paciente necesite atencion medica urgente."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e960",
+          "imagen_evidencia": "TODO_EVIDENCIA: Patients Hospitalized With Acute Decompensated HF",
+          "texto": "In patients hospitalized with HF, severity of congestion and adequacy of perfusion should be assessed to guide triage and initial therapy."
+        }
+      ]
+    },
+    "trat_agudo_eval": {
+      "tipo": "pregunta",
+      "texto": "- Categorizar el perfil hemodinámico (Caliente/Frío, Húmedo/Seco).\n- Identificar factores precipitantes (CHAMPIT: Síndrome Coronario, Emergencia Hipertensiva, Arritmias, Causas Mecánicas, TEP, Infecciones, Taponamiento).",
+      "pie_nodo": "¿El paciente presenta signos de shock cardiogénico o hipoperfusión tisular severa (Frío y Húmedo / PAS < 90 mmHg / Lactato elevado)?",
+      "nota_adicional": "La mayoría de los pacientes descompensados se presentan con un perfil Caliente y Húmedo (solo congestión sin hipoperfusión).",
+      "opciones": [
+        {
+          "texto": "Sí (Shock / Hipoperfusión)",
+          "siguiente_nodo": "trat_agudo_shock"
+        },
+        {
+          "texto": "No (Solo Congestión)",
+          "siguiente_nodo": "trat_agudo_congestion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e43-e48",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 21 Perfiles Hemodinamicos y Figura 12 CHAMPIT",
+          "texto": "Presentaciones clinicas principales: Paciente humedo y caliente, seco y frio, humedo y frio... Factores precipitantes (CHAMPIT): Sindrome Coronario, Emergencia Hipertensiva, Arritmia, Causa Mecanica, Embolia Pulmonar, Infeccion, Taponamiento."
+        }
+      ]
+    },
+    "trat_agudo_shock": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Asegurar vía aérea y oxigenación.\n2. Iniciar soporte vasopresor (de elección **Norepinefrina 0.05-0.5 mcg/kg/min**).\n3. Considerar inotrópicos intravenosos a corto plazo (**Dobutamina 2-20 mcg/kg/min** o **Milrinona 0.125-0.75 mcg/kg/min**) para mantener la perfusión de órganos diana.\n4. Tratar la causa desencadenante (ej. Revascularización coronaria urgente si IAM).\n5. Considerar soporte circulatorio mecánico temporal si es refractario.",
+      "pie_nodo": "Monitoreo continuo en Unidad de Cuidados Intensivos (UCI).",
+      "imagen": "TODO_IMG: Algoritmo de manejo de shock cardiogénico",
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": "https://academic.oup.com/eurheartj/article/42/36/3599/6358045",
+          "paginas": "e46-e49",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 10 Tratamiento del shock cardiogenico y Tabla 22 Inotropicos",
+          "texto": "Algoritmo de shock cardiogenico: Oxigeno, soporte ventilatorio, identificar causa... Inotropicos/vasopresores: Dobutamina 2-20 mcg/kg/min, Milrinona 0.125-0.75 mcg/kg/min, Norepinefrina 0.2-1.0 mcg/kg/min."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e958",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table 20 Intravenous Inotropic Agents",
+          "texto": "Dobutamine 2.5-20 mcg/kg/min, Milrinone 0.125-0.75 mcg/kg/min, Norepinephrine 0.5-30 mcg/min."
+        }
+      ]
+    },
+    "trat_agudo_congestion": {
+      "tipo": "informativo",
+      "texto": "1. Oxigenoterapia si SpO2 < 90% o PaO2 < 60 mmHg.\n2. Iniciar diuréticos de asa IV (**Furosemida 20-40 mg IV** como dosis inicial o equiparable a 1-2 veces su dosis oral diaria habitual).\n3. Evaluar respuesta diurética midiendo el sodio urinario a las 2 horas y el volumen urinario a las 6 horas.\n4. Si la presión arterial lo permite y hay congestión persistente, considerar el uso de vasodilatadores IV (ej. Nitroglicerina).",
+      "pie_nodo": "Ajustar dosis de diurético hasta lograr descongestión. Una vez estable, realizar transición a tratamiento oral GDMT.",
+      "enlaces": [
+        {
+          "texto": "Optimizar terapia oral tras estabilización",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico_fevi"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e47",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figura 11 y seccion de diureticos",
+          "texto": "Tratamiento diuretico... evaluar respuesta midiendo el contenido de sodio en orina a las 2-6 h (>50-70 mEq/l) y la diuresis cada hora (>100-150 ml/h)."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e963",
+          "imagen_evidencia": "TODO_EVIDENCIA: Diuretics in Hospitalized Patients",
+          "texto": "Patients with HF admitted with evidence of significant fluid overload should be promptly treated with intravenous loop diuretics."
+        }
+      ]
+    },
+    "trat_cronico_fevi": {
+      "tipo": "pregunta",
+      "texto": "- Paciente estable para iniciar o titular terapia médica modificadora de la enfermedad (GDMT).",
+      "pie_nodo": "¿Cuál es la fracción de eyección del paciente?",
+      "opciones": [
+        {
+          "texto": "HFrEF (<= 40%)",
+          "siguiente_nodo": "trat_cronico_hfref"
+        },
+        {
+          "texto": "HFmrEF o HFpEF (> 40%)",
+          "siguiente_nodo": "trat_cronico_hfpef"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e905",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figure 2 Trajectory of Stage C HF",
+          "texto": "Transition to GDMT optimization based on LVEF trajectory."
+        }
+      ]
+    },
+    "trat_cronico_hfref": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. Iniciar **ARNi** (Sacubitrilo/Valsartán) como primera línea o IECA/ARA-II si ARNi no está disponible/intolerado.\n2. Iniciar **Betabloqueadores** basados en evidencia (Carvedilol, Bisoprolol, o Metoprolol succinato).\n3. Iniciar **Antagonista del Receptor de Mineralocorticoides (ARM)** (Espironolactona o Eplerenona) si eGFR > 30 y K < 5.0.\n4. Iniciar **Inhibidor de SGLT2 (iSGLT2)** (**Dapagliflozina 10 mg** o **Empagliflozina 10 mg** diarios).\n5. Titular todas las terapias a las dosis objetivo o máximas toleradas.",
+      "pie_nodo": "Monitorear función renal, potasio y síntomas cada 1-2 semanas durante la titulación.",
+      "nota_adicional": "Los cuatro pilares fundamentales del GDMT para HFrEF deben iniciarse de ser posible de forma rápida y simultánea (a dosis bajas), demostrando reducir la mortalidad y morbilidad drásticamente.",
+      "referencias": [
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e924",
+          "imagen_evidencia": "TODO_EVIDENCIA: Figure 6 Treatment of HFrEF Stages C and D",
+          "texto": "Step 1 medications may be started simultaneously at initial (low) doses: ARNi in NYHA II-III, Beta blocker, MRA, SGLT2i."
+        },
+        {
+          "titulo": "Guia ESC 2021 sobre el diagnostico y tratamiento de la insuficiencia cardiaca",
+          "url": null,
+          "paginas": "e17-e19",
+          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo de HFrEF y 4 pilares",
+          "texto": "La modulacion del SRAA con IECA o INRA, BB y ARM mejora la supervivencia... Dapagliflozina y empagliflozina anadidos al tratamiento redujeron el riesgo de mortalidad."
+        }
+      ]
+    },
+    "trat_cronico_hfpef": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. Iniciar **Inhibidor de SGLT2 (iSGLT2)** (Dapagliflozina o Empagliflozina) para reducir hospitalizaciones por IC y mortalidad cardiovascular.\n2. Administrar **diuréticos** (ej. Furosemida o Torasemida) según sea necesario para aliviar síntomas de congestión.\n3. Controlar estrictamente la presión arterial, fibrilación auricular, y la frecuencia cardíaca (según guías específicas de estas condiciones).\n4. En grupos selectos, se puede considerar el uso de ARM, ARNi, o ARA-II (beneficio modesto, particularmente en el rango de FEVI 41-55%).",
+      "pie_nodo": "Seguimiento periódico para ajustar diuréticos y manejo de comorbilidades.",
+      "nota_adicional": "Los iSGLT2 son la primera clase de medicamentos con una recomendación de Clase 2a en guías AHA/ACC 2022 para HFmrEF y HFpEF y recientemente actualizados como Clase I en base a ensayos EMPEROR-Preserved y DELIVER.",
+      "referencias": [
+        {
+          "titulo": "Actualizacion 2023 de la Guia ESC 2021 sobre la insuficiencia cardiaca",
+          "url": "https://academic.oup.com/eurheartj/article/44/37/3627/7248337",
+          "paginas": "7-8",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tablas 1 y 2 Recomendaciones iSGLT2 en IC-FElr e IC-FEp",
+          "texto": "En pacientes con IC-FEp y en IC-FElr se recomienda el uso de un inhibidor del SGLT2 (dapagliflozina o empagliflozina) para reducir el riesgo de hospitalizacion por IC o muerte cardiovascular (Clase I, Nivel A)."
+        },
+        {
+          "titulo": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+          "paginas": "e949-e950",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recommendations for HFpEF",
+          "texto": "SGLT2i can be beneficial (2a). MRAs, ARBs, and ARNi may be considered to decrease hospitalizations (2b)."
+        }
+      ]
+    }
+  }
+}
