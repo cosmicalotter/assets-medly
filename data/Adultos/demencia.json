@@ -1,0 +1,300 @@
+{
+  "titulo": "Demencia: evaluación, manejo y soporte (NICE NG97)",
+  "version": "2025",
+  "carpeta_evidencia": "demencia",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "DEMENCIA (NICE NG97)",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "nodo_diagnostico" },
+        { "texto": "", "siguiente_nodo": "nodo_tratamiento" }
+      ],
+      "referencias": [
+        {
+          "titulo": "Dementia: assessment, management and support for people living with dementia and their carers",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "1",
+          "imagen_evidencia": "TODO_EVIDENCIA: Portada de la guía NICE NG97",
+          "texto": "Guía clínica completa sobre el diagnóstico, manejo y soporte de personas con demencia y sus cuidadores."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Evaluación Inicial",
+      "opciones": [
+        { "texto": "", "siguiente_nodo": "diag_eval_inicial" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Sección 1.2 Diagnosis",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Encabezado de la sección 1.2 de diagnóstico",
+          "texto": "Recomendaciones sobre la evaluación inicial en entornos no especialistas."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "1. Realizar historia clínica detallada (incluir síntomas cognitivos, conductuales y psicológicos).\n2. Evaluar impacto en la vida diaria.\n3. Obtener historia de un informante clave (familiar o cuidador) si es posible.",
+      "pie_nodo": "¿Se sospecha deterioro cognitivo o demencia?",
+      "nota_adicional": "No descartar demencia solo porque el paciente tenga un puntaje normal en pruebas cognitivas si la sospecha clínica es alta.",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "diag_pruebas_basicas" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.2.1 y 1.2.4",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "14-15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de recomendaciones 1.2.1 y 1.2.4 sobre historia clínica y puntajes",
+          "texto": "Se debe tomar historia de la persona y alguien que la conozca bien. No descartar demencia solo por puntajes normales en instrumentos cognitivos."
+        }
+      ]
+    },
+    "diag_pruebas_basicas": {
+      "tipo": "pregunta",
+      "texto": "1. Realizar examen físico completo.\n2. Solicitar analítica: Sangre y orina para excluir causas reversibles de deterioro.\n3. Aplicar instrumento cognitivo validado: **10-CS**, **6CIT**, **6-item screener**, **MIS**, **Mini-Cog** o **TYM**.",
+      "pie_nodo": "¿Se han descartado causas reversibles (delirium, depresión, déficit sensorial, fármacos anticolinérgicos)?",
+      "opciones": [
+        { "texto": "Sí, pero persiste sospecha", "siguiente_nodo": "diag_referencia_especialista" },
+        { "texto": "No", "siguiente_nodo": "diag_tratar_causa_reversible" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.2.2 y 1.2.3",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "14-15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Lista de instrumentos cognitivos validados recomendación 1.2.3",
+          "texto": "Realizar examen físico, pruebas de sangre y orina para excluir causas reversibles y usar pruebas cognitivas estructuradas como 6CIT o Mini-Cog."
+        }
+      ]
+    },
+    "diag_tratar_causa_reversible": {
+      "estilo": "advertencia",
+      "texto": "- Tratar la causa subyacente identificada (ej. **Delirium**, déficit de **Vitamina B12**, hipotiroidismo).\n- Si existe duda entre Delirium y Demencia, tratar primero el Delirium.",
+      "enlaces": [
+        { "texto": "Ver protocolo de Delirium", "archivo_objetivo": "TODO_LINK_delirium.json" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.2.6 y 1.2.32",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "15, 19",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.2.32 sobre manejo de delirium",
+          "texto": "Si no es posible distinguir entre delirium y demencia, tratar el delirium primero."
+        }
+      ]
+    },
+    "diag_referencia_especialista": {
+      "tipo": "pregunta",
+      "texto": "- Referir a servicio de diagnóstico especialista (Clínica de memoria o psiquiatría de enlace).\n- Realizar neuroimagen estructural (**TC** o **RM**) para descartar causas reversibles y apoyar diagnóstico de subtipo.",
+      "pie_nodo": "¿Se ha confirmado el diagnóstico de demencia?",
+      "opciones": [
+        { "texto": "Sí, Enfermedad de Alzheimer (EA)", "siguiente_nodo": "diag_subtipo_ea" },
+        { "texto": "Sí, Demencia con cuerpos de Lewy (DCL)", "siguiente_nodo": "diag_subtipo_dcl" },
+        { "texto": "Sí, Demencia Vascular", "siguiente_nodo": "diag_subtipo_vascular" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.2.6 y 1.2.13",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "15-16",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.2.13 sobre oferta de imagen estructural",
+          "texto": "Referir a especialistas si la sospecha persiste tras investigar causas reversibles. Ofrecer imagen estructural para subtipificación."
+        }
+      ]
+    },
+    "diag_subtipo_ea": {
+      "texto": "- Incluir prueba de **Memoria Episódica Verbal**.\n- Considerar biomarcadores en LCR (**Tau total**, **p-Tau**, **Amiloide beta 1-42**) o **FDG-PET** si el diagnóstico es incierto.",
+      "enlaces": [
+        { "texto": "Ir al Tratamiento EA", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_ea_inicio" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.2.10 y 1.2.15",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "16-17",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección de pruebas adicionales para Alzheimer",
+          "texto": "En sospecha de EA, incluir memoria episódica. En diagnósticos inciertos, considerar biomarcadores en LCR o FDG-PET/SPECT."
+        }
+      ]
+    },
+    "diag_subtipo_dcl": {
+      "texto": "- Considerar **123I-FP-CIT SPECT** si el diagnóstico es incierto.\n- Si no está disponible, considerar gammagrafía cardíaca con **123I-MIBG**.",
+      "enlaces": [
+        { "texto": "Ir al Tratamiento DCL", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_dcl_inicio" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.2.20 y 1.2.21",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "18",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección de pruebas para cuerpos de Lewy",
+          "texto": "Uso de 123I-FP-CIT SPECT o MIBG cardíaco para aclarar diagnósticos inciertos de DCL."
+        }
+      ]
+    },
+    "diag_subtipo_vascular": {
+      "texto": "- Utilizar **RM** preferentemente (o **TC** si RM está contraindicada).\n- No diagnosticar basándose únicamente en la carga de lesiones vasculares.",
+      "enlaces": [
+        { "texto": "Ir al Tratamiento Vascular", "archivo_objetivo": "INTERNO", "nodo_objetivo": "trata_vascular_inicio" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.2.26 y 1.2.27",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "18",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.2.26 sobre uso de RM",
+          "texto": "Usar RM (o TC) en sospecha de demencia vascular. No basar el diagnóstico solo en la carga lesional."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento y Soporte",
+      "opciones": [
+        { "texto": "Enfermedad de Alzheimer", "siguiente_nodo": "trata_ea_inicio" },
+        { "texto": "Símptomas No Cognitivos (Agitación/Psicosis)", "siguiente_nodo": "trata_no_cognitivos" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Sección 1.5 y 1.7",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "22, 27",
+          "imagen_evidencia": "TODO_EVIDENCIA: Encabezados de secciones de intervención farmacológica y síntomas no cognitivos",
+          "texto": "Manejo integral de la demencia incluyendo fármacos específicos y manejo conductual."
+        }
+      ]
+    },
+    "trata_ea_inicio": {
+      "tipo": "pregunta",
+      "texto": "Tratamiento Farmacológico de EA.",
+      "pie_nodo": "¿Cuál es la severidad de la EA?",
+      "opciones": [
+        { "texto": "Leve a Moderada", "siguiente_nodo": "trata_ea_leve_mod" },
+        { "texto": "Moderada a Severa", "siguiente_nodo": "trata_ea_mod_sev" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Sección 1.5 Pharmacological management",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "22-23",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones 1.5.2 y 1.5.3 sobre Alzheimer",
+          "texto": "Clasificación de opciones terapéuticas según severidad de la EA."
+        }
+      ]
+    },
+    "trata_ea_leve_mod": {
+      "texto": "- Ofrecer inhibidores de la acetilcolinesterasa (AChE): **Donepezilo**, **Galantamina** o **Rivastigmina**.\n- Iniciar con el fármaco de menor costo de adquisición.",
+      "nota_adicional": "La primera prescripción debe ser realizada por un especialista (psiquiatra, geriatra o neurólogo).",
+      "enlaces": [
+        { "texto": "Ver Monografía de Donepezilo", "archivo_objetivo": "TODO_LINK_donepezilo.json" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.5.2, 1.5.5 y 1.5.6",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "22-24",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.5.6 sobre costo-efectividad de AChE",
+          "texto": "Se recomiendan Donepezilo, Galantamina o Rivastigmina. El tratamiento debe iniciarse bajo consejo de especialista."
+        }
+      ]
+    },
+    "trata_ea_mod_sev": {
+      "texto": "- Ofrecer **Memantina** como monografía si hay intolerancia/contraindicación a AChE o si la EA es severa.\n- Ofrecer **Memantina** añadida a AChE si la enfermedad es severa.\n- Considerar **Memantina** añadida a AChE en enfermedad moderada.",
+      "nota_adicional": "No suspender AChE solo por la severidad de la enfermedad.",
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.5.3, 1.5.4 y 1.5.5",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "23-24",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.5.4 sobre terapia combinada",
+          "texto": "Memantina se recomienda en EA severa o moderada con intolerancia a AChE, o en combinación para enfermedad severa."
+        }
+      ]
+    },
+    "trata_dcl_inicio": {
+      "texto": "1. Ofrecer **Donepezilo** o **Rivastigmina** para enfermedad leve a moderada.\n2. Considerar **Galantamina** solo si los anteriores no se toleran.\n3. Considerar **Donepezilo** o **Rivastigmina** para enfermedad severa.\n4. Considerar **Memantina** si los AChE no se toleran o están contraindicados.",
+      "imagen": "TODO_IMG: Algoritmo de manejo farmacológico en cuerpos de Lewy",
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.5.10 a 1.5.13",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Lista de fármacos para demencia con cuerpos de Lewy",
+          "texto": "Manejo específico para DCL priorizando Donepezilo/Rivastigmina."
+        }
+      ]
+    },
+    "trata_vascular_inicio": {
+      "texto": "- Solo considerar AChE o **Memantina** si se sospecha comorbilidad con EA, DCL o Demencia por Parkinson.",
+      "estilo": "advertencia",
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendación 1.5.14",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación 1.5.14 sobre demencia vascular",
+          "texto": "Solo considerar tratamiento farmacológico en vascular si hay sospecha de comorbilidad."
+        }
+      ]
+    },
+    "trata_no_cognitivos": {
+      "tipo": "pregunta",
+      "texto": "Agitación, Agresión, Distrés y Psicosis.\n1. Realizar evaluación estructurada (descartar dolor, estreñimiento, causas ambientales).\n2. Ofrecer intervenciones psicosociales y ambientales como primera línea.",
+      "pie_nodo": "¿Persisten síntomas severos con riesgo de daño o distrés extremo?",
+      "opciones": [
+        { "texto": "Sí", "siguiente_nodo": "trata_antipsicoticos" },
+        { "texto": "No", "siguiente_nodo": "trata_exito_no_farma" }
+      ],
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.7.1 y 1.7.2",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "27",
+          "imagen_evidencia": "TODO_EVIDENCIA: Pasos para evaluación de distress",
+          "texto": "Realizar evaluación estructurada para explorar causas del distrés antes de cualquier tratamiento."
+        }
+      ]
+    },
+    "trata_antipsicoticos": {
+      "estilo": "peligro",
+      "texto": "- Ofrecer antipsicoticos solo si hay riesgo de daño o distrés severo por alucinaciones/delirios.\n- Usar la **dosis mínima eficaz** por el **menor tiempo posible**.\n- Medicamentos permitidos: **Risperidona** (máximo **6 semanas** en EA) o **Haloperidol** (solo si no farmacológicos fallan).\n- Reevaluar cada **6 semanas**.",
+      "pie_nodo": "ADVERTENCIA: En DCL o Parkinson, los antipsicóticos pueden empeorar gravemente los síntomas motores.",
+      "nota_adicional": "NICE ha producido ayudas para la toma de decisiones sobre antipsicóticos en demencia.",
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.7.3 a 1.7.7",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "27-28",
+          "imagen_evidencia": "TODO_EVIDENCIA: Pautas de uso de antipsicóticos",
+          "texto": "Solo usar en riesgo de daño o agitación severa. Reevaluación obligatoria cada 6 semanas."
+        },
+        {
+          "titulo": "NICE NG97 - Recomendación 1.7.4",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "28",
+          "imagen_evidencia": "TODO_EVIDENCIA: Advertencia sobre cuerpos de Lewy y antipsicóticos",
+          "texto": "Precaución extrema: Los antipsicóticos pueden causar reacciones de sensibilidad severas en DCL o Parkinson."
+        }
+      ]
+    },
+    "trata_exito_no_farma": {
+      "estilo": "exito",
+      "texto": "- Continuar con actividades personalizadas para promover el compromiso y el interés.\n- Mantener el soporte a cuidadores y educación (**Psicoeducación**).",
+      "referencias": [
+        {
+          "titulo": "NICE NG97 - Recomendaciones 1.7.9 y 1.11.1",
+          "url": "https://www.nice.org.uk/guidance/ng97",
+          "paginas": "29, 33",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección de soporte a cuidadores",
+          "texto": "Ofrecer actividades personalizadas y programas de psicoeducación y entrenamiento en habilidades para cuidadores."
+        }
+      ]
+    }
+  }
+}
