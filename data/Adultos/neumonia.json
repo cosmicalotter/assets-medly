@@ -1,0 +1,546 @@
+{
+  "titulo": "Neumonía Adquirida en la Comunidad (NAC)",
+  "version": "2025",
+  "carpeta_evidencia": "neumonia",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Evaluación y Manejo de la Neumonía Adquirida en la Comunidad (Adultos Inmunocompetentes)",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "24",
+          "imagen_evidencia": "TODO_EVIDENCIA: Resumen de recomendaciones de la guía ATS 2025",
+          "texto": "Documento que actualiza directrices clínicas basadas en evidencia sobre cuatro preguntas clave para el diagnóstico y manejo de pacientes adultos con NAC."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Estratificación",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección 4. Diagnóstico de la guía colombiana",
+          "texto": "El diagnóstico de neumonía adquirida en la comunidad se establece por los datos derivados de una buena historia clínica, el examen físico y el examen radiológico."
+        }
+      ]
+    },
+    "diag_evaluacion_inicial": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar signos clínicos de infección del tracto respiratorio inferior (fiebre, tos, expectoración purulenta, disnea, dolor pleurítico).\n2. Realizar examen físico buscando signos de consolidación alveolar.\n3. Confirmar presencia de inflamación alveolar mediante imagen.",
+      "pie_nodo": "¿Se confirma el diagnóstico de NAC por imagen (Infiltrado nuevo)?",
+      "nota_adicional": "El Ultrasonido Pulmonar (LUS) es una alternativa diagnóstica razonable y precisa frente a la radiografía de tórax en centros donde exista la experiencia clínica y técnica (Guía ATS 2025).",
+      "imagen": "TODO_IMG: Ecografía pulmonar mostrando líneas B y signos de consolidación subpleural frente a Radiografía de tórax",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_estratificacion_riesgo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_descartar_nac"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "24-30",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de recomendación condicional a favor del uso de Ultrasonido Pulmonar (LUS)",
+          "texto": "For adults with suspected CAP, we suggest lung ultrasound is an acceptable diagnostic alternative to chest radiography in medical centers where appropriate clinical expertise exists."
+        }
+      ]
+    },
+    "diag_descartar_nac": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Considerar diagnósticos diferenciales.\n- Evaluar TEP, exacerbación de EPOC, insuficiencia cardíaca congestiva, bronquitis aguda o asma.",
+      "nota_adicional": "En pacientes con alta sospecha clínica y radiografía inicial normal, se puede considerar TC de tórax de alta resolución o repetir la imagen a las 24-48 horas si persiste la sospecha.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección de diagnóstico diferencial clínico-radiológico",
+          "texto": "Cuando un paciente consulta con síntomas de infección respiratoria aguda pero no tiene ninguno de los criterios (taquicardia, taquipnea, fiebre o anormalidades a la auscultación), la probabilidad de neumonía es muy baja."
+        }
+      ]
+    },
+    "diag_estratificacion_riesgo": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar estado de conciencia (Confusión).\n2. Medir Nitrógeno Ureico (BUN > 19 mg/dL).\n3. Medir Frecuencia Respiratoria (>= 30 rpm).\n4. Medir Presión Arterial (Sistólica < 90 o Diastólica <= 60 mmHg).\n5. Confirmar edad (>= 65 años).",
+      "pie_nodo": "¿Cuál es el puntaje en la escala CURB-65?",
+      "calculadora_id": "TODO_CALC_curb65.json",
+      "nota_adicional": "La oximetría de pulso es obligatoria. Una saturación < 90% es un criterio independiente para considerar manejo hospitalario y oxigenoterapia suplementaria.",
+      "opciones": [
+        {
+          "texto": "CURB-65: 0 - 1",
+          "siguiente_nodo": "diag_grupo1_ambulatorio"
+        },
+        {
+          "texto": "CURB-65: 2",
+          "siguiente_nodo": "diag_grupo2_piso"
+        },
+        {
+          "texto": "CURB-65: 3 - 5",
+          "siguiente_nodo": "diag_grupo3_uci"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "9-11",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 7. Escala de gravedad CURB-65",
+          "texto": "En la escala de gravedad CURB-65 (tabla 7) a cada parámetro se le asigna una puntuación de 0 o 1, según si está ausente o presente; la puntuación total va de 0 a 5 y se estratifica en 3 grupos."
+        }
+      ]
+    },
+    "diag_grupo1_ambulatorio": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- **Grupo I**: Mortalidad baja (1.5%).\n- El paciente es candidato seguro para tratamiento ambulatorio en casa.",
+      "enlaces": [
+        {
+          "texto": "Ir al esquema de tratamiento Ambulatorio",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_g1_comorbilidades"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "11-12",
+          "imagen_evidencia": "TODO_EVIDENCIA: Clasificación de grupos pronósticos",
+          "texto": "Grupo I: puntajes 0 y 1; mortalidad, 1,5%; tratamiento en casa."
+        }
+      ]
+    },
+    "diag_grupo2_piso": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- **Grupo II**: Mortalidad intermedia (9.2%).\n- El paciente requiere hospitalización en sala general (piso).\n- Solicitar laboratorios basales (Hemograma, BUN, Creatinina) y considerar cultivos si hay factores de riesgo.",
+      "enlaces": [
+        {
+          "texto": "Ir al esquema de tratamiento Hospitalario",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_g2_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "12-14",
+          "imagen_evidencia": "TODO_EVIDENCIA: Clasificación Grupo II y exámenes paraclínicos",
+          "texto": "Grupo II: puntaje de 2; mortalidad, 9,2%; considerar tratamiento hospitalario o vigilancia ambulatoria estricta. Exámenes: hemoleucograma, BUN, creatinina, glucemia y oximetría."
+        }
+      ]
+    },
+    "diag_grupo3_uci": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- **Grupo III**: Mortalidad alta (22%). Neumonía Grave.\n- El paciente requiere ingreso a Unidad de Cuidados Intensivos (UCI) o cuidados intermedios.\n- Evaluar criterios mayores de ATS/IDSA (Choque séptico con vasopresores o Ventilación mecánica invasiva).",
+      "enlaces": [
+        {
+          "texto": "Ir al esquema de tratamiento UCI",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_g3_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "12-13",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 8. Criterios ATS/IDSA para admisión a UCI",
+          "texto": "Grupo III: puntaje igual a 3 o mayor; mortalidad, 22%; neumonía grave; es obligatoria su hospitalización y se debe considerar ingreso en UCI con base en criterios ATS/IDSA."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento Antimicrobiano y Adyuvante",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_seleccion_entorno"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "24-25",
+          "imagen_evidencia": "TODO_EVIDENCIA: Sección sobre decisiones de tratamiento empírico",
+          "texto": "Recomendaciones respecto al uso empírico de antibacterianos, duración del tratamiento antibiótico y uso de corticosteroides sistémicos."
+        }
+      ]
+    },
+    "trat_seleccion_entorno": {
+      "tipo": "pregunta",
+      "texto": "1. El tratamiento empírico debe iniciarse de forma temprana (idealmente en las primeras **4 a 6 horas**, o en la primera hora si hay choque séptico).\n2. Asegurar soporte de oxígeno (SpO2 > 90%) e hidratación.",
+      "pie_nodo": "¿A qué grupo de severidad / entorno de manejo pertenece el paciente?",
+      "opciones": [
+        {
+          "texto": "Grupo I (Ambulatorio)",
+          "siguiente_nodo": "trat_g1_comorbilidades"
+        },
+        {
+          "texto": "Grupo II (Hospitalización Piso)",
+          "siguiente_nodo": "trat_g2_inicio"
+        },
+        {
+          "texto": "Grupo III (Hospitalización UCI)",
+          "siguiente_nodo": "trat_g3_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "21",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tiempos para inicio de terapia antibiótica",
+          "texto": "El antibiótico debe iniciarse en las primeras 4 a 6 h. El antibiótico debe iniciarse en la primera hora en pacientes con choque séptico. Suplencia adecuada de oxígeno para lograr saturación > 90%."
+        }
+      ]
+    },
+    "trat_g1_comorbilidades": {
+      "tipo": "pregunta",
+      "texto": "- Revisar historial clínico del paciente.\n- Comorbilidades relevantes: EPOC, diabetes mellitus, insuficiencia cardíaca, falla renal, hepatopatía crónica, alcoholismo, o neoplasias.",
+      "pie_nodo": "¿El paciente presenta alguna de estas comorbilidades o ha usado antibióticos en los últimos 3 meses?",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_g1_sanos"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_g1_comorb"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "23",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 12. Tratamiento Grupo I con y sin factores de riesgo",
+          "texto": "Diferenciación del Grupo I: a) Sano sin factores de riesgo; b) Con factores de riesgo o enfermedades concomitantes."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "33",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table 5. Comorbidities that May Warrant Antibiotic Therapy",
+          "texto": "Se enumera la lista de comorbilidades que justifican la terapia antibiótica en pacientes ambulatorios con NAC y prueba viral positiva."
+        }
+      ]
+    },
+    "trat_g1_sanos": {
+      "tipo": "pregunta",
+      "texto": "- En pacientes sanos, solicitar panel molecular/PCR viral si está epidemiológicamente indicado y disponible.",
+      "pie_nodo": "¿El paciente tiene un test positivo para un virus respiratorio (ej. Influenza, VSR, SARS-CoV-2)?",
+      "nota_adicional": "La guía ATS 2025 actualiza esta recomendación basándose en el bajo riesgo de coinfección bacteriana en pacientes sanos y los daños del sobreuso de antibióticos.",
+      "opciones": [
+        {
+          "texto": "Sí, PCR Viral Positiva",
+          "siguiente_nodo": "trat_g1_sanos_viral_positivo"
+        },
+        {
+          "texto": "No / No se dispone de prueba",
+          "siguiente_nodo": "trat_g1_sanos_abx"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "24, 26, 34",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación sobre diferir antibióticos en ambulatorios sanos con virus positivo",
+          "texto": "For adult outpatients without comorbidities who have clinical and imaging evidence of CAP and who have a positive test result for a respiratory virus, we suggest not prescribing empiric antibiotics."
+        }
+      ]
+    },
+    "trat_g1_sanos_viral_positivo": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- **NO prescribir antibióticos empíricos**.\n- Administrar tratamiento antiviral si está indicado (ej. **Oseltamivir 75 mg PO cada 12h** si es Influenza y está en ventana terapéutica).\n- Indicar manejo sintomático riguroso y plan de contingencia (signos de alarma).",
+      "nota_adicional": "Solo aplica para pacientes sin comorbilidades y con estabilidad clínica. Requiere educación clara sobre síntomas de sobreinfección.",
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "24, 34",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación sobre no prescribir antibióticos en panel viral positivo sin comorbilidades",
+          "texto": "Conditional recommendation, very low-quality evidence. We suggest not prescribing empiric antibiotics because of concern for bacterial-viral coinfection in outpatients without comorbidities."
+        },
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "22",
+          "imagen_evidencia": "TODO_EVIDENCIA: Indicación de oseltamivir",
+          "texto": "Uso de antivirales: Las recomendaciones actuales en Colombia indican el uso de oseltamivir en pacientes con diagnóstico de neumonía."
+        }
+      ]
+    },
+    "trat_g1_sanos_abx": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar **Amoxicilina 1 g PO cada 8h**.\n- Alternativa (si no hay resistencia local alta a macrólidos): **Claritromicina 500 mg PO cada 12h** o **Azitromicina 500 mg día 1, luego 250 mg/día**.\n- Alternativa en alergias: **Doxiciclina 100 mg PO cada 12h**.",
+      "nota_adicional": "Duración ATS 2025: Si alcanza estabilidad clínica, administrar por **MENOS de 5 días** (mínimo estricto de **3 días**). Los ciclos largos aumentan toxicidad sin beneficio añadido.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "23",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 12. Esquemas antibióticos Grupo I sano",
+          "texto": "Primera línea: Amoxicilina 1 g por vía oral, cada 8 h, o claritromicina 500 mg por vía oral cada 12 h. Alternativas: Doxiciclina 100 mg."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 36",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de duración acortada de antibióticos en pacientes ambulatorios",
+          "texto": "For adult outpatients with CAP who reach clinical stability, we suggest less than 5 days of antibiotics (minimum of 3-d duration) rather than 5 or more days."
+        }
+      ]
+    },
+    "trat_g1_comorb": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Terapia Combinada: **Amoxicilina/Clavulanato 1 g PO cada 12h** + **Claritromicina 500 mg PO cada 12h** (o Azitromicina).\n- Alternativa en monoterapia: Quinolona respiratoria (**Moxifloxacina 400 mg PO al día** o **Levofloxacina 750 mg PO al día**).",
+      "nota_adicional": "Incluso si el panel viral resulta positivo, en pacientes con comorbilidades se DEBE iniciar antibiótico por el alto riesgo de resultados adversos si hay sobreinfección bacteriana. Duración < 5 días (mín. 3 días) tras estabilización.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "23",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 12. Esquemas antibióticos Grupo I con factores de riesgo",
+          "texto": "Primera línea: Amoxicilina-ácido clavulánico asociado a claritromicina. Alternativas: moxifloxacina o levofloxacina."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación antibiótica a pesar de panel viral en comórbidos y duración",
+          "texto": "For adult outpatients with comorbidities... we suggest prescribing empiric antibiotics because of concern for bacterial-viral coinfection. Duration: less than 5 days if clinically stable."
+        }
+      ]
+    },
+    "trat_g2_inicio": {
+      "tipo": "pregunta",
+      "texto": "1. **NO administrar corticosteroides sistémicos** (Recomendación fuerte en NAC no severa para evitar hiperglucemia y efectos adversos).\n2. Tomar hemocultivos y cultivo de esputo previo al antibiótico (si es posible).\n3. Si hay PCR viral positiva, mantener antibióticos empíricos por riesgo de coinfección.",
+      "pie_nodo": "¿El paciente tiene factores de riesgo para MRSA o Pseudomonas aeruginosa?",
+      "nota_adicional": "Factores de riesgo MRSA/Pseudo: Aislamiento previo, hospitalización reciente con uso de antibióticos IV en los últimos 90 días, daño pulmonar estructural (bronquiectasias).",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_g2_abx"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_g2_mrsapseudo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 37",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación fuerte EN CONTRA de corticosteroides en NAC no severa",
+          "texto": "For adult inpatients with nonsevere CAP, we recommend NOT administering systemic corticosteroids (strong recommendation)."
+        },
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "24",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 13 y evaluación de factores de riesgo intrahospitalarios",
+          "texto": "Evaluación de factores de riesgo para bacilos gramnegativos o neumococo resistente al ingreso."
+        }
+      ]
+    },
+    "trat_g2_abx": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar Betalactámico + Macrólido: **Ampicilina/Sulbactam 3 g IV cada 6h** (o Ceftriaxona 1-2 g IV/día) + **Claritromicina 500 mg IV/PO cada 12h**.\n- Alternativa (Alergia a penicilina): **Moxifloxacina 400 mg IV/PO al día** o **Levofloxacina 750 mg IV/PO al día**.",
+      "nota_adicional": "Duración ATS 2025: Administrar por **MENOS de 5 días** (mínimo **3 días**) si alcanza estabilidad clínica. Hacer transición de IV a PO tan pronto haya mejoría y tolerancia gástrica.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "24",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 13. Esquemas Grupo II",
+          "texto": "Primera línea: Ampicilina-sulbactam más claritromicina. Alternativas: moxifloxacina o levofloxacina."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 36",
+          "imagen_evidencia": "TODO_EVIDENCIA: Duración de antibióticos en no severos hospitalizados",
+          "texto": "For adult inpatients with nonsevere CAP who reach clinical stability, we suggest less than 5 days of antibiotics (minimum of 3-d duration) rather than 5 or more days."
+        }
+      ]
+    },
+    "trat_g2_mrsapseudo": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Riesgo MRSA: Añadir **Vancomicina 15 mg/kg IV cada 12h** (Ajustar por niveles) o **Linezolid 600 mg IV cada 12h**.\n- Riesgo Pseudomonas: Escalar a **Piperacilina/Tazobactam 4.5 g IV cada 6h** o **Cefepime 2 g IV cada 8h** + Macrólido.",
+      "nota_adicional": "Es mandatorio desescalar a las 48-72 horas si los cultivos respiratorios o hemocultivos son negativos para estos patógenos.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones cobertura MRSA y Pseudomonas",
+          "texto": "Se recomienda el uso de piperacilina-tazobactam, cefepime, vancomicina o linezolid en pacientes con factores de riesgo para patógenos resistentes."
+        }
+      ]
+    },
+    "trat_g3_inicio": {
+      "tipo": "pregunta",
+      "texto": "1. Asegurar ingreso a UCI, intubación o soporte vasopresor si aplica.\n2. Ordenar hemocultivos x2, antígenos urinarios (Neumococo, Legionella), secreción traqueal para Gram/Cultivo y PCR viral multiplex.",
+      "pie_nodo": "¿Se confirma o se sospecha fuertemente Infección por virus de la Influenza?",
+      "opciones": [
+        {
+          "texto": "Sí (Influenza)",
+          "siguiente_nodo": "trat_g3_influenza"
+        },
+        {
+          "texto": "No (Otra etiología / Bacteriana)",
+          "siguiente_nodo": "trat_g3_corticoide"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "15",
+          "imagen_evidencia": "TODO_EVIDENCIA: Estudios paraclínicos sugeridos en Grupo III",
+          "texto": "Exámenes del Grupo III: Fibrobroncoscopia o aspirado traqueal, hemocultivos, detección de antígenos urinarios y pruebas virales."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25",
+          "imagen_evidencia": "TODO_EVIDENCIA: Diferenciación en el uso de esteroides según etiología viral",
+          "texto": "Systemic corticosteroids recommended in severe CAP except for patients with influenza pneumonia."
+        }
+      ]
+    },
+    "trat_g3_influenza": {
+      "tipo": "pregunta",
+      "texto": "- **NO administrar corticosteroides sistémicos** (riesgo documentado de empeoramiento y sobreinfección en neumonía por influenza).\n- Iniciar **Oseltamivir 75 mg PO cada 12h** de inmediato, independientemente de los días de síntomas.",
+      "pie_nodo": "¿El paciente tiene factores de riesgo para MRSA o Pseudomonas aeruginosa?",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_g3_abx"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_g3_mrsapseudo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 38",
+          "imagen_evidencia": "TODO_EVIDENCIA: Exclusión de corticosteroides en influenza",
+          "texto": "This recommendation excludes patients with severe CAP caused by influenza pneumonia due to observational data suggesting potential harm."
+        },
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "22",
+          "imagen_evidencia": "TODO_EVIDENCIA: Indicaciones uso de oseltamivir en neumonía grave",
+          "texto": "Uso de antivirales: oseltamivir en todos los pacientes con diagnóstico de neumonía grave adquirida en la comunidad."
+        }
+      ]
+    },
+    "trat_g3_corticoide": {
+      "tipo": "pregunta",
+      "texto": "- Administrar **Corticosteroides Sistémicos** (Recomendación ATS 2025 para NAC severa no-influenza para reducir mortalidad).\n- Dosis sugerida: **Hidrocortisona 200 mg/día** en infusión continua o 50 mg IV cada 6h por 4-7 días (con desmonte progresivo).",
+      "pie_nodo": "¿El paciente tiene factores de riesgo para MRSA o Pseudomonas aeruginosa?",
+      "imagen": "TODO_IMG: Esquema de administración de hidrocortisona y control glucémico",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_g3_abx"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_g3_mrsapseudo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 38",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación a favor de corticosteroides sistémicos en NAC severa",
+          "texto": "For adult inpatients with severe CAP, we suggest administering systemic corticosteroids. E.g., hydrocortisone 200 mg continuous intravenous infusion daily."
+        }
+      ]
+    },
+    "trat_g3_abx": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Iniciar **Ampicilina/Sulbactam 3 g IV cada 6h** (o Ceftriaxona 1-2 g IV/día) + **Azitromicina 500 mg IV al día** (o Claritromicina).\n- Alternativa: Betalactámico + Fluoroquinolona IV.",
+      "nota_adicional": "Duración ATS 2025: En NAC Severa, administrar por **5 o MÁS días**. Los esquemas acortados (<5 días) en UCI se asocian a peores desenlaces. Puede guiarse por clínica y procalcitonina.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "25",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 14. Esquemas tratamiento Grupo III",
+          "texto": "Grupo III (Sin factores de riesgo para P. aeruginosa): Ampicilina-sulbactam más claritromicina (o macrólido)."
+        },
+        {
+          "titulo": "Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202507-1692ST",
+          "paginas": "25, 36",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación sobre la duración de antibióticos en NAC severa",
+          "texto": "For adult inpatients with severe CAP who reach clinical stability, we suggest 5 or more days of antibiotics rather than less than 5 days of antibiotics."
+        }
+      ]
+    },
+    "trat_g3_mrsapseudo": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Riesgo MRSA: Añadir **Vancomicina 15-20 mg/kg IV cada 8-12h** o **Linezolid 600 mg IV cada 12h**.\n- Riesgo Pseudomonas: Usar Betalactámico Antipseudomónico (**Piperacilina/Tazobactam 4.5 g IV cada 6h**, **Cefepime 2 g IV cada 8h** o **Meropenem 1 g IV cada 8h**) + Macrólido.",
+      "nota_adicional": "Evaluar desescalamiento diario. Si cultivos a 72h son negativos, suspender cobertura MRSA/Pseudomonas. Duración total >= 5 días según evolución.",
+      "referencias": [
+        {
+          "titulo": "Guía de Práctica Clínica: Recomendaciones para el diagnóstico, tratamiento y prevención de la NAC (Colombia)",
+          "url": "www.elsevier.es/infectio",
+          "paginas": "25-26",
+          "imagen_evidencia": "TODO_EVIDENCIA: Tabla 14. Esquemas Grupo III con factores de riesgo",
+          "texto": "Con factores de riesgo para P. aeruginosa o S. aureus resistente a la meticilina: piperacilina-tazobactam o cefepime, vancomicina o linezolid."
+        }
+      ]
+    }
+  }
+}
