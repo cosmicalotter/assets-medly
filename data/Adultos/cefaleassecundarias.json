@@ -1,0 +1,273 @@
+{
+  "titulo": "Manejo de Cefaleas: Identificación de Banderas Rojas y Naranjas (SNNOOP10)",
+  "version": "2019",
+  "carpeta_evidencia": "cefaleassecundarias",
+  "nodoInicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "MANEJO DE CEFALEAS EN LA PRÁCTICA CLÍNICA",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "134",
+          "imagen_evidencia": "TODO_EVIDENCIA: Abstract_SNNOOP10_Intro",
+          "texto": "Revisión sistemática que propone la lista SNNOOP10 para aumentar la probabilidad de detectar causas secundarias de cefalea en la práctica clínica."
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Cribado de Causas Secundarias",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_eval_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "134",
+          "imagen_evidencia": "TODO_EVIDENCIA: Introduction_RedFlags",
+          "texto": "La literatura médica promueve las banderas rojas para dirigir al clínico a iniciar un plan de estudio. La ausencia de banderas rojas puede sugerir que no se necesita estudio adicional."
+        }
+      ]
+    },
+    "diag_eval_inicial": {
+      "tipo": "pregunta",
+      "texto": "1. Estabilización de constantes vitales.\n2. Realizar anamnesis dirigida buscando cronología y modo de inicio.\n3. Exploración física completa incluyendo fondo de ojo y signos meníngeos.",
+      "pie_nodo": "¿Presenta el paciente un inicio **Súbito o Abrupto (Thunderclap)**?",
+      "nota_adicional": "La cefalea tipo trueno alcanza su intensidad máxima en menos de **1 minuto**. Es la bandera roja clave para hemorragia subaracnoidea (HSA).",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_emergencia_vascular"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_cribado_snnoop"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "138",
+          "imagen_evidencia": "TODO_EVIDENCIA: TCH_Definition_Pag138",
+          "texto": "La ICHD-3 define la cefalea tipo trueno (TCH) como una cefalea de intensidad alta con inicio abrupto que alcanza su máximo en <1 minuto."
+        }
+      ]
+    },
+    "diag_emergencia_vascular": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Activar protocolo de emergencia vascular.\n- Solicitar **TAC de cráneo simple** inmediatamente.\n- Considerar Angio-TAC o Punción Lumbar si el TAC es negativo y la sospecha de HSA es alta.",
+      "imagen": "TODO_IMG: Algoritmo de abordaje de cefalea tipo trueno",
+      "enlaces": [
+        {
+          "texto": "Ir a Manejo de Emergencias",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trata_emergencia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "138-139",
+          "imagen_evidencia": "TODO_EVIDENCIA: SAH_Sensitivity_TCH",
+          "texto": "La combinación de TCH y edad >40 años, rigidez de nuca o pérdida de conciencia resulta en una sensibilidad del 98.5% para hemorragia subaracnoidea (HSA)."
+        }
+      ]
+    },
+    "diag_cribado_snnoop": {
+      "tipo": "pregunta",
+      "texto": "- **S**: Síntomas sistémicos (Fiebre, pérdida de peso).\n- **N**: Neoplasia conocida en el historial.\n- **N**: Déficit neurológico o alteración de conciencia.\n- **O**: Onset (Inicio) tardío (Edad **>65 años**).\n- **O**: Onset reciente o cambio de patrón.",
+      "pie_nodo": "¿Presenta alguna de estas 5 banderas rojas iniciales?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_neuroimagen_urgente"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_snnoop_continuacion"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "136",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table1_Flags_1-6",
+          "texto": "Definición de las primeras 6 banderas de la lista SNNOOP10: Síntomas sistémicos, neoplasia, déficit neurológico, inicio súbito, edad avanzada y cambio de patrón."
+        }
+      ]
+    },
+    "diag_snnoop_continuacion": {
+      "tipo": "pregunta",
+      "texto": "- **P1**: Posicional (Cede al acostarse o empeora al levantarse).\n- **P2**: Precipitado por maniobras de Valsalva (Tos, ejercicio).\n- **P3**: Papiledema detectado en fondo de ojo.\n- **P4**: Progresiva o presentación atípica.\n- **P5**: Embarazo o puerperio.\n- **P6**: Painful eye (Ojo doloroso) con rasgos autonómicos.\n- **P7**: Post-traumática.\n- **P8**: Patología inmunitaria (VIH).\n- **P9**: Painkillers (Uso excesivo de analgésicos) o fármacos nuevos.",
+      "pie_nodo": "¿Presenta alguna de estas banderas rojas adicionales?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_neuroimagen_urgente"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_cefalea_primaria"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "136",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table1_Flags_7-15",
+          "texto": "Continuación de la lista SNNOOP10 (items 7 al 15) que incluye factores como embarazo, papiledema, trauma y uso de fármacos."
+        }
+      ]
+    },
+    "diag_neuroimagen_urgente": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- La presencia de cualquier bandera roja SNNOOP10 aumenta significativamente la probabilidad de una etiología secundaria.\n- El estudio de elección es la **Resonancia Magnética (RM)** con contraste, a menos que se sospeche hemorragia aguda (donde el TAC es inicial).",
+      "nota_adicional": "La combinación de fiebre + cefalea es una Bandera Naranja si la fiebre es aislada, pero Roja si se asocia a rigidez nucal o déficit focal.",
+      "enlaces": [
+        {
+          "texto": "Ir al Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trata_especifico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "135-136",
+          "imagen_evidencia": "TODO_EVIDENCIA: Neuroimaging_Decision",
+          "texto": "El uso sistemático de la lista SNNOOP10 aumenta la probabilidad de detectar una causa secundaria. La fiebre aislada se categoriza como bandera naranja, pero es roja si se acompaña de otros síntomas."
+        }
+      ]
+    },
+    "diag_cefalea_primaria": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- En ausencia de banderas rojas, la probabilidad de causa secundaria es baja.\n- Clasificar según criterios **ICHD-3** (Migraña, Tensional, Cluster).\n- Iniciar tratamiento sintomático y preventivo estándar.",
+      "enlaces": [
+        {
+          "texto": "Ver protocolo de Migraña",
+          "archivo_objetivo": "TODO_LINK_migrana.json"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "134",
+          "imagen_evidencia": "TODO_EVIDENCIA: Absence_of_Red_Flags",
+          "texto": "La ausencia de banderas rojas sugiere que no es necesario un estudio exhaustivo (workup)."
+        }
+      ]
+    },
+    "nodo_treatment": {
+      "estilo": "rama",
+      "texto": "Tratamiento y Referencia",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trata_especifico"
+        }
+      ]
+    },
+    "trata_emergencia": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "1. Estabilización hemodinámica.\n2. Intervención neuroquirúrgica o endovascular si se confirma HSA o masa ocupante.\n3. Control estricto de la **Presión Arterial** (mantener según protocolo específico de ictus/HSA).",
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "138-139",
+          "imagen_evidencia": "TODO_EVIDENCIA: SAH_Symptoms_Pag139",
+          "texto": "La cefalea centinela ocurre antes de la ruptura de un aneurisma en el 10%-43% de los casos de HSA."
+        }
+      ]
+    },
+    "trata_especifico": {
+      "tipo": "pregunta",
+      "texto": "El tratamiento depende del hallazgo en neuroimagen o laboratorio.",
+      "pie_nodo": "¿Cuál es la sospecha principal tras el abordaje inicial?",
+      "opciones": [
+        {
+          "texto": "Infección (Meningitis/Encefalitis)",
+          "siguiente_nodo": "trata_infeccion"
+        },
+        {
+          "texto": "Neoplasia / Masa",
+          "siguiente_nodo": "trata_onco"
+        },
+        {
+          "texto": "Vascular (HSA/Trombosis Venosa)",
+          "siguiente_nodo": "trata_vascular"
+        }
+      ]
+    },
+    "trata_infeccion": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Iniciar antibioterapia empírica urgente: **Ceftriaxona 2g c/12h** + **Vancomicina**.\n- Agregar **Dexametasona 10mg** IV antes o con la primera dosis de antibiótico.\n- Realizar punción lumbar si no hay contraindicación por imagen.",
+      "imagen": "TODO_IMG: Esquema de manejo empírico de meningitis bacteriana",
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "137",
+          "imagen_evidencia": "TODO_EVIDENCIA: Table2_Bacterial_Meningitis",
+          "texto": "En meningitis bacteriana, la tríada de fiebre, rigidez nucal y disminución de conciencia está presente en un 21.4% a 66% de los episodios."
+        }
+      ]
+    },
+    "trata_onco": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Iniciar manejo de edema vasogénico con **Dexametasona** si hay efecto de masa.\n- Interconsulta con Neurocirugía y Oncología Médica.\n- Búsqueda de tumor primario (TAC Toraco-Abdomino-Pélvico).",
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "138",
+          "imagen_evidencia": "TODO_EVIDENCIA: Neoplasm_Predictors",
+          "texto": "Predictores independientes de metástasis cerebral incluyen: cualidad pulsátil, intensidad moderada a severa, emesis e inestabilidad en la marcha."
+        }
+      ]
+    },
+    "trata_vascular": {
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- En Trombosis Venosa Cerebral: Anticoagulación con **Heparina de Bajo Peso Molecular** incluso en presencia de transformación hemorrágica limitada.\n- En HSA: Manejo en Unidad de Cuidados Intensivos, prevención de vasoespasmo con **Nimodipino 60mg c/4h**.",
+      "referencias": [
+        {
+          "titulo": "Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list",
+          "url": "https://doi.org/10.1212/WNL.0000000000006697",
+          "paginas": "140",
+          "imagen_evidencia": "TODO_EVIDENCIA: CVT_Presentation",
+          "texto": "En la trombosis venosa cerebral, el 65% de los pacientes presentan un curso progresivo de su cefalea."
+        }
+      ]
+    }
+  }
+}
