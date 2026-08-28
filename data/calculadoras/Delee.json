@@ -1,0 +1,81 @@
+{
+  "titulo": "Índice de Riesgo Cardíaco Revisado (Score de Lee / RCRI)",
+  "descripcion": "Estima el riesgo de complicaciones cardíacas mayores tras una cirugía no cardíaca.",
+  "tipoCalculo": "formula",
+  "formula": "v1 + v2 + v3 + v4 + v5 + v6",
+  "prefijoResultado": "Puntuación RCRI: ",
+  "sufijoResultado": "puntos",
+  "secciones": [
+    {
+      "nombre": "Criterios de Evaluación",
+      "elementos": [
+        {
+          "id": "cirugia",
+          "tipo": "opciones",
+          "label": "Cirugía de alto riesgo",
+          "descripcion": "Intraperitoneal; intratorácica; vascular suprainguinal.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v1": 0 } },
+            { "label": "Sí", "valoresVariables": { "v1": 1 } }
+          ]
+        },
+        {
+          "id": "isquemia",
+          "tipo": "opciones",
+          "label": "Historia de cardiopatía isquémica",
+          "descripcion": "Historia de infarto de miocardio; prueba de esfuerzo positiva; dolor torácico actual por isquemia; uso de nitratos o ECG con ondas Q patológicas.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v2": 0 } },
+            { "label": "Sí", "valoresVariables": { "v2": 1 } }
+          ]
+        },
+        {
+          "id": "icc",
+          "tipo": "opciones",
+          "label": "Historia de insuficiencia cardíaca congestiva",
+          "descripcion": "Edema pulmonar, estertores bilaterales o galope S3; disnea paroxística nocturna; radiografía de tórax mostrando redistribución vascular pulmonar.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v3": 0 } },
+            { "label": "Sí", "valoresVariables": { "v3": 1 } }
+          ]
+        },
+        {
+          "id": "ecv",
+          "tipo": "opciones",
+          "label": "Historia de enfermedad cerebrovascular",
+          "descripcion": "Ataque isquémico transitorio (AIT) o accidente cerebrovascular (ACV) previo.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v4": 0 } },
+            { "label": "Sí", "valoresVariables": { "v4": 1 } }
+          ]
+        },
+        {
+          "id": "insulina",
+          "tipo": "opciones",
+          "label": "Tratamiento preoperatorio con insulina",
+          "descripcion": "",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v5": 0 } },
+            { "label": "Sí", "valoresVariables": { "v5": 1 } }
+          ]
+        },
+        {
+          "id": "creatinina",
+          "tipo": "opciones",
+          "label": "Creatinina preoperatoria >2 mg/dL (176.8 µmol/L)",
+          "descripcion": "",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v6": 0 } },
+            { "label": "Sí", "valoresVariables": { "v6": 1 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 0, "max": 0, "categoria": "Clase I (Riesgo bajo): ~0.4% - 0.5% riesgo de evento cardíaco mayor", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1, "max": 1, "categoria": "Clase II (Riesgo bajo): ~0.9% - 1% riesgo de evento cardíaco mayor", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 2, "max": 2, "categoria": "Clase III (Riesgo moderado): ~2.4% - 4% riesgo de evento cardíaco mayor", "color": "naranja", "matchOpcionIndex": 3 },
+    { "min": 3, "max": 6, "categoria": "Clase IV (Riesgo alto): ≥ 5.4% riesgo de evento cardíaco mayor", "color": "rojo", "matchOpcionIndex": 4 }
+  ]
+}
