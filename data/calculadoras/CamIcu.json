@@ -1,0 +1,102 @@
+{
+  "titulo": "Método de Evaluación de Confusión en UCI (CAM-ICU)",
+  "descripcion": "Herramienta para evaluar la presencia de delírium en pacientes de la Unidad de Cuidados Intensivos (UCI).",
+  "tipoCalculo": "formula",
+  "formula": "v0 + v1a + v1b + v2 + v3 + v4",
+  "prefijoResultado": "Resultado: ",
+  "sufijoResultado": "",
+  "secciones": [
+    {
+      "nombre": "Paso Previo: Nivel de Conciencia",
+      "elementos": [
+        {
+          "id": "rass",
+          "tipo": "opciones",
+          "label": "RASS ≥ -3",
+          "descripcion": "U otro sistema de puntuación que muestre un nivel de conciencia suficiente.",
+          "opciones": [
+            { "label": "No (Detener evaluación)", "valoresVariables": { "v0": 0 } },
+            { "label": "Sí", "valoresVariables": { "v0": 1000 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Característica 1: Inicio Agudo o Curso Fluctuante",
+      "elementos": [
+        {
+          "id": "agudo",
+          "tipo": "opciones",
+          "label": "Estado mental diferente al basal (prehospitalario)",
+          "descripcion": "¿Existe evidencia de un cambio agudo en el estado mental desde el estado basal del paciente?",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v1a": 0 } },
+            { "label": "Sí", "valoresVariables": { "v1a": 100 } }
+          ]
+        },
+        {
+          "id": "fluctuante",
+          "tipo": "opciones",
+          "label": "Estado mental fluctuante en las últimas 24 horas",
+          "descripcion": "Fluctuación evidenciada por cambios en el nivel de conciencia o sedación.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v1b": 0 } },
+            { "label": "Sí", "valoresVariables": { "v1b": 100 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Característica 2: Inatención",
+      "elementos": [
+        {
+          "id": "inatencion",
+          "tipo": "opciones",
+          "label": "Prueba de atención de letras con >2 errores",
+          "descripcion": "Diga C-A-S-A-B-L-A-N-C-A. El paciente debe apretar su mano cuando escuche la letra 'A'. Un error es no apretar en la letra 'A' o apretar en una letra distinta.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v2": 0 } },
+            { "label": "Sí", "valoresVariables": { "v2": 10 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Característica 3: Nivel de Conciencia Alterado",
+      "elementos": [
+        {
+          "id": "conciencia_alterada",
+          "tipo": "opciones",
+          "label": "El RASS actual NO es 0 (alerta y tranquilo)",
+          "descripcion": "",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v3": 0 } },
+            { "label": "Sí", "valoresVariables": { "v3": 1 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Característica 4: Pensamiento Desorganizado",
+      "elementos": [
+        {
+          "id": "pensamiento",
+          "tipo": "opciones",
+          "label": "Número combinado de errores a preguntas y comandos >1",
+          "descripcion": "Haga estas preguntas de sí/no: 1. ¿Flota una piedra en el agua? 2. ¿Hay peces en el mar? 3. ¿Pesa más 1 kilo que 2 kilos? 4. ¿Se usa un martillo para clavar un clavo? LUEGO, comandos: a) 'Levante esta cantidad de dedos' (muéstrele 2); b) 'Ahora haga lo mismo con la otra mano'. Si no puede mover ambos brazos, pida que levante un dedo más. Cuente error si no completa todo el comando.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v4": 0 } },
+            { "label": "Sí", "valoresVariables": { "v4": 1 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 0, "max": 999, "categoria": "No evaluable: Paciente en estupor profundo o coma (RASS -4 o -5). No se puede determinar delírium.", "color": "gris", "matchOpcionIndex": 1 },
+    { "min": 1000, "max": 1110, "categoria": "CAM-ICU Negativo (Sin Delírium)", "color": "verde", "matchOpcionIndex": 2 },
+    { "min": 1111, "max": 1112, "categoria": "CAM-ICU POSITIVO (Delírium presente)", "color": "rojo", "matchOpcionIndex": 3 },
+    { "min": 1113, "max": 1210, "categoria": "CAM-ICU Negativo (Sin Delírium)", "color": "verde", "matchOpcionIndex": 4 },
+    { "min": 1211, "max": 1212, "categoria": "CAM-ICU POSITIVO (Delírium presente)", "color": "rojo", "matchOpcionIndex": 5 }
+  ]
+}
