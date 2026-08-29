@@ -1,0 +1,64 @@
+{
+  "titulo": "Criterios de West Haven",
+  "descripcion": "Define los estadios o grados de la encefalopatía hepática en pacientes con enfermedad hepática aguda o crónica.",
+  "tipoCalculo": "formula",
+  "formula": "v1",
+  "prefijoResultado": "Grado ",
+  "sufijoResultado": " puntos",
+  "secciones": [
+    {
+      "nombre": "Evaluación Clínica (Signos y Síntomas)",
+      "elementos": [
+        {
+          "id": "sintomas",
+          "tipo": "opciones",
+          "label": "Seleccione la presentación clínica del paciente",
+          "opciones": [
+            { "label": "Pruebas psicométricas/neuropsicológicas anormales sin manifestaciones clínicas evidentes", "valoresVariables": { "v1": 0 } },
+            { "label": "Alteración de atención, cálculo o sueño; euforia/ansiedad; orientado en tiempo y espacio", "valoresVariables": { "v1": 1 } },
+            { "label": "Desorientado en tiempo/espacio; comportamiento inapropiado; cambios de personalidad; asterixis; apatía", "valoresVariables": { "v1": 2 } },
+            { "label": "Somnolencia/semiestupor; desorientación severa; confusión; comportamiento bizarro; responde a estímulos", "valoresVariables": { "v1": 3 } },
+            { "label": "Coma", "valoresVariables": { "v1": 4 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { 
+      "min": 0, 
+      "max": 0, 
+      "categoria": "0 (Encefalopatía Mínima / Encubierta). MANEJO: Evaluar estado cognitivo basal. Las pruebas de amonio de rutina no son necesarias para guiar el tratamiento.", 
+      "color": "verde", 
+      "matchOpcionIndex": 1 
+    },
+    { 
+      "min": 1, 
+      "max": 1, 
+      "categoria": "1 (Encefalopatía Encubierta). MANEJO: Buscar y tratar factores desencadenantes (infecciones, sangrado, alteraciones electrolíticas). Amonio de rutina no recomendado.", 
+      "color": "amarillo", 
+      "matchOpcionIndex": 2 
+    },
+    { 
+      "min": 2, 
+      "max": 2, 
+      "categoria": "2 (Encefalopatía Manifiesta). TRATAMIENTO: Lactulosa (con o sin rifaximina). Descarte siempre otras causas de alteración del estado mental (sangrado GI, infección, fármacos).", 
+      "color": "naranja", 
+      "matchOpcionIndex": 3 
+    },
+    { 
+      "min": 3, 
+      "max": 3, 
+      "categoria": "3 (Encefalopatía Manifiesta Severa). TRATAMIENTO: Lactulosa (con o sin rifaximina). Evaluar necesidad de protección de vía aérea y calcular Glasgow. Buscar activamente desencadenantes.", 
+      "color": "rojo", 
+      "matchOpcionIndex": 4 
+    },
+    { 
+      "min": 4, 
+      "max": 4, 
+      "categoria": "4 (Coma Hepático). ACCIÓN CRÍTICA: Escalar atención urgentemente (UCI). Evaluar intubación por incapacidad de proteger vía aérea. Descartar patología intracraneal o shock.", 
+      "color": "rojo", 
+      "matchOpcionIndex": 5 
+    }
+  ]
+}
