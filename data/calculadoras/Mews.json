@@ -1,0 +1,78 @@
+{
+  "titulo": "Modified Early Warning Score (MEWS)",
+  "descripcion": "Identifica de forma temprana el deterioro clínico en pacientes hospitalizados basándose en alteraciones de los signos vitales.",
+  "tipoCalculo": "formula",
+  "formula": "pas + fc + fr + temp + avpu",
+  "prefijoResultado": "Puntuación MEWS: ",
+  "sufijoResultado": "puntos",
+  "secciones": [
+    {
+      "nombre": "Signos Vitales y Estado Neurológico",
+      "elementos": [
+        {
+          "id": "pas",
+          "tipo": "opciones",
+          "label": "Presión Arterial Sistólica (PAS)",
+          "opciones": [
+            { "label": "≤ 70 mmHg", "valoresVariables": { "pas": 3 } },
+            { "label": "71 - 80 mmHg", "valoresVariables": { "pas": 2 } },
+            { "label": "81 - 100 mmHg", "valoresVariables": { "pas": 1 } },
+            { "label": "101 - 199 mmHg", "valoresVariables": { "pas": 0 } },
+            { "label": "≥ 200 mmHg", "valoresVariables": { "pas": 2 } }
+          ]
+        },
+        {
+          "id": "fc",
+          "tipo": "opciones",
+          "label": "Frecuencia Cardíaca (FC)",
+          "opciones": [
+            { "label": "< 40 lpm", "valoresVariables": { "fc": 2 } },
+            { "label": "41 - 50 lpm", "valoresVariables": { "fc": 1 } },
+            { "label": "51 - 100 lpm", "valoresVariables": { "fc": 0 } },
+            { "label": "101 - 110 lpm", "valoresVariables": { "fc": 1 } },
+            { "label": "111 - 129 lpm", "valoresVariables": { "fc": 2 } },
+            { "label": "≥ 130 lpm", "valoresVariables": { "fc": 3 } }
+          ]
+        },
+        {
+          "id": "fr",
+          "tipo": "opciones",
+          "label": "Frecuencia Respiratoria (FR)",
+          "opciones": [
+            { "label": "< 9 rpm", "valoresVariables": { "fr": 2 } },
+            { "label": "9 - 14 rpm", "valoresVariables": { "fr": 0 } },
+            { "label": "15 - 20 rpm", "valoresVariables": { "fr": 1 } },
+            { "label": "21 - 29 rpm", "valoresVariables": { "fr": 2 } },
+            { "label": "≥ 30 rpm", "valoresVariables": { "fr": 3 } }
+          ]
+        },
+        {
+          "id": "temp",
+          "tipo": "opciones",
+          "label": "Temperatura",
+          "opciones": [
+            { "label": "< 35°C (95°F)", "valoresVariables": { "temp": 2 } },
+            { "label": "35 - 38.4°C (95 - 101.1°F)", "valoresVariables": { "temp": 0 } },
+            { "label": "≥ 38.5°C (101.3°F)", "valoresVariables": { "temp": 2 } }
+          ]
+        },
+        {
+          "id": "avpu",
+          "tipo": "opciones",
+          "label": "Nivel de Conciencia (Escala AVPU)",
+          "opciones": [
+            { "label": "Alerta (A)", "valoresVariables": { "avpu": 0 } },
+            { "label": "Reacciona a la voz (V)", "valoresVariables": { "avpu": 1 } },
+            { "label": "Reacciona al dolor (P)", "valoresVariables": { "avpu": 2 } },
+            { "label": "No responde / Inconsciente (U)", "valoresVariables": { "avpu": 3 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 0, "max": 2, "categoria": "Riesgo Bajo. Continuar monitoreo de rutina.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 3, "max": 4, "categoria": "Riesgo Moderado. Requiere evaluación médica y monitoreo frecuente.", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 5, "max": 14, "categoria": "Riesgo Alto. Deterioro clínico inminente. Activar Equipo de Respuesta Rápida / Evaluar UCI.", "color": "rojo", "matchOpcionIndex": 3 }
+  ]
+}
