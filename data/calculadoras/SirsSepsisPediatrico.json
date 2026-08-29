@@ -1,0 +1,136 @@
+{
+  "titulo": "Criterios SIRS, Sepsis y Shock Séptico (Pediátrico)",
+  "descripcion": "Evalúa el SIRS y su progresión en pediatría. Requiere ≥2 criterios SIRS, y obligatoriamente 1 de ellos debe ser temperatura o leucocitos anormales.",
+  "tipoCalculo": "formula",
+  "formula": "v1 + v2 + v3 + v4 + v5 + v6 + v7",
+  "prefijoResultado": "Código interno: ",
+  "sufijoResultado": "",
+  "secciones": [
+    {
+      "nombre": "Criterios SIRS (Core/Obligatorios)",
+      "elementos": [
+        {
+          "id": "sirs_temp",
+          "tipo": "opciones",
+          "label": "Temperatura >38.5°C (101.3°F) o <36°C (96.8°F)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v1": 0 } },
+            { "label": "Sí", "valoresVariables": { "v1": 10 } }
+          ]
+        },
+        {
+          "id": "sirs_leuco",
+          "tipo": "opciones",
+          "label": "Recuento de leucocitos anormal o >10% bandas (cayados)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v4": 0 } },
+            { "label": "Sí", "valoresVariables": { "v4": 10 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios SIRS (Clínicos)",
+      "elementos": [
+        {
+          "id": "sirs_fc",
+          "tipo": "opciones",
+          "label": "Taquicardia, o bradicardia (si es <1 año)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v2": 0 } },
+            { "label": "Sí", "valoresVariables": { "v2": 1 } }
+          ]
+        },
+        {
+          "id": "sirs_fr",
+          "tipo": "opciones",
+          "label": "Taquipnea o ventilación mecánica (por proceso agudo)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v3": 0 } },
+            { "label": "Sí", "valoresVariables": { "v3": 1 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Sepsis",
+      "elementos": [
+        {
+          "id": "sepsis_inf",
+          "tipo": "opciones",
+          "label": "Foco de infección (sospechado o presente)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v5": 0 } },
+            { "label": "Sí", "valoresVariables": { "v5": 100 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Sepsis Severa",
+      "elementos": [
+        {
+          "id": "sepsis_sev",
+          "tipo": "opciones",
+          "label": "Disfunción cardiovascular, SDRA, o disfunción en ≥2 otros órganos",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v6": 0 } },
+            { "label": "Sí", "valoresVariables": { "v6": 1000 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Shock Séptico",
+      "elementos": [
+        {
+          "id": "shock",
+          "tipo": "opciones",
+          "label": "Disfunción cardiovascular a pesar de adecuada resucitación con fluidos",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v7": 0 } },
+            { "label": "Sí", "valoresVariables": { "v7": 10000 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 0, "max": 2, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10, "max": 10, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 100, "max": 102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 110, "max": 110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1000, "max": 1002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1010, "max": 1010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1100, "max": 1102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1110, "max": 1110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10000, "max": 10002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10010, "max": 10010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10100, "max": 10102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10110, "max": 10110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11000, "max": 11002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11010, "max": 11010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11100, "max": 11102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11110, "max": 11110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
+    
+    { "min": 11, "max": 12, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 20, "max": 22, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 1011, "max": 1012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 1020, "max": 1022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 10011, "max": 10012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 10020, "max": 10022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 11011, "max": 11012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    { "min": 11020, "max": 11022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
+    
+    { "min": 111, "max": 112, "categoria": "SEPSIS Pediátrica (SIRS + Infección).", "color": "naranja", "matchOpcionIndex": 3 },
+    { "min": 120, "max": 122, "categoria": "SEPSIS Pediátrica (SIRS + Infección).", "color": "naranja", "matchOpcionIndex": 3 },
+    
+    { "min": 1111, "max": 1112, "categoria": "SEPSIS SEVERA Pediátrica (Disfunción orgánica).", "color": "rojo", "matchOpcionIndex": 4 },
+    { "min": 1120, "max": 1122, "categoria": "SEPSIS SEVERA Pediátrica (Disfunción orgánica).", "color": "rojo", "matchOpcionIndex": 4 },
+    
+    { "min": 10111, "max": 10112, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 10120, "max": 10122, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 11111, "max": 11112, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 11120, "max": 11122, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 }
+  ]
+}
