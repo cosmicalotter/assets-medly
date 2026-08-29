@@ -1,0 +1,37 @@
+{
+  "titulo": "Escala de Agitación y Sedación de Richmond (RASS)",
+  "descripcion": "Evalúa el grado de agitación y la profundidad de la sedación en pacientes, guiando la titulación de fármacos sedantes.",
+  "tipoCalculo": "formula",
+  "formula": "v1",
+  "prefijoResultado": "RASS: ",
+  "sufijoResultado": " puntos",
+  "secciones": [
+    {
+      "nombre": "Evaluación del Paciente",
+      "elementos": [
+        {
+          "id": "estado_paciente",
+          "tipo": "opciones",
+          "label": "Descripción clínica actual",
+          "opciones": [
+            { "label": "+4 Combativo (Violento, peligro inmediato para el equipo)", "valoresVariables": { "v1": 4 } },
+            { "label": "+3 Muy agitado (Agresivo, intenta retirarse tubos o catéteres)", "valoresVariables": { "v1": 3 } },
+            { "label": "+2 Agitado (Movimientos desordenados, lucha con el ventilador)", "valoresVariables": { "v1": 2 } },
+            { "label": "+1 Inquieto (Ansioso pero sin movimientos agresivos)", "valoresVariables": { "v1": 1 } },
+            { "label": "0 Alerta y tranquilo", "valoresVariables": { "v1": 0 } },
+            { "label": "-1 Somnoliento (Despierta a la voz, mantiene ojos abiertos >10 seg)", "valoresVariables": { "v1": -1 } },
+            { "label": "-2 Sedación leve (Despierta a la voz, contacto visual <10 seg)", "valoresVariables": { "v1": -2 } },
+            { "label": "-3 Sedación moderada (Movimiento/apertura ocular a la voz, sin contacto visual)", "valoresVariables": { "v1": -3 } },
+            { "label": "-4 Sedación profunda (Sin respuesta a la voz; movimiento/apertura al estímulo físico)", "valoresVariables": { "v1": -4 } },
+            { "label": "-5 Sedación muy profunda / Sin respuesta (No responde a voz ni estímulo físico)", "valoresVariables": { "v1": -5 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": -5, "max": -3, "categoria": "Sobresedación: Se debe disminuir o modificar la sedación para alcanzar un objetivo RASS de -2 a 0.", "color": "naranja", "matchOpcionIndex": 1 },
+    { "min": -2, "max": 0, "categoria": "Sedación óptima: A menos que haya indicación para sedación profunda, mantenga este protocolo de sedación mínima.", "color": "verde", "matchOpcionIndex": 2 },
+    { "min": 1, "max": 4, "categoria": "Agitación / Infrasedación: Evaluar causas (dolor, ansiedad, delírium). Tratar la etiología para lograr RASS de -2 a 0.", "color": "rojo", "matchOpcionIndex": 3 }
+  ]
+}
