@@ -1,0 +1,147 @@
+{
+  "titulo": "Criterios SIRS, Sepsis y Shock Séptico (Adultos)",
+  "descripcion": "Evalúa el síndrome de respuesta inflamatoria sistémica (SIRS) y la progresión a sepsis, sepsis severa, shock y disfunción multiorgánica en adultos.",
+  "tipoCalculo": "formula",
+  "formula": "v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8",
+  "prefijoResultado": "Código interno: ",
+  "sufijoResultado": "",
+  "secciones": [
+    {
+      "nombre": "Criterios SIRS (≥2 cumple definición SIRS)",
+      "elementos": [
+        {
+          "id": "sirs_temp",
+          "tipo": "opciones",
+          "label": "Temp >38°C (100.4°F) o <36°C (96.8°F)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v1": 0 } },
+            { "label": "Sí", "valoresVariables": { "v1": 1 } }
+          ]
+        },
+        {
+          "id": "sirs_fc",
+          "tipo": "opciones",
+          "label": "Frecuencia cardíaca >90 lpm",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v2": 0 } },
+            { "label": "Sí", "valoresVariables": { "v2": 1 } }
+          ]
+        },
+        {
+          "id": "sirs_fr",
+          "tipo": "opciones",
+          "label": "Frecuencia respiratoria >20 rpm o PaCO2 <32 mm Hg",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v3": 0 } },
+            { "label": "Sí", "valoresVariables": { "v3": 1 } }
+          ]
+        },
+        {
+          "id": "sirs_leuco",
+          "tipo": "opciones",
+          "label": "Leucocitos >12,000/mm³, <4,000/mm³, o >10% bandas",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v4": 0 } },
+            { "label": "Sí", "valoresVariables": { "v4": 1 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Sepsis",
+      "elementos": [
+        {
+          "id": "sepsis_inf",
+          "tipo": "opciones",
+          "label": "Foco de infección (SIRS + Foco sospechado o presente)",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v5": 0 } },
+            { "label": "Sí", "valoresVariables": { "v5": 10 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Sepsis Severa",
+      "elementos": [
+        {
+          "id": "sepsis_sev",
+          "tipo": "opciones",
+          "label": "Disfunción orgánica, hipotensión o hipoperfusión",
+          "descripcion": "Acidosis láctica, PAS <90 o caída de la PAS ≥40 mm Hg de su basal.",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v6": 0 } },
+            { "label": "Sí", "valoresVariables": { "v6": 100 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Shock Séptico",
+      "elementos": [
+        {
+          "id": "shock",
+          "tipo": "opciones",
+          "label": "Sepsis severa con hipotensión a pesar de adecuada resucitación con fluidos",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v7": 0 } },
+            { "label": "Sí", "valoresVariables": { "v7": 1000 } }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Criterios de Síndrome de Disfunción Multiorgánica (MODS)",
+      "elementos": [
+        {
+          "id": "mods",
+          "tipo": "opciones",
+          "label": "Evidencia de fallo en ≥2 órganos",
+          "opciones": [
+            { "label": "No", "valoresVariables": { "v8": 0 } },
+            { "label": "Sí", "valoresVariables": { "v8": 10000 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    { "min": 0, "max": 1, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10, "max": 11, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 100, "max": 101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 110, "max": 111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1000, "max": 1001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1010, "max": 1011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1100, "max": 1101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 1110, "max": 1111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10000, "max": 10001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10010, "max": 10011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10100, "max": 10101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 10110, "max": 10111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11000, "max": 11001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11010, "max": 11011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11100, "max": 11101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    { "min": 11110, "max": 11111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
+    
+    { "min": 2, "max": 4, "categoria": "SIRS (Cumple criterios, sin foco infeccioso evidente)", "color": "amarillo", "matchOpcionIndex": 2 },
+    
+    { "min": 12, "max": 14, "categoria": "SEPSIS (SIRS + Infección)", "color": "naranja", "matchOpcionIndex": 3 },
+    
+    { "min": 102, "max": 104, "categoria": "SEPSIS SEVERA (Disfunción orgánica / Hipoperfusión)", "color": "rojo", "matchOpcionIndex": 4 },
+    { "min": 112, "max": 114, "categoria": "SEPSIS SEVERA (Disfunción orgánica / Hipoperfusión)", "color": "rojo", "matchOpcionIndex": 4 },
+    
+    { "min": 1002, "max": 1004, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 1012, "max": 1014, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 1102, "max": 1104, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
+    { "min": 1112, "max": 1114, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
+    
+    { "min": 10002, "max": 10004, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 10012, "max": 10014, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 10102, "max": 10104, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 10112, "max": 10114, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 11002, "max": 11004, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 11012, "max": 11014, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 11102, "max": 11104, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
+    { "min": 11112, "max": 11114, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 }
+  ]
+}
