@@ -1,225 +1,600 @@
 {
-  "titulo": "ACV Isquémico Agudo",
-  "version": "Noviembre 2025 – AHA/ASA 2019 | Lecturio | AMBOSS",
+  "titulo": "Manejo Temprano del ACV Isquémico Agudo (AHA/ASA 2026)",
+  "version": "2026",
+  "carpeta_evidencia": "acvisquemico",
   "nodoInicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "ACV Isquémico Agudo",
+      "texto": "GUÍA AHA/ASA 2026: MANEJO TEMPRANO DEL PACIENTE CON ACV ISQUÉMICO AGUDO",
       "opciones": [
-        { "texto": "Diagnóstico", "siguiente_nodo": "nodo_diagnostico" },
-        { "texto": "Tratamiento", "siguiente_nodo": "nodo_tratamiento" }
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e316",
+          "imagen_evidencia": "TODO_EVIDENCIA: Portada de la guía AHA/ASA 2026",
+          "texto": "A Guideline From the American Heart Association/American Stroke Association."
+        }
       ]
     },
     "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico y Evaluación Inicial",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_prehosp"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e325-e341",
+          "imagen_evidencia": "TODO_EVIDENCIA: Título de la sección 3 Emergency Evaluation and Treatment",
+          "texto": "Sección sobre evaluación de emergencia y manejo inicial prehospitalario."
+        }
+      ]
+    },
+    "diag_evaluacion_prehosp": {
       "tipo": "pregunta",
-      "texto": "Diagnóstico",
+      "texto": "1. Estabilización inmediata de la vía aérea y ventilación (**ABCDE**).\n2. Mantener saturación de oxígeno **SpO2 >94%**.\n3. Obtener acceso IV y medir Glucometría capilar.",
+      "pie_nodo": "¿El paciente presenta hipoglucemia (**<60 mg/dL**)?",
+      "nota_adicional": "La hipoglucemia severa puede imitar un ACV (stroke mimic). La corrección temprana debe realizarse antes de determinar la elegibilidad para trombolisis.",
       "opciones": [
-        { "texto": "Paso 1 — Evaluación inicial y glucometría", "siguiente_nodo": "diag_p1" },
-        { "texto": "Ventana de tiempo", "siguiente_nodo": "diag_ventana" },
-        { "texto": "Escalas y neuroimagen", "siguiente_nodo": "diag_escalas" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_tratar_hipoglucemia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_triaje_tiempo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e347, e352",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones de manejo de vía aérea y glucosa inicial",
+          "texto": "Sección 4.1: Supplemental oxygen should be provided to maintain SpO2 >94% (COR 1). Sección 4.5: Hypoglycemia (<60 mg/dL) should be treated to avoid complications (COR 1)."
+        }
       ]
     },
-    "diag_p1": {
+    "diag_tratar_hipoglucemia": {
+      "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "- Verificar ABCDE. Soporte de vía aérea si SpO2 < 94%.\n- Toma de signos vitales completa.\n- **Glucometría capilar urgente** (descartar hipoglucemia como mimic).\n- Canalizar vía periférica IV.\n¿**Glucosa < 60 o > 400 mg/dL**?",
+      "texto": "- Administrar **Dextrosa al 50%** IV para corregir hipoglucemia.\n- Reevaluar el examen neurológico tras alcanzar normoglucemia.",
+      "pie_nodo": "¿Persisten los déficits neurológicos focales incapacitantes?",
       "opciones": [
-        { "texto": "Sí — corregir y reevaluar", "siguiente_nodo": "diag_glucosa_anormal" },
-        { "texto": "No — continuar con NIHSS", "siguiente_nodo": "diag_p2_nihss" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_triaje_tiempo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alta_mimic"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e352-e353",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de reevaluar elegibilidad IVT posterior a corrección de glucosa",
+          "texto": "En pacientes con ACV isquémico sospechado con hipoglucemia o hiperglucemia severa, si los síntomas de déficit incapacitante persisten tras la corrección a normoglucemia, se recomienda la administración de IVT (COR 1)."
+        }
       ]
     },
-    "diag_glucosa_anormal": {
-      "tipo": "informacion",
-      "texto": "- Corregir glucosa (dextrosa IV o insulina según corresponda).\n- Si los síntomas se resuelven: **no es ACV**; buscar causa metabólica.\n- Si síntomas persisten: continuar protocolo ACV.",
-      "opciones": [
-        { "texto": "Síntomas persisten — continuar", "siguiente_nodo": "diag_p2_nihss" }
+    "diag_alta_mimic": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Observación clínica continua.\n- Manejo de causa subyacente de hipoglucemia u otros stroke mimics (ej. convulsión, migraña complicada, trastorno conversivo).",
+      "pie_nodo": "Fin de evaluación de código ictus.",
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e354",
+          "imagen_evidencia": "TODO_EVIDENCIA: Fragmento sobre el riesgo de sangrado en imitadores de ACV",
+          "texto": "El riesgo de transformación hemorrágica tras IVT en stroke mimics, como trastorno conversivo, migraña complicada o convulsiones, es muy bajo (0.5%)."
+        }
       ]
     },
-    "diag_p2_nihss": {
+    "diag_triaje_tiempo": {
       "tipo": "pregunta",
-      "texto": "Aplicar **Escala NIHSS** (0–42 pts): conciencia, mirada, campos visuales, parálisis facial, fuerza de extremidades, ataxia, sensibilidad, lenguaje, disartria, extinción/inatención.\n- Registrar puntaje **basal**.\n- **NIHSS > 25 = ACV grave**.\n- **NIHSS > 8** sugiere oclusión de vaso grande (candidato a trombectomía).\n- **calculadora_id**: \"TODO_CALC_NIHSS.json\"\n¿Cuál es el rango del NIHSS?",
+      "texto": "1. Realizar escala NIHSS para cuantificar severidad.\n2. Determinar la hora exacta en la que el paciente fue visto bien por última vez (LKN - Last Known Well).",
+      "pie_nodo": "¿Cuál es el tiempo de evolución desde LKN?",
+      "calculadora_id": "TODO_CALC_NIHSS.json",
       "opciones": [
-        { "texto": "NIHSS < 4 (síntomas menores)", "siguiente_nodo": "diag_nihss_bajo" },
-        { "texto": "NIHSS 4–25 (rango habitual)", "siguiente_nodo": "diag_p3_tiempo" },
-        { "texto": "NIHSS > 25 (ACV grave)", "siguiente_nodo": "diag_nihss_alto" }
+        {
+          "texto": "< 24 horas",
+          "siguiente_nodo": "diag_imagen_urgente"
+        },
+        {
+          "texto": "> 24 horas",
+          "siguiente_nodo": "diag_eval_tardia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e341",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de uso de escalas de severidad",
+          "texto": "En pacientes con sospecha de AIS, se recomienda el uso de una escala de severidad, preferiblemente el NIHSS, para medir déficits clínicos (COR 1)."
+        }
       ]
     },
-    "diag_nihss_bajo": {
-      "tipo": "informacion",
-      "texto": "- NIHSS < 4: **contraindicación relativa** para trombólisis.\n- Evaluar si el déficit afecta función laboral o vida del paciente.\n- Si impacto significativo: discutir riesgo-beneficio con familia.\n- Continuar con neuroimagen.",
-      "opciones": [
-        { "texto": "Ir a neuroimagen", "siguiente_nodo": "diag_escalas" }
-      ]
-    },
-    "diag_nihss_alto": {
-      "tipo": "informacion",
-      "texto": "- NIHSS > 25: ACV grave. **Contraindicación relativa** para trombólisis IV.\n- Evaluar candidatura a **trombectomía mecánica**.\n- Continuar neuroimagen urgente.",
-      "opciones": [
-        { "texto": "Ir a neuroimagen", "siguiente_nodo": "diag_escalas" }
-      ]
-    },
-    "diag_p3_tiempo": {
+    "diag_imagen_urgente": {
       "tipo": "pregunta",
-      "texto": "¿Cuánto tiempo desde el **último estado neurológico NORMAL**?",
+      "texto": "1. Activar Código Ictus (Equipo Multidisciplinario).\n2. Realizar TC de cráneo sin contraste (NCCT) o RM urgente (objetivo puerta-imagen **<25 minutos**).\n3. Realizar Angio-TC (CTA) o Angio-RM (MRA) de vasos cervicales e intracraneales de forma concurrente.\n4. Solicitar ECG y Troponina (NO deben retrasar el inicio de la terapia aguda).",
+      "pie_nodo": "¿La imagen inicial muestra hemorragia intracraneal (HIC)?",
+      "imagen": "TODO_IMG: Algoritmo de imágenes en código ictus con tiempos objetivo",
+      "nota_adicional": "En pacientes con sospecha de ACV e LVO, NO se debe retrasar la imagen vascular esperando resultados de creatinina sérica.",
       "opciones": [
-        { "texto": "< 4.5 horas (o se despertó con síntomas)", "siguiente_nodo": "diag_ventana_45" },
-        { "texto": "4.5–24 horas", "siguiente_nodo": "diag_ventana_624" },
-        { "texto": "> 24 horas o desconocido", "siguiente_nodo": "diag_ventana_fuera" }
-      ]
-    },
-    "diag_ventana": {
-      "tipo": "pregunta",
-      "texto": "¿Cuánto tiempo desde el **último estado neurológico NORMAL**?",
-      "opciones": [
-        { "texto": "< 4.5 horas", "siguiente_nodo": "diag_ventana_45" },
-        { "texto": "4.5–24 horas", "siguiente_nodo": "diag_ventana_624" },
-        { "texto": "> 24 horas o desconocido", "siguiente_nodo": "diag_ventana_fuera" }
-      ]
-    },
-    "diag_ventana_45": {
-      "tipo": "informacion",
-      "texto": "- **Ventana para trombólisis IV** (alteplasa / tenecteplasa).\n- Si el paciente despertó con síntomas: tiempo 0 = antes de dormir.\n- **TAC simple en < 20 min** para descartar hemorragia.",
-      "opciones": [
-        { "texto": "Continuar a neuroimagen", "siguiente_nodo": "diag_escalas" }
-      ]
-    },
-    "diag_ventana_624": {
-      "tipo": "informacion",
-      "texto": "- Fuera de ventana estándar para trombólisis IV.\n- Candidato a **trombectomía mecánica** (hasta 24 h, circulación anterior).\n- ACV del despertar: solicitar **DWI + FLAIR** (Wake-UP trial): lesión en DWI pero NO en FLAIR → trombólisis.\n- Extend TRIAL: trombólisis 4.5–9 h guiada por imagen.",
-      "opciones": [
-        { "texto": "Continuar a neuroimagen", "siguiente_nodo": "diag_escalas" }
-      ]
-    },
-    "diag_ventana_fuera": {
-      "tipo": "informacion",
-      "texto": "- **No candidato a reperfusión** de rutina.\n- Manejo de soporte, antiagregación y prevención secundaria.\n- Continuar neuroimagen para caracterizar lesión.",
-      "opciones": [
-        { "texto": "Continuar a neuroimagen", "siguiente_nodo": "diag_escalas" }
-      ]
-    },
-    "diag_escalas": {
-      "tipo": "pregunta",
-      "texto": "- **TAC simple** (< 20 min): descartar hemorragia. No detecta isquemia aguda < 6 h.\n- **RM DWI**: detecta isquemia desde 3–30 min; define penumbra. Usar FLAIR en dudas de ventana.\n- **ASPECTS** (TAC): corte a nivel ganglios basales + 2 cm por encima. Si ASPECTS ≤ 6: no candidato a trombólisis.\n- **AngioTAC**: arteria ocluida y circulación colateral.\n¿**Resultado del TAC simple**?",
-      "opciones": [
-        { "texto": "Hemorragia presente", "siguiente_nodo": "diag_hemorragia" },
-        { "texto": "Sin hemorragia — ACV isquémico confirmado", "siguiente_nodo": "diag_confirmado" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_hemorragia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_isquemia_confirmada"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e341, e346",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones sobre tiempos de neuroimagen y marcadores cardiacos",
+          "texto": "Protocolos establecidos deben lograr neuroimagen urgente (ej. <25 minutos) (COR 1). CTA o CTP no deben retrasarse por creatinina (COR 1). ECG basal y troponina están recomendados pero no deben retrasar IVT o EVT (COR 1)."
+        }
       ]
     },
     "diag_hemorragia": {
-      "tipo": "resultado",
-      "texto": "- **ACV hemorrágico** confirmado: contraindicación absoluta para trombólisis.\n- Derivar a protocolo de ACV hemorrágico (control de TA, reversión anticoagulación, UCI, neurocirugía si hernia).\n- **Este algoritmo no aplica.**",
-      "opciones": []
+      "estilo": "peligro",
+      "tipo": "informativo",
+      "texto": "- Diagnóstico de ACV Hemorrágico confirmado.\n- Suspender protocolo isquémico y derivar a neurocirugía/cuidados neurocríticos.",
+      "pie_nodo": "Ir al algoritmo de ACV Hemorrágico.",
+      "enlaces": [
+        {
+          "texto": "Manejo de Hemorragia Intracraneal",
+          "archivo_objetivo": "TODO_LINK_acv_hemorragico.json",
+          "nodo_objetivo": ""
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e341",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de exclusión de hemorragia",
+          "texto": "Se recomienda imagen cerebral urgente con NCCT o RM para evaluar la carga isquémica y excluir hemorragia intracraneal antes de iniciar terapias de reperfusión (COR 1)."
+        }
+      ]
     },
-    "diag_confirmado": {
-      "tipo": "resultado",
-      "texto": "- Laboratorios: **hemograma, plaquetas, TP/TTP/INR, electrolitos, glucosa, creatinina, troponina**.\n- ECG (buscar fibrilación auricular).\n- Radiografía de tórax.\n- Clasificar etiología: aterotrombótico, cardioembólico, lacunar, criptogénico.\n- Proceder a tratamiento.",
-      "opciones": [
-        { "texto": "Ir a Tratamiento", "siguiente_nodo": "nodo_tratamiento" }
+    "diag_eval_tardia": {
+      "tipo": "informativo",
+      "texto": "- Realizar neuroimagen estructural (TC o RM).\n- Paciente fuera de ventana temporal para terapias de reperfusión agudas estándar (Trombolisis o Trombectomía).",
+      "pie_nodo": "Proceder a prevención secundaria y tratamiento médico.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Médico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e342-e343",
+          "imagen_evidencia": "TODO_EVIDENCIA: Pautas sobre ventana de intervención",
+          "texto": "Las terapias endovasculares y de reperfusión están definidas hasta las 24 horas del último momento en que el paciente fue visto bien (LKN)."
+        }
+      ]
+    },
+    "diag_isquemia_confirmada": {
+      "tipo": "informativo",
+      "texto": "1. Diagnóstico de ACV Isquémico Agudo (AIS) confirmado.\n2. Evaluar score ASPECTS en la TC sin contraste (cuantificación de tejido infartado temprano).",
+      "pie_nodo": "El diagnóstico está completo. Iniciar protocolo terapéutico.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e341-e342",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación evaluación de carga isquémica ASPECTS",
+          "texto": "Evaluar la carga isquémica temprana (ej. ASPECTS) mediante imagen estructural inicial (COR 1)."
+        }
       ]
     },
     "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento de Reperfusión y Manejo Médico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_inicio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e347-e368",
+          "imagen_evidencia": "TODO_EVIDENCIA: Título de secciones de tratamiento IVT y EVT",
+          "texto": "Sección 4 sobre IV Thrombolytics y Endovascular Thrombectomy."
+        }
+      ]
+    },
+    "trat_inicio": {
       "tipo": "pregunta",
-      "texto": "Tratamiento",
+      "texto": "- Definir el momento de inicio de síntomas o la última vez visto bien (LKN).\n- Evaluar déficit neurológico incapacitante.",
+      "pie_nodo": "¿En qué ventana de tiempo se encuentra el paciente desde LKN?",
       "opciones": [
-        { "texto": "Manejo inicial y estabilización", "siguiente_nodo": "tx_inicial" },
-        { "texto": "Trombólisis IV (alteplasa / tenecteplasa)", "siguiente_nodo": "tx_trombolisis" },
-        { "texto": "Trombectomía mecánica", "siguiente_nodo": "tx_trombectomia" },
-        { "texto": "Cuidados post-reperfusión", "siguiente_nodo": "tx_post" },
-        { "texto": "Prevención secundaria", "siguiente_nodo": "tx_prevencion" }
+        {
+          "texto": "< 4.5 horas",
+          "siguiente_nodo": "trat_ventana_temprana"
+        },
+        {
+          "texto": "4.5 a 24 horas (o ACV del despertar)",
+          "siguiente_nodo": "trat_ventana_extendida"
+        },
+        {
+          "texto": "> 24 horas",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e353",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones para decisión de trombolisis",
+          "texto": "Para pacientes adultos elegibles para IVT dentro de las 4.5 horas de inicio, el tratamiento debe iniciarse lo más pronto posible con déficits incapacitantes (COR 1)."
+        }
       ]
     },
-    "tx_inicial": {
-      "tipo": "informacion",
-      "texto": "- ABC: vía aérea, **O2 solo si SpO2 < 94%**.\n- **Glucometría** y corrección (meta: 140–180 mg/dL).\n- Canalizar vía periférica IV.\n- **Labetalol IV** de elección para control de TA previo a trombólisis.\n- **Hipertensión permisiva**: NO bajar TA bruscamente (aumenta penumbra isquémica).\n- Solo tratar TA si > 220/120 mmHg (fuera de ventana) o > 185/110 mmHg (candidato a trombólisis).\n- Normotermia (antipiréticos si fiebre — provoca muerte neuronal).\n- Monitoreo cardíaco continuo ≥ 24 h.",
-      "opciones": [
-        { "texto": "Evaluar candidatura a Trombólisis", "siguiente_nodo": "tx_trombolisis" }
-      ]
-    },
-    "tx_trombolisis": {
+    "trat_ventana_temprana": {
       "tipo": "pregunta",
-      "texto": "**Criterios de selección para trombólisis IV:**\n- Mayores de 18 años.\n- Déficit neurológico sin mejoría espontánea.\n- **Ventana < 4.5 horas** desde el inicio.\n- **NIHSS 4–25** (considerar relativo si < 4 o > 25).\n- TAC sin hemorragia. ASPECTS > 6.\n¿Hay alguna **contraindicación ABSOLUTA**?",
+      "texto": "1. Verificar contraindicaciones absolutas y relativas para Trombolisis Intravenosa (IVT).\n2. Medir Presión Arterial (PA).",
+      "pie_nodo": "¿La PA sistólica es **>185 mmHg** o la diastólica es **>110 mmHg**?",
       "opciones": [
-        { "texto": "Revisar contraindicaciones absolutas", "siguiente_nodo": "tx_ci_absolutas" },
-        { "texto": "No hay contraindicación absoluta — administrar", "siguiente_nodo": "tx_dosis" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_bajar_pa_ivt"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_ivt_admin"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e350",
+          "imagen_evidencia": "TODO_EVIDENCIA: Meta de presión arterial previa a reperfusión",
+          "texto": "Los pacientes con AIS elegibles para IVT deben tener la PA sistólica reducida a <185 mmHg y diastólica a <110 mmHg antes de iniciar la terapia (COR 1)."
+        }
       ]
     },
-    "tx_ci_absolutas": {
+    "trat_bajar_pa_ivt": {
+      "estilo": "advertencia",
       "tipo": "pregunta",
-      "texto": "**CONTRAINDICACIONES ABSOLUTAS:**\n- Hemorragia intracraneal en TAC.\n- Sospecha de HSA.\n- Neurocirugía / TCE / ACV previo en < 3 meses.\n- **TA sistólica > 185 o diastólica > 110 mmHg** no controlada.\n- Antecedente de hemorragia intracraneal.\n- MAV o neoplasia intraaxial conocida.\n- Hemorragia interna activa / endocarditis sospechada.\n- **Plaquetas < 100,000/µL**.\n- TTP elevado o anticoagulantes activos (INR > 1.7, inhibidor Xa en < 48 h).\n- **Glucosa < 50 mg/dL**.\n¿Alguna presente?",
+      "texto": "- Administrar antihipertensivos IV (ej. Labetalol, Nicardipino, Clevidipino).\n- Objetivo: Reducir PA a **<185/110 mmHg** antes de iniciar IVT.",
+      "pie_nodo": "¿Se logró estabilizar la PA en el objetivo establecido?",
       "opciones": [
-        { "texto": "Sí — NO trombolizar", "siguiente_nodo": "tx_no_trombolisis" },
-        { "texto": "No — evaluar contraindicaciones relativas", "siguiente_nodo": "tx_ci_relativas" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_ivt_admin"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_eval_lvo_solo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e350",
+          "imagen_evidencia": "TODO_EVIDENCIA: Manejo de la presión arterial previo a la reperfusión",
+          "texto": "Before reperfusion treatment, SBP lowered to <185 mm Hg and DBP <110 mm Hg is recommended to reduce hemorrhagic complications (COR 1)."
+        }
       ]
     },
-    "tx_ci_relativas": {
+    "trat_ivt_admin": {
+      "estilo": "exito",
       "tipo": "pregunta",
-      "texto": "**CONTRAINDICACIONES RELATIVAS:**\n- Hemorragia GI/urinaria en < 21 días.\n- Cirugía mayor o trauma no craneal en < 14 días.\n- Convulsión al inicio del ACV.\n- Punción arterial en sitio no comprimible o punción lumbar reciente.\n- Edad > 80 años + DM + ACV previo.\n- TAC con infarto multilobar (> 1/3 del hemisferio).\n- Embarazo.\n¿**Riesgo-beneficio es favorable para el paciente**?",
+      "texto": "- Iniciar Trombolisis Intravenosa (IVT) lo más rápido posible sin esperar resultados de coagulación (salvo sospecha fundada).\n- Opción de Primera Línea: **Tenecteplasa 0.25 mg/kg** en bolo único (dosis máxima **25 mg**).\n- Alternativa: **Alteplasa 0.9 mg/kg** (10% en bolo, 90% en infusión continua por 60 min, dosis máxima **90 mg**).\n- Mantener PA post-trombolisis a **<180/105 mmHg** por al menos **24 horas**.",
+      "pie_nodo": "¿El paciente presenta Oclusión de Gran Vaso (LVO) en la Angio-TC/RM?",
+      "nota_adicional": "Según la actualización 2026, Tenecteplasa a 0.25 mg/kg es preferible por su no inferioridad y ventaja operativa (bolo único). La dosis de 0.4 mg/kg NO está recomendada (riesgo de hemorragia).",
       "opciones": [
-        { "texto": "Sí — proceder con precaución", "siguiente_nodo": "tx_dosis" },
-        { "texto": "No — buscar alternativa", "siguiente_nodo": "tx_no_trombolisis" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_evt_criterios"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e350, e357",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de Tenecteplasa y metas post-IVT",
+          "texto": "Tenecteplasa 0.25 mg/kg o Alteplasa 0.9 mg/kg están recomendados (COR 1). Tenecteplase 0.4 mg/kg is not recommended (COR 3 Harm). BP should be maintained <180/105 mm Hg for at least 24h post-IVT (COR 1)."
+        }
       ]
     },
-    "tx_no_trombolisis": {
-      "tipo": "informacion",
-      "texto": "- No candidato a trombólisis IV.\n- Evaluar **trombectomía mecánica** si oclusión de vaso grande.\n- Si no candidato a ninguna reperfusión: iniciar **aspirina 162–325 mg** a las 24–48 h.\n- Manejo de soporte y prevención secundaria.",
-      "opciones": [
-        { "texto": "Evaluar trombectomía mecánica", "siguiente_nodo": "tx_trombectomia" },
-        { "texto": "Ir a prevención secundaria", "siguiente_nodo": "tx_prevencion" }
-      ]
-    },
-    "tx_dosis": {
-      "tipo": "resultado",
-      "texto": "- Controlar **TA < 185/110 mmHg** previo a infusión (labetalol IV de elección).\n- **Alteplasa: 0.9 mg/kg IV** (máx. 90 mg): 10% en bolo IV, 90% en infusión durante 1 hora.\n- **Alternativa — Tenecteplasa: 0.25 mg/kg IV** en bolo único (máx. 25 mg).\n- NO dar anticoagulantes ni antiagregantes en las primeras **24 h post-trombólisis**.\n- Pasar a cuidados post-trombólisis.",
-      "opciones": [
-        { "texto": "Cuidados post-reperfusión", "siguiente_nodo": "tx_post" }
-      ]
-    },
-    "tx_trombectomia": {
+    "trat_eval_lvo_solo": {
       "tipo": "pregunta",
-      "texto": "**Indicaciones para trombectomía mecánica:**\n- Oclusión de vaso grande (ej. ACM, carótida interna).\n- **NIHSS > 6** con daño tisular mínimo en TAC.\n- Alto nivel de función basal previo al ACV.\n- Inicio **< 6 h** (hasta 24 h en circulación anterior con imagen favorable).\n¿El paciente fue previamente trombolizado?",
+      "texto": "- El paciente tiene contraindicación para IVT (ej. PA refractaria, anticoagulación reciente a dosis plenas).\n- Revisar neuroimagen vascular.",
+      "pie_nodo": "¿El paciente presenta Oclusión de Gran Vaso (LVO)?",
       "opciones": [
-        { "texto": "Sí — trombectomía igualmente indicada", "siguiente_nodo": "tx_trombectomia_resultado" },
-        { "texto": "No — trombectomía primaria", "siguiente_nodo": "tx_trombectomia_resultado" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_evt_criterios"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e368-e369",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones para evaluación EVT en contraindicación de IVT",
+          "texto": "La evaluación para Trombectomía Endovascular procede independientemente de la elegibilidad o administración de IVT si existe LVO."
+        }
       ]
     },
-    "tx_trombectomia_resultado": {
-      "tipo": "resultado",
-      "texto": "- Embolectomía mecánica o angioplastia con catéter.\n- Indicada **independientemente de administración previa de tPA**.\n- Evaluar con **TICI post-procedimiento** (pronóstico de reperfusión).\n- Continuar a cuidados post-reperfusión.",
+    "trat_evt_criterios": {
+      "tipo": "pregunta",
+      "texto": "- LVO de circulación anterior (ICA, M1) o circulación posterior (Basilar).\n- Verificar criterios para Trombectomía Endovascular (EVT) en ventana temprana (< 6 horas).\n- Requisitos: NIHSS **>=6**, ASPECTS **3-10**, mRS pre-ACV **0-1**.",
+      "pie_nodo": "¿Cumple criterios para Trombectomía Endovascular (EVT)?",
+      "nota_adicional": "Los lineamientos de 2026 incluyen pacientes con núcleos isquémicos grandes (ASPECTS 3-5) y Oclusiones de Arteria Basilar como indicaciones fuertes para EVT.",
       "opciones": [
-        { "texto": "Cuidados post-reperfusión", "siguiente_nodo": "tx_post" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_evt_procedimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e368-e369, e372",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios para EVT temprana y circulación posterior",
+          "texto": "Se recomienda EVT en 0-6 hrs para LVO anterior con ASPECTS 3-10 (COR 1). También se recomienda en Oclusión de Arteria Basilar en 0-24 horas con NIHSS >=10 (COR 1)."
+        }
       ]
     },
-    "tx_post": {
-      "tipo": "resultado",
-      "texto": "- **Reevaluar NIHSS**: cada 15 min en 1ª hora → cada 30 min en siguientes 6 h → cada 1 h en primeras 24 h.\n- Signos vitales **cada hora**.\n- Meta glucosa: **140–180 mg/dL**. Temperatura: normotermia.\n- **DETENER trombólisis y solicitar TAC urgente si**: deterioro NIHSS > 4 pts, cefalea intensa, datos de hemorragia.\n- Sospecha de transformación hemorrágica: suspender alteplasa + TAC + revertir con **crioprecipitados**.\n- Medias de compresión (profilaxis TVP/TEP).\n- Evaluación de deglución (riesgo de broncoaspiración).\n- UCI si inestabilidad o NIHSS alto.",
+    "trat_ventana_extendida": {
+      "tipo": "pregunta",
+      "texto": "1. Evaluar si existe Oclusión de Gran Vaso (LVO) en CTA o MRA.\n2. Evaluar necesidad de imagen avanzada (Perfusión TC [CTP] o RM DWI/FLAIR) para detectar penumbra isquémica o mismatch clínico-radiológico.",
+      "pie_nodo": "¿El paciente tiene una LVO documentada?",
       "opciones": [
-        { "texto": "Ir a prevención secundaria", "siguiente_nodo": "tx_prevencion" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_ext_evt_eval"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_ext_ivt_eval"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e342",
+          "imagen_evidencia": "TODO_EVIDENCIA: Uso de neuroimagen avanzada",
+          "texto": "Adjunctive CTP, MRI (DWI-FLAIR mismatch) can be useful to determine eligibility for extended window interventions (COR 2a)."
+        }
       ]
     },
-    "tx_prevencion": {
-      "tipo": "resultado",
-      "texto": "- **Antiagregación dual**: aspirina 162–325 mg + clopidogrel (iniciar 24–48 h post-síntomas o post-trombólisis).\n- **Estatinas** (ej. atorvastatina) en enfermedad aterosclerótica clínica.\n- Control estricto de **HTA, DM, dislipidemia**.\n- Anticoagulación si etiología cardioembólica (FA).\n- Cambios de estilo de vida: dieta mediterránea, ejercicio, cese de tabaquismo.\n- Regla **FAST** (recurrencia): Facial droop · Arm weakness · Speech · Time.",
+    "trat_ext_ivt_eval": {
+      "tipo": "pregunta",
+      "texto": "- Ventana de 4.5 a 9 horas o ACV del despertar sin LVO.\n- Se requiere imagen avanzada (mismatch DWI-FLAIR o Perfusión automatizada) que demuestre tejido salvable (criterios EXTEND o WAKE-UP).",
+      "pie_nodo": "¿Cumple criterios de penumbra isquémica salvable para IVT extendida?",
       "opciones": [
-        { "texto": "Volver al inicio", "siguiente_nodo": "nodo_raiz" }
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_ivt_admin_ext"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e359",
+          "imagen_evidencia": "TODO_EVIDENCIA: Criterios para IVT en ventana extendida",
+          "texto": "In patients awake with stroke symptoms within 9 hours or 4.5-9 hours from LKN with salvageable ischemic penumbra, IV thrombolysis can be beneficial (COR 2a)."
+        }
+      ]
+    },
+    "trat_ivt_admin_ext": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- Administrar Trombolisis Intravenosa (IVT) según hallazgos de imagen avanzada que confirman tejido rescatable.\n- Mantener cuidados y monitoreo estricto de PA post-IVT.",
+      "pie_nodo": "Proceder a tratamiento médico general.",
+      "enlaces": [
+        {
+          "texto": "Ir a Tratamiento Médico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e359",
+          "imagen_evidencia": "TODO_EVIDENCIA: Indicación de administrar IVT extendido",
+          "texto": "Recomendaciones específicas para IVT extendido basadas en estudios de perfusión o DWI-FLAIR (COR 2a)."
+        }
+      ]
+    },
+    "trat_ext_evt_eval": {
+      "tipo": "pregunta",
+      "texto": "- Ventana de 6 a 24 horas con LVO.\n- Circulación anterior (ICA, M1): Aplicar criterios DAWN/DEFUSE-3 (imagen avanzada) o ASPECTS clínico (pacientes con ASPECTS **3-5** sin efecto de masa masivo también se benefician).\n- Circulación posterior: Oclusión basilar dentro de **24 horas** con NIHSS **>=10** y PC-ASPECTS **>=6**.",
+      "pie_nodo": "¿El paciente es candidato anatómico y radiológico para EVT?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_evt_procedimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e368-e372",
+          "imagen_evidencia": "TODO_EVIDENCIA: Ventana de 6-24 horas para EVT",
+          "texto": "En LVO anterior de 6-24 horas con ASPECTS 3-5, EVT es recomendado (COR 1). En oclusión basilar hasta 24h, NIHSS >=10, PC-ASPECTS >=6, EVT es recomendado (COR 1)."
+        }
+      ]
+    },
+    "trat_evt_procedimiento": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. Derivar inmediatamente a sala de angiografía para Trombectomía Endovascular (EVT).\n2. Objetivo: Alcanzar reperfusión grado mTICI **2b/2c/3**.\n3. Manejo de Presión Arterial: Mantener PA **<=180/105 mmHg** peri y post-procedimiento.\n4. Si se logra reperfusión exitosa, la reducción intensiva de PAS **<140 mmHg** en las primeras 72h NO está recomendada (Asociada a daño).",
+      "pie_nodo": "Tras EVT, proceder a tratamiento médico general y prevención secundaria.",
+      "enlaces": [
+        {
+          "texto": "Continuar con Tratamiento Médico",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_medico"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e350, e373",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte recomendación COR 3 Harm sobre evitar objetivo de PAS <140 mmHg post-EVT exitoso.",
+          "texto": "Reperfusión mTICI 2b/2c/3 es el objetivo (COR 1). Intensive SBP reduction target of <140 mm Hg for the first 72 hours is harmful and not recommended (COR 3 Harm)."
+        }
+      ]
+    },
+    "trat_medico": {
+      "estilo": "advertencia",
+      "tipo": "pregunta",
+      "texto": "- Iniciar pilar de prevención secundaria temprana.\n- Evaluar la severidad del ACV para el manejo antiplaquetario.",
+      "pie_nodo": "¿El ACV es MENOR (NIHSS **<=3**) o es un AIT de alto riesgo (ABCD2 **>=4**) de origen NO cardioembólico?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_dapt"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_sapt"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e376-e378",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones para profilaxis antitrombótica secundaria temprana",
+          "texto": "Sección 4.8 Antiplatelet Treatment establece diferencias entre AIS menor (DAPT) y moderado/severo (SAPT)."
+        }
+      ]
+    },
+    "trat_dapt": {
+      "tipo": "informativo",
+      "texto": "- Iniciar Terapia Antiplaquetaria Dual (DAPT) temprana dentro de las primeras **24 horas** post-inicio (o 72h si origen aterosclerótico).\n- Régimen 1: **Clopidogrel** (Carga 300 mg) + **Aspirina**.\n- Régimen 2: **Ticagrelor** (Carga 180 mg) + **Aspirina**.\n- Mantener DAPT por **21 días**, seguido de monoterapia antiplaquetaria.",
+      "pie_nodo": "Evaluar prevención de complicaciones agudas hospitalarias.",
+      "nota_adicional": "Si el paciente recibió IVT, no administrar aspirina de forma concurrente ni en los primeros 90 minutos. Idealmente se inicia DAPT 24 horas después del IVT con control tomográfico sin sangrado.",
+      "enlaces": [
+        {
+          "texto": "Continuar a manejo hospitalario",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_hospitalario"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e378",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendación de DAPT en stroke menor",
+          "texto": "En pacientes con AIS menor (NIHSS <=3) o AIT de alto riesgo (ABCD2 >=4), DAPT por 21 días está recomendada (COR 1). IV aspirin concurrent with or within 90 min of IVT is Harmful (COR 3)."
+        }
+      ]
+    },
+    "trat_sapt": {
+      "tipo": "informativo",
+      "texto": "- Iniciar monoterapia con **Aspirina** dentro de las **48 horas** posteriores al inicio del ACV.\n- En ACV cardioembólico (ej. Fibrilación Auricular), valorar estrategia temprana de DOAC post-ACV si los síntomas son leves (bajo riesgo hemorrágico), evitando el traslape empírico temprano de heparinas.",
+      "pie_nodo": "Evaluar prevención de complicaciones agudas hospitalarias.",
+      "enlaces": [
+        {
+          "texto": "Continuar a manejo hospitalario",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_hospitalario"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e378, e384",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones para SAPT temprano y anticoagulación en Fibrilación Auricular",
+          "texto": "Aspirin is recommended within 48h (COR 1). En AF con severidad leve, la estrategia temprana de DOAC es razonable (COR 2a)."
+        }
+      ]
+    },
+    "trat_hospitalario": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "1. **Ingreso a Unidad de Ictus (Stroke Unit)** para vigilancia multidisciplinaria.\n2. **Disfagia**: Realizar tamizaje de deglución de cabecera antes del inicio de la vía oral.\n3. **Glucemia**: Objetivo de **140 a 180 mg/dL**. NO se recomienda control estricto (80-130 mg/dL) por riesgo de hipoglucemia severa sin beneficio funcional.\n4. **TVP Profilaxis**: Usar Compresión Neumática Intermitente (IPC). Las medias elásticas causan daño y no están recomendadas.\n5. **Movilización**: Iniciar rehabilitación gradual. NO se recomienda movilización ultra-temprana intensiva (<24h) por aumento de mortalidad.\n6. **Edema Cerebral**: Vigilar signos de hipertensión endocraneana y considerar hemicraniectomía descompresiva en casos malignos antes de las **48 horas**.",
+      "pie_nodo": "Manejo hospitalario agudo establecido. Continuar rehabilitación y seguimiento a largo plazo.",
+      "referencias": [
+        {
+          "titulo": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+          "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+          "paginas": "e389-e397",
+          "imagen_evidencia": "TODO_EVIDENCIA: Cuidados de soporte general intrahospitalario",
+          "texto": "Stroke unit (COR 1); Dysphagia screening (COR 1); Blood glucose 140-180 mg/dL (COR 2a) / 80-130 mg/dL (COR 3 Harm); DVT prophylaxis IPC (COR 1) / Stockings (COR 3 Harm); High-dose ultra-early mobilization (COR 3 Harm); Decompressive craniectomy within 48h for malignant edema (COR 1)."
+        }
       ]
     }
-  },
-  "referencias": [
-    {
-      "titulo": "AHA/ASA 2019 Guidelines for Early Management of Acute Ischemic Stroke",
-      "url": "https://doi.org/10.1161/STR.0000000000000211"
-    },
-    {
-      "titulo": "Lecturio — Enfermedad Cerebrovascular Isquémica",
-      "url": "https://www.lecturio.com/es/concepts/enfermedad-cerebrovascular-isquemica"
-    },
-    {
-      "titulo": "AMBOSS — Overview of Stroke",
-      "url": "https://next.amboss.com/us/article/UR0bmf"
-    },
-    {
-      "titulo": "Hui C, Tadi P, Patti L. Ischemic stroke. StatPearls 2025",
-      "url": "http://www.ncbi.nlm.nih.gov/books/NBK499997/"
-    }
-  ]
+  }
 }
