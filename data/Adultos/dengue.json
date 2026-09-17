@@ -1,0 +1,1420 @@
+{
+  "titulo": "Manejo Clínico del Dengue",
+  "version": "OPS 2020 / CDC / OPS 2022",
+  "descripcion": "Algoritmo para el diagnóstico, clasificación de gravedad y tratamiento escalonado del dengue en adultos.",
+  "especialidad": "Infectología / Urgencias",
+  "nodo_inicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Manejo Clínico del Dengue\n\n**Fuentes**\n1. OMS 2020: Algoritmos para el Manejo Clínico de los Casos de Dengue\n2. OMS: Dengue Case Management\n3. dengue-algoritmo-clinico-2019: ALGORITMO DE DIAGNÓSTICO Y TRATAMIENTO DE DENGUE\n4. DIRECTRICES_PARA_EL_DIAG 2022: DIRECTRICES PARA EL DIAGNÓSTICO\n5. Notas clase 2024: Etapas de infección\n6. MinSalud 2024: Microsoft Word - Pro_Dengue",
+      "enlaces": [
+        {
+          "texto": "dengue-algoritmo-clinico-2019",
+          "tipo": "url",
+          "archivo_objetivo": "http://iris.paho.org/xmlui/bitstream/handle/123456789/28232/9789275318904_esp.pdf?sequence=1&isAllowed=y"
+        },
+        {
+          "texto": "MinSalud 2024",
+          "tipo": "url",
+          "archivo_objetivo": "https://doi.org/10.33610/JQVP8800"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Iniciar evaluación",
+          "siguiente_nodo": "diag_evaluacion"
+        }
+      ],
+      "texto": "Diagnóstico"
+    },
+    "diag_evaluacion": {
+      "tipo": "pregunta",
+      "titulo": "Sospecha Clínica",
+      "texto": "- Evaluar paciente con fiebre aguda de **2 a 7 días**.\n- Verificar viaje o residencia en zona endémica en los últimos **14 días**.",
+      "nota_adicional": "La fase crítica inicia con la caída de la fiebre (defervescencia) y dura 24-48 horas; es el momento de mayor riesgo de choque.",
+      "chips": [
+        "Evaluación inicial"
+      ],
+      "referencias": [
+        {
+          "titulo": "Definición de Caso",
+          "paginas": "6",
+          "texto": "Persona que vive o ha viajado en los últimos 14 días a zonas con transmisión de dengue, y presenta fiebre aguda habitualmente de 2 a 7 días",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag6_definicion_caso.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar síntomas",
+          "siguiente_nodo": "diag_evaluacion_pie"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue_pag8_2024_403_10427_667.png",
+          "titulo": "2024;403(10427):667-682. doi:10.1016/S0140-6736(23)02576-X"
+        }
+      ]
+    },
+    "diag_evaluacion_pie": {
+      "tipo": "pregunta",
+      "texto": "- Buscar manifestaciones clínicas sugestivas de infección por dengue.",
+      "pie_nodo": "¿Presenta síntomas sugestivos adicionales?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_sintomas"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_diferencial"
+        }
+      ]
+    },
+    "diag_sintomas": {
+      "tipo": "pregunta",
+      "titulo": "Criterios Clínicos",
+      "texto": "- Confirmar **2 o más**: náuseas/vómitos, exantema, cefalea/dolor retroorbitario, mialgia/artralgia, petequias, prueba torniquete (+), leucopenia.",
+      "referencias": [
+        {
+          "titulo": "Manifestaciones",
+          "paginas": "6",
+          "texto": "náusea/vómitos, exantema, cefalea/dolor retroorbitario, mialgia/artralgia, petequias o prueba de torniquete positiva (+), leucopenia",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag6_manifestaciones.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Verificar criterios",
+          "siguiente_nodo": "diag_sintomas_pie"
+        }
+      ]
+    },
+    "diag_sintomas_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar si cumple la definición de caso sospechoso.",
+      "pie_nodo": "¿Cumple criterios de caso sospechoso?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_clasificacion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_diferencial"
+        }
+      ]
+    },
+    "diag_diferencial": {
+      "tipo": "informativo",
+      "titulo": "Diagnóstico Diferencial",
+      "texto": "- Considerar COVID-19, Zika, Chikungunya, Malaria, Leptospirosis, Sarampión.\n- Reevaluar según contexto epidemiológico local.",
+      "referencias": [
+        {
+          "titulo": "Diagnóstico diferencial",
+          "paginas": "8",
+          "texto": "Sospechar de: COVID-19 Zika Influenza Sarampión Rubéola Chikungunya Rickettsiosis Paludismo Leptospirosis Fiebre tifoidea",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag8_diagnostico_diferencial.png"
+        }
+      ]
+    },
+    "diag_clasificacion": {
+      "tipo": "pregunta",
+      "titulo": "Clasificación de Gravedad",
+      "texto": "- Clasificar gravedad para definir manejo.\n- Buscar signos de choque, sangrado grave o compromiso de órganos.",
+      "tabla": {
+        "titulo": "Clasificación de Gravedad del Dengue",
+        "columnas": [
+          "Sin signos de alarma",
+          "Con signos de alarma",
+          "Dengue grave"
+        ],
+        "filas": [
+          [
+            "Fiebre y 2 o más: náuseas/vómitos, exantema, cefalea, mialgia, petequias, leucopenia",
+            "Dolor abdominal, vómitos persistentes, acumulación de líquidos, sangrado mucosas, letargo, hepatomegalia >2cm, aumento hematocrito",
+            "Choque por extravasación, sangrado grave, compromiso grave de órganos (AST/ALT >=1000)"
+          ]
+        ]
+      },
+      "opciones": [
+        {
+          "texto": "Evaluar gravedad",
+          "siguiente_nodo": "diag_clasificacion_pie"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue_pag1_todo_caso_dengue_tiene.png",
+          "titulo": "Todo caso de dengue que tiene una o más de las \nsiguientes manifestaciones:\n1. Choque o dificultad respiratoria debido a \nextravasación grave de plasma. Choque "
+        }
+      ]
+    },
+    "diag_clasificacion_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de criterios de gravedad extrema.",
+      "pie_nodo": "¿Presenta criterios de Dengue Grave?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_gravedad"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alarma_clinica"
+        }
+      ]
+    },
+    "diag_gravedad": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Criterios de Gravedad",
+      "texto": "- Confirmar **1 o más**: choque por extravasación, dificultad respiratoria, sangrado grave, AST/ALT **>=1000 UI**, alteración del sensorio.",
+      "chips": [
+        "Urgencia"
+      ],
+      "referencias": [
+        {
+          "titulo": "Dengue Grave",
+          "paginas": "9",
+          "texto": "Severe organ impairment (myocarditis, hepatitis [ALT or AST>1000 IU] encephalitis)",
+          "fuente": "OMS",
+          "imagen_evidencia": "evidencia_dengue_pag9_dengue_grave.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Confirmar gravedad",
+          "siguiente_nodo": "diag_gravedad_pie"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue_pag23_diag_gravedad.png"
+        }
+      ]
+    },
+    "diag_gravedad_pie": {
+      "tipo": "pregunta",
+      "texto": "- Confirmar si el paciente cumple con la definición de Dengue Grave.",
+      "pie_nodo": "¿Confirmado Dengue Grave?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alarma_clinica"
+        }
+      ]
+    },
+    "diag_alarma_clinica": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Signos de Alarma Clínicos",
+      "texto": "- Evaluar dolor abdominal intenso/continuo, vómitos persistentes (**>=3 en 1 h** o **>=4 en 6 h**), sangrado de mucosas, letargo/irritabilidad.",
+      "referencias": [
+        {
+          "titulo": "Signos de alarma",
+          "paginas": "12",
+          "texto": "Vómitos: persistentes (tres o más en 1 hora o cuatro en 6 horas)",
+          "anio": "2022",
+          "imagen_evidencia": "evidencia_dengue_pag12_signos_alarma.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar signos",
+          "siguiente_nodo": "diag_alarma_clinica_pie"
+        }
+      ]
+    },
+    "diag_alarma_clinica_pie": {
+      "tipo": "pregunta",
+      "texto": "- Determinar si hay signos clínicos de alarma.",
+      "pie_nodo": "¿Presenta signos clínicos de alarma?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_alarma_lab"
+        }
+      ]
+    },
+    "diag_alarma_lab": {
+      "tipo": "pregunta",
+      "titulo": "Signos de Alarma por Laboratorio",
+      "texto": "- Solicitar hemograma.\n- Buscar aumento progresivo del hematocrito en **2 mediciones consecutivas** o caída abrupta de plaquetas.",
+      "referencias": [
+        {
+          "titulo": "Aumento de hematocrito",
+          "paginas": "12",
+          "texto": "Aumento progresivo del hematocrito: en al menos dos mediciones consecutivas durante el seguimiento del paciente",
+          "anio": "2022",
+          "imagen_evidencia": "evidencia_dengue_pag12_aumento_hematocrito.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar laboratorio",
+          "siguiente_nodo": "diag_alarma_lab_pie"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue_pag1_investigacion_pruebas_laboratorio_corrientes.png",
+          "titulo": "Investigación, con pruebas de laboratorio corrientes y específicas para dengue (RT-PCR, NS1, IgG/IgM, \nsegún disponibilidad) en el momento preciso de la enferme"
+        }
+      ]
+    },
+    "diag_alarma_lab_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar resultados de laboratorio.",
+      "pie_nodo": "¿Presenta signos de alarma por laboratorio?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Estratificar tratamiento",
+          "siguiente_nodo": "trat_estratificacion"
+        }
+      ],
+      "texto": "Tratamiento"
+    },
+    "trat_estratificacion": {
+      "tipo": "pregunta",
+      "titulo": "Estratificación",
+      "texto": "- Asignar grupo de tratamiento según clínica y riesgo.",
+      "pie_nodo": "¿A qué grupo corresponde?",
+      "opciones": [
+        {
+          "texto": "Grupo A (Sin alarma/riesgo)",
+          "siguiente_nodo": "trat_grupo_a"
+        },
+        {
+          "texto": "Grupo B1 (Riesgo/Comorbilidad)",
+          "siguiente_nodo": "trat_grupo_b1"
+        },
+        {
+          "texto": "Grupo B2 (Signos de alarma)",
+          "siguiente_nodo": "trat_grupo_b2"
+        },
+        {
+          "texto": "Grupo C (Grave)",
+          "siguiente_nodo": "trat_grupo_c"
+        }
+      ]
+    },
+    "trat_grupo_a": {
+      "tipo": "pregunta",
+      "titulo": "Manejo Grupo A",
+      "texto": "- Manejo ambulatorio. Reposo absoluto en cama.\n- Hidratación oral intensa: adultos **3000 ml/día**, niños fórmula Holliday-Segar **+ 5 %**.",
+      "nota_adicional": "No asuma que los líquidos IV son necesarios. Use la vía oral siempre que sea posible.",
+      "referencias": [
+        {
+          "titulo": "Hidratación oral",
+          "paginas": "16",
+          "texto": "Adultos sanos: hasta 3000 ml por día Pediatría: fórmula de Holliday-Segar más 5%",
+          "anio": "2022",
+          "imagen_evidencia": "evidencia_dengue_pag16_hidratacion_oral.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar síntomas",
+          "siguiente_nodo": "trat_grupo_a_pie"
+        }
+      ]
+    },
+    "trat_grupo_a_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar necesidad de control sintomático.",
+      "pie_nodo": "¿Requiere control de síntomas?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_a_farmacos"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_a_seguimiento"
+        }
+      ]
+    },
+    "trat_a_farmacos": {
+      "tipo": "pregunta",
+      "titulo": "Control Sintomático",
+      "texto": "- Administrar **Paracetamol** o **Metamizol**.\n- **NO** usar AINEs, corticosteroides ni aspirina por riesgo de sangrado.",
+      "farmacos": [
+        {
+          "nombre": "Paracetamol",
+          "dosis": "**500 mg** VO cada 6 h, máx. **4 g/día**",
+          "pauta": "Niños: **10 mg/kg** cada 6 h, máx. **60 mg/kg/día**.",
+          "nota": "No usar AINEs ni aspirina.",
+          "paginas": "24"
+        },
+        {
+          "nombre": "Metamizol",
+          "dosis": "**500 mg** VO cada 6 h",
+          "pauta": "Niños: **10 mg/kg** cada 6 h.",
+          "nota": "Alternativa al paracetamol para control de fiebre.",
+          "paginas": "24"
+        }
+      ],
+      "tabla": {
+        "titulo": "Manejo Sintomático",
+        "columnas": [
+          "Fármaco",
+          "Dosis pediatría",
+          "Dosis adultos"
+        ],
+        "filas": [
+          [
+            "Paracetamol",
+            "10 mg/kg cada 6 h (máx 60 mg/kg/día)",
+            "500 mg cada 6 h (máx 4 g/día)"
+          ],
+          [
+            "Metamizol",
+            "10 mg/kg cada 6 h",
+            "500 mg cada 6 h"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Dosis Paracetamol",
+          "paginas": "24",
+          "texto": "Paracetamol (por vía oral) 10 mg/kg de peso corporal cada 6 horas Dosis máxima diaria: 60 mg/kg 500 mg cada 6 horas Dosis máxima diaria: 4 g",
+          "anio": "2022",
+          "imagen_evidencia": "evidencia_dengue_pag24_dosis_paracetamol.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar evolución",
+          "siguiente_nodo": "trat_a_farmacos_pie"
+        }
+      ]
+    },
+    "trat_a_farmacos_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta al tratamiento sintomático.",
+      "pie_nodo": "¿Evolución favorable?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_a_seguimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_grupo_b2"
+        }
+      ]
+    },
+    "trat_a_seguimiento": {
+      "tipo": "pregunta",
+      "titulo": "Seguimiento Ambulatorio",
+      "texto": "- Monitorear cada **24-48 h** y hasta **48 h** después del descenso de la fiebre.\n- Educar sobre signos de alarma.",
+      "referencias": [
+        {
+          "titulo": "Monitoreo",
+          "paginas": "11",
+          "texto": "Monitoreo cada 24 a 48 h y hasta 48 h después del descenso de la fiebre sin el uso de antipiréticos",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag11_monitoreo.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar signos de alarma",
+          "siguiente_nodo": "trat_a_seguimiento_pie"
+        }
+      ]
+    },
+    "trat_a_seguimiento_pie": {
+      "tipo": "pregunta",
+      "texto": "- Reevaluar presencia de signos de alarma.",
+      "pie_nodo": "¿Aparecen signos de alarma?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_grupo_b2"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "trat_grupo_b1": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Manejo Grupo B1",
+      "texto": "- Ingresar a hospital o unidad de dengue.\n- Aplica a embarazo, **<1 año**, **>=65 años**, obesidad, hipertensión, diabetes, riesgo social.",
+      "referencias": [
+        {
+          "titulo": "Condiciones asociadas",
+          "paginas": "9",
+          "texto": "Presentan enfermedad o condiciones asociadas: Embarazo ≤ 1 año ≥ 65 años Obesidad mórbida",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag9_condiciones_asociadas.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar vía oral",
+          "siguiente_nodo": "trat_grupo_b1_pie"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue_pag_feff0050_1_trat_grupo_b1.png"
+        }
+      ]
+    },
+    "trat_grupo_b1_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar tolerancia a la vía oral.",
+      "pie_nodo": "¿Tolera vía oral?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b1_oral"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b1_iv"
+        }
+      ]
+    },
+    "trat_b1_oral": {
+      "tipo": "pregunta",
+      "titulo": "Hidratación Oral B1",
+      "texto": "- Estimular ingesta de líquidos orales.\n- Controlar curva febril y balance de líquidos.",
+      "opciones": [
+        {
+          "texto": "Evaluar signos de alarma",
+          "siguiente_nodo": "trat_b1_oral_pie"
+        }
+      ]
+    },
+    "trat_b1_oral_pie": {
+      "tipo": "pregunta",
+      "texto": "- Reevaluar presencia de signos de alarma.",
+      "pie_nodo": "¿Aparecen signos de alarma?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_grupo_b2"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "trat_b1_iv": {
+      "tipo": "pregunta",
+      "titulo": "Hidratación IV B1",
+      "texto": "- Iniciar **Cristaloides** IV a **2-4 ml/kg/h**.\n- Reiniciar vía oral tan pronto sea posible.",
+      "farmacos": [
+        {
+          "nombre": "Cristaloides (Hartmann o SSN 0,9%)",
+          "dosis": "**2-4 ml/kg/h** IV",
+          "pauta": "Mantenimiento inicial si no tolera vía oral.",
+          "nota": "Reiniciar vía oral pronto.",
+          "paginas": "4"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Líquidos IV B1",
+          "paginas": "4",
+          "texto": "Administer IV crystalloid solution at 2-4 mL/kg/hr Encourage oral fluid intake",
+          "fuente": "OMS",
+          "imagen_evidencia": "evidencia_dengue_pag4_liquidos_iv_b1.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar signos de alarma",
+          "siguiente_nodo": "trat_b1_iv_pie"
+        }
+      ]
+    },
+    "trat_b1_iv_pie": {
+      "tipo": "pregunta",
+      "texto": "- Reevaluar presencia de signos de alarma.",
+      "pie_nodo": "¿Aparecen signos de alarma?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_grupo_b2"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "trat_grupo_b2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Manejo Grupo B2",
+      "texto": "- Ingresar para administración de líquidos IV.\n- Obtener hematocrito basal antes de hidratar.",
+      "opciones": [
+        {
+          "texto": "Evaluar paciente",
+          "siguiente_nodo": "trat_grupo_b2_pie"
+        }
+      ]
+    },
+    "trat_grupo_b2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de comorbilidades o edad avanzada.",
+      "pie_nodo": "¿Tiene comorbilidad o es adulto mayor?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_comorbilidad"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_estandar"
+        }
+      ]
+    },
+    "trat_b2_estandar": {
+      "tipo": "pregunta",
+      "titulo": "Carga Inicial B2",
+      "texto": "- Administrar **Cristaloides** (Hartmann o SSN 0,9%) a **10 ml/kg** en **1 h**.",
+      "farmacos": [
+        {
+          "nombre": "Cristaloides (Hartmann o SSN 0,9%)",
+          "dosis": "**10 ml/kg** IV",
+          "pauta": "En 1 h. Ajustar según respuesta clínica.",
+          "nota": "De elección sobre coloides en reanimación inicial.",
+          "paginas": "13"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Carga B2",
+          "paginas": "12",
+          "texto": "Solución cristaloide (Hartman o solución salina normal 0.9%) 10ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_carga_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_estandar_pie"
+        }
+      ]
+    },
+    "trat_b2_estandar_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la carga inicial.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_1"
+        }
+      ]
+    },
+    "trat_b2_comorbilidad": {
+      "tipo": "pregunta",
+      "titulo": "Carga B2 Comorbilidad",
+      "texto": "- Administrar **Cristaloides** (Hartmann o SSN 0,9%) a **5 ml/kg** en **1 h**.",
+      "farmacos": [
+        {
+          "nombre": "Cristaloides (Hartmann o SSN 0,9%)",
+          "dosis": "**5 ml/kg** IV",
+          "pauta": "En 1 h. Ajustar según respuesta clínica.",
+          "nota": "Dosis reducida por comorbilidad o edad avanzada.",
+          "paginas": "14"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Carga B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Solución cristaloide (Hartman o SSN 0.9%) 5 ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag13_carga_b2_comorbilidad.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_comorbilidad_pie"
+        }
+      ]
+    },
+    "trat_b2_comorbilidad_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la carga inicial.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_comorb"
+        }
+      ]
+    },
+    "trat_b2_mejora_1": {
+      "tipo": "pregunta",
+      "titulo": "Reducción de Líquidos 1",
+      "texto": "- Reducir goteo a **5-7 ml/kg/h** (o **4 ml/kg/h** si comorbilidad) y continuar por **2-4 h**.\n- Monitoreo horario.",
+      "referencias": [
+        {
+          "titulo": "Reducción B2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 5 a 7 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_mejora_1_pie"
+        }
+      ]
+    },
+    "trat_b2_mejora_1_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar si se mantiene la mejoría clínica.",
+      "pie_nodo": "¿Mantiene mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_2"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_1"
+        }
+      ]
+    },
+    "trat_b2_mejora_2": {
+      "tipo": "pregunta",
+      "titulo": "Reducción de Líquidos 2",
+      "texto": "- Reducir goteo a **3-5 ml/kg/h** y continuar por **2-4 h**.\n- Evaluar diuresis y hematocrito.",
+      "referencias": [
+        {
+          "titulo": "Reducción B2 paso 2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 3-5 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2_paso_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_mejora_2_pie"
+        }
+      ]
+    },
+    "trat_b2_mejora_2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar si se mantiene la mejoría clínica.",
+      "pie_nodo": "¿Mantiene mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_3"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_1"
+        }
+      ]
+    },
+    "trat_b2_mejora_3": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2",
+      "texto": "- Reducir goteo a **2-4 ml/kg/h** y continuar por **24-48 h**.\n- Suspender líquidos IV si tolera vía oral y hematocrito es estable.",
+      "referencias": [
+        {
+          "titulo": "Mantenimiento B2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 2 a 4 ml/kg/h y continúe por 24-48 h + monitoreo horario al paciente.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_mantenimiento_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar estabilidad",
+          "siguiente_nodo": "trat_b2_mejora_3_pie"
+        }
+      ]
+    },
+    "trat_b2_mejora_3_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar estabilidad a las 48 horas.",
+      "pie_nodo": "¿Completa 48 h estable?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_seguimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_1"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_1": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Segunda Carga B2",
+      "texto": "- Repetir segunda carga de **Cristaloides** a **10 ml/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Segunda carga B2",
+          "paginas": "12",
+          "texto": "Repetir 2ª carga de 10ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_segunda_carga_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_no_mejora_1_pie"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_1_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la segunda carga.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_2"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_comorb": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Segunda Carga Comorbilidad",
+      "texto": "- Repetir segunda carga de **Cristaloides** a **5 ml/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Segunda carga B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Repetir 2ª carga de 5ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag13_segunda_carga_b2_comorbilidad.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_no_mejora_comorb_pie"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_comorb_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la segunda carga.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_b2_no_mejora_comorb_2"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercera Carga B2",
+      "texto": "- Repetir tercera carga de **Cristaloides** a **10 ml/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Tercera carga B2",
+          "paginas": "12",
+          "texto": "Repetir 3ª carga de 10ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag12_tercera_carga_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_no_mejora_2_pie"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la tercera carga.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_grupo_c"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_comorb_2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercera Carga Comorbilidad",
+      "texto": "- Repetir tercera carga de **Cristaloides** a **5 ml/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Tercera carga B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Repetir 3ª carga de 5ml/kg en 1 h.",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag13_tercera_carga_b2_comorbilidad.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_b2_no_mejora_comorb_2_pie"
+        }
+      ]
+    },
+    "trat_b2_no_mejora_comorb_2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la tercera carga.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_b2_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_grupo_c"
+        }
+      ]
+    },
+    "trat_grupo_c": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Manejo Grupo C",
+      "texto": "- Ingresar a UCI. Iniciar ABC y oxigenoterapia.\n- Monitoreo de signos vitales cada **5 a 30 min**.",
+      "referencias": [
+        {
+          "titulo": "Manejo inicial C",
+          "paginas": "14",
+          "texto": "ABC y monitoreo de signos vitales cada 5 a 30 min + Oxigenoterapia",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_manejo_inicial_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar paciente",
+          "siguiente_nodo": "trat_grupo_c_pie"
+        }
+      ]
+    },
+    "trat_grupo_c_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de comorbilidades, embarazo o edad avanzada.",
+      "pie_nodo": "¿Tiene comorbilidad, embarazo o es adulto mayor?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_precaucion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_choque"
+        }
+      ]
+    },
+    "trat_c_precaucion": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Precaución Grupo C",
+      "texto": "- Individualizar manejo y mantener monitoreo estricto.\n- Proceder con reanimación hídrica ajustada.",
+      "referencias": [
+        {
+          "titulo": "Precaución C",
+          "paginas": "14",
+          "texto": "El manejo del adulto mayor, paciente con comorbilidad y/o de la embarazada debe ser individualizado y con monitoreo estricto",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_precaucion_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_c_precaucion_pie"
+        }
+      ]
+    },
+    "trat_c_precaucion_pie": {
+      "tipo": "pregunta",
+      "texto": "- Iniciar reanimación hídrica.",
+      "pie_nodo": "¿Iniciar reanimación?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_choque"
+        }
+      ]
+    },
+    "trat_c_choque": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Bolo Inicial Choque",
+      "texto": "- Administrar primer bolo de **Cristaloides** a **20 ml/kg** en **15-30 min**.",
+      "farmacos": [
+        {
+          "nombre": "Cristaloides (Hartmann o SSN 0,9%)",
+          "dosis": "**20 ml/kg** IV",
+          "pauta": "En 15-30 min. Bolo inicial para choque.",
+          "nota": "De elección sobre coloides en reanimación inicial.",
+          "paginas": "15"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Bolo inicial C",
+          "paginas": "14",
+          "texto": "Solución cristaloide (Hartman o solución salina normal 0.9%) 20ml/kg en 15-30 min",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_bolo_inicial_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_c_choque_pie"
+        }
+      ]
+    },
+    "trat_c_choque_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta al primer bolo.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_no_mejora_1"
+        }
+      ]
+    },
+    "trat_c_mejora_1": {
+      "tipo": "pregunta",
+      "titulo": "Reducción Choque 1",
+      "texto": "- Reducir goteo a **10 ml/kg/h** y continuar por **1-2 h**.\n- Monitoreo horario.",
+      "referencias": [
+        {
+          "titulo": "Reducción C 1",
+          "paginas": "14",
+          "texto": "Reducir goteo a 10 ml/kg/h y continúe por 1-2 h + monitoreo horario",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_1.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_c_mejora_1_pie"
+        }
+      ]
+    },
+    "trat_c_mejora_1_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar si se mantiene la mejoría clínica.",
+      "pie_nodo": "¿Mantiene mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_mejora_2"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_no_mejora_1"
+        }
+      ]
+    },
+    "trat_c_mejora_2": {
+      "tipo": "pregunta",
+      "titulo": "Reducción Choque 2",
+      "texto": "- Reducir goteo a **5-7 ml/kg/h** por **4-6 h**.\n- Luego reducir a **3-5 ml/kg/h** por **2-4 h**, y finalmente **2-4 ml/kg/h** por **24-48 h**.",
+      "referencias": [
+        {
+          "titulo": "Reducción C 2",
+          "paginas": "14",
+          "texto": "Reducir goteo a 5-7 ml/kg/h y continúe por 4-6 h + monitoreo horario",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar estabilización",
+          "siguiente_nodo": "trat_c_mejora_2_pie"
+        }
+      ]
+    },
+    "trat_c_mejora_2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar estabilización completa.",
+      "pie_nodo": "¿Completa estabilización?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_seguimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_no_mejora_1"
+        }
+      ]
+    },
+    "trat_c_no_mejora_1": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Segundo Bolo Choque",
+      "texto": "- Administrar segundo bolo de **Cristaloides** a **20 ml/kg** en **15-30 min**.",
+      "referencias": [
+        {
+          "titulo": "Segundo bolo C",
+          "paginas": "14",
+          "texto": "Administrar 2º bolo solución cristaloide 20ml/kg en 15-30min",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_segundo_bolo_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_c_no_mejora_1_pie"
+        }
+      ]
+    },
+    "trat_c_no_mejora_1_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta al segundo bolo.",
+      "pie_nodo": "¿Hay mejoría clínica?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_mejora_1"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_no_mejora_2"
+        }
+      ]
+    },
+    "trat_c_no_mejora_2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercer Bolo Choque",
+      "texto": "- Administrar tercer bolo de **Cristaloides** a **20 ml/kg** en **15-30 min**.",
+      "referencias": [
+        {
+          "titulo": "Tercer bolo C",
+          "paginas": "14",
+          "texto": "Administrar 3º bolo solución cristaloide 20ml/kg en 15-30min",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_tercer_bolo_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_c_no_mejora_2_pie"
+        }
+      ]
+    },
+    "trat_c_no_mejora_2_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta al tercer bolo.",
+      "pie_nodo": "¿Persisten signos de choque?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_refractario"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_mejora_1"
+        }
+      ]
+    },
+    "trat_c_refractario": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Choque Refractario",
+      "texto": "- Evaluar hematocrito: si desciende rápido, sospechar hemorragia oculta.\n- Si hematocrito sigue alto, usar **Coloides**.\n- Considerar aminas vasopresoras si PAM **<60-70 mmHg**.",
+      "referencias": [
+        {
+          "titulo": "Hemorragia oculta",
+          "paginas": "5",
+          "texto": "Consider hemorrhage if there is a rapid decrease in hematocrit and persistent shock",
+          "fuente": "OMS",
+          "imagen_evidencia": "evidencia_dengue_pag5_hemorragia_oculta.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar hemorragia",
+          "siguiente_nodo": "trat_c_refractario_pie"
+        }
+      ]
+    },
+    "trat_c_refractario_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar presencia de hemorragia.",
+      "pie_nodo": "¿Hay hemorragia clínicamente significativa?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_c_hemorragia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_organos"
+        }
+      ]
+    },
+    "trat_c_hemorragia": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Manejo Hemorragia",
+      "texto": "- Transfundir **Glóbulos rojos empaquetados** a **5-10 ml/kg** o **Sangre total** a **10-20 ml/kg**.\n- **NO** transfundir plaquetas ni plasma fresco congelado.",
+      "nota_adicional": "La transfusión profiláctica de plaquetas no disminuye el riesgo de sangrado grave y puede causar sobrecarga de volumen.",
+      "farmacos": [
+        {
+          "nombre": "Glóbulos rojos empaquetados",
+          "dosis": "**5-10 ml/kg** IV",
+          "pauta": "Transfundir en caso de hemorragia severa.",
+          "nota": "No transfundir plaquetas profilácticas.",
+          "paginas": "6"
+        },
+        {
+          "nombre": "Sangre total",
+          "dosis": "**10-20 ml/kg** IV",
+          "pauta": "Transfundir en caso de hemorragia severa.",
+          "nota": "No transfundir plaquetas profilácticas.",
+          "paginas": "6"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Transfusión",
+          "paginas": "6",
+          "texto": "5-10mL/kg packed red blood cells 10-20mL/kg of whole blood Transfusion of platelets or fresh frozen plasma is not recommended",
+          "fuente": "OMS",
+          "imagen_evidencia": "evidencia_dengue_pag6_transfusion.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "trat_c_hemorragia_pie"
+        }
+      ]
+    },
+    "trat_c_hemorragia_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar respuesta a la transfusión.",
+      "pie_nodo": "¿Mejora hemodinamia?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_seguimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_c_organos"
+        }
+      ]
+    },
+    "trat_c_organos": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Falla Orgánica",
+      "texto": "- Evaluar función de bomba (miocarditis) y acidosis persistente.\n- Estabilizar condición de base en UCI.",
+      "referencias": [
+        {
+          "titulo": "Falla de bomba",
+          "paginas": "14",
+          "texto": "Determinar la función de bomba y el uso de aminas; Evaluar las condiciones médicas concomitantes",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag14_falla_bomba.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar estabilización",
+          "siguiente_nodo": "trat_c_organos_pie"
+        }
+      ]
+    },
+    "trat_c_organos_pie": {
+      "tipo": "pregunta",
+      "texto": "- Evaluar estabilización.",
+      "pie_nodo": "¿Logra estabilización?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "nodo_seguimiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Evaluar alta",
+          "siguiente_nodo": "seg_criterios_alta"
+        }
+      ],
+      "texto": "Seguimiento"
+    },
+    "seg_criterios_alta": {
+      "tipo": "informativo",
+      "estilo": "exito",
+      "titulo": "Criterios de Alta",
+      "texto": "- Ausencia de fiebre por **48 h** sin antipiréticos.\n- Mejoría clínica (apetito, hemodinamia, diuresis).\n- Tendencia ascendente de plaquetas y hematocrito estable sin líquidos IV.",
+      "referencias": [
+        {
+          "titulo": "Criterios de alta",
+          "paginas": "10",
+          "texto": "Ausencia de fiebre por 48 horas sin administración de antipiréticos Mejoría del estado clínico",
+          "fuente": "OMS",
+          "anio": "2020",
+          "imagen_evidencia": "evidencia_dengue_pag10_criterios_alta.png"
+        }
+      ]
+    }
+  },
+  "referencias": [
+    {
+      "titulo": "Algoritmos para el Manejo Clínico de los Casos de Dengue",
+      "fuente": "OMS",
+      "anio": "2020"
+    },
+    {
+      "titulo": "Dengue Case Management",
+      "fuente": "OMS"
+    },
+    {
+      "titulo": "ALGORITMO DE DIAGNÓSTICO Y TRATAMIENTO DE DENGUE",
+      "url": "http://iris.paho.org/xmlui/bitstream/handle/123456789/28232/9789275318904_esp.pdf?sequence=1&isAllowed=y"
+    },
+    {
+      "titulo": "DIRECTRICES PARA EL DIAGNÓSTICO",
+      "anio": "2022"
+    },
+    {
+      "titulo": "Etapas de infección",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Microsoft Word - Pro_Dengue",
+      "fuente": "MinSalud",
+      "anio": "2024",
+      "url": "https://doi.org/10.33610/JQVP8800"
+    }
+  ],
+  "carpeta_evidencia": "dengue",
+  "carpeta_imagenes": "dengue"
+}
