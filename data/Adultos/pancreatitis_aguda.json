@@ -1,0 +1,605 @@
+{
+  "titulo": "Pancreatitis Aguda",
+  "version": "JAMA 2021 / Schwartz",
+  "descripcion": "Manejo inicial, estratificación y tratamiento de la pancreatitis aguda en urgencias.",
+  "especialidad": "Gastroenterología",
+  "nodo_inicial": "nodo_inicial",
+  "nodos": {
+    "nodo_inicial": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "titulo": "Pancreatitis Aguda",
+      "texto": "- Evalúa dolor abdominal agudo en epigastrio irradiado a espalda.\n- Solicita amilasa, lipasa, perfil hepático, triglicéridos y calcio.",
+      "chips": [
+        "Adulto",
+        "Urgencia"
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Presentation and Diagnosis",
+          "paginas": "384",
+          "texto": "Evaluation of suspected acute pancreatitis begins with a comprehensive history and physical examination. Assessment should focus on a history of episodes of acute pancreatitis and risk factors, including biliary colic/gallstone disease, alcohol use"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_atlanta"
+        }
+      ]
+    },
+    "diag_atlanta": {
+      "tipo": "pregunta",
+      "titulo": "Criterios de Atlanta",
+      "texto": "- Confirma diagnóstico con **2 de 3** criterios.\n1. Dolor abdominal compatible.\n2. Amilasa o lipasa **>3 veces** el límite superior.\n3. Hallazgos en TC o ecografía.",
+      "pie_nodo": "¿Cumple al menos 2 criterios?",
+      "referencias": [
+        {
+          "titulo": "Clinical Presentation and Diagnosis",
+          "paginas": "384",
+          "texto": "abdominal pain suggestive of pancreatitis, (2) serum amylase and/or lipase greater than 3 times the upper limit of normal, (3) and cross-sectional imaging (CT or MRI) findings consistent with acute pancreatitis",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag3_clinical_presentation_and_diagnosis.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_etiologia"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_diferencial"
+        }
+      ]
+    },
+    "diag_diferencial": {
+      "tipo": "resultado",
+      "titulo": "Diagnóstico alternativo",
+      "texto": "- Reevalúa otras causas de dolor abdominal agudo (perforación, isquemia, infarto).\n- Considera TC abdominal para descartar diagnósticos diferenciales.",
+      "referencias": [
+        {
+          "titulo": "Clinical Presentation and Diagnosis",
+          "paginas": "384",
+          "texto": "CT is a useful adjunct to confirm acute pancreatitis when the diagnosis is in question and to rule out other intra-abdominal conditions that can mimic acute pancreatitis such as a perforated duodenal ulcer.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag3_clinical_presentation_and_diagnosis_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Finalizar",
+          "siguiente_nodo": "fin_algoritmo"
+        }
+      ]
+    },
+    "diag_etiologia": {
+      "tipo": "informativo",
+      "titulo": "Etiología",
+      "texto": "- Realiza ecografía transabdominal para buscar litiasis biliar.\n- Mide triglicéridos séricos y calcio.\n- Solicita IgG4 si sospechas etiología autoinmune.",
+      "referencias": [
+        {
+          "titulo": "Clinical Presentation and Diagnosis",
+          "paginas": "384",
+          "texto": "Additional testing with transabdominal ultrasound to evaluate for gallstones and serum triglyceride levels should also be obtained. IgG4 levels are helpful when autoimmune pancreatitis is suspected."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Iniciar tratamiento",
+          "siguiente_nodo": "trat_fluidos"
+        }
+      ]
+    },
+    "trat_fluidos": {
+      "tipo": "informativo",
+      "titulo": "Resucitación inicial",
+      "texto": "- **Ringer Lactato 5-10 mL/kg/h** IV continuo.\n- Inicia resucitación inmediata al diagnóstico.\n- Precaución en pacientes con falla cardíaca o renal.",
+      "referencias": [
+        {
+          "titulo": "Fluid Resuscitation",
+          "paginas": "387",
+          "texto": "IAP/APA recommends a crystalloid infusion of 5 to 10 mL/kg/h until 1 or more resuscitation goals are met (eg, heart rate <120 beats per minute; mean arterial pressure, 65-85 mm Hg; urine output >0.5 to 1 mL; hematocrit, 35%-44%)."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evaluar respuesta",
+          "siguiente_nodo": "eval_fluidos"
+        }
+      ]
+    },
+    "eval_fluidos": {
+      "tipo": "pregunta",
+      "titulo": "Metas de perfusión",
+      "texto": "- Evalúa metas de perfusión.\n- FC **<120 lpm**, PAM **65-85 mmHg**.\n- Diuresis **>0.5-1 mL/kg/h**, Hto **35-44%**.",
+      "pie_nodo": "¿Alcanza metas de perfusión?",
+      "referencias": [
+        {
+          "titulo": "Table 3",
+          "paginas": "387",
+          "texto": "Trend BUN, hematocrit, creatinine every 8-12 h for the first 24-48 h",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag6_table_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_nutricion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_ajuste_fluidos"
+        }
+      ]
+    },
+    "trat_ajuste_fluidos": {
+      "tipo": "informativo",
+      "titulo": "Ajuste de fluidos",
+      "texto": "- Ajusta ritmo de infusión según respuesta.\n- Reevalúa BUN y hematocrito cada **8-12 horas** las primeras **24-48 horas**.",
+      "referencias": [
+        {
+          "titulo": "Table 3",
+          "paginas": "387",
+          "texto": "Trend BUN, hematocrit, creatinine every 8-12 h for the first 24-48 h",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag6_table_3_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_nutricion"
+        }
+      ]
+    },
+    "trat_nutricion": {
+      "tipo": "pregunta",
+      "titulo": "Nutrición temprana",
+      "texto": "- Inicia dieta oral sólida baja en grasa en **24-72 horas**.\n- No esperes a que el dolor desaparezca por completo.",
+      "pie_nodo": "¿Tolera dieta oral?",
+      "cronometros": [
+        {
+          "etiqueta": "Ventana nutrición",
+          "segundos": 259200,
+          "modo": "descendente",
+          "mensaje_fin": "Considerar vía alternativa"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Nutrition",
+          "paginas": "388",
+          "texto": "In general, patients tolerating oral nutrition should be placed on a low-fat soft or solid diet.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_nutrition.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_gravedad"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_sng"
+        }
+      ]
+    },
+    "trat_sng": {
+      "tipo": "pregunta",
+      "titulo": "Sonda nasoenteral",
+      "texto": "- Coloca sonda nasogástrica o nasoyeyunal si no tolera vía oral en **72 horas**.",
+      "pie_nodo": "¿Tolera nutrición enteral por sonda?",
+      "referencias": [
+        {
+          "titulo": "Nutrition",
+          "paginas": "388",
+          "texto": "If patients are unable to tolerate an oral diet within 72 hours, they should be started on nasoenteral nutrition",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_nutrition_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_gravedad"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_npt"
+        }
+      ]
+    },
+    "trat_npt": {
+      "tipo": "informativo",
+      "titulo": "Nutrición parenteral",
+      "texto": "- Inicia nutrición parenteral sólo si hay íleo paralítico u obstrucción.\n- Úsala tras **72 horas** sin tolerancia enteral.",
+      "referencias": [
+        {
+          "titulo": "Nutrition",
+          "paginas": "388",
+          "texto": "Patients who cannot tolerate enteral feeding due to paralytic ileus, obstruction, or other causes should be started on parenteral nutrition within 72 hours.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_nutrition_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_gravedad"
+        }
+      ]
+    },
+    "diag_gravedad": {
+      "tipo": "pregunta",
+      "titulo": "Estratificación",
+      "texto": "- Calcula BISAP en las primeras **24 horas**.\n- Evalúa fallo orgánico con escala Marshall.",
+      "pie_nodo": "¿Fallo orgánico >48h o BISAP >=3?",
+      "tabla": {
+        "titulo": "Escala BISAP",
+        "columnas": [
+          "Criterio",
+          "Puntos"
+        ],
+        "filas": [
+          [
+            "BUN >25 mg/dL",
+            "1"
+          ],
+          [
+            "Glasgow <15",
+            "1"
+          ],
+          [
+            "SIRS",
+            "1"
+          ],
+          [
+            "Edad >60 años",
+            "1"
+          ],
+          [
+            "Derrame pleural",
+            "1"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Disease Severity and Risk Stratification",
+          "paginas": "385",
+          "texto": "Bedside Index for Severity in Acute Pancreatitis (BISAP) score was developed in 2008 and designed as a predictor of mortality based on 5 variables: blood urea nitrogen (BUN) level greater than 25 mg/dL, impaired mental status, systemic inflammatory response syndrome (SIRS), age older than 60 years, or radiographic evidence of pleural effusion"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_severa"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_leve"
+        }
+      ]
+    },
+    "trat_leve": {
+      "tipo": "pregunta",
+      "estilo": "exito",
+      "titulo": "PA Leve",
+      "texto": "- Mantén monitorización en sala de hospitalización.\n- Progresa dieta según tolerancia.",
+      "pie_nodo": "¿Etiología biliar confirmada?",
+      "referencias": [
+        {
+          "titulo": "Disease Severity and Risk Stratification",
+          "paginas": "385",
+          "texto": "Patients without local complications or organ failure have mild acute pancreatitis. Patients with transient organ failure (recovery within 48 hours) and/or local complications have moderately severe acute pancreatitis"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_cole_temprana"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "alta_seguimiento"
+        }
+      ]
+    },
+    "trat_cole_temprana": {
+      "tipo": "informativo",
+      "titulo": "Colecistectomía",
+      "texto": "- Realiza colecistectomía en las primeras **24-48 horas** del ingreso.\n- Aplica sólo en pancreatitis biliar leve.",
+      "cronometros": [
+        {
+          "etiqueta": "Ventana quirúrgica",
+          "segundos": 172800,
+          "modo": "descendente",
+          "mensaje_fin": "Evaluar riesgo/beneficio"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Cholecystectomy",
+          "paginas": "388",
+          "texto": "Early cholecystectomy (within 24 to 48 hours of hospital admission) is safe and shortens hospital duration in patients with a predicted mild course of acute pancreatitis.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_cholecystectomy.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "alta_seguimiento"
+        }
+      ]
+    },
+    "trat_severa": {
+      "tipo": "informativo",
+      "estilo": "peligro",
+      "titulo": "PA Severa",
+      "texto": "- Ingresa a UCI si hay fallo orgánico persistente (**>48 horas**).\n- Mantén resucitación y soporte nutricional.",
+      "referencias": [
+        {
+          "titulo": "Disease Severity and Risk Stratification",
+          "paginas": "385",
+          "texto": "patients with persistent organ failure beyond 48 hours with or without local complications have severe acute pancreatitis",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag4_disease_severity_and_risk.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "prev_aki"
+        }
+      ]
+    },
+    "prev_aki": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Riesgo Renal",
+      "texto": "- Vigila función renal de cerca.\n- Un BISAP alto multiplica por **2.36** el riesgo de fracaso renal agudo.",
+      "referencias": [
+        {
+          "titulo": "BISAP and AKI",
+          "paginas": "262",
+          "texto": "The BISAP score was significantly associated with AKI with an OR of 2.36 (95% CI = 1.42–4.41, P = .001). This indicates that for each 1-point increase in the BISAP score, the odds of patients having an AKI increase by 2.36 times",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag262_bisap_and_aki.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "eval_complicaciones"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_pancreatitis_aguda_pag263_figure_1_the_bar.png",
+          "titulo": "Figure 1.  The bar chart visualizes the incidence of AKI stratified by BISAP scores. Each BISAP score is represented by 2 bars: one indicating the number \nof ca"
+        }
+      ]
+    },
+    "eval_complicaciones": {
+      "tipo": "pregunta",
+      "titulo": "Complicaciones",
+      "texto": "- Vigila signos de SIRS persistente o deterioro clínico.\n- Sospecha necrosis si no hay mejoría.",
+      "pie_nodo": "¿Deterioro clínico o SIRS persistente?",
+      "referencias": [
+        {
+          "titulo": "Conclusions",
+          "paginas": "389",
+          "texto": "Patients need to be evaluated frequently, and management adjusted based on clinical findings and trends. There is consensus for early and aggressive volume resuscitation"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_tc"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "soporte_continuo"
+        }
+      ]
+    },
+    "soporte_continuo": {
+      "tipo": "informativo",
+      "titulo": "Soporte continuo",
+      "texto": "- Mantén medidas de soporte en UCI.\n- Reevalúa a diario necesidad de intervención.",
+      "referencias": [
+        {
+          "titulo": "Managing Organ Failure",
+          "paginas": "1448",
+          "texto": "The specific management of multiple organ failure is beyond the scope of this chapter. The early identification of organ dysfunction and failure is important because it is a key determinant of severity and outcome",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag20_managing_organ_failure.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Evolución favorable",
+          "siguiente_nodo": "alta_seguimiento"
+        }
+      ]
+    },
+    "diag_tc": {
+      "tipo": "informativo",
+      "titulo": "TC con contraste",
+      "texto": "- Realiza TC con contraste tras **72 horas** del inicio de síntomas.\n- No la pidas al ingreso salvo duda diagnóstica.",
+      "cronometros": [
+        {
+          "etiqueta": "Tiempo desde inicio",
+          "segundos": 259200,
+          "modo": "ascendente"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Disease Severity and Risk Stratification",
+          "paginas": "386",
+          "texto": "contrast-enhanced CT may underestimate or incorrectly classify disease severity if it is obtained less than 72 hours after symptom onset.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag5_disease_severity_and_risk.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "eval_balthazar"
+        }
+      ]
+    },
+    "eval_balthazar": {
+      "tipo": "pregunta",
+      "titulo": "Evaluación Balthazar",
+      "texto": "- Evalúa grado Balthazar, volumen de necrosis y atenuación.\n- Son factores de mal pronóstico independientes.",
+      "pie_nodo": "¿Hay necrosis infectada?",
+      "referencias": [
+        {
+          "titulo": "Multivariate analysis of poor prognosis in acute necrotizing pancreatitis",
+          "paginas": "2",
+          "texto": "The results of the multivariate logistic analysis showed that Balthazar CT grade, necrotic volume, and average attenuation value were independent risk factors for poor prognosis in patients with acute necrotizing pancreatitis",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag163_multivariate_analysis_of_poor.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_necrosis_inf"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_necrosis_esteril"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_pancreatitis_aguda_pag15_figure_33_12_computed.png",
+          "titulo": "Figure 33-12. Computed tomography scan showing well perfused \ninterstitial edematous acute pancreatitis of the neck and tail of the \npancreas with a confluent a"
+        }
+      ]
+    },
+    "trat_necrosis_esteril": {
+      "tipo": "informativo",
+      "titulo": "Necrosis estéril",
+      "texto": "- Mantén manejo conservador.\n- Retrasa colecistectomía al menos **6 semanas** hasta que resuelvan las colecciones.",
+      "referencias": [
+        {
+          "titulo": "Cholecystectomy",
+          "paginas": "388",
+          "texto": "The operation should be delayed until the fluid collections resolve or after waiting for 6 weeks after the episode of acute pancreatitis so that cholecystectomy can be combined with an internal drainage procedure",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_cholecystectomy_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "alta_seguimiento"
+        }
+      ]
+    },
+    "trat_necrosis_inf": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Necrosis infectada",
+      "texto": "- Confirma infección con gas en TC o cultivo por PAAF.\n- Inicia antibióticos de amplio espectro.",
+      "pie_nodo": "¿Requiere intervención por mala evolución?",
+      "referencias": [
+        {
+          "titulo": "Key Points",
+          "paginas": "1430",
+          "texto": "Surgical intervention in acute pancreatitis is reserved for patients with infected collections or infected necrosis only, or to relieve an impacted gallstone in the ampulla if endoscopic or radiologic treatments are unsuccessful.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag2_key_points.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_drenaje"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "soporte_continuo"
+        }
+      ]
+    },
+    "trat_drenaje": {
+      "tipo": "pregunta",
+      "titulo": "Drenaje",
+      "texto": "- Inicia abordaje escalonado (step-up).\n- Coloca drenaje percutáneo o endoscópico como primer paso.",
+      "pie_nodo": "¿Mejora clínica con drenaje?",
+      "referencias": [
+        {
+          "titulo": "Managing Local Complications",
+          "paginas": "1448",
+          "texto": "Preemptive drainage with one or more catheters often produces improvement or stabilization of the patient’s overall clinical status.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag20_managing_local_complications.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "alta_seguimiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_cirugia"
+        }
+      ]
+    },
+    "trat_cirugia": {
+      "tipo": "informativo",
+      "estilo": "peligro",
+      "titulo": "Cirugía",
+      "texto": "- Realiza desbridamiento retroperitoneal o necrosectomía.\n- Aplica sólo si falla el drenaje percutáneo.",
+      "referencias": [
+        {
+          "titulo": "Managing Local Complications",
+          "paginas": "1448",
+          "texto": "A large Dutch randomized trial has shown that open surgical techniques should only be considered in those who fail to respond to the step-up approach, that is, prior percutaneous drainage and minimally invasive intervention.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag20_managing_local_complications_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "alta_seguimiento"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_pancreatitis_aguda_pag20_figure_33_15_two.png",
+          "titulo": "Figure 33-15. Two minimally invasive interventions for local complications of acute pancreatitis: A. video-assisted retroperitoneal \ndebridement and B. endoscop"
+        }
+      ]
+    },
+    "alta_seguimiento": {
+      "tipo": "informativo",
+      "estilo": "exito",
+      "titulo": "Alta y prevención",
+      "texto": "- Realiza intervención breve para cese de alcohol.\n- Programa sesiones educativas cada **6 meses** por **2 años**.",
+      "referencias": [
+        {
+          "titulo": "Alcohol Cessation Strategies",
+          "paginas": "388",
+          "texto": "The AGA recommends performing a brief alcohol intervention during the index admission for alcohol-related acute pancreatitis, and additional educational sessions in 6-month intervals for 2 years after discharge."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Finalizar",
+          "siguiente_nodo": "fin_algoritmo"
+        }
+      ]
+    },
+    "fin_algoritmo": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "titulo": "Fin",
+      "texto": "- Fin del algoritmo.",
+      "referencias": [
+        {
+          "titulo": "Sequelae",
+          "paginas": "388",
+          "texto": "The long-term effects of acute pancreatitis are considerable, even in those with mild and first-time episodes. Patients are at risk to develop recurrent episodes of acute pancreatitis, progress to chronic pancreatitis, and develop endocrine and exocrine insufficiency.",
+          "imagen_evidencia": "evidencia_pancreatitis_aguda_pag7_sequelae.png"
+        }
+      ]
+    }
+  },
+  "carpeta_evidencia": "pancreatitis_aguda",
+  "carpeta_imagenes": "pancreatitis_aguda"
+}
