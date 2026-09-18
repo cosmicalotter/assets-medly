@@ -1,25 +1,13 @@
 {
-  "titulo": "Manejo Clínico del Dengue",
-  "version": "OPS 2020 / CDC / OPS 2022",
+  "titulo": "Dengue",
+  "version": "OPS 2020 / CDC 2024 / OPS 2022",
   "descripcion": "Algoritmo para el diagnóstico, clasificación de gravedad y tratamiento escalonado del dengue en adultos.",
   "especialidad": "Infectología / Urgencias",
   "nodo_inicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "Manejo Clínico del Dengue\n\n**Fuentes**\n1. OMS 2020: Algoritmos para el Manejo Clínico de los Casos de Dengue\n2. OMS: Dengue Case Management\n3. dengue-algoritmo-clinico-2019: ALGORITMO DE DIAGNÓSTICO Y TRATAMIENTO DE DENGUE\n4. DIRECTRICES_PARA_EL_DIAG 2022: DIRECTRICES PARA EL DIAGNÓSTICO\n5. Notas clase 2024: Etapas de infección\n6. MinSalud 2024: Microsoft Word - Pro_Dengue",
-      "enlaces": [
-        {
-          "texto": "dengue-algoritmo-clinico-2019",
-          "tipo": "url",
-          "archivo_objetivo": "http://iris.paho.org/xmlui/bitstream/handle/123456789/28232/9789275318904_esp.pdf?sequence=1&isAllowed=y"
-        },
-        {
-          "texto": "MinSalud 2024",
-          "tipo": "url",
-          "archivo_objetivo": "https://doi.org/10.33610/JQVP8800"
-        }
-      ],
+      "texto": "Dengue",
       "opciones": [
         {
           "texto": "Diagnóstico",
@@ -59,9 +47,11 @@
           "titulo": "Definición de Caso",
           "paginas": "6",
           "texto": "Persona que vive o ha viajado en los últimos 14 días a zonas con transmisión de dengue, y presenta fiebre aguda habitualmente de 2 a 7 días",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag6_definicion_caso.png"
+          "imagen_evidencia": "evidencia_dengue_pag6_definicion_caso.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
       "opciones": [
@@ -101,22 +91,13 @@
           "titulo": "Manifestaciones",
           "paginas": "6",
           "texto": "náusea/vómitos, exantema, cefalea/dolor retroorbitario, mialgia/artralgia, petequias o prueba de torniquete positiva (+), leucopenia",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag6_manifestaciones.png"
+          "imagen_evidencia": "evidencia_dengue_pag6_manifestaciones.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Verificar criterios",
-          "siguiente_nodo": "diag_sintomas_pie"
-        }
-      ]
-    },
-    "diag_sintomas_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar si cumple la definición de caso sospechoso.",
-      "pie_nodo": "¿Cumple criterios de caso sospechoso?",
       "opciones": [
         {
           "texto": "Sí",
@@ -126,7 +107,8 @@
           "texto": "No",
           "siguiente_nodo": "diag_diferencial"
         }
-      ]
+      ],
+      "pie_nodo": "¿Cumple criterios de caso sospechoso?"
     },
     "diag_diferencial": {
       "tipo": "informativo",
@@ -137,9 +119,11 @@
           "titulo": "Diagnóstico diferencial",
           "paginas": "8",
           "texto": "Sospechar de: COVID-19 Zika Influenza Sarampión Rubéola Chikungunya Rickettsiosis Paludismo Leptospirosis Fiebre tifoidea",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag8_diagnostico_diferencial.png"
+          "imagen_evidencia": "evidencia_dengue_pag8_diagnostico_diferencial.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ]
     },
@@ -164,23 +148,6 @@
       },
       "opciones": [
         {
-          "texto": "Evaluar gravedad",
-          "siguiente_nodo": "diag_clasificacion_pie"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "figura_dengue_pag1_todo_caso_dengue_tiene.png",
-          "titulo": "Todo caso de dengue que tiene una o más de las \nsiguientes manifestaciones:\n1. Choque o dificultad respiratoria debido a \nextravasación grave de plasma. Choque "
-        }
-      ]
-    },
-    "diag_clasificacion_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar presencia de criterios de gravedad extrema.",
-      "pie_nodo": "¿Presenta criterios de Dengue Grave?",
-      "opciones": [
-        {
           "texto": "Sí",
           "siguiente_nodo": "diag_gravedad"
         },
@@ -188,13 +155,14 @@
           "texto": "No",
           "siguiente_nodo": "diag_alarma_clinica"
         }
-      ]
+      ],
+      "pie_nodo": "¿Presenta criterios de Dengue Grave?"
     },
     "diag_gravedad": {
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Criterios de Gravedad",
-      "texto": "- Confirmar **1 o más**: choque por extravasación, dificultad respiratoria, sangrado grave, AST/ALT **>=1000 UI**, alteración del sensorio.",
+      "texto": "- Confirmar **1 o más** criterios de gravedad:\n  - Choque por extravasación o dificultad respiratoria.\n  - Sangrado grave.\n  - AST/ALT **>=1000 UI** o alteración del sensorio.",
       "chips": [
         "Urgencia"
       ],
@@ -203,26 +171,13 @@
           "titulo": "Dengue Grave",
           "paginas": "9",
           "texto": "Severe organ impairment (myocarditis, hepatitis [ALT or AST>1000 IU] encephalitis)",
-          "fuente": "OMS",
-          "imagen_evidencia": "evidencia_dengue_pag9_dengue_grave.png"
+          "fuente": "CDC",
+          "imagen_evidencia": "evidencia_dengue_pag9_dengue_grave.png",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Confirmar gravedad",
-          "siguiente_nodo": "diag_gravedad_pie"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "figura_dengue_pag23_diag_gravedad.png"
-        }
-      ]
-    },
-    "diag_gravedad_pie": {
-      "tipo": "pregunta",
-      "texto": "- Confirmar si el paciente cumple con la definición de Dengue Grave.",
-      "pie_nodo": "¿Confirmado Dengue Grave?",
       "opciones": [
         {
           "texto": "Sí",
@@ -232,7 +187,8 @@
           "texto": "No",
           "siguiente_nodo": "diag_alarma_clinica"
         }
-      ]
+      ],
+      "pie_nodo": "¿Confirmado Dengue Grave?"
     },
     "diag_alarma_clinica": {
       "tipo": "pregunta",
@@ -245,20 +201,12 @@
           "paginas": "12",
           "texto": "Vómitos: persistentes (tres o más en 1 hora o cuatro en 6 horas)",
           "anio": "2022",
-          "imagen_evidencia": "evidencia_dengue_pag12_signos_alarma.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_signos_alarma.png",
+          "fuente": "OPS",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar signos",
-          "siguiente_nodo": "diag_alarma_clinica_pie"
-        }
-      ]
-    },
-    "diag_alarma_clinica_pie": {
-      "tipo": "pregunta",
-      "texto": "- Determinar si hay signos clínicos de alarma.",
-      "pie_nodo": "¿Presenta signos clínicos de alarma?",
       "opciones": [
         {
           "texto": "Sí",
@@ -268,10 +216,11 @@
           "texto": "No",
           "siguiente_nodo": "diag_alarma_lab"
         }
-      ]
+      ],
+      "pie_nodo": "¿Presenta signos clínicos de alarma?"
     },
     "diag_alarma_lab": {
-      "tipo": "pregunta",
+      "tipo": "informativo",
       "titulo": "Signos de Alarma por Laboratorio",
       "texto": "- Solicitar hemograma.\n- Buscar aumento progresivo del hematocrito en **2 mediciones consecutivas** o caída abrupta de plaquetas.",
       "referencias": [
@@ -280,34 +229,17 @@
           "paginas": "12",
           "texto": "Aumento progresivo del hematocrito: en al menos dos mediciones consecutivas durante el seguimiento del paciente",
           "anio": "2022",
-          "imagen_evidencia": "evidencia_dengue_pag12_aumento_hematocrito.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_aumento_hematocrito.png",
+          "fuente": "OPS",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
         }
       ],
-      "opciones": [
+      "enlaces": [
         {
-          "texto": "Evaluar laboratorio",
-          "siguiente_nodo": "diag_alarma_lab_pie"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "figura_dengue_pag1_investigacion_pruebas_laboratorio_corrientes.png",
-          "titulo": "Investigación, con pruebas de laboratorio corrientes y específicas para dengue (RT-PCR, NS1, IgG/IgM, \nsegún disponibilidad) en el momento preciso de la enferme"
-        }
-      ]
-    },
-    "diag_alarma_lab_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar resultados de laboratorio.",
-      "pie_nodo": "¿Presenta signos de alarma por laboratorio?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "nodo_tratamiento"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "nodo_tratamiento"
+          "texto": "Ir a tratamiento",
+          "tipo": "nodo",
+          "nodo_objetivo": "nodo_tratamiento"
         }
       ]
     },
@@ -357,20 +289,12 @@
           "paginas": "16",
           "texto": "Adultos sanos: hasta 3000 ml por día Pediatría: fórmula de Holliday-Segar más 5%",
           "anio": "2022",
-          "imagen_evidencia": "evidencia_dengue_pag16_hidratacion_oral.png"
+          "imagen_evidencia": "evidencia_dengue_pag16_hidratacion_oral.png",
+          "fuente": "OPS",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar síntomas",
-          "siguiente_nodo": "trat_grupo_a_pie"
-        }
-      ]
-    },
-    "trat_grupo_a_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar necesidad de control sintomático.",
-      "pie_nodo": "¿Requiere control de síntomas?",
       "opciones": [
         {
           "texto": "Sí",
@@ -380,7 +304,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_a_seguimiento"
         }
-      ]
+      ],
+      "pie_nodo": "¿Requiere control de síntomas?"
     },
     "trat_a_farmacos": {
       "tipo": "pregunta",
@@ -428,20 +353,12 @@
           "paginas": "24",
           "texto": "Paracetamol (por vía oral) 10 mg/kg de peso corporal cada 6 horas Dosis máxima diaria: 60 mg/kg 500 mg cada 6 horas Dosis máxima diaria: 4 g",
           "anio": "2022",
-          "imagen_evidencia": "evidencia_dengue_pag24_dosis_paracetamol.png"
+          "imagen_evidencia": "evidencia_dengue_pag24_dosis_paracetamol.png",
+          "fuente": "OPS",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar evolución",
-          "siguiente_nodo": "trat_a_farmacos_pie"
-        }
-      ]
-    },
-    "trat_a_farmacos_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta al tratamiento sintomático.",
-      "pie_nodo": "¿Evolución favorable?",
       "opciones": [
         {
           "texto": "Sí",
@@ -451,7 +368,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_grupo_b2"
         }
-      ]
+      ],
+      "pie_nodo": "¿Evolución favorable?"
     },
     "trat_a_seguimiento": {
       "tipo": "pregunta",
@@ -462,22 +380,13 @@
           "titulo": "Monitoreo",
           "paginas": "11",
           "texto": "Monitoreo cada 24 a 48 h y hasta 48 h después del descenso de la fiebre sin el uso de antipiréticos",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag11_monitoreo.png"
+          "imagen_evidencia": "evidencia_dengue_pag11_monitoreo.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar signos de alarma",
-          "siguiente_nodo": "trat_a_seguimiento_pie"
-        }
-      ]
-    },
-    "trat_a_seguimiento_pie": {
-      "tipo": "pregunta",
-      "texto": "- Reevaluar presencia de signos de alarma.",
-      "pie_nodo": "¿Aparecen signos de alarma?",
       "opciones": [
         {
           "texto": "Sí",
@@ -487,7 +396,8 @@
           "texto": "No",
           "siguiente_nodo": "nodo_seguimiento"
         }
-      ]
+      ],
+      "pie_nodo": "¿Aparecen signos de alarma?"
     },
     "trat_grupo_b1": {
       "tipo": "pregunta",
@@ -499,27 +409,13 @@
           "titulo": "Condiciones asociadas",
           "paginas": "9",
           "texto": "Presentan enfermedad o condiciones asociadas: Embarazo ≤ 1 año ≥ 65 años Obesidad mórbida",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag9_condiciones_asociadas.png"
+          "imagen_evidencia": "evidencia_dengue_pag9_condiciones_asociadas.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar vía oral",
-          "siguiente_nodo": "trat_grupo_b1_pie"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "figura_dengue_pag_feff0050_1_trat_grupo_b1.png"
-        }
-      ]
-    },
-    "trat_grupo_b1_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar tolerancia a la vía oral.",
-      "pie_nodo": "¿Tolera vía oral?",
       "opciones": [
         {
           "texto": "Sí",
@@ -529,23 +425,13 @@
           "texto": "No",
           "siguiente_nodo": "trat_b1_iv"
         }
-      ]
+      ],
+      "pie_nodo": "¿Tolera vía oral?"
     },
     "trat_b1_oral": {
       "tipo": "pregunta",
       "titulo": "Hidratación Oral B1",
       "texto": "- Estimular ingesta de líquidos orales.\n- Controlar curva febril y balance de líquidos.",
-      "opciones": [
-        {
-          "texto": "Evaluar signos de alarma",
-          "siguiente_nodo": "trat_b1_oral_pie"
-        }
-      ]
-    },
-    "trat_b1_oral_pie": {
-      "tipo": "pregunta",
-      "texto": "- Reevaluar presencia de signos de alarma.",
-      "pie_nodo": "¿Aparecen signos de alarma?",
       "opciones": [
         {
           "texto": "Sí",
@@ -555,7 +441,8 @@
           "texto": "No",
           "siguiente_nodo": "nodo_seguimiento"
         }
-      ]
+      ],
+      "pie_nodo": "¿Aparecen signos de alarma?"
     },
     "trat_b1_iv": {
       "tipo": "pregunta",
@@ -575,21 +462,13 @@
           "titulo": "Líquidos IV B1",
           "paginas": "4",
           "texto": "Administer IV crystalloid solution at 2-4 mL/kg/hr Encourage oral fluid intake",
-          "fuente": "OMS",
-          "imagen_evidencia": "evidencia_dengue_pag4_liquidos_iv_b1.png"
+          "fuente": "CDC",
+          "imagen_evidencia": "evidencia_dengue_pag4_liquidos_iv_b1.png",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar signos de alarma",
-          "siguiente_nodo": "trat_b1_iv_pie"
-        }
-      ]
-    },
-    "trat_b1_iv_pie": {
-      "tipo": "pregunta",
-      "texto": "- Reevaluar presencia de signos de alarma.",
-      "pie_nodo": "¿Aparecen signos de alarma?",
       "opciones": [
         {
           "texto": "Sí",
@@ -599,24 +478,14 @@
           "texto": "No",
           "siguiente_nodo": "nodo_seguimiento"
         }
-      ]
+      ],
+      "pie_nodo": "¿Aparecen signos de alarma?"
     },
     "trat_grupo_b2": {
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Manejo Grupo B2",
-      "texto": "- Ingresar para administración de líquidos IV.\n- Obtener hematocrito basal antes de hidratar.",
-      "opciones": [
-        {
-          "texto": "Evaluar paciente",
-          "siguiente_nodo": "trat_grupo_b2_pie"
-        }
-      ]
-    },
-    "trat_grupo_b2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar presencia de comorbilidades o edad avanzada.",
-      "pie_nodo": "¿Tiene comorbilidad o es adulto mayor?",
+      "texto": "- Manejar como grupo B2 con líquidos IV y monitorización.",
       "opciones": [
         {
           "texto": "Sí",
@@ -625,6 +494,17 @@
         {
           "texto": "No",
           "siguiente_nodo": "trat_b2_estandar"
+        }
+      ],
+      "pie_nodo": "¿Tiene comorbilidad o es adulto mayor?",
+      "referencias": [
+        {
+          "titulo": "Manejo del grupo B2",
+          "fuente": "OPS",
+          "anio": "2020",
+          "paginas": "12",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ]
     },
@@ -646,22 +526,13 @@
           "titulo": "Carga B2",
           "paginas": "12",
           "texto": "Solución cristaloide (Hartman o solución salina normal 0.9%) 10ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_carga_b2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_carga_b2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_estandar_pie"
-        }
-      ]
-    },
-    "trat_b2_estandar_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la carga inicial.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -671,7 +542,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_b2_comorbilidad": {
       "tipo": "pregunta",
@@ -691,22 +563,13 @@
           "titulo": "Carga B2 Comorbilidad",
           "paginas": "13",
           "texto": "Solución cristaloide (Hartman o SSN 0.9%) 5 ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag13_carga_b2_comorbilidad.png"
+          "imagen_evidencia": "evidencia_dengue_pag13_carga_b2_comorbilidad.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_comorbilidad_pie"
-        }
-      ]
-    },
-    "trat_b2_comorbilidad_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la carga inicial.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -716,7 +579,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_comorb"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_b2_mejora_1": {
       "tipo": "pregunta",
@@ -727,22 +591,13 @@
           "titulo": "Reducción B2",
           "paginas": "12",
           "texto": "Reducir goteo a 5 a 7 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_mejora_1_pie"
-        }
-      ]
-    },
-    "trat_b2_mejora_1_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar si se mantiene la mejoría clínica.",
-      "pie_nodo": "¿Mantiene mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -752,7 +607,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Mantiene mejoría clínica?"
     },
     "trat_b2_mejora_2": {
       "tipo": "pregunta",
@@ -763,22 +619,13 @@
           "titulo": "Reducción B2 paso 2",
           "paginas": "12",
           "texto": "Reducir goteo a 3-5 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2_paso_2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_reduccion_b2_paso_2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_mejora_2_pie"
-        }
-      ]
-    },
-    "trat_b2_mejora_2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar si se mantiene la mejoría clínica.",
-      "pie_nodo": "¿Mantiene mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -788,7 +635,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Mantiene mejoría clínica?"
     },
     "trat_b2_mejora_3": {
       "tipo": "pregunta",
@@ -799,9 +647,11 @@
           "titulo": "Mantenimiento B2",
           "paginas": "12",
           "texto": "Reducir goteo a 2 a 4 ml/kg/h y continúe por 24-48 h + monitoreo horario al paciente.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_mantenimiento_b2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_mantenimiento_b2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
       "opciones": [
@@ -836,22 +686,13 @@
           "titulo": "Segunda carga B2",
           "paginas": "12",
           "texto": "Repetir 2ª carga de 10ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_segunda_carga_b2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_segunda_carga_b2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_no_mejora_1_pie"
-        }
-      ]
-    },
-    "trat_b2_no_mejora_1_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la segunda carga.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -861,7 +702,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_2"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_b2_no_mejora_comorb": {
       "tipo": "pregunta",
@@ -873,22 +715,13 @@
           "titulo": "Segunda carga B2 Comorbilidad",
           "paginas": "13",
           "texto": "Repetir 2ª carga de 5ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag13_segunda_carga_b2_comorbilidad.png"
+          "imagen_evidencia": "evidencia_dengue_pag13_segunda_carga_b2_comorbilidad.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_no_mejora_comorb_pie"
-        }
-      ]
-    },
-    "trat_b2_no_mejora_comorb_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la segunda carga.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -898,7 +731,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_b2_no_mejora_comorb_2"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_b2_no_mejora_2": {
       "tipo": "pregunta",
@@ -910,22 +744,13 @@
           "titulo": "Tercera carga B2",
           "paginas": "12",
           "texto": "Repetir 3ª carga de 10ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag12_tercera_carga_b2.png"
+          "imagen_evidencia": "evidencia_dengue_pag12_tercera_carga_b2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_no_mejora_2_pie"
-        }
-      ]
-    },
-    "trat_b2_no_mejora_2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la tercera carga.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -935,7 +760,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_grupo_c"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_b2_no_mejora_comorb_2": {
       "tipo": "pregunta",
@@ -947,22 +773,13 @@
           "titulo": "Tercera carga B2 Comorbilidad",
           "paginas": "13",
           "texto": "Repetir 3ª carga de 5ml/kg en 1 h.",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag13_tercera_carga_b2_comorbilidad.png"
+          "imagen_evidencia": "evidencia_dengue_pag13_tercera_carga_b2_comorbilidad.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_b2_no_mejora_comorb_2_pie"
-        }
-      ]
-    },
-    "trat_b2_no_mejora_comorb_2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la tercera carga.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -972,7 +789,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_grupo_c"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_grupo_c": {
       "tipo": "pregunta",
@@ -984,22 +802,13 @@
           "titulo": "Manejo inicial C",
           "paginas": "14",
           "texto": "ABC y monitoreo de signos vitales cada 5 a 30 min + Oxigenoterapia",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_manejo_inicial_c.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_manejo_inicial_c.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar paciente",
-          "siguiente_nodo": "trat_grupo_c_pie"
-        }
-      ]
-    },
-    "trat_grupo_c_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar presencia de comorbilidades, embarazo o edad avanzada.",
-      "pie_nodo": "¿Tiene comorbilidad, embarazo o es adulto mayor?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1009,7 +818,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_choque"
         }
-      ]
+      ],
+      "pie_nodo": "¿Tiene comorbilidad, embarazo o es adulto mayor?"
     },
     "trat_c_precaucion": {
       "tipo": "pregunta",
@@ -1021,25 +831,16 @@
           "titulo": "Precaución C",
           "paginas": "14",
           "texto": "El manejo del adulto mayor, paciente con comorbilidad y/o de la embarazada debe ser individualizado y con monitoreo estricto",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_precaucion_c.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_precaucion_c.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
       "opciones": [
         {
           "texto": "Continuar",
-          "siguiente_nodo": "trat_c_precaucion_pie"
-        }
-      ]
-    },
-    "trat_c_precaucion_pie": {
-      "tipo": "pregunta",
-      "texto": "- Iniciar reanimación hídrica.",
-      "pie_nodo": "¿Iniciar reanimación?",
-      "opciones": [
-        {
-          "texto": "Sí",
           "siguiente_nodo": "trat_c_choque"
         }
       ]
@@ -1063,22 +864,13 @@
           "titulo": "Bolo inicial C",
           "paginas": "14",
           "texto": "Solución cristaloide (Hartman o solución salina normal 0.9%) 20ml/kg en 15-30 min",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_bolo_inicial_c.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_bolo_inicial_c.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_c_choque_pie"
-        }
-      ]
-    },
-    "trat_c_choque_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta al primer bolo.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1088,7 +880,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_c_mejora_1": {
       "tipo": "pregunta",
@@ -1099,22 +892,13 @@
           "titulo": "Reducción C 1",
           "paginas": "14",
           "texto": "Reducir goteo a 10 ml/kg/h y continúe por 1-2 h + monitoreo horario",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_1.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_1.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_c_mejora_1_pie"
-        }
-      ]
-    },
-    "trat_c_mejora_1_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar si se mantiene la mejoría clínica.",
-      "pie_nodo": "¿Mantiene mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1124,7 +908,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Mantiene mejoría clínica?"
     },
     "trat_c_mejora_2": {
       "tipo": "pregunta",
@@ -1135,22 +920,13 @@
           "titulo": "Reducción C 2",
           "paginas": "14",
           "texto": "Reducir goteo a 5-7 ml/kg/h y continúe por 4-6 h + monitoreo horario",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_2.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_reduccion_c_2.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar estabilización",
-          "siguiente_nodo": "trat_c_mejora_2_pie"
-        }
-      ]
-    },
-    "trat_c_mejora_2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar estabilización completa.",
-      "pie_nodo": "¿Completa estabilización?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1160,7 +936,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_no_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Completa estabilización?"
     },
     "trat_c_no_mejora_1": {
       "tipo": "pregunta",
@@ -1172,22 +949,13 @@
           "titulo": "Segundo bolo C",
           "paginas": "14",
           "texto": "Administrar 2º bolo solución cristaloide 20ml/kg en 15-30min",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_segundo_bolo_c.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_segundo_bolo_c.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_c_no_mejora_1_pie"
-        }
-      ]
-    },
-    "trat_c_no_mejora_1_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta al segundo bolo.",
-      "pie_nodo": "¿Hay mejoría clínica?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1197,7 +965,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_no_mejora_2"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay mejoría clínica?"
     },
     "trat_c_no_mejora_2": {
       "tipo": "pregunta",
@@ -1209,22 +978,13 @@
           "titulo": "Tercer bolo C",
           "paginas": "14",
           "texto": "Administrar 3º bolo solución cristaloide 20ml/kg en 15-30min",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_tercer_bolo_c.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_tercer_bolo_c.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_c_no_mejora_2_pie"
-        }
-      ]
-    },
-    "trat_c_no_mejora_2_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta al tercer bolo.",
-      "pie_nodo": "¿Persisten signos de choque?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1234,7 +994,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_mejora_1"
         }
-      ]
+      ],
+      "pie_nodo": "¿Persisten signos de choque?"
     },
     "trat_c_refractario": {
       "tipo": "pregunta",
@@ -1246,21 +1007,13 @@
           "titulo": "Hemorragia oculta",
           "paginas": "5",
           "texto": "Consider hemorrhage if there is a rapid decrease in hematocrit and persistent shock",
-          "fuente": "OMS",
-          "imagen_evidencia": "evidencia_dengue_pag5_hemorragia_oculta.png"
+          "fuente": "CDC",
+          "imagen_evidencia": "evidencia_dengue_pag5_hemorragia_oculta.png",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar hemorragia",
-          "siguiente_nodo": "trat_c_refractario_pie"
-        }
-      ]
-    },
-    "trat_c_refractario_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar presencia de hemorragia.",
-      "pie_nodo": "¿Hay hemorragia clínicamente significativa?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1270,7 +1023,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_organos"
         }
-      ]
+      ],
+      "pie_nodo": "¿Hay hemorragia clínicamente significativa?"
     },
     "trat_c_hemorragia": {
       "tipo": "pregunta",
@@ -1299,21 +1053,13 @@
           "titulo": "Transfusión",
           "paginas": "6",
           "texto": "5-10mL/kg packed red blood cells 10-20mL/kg of whole blood Transfusion of platelets or fresh frozen plasma is not recommended",
-          "fuente": "OMS",
-          "imagen_evidencia": "evidencia_dengue_pag6_transfusion.png"
+          "fuente": "CDC",
+          "imagen_evidencia": "evidencia_dengue_pag6_transfusion.png",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar respuesta",
-          "siguiente_nodo": "trat_c_hemorragia_pie"
-        }
-      ]
-    },
-    "trat_c_hemorragia_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar respuesta a la transfusión.",
-      "pie_nodo": "¿Mejora hemodinamia?",
       "opciones": [
         {
           "texto": "Sí",
@@ -1323,7 +1069,8 @@
           "texto": "No",
           "siguiente_nodo": "trat_c_organos"
         }
-      ]
+      ],
+      "pie_nodo": "¿Mejora hemodinamia?"
     },
     "trat_c_organos": {
       "tipo": "pregunta",
@@ -1335,28 +1082,20 @@
           "titulo": "Falla de bomba",
           "paginas": "14",
           "texto": "Determinar la función de bomba y el uso de aminas; Evaluar las condiciones médicas concomitantes",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag14_falla_bomba.png"
+          "imagen_evidencia": "evidencia_dengue_pag14_falla_bomba.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ],
-      "opciones": [
-        {
-          "texto": "Evaluar estabilización",
-          "siguiente_nodo": "trat_c_organos_pie"
-        }
-      ]
-    },
-    "trat_c_organos_pie": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar estabilización.",
-      "pie_nodo": "¿Logra estabilización?",
       "opciones": [
         {
           "texto": "Sí",
           "siguiente_nodo": "nodo_seguimiento"
         }
-      ]
+      ],
+      "pie_nodo": "¿Logra estabilización?"
     },
     "nodo_seguimiento": {
       "tipo": "rama",
@@ -1379,40 +1118,36 @@
           "titulo": "Criterios de alta",
           "paginas": "10",
           "texto": "Ausencia de fiebre por 48 horas sin administración de antipiréticos Mejoría del estado clínico",
-          "fuente": "OMS",
+          "fuente": "OPS",
           "anio": "2020",
-          "imagen_evidencia": "evidencia_dengue_pag10_criterios_alta.png"
+          "imagen_evidencia": "evidencia_dengue_pag10_criterios_alta.png",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
         }
       ]
     }
   },
   "referencias": [
     {
-      "titulo": "Algoritmos para el Manejo Clínico de los Casos de Dengue",
-      "fuente": "OMS",
-      "anio": "2020"
+      "titulo": "Algoritmos para el manejo clínico de los casos de dengue",
+      "fuente": "OPS",
+      "anio": "2020",
+      "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+      "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
     },
     {
-      "titulo": "Dengue Case Management",
-      "fuente": "OMS"
-    },
-    {
-      "titulo": "ALGORITMO DE DIAGNÓSTICO Y TRATAMIENTO DE DENGUE",
-      "url": "http://iris.paho.org/xmlui/bitstream/handle/123456789/28232/9789275318904_esp.pdf?sequence=1&isAllowed=y"
-    },
-    {
-      "titulo": "DIRECTRICES PARA EL DIAGNÓSTICO",
-      "anio": "2022"
-    },
-    {
-      "titulo": "Etapas de infección",
-      "anio": "2024"
-    },
-    {
-      "titulo": "Microsoft Word - Pro_Dengue",
-      "fuente": "MinSalud",
+      "titulo": "Dengue Case Management: Pocket Guide",
+      "fuente": "CDC",
       "anio": "2024",
-      "url": "https://doi.org/10.33610/JQVP8800"
+      "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+      "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
+    },
+    {
+      "titulo": "Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika",
+      "fuente": "OPS",
+      "anio": "2022",
+      "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+      "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
     }
   ],
   "carpeta_evidencia": "dengue",
