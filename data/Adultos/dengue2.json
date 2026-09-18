@@ -1,0 +1,1052 @@
+{
+  "titulo": "Dengue",
+  "version": "OPS 2020 / CDC / GRADE 2022",
+  "descripcion": "Evaluación, clasificación y manejo de pacientes adultos con sospecha de dengue.",
+  "especialidad": "Infectología",
+  "nodo_inicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Dengue",
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_dengue2_pag8_2024_403_10427_667.png",
+          "titulo": "2024;403(10427):667-682. doi:10.1016/S0140-6736(23)02576-X"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "Iniciar evaluación",
+          "siguiente_nodo": "diag_evaluacion_inicial"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "Clasificar paciente",
+          "siguiente_nodo": "trat_clasificacion"
+        }
+      ]
+    },
+    "diag_evaluacion_inicial": {
+      "tipo": "pregunta",
+      "titulo": "Caso sospechoso",
+      "texto": "- Evaluar paciente con fiebre aguda de 2 a 7 días que vive o viajó a zona endémica en los últimos 14 días.\n- Buscar >=2: náuseas/vómitos, exantema, cefalea/dolor retroorbitario, mialgia/artralgia, petequias/torniquete (+), leucopenia.",
+      "nota_adicional": "También es caso sospechoso todo niño en zona endémica con cuadro febril agudo sin foco aparente.",
+      "referencias": [
+        {
+          "titulo": "Definición de Caso Sospechoso",
+          "paginas": "6",
+          "texto": "Persona que vive o ha viajado en los últimos 14 días a zonas con transmisión de dengue, y presenta fiebre aguda habitualmente de 2 a 7 días de evolución",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag6_definicion_caso_sospechoso.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_diferencial"
+        }
+      ]
+    },
+    "diag_diferencial": {
+      "tipo": "informativo",
+      "titulo": "Diagnóstico diferencial",
+      "texto": "- Considerar otras causas de síndrome febril agudo: COVID-19, Zika, Chikungunya, Malaria, Leptospirosis, Fiebre tifoidea.\n- Zika cursa con prurito y exantema; Chikungunya con poliartralgia grave.",
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_signos_alarma"
+        }
+      ]
+    },
+    "diag_signos_alarma": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Signos de alarma",
+      "texto": "- Evaluar signos de alarma:\n  - **Dolor abdominal** intenso y continuo.\n  - **Vómitos persistentes** (>=3 en 1 h o >=4 en 6 h).\n  - **Sangrado de mucosas** o acumulación de líquidos.\n  - **Letargo/irritabilidad** o hepatomegalia >2 cm.\n  - **Aumento progresivo del hematocrito**.",
+      "nota_adicional": "Los signos de alarma suelen aparecer cuando la fiebre empieza a ceder, marcando el inicio de la fase crítica.",
+      "chips": [
+        "Alerta"
+      ],
+      "referencias": [
+        {
+          "titulo": "Dengue con signos de alarma",
+          "paginas": "7",
+          "texto": "Todo caso de dengue que cerca de y preferentemente a la caída de la fiebre presenta uno o más de los siguientes signos",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag7_dengue_signos_alarma.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_signos_gravedad"
+        }
+      ]
+    },
+    "diag_signos_gravedad": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Dengue grave",
+      "texto": "- Evaluar el estado hemodinámico para detectar choque temprano (compensado) o hipotensivo.\n- Buscar sangrado grave o compromiso grave de órganos (AST/ALT >1000, miocarditis, alteración del sensorio).",
+      "chips": [
+        "Peligro"
+      ],
+      "tabla": {
+        "titulo": "Evaluación Hemodinámica",
+        "columnas": [
+          "Parámetro",
+          "Circulación estable",
+          "Choque compensado",
+          "Choque hipotensivo"
+        ],
+        "filas": [
+          [
+            "Nivel de consciencia",
+            "Claro y lúcido",
+            "Claro y lúcido",
+            "Inquieto, combativo"
+          ],
+          [
+            "Llenado capilar",
+            "Rápido (<=2 s)",
+            "Prolongado (>2 s)",
+            "Muy prolongado, piel moteada"
+          ],
+          [
+            "Extremidades",
+            "Calientes y rosadas",
+            "Periferia fría",
+            "Frías, sudorosas"
+          ],
+          [
+            "Volumen del pulso",
+            "Buen volumen",
+            "Débil y filiforme",
+            "Débil o ausente"
+          ],
+          [
+            "Frecuencia cardíaca",
+            "Normal para la edad",
+            "Taquicardia para la edad",
+            "Taquicardia severa o bradicardia"
+          ],
+          [
+            "Presión arterial",
+            "Normal para la edad",
+            "Presión sistólica normal, diastólica en aumento",
+            "Hipotensión, presión de pulso <=20 mmHg"
+          ],
+          [
+            "Frecuencia respiratoria",
+            "Normal para la edad",
+            "Taquipnea",
+            "Hiperpnea o respiración de Kussmaul"
+          ],
+          [
+            "Diuresis",
+            "Normal",
+            "Tendencia a la baja",
+            "Oliguria o anuria"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Dengue grave",
+          "paginas": "7",
+          "texto": "Choque o dificultad respiratoria debido a extravasación grave de plasma. Sangrado grave: según la evaluación del médico tratante",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag7_dengue_grave.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_criterios_ingreso"
+        }
+      ]
+    },
+    "diag_criterios_ingreso": {
+      "tipo": "pregunta",
+      "titulo": "Criterios de ingreso",
+      "texto": "- Ingresar si hay intolerancia oral, presión de pulso estrecha, hipotensión, falla renal aguda, llenado capilar prolongado, embarazo o coagulopatía.\n- Ingresar ante riesgo social extremo (vive solo, pobreza extrema, sin transporte).",
+      "referencias": [
+        {
+          "titulo": "Criterios de hospitalización",
+          "paginas": "10",
+          "texto": "Se sugiere hospitalizar aquellos pacientes que presenten dengue más cualquiera de lo siguiente: Dengue con signos de alarma, Dengue grave, Intolerancia a la vía oral",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag10_criterios_hospitalizacion.png"
+        }
+      ]
+    },
+    "trat_clasificacion": {
+      "tipo": "pregunta",
+      "titulo": "Clasificación de grupo",
+      "texto": "- Clasificar al paciente para definir el lugar y la intensidad del tratamiento.\n- Grupo A: ambulatorio. Grupo B1: observación. Grupo B2: sala de dengue. Grupo C: UCI.",
+      "opciones": [
+        {
+          "texto": "Grupo A",
+          "siguiente_nodo": "trat_grupo_a"
+        },
+        {
+          "texto": "Grupo B1",
+          "siguiente_nodo": "trat_grupo_b1"
+        },
+        {
+          "texto": "Grupo B2",
+          "siguiente_nodo": "trat_grupo_b2_inicio"
+        },
+        {
+          "texto": "Grupo C",
+          "siguiente_nodo": "trat_grupo_c"
+        }
+      ]
+    },
+    "trat_grupo_a": {
+      "tipo": "pregunta",
+      "titulo": "Grupo A (Ambulatorio)",
+      "texto": "- Reposo en cama bajo mosquitero.\n- Hidratación oral intensa: hasta **3000 mL/día** (SRO, leche, jugos). Evitar agua sola.\n- Controlar fiebre con **Paracetamol 500 mg** VO cada 6 h (máx. **4 g/día**) o **Metamizol 500 mg** VO cada 6 h.\n- NO usar AINE, aspirina ni corticosteroides.",
+      "nota_adicional": "Evitar AINE y aspirina por el riesgo de sangrado, y corticosteroides por falta de eficacia y riesgo de complicaciones.",
+      "farmacos": [
+        {
+          "nombre": "Paracetamol",
+          "dosis": "**500 mg** VO cada 6 h, máx. **4 g/día**",
+          "pauta": "Administrar si hay fiebre.",
+          "nota": "No usar AINE ni aspirina.",
+          "paginas": "24"
+        },
+        {
+          "nombre": "Metamizol",
+          "dosis": "**500 mg** VO cada 6 h",
+          "pauta": "Administrar si hay fiebre.",
+          "nota": "Alternativa al paracetamol.",
+          "paginas": "24"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo sintomático",
+          "paginas": "24",
+          "texto": "Se sugiere el uso de paracetamol (acetaminofeno) o metamizol en lugar de los antiinflamatorios no esteroideos (AINE), antihistamínicos o esteroides",
+          "fuente": "OPS",
+          "anio": "2022",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika.",
+          "imagen_evidencia": "evidencia_dengue2_pag24_manejo_sintomatico.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "trat_grupo_a_seguimiento"
+        }
+      ]
+    },
+    "trat_grupo_a_seguimiento": {
+      "tipo": "pregunta",
+      "titulo": "Seguimiento Grupo A",
+      "texto": "- Monitorizar diariamente durante la fase febril y 1-2 días tras la defervescencia (fase crítica).\n- Solicitar hemograma diario para evaluar hematocrito y plaquetas.\n- Educar al paciente para regresar de inmediato si aparecen signos de alarma.",
+      "referencias": [
+        {
+          "titulo": "Outpatient Management",
+          "paginas": "3",
+          "texto": "During the febrile phase (2–7 days) and subsequent critical phase (1–2 days) you should evaluate your patients daily",
+          "fuente": "CDC",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide.",
+          "imagen_evidencia": "evidencia_dengue2_pag3_outpatient_management.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Criterios de alta",
+          "siguiente_nodo": "alta_criterios"
+        }
+      ]
+    },
+    "trat_grupo_b1": {
+      "tipo": "pregunta",
+      "titulo": "Grupo B1 (Observación)",
+      "texto": "- Ingresar a hospital o unidad de dengue para observación.\n- Fomentar líquidos orales intensamente.\n- Estabilizar y manejar comorbilidades (embarazo, diabetes, hipertensión).",
+      "referencias": [
+        {
+          "titulo": "Grupo B1",
+          "paginas": "8",
+          "texto": "Posible remisión a unidad de dengue para observación y atención de su infección y afecciones asociadas",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag8_grupo_b1.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Vía oral",
+          "siguiente_nodo": "trat_grupo_b1_oral"
+        },
+        {
+          "texto": "Vía IV",
+          "siguiente_nodo": "trat_grupo_b1_iv"
+        }
+      ]
+    },
+    "trat_grupo_b1_oral": {
+      "tipo": "pregunta",
+      "titulo": "Grupo B1 Vía Oral",
+      "texto": "- Continuar hidratación oral y monitorizar signos vitales, diuresis y hemograma.\n- Vigilar estrechamente la aparición de signos de alarma hasta 4-6 h después de la fase crítica.",
+      "referencias": [
+        {
+          "titulo": "Inpatient Management",
+          "paginas": "4",
+          "texto": "Monitor vital signs, urine output, and clinical improvement until 4-6 hrs after the end of the critical phase",
+          "fuente": "CDC",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide.",
+          "imagen_evidencia": "evidencia_dengue2_pag4_inpatient_management.png"
+        }
+      ]
+    },
+    "trat_grupo_b1_iv": {
+      "tipo": "pregunta",
+      "titulo": "Grupo B1 Vía IV",
+      "texto": "- Iniciar cristaloides IV (Solución Salina 0,9% o Ringer Lactato) a **2-4 mL/kg/h**.\n- Reevaluar estado clínico y suspender líquidos IV en cuanto tolere la vía oral.",
+      "farmacos": [
+        {
+          "nombre": "Solución Salina 0,9%",
+          "dosis": "**2-4 mL/kg/h** IV",
+          "pauta": "Infusión continua.",
+          "nota": "Suspender al tolerar vía oral.",
+          "paginas": "4"
+        },
+        {
+          "nombre": "Ringer Lactato",
+          "dosis": "**2-4 mL/kg/h** IV",
+          "pauta": "Infusión continua.",
+          "nota": "Suspender al tolerar vía oral.",
+          "paginas": "4"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Inpatient Management",
+          "paginas": "4",
+          "texto": "Administer IV crystalloid solution at 2-4 mL/kg/hr. Encourage oral fluid intake. Stop IV crystalloid solution once oral fluids are tolerated",
+          "fuente": "CDC",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide.",
+          "imagen_evidencia": "evidencia_dengue2_pag4_inpatient_management_2.png"
+        }
+      ]
+    },
+    "trat_grupo_b2_inicio": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Grupo B2 (Signos de Alarma)",
+      "texto": "- Ingresar a hospital. Obtener acceso IV y hemograma basal.\n- Evaluar si el paciente tiene comorbilidades, embarazo o edad >=65 años.",
+      "nota_adicional": "El manejo del adulto mayor, embarazada o paciente con comorbilidad debe ser individualizado y con monitoreo estricto.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "13",
+          "texto": "Pacientes con dengue con signos de alarma (DCSA). ¿Comorbilidad o adulto mayor?",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sin comorbilidad",
+          "siguiente_nodo": "trat_grupo_b2_iv"
+        },
+        {
+          "texto": "Con comorbilidad",
+          "siguiente_nodo": "trat_grupo_b2_comorb_iv"
+        }
+      ]
+    },
+    "trat_grupo_b2_iv": {
+      "tipo": "pregunta",
+      "titulo": "Bolo Inicial B2",
+      "texto": "- Administrar cristaloides IV (Hartmann o Solución Salina 0,9%) a **10 mL/kg** en **1 h**.\n- Reevaluar estado clínico y hematocrito.",
+      "farmacos": [
+        {
+          "nombre": "Solución Salina 0,9%",
+          "dosis": "**10 mL/kg** IV",
+          "pauta": "En 1 hora.",
+          "nota": "Reevaluar tras el bolo.",
+          "paginas": "12"
+        },
+        {
+          "nombre": "Hartmann",
+          "dosis": "**10 mL/kg** IV",
+          "pauta": "En 1 hora.",
+          "nota": "Reevaluar tras el bolo.",
+          "paginas": "12"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Solución cristaloide (Hartman o solución salina normal 0.9%) 10ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_mejora1"
+        },
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_b2_nomejora1"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_iv": {
+      "tipo": "pregunta",
+      "titulo": "Bolo Inicial B2 Comorbilidad",
+      "texto": "- Administrar cristaloides IV (Hartmann o Solución Salina 0,9%) a **5 mL/kg** en **1 h**.\n- Reevaluar estado clínico y hematocrito.",
+      "farmacos": [
+        {
+          "nombre": "Solución Salina 0,9%",
+          "dosis": "**5 mL/kg** IV",
+          "pauta": "En 1 hora.",
+          "nota": "Dosis reducida por comorbilidad.",
+          "paginas": "13"
+        },
+        {
+          "nombre": "Hartmann",
+          "dosis": "**5 mL/kg** IV",
+          "pauta": "En 1 hora.",
+          "nota": "Dosis reducida por comorbilidad.",
+          "paginas": "13"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Solución cristaloide (Hartman o SSN 0.9%) 5 ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_comorb_mejora1"
+        },
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_b2_comorb_nomejora1"
+        }
+      ]
+    },
+    "trat_grupo_b2_mejora1": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Paso 1",
+      "texto": "- Reducir cristaloides IV a **5-7 mL/kg/h** durante **2-4 h**.\n- Monitorizar signos vitales cada hora.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 5 a 7 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_mejora2"
+        }
+      ]
+    },
+    "trat_grupo_b2_mejora2": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Paso 2",
+      "texto": "- Reducir cristaloides IV a **3-5 mL/kg/h** durante **2-4 h**.\n- Monitorizar signos vitales cada hora.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 3-5 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_mejora3"
+        }
+      ]
+    },
+    "trat_grupo_b2_mejora3": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Paso 3",
+      "texto": "- Reducir cristaloides IV a **2-4 mL/kg/h** durante **24-48 h**.\n- Monitorizar cada hora. Suspender líquidos IV cuando tolere vía oral y el hematocrito esté estable.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Reducir goteo a 2 a 4 ml/kg/h y continúe por 24-48 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2_4.png"
+        }
+      ]
+    },
+    "trat_grupo_b2_nomejora1": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Segundo Bolo B2",
+      "texto": "- Repetir 2ª carga de cristaloides IV a **10 mL/kg** en **1 h**.\n- Reevaluar estado clínico.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Repetir 2ª carga de 10ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2_5.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_b2_nomejora2"
+        }
+      ]
+    },
+    "trat_grupo_b2_nomejora2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercer Bolo B2",
+      "texto": "- Repetir 3ª carga de cristaloides IV a **10 mL/kg** en **1 h**.\n- Reevaluar estado clínico.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2",
+          "paginas": "12",
+          "texto": "Repetir 3ª carga de 10ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag12_manejo_grupo_b2_6.png"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_mejora1": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Comorb 1",
+      "texto": "- Reducir cristaloides IV a **4 mL/kg/h** durante **2-4 h**.\n- Monitorizar signos vitales cada hora.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Reducir goteo a 4 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_comorb_mejora2"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_mejora2": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Comorb 2",
+      "texto": "- Reducir cristaloides IV a **3 mL/kg/h** durante **2-4 h**.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Reducir goteo a 3 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_b2_comorb_mejora3"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_mejora3": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento B2 Comorb 3",
+      "texto": "- Reducir cristaloides IV a **2 mL/kg/h** durante **24-48 h**.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Reducir goteo a 2 ml/kg/h y continúe por 2-4 h + monitoreo horario al paciente.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad_4.png"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_nomejora1": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Segundo Bolo B2 Comorb",
+      "texto": "- Repetir 2ª carga de cristaloides IV a **5 mL/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Repetir 2ª carga de 5ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad_5.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_b2_comorb_nomejora2"
+        }
+      ]
+    },
+    "trat_grupo_b2_comorb_nomejora2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercer Bolo B2 Comorb",
+      "texto": "- Repetir 3ª carga de cristaloides IV a **5 mL/kg** en **1 h**.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo B2 Comorbilidad",
+          "paginas": "13",
+          "texto": "Repetir 3ª carga de 5ml/kg en 1 h.",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag13_manejo_grupo_b2_comorbilidad_6.png"
+        }
+      ]
+    },
+    "trat_grupo_c": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Grupo C (Choque)",
+      "texto": "- Ingresar a UCI. Obtener acceso IV, hemograma y pruebas cruzadas.\n- Administrar oxigenoterapia.\n- Administrar 1er bolo de cristaloides IV a **20 mL/kg** en **15-30 min**.",
+      "nota_adicional": "El choque temprano se caracteriza por presión de pulso estrecha (<=20 mmHg), taquicardia y llenado capilar lento.",
+      "chips": [
+        "UCI",
+        "Urgencia"
+      ],
+      "farmacos": [
+        {
+          "nombre": "Solución Salina 0,9%",
+          "dosis": "**20 mL/kg** IV",
+          "pauta": "En 15-30 minutos.",
+          "nota": "Bolo inicial para choque.",
+          "paginas": "14"
+        },
+        {
+          "nombre": "Hartmann",
+          "dosis": "**20 mL/kg** IV",
+          "pauta": "En 15-30 minutos.",
+          "nota": "Bolo inicial para choque.",
+          "paginas": "14"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Administrar 1er bolo solución cristaloide 20ml/kg en 15-30 min y reevaluar",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_c_mejora1"
+        },
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_c_nomejora1"
+        }
+      ]
+    },
+    "trat_grupo_c_mejora1": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento C Paso 1",
+      "texto": "- Reducir cristaloides IV a **10 mL/kg/h** durante **1-2 h**.\n- Monitorizar signos vitales cada 5-30 minutos.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Reducir goteo a 10 ml/kg/h y continúe por 1-2 h + monitoreo horario",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_c_mejora2"
+        }
+      ]
+    },
+    "trat_grupo_c_mejora2": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento C Paso 2",
+      "texto": "- Reducir cristaloides IV a **5-7 mL/kg/h** durante **4-6 h**.",
+      "discrepancias": [
+        {
+          "asunto": "Duración del goteo a 5-7 mL/kg/h",
+          "posturas": [
+            {
+              "fuente": "OPS 2020",
+              "dice": "5-7 mL/kg/h por 4-6 h",
+              "paginas": "14"
+            },
+            {
+              "fuente": "CDC Dengue",
+              "dice": "5-7 mL/kg/h por 2-4 h",
+              "paginas": "5"
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Reducir goteo a 5-7 ml/kg/h y continúe por 4-6 h + monitoreo horario",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_c_mejora3"
+        }
+      ]
+    },
+    "trat_grupo_c_mejora3": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento C Paso 3",
+      "texto": "- Reducir cristaloides IV a **3-5 mL/kg/h** durante **2-4 h**.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Reducir goteo a 3-5 ml/kg/h y continúe por 2-4 h + monitoreo horario",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_4.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejora",
+          "siguiente_nodo": "trat_grupo_c_mejora4"
+        }
+      ]
+    },
+    "trat_grupo_c_mejora4": {
+      "tipo": "pregunta",
+      "titulo": "Mantenimiento C Paso 4",
+      "texto": "- Reducir cristaloides IV a **2-4 mL/kg/h** durante **24-48 h**.\n- Transicionar a manejo de Grupo B1 cuando tolere la vía oral.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Reducir goteo a 2-4 ml/kg/h y continúe por 24-48 h + monitoreo horario",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_5.png"
+        }
+      ]
+    },
+    "trat_grupo_c_nomejora1": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Segundo Bolo C",
+      "texto": "- Administrar 2º bolo de cristaloides IV a **20 mL/kg** en **15-30 min**.\n- Evaluar hematocrito.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Administrar 2º bolo solución cristaloide 20ml/kg en 15-30min",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_6.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "No mejora",
+          "siguiente_nodo": "trat_grupo_c_nomejora2"
+        }
+      ]
+    },
+    "trat_grupo_c_nomejora2": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Tercer Bolo C",
+      "texto": "- Administrar 3º bolo de cristaloides IV a **20 mL/kg** en **15-30 min**.\n- Si el hematocrito cae rápidamente, sospechar hemorragia grave.",
+      "referencias": [
+        {
+          "titulo": "Manejo Grupo C",
+          "paginas": "14",
+          "texto": "Administrar 3º bolo solución cristaloide 20ml/kg en 15-30min",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_manejo_grupo_c_7.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Hto estable/alto",
+          "siguiente_nodo": "trat_grupo_c_choque_refractario"
+        },
+        {
+          "texto": "Hto cae",
+          "siguiente_nodo": "trat_hemorragia_grave"
+        }
+      ]
+    },
+    "trat_grupo_c_choque_refractario": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Choque Refractario",
+      "texto": "- Evaluar función de bomba y considerar vasopresores (mantener PAM >60-70 mmHg).\n- Evaluar acidosis y sangrado oculto.\n- Considerar coloides (ej. albúmina) si no responde a cristaloides.",
+      "discrepancias": [
+        {
+          "asunto": "Uso de coloides en choque",
+          "posturas": [
+            {
+              "fuente": "GRADE 2022",
+              "dice": "Se recomienda usar cristaloides en lugar de coloides en el manejo inicial.",
+              "paginas": "20"
+            },
+            {
+              "fuente": "CDC Dengue",
+              "dice": "Administrar coloides para choque refractario tras 2-3 bolos de cristaloides.",
+              "paginas": "2"
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Choque persistente",
+          "paginas": "14",
+          "texto": "Determinar la función de bomba y el uso de aminas; Evaluar las condiciones médicas concomitantes y estabilizar la condición de base",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag14_choque_persistente.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_uci_manejo"
+        }
+      ]
+    },
+    "trat_hemorragia_grave": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Hemorragia Grave",
+      "texto": "- Transfundir **Concentrado de hematíes 5-10 mL/kg** o **Sangre total 10-20 mL/kg**.\n- NO transfundir plaquetas ni plasma fresco congelado de forma profiláctica.",
+      "nota_adicional": "Las transfusiones profilácticas de plaquetas no disminuyen el riesgo de sangrado grave y pueden causar sobrecarga de volumen.",
+      "chips": [
+        "Peligro"
+      ],
+      "farmacos": [
+        {
+          "nombre": "Concentrado de hematíes",
+          "dosis": "**5-10 mL/kg** IV",
+          "pauta": "Transfusión.",
+          "nota": "Para hemorragia grave.",
+          "paginas": "6"
+        },
+        {
+          "nombre": "Sangre total",
+          "dosis": "**10-20 mL/kg** IV",
+          "pauta": "Transfusión.",
+          "nota": "Para hemorragia grave.",
+          "paginas": "6"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Treatment of Hemorrhagic Shock",
+          "paginas": "6",
+          "texto": "5-10mL/kg packed red blood cells. 10-20mL/kg of whole blood. Transfusion of platelets or fresh frozen plasma is not recommended",
+          "fuente": "CDC",
+          "anio": "2024",
+          "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+          "cita": "CDC (2024). Dengue Case Management: Pocket Guide.",
+          "imagen_evidencia": "evidencia_dengue2_pag6_treatment_of_hemorrhagic_shock.png"
+        }
+      ]
+    },
+    "trat_uci_manejo": {
+      "tipo": "resultado",
+      "titulo": "Manejo en UCI",
+      "texto": "- Continuar manejo en UCI ajustando líquidos según respuesta clínica.\n- NO usar corticosteroides ni inmunoglobulinas de forma rutinaria.",
+      "referencias": [
+        {
+          "titulo": "Esteroides sistémicos",
+          "paginas": "26",
+          "texto": "Se sugiere no administrar esteroides sistémicos a los pacientes en choque por dengue",
+          "fuente": "OPS",
+          "anio": "2022",
+          "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+          "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika.",
+          "imagen_evidencia": "evidencia_dengue2_pag26_esteroides_sistemicos.png"
+        }
+      ]
+    },
+    "alta_criterios": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "titulo": "Criterios de Alta",
+      "texto": "- Ausencia de fiebre por **48 h** sin antipiréticos.\n- Mejoría clínica (buen apetito, hemodinamia estable, sin dificultad respiratoria).\n- Tendencia ascendente de plaquetas y hematocrito estable sin líquidos IV.",
+      "nota_adicional": "Todos los criterios clínicos y de laboratorio deben cumplirse para autorizar el alta.",
+      "chips": [
+        "Éxito"
+      ],
+      "referencias": [
+        {
+          "titulo": "Criterios de Alta",
+          "paginas": "10",
+          "texto": "Ausencia de fiebre por 48 horas sin administración de antipiréticos. Mejoría del estado clínico. Tendencia ascendente del recuento de plaquetas",
+          "fuente": "OPS",
+          "anio": "2020",
+          "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+          "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue.",
+          "imagen_evidencia": "evidencia_dengue2_pag10_criterios_alta.png"
+        }
+      ]
+    }
+  },
+  "referencias": [
+    {
+      "titulo": "Algoritmos para el manejo clínico de los casos de dengue",
+      "fuente": "OPS",
+      "anio": "2020",
+      "url": "https://www.paho.org/es/documentos/algoritmos-para-manejo-clinico-casos-dengue",
+      "cita": "OPS (2020). Algoritmos para el manejo clínico de los casos de dengue."
+    },
+    {
+      "titulo": "Dengue Case Management: Pocket Guide",
+      "fuente": "CDC",
+      "anio": "2024",
+      "url": "https://www.cdc.gov/dengue/hcp/pocketguide/index.html",
+      "cita": "CDC (2024). Dengue Case Management: Pocket Guide."
+    },
+    {
+      "titulo": "Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika",
+      "fuente": "OPS",
+      "anio": "2022",
+      "url": "https://www.paho.org/es/documentos/directrices-para-diagnostico-clinico-tratamiento-dengue-chikunguna-zika-ops-2022",
+      "cita": "OPS (2022). Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika."
+    }
+  ],
+  "carpeta_evidencia": "dengue2",
+  "carpeta_imagenes": "dengue2"
+}
