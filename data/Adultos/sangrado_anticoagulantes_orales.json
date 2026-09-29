@@ -1,0 +1,249 @@
+{
+  "titulo": "Sangrado en Pacientes Anticoagulados",
+  "version": "ACC 2020",
+  "descripcion": "Algoritmo para el manejo de sangrado agudo en pacientes tratados con anticoagulantes orales (DOAC o VKA).",
+  "especialidad": "Medicina de Urgencias",
+  "nodo_inicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Sangrado en Pacientes Anticoagulados",
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Evaluar severidad del sangrado",
+          "siguiente_nodo": "diag_severidad"
+        }
+      ],
+      "texto": "Diagnóstico"
+    },
+    "diag_severidad": {
+      "tipo": "pregunta",
+      "titulo": "Evaluar severidad del sangrado",
+      "texto": "- ¿Sangrado en sitio crítico (ver Tabla 1)?\n- ¿Inestabilidad hemodinámica?\n- ¿Hb baja >=2 g/dL o transfusión >=2 unidades RBC?",
+      "pie_nodo": "¿Es un sangrado mayor?",
+      "nota_adicional": "La inestabilidad hemodinámica puede manifestarse con FC elevada o PAS <90 mmHg.",
+      "chips": [
+        "Adulto"
+      ],
+      "referencias": [
+        {
+          "titulo": "Definición de sangrado mayor",
+          "paginas": "596",
+          "texto": "The former includes bleeding that is associated with hemodynamic compromise, occurs in an anatomically critical site, requires transfusion (>=2 units of packed red blood cells [RBCs]), or results in a hemoglobin drop >=2 g/dL",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag596_definicion_sangrado_mayor.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_mayor"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_no_mayor"
+        }
+      ]
+    },
+    "trat_mayor": {
+      "tipo": "informativo",
+      "titulo": "Manejo sangrado mayor",
+      "texto": "- Suspender OAC y antiagregantes.\n- Asegurar vía aérea y acceso IV.\n- Si VKA: **Vitamina K 5-10 mg** IV.\n- Considerar reversión según agente (ver Figura 3).",
+      "pie_nodo": "¿Medidas controlaron el sangrado?",
+      "nota_adicional": "La reversión no debe retrasar la reanimación y el control local del sangrado.",
+      "farmacos": [
+        {
+          "nombre": "Vitamina K",
+          "dosis": "**5-10 mg** IV",
+          "pauta": "Administración lenta en 15-30 min.",
+          "paginas": "605"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo sangrado mayor",
+          "paginas": "601",
+          "texto": "Anticoagulants and antiplatelet agents should be discontinued, and airway and large-bore intravenous access secured. Reversal of OAC is recommended if an agent is available for most patients",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_manejo_sangrado_mayor.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seguimiento_estabilidad"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_reversion"
+        }
+      ]
+    },
+    "trat_reversion": {
+      "tipo": "informativo",
+      "titulo": "Estrategias de reversión",
+      "texto": "- VKA: **4F-PCC** (INR 2-4: 25 U/kg; INR 4-6: 35 U/kg; INR >6: 50 U/kg).\n- Dabigatran: **Idarucizumab 5 g** IV.\n- FXa Inhibidores: **Andexanet alfa** (ver Figura 3).",
+      "tabla": {
+        "titulo": "Estrategias de Reversión",
+        "columnas": [
+          "OAC",
+          "Estrategia sugerida"
+        ],
+        "filas": [
+          [
+            "VKA",
+            "4F-PCC o Plasma"
+          ],
+          [
+            "Dabigatran",
+            "Idarucizumab"
+          ],
+          [
+            "FXa Inhibidores",
+            "Andexanet alfa"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Tabla 5. Estrategia de reversión",
+          "paginas": "606",
+          "texto": "Administer 4F-PCC. If 4F-PCC is not available, administer plasma. Administer idarucizumab. Administer andexanet alfa.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag606_tabla_5_estrategia_reversion.png"
+        }
+      ]
+    },
+    "trat_no_mayor": {
+      "tipo": "pregunta",
+      "titulo": "Manejo sangrado no mayor",
+      "texto": "- ¿Requiere hospitalización, cirugía o transfusión?",
+      "pie_nodo": "¿Requiere intervención?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_no_mayor_intervencion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_no_mayor_ambulatorio"
+        }
+      ]
+    },
+    "trat_no_mayor_intervencion": {
+      "tipo": "informativo",
+      "titulo": "Manejo hospitalario",
+      "texto": "- Suspender OAC.\n- Si VKA: **Vitamina K 2-5 mg** PO/IV.\n- Medidas locales y reanimación.",
+      "farmacos": [
+        {
+          "nombre": "Vitamina K",
+          "dosis": "**2-5 mg** PO/IV",
+          "paginas": "606"
+        }
+      ]
+    },
+    "trat_no_mayor_ambulatorio": {
+      "tipo": "informativo",
+      "titulo": "Manejo ambulatorio",
+      "texto": "- Considerar continuar OAC si hay indicación.\n- Medidas locales/compresión.\n- Evaluar riesgo/beneficio de antiagregantes concomitantes.",
+      "nota_adicional": "Determinar si la dosis de OAC es apropiada antes de continuar."
+    },
+    "seguimiento_estabilidad": {
+      "tipo": "resultado",
+      "titulo": "Estabilización",
+      "texto": "- Una vez estable, evaluar reinicio de anticoagulación (ver Figura 4)."
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Considerar reinicio de OAC",
+          "siguiente_nodo": "reinicio_oac"
+        }
+      ],
+      "texto": "Tratamiento"
+    },
+    "reinicio_oac": {
+      "tipo": "pregunta",
+      "titulo": "Reinicio de OAC",
+      "texto": "- ¿Existe indicación clínica continua para OAC?",
+      "pie_nodo": "¿Reinicio indicado?",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "discontinuar_oac"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "evaluar_reinicio"
+        }
+      ]
+    },
+    "discontinuar_oac": {
+      "tipo": "resultado",
+      "titulo": "Discontinuar OAC",
+      "texto": "- Suspender anticoagulación permanentemente."
+    },
+    "evaluar_reinicio": {
+      "tipo": "pregunta",
+      "titulo": "Factores de riesgo",
+      "texto": "- ¿Sangrado en sitio crítico?\n- ¿Alto riesgo de re-sangrado?\n- ¿Fuente no identificada?\n- ¿Procedimiento planeado?",
+      "pie_nodo": "¿Algún factor presente?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "retrasar_reinicio"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "reinicio_seguro"
+        }
+      ]
+    },
+    "retrasar_reinicio": {
+      "tipo": "resultado",
+      "titulo": "Retrasar reinicio",
+      "texto": "- Retrasar reinicio de OAC.\n- Considerar profilaxis VTE temporal."
+    },
+    "reinicio_seguro": {
+      "tipo": "resultado",
+      "titulo": "Reiniciar OAC",
+      "texto": "- Reiniciar OAC con seguimiento estrecho."
+    }
+  },
+  "referencias": [
+    {
+      "titulo": "2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants",
+      "fuente": "ACC",
+      "anio": "2020",
+      "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+      "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants."
+    }
+  ],
+  "carpeta_evidencia": "sangrado_anticoagulantes_orales",
+  "carpeta_imagenes": "sangrado_anticoagulantes_orales"
+}
