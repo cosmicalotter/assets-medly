@@ -1,13 +1,14 @@
 {
-  "titulo": "Sangrado en Pacientes Anticoagulados",
+  "titulo": "Sangrado en Anticoagulantes Orales",
   "version": "ACC 2020",
-  "descripcion": "Algoritmo para el manejo de sangrado agudo en pacientes tratados con anticoagulantes orales (DOAC o VKA).",
-  "especialidad": "Medicina de Urgencias",
+  "descripcion": "Evaluación, reversión y reinicio de anticoagulación en pacientes con sangrado activo.",
+  "especialidad": "Urgencias",
   "nodo_inicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "Sangrado en Pacientes Anticoagulados",
+      "texto": "Sangrado en Anticoagulantes Orales",
+      "pie_nodo": "¿Qué desea consultar?",
       "opciones": [
         {
           "texto": "Diagnóstico",
@@ -16,223 +17,1058 @@
         {
           "texto": "Tratamiento",
           "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
         }
       ]
     },
     "nodo_diagnostico": {
       "tipo": "rama",
       "estilo": "rama",
+      "texto": "Diagnóstico",
       "opciones": [
         {
-          "texto": "Evaluar severidad del sangrado",
-          "siguiente_nodo": "diag_severidad"
+          "texto": "Iniciar evaluación",
+          "siguiente_nodo": "diag_criterios_mayor"
         }
-      ],
-      "texto": "Diagnóstico"
+      ]
     },
-    "diag_severidad": {
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "Iniciar tratamiento",
+          "siguiente_nodo": "trat_eval_gravedad"
+        }
+      ]
+    },
+    "nodo_seguimiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Seguimiento",
+      "opciones": [
+        {
+          "texto": "Evaluar reinicio",
+          "siguiente_nodo": "seg_indicacion_oac"
+        }
+      ]
+    },
+    "diag_criterios_mayor": {
       "tipo": "pregunta",
-      "titulo": "Evaluar severidad del sangrado",
-      "texto": "- ¿Sangrado en sitio crítico (ver Tabla 1)?\n- ¿Inestabilidad hemodinámica?\n- ¿Hb baja >=2 g/dL o transfusión >=2 unidades RBC?",
-      "pie_nodo": "¿Es un sangrado mayor?",
-      "nota_adicional": "La inestabilidad hemodinámica puede manifestarse con FC elevada o PAS <90 mmHg.",
-      "chips": [
-        "Adulto"
-      ],
+      "titulo": "Criterios de Gravedad",
+      "texto": "- Evaluar si el sangrado cumple **>=1 criterio** de sangrado mayor.\n- Sangrado en sitio crítico.\n- Inestabilidad hemodinámica.\n- Descenso de Hb **>=2 g/dL** o transfusión de **>=2 unidades** de concentrados de hematíes.",
+      "pie_nodo": "¿Cumple >=1 criterio de sangrado mayor?",
       "referencias": [
         {
-          "titulo": "Definición de sangrado mayor",
-          "paginas": "596",
-          "texto": "The former includes bleeding that is associated with hemodynamic compromise, occurs in an anatomically critical site, requires transfusion (>=2 units of packed red blood cells [RBCs]), or results in a hemoglobin drop >=2 g/dL",
+          "titulo": "Defining Bleed Severity",
+          "paginas": "600",
+          "texto": "If >=1 of the following factors applies, the bleed is classified as major.",
           "fuente": "ACC",
           "anio": "2020",
           "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
           "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
-          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag596_definicion_sangrado_mayor.png"
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag600_defining_bleed_severity.png"
         }
       ],
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "trat_mayor"
+          "siguiente_nodo": "diag_sitios_criticos"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "trat_no_mayor"
+          "siguiente_nodo": "diag_sangrado_menor"
         }
       ]
     },
-    "trat_mayor": {
+    "diag_sitios_criticos": {
       "tipo": "informativo",
-      "titulo": "Manejo sangrado mayor",
-      "texto": "- Suspender OAC y antiagregantes.\n- Asegurar vía aérea y acceso IV.\n- Si VKA: **Vitamina K 5-10 mg** IV.\n- Considerar reversión según agente (ver Figura 3).",
-      "pie_nodo": "¿Medidas controlaron el sangrado?",
-      "nota_adicional": "La reversión no debe retrasar la reanimación y el control local del sangrado.",
-      "farmacos": [
-        {
-          "nombre": "Vitamina K",
-          "dosis": "**5-10 mg** IV",
-          "pauta": "Administración lenta en 15-30 min.",
-          "paginas": "605"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Manejo sangrado mayor",
-          "paginas": "601",
-          "texto": "Anticoagulants and antiplatelet agents should be discontinued, and airway and large-bore intravenous access secured. Reversal of OAC is recommended if an agent is available for most patients",
-          "fuente": "ACC",
-          "anio": "2020",
-          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
-          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
-          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_manejo_sangrado_mayor.png"
-        }
-      ],
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "seguimiento_estabilidad"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "trat_reversion"
-        }
-      ]
-    },
-    "trat_reversion": {
-      "tipo": "informativo",
-      "titulo": "Estrategias de reversión",
-      "texto": "- VKA: **4F-PCC** (INR 2-4: 25 U/kg; INR 4-6: 35 U/kg; INR >6: 50 U/kg).\n- Dabigatran: **Idarucizumab 5 g** IV.\n- FXa Inhibidores: **Andexanet alfa** (ver Figura 3).",
+      "estilo": "peligro",
+      "titulo": "Sitios Críticos",
+      "texto": "- Identificar si el sangrado ocurre en un sitio anatómico crítico que compromete la función del órgano o causa discapacidad severa.",
       "tabla": {
-        "titulo": "Estrategias de Reversión",
+        "titulo": "Sangrados en Sitios Críticos",
         "columnas": [
-          "OAC",
-          "Estrategia sugerida"
+          "Tipo de sangrado",
+          "Signos y síntomas iniciales",
+          "Consecuencias potenciales"
         ],
         "filas": [
           [
-            "VKA",
-            "4F-PCC o Plasma"
+            "Intracraneal",
+            "Cefalea intensa, emesis, pérdida de conciencia, focalidad",
+            "Estupor, coma, déficit permanente, muerte"
           ],
           [
-            "Dabigatran",
-            "Idarucizumab"
+            "Ocular / Espinal",
+            "Dolor ocular, pérdida visual / Dolor de espalda, debilidad",
+            "Pérdida de visión / Paraplejia, cuadriplejia"
           ],
           [
-            "FXa Inhibidores",
-            "Andexanet alfa"
+            "Taponamiento pericárdico",
+            "Disnea, taquipnea, hipotensión, pulso paradójico",
+            "Shock cardiogénico, muerte"
+          ],
+          [
+            "Vía aérea / Epistaxis posterior",
+            "Hemoptisis, disnea, hipoxia, epistaxis profusa",
+            "Fallo respiratorio hipoxémico, muerte"
+          ],
+          [
+            "Tórax, abdomen, retroperitoneo",
+            "Dolor, distensión, hipotensión, taquicardia",
+            "Shock hipovolémico, neuropatía femoral, muerte"
+          ],
+          [
+            "Extremidades (intramuscular/articular)",
+            "Dolor, hinchazón, palidez, parestesia, pulso disminuido",
+            "Síndrome compartimental, pérdida de extremidad"
           ]
         ]
       },
       "referencias": [
         {
-          "titulo": "Tabla 5. Estrategia de reversión",
-          "paginas": "606",
-          "texto": "Administer 4F-PCC. If 4F-PCC is not available, administer plasma. Administer idarucizumab. Administer andexanet alfa.",
+          "titulo": "Bleeding in a Critical Site",
+          "paginas": "600",
+          "texto": "Bleeds that compromise the organ’s function such as intracranial hemorrhage (ICH) and other central nervous system bleeds... are considered to be critical site bleeds.",
           "fuente": "ACC",
           "anio": "2020",
           "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
           "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
-          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag606_tabla_5_estrategia_reversion.png"
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag600_bleeding_in_critical_site.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_inestabilidad_hd",
+          "descripcion": "Avanzar a la evaluación de inestabilidad hemodinámica tras revisar los sitios críticos."
         }
       ]
     },
-    "trat_no_mayor": {
+    "diag_inestabilidad_hd": {
+      "tipo": "informativo",
+      "estilo": "peligro",
+      "titulo": "Inestabilidad Hemodinámica",
+      "texto": "- Evaluar signos de inestabilidad hemodinámica.\n- PAS **<90 mmHg** o caída **>40 mmHg**.\n- Caída ortostática de PAS **>=20 mmHg** o PAD **>=10 mmHg**.\n- PAM **<65 mmHg** o diuresis **<0,5 mL/kg/h**.",
+      "referencias": [
+        {
+          "titulo": "Hemodynamic Instability",
+          "paginas": "600",
+          "texto": "a systolic blood pressure <90 mm Hg, a decrease in systolic blood pressure >40 mm Hg... can indicate hemodynamic instability.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag600_hemodynamic_instability.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_caida_hb"
+        }
+      ]
+    },
+    "diag_caida_hb": {
+      "tipo": "informativo",
+      "estilo": "peligro",
+      "titulo": "Caída de Hemoglobina",
+      "texto": "- Confirmar si existe sangrado clínicamente evidente con caída de Hb **>=2 g/dL** o necesidad de transfundir **>=2 unidades** de concentrados de hematíes.",
+      "referencias": [
+        {
+          "titulo": "Overt Bleeding",
+          "paginas": "600",
+          "texto": "Bleeding events causing a hemoglobin drop >=2 g/dL or requiring transfusion of >=2 units of RBCs have been associated with a significantly increased mortality risk",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag600_overt_bleeding.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_labs_mayor"
+        }
+      ]
+    },
+    "diag_sangrado_menor": {
+      "tipo": "informativo",
+      "titulo": "Sangrado No Mayor",
+      "texto": "- Si el evento no cumple ninguno de los criterios de sangrado mayor, clasificarlo como sangrado no mayor.",
+      "referencias": [
+        {
+          "titulo": "Figure 2 - Clasificación del sangrado no mayor",
+          "paginas": "599",
+          "texto": "If none of the major-bleeding criteria apply, the bleed is considered nonmajor.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag599_nonmajor_classification.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_labs_menor"
+        }
+      ]
+    },
+    "diag_labs_mayor": {
+      "tipo": "informativo",
+      "titulo": "Laboratorio Inicial",
+      "texto": "- Solicitar **TP/INR** y **TTPa** en todos los pacientes.\n- Si toma DOAC, solicitar niveles específicos si están disponibles (anti-FXa o tiempo de trombina diluido).",
+      "referencias": [
+        {
+          "titulo": "Laboratory Measurement",
+          "paginas": "601",
+          "texto": "A prothrombin time (PT) and/or an activated partial thromboplastin time (aPTT) should be requested in all such patients.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_laboratory_measurement.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_labs_doac"
+        }
+      ]
+    },
+    "diag_labs_menor": {
+      "tipo": "informativo",
+      "titulo": "Laboratorio Inicial",
+      "texto": "- Solicitar **TP/INR** y **TTPa**.\n- La interpretación dependerá de la situación clínica y el anticoagulante.",
+      "referencias": [
+        {
+          "titulo": "Laboratory Measurement",
+          "paginas": "601",
+          "texto": "A prothrombin time (PT) and/or an activated partial thromboplastin time (aPTT) should be requested in all such patients.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_laboratory_measurement_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_labs_doac"
+        }
+      ]
+    },
+    "diag_labs_doac": {
+      "tipo": "informativo",
+      "titulo": "Ensayos para DOACs",
+      "texto": "- Utilizar ensayos específicos para cuantificar DOACs si están disponibles.\n- Un TTPa normal no excluye niveles terapéuticos de dabigatrán.\n- Un TP normal no excluye niveles terapéuticos de inhibidores del FXa.",
+      "tabla": {
+        "titulo": "Ensayos Sugeridos para Cuantificación de DOACs",
+        "columnas": [
+          "Fármaco",
+          "Ensayo Sugerido"
+        ],
+        "filas": [
+          [
+            "Dabigatrán",
+            "Espectrometría de masas, Tiempo de trombina diluido, Tiempo de coagulación de ecarina"
+          ],
+          [
+            "Apixabán, Betrixabán, Edoxabán, Rivaroxabán",
+            "Espectrometría de masas, Anti-FXa (calibrado para el fármaco específico)"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Laboratory Measurement",
+          "paginas": "601",
+          "texto": "The preferred test for quantitation of apixaban, edoxaban, and rivaroxaban is a chromogenic anti-FXa assay calibrated with the drug of interest",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_laboratory_measurement_3.png"
+        }
+      ]
+    },
+    "trat_eval_gravedad": {
       "tipo": "pregunta",
-      "titulo": "Manejo sangrado no mayor",
-      "texto": "- ¿Requiere hospitalización, cirugía o transfusión?",
-      "pie_nodo": "¿Requiere intervención?",
+      "titulo": "Gravedad del Sangrado",
+      "texto": "- Clasificar como sangrado mayor cuando exista al menos un criterio de gravedad; si no existe ninguno, seguir la rama de sangrado no mayor.",
+      "pie_nodo": "¿Es un sangrado mayor?",
+      "referencias": [
+        {
+          "titulo": "Figure 2 - Rama de sangrado mayor o no mayor",
+          "paginas": "599",
+          "texto": "A bleed is considered major when at least one major-bleeding criterion applies; otherwise it is considered nonmajor.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag599_major_nonmajor_branch.png"
+        }
+      ],
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "trat_no_mayor_intervencion"
+          "siguiente_nodo": "trat_mayor_medidas"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "trat_no_mayor_ambulatorio"
+          "siguiente_nodo": "trat_menor_eval"
         }
       ]
     },
-    "trat_no_mayor_intervencion": {
+    "trat_mayor_medidas": {
       "tipo": "informativo",
-      "titulo": "Manejo hospitalario",
-      "texto": "- Suspender OAC.\n- Si VKA: **Vitamina K 2-5 mg** PO/IV.\n- Medidas locales y reanimación.",
+      "estilo": "peligro",
+      "titulo": "Medidas Iniciales",
+      "texto": "- Suspender anticoagulante oral y agentes antiplaquetarios.\n- Asegurar vía aérea y accesos venosos de grueso calibre.\n- Iniciar medidas locales para controlar el sangrado y reanimación con volumen (cristaloides isotónicos).",
+      "referencias": [
+        {
+          "titulo": "Managing Major Bleeds",
+          "paginas": "601",
+          "texto": "Anticoagulants and antiplatelet agents should be discontinued, and airway and large-bore intravenous access secured.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag601_managing_major_bleeds.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_mayor_transfusion"
+        }
+      ]
+    },
+    "trat_mayor_transfusion": {
+      "tipo": "informativo",
+      "titulo": "Metas de Transfusión",
+      "texto": "- Transfundir concentrados de hematíes para mantener **Hb >=7 g/dL** (o **>=8 g/dL** en enfermedad coronaria).\n- Transfundir plaquetas para mantener **>=50 x 10^9/L**.\n- Transfundir crioprecipitados para mantener fibrinógeno **>100 mg/dL**.",
+      "referencias": [
+        {
+          "titulo": "Managing Major Bleeds",
+          "paginas": "602",
+          "texto": "Patients with symptomatic anemia or active bleeding should receive RBC transfusions to maintain a hemoglobin >=7 g/dL.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag602_managing_major_bleeds.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_mayor_acido_tranexamico"
+        }
+      ]
+    },
+    "trat_mayor_acido_tranexamico": {
+      "tipo": "informativo",
+      "titulo": "Trauma y Antifibrinolíticos",
+      "texto": "- Considerar administración temprana de ácido tranexámico en las primeras **3 horas** en pacientes con trauma.\n- Activar protocolo de transfusión masiva si requiere **>=3 unidades** de hematíes en 1 hora.",
+      "referencias": [
+        {
+          "titulo": "Managing Major Bleeds",
+          "paginas": "602",
+          "texto": "Early administration of tranexamic acid for trauma patients within the first 3 hours is associated with decreased bleeding and overall mortality",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag602_managing_major_bleeds_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_poblaciones_especiales"
+        }
+      ]
+    },
+    "trat_poblaciones_especiales": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Poblaciones Especiales",
+      "texto": "- En disfunción renal severa, considerar hemodiálisis para eliminar dabigatrán.\n- En uremia, considerar desmopresina o crioprecipitados por disfunción plaquetaria.\n- En hepatopatía, usar pruebas viscoelásticas (TEG/ROTEM) para evaluar hemostasia.",
+      "nota_adicional": "El dabigatrán es el único DOAC que puede ser eliminado mediante hemodiálisis debido a su baja unión a proteínas.",
+      "referencias": [
+        {
+          "titulo": "Managing Major Bleeds",
+          "paginas": "602",
+          "texto": "Patients with renal dysfunction are also at risk for uremia-associated platelet dysfunction and may benefit from administration of desmopressin acetate or cryoprecipitate",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag602_managing_major_bleeds_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_mayor_reversion_pregunta"
+        }
+      ]
+    },
+    "trat_mayor_reversion_pregunta": {
+      "tipo": "pregunta",
+      "titulo": "Agente de Reversión",
+      "texto": "- Determinar el anticoagulante oral que toma el paciente para administrar el agente de reversión sugerido.",
+      "pie_nodo": "¿Qué anticoagulante toma el paciente?",
+      "referencias": [
+        {
+          "titulo": "Figure 3 - Selección del agente de reversión",
+          "paginas": "604",
+          "texto": "The reversal pathway first identifies whether the patient is taking a VKA, dabigatran, apixaban/rivaroxaban, or betrixaban/edoxaban.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag604_reversal_agent_selection.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "VKA (Warfarina)",
+          "siguiente_nodo": "trat_rev_vka"
+        },
+        {
+          "texto": "Dabigatrán",
+          "siguiente_nodo": "trat_rev_dabigatran"
+        },
+        {
+          "texto": "Apixabán / Rivaroxabán",
+          "siguiente_nodo": "trat_rev_apix_riva"
+        },
+        {
+          "texto": "Betrixabán / Edoxabán",
+          "siguiente_nodo": "trat_rev_betri_edo"
+        }
+      ]
+    },
+    "trat_rev_vka": {
+      "tipo": "informativo",
+      "titulo": "Reversión de VKA",
+      "texto": "- Administrar **4F-PCC** según INR y peso.\n- Administrar **Vitamina K 5-10 mg** IV lenta (15-30 min).\n- Si 4F-PCC no está disponible, usar plasma **10-15 mL/kg**.",
+      "farmacos": [
+        {
+          "nombre": "4F-PCC",
+          "dosis": "**25-50 U/kg** IV, máx. **5000 U**",
+          "pauta": "INR 2-<4: 25 U/kg. INR 4-6: 35 U/kg. INR >6: 50 U/kg.",
+          "nota": "Dosis fija alternativa: 1000 U (no intracraneal) o 1500 U (intracraneal).",
+          "paginas": "604"
+        },
+        {
+          "nombre": "Vitamina K",
+          "dosis": "**5-10 mg** IV",
+          "pauta": "Infusión lenta en 25-50 mL de SSF durante 15-30 min.",
+          "nota": "Siempre administrar junto con 4F-PCC para reversión de VKA.",
+          "paginas": "605"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Vitamin K Antagonists",
+          "paginas": "605",
+          "texto": "They are dosed on the basis of INR and body weight (INR 2 to <4 at 25 U/kg, INR 4 to 6 at 35 U/kg, and INR >6 at 50 U/kg",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag605_vitamin_k_antagonists.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
+        }
+      ]
+    },
+    "trat_rev_dabigatran": {
+      "tipo": "informativo",
+      "titulo": "Reversión de Dabigatrán",
+      "texto": "- Administrar **Idarucizumab 5 g** IV.\n- Si no está disponible, administrar PCC o aPCC **50 U/kg** (máx. **4000 U**).\n- Considerar **Carbón activado 50 g** si la ingestión fue en las últimas **2-4 h**.",
+      "farmacos": [
+        {
+          "nombre": "Idarucizumab",
+          "dosis": "**5 g** IV",
+          "pauta": "Administrar como 2 alícuotas de 2,5 g en infusión IV.",
+          "nota": "Si no está disponible, usar PCC o aPCC a 50 U/kg (máx. 4000 U).",
+          "paginas": "606"
+        },
+        {
+          "nombre": "Carbón activado",
+          "dosis": "**50 g** PO/SNG",
+          "pauta": "Dosis única.",
+          "nota": "Sólo si la ingestión del DOAC fue en las últimas 2-4 horas.",
+          "paginas": "606"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Factor IIa Inhibitors",
+          "paginas": "606",
+          "texto": "dabigatran-treated patients with anticoagulation emergencies... were given 5 grams of idarucizumab as a fixed-dose intravenous infusion of 2 2.5-gram aliquots",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag606_factor_iia_inhibitors.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_reversion_fallida"
+        }
+      ]
+    },
+    "trat_rev_apix_riva": {
+      "tipo": "informativo",
+      "titulo": "Reversión Apixabán/Rivaroxabán",
+      "texto": "- Administrar **Andexanet alfa**.\n- Si no está disponible, administrar PCC o aPCC (ej. 4F-PCC **2000 U** dosis fija).\n- Considerar **Carbón activado 50 g** si la ingestión fue en las últimas **2-4 h**.",
+      "farmacos": [
+        {
+          "nombre": "Andexanet alfa",
+          "dosis": "**400-800 mg** IV",
+          "pauta": "Dosis baja: 400 mg bolo + 4 mg/min por 120 min. Dosis alta: 800 mg bolo + 8 mg/min por 120 min.",
+          "nota": "Depende de la dosis del DOAC y el tiempo desde la última toma.",
+          "paginas": "604"
+        },
+        {
+          "nombre": "4F-PCC",
+          "dosis": "**2000 U** IV",
+          "pauta": "Dosis fija.",
+          "nota": "Usar sólo si Andexanet alfa no está disponible.",
+          "paginas": "607"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Factor Xa Inhibitors",
+          "paginas": "607",
+          "texto": "In patients with rivaroxaban- or apixaban-associated critical site... or life-threatening major bleeding, it is reasonable to use andexanet alfa for reversal",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag607_factor_xa_inhibitors.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
+        }
+      ]
+    },
+    "trat_rev_betri_edo": {
+      "tipo": "informativo",
+      "titulo": "Reversión Betrixabán/Edoxabán",
+      "texto": "- Administrar tratamiento off-label con **Andexanet alfa** a dosis altas.\n- Si no está disponible, administrar PCC o aPCC.\n- Considerar **Carbón activado 50 g** si la ingestión fue en las últimas **2-4 h**.",
+      "referencias": [
+        {
+          "titulo": "Factor Xa Inhibitors",
+          "paginas": "607",
+          "texto": "In healthy volunteers receiving edoxaban, a bolus of andexanet alfa (600 or 800 mg) followed by an infusion (8 mg/min for 2 hours) reduced FXa activity",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag607_factor_xa_inhibitors_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
+        }
+      ]
+    },
+    "trat_reversion_fallida": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Sangrado Persistente",
+      "texto": "- Si el sangrado persiste tras la reversión y hay evidencia de efecto persistente de dabigatrán, puede ser razonable una segunda dosis de **Idarucizumab**.",
+      "referencias": [
+        {
+          "titulo": "Figure 3",
+          "paginas": "604",
+          "texto": "If bleeding persists after reversal and there is laboratory evidence of a persistent dabigatran effect... a second dose of idarucizumab may be reasonable.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag604_figure_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
+        }
+      ]
+    },
+    "trat_menor_eval": {
+      "tipo": "pregunta",
+      "titulo": "Manejo Sangrado Menor",
+      "texto": "- Evaluar si el sangrado menor requiere hospitalización, intervención quirúrgica o transfusión.",
+      "pie_nodo": "¿Requiere hospitalización, cirugía o transfusión?",
+      "referencias": [
+        {
+          "titulo": "Figure 2 - Criterios de escalamiento en sangrado no mayor",
+          "paginas": "599",
+          "texto": "Does the bleed require hospitalization, surgical/procedural intervention, or transfusion?",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag599_nonmajor_escalation_criteria.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_menor_hosp"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_menor_amb"
+        }
+      ]
+    },
+    "trat_menor_hosp": {
+      "tipo": "informativo",
+      "titulo": "Manejo Hospitalario",
+      "texto": "- Suspender anticoagulante oral.\n- Si toma VKA, considerar **Vitamina K 2-5 mg** PO o IV.\n- Si no toma VKA, no administrar agentes de reversión.\n- Proveer terapia local y soporte.",
       "farmacos": [
         {
           "nombre": "Vitamina K",
-          "dosis": "**2-5 mg** PO/IV",
-          "paginas": "606"
-        }
-      ]
-    },
-    "trat_no_mayor_ambulatorio": {
-      "tipo": "informativo",
-      "titulo": "Manejo ambulatorio",
-      "texto": "- Considerar continuar OAC si hay indicación.\n- Medidas locales/compresión.\n- Evaluar riesgo/beneficio de antiagregantes concomitantes.",
-      "nota_adicional": "Determinar si la dosis de OAC es apropiada antes de continuar."
-    },
-    "seguimiento_estabilidad": {
-      "tipo": "resultado",
-      "titulo": "Estabilización",
-      "texto": "- Una vez estable, evaluar reinicio de anticoagulación (ver Figura 4)."
-    },
-    "nodo_tratamiento": {
-      "tipo": "rama",
-      "estilo": "rama",
-      "opciones": [
-        {
-          "texto": "Considerar reinicio de OAC",
-          "siguiente_nodo": "reinicio_oac"
+          "dosis": "**2-5 mg** PO o IV",
+          "pauta": "Dosis única.",
+          "nota": "Considerar sólo si el paciente toma VKA.",
+          "paginas": "599"
         }
       ],
-      "texto": "Tratamiento"
-    },
-    "reinicio_oac": {
-      "tipo": "pregunta",
-      "titulo": "Reinicio de OAC",
-      "texto": "- ¿Existe indicación clínica continua para OAC?",
-      "pie_nodo": "¿Reinicio indicado?",
+      "referencias": [
+        {
+          "titulo": "Figure 2",
+          "paginas": "599",
+          "texto": "If patient is on a VKA, consider 2-5 mg PO/IV vitamin K... If patient is not on VKA, do not administer reversal/hemostatic agent",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag599_figure_2.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "No",
-          "siguiente_nodo": "discontinuar_oac"
-        },
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "evaluar_reinicio"
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
         }
       ]
     },
-    "discontinuar_oac": {
-      "tipo": "resultado",
-      "titulo": "Discontinuar OAC",
-      "texto": "- Suspender anticoagulación permanentemente."
-    },
-    "evaluar_reinicio": {
-      "tipo": "pregunta",
-      "titulo": "Factores de riesgo",
-      "texto": "- ¿Sangrado en sitio crítico?\n- ¿Alto riesgo de re-sangrado?\n- ¿Fuente no identificada?\n- ¿Procedimiento planeado?",
-      "pie_nodo": "¿Algún factor presente?",
+    "trat_menor_amb": {
+      "tipo": "informativo",
+      "titulo": "Manejo Ambulatorio",
+      "texto": "- Si la indicación sigue siendo apropiada, considerar continuar el anticoagulante oral.\n- Aplicar terapia local o compresión manual.\n- Si recibe antiagregantes concomitantes, valorar individualmente el riesgo y beneficio de suspenderlos.\n- Buscar y tratar comorbilidades que favorezcan el sangrado y confirmar que la dosis del anticoagulante sea apropiada.",
+      "referencias": [
+        {
+          "titulo": "Figure 2 - Manejo ambulatorio del sangrado no mayor",
+          "paginas": "599",
+          "texto": "Consider continuing OAC when the indication remains appropriate; provide local therapy; reassess concomitant antiplatelet therapy, contributing comorbidities, and OAC dosing.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag599_nonmajor_outpatient_management.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "Sí",
-          "siguiente_nodo": "retrasar_reinicio"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "reinicio_seguro"
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_indicacion_oac"
         }
       ]
     },
-    "retrasar_reinicio": {
-      "tipo": "resultado",
-      "titulo": "Retrasar reinicio",
-      "texto": "- Retrasar reinicio de OAC.\n- Considerar profilaxis VTE temporal."
+    "seg_indicacion_oac": {
+      "tipo": "pregunta",
+      "titulo": "Indicación de Anticoagulación",
+      "texto": "- Una vez controlado el sangrado, confirmar si persiste una indicación clínica para anticoagulación oral.\n- Si persiste, comparar el beneficio trombótico neto con el riesgo de resangrado y discutir la decisión con el paciente y el equipo tratante.",
+      "pie_nodo": "¿Persiste una indicación clínica para anticoagulación oral?",
+      "referencias": [
+        {
+          "titulo": "Should Anticoagulation Be Restarted?",
+          "paginas": "608",
+          "texto": "If there is an ongoing indication for OAC, the clinician must evaluate the net clinical benefit in the context of a recent bleed; the assessment should involve other practitioners and the patient or caregivers.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag608_should_anticoagulation_be_restarted.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_riesgo_trombotico"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_suspender_definitivo"
+        }
+      ],
+      "calculadora": {
+        "archivo": "chadsvasc.json",
+        "ramificar": true
+      }
     },
-    "reinicio_seguro": {
+    "seg_suspender_definitivo": {
       "tipo": "resultado",
-      "titulo": "Reiniciar OAC",
-      "texto": "- Reiniciar OAC con seguimiento estrecho."
+      "estilo": "exito",
+      "titulo": "Suspender Anticoagulación",
+      "texto": "- Suspender la anticoagulación de forma definitiva.\n- Ejemplos: FA con CHA2DS2-VASc **<2** en hombres o **<3** en mujeres, o primer TEV provocado hace **>3 meses**.",
+      "referencias": [
+        {
+          "titulo": "Should Anticoagulation Be Restarted?",
+          "paginas": "608",
+          "texto": "Nonvalvular AF with CHA2DS2-VASc... score <2 in men and <3 in women... First time provoked VTE >3 months ago",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag608_should_anticoagulation_be_restarted.png"
+        }
+      ]
+    },
+    "seg_riesgo_trombotico": {
+      "tipo": "informativo",
+      "titulo": "Riesgo Trombótico",
+      "texto": "- Identificar si el paciente tiene alto riesgo trombótico que justifique el reinicio temprano.",
+      "tabla": {
+        "titulo": "Indicaciones de Alto Riesgo Trombótico",
+        "columnas": [
+          "Indicación",
+          "Características que aumentan el riesgo"
+        ],
+        "filas": [
+          [
+            "Prótesis valvular mecánica",
+            "Válvula mitral, AF, falla cardíaca, ACV previo, válvula de bola"
+          ],
+          [
+            "FA no valvular",
+            "CHA2DS2-VASc >=4, ACV/AIT en últimos 3 meses"
+          ],
+          [
+            "FA valvular",
+            "Estenosis mitral moderada/severa o válvula mecánica"
+          ],
+          [
+            "Tromboembolismo venoso (TEV)",
+            "TEV en últimos 3 meses, TEV recurrente, cáncer activo"
+          ],
+          [
+            "Trombo en ventrículo izquierdo",
+            ">3 meses post-IAM si hay recuperación de función"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Table 6",
+          "paginas": "610",
+          "texto": "Original Indications for Anticoagulation With High Thrombotic Risk... Mechanical valve prosthesis with or without AF",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag610_table_6.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_eval_reinicio",
+          "descripcion": "Continuar con la evaluación de factores para retrasar el reinicio de la anticoagulación."
+        }
+      ]
+    },
+    "seg_eval_reinicio": {
+      "tipo": "pregunta",
+      "titulo": "Factores de Retraso",
+      "texto": "- Evaluar factores para retrasar el reinicio:\n- Sangrado en sitio crítico.\n- Alto riesgo de resangrado o de muerte/discapacidad si recurre.\n- Origen del sangrado aún no identificado.\n- Cirugía o procedimiento invasivo planeado.\n- El paciente, después de una conversación informada, no desea reiniciar por el momento.",
+      "pie_nodo": "¿Presenta factores para retrasar el reinicio?",
+      "referencias": [
+        {
+          "titulo": "Figure 4 - Factores para retrasar el reinicio",
+          "paginas": "609",
+          "texto": "Delay may be appropriate after critical-site bleeding, when rebleeding could cause death or disability, when the source remains unidentified, when a procedure is planned, or when the informed patient does not wish to restart.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag609_factors_for_delayed_restart.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_retrasar_reinicio"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_reiniciar_temprano"
+        }
+      ]
+    },
+    "seg_retrasar_reinicio": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Retrasar Reinicio",
+      "texto": "- Si todavía no es seguro reiniciar anticoagulación terapéutica, considerar temporalmente dosis profilácticas de heparina no fraccionada subcutánea o heparina de bajo peso molecular, con vigilancia clínica estrecha.\n- Si el riesgo trombótico es inaceptablemente alto y se considera imprescindible anticoagulación terapéutica, puede utilizarse heparina no fraccionada por infusión IV por su vida media corta y reversibilidad.\n- Si coexisten alto riesgo hemorrágico y trombótico, valorar con especialistas alternativas no farmacológicas. El filtro de vena cava se reserva para TVP/TEP agudo con contraindicación absoluta para anticoagular y debe retirarse cuando pueda restablecerse la anticoagulación; el cierre u oclusión de la orejuela izquierda puede considerarse en casos seleccionados de fibrilación auricular.",
+      "referencias": [
+        {
+          "titulo": "Dosis profilácticas durante el retraso del reinicio",
+          "paginas": "610",
+          "texto": "Prophylactic doses of subcutaneous unfractionated or low-molecular-weight heparin may be used temporarily with close clinical monitoring.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag610_timing_of_anticoagulation_reinitiation.png"
+        },
+        {
+          "titulo": "Heparina no fraccionada IV en riesgo trombótico muy alto",
+          "paginas": "609",
+          "texto": "When therapeutic anticoagulation is necessary despite high rebleeding risk, intravenous unfractionated heparin is suggested because of its short half-life and rapid reversal with protamine.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag609_early_restart_and_iv_ufh.png"
+        },
+        {
+          "titulo": "Opciones no farmacológicas",
+          "paginas": "610",
+          "texto": "For patients with both high bleeding and high thrombotic risk, nonpharmacological therapies such as left atrial appendage closure or retrievable inferior vena cava filters may be considered in selected settings.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag610_nonpharmacological_options.png"
+        },
+        {
+          "titulo": "Uso restringido y retiro del filtro de vena cava",
+          "paginas": "610",
+          "texto": "IVC filters have potential complications, should be used judiciously, and should be removed once therapeutic anticoagulation is achieved, preferably before hospital discharge.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag610_nonpharmacological_options_continued.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_sitios_especificos"
+        }
+      ]
+    },
+    "seg_reiniciar_temprano": {
+      "tipo": "informativo",
+      "estilo": "exito",
+      "titulo": "Reiniciar Anticoagulación",
+      "texto": "- Una vez conseguida la hemostasia y con el paciente clínicamente estable, considerar reiniciar la anticoagulación con monitorización estrecha cuando el beneficio trombótico supere el riesgo de resangrado.\n- Corregir factores reversibles —por ejemplo, INR supraterapéutico, deterioro renal o interacciones— y considerar un anticoagulante alternativo cuando corresponda.",
+      "referencias": [
+        {
+          "titulo": "Reinicio después de lograr hemostasia y estabilidad",
+          "paginas": "609",
+          "texto": "Once hemostasis is achieved and the patient is clinically stable, OAC may be reinitiated with close monitoring, especially when thrombotic risk is high.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag609_early_restart_and_iv_ufh.png"
+        },
+        {
+          "titulo": "Factores reversibles y cambio de anticoagulante",
+          "paginas": "610",
+          "texto": "Reversible contributors should be addressed before restarting; switching to an alternate OAC may be considered when a specific cause such as supratherapeutic INR or reduced renal function is identified.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag610_reversible_factors_and_switching.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_sitios_especificos"
+        }
+      ]
+    },
+    "seg_sitios_especificos": {
+      "tipo": "pregunta",
+      "titulo": "Sitio del Sangrado",
+      "texto": "- Adaptar el momento de reinicio según el sitio específico del sangrado previo.",
+      "pie_nodo": "¿Dónde ocurrió el sangrado?",
+      "opciones": [
+        {
+          "texto": "Intracraneal",
+          "siguiente_nodo": "seg_reinicio_ich"
+        },
+        {
+          "texto": "Gastrointestinal",
+          "siguiente_nodo": "seg_reinicio_gi"
+        },
+        {
+          "texto": "Postquirúrgico",
+          "siguiente_nodo": "seg_reinicio_qx"
+        },
+        {
+          "texto": "Otro",
+          "siguiente_nodo": "seg_eval_antiplaquetarios"
+        }
+      ]
+    },
+    "seg_reinicio_ich": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Reinicio tras ICH",
+      "texto": "- Individualizar el reinicio después de una hemorragia intracraneal según el mecanismo y localización del sangrado, el riesgo trombótico y los factores modificables.\n- En pacientes sin válvula mecánica ni riesgo trombótico alto, retrasar la anticoagulación durante al menos **4 semanas**.\n- En hemorragia lobar asociada con angiopatía amiloide o hematoma subdural espontáneo, no reiniciar de forma automática: proceder con precaución extrema y orientación de neurología o neurocirugía.",
+      "referencias": [
+        {
+          "titulo": "Momento del reinicio después de hemorragia intracraneal",
+          "paginas": "613",
+          "texto": "Current guidelines recommend avoiding anticoagulation for at least 4 weeks in patients without mechanical heart valves, and, if indicated, using aspirin monotherapy initially after an ICH",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag613_intracranial_hemorrhage.png"
+        },
+        {
+          "titulo": "Hemorragia lobar y angiopatía amiloide",
+          "paginas": "613",
+          "texto": "Lobar ICH secondary to amyloid angiopathy and spontaneous subdural hematomas carry a particularly high risk of rebleeding; restarting anticoagulation should be approached with extreme caution and neurologic and/or neurosurgical guidance.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag613_lobar_ich_amyloid_caution.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_interacciones"
+        }
+      ]
+    },
+    "seg_reinicio_gi": {
+      "tipo": "informativo",
+      "titulo": "Reinicio tras Sangrado GI",
+      "texto": "- Es razonable reiniciar la anticoagulación oral una vez que se ha logrado la hemostasia.",
+      "referencias": [
+        {
+          "titulo": "GI Bleeding",
+          "paginas": "613",
+          "texto": "for most cases of GI bleeding, it is reasonable to reinitiate OAC once hemostasis has been achieved.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag613_gi_bleeding.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_interacciones"
+        }
+      ]
+    },
+    "seg_reinicio_qx": {
+      "tipo": "informativo",
+      "titulo": "Reinicio Postquirúrgico",
+      "texto": "- Reiniciar a las **24 h** si el riesgo de sangrado posprocedimiento es bajo.\n- Retrasar **48 a 72 h** si el riesgo de sangrado posprocedimiento es alto.",
+      "referencias": [
+        {
+          "titulo": "Restarting Anticoagulation After a Surgery",
+          "paginas": "614",
+          "texto": "For procedures that carry a low postprocedural bleeding risk, anticoagulation can likely be restarted 24 hours after the procedure.",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag614_restarting_anticoagulation_after_surgery.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_interacciones"
+        }
+      ]
+    },
+    "seg_eval_antiplaquetarios": {
+      "tipo": "informativo",
+      "titulo": "Terapia Antiplaquetaria",
+      "texto": "- Reevaluar la necesidad de aspirina en enfermedad coronaria estable.\n- Reevaluar la necesidad de terapia dual en pacientes post-ICP o SCA y considerar suspender aspirina.",
+      "referencias": [
+        {
+          "titulo": "Figure 5",
+          "paginas": "611",
+          "texto": "Reassess the need for aspirin in stable CAD... Reassess the need for DAPT in patients after PCI and/or ACS and consider discontinuation of aspirin",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag611_figure_5.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_interacciones"
+        }
+      ]
+    },
+    "seg_interacciones": {
+      "tipo": "resultado",
+      "titulo": "Interacciones Farmacológicas",
+      "texto": "- Revisar medicaciones concurrentes que interactúen con los niveles del anticoagulante.\n- Precaución con inhibidores del citocromo P450 3A4 o inhibidores de la glicoproteína P.",
+      "referencias": [
+        {
+          "titulo": "Concurrent Medications",
+          "paginas": "612",
+          "texto": "medications that inhibit cytochrome P450 3A4... or inhibitors of P-glycoprotein... may exhibit an increase in levels of rivaroxaban",
+          "fuente": "ACC",
+          "anio": "2020",
+          "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+          "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants.",
+          "imagen_evidencia": "evidencia_sangrado_anticoagulantes_orales_pag612_concurrent_medications.png"
+        }
+      ]
     }
   },
   "referencias": [
@@ -244,6 +1080,5 @@
       "cita": "ACC (2020). 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants."
     }
   ],
-  "carpeta_evidencia": "sangrado_anticoagulantes_orales",
-  "carpeta_imagenes": "sangrado_anticoagulantes_orales"
+  "carpeta_evidencia": "sangrado_anticoagulantes_orales"
 }
