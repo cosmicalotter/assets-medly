@@ -1,0 +1,517 @@
+{
+  "titulo": "Enfermedad Diarreica Aguda",
+  "version": "MinSalud Colombia 2013",
+  "descripcion": "Manejo de la enfermedad diarreica aguda en niños menores de 5 años.",
+  "especialidad": "Pediatría",
+  "nodo_inicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "Enfermedad Diarreica Aguda",
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_gastroenteritis_aguda_aiepi_pag235_ministerio_salud_proteccion_social.png",
+          "titulo": "Ministerio de Salud y Protección Social - Colciencias\n235"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Iniciar evaluación",
+          "siguiente_nodo": "diag_evaluacion_clinica"
+        }
+      ],
+      "texto": "Diagnóstico"
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Iniciar tratamiento",
+          "siguiente_nodo": "trat_triaje_hidratacion"
+        }
+      ],
+      "texto": "Tratamiento"
+    },
+    "nodo_seguimiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Criterios de alta",
+          "siguiente_nodo": "seg_criterios_alta"
+        }
+      ],
+      "texto": "Seguimiento"
+    },
+    "diag_evaluacion_clinica": {
+      "tipo": "pregunta",
+      "titulo": "Evaluación inicial",
+      "texto": "- Evaluar estado de hidratación con escala OMS.\n- Buscar signos de peligro: letargia, ojos hundidos, incapacidad para beber, pliegue cutáneo lento.\n- No solicitar coproscópico ni coprocultivo de rutina.",
+      "chips": [
+        "Evaluación clínica"
+      ],
+      "referencias": [
+        {
+          "titulo": "Indicaciones de paraclínicos",
+          "paginas": "107",
+          "texto": "No se recomienda la solicitud rutinaria de examen directo de materia fecal, coprológico, coproscópico o coprocultivo en los niños con EDA.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag107_indicaciones_paraclinicos.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Diarrea con sangre",
+          "siguiente_nodo": "diag_disenteria"
+        }
+      ]
+    },
+    "diag_disenteria": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Diarrea con sangre",
+      "texto": "- Solicitar coprocultivo si hay sospecha de bacteriemia o sepsis.\n- Considerar coproscópico si la diarrea dura **>7 días**.\n- Iniciar antibiótico empírico si hay fiebre **>=39.5 ºC** y regular estado general.",
+      "pie_nodo": "¿Requiere manejo antibiótico empírico?",
+      "referencias": [
+        {
+          "titulo": "Indicaciones de paraclínicos",
+          "paginas": "107",
+          "texto": "Se sugiere considerar la solicitud de coprológico o coproscópico en los casos de EDA de más de 7 días de duración o en casos de diarrea con sangre.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag107_indicaciones_paraclinicos_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_antibioticos"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_triaje_hidratacion"
+        }
+      ]
+    },
+    "trat_triaje_hidratacion": {
+      "tipo": "pregunta",
+      "titulo": "Triaje de hidratación",
+      "texto": "- Clasificar el grado de deshidratación para definir el plan de tratamiento.\n- Evaluar tolerancia a la vía oral y cuantificar pérdidas fecales.",
+      "pie_nodo": "¿Grado de deshidratación?",
+      "opciones": [
+        {
+          "texto": "Grave / Choque",
+          "siguiente_nodo": "trat_plan_c"
+        },
+        {
+          "texto": "Algún grado",
+          "siguiente_nodo": "trat_plan_b"
+        },
+        {
+          "texto": "Sin deshidratación",
+          "siguiente_nodo": "trat_plan_a"
+        }
+      ]
+    },
+    "trat_plan_a": {
+      "tipo": "pregunta",
+      "estilo": "exito",
+      "titulo": "Plan A",
+      "texto": "- Prevenir deshidratación con líquidos caseros o SRO después de cada deposición.\n- Menores de 2 años: **50 a 100 mL**.\n- Mayores de 2 años: **100 a 200 mL**.\n- No usar bebidas carbonatadas ni jugos industriales.",
+      "pie_nodo": "¿Qué paso sigue?",
+      "referencias": [
+        {
+          "titulo": "Prevención de deshidratación",
+          "paginas": "116",
+          "texto": "En menores de dos años, 50 a 100 mL. En niños de dos años o más, 100 a 200 mL",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag116_prevencion_deshidratacion.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar manejo",
+          "siguiente_nodo": "trat_zinc_alimentacion"
+        }
+      ]
+    },
+    "trat_plan_b": {
+      "tipo": "pregunta",
+      "titulo": "Plan B",
+      "texto": "- Administrar SRO de baja osmolaridad (75-84 mmol/L de sodio).\n- Dar **50 a 100 mL/kg** durante **2 a 4 horas**.\n- Ofrecer frecuentemente, en cantidades pequeñas y con cuchara.",
+      "pie_nodo": "¿Presenta vómito persistente o fracaso de TRO?",
+      "referencias": [
+        {
+          "titulo": "Terapia de Rehidratación Oral",
+          "paginas": "120",
+          "texto": "Se recomienda realizar la rehidratación por vía oral en los niños menores 5 años con EDA y algún grado de deshidratación con Sales de Rehidratación Oral",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag120_terapia_rehidratacion_oral.png"
+        },
+        {
+          "titulo": "Volumen de TRO",
+          "paginas": "120",
+          "texto": "Ofrecer entre 50 y 100 ml/kg durante 2 a 4 horas.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag120_volumen_tro.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí (>=3 en 1h o >=5 en 4h)",
+          "siguiente_nodo": "trat_antiemetico"
+        },
+        {
+          "texto": "Fracaso de TRO",
+          "siguiente_nodo": "trat_sonda_o_iv"
+        },
+        {
+          "texto": "No, tolera vía oral",
+          "siguiente_nodo": "trat_zinc_alimentacion"
+        }
+      ]
+    },
+    "trat_antiemetico": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Manejo del vómito",
+      "texto": "- Administrar **ondansetrón** dosis única para facilitar TRO.\n- <15 kg: **2 mg** PO.\n- 15-30 kg: **4 mg** PO.\n- Dosis IV: **0,15 mg/kg**.\n- No usar metoclopramida ni alizaprida.",
+      "pie_nodo": "¿Tolera la TRO tras antiemético?",
+      "farmacos": [
+        {
+          "nombre": "Ondansetrón",
+          "dosis": "**2 mg** (<15 kg) o **4 mg** (15-30 kg) PO/IV dosis única",
+          "pauta": "Dosis única para control de vómito persistente y facilitar TRO.",
+          "nota": "No usar si hay sospecha de sepsis, obstrucción intestinal o abdomen agudo.",
+          "paginas": "157"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Uso de antieméticos",
+          "paginas": "157",
+          "texto": "Se recomienda el uso de ondansetrón en una dosis única oral (2 mg en menores de 15 Kg, y 4 mg en aquellos entre 15 y 30 Kg",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag157_uso_antiemeticos.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_zinc_alimentacion"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_sonda_o_iv"
+        }
+      ]
+    },
+    "trat_sonda_o_iv": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Fracaso de TRO",
+      "texto": "- Considerar sonda nasogástrica para pasar el mismo volumen en **4 horas**.\n- Si hay contraindicación (íleo, abdomen agudo, alteración de conciencia), pasar a hidratación endovenosa.",
+      "pie_nodo": "¿Vía de elección?",
+      "referencias": [
+        {
+          "titulo": "Uso de sonda nasogástrica",
+          "paginas": "120",
+          "texto": "Se puede considerar el uso de la sonda nasogástrica si el niño no es capaz de beber o vomita de forma persistente, administrar el mismo volumen en 4 horas",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag120_uso_sonda_nasogastrica.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sonda nasogástrica exitosa",
+          "siguiente_nodo": "trat_zinc_alimentacion"
+        },
+        {
+          "texto": "Endovenosa",
+          "siguiente_nodo": "trat_plan_c"
+        }
+      ]
+    },
+    "trat_plan_c": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Plan C",
+      "texto": "- Administrar **Lactato de Ringer** o Solución Salina 0.9% IV.\n- Dosis total: **100 mL/kg**.\n- Reevaluar cada 30 minutos. Si el pulso es débil, repetir carga de **30 mL/kg**.",
+      "tabla": {
+        "titulo": "Esquema de rehidratación endovenosa",
+        "columnas": [
+          "EDAD",
+          "Primero administrar 30 ml/Kg en:",
+          "Luego administrar 70 ml/Kg en:"
+        ],
+        "filas": [
+          [
+            "Lactantes (<12 meses)",
+            "1 hora",
+            "5 horas"
+          ],
+          [
+            "Niños (>=12 meses)",
+            "30 minutos",
+            "2.5 horas"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Rehidratación endovenosa",
+          "paginas": "129",
+          "texto": "Lactantes menores de 12 meses: primero administrar 30 ml/kg en 30 minutos, luego administrar 70 ml/kg en 5 ½horas",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag129_rehidratacion_endovenosa.png"
+        }
+      ]
+    },
+    "trat_zinc_alimentacion": {
+      "tipo": "pregunta",
+      "titulo": "Zinc y Alimentación",
+      "texto": "- Iniciar **zinc** por 10 a 14 días: <6 meses **10 mg/día**, >=6 meses **20 mg/día**.\n- Reiniciar dieta habitual inmediatamente tras rehidratación.\n- Mantener lactancia materna.\n- No usar fórmulas sin lactosa, probióticos ni antidiarreicos.",
+      "pie_nodo": "¿Requiere manejo antibiótico por disentería/cólera?",
+      "farmacos": [
+        {
+          "nombre": "Zinc",
+          "dosis": "**10 mg/día** (<6 meses) o **20 mg/día** (>=6 meses) PO",
+          "pauta": "Administrar diariamente por 10 a 14 días.",
+          "nota": "Preferir jarabe de sulfato o acetato, sin hierro.",
+          "paginas": "148"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Suplementación con Zinc",
+          "paginas": "148",
+          "texto": "10 mg en niños menores de 6 meses y 20 mg en niños entre 6 meses a 5 años, por 10 a 14 días",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag148_suplementacion_zinc.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_antibioticos"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "trat_antibioticos": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Antibióticos",
+      "texto": "- Disentería: **ácido nalidíxico 50-60 mg/kg/día** PO por 7 días.\n- Alternativas IV (sepsis/bacteriemia): **cefotaxima** o **ceftriaxona 100 mg/kg/día**.\n- Giardia/Ameba: **metronidazol 30 mg/kg/día** PO.",
+      "pie_nodo": "¿Qué paso sigue?",
+      "farmacos": [
+        {
+          "nombre": "Ácido nalidíxico",
+          "dosis": "**50-60 mg/kg/día** PO",
+          "pauta": "Dividida cada 6 horas por 7 días.",
+          "nota": "Opción empírica de primera línea para disentería.",
+          "paginas": "141"
+        },
+        {
+          "nombre": "Ceftriaxona",
+          "dosis": "**100 mg/kg/día** IV",
+          "pauta": "Dosis diaria para bacteriemia o infecciones complicadas.",
+          "nota": "Uso restringido al manejo intrahospitalario.",
+          "paginas": "6"
+        },
+        {
+          "nombre": "Metronidazol",
+          "dosis": "**30 mg/kg/día** PO",
+          "pauta": "Dosis diaria.",
+          "nota": "Primera elección para Giardia y Entamoeba histolytica.",
+          "paginas": "5"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Antibiótico empírico para disentería",
+          "posturas": [
+            {
+              "fuente": "F1000Research 2018",
+              "dice": "Ciprofloxacin as the first-line drug",
+              "paginas": "6"
+            },
+            {
+              "fuente": "MinSalud 2013",
+              "dice": "Ácido nalidíxico 50 a 60 mg/Kg por día",
+              "paginas": "141"
+            }
+          ],
+          "nota": "La guía colombiana prefiere ácido nalidíxico basado en perfiles de susceptibilidad locales."
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Antibiótico de primera línea",
+          "paginas": "141",
+          "texto": "Se recomienda utilizar ácido nalidíxico (opción terapéutica empírica de primera línea) en dosis de 50 a 60 mg/Kg por día por 7 días",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag141_antibiotico_primera_linea.png"
+        },
+        {
+          "titulo": "Terapia parenteral",
+          "paginas": "6",
+          "texto": "For parenteral therapy of diarrhea, ceftriaxone or ciprofloxacin may be considered, as both are effective against Gram-negative bacteria.",
+          "fuente": "OMS",
+          "anio": "2018",
+          "url": "https://doi.org/10.12688/f1000research.12328.1",
+          "cita": "OMS (2018). Antibiotic treatment of acute gastroenteritis in children [version.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag6_terapia_parenteral.png"
+        },
+        {
+          "titulo": "Tratamiento Giardia/Ameba",
+          "paginas": "5",
+          "texto": "For moderate or severe disease particularly in oncologic patients, the first-line treatment is oral metronidazole (30 mg/kg/day)",
+          "fuente": "OMS",
+          "anio": "2018",
+          "url": "https://doi.org/10.12688/f1000research.12328.1",
+          "cita": "OMS (2018). Antibiotic treatment of acute gastroenteritis in children [version.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag5_tratamiento_giardia_ameba.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_gastroenteritis_aguda_aiepi_pag4_figure_1_criteria_to.png",
+          "titulo": "Figure 1. Criteria to decide antibiotic treatment in children with infectious diarrhea."
+        }
+      ]
+    },
+    "seg_criterios_alta": {
+      "tipo": "pregunta",
+      "titulo": "Criterios de alta",
+      "texto": "- Dar de alta si el niño está hidratado y tolera la vía oral.\n- El cuidador debe ser capaz de mantener la hidratación en casa.\n- Explicar signos de alarma para reconsultar.",
+      "pie_nodo": "¿Cumple criterios de alta?",
+      "referencias": [
+        {
+          "titulo": "Indicaciones de alta",
+          "paginas": "114",
+          "texto": "Se recomienda considerar el alta a los niños que estuvieron en urgencias o en un servicio de hospitalización, únicamente cuando se cumplan todos los siguientes requisitos",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_indicaciones_alta.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_signos_alarma"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_observacion"
+        }
+      ]
+    },
+    "seg_observacion": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Observación",
+      "texto": "- Mantener en observación si hay factores de riesgo: <3 meses, desnutrición grave, **>10 deposiciones/día**, o cuidador no responsable.\n- Reevaluar hidratación continuamente.",
+      "pie_nodo": "¿Qué paso sigue?",
+      "referencias": [
+        {
+          "titulo": "Criterios de observación",
+          "paginas": "112",
+          "texto": "Cuando tengan factores de riesgo para muerte (diez o más deposiciones diarreicas en las últimas 24 horas y cinco o más vómitos en las últimas 4 horas) permanezcan",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag112_criterios_observacion.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reevaluar",
+          "siguiente_nodo": "seg_criterios_alta"
+        }
+      ]
+    },
+    "seg_signos_alarma": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "titulo": "Signos de alarma",
+      "texto": "- Indicar regreso a urgencias si presenta: letargia, incapacidad para beber, ojos hundidos, o sangre en las heces.\n- Vigilar si hay **>=10 deposiciones** en 24 h o **>=5 vómitos** en 4 h.",
+      "referencias": [
+        {
+          "titulo": "Educación al cuidador",
+          "paginas": "114",
+          "texto": "Tengan un cuidador responsable que haya sido debidamente instruido en cuanto a signos de alarma y de nueva consulta, que es capaz de continuar el manejo",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_educacion_cuidador.png"
+        }
+      ]
+    }
+  },
+  "referencias": [
+    {
+      "titulo": "GPC-8-GAI-EDA_GuiaparaUsuarios.indd",
+      "fuente": "MinSalud",
+      "anio": "2013",
+      "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd."
+    },
+    {
+      "titulo": "Antibiotic treatment of acute gastroenteritis in children [version",
+      "fuente": "OMS",
+      "anio": "2018",
+      "url": "https://doi.org/10.12688/f1000research.12328.1",
+      "cita": "OMS (2018). Antibiotic treatment of acute gastroenteritis in children [version."
+    }
+  ],
+  "carpeta_evidencia": "gastroenteritis_aguda_aiepi",
+  "carpeta_imagenes": "gastroenteritis_aguda_aiepi"
+}
