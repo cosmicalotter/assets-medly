@@ -1,149 +1,281 @@
 {
-  "titulo": "Faringoamigdalitis bacteriana en pediatría",
+  "titulo": "Faringoamigdalitis estreptocócica en pediatría",
   "version": "IDSA 2012",
+  "carpeta_evidencia": "amigdalitis_pediatrica",
   "nodoInicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
-      "tipo": "informativo",
-      "texto": "- Faringoamigdalitis en niños: distinguir la causa viral (la más frecuente) de la estreptocócica (EBHGA).\n- El objetivo es tratar con antibiótico solo a quien tiene una prueba positiva.",
+      "tipo": "pregunta",
+      "texto": "GUÍA DE PRÁCTICA CLÍNICA: FARINGOAMIGDALITIS ESTREPTOCÓCICA EN PEDIATRÍA",
       "opciones": [
         {
           "texto": "",
-          "siguiente_nodo": "eval_viral"
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "",
+          "siguiente_nodo": "nodo_tratamiento"
         }
       ],
       "referencias": [
         {
           "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
           "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
+          "paginas": "e86",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del título y resumen de la guía",
+          "texto": "Group A streptococcus is the most common bacterial cause of acute pharyngitis, accounting for 15%-30% of cases in children."
         }
       ]
     },
-    "eval_viral": {
+    "nodo_diagnostico": {
+      "estilo": "rama",
+      "texto": "Diagnóstico",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "diag_evaluacion_inicial"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección de diagnóstico",
+          "texto": "Testing for GAS pharyngitis by rapid antigen detection test and/or culture should be performed because the clinical features alone do not reliably discriminate between GAS and viral pharyngitis."
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "",
+          "siguiente_nodo": "trat_primera_linea"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e88",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección de tratamiento",
+          "texto": "Patients with acute GAS pharyngitis should be treated with an appropriate antibiotic at an appropriate dose for a duration likely to eradicate the organism from the pharynx (usually 10 days)."
+        }
+      ]
+    },
+    "diag_evaluacion_inicial": {
       "tipo": "pregunta",
-      "texto": "- Buscar rasgos de infección viral: **tos**, **rinorrea**, **disfonía**, úlceras orales o conjuntivitis.",
+      "texto": "1. Evaluar odinofagia, fiebre, exudado amigdalino y adenopatía cervical anterior dolorosa.\n2. Buscar rasgos que sugieren causa viral: **tos**, **rinorrea**, **disfonía**, úlceras orales o conjuntivitis.",
       "pie_nodo": "¿Hay rasgos claros de infección viral?",
+      "nota_adicional": "Ningún hallazgo clínico aislado distingue con seguridad la faringitis estreptocócica de la viral.",
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "viral"
+          "siguiente_nodo": "diag_viral"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "eval_mcisaac"
+          "siguiente_nodo": "diag_edad"
         }
       ],
       "referencias": [
         {
           "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
           "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de los rasgos que sugieren etiología viral",
+          "texto": "Testing for GAS pharyngitis usually is not recommended for children or adults with acute pharyngitis with clinical and epidemiological features that strongly suggest a viral etiology (eg, cough, rhinorrhea, hoarseness, and oral ulcers)."
         }
       ]
     },
-    "viral": {
+    "diag_edad": {
+      "tipo": "pregunta",
+      "texto": "1. Confirmar la edad del paciente.\n2. En menores de 3 años la faringitis estreptocócica y la fiebre reumática son poco frecuentes.",
+      "pie_nodo": "¿El paciente tiene 3 años o más?",
+      "nota_adicional": "En menores de 3 años se puede considerar la prueba si hay factores de riesgo, como un hermano mayor con infección estreptocócica.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_mcisaac"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_viral"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación sobre menores de 3 años",
+          "texto": "Diagnostic testing for GAS pharyngitis is not indicated for children <3 years old because acute rheumatic fever is rare in children <3 years old and the incidence of streptococcal pharyngitis and the classic presentation of streptococcal pharyngitis are uncommon in this age group."
+        }
+      ]
+    },
+    "diag_mcisaac": {
+      "tipo": "pregunta",
+      "texto": "1. Calcular el puntaje de Centor modificado (McIsaac), 1 punto cada uno:\n   - Fiebre **> 38 °C**.\n   - Ausencia de tos.\n   - Adenopatía cervical anterior dolorosa.\n   - Exudado o inflamación amigdalina.\n   - Edad **3 a 14 años**.",
+      "pie_nodo": "¿Puntaje de 2 o más?",
+      "nota_adicional": "El puntaje orienta a quién hacer la prueba; no reemplaza la confirmación microbiológica.",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_prueba_rapida"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_viral"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "A clinical score to reduce unnecessary antibiotic use in patients with sore throat (McIsaac, CMAJ 1998)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/9475915/",
+          "paginas": "75-83",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla del puntaje",
+          "texto": "The score was calculated by adding points for temperature > 38 °C, absence of cough, swollen tender anterior cervical nodes, tonsillar swelling or exudate, and age 3-14 years."
+        }
+      ]
+    },
+    "diag_prueba_rapida": {
+      "tipo": "pregunta",
+      "texto": "1. Tomar hisopado faríngeo para **prueba rápida de antígeno** (PRDA) de estreptococo del grupo A.",
+      "pie_nodo": "¿La prueba rápida es positiva?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_estreptococica"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_cultivo"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación de la prueba rápida",
+          "texto": "Positive RADTs do not necessitate a back-up culture because they are highly specific."
+        }
+      ]
+    },
+    "diag_cultivo": {
+      "tipo": "pregunta",
+      "texto": "1. En niños, confirmar una prueba rápida negativa con **cultivo faríngeo**.",
+      "pie_nodo": "¿El cultivo es positivo?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_estreptococica"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_viral"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación del cultivo de respaldo",
+          "texto": "In children and adolescents, negative RADT tests should be backed up by a throat culture."
+        }
+      ]
+    },
+    "diag_viral": {
       "estilo": "exito",
       "tipo": "informativo",
-      "texto": "- Probable **faringitis viral**: no se recomienda prueba para EBHGA ni antibiótico.\n- Manejo sintomático y signos de alarma para reconsultar.",
+      "texto": "- Probable faringitis viral.\n- No se recomienda antibiótico.\n- Manejo sintomático (analgésico y antipirético) y signos de alarma para reconsultar.",
+      "nota_adicional": "Reconsultar si hay dificultad para tragar o respirar, babeo, trismo o fiebre que persiste.",
       "referencias": [
         {
           "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
           "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
+          "paginas": "e87",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre el manejo de la faringitis viral",
+          "texto": "Testing for GAS pharyngitis usually is not recommended for children or adults with acute pharyngitis with clinical and epidemiological features that strongly suggest a viral etiology."
         }
       ]
     },
-    "eval_mcisaac": {
-      "tipo": "pregunta",
-      "texto": "- Puntaje de **Centor modificado (McIsaac)**: fiebre > 38 °C, ausencia de tos, adenopatía cervical anterior dolorosa, exudado o inflamación amigdalina (1 punto cada uno) y edad 3-14 años (+1).\n- En menores de 3 años la faringitis estreptocócica es rara y no se busca de rutina.",
-      "pie_nodo": "¿Puntaje de 2 o más?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "prueba"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "viral"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "A clinical score to reduce unnecessary antibiotic use in patients with sore throat",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/9475915/",
-          "fuente": "CMAJ",
-          "anio": "1998",
-          "cita": "McIsaac WJ, et al. CMAJ. 1998;158(1):75-83."
-        },
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
-        }
-      ]
-    },
-    "prueba": {
-      "tipo": "pregunta",
-      "texto": "- Hacer **prueba rápida de antígeno** para EBHGA.\n- Si es negativa en niños, confirmar con **cultivo faríngeo**.",
-      "pie_nodo": "¿Prueba rápida o cultivo positivo?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "estreptococica"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "viral"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
-        }
-      ]
-    },
-    "estreptococica": {
+    "diag_estreptococica": {
       "estilo": "advertencia",
       "tipo": "informativo",
-      "texto": "- **Faringoamigdalitis estreptocócica** confirmada.\n- Primera línea: **amoxicilina** o **penicilina** por 10 días.\n- Alergia a penicilina: cefalosporina de primera generación si no fue anafilaxia; si no, **clindamicina** o un **macrólido**.\n- Dosis y vías según la guía de referencia.",
+      "texto": "- Faringoamigdalitis por **estreptococo del grupo A** confirmada.\n- Iniciar tratamiento antibiótico.",
+      "opciones": [
+        {
+          "texto": "Ver tratamiento",
+          "siguiente_nodo": "trat_primera_linea"
+        }
+      ],
       "referencias": [
         {
           "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
           "url": "https://doi.org/10.1093/cid/cis629",
-          "fuente": "IDSA",
-          "anio": "2012",
-          "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
+          "paginas": "e88",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la indicación de tratamiento",
+          "texto": "Patients with acute GAS pharyngitis should be treated with an appropriate antibiotic."
+        }
+      ]
+    },
+    "trat_primera_linea": {
+      "tipo": "pregunta",
+      "texto": "1. Confirmar si el paciente tiene alergia a la penicilina y de qué tipo.",
+      "pie_nodo": "¿Tiene alergia a la penicilina?",
+      "opciones": [
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_penicilina"
+        },
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_alergia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e88",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de antibióticos",
+          "texto": "Penicillin or amoxicillin is the recommended drug of choice for those individuals not allergic to penicillin."
+        }
+      ]
+    },
+    "trat_penicilina": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "texto": "- **Amoxicilina** oral o **penicilina V** oral por **10 días**.\n- Alternativa si no se garantiza la adherencia: **penicilina G benzatínica** intramuscular, dosis única.",
+      "nota_adicional": "El tratamiento completo busca prevenir la fiebre reumática; no suspender al mejorar los síntomas.",
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e88",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de antibióticos de primera línea",
+          "texto": "Penicillin or amoxicillin is the recommended drug of choice ... Benzathine penicillin G, intramuscularly, single dose."
+        }
+      ]
+    },
+    "trat_alergia": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "texto": "- Alergia sin anafilaxia: **cefalosporina de primera generación** (cefalexina o cefadroxilo) por **10 días**.\n- Anafilaxia o alergia inmediata: **clindamicina** por **10 días** o **azitromicina** por **5 días**.",
+      "nota_adicional": "Considerar la resistencia local a macrólidos.",
+      "referencias": [
+        {
+          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
+          "url": "https://doi.org/10.1093/cid/cis629",
+          "paginas": "e88",
+          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación para alérgicos a penicilina",
+          "texto": "Treatment of GAS pharyngitis in penicillin-allergic individuals should include a first-generation cephalosporin (for those not anaphylactically sensitive) for 10 days, clindamycin or clarithromycin for 10 days, or azithromycin for 5 days."
         }
       ]
     }
-  },
-  "referencias": [
-    {
-      "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-      "url": "https://doi.org/10.1093/cid/cis629",
-      "fuente": "IDSA",
-      "anio": "2012",
-      "cita": "Shulman ST, et al. Clin Infect Dis. 2012;55(10):e86-e102."
-    },
-    {
-      "titulo": "A clinical score to reduce unnecessary antibiotic use in patients with sore throat",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/9475915/",
-      "fuente": "CMAJ",
-      "anio": "1998",
-      "cita": "McIsaac WJ, et al. CMAJ. 1998;158(1):75-83."
-    }
-  ]
+  }
 }
