@@ -1,281 +1,745 @@
 {
-  "titulo": "Faringoamigdalitis estreptocócica en pediatría",
-  "version": "IDSA 2012",
-  "carpeta_evidencia": "amigdalitis_pediatrica",
-  "nodoInicial": "nodo_raiz",
+  "titulo": "Faringoamigdalitis Aguda Bacteriana Pediátrica",
+  "version": "ACORL 2024 / NICE 2018",
+  "descripcion": "Diagnóstico y tratamiento de la faringoamigdalitis aguda en pediatría, incluyendo criterios de uso de antibióticos y manejo de complicaciones.",
+  "especialidad": "Pediatría",
+  "nodo_inicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "GUÍA DE PRÁCTICA CLÍNICA: FARINGOAMIGDALITIS ESTREPTOCÓCICA EN PEDIATRÍA",
+      "texto": "Faringoamigdalitis Aguda Bacteriana Pediátrica",
       "opciones": [
         {
-          "texto": "",
+          "texto": "Diagnóstico",
           "siguiente_nodo": "nodo_diagnostico"
         },
         {
-          "texto": "",
+          "texto": "Tratamiento",
           "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
         }
       ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e86",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte del título y resumen de la guía",
-          "texto": "Group A streptococcus is the most common bacterial cause of acute pharyngitis, accounting for 15%-30% of cases in children."
-        }
-      ]
+      "pie_nodo": "¿Qué parte del manejo desea consultar?"
     },
     "nodo_diagnostico": {
+      "tipo": "rama",
       "estilo": "rama",
       "texto": "Diagnóstico",
       "opciones": [
         {
-          "texto": "",
+          "texto": "Iniciar evaluación",
           "siguiente_nodo": "diag_evaluacion_inicial"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección de diagnóstico",
-          "texto": "Testing for GAS pharyngitis by rapid antigen detection test and/or culture should be performed because the clinical features alone do not reliably discriminate between GAS and viral pharyngitis."
-        }
-      ]
-    },
-    "nodo_tratamiento": {
-      "estilo": "rama",
-      "texto": "Tratamiento",
-      "opciones": [
-        {
-          "texto": "",
-          "siguiente_nodo": "trat_primera_linea"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e88",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la sección de tratamiento",
-          "texto": "Patients with acute GAS pharyngitis should be treated with an appropriate antibiotic at an appropriate dose for a duration likely to eradicate the organism from the pharynx (usually 10 days)."
         }
       ]
     },
     "diag_evaluacion_inicial": {
       "tipo": "pregunta",
-      "texto": "1. Evaluar odinofagia, fiebre, exudado amigdalino y adenopatía cervical anterior dolorosa.\n2. Buscar rasgos que sugieren causa viral: **tos**, **rinorrea**, **disfonía**, úlceras orales o conjuntivitis.",
-      "pie_nodo": "¿Hay rasgos claros de infección viral?",
-      "nota_adicional": "Ningún hallazgo clínico aislado distingue con seguridad la faringitis estreptocócica de la viral.",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_viral"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "diag_edad"
-        }
+      "titulo": "Signos de alarma",
+      "texto": "- Buscar signos de complicación supurativa: dificultad respiratoria, estridor, disfagia severa o sialorrea.\n- Evaluar si el paciente está sistémicamente muy enfermo o tóxico.",
+      "pie_nodo": "¿Presenta signos de alarma o toxicidad sistémica?",
+      "chips": [
+        "Urgencia"
       ],
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de los rasgos que sugieren etiología viral",
-          "texto": "Testing for GAS pharyngitis usually is not recommended for children or adults with acute pharyngitis with clinical and epidemiological features that strongly suggest a viral etiology (eg, cough, rhinorrhea, hoarseness, and oral ulcers)."
+          "titulo": "Complicaciones",
+          "paginas": "548",
+          "texto": "Dentro de las complicaciones supurativas se encuentra la epiglotitis, el absceso periamigdalino y retrofaríngeo. Se debe sospechar ante la presencia de dificultad respiratoria, estridor, disfagia o sialorrea",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag548_complicaciones.png"
         }
-      ]
-    },
-    "diag_edad": {
-      "tipo": "pregunta",
-      "texto": "1. Confirmar la edad del paciente.\n2. En menores de 3 años la faringitis estreptocócica y la fiebre reumática son poco frecuentes.",
-      "pie_nodo": "¿El paciente tiene 3 años o más?",
-      "nota_adicional": "En menores de 3 años se puede considerar la prueba si hay factores de riesgo, como un hermano mayor con infección estreptocócica.",
+      ],
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "diag_mcisaac"
+          "siguiente_nodo": "diag_alarma_hospital"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "diag_viral"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación sobre menores de 3 años",
-          "texto": "Diagnostic testing for GAS pharyngitis is not indicated for children <3 years old because acute rheumatic fever is rare in children <3 years old and the incidence of streptococcal pharyngitis and the classic presentation of streptococcal pharyngitis are uncommon in this age group."
+          "siguiente_nodo": "diag_escala_centor"
         }
       ]
     },
-    "diag_mcisaac": {
-      "tipo": "pregunta",
-      "texto": "1. Calcular el puntaje de Centor modificado (McIsaac), 1 punto cada uno:\n   - Fiebre **> 38 °C**.\n   - Ausencia de tos.\n   - Adenopatía cervical anterior dolorosa.\n   - Exudado o inflamación amigdalina.\n   - Edad **3 a 14 años**.",
-      "pie_nodo": "¿Puntaje de 2 o más?",
-      "nota_adicional": "El puntaje orienta a quién hacer la prueba; no reemplaza la confirmación microbiológica.",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_prueba_rapida"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "diag_viral"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "A clinical score to reduce unnecessary antibiotic use in patients with sore throat (McIsaac, CMAJ 1998)",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/9475915/",
-          "paginas": "75-83",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla del puntaje",
-          "texto": "The score was calculated by adding points for temperature > 38 °C, absence of cough, swollen tender anterior cervical nodes, tonsillar swelling or exudate, and age 3-14 years."
-        }
-      ]
-    },
-    "diag_prueba_rapida": {
-      "tipo": "pregunta",
-      "texto": "1. Tomar hisopado faríngeo para **prueba rápida de antígeno** (PRDA) de estreptococo del grupo A.",
-      "pie_nodo": "¿La prueba rápida es positiva?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_estreptococica"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "diag_cultivo"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación de la prueba rápida",
-          "texto": "Positive RADTs do not necessitate a back-up culture because they are highly specific."
-        }
-      ]
-    },
-    "diag_cultivo": {
-      "tipo": "pregunta",
-      "texto": "1. En niños, confirmar una prueba rápida negativa con **cultivo faríngeo**.",
-      "pie_nodo": "¿El cultivo es positivo?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_estreptococica"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "diag_viral"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación del cultivo de respaldo",
-          "texto": "In children and adolescents, negative RADT tests should be backed up by a throat culture."
-        }
-      ]
-    },
-    "diag_viral": {
-      "estilo": "exito",
+    "diag_alarma_hospital": {
       "tipo": "informativo",
-      "texto": "- Probable faringitis viral.\n- No se recomienda antibiótico.\n- Manejo sintomático (analgésico y antipirético) y signos de alarma para reconsultar.",
-      "nota_adicional": "Reconsultar si hay dificultad para tragar o respirar, babeo, trismo o fiebre que persiste.",
+      "estilo": "peligro",
+      "titulo": "Derivación urgente",
+      "texto": "- Derivar a urgencias para asegurar la vía aérea y administrar tratamiento intravenoso.\n- Sospechar absceso periamigdalino, retrofaríngeo o epiglotitis.",
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e87",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte sobre el manejo de la faringitis viral",
-          "texto": "Testing for GAS pharyngitis usually is not recommended for children or adults with acute pharyngitis with clinical and epidemiological features that strongly suggest a viral etiology."
+          "titulo": "Referral to hospital",
+          "paginas": "8",
+          "texto": "Refer people to hospital if they have acute sore throat associated with any of the following: a severe systemic infection... severe suppurative complications",
+          "fuente": "NICE",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng84",
+          "cita": "NICE (2026). Sore throat (acute): antimicrobial prescribing.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag8_referral_to_hospital.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Absceso periamigdalino",
+          "siguiente_nodo": "trat_absceso_periamigdalino"
+        },
+        {
+          "texto": "Espacios profundos o duda diagnóstica",
+          "siguiente_nodo": "diag_imagenes"
+        }
+      ],
+      "pie_nodo": "¿Qué complicación se sospecha?"
+    },
+    "diag_escala_centor": {
+      "tipo": "pregunta",
+      "titulo": "Escala clínica",
+      "texto": "- Aplicar la escala de Centor o McIsaac a todo paciente con sospecha de faringoamigdalitis aguda.\n- No solicitar hemograma, PCR, VSG ni procalcitonina en casos no complicados.",
+      "pie_nodo": "¿Puntuación de Centor o McIsaac?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 1",
+          "paginas": "541",
+          "texto": "Se recomienda la implementación de la escala de Centor o McIsaac en todos los pacientes con sospecha de faringoamigdalitis aguda.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag541_recomendacion_1.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "0 a 2 puntos",
+          "siguiente_nodo": "diag_baja_probabilidad"
+        },
+        {
+          "texto": "3 a 5 puntos",
+          "siguiente_nodo": "diag_alta_probabilidad"
+        }
+      ],
+      "calculadora": {
+        "archivo": "centor.json",
+        "ramificar": false
+      },
+      "media": [
+        {
+          "recurso": "figura_amigdalitis_bacteriana_pediatricos_pag553_sospecha_clinica_faringoamigdalitis_implementacion.png",
+          "titulo": "Sospecha clínica de faringoamigdalitis | Implementación de la Escala de Centor | 1-2 puntos | >3 puntos | Manejo sintomático | Pruebas \nrápidas de detección de "
         }
       ]
     },
-    "diag_estreptococica": {
+    "diag_baja_probabilidad": {
+      "tipo": "pregunta",
+      "titulo": "Baja probabilidad",
+      "texto": "- Considerar etiología viral.\n- No prescribir antibióticos ni realizar pruebas microbiológicas adicionales de rutina.",
+      "pie_nodo": "¿Hay sospecha clínica de mononucleosis infecciosa?",
+      "nota_adicional": "La faringoamigdalitis viral es la causa del 70-95% de los casos en menores de 3 años.",
+      "referencias": [
+        {
+          "titulo": "No antibiotic",
+          "paginas": "6",
+          "texto": "People who are unlikely to benefit from an antibiotic (FeverPAIN score of 0 or 1, or Centor score of 0, 1 or 2): Do not offer an antibiotic prescription.",
+          "fuente": "NICE",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng84",
+          "cita": "NICE (2026). Sore throat (acute): antimicrobial prescribing.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag6_no_antibiotic.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_mononucleosis"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_sintomatico"
+        }
+      ]
+    },
+    "diag_mononucleosis": {
+      "tipo": "informativo",
+      "titulo": "Prueba de Epstein-Barr",
+      "texto": "- Realizar monotest o prueba rápida para anticuerpos heterófilos.\n- Sospechar ante linfadenopatías generalizadas, hepatoesplenomegalia o falta de respuesta al tratamiento.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 6",
+          "paginas": "544",
+          "texto": "Se recomienda la realización de monotest o PRDA heterófilos para VEB en caso de sospecha de mononucleosis infecciosa o en pacientes con factores de riesgo",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag544_recomendacion_6.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar manejo",
+          "siguiente_nodo": "trat_sintomatico"
+        }
+      ]
+    },
+    "diag_alta_probabilidad": {
+      "tipo": "pregunta",
       "estilo": "advertencia",
-      "tipo": "informativo",
-      "texto": "- Faringoamigdalitis por **estreptococo del grupo A** confirmada.\n- Iniciar tratamiento antibiótico.",
-      "opciones": [
-        {
-          "texto": "Ver tratamiento",
-          "siguiente_nodo": "trat_primera_linea"
-        }
-      ],
+      "titulo": "Alta probabilidad",
+      "texto": "- Realizar prueba rápida de detección de antígenos (PRDA) o cultivo orofaríngeo.\n- No solicitar títulos de ASLO en la infección aguda.\n- Si hay Centor o McIsaac de 3 o más y **no hay PRDA disponible**, la guía acepta iniciar antibiótico.\n- Con PRDA negativa no se indica antibiótico: manejo sintomático. El cultivo se reserva para casos atípicos, sospecha de portador crónico, inmunosupresión o alto riesgo de fiebre reumática.",
+      "pie_nodo": "¿Cuál es el resultado de la PRDA o su disponibilidad?",
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e88",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la indicación de tratamiento",
-          "texto": "Patients with acute GAS pharyngitis should be treated with an appropriate antibiotic."
-        }
-      ]
-    },
-    "trat_primera_linea": {
-      "tipo": "pregunta",
-      "texto": "1. Confirmar si el paciente tiene alergia a la penicilina y de qué tipo.",
-      "pie_nodo": "¿Tiene alergia a la penicilina?",
-      "opciones": [
-        {
-          "texto": "No",
-          "siguiente_nodo": "trat_penicilina"
+          "titulo": "Recomendación 2",
+          "paginas": "542",
+          "texto": "Se recomienda la realización de una PRDA o toma de cultivo orofaríngeo en caso de puntaje de Centor o McIsaac por encima de 3 puntos.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag542_recomendacion_2.png"
         },
         {
-          "texto": "Sí",
-          "siguiente_nodo": "trat_alergia"
+          "titulo": "Disponibilidad de la PRDA en Colombia",
+          "paginas": "543",
+          "texto": "debido a la falta de disponibilidad de las PRDA en nuestro medio y las dificultades en su acceso, se acepta el inicio de terapia antibiótica en paciente con puntaje de Centor o McIsaac por encima de 3 puntos",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag543_prda_disponibilidad.png"
+        },
+        {
+          "titulo": "Indicaciones del cultivo faríngeo",
+          "paginas": "543",
+          "texto": "solo se recomienda realizar cultivos faríngeos en casos atípicos, sospecha de portador crónico de EBGA, pacientes con inmunosupresión conocida y en situaciones con alto riesgo de fiebre reumática",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag543_recomendacion_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Positiva o no disponible",
+          "siguiente_nodo": "trat_antibiotico_primera_linea"
+        },
+        {
+          "texto": "Negativa",
+          "siguiente_nodo": "trat_sintomatico"
+        }
+      ]
+    },
+    "diag_imagenes": {
+      "tipo": "informativo",
+      "titulo": "Imágenes diagnósticas",
+      "texto": "- No solicitar tomografía ni ecografía de cuello de forma rutinaria.\n- Reservar las imágenes sólo si se sospecha una complicación supurativa profunda.\n- Con sospecha de infección de espacios profundos, o duda entre colección organizada y flemón: **TC de cuello con contraste** (previa creatinina) o ecografía de cuello.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 7",
+          "paginas": "539",
+          "texto": "No Se recomienda el uso de imágenes diagnósticas en los pacientes con FAAB, excepto si se sospecha una complicación supurativa asociada.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag539_recomendacion_7.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Manejo de la complicación",
+          "siguiente_nodo": "trat_absceso_periamigdalino"
+        }
+      ],
+      "pie_nodo": "¿Qué paso sigue?"
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "Iniciar tratamiento",
+          "siguiente_nodo": "trat_sintomatico"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_amigdalitis_bacteriana_pediatricos_pag553_nodo_tratamiento.png"
+        }
+      ]
+    },
+    "trat_sintomatico": {
+      "tipo": "pregunta",
+      "titulo": "Manejo sintomático",
+      "texto": "- Iniciar **acetaminofén** o **ibuprofeno** para el control del dolor y la fiebre.\n- No usar esteroides sistémicos de forma rutinaria en faringoamigdalitis no complicada.",
+      "pie_nodo": "¿Cumple criterios para manejo antibiótico (Centor >=3 y PRDA positiva o no disponible)?",
+      "farmacos": [
+        {
+          "nombre": "Ibuprofeno",
+          "dosis": "**20 mg/kg/día** VO",
+          "pauta": "Repartido en 2 o 3 tomas.",
+          "paginas": "546"
+        },
+        {
+          "nombre": "Naproxeno",
+          "dosis": "**5 mg/kg/dosis** VO cada 8 a 12 h",
+          "pauta": "Solo en mayores de 2 años.",
+          "paginas": "546"
         }
       ],
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e88",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de antibióticos",
-          "texto": "Penicillin or amoxicillin is the recommended drug of choice for those individuals not allergic to penicillin."
+          "titulo": "Recomendación 8",
+          "paginas": "545",
+          "texto": "Se recomienda el uso de acetaminofén o antiinflamatorios no esteroideos (AINE) para el manejo del dolor o la fiebre relacionados con FAAB.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag545_recomendacion_8.png"
+        },
+        {
+          "titulo": "Dosis de AINE",
+          "paginas": "546",
+          "texto": "se recomienda el uso de naproxeno a dosis de 5mg/Kg/dosis cada 8 a 12 horas en niños mayores de 2 años; ibuprofeno a dosis de 20 mg/kg/día en niños, repartida en dos o tres tomas",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag546_aine_dosis.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_antibiotico_primera_linea"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "alta_recomendaciones"
         }
       ]
     },
-    "trat_penicilina": {
+    "trat_antibiotico_primera_linea": {
+      "tipo": "pregunta",
+      "titulo": "Antibiótico 1ª línea",
+      "texto": "- Iniciar **amoxicilina** oral o **penicilina benzatínica** intramuscular.\n- El objetivo es acortar los síntomas y prevenir complicaciones supurativas y no supurativas.",
+      "nota_adicional": "La penicilina V es de elección teórica, pero su baja disponibilidad local hace preferible la amoxicilina.",
+      "farmacos": [
+        {
+          "nombre": "Amoxicilina",
+          "dosis": "**50 mg/kg** VO cada 24 h o **25 mg/kg** cada 12 h, máx. **1000 mg**",
+          "pauta": "Administrar por 10 días.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Penicilina benzatínica",
+          "dosis": "<27 kg: **600.000 UI** IM; >27 kg: **1.200.000 UI** IM",
+          "pauta": "Dosis única.",
+          "paginas": "547"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Antibiótico de primera línea",
+          "posturas": [
+            {
+              "fuente": "ACORL 2024",
+              "dice": "Amoxicilina 50 mg/kg/día VO o Penicilina benzatínica IM",
+              "paginas": "547"
+            },
+            {
+              "fuente": "NICE 2018",
+              "dice": "Fenoximetilpenicilina 125-500 mg VO cada 6 h",
+              "paginas": "10"
+            }
+          ],
+          "nota": "ACORL prefiere amoxicilina por la baja disponibilidad de penicilina V en el medio local."
+        }
+      ],
+      "tabla": {
+        "titulo": "Esquemas antimicrobianos en FAAB pediátrica",
+        "columnas": [
+          "Antibiótico",
+          "Dosis pediátrica",
+          "Duración"
+        ],
+        "filas": [
+          [
+            "Amoxicilina",
+            "50 mg/kg/día VO cada 24 h o 25 mg/kg cada 12 h (máx. 1000 mg)",
+            "10 días"
+          ],
+          [
+            "Penicilina benzatínica",
+            "<27 kg: 600.000 UI IM. >27 kg: 1.200.000 UI IM",
+            "Dosis única"
+          ],
+          [
+            "Azitromicina",
+            "12 mg/kg/día VO cada 24 h (máx. 500 mg)",
+            "5 días"
+          ],
+          [
+            "Clindamicina",
+            "10 mg/kg/dosis VO cada 6 a 8 h (máx. 300 mg/dosis)",
+            "10 días"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Texto de soporte",
+          "paginas": "547",
+          "texto": "se debe considerar la Amoxicilina oral como primera línea de tratamiento contra FAAB o la penicilina benzatínica intramuscular, como otra opción terapéutica.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag547_texto_soporte.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Alergia, intolerancia o no disponibilidad",
+          "siguiente_nodo": "trat_antibiotico_segunda_linea",
+          "descripcion": "Alternativa de tratamiento para pacientes con alergia a la penicilina o betalactámicos."
+        },
+        {
+          "texto": "Continuar seguimiento",
+          "siguiente_nodo": "trat_seguimiento_antibiotico",
+          "descripcion": "Paso a la evaluación de la respuesta clínica tras iniciar el tratamiento de primera línea."
+        }
+      ],
+      "pie_nodo": "¿Puede recibir amoxicilina o penicilina benzatínica?"
+    },
+    "trat_antibiotico_segunda_linea": {
+      "tipo": "informativo",
+      "titulo": "Antibiótico 2ª línea",
+      "texto": "- Indicada por alergia, intolerancia, no disponibilidad o fracaso terapéutico (48 a 72 h sin respuesta).\n- Opciones: **azitromicina**, **clindamicina**, **amoxicilina con ácido clavulánico**, **claritromicina** o **cefuroxima**.\n- Contraindicaciones del grupo: hipersensibilidad y mononucleosis infecciosa por VEB (riesgo de exantema medicamentoso).",
+      "farmacos": [
+        {
+          "nombre": "Azitromicina",
+          "dosis": "**12 mg/kg/día** VO cada 24 h, máx. **500 mg**",
+          "pauta": "Administrar por 5 días.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Clindamicina",
+          "dosis": "**10 mg/kg/dosis** VO cada 6 a 8 h, máx. **300 mg/dosis**",
+          "pauta": "Administrar por 10 días.",
+          "paginas": "547",
+          "nota": "No disponible en suspensión."
+        },
+        {
+          "nombre": "Amoxicilina con ácido clavulánico",
+          "dosis": "**50 mg/kg** VO cada 24 h, máx. **1 g**",
+          "pauta": "Administrar por 5 días.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Claritromicina",
+          "dosis": "**7,5 mg/kg/dosis** VO cada 12 h, máx. **250 mg/dosis**",
+          "pauta": "Administrar por 10 días.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Cefuroxima",
+          "dosis": "**30 mg/kg/día** VO cada 12 h",
+          "pauta": "Administrar por 10 días.",
+          "paginas": "547"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Texto de soporte",
+          "paginas": "547",
+          "texto": "Las alternativas disponibles, en caso de que la primera línea esté contraindicada o se presente fracaso terapéutico... se concentran en los grupos de macrólidos o las cefalosporinas",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag547_texto_soporte_2.png"
+        },
+        {
+          "titulo": "Tabla 6. Esquemas antimicrobianos",
+          "paginas": "547",
+          "texto": "Segunda línea en caso de alergia, intolerancia o no disponibilidad: Azitromicina, Clindamicina, Amoxicilina con ácido clavulánico, Claritromicina, Cefuroxime",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag547_tabla_6_esquemas_antibioticos.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar seguimiento",
+          "siguiente_nodo": "trat_seguimiento_antibiotico"
+        }
+      ],
+      "nota_adicional": "Con hipersensibilidad inmediata a las penicilinas puede haber reacción cruzada con cefalosporinas y otros betalactámicos: usar con precaución. Con función renal alterada o comorbilidades, consultar con infectología."
+    },
+    "trat_seguimiento_antibiotico": {
+      "tipo": "pregunta",
+      "titulo": "Seguimiento",
+      "texto": "- Evaluar la respuesta clínica a las **48 a 72 horas**.\n- No realizar hisopado faríngeo ni PRDA como seguimiento posterior al tratamiento.\n- Sin respuesta a las 48 a 72 horas (fracaso terapéutico): cambiar a macrólido o cefalosporina y descartar complicaciones.",
+      "pie_nodo": "¿Respuesta clínica a las 48 a 72 h?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 3",
+          "paginas": "543",
+          "texto": "No se recomienda el uso de PRDA o cultivo de orofaringe como seguimiento posterior al tratamiento.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag543_recomendacion_3.png"
+        },
+        {
+          "titulo": "Fracaso terapéutico y alternativas",
+          "paginas": "547",
+          "texto": "Las alternativas disponibles, en caso de que la primera línea esté contraindicada o se presente fracaso terapéutico (48 a 72 horas sin respuesta clínica), se concentran en los grupos de macrólidos o las cefalosporinas",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag547_fracaso_terapeutico_alternativas.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Mejoría",
+          "siguiente_nodo": "alta_recomendaciones"
+        },
+        {
+          "texto": "Sin respuesta",
+          "siguiente_nodo": "trat_antibiotico_segunda_linea",
+          "color": "naranja"
+        },
+        {
+          "texto": "Signos de complicación",
+          "siguiente_nodo": "trat_absceso_periamigdalino",
+          "color": "rojo"
+        }
+      ]
+    },
+    "trat_absceso_periamigdalino": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Absceso periamigdalino",
+      "texto": "- Sospechar absceso ante voz gangosa, trismo, edema marcado unilateral o desviación de la úvula.\n- Iniciar hidratación y antibiótico intravenoso (**ampicilina-sulbactam** o **clindamicina**).\n- Considerar **corticoides sistémicos** para reducir dolor y trismo.",
+      "pie_nodo": "¿Requiere manejo quirúrgico por colección organizada?",
+      "nota_adicional": "El no tratar de forma temprana puede conducir a deshidratación grave, neumonía por aspiración o compromiso de la vía aérea.",
+      "farmacos": [
+        {
+          "nombre": "Ampicilina-sulbactam",
+          "dosis": "**25-50 mg/kg** IV cada 6 h",
+          "pauta": "Administrar por 10 a 14 días.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Clindamicina IV",
+          "dosis": "**20 a 40 mg/kg/día** IV cada 6 a 8 h, máx. **300 mg/dosis**",
+          "pauta": "Administrar por 10 a 14 días.",
+          "paginas": "547"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 13",
+          "paginas": "549",
+          "texto": "El manejo del absceso periamigdalino incluye hidratación, antibiótico sistémico y tratamiento quirúrgico, bien sea con aspiración con aguja o mediante incisión y drenaje.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag549_recomendacion_13.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_drenaje_absceso"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "alta_recomendaciones"
+        }
+      ]
+    },
+    "trat_drenaje_absceso": {
+      "tipo": "informativo",
+      "titulo": "Drenaje y cirugía",
+      "texto": "- Realizar aspiración con aguja o incisión y drenaje.\n- Indicar amigdalectomía si hay al menos un episodio previo de absceso resuelto o criterios de faringoamigdalitis recurrente.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 15",
+          "paginas": "549",
+          "texto": "Se recomienda realizar la amigdalectomía en pacientes con al menos un episodio de absceso periamigdalino resuelto o en pacientes que cumplen criterios de faringoamigdalitis aguda recurrente",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag549_recomendacion_15.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Plan al alta",
+          "siguiente_nodo": "alta_recomendaciones"
+        }
+      ]
+    },
+    "alta_recomendaciones": {
+      "tipo": "resultado",
       "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- **Amoxicilina** oral o **penicilina V** oral por **10 días**.\n- Alternativa si no se garantiza la adherencia: **penicilina G benzatínica** intramuscular, dosis única.",
-      "nota_adicional": "El tratamiento completo busca prevenir la fiebre reumática; no suspender al mejorar los síntomas.",
+      "titulo": "Alta y recomendaciones",
+      "texto": "- Explicar que el curso usual de la enfermedad es de **7 días**.\n- Aconsejar ingesta adecuada de líquidos.\n- Indicar reconsulta si los síntomas empeoran rápidamente o no mejoran tras una semana.",
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e88",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la tabla de antibióticos de primera línea",
-          "texto": "Penicillin or amoxicillin is the recommended drug of choice ... Benzathine penicillin G, intramuscularly, single dose."
+          "titulo": "1.1.4 Give advice",
+          "paginas": "5",
+          "texto": "Give advice about: the usual course of acute sore throat (can last around 1 week) managing symptoms, including pain, fever and dehydration, with self-care",
+          "fuente": "NICE",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng84",
+          "cita": "NICE (2026). Sore throat (acute): antimicrobial prescribing.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag5_1_1_4_give.png"
         }
       ]
     },
-    "trat_alergia": {
-      "estilo": "advertencia",
-      "tipo": "informativo",
-      "texto": "- Alergia sin anafilaxia: **cefalosporina de primera generación** (cefalexina o cefadroxilo) por **10 días**.\n- Anafilaxia o alergia inmediata: **clindamicina** por **10 días** o **azitromicina** por **5 días**.",
-      "nota_adicional": "Considerar la resistencia local a macrólidos.",
+    "nodo_seguimiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Seguimiento",
+      "opciones": [
+        {
+          "texto": "Evaluar recurrencia",
+          "siguiente_nodo": "seg_recurrencia"
+        }
+      ]
+    },
+    "seg_recurrencia": {
+      "tipo": "pregunta",
+      "titulo": "Faringoamigdalitis recurrente",
+      "texto": "- Evaluar criterios de Paradise: **>=7 episodios** en el último año, **>=5/año** en 2 años, o **>=3/año** en 3 años.\n- Considerar amigdalectomía si cumple criterios y los episodios están bien documentados con clínica y cultivo positivo.\n- Primer episodio de recurrencia: repetir un ciclo de antibiótico, con el mismo de primera línea u otro de los recomendados.",
+      "pie_nodo": "¿Presenta recurrencias frecuentes con clínica leve?",
+      "nota_adicional": "La amigdalectomía se realiza de 4 a 12 semanas posterior al episodio agudo, una vez resuelto el proceso inflamatorio.",
       "referencias": [
         {
-          "titulo": "Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by the IDSA",
-          "url": "https://doi.org/10.1093/cid/cis629",
-          "paginas": "e88",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recorte de la recomendación para alérgicos a penicilina",
-          "texto": "Treatment of GAS pharyngitis in penicillin-allergic individuals should include a first-generation cephalosporin (for those not anaphylactically sensitive) for 10 days, clindamycin or clarithromycin for 10 days, or azithromycin for 5 days."
+          "titulo": "Anexo técnico",
+          "paginas": "550",
+          "texto": "Las guías de amigdalectomía de la Academia Americana de Otorrinolaringología y Cirugía de Cabeza y Cuello definen amigdalitis recurrente según los criterios de Paradise",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag550_anexo_tecnico.png"
+        },
+        {
+          "titulo": "Tabla 7. Criterios de Paradise",
+          "paginas": "550",
+          "texto": "7 o más episodios en el último año. 5 o más episodios al año en los últimos 2 años. 3 o más episodios al año en los últimos 3 años.",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag550_tabla_7_paradise.png"
+        },
+        {
+          "titulo": "Primer episodio de recurrencia",
+          "paginas": "550",
+          "texto": "Ante un primer episodio de recurrencia, se ha de repetir un ciclo de tratamiento antibiótico utilizando el mismo fármaco de primera línea u otro de los recomendados para el manejo de los episodios agudos",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag550_recurrencia_repetir_ciclo.png"
+        },
+        {
+          "titulo": "Tabla 6. Esquemas en faringoamigdalitis recurrente",
+          "paginas": "547",
+          "texto": "Faringoamigdalitis aguda recurrente: Clindamicina 7 mg/kg/dosis VO cada 8 horas; Amoxicilina con ácido clavulánico 50 mg/kg VO cada 24 horas; 10 días",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag547_tabla_6_esquemas_antibioticos.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_portador_cronico"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "alta_recomendaciones"
+        }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Clindamicina (recurrente)",
+          "dosis": "**7 mg/kg/dosis** VO cada 8 h, máx. **300 mg/dosis**",
+          "pauta": "Administrar por 10 días.",
+          "nota": "No disponible en suspensión.",
+          "paginas": "547"
+        },
+        {
+          "nombre": "Amoxicilina con ácido clavulánico (recurrente)",
+          "dosis": "**50 mg/kg** VO cada 24 h, máx. **1 g**",
+          "pauta": "Administrar por 10 días.",
+          "paginas": "547"
+        }
+      ]
+    },
+    "seg_portador_cronico": {
+      "tipo": "informativo",
+      "titulo": "Portador crónico",
+      "texto": "- Considerar estado de portador crónico de EBGA si hay recurrencias frecuentes con clínica leve y cultivo positivo.\n- Tratar sólo si hay riesgo de fiebre reumática o inmunosupresión grave.",
+      "referencias": [
+        {
+          "titulo": "Anexo técnico",
+          "paginas": "550",
+          "texto": "En caso de recurrencias frecuentes hay que valorar la posibilidad de que se trate de un portador crónico de EBGA, que se define como la persona asintomática",
+          "fuente": "ACORL",
+          "anio": "2024",
+          "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+          "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de.",
+          "imagen_evidencia": "evidencia_amigdalitis_bacteriana_pediatricos_pag550_anexo_tecnico_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Fin de evaluación",
+          "siguiente_nodo": "alta_recomendaciones"
         }
       ]
     }
-  }
+  },
+  "referencias": [
+    {
+      "titulo": "Guía para el diagnóstico y tratamiento de",
+      "fuente": "ACORL",
+      "anio": "2024",
+      "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+      "cita": "ACORL (2024). Guía para el diagnóstico y tratamiento de."
+    },
+    {
+      "titulo": "Sore throat (acute): antimicrobial prescribing",
+      "fuente": "NICE",
+      "anio": "2026",
+      "url": "https://www.nice.org.uk/guidance/ng84",
+      "cita": "NICE (2026). Sore throat (acute): antimicrobial prescribing."
+    }
+  ],
+  "carpeta_evidencia": "Amigdalitis_bacteriana_pediatricos",
+  "carpeta_imagenes": "Amigdalitis_bacteriana_pediatricos"
 }
