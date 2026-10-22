@@ -1,0 +1,1060 @@
+{
+  "titulo": "VIH en Pediatría",
+  "version": "MinSalud 2021",
+  "descripcion": "Prevención, diagnóstico, tratamiento y seguimiento de la infección por VIH en niñas, niños y adolescentes.",
+  "especialidad": "Infectología Pediátrica",
+  "nodo_inicial": "nodo_raiz",
+  "nodos": {
+    "nodo_raiz": {
+      "tipo": "pregunta",
+      "texto": "VIH en Pediatría",
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "nodo_diagnostico": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Diagnóstico",
+          "siguiente_nodo": "diag_edad"
+        }
+      ],
+      "texto": "Diagnóstico"
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Tratamiento",
+          "siguiente_nodo": "trat_prof_riesgo"
+        }
+      ],
+      "texto": "Tratamiento"
+    },
+    "nodo_seguimiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "opciones": [
+        {
+          "texto": "Seguimiento",
+          "siguiente_nodo": "seg_inicial"
+        }
+      ],
+      "texto": "Seguimiento"
+    },
+    "diag_edad": {
+      "tipo": "pregunta",
+      "titulo": "Edad del paciente",
+      "texto": "- Seleccionar el algoritmo diagnóstico según la edad del paciente.",
+      "pie_nodo": "¿Edad del paciente?",
+      "opciones": [
+        {
+          "texto": "< 18 meses",
+          "siguiente_nodo": "diag_riesgo_tmi"
+        },
+        {
+          "texto": ">= 18 meses",
+          "siguiente_nodo": "diag_mayor_18"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_vih_pediatrico_pag63_considerar_carga_viral_arn.png",
+          "titulo": " \nConsiderar carga viral de ARN como detectable si su resultado es mayor al límite de detectabilidad \nde la prueba utilizada. \n \nEn ciertas situaciones clínic"
+        }
+      ]
+    },
+    "diag_riesgo_tmi": {
+      "tipo": "pregunta",
+      "titulo": "Riesgo de TMI",
+      "texto": "- Clasificar el riesgo de transmisión materno-infantil (TMI) para definir el esquema de pruebas.",
+      "pie_nodo": "¿Riesgo de transmisión materno-infantil (TMI)?",
+      "nota_adicional": "Bajo riesgo: madre con TAR en gestación y CV indetectable 2-4 semanas antes del parto. El resto son alto riesgo.",
+      "opciones": [
+        {
+          "texto": "Bajo riesgo",
+          "siguiente_nodo": "diag_menor_18_bajo"
+        },
+        {
+          "texto": "Alto riesgo",
+          "siguiente_nodo": "diag_menor_18_alto"
+        }
+      ]
+    },
+    "diag_menor_18_bajo": {
+      "tipo": "pregunta",
+      "titulo": "Primera prueba (Bajo riesgo)",
+      "texto": "- Realizar **carga viral ARN** a las **2 semanas** de finalizar la profilaxis (aprox. a las **6 semanas** de vida).",
+      "pie_nodo": "¿Resultado de la CV ARN?",
+      "chips": [
+        "< 18 meses",
+        "Bajo riesgo"
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 14",
+          "paginas": "58",
+          "texto": "Se recomienda realizar la carga viral ARN para el diagnóstico de infección por VIH en niños de bajo riesgo*, a las 2 semanas de finalizado el manejo profiláctico",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag58_recomendacion_14.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Detectable",
+          "siguiente_nodo": "diag_cv_inmediata"
+        },
+        {
+          "texto": "Indetectable",
+          "siguiente_nodo": "diag_cv_4_meses"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_vih_pediatrico_pag61_considerar_carga_viral_arn.png",
+          "titulo": " \nConsiderar carga viral de ARN como detectable si su resultado es mayor al límite de detectabilidad \nde la prueba utilizada. \n \nEn ciertas situaciones clínic"
+        }
+      ]
+    },
+    "diag_menor_18_alto": {
+      "tipo": "pregunta",
+      "titulo": "Primera prueba (Alto riesgo)",
+      "texto": "- Realizar **carga viral ARN o ADN proviral** en las primeras **72 horas** de vida.",
+      "pie_nodo": "¿Resultado de la prueba?",
+      "chips": [
+        "< 18 meses",
+        "Alto riesgo"
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 11",
+          "paginas": "55",
+          "texto": "una prueba de carga viral ARN o ADN proviral para el diagnóstico de infección por VIH en niños de alto riesgo, preferiblemente en las primeras 72 horas de nacidos.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag55_recomendacion_11.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Detectable",
+          "siguiente_nodo": "diag_cv_inmediata"
+        },
+        {
+          "texto": "Indetectable",
+          "siguiente_nodo": "diag_cv_8_semanas"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_vih_pediatrico_pag62_considerar_carga_viral_arn.png",
+          "titulo": " \nConsiderar carga viral de ARN como detectable si su resultado es mayor al límite de detectabilidad \nde la prueba utilizada. \n \nEn ciertas situaciones clínic"
+        }
+      ]
+    },
+    "diag_cv_8_semanas": {
+      "tipo": "pregunta",
+      "titulo": "Segunda prueba (Alto riesgo)",
+      "texto": "- Realizar **carga viral ARN** a las **2 semanas** de finalizar la profilaxis (aprox. a las **8 semanas** de vida).",
+      "pie_nodo": "¿Resultado de la CV ARN?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 12",
+          "paginas": "56",
+          "texto": "Se recomienda realizar la carga viral ARN para el diagnóstico de infección por VIH en niños de alto y bajo riesgo, 2 semanas después de finalizado el manejo profiláctico",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag56_recomendacion_12.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Detectable",
+          "siguiente_nodo": "diag_cv_inmediata"
+        },
+        {
+          "texto": "Indetectable",
+          "siguiente_nodo": "diag_cv_4_meses"
+        }
+      ]
+    },
+    "diag_cv_4_meses": {
+      "tipo": "pregunta",
+      "titulo": "Prueba a los 4 meses",
+      "texto": "- Realizar **carga viral ARN** a los **4 meses** de edad.",
+      "pie_nodo": "¿Resultado de la CV ARN?",
+      "referencias": [
+        {
+          "titulo": "Consideraciones del panel",
+          "paginas": "57",
+          "texto": "Se recomienda realizar la carga viral ARN a los 4 meses de edad del niño expuesto para definir el diagnóstico de VIH",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag57_consideraciones_panel.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Detectable",
+          "siguiente_nodo": "diag_cv_inmediata"
+        },
+        {
+          "texto": "Indetectable",
+          "siguiente_nodo": "diag_descartado_tmi"
+        }
+      ]
+    },
+    "diag_cv_inmediata": {
+      "tipo": "pregunta",
+      "titulo": "Confirmación inmediata",
+      "texto": "- Realizar **carga viral ARN inmediata** para confirmar el diagnóstico tras un primer resultado detectable.",
+      "pie_nodo": "¿Resultado de la CV confirmatoria?",
+      "nota_adicional": "Considerar carga viral detectable si su resultado es mayor al límite de detectabilidad de la prueba utilizada.",
+      "referencias": [
+        {
+          "titulo": "Consideraciones del panel",
+          "paginas": "57",
+          "texto": "se recomienda realizar una carga viral ARN de forma inmediata de acuerdo al algoritmo diagnóstico propuesto con el objetivo de confirmar el diagnóstico.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag57_consideraciones_panel_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Detectable",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "Indetectable",
+          "siguiente_nodo": "diag_discordante_tmi"
+        }
+      ]
+    },
+    "diag_discordante_tmi": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Resultados discordantes",
+      "texto": "- Descartar diagnóstico por el momento.\n- Solicitar valoración por **infectología pediátrica** para definir conducta.",
+      "referencias": [
+        {
+          "titulo": "Figura 1",
+          "paginas": "61",
+          "texto": "En ciertas situaciones clínicas, que se presuponen excepcionales, se requiere el concepto de infectología pediátrica para definir el paso a seguir.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag61_figura_1.png"
+        }
+      ]
+    },
+    "diag_descartado_tmi": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "titulo": "Diagnóstico descartado",
+      "texto": "- Diagnóstico de VIH **descartado**.\n- Continuar seguimiento clínico hasta los **18 meses** de edad.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 29",
+          "paginas": "91",
+          "texto": "A todos las niñas y niños independiente de su clasificación de riesgo de transmisión materno-infantil de VIH se recomienda un seguimiento clínico a los 18 meses de edad.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag91_recomendacion_29.png"
+        }
+      ]
+    },
+    "diag_mayor_18": {
+      "tipo": "pregunta",
+      "titulo": "Primera prueba (>= 18 meses)",
+      "texto": "- Realizar **primera prueba**: prueba rápida de 3ª o 4ª generación, ELISA, quimioluminiscencia o prueba molecular en punto de atención.",
+      "pie_nodo": "¿Resultado de la primera prueba?",
+      "chips": [
+        ">= 18 meses"
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 16",
+          "paginas": "64",
+          "texto": "prueba rápida de tercera o cuarta generación o inmunoensayo (ELISA o quimioluminiscencia) o prueba molecular en el punto de atención) como una opción de tamización inicial",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag64_recomendacion_16.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_mayor_18_segunda"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_descartado_mayor"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "figura_vih_pediatrico_pag66_66.png",
+          "titulo": "66"
+        }
+      ]
+    },
+    "diag_mayor_18_segunda": {
+      "tipo": "pregunta",
+      "titulo": "Segunda prueba",
+      "texto": "- Realizar **segunda prueba**: prueba rápida diferente a la primera, ELISA, quimioluminiscencia o prueba molecular.",
+      "pie_nodo": "¿Resultado de la segunda prueba?",
+      "referencias": [
+        {
+          "titulo": "Figura 4",
+          "paginas": "68",
+          "texto": "Segunda prueba Prueba rápida diferente a la primera prueba o inmunoensayo (ELISA o quimioluminiscencia) realizada o respaldada por un laboratorio clínico habilitado",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag68_figura_4.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reactiva",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "No reactiva",
+          "siguiente_nodo": "diag_mayor_18_tercera"
+        }
+      ]
+    },
+    "diag_mayor_18_tercera": {
+      "tipo": "pregunta",
+      "titulo": "Tercera prueba",
+      "texto": "- Realizar **tercera prueba**: carga viral ARN, ELISA convencional o Western Blot.",
+      "pie_nodo": "¿Resultado de la tercera prueba?",
+      "referencias": [
+        {
+          "titulo": "Figura 4",
+          "paginas": "68",
+          "texto": "Tercera prueba Carga viral (ARN viral) o inmunoensayo convencional (ELISA o quimioluminiscencia) o prueba rápida o prueba molecular en el punto de atención o Western Blot",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag68_figura_4_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Positiva",
+          "siguiente_nodo": "diag_confirmado"
+        },
+        {
+          "texto": "Negativa",
+          "siguiente_nodo": "diag_descartado_mayor"
+        },
+        {
+          "texto": "Indeterminada",
+          "siguiente_nodo": "diag_indeterminado_mayor"
+        }
+      ]
+    },
+    "diag_descartado_mayor": {
+      "tipo": "resultado",
+      "estilo": "exito",
+      "titulo": "Diagnóstico descartado",
+      "texto": "- Diagnóstico de VIH **descartado**.\n- Brindar información y asesoría.",
+      "referencias": [
+        {
+          "titulo": "Tabla de interpretación",
+          "paginas": "68",
+          "texto": "Escenario A Resultado no reactivo - - Negativo Brindar información. Escenario E Resultado reactivo Resultado no reactivo Negativa Negativo Brindar información.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag68_tabla_interpretacion.png"
+        }
+      ]
+    },
+    "diag_indeterminado_mayor": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Resultado indeterminado",
+      "texto": "- Resultado **indeterminado** o no concluyente.\n- Repetir el algoritmo en **1 mes** y remitir a infectología o médico experto.",
+      "referencias": [
+        {
+          "titulo": "Figura 4",
+          "paginas": "68",
+          "texto": "Interpretación: INDETERMINADO / NO CONCLUYENTE para VIH Repetir algoritmo en un mes y remitir a infectología ó médico experto",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag68_figura_4_3.png"
+        }
+      ]
+    },
+    "diag_confirmado": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Diagnóstico confirmado",
+      "texto": "- Diagnóstico de VIH **confirmado**.\n- Notificar al SIVIGILA e iniciar TAR inmediatamente.",
+      "pie_nodo": "¿Iniciar tratamiento?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 17",
+          "paginas": "68",
+          "texto": "Se recomienda iniciar terapia antirretroviral en niñas, niños y adolescentes, una vez reciba la confirmación del diagnóstico de infección con VIH, independiente de CD4",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag68_recomendacion_17.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_inicio"
+        }
+      ]
+    },
+    "trat_prof_riesgo": {
+      "tipo": "pregunta",
+      "titulo": "Riesgo para profilaxis",
+      "texto": "- Clasificar el riesgo de TMI para definir el esquema de profilaxis neonatal.",
+      "pie_nodo": "¿Riesgo de transmisión materno-infantil (TMI)?",
+      "opciones": [
+        {
+          "texto": "Bajo riesgo",
+          "siguiente_nodo": "trat_prof_bajo"
+        },
+        {
+          "texto": "Alto riesgo",
+          "siguiente_nodo": "trat_prof_alto_edad"
+        }
+      ]
+    },
+    "trat_prof_bajo": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis bajo riesgo",
+      "texto": "- **Zidovudina 4 mg/kg** VO cada 12 h por **4 semanas**.\n- Alimentación con fórmula exclusiva.",
+      "nota_adicional": "Iniciar la profilaxis neonatal lo más cerca al nacimiento, idealmente en las primeras 6 a 12 horas de vida.",
+      "chips": [
+        "Profilaxis",
+        "Bajo riesgo"
+      ],
+      "farmacos": [
+        {
+          "nombre": "Zidovudina",
+          "dosis": "**4 mg/kg** VO cada 12 h",
+          "pauta": "Durante 4 semanas.",
+          "paginas": "42"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 1",
+          "paginas": "42",
+          "texto": "Se recomienda utilizar la zidovudina oral durante 4 semanas (4 mg/kg/dosis vía oral cada 12 horas) como profilaxis en neonatos de bajo riesgo de transmisión materno infantil del VIH.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag42_recomendacion_1.png"
+        }
+      ]
+    },
+    "trat_prof_alto_edad": {
+      "tipo": "pregunta",
+      "titulo": "Edad gestacional",
+      "texto": "- Definir el esquema de profilaxis de alto riesgo según la edad gestacional al nacer.",
+      "pie_nodo": "¿Edad gestacional al nacer?",
+      "opciones": [
+        {
+          "texto": ">= 37 semanas",
+          "siguiente_nodo": "trat_prof_alto_37"
+        },
+        {
+          "texto": "34 a < 37 semanas",
+          "siguiente_nodo": "trat_prof_alto_34_37"
+        },
+        {
+          "texto": "32 a < 34 semanas",
+          "siguiente_nodo": "trat_prof_alto_32_34"
+        },
+        {
+          "texto": "< 32 semanas",
+          "siguiente_nodo": "trat_prof_alto_menor_32"
+        }
+      ]
+    },
+    "trat_prof_alto_37": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis alto riesgo (>= 37 sem)",
+      "texto": "- **Zidovudina 4 mg/kg** VO cada 12 h por **6 semanas**.\n- **Lamivudina 2 mg/kg** VO cada 12 h por **6 semanas**.\n- **Nevirapina 6 mg/kg** VO cada 12 h por **4 semanas**.",
+      "chips": [
+        "Profilaxis",
+        "Alto riesgo",
+        ">= 37 sem"
+      ],
+      "farmacos": [
+        {
+          "nombre": "Zidovudina",
+          "dosis": "**4 mg/kg** VO cada 12 h",
+          "pauta": "Durante 6 semanas.",
+          "paginas": "45"
+        },
+        {
+          "nombre": "Lamivudina",
+          "dosis": "**2 mg/kg** VO cada 12 h",
+          "pauta": "Durante 6 semanas.",
+          "paginas": "45"
+        },
+        {
+          "nombre": "Nevirapina",
+          "dosis": "**6 mg/kg** VO cada 12 h",
+          "pauta": "Durante 4 semanas.",
+          "paginas": "45"
+        }
+      ],
+      "tabla": {
+        "titulo": "Profilaxis en neonatos de alto riesgo a término",
+        "columnas": [
+          "Medicamento",
+          "Dosis",
+          "Duración"
+        ],
+        "filas": [
+          [
+            "Zidovudina",
+            "4 mg/kg/dosis VO cada 12 horas",
+            "6 semanas"
+          ],
+          [
+            "Lamivudina",
+            "2 mg/kg/dosis VO cada 12 horas",
+            "6 semanas"
+          ],
+          [
+            "Nevirapina",
+            "6 mg/kg/dosis VO cada 12 horas",
+            "4 semanas"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Tabla 5",
+          "paginas": "45",
+          "texto": "Zidovudina 4 mg/kg/dosis VO cada 12 horas por 6 semanas Lamivudina 2 mg/kg/dosis VO cada 12 horas por 6 semanas Nevirapina 6 mg/kg/dosis VO cada 12 horas por 4 semanas",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag45_tabla_5.png"
+        }
+      ]
+    },
+    "trat_prof_alto_34_37": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis alto riesgo (34-37 sem)",
+      "texto": "- **Zidovudina 4 mg/kg** VO cada 12 h por **6 semanas**.\n- **Lamivudina 2 mg/kg** VO cada 12 h por **6 semanas**.\n- **Nevirapina 4 mg/kg** VO cada 12 h (1ª sem), luego **6 mg/kg** VO cada 12 h (sem 2-4).",
+      "farmacos": [
+        {
+          "nombre": "Nevirapina",
+          "dosis": "**4 mg/kg** VO cada 12 h (1ª sem), luego **6 mg/kg** VO cada 12 h",
+          "pauta": "Durante 4 semanas en total.",
+          "paginas": "49"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tabla 7",
+          "paginas": "49",
+          "texto": "Desde el nacimiento y durante la primera semana: 4 mg/kg/dosis VO cada 12 horas Semana 1 hasta la semana 4 de vida: 6 mg/kg/dosis VO cada 12 horas",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag49_tabla_7.png"
+        }
+      ]
+    },
+    "trat_prof_alto_32_34": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis alto riesgo (32-34 sem)",
+      "texto": "- **Zidovudina** VO cada 12 h por **6 semanas** (dosis según edad gestacional).\n- **Lamivudina 2 mg/kg** VO cada 12 h por **4 semanas**, luego **4 mg/kg** VO cada 12 h hasta sem 6.",
+      "farmacos": [
+        {
+          "nombre": "Lamivudina",
+          "dosis": "**2 mg/kg** VO cada 12 h (primeras 4 sem), luego **4 mg/kg** VO cada 12 h",
+          "pauta": "Durante 6 semanas en total.",
+          "paginas": "49"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 6",
+          "paginas": "50",
+          "texto": "Se recomienda el uso de la combinación de zidovudina por 6 semanas y lamivudina en neonatos de 32 – 34 semanas de gestación al nacimiento con criterios de alto riesgo",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag50_recomendacion_6.png"
+        }
+      ]
+    },
+    "trat_prof_alto_menor_32": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis alto riesgo (< 32 sem)",
+      "texto": "- **Zidovudina 2 mg/kg** VO cada 12 h por **4 semanas**, luego **3 mg/kg** VO cada 12 h hasta la semana 6.\n- Profilaxis única.",
+      "farmacos": [
+        {
+          "nombre": "Zidovudina",
+          "dosis": "**2 mg/kg** VO cada 12 h (primeras 4 sem), luego **3 mg/kg** VO cada 12 h",
+          "pauta": "Durante 6 semanas en total.",
+          "paginas": "49"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 7",
+          "paginas": "51",
+          "texto": "Se recomienda el uso de la zidovudina por 6 semanas como profilaxis única en neonatos de menos de 32 semanas de gestación al nacimiento con criterios de alto riesgo",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag51_recomendacion_7.png"
+        }
+      ]
+    },
+    "trat_inicio": {
+      "tipo": "pregunta",
+      "titulo": "Inicio de TAR",
+      "texto": "- Seleccionar el esquema de inicio de TAR según la edad del paciente.",
+      "pie_nodo": "¿Edad del paciente para inicio de TAR?",
+      "opciones": [
+        {
+          "texto": "Prematuro (>= 34 sem)",
+          "siguiente_nodo": "trat_tar_prematuro"
+        },
+        {
+          "texto": "A término (< 15 días)",
+          "siguiente_nodo": "trat_tar_menor_15d"
+        },
+        {
+          "texto": "< 1 año",
+          "siguiente_nodo": "trat_tar_menor_1a"
+        },
+        {
+          "texto": "1 a 12 años",
+          "siguiente_nodo": "trat_tar_1_12a"
+        },
+        {
+          "texto": "> 12 años",
+          "siguiente_nodo": "trat_tar_mayor_12a"
+        }
+      ]
+    },
+    "trat_tar_prematuro": {
+      "tipo": "pregunta",
+      "titulo": "TAR en prematuros",
+      "texto": "- Iniciar **Nevirapina + Lamivudina + Zidovudina**.\n- Excepto si la madre recibió NVP (riesgo de resistencia).",
+      "pie_nodo": "¿Continuar evaluación?",
+      "nota_adicional": "Prematuros con edad gestacional menor a 34 semanas deben ser evaluados por pediatra infectólogo.",
+      "chips": [
+        "TAR inicial",
+        "Prematuro"
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 18",
+          "paginas": "69",
+          "texto": "Iniciar un régimen basado en nevirapina (NVP) en combinación con dos Inhibidores nucleósidos de transcriptasa reversa (INTR) (lamivudina (3TC) + zidovudina (AZT))",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag69_recomendacion_18.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_tar_menor_15d": {
+      "tipo": "pregunta",
+      "titulo": "TAR a término (< 15 días)",
+      "texto": "- Iniciar **Nevirapina + Zidovudina + Lamivudina**.\n- Alternativa: **Raltegravir + AZT + 3TC** (si pesa > 2 kg y > 37 semanas de edad gestacional).",
+      "pie_nodo": "¿Continuar evaluación?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 18",
+          "paginas": "69",
+          "texto": "Niñas y niños a término, con edad menor a 15 días de nacido: Iniciar un régimen basado en: Nevirapina (NVP) en combinación con dos Inhibidores nucleósidos de transcriptasa reversa",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag69_recomendacion_18_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_tar_menor_1a": {
+      "tipo": "pregunta",
+      "titulo": "TAR en < 1 año",
+      "texto": "- Iniciar **Raltegravir + (AZT o ABC) + 3TC**.\n- Alternativa: **Lopinavir/ritonavir + (AZT o ABC) + 3TC** (sólo si > 42 semanas de edad gestacional y 14 días postnatal).",
+      "pie_nodo": "¿Continuar evaluación?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 18",
+          "paginas": "69",
+          "texto": "Menores de 1 año: Iniciar un régimen basado en: Raltegravir (RAL) en combinación con dos Inhibidores nucleósidos de transcriptasa reversa (INTR) (zidovudina (AZT) + lamivudina (3TC))",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag69_recomendacion_18_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_tar_1_12a": {
+      "tipo": "pregunta",
+      "titulo": "TAR de 1 a 12 años",
+      "texto": "- Iniciar **Raltegravir + (AZT o ABC) + 3TC**.\n- Alternativa: **Lopinavir/ritonavir + (AZT o ABC) + 3TC**.",
+      "pie_nodo": "¿Continuar evaluación?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 18",
+          "paginas": "70",
+          "texto": "Edad de 1 año a 12 años: Iniciar un régimen basado en: Raltegravir (RAL) en combinación con dos Inhibidores nucleósidos de transcriptasa reversa (INTR) (zidovudina (AZT) + lamivudina (3TC))",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag70_recomendacion_18.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_tar_mayor_12a": {
+      "tipo": "pregunta",
+      "titulo": "TAR en > 12 años",
+      "texto": "- Iniciar **Dolutegravir + Abacavir + Lamivudina** (o TDF + FTC).\n- Alternativa: Raltegravir o Efavirenz.",
+      "pie_nodo": "¿Se usará Abacavir?",
+      "nota_adicional": "En adolescentes gestantes, se podrán asumir las recomendaciones de adultos cuando exista desarrollo de caracteres sexuales secundarios (Tanner >= 4).",
+      "referencias": [
+        {
+          "titulo": "Recomendación 18",
+          "paginas": "70",
+          "texto": "Primera línea: Iniciar un régimen basado en dolutegravir (DTG) + abacavir (ABC) + lamivudina (3TC) o tenofovir disoproxilo (TDF) + emtricitabina (FTC)",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag70_recomendacion_18_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_hla_b5701"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_hla_b5701": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Prueba HLA-B*5701",
+      "texto": "- Realizar determinación del **HLA-B*5701** antes de iniciar Abacavir para evitar reacción de hipersensibilidad fatal.",
+      "pie_nodo": "¿Continuar evaluación?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 43",
+          "paginas": "104",
+          "texto": "Se recomienda realizar la determinación del HLA-B*5701 en toda persona viviendo con VIH antes del inicio de terapia antirretroviral que incluya abacavir.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag104_recomendacion_43.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla"
+        }
+      ]
+    },
+    "trat_falla": {
+      "tipo": "pregunta",
+      "titulo": "Falla virológica",
+      "texto": "- Falla virológica: **2 cargas virales > 200 copias**, o no indetectable al año.",
+      "pie_nodo": "¿Presenta falla virológica?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 40",
+          "paginas": "101",
+          "texto": "dos cargas virales mayor que 200 copias; que no baje el logaritmo a las 4-6 semanas de control; que al año con terapia antirretroviral no esté indetectable.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag101_recomendacion_40.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_genotipo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "trat_genotipo": {
+      "tipo": "pregunta",
+      "titulo": "Genotipificación",
+      "texto": "- Realizar **genotipificación** para evaluar resistencia.\n- Cambiar TAR basado en genotipo con apoyo de infectología pediátrica.",
+      "pie_nodo": "¿Continuar a seguimiento?",
+      "referencias": [
+        {
+          "titulo": "Recomendación 40",
+          "paginas": "101",
+          "texto": "Se recomienda realizar pruebas de genotipo para evaluar los genes de resistencia antirretroviral en pacientes que presenten falla virológica.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag101_recomendacion_40_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ]
+    },
+    "seg_inicial": {
+      "tipo": "pregunta",
+      "titulo": "Valoración inicial",
+      "texto": "- Valoración por equipo interdisciplinario.\n- Paraclínicos: hemograma, perfil lipídico y hepático, glicemia, amilasa, PPD, TSH, T4 libre, serologías, creatinina, PO, Rx tórax, CV VIH, CD3, CD4, CD8.",
+      "pie_nodo": "¿Siguiente paso?",
+      "nota_adicional": "La valoración inicial permite establecer el riesgo de complicaciones y la necesidad de profilaxis contra infecciones oportunistas.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 36",
+          "paginas": "97",
+          "texto": "Se recomienda realizar los siguientes estudios paraclínicos como parte de la valoración inicial a las niñas, niños y adolescentes viviendo con VIH: hemograma, perfil lipídico, perfil hepático, glicemia, amilasa",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag97_recomendacion_36.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Controles periódicos",
+          "siguiente_nodo": "seg_controles"
+        },
+        {
+          "texto": "Profilaxis oportunistas",
+          "siguiente_nodo": "seg_profilaxis_op"
+        }
+      ]
+    },
+    "seg_controles": {
+      "tipo": "resultado",
+      "titulo": "Controles periódicos",
+      "texto": "- Control a los **2 meses** de TAR y luego cada **6 meses**.\n- A los 2 meses y cada 6 meses: hemograma, CV VIH, CD3, CD4, CD8.\n- Cada 6 meses: perfil lipídico, hepático, glicemia, amilasa.",
+      "referencias": [
+        {
+          "titulo": "Recomendación 37",
+          "paginas": "98",
+          "texto": "se realicen los siguientes paraclínicos luego de dos meses de iniciada la terapia antirretroviral y posteriormente cada 6 meses: hemograma, carga viral para VIH, CD3, CD4 y CD8.",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag98_recomendacion_37.png"
+        }
+      ]
+    },
+    "seg_profilaxis_op": {
+      "tipo": "pregunta",
+      "titulo": "Profilaxis oportunistas",
+      "texto": "- Evaluar necesidad de profilaxis contra infecciones oportunistas según CD4 y edad.",
+      "pie_nodo": "¿Infección a prevenir?",
+      "opciones": [
+        {
+          "texto": "CMV",
+          "siguiente_nodo": "seg_prof_cmv"
+        },
+        {
+          "texto": "MAC",
+          "siguiente_nodo": "seg_prof_mac"
+        },
+        {
+          "texto": "Pneumocystis",
+          "siguiente_nodo": "seg_prof_pcp"
+        },
+        {
+          "texto": "Toxoplasmosis",
+          "siguiente_nodo": "seg_prof_toxo"
+        }
+      ]
+    },
+    "seg_prof_cmv": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis CMV",
+      "texto": "- Si CD4 **< 50** (>= 6 años) o **< 5%** (< 6 años) y CMV IgG+.\n- Iniciar **Valganciclovir 900 mg** VO al día (dosis adulto) o **7 x ASC x CrCl**.",
+      "chips": [
+        "Profilaxis",
+        "CMV"
+      ],
+      "farmacos": [
+        {
+          "nombre": "Valganciclovir",
+          "dosis": "**900 mg** VO al día o **7 x ASC x CrCl**",
+          "pauta": "Una vez al día con alimentos.",
+          "paginas": "108"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tabla 13",
+          "paginas": "108",
+          "texto": "Valganciclovir solución oral (50 mg/ml) a la dosis total en miligramos = 7 x superficie corporal (m2) x CrCl por vía oral una vez al día, con alimentos",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag108_tabla_13.png"
+        }
+      ]
+    },
+    "seg_prof_mac": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis MAC",
+      "texto": "- Si CD4 **< 50** (>= 6 años), **< 75** (2-5 años), **< 500** (1-2 años), **< 750** (< 1 año).\n- Iniciar **Claritromicina 7.5 mg/kg** VO cada 12 h o **Azitromicina 20 mg/kg** VO semanal.",
+      "farmacos": [
+        {
+          "nombre": "Claritromicina",
+          "dosis": "**7.5 mg/kg** VO cada 12 h",
+          "pauta": "Máximo 500 mg por dosis.",
+          "paginas": "109"
+        },
+        {
+          "nombre": "Azitromicina",
+          "dosis": "**20 mg/kg** VO una vez a la semana",
+          "pauta": "Máximo 1200 mg por dosis.",
+          "paginas": "109"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tabla 13",
+          "paginas": "109",
+          "texto": "Claritromicina 7.5 mg/kg de peso corporal por vía oral dos veces al día o Azitromicina 20 mg/kg de peso corporal por vía oral una vez a la semana",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag109_tabla_13.png"
+        }
+      ]
+    },
+    "seg_prof_pcp": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis Pneumocystis",
+      "texto": "- Todos los **< 12 meses**.\n- Si >= 1 año: CD4 **< 200** (>= 6 años) o **< 15%** (1-5 años).\n- Iniciar **Trimetoprim-sulfametoxazol 5 mg/kg** (de TMP) VO cada 12 h, 3 veces por semana.",
+      "nota_adicional": "La dosis diaria total no debe exceder los 320 mg de trimetoprim y 1600 mg de sulfametoxazol.",
+      "farmacos": [
+        {
+          "nombre": "Trimetoprim-sulfametoxazol",
+          "dosis": "**5 mg/kg** (de TMP) VO cada 12 h",
+          "pauta": "Tres veces a la semana en días consecutivos o alternos.",
+          "paginas": "111"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tabla 13",
+          "paginas": "111",
+          "texto": "Trimetoprim sulfametoxasol 5 mg/Kg cada 12h por vía oral, tres veces a la semana. En niñas y niños mayores de 10Kg calcular la dosis: 150mg/m2 de superficie corporal",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag111_tabla_13.png"
+        }
+      ]
+    },
+    "seg_prof_toxo": {
+      "tipo": "resultado",
+      "titulo": "Profilaxis Toxoplasmosis",
+      "texto": "- Si IgG+ y CD4 **< 100** (>= 6 años) o **< 15%** (< 6 años).\n- Iniciar **Trimetoprim-sulfametoxazol 5 mg/kg** (de TMP) VO cada 12 h, 3 veces por semana.",
+      "farmacos": [
+        {
+          "nombre": "Trimetoprim-sulfametoxazol",
+          "dosis": "**5 mg/kg** (de TMP) VO cada 12 h",
+          "pauta": "Tres veces a la semana.",
+          "paginas": "111"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tabla 13",
+          "paginas": "111",
+          "texto": "Trimetoprim sulfametoxasol 5 mg/Kg cada 12h por vía oral, tres veces a la semana. En niñas y niños mayores de 10Kg calcular la dosis: 150mg/m2 de superficie corporal",
+          "fuente": "MinSalud",
+          "anio": "2021",
+          "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC).",
+          "imagen_evidencia": "evidencia_vih_pediatrico_pag111_tabla_13_2.png"
+        }
+      ]
+    }
+  },
+  "referencias": [
+    {
+      "titulo": "Guía de Práctica Clínica (GPC)",
+      "fuente": "MinSalud",
+      "anio": "2021",
+      "cita": "MinSalud (2021). Guía de Práctica Clínica (GPC)."
+    }
+  ],
+  "carpeta_evidencia": "vih_pediatrico",
+  "carpeta_imagenes": "vih_pediatrico"
+}
