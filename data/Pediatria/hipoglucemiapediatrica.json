@@ -1,527 +1,1088 @@
 {
-  "titulo": "Evaluación y Manejo de Hipoglucemia Persistente en Neonatos, Lactantes y Niños",
-  "version": "2025",
-  "carpeta_evidencia": "hipoglucemiapediatrica",
-  "nodoInicial": "nodo_raiz",
+  "titulo": "Hipoglucemia Neonatal y Pediátrica",
+  "version": "AAP 2011 / BAPM 2017 / PES 2015",
+  "descripcion": "Diagnóstico y manejo de la hipoglucemia en neonatos y niños, incluyendo hiperinsulinismo y trastornos metabólicos.",
+  "especialidad": "Pediatría",
+  "nodo_inicial": "nodo_raiz",
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "GUÍA DE PRÁCTICA CLÍNICA: HIPOGLUCEMIA PEDIÁTRICA",
+      "texto": "Hipoglucemia Neonatal y Pediátrica",
       "opciones": [
         {
-          "texto": "",
+          "texto": "Diagnóstico",
           "siguiente_nodo": "nodo_diagnostico"
         },
         {
-          "texto": "",
+          "texto": "Tratamiento",
           "siguiente_nodo": "nodo_tratamiento"
-        }
-      ],
-      "referencias": [
+        },
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "1",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag1.png",
-          "texto": "To address these deficiencies, the Pediatric Endocrine Society convened an expert panel... to develop guidelines for managing hypoglycemia in neonates, infants, and children."
+          "texto": "Seguimiento",
+          "siguiente_nodo": "nodo_seguimiento"
         }
       ]
     },
     "nodo_diagnostico": {
+      "tipo": "rama",
       "estilo": "rama",
-      "texto": "Diagnóstico y Evaluación",
+      "texto": "Diagnóstico",
       "opciones": [
         {
-          "texto": "",
-          "siguiente_nodo": "diag_evaluacion_inicial"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "2",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag2.png",
-          "texto": "Section 1: Which Neonates, Infants, and Children to Evaluate for Hypoglycemia."
+          "texto": "Iniciar",
+          "siguiente_nodo": "diag_edad"
         }
       ]
     },
-    "diag_evaluacion_inicial": {
+    "diag_edad": {
       "tipo": "pregunta",
-      "texto": "- Verificar estado clínico del paciente.\n- Determinar la edad, capacidad de comunicación y factores de riesgo para hipoglucemia persistente.",
-      "pie_nodo": "¿A qué grupo clínico pertenece el paciente a evaluar?",
-      "nota_adicional": "Factores de riesgo neonatal incluyen: grande o pequeño para edad gestacional, asfixia/isquemia perinatal, hijo de madre diabética, prematurez, síndromes genéticos (ej. Beckwith-Wiedemann) o defectos de línea media facial.",
+      "titulo": "Grupo de edad",
+      "texto": "- Seleccionar el grupo de edad del paciente para iniciar la evaluación.",
+      "pie_nodo": "¿Qué edad tiene el paciente?",
       "opciones": [
         {
-          "texto": "Niño/Lactante capaz de comunicar síntomas",
-          "siguiente_nodo": "diag_nino_comunica"
+          "texto": "Neonato (<28 días)",
+          "siguiente_nodo": "diag_riesgo"
         },
         {
-          "texto": "Lactante/Niño incapaz de comunicar síntomas",
-          "siguiente_nodo": "diag_lactante_nocomunica"
-        },
-        {
-          "texto": "Neonato de alto riesgo",
-          "siguiente_nodo": "diag_neonato_riesgo"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "4",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag4.png",
-          "texto": "Table. Recognizing and managing neonates at increased risk for a persistent hypoglycemia disorder. Includes LGA, perinatal stress, premature, IDM, genetic syndromes."
+          "texto": "Lactante o niño mayor",
+          "siguiente_nodo": "diag_ninos_mayores"
         }
       ]
     },
-    "diag_nino_comunica": {
+    "diag_riesgo": {
       "tipo": "pregunta",
-      "texto": "- Evaluar presencia de síntomas neurogénicos o neuroglucopénicos.\n- Realizar toma de glucosa plasmática confirmatoria por laboratorio.\n- Observar respuesta al tratamiento.",
-      "pie_nodo": "¿Se documenta la presencia clínica de la Tríada de Whipple?",
-      "nota_adicional": "Los medidores capilares (point-of-care) tienen un margen de error de 10-15 mg/dL; siempre confirme con muestra plasmática de laboratorio.",
+      "titulo": "Factores de riesgo",
+      "texto": "- Evaluar factores de riesgo de hipoglucemia neonatal:\n  - PEG, GEG, hijo de madre diabética.\n  - Prematuridad tardía, asfixia perinatal, hipotermia, sepsis.",
+      "pie_nodo": "¿Tiene factores de riesgo?",
+      "referencias": [
+        {
+          "titulo": "Table 1. Risk factors",
+          "texto": "SGA, LGA, maternal diabetes, late prematurity... moderate to severe perinatal hypoxia-ischemia, suspected/confirmed early onset sepsis",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "3",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag3_table_1_risk_factors.png"
+        }
+      ],
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "diag_muestra_critica"
+          "siguiente_nodo": "diag_poblaciones_especiales"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "diag_no_hipo"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "2-4",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag2_4.png",
-          "texto": "1.1. For children who are able to communicate their symptoms, we recommend evaluation and management only of those in whom Whipple’s triad... is documented. GRADE 1++++. (...) point-of-care meters provide a convenient screening... but their accuracy is limited to approximately ±10-15 mg/dL."
+          "siguiente_nodo": "seg_alta_rutina"
         }
       ]
     },
-    "diag_lactante_nocomunica": {
-      "tipo": "pregunta",
-      "texto": "- Tomar muestra de glucosa plasmática (PG) analizada en laboratorio clínico.",
-      "pie_nodo": "¿La glucosa plasmática confirmada es **<60 mg/dL (<3.3 mmol/L)**?",
-      "nota_adicional": "Los valores de glucosa en sangre total son aproximadamente 15% menores que los valores plasmáticos. Retrasos en el procesamiento pueden reducir la glucosa artificialmente hasta en 6 mg/dL por hora debido a la glucólisis eritrocitaria.",
+    "diag_poblaciones_especiales": {
+      "tipo": "informativo",
+      "titulo": "Poblaciones especiales",
+      "texto": "- Hijos de madre diabética y GEG: mayor riesgo a las **12 h**.\n- Prematuros y PEG: mayor riesgo a las **24 h**.",
+      "nota_adicional": "El tiempo de tamizaje y la duración de la vigilancia cambian según el factor de riesgo predominante.",
+      "referencias": [
+        {
+          "titulo": "Screening duration",
+          "texto": "IDM and LGA infants are more likely to become hypoglycemic by 12 h after the birth, in contrast to preterm and SGA infants, who usually develop asymptomatic NH within 24 h",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "11",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag11_screening_duration.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_muestra_critica"
-        },
-        {
-          "texto": "No",
-          "siguiente_nodo": "diag_no_hipo"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "2-3",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag2_3.png",
-          "texto": "1.2. For infants and younger children who are unable to reliably communicate symptoms, we suggest evaluation... only of those whose PG concentrations are... <60 mg/dL. GRADE 2+++0. (...) whole blood glucose values are ~15% lower than PG... delays in processing can reduce glucose by up to 6 mg/dL/hour."
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_sintomas"
         }
       ]
     },
-    "diag_neonato_riesgo": {
-      "tipo": "pregunta",
-      "texto": "- Revisar antecedentes maternos y perinatales.\n- Monitorizar estrictamente glucosa preprandial.",
-      "pie_nodo": "¿Cuál es la edad postnatal del neonato?",
-      "nota_adicional": "La hipoglucemia neonatal transicional ocurre típicamente en las primeras 48 horas. Se sugiere retrasar evaluaciones diagnósticas profundas hasta los 2-3 días de vida a menos que se sospeche un trastorno persistente severo.",
-      "opciones": [
-        {
-          "texto": "**< 48 horas** de vida",
-          "siguiente_nodo": "diag_neo_menos48"
-        },
-        {
-          "texto": "**>= 48 horas** de vida",
-          "siguiente_nodo": "diag_neo_mas48"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "2-4",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag2_4.png",
-          "texto": "1.3. For those neonates who are suspected to be at high risk... we suggest evaluation when the infant is >=48 hours of age so that the period of transitional glucose regulation has passed. GRADE 2++00."
-        }
-      ]
-    },
-    "diag_neo_menos48": {
-      "tipo": "pregunta",
-      "texto": "- Iniciar esquema de monitorización preprandial frecuente.\n- Evaluar necesidad de intervención (alimentación o dextrosa IV).",
-      "pie_nodo": "¿Mantiene niveles de glucosa preprandial de forma consistente **>50 mg/dL**?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_neo_alta_segura"
-        },
-        {
-          "texto": "No o requiere Dextrosa IV para mantener meta",
-          "siguiente_nodo": "diag_muestra_critica"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "3.2. For high-risk neonates without a suspected congenital hypoglycemia disorder, we suggest the goal of treatment be to maintain a PG concentration >50 mg/dL (>2.8 mmol/L) for those aged <48 hours."
-        }
-      ]
-    },
-    "diag_neo_mas48": {
-      "tipo": "pregunta",
-      "texto": "- Evaluar evolución y estabilidad metabólica post-fase transicional.\n- Monitorizar glucosa preprandial en horario.",
-      "pie_nodo": "¿Mantiene niveles de glucosa de forma consistente **>60 mg/dL**?",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_neo_alta_segura"
-        },
-        {
-          "texto": "No o antecedentes familiares de formas genéticas",
-          "siguiente_nodo": "diag_muestra_critica"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "3.2. For high-risk neonates without a suspected congenital hypoglycemia disorder... >60 mg/dL (>3.3 mmol/L) for those aged >48 hours."
-        }
-      ]
-    },
-    "diag_no_hipo": {
+    "seg_alta_rutina": {
+      "tipo": "resultado",
       "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- No cumple criterios actuales para abordaje de Trastorno Persistente de Hipoglucemia.\n- Mantener vigilancia rutinaria y nutrición adecuada por edad.",
+      "titulo": "Cuidados de rutina",
+      "texto": "- Fomentar lactancia materna temprana y a demanda.\n- Evitar estrés por frío.\n- No requiere tamizaje rutinario de glucosa.",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag5.png",
-          "texto": "Values: Hypoglycemia disorders in older infants and children are uncommon. Thus, the recommendation... avoids exposing patients without a specific disorder to unnecessary procedures, potential risks, and expense without any likely benefit."
+          "titulo": "Prevention",
+          "texto": "Keep neonate dried and warm with hat and blanket after birth. Skin-to-skin contact with the mother. Encourage early breast feeding within the 1st hour",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "6",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_prevention.png"
         }
       ]
     },
-    "diag_neo_alta_segura": {
-      "estilo": "advertencia",
-      "tipo": "informativo",
-      "texto": "1. Considerar prueba de ayuno de seguridad (**6-8 horas**) antes del alta médica.\n2. Asegurar que la glucosa plasmática se mantiene por encima de los niveles mínimos durante todo el periodo (ej. **>60 mg/dL**).\n3. Proveer educación a los cuidadores sobre signos de alarma.",
-      "nota_adicional": "Para neonatos de riesgo sin sospecha de etiología genética en quienes se considera que la hipoglucemia se resolverá pronto, esta prueba evita altas inseguras.",
+    "diag_sintomas": {
+      "tipo": "pregunta",
+      "titulo": "Signos clínicos",
+      "texto": "- Evaluar signos clínicos de hipoglucemia:\n  - Temblores, cianosis, convulsiones, apnea, taquipnea.\n  - Llanto débil o agudo, letargia, hipotonía, mala alimentación.",
+      "pie_nodo": "¿Presenta síntomas?",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag5.png",
-          "texto": "For at-risk neonates without a suspected persistent hypoglycemia disorder... a 'safety' fast of 6-8 hours should be considered before discharge, to determine whether a PG concentration >60 mg/dL can be maintained..."
+          "titulo": "Table 1. Clinical signs",
+          "texto": "Jitteriness, cyanosis, seizures, apneic episodes, tachypnea, weak or high-pitched cry, floppiness or lethargy, poor feeding, eye-rolling.",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "4",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag4_table_1_clinical_signs.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_medicion_inmediata"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_tamizaje_asintomatico"
+        }
+      ]
+    },
+    "diag_medicion_inmediata": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Medición inmediata",
+      "texto": "- Medir glucosa inmediatamente.\n- Confirmar con método enzimático de laboratorio o gasometría.\n- No retrasar el tratamiento esperando el resultado.",
+      "nota_adicional": "Los glucómetros capilares son inexactos en rangos bajos (<20 mg/dL); siempre confirmar con laboratorio, pero no retrasar el bolo.",
+      "chips": [
+        "Urgencia"
+      ],
+      "referencias": [
+        {
+          "titulo": "Diagnostic methods",
+          "texto": "glucose concentration (plasma or whole blood) must be confirmed using laboratory enzymatic methods (glucose oxidase, hexokinase and dehydrogenase methods).",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "12",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag12_diagnostic_methods.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Glucosa <40 mg/dL",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Glucosa >=40 mg/dL",
+          "siguiente_nodo": "diag_buscar_otras_causas"
+        }
+      ]
+    },
+    "diag_buscar_otras_causas": {
+      "tipo": "informativo",
+      "titulo": "Diagnóstico diferencial",
+      "texto": "- Buscar otras causas de los síntomas (sepsis, asfixia, alteraciones metabólicas).\n- Mantener monitorización estrecha.",
+      "referencias": [
+        {
+          "titulo": "Management",
+          "texto": "neonatal team should be informed to investigate possible causes of NH and to exclude other disorders that mimic hypoglycemia, like sepsis.",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "16",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag16_management.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_cetonas"
+        }
+      ]
+    },
+    "diag_tamizaje_asintomatico": {
+      "tipo": "pregunta",
+      "titulo": "Tamizaje asintomático",
+      "texto": "- Iniciar alimentación en la primera hora de vida.\n- Realizar tamizaje de glucosa.",
+      "pie_nodo": "¿Glucosa <36 mg/dL (2.0 mmol/L)?",
+      "discrepancias": [
+        {
+          "asunto": "Momento del tamizaje inicial",
+          "posturas": [
+            {
+              "fuente": "AAP 2011",
+              "dice": "A los 30 min de la primera toma."
+            },
+            {
+              "fuente": "BAPM 2017",
+              "dice": "Antes de la segunda toma, máximo a las 4 h."
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Screening for NH",
+          "texto": "optimal time for screening of asymptomatic, at-risk neonates is just before the second feed (practically no longer than 2–4 h after delivery)",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag10_screening_for_nh.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_monitoreo_asintomatico"
+        }
+      ]
+    },
+    "seg_monitoreo_asintomatico": {
+      "tipo": "pregunta",
+      "titulo": "Monitorización",
+      "texto": "- Continuar tamizaje pre-toma (cada 2-3 h) por al menos **24 h**.",
+      "pie_nodo": "¿Evolución de la glucosa?",
+      "referencias": [
+        {
+          "titulo": "Screening duration",
+          "texto": "screened for at least the first 24 h before each feeding... if the BGL remain above 2.6 mmol/L (47 mg/dL), screening should be discontinued",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag10_screening_duration.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Estable >=47 mg/dL por 24h",
+          "siguiente_nodo": "seg_criterios_alta"
+        },
+        {
+          "texto": "Cae <47 mg/dL",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ]
+    },
+    "diag_ninos_mayores": {
+      "tipo": "pregunta",
+      "titulo": "Tríada de Whipple",
+      "texto": "- En lactantes y niños mayores, aplicar la tríada de Whipple:\n  - Síntomas neuroglucopénicos o autonómicos.\n  - Glucosa **<60 mg/dL**.\n  - Resolución de síntomas al ingerir glucosa.",
+      "pie_nodo": "¿Cumple la tríada?",
+      "referencias": [
+        {
+          "titulo": "Definition",
+          "texto": "Whipple’s triad could be adopted... blood glucose level below 60 mg/dl, (III) resolutions of symptoms after glucose intake",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "2",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_definition.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_ninos_mayores"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_buscar_otras_causas"
+        }
+      ]
+    },
+    "diag_cetonas": {
+      "tipo": "informativo",
+      "titulo": "Cetonas y BOHB",
+      "texto": "- Monitorizar beta-hidroxibutirato (BOHB) junto con la glucosa.\n- Una hipoglucemia hipocetósica (BOHB **<1.5 mmol/L**) persistente >48 h indica hiperinsulinismo.",
+      "nota_adicional": "La ausencia de cetonas en el momento de la hipoglucemia es el sello distintivo del hiperinsulinismo.",
+      "referencias": [
+        {
+          "titulo": "Screening for persistent disorders",
+          "texto": "plasma levels of beta-hydroxybutyrate (BOHB) are no longer suppressed (e.g., >1–1.5 mmol/L) when glucose is <60 mg/dl",
+          "fuente": "AGA",
+          "anio": "2023",
+          "url": "https://doi.org/10.3389/fped.2023.1071206",
+          "cita": "AGA (2023). New approaches to screening and management of neonatal hypoglycemia based on improved understanding of the molecular mechanism of hypoglycemia.",
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag10_screening_for_persistent_disorders.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_metabolico_tabla"
+        }
+      ]
+    },
+    "diag_metabolico_tabla": {
+      "tipo": "informativo",
+      "titulo": "Patrones bioquímicos",
+      "texto": "- Patrones bioquímicos en hipoglucemia infantil para orientar el diagnóstico etiológico.",
+      "tabla": {
+        "titulo": "Características bioquímicas de causas metabólicas",
+        "columnas": [
+          "Trastorno",
+          "Lactato",
+          "Cetonas",
+          "Otras anomalías"
+        ],
+        "filas": [
+          [
+            "Hipoglucemia cetósica",
+            "Normal",
+            "Altas",
+            "Alanina baja"
+          ],
+          [
+            "Glucogenosis I",
+            "Alto",
+            "Bajas",
+            "Lípidos/ácido úrico altos"
+          ],
+          [
+            "Glucogenosis III/VI/IX",
+            "Normal",
+            "Altas",
+            "Lípidos/transaminasas altas"
+          ],
+          [
+            "Defecto oxidación grasas",
+            "Normal",
+            "Bajas",
+            "Acilcarnitinas altas"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Table 6",
+          "texto": "Ketotic hypoglycemia, Fasting >6 h, Low alanine... Glycogen storage disease type I, Elevated lipids, Elevated uric acid",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "7",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag7_table_6.png"
         }
       ]
     },
     "diag_muestra_critica": {
-      "tipo": "pregunta",
-      "texto": "1. Obtener **Muestra Crítica** de sangre durante un episodio espontáneo (glucosa plasmática **<50 mg/dL**).\n2. Si no hay episodio espontáneo, realizar prueba de provocación por ayuno bajo monitorización estricta.\n3. Solicitar panel urgente: Glucosa, Bicarbonato, Beta-hidroxibutirato (BOHB), Lactato, Ácidos grasos libres (FFA), Insulina, Péptido-C, Cortisol, Hormona de Crecimiento (GH) y Perfil de acilcarnitina.\n4. Al terminar el ayuno o al llegar a hipoglucemia (<50 mg/dL), administrar **Glucagón 1 mg** (IV, IM o SC) y evaluar respuesta a los 10-15 minutos.",
-      "pie_nodo": "¿Los resultados de laboratorio muestran la presencia de **Acidemia** (Bicarbonato disminuido)?",
-      "imagen": "TODO_IMG: Gráfico de algoritmo de pistas metabólicas (Bicarbonato, BOHB, Lactato, FFA)",
+      "tipo": "informativo",
+      "titulo": "Muestra crítica",
+      "texto": "- Tomar \"muestra crítica\" durante la hipoglucemia antes de dar medicación:\n  - Glucosa, lactato, cetonas, gases.\n  - Insulina, péptido C, cortisol, GH, ácidos grasos libres (FFA).",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3, 5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3_5.png",
-          "texto": "In the absence of a 'critical sample,' a provocative fasting test... terminated when the PG concentration is <50 mg/dL with administration of glucagon (1 mg IV, IM, or SC). Assays for PG, bicarbonate, BOHB, and lactate... Figure. Metabolic Clues to Hypoglycemia Diagnosis."
+          "titulo": "Laboratory Investigations",
+          "texto": "A “critical sample” (i.e. a sample obtained during HY) must be collected... glucose, lactate, ketones... insulin, C-peptide, cortisol, GH",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "10",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag10_laboratory_investigations.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_hiperinsulinismo"
+        }
+      ]
+    },
+    "nodo_tratamiento": {
+      "tipo": "rama",
+      "estilo": "rama",
+      "texto": "Tratamiento",
+      "opciones": [
+        {
+          "texto": "Iniciar",
+          "siguiente_nodo": "trat_prevencion_hipotermia"
+        }
+      ]
+    },
+    "trat_prevencion_hipotermia": {
+      "tipo": "informativo",
+      "titulo": "Prevención y calor",
+      "texto": "- Evitar estrés por frío y corrientes de aire.\n- Mantener temperatura axilar entre **36.5-37.5 °C**.\n- Fomentar contacto piel con piel inmediato.",
+      "referencias": [
+        {
+          "titulo": "Prevention",
+          "texto": "avoidance of cold draughts, the warmth of the ambient temperature and the immediate skin-to-skin contact with the mother",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "14",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag14_prevention.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_decision_inicial"
+        }
+      ]
+    },
+    "trat_decision_inicial": {
+      "tipo": "pregunta",
+      "titulo": "Decisión de tratamiento",
+      "texto": "- Clasificar para tratamiento según clínica y nivel de glucosa.",
+      "pie_nodo": "¿Cuál es el estado del paciente?",
+      "opciones": [
+        {
+          "texto": "Sintomático o <27 mg/dL",
+          "siguiente_nodo": "trat_sintomatico_severo"
+        },
+        {
+          "texto": "Asintomático 27-45 mg/dL",
+          "siguiente_nodo": "trat_asintomatico_gel"
+        }
+      ]
+    },
+    "trat_asintomatico_gel": {
+      "tipo": "informativo",
+      "titulo": "Gel de dextrosa",
+      "texto": "- Administrar **Dextrosa gel 40% 200 mg/kg** (0.5 mL/kg) mediante masaje bucal.\n- Continuar alimentación (pecho o fórmula).",
+      "nota_adicional": "El gel de dextrosa reduce los ingresos a UCIN y mejora las tasas de lactancia materna exclusiva al alta.",
+      "farmacos": [
+        {
+          "nombre": "Dextrosa gel 40%",
+          "dosis": "**200 mg/kg** (0.5 mL/kg) bucal",
+          "pauta": "Masaje en mucosa bucal, seguido de alimentación.",
+          "nota": "Máximo 6 dosis en 48 h.",
+          "paginas": "15"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of asymptomatic NH",
+          "texto": "administration of 40% oral dextrose gel (dose of 200 mg/kg) should be considered as part of the feeding plan",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "15",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag15_management_of_asymptomatic_nh.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_reval_gel"
+        }
+      ]
+    },
+    "trat_reval_gel": {
+      "tipo": "pregunta",
+      "titulo": "Reevaluación post-gel",
+      "texto": "- Reevaluar glucosa 30 min después del gel y la toma.",
+      "pie_nodo": "¿Glucosa <45 mg/dL (2.5 mmol/L)?",
+      "referencias": [
+        {
+          "titulo": "Management of asymptomatic NH",
+          "texto": "re-check of BGL is also recommended by the AUS (30 min after the first dose of oral dextrose gel)",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "15",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag15_management_of_asymptomatic_nh_2.png"
         }
       ],
       "opciones": [
         {
           "texto": "Sí",
-          "siguiente_nodo": "diag_acidemia"
+          "siguiente_nodo": "trat_gel_segunda_dosis"
         },
         {
           "texto": "No",
-          "siguiente_nodo": "diag_no_acidemia"
+          "siguiente_nodo": "seg_monitoreo_asintomatico"
         }
       ]
     },
-    "diag_acidemia": {
+    "trat_gel_segunda_dosis": {
       "tipo": "pregunta",
-      "texto": "- Analizar niveles de Lactato y Beta-hidroxibutirato (BOHB) extraídos en la muestra crítica.",
-      "pie_nodo": "¿Cuál es el patrón metabólico de laboratorio que predomina?",
+      "titulo": "Segunda dosis de gel",
+      "texto": "- Administrar segunda dosis de **Dextrosa gel 40% 200 mg/kg**.\n- Máximo **6 dosis** en las primeras 48 h.",
+      "pie_nodo": "¿Glucosa sigue <45 mg/dL?",
+      "referencias": [
+        {
+          "titulo": "Management of asymptomatic NH",
+          "texto": "maximum of six doses during this period of time (AUS, BAPM).",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "15",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag15_management_of_asymptomatic_nh_3.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "Lactato elevado",
-          "siguiente_nodo": "diag_defecto_gluconeogenesis"
+          "texto": "Sí",
+          "siguiente_nodo": "trat_falla_gel"
         },
         {
-          "texto": "Beta-hidroxibutirato (BOHB) elevado",
-          "siguiente_nodo": "diag_hipo_cetosica"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3.png",
-          "texto": "Figure. Metabolic Clues to Hypoglycemia Diagnosis. Hypoglycemia -> Acidemia -> Lactate up or BOHB up."
+          "texto": "No",
+          "siguiente_nodo": "seg_monitoreo_asintomatico"
         }
       ]
     },
-    "diag_no_acidemia": {
-      "tipo": "pregunta",
-      "texto": "- Analizar niveles de Beta-hidroxibutirato (BOHB) y Ácidos Grasos Libres (FFA) extraídos en la muestra crítica.",
-      "pie_nodo": "¿Cuál es el patrón metabólico de BOHB y FFA?",
-      "nota_adicional": "Un BOHB se considera inapropiadamente bajo si es <1.5 mmol/L (<15 mg/dL) durante la hipoglucemia. FFA bajo se considera <1.0-1.5 mmol/L.",
+    "trat_falla_gel": {
+      "tipo": "informativo",
+      "estilo": "advertencia",
+      "titulo": "Falla a terapia oral",
+      "texto": "- Falla a terapia oral/enteral.\n- Ingresar a UCIN.\n- Iniciar infusión IV de glucosa.",
+      "referencias": [
+        {
+          "titulo": "Management of asymptomatic NH",
+          "texto": "Admission to the Neonatal Intensive Care Unit (NICU) is required... IV glucose administration (10% DW) at this point is suggested",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "16",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag16_management_of_asymptomatic_nh.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "BOHB bajo y FFA bajo",
-          "siguiente_nodo": "diag_hiperinsulinismo"
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_sintomatico_severo"
+        }
+      ]
+    },
+    "trat_sintomatico_severo": {
+      "tipo": "pregunta",
+      "titulo": "Bolo IV",
+      "texto": "- Obtener acceso IV.\n- Administrar bolo de **Dextrosa 10% 2.5 mL/kg** (250 mg/kg) IV.",
+      "discrepancias": [
+        {
+          "asunto": "Dosis del bolo IV inicial",
+          "posturas": [
+            {
+              "fuente": "AAP 2011",
+              "dice": "2 mL/kg de Dextrosa 10%"
+            },
+            {
+              "fuente": "BAPM 2017",
+              "dice": "2.5 mL/kg de Dextrosa 10%"
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management of symptomatic NH",
+          "texto": "infants should be treated with IV glucose as an initial bolus of 2.5 mL/kg 10%DW",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "16",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag16_management_of_symptomatic_nh.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Acceso IV disponible",
+          "siguiente_nodo": "trat_infusion_iv"
         },
         {
-          "texto": "BOHB bajo y FFA elevado",
-          "siguiente_nodo": "diag_defecto_oxidacion"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3, 5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3_5.png",
-          "texto": "Figure: No Acidemia -> BOHB low, FFA down or up. Page 5: plasma BOHB and FFA (both inappropriately low; BOHB <1.5 mmol/L and FFA <1.0-1.5 mmol/L)."
+          "texto": "Sin acceso IV",
+          "siguiente_nodo": "trat_glucagon_neonatal"
         }
       ]
     },
-    "diag_defecto_gluconeogenesis": {
-      "estilo": "advertencia",
+    "trat_glucagon_neonatal": {
       "tipo": "informativo",
-      "texto": "- **Patrón Sugerente:** Defectos de la Gluconeogénesis.\n- Entidades probables: Enfermedades de almacenamiento de glucógeno (Glucogenosis) que cursan con hiperlactatemia.\n- Interconsulta prioritaria con Endocrinología Infantil/Enfermedades Metabólicas.",
-      "enlaces": [
+      "titulo": "Glucagón de rescate",
+      "texto": "- Si no hay acceso IV inmediato:\n  - Administrar **Glucagón 200 mcg/kg** IM.\n  - Establecer acceso IV urgente.",
+      "nota_adicional": "El glucagón puede ser ineficaz si los depósitos de glucógeno hepático están depletados (ej. ayuno prolongado o PEG severo).",
+      "farmacos": [
         {
-          "texto": "Proceder a definición de metas de tratamiento",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_metas"
+          "nombre": "Glucagón",
+          "dosis": "**200 mcg/kg** IM",
+          "pauta": "Dosis única de rescate mientras se obtiene acceso IV.",
+          "nota": "No usar como terapia de mantenimiento.",
+          "paginas": "17"
         }
       ],
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3.png",
-          "texto": "Figure. Metabolic Clues to Hypoglycemia Diagnosis. Acidemia -> Lactate Up -> Gluconeogenesis Defects."
+          "titulo": "Management of symptomatic NH",
+          "texto": "intramuscular injection of glucagon 200 microgram/kg (BAPM, AUS, CPS).",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_infusion_iv"
         }
       ]
     },
-    "diag_hipo_cetosica": {
-      "estilo": "advertencia",
+    "trat_infusion_iv": {
       "tipo": "informativo",
-      "texto": "- **Patrón Sugerente:** Hipoglucemia Cetósica, Glucogenosis (otras), Deficiencia de GH, o Deficiencia de Cortisol.\n- Realizar pruebas confirmatorias hormonales si GH o Cortisol están suprimidos en la muestra crítica.",
-      "enlaces": [
+      "titulo": "Infusión IV",
+      "texto": "- Iniciar infusión continua de **Dextrosa 10% a 60-80 mL/kg/día** (GIR 4-6 mg/kg/min).\n- No suspender alimentación enteral si el paciente la tolera.",
+      "farmacos": [
         {
-          "texto": "Proceder a definición de metas de tratamiento",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_metas"
+          "nombre": "Dextrosa 10%",
+          "dosis": "**60-80 mL/kg/día** IV",
+          "pauta": "Infusión continua para mantener GIR de 4-6 mg/kg/min.",
+          "nota": "Ajustar según controles glucémicos.",
+          "paginas": "17"
         }
       ],
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3.png",
-          "texto": "Figure. Metabolic Clues to Hypoglycemia Diagnosis. Acidemia -> BOHB Up -> Ketotic Hypoglycemia, Glycogenoses, GH deficiency, Cortisol deficiency."
+          "titulo": "Management of symptomatic NH",
+          "texto": "glucose infusion administration of 60 mL/kg 10% DW per day (instead of 80–100 mL/kg/day).",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_reval_iv"
         }
       ]
     },
-    "diag_hiperinsulinismo": {
-      "estilo": "advertencia",
+    "trat_reval_iv": {
+      "tipo": "pregunta",
+      "titulo": "Reevaluación IV",
+      "texto": "- Reevaluar glucosa 30 min después de iniciar o modificar la infusión IV.",
+      "pie_nodo": "¿Glucosa <45 mg/dL (2.5 mmol/L)?",
+      "referencias": [
+        {
+          "titulo": "Management of symptomatic NH",
+          "texto": "re-measurement of BGL in the next 30 min and repeated by another bolus",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_aumentar_gir"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_destete"
+        }
+      ]
+    },
+    "trat_aumentar_gir": {
+      "tipo": "pregunta",
+      "titulo": "Aumento de GIR",
+      "texto": "- Aumentar el Ritmo de Infusión de Glucosa (GIR) en **2 mg/kg/min**.\n- Aumentar volumen o concentración de dextrosa.",
+      "pie_nodo": "¿Qué requerimiento tiene?",
+      "referencias": [
+        {
+          "titulo": "Management of symptomatic NH",
+          "texto": "GIR is suggested to increase by 2 mg/kg/min without another IV bolus dextrose administration",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_4.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "GIR >8 mg/kg/min",
+          "siguiente_nodo": "diag_muestra_critica"
+        },
+        {
+          "texto": "Dextrosa >12%",
+          "siguiente_nodo": "trat_via_central"
+        },
+        {
+          "texto": "GIR <=8 y Dextrosa <=12%",
+          "siguiente_nodo": "trat_reval_iv"
+        }
+      ]
+    },
+    "trat_via_central": {
       "tipo": "informativo",
-      "texto": "- **Patrón Sugerente:** Hiperinsulinismo Congénito, Hiperinsulinismo por estrés perinatal, Hipopituitarismo neonatal, o Hipoglucemia Transicional.\n- Confirmación adicional: Una respuesta glucémica al Glucagón **>30 mg/dL (>1.7 mmol/L)** al final del ayuno es patognomónica de Hiperinsulinismo.",
-      "nota_adicional": "Los niveles de insulina sérica a menudo no superan el límite de detección; por ello el patrón de BOHB bajo, FFA bajo y la respuesta positiva al glucagón son primordiales.",
-      "enlaces": [
-        {
-          "texto": "Proceder a definición de metas de tratamiento",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_metas"
-        }
-      ],
+      "titulo": "Vía central",
+      "texto": "- Si la concentración de dextrosa requerida es **>12%**, insertar catéter venoso umbilical o vía central.",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3, 5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3_5.png",
-          "texto": "Figure: No Acidemia -> BOHB down, FFA down -> Genetic Hyperinsulinism, Transitional Neonatal Hypoglycemia. Page 5: An exaggerated glycemic response (>30 mg/dL) is nearly pathognomonic of hyperinsulinism. Because plasma insulin concentration is sometimes not above the lower limit of detection..."
+          "titulo": "Management of symptomatic NH",
+          "texto": "required IV glucose infusion concentration is more than 12%, an umbilical venous catheter or central line should be inserted",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_5.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_reval_iv"
         }
       ]
     },
-    "diag_defecto_oxidacion": {
-      "estilo": "advertencia",
+    "trat_hiperinsulinismo": {
       "tipo": "informativo",
-      "texto": "- **Patrón Sugerente:** Defectos de la Oxidación de Ácidos Grasos.\n- Revisar perfil detallado de acilcarnitinas plasmáticas.\n- Interconsulta con Genética y Metabolismo urgente.",
-      "enlaces": [
+      "titulo": "Hiperinsulinismo",
+      "texto": "- Sospechar hiperinsulinismo congénito si requiere GIR **>8 mg/kg/min** o hipoglucemia persiste **>48 h**.\n- Cetonas y FFA estarán suprimidos.",
+      "referencias": [
         {
-          "texto": "Proceder a definición de metas de tratamiento",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_metas"
+          "titulo": "Management of symptomatic NH",
+          "texto": "glucose infusion rate (GIR) is higher than 8 mg/kg/min... clinical suspicion of hyperinsulinism should be raised",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_6.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "trat_diazoxido"
+        }
+      ]
+    },
+    "trat_diazoxido": {
+      "tipo": "pregunta",
+      "titulo": "Diazóxido",
+      "texto": "- Iniciar **Diazóxido** (consultar dosis con endocrinología).\n- Vigilar retención de líquidos y falla cardíaca.",
+      "pie_nodo": "¿Responde al diazóxido?",
+      "referencias": [
+        {
+          "titulo": "Congenital Hyperinsulinism",
+          "texto": "prompt treatment should be started with diazoxide (DZX) and then, in case of unresponsiveness, with octreotide",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "5",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag5_congenital_hyperinsulinism.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_metas_tardias"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "trat_octreotida"
+        }
+      ]
+    },
+    "trat_octreotida": {
+      "tipo": "informativo",
+      "titulo": "Octreotida",
+      "texto": "- Iniciar **Octreotida 5-25 mcg/kg/día** SC dividida cada 6-8 h.\n- Realizar PET 18-F-DOPA para buscar formas focales.",
+      "farmacos": [
+        {
+          "nombre": "Octreotida",
+          "dosis": "**5-25 mcg/kg/día** SC",
+          "pauta": "Dividida cada 6-8 h.",
+          "nota": "Para hiperinsulinismo refractario a diazóxido.",
+          "paginas": "5"
         }
       ],
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "3, 5",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag3_5.png",
-          "texto": "Figure: No Acidemia -> BOHB down, FFA up -> Fatty Acid Oxidation Defects. Page 5: plasma total and free carnitine and acyl-carnitine profile for a suspected disorder of fatty acid oxidation."
+          "titulo": "Congenital Hyperinsulinism",
+          "texto": "daily dose of octreotide (5–25 µg/kg)... need to be treated with octreotide.",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "6",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_congenital_hyperinsulinism.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_metas_tardias"
         }
       ]
     },
-    "nodo_tratamiento": {
+    "trat_ninos_mayores": {
+      "tipo": "informativo",
+      "titulo": "Tratamiento en niños",
+      "texto": "- Consciente: 10-20 g de glucosa oral.\n- Inconsciente/sin vía IV: **Glucagón 1 mg** IM (>25 kg o >12 años) o **0.5 mg** IM (<25 kg).\n- Con vía IV: Bolo de **Dextrosa 10% 2-5 mL/kg** (200-500 mg/kg).",
+      "farmacos": [
+        {
+          "nombre": "Glucagón",
+          "dosis": "**1 mg** IM (>25 kg) o **0.5 mg** IM (<25 kg)",
+          "pauta": "Dosis única en hipoglucemia severa sin acceso IV.",
+          "nota": "Puede causar vómitos.",
+          "paginas": "4"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Management",
+          "texto": "glucagon (1 mg for children aged more than 12 years and/or weighing at least 25 kg, while 0.5 mg for younger/leaner)",
+          "fuente": "AAP",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use.",
+          "paginas": "4",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag4_management.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "diag_muestra_critica"
+        }
+      ]
+    },
+    "nodo_seguimiento": {
+      "tipo": "rama",
       "estilo": "rama",
-      "texto": "Tratamiento y Metas",
+      "texto": "Seguimiento",
       "opciones": [
         {
-          "texto": "",
-          "siguiente_nodo": "trat_evaluacion_aguda"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "Section 3. Management of Neonates, Infants, and Children with a Persistent Hypoglycemia Disorder."
+          "texto": "Iniciar",
+          "siguiente_nodo": "seg_metas_tempranas"
         }
       ]
     },
-    "trat_evaluacion_aguda": {
+    "seg_metas_tempranas": {
       "tipo": "pregunta",
-      "texto": "- Valorar estado neurológico y presencia de síntomas neuroglucopénicos graves (letargia, coma, convulsiones).\n- Valorar incapacidad de tolerar vía oral o hipoglucemia severa documentada.",
-      "pie_nodo": "¿El paciente presenta un episodio sintomático agudo severo de hipoglucemia?",
+      "titulo": "Metas <48 h",
+      "texto": "- Metas en las primeras 48 h:\n  - Alto riesgo sin trastorno congénito: **>50 mg/dL** (2.8 mmol/L).\n  - Trastorno congénito sospechado: **>70 mg/dL** (3.9 mmol/L).",
+      "pie_nodo": "¿Alcanza metas y tolera vía oral?",
+      "referencias": [
+        {
+          "titulo": "Target Glucose Concentration",
+          "texto": "target value of PG is >50 mg/dL (2.8 mmol/L) or >60 mg/dL (3.3 mmol/L) for those up to 48 h of age",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "19",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag19_target_glucose_concentration.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "Sí (Manejo Agudo)",
-          "siguiente_nodo": "trat_agudo_severo"
+          "texto": "Sí",
+          "siguiente_nodo": "seg_destete"
         },
         {
-          "texto": "No (Establecer Metas a largo plazo)",
-          "siguiente_nodo": "trat_metas"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "Any episode of severe symptomatic hypoglycemia should be rapidly corrected with IV dextrose infusion."
+          "texto": "No",
+          "siguiente_nodo": "trat_aumentar_gir"
         }
       ]
     },
-    "trat_agudo_severo": {
-      "estilo": "peligro",
+    "seg_metas_tardias": {
       "tipo": "informativo",
-      "texto": "1. Administrar bolo IV rápido de **Dextrosa: 200 mg/kg** (equivale a **2 mL/kg de Dextrosa al 10%**).\n2. Iniciar infusión de mantenimiento IV con Dextrosa al 10% a una tasa adecuada para la edad cronológica.\n3. Si existe sospecha o diagnóstico de hiperinsulinismo y vía de acceso difícil: Administrar Glucagón a dosis de **0.5 a 1.0 mg** IV, IM o SC (independiente del peso).",
-      "nota_adicional": "Dosis más bajas de glucagón (0.03 mg/kg) pueden tener menos riesgo de náuseas transitorias, pero podrían ser ineficaces a menos que se administren estrictamente por vía IV.",
-      "enlaces": [
-        {
-          "texto": "Continuar con establecimiento de metas",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_metas"
-        }
-      ],
+      "titulo": "Metas >48 h",
+      "texto": "- Metas después de 48 h:\n  - Alto riesgo sin trastorno congénito: **>60 mg/dL** (3.3 mmol/L).\n  - Trastorno congénito confirmado: **>70 mg/dL** (3.9 mmol/L).",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "The initial dose is 200 mg/kg, followed by infusion of 10% dextrose at a maintenance rate for age. In cases of hyperinsulinism... Doses of 0.5-1.0 mg (independent of weight)... are usually effective; lower doses (0.03 mg/kg) may carry less risk of transient nausea... but may be ineffective unless given IV."
+          "titulo": "Target Glucose Concentration",
+          "texto": "older infants and children, should have BGL > 70 mg/dL (3.9 mmol/L) to achieve the therapeutic goal",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "19",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag19_target_glucose_concentration_2.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_destete"
         }
       ]
     },
-    "trat_metas": {
+    "seg_destete": {
       "tipo": "pregunta",
-      "texto": "- Revisar el diagnóstico definitivo o sospecha diagnóstica actual.\n- Establecer los objetivos de glucosa sanguínea para prevenir el daño cerebral y la Falla Autonómica Asociada a Hipoglucemia (HAAF).",
-      "pie_nodo": "¿Cuál es el diagnóstico clínico o la estratificación de riesgo del paciente?",
+      "titulo": "Destete IV",
+      "texto": "- Iniciar destete gradual de infusión IV cuando la glucosa sea >45 mg/dL (o >54 mg/dL en hiperinsulinismo).\n- Mantener monitorización hasta estar con nutrición enteral completa.",
+      "pie_nodo": "¿Destete exitoso?",
+      "referencias": [
+        {
+          "titulo": "Management of symptomatic NH",
+          "texto": "slow and gradual weaning of IV infusion should start and the enteral feeds should also continue",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "17",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_management_of_symptomatic_nh_7.png"
+        }
+      ],
       "opciones": [
         {
-          "texto": "Trastorno congénito sospechado o trastorno de hipoglucemia persistente confirmado (cualquier edad)",
-          "siguiente_nodo": "trat_meta_persistente"
+          "texto": "Sí",
+          "siguiente_nodo": "seg_prueba_ayuno"
         },
         {
-          "texto": "Neonato de alto riesgo sin trastorno congénito sospechado, **< 48 horas** de vida",
-          "siguiente_nodo": "trat_meta_riesgo_menos48"
-        },
-        {
-          "texto": "Neonato de alto riesgo sin trastorno congénito sospechado, **> 48 horas** de vida",
-          "siguiente_nodo": "trat_meta_riesgo_mas48"
+          "texto": "No",
+          "siguiente_nodo": "trat_aumentar_gir"
         }
+      ]
+    },
+    "seg_prueba_ayuno": {
+      "tipo": "pregunta",
+      "titulo": "Prueba de ayuno",
+      "texto": "- En neonatos >48 h con trastorno sospechado o que requirieron GIR >6 mg/kg/min:\n  - Realizar prueba de ayuno de **6 horas** con monitorización regular.",
+      "nota_adicional": "Debe realizarse bajo supervisión estricta y suspenderse inmediatamente si la glucosa cae <47 mg/dL.",
+      "chips": [
+        "Precaución"
       ],
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "Section 3. Management of Neonates, Infants, and Children with a Persistent Hypoglycemia Disorder. 3.1 and 3.2 Establish target goals."
+          "titulo": "Target Glucose Concentration",
+          "texto": "safety test of six hours of fasting with regular BG measurements in the interval",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "19",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag19_target_glucose_concentration_3.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Pasa la prueba",
+          "siguiente_nodo": "seg_criterios_alta"
+        },
+        {
+          "texto": "Falla la prueba",
+          "siguiente_nodo": "trat_hiperinsulinismo"
         }
       ]
     },
-    "trat_meta_persistente": {
-      "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- **Meta Glucémica:** Mantener glucosa plasmática **>70 mg/dL (>3.9 mmol/L)**.\n- Individualizar abordaje a la etiología (terapia nutricional para GSD/fructosuria, medicación para hiperinsulinismo o reemplazo hormonal).\n- Mantener evaluación conjunta con Endocrinología Pediátrica para optimizar terapia y evitar recurrencias que generen HAAF.",
+    "seg_criterios_alta": {
+      "tipo": "pregunta",
+      "titulo": "Criterios de alta",
+      "texto": "- Criterios de alta:\n  - Al menos 2 mediciones pre-toma consecutivas normales.\n  - Alimentación efectiva durante varios ciclos de ayuno-toma.",
+      "pie_nodo": "¿Cumple criterios?",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "3.1. For neonates with a suspected congenital hypoglycemia disorder and older infants and children with a confirmed hypoglycemia disorder, we recommend that the goal of treatment be to maintain a PG concentration >70 mg/dL (3.9 mmol/L). GRADE 1++00."
+          "titulo": "Target Glucose Concentration",
+          "texto": "discharged until at least two consecutive pre-prandial glucose measurements are within the normal range and neonates have been feeding effectively",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "19",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag19_target_glucose_concentration_4.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "seg_complicaciones"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "seg_monitoreo_asintomatico"
         }
       ]
     },
-    "trat_meta_riesgo_menos48": {
-      "estilo": "exito",
+    "seg_complicaciones": {
       "tipo": "informativo",
-      "texto": "- **Meta Glucémica:** Mantener glucosa plasmática **>50 mg/dL (>2.8 mmol/L)**.\n- Asegurar alimentación frecuente y en volúmenes adecuados.\n- Transicionar a alimentación enteral exclusiva tan pronto como la glucosa se mantenga estable por encima del umbral meta.",
-      "nota_adicional": "Este umbral se basa en evitar síntomas neuroglucopénicos y contempla el periodo transicional normal, asumiendo que no hay defectos genéticos subyacentes.",
+      "titulo": "Complicaciones",
+      "texto": "- Vigilar complicaciones a largo plazo si hubo hipoglucemia severa o prolongada:\n  - Retraso del neurodesarrollo.\n  - Disfunción visual-motora y ejecutiva.",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6-7",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6_7.png",
-          "texto": "3.2. For high-risk neonates without a suspected congenital hypoglycemia disorder, we suggest the goal of treatment be to maintain a PG concentration >50 mg/dL (>2.8 mmol/L) for those aged <48 hours."
+          "titulo": "Introduction",
+          "texto": "adverse short- and long-term sequelae in the offspring; acute brain injury, visual-motor impairment, executive dysfunction",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "2",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_introduction.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Continuar",
+          "siguiente_nodo": "seg_alta"
         }
       ]
     },
-    "trat_meta_riesgo_mas48": {
+    "seg_alta": {
+      "tipo": "resultado",
       "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- **Meta Glucémica:** Mantener glucosa plasmática **>60 mg/dL (>3.3 mmol/L)**.\n- Si requiere infusión de glucosa intravenosa, realizar descenso gradual confirmando tolerancia enteral.\n- Realizar prueba de ayuno de seguridad antes del egreso hospitalario para garantizar adaptación metabólica.",
-      "nota_adicional": "Dado que a las 48 horas la regulación de insulina madura y los niveles fisiológicos suben, usar metas más estrictas descarta defectos de adaptación prolongada.",
+      "titulo": "Alta hospitalaria",
+      "texto": "- Alta hospitalaria.\n- Instruir a los padres sobre signos de hipoglucemia.\n- Asegurar seguimiento ambulatorio con endocrinología si hubo hiperinsulinismo.",
       "referencias": [
         {
-          "titulo": "Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children",
-          "url": "http://dx.doi.org/10.1016/j.jpeds.2015.03.057",
-          "paginas": "6",
-          "imagen_evidencia": "evidencia_hipoglucemia_pag6.png",
-          "texto": "3.2. For high-risk neonates without a suspected congenital hypoglycemia disorder... >60 mg/dL (>3.3 mmol/L) for those aged >48 hours. GRADE 2+000."
+          "titulo": "Prevention",
+          "texto": "parents should participate actively in the care pathway of at-risk neonates... aware not only of the reasons... but also of all the signs and symptoms",
+          "fuente": "AAP",
+          "anio": "2023",
+          "url": "https://doi.org/10.3390/children10071220",
+          "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines.",
+          "paginas": "14",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag14_prevention_2.png"
         }
       ]
     }
-  }
+  },
+  "referencias": [
+    {
+      "titulo": "Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines",
+      "fuente": "AAP",
+      "anio": "2023",
+      "url": "https://doi.org/10.3390/children10071220",
+      "cita": "AAP (2023). Diagnosis and Management of Neonatal Hypoglycemia: A Comprehensive Review of Guidelines."
+    },
+    {
+      "titulo": "An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use",
+      "fuente": "AAP",
+      "anio": "2021",
+      "url": "https://doi.org/10.3389/fendo.2021.684011",
+      "cita": "AAP (2021). An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use."
+    },
+    {
+      "titulo": "New approaches to screening and management of neonatal hypoglycemia based on improved understanding of the molecular mechanism of hypoglycemia",
+      "fuente": "AGA",
+      "anio": "2023",
+      "url": "https://doi.org/10.3389/fped.2023.1071206",
+      "cita": "AGA (2023). New approaches to screening and management of neonatal hypoglycemia based on improved understanding of the molecular mechanism of hypoglycemia."
+    }
+  ],
+  "carpeta_evidencia": "hipoglucemiapediatrica",
+  "carpeta_imagenes": "hipoglucemiapediatrica"
 }
