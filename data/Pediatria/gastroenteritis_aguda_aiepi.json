@@ -299,6 +299,13 @@
           "cita": "MinSalud (2013). GPC-8-GAI-EDA_GuiaparaUsuarios.indd.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag129_rehidratacion_endovenosa.png"
         }
+      ],
+      "pie_nodo": "¿Qué paso sigue?",
+      "opciones": [
+        {
+          "texto": "Fase 1: reanimación IV",
+          "siguiente_nodo": "trat_plan_c_fase1"
+        }
       ]
     },
     "trat_zinc_alimentacion": {
@@ -495,6 +502,239 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_educacion_cuidador.png"
         }
       ]
+    },
+    "trat_plan_c_fase1": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Plan C · Fase 1: reanimación",
+      "texto": "- Iniciar líquidos **IV** de inmediato. Mientras se monta el goteo, dar **SRO** por boca si puede beber.\n- Usar **Lactato de Ringer** (o SSN 0.9% si no hay). No usar glucosa al 5% sola.\n- Dar **100 mL/kg** en dos pasos: primero **30 mL/kg** en **1 h** (<12 meses) o **30 min** (≥12 meses); luego **70 mL/kg** en **5 h** o **2.5 h**.\n- Repetir los 30 mL/kg una vez si el pulso radial sigue muy débil o ausente.",
+      "pie_nodo": "¿Qué paso sigue?",
+      "nota_adicional": "Algunos esquemas hospitalarios usan bolos de 20 mL/kg de SSN 0.9% repetidos según la perfusión, y luego déficit y mantenimiento. Esta ruta sigue el esquema de la OMS (30 mL/kg y 70 mL/kg).",
+      "farmacos": [
+        {
+          "nombre": "Lactato de Ringer",
+          "dosis": "**100 mL/kg** IV: **30 mL/kg** + **70 mL/kg**",
+          "pauta": "<12 meses: 30 mL/kg en 1 h y 70 mL/kg en 5 h. ≥12 meses: 30 mL/kg en 30 min y 70 mL/kg en 2.5 h.",
+          "nota": "Repetir los 30 mL/kg una vez si el pulso radial sigue débil o ausente. Sin Ringer, usar SSN 0.9%.",
+          "paginas": "114"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Plan C: tratar rápido la deshidratación grave",
+          "paginas": "113-114",
+          "texto": "Start IV fluid immediately. If the child can drink, give ORS by mouth while the drip is set up. Give 100 ml/kg Ringer's lactate solution (or, if not available, normal saline), divided as follows",
+          "fuente": "OMS",
+          "anio": "2013",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
+        },
+        {
+          "titulo": "Guía de rehidratación intravenosa (tabla 3)",
+          "paginas": "14",
+          "texto": "Give 100 ml/kg Ringer's Lactate Solution divided as follows: Infants (under 12 months) first give 30 ml/kg in 1 hour, then 70 ml/kg in 5 hours; older: 30 minutes and 2½ hours",
+          "fuente": "OMS",
+          "anio": "2005",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag14_oms2005_tabla3_rehidratacion_iv.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reevaluar la perfusión",
+          "siguiente_nodo": "trat_plan_c_reeval_inicial"
+        }
+      ]
+    },
+    "trat_plan_c_reeval_inicial": {
+      "tipo": "pregunta",
+      "titulo": "Reevaluación durante la rehidratación IV",
+      "texto": "- Reevaluar cada **15-30 min** hasta tener **pulso radial fuerte**.\n- Después, al menos **cada hora**: pliegue cutáneo, nivel de conciencia y capacidad de beber.\n- Si la hidratación no mejora, **pasar el goteo más rápido**.\n- Dar **SRO ~5 mL/kg/h** en cuanto pueda beber (3-4 h en lactantes, 1-2 h en mayores).",
+      "pie_nodo": "¿Pulso radial fuerte y mejor perfusión?",
+      "referencias": [
+        {
+          "titulo": "Seguimiento de la rehidratación IV",
+          "paginas": "114-115",
+          "texto": "Reassess the child every 15–30 minutes until a strong radial pulse is present. If hydration is not improving, give the IV solution more rapidly.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag115_oms_monitoreo_rehidratacion_iv.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "trat_plan_c_fase2"
+        },
+        {
+          "texto": "No, pulso débil o ausente",
+          "siguiente_nodo": "trat_plan_c_fase1",
+          "color": "rojo"
+        }
+      ]
+    },
+    "trat_plan_c_fase2": {
+      "tipo": "pregunta",
+      "titulo": "Plan C · Fase 2: déficit y mantenimiento",
+      "texto": "- Estimar el déficit: **<5%** (<50 mL/kg), **5-10%** (50-100 mL/kg), **>10%** (>100 mL/kg).\n- Cubrir además el **mantenimiento diario**, preferiblemente por **vía oral** (lactancia, SRO, agua).\n- Si requiere IV: **100 mL/kg/día** los primeros 10 kg + **50 mL/kg/día** los siguientes 10 kg + **25 mL/kg/día** por cada kg adicional.\n- Aumentar **10%** por cada 1 °C de fiebre.\n- Mantenimiento IV posible: SSN 0.45% + glucosa 5%. No dar glucosa al 5% sola por tiempo prolongado (hiponatremia).",
+      "pie_nodo": "¿Qué paso sigue?",
+      "nota_adicional": "Esta fórmula equivale a la regla de Holliday-Segar. La OMS cita SSN 0.45% con glucosa 5% para el mantenimiento IV; guías más recientes (p. ej. AAP 2018) recomiendan soluciones isotónicas en el mantenimiento IV general, con excepciones como la diarrea voluminosa. Confirmar según el protocolo local.",
+      "tabla": {
+        "titulo": "Mantenimiento diario por peso",
+        "columnas": [
+          "Peso",
+          "Líquido (mL/día)"
+        ],
+        "filas": [
+          [
+            "4 kg",
+            "400"
+          ],
+          [
+            "6 kg",
+            "600"
+          ],
+          [
+            "8 kg",
+            "800"
+          ],
+          [
+            "10 kg",
+            "1000"
+          ],
+          [
+            "14 kg",
+            "1200"
+          ],
+          [
+            "20 kg",
+            "1500"
+          ]
+        ]
+      },
+      "farmacos": [
+        {
+          "nombre": "Mantenimiento diario",
+          "dosis": "**100 / 50 / 25 mL/kg/día** (primeros 10 kg / siguientes 10 kg / cada kg adicional)",
+          "pauta": "Ejemplos: 8 kg = 800 mL/día; 15 kg = 1250 mL/día. Fiebre: +10% por cada 1 °C.",
+          "nota": "Preferir vía oral. Si es IV, evitar glucosa 5% sola de forma prolongada (hiponatremia).",
+          "paginas": "273"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Manejo de líquidos: necesidades de mantenimiento",
+          "paginas": "273",
+          "texto": "The total daily fluid requirement of a child is calculated with the following formula: 100 ml/kg for the first 10 kg, then 50 ml/kg for the next 10 kg, thereafter 25 ml/kg for each subsequent kg.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag273_oms_liquidos_mantenimiento.png"
+        },
+        {
+          "titulo": "Estimación del déficit de líquidos",
+          "paginas": "7",
+          "texto": "Some dehydration 5-10% 50-100 ml/kg; Severe dehydration >10% >100 ml/kg",
+          "fuente": "OMS",
+          "anio": "2005",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag7_oms2005_estimacion_deficit.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reponer pérdidas concurrentes",
+          "siguiente_nodo": "trat_plan_c_fase3"
+        }
+      ]
+    },
+    "trat_plan_c_fase3": {
+      "tipo": "pregunta",
+      "titulo": "Plan C · Fase 3: pérdidas concurrentes",
+      "texto": "- Reponer lo que se sigue perdiendo con **SRO** tras cada deposición líquida: menores de 2 años **50 a 100 mL**; mayores de 2 años **100 a 200 mL**.\n- Dar sorbos pequeños con cuchara o taza. Si vomita, esperar **10 min** y seguir más despacio.\n- Mantener la lactancia y la alimentación habitual, y dar **zinc**.\n- Con pérdidas muy altas (p. ej. cólera) que no se compensan por vía oral: mantenimiento IV con **Lactato de Ringer + cloruro de potasio**, reevaluando cada 1-2 h.",
+      "pie_nodo": "¿Qué paso sigue?",
+      "farmacos": [
+        {
+          "nombre": "SRO (pérdidas concurrentes)",
+          "dosis": "**50-100 mL** (<2 años) o **100-200 mL** (≥2 años)",
+          "pauta": "Tras cada deposición líquida, en sorbos pequeños, hasta que cese la diarrea.",
+          "nota": "Si vomita, esperar 10 minutos y continuar más despacio.",
+          "paginas": "120"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Líquidos extra tras cada deposición",
+          "paginas": "120-121",
+          "texto": "for children <2 years, about 50–100 ml after each loose stool; for children 2 years or over, about 100–200 ml after each loose stool.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag121_oms_sro_tras_cada_deposicion.png"
+        },
+        {
+          "titulo": "Pérdidas continuas voluminosas",
+          "paginas": "17",
+          "texto": "Patients whose ongoing stool losses are in this range, or higher, usually require intravenous maintenance therapy using Ringer's Lactate Solution with added potassium chloride.",
+          "fuente": "OMS",
+          "anio": "2005",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag17_oms2005_perdidas_continuas.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Reevaluación formal",
+          "siguiente_nodo": "trat_plan_c_reeval_formal"
+        }
+      ]
+    },
+    "trat_plan_c_reeval_formal": {
+      "tipo": "pregunta",
+      "titulo": "Reevaluación formal tras el Plan C",
+      "texto": "- Al terminar la infusión, reevaluar el estado de hidratación: a las **6 h** en lactantes y a las **3 h** en niños mayores.\n- Clasificar la deshidratación (letargia, ojos hundidos, pliegue cutáneo, bebe mal) y **elegir el plan** A, B o C para continuar.\n- Si queda en Plan A, observar al menos **6 h** antes del alta para confirmar que el cuidador mantiene la hidratación con SRO.",
+      "pie_nodo": "¿Estado de hidratación?",
+      "nota_adicional": "La deshidratación grave persistente tras la rehidratación IV es poco frecuente; suele darse en niños con deposiciones acuosas abundantes y frecuentes durante la rehidratación.",
+      "referencias": [
+        {
+          "titulo": "Reevaluación tras el Plan C",
+          "paginas": "115",
+          "texto": "When the full amount of IV fluid has been given, reassess the child's hydration status fully, using Chart 7.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag115_oms_reevaluacion_formal.png"
+        },
+        {
+          "titulo": "Seguimiento de la rehidratación IV",
+          "paginas": "15",
+          "texto": "When the planned amount of IV fluid has been given (after three hours for older patients, or six hours for infants), the child's hydration status should be reassessed fully.",
+          "fuente": "OMS",
+          "anio": "2005",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag15_oms2005_reevaluacion_tras_iv.png"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Grave persistente",
+          "siguiente_nodo": "trat_plan_c_fase1",
+          "color": "rojo"
+        },
+        {
+          "texto": "Algún grado",
+          "siguiente_nodo": "trat_plan_b"
+        },
+        {
+          "texto": "Sin deshidratación",
+          "siguiente_nodo": "trat_plan_a"
+        }
+      ]
     }
   },
   "referencias": [
@@ -510,6 +750,19 @@
       "anio": "2018",
       "url": "https://doi.org/10.12688/f1000research.12328.1",
       "cita": "OMS (2018). Antibiotic treatment of acute gastroenteritis in children [version."
+    },
+    {
+      "titulo": "Pocket Book of Hospital Care for Children",
+      "fuente": "OMS",
+      "anio": "2013",
+      "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud."
+    },
+    {
+      "titulo": "The treatment of diarrhoea",
+      "fuente": "OMS",
+      "anio": "2005",
+      "url": "https://www.who.int/publications/i/item/9241593180",
+      "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1."
     }
   ],
   "carpeta_evidencia": "gastroenteritis_aguda_aiepi",
