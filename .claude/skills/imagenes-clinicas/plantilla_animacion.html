@@ -1,0 +1,84 @@
+<!doctype html>
+<!--
+  Plantilla de las ilustraciones propias de Praxis. Se copia al scratchpad,
+  se cambia el dibujo y se pasa por tools/medios/capturar.js.
+
+  Reglas: 720×540 (4:3, se lee en la tarjeta de 288 px y a pantalla completa),
+  fondo blanco, tonos del contrato, rótulos en español y cifras en negrita.
+  `cuadro(i, total)` dibuja el estado i; con --cuadros 1 sale un PNG estático.
+
+  El ejemplo es el llenado capilar: presión, blanqueo y recoloración con el
+  cronómetro, para que se vea qué es normal. Sustituir entero por el tema.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --teal: #18B9A9; --violeta: #7B6CF6; --rojo: #EF5454; --ambar: #F2A23A;
+    --verde: #2FB36D; --azul: #4F8CF6; --celeste: #3BA7E0;
+    --tinta: #1F2A37; --suave: #6B7280; --linea: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; color: var(--tinta); }
+  #lienzo { width: 720px; height: 540px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; background: #fff; }
+  .cabecera { display: flex; align-items: center; justify-content: space-between; }
+  .titulo { font-size: 26px; font-weight: 700; }
+  .marca { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+  .escena { flex: 1; border: 1px solid var(--linea); border-radius: 16px; display: grid; place-items: center; }
+  .pie { display: flex; gap: 10px; }
+  .paso { flex: 1; padding: 10px 12px; border-radius: 10px; background: #F3F4F6; color: var(--suave); font-size: 15px; }
+  .paso b { color: var(--tinta); }
+  .paso.activo { background: color-mix(in srgb, var(--teal) 14%, white); color: var(--tinta); outline: 2px solid var(--teal); }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div class="cabecera">
+    <div class="titulo">Llenado capilar</div>
+    <div class="marca">Praxis</div>
+  </div>
+  <div class="escena">
+    <svg id="dibujo" width="620" height="300" viewBox="0 0 620 300"></svg>
+  </div>
+  <div class="pie">
+    <div class="paso" id="p0"><b>1.</b> Presionar el lecho ungueal <b>5 s</b></div>
+    <div class="paso" id="p1"><b>2.</b> Soltar y contar</div>
+    <div class="paso" id="p2"><b>3.</b> Normal si recolorea en <b>≤2 s</b></div>
+  </div>
+</div>
+<script>
+  const svg = document.getElementById("dibujo");
+  const mezcla = (a, b, t) => a.map((x, k) => Math.round(x + (b[k] - x) * t));
+  const rgb = (c) => `rgb(${c.join(",")})`;
+  const ROSA = [236, 150, 150], PALIDO = [250, 236, 228];
+
+  window.cuadro = function (i, total) {
+    const t = total > 1 ? i / (total - 1) : 1;           // 0 → 1 a lo largo del GIF
+    const presion = t < 0.35;                              // primer tercio: el dedo aprieta
+    const tras = Math.max(0, (t - 0.35) / 0.65);           // 0 → 1 tras soltar
+    const segundos = presion ? 0 : tras * 2.0;             // el contador llega a 2 s
+    const color = presion ? PALIDO : mezcla(PALIDO, ROSA, Math.min(1, tras * 1.15));
+    const dedoY = presion ? 70 : 70 - Math.min(1, tras * 4) * 60;
+
+    svg.innerHTML = `
+      <rect x="150" y="150" width="200" height="110" rx="55" fill="#F6D7C3" stroke="#D9B39C" stroke-width="3"/>
+      <rect x="185" y="160" width="130" height="80" rx="28" fill="${rgb(color)}" stroke="#C99" stroke-width="2"/>
+      <g transform="translate(0, ${dedoY})">
+        <rect x="200" y="0" width="100" height="90" rx="40" fill="#EFC6AE" stroke="#D9B39C" stroke-width="3"/>
+        <text x="250" y="-8" text-anchor="middle" font-size="16" fill="var(--suave)">${presion ? "presión" : ""}</text>
+      </g>
+      <g transform="translate(430, 120)">
+        <circle cx="70" cy="70" r="64" fill="none" stroke="var(--linea)" stroke-width="10"/>
+        <circle cx="70" cy="70" r="64" fill="none" stroke="${segundos <= 2 ? "var(--verde)" : "var(--rojo)"}" stroke-width="10"
+          stroke-dasharray="${(402 * Math.min(1, segundos / 3)).toFixed(1)} 402" transform="rotate(-90 70 70)" stroke-linecap="round"/>
+        <text x="70" y="80" text-anchor="middle" font-size="34" font-weight="700" fill="var(--tinta)">${segundos.toFixed(1)} s</text>
+      </g>`;
+
+    const paso = presion ? 0 : tras < 0.9 ? 1 : 2;
+    [0, 1, 2].forEach((k) => document.getElementById("p" + k).classList.toggle("activo", k === paso));
+  };
+  window.cuadro(0, 1);
+</script>
+</body>
+</html>
