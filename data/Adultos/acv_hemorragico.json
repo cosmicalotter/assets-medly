@@ -6,7 +6,7 @@
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "ACV HEMORRÁGICO",
+      "texto": "Accidente cerebrovascular tipo hemorrágico",
       "nota_adicional": "Algoritmo para hemorragia intracerebral espontánea no traumática en adultos. No sustituye el juicio clínico ni cubre como diagnóstico primario la hemorragia subaracnoidea aneurismática, el trauma, la malformación vascular ya demostrada o el tumor hemorrágico.",
       "opciones": [
         {
@@ -70,7 +70,11 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag10_11.png",
           "texto": "La Tabla 3 indica registrar la hora de inicio, síntomas, medicamentos, signos vitales, examen neurológico, NIHSS, GCS y glucosa."
         }
-      ]
+      ],
+      "calculadora": {
+        "archivo": "nihss.json",
+        "ramificar": false
+      }
     },
     "diag_estabilizacion_critica": {
       "estilo": "peligro",
@@ -352,6 +356,21 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag19_22.png",
           "texto": "Para HIC asociada a antagonistas de vitamina K recomienda PCC de 4 factores sobre plasma, seguido de vitamina K IV; describe dosis de PCC según INR y vitamina K de 5 a 10 mg."
         }
+      ],
+      "farmacos": [
+        {
+          "nombre": "concentrado de complejo protrombínico de 4 factores",
+          "dosis": "**25-50 UI/kg** IV"
+        },
+        {
+          "nombre": "vitamina K",
+          "dosis": "**10 mg** IV"
+        },
+        {
+          "nombre": "PCC",
+          "dosis": "**10-20 UI/kg**",
+          "nota": "Para INR **1,3-1,9**"
+        }
       ]
     },
     "tx_reversion_xa": {
@@ -374,6 +393,12 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag19_22.png",
           "texto": "El PDF recomienda reversión rápida de inhibidores Xa con andexanet alfa o considera PCC de 4 factores o PCC activado. El PDF de 2022 no contiene la actualización regulatoria de 2025 incluida en este nodo."
         }
+      ],
+      "farmacos": [
+        {
+          "nombre": "PCC de 4 factores",
+          "dosis": "**50 UI/kg** IV"
+        }
       ]
     },
     "tx_reversion_dabigatran": {
@@ -395,6 +420,17 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag19_23.png",
           "texto": "Para dabigatrán recomienda idarucizumab 5 g, dividido en dos bolos de 2,5 g; si no está disponible, contempla PCC, PCC activado o terapia de reemplazo renal."
         }
+      ],
+      "farmacos": [
+        {
+          "nombre": "idarucizumab",
+          "dosis": "**5 g** IV",
+          "pauta": "**dos dosis consecutivas de 2,5 g**"
+        },
+        {
+          "nombre": "PCC activado",
+          "dosis": "**50 UI/kg** IV"
+        }
       ]
     },
     "tx_reversion_heparina": {
@@ -415,6 +451,14 @@
           "paginas": "19-23",
           "imagen_evidencia": "evidencia_acvhemorragico_pag19_23.png",
           "texto": "Se considera razonable la protamina IV para heparina no fraccionada y reversión parcial de HBPM; el texto advierte no superar 50 mg en 10 minutos."
+        }
+      ],
+      "farmacos": [
+        {
+          "nombre": "protamina",
+          "dosis": "**1 mg** por cada 100 UI de heparina IV",
+          "pauta": "no exceder **50 mg en 10 minutos**",
+          "nota": "vigilar hipotensión, broncoconstricción y anafilaxia"
         }
       ]
     },
@@ -662,7 +706,11 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag37_39.png",
           "texto": "El PDF selecciona principalmente HIC supratentorial mayor de 20 a 30 mL con GCS 5 a 12 para considerar evacuación mínimamente invasiva. No contiene los criterios lobares 30 a 80 mL ni la ventana de 24 horas del nodo."
         }
-      ]
+      ],
+      "calculadora": {
+        "archivo": "nihss.json",
+        "ramificar": false
+      }
     },
     "tx_mis_lobar_seleccionada": {
       "estilo": "advertencia",
@@ -708,7 +756,11 @@
           "imagen_evidencia": "evidencia_acvhemorragico_pag37_39.png",
           "texto": "Los ensayos resumidos usaron habitualmente volúmenes mayores de 20 o 30 mL y GCS 5 a 12; el beneficio funcional de la evacuación mínimamente invasiva seguía incierto en la guía."
         }
-      ]
+      ],
+      "calculadora": {
+        "archivo": "glasgowcoma.json",
+        "ramificar": false
+      }
     },
     "tx_evacuacion_minimamente_invasiva": {
       "estilo": "advertencia",
@@ -856,5 +908,11 @@
         }
       ]
     }
-  }
+  },
+  "referencias": [
+    {
+      "titulo": "2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/STR.0000000000000407"
+    }
+  ]
 }
