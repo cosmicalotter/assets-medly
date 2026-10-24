@@ -1,0 +1,122 @@
+{
+  "titulo": "Escala ICH (ICH score)",
+  "descripcion": "Gravedad de la hemorragia intracerebral espontánea al ingreso. Resume cinco datos (GCS, volumen, sangre intraventricular, origen infratentorial y edad) en una puntuación de 0 a 6 asociada a la mortalidad a 30 días de la cohorte original. Sirve para comunicar gravedad, no para predecir el desenlace de un paciente concreto.",
+  "tipoCalculo": "formula",
+  "formula": "gcs + volumen + intraventricular + infratentorial + edad",
+  "prefijoResultado": "ICH score",
+  "sufijoResultado": "puntos",
+  "secciones": [
+    {
+      "nombre": "Clínica",
+      "elementos": [
+        {
+          "id": "gcs",
+          "tipo": "opciones",
+          "label": "Escala de coma de Glasgow",
+          "opciones": [
+            { "label": "13 a 15", "puntos": 0 },
+            { "label": "5 a 12", "puntos": 1 },
+            { "label": "3 a 4", "puntos": 2 }
+          ]
+        },
+        {
+          "id": "edad",
+          "tipo": "opciones",
+          "label": "Edad",
+          "opciones": [
+            { "label": "Menos de 80 años", "puntos": 0 },
+            { "label": "80 años o más", "puntos": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Tomografía",
+      "elementos": [
+        {
+          "id": "volumen",
+          "tipo": "opciones",
+          "label": "Volumen del hematoma (ABC/2)",
+          "opciones": [
+            { "label": "Menos de 30 mL", "puntos": 0 },
+            { "label": "30 mL o más", "puntos": 1 }
+          ]
+        },
+        {
+          "id": "intraventricular",
+          "tipo": "opciones",
+          "label": "Sangre intraventricular",
+          "opciones": [
+            { "label": "No", "puntos": 0 },
+            { "label": "Sí", "puntos": 1 }
+          ]
+        },
+        {
+          "id": "infratentorial",
+          "tipo": "opciones",
+          "label": "Origen infratentorial (cerebelo o tronco)",
+          "opciones": [
+            { "label": "No", "puntos": 0 },
+            { "label": "Sí", "puntos": 1 }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "0 puntos · mortalidad a 30 días 0 %",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "En la cohorte original sobrevivieron todos los pacientes con 0 puntos. Es un promedio poblacional: no usarlo solo para el pronóstico individual."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "1 punto · mortalidad a 30 días 13 %",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Gravedad baja en la cohorte original. Tratamiento completo según el algoritmo."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "2 puntos · mortalidad a 30 días 26 %",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Gravedad intermedia. Tratamiento completo; valorar unidad neurocrítica si hay sangre intraventricular o hidrocefalia."
+    },
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "3 puntos · mortalidad a 30 días 72 %",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Gravedad alta. No limitar el soporte vital por la puntuación: la guía AHA 2022 aconseja no hacer órdenes nuevas de no reanimar antes del segundo día completo de ingreso."
+    },
+    {
+      "min": 4,
+      "max": 6,
+      "categoria": "4 a 6 puntos · mortalidad a 30 días 97-100 %",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Gravedad muy alta en la cohorte original (ningún paciente tuvo 6). La puntuación no basta para limitar el tratamiento: decidir con la familia y con el curso clínico, no con el número (AHA 2022, Clase III)."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Hemphill JC 3rd, et al. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-7.",
+      "url": "https://doi.org/10.1161/01.str.32.4.891"
+    },
+    {
+      "titulo": "Greenberg SM, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke. 2022;53:e282-e361.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407"
+    },
+    {
+      "titulo": "Steiner T, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
+      "url": "https://doi.org/10.1177/23969873251340815"
+    }
+  ]
+}
