@@ -1,11 +1,11 @@
-name: Actualizar Fecha Firebase
+name: Publicar en Firebase (índices y fecha)
 
 on:
   push:
     branches:
       - main
       - master
-    # MAGIA ACTUALIZADA: Ahora vigila JSON y todos los formatos de imagen comunes
+    # Vigila JSON (algoritmos, calculadoras e indices/) y todos los formatos de imagen comunes
     paths:
       - '**.json'
       - '**.png'
@@ -14,6 +14,11 @@ on:
       - '**.webp'
       - '**.gif'
       - '**.svg'
+      - 'update_firebase_date.js'
+
+concurrency:
+  group: firebase-remote-config
+  cancel-in-progress: false
 
 jobs:
   update-firebase:
@@ -21,17 +26,23 @@ jobs:
 
     steps:
       - name: Descargar el código del repositorio
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+
+      - name: Validar los índices
+        run: node update_firebase_date.js --validar
 
       - name: Instalar dependencias
         run: npm install firebase-admin
 
-      - name: Ejecutar script de actualización de fecha
+      - name: Publicar índices y fecha en Remote Config
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          PREV_SHA: ${{ github.event.before }}
         run: node update_firebase_date.js

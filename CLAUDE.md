@@ -9,8 +9,27 @@ Contenido de la app **Empirica** (antes Praxis; el repositorio de la app sigue l
 **`main` es producción.** La app descarga de
 `raw.githubusercontent.com/cosmicalotter/assets-medly/main/…` y el workflow de
 `.github/` avisa a Firebase en cada push. Lo que entra en `main` lo ven los
-usuarios. Nunca se hace push ni merge a `main` desde una sesión: rama + PR, y
-el merge lo hace el médico que revisa.
+usuarios. Se trabaja en una rama y se pasa a `main` solo con el trabajo
+validado (`galgo validar` sin errores, `tools/norma.py`, revisores); el dueño
+autorizó (octubre de 2026) que Claude haga ese paso a `main` él mismo.
+
+## Índices: qué algoritmos y calculadoras enseña la app
+
+Los menús de la app salen de Firebase Remote Config, y Remote Config sale de
+**`indices/`**: `index_adultos.json`, `index_pediatria.json`,
+`index_calculadoras.json` y `json_banners.json` (un archivo por parámetro).
+En cada push a `main`, el workflow (`update_firebase_date.js`) los valida,
+los publica y pone la fecha `ultima_actualizacion_app`; la app los recibe al
+abrirse.
+
+- Algoritmo o calculadora nueva → su entrada en `indices/` en el mismo commit
+  (URL raw completa de `main`). Si el archivo no está en `main`, el workflow
+  no publica nada.
+- No se editan los índices en la consola de Firebase: si alguien lo hace, el
+  workflow no pisa ese parámetro y falla; se copia el valor de Firebase al
+  archivo y se vuelve a subir.
+- `node update_firebase_date.js --validar` comprueba los índices sin tocar
+  Firebase. `data/*/disponibles.json` es antiguo: la app no lo lee.
 
 ## Repositorios hermanos
 
@@ -35,7 +54,7 @@ python3 tools/medios/armar_gif.py …          # cuadros → GIF
 ```
 
 `galgo publicar` y `galgo indice` no se usan desde Claude: publican en
-producción y en Firebase.
+Firebase directamente, saltándose `indices/`.
 
 ## Reglas que no se saltan
 
