@@ -23,12 +23,33 @@ variante (p. ej. CHA₂DS₂-VA en vez de CHA₂DS₂-VASc), se crea esa variant
 
 ## El formato
 
-Lo lee `DatosEscala.fromJson` en `praxis/lib/models/algoritmo.dart`. Antes de
-escribir, **abre un ejemplo del mismo tipo**:
+Lo lee `DatosEscala.fromJson` en `praxis/lib/models/algoritmo.dart`.
+
+**Se prefiere la tabla** (`tipoCalculo: "suma"` con `columnas` + `filas`)
+siempre que la escala se pueda expresar como puntos que se suman: es más
+práctica y visual en la app. La fórmula queda para lo que de verdad es una
+ecuación (CKD-EPI, ABC/2) o para valores numéricos que se convierten en puntos
+por tramos. Dos detalles de la tabla:
+
+- Lo que no se marca cuenta **0**: el 0 tiene que ser el valor normal o
+  ausente. Si la escala resta desde un máximo (ASPECTS: 10 menos las regiones
+  afectadas), los puntos cuentan lo afectado y cada `resultados[]` traduce el
+  total a la puntuación real (`min`/`max` exactos y `categoria` «ASPECTS 7»).
+- Una celda que no aplica en esa fila lleva `"-"` en `descripciones`.
+- `nombre` de fila corto: la app lo corta a dos líneas.
+
+**Imagen de ayuda**: `imagenTopUrl` (encima de la tabla o del formulario) o
+`imagenBottomUrl` (debajo), con URL raw completa. Va en
+`data/calculadoras/imagenes/<escala>.png` y sigue las reglas de la skill
+`imagenes-clinicas` (propia o con licencia, marca Empirica, ≤300 KB). Úsala
+cuando enseñe qué mirar para puntuar: regiones de una TC, grados de una
+clasificación, cómo medir.
+
+Antes de escribir, **abre un ejemplo del mismo tipo**:
 
 | tipo | ejemplo | cuándo |
 |---|---|---|
-| tabla de puntos | `curb65.json`, `centor.json` | cada criterio suma 0/1 (o 0/1/2) |
+| tabla de puntos (preferida) | `abcd2.json`, `ich_score.json`, `aspects.json` | cada criterio suma 0/1 (o 0/1/2) |
 | fórmula | `ckdepi.json`, `cockcroft.json` | hay una ecuación con variables |
 | elementos con intervalos | `sofa.json`, `grace.json` | un valor numérico se convierte en puntos por tramos |
 
