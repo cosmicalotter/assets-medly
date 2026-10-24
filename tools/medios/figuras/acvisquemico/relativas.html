@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:10px;flex:1}
+  .col{border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:5px}
+  .col h3{font-size:14.5px;margin-bottom:3px}
+  .col h3 small{display:block;font-weight:400;font-size:11.5px;color:var(--suave)}
+  .rel{flex:1.55;background:color-mix(in srgb,var(--ambar) 13%,white);border:2px solid color-mix(in srgb,var(--ambar) 45%,white)}
+  .fav{flex:1;background:color-mix(in srgb,var(--teal) 11%,white);border:2px solid color-mix(in srgb,var(--teal) 40%,white)}
+  .lista{display:grid;gap:3px 12px;font-size:12px;line-height:1.25}
+  .rel .lista{grid-template-columns:1fr 1fr}
+  .lista div{display:flex;gap:6px}
+  .lista div::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;margin-top:5px;background:var(--ambar)}
+  .fav .lista div::before{background:var(--teal)}
+  .abs{border-radius:10px;background:color-mix(in srgb,var(--rojo) 12%,white);padding:7px 12px;font-size:12.5px}
+</style></head><body>
+<script>
+const li = (xs) => xs.map((x) => `<div><span>${x}</span></div>`).join("");
+lienzo(
+  "Trombólisis: ¿y si hay un «pero»?",
+  "Situaciones de la Tabla 8 que no son contraindicación absoluta",
+  `<div class="cols">
+    <div class="col rel"><h3>Contraindicación relativa<small>Decidir caso a caso; muchas con interconsulta urgente</small></h3>
+      <div class="lista">${li(["Discapacidad o fragilidad previa", "ACOD en las últimas <b>48 h</b>", "ACV isquémico en <b>&lt;3 meses</b>", "Hemorragia intracraneal previa",
+        "Trauma mayor fuera del SNC (<b>14 d-3 m</b>)", "Cirugía mayor en <b>&lt;10 días</b>", "Sangrado digestivo o urinario en <b>&lt;21 días</b>", "Disección arterial intracraneal",
+        "Malformación vascular intracraneal", "IAM con elevación del ST en <b>&lt;3 meses</b>", "Pericarditis aguda", "Trombo en aurícula o ventrículo izquierdos",
+        "Neoplasia sistémica activa", "Embarazo y puerperio", "Punción dural en <b>&lt;7 días</b>", "Punción arterial no compresible en <b>&lt;7 días</b>",
+        "TCE moderado-grave (<b>14 d-3 m</b>)", "Neurocirugía intracraneal o espinal (<b>14 d-3 m</b>)"])}</div></div>
+    <div class="col fav"><h3>El beneficio suele superar el riesgo<small>Considerar la trombólisis</small></h3>
+      <div class="lista">${li(["Disección cervical extracraneal (<b>&lt;4,5 h</b>)", "Neoplasia extraaxial", "ACV durante o justo después de una angiografía", "Aneurisma intracraneal no roto",
+        "Sangrado digestivo o urinario remoto y estable", "Infarto de miocardio remoto", "Uso de drogas recreativas", "Duda entre ACV e imitador", "Enfermedad de moyamoya"])}</div></div>
+  </div>
+  <div class="abs">Las <b>contraindicaciones absolutas</b> (hemorragia, hipodensidad extensa, TCE o neurocirugía en &lt;14 días, coagulopatía grave…) están en la lista del nodo.</div>`,
+  "Esquema de la Tabla 8 de la guía AHA/ASA 2026 del ACV isquémico agudo (Prabhakaran et al., Stroke 2026). SNC: sistema nervioso central."
+);
+</script></body></html>
