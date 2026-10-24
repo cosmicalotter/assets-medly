@@ -123,10 +123,11 @@ repositorio `galgo-empirica`. Lo esencial:
 
 - **Contenido clínico**: de la guía, con `referencias[].texto` = cita literal
   de 12 a 30 palabras y `paginas`. Nunca de memoria.
-- **Imágenes**: ver la skill `imagenes-clinicas`. Tres orígenes, en este
-  orden: figuras de la guía cuando su licencia permite el uso comercial (CC BY,
-  como las de la WSES; las de © editorial, no sin permiso), ilustraciones
-  propias (`tools/medios`) y fotos con licencia que permite uso comercial,
-  con su crédito en `creditos.json`.
+- **Imágenes**: ver la skill `imagenes-clinicas`. Primero imágenes reales
+  con licencia que permite el uso comercial (figuras de la guía si son CC BY,
+  como las de la WSES, y si no, fotos de internet: Commons, PMC CC BY),
+  editadas y, cuando hay un recorrido que contar, animadas en GIF; después,
+  ilustraciones propias (`tools/medios`). Las de © editorial no entran sin
+  permiso. Crédito en `creditos.json`.
 - **Calculadoras**: de su publicación original, con referencia. Ver la skill
   `crear-calculadora`.

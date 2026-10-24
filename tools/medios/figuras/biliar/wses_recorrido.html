@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="wses_es.js"></script>
+<style>
+  .visor{position:relative;width:668px;height:416px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linea);flex:none}
+  .camara{position:absolute;left:0;top:0;transform-origin:0 0}
+  .rotulo{position:absolute;left:10px;right:10px;bottom:10px;display:flex;gap:10px;align-items:center;background:rgba(31,42,55,.95);color:#fff;border-radius:12px;padding:8px 12px;font-size:15px;font-weight:700;line-height:1.25}
+  .rotulo .n{min-width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+</style></head><body>
+<script>
+// Recorrido animado por la Figura 1 de WSES 2020 traducida (wses_es.js):
+// la cámara se acerca a cada tramo y el camino se ilumina.
+const C = { DX: [86, 87, 203, 120], RIESGO: [75, 154, 215, 294, "r"], GRUPOS: [244, 197, 438, 251], CBDS: [504, 173, 606, 275, "r"],
+  PREOP: [710, 165, 846, 283, "r"], INTRA: [939, 197, 1056, 251], VENTANA: [546, 438, 1037, 493], ELC: [1089, 439, 1142, 492],
+  ALTA: [914, 534, 1019, 592], DLC: [1089, 534, 1141, 592], NOAPTO: [48, 328, 242, 382], ATB: [48, 419, 242, 473],
+  EXITO1: [77, 592, 213, 728, "r"], ALTA1: [6, 808, 283, 870], DREN: [395, 624, 671, 695], EXITO2: [724, 595, 860, 731, "r"],
+  ALTA2: [912, 634, 1189, 700], RESCATE: [912, 724, 1189, 790] };
+const A = { dx: [[145, 120], [145, 154]], rg: [[215, 224], [244, 224]], gc: [[438, 224], [504, 224]], bajo: [[555, 275], [555, 438]],
+  ma: [[606, 224], [710, 224]], psi: [[778, 283], [778, 438]], pno: [[846, 224], [939, 224]], intra: [[997, 251], [997, 438]],
+  elc: [[1037, 465], [1089, 465]], elcfin: [[1142, 465], [1226, 465]], noalta: [[792, 493], [792, 563], [914, 563]],
+  dlc: [[1019, 563], [1089, 563]], dlcfin: [[1141, 563], [1226, 563]], noapto: [[145, 294], [145, 328]], atb: [[145, 382], [145, 419]],
+  h48: [[145, 473], [145, 592]], si1: [[145, 728], [145, 808]], no1: [[213, 660], [395, 660]], dren: [[671, 660], [724, 663]],
+  si2: [[860, 663], [912, 663]], no2: [[792, 731], [792, 757], [912, 757]] };
+const TURQ = "#18B9A9", AMBAR = "#F2A23A";
+const COMPLETA = [640, 550, 0.378];
+// [cámara (cx, cy, escala), color, cajas, flechas, texto]
+const PASOS = [
+  [COMPLETA, TURQ, [], [], "Flujograma de la WSES 2020 para la colecistitis aguda, en español"],
+  [[250, 190, 1], TURQ, ["DX", "RIESGO"], ["dx"], "Con el diagnóstico: estimar el riesgo y si acepta la cirugía temprana"],
+  [[430, 215, 1], TURQ, ["GRUPOS", "CBDS"], ["rg", "gc"], "Tolera la cirugía, con o sin alto riesgo: estratificar el riesgo de coledocolitiasis"],
+  [[800, 300, 0.78], TURQ, ["PREOP", "INTRA"], ["bajo", "ma", "psi", "pno", "intra"], "Bajo: directo a cirugía. Moderado: USE o colangio-RM antes, o COI. Alto: CPRE antes, o explorar el colédoco"],
+  [[880, 455, 1], TURQ, ["VENTANA", "ELC"], ["elc", "elcfin"], "Colecistectomía laparoscópica en <b>≤72 h</b>; como mínimo, <b>≤7 días</b> del ingreso y <b>≤10</b> del inicio"],
+  [[900, 520, 1], TURQ, ["ALTA", "DLC"], ["noalta", "dlc", "dlcfin"], "Fuera de ese plazo: alta y colecistectomía diferida"],
+  [[260, 420, 0.92], AMBAR, ["NOAPTO", "ATB"], ["noapto", "atb", "h48"], "No apto o rechaza la cirugía: antibiótico y observación <b>48 h</b>"],
+  [[400, 720, 0.85], AMBAR, ["EXITO1", "ALTA1", "DREN"], ["si1", "no1"], "Mejora: alta y valorar cirugía diferida. No mejora: drenaje vesicular"],
+  [[960, 700, 0.95], AMBAR, ["EXITO2", "ALTA2", "RESCATE"], ["dren", "si2", "no2"], "Tras el drenaje: alta si mejora; si falla, valorar cirugía de rescate"],
+  [COMPLETA, TURQ, [], [], "Turquesa: tolera la cirugía · Ámbar: no la tolera"],
+];
+const suave = (u) => u * u * (3 - 2 * u);
+const forma = ([x0, y0, x1, y1, r], color, grosor, relleno) => r
+  ? `<polygon points="${(x0 + x1) / 2},${y0 - 4} ${x1 + 4},${(y0 + y1) / 2} ${(x0 + x1) / 2},${y1 + 4} ${x0 - 4},${(y0 + y1) / 2}" fill="${color}" fill-opacity="${relleno}" stroke="${color}" stroke-width="${grosor}" stroke-linejoin="round"/>`
+  : `<rect x="${x0 - 4}" y="${y0 - 4}" width="${x1 - x0 + 8}" height="${y1 - y0 + 8}" rx="6" fill="${color}" fill-opacity="${relleno}" stroke="${color}" stroke-width="${grosor}"/>`;
+const flecha = (pts, color, grosor, op) => `<polyline points="${pts.map((p) => p.join(",")).join(" ")}" fill="none" stroke="${color}" stroke-width="${grosor}" stroke-linecap="round" stroke-linejoin="round" opacity="${op}"/>`;
+
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.45;
+  const pos = Math.min(PASOS.length - 1e-6, t * PASOS.length);
+  const k = Math.floor(pos), u = suave(Math.min(1, (pos - k) / 0.3));
+  const [cam1, color, cajas, flechas, texto] = PASOS[k];
+  const cam0 = k > 0 ? PASOS[k - 1][0] : cam1;
+  const [cx, cy, s] = [0, 1, 2].map((j) => lerp(cam0[j], cam1[j], u));
+  let svg = "";
+  // Lo ya recorrido queda tenue; el paso actual, intenso. Al final, los dos caminos.
+  const tramos = k === PASOS.length - 1 ? PASOS.slice(1, -1) : PASOS.slice(1, k);
+  for (const [, col, cs, fs] of tramos) {
+    svg += fs.map((f) => flecha(A[f], col, 7, 0.45)).join("") + cs.map((c) => forma(C[c], col, 3, 0.12)).join("");
+  }
+  if (k > 0 && k < PASOS.length - 1) {
+    svg += flechas.map((f) => flecha(A[f], color, 9, 0.75 * u)).join("");
+    svg += cajas.map((c) => forma(C[c], color, 5, 0.2 * u)).join("");
+  }
+  const vista = `<div class="camara" style="transform:translate(${334 - cx * s}px,${(k === 0 || k === PASOS.length - 1 ? 208 : 182) - cy * s}px) scale(${s})">${wsesTraducida()}
+    <svg style="position:absolute;left:0;top:0" width="${WSES_ANCHO}" height="${WSES_ALTO}">${svg}</svg></div>`;
+  const num = k === 0 ? "▶" : k === PASOS.length - 1 ? "✓" : k;
+  lienzo(
+    "Colecistitis aguda: el camino de la WSES",
+    "Figura de la guía traducida y recorrida paso a paso",
+    `<div class="visor">${vista}<div class="rotulo"><div class="n" style="background:${color}">${num}</div><div>${texto}</div></div></div>`,
+    "Fuente: Pisano et al., WSES 2020, Fig. 1 (World J Emerg Surg 2020;15:61), CC BY 4.0. Traducida y animada por Empirica."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>
