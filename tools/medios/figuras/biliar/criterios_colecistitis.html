@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:12px;flex:1}
+  .col{flex:1}
+  .col h3{font-size:15px;line-height:1.2}
+  .col .hd{display:flex;gap:9px;align-items:center}
+  .regla{display:flex;gap:12px}
+  .regla div{flex:1;border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .nota{background:#FEF3E2;color:#92400e;border-radius:10px;padding:8px 12px;font-size:13px}
+</style></head><body>
+<script>
+const A = "#7B6CF6", B = "#4F8CF6", C = "#18B9A9";
+const signo = (l, c) => `<span class="letra" style="background:${c};width:28px;height:28px;font-size:16px">${l}</span>`;
+lienzo(
+  "Colecistitis aguda: criterios de Tokio",
+  "Confirmar el diagnóstico antes de graduar la gravedad",
+  `<div class="cols">
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${A}">A</span><h3>Signos locales de inflamación</h3></div>
+       <div class="item"><b>Signo de Murphy</b>: al palpar el hipocondrio derecho, el paciente corta la inspiración por dolor</div>
+       <div class="item">Masa, dolor o sensibilidad en el hipocondrio derecho</div></div>
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${B}">B</span><h3>Signos sistémicos de inflamación</h3></div>
+       <div class="item">Fiebre</div><div class="item">PCR elevada</div><div class="item">Leucocitosis</div></div>
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${C}">C</span><h3>Imagen característica</h3></div>
+       <div class="item">Pared <b>≥4 mm</b></div><div class="item">Vesícula grande: eje largo <b>≥8 cm</b>, corto <b>≥4 cm</b></div>
+       <div class="item">Cálculos o detritos, líquido perivesicular, Murphy ecográfico</div></div>
+   </div>
+   <div class="regla">
+     <div style="background:#FEF3E2;color:#92400e">Sospecha ${signo("A", A)} + ${signo("B", B)}</div>
+     <div style="background:#E6F6EE;color:#1d7a49">Definitiva ${signo("A", A)} + ${signo("B", B)} + ${signo("C", C)}</div>
+   </div>
+   <div class="nota">Excluir hepatitis aguda, otros abdómenes agudos y colecistitis crónica. Ningún dato aislado basta.</div>`,
+  "Fuente: Guías de Tokio 2018 (Yokoe et al., J Hepatobiliary Pancreat Sci 2018, Tabla 1) y hallazgos de imagen del mismo artículo; WSES 2020."
+);
+</script></body></html>

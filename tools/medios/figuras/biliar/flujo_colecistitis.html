@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:12px;flex:1}
+  .col{flex:1;border-radius:14px;background:#F7F8FA;padding:10px;display:flex;flex-direction:column;gap:6px}
+  .gr{color:#fff;border-radius:10px;padding:6px 10px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}
+  .gr small{font-size:11.5px;font-weight:700;opacity:.9}
+  .caja{background:#fff;border-radius:9px;padding:6px 8px;font-size:12.5px;line-height:1.3}
+  .si{border-left:4px solid var(--verde)}
+  .no{border-left:4px solid var(--suave)}
+  .acc{background:#1F2A37;color:#fff;border-radius:9px;padding:6px 8px;font-size:12.5px;font-weight:700;line-height:1.3}
+  .acc.dren{background:#4F8CF6}
+  .q{font-size:11px;font-weight:800;color:var(--suave);letter-spacing:.04em}
+  .pie{display:flex;gap:10px}
+  .pie div{flex:1;background:#F3F4F6;border-radius:10px;padding:7px 10px;font-size:12px;line-height:1.3}
+</style></head><body>
+<script>
+const col = (g, nombre, cuerpo) => `<div class="col"><div class="gr" style="background:${GRADO[g]}">Grado ${g}<small>${nombre}</small></div>${cuerpo}</div>`;
+lienzo(
+  "Colecistitis aguda: manejo según el grado",
+  "Antibiótico, líquidos y analgesia en todos; la cirugía depende del grado y del riesgo",
+  `<div class="cols">
+    ${col("I", "leve", `
+      <div class="q">¿TOLERA LA CIRUGÍA?</div>
+      <div class="caja si"><b>CCI ≤5 y ASA ≤2</b></div>
+      <div class="acc">Colecistectomía laparoscópica temprana: ≤7 días (mejor ≤72 h)</div>
+      <div class="caja no">Riesgo alto: CCI ≥6 o ASA ≥3</div>
+      <div class="acc" style="background:#6B7280">Antibiótico y soporte → cirugía diferida</div>`)}
+    ${col("II", "moderada", `
+      <div class="q">¿TOLERA LA CIRUGÍA?</div>
+      <div class="caja si"><b>CCI ≤5 y ASA ≤2</b> + cirujano con técnica laparoscópica avanzada</div>
+      <div class="acc">Colecistectomía temprana; rescate si es difícil</div>
+      <div class="caja no">Riesgo alto o sin el recurso</div>
+      <div class="acc" style="background:#6B7280">Antibiótico y soporte</div>
+      <div class="flecha">↓ sin respuesta</div>
+      <div class="acc dren">Drenaje vesicular → cirugía diferida</div>`)}
+    ${col("III", "grave", `
+      <div class="acc" style="background:${GRADO.III}">Soporte de órganos + antibiótico</div>
+      <div class="caja si"><b>FOSF</b>, sin factores predictivos negativos, <b>CCI ≤3</b>, <b>ASA ≤2</b>, centro avanzado</div>
+      <div class="acc">Colecistectomía temprana por experto</div>
+      <div class="caja no">Falta alguno de ellos</div>
+      <div class="acc dren">Drenaje vesicular urgente → cirugía diferida</div>`)}
+  </div>
+  <div class="pie">
+    <div><b>FOSF</b>: falla cardiovascular o renal que revierte rápido con el tratamiento inicial.</div>
+    <div><b>Factores predictivos negativos</b>: bilirrubina total <b>≥2 mg/dL</b>, disfunción neurológica o respiratoria.</div>
+    <div>Grados II-III: <b>hemocultivos</b>; cultivo de bilis en el drenaje.</div>
+  </div>`,
+  "Fuente: Guías de Tokio 2018 (Okamoto et al., J Hepatobiliary Pancreat Sci 2018, Figs. 8-10 y Q5; paquete de Mayumi et al., Tabla 2). CCI: índice de Charlson."
+);
+</script></body></html>

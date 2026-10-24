@@ -1,0 +1,232 @@
+{
+  "titulo": "Índice de comorbilidad de Charlson (CCI)",
+  "descripcion": "Suma el peso de cada comorbilidad (1, 2, 3 o 6) con la versión original sin edad que adoptan las Guías de Tokio 2018. En la colecistitis aguda decide, junto con la ASA, si el paciente tolera la colecistectomía temprana. Marcar solo lo que tiene el paciente; en hepatopatía, diabetes y tumor, una sola columna.",
+  "tipoCalculo": "suma",
+  "prefijoResultado": "CCI",
+  "sufijoResultado": "puntos",
+  "referencias": [
+    {
+      "titulo": "Charlson ME, Pompei P, Ales KL, MacKenzie CR. A new method of classifying prognostic comorbidity in longitudinal studies: development and validation. J Chronic Dis. 1987;40(5):373-83.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3558716/"
+    },
+    {
+      "titulo": "Okamoto K, Suzuki K, Takada T, et al. Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis. J Hepatobiliary Pancreat Sci. 2018;25(1):55-72.",
+      "url": "https://doi.org/10.1002/jhbp.516"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "No",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1 pto",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2 ptos",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3 ptos",
+      "color": "rojo"
+    },
+    {
+      "puntos": 6,
+      "titulo": "6 ptos",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Infarto de miocardio",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Insuficiencia cardíaca",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Enf. vascular periférica",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Enf. cerebrovascular",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Demencia",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Enf. pulmonar crónica",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Enf. del tejido conectivo",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Úlcera péptica",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Hepatopatía",
+      "descripciones": [
+        "No",
+        "Leve",
+        "-",
+        "Moderada o grave",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Diabetes mellitus",
+      "descripciones": [
+        "No",
+        "Sin complicaciones",
+        "Con daño de órgano",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Hemiplejía",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "ERC moderada o grave",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Tumor sólido",
+      "descripciones": [
+        "No",
+        "-",
+        "Sin metástasis",
+        "-",
+        "Metastásico"
+      ]
+    },
+    {
+      "nombre": "Leucemia",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Linfoma",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Sida",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "-",
+        "Sí"
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 3,
+      "categoria": "CCI 0-3",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Con ASA ≤2 tolera la colecistectomía temprana en cualquier grado; en grado III, solo en centro avanzado, con FOSF y sin factores predictivos negativos (TG18)."
+    },
+    {
+      "min": 4,
+      "max": 5,
+      "categoria": "CCI 4-5",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Grados I-II: colecistectomía temprana si ASA ≤2. Grado III: riesgo alto → drenaje vesicular y cirugía diferida (TG18)."
+    },
+    {
+      "min": 6,
+      "max": 33,
+      "categoria": "CCI ≥6",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Riesgo quirúrgico alto en todos los grados (TG18): antibiótico y soporte; drenaje vesicular si no responde. La WSES 2020 prefiere igual la colecistectomía si es posible."
+    }
+  ]
+}

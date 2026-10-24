@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .filas{display:flex;flex-direction:column;gap:10px;flex:1}
+  .fila{display:flex;gap:10px;align-items:stretch;flex:1}
+  .nivel{width:150px;border-radius:12px;color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:center}
+  .nivel b{font-size:19px}
+  .nivel span{font-size:13px;opacity:.95}
+  .crit{flex:1;background:#F7F8FA;border-radius:12px;padding:8px 12px;font-size:13px;line-height:1.35;display:flex;flex-direction:column;justify-content:center}
+  .accion{width:220px;border-radius:12px;background:#1F2A37;color:#fff;padding:10px 12px;font-size:13.5px;font-weight:700;line-height:1.3;display:flex;align-items:center}
+  .nota{background:#FEF3E2;color:#92400e;border-radius:10px;padding:8px 12px;font-size:12.5px;line-height:1.35}
+</style></head><body>
+<script>
+const fila = (color, nivel, prob, crit, accion) => `<div class="fila">
+  <div class="nivel" style="background:${color}"><b>${nivel}</b><span>${prob}</span></div>
+  <div class="crit"><div>${crit}</div></div><div class="accion">${accion}</div></div>`;
+lienzo(
+  "Riesgo de coledocolitiasis: qué hacer",
+  "Pruebas hepáticas y ecografía en toda colelitiasis sintomática; después, según el riesgo",
+  `<div class="filas">
+    ${fila(GRADO.III, "Alto", ">50 %", "<b>Uno basta</b>: cálculo en el colédoco en eco, TC o RM · colangitis · bilirrubina <b>>4 mg/dL</b> con colédoco dilatado", "CPRE directa, antes o después de la colecistectomía, o exploración quirúrgica del colédoco")}
+    ${fila(GRADO.II, "Intermedio", "10-50 %", "Pruebas hepáticas alteradas · edad <b>>55 años</b> · colédoco <b>>6 mm</b> con vesícula", "USE o colangio-RM; o colangiografía / ecografía intraoperatoria")}
+    ${fila(GRADO.I, "Bajo", "<10 %", "Ninguno de los anteriores", "Colecistectomía sin colangiografía intraoperatoria")}
+  </div>
+  <div class="nota"><b>WSES 2020</b> es más estricta: solo el cálculo visto en la ecografía o la colangitis son de alto riesgo; bilirrubina <b>>1,8 mg/dL</b> o colédoco <b>>6 mm</b> quedan en riesgo intermedio. Ni las pruebas hepáticas ni el colédoco dilatado bastan solos.</div>`,
+  "Fuente: ASGE 2019 sobre coledocolitiasis (Tabla 17); WSES 2020 sobre colecistitis (Tabla 2 y recomendaciones 2.1-2.7); ESGE 2019."
+);
+</script></body></html>

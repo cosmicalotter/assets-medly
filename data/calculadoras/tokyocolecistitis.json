@@ -1,70 +1,142 @@
 {
-  "titulo": "Criterios de Severidad TG18/TG13 para Colecistitis Aguda",
-  "descripcion": "Evalúa la gravedad clínica de la colecistitis aguda para guiar el tratamiento médico o quirúrgico. Clasifica a los pacientes en Grado I (Leve), Grado II (Moderada) y Grado III (Severa).",
+  "titulo": "Gravedad de la colecistitis aguda (Tokio 2018)",
+  "descripcion": "Gradúa la colecistitis aguda ya diagnosticada (criterios A + B + C de la imagen) según las Guías de Tokio 2018. Grado III: al menos una disfunción de órgano. Grado II: sin disfunción y con un criterio local. Grado I: ninguno. Los puntos solo ordenan el resultado (10 por órgano, 2 por criterio local): lo que cuenta es el grado. Repetir al diagnóstico, en 24 h y entre 24 y 48 h.",
+  "tipoCalculo": "suma",
+  "prefijoResultado": "Puntos",
+  "imagenTopUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolecistitis.png",
   "referencias": [
     {
-      "titulo": "Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos)",
-      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/jhbp.515"
+      "titulo": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
+      "url": "https://doi.org/10.1002/jhbp.515"
     },
     {
-      "titulo": "Predicting length of stay and conversion to open cholecystectomy for acute cholecystitis using the 2013 Tokyo Guidelines in a US population",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26288122/"
-    },
-    {
-      "titulo": "Validation of TG13 severity grading in acute cholecystitis: Japan-Taiwan collaborative study for acute cholecystitis",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28419779/"
+      "titulo": "Okamoto K, Suzuki K, Takada T, et al. Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis. J Hepatobiliary Pancreat Sci. 2018;25(1):55-72.",
+      "url": "https://doi.org/10.1002/jhbp.516"
     }
   ],
   "columnas": [
-    {"puntos": 0, "titulo": "0", "color": "verde"},
-    {"puntos": 2, "titulo": "2", "color": "naranja"},
-    {"puntos": 10, "titulo": "10", "color": "rojo"}
+    {
+      "puntos": 0,
+      "titulo": "No",
+      "color": "verde"
+    },
+    {
+      "puntos": 2,
+      "titulo": "Grado II",
+      "color": "naranja"
+    },
+    {
+      "puntos": 10,
+      "titulo": "Grado III",
+      "color": "rojo"
+    }
   ],
   "filas": [
     {
-      "nombre": "Disfunción CV",
-      "descripciones": ["No", "-", "Dopamina ≥5 o NE"]
+      "nombre": "Cardiovascular",
+      "descripciones": [
+        "No",
+        "-",
+        "Hipotensión con dopamina ≥5 µg/kg/min o cualquier dosis de noradrenalina"
+      ]
     },
     {
-      "nombre": "Disfunción SNC",
-      "descripciones": ["No", "-", "Alt. consciencia"]
+      "nombre": "Neurológica",
+      "descripciones": [
+        "No",
+        "-",
+        "Disminución del nivel de conciencia"
+      ]
     },
     {
-      "nombre": "Disfunción Resp.",
-      "descripciones": ["No", "-", "PaO2/FiO2 <300"]
+      "nombre": "Respiratoria",
+      "descripciones": [
+        "No",
+        "-",
+        "PaO₂/FiO₂ <300"
+      ]
     },
     {
-      "nombre": "Disfunción Renal",
-      "descripciones": ["No", "-", "Cr >2.0 u oliguria"]
+      "nombre": "Renal",
+      "descripciones": [
+        "No",
+        "-",
+        "Oliguria o creatinina >2,0 mg/dL"
+      ]
     },
     {
-      "nombre": "Disfunción Hepática",
-      "descripciones": ["No", "-", "INR >1.5"]
+      "nombre": "Hepática",
+      "descripciones": [
+        "No",
+        "-",
+        "INR >1,5"
+      ]
     },
     {
-      "nombre": "Disfunción Hemato.",
-      "descripciones": ["No", "-", "Plaquetas <100k"]
+      "nombre": "Hematológica",
+      "descripciones": [
+        "No",
+        "-",
+        "Plaquetas <100.000/mm³"
+      ]
     },
     {
       "nombre": "Leucocitos",
-      "descripciones": ["≤18,000", ">18,000", "-"]
+      "descripciones": [
+        "≤18.000/mm³",
+        ">18.000/mm³",
+        "-"
+      ]
     },
     {
-      "nombre": "Masa CSD",
-      "descripciones": ["No", "Palpable dolorosa", "-"]
+      "nombre": "Masa en hipocondrio derecho",
+      "descripciones": [
+        "No",
+        "Palpable y dolorosa",
+        "-"
+      ]
     },
     {
-      "nombre": "Duración",
-      "descripciones": ["≤72 h", ">72 h", "-"]
+      "nombre": "Duración de los síntomas",
+      "descripciones": [
+        "≤72 h",
+        ">72 h",
+        "-"
+      ]
     },
     {
-      "nombre": "Inflam. Local",
-      "descripciones": ["No", "Marcada", "-"]
+      "nombre": "Inflamación local marcada",
+      "descripciones": [
+        "No",
+        "Gangrena, absceso pericolecístico o hepático, peritonitis biliar o enfisema",
+        "-"
+      ]
     }
   ],
   "resultados": [
-    {"min": 0, "max": 1, "categoria": "Grado I (Leve)", "match_opcion_index": -1, "color": "verde"},
-    {"min": 2, "max": 9, "categoria": "Grado II (Moderada)", "match_opcion_index": -1, "color": "naranja"},
-    {"min": 10, "max": 68, "categoria": "Grado III (Severa)", "match_opcion_index": -1, "color": "rojo"}
+    {
+      "min": 0,
+      "max": 1,
+      "categoria": "Grado I (leve)",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "CCI ≤5 y ASA ≤2 → colecistectomía laparoscópica temprana (en ≤7 días, mejor en ≤72 h). Si no, antibiótico y cirugía diferida."
+    },
+    {
+      "min": 2,
+      "max": 9,
+      "categoria": "Grado II (moderada)",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "CCI ≤5, ASA ≤2 y cirujano con experiencia → colecistectomía temprana. Si no, antibiótico; sin respuesta → drenaje vesicular. Hemocultivos."
+    },
+    {
+      "min": 10,
+      "max": 68,
+      "categoria": "Grado III (grave)",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Soporte de órganos y antibiótico ya. Cirugía temprana solo en centro avanzado con FOSF, sin factores predictivos negativos, CCI ≤3 y ASA ≤2; si no, drenaje vesicular."
+    }
   ]
 }

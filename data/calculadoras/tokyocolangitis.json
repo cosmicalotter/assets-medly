@@ -1,70 +1,158 @@
 {
-  "titulo": "Criterios de Severidad de Tokio (TG18/TG13) para Colangitis Aguda",
-  "descripcion": "Evalúa la gravedad clínica de la colangitis aguda para guiar el manejo terapéutico y determinar la necesidad de drenaje biliar urgente. Clasifica a los pacientes en Grado I (Leve), Grado II (Moderada) y Grado III (Severa).",
+  "titulo": "Gravedad de la colangitis aguda (Tokio 2018)",
+  "descripcion": "Gradúa la colangitis aguda ya diagnosticada (criterios A + B + C de la imagen) según las Guías de Tokio 2018. Grado III: al menos una disfunción de órgano. Grado II: sin disfunción y con 2 o más de los 5 criterios. Grado I: ninguno de los anteriores. Los puntos solo ordenan el resultado (10 por órgano, 1 por criterio): lo que cuenta es el grado. Repetir al diagnóstico, en 24 h y entre 24 y 48 h.",
+  "tipoCalculo": "suma",
+  "prefijoResultado": "Puntos",
+  "imagenTopUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolangitis.png",
   "referencias": [
     {
-      "titulo": "Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos)",
-      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/jhbp.512"
+      "titulo": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):17-30.",
+      "url": "https://doi.org/10.1002/jhbp.512"
     },
     {
-      "titulo": "TG13 guidelines for diagnosis and severity grading of acute cholangitis (with videos)",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/23307001/"
+      "titulo": "Miura F, Okamoto K, Takada T, et al. Tokyo Guidelines 2018: initial management of acute biliary infection and flowchart for acute cholangitis. J Hepatobiliary Pancreat Sci. 2018;25(1):31-40.",
+      "url": "https://doi.org/10.1002/jhbp.509"
+    },
+    {
+      "titulo": "Buxbaum JL, Buitrago C, Lee A, et al. ASGE guideline on the management of cholangitis. Gastrointest Endosc. 2021;94(2):207-221.e14.",
+      "url": "https://doi.org/10.1016/j.gie.2020.12.032"
+    },
+    {
+      "titulo": "Manes G, Paspatis G, Aabakken L, et al. Endoscopic management of common bile duct stones: European Society of Gastrointestinal Endoscopy (ESGE) guideline. Endoscopy. 2019;51(5):472-491.",
+      "url": "https://doi.org/10.1055/a-0862-0346"
     }
   ],
   "columnas": [
-    {"puntos": 0, "titulo": "0", "color": "verde"},
-    {"puntos": 1, "titulo": "1", "color": "amarillo"},
-    {"puntos": 10, "titulo": "10", "color": "rojo"}
+    {
+      "puntos": 0,
+      "titulo": "No",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "Grado II",
+      "color": "naranja"
+    },
+    {
+      "puntos": 10,
+      "titulo": "Grado III",
+      "color": "rojo"
+    }
   ],
   "filas": [
     {
-      "nombre": "Disfunción CV",
-      "descripciones": ["No", "-", "Dopamina ≥5 o NE"]
+      "nombre": "Cardiovascular",
+      "descripciones": [
+        "No",
+        "-",
+        "Hipotensión con dopamina ≥5 µg/kg/min o cualquier dosis de noradrenalina"
+      ]
     },
     {
-      "nombre": "Disfunción SNC",
-      "descripciones": ["No", "-", "Alt. consciencia"]
+      "nombre": "Neurológica",
+      "descripciones": [
+        "No",
+        "-",
+        "Alteración de la conciencia"
+      ]
     },
     {
-      "nombre": "Disfunción Resp.",
-      "descripciones": ["No", "-", "PaO2/FiO2 <300"]
+      "nombre": "Respiratoria",
+      "descripciones": [
+        "No",
+        "-",
+        "PaO₂/FiO₂ <300"
+      ]
     },
     {
-      "nombre": "Disfunción Renal",
-      "descripciones": ["No", "-", "Cr >2.0 u oliguria"]
+      "nombre": "Renal",
+      "descripciones": [
+        "No",
+        "-",
+        "Oliguria o creatinina >2,0 mg/dL"
+      ]
     },
     {
-      "nombre": "Disfunción Hepática",
-      "descripciones": ["No", "-", "INR >1.5"]
+      "nombre": "Hepática",
+      "descripciones": [
+        "No",
+        "-",
+        "INR >1,5"
+      ]
     },
     {
-      "nombre": "Disfunción Hemato.",
-      "descripciones": ["No", "-", "Plaquetas <100k"]
+      "nombre": "Hematológica",
+      "descripciones": [
+        "No",
+        "-",
+        "Plaquetas <100.000/mm³"
+      ]
     },
     {
-      "nombre": "WBC",
-      "descripciones": ["Normal", ">12k o <4k", "-"]
+      "nombre": "Leucocitos",
+      "descripciones": [
+        "4.000-12.000/mm³",
+        ">12.000 o <4.000/mm³",
+        "-"
+      ]
     },
     {
       "nombre": "Fiebre",
-      "descripciones": ["<39 °C", "≥39 °C", "-"]
+      "descripciones": [
+        "<39 °C",
+        "≥39 °C",
+        "-"
+      ]
     },
     {
       "nombre": "Edad",
-      "descripciones": ["<75 años", "≥75 años", "-"]
+      "descripciones": [
+        "<75 años",
+        "≥75 años",
+        "-"
+      ]
     },
     {
-      "nombre": "Bilirrubina",
-      "descripciones": ["<5 mg/dL", "≥5 mg/dL", "-"]
+      "nombre": "Bilirrubina total",
+      "descripciones": [
+        "<5 mg/dL",
+        "≥5 mg/dL",
+        "-"
+      ]
     },
     {
       "nombre": "Albúmina",
-      "descripciones": ["Normal", "<0.7x LIN", "-"]
+      "descripciones": [
+        "≥0,7 × límite inferior",
+        "<0,7 × límite inferior",
+        "-"
+      ]
     }
   ],
   "resultados": [
-    {"min": 0, "max": 1, "categoria": "Grado I (Leve)", "match_opcion_index": -1, "color": "verde"},
-    {"min": 2, "max": 5, "categoria": "Grado II (Moderada)", "match_opcion_index": -1, "color": "naranja"},
-    {"min": 10, "max": 65, "categoria": "Grado III (Severa)", "match_opcion_index": -1, "color": "rojo"}
+    {
+      "min": 0,
+      "max": 1,
+      "categoria": "Grado I (leve)",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Antibiótico; la mayoría no necesita drenaje. Drenar si no responde en 24 h o si hay cálculo en el colédoco."
+    },
+    {
+      "min": 2,
+      "max": 5,
+      "categoria": "Grado II (moderada)",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Drenaje biliar temprano, de preferencia CPRE (≤48 h según ASGE), con antibiótico. Hemocultivos y cultivo de bilis."
+    },
+    {
+      "min": 10,
+      "max": 65,
+      "categoria": "Grado III (grave)",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Soporte de órganos y drenaje biliar urgente en cuanto se estabilice; con shock séptico, en ≤12 h (ESGE)."
+    }
   ]
 }

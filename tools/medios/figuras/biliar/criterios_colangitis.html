@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:12px;flex:1}
+  .col{flex:1}
+  .col h3{font-size:15px;line-height:1.2}
+  .col .hd{display:flex;gap:9px;align-items:center}
+  .item .k{display:block;font-size:11.5px;font-weight:800;color:var(--suave);letter-spacing:.04em}
+  .regla{display:flex;gap:12px}
+  .regla div{flex:1;border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .nota{background:#FEF3E2;color:#92400e;border-radius:10px;padding:8px 12px;font-size:13px}
+</style></head><body>
+<script>
+const A = "#7B6CF6", B = "#4F8CF6", C = "#18B9A9";
+const signo = (l, c) => `<span class="letra" style="background:${c};width:28px;height:28px;font-size:16px">${l}</span>`;
+lienzo(
+  "Colangitis aguda: criterios de Tokio",
+  "Confirmar el diagnóstico antes de graduar la gravedad",
+  `<div class="cols">
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${A}">A</span><h3>Inflamación sistémica</h3></div>
+       <div class="item"><span class="k">A-1</span>Fiebre <b>>38 °C</b> o escalofríos</div>
+       <div class="item"><span class="k">A-2</span>Leucocitos <b><4.000</b> o <b>>10.000/mm³</b>, o PCR <b>≥1 mg/dL</b></div></div>
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${B}">B</span><h3>Colestasis</h3></div>
+       <div class="item"><span class="k">B-1</span>Ictericia: bilirrubina total <b>≥2 mg/dL</b></div>
+       <div class="item"><span class="k">B-2</span>FA, GGT, AST o ALT <b>>1,5 veces</b> el límite superior</div></div>
+     <div class="tarjeta col"><div class="hd"><span class="letra" style="background:${C}">C</span><h3>Imagen</h3></div>
+       <div class="item"><span class="k">C-1</span>Dilatación de la vía biliar</div>
+       <div class="item"><span class="k">C-2</span>Causa visible: estenosis, cálculo o stent</div></div>
+   </div>
+   <div class="regla">
+     <div style="background:#FEF3E2;color:#92400e">Sospecha ${signo("A", A)} + ${signo("B", B)} o ${signo("C", C)}</div>
+     <div style="background:#E6F6EE;color:#1d7a49">Definitiva ${signo("A", A)} + ${signo("B", B)} + ${signo("C", C)}</div>
+   </div>
+   <div class="nota">Apoyan el diagnóstico: dolor en hipocondrio derecho o epigastrio y antecedente de cálculos, procedimiento biliar o stent. La tríada de Charcot es específica pero poco sensible.</div>`,
+  "Fuente: Guías de Tokio 2018 (Kiriyama et al., J Hepatobiliary Pancreat Sci 2018, Tabla 2)."
+);
+</script></body></html>

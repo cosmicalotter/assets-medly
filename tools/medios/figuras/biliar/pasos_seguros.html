@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .paso{display:flex;gap:10px;align-items:center;background:#1F2A37;color:#fff;border-radius:12px;padding:8px 12px;min-height:52px}
+  .paso .n{font-size:22px;font-weight:800;color:var(--teal);min-width:22px;text-align:center}
+  .paso .d{font-size:15px;font-weight:700;line-height:1.25}
+  .esq{flex:1;border-radius:14px;background:#2b1715}
+  .pie{display:flex;gap:8px}
+  .pie div{flex:1;border-radius:10px;background:#F3F4F6;padding:7px 10px;font-size:12.5px;line-height:1.3}
+</style></head><body>
+<script>
+// Vista laparoscópica esquemática del triángulo hepatocístico (no es un paciente real).
+const PASOS = [
+  [0.00, "Descomprimir con aguja la vesícula distendida"],
+  [0.13, "Tracción del fondo hacia arriba y del infundíbulo hacia afuera"],
+  [0.27, "Empezar por la hoja peritoneal posterior, por encima del surco de Rouvière"],
+  [0.42, "Mantener el plano de disección pegado a la vesícula"],
+  [0.57, "Separar al menos el tercio inferior del lecho vesicular"],
+  [0.72, "Visión crítica de seguridad: confirmarla en una pausa antes de clipar o cortar"],
+  [0.87, "Sin visión crítica por fibrosis → rescate: subtotal o conversión"],
+];
+const HIGADO = "#A85A43", BORDE = "#7E3F2E", VES = "#9CC66B", VESB = "#5E8C2E", BILIS = "#7FB84A", GRASA = "#F2D58A";
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.8;
+  const k = PASOS.filter(([a]) => t >= a).length;
+  const desinfla = tramo(t, 0.04, 0.12);
+  const tira = tramo(t, 0.15, 0.25);
+  const limpia = tramo(t, 0.3, 0.68);
+  const lecho = tramo(t, 0.58, 0.7);
+  const clip = tramo(t, 0.76, 0.84);
+  // Vesícula: el fondo sube con la tracción; el infundíbulo va hacia afuera (derecha).
+  const fx = 470 + 20 * tira, fy = 40 - 20 * tira, ix = 345 + 30 * tira, iy = 200 + 6 * tira;
+  const anchoV = 46 - 8 * desinfla;
+  let s = "";
+  // Hígado (arriba) con el surco de Rouvière y la base del segmento 4.
+  s += `<path d="M-60 0 L740 0 L740 330 L700 330 Q600 326 560 316 Q500 290 460 240 Q420 190 380 158 Q300 140 240 140 Q150 134 90 148 Q40 158 0 156 L-60 156 Z" fill="${HIGADO}" stroke="${BORDE}" stroke-width="3"/>`;
+  s += `<path d="M520 296 Q560 306 610 312" fill="none" stroke="#3b1c14" stroke-width="7" stroke-linecap="round"/>`;
+  s += `<text x="640" y="296" font-size="13" font-weight="800" fill="#FDE68A" text-anchor="middle">surco de Rouvière</text>`;
+  s += `<text x="150" y="126" font-size="13" font-weight="800" fill="#FDE68A" text-anchor="middle">base del segmento 4</text>`;
+  // Lecho vesicular expuesto (placa cística) cuando se separa el tercio inferior.
+  if (lecho > 0) s += `<path d="M${ix + 22} ${iy - 30} Q${ix + 66} ${iy - 64} ${ix + 98} ${iy - 104}" fill="none" stroke="#E9C3A8" stroke-width="${26 * lecho}" stroke-linecap="round" opacity=".95"/>`;
+  // Colédoco y hepático común (a la izquierda).
+  s += `<path d="M212 160 Q222 230 236 330" fill="none" stroke="${BILIS}" stroke-width="22" stroke-linecap="round"/>`;
+  s += `<text x="190" y="316" font-size="13" font-weight="800" fill="#D9F99D" text-anchor="end">colédoco</text>`;
+  // Arteria y conducto cístico hacia el infundíbulo.
+  s += `<path d="M230 226 Q290 214 ${ix - 20} ${iy + 6}" fill="none" stroke="${BILIS}" stroke-width="11" stroke-linecap="round"/>`;
+  s += `<path d="M234 166 Q290 168 ${ix - 22} ${iy - 16}" fill="none" stroke="#D94848" stroke-width="7" stroke-linecap="round"/>`;
+  // Grasa del triángulo hepatocístico que se va limpiando.
+  s += `<path d="M226 150 Q300 148 ${ix - 10} ${iy - 34} L${ix - 10} ${iy + 22} Q300 246 232 242 Z" fill="${GRASA}" opacity="${0.95 * (1 - limpia)}"/>`;
+  // Vesícula (pera desde el fondo hasta el infundíbulo).
+  const ang = Math.atan2(fy - iy, fx - ix), lx = Math.cos(ang + Math.PI / 2) * anchoV, ly = Math.sin(ang + Math.PI / 2) * anchoV;
+  s += `<path d="M${ix} ${iy} Q${ix + lx} ${iy + ly} ${fx + lx * 0.9} ${fy + ly * 0.9} Q${fx + 30 * Math.cos(ang)} ${fy + 30 * Math.sin(ang)} ${fx - lx * 0.9} ${fy - ly * 0.9} Q${ix - lx} ${iy - ly} ${ix} ${iy} Z" fill="${VES}" stroke="${VESB}" stroke-width="3"/>`;
+  // Línea R4U y zonas.
+  if (k >= 3) {
+    s += `<line x1="150" y1="175" x2="560" y2="300" stroke="#FDE047" stroke-width="3" stroke-dasharray="10 6"/>`;
+    s += `<text x="430" y="${256}" font-size="12.5" font-weight="800" fill="#FDE047" text-anchor="middle" transform="rotate(17 430 256)">línea R4U: disecar por encima</text>`;
+    s += `<path d="M-60 175 L150 175 L560 300 L560 330 L-60 330 Z" fill="#EF5454" opacity=".14"/>`;
+    s += `<text x="300" y="318" font-size="13" font-weight="800" fill="#FCA5A5">zona de peligro: vía biliar</text>`;
+  }
+  // Plano de disección pegado a la vesícula.
+  if (k >= 4) s += `<path d="M${ix - 6} ${iy - 16} Q${ix + 20} ${iy - 60} ${ix + 60} ${iy - 100}" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="4 4"/>`;
+  // Aguja (paso 1) y pinzas (paso 2 en adelante).
+  if (k === 1) s += `<line x1="660" y1="2" x2="${fx - 6}" y2="${fy + 10}" stroke="#E5E7EB" stroke-width="4"/><circle cx="${fx - 6}" cy="${fy + 10}" r="4" fill="#E5E7EB"/>`;
+  if (k >= 2) {
+    s += `<line x1="740" y1="${fy - 30}" x2="${fx + 4}" y2="${fy + 4}" stroke="#9CA3AF" stroke-width="7"/>`;
+    s += `<line x1="740" y1="196" x2="${ix + 14}" y2="${iy + 8}" stroke="#9CA3AF" stroke-width="7"/>`;
+    if (k === 2) s += `<path d="M${fx + 36} ${fy + 26} l18 -18 m0 0 l-12 0 m12 0 l0 12" stroke="#FDE047" stroke-width="4" fill="none"/><path d="M${ix + 50} ${iy + 30} l24 6 m0 0 l-10 -8 m10 8 l-10 6" stroke="#FDE047" stroke-width="4" fill="none"/>`;
+  }
+  // Clips en la visión crítica.
+  if (clip > 0) {
+    const c = (x, y) => `<rect x="${x - 3}" y="${y - 13}" width="6" height="26" rx="2" fill="#E5E7EB" stroke="#6B7280" opacity="${clip}"/>`;
+    s += c(330, 214) + c(344, 213) + c(330, 180) + c(344, 182);
+    s += `<g transform="translate(16,190)"><rect width="128" height="30" rx="9" fill="#2FB36D"/><text x="64" y="20" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">pausa: ¿CVS?</text></g>`;
+  }
+  if (k === 7) s += `<g transform="translate(16,12)"><rect width="300" height="54" rx="12" fill="#1F2A37" opacity=".93"/><text x="150" y="23" font-size="14" font-weight="800" fill="#FDE047" text-anchor="middle">¿Fibrosis que impide la CVS?</text><text x="150" y="43" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">subtotal · conversión · no forzar</text></g>`;
+  lienzo(
+    "Colecistectomía segura: 6 pasos",
+    "Pasos estandarizados de las Guías de Tokio 2018 para la colecistitis aguda",
+    `<div class="paso"><div class="n">${Math.min(k, 6)}</div><div class="d">${PASOS[k - 1][1]}</div></div>
+     <svg class="esq" viewBox="0 0 680 330">${s}</svg>
+     <div class="pie"><div><b>CVS</b>: visión crítica de seguridad antes de dividir cualquier estructura.</div><div><b>R4U</b>: línea entre el surco de Rouvière y la base del segmento 4.</div><div>Operar temprano, antes de la fibrosis, reduce la lesión de la vía biliar.</div></div>`,
+    "Esquema, no una imagen quirúrgica real. Fuente: Guías de Tokio 2018 (Wakabayashi et al., Fig. 2 y Q2-Q3); WSES 2020 (recomendaciones 3.4-3.5)."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>

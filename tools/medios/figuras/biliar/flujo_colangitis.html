@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:12px;flex:1}
+  .col{flex:1;border-radius:14px;background:#F7F8FA;padding:10px;display:flex;flex-direction:column;gap:6px}
+  .gr{color:#fff;border-radius:10px;padding:6px 10px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}
+  .gr small{font-size:11.5px;font-weight:700;opacity:.9}
+  .caja{background:#fff;border-radius:9px;padding:6px 8px;font-size:12.5px;line-height:1.3}
+  .acc{background:#1F2A37;color:#fff;border-radius:9px;padding:6px 8px;font-size:12.5px;font-weight:700;line-height:1.3}
+  .acc.dren{background:#4F8CF6}
+  .reloj{display:flex;flex-direction:column;gap:4px}
+  .reloj div{display:flex;justify-content:space-between;background:#fff;border-radius:8px;padding:4px 8px;font-size:12px}
+  .pie{display:flex;gap:10px}
+  .pie div{flex:1;background:#F3F4F6;border-radius:10px;padding:7px 10px;font-size:12px;line-height:1.3}
+</style></head><body>
+<script>
+const col = (g, nombre, cuerpo) => `<div class="col"><div class="gr" style="background:${GRADO[g]}">Grado ${g}<small>${nombre}</small></div>${cuerpo}</div>`;
+lienzo(
+  "Colangitis aguda: manejo según el grado",
+  "Los dos pilares son el antibiótico y el drenaje biliar; el grado marca cuándo drenar",
+  `<div class="cols">
+    ${col("I", "leve", `
+      <div class="acc" style="background:#6B7280">Antibiótico y soporte</div>
+      <div class="caja">La mayoría <b>no</b> necesita drenaje</div>
+      <div class="flecha">↓ sin respuesta en 24 h o cálculo en el colédoco</div>
+      <div class="acc dren">Drenaje como en el grado II</div>
+      <div class="caja">Esfinterotomía y extracción en el mismo acto si se puede</div>`)}
+    ${col("II", "moderada", `
+      <div class="acc dren">Drenaje biliar temprano + antibiótico</div>
+      <div class="caja"><b>¿Cuándo?</b> Las guías difieren:</div>
+      <div class="reloj">
+        <div><span>Tokio 2018</span><b>temprano</b></div>
+        <div><span>ASGE 2021</span><b>≤48 h</b></div>
+        <div><span>ESGE 2019</span><b>48-72 h</b></div></div>
+      <div class="caja">Sin CPRE en el hospital → <b>trasladar</b></div>`)}
+    ${col("III", "grave", `
+      <div class="acc" style="background:${GRADO.III}">Soporte de órganos ya: ventilación, vasopresor</div>
+      <div class="acc dren">Drenaje urgente en cuanto se estabilice</div>
+      <div class="caja">Con <b>shock séptico</b>: drenar en <b>≤12 h</b> (ESGE)</div>
+      <div class="caja">Sin CPRE o UCI → <b>traslado inmediato</b></div>`)}
+  </div>
+  <div class="pie">
+    <div><b>Vía</b>: CPRE antes que drenaje percutáneo (PTBD); PTBD si la CPRE falla.</div>
+    <div>Grados II-III: <b>hemocultivos</b>. En todo drenaje: <b>cultivo de bilis</b>.</div>
+    <div>Resuelto el cuadro: tratar la causa y colecistectomía si hay cálculos en la vesícula.</div>
+  </div>`,
+  "Fuente: Guías de Tokio 2018 (Miura et al., Fig. 2 y Tabla 5; Mayumi et al., Tabla 1); ASGE 2021 sobre colangitis; ESGE 2019 sobre coledocolitiasis."
+);
+</script></body></html>
