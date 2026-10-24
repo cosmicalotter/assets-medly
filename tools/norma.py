@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Norma Praxis v2: lo que el auditor de galgo todavía no mide.
+"""Norma Empirica v2: lo que el auditor de galgo todavía no mide.
 
 `galgo auditar` contesta si lo que ya hay está completo: la dosis con su
 pastilla, la pregunta en cada decisión, la escala conectada, los recortes de
@@ -267,6 +267,9 @@ def medir(ruta: Path) -> Informe:
     n_perla = sum(1 for n in clinicos.values() if n.get("nota_adicional") or n.get("notaAdicional"))
     n_grado = sum(1 for n in clinicos.values() if n.get("evidencia") or n.get("recomendacion"))
     n_crono = sum(1 for n in clinicos.values() if n.get("cronometros"))
+    for nid, n in clinicos.items():
+        if n.get("cronometros"):
+            inf.faltas.append(f"{nid}: lleva cronómetros; no se usan por ahora")
     meta_check = max(2, c // METAS["nodos_por_checklist"])
     meta_alert = max(1, c // METAS["nodos_por_alerta"])
     meta_grado = max(2, c // METAS["nodos_por_evidencia"])

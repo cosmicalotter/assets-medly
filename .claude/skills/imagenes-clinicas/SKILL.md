@@ -1,6 +1,6 @@
 ---
 name: imagenes-clinicas
-description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Praxis — ilustraciones y animaciones propias hechas con tools/medios, figuras de la guía y fotos clínicas con licencia que permite uso comercial — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
+description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — ilustraciones y animaciones propias hechas con tools/medios, figuras de la guía y fotos clínicas con licencia que permite uso comercial — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
 argument-hint: "<algoritmo> [nodo]"
 ---
 
@@ -26,12 +26,12 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
 ## De dónde salen, por orden de preferencia
 
 1. **Propias**, dibujadas en HTML/SVG y convertidas con `tools/medios`. Sin
-   problema de licencia y con el aspecto de Praxis. Sirven para esquemas,
+   problema de licencia y con el aspecto de Empirica. Sirven para esquemas,
    técnicas, secuencias, clasificaciones, algoritmos visuales y animaciones.
 2. **Figuras de la guía**: `galgo generar` y `galgo resolver` las recortan
    del PDF. Su uso es responsabilidad del titular (ver `AVISO.md` de galgo).
 3. **Fotos clínicas de terceros** sólo con licencia que permita uso
-   comercial (Praxis tiene suscripción): dominio público, CC0, CC BY,
+   comercial (Empirica tiene suscripción): dominio público, CC0, CC BY,
    CC BY-SA. Fuentes habituales: Wikimedia Commons, CDC Public Health Image
    Library (sólo las marcadas de dominio público), figuras CC BY de artículos
    de PubMed Central. **No**: CC BY-NC, CC BY-ND, Radiopaedia, DermNet,

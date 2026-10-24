@@ -1,6 +1,6 @@
 ---
 name: mejorar-algoritmo
-description: Lleva un algoritmo de data/Adultos o data/Pediatria a la Norma Praxis v2 desde su guía de práctica clínica — amplía el contenido que falta, conecta calculadoras, añade imágenes y GIF, aclara el lenguaje y llena los nodos de criterios, perlas, alertas y dosis — y lo entrega en un PR para revisión médica. Usar cuando se pida mejorar, actualizar, completar, enriquecer o pasar a la norma nueva un algoritmo.
+description: Lleva un algoritmo de data/Adultos o data/Pediatria a la Norma Empirica v2 desde su guía de práctica clínica — amplía el contenido que falta, conecta calculadoras, añade imágenes y GIF, aclara el lenguaje y llena los nodos de criterios, perlas, alertas y dosis — y lo entrega en un PR para revisión médica. Usar cuando se pida mejorar, actualizar, completar, enriquecer o pasar a la norma nueva un algoritmo.
 argument-hint: "<algoritmo> [--guia RUTA_O_URL] [--sin-pausas]"
 ---
 
@@ -70,7 +70,7 @@ Orden de trabajo, nodo a nodo:
    reescribe `texto` (a diferencia de `galgo expandir`): el diff del PR es
    la revisión.
 4. **Conexiones**: `checklist`, `alertas`, `nota_adicional`, `evidencia`,
-   `farmacos` con `por_kg`, `tabla`, `cronometros`, `chips`, `discrepancias`.
+   `farmacos` con `por_kg`, `tabla`, `chips`, `discrepancias` (sin `cronometros` por ahora; sin repetir lo que ya muestra una imagen).
 5. **Calculadoras**: las que ya existen en `data/calculadoras` se conectan
    **por URL completa**
    (`https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/<archivo>.json`).

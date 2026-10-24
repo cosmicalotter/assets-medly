@@ -1,6 +1,6 @@
 ---
 name: crear-calculadora
-description: Crea una escala o calculadora clínica nueva en data/calculadoras con el formato DatosEscala de Praxis, validada contra su publicación original, y la conecta por URL a los nodos que la usan. Usar cuando un algoritmo pide una escala que no existe (TODO_CALC_…), cuando se pida crear o corregir una calculadora, o al conectar una escala existente a un nodo.
+description: Crea una escala o calculadora clínica nueva en data/calculadoras con el formato DatosEscala de Empirica, validada contra su publicación original, y la conecta por URL a los nodos que la usan. Usar cuando un algoritmo pide una escala que no existe (TODO_CALC_…), cuando se pida crear o corregir una calculadora, o al conectar una escala existente a un nodo.
 argument-hint: "<nombre de la escala> [algoritmo y nodo que la usan]"
 ---
 

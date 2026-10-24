@@ -1,4 +1,4 @@
-# Norma Praxis v2
+# Norma Empirica v2
 
 Lo que tiene que llevar un algoritmo para darse por terminado. El formato de
 cada llave está en `praxis/docs/algoritmos_json.md` (la fuente de verdad);
@@ -67,11 +67,11 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `checklist` | criterios que se marcan con el paciente delante: diagnóstico, gravedad, ingreso, UCI, intubación, alta, requisitos antes de un procedimiento | al menos 2 por algoritmo, 1 por cada 12 nodos clínicos |
 | `alertas` | lo que mata o daña si se pasa por alto: contraindicación, «no hacer», Clase III | 1 por cada 10 nodos; 1-2 por nodo como mucho |
 | `nota_adicional` | la perla: el error frecuente, la población especial, el truco de exploración, el matiz que cambia la conducta | 1 de cada 3-4 nodos clínicos |
-| `evidencia` | la clase y el nivel que da la guía para ese paso | siempre que la guía los dé; si no, nunca |
+| `evidencia` | la clase y el nivel que da la guía para ese paso, simplificados: `{"clase": "IIa", "nivel": "B"}` (sin -R, -NR, -LD, -EO); con GRADE, `{"texto": "GRADE: débil a favor"}` | siempre que la guía los dé; si no, nunca |
 | `farmacos` | todo fármaco nombrado con dosis en la guía | todos |
 | `farmacos[].por_kg` | toda dosis «/kg», con `tope` y `concentracion` si la guía los da | todas (en pediatría es obligatorio) |
 | `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo | cuando la guía trae la tabla |
-| `cronometros` | ventanas que se cierran: trombólisis, hora 1 de sepsis, 5-20-40 min del estatus, reevaluación de bolos | cuando el tiempo es parte de la conducta |
+| `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
@@ -90,6 +90,7 @@ repositorio `galgo-empirica`. Lo esencial:
 - Ninguna frase pasa de 30 palabras. Un nodo pasa de 120 palabras sólo si no
   hay forma de partirlo.
 - `**` sólo en dosis, umbrales, tiempos y metas.
+- «→» para encadenar condición y conducta cuando quede cómodo: «Sangre solo intraventricular → arteriografía». Con moderación, no en cada viñeta.
 - Siglas: la primera vez que aparecen en el algoritmo van con su nombre
   («PAM (presión arterial media)»), después solas.
 - Cada decisión con su umbral y sus unidades: «¿**Lactato >2 mmol/L**?», no
@@ -101,7 +102,18 @@ repositorio `galgo-empirica`. Lo esencial:
 - Nada de «es importante destacar», «cabe mencionar», «piedra angular»… (la
   lista está en `galgo/estilo.py`).
 
-## 5. De dónde sale cada cosa
+## 5. Sin repetir
+
+- Si una imagen ya muestra una tabla, una lista de criterios o una secuencia, **se queda la imagen** y no se repite como `tabla` o `checklist` en el mismo nodo.
+- La misma imagen no se pone en dos nodos seguidos de la misma vía.
+- Lo que dice el texto no se repite en la perla ni en la alerta.
+
+## 6. Alcance
+
+- Se trabaja **sólo sobre el algoritmo indicado**. No se crean algoritmos JSON nuevos; un algoritmo relacionado que no existe se deja como `TODO_LINK_` y se lista en el PR. Las calculadoras nuevas sí se pueden crear si la guía usa la escala.
+- La marca es **Empirica** (Praxis es el nombre antiguo) en textos, imágenes y documentación.
+
+## 7. De dónde sale cada cosa
 
 - **Contenido clínico**: de la guía, con `referencias[].texto` = cita literal
   de 12 a 30 palabras y `paginas`. Nunca de memoria.
