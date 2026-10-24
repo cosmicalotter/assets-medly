@@ -43,12 +43,14 @@ function opciones(argv) {
   });
   await pagina.goto("file://" + path.resolve(op.entrada));
   await pagina.evaluate(() => document.fonts && document.fonts.ready);
-  const lienzo = (await pagina.$("#lienzo")) || pagina;
+  // Se busca `#lienzo` en cada foto: una página puede redibujarlo entero en
+  // cada cuadro, y una referencia vieja apuntaría a un nodo que ya no está.
+  const lienzo = async () => (await pagina.$("#lienzo")) || pagina;
   const anima = await pagina.evaluate(() => typeof window.cuadro === "function");
 
   if (op.cuadros <= 1) {
     if (anima) await pagina.evaluate(() => window.cuadro(0, 1));
-    await lienzo.screenshot({ path: op.salida });
+    await (await lienzo()).screenshot({ path: op.salida });
     console.log(`imagen: ${op.salida}`);
   } else {
     if (!anima) {
@@ -58,7 +60,7 @@ function opciones(argv) {
     fs.mkdirSync(op.salida, { recursive: true });
     for (let i = 0; i < op.cuadros; i++) {
       await pagina.evaluate(([n, total]) => window.cuadro(n, total), [i, op.cuadros]);
-      await lienzo.screenshot({ path: path.join(op.salida, `cuadro_${String(i).padStart(3, "0")}.png`) });
+      await (await lienzo()).screenshot({ path: path.join(op.salida, `cuadro_${String(i).padStart(3, "0")}.png`) });
     }
     console.log(`${op.cuadros} cuadros en ${op.salida}`);
   }

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.f{font-size:12px}</style></head><body>
+<script>
+// Eje 0-72 h. Cada carril: [rótulo, desde, hasta, color, texto en la barra]
+const X0 = 190, X1 = 660;
+const x = (h) => X0 + ((X1 - X0) * h) / 72;
+const carriles = [
+  ["Compresión neumática", 0, 72, "#18B9A9", "desde el día del diagnóstico"],
+  ["Deglución", 0, 6, "#4F8CF6", "tamizaje antes de cualquier ingesta oral"],
+  ["Vigilancia neurológica", 0, 72, "#7B6CF6", "GCS frecuente hasta 72 h"],
+  ["Monitor cardíaco", 0, 72, "#3BA7E0", "24-72 h"],
+  ["Movilización", 0, 24, "#EF5454", "no movilización intensa <24 h"],
+  ["Rehabilitación", 24, 48, "#2FB36D", "inicio 24-48 h"],
+  ["HNF/HBPM profiláctica", 24, 48, "#F2A23A", "si la TC es estable"],
+];
+window.cuadro = function () {
+  const filas = carriles.map(([rot, a, b, c, txt], k) => {
+    const yy = 20 + k * 46;
+    const ancho = x(b) - x(a);
+    const dentro = ancho > 230, izquierda = false;
+    const tx = dentro ? x(a) + 10 : izquierda ? x(a) - 8 : x(b) + 8;
+    return `<text x="${X0 - 12}" y="${yy + 21}" text-anchor="end" font-size="14" font-weight="700" fill="#1F2A37">${rot}</text>
+      <rect x="${x(a)}" y="${yy + 4}" width="${ancho}" height="26" rx="8" fill="${c}" opacity=".9"/>
+      <text x="${tx}" y="${yy + 22}" text-anchor="${izquierda ? "end" : "start"}" font-size="12.5" fill="${dentro ? "#fff" : "#374151"}" font-weight="600">${txt}</text>`;
+  }).join("");
+  const ejes = [0, 24, 48, 72].map((h) => `<line x1="${x(h)}" x2="${x(h)}" y1="10" y2="350" stroke="#E5E7EB"/><text x="${x(h)}" y="372" text-anchor="middle" font-size="13" fill="#6B7280">${h} h</text>`).join("");
+  lienzo(
+    "Primeras 72 horas de ingreso",
+    "Lo que se pone en marcha y cuándo",
+    `<svg viewBox="0 0 700 380" style="flex:1">${ejes}${filas}</svg>`,
+    "AHA/ASA 2022 secciones 5.3 y 8.1. No usar medias de compresión solas. La ESO sugiere la compresión neumática 30 días o hasta el alta."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>
