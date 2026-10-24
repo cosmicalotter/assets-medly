@@ -1,65 +1,80 @@
 {
   "titulo": "Escala ICH (ICH score)",
   "descripcion": "Gravedad de la hemorragia intracerebral espontánea al ingreso. Resume cinco datos (GCS, volumen, sangre intraventricular, origen infratentorial y edad) en una puntuación de 0 a 6 asociada a la mortalidad a 30 días de la cohorte original. Sirve para comunicar gravedad, no para predecir el desenlace de un paciente concreto.",
-  "tipoCalculo": "formula",
-  "formula": "gcs + volumen + intraventricular + infratentorial + edad",
+  "tipoCalculo": "suma",
   "prefijoResultado": "ICH score",
   "sufijoResultado": "puntos",
-  "secciones": [
+  "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/algoritmo/acvhemorragico/acvhemorragico_abc2_medicion.png",
+  "referencias": [
     {
-      "nombre": "Clínica",
-      "elementos": [
-        {
-          "id": "gcs",
-          "tipo": "opciones",
-          "label": "Escala de coma de Glasgow",
-          "opciones": [
-            { "label": "13 a 15", "puntos": 0 },
-            { "label": "5 a 12", "puntos": 1 },
-            { "label": "3 a 4", "puntos": 2 }
-          ]
-        },
-        {
-          "id": "edad",
-          "tipo": "opciones",
-          "label": "Edad",
-          "opciones": [
-            { "label": "Menos de 80 años", "puntos": 0 },
-            { "label": "80 años o más", "puntos": 1 }
-          ]
-        }
+      "titulo": "Hemphill JC 3rd, et al. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-7.",
+      "url": "https://doi.org/10.1161/01.str.32.4.891"
+    },
+    {
+      "titulo": "Greenberg SM, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke. 2022;53:e282-e361.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407"
+    },
+    {
+      "titulo": "Steiner T, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
+      "url": "https://doi.org/10.1177/23969873251340815"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0 ptos",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1 pto",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2 ptos",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Glasgow (GCS)",
+      "descripciones": [
+        "13 a 15",
+        "5 a 12",
+        "3 a 4"
       ]
     },
     {
-      "nombre": "Tomografía",
-      "elementos": [
-        {
-          "id": "volumen",
-          "tipo": "opciones",
-          "label": "Volumen del hematoma (ABC/2)",
-          "opciones": [
-            { "label": "Menos de 30 mL", "puntos": 0 },
-            { "label": "30 mL o más", "puntos": 1 }
-          ]
-        },
-        {
-          "id": "intraventricular",
-          "tipo": "opciones",
-          "label": "Sangre intraventricular",
-          "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
-          ]
-        },
-        {
-          "id": "infratentorial",
-          "tipo": "opciones",
-          "label": "Origen infratentorial (cerebelo o tronco)",
-          "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
-          ]
-        }
+      "nombre": "Volumen (ABC/2)",
+      "descripciones": [
+        "<30 mL",
+        "≥30 mL",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Sangre intraventricular",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Origen infratentorial",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Edad",
+      "descripciones": [
+        "<80 años",
+        "≥80 años",
+        "-"
       ]
     }
   ],
@@ -103,20 +118,6 @@
       "color": "rojo",
       "match_opcion_index": -1,
       "approach": "Gravedad muy alta en la cohorte original (ningún paciente tuvo 6). La puntuación no basta para limitar el tratamiento: decidir con la familia y con el curso clínico, no con el número (AHA 2022, Clase III)."
-    }
-  ],
-  "referencias": [
-    {
-      "titulo": "Hemphill JC 3rd, et al. The ICH score: a simple, reliable grading scale for intracerebral hemorrhage. Stroke. 2001;32(4):891-7.",
-      "url": "https://doi.org/10.1161/01.str.32.4.891"
-    },
-    {
-      "titulo": "Greenberg SM, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke. 2022;53:e282-e361.",
-      "url": "https://doi.org/10.1161/STR.0000000000000407"
-    },
-    {
-      "titulo": "Steiner T, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
-      "url": "https://doi.org/10.1177/23969873251340815"
     }
   ]
 }

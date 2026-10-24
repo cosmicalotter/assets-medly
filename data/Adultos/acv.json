@@ -1,15 +1,15 @@
 {
   "titulo": "ACV isquémico agudo: manejo temprano en adultos",
   "version": "AHA/ASA 2026",
-  "descripcion": "Del código ACV a las primeras 72 h del ACV isquémico agudo del adulto: imagen, trombólisis, trombectomía, antiagregación, unidad de ACV y complicaciones. No cubre el ACV pediátrico.",
+  "descripcion": "El ACV isquémico es un infarto del sistema nervioso central (muerte de células del cerebro, la médula espinal o la retina por isquemia) que da síntomas evidentes. Este algoritmo guía al adulto desde el código ACV hasta las primeras 72 h: imagen, trombólisis, trombectomía, antiagregación, unidad de ACV y complicaciones. No cubre el ACV pediátrico.",
   "especialidad": "Neurología",
   "actualizado": "Octubre 2026",
   "puntos_clave": [
     "Imagen en **≤25 min**; angio-TC sin esperar la creatinina.",
-    "Déficit incapacitante en **<4,5 h**: **tenecteplasa 0,25 mg/kg** (máx. **25 mg**) o **alteplasa 0,9 mg/kg** (máx. **90 mg**).",
+    "Déficit incapacitante en **<4,5 h** → **tenecteplasa 0,25 mg/kg** (máx. **25 mg**) o **alteplasa 0,9 mg/kg** (máx. **90 mg**).",
     "PA **<185/110** antes de trombolizar y **<180/105** las **24 h** siguientes.",
-    "LVO de carótida interna o M1 con NIHSS **≥6**: trombectomía hasta **24 h** según ASPECTS y mRS previo.",
-    "ACV menor (NIHSS **≤3**) sin trombólisis: **clopidogrel + aspirina 21 días**."
+    "Oclusión de gran vaso (LVO) en carótida interna o M1 con NIHSS **≥6** → trombectomía hasta **24 h** según ASPECTS y Rankin previo (mRS).",
+    "ACV menor (NIHSS **≤3**) no cardioembólico, sin trombólisis, en **<24 h** → clopidogrel + aspirina **21 días**."
   ],
   "carpeta_evidencia": "acvisquemico",
   "carpeta_imagenes": "acvisquemico",
@@ -47,6 +47,22 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e1_guia_aha_asa_2026.png"
+        },
+        {
+          "titulo": "Definición AHA/ASA del ACV isquémico (2013)",
+          "fuente": "AHA/ASA",
+          "anio": "2013",
+          "url": "https://doi.org/10.1161/STR.0b013e318296aeca",
+          "texto": "Central nervous system infarction is defined as brain, spinal cord, or retinal cell death attributable to ischemia, based on neuropathological, neuroimaging, and/or clinical evidence of permanent injury.",
+          "cita": "Sacco RL, Kasner SE, Broderick JP, et al. An Updated Definition of Stroke for the 21st Century: A Statement for Healthcare Professionals From the American Heart Association/American Stroke Association. Stroke. 2013;44(7):2064-89."
+        },
+        {
+          "titulo": "ACV isquémico: infarto con síntomas evidentes (AHA/ASA 2013)",
+          "fuente": "AHA/ASA",
+          "anio": "2013",
+          "url": "https://doi.org/10.1161/STR.0b013e318296aeca",
+          "texto": "Ischemic stroke specifically refers to central nervous system infarction accompanied by overt symptoms, while silent infarction by definition causes no known symptoms.",
+          "cita": "Sacco RL, Kasner SE, Broderick JP, et al. An Updated Definition of Stroke for the 21st Century. Stroke. 2013;44(7):2064-89."
         }
       ]
     },
@@ -150,18 +166,18 @@
     "diag_evaluacion_prehosp": {
       "tipo": "pregunta",
       "titulo": "Sospecha de ACV: primeros minutos",
-      "texto": "- Activar el **código ACV** y avisar al hospital antes de llegar.\n- Conciencia disminuida o disfunción bulbar → asegurar vía aérea y ventilación.\n- Oxígeno solo si hay hipoxia: meta **SatO₂ >94 %**.\n- Medir la **glucosa capilar** antes de cualquier trombólisis.",
+      "texto": "- Activar el código ACV y avisar al hospital antes de llegar.\n- Conciencia disminuida o disfunción bulbar → asegurar vía aérea y ventilación.\n- Oxígeno solo si hay hipoxia: meta SatO₂ **>94 %**.",
       "pie_nodo": "¿Glucosa **<60 mg/dL**?",
       "checklist": {
         "titulo": "Al llegar",
         "items": [
-          "Hora de inicio o **última vez visto bien** (LKW)",
-          "Glucosa capilar",
+          "Hora de inicio o última vez visto bien (LKW)",
+          "Glucosa capilar antes de trombolizar: hipo- o hiperglucemia grave (**<50** o **>400 mg/dL**) imitan un ACV",
           "PA, FC, temperatura y SatO₂",
-          "NIHSS",
-          "Antitrombóticos: fármaco y **hora de la última dosis**",
+          "NIHSS (escala de ictus de los NIH)",
+          "Antitrombóticos: fármaco y hora de la última dosis",
           "Peso real o estimado (sin retrasar por él)",
-          "Escala de gran vaso prehospitalaria (p. ej., RACE **>4**)"
+          "Escala prehospitalaria breve (también detecta la oclusión de gran vaso)"
         ]
       },
       "alertas": [
@@ -170,10 +186,9 @@
           "texto": "**No** iniciar nitroglicerina transdérmica en la ambulancia."
         }
       ],
-      "nota_adicional": "Bajar la PAS a **130-140 mmHg** en la ambulancia **no** mejora el desenlace. Sin hipoxia, el oxígeno tampoco.",
+      "nota_adicional": "Bajar la PAS a **130-140 mmHg** en la ambulancia no mejora el desenlace; tampoco el condicionamiento isquémico con manguito ni el oxígeno hiperbárico.",
       "evidencia": {
-        "clase": "I",
-        "nivel": "C",
+        "texto": "Clase I en cada paso",
         "fuente": "AHA/ASA 2026"
       },
       "opciones": [
@@ -206,16 +221,6 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e12_recomendacion_2_3_3.png"
-        },
-        {
-          "titulo": "Recomendación 3.2.10: RACE >4 sugiere oclusión de gran vaso",
-          "paginas": "e27",
-          "texto": "based on prehospital assessment with a validated stroke severity scale (eg, RACE >4) and eligible for EVT",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e27_recomendacion_3_2_10.png"
         },
         {
           "titulo": "Recomendación 4.1.1: vía aérea (Clase 1, C)",
@@ -258,6 +263,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e38_recomendacion_4_6_1_3.png"
         },
         {
+          "titulo": "Texto 4.6.1.5: hipo- e hiperglucemia graves",
+          "paginas": "e39",
+          "texto": "Severe hypo- and hyperglycemia is typically defined as <50 and >400 mg/dL, respectively.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e39_texto_4_6_1_4.png"
+        },
+        {
           "titulo": "Tabla 7: no retrasar por el peso exacto",
           "paginas": "e43",
           "texto": "Do not delay thrombolysis to obtain exact weight — timely treatment is critical. With estimated weights, dosing per 1-kg band is not necessarily safer than 10-kg band dosing.",
@@ -286,6 +301,26 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e12_recomendacion_2_3_6.png"
+        },
+        {
+          "titulo": "Recomendación 2.3.4: condicionamiento isquémico (Clase 3: sin beneficio)",
+          "paginas": "e12",
+          "texto": "ambulance-initiated remote ischemic conditioning (RIC) with arm blood pressure (BP) cuff inflation does not improve functional outcome and is not recommended",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e12_recomendacion_2_3_4.png"
+        },
+        {
+          "titulo": "Recomendación 4.1.6: oxígeno hiperbárico (Clase 3: sin beneficio)",
+          "paginas": "e32",
+          "texto": "In patients with AIS, not associated with air embolism, HBO is not recommended to improve functional outcomes.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e32_recomendacion_4_1_6.png"
         }
       ]
     },
@@ -293,8 +328,9 @@
       "estilo": "peligro",
       "tipo": "pregunta",
       "titulo": "Corregir la hipoglucemia",
-      "texto": "- Tratar ya la glucosa **<60 mg/dL** (dosis en el algoritmo de hipoglucemia).\n- Repetir la exploración neurológica con la glucosa normal.\n- Si el déficit **incapacitante persiste**, sigue siendo candidato a trombólisis.",
-      "pie_nodo": "¿Persiste un déficit **incapacitante** con la glucosa normal?",
+      "texto": "- Tratar ya la glucosa **<60 mg/dL** (dosis en el algoritmo de hipoglucemia).\n- Repetir la exploración neurológica con la glucosa normal.",
+      "pie_nodo": "¿Persiste algún déficit focal con la glucosa corregida?",
+      "nota_adicional": "Si persiste un déficit incapacitante tras corregir la glucosa, la trombólisis sigue indicada.",
       "enlaces": [
         {
           "texto": "Hipoglucemia en adultos",
@@ -313,7 +349,7 @@
           "siguiente_nodo": "diag_triaje_tiempo"
         },
         {
-          "texto": "No: se resolvió",
+          "texto": "No: déficit resuelto",
           "siguiente_nodo": "diag_alta_mimic"
         }
       ],
@@ -344,8 +380,7 @@
       "estilo": "exito",
       "tipo": "informativo",
       "titulo": "Déficit resuelto: probable imitador",
-      "texto": "- Buscar y tratar la causa de la hipoglucemia.\n- Vigilar la exploración: si el déficit **reaparece**, reactivar el código ACV.\n- Otros imitadores: crisis epiléptica, migraña complicada, trastorno conversivo.",
-      "nota_adicional": "Ante la duda razonable, trombolizar a un imitador es **poco riesgoso**: transformación hemorrágica **0,5 %**.",
+      "texto": "- Buscar y tratar la causa de la hipoglucemia.\n- Vigilar la exploración: si el déficit reaparece → reactivar el código ACV.\n- Otros imitadores: crisis epiléptica, migraña complicada, trastorno conversivo.",
       "enlaces": [
         {
           "texto": "Hipoglucemia en adultos",
@@ -368,7 +403,7 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e37_recomendacion_4_5_1.png"
         },
         {
-          "titulo": "Texto 4.6.1: riesgo en imitadores",
+          "titulo": "Texto 4.6.1: imitadores frecuentes",
           "paginas": "e39",
           "texto": "The risk of HT after IVT in stroke mimics, such as conversion disorder, complicated migraine, or seizure, is very low (0.5%).",
           "fuente": "AHA/ASA",
@@ -382,8 +417,8 @@
     "diag_triaje_tiempo": {
       "tipo": "pregunta",
       "titulo": "NIHSS y hora de inicio",
-      "texto": "- Medir la gravedad con la **NIHSS** al llegar y tras la reperfusión.\n- Fijar la hora de inicio; si no se sabe o despertó con síntomas, usar la **LKW**.\n- Movilizar al equipo de ACV: medicina, enfermería, laboratorio e imagen.",
-      "pie_nodo": "¿Cuánto tiempo desde la LKW?",
+      "texto": "- Medir la gravedad con la NIHSS al llegar y tras la reperfusión.\n- Fijar la hora de inicio; si no se sabe o despertó con síntomas, usar la LKW.\n- Movilizar al equipo de ACV: medicina, enfermería, laboratorio e imagen.",
+      "pie_nodo": "¿LKW hace **<24 h**?",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/nihss.json",
         "etiqueta": "Calcular NIHSS",
@@ -402,11 +437,11 @@
       ],
       "opciones": [
         {
-          "texto": "Menos de 24 h",
+          "texto": "Sí",
           "siguiente_nodo": "diag_imagen_urgente"
         },
         {
-          "texto": "Más de 24 h",
+          "texto": "No: más de 24 h",
           "siguiente_nodo": "diag_eval_tardia"
         }
       ],
@@ -436,16 +471,16 @@
     "diag_imagen_urgente": {
       "tipo": "pregunta",
       "titulo": "Imagen cerebral y vascular urgente",
-      "texto": "- **TC sin contraste** (o RM) en **≤25 min**: descarta hemorragia y mide el daño.\n- **Angio-TC** de cuello y cerebro a la vez si puede ir a trombectomía; **no esperar la creatinina**.\n- ECG y troponina, **sin retrasar** la trombólisis ni la trombectomía.",
-      "pie_nodo": "¿La TC muestra **hemorragia** intracraneal?",
+      "texto": "- TC sin contraste (o RM) en **≤25 min**: descarta hemorragia y mide el daño.\n- Angio-TC de cuello y cerebro a la vez si puede ir a trombectomía; no esperar la creatinina.\n- ECG y troponina, sin retrasar la trombólisis ni la trombectomía.",
+      "pie_nodo": "¿La TC muestra hemorragia intracraneal?",
       "media": [
         {
           "recurso": "acvisquemico_tc_acm_hiperdensa.jpg",
           "titulo": "TC real: arteria cerebral media hiperdensa",
-          "descripcion": "La línea señala la ACM derecha, más blanca (densa) que la izquierda: trombo en la arteria. Foto: Cerevisae, CC BY-SA 4.0."
+          "descripcion": "La línea señala la ACM derecha (a la izquierda de la imagen), más blanca (densa) que la izquierda: trombo en la arteria. Foto: Cerevisae, CC BY-SA 4.0."
         }
       ],
-      "nota_adicional": "La **TC sin contraste** basta para decidir la trombólisis en la mayoría. Una arteria hiperdensa o cambios tempranos **refuerzan** la decisión.",
+      "nota_adicional": "Arteria hiperdensa o cambios tempranos apoyan la isquemia; en la mayoría basta la TC sin contraste para trombolizar.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -548,17 +583,11 @@
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Hemorragia: no trombolizar",
-      "texto": "- Detener el protocolo isquémico.\n- Seguir en el algoritmo de **ACV hemorrágico**: PA, reversión de anticoagulantes y neurocirugía.",
+      "texto": "- Detener el protocolo isquémico.\n- Seguir en el algoritmo de ACV hemorrágico: PA, reversión de anticoagulantes y neurocirugía.",
       "alertas": [
         {
           "titulo": "Contraindicación absoluta",
           "texto": "**No** dar alteplasa ni tenecteplasa con hemorragia intracraneal aguda."
-        }
-      ],
-      "chips": [
-        {
-          "texto": "Sin trombólisis",
-          "color": "rojo"
         }
       ],
       "enlaces": [
@@ -594,7 +623,7 @@
     "diag_eval_tardia": {
       "tipo": "informativo",
       "titulo": "Más de 24 horas",
-      "texto": "- TC o RM y estudio vascular: confirmar la isquemia y buscar la causa.\n- Más allá de **24 h** no hay datos suficientes para trombólisis ni trombectomía.\n- Antiagregar e ingresar a la unidad de ACV.",
+      "texto": "- TC o RM y estudio vascular: confirmar la isquemia y buscar la causa.\n- Más allá de **24 h** la guía no da recomendaciones de reperfusión; para trombectomía, datos insuficientes.\n- Antiagregar e ingresar a la unidad de ACV.",
       "media": [
         {
           "recurso": "acvisquemico_tc_infarto_acm_acp_establecido.jpg",
@@ -602,11 +631,10 @@
           "descripcion": "Hipodensidad franca en los territorios de la ACM y la ACP derechas: infarto de evolución. Foto: Cerevisae, CC BY-SA 4.0."
         }
       ],
-      "enlaces": [
+      "opciones": [
         {
-          "texto": "Ir a antiagregación",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_medico"
+          "texto": "Antiagregación",
+          "siguiente_nodo": "trat_medico"
         }
       ],
       "referencias": [
@@ -635,12 +663,12 @@
     "diag_isquemia_confirmada": {
       "tipo": "informativo",
       "titulo": "Sin hemorragia: medir el daño (ASPECTS)",
-      "texto": "- **ASPECTS**: partir de **10** y restar **1** por cada región con cambio isquémico.\n- Circulación posterior: **PC-ASPECTS** (mesencéfalo y protuberancia restan **2**).\n- Cambios tempranos **leves o moderados** no impiden la trombólisis; una **hipodensidad franca** extensa sí.",
+      "texto": "- Cambios tempranos leves o moderados no impiden la trombólisis; una hipodensidad franca extensa sí.\n- Puntuar ASPECTS (circulación anterior) o PC-ASPECTS (posterior) con las calculadoras.",
       "media": [
         {
           "recurso": "acvisquemico_aspects.gif",
           "titulo": "ASPECTS en la TC",
-          "descripcion": "Dos cortes: ganglios basales y supraganglionar. Cada región hipodensa resta **1** punto."
+          "descripcion": "Dos cortes: ganglios basales y supraganglionar. Se parte de **10** y cada región hipodensa resta **1**."
         },
         {
           "recurso": "acvisquemico_pc_aspects.png",
@@ -653,7 +681,7 @@
         "etiqueta": "Calcular ASPECTS",
         "ramificar": false
       },
-      "nota_adicional": "Hipodensidad **franca**: más oscura que la sustancia blanca sana del lado opuesto.",
+      "nota_adicional": "Hipodensidad franca: más oscura que la sustancia blanca sana del lado opuesto.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -661,14 +689,15 @@
       },
       "enlaces": [
         {
-          "texto": "Ir a reperfusión",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_inicio"
-        },
-        {
           "texto": "PC-ASPECTS",
           "tipo": "calculadora",
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/pc_aspects.json"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Elegir la ventana de reperfusión",
+          "siguiente_nodo": "trat_inicio"
         }
       ],
       "referencias": [
@@ -726,8 +755,8 @@
     },
     "trat_inicio": {
       "tipo": "pregunta",
-      "titulo": "¿En qué ventana está?",
-      "texto": "- Cada minuto de retraso en la trombólisis **pierde cerebro salvable**.\n- **<4,5 h**: trombólisis si el déficit es incapacitante.\n- **4,5-24 h** o al despertar: decidir con imagen avanzada.\n- Trombectomía **hasta 24 h** si hay oclusión de gran vaso (LVO).",
+      "titulo": "Ventanas de reperfusión",
+      "texto": "- **<4,5 h** → trombólisis si el déficit es incapacitante.\n- **4,5-24 h** o al despertar → imagen avanzada.\n- LVO (oclusión de gran vaso) → trombectomía hasta **24 h**.",
       "pie_nodo": "¿Cuánto tiempo desde el inicio o la LKW?",
       "media": [
         {
@@ -758,7 +787,7 @@
         },
         {
           "texto": "Más de 24 h",
-          "siguiente_nodo": "trat_medico"
+          "siguiente_nodo": "diag_eval_tardia"
         }
       ],
       "referencias": [
@@ -784,7 +813,7 @@
         },
         {
           "titulo": "Recomendación 4.6.3.2: 4,5-9 h o al despertar (Clase 2a, B)",
-          "paginas": "e5",
+          "paginas": "e44",
           "texto": "who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV thrombolysis may be reasonable",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -807,37 +836,42 @@
     "trat_ventana_temprana": {
       "tipo": "pregunta",
       "titulo": "Menos de 4,5 h: ¿candidato a trombólisis?",
-      "texto": "- Déficit **incapacitante** → trombolizar, sea cual sea la NIHSS.\n- Déficit **leve no incapacitante** (p. ej., solo sensitivo) → **no** trombolizar; doble antiagregación.\n- **No esperar** coagulación (salvo sospecha), angio-TC, perfusión ni RM.\n- Tomar uno o dos antiagregantes **no** la contraindica.",
-      "pie_nodo": "¿Es candidato y cómo está la PA?",
+      "texto": "- Déficit incapacitante → trombolizar, sea cual sea la NIHSS; leve no incapacitante → no: doble antiagregación.\n- Sin warfarina ni heparina recientes → no esperar la coagulación; suspender si INR **>1,7** o TP/TTPa alterados.\n- No esperar angio-TC, perfusión ni RM para trombolizar.\n- Uno o dos antiagregantes previos no contraindican la trombólisis.",
+      "pie_nodo": "¿Candidato? Si lo es, ¿PA **<185/110 mmHg**?",
       "checklist": {
-        "titulo": "Contraindicaciones absolutas (Tabla 8)",
+        "titulo": "Contraindicaciones absolutas (con una basta)",
         "items": [
           "Hemorragia intracraneal aguda",
           "Hipodensidad franca extensa que explica los síntomas",
-          "TCE moderado-grave en **<14 días**",
+          "Traumatismo craneoencefálico moderado-grave en **<14 días**",
           "Neurocirugía intracraneal o espinal en **<14 días**",
           "Lesión medular aguda en **<3 meses**",
           "Neoplasia intraaxial",
           "Endocarditis infecciosa",
           "Plaquetas **<100.000/mm³**, INR **>1,7**, TTPa **>40 s** o TP **>15 s**",
           "Disección del arco aórtico",
-          "ARIA o inmunoterapia antiamiloide"
+          "ARIA (anomalías en la RM por antiamiloide) o inmunoterapia antiamiloide"
         ]
       },
       "media": [
         {
           "recurso": "acvisquemico_deficit_incapacitante.png",
           "titulo": "¿Es un déficit incapacitante?",
-          "descripcion": "NIHSS 0-5: ¿podría bañarse, vestirse, caminar, ir al baño y comer si el déficit persiste?"
+          "descripcion": "NIHSS 0-5: si persiste, ¿podría bañarse, vestirse, caminar, ir al baño, asearse, comer y volver a trabajar?"
+        },
+        {
+          "recurso": "acvisquemico_contraindicaciones_relativas.png",
+          "titulo": "Contraindicaciones relativas",
+          "descripcion": "Decidir caso a caso; a la derecha, situaciones en las que el beneficio suele superar el riesgo."
         }
       ],
       "alertas": [
         {
-          "titulo": "ACOD en las últimas 48 h",
+          "titulo": "ACOD (anticoagulante oral directo) en <48 h",
           "texto": "Seguridad **desconocida**: decidir caso a caso con la hora de la última dosis, la función renal y el acceso a trombectomía."
         }
       ],
-      "nota_adicional": "Duda entre ACV e imitador, sin contraindicación absoluta: el riesgo de trombolizar es **bajo**. Disección cervical extracraneal: trombólisis razonablemente segura en **<4,5 h**.",
+      "nota_adicional": "Duda entre ACV e imitador, sin contraindicación absoluta → trombolizar: el riesgo es bajo (transformación hemorrágica **0,5 %** en imitadores).",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -852,11 +886,11 @@
       ],
       "opciones": [
         {
-          "texto": "Candidato, PA ≤185/110",
+          "texto": "Candidato, PA <185/110",
           "siguiente_nodo": "trat_ivt_admin"
         },
         {
-          "texto": "Candidato, PA >185/110",
+          "texto": "Candidato, PA ≥185/110",
           "siguiente_nodo": "trat_bajar_pa_ivt"
         },
         {
@@ -910,16 +944,6 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e38_recomendacion_4_6_1_8.png"
         },
         {
-          "titulo": "Recomendación 4.6.1.2: sin esperar imagen multimodal (Clase 1, B)",
-          "paginas": "e5",
-          "texto": "treatment should be initiated as quickly as possible, assuring safe administration and avoiding potential delays associated with additional multimodal neuroimaging, such as CTA/MRA",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_6_1.png"
-        },
-        {
           "titulo": "Recomendación 4.6.1.10: sin esperar coagulación (Clase 2a, B)",
           "paginas": "e38",
           "texto": "it is reasonable that IVT not be delayed while waiting for hematologic or coagulation testing if there is no reason to suspect an abnormal result",
@@ -928,6 +952,36 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e38_recomendacion_4_6_1_9.png"
+        },
+        {
+          "titulo": "Tabla 8: sin warfarina ni heparina recientes",
+          "paginas": "e52",
+          "texto": "In patients without recent use of warfarin or heparin, treatment with IV thrombolysis can be initiated before availability of coagulation test results",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e52_tabla_8_coagulopatia.png"
+        },
+        {
+          "titulo": "Tabla 8: cuándo suspender",
+          "paginas": "e52",
+          "texto": "should be discontinued if INR >1.7, PT, or PTT is abnormal by local laboratory standards.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e52_tabla_8_coagulopatia.png"
+        },
+        {
+          "titulo": "Recomendación 4.6.1.2: sin esperar imagen multimodal (Clase 1, B)",
+          "paginas": "e38",
+          "texto": "treatment should be initiated as quickly as possible, assuring safe administration and avoiding potential delays associated with additional multimodal neuroimaging, such as CTA/MRA",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e38_recomendacion_4_6_1.png"
         },
         {
           "titulo": "Recomendación 4.6.1.11: sin esperar RM (Clase 1, B)",
@@ -970,6 +1024,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e50_tabla_8_acod.png"
         },
         {
+          "titulo": "Tabla 8: contraindicaciones relativas",
+          "paginas": "e50",
+          "texto": "Use of IV thrombolysis in patients presenting with AIS who have had a prior ischemic stroke within 3 months may be at increased risk of intracranial hemorrhage.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e50_tabla_8_acv_reciente.png"
+        },
+        {
           "titulo": "Tabla 8: duda con un imitador",
           "paginas": "e49",
           "texto": "When uncertain if a patient is presenting with symptoms due to stroke vs a stroke mimic, unless there are absolute contraindications, the risk of harm with IV thrombolysis is low.",
@@ -978,6 +1042,16 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e49_tabla_8_imitadores.png"
+        },
+        {
+          "titulo": "Texto 4.6.1: riesgo en imitadores",
+          "paginas": "e39",
+          "texto": "The risk of HT after IVT in stroke mimics, such as conversion disorder, complicated migraine, or seizure, is very low (0.5%).",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e39_texto_4_6_1.png"
         },
         {
           "titulo": "Tabla 8: disección cervical",
@@ -1006,12 +1080,12 @@
         {
           "nombre": "Nicardipina",
           "dosis": "**5 mg/h** IV en infusión",
-          "pauta": "Subir **2,5 mg/h** hasta lograr la meta; máx. **15 mg/h**."
+          "pauta": "Subir **2,5 mg/h** cada **5-15 min** hasta la meta; máx. **15 mg/h**."
         },
         {
           "nombre": "Clevidipina",
           "dosis": "**1-2 mg/h** IV",
-          "pauta": "Duplicar a intervalos cortos (**90 s**) al inicio."
+          "pauta": "Duplicar cada **90 s** al inicio; mantenimiento cerca de **4-6 mg/h**; máx. promedio **21 mg/h** (≤1000 mL) en 24 h."
         }
       ],
       "media": [
@@ -1021,7 +1095,7 @@
           "descripcion": "Antes y después de la trombólisis o la trombectomía, y sin reperfusión."
         }
       ],
-      "nota_adicional": "La guía 2026 no elige fármaco: las dosis son las de las **fichas técnicas** de la FDA.",
+      "nota_adicional": "La guía 2026 no elige fármaco: las dosis son las de las fichas técnicas de la FDA.",
       "evidencia": {
         "clase": "I",
         "nivel": "B",
@@ -1071,16 +1145,40 @@
           "fuente": "FDA · ficha técnica",
           "anio": "2026",
           "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fd1dafe-4b51-49c7-bce1-c4295b2bd292",
-          "texto": "In a drug-free patient, initiate therapy at 5 mg/hr. Increase the infusion rate by 2.5 mg/hr to a maximum of 15 mg/hr until desired blood pressure reduction is achieved.",
-          "cita": "Nicardipine hydrochloride injection. Prescribing information. Fresenius Kabi USA. DailyMed."
+          "cita": "Nicardipine hydrochloride injection. Prescribing information. Fresenius Kabi USA. DailyMed.",
+          "texto": "In a drug-free patient, initiate therapy at 5 mg/hr. Increase the infusion rate by 2.5 mg/hr to a maximum of 15 mg/hr until desired blood pressure reduction is achieved."
+        },
+        {
+          "titulo": "Nicardipina IV: intervalo de ajuste (FDA)",
+          "fuente": "FDA · ficha técnica",
+          "anio": "2026",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fd1dafe-4b51-49c7-bce1-c4295b2bd292",
+          "cita": "Nicardipine hydrochloride injection. Prescribing information. Fresenius Kabi USA. DailyMed.",
+          "texto": "For a gradual blood pressure reduction the rate can be increased every 15 minutes, for a rapid reduction, every 5 minutes"
         },
         {
           "titulo": "Clevidipina IV: ficha técnica (FDA)",
           "fuente": "FDA · ficha técnica",
           "anio": "2022",
           "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a6826aa3-fabb-4ff1-a7a3-cd4c34e3a330",
-          "texto": "Initiate intravenous infusion of Cleviprex at 1- 2 mg/hour. Double the dose at short (90 second) intervals initially.",
-          "cita": "Cleviprex (clevidipine) injectable emulsion. Prescribing information. DailyMed."
+          "cita": "Cleviprex (clevidipine) injectable emulsion. Prescribing information. DailyMed.",
+          "texto": "Initiate intravenous infusion of Cleviprex at 1- 2 mg/hour. Double the dose at short (90 second) intervals initially."
+        },
+        {
+          "titulo": "Clevidipina IV: mantenimiento (FDA)",
+          "fuente": "FDA · ficha técnica",
+          "anio": "2022",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a6826aa3-fabb-4ff1-a7a3-cd4c34e3a330",
+          "cita": "Cleviprex (clevidipine) injectable emulsion. Prescribing information. DailyMed.",
+          "texto": "Most patients will achieve the desired therapeutic response at approximately 4-6 mg/hour. Severe hypertension is likely to require higher doses."
+        },
+        {
+          "titulo": "Clevidipina IV: dosis máxima (FDA)",
+          "fuente": "FDA · ficha técnica",
+          "anio": "2022",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a6826aa3-fabb-4ff1-a7a3-cd4c34e3a330",
+          "cita": "Cleviprex (clevidipine) injectable emulsion. Prescribing information. DailyMed.",
+          "texto": "no more than 1000 mL or an average of 21 mg/hour of Cleviprex infusion is recommended per 24 hour period"
         }
       ]
     },
@@ -1088,13 +1186,13 @@
       "estilo": "exito",
       "tipo": "pregunta",
       "titulo": "Trombólisis IV",
-      "texto": "- **Tenecteplasa 0,25 mg/kg** (máx. **25 mg**) en bolo, o **alteplasa 0,9 mg/kg** (máx. **90 mg**).\n- ¿También candidato a trombectomía? Trombolizar y seguir a angiografía **sin esperar** respuesta.\n- PA **<180/105** durante **24 h**.\n- **TC o RM a las 24 h** antes de antiagregantes o anticoagulantes.",
-      "pie_nodo": "¿Hay **oclusión de gran vaso** (LVO) en la angio-TC?",
+      "texto": "- Tenecteplasa **0,25 mg/kg** (máx. **25 mg**) en bolo, o alteplasa **0,9 mg/kg** (máx. **90 mg**).\n- ¿También candidato a trombectomía? Trombolizar y seguir a angiografía sin esperar respuesta.\n- PA **<180/105** por **24 h**; si sube, medir más seguido y tratar. No buscar PAS **<140**.\n- TC o RM a las **24 h** antes de antiagregantes o anticoagulantes.",
+      "pie_nodo": "¿Hay oclusión de gran vaso (LVO) en la angio-TC?",
       "farmacos": [
         {
           "nombre": "Tenecteplasa",
           "dosis": "**0,25 mg/kg** IV en bolo único; máx. **25 mg**",
-          "nota": "En la práctica, por bandas de peso (ver imagen). Vial a **5 mg/mL**.",
+          "pauta": "Por bandas de peso (imagen); vial a **5 mg/mL**. Con **<50 kg** y peso exacto, bandas de 1 kg.",
           "paginas": "e43",
           "por_kg": {
             "cantidad": 0.25,
@@ -1109,7 +1207,7 @@
         {
           "nombre": "Alteplasa (bolo)",
           "dosis": "**10 %** de la dosis total IV en **1 min**",
-          "nota": "Dosis total **0,9 mg/kg**, máx. **90 mg**.",
+          "pauta": "Dosis total **0,9 mg/kg**, máx. **90 mg**.",
           "paginas": "e43",
           "por_kg": {
             "cantidad": 0.09,
@@ -1128,14 +1226,25 @@
           }
         }
       ],
-      "checklist": {
+      "tabla": {
         "titulo": "Vigilancia tras la trombólisis",
-        "items": [
-          "PA y exploración neurológica cada **15 min** por **2 h**",
-          "Luego cada **30 min** por **6 h**",
-          "Luego cada hora hasta las **24 h**",
-          "PA **>180/105**: medir más seguido y tratar",
-          "Diferir sonda nasogástrica, sonda vesical y línea arterial si se puede"
+        "columnas": [
+          "Desde el inicio",
+          "PA y exploración neurológica"
+        ],
+        "filas": [
+          [
+            "0-2 h",
+            "cada **15 min**"
+          ],
+          [
+            "2-8 h",
+            "cada **30 min**"
+          ],
+          [
+            "8-24 h",
+            "cada hora"
+          ]
         ]
       },
       "media": [
@@ -1147,15 +1256,15 @@
       ],
       "alertas": [
         {
-          "titulo": "Si empeora",
-          "texto": "Cefalea intensa, HTA aguda, náuseas, vómito o deterioro → **suspender** la infusión y **TC urgente**."
+          "titulo": "Signos de sangrado",
+          "texto": "Cefalea intensa, hipertensión aguda, náuseas, vómito o empeoramiento → **suspender** la infusión y **TC urgente**."
         },
         {
           "titulo": "Clase III: daño",
           "texto": "Aspirina IV **no** junto con la trombólisis ni en los **90 min** siguientes."
         }
       ],
-      "nota_adicional": "Tenecteplasa **0,4 mg/kg no** se recomienda. Con peso estimado, las bandas de 1 kg **no** son más seguras que las de **10 kg**: no retrasar por pesar.",
+      "nota_adicional": "Diferir sonda nasogástrica, sonda vesical y línea arterial si se puede. Sin beneficio o con daño: tenecteplasa **0,4 mg/kg**, estreptoquinasa (daño), abciximab (daño), eptifibatida, argatrobán y sonotrombólisis.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -1186,13 +1295,13 @@
       "referencias": [
         {
           "titulo": "Recomendación 4.6.2.1: tenecteplasa o alteplasa (Clase 1, A)",
-          "paginas": "e5",
+          "paginas": "e42",
           "texto": "tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) or alteplase at a dose of 0.9 mg/kg body weight is recommended to improve functional outcomes",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_6_2.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e42_recomendacion_4_6_2.png"
         },
         {
           "titulo": "Tabla 7: tenecteplasa",
@@ -1223,16 +1332,6 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_no_retrasar.png"
-        },
-        {
-          "titulo": "Recomendación 4.6.2.2: tenecteplasa 0,4 mg/kg (Clase 3: sin beneficio)",
-          "paginas": "e42",
-          "texto": "eligible for IVT, tenecteplase at a dose of 0.4 mg/kg body weight is not recommended.",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e42_recomendacion_4_6_2.png"
         },
         {
           "titulo": "Recomendación 4.7.1.1: trombólisis antes de la trombectomía (Clase 1, A)",
@@ -1295,6 +1394,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e35_recomendacion_4_3_7.png"
         },
         {
+          "titulo": "Recomendación 4.3.8: PAS <140 tras trombólisis (Clase 3: sin beneficio)",
+          "paginas": "e35",
+          "texto": "intensive SBP reduction (target of <140 mm Hg compared with <180 mm Hg) is not recommended because it is not associated with an improvement in functional outcome",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e35_recomendacion_4_3_8.png"
+        },
+        {
           "titulo": "Tabla 7: imagen a las 24 h",
           "paginas": "e43",
           "texto": "Obtain a follow-up CT or MRI scan at 24 h after IVT before starting anticoagulants or antiplatelet agents",
@@ -1313,19 +1422,86 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_17.png"
+        },
+        {
+          "titulo": "Recomendación 4.6.2.2: tenecteplasa 0,4 mg/kg (Clase 3: sin beneficio)",
+          "paginas": "e42",
+          "texto": "eligible for IVT, tenecteplase at a dose of 0.4 mg/kg body weight is not recommended.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e42_recomendacion_4_6_2.png"
+        },
+        {
+          "titulo": "Recomendación 4.6.4.6: estreptoquinasa (Clase 3: daño)",
+          "paginas": "e45",
+          "texto": "IV streptokinase should not be administered because it does not result in improved rate of functional independence at 90 days and is associated with increased early mortality.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e45_recomendacion_4_6_4.png"
+        },
+        {
+          "titulo": "Recomendación 4.8.4: abciximab (Clase 3: daño)",
+          "paginas": "e62",
+          "texto": "In patients with AIS, the administration of IV abciximab is not recommended due to increased bleeding complications.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_4.png"
+        },
+        {
+          "titulo": "Recomendación 4.8.18: eptifibatida (Clase 3: sin beneficio)",
+          "paginas": "e62",
+          "texto": "adjunctive treatment with IV eptifibatide is not recommended to reduce disability at 3 months",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_18.png"
+        },
+        {
+          "titulo": "Recomendación 4.9.5: argatrobán (Clase 3: sin beneficio)",
+          "paginas": "e68",
+          "texto": "In patients with AIS, the use of argatroban is not effective as an adjunctive therapy with IVT to improve long-term functional outcomes.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e68_recomendacion_4_9_5.png"
+        },
+        {
+          "titulo": "Recomendación 4.6.4.7: sonotrombólisis (Clase 3: sin beneficio)",
+          "paginas": "e45",
+          "texto": "sonothrombolysis as an adjunctive therapy to IVT compared with IVT alone is not recommended as it did not increase the odds of early neurological improvement",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e45_recomendacion_4_6_4_2.png"
         }
       ]
     },
     "trat_eval_lvo_solo": {
       "tipo": "pregunta",
       "titulo": "Sin trombólisis: ¿hay oclusión de gran vaso?",
-      "texto": "- Sin trombólisis, la trombectomía **sigue indicada** si cumple criterios.\n- Revisar la angio-TC: carótida interna, M1, M2 o basilar.\n- Antes del procedimiento: PA **≤185/110 mmHg**.",
-      "pie_nodo": "¿Hay **LVO** en la angio-TC?",
+      "texto": "- Sin trombólisis, la trombectomía sigue indicada si cumple criterios.\n- Revisar la angio-TC: carótida interna, M1, M2 o basilar.\n- Antes del procedimiento, PA **≤185/110**; si sigue más alta → seguir bajándola (fármacos en el enlace).",
+      "pie_nodo": "¿Hay LVO en la angio-TC?",
       "evidencia": {
-        "clase": "IIa",
-        "nivel": "B",
+        "clase": "I",
+        "nivel": "A",
         "fuente": "AHA/ASA 2026"
       },
+      "enlaces": [
+        {
+          "texto": "Fármacos para bajar la PA",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_bajar_pa_ivt"
+        }
+      ],
       "opciones": [
         {
           "texto": "Sí",
@@ -1337,6 +1513,16 @@
         }
       ],
       "referencias": [
+        {
+          "titulo": "Recomendación 4.7.2.1: trombectomía 0-6 h (Clase 1, A)",
+          "paginas": "e53",
+          "texto": "presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_2.png"
+        },
         {
           "titulo": "Recomendación 4.3.6: ≤185/110 antes de la trombectomía (Clase 2a, B)",
           "paginas": "e35",
@@ -1362,7 +1548,7 @@
     "trat_evt_criterios": {
       "tipo": "pregunta",
       "titulo": "0-6 h: ¿trombectomía?",
-      "texto": "- Carótida interna o M1, NIHSS **≥6**, mRS previo **0-1** y ASPECTS **3-10** → trombectomía.\n- ASPECTS **0-2**, mRS previo **2-4** o M2 dominante: también, con menos fuerza (ver imagen).\n- Basilar: NIHSS **≥10**, PC-ASPECTS **≥6** y mRS previo **0-1**, hasta **24 h**.",
+      "texto": "- Carótida interna o M1, NIHSS **≥6**, mRS previo (Rankin modificada) **0-1** y ASPECTS **3-10** → trombectomía (Clase I).\n- ASPECTS **≥6** con mRS previo **2** (IIa) o **3-4** (IIb) → también.\n- ASPECTS **0-2**: solo con **<80 años**, mRS previo **0-1** y sin efecto de masa importante (IIa).\n- Basilar, hasta **24 h**: NIHSS **≥10**, PC-ASPECTS **≥6** y mRS previo **0-1** (Clase I).",
       "pie_nodo": "¿Cumple criterios de trombectomía?",
       "media": [
         {
@@ -1379,10 +1565,10 @@
       "alertas": [
         {
           "titulo": "Clase III: sin beneficio",
-          "texto": "M2 no dominante o codominante, ACM distal, ACA o ACP: la trombectomía **no** mejora el desenlace."
+          "texto": "M2 no dominante o codominante, ACM distal, ACA (cerebral anterior) o ACP (cerebral posterior): la trombectomía **no** mejora el desenlace."
         }
       ],
-      "nota_adicional": "M2 **dominante**: la rama que irriga **≥50 %** del territorio de la ACM. No tiene que ver con el hemisferio dominante.",
+      "nota_adicional": "M2 dominante (irriga **≥50 %** de la ACM; no es el hemisferio dominante): trombectomía razonable en **0-6 h** con NIHSS **≥6**, mRS **0-1** y ASPECTS **≥6** (IIa).",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -1402,7 +1588,7 @@
       ],
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: trombectomía",
           "siguiente_nodo": "trat_evt_procedimiento"
         },
         {
@@ -1413,7 +1599,7 @@
       "referencias": [
         {
           "titulo": "Recomendación 4.7.2.1: 0-6 h, ASPECTS 3-10 (Clase 1, A)",
-          "paginas": "e5",
+          "paginas": "e53",
           "texto": "presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -1422,18 +1608,8 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_2.png"
         },
         {
-          "titulo": "Recomendación 4.7.2.4: ASPECTS 0-2 (Clase 2a, B)",
-          "paginas": "e5",
-          "texto": "with age <80 years, NIHSS score ≥6, prestroke mRS 0 to 1, ASPECTS 0 to 2, and without significant mass effect on imaging, EVT is reasonable",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_3.png"
-        },
-        {
           "titulo": "Recomendación 4.7.2.5: mRS previo 2 (Clase 2a, B)",
-          "paginas": "e5",
+          "paginas": "e53",
           "texto": "who have a prestroke mRS score of 2, EVT is reasonable to improve functional clinical outcomes and reduce accumulated disability",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -1452,14 +1628,34 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_5.png"
         },
         {
-          "titulo": "Recomendación 4.7.2.7: M2 dominante (Clase 2a, B)",
+          "titulo": "Recomendación 4.7.2.4: ASPECTS 0-2 (Clase 2a, B)",
           "paginas": "e53",
-          "texto": "In patients with AIS from occlusion of the dominant proximal M2 division of the MCA presenting within 6 hours from onset of symptoms",
+          "texto": "with age <80 years, NIHSS score ≥6, prestroke mRS 0 to 1, ASPECTS 0 to 2, and without significant mass effect on imaging, EVT is reasonable",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_6.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_3.png"
+        },
+        {
+          "titulo": "Recomendación 4.7.3.1: basilar, NIHSS ≥10 (Clase 1, A)",
+          "paginas": "e56",
+          "texto": "with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e56_recomendacion_4_7_3.png"
+        },
+        {
+          "titulo": "Recomendación 4.7.3.2: basilar, NIHSS 6-9 (Clase 2b, B)",
+          "paginas": "e57",
+          "texto": "NIHSS score 6 to 9 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage) the effectiveness of EVT within 24 hours",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e57_recomendacion_4_7_3.png"
         },
         {
           "titulo": "Recomendación 4.7.2.8: vasos medianos y distales (Clase 3: sin beneficio)",
@@ -1472,6 +1668,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e54_recomendacion_4_7_2.png"
         },
         {
+          "titulo": "Recomendación 4.7.2.7: M2 dominante (Clase 2a, B)",
+          "paginas": "e53",
+          "texto": "In patients with AIS from occlusion of the dominant proximal M2 division of the MCA presenting within 6 hours from onset of symptoms",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_6.png"
+        },
+        {
           "titulo": "Texto 4.7.2.7: M2 dominante",
           "paginas": "e56",
           "texto": "Dominant is defined as the M2 segment supplying 50% or more of the MCA territory. This does not refer to left/right side dominance.",
@@ -1480,26 +1686,6 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e56_texto_4_7_2.png"
-        },
-        {
-          "titulo": "Recomendación 4.7.3.1: basilar, NIHSS ≥10 (Clase 1, A)",
-          "paginas": "e5",
-          "texto": "with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_7_3.png"
-        },
-        {
-          "titulo": "Recomendación 4.7.3.2: basilar, NIHSS 6-9 (Clase 2b, B)",
-          "paginas": "e57",
-          "texto": "NIHSS score 6 to 9 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage) the effectiveness of EVT within 24 hours",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e57_recomendacion_4_7_3.png"
         },
         {
           "titulo": "Figura 3: elegibilidad para trombectomía",
@@ -1516,13 +1702,13 @@
     "trat_ventana_extendida": {
       "tipo": "pregunta",
       "titulo": "4,5-24 h o al despertar: imagen avanzada",
-      "texto": "- Angio-TC o angio-RM: ¿hay **LVO**?\n- Perfusión por TC o RM con software automático: **núcleo** (ya infartado) frente a **penumbra** (aún salvable).\n- RM: lesión en **DWI** sin cambio en **FLAIR** = desajuste que funciona como **reloj tisular**.",
-      "pie_nodo": "¿Hay **LVO**?",
+      "texto": "- Angio-TC o angio-RM: ¿hay LVO?\n- Perfusión por TC o RM con software automático: núcleo (ya infartado) frente a penumbra (aún salvable).\n- RM: lesión en DWI (difusión) sin cambio en FLAIR → sirve de reloj cuando no se sabe la hora.",
+      "pie_nodo": "¿Hay LVO y cuántas horas lleva?",
       "media": [
         {
           "recurso": "acvisquemico_mismatch.gif",
           "titulo": "Núcleo y penumbra",
-          "descripcion": "Perfusión: el núcleo (rojo) ya está perdido; la penumbra (ámbar) se salva si se reperfunde a tiempo."
+          "descripcion": "Cortes del ensayo EXTEND. El núcleo (rojo) ya está perdido; la penumbra (ámbar) se salva si se reperfunde a tiempo."
         }
       ],
       "evidencia": {
@@ -1532,11 +1718,15 @@
       },
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "LVO, 4,5-6 h",
+          "siguiente_nodo": "trat_evt_criterios"
+        },
+        {
+          "texto": "LVO, 6-24 h",
           "siguiente_nodo": "trat_ext_evt_eval"
         },
         {
-          "texto": "No",
+          "texto": "Sin LVO",
           "siguiente_nodo": "trat_ext_ivt_eval"
         }
       ],
@@ -1590,34 +1780,51 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e55_texto_4_7_2.png"
+        },
+        {
+          "titulo": "Recomendación 4.7.2.1: los criterios de 0-6 h (Clase 1, A)",
+          "paginas": "e53",
+          "texto": "presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e53_recomendacion_4_7_2_2.png"
         }
       ]
     },
     "trat_ext_ivt_eval": {
       "tipo": "pregunta",
-      "titulo": "Sin LVO: ¿trombólisis extendida?",
-      "texto": "- Inicio desconocido y **<4,5 h** desde que se notaron los síntomas: DWI **<1/3** de la ACM y FLAIR sin cambio → trombólisis.\n- Despertó con síntomas (**<9 h** desde la mitad del sueño) o **4,5-9 h** desde la LKW, con **penumbra** en la perfusión → trombólisis razonable.",
-      "pie_nodo": "¿Cumple alguno de los dos criterios de imagen?",
+      "titulo": "¿Trombólisis en ventana extendida?",
+      "texto": "- Cumple una fila de la tabla → trombólisis, tras descartar contraindicaciones.\n- Ninguna → antiagregación.",
+      "pie_nodo": "¿Cumple una de las filas?",
       "tabla": {
-        "titulo": "Criterios de imagen de los ensayos (Tabla 3)",
+        "titulo": "Trombólisis en ventana extendida",
         "columnas": [
-          "Ensayo",
-          "Criterio"
+          "Situación",
+          "Imagen exigida",
+          "Clase"
         ],
         "filas": [
           [
-            "WAKE-UP",
-            "Señal en DWI **sin** cambio visible en FLAIR"
+            "Sin LVO; inicio desconocido y **<4,5 h** desde que se notaron los síntomas",
+            "DWI **<1/3** de la ACM sin cambio en FLAIR (WAKE-UP)",
+            "IIa"
           ],
           [
-            "EXTEND",
-            "Penumbra/núcleo **>1,2**; penumbra − núcleo **>10 mL**; núcleo **<70 mL**"
+            "Sin LVO; al despertar (**<9 h** desde la mitad del sueño) o **4,5-9 h** desde la LKW",
+            "Hipoperfundido/núcleo **>1,2**, diferencia **>10 mL**, núcleo **<70 mL** (EXTEND)",
+            "IIa"
+          ],
+          [
+            "LVO sin acceso a trombectomía, **4,5-24 h**; dirigida por expertos",
+            "Hipoperfundido/núcleo **>1,8**, penumbra **>15 mL**, núcleo **<70 mL** (TRACE-III)",
+            "IIb"
           ]
         ]
       },
       "evidencia": {
-        "clase": "IIa",
-        "nivel": "B",
+        "texto": "Clase IIa sin LVO · IIb con LVO sin trombectomía",
         "fuente": "AHA/ASA 2026"
       },
       "opciones": [
@@ -1643,13 +1850,23 @@
         },
         {
           "titulo": "Recomendación 4.6.3.2: perfusión 4,5-9 h o al despertar (Clase 2a, B)",
-          "paginas": "e5",
+          "paginas": "e44",
           "texto": "who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV thrombolysis may be reasonable",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e44_recomendacion_4_6_3.png"
+        },
+        {
+          "titulo": "Recomendación 4.6.3.3: LVO sin trombectomía, 4,5-24 h (Clase 2b, B)",
+          "paginas": "e44",
+          "texto": "presenting within 4.5 to 24 hours from symptom onset or last known well, and who cannot receive EVT, treatment with IVT directed by individuals with expertise",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e44_recomendacion_4_6_3_5.png"
         },
         {
           "titulo": "Tabla 3: WAKE-UP",
@@ -1670,19 +1887,44 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e29_tabla_3_extend_pag.png"
+        },
+        {
+          "titulo": "Tabla 3: TRACE-III y TIMELESS",
+          "paginas": "e29",
+          "texto": "CTP or DWI/PWI mismatch: ischemic penumbra to core volume ratio >1.8, penumbra volume >15 mL, and core volume <70 mL",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e29_tabla_3_trace_iii.png"
         }
       ]
     },
     "trat_ivt_admin_ext": {
       "estilo": "exito",
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Trombólisis en ventana extendida",
-      "texto": "- Misma dosis: **tenecteplasa 0,25 mg/kg** (máx. **25 mg**) o **alteplasa 0,9 mg/kg** (máx. **90 mg**).\n- PA **<185/110** antes y **<180/105** durante **24 h**.\n- Más hemorragia sintomática que en <4,5 h: vigilar con el mismo rigor.",
+      "texto": "- Antes: ninguna contraindicación absoluta (lista) y PA **<185/110** (fármacos en el enlace).\n- Dosis de la Tabla 7: tenecteplasa **0,25 mg/kg** (máx. **25 mg**) o alteplasa **0,9 mg/kg** (máx. **90 mg**).\n- Después: PA **<180/105** por **24 h** y TC o RM a las **24 h** antes de antitrombóticos.\n- Frente a no tratar, aumenta la hemorragia sintomática: vigilar igual que en <4,5 h.",
+      "checklist": {
+        "titulo": "Contraindicaciones absolutas (con una basta)",
+        "items": [
+          "Hemorragia intracraneal aguda",
+          "Hipodensidad franca extensa que explica los síntomas",
+          "Traumatismo craneoencefálico moderado-grave en **<14 días**",
+          "Neurocirugía intracraneal o espinal en **<14 días**",
+          "Lesión medular aguda en **<3 meses**",
+          "Neoplasia intraaxial",
+          "Endocarditis infecciosa",
+          "Plaquetas **<100.000/mm³**, INR **>1,7**, TTPa **>40 s** o TP **>15 s**",
+          "Disección del arco aórtico",
+          "ARIA (anomalías en la RM por antiamiloide) o inmunoterapia antiamiloide"
+        ]
+      },
       "farmacos": [
         {
           "nombre": "Tenecteplasa",
           "dosis": "**0,25 mg/kg** IV en bolo único; máx. **25 mg**",
-          "nota": "En la práctica, por bandas de peso (ver imagen). Vial a **5 mg/mL**.",
+          "pauta": "Por bandas de peso (imagen); vial a **5 mg/mL**. Con **<50 kg** y peso exacto, bandas de 1 kg.",
           "paginas": "e43",
           "por_kg": {
             "cantidad": 0.25,
@@ -1697,7 +1939,7 @@
         {
           "nombre": "Alteplasa (bolo)",
           "dosis": "**10 %** de la dosis total IV en **1 min**",
-          "nota": "Dosis total **0,9 mg/kg**, máx. **90 mg**.",
+          "pauta": "Dosis total **0,9 mg/kg**, máx. **90 mg**.",
           "paginas": "e43",
           "por_kg": {
             "cantidad": 0.09,
@@ -1716,6 +1958,27 @@
           }
         }
       ],
+      "tabla": {
+        "titulo": "Vigilancia tras la trombólisis",
+        "columnas": [
+          "Desde el inicio",
+          "PA y exploración neurológica"
+        ],
+        "filas": [
+          [
+            "0-2 h",
+            "cada **15 min**"
+          ],
+          [
+            "2-8 h",
+            "cada **30 min**"
+          ],
+          [
+            "8-24 h",
+            "cada hora"
+          ]
+        ]
+      },
       "media": [
         {
           "recurso": "acvisquemico_tenecteplasa_peso.png",
@@ -1723,16 +1986,35 @@
           "descripcion": "Dosis y volumen por bandas de **10 kg** (vial a **5 mg/mL**). Bolo único IV."
         }
       ],
+      "alertas": [
+        {
+          "titulo": "Signos de sangrado",
+          "texto": "Cefalea intensa, hipertensión aguda, náuseas, vómito o empeoramiento → **suspender** la infusión y **TC urgente**."
+        },
+        {
+          "titulo": "Clase III: daño",
+          "texto": "Aspirina IV **no** junto con la trombólisis ni en los **90 min** siguientes."
+        }
+      ],
       "evidencia": {
-        "clase": "IIa",
-        "nivel": "B",
+        "texto": "Clase IIa sin LVO · IIb con LVO sin trombectomía",
         "fuente": "AHA/ASA 2026"
       },
       "enlaces": [
         {
+          "texto": "Fármacos para bajar la PA",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_bajar_pa_ivt"
+        },
+        {
           "texto": "Sangrado tras la trombólisis",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "comp_hemorragia_post_ivt"
+        },
+        {
+          "texto": "Angioedema",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "comp_angioedema"
         }
       ],
       "opciones": [
@@ -1744,7 +2026,7 @@
       "referencias": [
         {
           "titulo": "Recomendación 4.6.3.2 (Clase 2a, B)",
-          "paginas": "e5",
+          "paginas": "e44",
           "texto": "who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV thrombolysis may be reasonable",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -1753,7 +2035,7 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e44_recomendacion_4_6_3.png"
         },
         {
-          "titulo": "Recomendación 4.6.3.3: LVO sin trombectomía, 4,5-24 h (Clase 2b, B)",
+          "titulo": "Recomendación 4.6.3.3: LVO sin trombectomía (Clase 2b, B)",
           "paginas": "e44",
           "texto": "presenting within 4.5 to 24 hours from symptom onset or last known well, and who cannot receive EVT, treatment with IVT directed by individuals with expertise",
           "fuente": "AHA/ASA",
@@ -1761,16 +2043,6 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e44_recomendacion_4_6_3_5.png"
-        },
-        {
-          "titulo": "Recomendación 4.6.2.1 (Clase 1, A)",
-          "paginas": "e5",
-          "texto": "tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) or alteplase at a dose of 0.9 mg/kg body weight is recommended to improve functional outcomes",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_6_2.png"
         },
         {
           "titulo": "Tabla 7: tenecteplasa",
@@ -1793,6 +2065,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_alteplasa_pag.png"
         },
         {
+          "titulo": "Tabla 7: bandas de peso",
+          "paginas": "e43",
+          "texto": "Do not delay thrombolysis to obtain exact weight — timely treatment is critical. With estimated weights, dosing per 1-kg band is not necessarily safer than 10-kg band dosing.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_no_retrasar.png"
+        },
+        {
           "titulo": "Recomendación 4.3.5 (Clase 1, B)",
           "paginas": "e35",
           "texto": "should have their SBP lowered to <185 mm Hg and diastolic blood pressure (DBP) <110 mm Hg before IVT therapy is initiated to reduce hemorrhagic complications",
@@ -1813,7 +2095,47 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e35_recomendacion_4_3_7.png"
         },
         {
-          "titulo": "Texto 4.6.3.2: más hemorragia sintomática",
+          "titulo": "Tabla 7: vigilancia",
+          "paginas": "e43",
+          "texto": "Measure BP and perform neurological assessments every 15 min during and after IVT administration for 2 h, then every 30 min for 6 h, then hourly until 24 h",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_vigilancia_pag.png"
+        },
+        {
+          "titulo": "Tabla 7: si empeora",
+          "paginas": "e43",
+          "texto": "If the patient develops severe headache, acute hypertension, nausea, or vomiting or has a worsening neurological examination, discontinue the infusion",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_empeora_pag.png"
+        },
+        {
+          "titulo": "Tabla 7: imagen a las 24 h",
+          "paginas": "e43",
+          "texto": "Obtain a follow-up CT or MRI scan at 24 h after IVT before starting anticoagulants or antiplatelet agents",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_imagen_24.png"
+        },
+        {
+          "titulo": "Recomendación 4.8.17: aspirina IV (Clase 3: daño)",
+          "paginas": "e62",
+          "texto": "In patients with AIS who are eligible for IVT, IV aspirin should not be administered concurrently or within 90 minutes after the start of IVT",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_17.png"
+        },
+        {
+          "titulo": "Texto 4.6.3.2: más hemorragia sintomática que sin trombólisis",
           "paginas": "e45",
           "texto": "IVT was associated with greater odds of excellent (mRS 0–1 at 90 days) outcome (OR, 1.43 [95% CI, 1.17–1.75]) despite an increase in symptomatic hemorrhage",
           "fuente": "AHA/ASA",
@@ -1827,7 +2149,7 @@
     "trat_ext_evt_eval": {
       "tipo": "pregunta",
       "titulo": "6-24 h con LVO: ¿trombectomía?",
-      "texto": "- Carótida interna o M1, NIHSS **≥6**, mRS previo **0-1** y ASPECTS **≥6** → trombectomía.\n- ASPECTS **3-5**: también si tiene **<80 años** y no hay efecto de masa importante.\n- Basilar: hasta **24 h** con NIHSS **≥10** y PC-ASPECTS **≥6**.\n- Sin acceso a trombectomía y con penumbra: trombólisis guiada por expertos (Clase IIb).",
+      "texto": "- Carótida interna o M1, NIHSS **≥6**, mRS previo **0-1** y ASPECTS **≥6** → trombectomía (Clase I).\n- ASPECTS **3-5**: también con **<80 años** y sin efecto de masa importante (Clase I).\n- Basilar, hasta **24 h**: NIHSS **≥10**, PC-ASPECTS **≥6** y mRS previo **0-1** (Clase I).\n- mRS previo **≥2** o ASPECTS **0-2**: datos insuficientes.",
       "pie_nodo": "¿Cumple criterios de trombectomía?",
       "media": [
         {
@@ -1841,7 +2163,7 @@
         "etiqueta": "Calcular ASPECTS",
         "ramificar": false
       },
-      "nota_adicional": "Hipodensidad grave **≥26 mL** (≤26 UH) en la TC: probablemente sin beneficio y con más edema. Decidir con el paciente o la familia.",
+      "nota_adicional": "TC con **≥26 mL** de hipodensidad grave (densidad **≤26 UH**, unidades Hounsfield) → probablemente sin beneficio y con más edema. Decidir con el paciente o la familia.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -1849,12 +2171,12 @@
       },
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: trombectomía",
           "siguiente_nodo": "trat_evt_procedimiento"
         },
         {
           "texto": "Sin acceso a trombectomía",
-          "siguiente_nodo": "trat_ivt_admin_ext"
+          "siguiente_nodo": "trat_ext_ivt_eval"
         },
         {
           "texto": "No",
@@ -1874,7 +2196,7 @@
         },
         {
           "titulo": "Recomendación 4.7.2.3: 6-24 h, ASPECTS 3-5 (Clase 1, A)",
-          "paginas": "e5",
+          "paginas": "e53",
           "texto": "with age <80 years, NIHSS score ≥6, prestroke mRS score 0 to 1, ASPECTS 3 to 5, and without significant mass effect on imaging, EVT is recommended",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -1884,13 +2206,23 @@
         },
         {
           "titulo": "Recomendación 4.7.3.1 (Clase 1, A)",
-          "paginas": "e5",
+          "paginas": "e56",
           "texto": "with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_7_3.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e56_recomendacion_4_7_3.png"
+        },
+        {
+          "titulo": "Figura 3: datos insuficientes",
+          "paginas": "e61",
+          "texto": "DVO indicates distal vessel occlusion; EVT, endovascular thrombectomy; IDD, insufficient data to determine; LVO, large vessel occlusion",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e61_figura_3_24_h.png"
         },
         {
           "titulo": "Recomendación 4.6.3.3: sin trombectomía (Clase 2b, B)",
@@ -1918,7 +2250,7 @@
       "estilo": "exito",
       "tipo": "informativo",
       "titulo": "Trombectomía",
-      "texto": "- A angiografía **cuanto antes**: stent retriever, aspiración o ambas.\n- Meta: reperfusión **eTICI 2b, 2c o 3**.\n- Anestesia general o sedación: ambas válidas.\n- PA **≤180/105** durante y **24 h** después.",
+      "texto": "- A angiografía cuanto antes: stent retriever, aspiración o ambas.\n- Meta: reperfusión eTICI (grado de reperfusión en la angiografía) **2b, 2c o 3**.\n- Anestesia general o sedación: ambas válidas.\n- PA **≤180/105** durante y **24 h** después.",
       "media": [
         {
           "recurso": "acvisquemico_trombectomia.gif",
@@ -1929,10 +2261,10 @@
       "alertas": [
         {
           "titulo": "Clase III: daño",
-          "texto": "Tras una reperfusión exitosa, **no** bajar la PAS a **<140 mmHg** en las primeras **72 h**."
+          "texto": "Tras una reperfusión exitosa (mTICI **2b-3**), **no** bajar la PAS a **<140 mmHg** en las primeras **72 h**."
         }
       ],
-      "nota_adicional": "Oclusión en tándem (cervical + intracraneal): tratar ambas, incluido el stent carotídeo urgente, puede ser razonable.",
+      "nota_adicional": "Oclusión en tándem (cervical + intracraneal): tratar ambas, incluido el stent carotídeo urgente, puede ser razonable. Tirofibán antes de la trombectomía: sin beneficio.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -1987,13 +2319,13 @@
         },
         {
           "titulo": "Recomendación 4.3.10: PAS <140 tras reperfusión (Clase 3: daño)",
-          "paginas": "e5",
+          "paginas": "e35",
           "texto": "intensive SBP reduction target of <140 mm Hg for the first 72 hours is harmful and not recommended",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_3_10.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e35_recomendacion_4_3_10.png"
         },
         {
           "titulo": "Recomendación 4.7.4.6: tándem (Clase 2b, B)",
@@ -2004,14 +2336,24 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e58_recomendacion_4_7_4_2.png"
+        },
+        {
+          "titulo": "Recomendación 4.7.4.9: tirofibán (Clase 3: sin beneficio)",
+          "paginas": "e58",
+          "texto": "preoperative administration of tirofiban before EVT is not useful to improve 90-day functional outcome",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e58_recomendacion_4_7_4.png"
         }
       ]
     },
     "trat_medico": {
       "tipo": "pregunta",
       "titulo": "Antiagregación temprana",
-      "texto": "- No cardioembólico: **antiagregante** mejor que anticoagulante.\n- Elegir según riesgo, tolerancia, costo y eficacia de cada fármaco.\n- Tras trombólisis: esperar la **TC o RM de 24 h** (antes, solo si hay una indicación fuerte).",
-      "pie_nodo": "¿NIHSS **≤5** o AIT de alto riesgo, no cardioembólico y sin trombólisis?",
+      "texto": "- No cardioembólico → antiagregante mejor que anticoagulante.\n- Tras trombólisis: esperar la TC o RM de **24 h** (antes, solo si hay una indicación fuerte).",
+      "pie_nodo": "¿NIHSS **≤5** o AIT (ataque isquémico transitorio) con ABCD2 **≥4**, no cardioembólico y sin trombólisis?",
       "media": [
         {
           "recurso": "acvisquemico_dapt.png",
@@ -2064,16 +2406,6 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_5.png"
         },
         {
-          "titulo": "Recomendación 4.8.6: elegir el antiagregante (Clase 1, C)",
-          "paginas": "e62",
-          "texto": "the selection of an antiplatelet agent for early secondary stroke prevention should be individualized on the basis of patient risk factor profiles, cost, tolerance",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_6.png"
-        },
-        {
           "titulo": "Recomendación 4.8.2: primeras 24 h tras trombólisis (Clase 2b, B)",
           "paginas": "e62",
           "texto": "the risk of antiplatelet therapy in the first 24 hours after IVT (with or without mechanical thrombectomy) is uncertain",
@@ -2094,6 +2426,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e43_tabla_7_imagen_24.png"
         },
         {
+          "titulo": "Recomendación 4.8.12: a quién (Clase 1, A)",
+          "paginas": "e62",
+          "texto": "In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) who did not receive IVT",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_12_2.png"
+        },
+        {
           "titulo": "Recomendación 4.8.16 (Clase 3: daño)",
           "paginas": "e62",
           "texto": "aspirin is not recommended as a substitute for acute stroke treatment to improve patient outcomes",
@@ -2108,19 +2450,18 @@
     "trat_dapt": {
       "tipo": "informativo",
       "titulo": "Doble antiagregación (DAPT)",
-      "texto": "- NIHSS **≤3** o ABCD2 **≥4**, en **<24 h**: **clopidogrel + aspirina** con carga, **21 días**; luego un solo antiagregante.\n- NIHSS **4-5**, o **24-72 h**, con causa aterosclerótica: clopidogrel + aspirina **21 días**.\n- Alternativa: **ticagrelor + aspirina** **30 días**.",
+      "texto": "- NIHSS **≤3** o ABCD2 **≥4**, en **<24 h** → clopidogrel (con carga) + aspirina **21 días**; luego un solo antiagregante.\n- Aterosclerosis **≥50 %** con NIHSS **4-5** en **<24 h**, o NIHSS **≤5**/ABCD2 **≥4** en **24-72 h** → clopidogrel + aspirina **21 días**.\n- Alternativa: ticagrelor + aspirina **30 días** (NIHSS **≤5**, o AIT con ABCD2 **≥6**).",
       "farmacos": [
         {
           "nombre": "Clopidogrel",
           "dosis": "Carga **300 mg** VO (o **600 mg**)",
-          "pauta": "Luego **75 mg/día**.",
-          "nota": "300 mg en CHANCE e INSPIRES; 600 mg en POINT.",
+          "pauta": "Luego **75 mg/día**. Carga de 300 mg en CHANCE e INSPIRES; 600 mg en POINT.",
           "paginas": "e64"
         },
         {
           "nombre": "Aspirina",
           "dosis": "**75-100 mg/día** VO",
-          "nota": "Algunos ensayos dieron carga de **100-325 mg** el primer día.",
+          "pauta": "Dosis de los ensayos; algunos dieron carga de **100-325 mg** el primer día.",
           "paginas": "e64"
         },
         {
@@ -2136,7 +2477,7 @@
           "texto": "Triple antiagregación (aspirina + clopidogrel + dipiridamol): **más sangrado** sin beneficio."
         }
       ],
-      "nota_adicional": "Portador conocido del alelo **CYP2C19** de pérdida de función: ticagrelor + aspirina **21 días** puede preferirse. Más de **90 días** de DAPT solo suma sangrado.",
+      "nota_adicional": "Alelo CYP2C19 de pérdida de función conocido: ticagrelor + aspirina **21 días** puede preferirse. DAPT más de **90 días** solo suma sangrado; ticagrelor solo en lugar de aspirina, sin beneficio.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -2178,13 +2519,13 @@
         },
         {
           "titulo": "Recomendación 4.8.14: 24-72 h o NIHSS 4-5 aterosclerótico (Clase 2a, B)",
-          "paginas": "e5",
+          "paginas": "e62",
           "texto": "within 24 to 72 hours from stroke onset, or NIHSS score of 4 to 5 within 24 hours from onset, who did not receive IVT, with presumed atherosclerotic cause",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_8_14.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_14.png"
         },
         {
           "titulo": "Recomendación 4.8.13: ticagrelor (Clase 2b, B)",
@@ -2265,23 +2606,33 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e63_sinopsis_4_8_mas.png"
+        },
+        {
+          "titulo": "Recomendación 4.8.9: ticagrelor en lugar de aspirina (Clase 3: sin beneficio)",
+          "paginas": "e62",
+          "texto": "ticagrelor is not recommended over aspirin to reduce the composite endpoint of stroke, myocardial infarction, or death",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e62_recomendacion_4_8_9.png"
         }
       ]
     },
     "trat_sapt": {
       "tipo": "informativo",
       "titulo": "Aspirina o anticoagulación",
-      "texto": "- **Aspirina** en las primeras **48 h** (si hubo trombólisis, tras la imagen de 24 h).\n- Fibrilación auricular (FA): anticoagulante oral directo (ACOD) **temprano** en casos seleccionados.\n- Disección carotídea o vertebral: antiagregante **o** anticoagulante **≥3 meses**.",
+      "texto": "- Aspirina en las primeras **48 h** (si hubo trombólisis, tras la imagen de **24 h**).\n- FA (fibrilación auricular) → ACOD temprano en casos seleccionados, p. ej. ACV leve (tabla).\n- Disección carotídea o vertebral → antiagregante o anticoagulante **≥3 meses**.",
       "farmacos": [
         {
           "nombre": "Aspirina",
           "dosis": "**160-300 mg/día** VO",
-          "nota": "Dosis de los ensayos CAST (160 mg) e IST (300 mg).",
+          "pauta": "Dosis de los ensayos CAST (160 mg) e IST (300 mg).",
           "paginas": "e64"
         }
       ],
       "tabla": {
-        "titulo": "ACOD temprano en FA (ensayo ELAN)",
+        "titulo": "ACOD temprano en FA (ensayo ELAN; gravedad por tamaño del infarto)",
         "columnas": [
           "Gravedad del ACV",
           "Inicio temprano"
@@ -2300,7 +2651,7 @@
       "alertas": [
         {
           "titulo": "Clase III: sin beneficio",
-          "texto": "Anticoagular en las primeras **48 h** sin indicación específica no evita el deterioro."
+          "texto": "Anticoagular en las primeras **48 h** no evita el deterioro ni mejora el desenlace."
         },
         {
           "titulo": "Clase III: daño",
@@ -2351,13 +2702,13 @@
         },
         {
           "titulo": "Recomendación 4.9.1: ACOD temprano en FA (Clase 2a, A)",
-          "paginas": "e5",
+          "paginas": "e68",
           "texto": "a strategy of early oral anticoagulation poststroke is low risk and is reasonable compared with a strategy of delayed anticoagulation",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_4_9_1.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e68_recomendacion_4_9_1.png"
         },
         {
           "titulo": "Texto 4.9.1: ELAN",
@@ -2368,6 +2719,16 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e69_texto_4_9_1.png"
+        },
+        {
+          "titulo": "Vacíos de conocimiento 4.9: gravedad en ELAN",
+          "paginas": "e70",
+          "texto": "In this trial, participants were subdivided based on whether their index stroke was “mild,” “moderate,” or “severe” based on infarct sizes and locations.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e70_vacios_conocimiento_4_9.png"
         },
         {
           "titulo": "Recomendación 4.8.7: disección (Clase 2a, B)",
@@ -2404,7 +2765,7 @@
     "trat_hospitalario": {
       "tipo": "informativo",
       "titulo": "Unidad de ACV: primeras 72 h",
-      "texto": "- Ingreso a **unidad de ACV** con equipo interdisciplinario y protocolos.\n- Sin reperfusión y PA **<220/120**: **no** iniciar antihipertensivos en **48-72 h**, salvo comorbilidad que lo exija.\n- Corregir hipotensión e hipovolemia.",
+      "texto": "- Ingresar a la unidad de ACV.\n- Sin reperfusión y PA **<220/120** → no iniciar antihipertensivos en **48-72 h**, salvo comorbilidad que lo exija.\n- Sin reperfusión y PA **≥220/120** → beneficio de tratar incierto (IIb).\n- Corregir hipotensión e hipovolemia.",
       "tabla": {
         "titulo": "Metas de soporte",
         "columnas": [
@@ -2422,7 +2783,7 @@
           ],
           [
             "Temperatura",
-            "Normotermia: tratar **>37,5 °C** y buscar la causa"
+            "Tratar **>37,5 °C** y buscar la causa; sin hipotermia inducida"
           ],
           [
             "SatO₂",
@@ -2430,7 +2791,7 @@
           ],
           [
             "Cabecera",
-            "**0°** o **30°**: sin diferencia"
+            "**0°** o **30°**: sin diferencia; sin Trendelenburg"
           ]
         ]
       },
@@ -2446,6 +2807,18 @@
         "nivel": "B",
         "fuente": "AHA/ASA 2026"
       },
+      "enlaces": [
+        {
+          "texto": "Baja la conciencia: edema maligno",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "comp_edema_maligno"
+        },
+        {
+          "texto": "Metas de PA por fase (imagen)",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_bajar_pa_ivt"
+        }
+      ],
       "opciones": [
         {
           "texto": "Prevenir complicaciones",
@@ -2515,7 +2888,7 @@
         },
         {
           "titulo": "Recomendación 4.5.3: 80-130 mg/dL (Clase 3: sin beneficio)",
-          "paginas": "e5",
+          "paginas": "e37",
           "texto": "treatment with IV insulin to achieve blood glucose levels in the range of 80 to 130 mg/dL is not recommended to improve 3-month functional outcomes",
           "fuente": "AHA/ASA",
           "anio": "2026",
@@ -2572,6 +2945,16 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e34_recomendacion_4_2_1.png"
+        },
+        {
+          "titulo": "Recomendación 4.2.2: Trendelenburg (Clase 3: sin beneficio)",
+          "paginas": "e34",
+          "texto": "there is no benefit of routine Trendelenburg positioning (−20 degrees) compared with 0- to 30-degree head positioning to improve functional outcome",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e34_recomendacion_4_2_2.png"
         }
       ]
     },
@@ -2579,18 +2962,18 @@
       "estilo": "exito",
       "tipo": "informativo",
       "titulo": "Prevenir complicaciones y rehabilitar",
-      "texto": "- Disfagia: sonda nasogástrica los primeros **7 días**; gastrostomía si no traga seguro en **>2-3 semanas**.\n- Nutrición enteral dentro de los primeros **7 días**.\n- Crisis epiléptica no provocada → anticonvulsivante; **no** como profilaxis.",
+      "texto": "- No traga seguro → nutrición enteral por sonda nasogástrica los primeros **7 días**; gastrostomía si sigue así a las **2-3 semanas**.\n- Crisis no provocada → anticonvulsivante; no dar profilaxis.",
       "checklist": {
         "titulo": "Órdenes de ingreso",
         "items": [
-          "Tamizaje de deglución **antes** de líquidos o comida",
+          "Tamizaje de deglución antes de líquidos o comida",
           "Higiene oral",
           "Tamizaje nutricional en **48 h**",
           "Compresión neumática intermitente si no camina",
-          "Heparina profiláctica SC (HNF o HBPM) si no camina",
-          "**Sin** sonda vesical de rutina",
-          "**Sin** antibiótico profiláctico",
-          "**Sin** movilización intensa en las primeras **24 h**",
+          "Heparina profiláctica SC (no fraccionada o de bajo peso molecular) si no camina",
+          "Sin sonda vesical de rutina",
+          "Sin antibiótico profiláctico",
+          "Sin movilización intensa en las primeras **24 h**",
           "Rehabilitación interdisciplinaria",
           "Tamizaje de depresión",
           "Cuidados paliativos si corresponde"
@@ -2602,7 +2985,7 @@
           "texto": "Las **medias de compresión** elásticas lesionan la piel y pueden causar necrosis."
         }
       ],
-      "nota_adicional": "Los ISRS **no** mejoran la recuperación motora; se usan para tratar la depresión.",
+      "nota_adicional": "Los ISRS (inhibidores de la recaptación de serotonina) no mejoran la recuperación motora; se usan para tratar la depresión.",
       "evidencia": {
         "clase": "I",
         "nivel": "B",
@@ -2612,6 +2995,11 @@
         {
           "texto": "Crisis convulsiva y estado epiléptico",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/crisisyestatusadultos.json"
+        },
+        {
+          "texto": "Baja la conciencia: edema maligno",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "comp_edema_maligno"
         }
       ],
       "referencias": [
@@ -2801,12 +3189,22 @@
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Hemorragia sintomática tras la trombólisis",
-      "texto": "- **Detener** la alteplasa (o la tenecteplasa si aún se está pasando).\n- Urgente: hemograma, TP/INR, TTPa, **fibrinógeno**, tipificación y cruce; **TC** sin contraste.\n- Crioprecipitado para fibrinógeno **≥150 mg/dL** y antifibrinolítico.\n- Hematología y neurocirugía; soporte de PA, PIC, temperatura y glucosa.",
+      "texto": "- Detener la alteplasa (o la tenecteplasa, si el bolo no ha terminado).\n- Crioprecipitado **10 U** para mantener el fibrinógeno **≥150 mg/dL**, más un antifibrinolítico.\n- Hematología y neurocirugía; soporte de PA, PIC (presión intracraneal), temperatura y glucosa.",
+      "checklist": {
+        "titulo": "Pedir ya",
+        "items": [
+          "TC de cráneo sin contraste",
+          "Hemograma",
+          "TP/INR y TTPa",
+          "Fibrinógeno",
+          "Tipificación y cruce"
+        ]
+      },
       "farmacos": [
         {
           "nombre": "Crioprecipitado",
           "dosis": "**10 U** IV en **10-30 min**",
-          "nota": "10 U suben el fibrinógeno cerca de **50 mg/dL**.",
+          "pauta": "10 U suben el fibrinógeno cerca de **50 mg/dL**.",
           "paginas": "e40"
         },
         {
@@ -2821,7 +3219,7 @@
           "paginas": "e40"
         }
       ],
-      "nota_adicional": "El antifibrinolítico ayuda a todos, sobre todo si se rechazan hemoderivados o no hay crioprecipitado a tiempo.",
+      "nota_adicional": "El antifibrinolítico puede servir a todos, sobre todo si se rechazan hemoderivados o el crioprecipitado tarda.",
       "chips": [
         {
           "texto": "Primeras 24 h",
@@ -2900,7 +3298,7 @@
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Angioedema orolingual",
-      "texto": "- Solo labios y parte anterior de la lengua: puede no requerir intubación.\n- Laringe, paladar, piso de boca u orofaringe con progresión en **<30 min** → alto riesgo: intubar con **fibrobroncoscopio** despierto.\n- Suspender la alteplasa y los **IECA**.",
+      "texto": "1. Vía aérea: laringe, paladar, piso de boca u orofaringe que progresa en **<30 min** → intubar despierto con fibrobroncoscopio.\n2. Solo labios y lengua anterior → puede no requerir intubación.\n3. Suspender la alteplasa y los IECA (inhibidores de la enzima convertidora).\n4. Metilprednisolona, difenhidramina y famotidina IV; si sigue creciendo → adrenalina; después, icatibant o inhibidor de C1 esterasa.",
       "farmacos": [
         {
           "nombre": "Metilprednisolona",
@@ -2915,13 +3313,13 @@
         {
           "nombre": "Famotidina",
           "dosis": "**20 mg** IV",
-          "nota": "O ranitidina **50 mg** IV.",
+          "pauta": "O ranitidina **50 mg** IV.",
           "paginas": "e40"
         },
         {
           "nombre": "Adrenalina 0,1 % (1 mg/mL)",
-          "dosis": "**0,3 mL** SC o nebulizada",
-          "nota": "Si el edema sigue aumentando.",
+          "dosis": "**0,3 mL** SC",
+          "pauta": "Si el edema sigue aumentando.",
           "paginas": "e40"
         },
         {
@@ -2932,8 +3330,8 @@
         },
         {
           "nombre": "Inhibidor de C1 esterasa (plasmático)",
-          "dosis": "**20 UI/kg** IV",
-          "nota": "Usado con éxito en angioedema hereditario y por IECA.",
+          "dosis": "**20 UI/kg**",
+          "pauta": "Usado con éxito en angioedema hereditario y por IECA.",
           "paginas": "e40",
           "por_kg": {
             "cantidad": 20,
@@ -2943,8 +3341,8 @@
       ],
       "alertas": [
         {
-          "titulo": "Tras la trombólisis",
-          "texto": "La intubación nasotraqueal arriesga **epistaxis**."
+          "titulo": "Intubación nasal",
+          "texto": "Tras la trombólisis arriesga **epistaxis**."
         }
       ],
       "evidencia": {
@@ -2954,16 +3352,6 @@
       },
       "referencias": [
         {
-          "titulo": "Tabla 6: edema limitado",
-          "paginas": "e40",
-          "texto": "Endotracheal intubation may not be necessary if edema is limited to the anterior tongue and lips.",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e40_tabla_6_edema_limitado.png"
-        },
-        {
           "titulo": "Tabla 6: edema de alto riesgo",
           "paginas": "e40",
           "texto": "Edema involving the larynx, palate, floor of mouth, or oropharynx with rapid progression (within 30 min) poses a higher risk of requiring intubation.",
@@ -2972,6 +3360,16 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e40_tabla_6_edema_alto.png"
+        },
+        {
+          "titulo": "Tabla 6: edema limitado",
+          "paginas": "e40",
+          "texto": "Endotracheal intubation may not be necessary if edema is limited to the anterior tongue and lips.",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e40_tabla_6_edema_limitado.png"
         },
         {
           "titulo": "Tabla 6: intubación",
@@ -3049,9 +3447,9 @@
       "estilo": "advertencia",
       "tipo": "informativo",
       "titulo": "Edema cerebral maligno",
-      "texto": "- Infarto extenso: vigilar el deterioro **los primeros días** y trasladar pronto a un centro con neurocirugía.\n- Hablar temprano con la familia sobre opciones y pronóstico.\n- Deterioro por edema: **osmoterapia** (manitol o salino hipertónico) como puente a la cirugía.\n- La **caída del nivel de conciencia** es el disparador de la hemicraniectomía.",
+      "texto": "- Infarto extenso → vigilar el deterioro neurológico los primeros días, trasladar pronto a un centro con neurocirugía y hablar temprano con la familia.\n- Baja el nivel de conciencia por el edema → valorar craniectomía descompresiva (tabla).\n- Mientras tanto: osmoterapia (manitol o salino hipertónico) como puente a la cirugía.",
       "tabla": {
-        "titulo": "Cirugía según el territorio",
+        "titulo": "Craniectomía según el territorio",
         "columnas": [
           "Situación",
           "Conducta",
@@ -3074,7 +3472,7 @@
             "I"
           ],
           [
-            "Cerebelo con compresión del tronco o **≥35 mL**",
+            "Cerebelo con compresión del tronco o infarto **≥35 mL**",
             "Craniectomía suboccipital con duroplastia",
             "I"
           ]
@@ -3089,11 +3487,11 @@
       ],
       "alertas": [
         {
-          "titulo": "Clase III: daño",
-          "texto": "**No** usar hipotermia, barbitúricos ni corticoides para el edema."
+          "titulo": "Clase III",
+          "texto": "**No** usar hipotermia, barbitúricos ni corticoides para el edema (daño). Glibenclamida IV: sin beneficio."
         }
       ],
-      "nota_adicional": "Haber recibido trombólisis **no** impide la craniectomía temprana (**≤48 h**).",
+      "nota_adicional": "Haber recibido trombólisis no impide la craniectomía temprana (**≤48 h**).",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -3131,6 +3529,16 @@
           "imagen_evidencia": "evidencia_acvisquemico_pag_e81_recomendacion_6_1_1.png"
         },
         {
+          "titulo": "Recomendación 6.3.1: un disparador razonable (Clase 2a, B)",
+          "paginas": "e82",
+          "texto": "decreased level of consciousness attributed to brain swelling is a reasonable trigger for decompressive hemicraniectomy selection",
+          "fuente": "AHA/ASA",
+          "anio": "2026",
+          "url": "https://doi.org/10.1161/STR.0000000000000513",
+          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e82_recomendacion_6_3_1.png"
+        },
+        {
           "titulo": "Recomendación 6.2.1: osmoterapia (Clase 2a, C)",
           "paginas": "e81",
           "texto": "the use of osmotic therapy as a bridge to a surgical intervention is reasonable to improve functional outcome and reduce mortality",
@@ -3149,16 +3557,6 @@
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
           "imagen_evidencia": "evidencia_acvisquemico_pag_e82_texto_6_2_1.png"
-        },
-        {
-          "titulo": "Recomendación 6.3.1: disparador (Clase 2a, B)",
-          "paginas": "e82",
-          "texto": "decreased level of consciousness attributed to brain swelling is a reasonable trigger for decompressive hemicraniectomy selection",
-          "fuente": "AHA/ASA",
-          "anio": "2026",
-          "url": "https://doi.org/10.1161/STR.0000000000000513",
-          "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e82_recomendacion_6_3_1.png"
         },
         {
           "titulo": "Recomendación 6.3.2: ≤60 años (Clase 1, A)",
@@ -3212,13 +3610,13 @@
         },
         {
           "titulo": "Recomendación 6.2.2 (Clase 3: sin beneficio)",
-          "paginas": "e5",
+          "paginas": "e81",
           "texto": "the use of IV glibenclamide does not result in improved functional outcome and is not recommended",
           "fuente": "AHA/ASA",
           "anio": "2026",
           "url": "https://doi.org/10.1161/STR.0000000000000513",
           "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119.",
-          "imagen_evidencia": "evidencia_acvisquemico_pag_e5_recomendacion_6_2_2.png"
+          "imagen_evidencia": "evidencia_acvisquemico_pag_e81_recomendacion_6_2_2.png"
         },
         {
           "titulo": "Recomendación 6.3.4: tras trombólisis (Clase 2b, B)",
@@ -3240,6 +3638,13 @@
       "anio": "2026",
       "url": "https://doi.org/10.1161/STR.0000000000000513",
       "cita": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026;57. Versión en línea anticipada, págs. e1-e119."
+    },
+    {
+      "titulo": "Definición AHA/ASA del ACV isquémico (2013)",
+      "fuente": "AHA/ASA",
+      "anio": "2013",
+      "url": "https://doi.org/10.1161/STR.0b013e318296aeca",
+      "cita": "Sacco RL, Kasner SE, Broderick JP, et al. An Updated Definition of Stroke for the 21st Century: A Statement for Healthcare Professionals From the American Heart Association/American Stroke Association. Stroke. 2013;44(7):2064-89."
     },
     {
       "titulo": "Fichas técnicas FDA: labetalol, nicardipina y clevidipina",

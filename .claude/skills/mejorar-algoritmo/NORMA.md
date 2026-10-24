@@ -29,9 +29,15 @@ cambian, se cambian allí y aquí a la vez.
 ```
 
 - Entre 2 y 5 secciones. Una sección sin al menos 3 pasos se funde con otra.
-- Portada: `descripcion` (una línea de alcance), `especialidad`, `actualizado`,
-  **3 a 5 `puntos_clave`** con cifras, `referencias` generales con `url`.
-  Nada de lista de fuentes en `texto`.
+- Portada: el `texto` de la raíz es sólo el nombre del tema (es el título del
+  mapa). El texto informativo de la portada es `descripcion`, en dos partes:
+  1. **Definición breve** de la enfermedad o condición, en una frase y en
+     lenguaje claro, citada (cita literal y página) en las `referencias` de
+     `nodo_raiz`, de la guía o, si la guía no la da, del documento de
+     definición de referencia.
+  2. **Qué contiene** el algoritmo: las partes que recorre y a quién no cubre.
+  Además `especialidad`, `actualizado`, **3 a 5 `puntos_clave`** con cifras y
+  `referencias` generales con `url`. Nada de lista de fuentes en `texto`.
 - Ningún nodo existe para decir «fin» o «continuar manejo». Una vía acaba en
   el último paso que dice algo útil.
 - **Los ids existentes no se renombran ni se borran**: las notas que cada
