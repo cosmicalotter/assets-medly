@@ -1,4 +1,4 @@
-// Piezas comunes de las ilustraciones de acv_hemorragico: estilo Praxis y un
+// Piezas comunes de las ilustraciones de acv_hemorragico: estilo Empirica y un
 // corte axial de TC esquemático (cráneo, parénquima, ventrículos, hematoma).
 const CSS = `
 :root{--teal:#18B9A9;--violeta:#7B6CF6;--rojo:#EF5454;--ambar:#F2A23A;--verde:#2FB36D;--azul:#4F8CF6;--celeste:#3BA7E0;--tinta:#1F2A37;--suave:#6B7280;--linea:#E5E7EB;}
@@ -44,7 +44,7 @@ function corteTC({ x = 0, y = 0, s = 1, hema = null, ivh = false, hidro = false,
 
 function lienzo(titulo, subtitulo, cuerpo, fuente) {
   document.body.innerHTML = `<div id="lienzo">
-    <div class="cab"><div><div class="tit">${titulo}</div>${subtitulo ? `<div class="sub">${subtitulo}</div>` : ""}</div><div class="marca">PRAXIS</div></div>
+    <div class="cab"><div><div class="tit">${titulo}</div>${subtitulo ? `<div class="sub">${subtitulo}</div>` : ""}</div><div class="marca">EMPIRICA</div></div>
     ${cuerpo}
     ${fuente ? `<div class="fuente">${fuente}</div>` : ""}
   </div>`;

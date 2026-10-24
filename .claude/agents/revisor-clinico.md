@@ -1,6 +1,6 @@
 ---
 name: revisor-clinico
-description: Revisa un algoritmo de Praxis ya editado contra su guía de práctica clínica, cifra por cifra, y devuelve las discrepancias. Usar al terminar de mejorar un algoritmo y antes de abrir el PR, pasándole la ruta del JSON, la del PDF de la guía y, si existe, el plan de cambios.
+description: Revisa un algoritmo de Empirica ya editado contra su guía de práctica clínica, cifra por cifra, y devuelve las discrepancias. Usar al terminar de mejorar un algoritmo y antes de abrir el PR, pasándole la ruta del JSON, la del PDF de la guía y, si existe, el plan de cambios.
 tools: Read, Grep, Glob, Bash
 ---
 

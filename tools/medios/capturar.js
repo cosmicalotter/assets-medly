@@ -2,7 +2,7 @@
 // Convierte una página HTML en la imagen de un nodo: un PNG o los cuadros de
 // un GIF. Las ilustraciones propias se dibujan en HTML/SVG porque la app no
 // lee SVG (CachedNetworkImage: PNG, JPG, WebP y GIF), y así quedan con la
-// tipografía y los colores de Praxis sin depender de la licencia de nadie.
+// tipografía y los colores de Empirica sin depender de la licencia de nadie.
 //
 //   node tools/medios/capturar.js figura.html salida.png
 //   node tools/medios/capturar.js animacion.html cuadros/ --cuadros 24

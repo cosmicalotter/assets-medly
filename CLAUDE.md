@@ -1,6 +1,6 @@
 # assets-medly
 
-Contenido de la app **Praxis**: algoritmos clínicos (`data/Adultos`,
+Contenido de la app **Empirica** (antes Praxis; el repositorio de la app sigue llamándose `praxis`): algoritmos clínicos (`data/Adultos`,
 `data/Pediatria`), calculadoras (`data/calculadoras`), imágenes de nodo
 (`data/imagenes/algoritmo/<carpeta>`), recortes de evidencia
 (`data/imagenes/evidencia/<carpeta>`) y el dataset de interacciones
@@ -58,8 +58,11 @@ producción y en Firebase.
 
 ## Cómo se trabaja
 
+- Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
+- La marca es **Empirica** (Praxis es el nombre antiguo).
+
 - Mejorar un algoritmo existente: skill **`mejorar-algoritmo`**. Su
-  `NORMA.md` es la definición de terminado (Norma Praxis v2).
+  `NORMA.md` es la definición de terminado (Norma Empirica v2).
 - Escalas nuevas o conectar las que ya hay: skill **`crear-calculadora`**.
 - Imágenes, galerías y GIF: skill **`imagenes-clinicas`**.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
