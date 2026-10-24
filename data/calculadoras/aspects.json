@@ -1,0 +1,211 @@
+{
+  "titulo": "ASPECTS (Alberta Stroke Program Early CT Score)",
+  "descripcion": "Extensión de los cambios isquémicos tempranos en el territorio de la arteria cerebral media en la TC sin contraste del ACV isquémico agudo. Se parte de 10 y se resta 1 por cada una de las 10 regiones afectadas: 10 es una TC normal y 0, todo el territorio afectado. Se puntúa en dos cortes axiales: ganglios basales y supraganglionar (corona radiada).",
+  "tipoCalculo": "formula",
+  "formula": "10 - (caudado + putamen + capsula + insula + m1 + m2 + m3 + m4 + m5 + m6)",
+  "prefijoResultado": "ASPECTS",
+  "sufijoResultado": "puntos",
+  "secciones": [
+    {
+      "nombre": "Corte de ganglios basales: estructuras profundas",
+      "elementos": [
+        {
+          "id": "caudado",
+          "tipo": "opciones",
+          "label": "Núcleo caudado (C)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "putamen",
+          "tipo": "opciones",
+          "label": "Putamen / núcleo lenticular (L)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "capsula",
+          "tipo": "opciones",
+          "label": "Cápsula interna (IC)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "insula",
+          "tipo": "opciones",
+          "label": "Corteza insular (I)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Corte de ganglios basales: corteza de la ACM",
+      "elementos": [
+        {
+          "id": "m1",
+          "tipo": "opciones",
+          "label": "M1: corteza anterior de la ACM (opérculo frontal)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "tipo": "opciones",
+          "label": "M2: corteza lateral al ribete insular (lóbulo temporal anterior)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "tipo": "opciones",
+          "label": "M3: corteza posterior de la ACM (lóbulo temporal posterior)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Corte supraganglionar (corona radiada)",
+      "elementos": [
+        {
+          "id": "m4",
+          "tipo": "opciones",
+          "label": "M4: territorio anterosuperior (encima de M1)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "m5",
+          "tipo": "opciones",
+          "label": "M5: territorio lateral superior (encima de M2)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "m6",
+          "tipo": "opciones",
+          "label": "M6: territorio posterosuperior (encima de M3)",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0
+            },
+            {
+              "label": "Cambio isquémico temprano",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 2,
+      "categoria": "ASPECTS 0-2 · núcleo muy grande",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "LVO de carótida interna o M1 en 0-6 h: trombectomía razonable si tiene <80 años, NIHSS ≥6, mRS previo 0-1 y no hay efecto de masa importante (Clase IIa). Decidir con el paciente o la familia (AHA/ASA 2026)."
+    },
+    {
+      "min": 3,
+      "max": 5,
+      "categoria": "ASPECTS 3-5 · núcleo grande",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "LVO de carótida interna o M1 con NIHSS ≥6 y mRS previo 0-1: trombectomía en 0-6 h (Clase I) y en 6-24 h si tiene <80 años y no hay efecto de masa importante (Clase I) (AHA/ASA 2026)."
+    },
+    {
+      "min": 6,
+      "max": 10,
+      "categoria": "ASPECTS 6-10",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "LVO de carótida interna o M1 con NIHSS ≥6: trombectomía hasta 24 h con mRS previo 0-1 (Clase I). En 0-6 h, también con mRS previo 2 (IIa) o 3-4 (IIb) (AHA/ASA 2026)."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Barber PA, Demchuk AM, Zhang J, Buchan AM. Validity and reliability of a quantitative computed tomography score in predicting outcome of hyperacute stroke before thrombolytic therapy. ASPECTS Study Group. Lancet. 2000;355(9216):1670-4.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10905241/"
+    },
+    {
+      "titulo": "Prabhakaran S, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke. AHA/ASA. Stroke. 2026;57 (Figura 2 y recomendaciones 4.7.2-4.7.3).",
+      "url": "https://doi.org/10.1161/STR.0000000000000513"
+    }
+  ]
+}
