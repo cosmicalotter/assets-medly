@@ -14,7 +14,7 @@ const PASOS = [
   [0.00, "Cálculo en el colédoco distal: la bilis no drena"],
   [0.14, "Canulación del colédoco con una guía"],
   [0.28, "Esfinterotomía endoscópica de la papila"],
-  [0.42, "Balón por encima del cálculo, y se infla"],
+  [0.42, "Balón por encima del cálculo; se infla"],
   [0.56, "Barrido: el balón arrastra el cálculo al duodeno"],
   [0.74, "Vía biliar libre: la bilis vuelve a drenar"],
 ];
@@ -66,7 +66,8 @@ window.cuadro = function (i, n) {
     s += `<ellipse cx="${b[0]}" cy="${b[1]}" rx="${6 + 9 * infla}" ry="${6 + 9 * infla}" fill="#93C5FD" stroke="#1D4ED8" stroke-width="2" opacity=".95"/>`;
   }
   s += `<ellipse cx="${piedra[0]}" cy="${piedra[1]}" rx="15" ry="12" fill="#E9D9A6" stroke="#9A7B2F" stroke-width="2.5"/>`;
-  if (k === 1) s += `<text x="${piedra[0] - 70}" y="${piedra[1] + 42}" font-size="13" font-weight="800" fill="#92400e">cálculo</text>`;
+  if (k === 1) s += `<text x="${piedra[0] - 64}" y="${piedra[1] - 22}" font-size="13" font-weight="800" fill="#FDE68A">cálculo</text>`;
+  s += `<text x="412" y="244" font-size="12.5" font-weight="800" fill="#B4534A">papila</text>`;
   // Bilis que drena al duodeno.
   if (libre > 0) for (let j = 0; j < 6; j++) {
     const u = (t * 5 + j / 6) % 1;

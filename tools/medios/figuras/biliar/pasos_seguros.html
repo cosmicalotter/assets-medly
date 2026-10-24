@@ -12,12 +12,12 @@
 // Vista laparoscópica esquemática del triángulo hepatocístico (no es un paciente real).
 const PASOS = [
   [0.00, "Descomprimir con aguja la vesícula distendida"],
-  [0.13, "Tracción del fondo hacia arriba y del infundíbulo hacia afuera"],
+  [0.13, "Tracción eficaz de la vesícula (contratracción) para abrir el triángulo de Calot"],
   [0.27, "Empezar por la hoja peritoneal posterior, por encima del surco de Rouvière"],
   [0.42, "Mantener el plano de disección pegado a la vesícula"],
   [0.57, "Separar al menos el tercio inferior del lecho vesicular"],
   [0.72, "Visión crítica de seguridad: confirmarla en una pausa antes de clipar o cortar"],
-  [0.87, "Sin visión crítica por fibrosis → rescate: subtotal o conversión"],
+  [0.87, "Si no hay visión crítica por fibrosis → rescate: subtotal o conversión"],
 ];
 const HIGADO = "#A85A43", BORDE = "#7E3F2E", VES = "#9CC66B", VESB = "#5E8C2E", BILIS = "#7FB84A", GRASA = "#F2D58A";
 window.cuadro = function (i, n) {
@@ -76,7 +76,7 @@ window.cuadro = function (i, n) {
   lienzo(
     "Colecistectomía segura: 6 pasos",
     "Pasos estandarizados de las Guías de Tokio 2018 para la colecistitis aguda",
-    `<div class="paso"><div class="n">${Math.min(k, 6)}</div><div class="d">${PASOS[k - 1][1]}</div></div>
+    `<div class="paso"><div class="n">${k <= 6 ? k : "!"}</div><div class="d">${PASOS[k - 1][1]}</div></div>
      <svg class="esq" viewBox="0 0 680 330">${s}</svg>
      <div class="pie"><div><b>CVS</b>: visión crítica de seguridad antes de dividir cualquier estructura.</div><div><b>R4U</b>: línea entre el surco de Rouvière y la base del segmento 4.</div><div>Operar temprano, antes de la fibrosis, reduce la lesión de la vía biliar.</div></div>`,
     "Esquema, no una imagen quirúrgica real. Fuente: Guías de Tokio 2018 (Wakabayashi et al., Fig. 2 y Q2-Q3); WSES 2020 (recomendaciones 3.4-3.5)."
