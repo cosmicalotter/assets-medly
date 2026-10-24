@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{flex:1;display:flex;gap:16px;align-items:center}
+  .fila svg{width:270px;height:270px;flex:none}
+  .der{flex:1;display:flex;flex-direction:column;gap:8px}
+  .cri{display:flex;align-items:center;gap:10px;border:1px solid var(--linea);border-radius:12px;padding:9px 12px;font-size:15px}
+  .num{width:26px;height:26px;border-radius:50%;background:var(--rojo);color:#fff;font-weight:800;display:grid;place-items:center;font-size:13px;flex:none}
+  .o{font-size:12px;color:var(--suave);text-align:center;margin:-2px 0}
+  .acc{border-radius:12px;padding:10px 12px;font-size:16px;font-weight:700;background:color-mix(in srgb,var(--verde) 15%,white);color:#155c37}
+  .warn{border-radius:12px;padding:9px 12px;font-size:13.5px;background:color-mix(in srgb,var(--ambar) 18%,white)}
+</style></head><body>
+<script>
+window.cuadro = function () {
+  lienzo(
+    "Hemorragia cerebelosa: cuándo operar",
+    "Basta con uno de los cuatro criterios",
+    `<div class="fila">
+      <svg viewBox="-8 -8 216 216">${corteTC({ fosa: true, hema: { cx: 70, cy: 130, rx: 20, ry: 17, rot: 10 } })}</svg>
+      <div class="der">
+        <div class="cri"><div class="num">1</div>Deterioro neurológico</div>
+        <div class="cri"><div class="num">2</div>Compresión del tronco</div>
+        <div class="cri"><div class="num">3</div>Hidrocefalia por obstrucción ventricular</div>
+        <div class="cri"><div class="num">4</div>Volumen <b>≥15 mL</b> (ABC/2)</div>
+        <div class="acc">→ Evacuación quirúrgica inmediata, con o sin drenaje ventricular</div>
+        <div class="warn">El drenaje ventricular <b>solo</b> puede dañar si las cisternas basales están comprimidas.</div>
+      </div>
+    </div>`,
+    "Esquema, no imagen real. AHA/ASA 2022, sección 6.1.4 (Clase 1, B-NR); ESO/EANS 2025: cirugía si >15 mL."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>

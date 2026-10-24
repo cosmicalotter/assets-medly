@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .card{border:1px solid var(--linea);border-radius:14px;padding:11px 13px;display:flex;flex-direction:column;gap:6px}
+  .quien{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--suave)}
+  .crit{font-size:15px;line-height:1.35}
+  .que{margin-top:auto;font-size:14.5px;font-weight:700;border-radius:10px;padding:7px 10px}
+  .f{font-size:11.5px;color:var(--suave)}
+</style></head><body>
+<script>
+window.cuadro = function () {
+  lienzo(
+    "HIC supratentorial: ¿qué cirugía?",
+    "Decidir con neurocirugía; la técnica depende de la localización y la gravedad",
+    `<div class="grid">
+      <div class="card"><div class="quien" style="color:var(--teal)">Lobar seleccionada</div>
+        <div class="crit"><b>30-80 mL</b>, GCS <b>5-14</b>, cirugía en <b>&lt;24 h</b></div>
+        <div class="que" style="background:color-mix(in srgb,var(--teal) 14%,white)">Evacuación mínimamente invasiva</div>
+        <div class="f">ESO/EANS 2025: reduce mortalidad y mejora la función en lobar (débil a favor)</div></div>
+      <div class="card"><div class="quien" style="color:var(--azul)">Moderada</div>
+        <div class="crit">Más de <b>20-30 mL</b>, GCS <b>5-12</b></div>
+        <div class="que" style="background:color-mix(in srgb,var(--azul) 12%,white)">Mínimamente invasiva en centro con experiencia</div>
+        <div class="f">AHA/ASA 2022: reduce mortalidad (2a); beneficio funcional incierto (2b)</div></div>
+      <div class="card"><div class="quien" style="color:var(--violeta)">Profunda grave</div>
+        <div class="crit"><b>30-100 mL</b> estable, GCS <b>8-13</b>, NIHSS <b>10-30</b>, <b>18-75 años</b>, &lt;72 h</div>
+        <div class="que" style="background:color-mix(in srgb,var(--violeta) 13%,white)">Craniectomía descompresiva sin evacuar</div>
+        <div class="f">ESO/EANS 2025: reduce muerte o dependencia grave (débil a favor)</div></div>
+      <div class="card"><div class="quien" style="color:var(--rojo)">Se deteriora</div>
+        <div class="crit">Empeora pese al tratamiento médico</div>
+        <div class="que" style="background:color-mix(in srgb,var(--rojo) 13%,white)">Craniotomía como medida salvadora</div>
+        <div class="f">AHA/ASA 2022 (2b). La craniotomía de rutina no ha demostrado beneficio</div></div>
+    </div>`,
+    "Fuentes: AHA/ASA 2022 secciones 6.1-6.2; ESO/EANS 2025 PICO 4.1.2-4.1.5."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>

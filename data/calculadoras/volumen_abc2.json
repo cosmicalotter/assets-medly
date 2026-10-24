@@ -1,0 +1,68 @@
+{
+  "titulo": "Volumen del hematoma (ABC/2)",
+  "descripcion": "Estimación a pie de cama del volumen de una hemorragia intracerebral en la TC sin contraste. A: diámetro mayor del hematoma en el corte donde es más grande. B: diámetro perpendicular a A en ese mismo corte. C: número de cortes con sangre multiplicado por el grosor del corte. Volumen = A × B × C / 2.",
+  "tipoCalculo": "formula",
+  "formula": "a * b * (cortes * grosor / 10) / 2",
+  "prefijoResultado": "Volumen",
+  "sufijoResultado": "mL",
+  "imagenTopUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/algoritmo/acvhemorragico/acvhemorragico_abc2_medicion.png",
+  "secciones": [
+    {
+      "nombre": "Medidas en la TC",
+      "elementos": [
+        { "id": "a", "tipo": "input_numero", "label": "A: diámetro mayor", "unidad": "cm" },
+        { "id": "b", "tipo": "input_numero", "label": "B: diámetro perpendicular a A", "unidad": "cm" },
+        { "id": "cortes", "tipo": "input_numero", "label": "Cortes en los que se ve sangre", "unidad": "cortes" },
+        { "id": "grosor", "tipo": "input_numero", "label": "Grosor de cada corte", "unidad": "mm" }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 14.99,
+      "categoria": "Menos de 15 mL",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Si es cerebelosa, el volumen solo no indica cirugía; sí la indican el deterioro neurológico, la compresión del tronco o la hidrocefalia (AHA 2022, Clase 1)."
+    },
+    {
+      "min": 15,
+      "max": 29.99,
+      "categoria": "15 a 29 mL",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Cerebelosa de 15 mL o más: evacuación quirúrgica inmediata (AHA 2022, Clase 1). Supratentorial de más de 20-30 mL con GCS 5-12: valorar evacuación mínimamente invasiva (AHA 2022, Clase 2a)."
+    },
+    {
+      "min": 30,
+      "max": 80,
+      "categoria": "30 a 80 mL",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Suma 1 punto en la escala ICH. Lobar de 30-80 mL con GCS 5-14 y menos de 24 h: candidata a evacuación mínimamente invasiva (ESO 2025). La seguridad del descenso intensivo de la PA no está establecida en hematomas grandes."
+    },
+    {
+      "min": 80.01,
+      "max": 9999,
+      "categoria": "Más de 80 mL",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Hematoma muy grande: valoración neuroquirúrgica urgente y ingreso en UCI neurocrítica. Suma 1 punto en la escala ICH."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Kothari RU, et al. The ABCs of measuring intracerebral hemorrhage volumes. Stroke. 1996;27(8):1304-5.",
+      "url": "https://doi.org/10.1161/01.str.27.8.1304"
+    },
+    {
+      "titulo": "Greenberg SM, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke. 2022;53:e282-e361.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407"
+    },
+    {
+      "titulo": "Steiner T, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
+      "url": "https://doi.org/10.1177/23969873251340815"
+    }
+  ]
+}
