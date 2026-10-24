@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .graf{flex:1}
+  .ley{display:flex;gap:14px;font-size:12px;color:var(--suave);align-items:center}
+  .ley i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+</style></head><body>
+<script>
+// Escala no lineal: 0-9 h ocupa el 60 % del eje para que se lean las ventanas cortas.
+const X0 = 200, X1 = 668;
+function x(h) {
+  if (h <= 9) return X0 + (X1 - X0) * 0.6 * (h / 9);
+  return X0 + (X1 - X0) * (0.6 + 0.4 * ((h - 9) / 15));
+}
+const FILAS = [
+  { nombre: "Trombólisis IV", detalle: "déficit incapacitante", tramos: [[0, 4.5, "I"]] },
+  { nombre: "Trombólisis sin LVO", detalle: "perfusión o al despertar", tramos: [[4.5, 9, "IIa"]] },
+  { nombre: "Trombólisis con LVO", detalle: "si no puede ir a trombectomía", tramos: [[4.5, 24, "IIb"]] },
+  { nombre: "Trombectomía ACI o M1", detalle: "NIHSS ≥6, mRS previo 0-1", tramos: [[0, 6, "I", "ASPECTS 3-10"], [6, 24, "I", "ASPECTS ≥6 (3-5 si <80 a)"]] },
+  { nombre: "Trombectomía basilar", detalle: "NIHSS ≥10, PC-ASPECTS ≥6", tramos: [[0, 24, "I"]] },
+];
+const Y0 = 40, ALTO = 62;
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const hora = n > 1 ? 24 * Math.min(1, t / 0.9) : 3;
+  let svg = "";
+  [0, 3, 4.5, 6, 9, 12, 18, 24].forEach((h) => {
+    svg += `<line x1="${x(h)}" x2="${x(h)}" y1="${Y0 - 8}" y2="${Y0 + ALTO * FILAS.length}" stroke="#EEF0F3"/>
+            <text x="${x(h)}" y="${Y0 - 14}" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="${[4.5, 6, 9, 24].includes(h) ? 700 : 400}">${String(h).replace(".", ",")} h</text>`;
+  });
+  const cx = x(hora);
+  svg += `<line x1="${cx}" x2="${cx}" y1="${Y0 - 4}" y2="${Y0 + ALTO * FILAS.length + 4}" stroke="#1F2A37" stroke-width="2.5"/>`;
+  FILAS.forEach((f, k) => {
+    const y = Y0 + k * ALTO;
+    const abierta = f.tramos.some(([a, b]) => hora >= a && hora <= b);
+    svg += `<text x="10" y="${y + 24}" font-size="14.5" font-weight="700" fill="${abierta ? "#1F2A37" : "#9CA3AF"}">${f.nombre}</text>
+            <text x="10" y="${y + 42}" font-size="11.5" fill="#9CA3AF">${f.detalle}</text>`;
+    f.tramos.forEach(([a, b, clase, rot]) => {
+      const activo = hora >= a && hora <= b;
+      svg += `<rect x="${x(a) + 1}" y="${y + 10}" width="${x(b) - x(a) - 2}" height="34" rx="8" fill="${CLASE[clase]}" opacity="${activo ? 1 : 0.28}"/>
+              <text x="${(x(a) + x(b)) / 2}" y="${y + 32}" text-anchor="middle" font-size="12.5" font-weight="700" fill="${activo ? "#fff" : CLASE[clase]}">${rot ? clase + " · " + rot : "Clase " + clase}</text>`;
+    });
+  });
+  svg += `<g transform="translate(${Math.min(Math.max(cx - 52, X0 - 20), X1 - 100)},${Y0 + ALTO * FILAS.length + 8})">
+            <rect width="104" height="28" rx="8" fill="#1F2A37"/>
+            <text x="52" y="19" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${hora.toFixed(1).replace(".", ",")} h</text></g>`;
+  lienzo(
+    "Ventanas de reperfusión",
+    "Horas desde el inicio o la última vez visto bien (LKW). En color: lo que sigue abierto.",
+    `<svg class="graf" viewBox="0 0 700 380">${svg}</svg>
+     <div class="ley"><span><i style="background:${CLASE.I}"></i>Clase I</span><span><i style="background:${CLASE.IIa}"></i>Clase IIa</span><span><i style="background:${CLASE.IIb}"></i>Clase IIb</span><span>Más de 24 h: datos insuficientes</span></div>`,
+    FUENTE_AHA
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>

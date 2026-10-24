@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .filas{display:flex;flex-direction:column;gap:7px;flex:1}
+  .f{display:grid;grid-template-columns:190px 1fr 92px;gap:10px;align-items:center;background:#F7F8FA;border-radius:12px;padding:7px 10px}
+  .fase{font-size:13.5px;font-weight:700;line-height:1.2}
+  .fase small{display:block;font-weight:400;color:var(--suave);font-size:11.5px;margin-top:2px}
+  .meta{font-size:12.5px;line-height:1.25}
+  .meta b{font-size:15px}
+  .cl{display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+</style></head><body>
+<script>
+// Regla de PAS 110-240 mmHg: verde hasta la meta, rojo por encima; rayado donde bajar es dañino o inútil.
+const R0 = 110, R1 = 240, W = 300;
+const px = (v) => ((v - R0) / (R1 - R0)) * W;
+function regla(meta, piso) {
+  return `<svg width="${W}" height="30" viewBox="0 -4 ${W} 34">
+    <defs><pattern id="r${meta}${piso}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="6" fill="#EF5454" opacity=".45"/></pattern></defs>
+    <rect x="0" y="4" width="${px(meta)}" height="12" rx="3" fill="#2FB36D" opacity=".85"/>
+    <rect x="${px(meta)}" y="4" width="${W - px(meta)}" height="12" rx="3" fill="#EF5454" opacity=".8"/>
+    ${piso ? `<rect x="0" y="4" width="${px(piso)}" height="12" fill="url(#r${meta}${piso})"/><rect x="0" y="4" width="${px(piso)}" height="12" fill="#fff" opacity=".35"/>` : ""}
+    <line x1="${px(meta)}" x2="${px(meta)}" y1="0" y2="20" stroke="#1F2A37" stroke-width="2"/>
+    <text x="${px(meta)}" y="29" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1F2A37">${meta}</text>
+    ${piso ? `<text x="${px(piso)}" y="29" text-anchor="middle" font-size="10.5" fill="#b93434">${piso}</text>` : ""}
+    <text x="0" y="29" font-size="10" fill="#9CA3AF">${R0}</text><text x="${W}" y="29" text-anchor="end" font-size="10" fill="#9CA3AF">${R1}</text>
+  </svg>`;
+}
+const F = [
+  ["Antes de trombolizar", "", regla(185), "PAS <b>&lt;185</b> y PAD <b>&lt;110</b>", [["I"]]],
+  ["Antes de la trombectomía", "sin trombólisis previa", regla(185), "<b>≤185/110</b>", [["IIa"]]],
+  ["Tras la trombólisis", "primeras 24 h", regla(180, 140), "<b>&lt;180/105</b>; no buscar PAS &lt;140", [["I"], ["III", "III: sin beneficio"]]],
+  ["Durante y tras la trombectomía", "24 h; reperfusión eTICI 2b-3", regla(180, 140), "<b>≤180/105</b>; PAS &lt;140 en 72 h: daño", [["IIa"], ["III", "III: daño"]]],
+  ["Sin reperfusión", "primeras 48-72 h", regla(220), "&lt;220/120: <b>no</b> iniciar antihipertensivos; ≥220/120: beneficio incierto", [["III", "III: sin beneficio"], ["IIb"]]],
+];
+lienzo(
+  "Presión arterial en el ACV isquémico",
+  "Metas de PAS/PAD (mmHg) según la fase. Rayado: bajar más no ayuda o daña.",
+  `<div class="filas">${F.map(([fase, sub, svg, meta, cls]) => `<div class="f"><div class="fase">${fase}${sub ? `<small>${sub}</small>` : ""}</div>
+     <div>${svg}<div class="meta">${meta}</div></div><div class="cl">${cls.map(([c, t]) => pill(c, t)).join("")}</div></div>`).join("")}
+   <div class="f" style="grid-template-columns:1fr"><div class="meta">Siempre: corregir <b>hipotensión e hipovolemia</b>. Bajar ya la PA si hay síndrome coronario agudo, insuficiencia cardiaca aguda, disección aórtica, hemorragia tras trombólisis o preeclampsia.</div></div></div>`,
+  FUENTE_AHA
+);
+</script></body></html>

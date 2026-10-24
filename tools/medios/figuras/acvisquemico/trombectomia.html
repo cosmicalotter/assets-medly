@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .paso{display:flex;gap:10px;align-items:center;background:#1F2A37;color:#fff;border-radius:12px;padding:8px 12px}
+  .paso .n{font-size:22px;font-weight:800;color:var(--teal);min-width:22px;text-align:center}
+  .paso .d{font-size:15px;font-weight:700}
+  .esq{flex:1;border-radius:14px;background:#F7F8FA}
+  .pie{display:flex;gap:8px}
+  .pie div{flex:1;border-radius:10px;background:#F3F4F6;padding:7px 10px;font-size:12.5px;line-height:1.3}
+</style></head><body>
+<script>
+const PASOS = [
+  [0, "Oclusión de M1: el territorio de la ACM sufre isquemia"],
+  [0.15, "El microcatéter cruza el trombo"],
+  [0.32, "El stent retriever se abre dentro del trombo"],
+  [0.48, "Se retira el stent con el trombo atrapado"],
+  [0.7, "Reperfusión: meta eTICI 2b, 2c o 3"],
+];
+const ROJO = "#d64545", PALIDO = "#c9b8b8";
+const vaso = (d, w, c) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.4;
+  const k = PASOS.filter(([a]) => t >= a).length;
+  const micro = tramo(t, 0.15, 0.3);
+  const abre = tramo(t, 0.32, 0.46);
+  const retira = tramo(t, 0.48, 0.68);
+  const repe = tramo(t, 0.7, 0.82);
+  const distal = repe > 0 ? ROJO : PALIDO;
+  const terr = repe > 0 ? `rgba(47,179,109,${0.18 + 0.2 * repe})` : `rgba(242,162,58,${0.35 + 0.1 * Math.sin(t * 40)})`;
+  const dx = -150 * retira;            // el stent y el trombo vuelven hacia la carótida
+  const visible = retira < 0.97;
+  let s = "";
+  // Territorio de la ACM.
+  s += `<path d="M380 125 Q430 10 640 22 Q690 140 640 262 Q430 250 380 125 Z" fill="${terr}"/>
+        <text x="560" y="140" text-anchor="middle" font-size="14" font-weight="800" fill="${repe > 0 ? "#1d7a49" : "#b45309"}">${repe > 0 ? "Perfusión restaurada" : "Isquemia"}</text>`;
+  // Árbol arterial: carótida interna, ACA, M1 y ramas.
+  s += vaso("M140 330 L140 210 Q140 170 120 160 Q104 150 126 128 L160 120", 22, ROJO);
+  s += vaso("M160 120 Q150 70 150 24", 13, ROJO);
+  s += vaso("M160 120 L250 122", 15, ROJO);
+  s += vaso("M250 122 L370 125", 15, repe > 0 ? ROJO : PALIDO);
+  s += vaso("M370 125 Q420 80 470 72 L560 52 M470 72 Q540 90 590 104 M370 125 Q420 166 470 172 L560 202 M470 172 Q540 150 600 146", 9, distal);
+  s += `<text x="70" y="300" font-size="12" font-weight="700" fill="#6B7280">ACI</text><text x="168" y="34" font-size="12" font-weight="700" fill="#6B7280">ACA</text>
+        <text x="300" y="104" font-size="12" font-weight="700" fill="#6B7280">M1</text><text x="478" y="56" font-size="12" font-weight="700" fill="#6B7280">M2</text>`;
+  // Catéter guía en la carótida.
+  s += vaso("M140 332 L140 214 Q140 180 128 166", 7, "#4F8CF6");
+  // Microcatéter que cruza el trombo.
+  if (micro > 0 && visible) s += vaso(`M128 166 Q112 150 130 130 L160 121 L${160 + 180 * micro + dx} 123`, 3, "#1e40af");
+  // Trombo y stent (se mueven juntos al retirarse).
+  if (visible) {
+    s += `<g transform="translate(${dx},0)">`;
+    s += `<rect x="252" y="112" width="58" height="22" rx="10" fill="#7f1d1d"/>`;
+    if (abre > 0) {
+      let z = "M240 " + (123 - 9 * abre);
+      for (let x = 240; x <= 326; x += 8) z += ` L${x + 4} ${123 + 9 * abre} L${x + 8} ${123 - 9 * abre}`;
+      s += `<path d="${z}" fill="none" stroke="#e5e7eb" stroke-width="2"/><path d="${z}" fill="none" stroke="#4b5563" stroke-width="1" opacity=".8"/>`;
+    }
+    s += `</g>`;
+  }
+  // Flujo restaurado.
+  if (repe > 0) {
+    for (let j = 0; j < 7; j++) {
+      const u = ((t * 6 + j / 7) % 1);
+      s += `<circle cx="${170 + 200 * u}" cy="${121 + 4 * u}" r="4" fill="#fff" opacity=".85"/>`;
+    }
+    s += `<g transform="translate(250,236)"><rect width="150" height="34" rx="10" fill="#2FB36D"/><text x="75" y="23" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">eTICI 2b-3</text></g>`;
+  }
+  lienzo(
+    "Trombectomía con stent retriever",
+    "Oclusión de la arteria cerebral media (M1)",
+    `<div class="paso"><div class="n">${k}</div><div class="d">${PASOS[k - 1][1]}</div></div>
+     <svg class="esq" viewBox="0 0 680 330">${s}</svg>
+     <div class="pie"><div>Stent retriever, aspiración de contacto o ambas: <b>Clase I</b></div><div>Anestesia general o sedación: ambas válidas</div><div>PA <b>≤180/105</b> durante y 24 h después</div></div>`,
+    "Esquema, no una angiografía real. Fuente: guía AHA/ASA 2026, recomendaciones 4.7.4 y 4.3.9."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>
