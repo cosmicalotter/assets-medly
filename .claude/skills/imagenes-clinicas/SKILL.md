@@ -25,18 +25,45 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
 
 ## De dónde salen, por orden de preferencia
 
-1. **Propias**, dibujadas en HTML/SVG y convertidas con `tools/medios`. Sin
+1. **Figuras de la propia guía, si su licencia permite el uso comercial**
+   (Empirica se vende por suscripción). Es lo primero que se busca: es la
+   fuente que ya cita el nodo. Antes de usarla, leer la licencia en la
+   primera página del PDF:
+   - **Sí**: "Open Access … Creative Commons Attribution 4.0" (CC BY) o
+     CC BY-SA, dominio público, o permiso escrito del titular guardado.
+     Se recorta del PDF a resolución nativa (`pymupdf`, `get_pixmap(clip=…)`),
+     se deja tal cual (sin traducir; el pie en español explica lo que hay que
+     mirar y las siglas) y se acredita con autor, revista, figura y licencia.
+   - **No**: © de editorial sin licencia CC (Wiley, Elsevier, Thieme,
+     Springer o Wolters Kluwer sin acceso abierto, sociedades como ASGE o
+     SAGES), "Free access" (gratis de leer no es licencia), CC BY-NC y
+     CC BY-ND. Tampoco, dentro de una guía CC BY, la figura o tabla con
+     línea de crédito de un tercero ("reproduced with permission from",
+     "modified from", "adapted from"): la licencia la excluye.
+   - Si la figura buena tiene © y no hay permiso: se dibuja una propia
+     basada en ella (punto 2, "Basado en …, Fig. N" en el pie) y se anota en
+     el PR qué figura y de qué editorial pedir permiso (p. ej. RightsLink).
+   - Una tabla de puro texto no se pega como imagen: se pasa a `tabla`.
+2. **Propias**, dibujadas en HTML/SVG y convertidas con `tools/medios`. Sin
    problema de licencia y con el aspecto de Empirica. Sirven para esquemas,
    técnicas, secuencias, clasificaciones, algoritmos visuales y animaciones.
-2. **Figuras de la guía**: `galgo generar` y `galgo resolver` las recortan
-   del PDF. Su uso es responsabilidad del titular (ver `AVISO.md` de galgo).
 3. **Fotos clínicas de terceros** sólo con licencia que permita uso
-   comercial (Empirica tiene suscripción): dominio público, CC0, CC BY,
-   CC BY-SA. Fuentes habituales: Wikimedia Commons, CDC Public Health Image
-   Library (sólo las marcadas de dominio público), figuras CC BY de artículos
-   de PubMed Central. **No**: CC BY-NC, CC BY-ND, Radiopaedia, DermNet,
-   materiales OMS/OPS con licencia NC, ni capturas de Google Imágenes.
+   comercial: dominio público, CC0, CC BY, CC BY-SA. Fuentes habituales:
+   Wikimedia Commons, CDC Public Health Image Library (sólo las marcadas de
+   dominio público), figuras CC BY de artículos de PubMed Central. **No**:
+   CC BY-NC, CC BY-ND, Radiopaedia, DermNet, materiales OMS/OPS con licencia
+   NC, ni capturas de Google Imágenes.
 4. Nunca una imagen generada por IA presentada como foto clínica real.
+
+Licencias ya comprobadas (octubre de 2026):
+
+| guía | licencia | figuras |
+|---|---|---|
+| WSES (World J Emerg Surg, BMC/Springer Nature) | CC BY 4.0 | sí, con crédito |
+| Guías de Tokio 2018 (J Hepatobiliary Pancreat Sci, Wiley) | © JSHBPS | no sin permiso |
+| ASGE (Gastrointest Endosc, Elsevier) | © ASGE | no sin permiso |
+| ESGE (Endoscopy, Thieme) | © Thieme | no sin permiso |
+| SAGES 2020 (Surg Endosc, Springer) | © SAGES y Wolters Kluwer | no sin permiso |
 
 Si la red de la sesión no deja descargar de la fuente, no se sustituye por
 otra cosa: se anota en el PR la URL exacta y el nodo, para descargarla a mano.
@@ -112,5 +139,7 @@ Cada carpeta de imágenes con material que no es propio lleva un
 ```
 
 Las propias se registran con `"origen": "propia"` y el HTML de origen en
-`"fuente"` si se guarda; las de la guía con `"origen": "guia"` y la página.
+`"fuente"` si se guarda; las de la guía con `"origen": "guia"`, la cita, la
+figura y la página en `"fuente"`, y su `"licencia"` (sin licencia que permita
+el uso comercial, no entran).
 Con CC BY y CC BY-SA, el crédito corto va también en `descripcion`.
