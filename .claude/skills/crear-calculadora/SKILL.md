@@ -86,11 +86,28 @@ opciones del nodo, o mide otra cosa (gravedad en vez de diagnóstico), se crea
 una variante propia: `tokyocolecistitis_diagnostico.json` junto a
 `tokyocolecistitis.json` (gravedad).
 
-Para criterios que se combinan por grupos («A + B + C»), cada grupo es una
-fila y pesa una potencia de 2 (A = 1, B = 2, C = 4): la suma dice qué grupos
-se cumplen sin ambigüedad (7 = A+B+C, 3 = A+B, 5 = A+C…), y cada suma va a su
-resultado. Ver `tokyocolangitis_diagnostico.json`. Los casos de prueba
-cubren todas las sumas.
+Para criterios que se combinan por grupos («A + B + C») se usa el
+**formulario Sí/No**, no la tabla: con textos largos, las celdas de una tabla
+de 4 columnas apilan las palabras en un cuadro pequeño. Un elemento
+`opciones` por grupo (`No` = 0, `Sí` = 1) y una `formula` que da
+directamente la categoría, con `"mostrarPuntaje": false` para que la app
+enseñe «Definitiva (A + B + C)» y no «Resultado: 2»:
+
+```json
+"tipoCalculo": "formula", "formula": "a * b * (1 + c)", "mostrarPuntaje": false,
+"secciones": [{"elementos": [
+  {"id": "a", "tipo": "opciones", "label": "A · Signos locales: Murphy, o masa…",
+   "opciones": [{"label": "No", "puntos": 0}, {"label": "Sí", "puntos": 1}]}, …]}]
+```
+
+(0 no cumple, 1 sospecha, 2 definitiva). Ver
+`tokyocolecistitis_diagnostico.json` y `tokyocolangitis_diagnostico.json`
+(`a * (b + 2 * c)` distingue A + B de A + C). Los casos de prueba cubren las
+8 combinaciones.
+
+**Resultados cortos**: `categoria` de ≤5 palabras y `approach` de ≤15: la
+app los enseña juntos bajo la tabla y uno largo empuja el resto hacia arriba
+(la app pliega el `approach` a tres líneas).
 
 ## Nombre y comprobación
 

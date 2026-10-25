@@ -1,8 +1,10 @@
 {
   "titulo": "Criterios diagnósticos de colangitis aguda (Tokio 2018)",
-  "descripcion": "Diagnóstico de colangitis aguda según las Guías de Tokio 2018. Definitivo: un criterio A + uno B + uno C. Sospecha: un A + uno B o uno C. Marcar en cada fila si se cumple al menos uno de sus criterios. Los puntos solo codifican la combinación (A = 1, B = 2, C = 4): lo que cuenta es el resultado.",
-  "tipoCalculo": "suma",
-  "prefijoResultado": "Combinación",
+  "descripcion": "Diagnóstico de colangitis aguda según las Guías de Tokio 2018. Definitivo: un criterio A + uno B + uno C. Sospecha: un A + uno B o uno C. Basta un criterio de cada grupo.",
+  "tipoCalculo": "formula",
+  "formula": "a * (b + 2 * c)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
   "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolangitis.png",
   "referencias": [
     {
@@ -10,105 +12,89 @@
       "url": "https://doi.org/10.1002/jhbp.512"
     }
   ],
-  "columnas": [
+  "secciones": [
     {
-      "puntos": 0,
-      "titulo": "No",
-      "color": "verde"
-    },
-    {
-      "puntos": 1,
-      "titulo": "A",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 2,
-      "titulo": "B",
-      "color": "naranja"
-    },
-    {
-      "puntos": 4,
-      "titulo": "C",
-      "color": "rojo"
-    }
-  ],
-  "filas": [
-    {
-      "nombre": "A · Inflamación sistémica",
-      "descripciones": [
-        "No",
-        "Fiebre >38 °C o escalofríos; o leucocitos <4.000 o >10.000/mm³, o PCR ≥1 mg/dL",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "B · Colestasis",
-      "descripciones": [
-        "No",
-        "-",
-        "Bilirrubina total ≥2 mg/dL, o FA, GGT, AST o ALT >1,5× el límite superior",
-        "-"
-      ]
-    },
-    {
-      "nombre": "C · Imagen",
-      "descripciones": [
-        "No",
-        "-",
-        "-",
-        "Vía biliar dilatada, o su causa (estenosis, cálculo, stent)"
+      "elementos": [
+        {
+          "id": "a",
+          "tipo": "opciones",
+          "label": "A · Inflamación sistémica: fiebre >38 °C o escalofríos; o leucocitos <4.000 o >10.000/mm³, o PCR ≥1 mg/dL",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "tipo": "opciones",
+          "label": "B · Colestasis: bilirrubina total ≥2 mg/dL, o FA, GGT, AST o ALT >1,5× el límite superior",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "tipo": "opciones",
+          "label": "C · Imagen: vía biliar dilatada, o su causa (estenosis, cálculo, stent)",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
       ]
     }
   ],
   "resultados": [
     {
       "min": 0,
-      "max": 2,
+      "max": 0,
       "categoria": "No cumple A + (B o C)",
       "color": "verde",
       "match_opcion_index": 2,
       "approach": "Buscar otro diagnóstico."
     },
     {
-      "min": 3,
-      "max": 3,
+      "min": 1,
+      "max": 1,
       "categoria": "Sospecha (A + B)",
       "color": "amarillo",
       "match_opcion_index": 1,
       "approach": "Confirmar la obstrucción y su causa con imagen (TC, colangio-RM o USE)."
     },
     {
-      "min": 4,
-      "max": 4,
-      "categoria": "No cumple A + (B o C)",
-      "color": "verde",
-      "match_opcion_index": 2,
-      "approach": "Buscar otro diagnóstico."
-    },
-    {
-      "min": 5,
-      "max": 5,
+      "min": 2,
+      "max": 2,
       "categoria": "Sospecha (A + C)",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Falta la colestasis en el laboratorio: tratar como sospecha y completar el estudio."
+      "approach": "Falta la colestasis en el laboratorio: completar el estudio."
     },
     {
-      "min": 6,
-      "max": 6,
-      "categoria": "No cumple A + (B o C)",
-      "color": "verde",
-      "match_opcion_index": 2,
-      "approach": "Sin inflamación sistémica (A) no se cumple: buscar otro diagnóstico."
-    },
-    {
-      "min": 7,
-      "max": 7,
+      "min": 3,
+      "max": 3,
       "categoria": "Definitiva (A + B + C)",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Colangitis aguda: tratamiento inicial y graduar la gravedad (Tokio)."
+      "approach": "Tratamiento inicial y graduar la gravedad."
     }
   ]
 }

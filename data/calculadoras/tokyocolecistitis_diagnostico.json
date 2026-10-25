@@ -1,8 +1,10 @@
 {
   "titulo": "Criterios diagnósticos de colecistitis aguda (Tokio 2018)",
-  "descripcion": "Diagnóstico de colecistitis aguda según las Guías de Tokio 2018. Definitivo: un criterio A + uno B + imagen característica (C). Sospecha: un A + un B sin imagen que confirme. Marcar en cada fila si se cumple al menos uno de sus criterios. Los puntos solo codifican la combinación (A = 1, B = 2, C = 4): lo que cuenta es el resultado.",
-  "tipoCalculo": "suma",
-  "prefijoResultado": "Combinación",
+  "descripcion": "Diagnóstico de colecistitis aguda según las Guías de Tokio 2018. Definitivo: un criterio A + uno B + imagen característica (C). Sospecha: un A + un B sin imagen que confirme. Basta un criterio de cada grupo.",
+  "tipoCalculo": "formula",
+  "formula": "a * b * (1 + c)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
   "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolecistitis.png",
   "referencias": [
     {
@@ -10,89 +12,81 @@
       "url": "https://doi.org/10.1002/jhbp.515"
     }
   ],
-  "columnas": [
+  "secciones": [
     {
-      "puntos": 0,
-      "titulo": "No",
-      "color": "verde"
-    },
-    {
-      "puntos": 1,
-      "titulo": "A",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 2,
-      "titulo": "B",
-      "color": "naranja"
-    },
-    {
-      "puntos": 4,
-      "titulo": "C",
-      "color": "rojo"
-    }
-  ],
-  "filas": [
-    {
-      "nombre": "A · Signos locales",
-      "descripciones": [
-        "No",
-        "Murphy, o masa, dolor o sensibilidad en hipocondrio derecho",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "B · Inflamación sistémica",
-      "descripciones": [
-        "No",
-        "-",
-        "Fiebre, PCR elevada o leucocitosis",
-        "-"
-      ]
-    },
-    {
-      "nombre": "C · Imagen",
-      "descripciones": [
-        "No típica o sin hacer",
-        "-",
-        "-",
-        "Típica de colecistitis"
+      "elementos": [
+        {
+          "id": "a",
+          "tipo": "opciones",
+          "label": "A · Signos locales: Murphy, o masa, dolor o sensibilidad en el hipocondrio derecho",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "tipo": "opciones",
+          "label": "B · Inflamación sistémica: fiebre, PCR elevada o leucocitosis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "tipo": "opciones",
+          "label": "C · Imagen: característica de colecistitis aguda",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
       ]
     }
   ],
   "resultados": [
     {
       "min": 0,
-      "max": 2,
+      "max": 0,
       "categoria": "No cumple A + B",
       "color": "verde",
       "match_opcion_index": 2,
-      "approach": "Buscar otro diagnóstico: excluir hepatitis aguda, otros abdómenes agudos y colecistitis crónica."
+      "approach": "Buscar otro diagnóstico (hepatitis aguda, otro abdomen agudo, colecistitis crónica)."
     },
     {
-      "min": 3,
-      "max": 3,
+      "min": 1,
+      "max": 1,
       "categoria": "Sospecha (A + B)",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Falta la imagen que confirme: ecografía y, si no es concluyente, TC o RM."
+      "approach": "Falta la imagen: ecografía; si no es concluyente, TC o RM."
     },
     {
-      "min": 4,
-      "max": 6,
-      "categoria": "No cumple A + B",
-      "color": "verde",
-      "match_opcion_index": 2,
-      "approach": "Buscar otro diagnóstico: excluir hepatitis aguda, otros abdómenes agudos y colecistitis crónica."
-    },
-    {
-      "min": 7,
-      "max": 7,
+      "min": 2,
+      "max": 2,
       "categoria": "Definitiva (A + B + C)",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Colecistitis aguda: tratamiento inicial y graduar la gravedad (Tokio)."
+      "approach": "Tratamiento inicial y graduar la gravedad."
     }
   ]
 }

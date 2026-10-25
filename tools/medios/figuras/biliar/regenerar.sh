@@ -27,7 +27,17 @@ gif eco_real "$D/biliar_eco_real.gif" 70 330 256
 gif cvs_real "$D/biliar_cvs_real.gif" 42 500 112
 gif cpre_real "$D/biliar_cpre_real.gif" 60 330 128
 gif colangiorm_coledocolitiasis "$D/biliar_colangiorm_recorrido.gif" 72 300 128
-gif wses_recorrido "$D/biliar_wses_recorrido.gif" 80 320 128
 node tools/medios/capturar.js "$H/wses_flujo_es.html" "$TMP/wses.png" --ancho 1280 --alto 1137 --escala 1 >/dev/null
 "$PY" -c "from PIL import Image; Image.open('$TMP/wses.png').convert('RGB').quantize(colors=128, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save('$D/biliar_wses_flujo_colecistitis_es.png', optimize=True)"
 echo "$D/biliar_wses_flujo_colecistitis_es.png"
+# Fotos de Commons: título arriba y crédito abajo, siempre sobre el original.
+F=$H/fuentes
+python3 tools/medios/franja_credito.py "$F/eco_cerevisae_rotulos_es.jpg" "$D/biliar_eco_colecistitis_real.jpg" \
+  "Imagen: Cerevisae, Wikimedia Commons, CC BY-SA 4.0. Rótulos traducidos por Empirica." \
+  --titulo "Ecografía: colecistitis aguda" --subtitulo "Pared de 5,8 mm y cálculo con sombra acústica"
+python3 tools/medios/franja_credito.py "$F/tc_colecistitis_heilman.jpg" "$D/biliar_tc_colecistitis.jpg" \
+  "Imagen: James Heilman, MD, Wikimedia Commons, CC BY-SA 4.0." \
+  --titulo "TC: colecistitis aguda" --subtitulo "Vesícula distendida y grasa vecina inflamada"
+python3 tools/medios/franja_credito.py "$F/colangiorm_hellerhoff.jpg" "$D/biliar_colangiorm_coledocolitiasis.jpg" \
+  "Imagen: Hellerhoff, Wikimedia Commons, CC BY-SA 3.0." \
+  --titulo "Colangio-RM: coledocolitiasis" --subtitulo "Cálculos en la vesícula y en el colédoco distal"

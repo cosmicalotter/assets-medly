@@ -6,7 +6,7 @@ pastilla, la pregunta en cada decisión, la escala conectada, los recortes de
 la guía. Esto contesta la otra mitad de la norma: si el algoritmo usa las
 herramientas que la app ya sabe dibujar y que casi ningún algoritmo usa
 todavía —listas de criterios, alertas, perlas, grado de evidencia, dosis por
-peso, imágenes y GIF, enlaces a otros algoritmos, portada con puntos clave—.
+peso, imágenes y GIF, enlaces a otros algoritmos, portada—.
 
 Las dos notas se leen juntas: la de galgo es el suelo (que no falte nada de
 lo que hay), la de aquí es el techo (que se use todo lo que la app ofrece).
@@ -189,6 +189,29 @@ def contiene_palabra(texto: str, frase: str) -> bool:
     return re.search(rf"(?<![\w]){re.escape(frase.lower())}(?![\w])", texto.lower()) is not None
 
 
+def secciones_hogar(alg: dict) -> dict[str, str]:
+    """Sección de cada nodo: la primera del camino más corto desde la raíz,
+    si las ramas de la raíz son secciones (estilo rama o seccion)."""
+    nodos = alg.get("nodos") or {}
+    hogar: dict[str, str] = {}
+    cola: list[str] = []
+    for raiz in entradas(alg):
+        for o in opciones(nodos.get(raiz) or {}):
+            sec = destino(o)
+            estilo = ((nodos.get(sec) or {}).get("estilo") or "").lower()
+            if sec in nodos and estilo in ("rama", "seccion") and sec not in hogar:
+                hogar[sec] = sec
+                cola.append(sec)
+    while cola:
+        actual = cola.pop(0)
+        for o in opciones(nodos.get(actual) or {}):
+            sig = destino(o)
+            if sig in nodos and sig not in hogar and sig not in entradas(alg):
+                hogar[sig] = hogar[actual]
+                cola.append(sig)
+    return hogar
+
+
 def palabras(texto: str) -> int:
     return len(re.findall(r"\w+", texto or ""))
 
@@ -283,17 +306,19 @@ def medir(ruta: Path) -> Informe:
     carpeta = alg.get("carpeta_imagenes") or alg.get("carpetaImagenes") or ""
     inf = Informe(str(ruta.relative_to(DATA)), alg.get("titulo", ""), len(clinicos))
 
-    # Portada: descripción, especialidad, puntos clave y bibliografía con enlace.
-    puntos = alg.get("puntos_clave") or alg.get("puntosClave") or []
+    # Portada: descripción, especialidad, fecha y bibliografía con enlace.
+    # Sin puntos clave: la portada ya no los enseña.
     refs = [r for r in alg.get("referencias") or [] if isinstance(r, dict)]
     portada = [
         bool(alg.get("descripcion")),
         bool(alg.get("especialidad")),
-        3 <= len(puntos) <= 5,
+        bool(alg.get("actualizado")),
         any(es_url(r.get("url") or r.get("enlace") or "") for r in refs),
     ]
+    if alg.get("puntos_clave") or alg.get("puntosClave"):
+        inf.faltas.append("portada: quitar puntos_clave (la portada ya no los enseña)")
     inf.dimensiones["portada"] = sum(portada) / len(portada)
-    for ok, falta in zip(portada, ("descripcion", "especialidad", "3-5 puntos_clave", "bibliografía general con URL")):
+    for ok, falta in zip(portada, ("descripcion", "especialidad", "actualizado", "bibliografía general con URL")):
         if not ok:
             inf.faltas.append(f"portada: falta {falta}")
 
@@ -372,8 +397,24 @@ def medir(ruta: Path) -> Informe:
             pie = m.get("pie") or m.get("descripcion") or ""
             if _PIE_CON_CREDITO.search(pie):
                 inf.faltas.append(f"{nid}: el pie de «{m.get('recurso', '?')}» lleva el crédito; va dentro de la imagen y en creditos.json")
+            if palabras(pie) > 18:
+                inf.faltas.append(f"{nid}: el pie de «{m.get('recurso', '?')}» tiene {palabras(pie)} palabras; ≤18, qué se ve")
+            if not (m.get("titulo") or "").strip():
+                inf.faltas.append(f"{nid}: «{m.get('recurso', '?')}» sin título")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
+
+    # Un camino que entra en otra sección por la mitad: mejor al nodo de sección.
+    hogar = secciones_hogar(alg)
+    for nid, n in nodos.items():
+        if not isinstance(n, dict) or nid not in hogar:
+            continue
+        for o in opciones(n):
+            dest = destino(o)
+            if dest in hogar and hogar[dest] != hogar[nid] and dest != hogar[dest]:
+                inf.faltas.append(
+                    f"{nid}: la rama «{o.get('texto', '')}» entra en la sección «{hogar[dest]}» por la mitad; apuntar a «{hogar[dest]}»"
+                )
 
     inf.cuentas = {
         "nodos": len(nodos), "clinicos": len(clinicos), "checklist": n_check, "alertas": n_alert,

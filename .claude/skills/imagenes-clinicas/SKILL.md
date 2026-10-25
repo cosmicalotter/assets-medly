@@ -113,7 +113,7 @@ Plantillas hechas (patología biliar, `tools/medios/figuras/biliar/`):
 |---|---|
 | `colangiorm_coledocolitiasis.html` | foto de Commons: tapa flechas, traza la vía biliar medida, lista de pasos, zoom a los cálculos, tarjeta final |
 | `wses_es.js` + `wses_flujo_es.html` | figura de la guía traducida al español encima del original (PNG fijo) |
-| `wses_recorrido.html` | la misma figura recorrida con cámara y los dos caminos realzados |
+| `wses_recorrido.html` | la misma figura recorrida con cámara (demostración: un flujograma de la guía ya no va en los nodos, sino fijo en las fuentes) |
 | `recorrido.js` | **motor común**: escenas con imagen real, pasos con cámara, flechas, anillos, calibres y tarjeta final; ver `murphy_real.html`, `eco_real.html`, `cvs_real.html`, `cpre_real.html` |
 | `drenaje_real.html`, `coledoco_eco_real.html` | foto real rotulada + tarjetas de texto (imagen fija) |
 
@@ -207,15 +207,21 @@ La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
   y se nombra `comun/<archivo>`.
 - Nombre: `<tema>_<qué>.<ext>` en minúsculas ASCII con guion bajo:
   `sepsis_llenado_capilar.gif`, `neumoped_tiraje_subcostal.jpg`.
-- En el nodo, siempre `media` con título y pie (`descripcion`) que diga
-  **qué mirar**. La app nueva acepta también `pie`, pero las versiones ya
+- **Toda imagen lleva su título escrito dentro** (cabecera de `base.js`; a
+  una foto, `franja_credito.py --titulo … --subtitulo …`).
+- **Los flujogramas de la guía que repiten el algoritmo no van en `media`**
+  (y nunca como GIF): van fijos en las fuentes del paso, como
+  `referencias[].imagen_evidencia` con la URL raw completa.
+- En el nodo, siempre `media` con título y pie (`descripcion`) **breve (≤18
+  palabras)** que diga **qué se ve**. La app nueva acepta también `pie`, pero las versiones ya
   instaladas sólo leen `descripcion`: se usa esa. La app lo dibuja como pie de
   foto: una franja algo más oscura, fundida bajo la imagen. Sin crédito: ya
   va dentro de la imagen.
 - Para que el texto del nodo lleve a la imagen, `en_texto` con la frase tal
   como aparece en el texto (da igual mayúscula o minúscula; palabra entera): la app la
   subraya, la tiñe un poco y le pone un icono pequeño de imagen; al tocarla
-  abre la imagen o el GIF. **Nunca "(GIF)" ni "(ver imagen)" en el texto.**
+  abre la imagen o el GIF (el visor de GIF tiene pausa, cuadro a cuadro y
+  barra). **Nunca "(GIF)" ni "(ver imagen)" en el texto.**
   `python3 tools/norma.py --chequeo` avisa si la frase no está.
 
 ```json

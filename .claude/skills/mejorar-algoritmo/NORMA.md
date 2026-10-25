@@ -36,8 +36,18 @@ cambian, se cambian allí y aquí a la vez.
      `nodo_raiz`, de la guía o, si la guía no la da, del documento de
      definición de referencia.
   2. **Qué contiene** el algoritmo: las partes que recorre y a quién no cubre.
-  Además `especialidad`, `actualizado`, **3 a 5 `puntos_clave`** con cifras y
-  `referencias` generales con `url`. Nada de lista de fuentes en `texto`.
+  Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
+  la portada) y `referencias` generales con `url`. **Sin `puntos_clave`**: la
+  portada ya no los enseña. Nada de lista de fuentes en `texto`.
+- **Un camino no se mete en otra sección.** Cuando el final de un camino
+  continúa en otra sección (el diagnóstico confirma una colecistitis y sigue
+  su tratamiento), la opción apunta al **nodo de sección** de destino
+  (`nodo_colecistitis`), no a un paso intermedio de ella. La app no cuelga
+  esa sección debajo: la abre en su sitio, arriba, y en la tarjeta deja un
+  botón «Ir a Colecistitis aguda». Si el destino tiene que ser un paso
+  concreto de otra sección, la app hace lo mismo (lo abre en su sección y
+  deja «Sigue en la sección …»), pero en las versiones viejas se duplicaría:
+  se prefiere el nodo de sección.
 - Ningún nodo existe para decir «fin» o «continuar manejo». Una vía acaba en
   el último paso que dice algo útil.
 - **Los ids existentes no se renombran ni se borran**: las notas que cada
@@ -79,8 +89,8 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo | cuando la guía trae la tabla |
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
-| `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo | siempre que exista o se pueda crear la escala (skill `crear-calculadora`) |
-| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Pie (`descripcion`) = qué mirar, sin crédito (va dentro de la imagen) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
+| `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
+| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar | al menos 2 hacia fuera |
