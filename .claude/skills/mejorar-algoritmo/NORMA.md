@@ -119,6 +119,11 @@ repositorio `galgo-empirica`. Lo esencial:
   «¿lactato elevado?».
 - `pie_nodo` es la pregunta que abre las ramas, con «¿» y «?»; rótulos de
   opción cortos y distintos entre sí.
+- Cada opción se entiende sola: en el modo lectura de la app las tarjetas
+  hermanas se leen de una en una (las demás quedan como fantasmas), así que
+  ninguna dice «lo mismo que la anterior» ni depende de leer la de al lado.
+  El título de la tarjeta nombra la situación («Deterioro grave: tratar ya»),
+  no sólo «Sí».
 - Lenguaje claro sin perder precisión: se explica el término difícil, no se
   sustituye por uno vago.
 - Nada de «es importante destacar», «cabe mencionar», «piedra angular»… (la
