@@ -13,7 +13,7 @@
 // píxel de pantalla, para que trazos y letras se vean igual con cualquier zoom.
 // `u` va de 0 a 1 mientras entra el paso (y se queda en 1 después).
 
-const VISOR = [390, 416];
+const VISOR = [390, 388];
 const suaviza = (u) => u * u * (3 - 2 * u);
 
 // --- piezas de dibujo -------------------------------------------------------

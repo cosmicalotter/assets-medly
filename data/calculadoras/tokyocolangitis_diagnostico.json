@@ -1,0 +1,114 @@
+{
+  "titulo": "Criterios diagnósticos de colangitis aguda (Tokio 2018)",
+  "descripcion": "Diagnóstico de colangitis aguda según las Guías de Tokio 2018. Definitivo: un criterio A + uno B + uno C. Sospecha: un A + uno B o uno C. Marcar en cada fila si se cumple al menos uno de sus criterios. Los puntos solo codifican la combinación (A = 1, B = 2, C = 4): lo que cuenta es el resultado.",
+  "tipoCalculo": "suma",
+  "prefijoResultado": "Combinación",
+  "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolangitis.png",
+  "referencias": [
+    {
+      "titulo": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):17-30.",
+      "url": "https://doi.org/10.1002/jhbp.512"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "No",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "A",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "B",
+      "color": "naranja"
+    },
+    {
+      "puntos": 4,
+      "titulo": "C",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "A · Inflamación sistémica",
+      "descripciones": [
+        "No",
+        "Fiebre >38 °C o escalofríos; o leucocitos <4.000 o >10.000/mm³, o PCR ≥1 mg/dL",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "B · Colestasis",
+      "descripciones": [
+        "No",
+        "-",
+        "Bilirrubina total ≥2 mg/dL, o FA, GGT, AST o ALT >1,5 veces el límite superior",
+        "-"
+      ]
+    },
+    {
+      "nombre": "C · Imagen",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Dilatación de la vía biliar, o su causa (estenosis, cálculo, stent)"
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 2,
+      "categoria": "No cumple A + (B o C)",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Buscar otro diagnóstico."
+    },
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Sospecha (A + B)",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Confirmar la obstrucción y su causa con imagen (TC, colangio-RM o USE)."
+    },
+    {
+      "min": 4,
+      "max": 4,
+      "categoria": "No cumple A + (B o C)",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Buscar otro diagnóstico."
+    },
+    {
+      "min": 5,
+      "max": 5,
+      "categoria": "Sospecha (A + C)",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Falta la colestasis en el laboratorio: tratar como sospecha y completar el estudio."
+    },
+    {
+      "min": 6,
+      "max": 6,
+      "categoria": "No cumple A + (B o C)",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Sin inflamación sistémica (A) no se cumple: buscar otro diagnóstico."
+    },
+    {
+      "min": 7,
+      "max": 7,
+      "categoria": "Definitiva (A + B + C)",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Colangitis aguda: tratamiento inicial y graduar la gravedad (Tokio)."
+    }
+  ]
+}

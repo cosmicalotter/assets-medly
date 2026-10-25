@@ -77,6 +77,11 @@ ROTULOS = {
 _POR_KG = re.compile(r"/\s*kg", re.I)
 _VINETA = re.compile(r"^\s*(-|\d+\.)\s", re.M)
 _CRITERIOS = re.compile(r"criterio|indicaci[oó]n de|signos de alarma|ingreso|alta|intubaci[oó]n|uci\b", re.I)
+_PIE_CON_CREDITO = re.compile(
+    r"\bCC[ -]?(BY|0)\b|wikimedia|commons|dominio p[uú]blico|licencia|editada por|"
+    r"^\s*(imagen|foto|figura|fuente)\s*:", re.I | re.M,
+)
+_AVISO_DE_MEDIO = re.compile(r"\((gif|imagen|foto|video|ver imagen)\)", re.I)
 _VISUAL = re.compile(
     r"exploraci[oó]n|examen f[ií]sico|signo de|t[eé]cnica|radiograf|ecograf|\btc\b|tomograf|"
     r"\becg\b|electrocardiograma|lesi[oó]n|exantema|otoscop|fondo de ojo|tiraje|pliegue|"
@@ -159,6 +164,31 @@ def farmacos(nodo: dict) -> list[dict]:
     return []
 
 
+def media_de(nodo: dict) -> list[dict]:
+    return [m for llave in GALERIAS for m in nodo.get(llave) or [] if isinstance(m, dict)]
+
+
+def frases_en_texto(m: dict) -> list[str]:
+    valor = m.get("en_texto") or m.get("enTexto") or []
+    return [valor] if isinstance(valor, str) else [f for f in valor if isinstance(f, str)]
+
+
+def textos_visibles(valor, fuera=("media", "imagenes", "referencias", "evidencia")) -> list[str]:
+    """Las cadenas del nodo que se leen en la tarjeta (sin media ni citas)."""
+    if isinstance(valor, str):
+        return [valor]
+    if isinstance(valor, list):
+        return [t for v in valor for t in textos_visibles(v, fuera)]
+    if isinstance(valor, dict):
+        return [t for k, v in valor.items() if k not in fuera for t in textos_visibles(v, fuera)]
+    return []
+
+
+def contiene_palabra(texto: str, frase: str) -> bool:
+    """Como la app: sin mayúsculas y con la frase entera, no dentro de otra palabra."""
+    return re.search(rf"(?<![\w]){re.escape(frase.lower())}(?![\w])", texto.lower()) is not None
+
+
 def palabras(texto: str) -> int:
     return len(re.findall(r"\w+", texto or ""))
 
@@ -208,6 +238,11 @@ def chequear(ruta: Path) -> list[str]:
         for f in farmacos(nodo):
             if not (f.get("nombre") or f.get("farmaco") or f.get("medicamento")) or not (f.get("dosis") or f.get("posologia")):
                 problemas.append(f"{nid}: un fármaco sin «nombre» o sin «dosis» (la app lo descarta)")
+        visibles = "\n".join(textos_visibles(nodo))
+        for m in media_de(nodo):
+            for frase in frases_en_texto(m):
+                if not contiene_palabra(visibles, frase):
+                    problemas.append(f"{nid}: «en_texto» pide enlazar «{frase}», que no está en el texto del nodo (no se enlaza nada)")
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
@@ -327,8 +362,16 @@ def medir(ruta: Path) -> Informe:
     # Pistas para quien mejora: listas de criterios escritas como viñetas.
     for nid, n in clinicos.items():
         texto = n.get("texto") or ""
-        if not n.get("checklist") and len(_VINETA.findall(texto)) >= 3 and _CRITERIOS.search(f"{n.get('titulo', '')} {texto}"):
+        calc = n.get("calculadora")
+        ramifica = isinstance(calc, dict) and calc.get("ramificar")
+        if not n.get("checklist") and not ramifica and len(_VINETA.findall(texto)) >= 3 and _CRITERIOS.search(f"{n.get('titulo', '')} {texto}"):
             inf.faltas.append(f"{nid}: lista de criterios en viñetas; candidata a checklist")
+        if _AVISO_DE_MEDIO.search(texto):
+            inf.faltas.append(f"{nid}: «{_AVISO_DE_MEDIO.search(texto).group(0)}» en el texto; enlazar la frase con media[].en_texto")
+        for m in media_de(n):
+            pie = m.get("pie") or m.get("descripcion") or ""
+            if _PIE_CON_CREDITO.search(pie):
+                inf.faltas.append(f"{nid}: el pie de «{m.get('recurso', '?')}» lleva el crédito; va dentro de la imagen y en creditos.json")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
 

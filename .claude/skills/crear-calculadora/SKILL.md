@@ -73,6 +73,25 @@ Si dos algoritmos la usan con ramas distintas, se deja `-1` y el nodo la
 conecta con `ramificar: false`. Nunca se cambia el índice de una escala que ya
 usa otro algoritmo sin revisar ese otro nodo.
 
+Varios intervalos pueden llevar a la misma opción: el primero que contiene la
+puntuación decide.
+
+### Criterios que deciden la rama
+
+Cuando de unos criterios sale un resultado y de él la conducta (diagnóstico
+definitivo / sospecha / no; grado; riesgo), el nodo no lleva una `checklist`
+que el médico interpreta solo: lleva la escala con `ramificar: true`, y cada
+resultado abre su rama. Si la escala compartida no sigue el orden de las
+opciones del nodo, o mide otra cosa (gravedad en vez de diagnóstico), se crea
+una variante propia: `tokyocolecistitis_diagnostico.json` junto a
+`tokyocolecistitis.json` (gravedad).
+
+Para criterios que se combinan por grupos («A + B + C»), cada grupo es una
+fila y pesa una potencia de 2 (A = 1, B = 2, C = 4): la suma dice qué grupos
+se cumplen sin ambigüedad (7 = A+B+C, 3 = A+B, 5 = A+C…), y cada suma va a su
+resultado. Ver `tokyocolangitis_diagnostico.json`. Los casos de prueba
+cubren todas las sumas.
+
 ## Nombre y comprobación
 
 - Nombre de archivo en minúsculas ASCII sin espacios: `news2.json`,
@@ -99,6 +118,11 @@ Y quita el `calculadora_id: "TODO_CALC_…"` que hubiera.
 
 ## Para que aparezca también en el menú de Calculadoras
 
-El menú lo lee la app del parámetro `index_calculadoras` de Firebase Remote
-Config. Eso no se toca desde aquí: en el PR se deja la entrada propuesta para
-que la publique una persona.
+El menú sale de `indices/index_calculadoras.json` (el workflow lo publica en
+Firebase Remote Config en cada push a `main`). En el mismo commit que la
+escala se añade su entrada, con la URL raw completa (`…/refs/heads/main/…`),
+`categoria` y `palabrasClave` sin tildes, y se comprueba:
+
+```bash
+node update_firebase_date.js --validar
+```

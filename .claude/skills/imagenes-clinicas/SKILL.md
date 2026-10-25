@@ -134,8 +134,38 @@ cuando `upload.wikimedia.org` responde 429.
 
 Crédito de lo editado: en `creditos.json`, `"cambios"` dice qué se tapó,
 tradujo o añadió y qué HTML lo genera. Con CC BY-SA la obra derivada se
-comparte con la misma licencia; con CC BY basta indicar los cambios. En la
-`descripcion` del nodo: autor, licencia y "editada por Empirica".
+comparte con la misma licencia; con CC BY basta indicar los cambios. El
+crédito visible (autor, licencia, "editada por Empirica") va **dentro de la
+imagen**: en la línea de fuente del lienzo si es una figura nuestra, o en una
+franja al pie si es una foto que sólo se recorta o se rotula:
+
+```bash
+python3 tools/medios/franja_credito.py fuentes/original.jpg data/imagenes/algoritmo/<carpeta>/<nombre>.jpg \
+    "Imagen: Autor, Wikimedia Commons, CC BY-SA 4.0. Editada por Empirica."
+```
+
+La franja se pone siempre sobre el original guardado en `fuentes/` (nunca
+sobre una salida que ya la tiene), y una figura que dibuja encima de la foto
+lee el original de `fuentes/`, no la imagen de `data/` con franja: si no, la
+foto cambia de tamaño y lo que tapa las flechas originales deja de taparlas.
+El pie del nodo **no repite el crédito**.
+
+### La línea de fuente nunca queda tapada
+
+`base.js` deja el cuerpo de la figura en una columna flexible (`.cuerpo`) y la
+fuente al final, en su propia franja blanca (`.fuente`): el contenido no puede
+bajar hasta ella. Aun así, en un lienzo de 720×540 con título, subtítulo y
+fuente, un visor de foto mide **≤388 px de alto** (`recorrido.js` usa
+`VISOR = [390, 388]`). Antes de capturar:
+
+```bash
+node tools/medios/solapes.js tools/medios/figuras/<carpeta>/*.html   # sale con 1 si algo pisa la fuente
+```
+
+Cada carpeta de figuras lleva un `regenerar.sh` que rehace todas sus
+imágenes (PNG, JPG y GIF con sus cuadros, tiempos y colores); ver
+`tools/medios/figuras/biliar/regenerar.sh`. Si se cambia `base.js` o
+`recorrido.js`, se regenera todo y se mira de nuevo.
 
 ## Hacer una ilustración o un GIF propio
 
@@ -177,16 +207,27 @@ La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
   y se nombra `comun/<archivo>`.
 - Nombre: `<tema>_<qué>.<ext>` en minúsculas ASCII con guion bajo:
   `sepsis_llenado_capilar.gif`, `neumoped_tiraje_subcostal.jpg`.
-- En el nodo, siempre `media` con título y pie que diga **qué mirar**:
+- En el nodo, siempre `media` con título y pie (`descripcion`) que diga
+  **qué mirar**. La app nueva acepta también `pie`, pero las versiones ya
+  instaladas sólo leen `descripcion`: se usa esa. La app lo dibuja como pie de
+  foto: una franja algo más oscura, fundida bajo la imagen. Sin crédito: ya
+  va dentro de la imagen.
+- Para que el texto del nodo lleve a la imagen, `en_texto` con la frase tal
+  como aparece en el texto (da igual mayúscula o minúscula; palabra entera): la app la
+  subraya, la tiñe un poco y le pone un icono pequeño de imagen; al tocarla
+  abre la imagen o el GIF. **Nunca "(GIF)" ni "(ver imagen)" en el texto.**
+  `python3 tools/norma.py --chequeo` avisa si la frase no está.
 
 ```json
+"texto": "Explorar el llenado capilar en el lecho ungueal.",
 "media": [
   { "recurso": "sepsis_llenado_capilar.gif",
     "titulo": "Llenado capilar",
-    "descripcion": "Presionar 5 s el lecho ungueal y contar: **>2 s** es hipoperfusión." },
+    "descripcion": "Presionar 5 s el lecho ungueal y contar: **>2 s** es hipoperfusión.",
+    "en_texto": "llenado capilar" },
   { "recurso": "sepsis_piel_moteada.jpg",
     "titulo": "Piel moteada en rodillas",
-    "descripcion": "Signo de hipoperfusión. Foto: Autor, CC BY 4.0." }
+    "descripcion": "Signo de hipoperfusión: manchas violáceas en rodillas." }
 ]
 ```
 
@@ -211,4 +252,5 @@ Las propias se registran con `"origen": "propia"` y el HTML de origen en
 `"fuente"` si se guarda; las de la guía con `"origen": "guia"`, la cita, la
 figura y la página en `"fuente"`, y su `"licencia"` (sin licencia que permita
 el uso comercial, no entran).
-Con CC BY y CC BY-SA, el crédito corto va también en `descripcion`.
+Con CC BY y CC BY-SA, el crédito corto va también **dentro de la imagen**
+(línea de fuente o `franja_credito.py`), no en el pie del nodo.

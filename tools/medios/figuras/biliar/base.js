@@ -9,7 +9,8 @@ body{background:#fff;font-family:"Inter","Segoe UI",Roboto,Arial,sans-serif;colo
 .tit{font-size:24px;font-weight:700;letter-spacing:-.01em}
 .sub{font-size:13.5px;color:var(--suave);margin-top:2px}
 .marca{font-size:12px;font-weight:700;color:var(--teal);letter-spacing:.1em}
-.fuente{font-size:10.5px;color:var(--suave)}
+.cuerpo{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.fuente{flex:none;margin-top:auto;position:relative;z-index:2;background:#fff;padding-top:3px;font-size:10.5px;line-height:1.3;color:var(--suave)}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
 b{font-weight:700}
 .tarjeta{border-radius:14px;background:#F7F8FA;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
@@ -26,7 +27,7 @@ const pill = (color, texto) => `<span class="pill" style="background:${color}">$
 function lienzo(titulo, subtitulo, cuerpo, fuente) {
   document.body.innerHTML = `<div id="lienzo">
     <div class="cab"><div><div class="tit">${titulo}</div>${subtitulo ? `<div class="sub">${subtitulo}</div>` : ""}</div><div class="marca">EMPIRICA</div></div>
-    ${cuerpo}
+    <div class="cuerpo">${cuerpo}</div>
     ${fuente ? `<div class="fuente">${fuente}</div>` : ""}
   </div>`;
 }

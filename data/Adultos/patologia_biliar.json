@@ -196,7 +196,7 @@
     "diag_sospecha": {
       "tipo": "pregunta",
       "titulo": "Sospecha de infección biliar",
-      "texto": "- Sospechar ante cualquiera de: fiebre, escalofríos, dolor abdominal, ictericia, náuseas, vómito o alteración de la conciencia.\n- Primero los signos vitales: inestable → tratar ya, sin esperar el diagnóstico.\n- Explorar ictericia, sitio del dolor, irritación peritoneal y signo de Murphy (GIF).",
+      "texto": "- Sospechar ante cualquiera de: fiebre, escalofríos, dolor abdominal, ictericia, náuseas, vómito o alteración de la conciencia.\n- Primero los signos vitales: inestable → tratar ya, sin esperar el diagnóstico.\n- Explorar ictericia, sitio del dolor, irritación peritoneal y signo de Murphy.",
       "checklist": {
         "titulo": "Laboratorio inicial",
         "items": [
@@ -211,7 +211,8 @@
         {
           "recurso": "biliar_murphy_real.gif",
           "titulo": "Signo de Murphy",
-          "descripcion": "Presionar bajo el reborde costal derecho y pedir una inspiración profunda: el dolor la corta. Foto: Musser, 1904 (dominio público), editada por Empirica."
+          "descripcion": "Presionar bajo el reborde costal derecho y pedir una inspiración profunda: el dolor la corta.",
+          "en_texto": "signo de Murphy"
         }
       ],
       "pie_nodo": "¿Shock, alteración de la conciencia, disnea aguda, falla renal o hepática, o plaquetas bajas (CID)?",
@@ -411,12 +412,13 @@
         {
           "recurso": "biliar_eco_real.gif",
           "titulo": "Ecografía de la colecistitis",
-          "descripcion": "Pared engrosada (**≥4 mm**), líquido perivesicular, cálculos y sombra acústica en dos ecografías reales. M. Häggström (CC0) y J. Heilman (CC BY-SA 3.0), editadas por Empirica."
+          "descripcion": "Pared engrosada (**≥4 mm**), líquido perivesicular, cálculos y sombra acústica en dos ecografías reales.",
+          "en_texto": "líquido perivesicular"
         },
         {
           "recurso": "biliar_eco_colecistitis_real.jpg",
           "titulo": "Ecografía real: colecistitis aguda",
-          "descripcion": "Pared vesicular de 5,8 mm (≥4 mm) y cálculo con sombra acústica posterior. Foto: Cerevisae, CC BY-SA 4.0 (rótulos traducidos)."
+          "descripcion": "Pared vesicular de **5,8 mm** (≥4 mm) y cálculo con sombra acústica posterior."
         }
       ],
       "nota_adicional": "Ningún dato aislado, clínico o de laboratorio, confirma ni descarta la colecistitis: se combinan con la imagen.",
@@ -535,16 +537,10 @@
       "tipo": "pregunta",
       "titulo": "Criterios de colecistitis (Tokio)",
       "texto": "- Diagnóstico definitivo: un criterio A + uno B + imagen típica (C).\n- Sospecha: A + B sin imagen que confirme.\n- Excluir hepatitis aguda, otros abdómenes agudos y colecistitis crónica.",
-      "checklist": {
-        "titulo": "Criterios",
-        "items": [
-          "A · Signo de Murphy",
-          "A · Masa, dolor o sensibilidad en el hipocondrio derecho",
-          "B · Fiebre",
-          "B · PCR elevada",
-          "B · Leucocitosis",
-          "C · Imagen característica de colecistitis"
-        ]
+      "calculadora": {
+        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/tokyocolecistitis_diagnostico.json",
+        "etiqueta": "Aplicar los criterios (Tokio)",
+        "ramificar": true
       },
       "evidencia": {
         "clase": "Fuerte",
@@ -627,7 +623,8 @@
         {
           "recurso": "biliar_tc_colecistitis.jpg",
           "titulo": "TC: colecistitis aguda",
-          "descripcion": "Vesícula distendida con pared engrosada y grasa vecina inflamada (flecha); la TC rinde más en las complicaciones. Foto: James Heilman, MD, CC BY-SA 4.0."
+          "descripcion": "Vesícula distendida con pared engrosada y grasa vecina inflamada (flecha); la TC rinde más en las complicaciones.",
+          "en_texto": "TC"
         }
       ],
       "nota_adicional": "¿Gangrena? → TC o RM con contraste. ¿Gas en la pared (enfisematosa)? → TC: perfora con frecuencia.",
@@ -772,16 +769,10 @@
       "tipo": "pregunta",
       "titulo": "Criterios de colangitis (Tokio)",
       "texto": "- Definitiva: A + B + C. Sospecha: A + (B o C).\n- La tríada de Charcot es específica pero poco sensible: su ausencia no descarta.\n- Apoyan: dolor en el hipocondrio derecho o el epigastrio y antecedente de cálculos, cirugía biliar o stent.",
-      "checklist": {
-        "titulo": "Criterios",
-        "items": [
-          "A-1 · Fiebre **>38 °C** o escalofríos",
-          "A-2 · Leucocitos **<4.000** o **>10.000/mm³**, o PCR **≥1 mg/dL**",
-          "B-1 · Ictericia: bilirrubina total **≥2 mg/dL**",
-          "B-2 · FA, GGT, AST o ALT **>1,5 veces** el límite superior",
-          "C-1 · Dilatación de la vía biliar",
-          "C-2 · Causa en la imagen: estenosis, cálculo o stent"
-        ]
+      "calculadora": {
+        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/tokyocolangitis_diagnostico.json",
+        "etiqueta": "Aplicar los criterios (Tokio)",
+        "ramificar": true
       },
       "pie_nodo": "¿Qué criterios cumple?",
       "opciones": [
@@ -879,7 +870,8 @@
         {
           "recurso": "biliar_colangiorm_coledocolitiasis.jpg",
           "titulo": "Colangio-RM: coledocolitiasis",
-          "descripcion": "(a) vesícula con cálculos; (b) cálculos en el colédoco distal, vistos como huecos oscuros en la bilis blanca; (c) conducto pancreático; (d) líquido en el duodeno. Imagen: Hellerhoff, CC BY-SA 3.0."
+          "descripcion": "(a) vesícula con cálculos; (b) cálculos en el colédoco distal, vistos como huecos oscuros en la bilis blanca; (c) conducto pancreático; (d) líquido en el duodeno.",
+          "en_texto": "Colangio-RM"
         }
       ],
       "evidencia": {
@@ -2355,12 +2347,13 @@
         {
           "recurso": "biliar_wses_recorrido.gif",
           "titulo": "El camino de la WSES 2020, paso a paso",
-          "descripcion": "Figura 1 de la guía traducida: el turquesa sigue al que tolera la cirugía (riesgo de coledocolitiasis, operar en **≤72 h** o al menos en **≤7 días** del ingreso y **≤10 días** del inicio); el ámbar, al que no (antibiótico y observar **48 h**, drenaje vesicular si no mejora). Pisano et al., WSES 2020, CC BY 4.0."
+          "descripcion": "Figura 1 de la guía traducida: el turquesa sigue al que tolera la cirugía (riesgo de coledocolitiasis, operar en **≤72 h** o al menos en **≤7 días** del ingreso y **≤10 días** del inicio); el ámbar, al que no (antibiótico y observar **48 h**, drenaje vesicular si no mejora).",
+          "en_texto": "WSES"
         },
         {
           "recurso": "biliar_wses_flujo_colecistitis_es.png",
           "titulo": "Flujograma de la WSES 2020, completo",
-          "descripcion": "La figura entera, traducida, con sus siglas y definiciones. Pisano et al., WSES 2020, Fig. 1, CC BY 4.0."
+          "descripcion": "La figura entera, traducida, con sus siglas y definiciones."
         }
       ],
       "alertas": [
@@ -2525,7 +2518,8 @@
         {
           "recurso": "biliar_cvs_real.gif",
           "titulo": "Visión crítica de seguridad, foto real",
-          "descripcion": "Colecistitis aguda: triángulo hepatocístico disecado, placa cística separada, conducto y arteria císticos. Foto: Shergill et al., Cureus 2026, CC BY 4.0, editada por Empirica."
+          "descripcion": "Colecistitis aguda: triángulo hepatocístico disecado, placa cística separada, conducto y arteria císticos.",
+          "en_texto": "Visión crítica de seguridad"
         }
       ],
       "nota_adicional": "Convertir a abierta si hay inflamación local grave, adherencias, sangrado del triángulo de Calot o sospecha de lesión de la vía biliar.",
@@ -2670,7 +2664,8 @@
         {
           "recurso": "biliar_drenaje_real.jpg",
           "titulo": "Drenaje vesicular: tres vías",
-          "descripcion": "Colecistostomía percutánea real y cuándo elegir cada vía. Foto: Jmarchn (CC0), rotulada por Empirica."
+          "descripcion": "Colecistostomía percutánea real y cuándo elegir cada vía.",
+          "en_texto": "colecistostomía"
         }
       ],
       "alertas": [
@@ -2839,7 +2834,8 @@
         {
           "recurso": "biliar_coledoco_eco_real.jpg",
           "titulo": "Cálculo en el colédoco en la ecografía",
-          "descripcion": "Un cálculo visto en la imagen es, por sí solo, riesgo alto. Imagen: M. Häggström (CC0), rotulada por Empirica."
+          "descripcion": "Un cálculo visto en la imagen es, por sí solo, riesgo alto.",
+          "en_texto": "ecografía"
         }
       ],
       "nota_adicional": "Con colangitis, tratar primero la colangitis: el drenaje depende de su grado.",
@@ -3042,7 +3038,8 @@
         {
           "recurso": "biliar_colangiorm_recorrido.gif",
           "titulo": "Colangio-RM: dónde está el cálculo",
-          "descripcion": "La bilis se ve blanca y el cálculo, como un hueco oscuro: vesícula con cálculos, vía biliar hasta la papila y cálculos en el colédoco distal. Imagen: Hellerhoff, CC BY-SA 3.0, editada por Empirica."
+          "descripcion": "La bilis se ve blanca y el cálculo, como un hueco oscuro: vesícula con cálculos, vía biliar hasta la papila y cálculos en el colédoco distal.",
+          "en_texto": "colangio-RM"
         }
       ],
       "evidencia": {
@@ -3092,7 +3089,8 @@
         {
           "recurso": "biliar_cpre_real.gif",
           "titulo": "CPRE con extracción con balón",
-          "descripcion": "Esquema traducido, colangiografía con el cálculo impactado y extracción con balón. Drus1a, Samir y F. Viazzi (CC BY-SA), editadas por Empirica."
+          "descripcion": "Esquema traducido, colangiografía con el cálculo impactado y extracción con balón.",
+          "en_texto": "CPRE"
         }
       ],
       "nota_adicional": "Un tiempo (exploración del colédoco con la colecistectomía) o dos tiempos (CPRE y después colecistectomía): ambos son aceptables.",

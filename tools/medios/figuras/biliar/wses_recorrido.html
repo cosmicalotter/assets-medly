@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="wses_es.js"></script>
 <style>
-  .visor{position:relative;width:668px;height:416px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linea);flex:none}
+  .visor{position:relative;width:668px;height:388px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linea);flex:none}
   .camara{position:absolute;left:0;top:0;transform-origin:0 0}
   .rotulo{position:absolute;left:10px;right:10px;bottom:10px;display:flex;gap:10px;align-items:center;background:rgba(31,42,55,.95);color:#fff;border-radius:12px;padding:8px 12px;font-size:15px;font-weight:700;line-height:1.25}
   .rotulo .n{min-width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
@@ -21,7 +21,7 @@ const A = { dx: [[145, 120], [145, 154]], rg: [[215, 224], [244, 224]], gc: [[43
   h48: [[145, 473], [145, 592]], si1: [[145, 728], [145, 808]], no1: [[213, 660], [395, 660]], dren: [[671, 660], [724, 663]],
   si2: [[860, 663], [912, 663]], no2: [[792, 731], [792, 757], [912, 757]] };
 const TURQ = "#18B9A9", AMBAR = "#F2A23A";
-const COMPLETA = [640, 550, 0.378];
+const COMPLETA = [640, 550, 0.352];
 // [cámara (cx, cy, escala), color, cajas, flechas, texto]
 const PASOS = [
   [COMPLETA, TURQ, [], [], "Flujograma de la WSES 2020 para la colecistitis aguda, en español"],
@@ -58,7 +58,7 @@ window.cuadro = function (i, n) {
     svg += flechas.map((f) => flecha(A[f], color, 9, 0.75 * u)).join("");
     svg += cajas.map((c) => forma(C[c], color, 5, 0.2 * u)).join("");
   }
-  const vista = `<div class="camara" style="transform:translate(${334 - cx * s}px,${(k === 0 || k === PASOS.length - 1 ? 208 : 182) - cy * s}px) scale(${s})">${wsesTraducida()}
+  const vista = `<div class="camara" style="transform:translate(${334 - cx * s}px,${(k === 0 || k === PASOS.length - 1 ? 194 : 170) - cy * s}px) scale(${s})">${wsesTraducida()}
     <svg style="position:absolute;left:0;top:0" width="${WSES_ANCHO}" height="${WSES_ALTO}">${svg}</svg></div>`;
   const num = k === 0 ? "▶" : k === PASOS.length - 1 ? "✓" : k;
   lienzo(

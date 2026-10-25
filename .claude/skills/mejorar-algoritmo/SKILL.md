@@ -77,6 +77,9 @@ Orden de trabajo, nodo a nodo:
    Si falta una que la guía usa, skill `crear-calculadora`.
    `ramificar: true` sólo si los `match_opcion_index` de la escala
    corresponden a las opciones de **ese** nodo; si no, `false`.
+   Criterios cuyo resultado decide la rama (diagnóstico, grado, riesgo) van
+   como calculadora con `ramificar: true`, no como `checklist`; si la escala
+   compartida no encaja, se crea su variante (skill `crear-calculadora`).
 6. **Imágenes y GIF**: skill `imagenes-clinicas`.
 7. **Enlaces a otros algoritmos**: por URL raw completa
    (`…/main/data/Adultos/<archivo>.json`), con `nodo_objetivo` si se entra

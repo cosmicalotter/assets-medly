@@ -70,7 +70,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 
 | llave | cuándo | cuánto |
 |---|---|---|
-| `checklist` | criterios que se marcan con el paciente delante: diagnóstico, gravedad, ingreso, UCI, intubación, alta, requisitos antes de un procedimiento | al menos 2 por algoritmo, 1 por cada 12 nodos clínicos |
+| `checklist` | criterios que se marcan con el paciente delante: ingreso, UCI, intubación, alta, requisitos antes de un procedimiento. Si de los criterios sale un resultado que decide la rama (diagnóstico definitivo/sospecha, grado, riesgo), va una calculadora con `ramificar` | al menos 2 por algoritmo, 1 por cada 12 nodos clínicos |
 | `alertas` | lo que mata o daña si se pasa por alto: contraindicación, «no hacer», Clase III | 1 por cada 10 nodos; 1-2 por nodo como mucho |
 | `nota_adicional` | la perla: el error frecuente, la población especial, el truco de exploración, el matiz que cambia la conducta | 1 de cada 3-4 nodos clínicos |
 | `evidencia` | la clase y el nivel que da la guía para ese paso, simplificados: `{"clase": "IIa", "nivel": "B"}` (sin -R, -NR, -LD, -EO); con GRADE, `{"texto": "GRADE: débil a favor"}` | siempre que la guía los dé; si no, nunca |
@@ -79,7 +79,9 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo | cuando la guía trae la tabla |
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
-| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
+| `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo | siempre que exista o se pueda crear la escala (skill `crear-calculadora`) |
+| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Pie (`descripcion`) = qué mirar, sin crédito (va dentro de la imagen) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
+| `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente | cuando pase; nunca inventada |
@@ -96,6 +98,10 @@ repositorio `galgo-empirica`. Lo esencial:
 - Ninguna frase pasa de 30 palabras. Un nodo pasa de 120 palabras sólo si no
   hay forma de partirlo.
 - `**` sólo en dosis, umbrales, tiempos y metas.
+- Viñeta que abre con un rótulo corto y dos puntos («- Soporte de órganos: …»,
+  «- Leve: …»): la app pinta el rótulo en negrita y en el color del nodo,
+  como un semititular. Se usa para enumerar categorías, no en cada viñeta; el
+  rótulo, de 1 a 6 palabras, sin comas ni puntos.
 - «→» para encadenar condición y conducta cuando quede cómodo: «Sangre solo intraventricular → arteriografía». Con moderación, no en cada viñeta.
 - Siglas: la primera vez que aparecen en el algoritmo van con su nombre
   («PAM (presión arterial media)»), después solas.
