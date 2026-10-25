@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:12px;flex:1;min-height:0}
+  .visor{position:relative;width:330px;height:416px;border-radius:14px;overflow:hidden;background:#111;flex:none}
+  .vias{flex:1;display:flex;flex-direction:column;gap:7px}
+  .via{border-radius:12px;padding:8px 11px;background:#F7F8FA;border-left:6px solid var(--teal)}
+  .via h4{font-size:14.5px;margin:0 0 2px}
+  .via p{font-size:12.5px;line-height:1.3;margin:0;color:#374151}
+  .nota{border-radius:10px;padding:8px 11px;background:#FEF3E2;color:#92400e;font-size:12.5px;line-height:1.3}
+</style></head><body>
+<script>
+// Foto real de una colecistostomía percutánea (Jmarchn, Wikimedia Commons, CC0), rotulada por
+// Empirica, y las tres vías de drenaje vesicular en texto (sin dibujos anatómicos).
+const e = 1;
+const rot = (x, y, txt, col, ancla = "start") =>
+  `<text x="${x}" y="${y}" font-size="30" font-weight="800" fill="${col}" text-anchor="${ancla}" stroke="#111" stroke-width="7" paint-order="stroke" stroke-linejoin="round">${txt}</text>`;
+const flecha = (x1, y1, x2, y2, col) => {
+  const a = Math.atan2(y2 - y1, x2 - x1), L = 26, p = (s) => `${x2 - L * Math.cos(a + s)},${y2 - L * Math.sin(a + s)}`;
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="${x2},${y2} ${p(0.45)} ${p(-0.45)}" fill="${col}" stroke="#111" stroke-width="3"/>`;
+};
+const foto = `<image href="fuentes/colecistostomia_jmarchn.jpg" x="0" y="0" width="800" height="983"/>
+  <circle cx="500" cy="375" r="58" fill="#2DD4BF" fill-opacity=".15" stroke="#2DD4BF" stroke-width="7"/>
+  ${flecha(330, 230, 452, 330, "#2DD4BF")}${rot(120, 212, "salida del catéter", "#5EEAD4")}
+  ${flecha(620, 580, 470, 520, "#FDE047")}${rot(560, 620, "sonda", "#FDE047")}
+  ${flecha(160, 610, 215, 520, "#93C5FD")}${rot(70, 650, "bolsa colectora", "#BFDBFE")}`;
+lienzo(
+  "Drenaje vesicular: tres vías",
+  "Si no tolera la cirugía o no responde al tratamiento médico",
+  `<div class="fila">
+     <div class="visor"><svg width="330" height="416" viewBox="40 60 700 883" preserveAspectRatio="xMidYMid slice">${foto}</svg></div>
+     <div class="vias">
+       <div class="via"><h4>1 · Percutánea transhepática (PTGBD)</h4><p>Colecistostomía, como la de la foto: <b>el estándar</b> en el paciente de alto riesgo quirúrgico.</p></div>
+       <div class="via" style="border-color:#4F8CF6"><h4>2 · Transmural guiada por USE</h4><p>Con stent metálico de aposición luminal (LAMS), si la hace un endoscopista experto: <b>preferida a la transpapilar</b>.</p></div>
+       <div class="via" style="border-color:#7B6CF6"><h4>3 · Endoscópica transpapilar</h4><p>En centros de alto volumen y con endoscopista experto.</p></div>
+       <div class="nota">En todas: <b>cultivar la bilis</b>. Después, colecistectomía diferida cuando baje el riesgo.</div>
+     </div></div>`,
+  "Foto: Jmarchn, Wikimedia Commons (CC0), rotulada por Empirica. Fuente: Guías de Tokio 2018 (Mori et al., Q1); WSES 2020 (recomendaciones 6.4-6.8)."
+);
+</script></body></html>

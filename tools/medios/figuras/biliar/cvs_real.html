@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Foto intraoperatoria real (Shergill et al., Cureus 2026;18:e114513, Fig. 3A, CC BY 4.0):
+// visión crítica de seguridad lograda en una colecistitis aguda. Rótulos originales borrados
+// (tools/medios/borrar_rotulos.py) y rehechos en español en el mismo sitio que los de los autores.
+const TURQ = "#2DD4BF", AMAR = "#FDE047", VERDE = "#86EFAC", ROJO = "#FCA5A5";
+recorrido({
+  titulo: "Colecistectomía segura: la visión crítica",
+  subtitulo: "Foto real de una colecistitis aguda, paso a paso",
+  credito: "Foto: Shergill et al., Cureus 2026 (Fig. 3A), CC BY 4.0, editada por Empirica. Fuente: Guías de Tokio 2018 (Wakabayashi et al., Fig. 2 y Q2-Q3).",
+  escenas: [{
+    img: "fuentes/cvs_shergill_2026.jpg", w: 1200, h: 698, vista: [100, -184, 1000, 1067],
+    pasos: [
+      { texto: "Visión crítica de seguridad (<b>CVS</b>) lograda" },
+      { texto: "Triángulo hepatocístico disecado: se ve el hígado detrás", vista: [375, 90, 450, 480],
+        dibujo: (u, e) => D.elipse(492, 395, 92 * u, 75 * u, 10, TURQ, e) + D.elipse(705, 262, 58 * u, 70 * u, 0, TURQ, e) +
+          D.rotulo(492, 300, "ventana", "#5EEAD4", e, { ancla: "middle", op: u }) },
+      { texto: "Tercio inferior del lecho vesicular (placa cística) separado", vista: [542, 60, 356, 380],
+        dibujo: (u, e) => D.flecha(862, 236, 750, 229, AMAR, e, 1, u) + D.rotulo(770, 214, "placa cística", AMAR, e, { op: u }) },
+      { texto: "Entra en la vesícula: el <b>conducto cístico</b>", vista: [203, 260, 394, 420],
+        dibujo: (u, e) => D.flecha(305, 560, 336, 512, VERDE, e, 1, u) + D.rotulo(310, 584, "conducto cístico", VERDE, e, { ancla: "middle", op: u }) },
+      { texto: "Y la <b>arteria cística</b> (con el ganglio de Lund)", vista: [540, 150, 394, 420],
+        dibujo: (u, e) => D.flecha(784, 368, 675, 368, ROJO, e, 1, u) + D.rotulo(792, 374, "arteria cística", ROJO, e, { op: u }) },
+      { texto: "Confirmarla en una <b>pausa</b> antes de clipar o cortar", vista: [100, -184, 1000, 1067],
+        dibujo: (u, e) => `<g opacity="${u}" transform="translate(465 -90)"><rect width="${270}" height="${54}" rx="16" fill="#2FB36D" stroke="#111" stroke-width="2"/>
+          <text x="135" y="36" font-size="27" font-weight="800" fill="#fff" text-anchor="middle">pausa: ¿CVS? ✓</text></g>` },
+    ],
+  }],
+  final: `<span style="color:#FCA5A5">Sin CVS por cicatriz o fibrosis grave</span> → rescate: colecistectomía subtotal o conversión.`,
+});
+</script></body></html>

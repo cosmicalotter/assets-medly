@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// CPRE en tres imágenes reales de Wikimedia Commons, editadas por Empirica:
+//  - esquema de Drus1a (CC BY-SA 4.0), rótulos borrados y traducidos en el sitio;
+//  - colangiografía de Samir (CC BY-SA 3.0): cálculo impactado en el colédoco distal, según su autor;
+//  - foto endoscópica de F. Viazzi (CC BY-SA 4.0): extracción de cálculos con balón.
+const AMAR = "#FDE047", AZUL = "#93C5FD", ROJO = "#FCA5A5", TURQ = "#2DD4BF";
+// Rótulo del esquema: negro con halo blanco y tamaño fijo, como los del original.
+const et = (x, y, txt, ancla = "start", tam = 34) =>
+  `<text x="${x}" y="${y}" font-size="${tam}" font-weight="600" fill="#111" text-anchor="${ancla}" stroke="#fff" stroke-width="7" paint-order="stroke" stroke-linejoin="round">${txt}</text>`;
+recorrido({
+  titulo: "CPRE: extracción del cálculo",
+  subtitulo: "Esquema, colangiografía y endoscopia reales",
+  credito: "Imágenes: Drus1a (CC BY-SA 4.0), Samir (CC BY-SA 3.0) y F. Viazzi (CC BY-SA 4.0), Wikimedia Commons, editadas por Empirica. Fuente: ESGE 2019, ASGE 2019.",
+  escenas: [
+    {
+      img: "fuentes/cpre_esquema_drus1a.jpg", w: 1200, h: 1200, vista: [0, -40, 1200, 1280],
+      encima: () => et(300, 62, "conducto cístico") + et(756, 88, "hepático", "middle") + et(756, 128, "común", "middle") +
+        et(20, 212, "vesícula") + et(14, 482, "catéter en") + et(14, 524, "el colédoco") +
+        et(1164, 545, "el endoscopio", "end") + et(1164, 587, "pasa por el", "end") + et(1164, 629, "estómago", "end") +
+        et(606, 1045, "entra por") + et(606, 1088, "la boca") + et(86, 1112, "CPRE", "start", 78),
+      pasos: [
+        { texto: "El duodenoscopio entra por la boca y pasa por el estómago",
+          dibujo: (u, e) => D.anillo(960, 860, 60, TURQ, e, u) },
+        { texto: "En el duodeno se canula la papila: catéter en el <b>colédoco</b>", vista: [250, 150, 560, 597],
+          dibujo: (u, e, t) => D.anillo(507, 410, 46, AMAR, e, u, t ? Math.sin(t * 80) : 0) },
+      ],
+    },
+    {
+      img: "fuentes/cpre_colangiografia_calculo.jpg", w: 776, h: 796, vista: [15, 0, 746, 796],
+      pasos: [
+        { texto: "Colangiografía: el contraste rellena la vía biliar (negro)",
+          dibujo: (u, e) => D.flecha(560, 470, 425, 520, AZUL, e, 1, u) + D.rotulo(566, 462, "colédoco", AZUL, e, { op: u }) },
+        { texto: "El contraste se corta: <b>cálculo impactado</b> en el colédoco distal", vista: [290, 470, 270, 288],
+          dibujo: (u, e, t) => D.anillo(425, 628, 26, ROJO, e, u, t ? Math.sin(t * 80) : 0) + D.rotulo(458, 664, "cálculo", ROJO, e, { op: u }) },
+      ],
+    },
+    {
+      img: "fuentes/cpre_balon_viazzi.jpg", w: 800, h: 800, vista: [25, 0, 750, 800],
+      pasos: [
+        { texto: "Barrido con <b>balón</b>: el cálculo sale al duodeno",
+          dibujo: (u, e) => D.elipse(655, 295, 150 * u, 155 * u, 0, AZUL, e, 1, true) + D.rotulo(655, 490, "balón", AZUL, e, { ancla: "middle", op: u }) +
+            D.flecha(330, 120, 455, 165, ROJO, e, 1, u) + D.rotulo(110, 112, "cálculo extraído", ROJO, e, { op: u }) },
+      ],
+    },
+  ],
+  final: `Después de la CPRE: <b style="color:#5EEAD4">colecistectomía laparoscópica en ≤2 semanas</b>.`,
+});
+</script></body></html>

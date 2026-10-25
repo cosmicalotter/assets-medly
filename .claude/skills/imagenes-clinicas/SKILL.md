@@ -114,6 +114,23 @@ Plantillas hechas (patología biliar, `tools/medios/figuras/biliar/`):
 | `colangiorm_coledocolitiasis.html` | foto de Commons: tapa flechas, traza la vía biliar medida, lista de pasos, zoom a los cálculos, tarjeta final |
 | `wses_es.js` + `wses_flujo_es.html` | figura de la guía traducida al español encima del original (PNG fijo) |
 | `wses_recorrido.html` | la misma figura recorrida con cámara y los dos caminos realzados |
+| `recorrido.js` | **motor común**: escenas con imagen real, pasos con cámara, flechas, anillos, calibres y tarjeta final; ver `murphy_real.html`, `eco_real.html`, `cvs_real.html`, `cpre_real.html` |
+| `drenaje_real.html`, `coledoco_eco_real.html` | foto real rotulada + tarjetas de texto (imagen fija) |
+
+Para borrar rótulos, flechas o datos del paciente de la imagen original sin
+dejar cuadros negros: `python3 tools/medios/borrar_rotulos.py entrada salida
+--caja x0,y0,x1,y1 [--linea x1,y1,x2,y2] [--rojo] [--recorte …] [--ancho …]`
+(rellena con el tejido de alrededor; necesita `opencv-python-headless`). Los
+rótulos nuevos van en el mismo sitio que los borrados, que tapan la mancha.
+Siempre se borra un número de registro o nombre de paciente que traiga la imagen.
+
+Si la imagen es casi toda gris (ecografía, foto antigua), armar el GIF con
+`--colores 256`: con la paleta común los rojos y amarillos salen marrones.
+Las fotos clínicas se buscan también en artículos CC BY de PubMed Central
+(Cureus, BMC, Frontiers…; ojo, Baishideng y otras son CC BY-NC): la figura se
+baja de `cdn.ncbi.nlm.nih.gov/pmc/blobs/…` (aparece en el HTML del artículo).
+Desde la nube, Commons sirve imágenes por `commons.wikimedia.org/w/thumb.php?f=<archivo>&w=<ancho>`
+cuando `upload.wikimedia.org` responde 429.
 
 Crédito de lo editado: en `creditos.json`, `"cambios"` dice qué se tapó,
 tradujo o añadió y qué HTML lo genera. Con CC BY-SA la obra derivada se

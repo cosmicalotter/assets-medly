@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:12px;flex:1;min-height:0}
+  .visor{position:relative;width:390px;height:416px;border-radius:14px;overflow:hidden;background:#111;flex:none}
+  .lado{flex:1;display:flex;flex-direction:column;gap:7px}
+  .c{border-radius:12px;padding:9px 11px;background:#F7F8FA;font-size:13px;line-height:1.35}
+  .c.alto{background:#1F2A37;color:#fff;font-weight:700}
+</style></head><body>
+<script>
+// Ecografía real (M. Häggström, Wikimedia Commons, CC0): colédoco levemente dilatado con
+// un probable cálculo (flecha negra del autor). Rotulada por Empirica.
+const rot = (x, y, txt, col, ancla = "start") =>
+  `<text x="${x}" y="${y}" font-size="17" font-weight="800" fill="${col}" text-anchor="${ancla}" stroke="#111" stroke-width="4.5" paint-order="stroke" stroke-linejoin="round">${txt}</text>`;
+const foto = `<image href="fuentes/eco_coledoco_calculo_haggstrom.jpg" x="0" y="0" width="516" height="547"/>
+  <circle cx="340" cy="472" r="22" fill="#EF5454" fill-opacity=".15" stroke="#EF5454" stroke-width="3.5"/>
+  ${rot(372, 462, "cálculo", "#FCA5A5")}
+  <circle cx="368" cy="422" r="11" fill="none" stroke="#93C5FD" stroke-width="2.5"/>
+  ${rot(350, 416, "vaso (Doppler)", "#BFDBFE", "end")}`;
+lienzo(
+  "Cálculo en el colédoco en la ecografía",
+  "Imagen real: un hallazgo que por sí solo es de riesgo alto",
+  `<div class="fila">
+     <div class="visor"><svg width="390" height="416" viewBox="150 184 340 363" preserveAspectRatio="xMidYMid slice">${foto}</svg></div>
+     <div class="lado">
+       <div class="c">Colédoco levemente dilatado con un <b>cálculo</b> (flecha negra).</div>
+       <div class="c">Los puntos de color son <b>flujo Doppler</b>: sirven para distinguir los vasos de la vía biliar.</div>
+       <div class="c alto">Cálculo visto en eco, TC o RM = <span style="color:#FCA5A5">riesgo alto</span> → CPRE.</div>
+     </div></div>`,
+  "Imagen: M. Häggström, Wikimedia Commons (CC0), rotulada por Empirica. Fuente: ASGE 2019 sobre coledocolitiasis (Tabla 17)."
+);
+</script></body></html>

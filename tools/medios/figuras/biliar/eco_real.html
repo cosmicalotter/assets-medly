@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Dos ecografías reales de colecistitis aguda, editadas por Empirica:
+//  - Häggström (Commons, CC0): pared engrosada y líquido perivesicular, según su autor.
+//  - Heilman (Commons, CC BY-SA 3.0): pared medida en 4,7 mm y cálculos, según su autor;
+//    flechas rojas originales y número de registro borrados (tools/medios/borrar_rotulos.py).
+const TURQ = "#2DD4BF", AMAR = "#FDE047", AZUL = "#93C5FD", ROJO = "#FCA5A5";
+recorrido({
+  titulo: "Ecografía de la colecistitis aguda",
+  subtitulo: "Dos ecografías reales, hallazgo por hallazgo",
+  credito: "Imágenes: M. Häggström (CC0) y J. Heilman, MD (CC BY-SA 3.0), Wikimedia Commons, editadas por Empirica. Fuente: Guías de Tokio 2018 (Yokoe et al.).",
+  escenas: [
+    {
+      img: "fuentes/eco_haggstrom_colecistitis.jpg", w: 673, h: 571, vista: [69, 0, 535, 571],
+      pasos: [
+        { texto: "Vesícula: la bilis se ve <b>negra</b>",
+          dibujo: (u, e) => `<path d="M252 134 C300 106 400 96 470 99 L470 345 C400 352 330 356 300 352 C266 341 246 311 243 270 C240 222 240 172 252 134 Z"
+              fill="${TURQ}" fill-opacity=".08" stroke="${TURQ}" stroke-width="${3 * e}" stroke-dasharray="${10 * e} ${7 * e}" opacity="${u}"/>` +
+            D.rotulo(360, 230, "vesícula", "#5EEAD4", e, { ancla: "middle", op: u }) },
+        { texto: "<b>Pared engrosada</b>", vista: [70, 110, 300, 320],
+          dibujo: (u, e) => D.flecha(105, 330, 205, 300, AMAR, e, 1, u) + D.rotulo(100, 352, "pared engrosada", AMAR, e, { op: u }) },
+        { texto: "<b>Líquido perivesicular</b>: banda oscura junto a la pared", vista: [70, 60, 300, 320],
+          dibujo: (u, e) => D.flecha(110, 150, 206, 195, AZUL, e, 1, u) + D.rotulo(96, 136, "líquido perivesicular", AZUL, e, { op: u }) },
+      ],
+    },
+    {
+      img: "fuentes/eco_heilman_pared_calculos.jpg", w: 506, h: 374, vista: [78, 0, 351, 374],
+      pasos: [
+        { texto: "Pared de <b>4,7 mm</b>: cuenta desde <b>≥4 mm</b>", vista: [200, 85, 170, 181],
+          dibujo: (u, e) => D.calibre(281, 141, 281, 157, AMAR, e, u) + D.rotulo(292, 132, "4,7 mm", AMAR, e, { op: u }) },
+        { texto: "<b>Cálculos</b>: focos brillantes dentro de la vesícula", vista: [180, 95, 200, 213],
+          dibujo: (u, e, t) => D.anillo(277, 180, 24, ROJO, e, u, t ? Math.sin(t * 80) : 0) + D.rotulo(310, 210, "cálculos", ROJO, e, { op: u }) },
+        { texto: "Sombra acústica <b>detrás</b> de los cálculos", vista: [120, 60, 300, 320],
+          dibujo: (u, e) => `<polygon points="256,204 304,204 316,352 246,352" fill="#4F8CF6" fill-opacity="${0.22 * u}" stroke="${AZUL}" stroke-width="${3 * e}" stroke-dasharray="${8 * e} ${6 * e}" opacity="${u}"/>` +
+            D.rotulo(322, 300, "sombra", AZUL, e, { op: u }) },
+      ],
+    },
+  ],
+  final: `<b style="color:#5EEAD4">Murphy ecográfico:</b> el mismo dolor al presionar la vesícula con el transductor.`,
+});
+</script></body></html>
