@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script><script src="../biliar/recorrido.js"></script><script src="recorrido_ancho.js"></script></head><body>
+<script>
+// ECG real (Ahmad A, Ahmad F, Nuri MMH. Cureus 2025;17(10):e94011, figura 1, CC BY 4.0): niño de
+// 8 años con convulsiones y síncopes que no respondían a los anticrisis; síndrome de Jervell y
+// Lange-Nielsen. QT 680 ms y QTc 650 ms según los autores (pág. 2); umbrales de cribado y pistas
+// clínicas de su discusión (pág. 3). El ECG tras una primera crisis es de NICE NG217 (1.2.2).
+// El compás va en la derivación II de la tira larga (B): del inicio del QRS al final de la T.
+const ROJO = "#EF5454", TURQ = "#2DD4BF";
+const QRS = 351, FIN_T = 457, YC = 333;
+const compas = (u, col, e, rot) => {
+  const x2 = QRS + (FIN_T - QRS) * u;
+  return `<g stroke="${col}" stroke-width="${3 * e}" stroke-linecap="round">
+      <line x1="${QRS}" y1="${YC - 8}" x2="${QRS}" y2="${YC + 45}" stroke-dasharray="${5 * e} ${4 * e}"/>
+      <line x1="${QRS}" y1="${YC}" x2="${x2}" y2="${YC}"/>
+      ${u > 0.98 ? `<line x1="${FIN_T}" y1="${YC - 8}" x2="${FIN_T}" y2="${YC + 50}" stroke-dasharray="${5 * e} ${4 * e}"/>` : ""}</g>` +
+    (rot ? D.rotulo((QRS + FIN_T) / 2, YC - 6 * e, rot, col === ROJO ? "#FCA5A5" : "#5EEAD4", e, { ancla: "middle", tam: 15 }) : "");
+};
+recorridoAncho({
+  titulo: "ECG tras una crisis: QT largo",
+  subtitulo: "Niño de 8 años con «crisis» que eran arritmias (síndrome de Jervell y Lange-Nielsen)",
+  credito: "ECG: Ahmad A, Ahmad F, Nuri MMH. Cureus 2025;17(10):e94011, CC BY 4.0, editado por Empirica. Fuente: NICE NG217 (1.2.2) y Ahmad 2025.",
+  alto: 250,
+  escenas: [{
+    img: "fuentes/ecg_qt_largo_ahmad_2025.jpg", w: 1500, h: 614, vista: [0, 0, 1500, 614],
+    filtro: "grayscale(1) contrast(1.45) brightness(1.18)",
+    pasos: [
+      { texto: "Tras la crisis: ECG de <b>12 derivaciones</b>",
+        dibujo: (u, e, t) => t === null ? "" :
+          `<rect x="8" y="8" width="1484" height="262" rx="18" fill="none" stroke="${TURQ}" stroke-width="${3.5 * e}" opacity="${u}"/>` +
+          D.rotulo(750, 254, "12 derivaciones", "#5EEAD4", e, { ancla: "middle", op: u, tam: 16 }) },
+      { texto: "QT: del inicio del QRS al final de la T", vista: [290, 300, 267, 100],
+        dibujo: (u, e, t) => t === null ? "" : compas(u, TURQ, e, "QT") },
+      { texto: "QT <b>680 ms</b>, QTc <b>650 ms</b>: muy largo", vista: [290, 300, 267, 100],
+        dibujo: (u, e, t) => compas(1, ROJO, e, t === null ? "QTc 650 ms" : "QT 680 · QTc 650 ms") },
+      { texto: "Cribado: QTc <b>≥440 ms</b> niños, <b>≥450 ms</b> niñas", vista: [0, 0, 1500, 614] },
+    ],
+  }],
+  final: `Crisis breve, síncope antes de convulsionar o muerte súbita en la familia → <span style="color:#FCA5A5">pensar en QT largo</span>.`,
+});
+</script></body></html>

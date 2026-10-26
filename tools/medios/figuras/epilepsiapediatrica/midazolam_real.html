@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script><script src="../biliar/recorrido.js"></script></head><body>
+<script>
+// Foto real (Nenad Stojković, Wikimedia Commons, CC BY 2.0): jeringa oral en la boca de un
+// niño. Encima, la técnica del midazolam bucal de la ficha técnica de Buccolam (EMA, 4.2 y 6.6):
+// punta al fondo del espacio entre la mejilla y la encía inferior, vaciar despacio y, si el
+// volumen es grande, la mitad en cada lado. Dosis de RCUK EPALS 2021; 2.ª dosis de NICE 7.1.8.
+const TURQ = "#2DD4BF", AMAR = "#FDE047", AZUL = "#93C5FD", ROJO = "#FCA5A5";
+const PUNTA = [697, 211];
+const BOLSILLO = "M697 214 C735 222 770 232 808 246 C835 256 858 262 880 262";
+recorrido({
+  titulo: "Midazolam bucal",
+  subtitulo: "Por dentro de la mejilla, nunca hacia la garganta",
+  credito: "Foto: Nenad Stojković, Wikimedia Commons, CC BY 2.0, editada por Empirica. Fuente: ficha técnica de Buccolam (EMA, 4.2 y 6.6), RCUK EPALS 2021 y NICE NG217 (7.1.8).",
+  escenas: [{
+    img: "fuentes/jeringa_oral_stojkovic.jpg", w: 1280, h: 853, vista: [300, 0, 856, 853],
+    pasos: [
+      { texto: "Dosis por edad (ficha técnica) o <b>0,3-0,5 mg/kg</b>",
+        dibujo: (u, e, ahora) => ahora === null ? "" : D.rotulo(470, 175, "jeringa oral", TURQ, e, { op: u, tam: 16 }) +
+          D.flecha(500, 190, 575, 255, TURQ, e, u) },
+      { texto: "Quitar el tapón de la punta", vista: [560, 80, 300, 299],
+        dibujo: (u, e, ahora) => D.anillo(PUNTA[0] - 6, PUNTA[1] + 2, 26, AMAR, e, u) + (ahora === null ? "" :
+          D.rotulo(PUNTA[0] - 6, PUNTA[1] - 40, "punta sin tapón", AMAR, e, { ancla: "middle", op: u })) },
+      { texto: "Pinzar y separar la mejilla", vista: [560, 40, 470, 468],
+        dibujo: (u, e, ahora) => ahora === null ? "" : D.flecha(830, 300, 830 + 70 * u, 335, AZUL, e, u) +
+          D.rotulo(845, 380, "separar la mejilla", AZUL, e, { op: u }) },
+      { texto: "Punta al fondo, entre mejilla y encía inferior", vista: [600, 70, 380, 378],
+        dibujo: (u, e, ahora) => D.elipse(800, 246, 92 * u, 38 * u, 14, TURQ, e, u, true) +
+          `<path d="${BOLSILLO}" fill="none" stroke="${TURQ}" stroke-width="${4 * e}" stroke-linecap="round"
+             stroke-dasharray="${400}" stroke-dashoffset="${400 * (1 - u)}"/>` +
+          (ahora === null ? "" : D.rotulo(800, 320, "entre mejilla y encía", "#5EEAD4", e, { ancla: "middle", op: u })) },
+      { texto: "Vaciar despacio, hasta el tope", vista: [430, 60, 520, 517],
+        dibujo: (u, e, ahora) => ahora === null ? "" : D.flecha(520, 345, 520 + 95 * u, 345 - 80 * u, AMAR, e, 1, 1) +
+          D.rotulo(500, 400, "despacio", AMAR, e, { op: u, tam: 16 }) },
+      { texto: "Mucho volumen o niño pequeño: mitad en cada lado", vista: [300, 0, 856, 853],
+        dibujo: (u, e) => `<g opacity="${u}"><rect x="${640}" y="${30}" width="${300}" height="${70}" rx="18" fill="#1F2A37" stroke="#111" stroke-width="2"/>
+          <text x="790" y="78" font-size="34" font-weight="800" fill="#fff" text-anchor="middle">½ + ½</text></g>` +
+          D.rotulo(790, 130, "una mitad en cada mejilla", "#E5E7EB", e, { ancla: "middle", op: u }) },
+    ],
+  }],
+  final: `Anotar la hora. <span style="color:#FCA5A5">Sigue a los 5-10 min</span> → 2.ª dosis de benzodiacepina y ayuda experta.`,
+});
+</script></body></html>

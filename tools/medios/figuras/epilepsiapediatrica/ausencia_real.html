@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script><script src="../biliar/recorrido.js"></script><script src="eeg_fijo.js"></script></head><body>
+<script>
+// EEG real de una crisis de ausencia (Bromfield EB, Cavazos JE, Sirven JI, eds. An Introduction to
+// Epilepsy. American Epilepsy Society; 2006, vía Wikimedia Commons, CC BY-SA 4.0). Lo que se
+// rotula sale de Rinaldi 2021 (Pediatr Rep 13:658-667): punta-onda a 3 Hz, bilateral, simétrica
+// y sincrónica, que empieza y acaba de golpe (pág. 659); se desencadena al hiperventilar (pág. 658).
+const TURQ = "#2DD4BF", AMAR = "#FDE047";
+const INI = 248, FIN = 758;
+eegFijo({
+  titulo: "EEG: crisis de ausencia",
+  subtitulo: "Punta-onda generalizada a 3 Hz que empieza y acaba de golpe",
+  credito: "EEG: Bromfield EB, Cavazos JE, Sirven JI (eds.), An Introduction to Epilepsy, AES 2006, Wikimedia Commons, CC BY-SA 4.0, rotulado por Empirica. Fuente: Rinaldi 2021.",
+  img: "fuentes/eeg_ausencia_bromfield.jpg", w: 889, h: 689, vista: [40, 100, 849, 460],
+  dibujo: (e) => `<rect x="${INI}" y="100" width="${FIN - INI}" height="460" fill="${TURQ}" fill-opacity=".10"/>
+    <line x1="${INI}" y1="100" x2="${INI}" y2="560" stroke="${TURQ}" stroke-width="${3 * e}" stroke-dasharray="${8 * e} ${6 * e}"/>
+    <line x1="${FIN}" y1="100" x2="${FIN}" y2="560" stroke="${TURQ}" stroke-width="${3 * e}" stroke-dasharray="${8 * e} ${6 * e}"/>` +
+    D.rotulo(INI + 10, 130, "empieza de golpe", AMAR, e, { tam: 15 }) +
+    D.rotulo(FIN - 10, 130, "acaba de golpe", AMAR, e, { ancla: "end", tam: 15 }) +
+    D.rotulo((INI + FIN) / 2, 548, "todas las derivaciones a la vez", "#5EEAD4", e, { ancla: "middle", tam: 15 }),
+  nota: `Bilateral y simétrica, <b>~3 Hz</b>. Hiperventilar en la consulta puede desencadenarla.`,
+});
+</script></body></html>
