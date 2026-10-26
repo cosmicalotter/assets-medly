@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  Plantilla de las ilustraciones propias de Empirica. Se copia al scratchpad,
+  se cambia el dibujo y se pasa por tools/medios/capturar.js.
+
+  Reglas: 720×540 (4:3, se lee en la tarjeta de 288 px y a pantalla completa),
+  fondo blanco, tonos del contrato, rótulos en español y cifras en negrita.
+  `cuadro(i, total)` dibuja el estado i; con --cuadros 1 sale un PNG estático.
+
+  El ejemplo es el llenado capilar: presión, blanqueo y recoloración con el
+  cronómetro, para que se vea qué es normal. Sustituir entero por el tema.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --teal: #18B9A9; --violeta: #7B6CF6; --rojo: #EF5454; --ambar: #F2A23A;
+    --verde: #2FB36D; --azul: #4F8CF6; --celeste: #3BA7E0;
+    --tinta: #1F2A37; --suave: #6B7280; --linea: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; color: var(--tinta); }
+  #lienzo { width: 720px; height: 540px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; background: #fff; }
+  .cabecera { display: flex; align-items: center; justify-content: space-between; }
+  .titulo { font-size: 26px; font-weight: 700; }
+  .marca { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+  .escena { flex: 1; border: 1px solid var(--linea); border-radius: 16px; display: grid; place-items: center; }
+  .pie { display: flex; gap: 10px; }
+  .paso { flex: 1; padding: 10px 12px; border-radius: 10px; background: #F3F4F6; color: var(--suave); font-size: 15px; }
+  .paso b { color: var(--tinta); }
+  .paso.activo { background: color-mix(in srgb, var(--teal) 14%, white); color: var(--tinta); outline: 2px solid var(--teal); }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div class="cabecera">
+    <div class="titulo">Midazolam bucal</div>
+    <div class="marca">Empirica</div>
+  </div>
+  <div class="escena">
+    <svg id="dibujo" width="640" height="320" viewBox="0 0 640 320"></svg>
+  </div>
+  <div class="pie">
+    <div class="paso" id="p0"><b>1.</b> Cargar <b>0,3-0,5 mg/kg</b></div>
+    <div class="paso" id="p1"><b>2.</b> Punta por dentro de la mejilla</div>
+    <div class="paso" id="p2"><b>3.</b> Vaciar y cronometrar: 2.ª dosis a los <b>5-10 min</b></div>
+  </div>
+</div>
+<script>
+  const svg = document.getElementById("dibujo");
+  const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+  window.cuadro = function (i, total) {
+    const t = total > 1 ? i / (total - 1) : 1;
+    const llegar = ease(t / 0.4);                 // 0-40 %: la jeringa entra
+    const vaciar = ease((t - 0.45) / 0.35);       // 45-80 %: el émbolo baja
+    const reloj = ease((t - 0.8) / 0.2);          // 80-100 %: cronómetro
+    const tx = 20 + llegar * 240;                 // punta: de 20 a 260 (dentro de la mejilla)
+    const embolo = 120 * (1 - vaciar);            // líquido que queda
+    const paso = t < 0.42 ? 1 : t < 0.8 ? 2 : 2;
+    svg.innerHTML = `
+      <!-- cabeza de perfil, mirando a la izquierda -->
+      <ellipse cx="300" cy="150" rx="130" ry="128" fill="#F6D7C3" stroke="#D9B39C" stroke-width="3"/>
+      <path d="M190 120 Q150 150 175 175" fill="#F6D7C3" stroke="#D9B39C" stroke-width="3"/>
+      <circle cx="240" cy="105" r="9" fill="#1F2A37"/>
+      <path d="M215 80 Q240 70 262 82" fill="none" stroke="#8B6F5E" stroke-width="4" stroke-linecap="round"/>
+      <path d="M300 30 Q420 10 430 120 Q400 60 300 60 Z" fill="#8B6F5E"/>
+      <!-- boca y bolsillo de la mejilla (mucosa) -->
+      <path d="M185 200 Q210 215 245 205" fill="none" stroke="#B05A5A" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="248" cy="200" rx="34" ry="20" fill="#F2B8B8" opacity="${0.35 + 0.5 * vaciar}" stroke="#E08A8A" stroke-width="2" stroke-dasharray="5 4"/>
+      <line x1="262" y1="218" x2="300" y2="292" stroke="#9CA3AF" stroke-width="1.5"/><text x="306" y="302" font-size="15" fill="#6B7280">mucosa de la mejilla</text>
+      <!-- jeringa oral: entra por la comisura hasta el bolsillo de la mejilla -->
+      <g>
+        <rect x="${tx - 30}" y="196" width="30" height="10" rx="4" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2"/>
+        <rect x="${tx - 180}" y="185" width="150" height="32" rx="6" fill="#fff" stroke="#9CA3AF" stroke-width="3"/>
+        <rect x="${tx - 34 - embolo}" y="189" width="${embolo}" height="24" rx="3" fill="#4F8CF6" opacity="0.75"/>
+        <rect x="${tx - 38 - embolo}" y="183" width="8" height="36" fill="#6B7280"/>
+        <rect x="${tx - 38 - embolo - 90}" y="197" width="90" height="8" fill="#9CA3AF"/>
+        <rect x="${tx - 38 - embolo - 100}" y="181" width="10" height="40" rx="3" fill="#6B7280"/>
+      </g>
+      <!-- cronómetro -->
+      <g transform="translate(520, 40)" opacity="${reloj}">
+        <circle cx="50" cy="50" r="44" fill="#fff" stroke="#18B9A9" stroke-width="8"/>
+        <text x="50" y="47" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2A37">hora</text>
+        <text x="50" y="68" text-anchor="middle" font-size="14" fill="#6B7280">anotada</text>
+      </g>`;
+    const k = t < 0.42 ? 0 : t < 0.8 ? 1 : 2;
+    [0, 1, 2].forEach((j) => document.getElementById("p" + j).classList.toggle("activo", j === k));
+  };
+  window.cuadro(0, 1);
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+  Plantilla de las ilustraciones propias de Empirica. Se copia al scratchpad,
+  se cambia el dibujo y se pasa por tools/medios/capturar.js.
+
+  Reglas: 720×540 (4:3, se lee en la tarjeta de 288 px y a pantalla completa),
+  fondo blanco, tonos del contrato, rótulos en español y cifras en negrita.
+  `cuadro(i, total)` dibuja el estado i; con --cuadros 1 sale un PNG estático.
+
+  El ejemplo es el llenado capilar: presión, blanqueo y recoloración con el
+  cronómetro, para que se vea qué es normal. Sustituir entero por el tema.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --teal: #18B9A9; --violeta: #7B6CF6; --rojo: #EF5454; --ambar: #F2A23A;
+    --verde: #2FB36D; --azul: #4F8CF6; --celeste: #3BA7E0;
+    --tinta: #1F2A37; --suave: #6B7280; --linea: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; color: var(--tinta); }
+  #lienzo { width: 720px; height: 540px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; background: #fff; }
+  .cabecera { display: flex; align-items: center; justify-content: space-between; }
+  .titulo { font-size: 26px; font-weight: 700; }
+  .marca { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+  .escena { flex: 1; border: 1px solid var(--linea); border-radius: 16px; display: grid; place-items: center; }
+  .pie { display: flex; gap: 10px; }
+  .paso { flex: 1; padding: 10px 12px; border-radius: 10px; background: #F3F4F6; color: var(--suave); font-size: 15px; }
+  .paso b { color: var(--tinta); }
+  .paso.activo { background: color-mix(in srgb, var(--teal) 14%, white); color: var(--tinta); outline: 2px solid var(--teal); }
+  .tarjeta { border-radius: 14px; padding: 14px 16px; background: #F3F4F6; font-size: 17px; line-height: 1.35; }
+  .tarjeta b { color: var(--tinta); }
+  .rot { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div class="cabecera"><div class="titulo">Plan de emergencia individual</div><div class="marca">Empirica</div></div>
+  <div class="escena"><div style="width:600px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+   <div class="tarjeta" style="border-top:6px solid var(--azul)"><div class="rot">Qué</div><b>Medicación de rescate</b> prescrita y su dosis</div>
+   <div class="tarjeta" style="border-top:6px solid var(--teal)"><div class="rot">Quién</div><b>Quién está entrenado</b> para darla</div>
+   <div class="tarjeta" style="border-top:6px solid var(--ambar)"><div class="rot">Cuándo</div><b>En qué momento</b> darla</div>
+ </div></div>
+  <div class="pie"><div class="paso activo">Si está a mano, <b>se sigue el plan</b> antes que el protocolo general</div></div>
+</div>
+<script>window.cuadro=function(){};</script>
+</body></html>

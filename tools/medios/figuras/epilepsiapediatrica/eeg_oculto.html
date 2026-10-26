@@ -1,0 +1,56 @@
+<!doctype html>
+<!--
+  Plantilla de las ilustraciones propias de Empirica. Se copia al scratchpad,
+  se cambia el dibujo y se pasa por tools/medios/capturar.js.
+
+  Reglas: 720×540 (4:3, se lee en la tarjeta de 288 px y a pantalla completa),
+  fondo blanco, tonos del contrato, rótulos en español y cifras en negrita.
+  `cuadro(i, total)` dibuja el estado i; con --cuadros 1 sale un PNG estático.
+
+  El ejemplo es el llenado capilar: presión, blanqueo y recoloración con el
+  cronómetro, para que se vea qué es normal. Sustituir entero por el tema.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --teal: #18B9A9; --violeta: #7B6CF6; --rojo: #EF5454; --ambar: #F2A23A;
+    --verde: #2FB36D; --azul: #4F8CF6; --celeste: #3BA7E0;
+    --tinta: #1F2A37; --suave: #6B7280; --linea: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; color: var(--tinta); }
+  #lienzo { width: 720px; height: 540px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; background: #fff; }
+  .cabecera { display: flex; align-items: center; justify-content: space-between; }
+  .titulo { font-size: 26px; font-weight: 700; }
+  .marca { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+  .escena { flex: 1; border: 1px solid var(--linea); border-radius: 16px; display: grid; place-items: center; }
+  .pie { display: flex; gap: 10px; }
+  .paso { flex: 1; padding: 10px 12px; border-radius: 10px; background: #F3F4F6; color: var(--suave); font-size: 15px; }
+  .paso b { color: var(--tinta); }
+  .paso.activo { background: color-mix(in srgb, var(--teal) 14%, white); color: var(--tinta); outline: 2px solid var(--teal); }
+  .tarjeta { border-radius: 14px; padding: 14px 16px; background: #F3F4F6; font-size: 17px; line-height: 1.35; }
+  .tarjeta b { color: var(--tinta); }
+  .rot { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div class="cabecera"><div class="titulo">Refractario: mirar el EEG</div><div class="marca">Empirica</div></div>
+  <div class="escena"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:640px">
+   <div class="tarjeta"><div class="rot">Lo que se ve</div>
+     <svg width="290" height="170" viewBox="0 0 290 170"><rect x="40" y="70" width="210" height="60" rx="30" fill="#F6D7C3" stroke="#D9B39C" stroke-width="3"/>
+     <circle cx="70" cy="100" r="34" fill="#F6D7C3" stroke="#D9B39C" stroke-width="3"/><path d="M40 98 h-30" stroke="#4F8CF6" stroke-width="6" stroke-linecap="round"/>
+     <text x="145" y="160" text-anchor="middle" font-size="16" fill="#6B7280">intubado y relajado: quieto</text></svg></div>
+   <div class="tarjeta" style="outline:2px solid var(--rojo)"><div class="rot" style="color:var(--rojo)">El EEG</div>
+     <svg width="290" height="170" viewBox="0 0 290 170"><rect width="290" height="140" rx="10" fill="#fff"/>
+     <polyline points="0,-3.0 3,65.0 6,43.3 9,41.7 12,38.3 15,36.1 18,36.4 21,37.7 24,37.3 27,-3.0 30,65.0 33,25.2 36,26.3 39,31.1 42,36.6 45,39.6 48,39.1 51,37.3 54,65.0 57,39.0 60,41.5 63,41.5 66,37.6 69,31.4 72,26.7 75,26.0 78,-3.0 81,65.0 84,35.5 87,35.0 90,34.0 93,35.0 96,38.7 99,43.0 102,44.4 105,-3.0 108,65.0 111,30.3 114,28.5 117,30.1 120,32.4 123,32.9 126,31.3 129,29.8 132,65.0 135,35.9 138,41.6 141,44.8 144,43.4 147,38.9 150,34.4 153,32.6 156,-3.0 159,65.0 162,33.2 165,29.7 168,26.7 171,27.2 174,31.7 177,38.0 180,42.3 183,-3.0 186,65.0 189,36.9 192,36.4 195,37.7 198,38.4 201,36.1 204,31.1 207,26.4 210,65.0 213,28.4 216,34.0 219,38.2 222,39.2 225,37.7 228,36.6 231,37.9 234,-3.0 237,65.0 240,40.2 243,34.7 246,28.8 249,26.0 252,27.5 255,31.4 258,34.5" fill="none" stroke="#EF5454" stroke-width="2" transform="translate(15,0)"/>
+     <polyline points="0,42.0 3,110.0 6,88.3 9,86.7 12,83.3 15,81.1 18,81.4 21,82.7 24,82.3 27,42.0 30,110.0 33,70.2 36,71.3 39,76.1 42,81.6 45,84.6 48,84.1 51,82.3 54,110.0 57,84.0 60,86.5 63,86.5 66,82.6 69,76.4 72,71.7 75,71.0 78,42.0 81,110.0 84,80.5 87,80.0 90,79.0 93,80.0 96,83.7 99,88.0 102,89.4 105,42.0 108,110.0 111,75.3 114,73.5 117,75.1 120,77.4 123,77.9 126,76.3 129,74.8 132,110.0 135,80.9 138,86.6 141,89.8 144,88.4 147,83.9 150,79.4 153,77.6 156,42.0 159,110.0 162,78.2 165,74.7 168,71.7 171,72.2 174,76.7 177,83.0 180,87.3 183,42.0 186,110.0 189,81.9 192,81.4 195,82.7 198,83.4 201,81.1 204,76.1 207,71.4 210,110.0 213,73.4 216,79.0 219,83.2 222,84.2 225,82.7 228,81.6 231,82.9 234,42.0 237,110.0 240,85.2 243,79.7 246,73.8 249,71.0 252,72.5 255,76.4 258,79.5" fill="none" stroke="#EF5454" stroke-width="2" transform="translate(15,0)"/>
+     <polyline points="0,120.0 3,125.8 6,128.3 9,126.7 12,123.3 15,121.1 18,121.4 21,122.7 24,122.3 27,118.7 30,113.5 33,110.2 36,111.3 39,116.1 42,121.6 45,124.6 48,124.1 51,122.3 54,122.0 57,124.0 60,126.5 63,126.5 66,122.6 69,116.4 72,111.7 75,111.0 78,114.2 81,118.3 84,120.5 87,120.0 90,119.0 93,120.0 96,123.7 99,128.0 102,129.4 105,126.4 108,120.5 111,115.3 114,113.5 117,115.1 120,117.4 123,117.9 126,116.3 129,114.8 132,116.1 135,120.9 138,126.6 141,129.8 144,128.4 147,123.9 150,119.4 153,117.6 156,118.5 159,119.4 162,118.2 165,114.7 168,111.7 171,112.2 174,116.7 177,123.0 180,127.3 183,127.5 186,124.7 189,121.9 192,121.4 195,122.7 198,123.4 201,121.1 204,116.1 207,111.4 210,110.1 213,113.4 216,119.0 219,123.2 222,124.2 225,122.7 228,121.6 231,122.9 234,125.8 237,127.3 240,125.2 243,119.7 246,113.8 249,111.0 252,112.5 255,116.4 258,119.5" fill="none" stroke="#6B7280" stroke-width="2" transform="translate(15,0)"/>
+     <text x="145" y="160" text-anchor="middle" font-size="16" fill="#EF5454" font-weight="700">la crisis sigue</text></svg></div>
+ </div></div>
+  <div class="pie"><div class="paso activo">Una crisis en curso <b>no siempre se ve</b>: monitorizar con EEG</div></div>
+</div>
+<script>window.cuadro=function(){};</script>
+</body></html>

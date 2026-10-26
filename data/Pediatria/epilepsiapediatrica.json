@@ -1,407 +1,2284 @@
 {
-  "titulo": "Epilepsia Pediátrica y Status Epilepticus",
-  "version": "2025",
+  "titulo": "Epilepsia pediátrica y estado epiléptico",
+  "version": "NICE NG217 (2026) · RCUK EPALS 2021",
+  "descripcion": "El estado epiléptico convulsivo es una crisis que dura 5 minutos o más: una emergencia. Aquí: tratamiento por tiempos con dosis por peso, primera crisis, tratamiento por tipo de crisis y síndrome, y seguimiento. No cubre convulsiones neonatales ni la crisis febril simple.",
+  "especialidad": "Neurología pediátrica",
+  "actualizado": "Octubre 2026",
   "carpeta_evidencia": "epilepsiapediatrica",
+  "carpeta_imagenes": "epilepsiapediatrica",
   "nodoInicial": "nodo_raiz",
+  "referencias": [
+    {
+      "fuente": "NICE NG217",
+      "anio": "2026",
+      "url": "https://www.nice.org.uk/guidance/ng217",
+      "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+      "titulo": "NICE NG217: epilepsias en niños, jóvenes y adultos"
+    },
+    {
+      "fuente": "RCUK EPALS 2021",
+      "anio": "2021",
+      "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+      "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+      "titulo": "RCUK EPALS: estado epiléptico convulsivo en niños"
+    },
+    {
+      "fuente": "Jin 2025",
+      "anio": "2025",
+      "url": "https://doi.org/10.3389/fneur.2025.1580329",
+      "cita": "Jin L, Jin Z, Wang Z. Levetiracetam versus phenytoin/fosphenytoin for second-line treatment of children with convulsive status epilepticus: an up-to-date meta-analysis and systematic review of randomized controlled trials. Front Neurol. 2025;16:1580329.",
+      "titulo": "Levetiracetam vs fenitoína en el estado epiléptico pediátrico: metaanálisis"
+    },
+    {
+      "fuente": "AES 2016",
+      "anio": "2016",
+      "url": "https://doi.org/10.5698/1535-7597-16.1.48",
+      "cita": "Glauser T, Shinnar S, Gloss D, et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Curr. 2016;16(1):48-61.",
+      "titulo": "AES 2016: tratamiento del estado epiléptico convulsivo"
+    }
+  ],
   "nodos": {
     "nodo_raiz": {
       "tipo": "pregunta",
-      "texto": "EVALUACIÓN Y MANEJO DE LA EPILEPSIA PEDIÁTRICA",
+      "texto": "Epilepsia pediátrica y estado epiléptico",
+      "pie_nodo": "¿Qué necesitas?",
       "opciones": [
         {
-          "texto": "",
+          "texto": "Convulsión en curso",
+          "siguiente_nodo": "trat_status"
+        },
+        {
+          "texto": "Primera crisis: diagnóstico",
           "siguiente_nodo": "nodo_diagnostico"
         },
         {
-          "texto": "",
+          "texto": "Tratamiento por tipo de crisis",
           "siguiente_nodo": "nodo_tratamiento"
+        },
+        {
+          "texto": "Seguimiento y seguridad",
+          "siguiente_nodo": "seg_seccion"
         }
       ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "Estado epiléptico convulsivo: crisis de 5 minutos o más (NICE 7.1.1)",
+          "paginas": "118",
+          "texto": "Provide resuscitation and immediate emergency treatment for children, young people and adults who have convulsive status epilepticus (seizures lasting 5 minutes or more).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "9-41",
-          "imagen_evidencia": "TODO_EVIDENCIA: Portada de la guía NICE NG217",
-          "texto": "Guía integral sobre el diagnóstico, evaluación y manejo general de las epilepsias en pediatría y adultos."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_provide_resuscitation_and_immediate_emergency_treatment.png"
         },
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "1-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Portada del AES Guideline para Status Epilepticus",
-          "texto": "Guía de la American Epilepsy Society enfocada en el abordaje secuencial del Status Epilepticus."
+          "titulo": "Definición: más de 5 minutos, se trata desde ahí (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Definition of convulsive status epilepticus (CSE) is a seizure that continues for greater than 5 min, so treatment usually starts once seizure has lasted > 5 min",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_definition_of_convulsive_status_epilepticus_cse.png"
+        }
+      ]
+    },
+    "trat_status": {
+      "estilo": "rama",
+      "texto": "Estado epiléptico convulsivo",
+      "opciones": [
+        {
+          "texto": "Estabilizar: 0-5 min",
+          "siguiente_nodo": "trat_se_fase1"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tratamiento inmediato desde los 5 minutos (NICE 7.1.1)",
+          "paginas": "118",
+          "texto": "Provide resuscitation and immediate emergency treatment for children, young people and adults who have convulsive status epilepticus (seizures lasting 5 minutes or more).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_provide_resuscitation_and_immediate_emergency_treatment.png"
+        },
+        {
+          "titulo": "Cuanto más dura, más refractaria (RCUK 2021)",
+          "paginas": "1",
+          "texto": "The risk of a seizure becoming refractory increases with increasing seizure duration.",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_the_risk_of_a_seizure_becoming.png"
         }
       ]
     },
     "nodo_diagnostico": {
       "estilo": "rama",
-      "texto": "- Iniciar abordaje diagnóstico del paciente pediátrico con sospecha de crisis convulsiva.",
+      "texto": "Primera crisis: diagnóstico",
       "opciones": [
         {
-          "texto": "",
+          "texto": "Evaluar la crisis",
           "siguiente_nodo": "diag_estabilizacion"
         }
       ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "Derivar en menos de 2 semanas tras una primera crisis (NICE 1.1.1)",
+          "paginas": "9",
+          "texto": "Refer children, young people and adults urgently (for an appointment within 2 weeks) for an assessment after a first suspected seizure:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "9-13",
-          "imagen_evidencia": "TODO_EVIDENCIA: Sección 1. Diagnosis and assessment of epilepsy",
-          "texto": "Recomendaciones sobre la evaluación inicial tras una primera crisis y derivación urgente a especialista."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag9_refer_children_young_people_and_adults.png"
         }
       ]
     },
     "nodo_tratamiento": {
       "estilo": "rama",
-      "texto": "- Iniciar manejo terapéutico farmacológico.",
-      "pie_nodo": "¿Qué escenario clínico presenta el paciente pediátrico?",
+      "texto": "Tratamiento por tipo de crisis",
+      "pie_nodo": "¿Qué tipo de crisis o síndrome?",
       "opciones": [
         {
-          "texto": "Status Epilepticus (Convulsión > 5 min)",
-          "siguiente_nodo": "trat_se_fase1"
-        },
-        {
-          "texto": "Espasmos Infantiles (< 2 años)",
-          "siguiente_nodo": "trat_espasmos"
-        },
-        {
-          "texto": "Crisis Tónico-Clónicas o Focales",
+          "texto": "Tónico-clónicas generalizadas",
           "siguiente_nodo": "trat_tcsg"
         },
         {
-          "texto": "Crisis de Ausencia",
+          "texto": "Focales",
+          "siguiente_nodo": "trat_focales"
+        },
+        {
+          "texto": "Ausencias",
           "siguiente_nodo": "trat_ausencias"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
-          "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "41-69",
-          "imagen_evidencia": "TODO_EVIDENCIA: Índice de la sección de tratamiento de síndromes epilépticos",
-          "texto": "Estratificación del tratamiento de acuerdo con el tipo de convulsión (focal, generalizada, ausencias, espasmos)."
-        }
-      ]
-    },
-    "diag_estabilizacion": {
-      "tipo": "pregunta",
-      "texto": "1. Estabilización inicial **ABCDE**.\n2. Medir glucometría capilar inmediata.\n3. Cronometrar la duración de la crisis.",
-      "pie_nodo": "¿La crisis convulsiva lleva más de **5 minutos** activa?",
-      "nota_adicional": "Cualquier convulsión que dure más de 5 minutos debe ser manejada como Status Epilepticus debido al riesgo de daño neuronal y resistencia a fármacos.",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_derivar_status"
         },
         {
-          "texto": "No (Crisis autolimitada)",
-          "siguiente_nodo": "diag_evaluacion_clinica"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "2, 11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Algoritmo Figura 1: Fase de estabilización 0-5 min",
-          "texto": "Fase de estabilización (0-5 min) incluye soporte vital, monitorización de signos vitales, evaluación de oxigenación y toma de glucometría. Definición operacional de SE iniciada a los 5 minutos."
-        }
-      ]
-    },
-    "diag_derivar_status": {
-      "estilo": "peligro",
-      "tipo": "informativo",
-      "texto": "- Manejar como **Status Epilepticus** de forma emergente.",
-      "enlaces": [
-        {
-          "texto": "Ir al algoritmo de Tratamiento (Status Epilepticus)",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_se_fase1"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "2",
-          "imagen_evidencia": "TODO_EVIDENCIA: Definición operacional de status epilepticus",
-          "texto": "Definición operacional de 5 minutos (t1) para el inicio del tratamiento de Status Epilepticus convulsivo."
-        }
-      ]
-    },
-    "diag_evaluacion_clinica": {
-      "tipo": "pregunta",
-      "texto": "1. Realizar anamnesis detallada (solicitar videos caseros si existen).\n2. Realizar examen neurológico completo.\n3. Realizar **ECG de 12 derivaciones** para descartar síncope cardiogénico.\n4. Evaluar factores de riesgo para recurrencia.",
-      "pie_nodo": "¿Se confirma la sospecha clínica de primera crisis epiléptica no provocada?",
-      "nota_adicional": "El ECG es obligatorio para descartar arritmias o prolongación del QT que pueden simular crisis epilépticas (ej. síndrome de Stokes-Adams).",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_estudios_complementarios"
+          "texto": "Mioclónicas",
+          "siguiente_nodo": "trat_mioclonicas"
         },
         {
-          "texto": "No (síncope, trastorno del movimiento, etc.)",
-          "siguiente_nodo": "diag_fin_no_epilepsia"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
-          "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "11-12",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones 1.2.1 a 1.2.2 sobre anamnesis y ECG",
-          "texto": "Tomar historia detallada, examen físico y usar videos testigos. Realizar ECG de 12 derivaciones para identificar condiciones cardíacas que mimeticen crisis."
-        }
-      ]
-    },
-    "diag_estudios_complementarios": {
-      "tipo": "pregunta",
-      "texto": "1. Solicitar **EEG de rutina** (idealmente en las primeras **72 horas**). Si es normal, considerar EEG con privación de sueño.\n2. Solicitar **Resonancia Magnética (RM) cerebral** bajo protocolo de epilepsia en un plazo máximo de **6 semanas**.\n3. Derivar de forma urgente (< 2 semanas) a neuropediatría.",
-      "pie_nodo": "¿El paciente tiene < **2 años** al inicio de las crisis, retraso del desarrollo o características de un fenotipo sindrómico severo?",
-      "nota_adicional": "No se recomienda la Tomografía Computarizada (TC) de rutina para epilepsia establecida a menos que exista sospecha de lesión neurológica aguda (ej. trauma, sangrado).",
-      "opciones": [
-        {
-          "texto": "Sí",
-          "siguiente_nodo": "diag_genetica"
+          "texto": "Espasmos infantiles: <2 años",
+          "siguiente_nodo": "trat_espasmos"
         },
         {
-          "texto": "No",
-          "siguiente_nodo": "diag_fin_epilepsia"
+          "texto": "Epilepsia rolándica (SeLECTS)",
+          "siguiente_nodo": "trat_selects"
+        },
+        {
+          "texto": "Síndrome de Dravet",
+          "siguiente_nodo": "trat_dravet"
+        }
+      ],
+      "tabla": {
+        "titulo": "Primera línea de un vistazo",
+        "columnas": [
+          "Crisis o síndrome",
+          "Primera línea",
+          "Evitar"
+        ],
+        "filas": [
+          [
+            "Tónico-clónica generalizada",
+            "Lamotrigina, levetiracetam o valproato",
+            "Si hay ausencias o mioclonías: carbamazepina, fenitoína y similares"
+          ],
+          [
+            "Focal",
+            "Lamotrigina o levetiracetam",
+            "—"
+          ],
+          [
+            "Ausencias",
+            "Etosuximida",
+            "Carbamazepina, oxcarbazepina, fenitoína, fenobarbital, vigabatrina"
+          ],
+          [
+            "Mioclónica",
+            "Levetiracetam o valproato",
+            "Lamotrigina puede empeorarlas"
+          ],
+          [
+            "Espasmos infantiles",
+            "Prednisolona + vigabatrina (tuberosa: vigabatrina)",
+            "—"
+          ],
+          [
+            "Rolándica (SeLECTS)",
+            "Lamotrigina o levetiracetam",
+            "—"
+          ],
+          [
+            "Dravet",
+            "Valproato",
+            "Carbamazepina, lamotrigina, lacosamida, vigabatrina y otras"
+          ]
+        ]
+      },
+      "referencias": [
+        {
+          "titulo": "Empezar el anticrisis al confirmar el diagnóstico (NICE 4.2.1)",
+          "paginas": "44",
+          "texto": "Start treatment with an antiseizure medication once the diagnosis of epilepsy is confirmed.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag44_start_treatment_with_an_antiseizure_medication.png"
+        },
+        {
+          "titulo": "Tónico-clónicas (NICE 5.1.1)",
+          "paginas": "65",
+          "texto": "Offer a choice of lamotrigine, levetiracetam or sodium valproate as first-line monotherapy for generalised tonic-clonic seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_offer_a_choice_of_lamotrigine_levetiracetam.png"
+        },
+        {
+          "titulo": "Fármacos que empeoran ausencias y mioclonías (NICE 5.1.4)",
+          "paginas": "67",
+          "texto": "Be aware that the following antiseizure medications may exacerbate seizures in people with absence or myoclonic seizures, including in juvenile myoclonic epilepsy:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag67_be_aware_that_the_following_antiseizure.png"
+        },
+        {
+          "titulo": "Focales (NICE 5.2.1)",
+          "paginas": "70",
+          "texto": "Consider lamotrigine or levetiracetam as first-line monotherapy for people with focal seizures. If the first choice is unsuccessful, consider the other of these options.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag70_consider_lamotrigine_or_levetiracetam_as_first.png"
+        },
+        {
+          "titulo": "Ausencias (NICE 5.3.1)",
+          "paginas": "75",
+          "texto": "Offer ethosuximide as first-line treatment for absence seizures. If first-line treatment is unsuccessful, offer a choice of lamotrigine, levetiracetam or sodium valproate",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag75_offer_ethosuximide_as_first_line_treatment.png"
+        },
+        {
+          "titulo": "Empeoran las ausencias (NICE 5.3.3)",
+          "paginas": "76",
+          "texto": "Be aware that the following antiseizure medications may exacerbate seizures in people with absence seizures:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag76_be_aware_that_the_following_antiseizure.png"
+        },
+        {
+          "titulo": "Mioclónicas (NICE 5.4.2)",
+          "paginas": "80",
+          "texto": "Offer a choice of levetiracetam or sodium valproate as first-line treatment for myoclonic seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag80_offer_a_choice_of_levetiracetam_or.png"
+        },
+        {
+          "titulo": "Lamotrigina y mioclonías (NICE 5.4.4)",
+          "paginas": "81",
+          "texto": "Be aware that lamotrigine can occasionally exacerbate myoclonic seizures. Do not use any of the following antiseizure medications in people with myoclonic",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag81_be_aware_that_lamotrigine_can_occasionally.png"
+        },
+        {
+          "titulo": "Espasmos (NICE 6.3.4)",
+          "paginas": "103",
+          "texto": "Offer combination therapy with high-dose oral prednisolone and vigabatrin as first-line treatment for infantile spasms that are not due to tuberous sclerosis,",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_offer_combination_therapy_with_high_dose.png"
+        },
+        {
+          "titulo": "Esclerosis tuberosa (NICE 6.3.6)",
+          "paginas": "103",
+          "texto": "Offer vigabatrin alone as first-line treatment for infantile spasms due to tuberous sclerosis. If vigabatrin is ineffective after 1 week, add high-dose oral prednisolone.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_offer_vigabatrin_alone_as_first_line.png"
+        },
+        {
+          "titulo": "Rolándica (NICE 6.4.2)",
+          "paginas": "108",
+          "texto": "Consider lamotrigine or levetiracetam as first-line monotherapy treatment for self-limited epilepsy with centrotemporal spikes.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag108_consider_lamotrigine_or_levetiracetam_as_first.png"
+        },
+        {
+          "titulo": "Dravet (NICE 6.1.2)",
+          "paginas": "93",
+          "texto": "Consider sodium valproate as first-line treatment for people with Dravet syndrome. Follow the MHRA safety measures and precautionary advice for sodium valproate in box 2.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag93_consider_sodium_valproate_as_first_line.png"
+        },
+        {
+          "titulo": "Empeoran el Dravet (NICE 6.1.7)",
+          "paginas": "95",
+          "texto": "Be aware that the following medications may exacerbate seizures in people with Dravet syndrome:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag95_be_aware_that_the_following_medications.png"
+        }
+      ]
+    },
+    "seg_seccion": {
+      "estilo": "rama",
+      "texto": "Seguimiento y seguridad",
+      "pie_nodo": "¿Qué situación?",
+      "opciones": [
+        {
+          "texto": "Crisis en racimo: ≥3 en 24 h",
+          "siguiente_nodo": "seg_racimos"
+        },
+        {
+          "texto": "Crisis más larga que la habitual",
+          "siguiente_nodo": "seg_prolongada"
+        },
+        {
+          "texto": "Seguridad de los anticrisis",
+          "siguiente_nodo": "seg_seguridad"
+        },
+        {
+          "texto": "Retirar el anticrisis",
+          "siguiente_nodo": "seg_retirada"
         }
       ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "Plan de emergencia tras un estado epiléptico (NICE 7.1.12)",
+          "paginas": "120",
+          "texto": "After an episode of convulsive status epilepticus, agree an emergency management plan with the person if they do not already have one",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "9, 12-14",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones de derivación, EEG e imagen (MRI)",
-          "texto": "Derivar urgentemente <2 semanas tras la primera crisis. Realizar EEG idealmente en 72 horas (no para descartar epilepsia). Ofrecer MRI en menos de 6 semanas bajo protocolo de epilepsia. TC no recomendada de rutina."
-        }
-      ]
-    },
-    "diag_genetica": {
-      "estilo": "advertencia",
-      "tipo": "informativo",
-      "texto": "- Solicitar **Secuenciación del Genoma Completo (WGS)**.\n- Discutir el caso en equipo multidisciplinario terciario.",
-      "nota_adicional": "El diagnóstico genético temprano en encefalopatías epilépticas (ej. Síndrome de Dravet por mutación SCN1A) previene el uso de fármacos contraindicados que exacerban las crisis.",
-      "referencias": [
-        {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
-          "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "14-15",
-          "imagen_evidencia": "TODO_EVIDENCIA: Sección 1.4 Genetic Testing",
-          "texto": "Considerar WGS (Whole-genome sequencing) para pacientes con epilepsia de causa desconocida iniciada antes de los 2 años o con fenotipos sindrómicos/discapacidad intelectual."
-        }
-      ]
-    },
-    "diag_fin_epilepsia": {
-      "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- Continuar seguimiento ambulatorio por neuropediatría.\n- Decidir inicio de tratamiento farmacológico basado en riesgo de recurrencia y preferencias de la familia.",
-      "enlaces": [
-        {
-          "texto": "Ir a opciones de Tratamiento Crónico",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "nodo_tratamiento"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
-          "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "25-29",
-          "imagen_evidencia": "TODO_EVIDENCIA: Sección 4.1-4.2 When to start antiseizure medication",
-          "texto": "Iniciar medicación anticrisis una vez confirmado el diagnóstico o tras primera crisis si hay alteración estructural, anormalidad inequívoca en EEG o déficit neurológico."
-        }
-      ]
-    },
-    "diag_fin_no_epilepsia": {
-      "estilo": "exito",
-      "tipo": "informativo",
-      "texto": "- Derivar a la especialidad correspondiente (ej. cardiología, psiquiatría, o pediatría general).\n- No iniciar fármacos anticrisis.",
-      "referencias": [
-        {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
-          "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "12",
-          "imagen_evidencia": "TODO_EVIDENCIA: Evaluación de condiciones cardíacas o metabólicas",
-          "texto": "La evaluación debe identificar condiciones cardíacas que mimeticen crisis epilépticas (ECG) o disturbios metabólicos como hipoglucemia."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag120_after_an_episode_of_convulsive_status.png"
         }
       ]
     },
     "trat_se_fase1": {
       "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "1. Fase de estabilización (**0 - 5 minutos**).\n2. Soporte respiratorio (oxígeno) y hemodinámico.\n3. Obtener acceso IV si es posible.\n4. Tratar hipoglucemia u otras causas reversibles.",
-      "pie_nodo": "¿Se cuenta con acceso Intravenoso (IV) establecido?",
-      "nota_adicional": "No demorar la terapia inicial intentando conseguir un acceso IV si no se logra rápidamente.",
+      "titulo": "Estabilizar: 0-5 minutos",
+      "chips": [
+        {
+          "texto": "Emergencia",
+          "color": "rojo"
+        }
+      ],
+      "texto": "- Confirmar que es una crisis; anotar la hora de inicio.\n- ABC: oxígeno a alto flujo y monitorización.\n- Glucemia ya: tratar si **<3 mmol/L** (**54 mg/dL**).\n- ¿Tiene plan de emergencia individual a mano? → seguirlo.",
+      "checklist": {
+        "titulo": "Causas que buscar y tratar",
+        "items": [
+          "Glucosa: meta **4-8 mmol/L** (**72-144 mg/dL**)",
+          "Sodio: si **<125 mmol/L**, NaCl 3 % **3 mL/kg**",
+          "Calcio y magnesio si hay sepsis",
+          "Fiebre: meningitis, encefalitis o hipertensión intracraneal",
+          "Trauma: hemorragia del SNC",
+          "Abandono del anticrisis habitual"
+        ]
+      },
+      "nota_adicional": "Una crisis disociativa (no epiléptica) puede parecer un estado epiléptico: confirmar antes de escalar fármacos.",
+      "enlaces": [
+        {
+          "texto": "Hipoglucemia en pediatría",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Pediatria/hipoglucemiapediatrica.json"
+        },
+        {
+          "texto": "Sepsis pediátrica (escala)",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/SirsSepsisPediatrico.json"
+        }
+      ],
+      "pie_nodo": "¿Hay acceso IV o intraóseo (IO)?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: vía IV o IO",
           "siguiente_nodo": "trat_se_fase2_iv"
         },
         {
-          "texto": "No",
+          "texto": "No: sin vía",
           "siguiente_nodo": "trat_se_fase2_im"
         }
       ],
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "10-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 0-5 min",
-          "texto": "0-5 min Stabilization phase: Estabilizar vía aérea, respiración, circulación, monitorizar signos vitales y ECG. Tratar hipoglucemia si glucosa <60 mg/dl."
+          "titulo": "ABC, oxígeno, monitor y glucemia (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Confirm clinically Check ABC, high-flow O2, attach monitoring Check blood glucose, treat < 3 mmol L-1",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "TODO_EVIDENCIA: ABC, oxígeno, monitor y glucemia (RCUK 2021) (pág. 1)"
+        },
+        {
+          "titulo": "Plan de emergencia individual (NICE 7.1.2)",
+          "paginas": "118",
+          "texto": "If the person with convulsive status epilepticus has an individualised emergency management plan that is immediately available, administer medication as detailed in the plan.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_if_the_person_with_convulsive_status.png"
+        },
+        {
+          "titulo": "Meta de glucosa y sodio (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Monitor glucose aim for 4-8 mmol L-1 Measure serum sodium and treat if < 125 mmol L-1",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_monitor_glucose_aim_for_4_8.png"
+        },
+        {
+          "titulo": "Calcio y magnesio en la sepsis (RCUK 2021)",
+          "paginas": "1",
+          "texto": "In sepsis consider measuring calcium and magnesium levels as they are sometimes low.",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_in_sepsis_consider_measuring_calcium_and.png"
+        },
+        {
+          "titulo": "Meningitis, encefalitis, HTIC y trauma (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Consider meningitis, encephalitis and Raised ICP Consider CNS haemorrhage if signs of trauma",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_consider_meningitis_encephalitis_and_raised_icp.png"
+        },
+        {
+          "titulo": "Control de la temperatura (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Consider temperature control measures if hyperthermic Consider meningitis, encephalitis and Raised ICP",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_consider_temperature_control_measures_if_hyperthermic.png"
+        },
+        {
+          "titulo": "Causas subyacentes (NICE 7.1.4)",
+          "paginas": "118",
+          "texto": "Be aware of the possible underlying causes of status epilepticus, including hypoglycaemia, eclampsia and alcohol withdrawal, which may need to be treated with additional medication.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_be_aware_of_the_possible_underlying.png"
+        },
+        {
+          "titulo": "Abandono del anticrisis (NICE 7.1.5)",
+          "paginas": "118",
+          "texto": "Be alert to non-adherence to antiseizure medication, which can also be a cause of status epilepticus.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_be_alert_to_non_adherence_to.png"
+        },
+        {
+          "titulo": "Crisis disociativas (NICE 7.1.6)",
+          "paginas": "118",
+          "texto": "Be aware that non-epileptic seizures (dissociative seizures) can be similar in presentation to convulsive status epilepticus.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_be_aware_that_non_epileptic_seizures.png"
         }
       ]
     },
     "trat_se_fase2_iv": {
       "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "1. Fase de terapia inicial (**5 - 20 minutos**).\n2. Administrar **Lorazepam** IV **0.1 mg/kg** (máx. 4 mg) o **Diazepam** IV **0.15 - 0.2 mg/kg** (máx. 10 mg).\n3. Reevaluar a los 5 minutos; si la crisis persiste, repetir la dosis una sola vez.",
-      "pie_nodo": "¿Cesan las crisis convulsivas?",
+      "titulo": "Con vía: lorazepam IV/IO",
+      "texto": "- **Lorazepam 0,1 mg/kg** IV o IO.\n- No cede a los **5-10 min** → segunda dosis.\n- Máximo **2 dosis** de benzodiacepina, contando las prehospitalarias.\n- Mientras tanto, preparar el fármaco de segunda línea.",
+      "farmacos": [
+        {
+          "nombre": "Lorazepam",
+          "dosis": "**0,1 mg/kg** IV o IO",
+          "pauta": "Repetir una vez a los 5-10 min si sigue. Máximo **4 mg** por dosis (AES 2016, por verificar).",
+          "paginas": "1",
+          "por_kg": {
+            "cantidad": 0.1,
+            "unidad": "mg",
+            "tope": 4
+          }
+        }
+      ],
+      "nota_adicional": "Lo que más importa es la rapidez, no qué benzodiacepina. Lorazepam IV es la de elección en el hospital: deprime menos la respiración.",
+      "alertas": [
+        {
+          "titulo": "Máximo 2 dosis",
+          "texto": "Contar las dosis prehospitalarias: una tercera benzodiacepina suma depresión respiratoria y retrasa la segunda línea."
+        }
+      ],
+      "pie_nodo": "¿Cede tras 1-2 dosis?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Cede: crisis controlada",
           "siguiente_nodo": "trat_se_exito"
         },
         {
-          "texto": "No",
+          "texto": "Sigue tras 2 dosis",
           "siguiente_nodo": "trat_se_fase3"
         }
       ],
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "10-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 5-20 min IV",
-          "texto": "Opciones equivalentes de primera línea IV: Lorazepam IV (0.1 mg/kg, máx 4 mg/dosis, se puede repetir una vez) o Diazepam IV (0.15-0.2 mg/kg, máx 10 mg/dosis, se puede repetir una vez)."
+          "titulo": "Lorazepam IV si hay vía y medios de reanimación (NICE 7.1.3)",
+          "paginas": "118",
+          "texto": "use intravenous lorazepam if intravenous access and resuscitation facilities are immediately available.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_use_intravenous_lorazepam_if_intravenous_access.png"
+        },
+        {
+          "titulo": "Lorazepam 0,1 mg/kg IV o IO (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Midazolam 0.3–0.5 mg kg-1 bucally – see BNFc for exact age related dose OR Lorazepam 0.1 mg kg-1 IV or IO",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_midazolam_0_30_5_mg_kg.png"
+        },
+        {
+          "titulo": "Segunda dosis a los 5-10 minutos (NICE 7.1.8)",
+          "paginas": "119",
+          "texto": "give a second dose of benzodiazepine if the seizure does not stop within 5 to 10 minutes of the first dose.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_give_a_second_dose_of_benzodiazepine.png"
+        },
+        {
+          "titulo": "Máximo 2 dosis, contando las prehospitalarias (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Consider pre-hospital treatment already given: 2 doses of benzodiazepines max Midazolam 0.3–0.5 mg kg-1 bucally – see BNFc for exact age related dose",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_consider_pre_hospital_treatment_already_given.png"
+        },
+        {
+          "titulo": "Importa la rapidez, no el fármaco (NICE)",
+          "paginas": "121",
+          "texto": "The committee agreed that the speed of delivery is more important than the type of benzodiazepine,",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag121_the_committee_agreed_that_the_speed.png"
+        },
+        {
+          "titulo": "Por qué lorazepam en el hospital (NICE)",
+          "paginas": "121",
+          "texto": "it should be the first-choice treatment in this setting because of its rapid action and because it causes less respiratory depression and sedation than other drugs.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag121_it_should_be_the_first_choice.png"
+        },
+        {
+          "titulo": "lorazepam: máximo 4 mg por dosis (AES 2016)",
+          "paginas": "TODO",
+          "fuente": "AES 2016",
+          "anio": "2016",
+          "url": "https://doi.org/10.5698/1535-7597-16.1.48",
+          "cita": "Glauser T, Shinnar S, Gloss D, et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Curr. 2016;16(1):48-61.",
+          "texto": "TODO_EVIDENCIA: cita literal de AES 2016 para «lorazepam: máximo 4 mg por dosis»; el PDF no se pudo descargar en esta sesión."
         }
       ]
     },
     "trat_se_fase2_im": {
       "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "1. Fase de terapia inicial (**5 - 20 minutos**).\n2. Administrar **Midazolam** IM **0.2 mg/kg** (máx. 10 mg para >40kg, 5 mg para 13-40kg).\n3. Alternativas: **Midazolam** bucal/intranasal o **Diazepam** rectal.",
-      "pie_nodo": "¿Cesan las crisis convulsivas?",
-      "nota_adicional": "El Midazolam IM ha demostrado superioridad en efectividad frente al Lorazepam IV cuando no hay un acceso venoso previo establecido (Nivel A de evidencia, Estudio RAMPART).",
+      "titulo": "Sin vía: midazolam bucal",
+      "texto": "- **Midazolam bucal 0,3-0,5 mg/kg**: dosis exacta por edad en el formulario pediátrico.\n- Alternativa: diazepam rectal.\n- No cede a los **5-10 min** → segunda dosis o lorazepam si ya hay vía.\n- No retrasar el fármaco buscando una vía.",
+      "farmacos": [
+        {
+          "nombre": "Midazolam bucal",
+          "dosis": "**0,3-0,5 mg/kg** en la mucosa de la mejilla",
+          "pauta": "Dosis exacta por edad en el BNFc (formulario pediátrico británico).",
+          "paginas": "1",
+          "por_kg": {
+            "desde": 0.3,
+            "hasta": 0.5,
+            "unidad": "mg"
+          }
+        },
+        {
+          "nombre": "Midazolam IM",
+          "dosis": "**10 mg** si >40 kg; **5 mg** si 13-40 kg",
+          "pauta": "Dosis fija por peso, una vez (AES 2016, por verificar).",
+          "paginas": "TODO"
+        }
+      ],
+      "nota_adicional": "Midazolam bucal es la primera elección fuera del hospital; el diazepam rectal queda si ya se usaba o si no hay midazolam.",
+      "pie_nodo": "¿Cede tras 1-2 dosis?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Cede: crisis controlada",
           "siguiente_nodo": "trat_se_exito"
         },
         {
-          "texto": "No",
+          "texto": "Sigue tras 2 dosis",
           "siguiente_nodo": "trat_se_fase3"
         }
       ],
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "1, 10-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Algoritmo AES - Fase de 5-20 min IM/No-IV",
-          "texto": "Midazolam IM es nivel A para prehospitalario sin vía IV (10 mg >40 kg, 5 mg 13-40 kg). Otras alternativas Nivel B: Diazepam rectal, Midazolam intranasal/bucal."
+          "titulo": "Midazolam bucal o diazepam rectal en la comunidad (NICE 7.1.3)",
+          "paginas": "118",
+          "texto": "give a benzodiazepine (buccal midazolam or rectal diazepam) immediately as first-line treatment in the community or",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_give_a_benzodiazepine_buccal_midazolam_or.png"
+        },
+        {
+          "titulo": "Midazolam bucal 0,3-0,5 mg/kg (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Consider pre-hospital treatment already given: 2 doses of benzodiazepines max Midazolam 0.3–0.5 mg kg-1 bucally – see BNFc for exact age related dose",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_consider_pre_hospital_treatment_already_given.png"
+        },
+        {
+          "titulo": "Segunda dosis a los 5-10 minutos (NICE 7.1.8)",
+          "paginas": "119",
+          "texto": "give a second dose of benzodiazepine if the seizure does not stop within 5 to 10 minutes of the first dose.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_give_a_second_dose_of_benzodiazepine.png"
+        },
+        {
+          "titulo": "Sin respuesta a la primera dosis: pedir ayuda experta (NICE 7.1.7)",
+          "paginas": "119",
+          "texto": "If convulsive status epilepticus does not respond to the first dose of benzodiazepine: call emergency services in the community or seek expert guidance in hospital.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_if_convulsive_status_epilepticus_does_not.png"
+        },
+        {
+          "titulo": "midazolam IM 10 mg >40 kg y 5 mg 13-40 kg (AES 2016)",
+          "paginas": "TODO",
+          "fuente": "AES 2016",
+          "anio": "2016",
+          "url": "https://doi.org/10.5698/1535-7597-16.1.48",
+          "cita": "Glauser T, Shinnar S, Gloss D, et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Curr. 2016;16(1):48-61.",
+          "texto": "TODO_EVIDENCIA: cita literal de AES 2016 para «midazolam IM 10 mg >40 kg y 5 mg 13-40 kg»; el PDF no se pudo descargar en esta sesión."
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_midazolam_bucal.gif",
+          "titulo": "Midazolam bucal",
+          "descripcion": "Jeringa oral por dentro de la mejilla; vaciarla y anotar la hora.",
+          "en_texto": "Midazolam bucal"
         }
       ]
     },
     "trat_se_fase3": {
       "estilo": "peligro",
       "tipo": "pregunta",
-      "texto": "1. Fase de segunda terapia (**20 - 40 minutos**).\n2. Administrar **Levetiracetam** IV (**60 mg/kg**, máx. 4500 mg) O **Valproato sódico** IV (**40 mg/kg**, máx. 3000 mg) O **Fosfenitoína** IV (**20 mg PE/kg**, máx. 1500 mg PE).\n3. Monitorizar esfuerzo respiratorio y signos vitales.",
-      "pie_nodo": "¿Cesan las crisis convulsivas?",
-      "nota_adicional": "Levetiracetam suele preferirse como segunda línea por su rapidez de preparación y menor tasa de efectos adversos cardiorrespiratorios comparado con la fenitoína/fosfenitoína.",
+      "titulo": "Segunda línea: tras 2 benzodiacepinas",
+      "texto": "- Elegir uno, IV:\n- Levetiracetam: **30-60 mg/kg** en **5 min**, máx. **3 g**. Más rápido y con menos efectos adversos.\n- Fenitoína: **20 mg/kg** en **20 min**, con ECG.\n- Valproato: sólo con las medidas de la MHRA.\n- Llamar a anestesia y a la UCI pediátrica.",
+      "farmacos": [
+        {
+          "nombre": "Levetiracetam",
+          "dosis": "**30-60 mg/kg** IV en **5 min**",
+          "pauta": "Máximo **3 g**.",
+          "paginas": "1",
+          "por_kg": {
+            "desde": 30,
+            "hasta": 60,
+            "unidad": "mg",
+            "tope": 3000
+          }
+        },
+        {
+          "nombre": "Fenitoína",
+          "dosis": "**20 mg/kg** IV en infusión lenta de **20 min**",
+          "pauta": "Con ECG continuo.",
+          "paginas": "1",
+          "por_kg": {
+            "cantidad": 20,
+            "unidad": "mg"
+          },
+          "advertencia": "Rápida produce bradicardia o asistolia."
+        },
+        {
+          "nombre": "Valproato sódico",
+          "dosis": "**40 mg/kg** IV",
+          "pauta": "Máximo **3000 mg** (AES 2016, por verificar). Sólo con las medidas de la MHRA.",
+          "paginas": "TODO",
+          "por_kg": {
+            "cantidad": 40,
+            "unidad": "mg",
+            "tope": 3000
+          },
+          "advertencia": "Niñas y adolescentes: riesgo fetal; ver «Seguridad de los anticrisis»."
+        },
+        {
+          "nombre": "Fenobarbital",
+          "dosis": "**20 mg/kg** IV en **5 min**",
+          "pauta": "Segunda línea para RCUK; tercera para NICE.",
+          "paginas": "1",
+          "por_kg": {
+            "cantidad": 20,
+            "unidad": "mg"
+          }
+        }
+      ],
+      "nota_adicional": "Levetiracetam, fenitoína y valproato cortan la crisis igual; el levetiracetam tiene menos recurrencias y efectos adversos que la fenitoína.",
+      "discrepancias": [
+        {
+          "asunto": "Lugar del fenobarbital",
+          "posturas": [
+            {
+              "fuente": "NICE NG217",
+              "dice": "Tercera línea, con un experto, junto a la anestesia general",
+              "paginas": "119"
+            },
+            {
+              "fuente": "RCUK EPALS 2021",
+              "dice": "Una de las opciones de segunda línea, 20 mg/kg en 5 min",
+              "paginas": "1"
+            }
+          ],
+          "nota": "Las dos ponen primero levetiracetam o fenitoína; RCUK no incluye el valproato."
+        }
+      ],
+      "pie_nodo": "¿Cede con la segunda línea?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Cede: crisis controlada",
           "siguiente_nodo": "trat_se_exito"
         },
         {
-          "texto": "No",
+          "texto": "Sigue: refractario",
           "siguiente_nodo": "trat_se_fase4"
         }
       ],
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "10-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Segunda fase 20-40 min",
-          "texto": "Opciones de segunda línea (administrar como dosis única): Fosfenitoína IV (20 mg PE/kg, máx 1500 mg), Ácido valproico IV (40 mg/kg, máx 3000 mg), Levetiracetam IV (60 mg/kg, máx 4500 mg)."
+          "titulo": "Segunda línea IV tras 2 benzodiacepinas (NICE 7.1.9)",
+          "paginas": "119",
+          "texto": "If convulsive status epilepticus does not respond to 2 doses of a benzodiazepine, give any of the following medicines intravenously as a second-line treatment:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_if_convulsive_status_epilepticus_does_not.png"
+        },
+        {
+          "titulo": "Levetiracetam: más rápido y con menos efectos adversos (NICE 7.1.9)",
+          "paginas": "119",
+          "texto": "Take into account that levetiracetam may be quicker to administer and have fewer adverse effects than the alternative options.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_take_into_account_that_levetiracetam_may.png"
+        },
+        {
+          "titulo": "Levetiracetam 30-60 mg/kg, máx. 3 g; fenitoína 20 mg/kg (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Levetiracetam 30–60 mg kg-1 (over 5 min, max 3 g) OR Phenytoin 20 mg kg-1 by slow IV infusion over 20 min with ECG monitoring",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Levetiracetam 30-60 mg/kg, máx. 3 g; fenitoína 20 mg/kg (RCUK 2021) (pág. 1)"
+        },
+        {
+          "titulo": "Fenitoína en 20 min con ECG; fenobarbital 20 mg/kg (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Phenytoin 20 mg kg-1 by slow IV infusion over 20 min with ECG monitoring OR Phenobarbital 20 mg kg-1 by IV infusion over 5 min",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Fenitoína en 20 min con ECG; fenobarbital 20 mg/kg (RCUK 2021) (pág. 1)"
+        },
+        {
+          "titulo": "Fenitoína rápida: bradicardia o asistolia (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Do not give phenytoin too rapidly as it will cause bradycardia and/or asystole.",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_do_not_give_phenytoin_too_rapidly.png"
+        },
+        {
+          "titulo": "Avisar a anestesia y UCI pediátrica (RCUK 2021)",
+          "paginas": "1",
+          "texto": "OR Phenobarbital 20 mg kg-1 by IV infusion over 5 min Call anaesthetist and PICU",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Avisar a anestesia y UCI pediátrica (RCUK 2021) (pág. 1)"
+        },
+        {
+          "titulo": "Igual eficacia en ESETT, EcLiPSE y ConSEPT (RCUK 2021)",
+          "paginas": "1",
+          "texto": "trials showed equal potency for phenytoin, levetiracetam and valproate Levetiracetam has a good safety profile and is easy to administer",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_trials_showed_equal_potency_for_phenytoin.png"
+        },
+        {
+          "titulo": "Sin diferencia en el cese de la crisis (Jin 2025)",
+          "paginas": "1",
+          "texto": "No significant difference was found between the two treatments regarding seizure cessation",
+          "fuente": "Jin 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.3389/fneur.2025.1580329",
+          "cita": "Jin L, Jin Z, Wang Z. Levetiracetam versus phenytoin/fosphenytoin for second-line treatment of children with convulsive status epilepticus: an up-to-date meta-analysis and systematic review of randomized controlled trials. Front Neurol. 2025;16:1580329.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_no_significant_difference_was_found_between.png"
+        },
+        {
+          "titulo": "Menos recurrencias y efectos adversos con levetiracetam (Jin 2025)",
+          "paginas": "1",
+          "texto": "levetiracetam was associated with significantly fewer seizure recurrences (OR: 0.60, 95% CI: 0.43–0.84; p = 0.003) and adverse events",
+          "fuente": "Jin 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.3389/fneur.2025.1580329",
+          "cita": "Jin L, Jin Z, Wang Z. Levetiracetam versus phenytoin/fosphenytoin for second-line treatment of children with convulsive status epilepticus: an up-to-date meta-analysis and systematic review of randomized controlled trials. Front Neurol. 2025;16:1580329.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_levetiracetam_was_associated_with_significantly_fewer.png"
+        },
+        {
+          "titulo": "Fenobarbital como tercera línea (NICE 7.1.11)",
+          "paginas": "119",
+          "texto": "consider the following third-line options under expert guidance: phenobarbital or general anaesthesia.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_consider_the_following_third_line_options.png"
+        },
+        {
+          "titulo": "valproato 40 mg/kg, máximo 3000 mg (AES 2016)",
+          "paginas": "TODO",
+          "fuente": "AES 2016",
+          "anio": "2016",
+          "url": "https://doi.org/10.5698/1535-7597-16.1.48",
+          "cita": "Glauser T, Shinnar S, Gloss D, et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Curr. 2016;16(1):48-61.",
+          "texto": "TODO_EVIDENCIA: cita literal de AES 2016 para «valproato 40 mg/kg, máximo 3000 mg»; el PDF no se pudo descargar en esta sesión."
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_fenitoina_lenta.gif",
+          "titulo": "Fenitoína: lenta y con ECG",
+          "descripcion": "Carga en **20 min** con monitor: si pasa rápido, bradicardia o asistolia.",
+          "en_texto": "Fenitoína"
         }
       ]
     },
     "trat_se_fase4": {
       "estilo": "peligro",
       "tipo": "informativo",
-      "texto": "1. Fase de tercera terapia (**40 - 60 minutos**, Status Refractario).\n2. Considerar repetición de segunda línea o anestésicos (**Tiopental**, **Midazolam**, **Pentobarbital**, o **Propofol**).\n3. Proceder a intubación endotraqueal y traslado a UCI con monitoreo EEG continuo.",
-      "nota_adicional": "El paciente requerirá cuidado neurocrítico exhaustivo. En esta fase la prioridad es detener el daño neuronal mediante supresión de brotes en el EEG.",
+      "titulo": "Refractario: anestesia en UCI",
+      "texto": "- Con un experto: otro fármaco de segunda línea mientras se prepara la intubación.\n- Tercera línea: fenobarbital o anestesia general.\n- Secuencia rápida: **tiopental 4 mg/kg** o **propofol 1-1,5 mg/kg**; ketamina y midazolam son alternativas.\n- Intubar, ventilar y monitorizar con EEG.",
+      "farmacos": [
+        {
+          "nombre": "Tiopental",
+          "dosis": "**4 mg/kg** IV",
+          "pauta": "Inducción de secuencia rápida.",
+          "paginas": "1",
+          "por_kg": {
+            "cantidad": 4,
+            "unidad": "mg"
+          }
+        },
+        {
+          "nombre": "Propofol",
+          "dosis": "**1-1,5 mg/kg** IV",
+          "pauta": "Con una dosis única de rocuronio si se usa bloqueo neuromuscular.",
+          "paginas": "1",
+          "por_kg": {
+            "desde": 1,
+            "hasta": 1.5,
+            "unidad": "mg"
+          }
+        }
+      ],
+      "nota_adicional": "Con el paciente relajado e intubado la crisis puede seguir sin verse: sólo el EEG lo dice.",
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "10-11",
-          "imagen_evidencia": "TODO_EVIDENCIA: Figura 1: Tercera fase 40-60 min",
-          "texto": "Fase de tercera terapia (40-60 min). No hay evidencia clara para guiar esta fase. Opciones: repetir terapia de segunda línea o dosis anestésicas de tiopental, midazolam, pentobarbital o propofol (con EEG continuo)."
+          "titulo": "Otra opción de segunda línea con un experto (NICE 7.1.10)",
+          "paginas": "119",
+          "texto": "If convulsive status epilepticus does not respond to a second-line treatment, consider trying an alternative second-line treatment option under expert guidance.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_if_convulsive_status_epilepticus_does_not.png"
+        },
+        {
+          "titulo": "Fenobarbital o anestesia general (NICE 7.1.11)",
+          "paginas": "119",
+          "texto": "consider the following third-line options under expert guidance: phenobarbital or general anaesthesia.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag119_consider_the_following_third_line_options.png"
+        },
+        {
+          "titulo": "Tiopental 4 mg/kg (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Rapid sequence induction of anaesthesia using thiopental sodium 4 mg kg-1 IV",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_rapid_sequence_induction_of_anaesthesia_using.png"
+        },
+        {
+          "titulo": "Propofol 1-1,5 mg/kg (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Propofol 1–1.5 mg kg-1 IV (with single dose recuronium if using NMB); ketamine and midazolam alternatives",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_propofol_11_5_mg_kg_1.png"
+        },
+        {
+          "titulo": "No hay tercera línea ideal (RCUK 2021)",
+          "paginas": "1",
+          "texto": "There is no evidence for the ideal third line agent: thiopentone, propofol, ketamine and midazolam may all be used",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_there_is_no_evidence_for_the.png"
+        },
+        {
+          "titulo": "Intubar, ventilar y vigilar con EEG (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Intubation and ventilation; monitoring neurological signs Ongoing seizures are not always easy to identify (EEG)",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_intubation_and_ventilation_monitoring_neurological_signs.png"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_eeg_oculto.png",
+          "titulo": "Refractario: mirar el EEG",
+          "descripcion": "Relajado e intubado parece quieto; el EEG muestra que la crisis sigue.",
+          "en_texto": "monitorizar con EEG"
         }
       ]
     },
     "trat_se_exito": {
       "estilo": "exito",
       "tipo": "informativo",
-      "texto": "- Crisis controladas.\n- Monitorizar estrechamente por depresión respiratoria inducida por fármacos.\n- Determinar etiología desencadenante y ajustar pauta de mantenimiento crónica.",
+      "titulo": "Crisis controlada",
+      "texto": "- Vigilar la respiración tras las benzodiacepinas.\n- Buscar la causa: glucosa, sodio, infección, trauma, abandono del anticrisis.\n- Acordar un plan de emergencia individual si puede repetirse.\n- Primera crisis → estudio en la sección de diagnóstico.",
+      "enlaces": [
+        {
+          "texto": "Estudiar la primera crisis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_diagnostico"
+        },
+        {
+          "texto": "Plan para racimos y crisis largas",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_seccion"
+        }
+      ],
       "referencias": [
         {
-          "titulo": "Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults (AES)",
-          "url": "https://www.aesnet.org/clinical_resources/guidelines",
-          "paginas": "8, 10",
-          "imagen_evidencia": "TODO_EVIDENCIA: Mención a efectos adversos",
-          "texto": "Vigilar depresión respiratoria, que es el evento adverso clínico más significativo derivado de la terapia anticonvulsivante (benzodiacepinas) y del status epilepticus per se."
+          "titulo": "Plan de emergencia tras el estado epiléptico (NICE 7.1.12)",
+          "paginas": "120",
+          "texto": "After an episode of convulsive status epilepticus, agree an emergency management plan with the person if they do not already have one",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag120_after_an_episode_of_convulsive_status.png"
+        },
+        {
+          "titulo": "Plan individual en quien convulsiona a menudo (RCUK 2021)",
+          "paginas": "1",
+          "texto": "Children who frequently have seizures or CSE usually have an individually tailored guideline.",
+          "fuente": "RCUK EPALS 2021",
+          "anio": "2021",
+          "url": "https://clinicalguidelines.scot.nhs.uk/media/2913/epals-cse-flowchart-apr-21-v1.pdf",
+          "cita": "Resuscitation Council UK. European Paediatric Advanced Life Support (EPALS): Treating convulsive status epilepticus in children. Abril 2021.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag1_children_who_frequently_have_seizures_or.png"
+        },
+        {
+          "titulo": "Causas subyacentes (NICE 7.1.4)",
+          "paginas": "118",
+          "texto": "Be aware of the possible underlying causes of status epilepticus, including hypoglycaemia, eclampsia and alcohol withdrawal, which may need to be treated with additional medication.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_be_aware_of_the_possible_underlying.png"
         }
       ]
     },
-    "trat_espasmos": {
-      "tipo": "informativo",
-      "texto": "1. Derivar urgentemente a un neurólogo pediatra (idealmente en < **24 horas**).\n2. Iniciar terapia combinada: **Prednisolona** oral a altas dosis + **Vigabatrina**.\n3. Realizar EEG de sueño a las 2 semanas de iniciar tratamiento.",
-      "nota_adicional": "Si el paciente tiene Esclerosis Tuberosa, utilizar Vigabatrina como monoterapia de primera línea. En el resto de casos, la terapia combinada es la elección recomendada.",
+    "diag_estabilizacion": {
+      "tipo": "pregunta",
+      "titulo": "Crisis: ABC y reloj",
+      "texto": "- ABC y glucemia capilar inmediata.\n- Cronometrar desde el inicio de la crisis.\n- **≥5 min** convulsionando es estado epiléptico: no esperar a que ceda sola.",
+      "pie_nodo": "¿Lleva **5 minutos** o más convulsionando?",
+      "opciones": [
+        {
+          "texto": "Sí: ≥5 min",
+          "siguiente_nodo": "diag_derivar_status"
+        },
+        {
+          "texto": "No: ya cedió",
+          "siguiente_nodo": "diag_evaluacion_clinica"
+        }
+      ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "5 minutos o más: estado epiléptico (NICE 7.1.1)",
+          "paginas": "118",
+          "texto": "Provide resuscitation and immediate emergency treatment for children, young people and adults who have convulsive status epilepticus (seizures lasting 5 minutes or more).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "62-63",
-          "imagen_evidencia": "TODO_EVIDENCIA: Recomendaciones 6.3.1 a 6.3.6 sobre espasmos infantiles",
-          "texto": "Derivar urgentemente (<24h). Terapia de primera línea: combinación de prednisolona oral en altas dosis y vigabatrina. Si la etiología es Esclerosis Tuberosa, vigabatrina sola como primera línea."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_provide_resuscitation_and_immediate_emergency_treatment.png"
+        },
+        {
+          "titulo": "Hipoglucemia y alteraciones metabólicas (NICE 1.2.3)",
+          "paginas": "14",
+          "texto": "Be aware that metabolic disturbance, including hypoglycaemia, can result in seizures. Offer brain neuroimaging tests if an underlying structural cause is suspected",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_be_aware_that_metabolic_disturbance_including.png"
+        }
+      ]
+    },
+    "diag_derivar_status": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "titulo": "≥5 min: estado epiléptico",
+      "texto": "- Tratar ya como estado epiléptico convulsivo.\n- Plan de emergencia individual a mano → darle su medicación.\n- Sin plan → benzodiacepina inmediata.",
+      "pie_nodo": "¿Qué sigue?",
+      "opciones": [
+        {
+          "texto": "Tratar el estado epiléptico",
+          "siguiente_nodo": "trat_status"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Tratamiento inmediato (NICE 7.1.1)",
+          "paginas": "118",
+          "texto": "Provide resuscitation and immediate emergency treatment for children, young people and adults who have convulsive status epilepticus (seizures lasting 5 minutes or more).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_provide_resuscitation_and_immediate_emergency_treatment.png"
+        },
+        {
+          "titulo": "Plan individual (NICE 7.1.2)",
+          "paginas": "118",
+          "texto": "If the person with convulsive status epilepticus has an individualised emergency management plan that is immediately available, administer medication as detailed in the plan.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag118_if_the_person_with_convulsive_status.png"
+        },
+        {
+          "titulo": "5 minutos o más: seguir lo del estado epiléptico (NICE 7.3)",
+          "paginas": "123",
+          "texto": "For convulsive seizures that continue for 5 minutes or more, follow the recommendations in the section on status epilepticus.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag123_for_convulsive_seizures_that_continue_for.png"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_plan_emergencia.png",
+          "titulo": "Plan de emergencia individual",
+          "descripcion": "Qué fármaco, quién lo da y cuándo: si existe, se sigue primero.",
+          "en_texto": "Plan de emergencia individual"
+        }
+      ]
+    },
+    "diag_evaluacion_clinica": {
+      "tipo": "pregunta",
+      "titulo": "¿Fue una crisis epiléptica?",
+      "texto": "- Historia detallada y exploración; pedir a la familia el vídeo del episodio.\n- **ECG de 12 derivaciones**: descartar un origen cardíaco que la imite.\n- Glucosa y alteraciones metabólicas.\n- Neuroimagen urgente sólo si se sospecha una lesión estructural.",
+      "nota_adicional": "Tras una primera crisis sin fiebre, el riesgo de otra es mayor en los siguientes **6-12 meses**. La febril complicada (**>10 min** o focal) también eleva el riesgo de epilepsia.",
+      "pie_nodo": "¿Lo más probable es una crisis epiléptica?",
+      "opciones": [
+        {
+          "texto": "Sí: crisis epiléptica",
+          "siguiente_nodo": "diag_estudios_complementarios"
+        },
+        {
+          "texto": "No: otra causa",
+          "siguiente_nodo": "diag_fin_no_epilepsia"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Testigos y vídeo (NICE 1.2.1)",
+          "paginas": "14",
+          "texto": "If possible, use eyewitness accounts and video footage of the seizure to inform the assessment.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_if_possible_use_eyewitness_accounts_and.png"
+        },
+        {
+          "titulo": "ECG de 12 derivaciones (NICE 1.2.2)",
+          "paginas": "14",
+          "texto": "Evaluate people after a first suspected seizure with a 12-lead ECG to help identify cardiac-related conditions that could mimic an epileptic seizure.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_evaluate_people_after_a_first_suspected.png"
+        },
+        {
+          "titulo": "Alteraciones metabólicas y neuroimagen (NICE 1.2.3-1.2.4)",
+          "paginas": "14",
+          "texto": "Be aware that metabolic disturbance, including hypoglycaemia, can result in seizures. Offer brain neuroimaging tests if an underlying structural cause is suspected",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_be_aware_that_metabolic_disturbance_including.png"
+        },
+        {
+          "titulo": "Riesgo tras una primera crisis afebril (NICE 1.1.5)",
+          "paginas": "10",
+          "texto": "children presenting with a first afebrile seizure (seizure without a fever) are at an increased risk of further afebrile seizures, especially within 6 to 12 months,",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag10_children_presenting_with_a_first_afebrile.png"
+        },
+        {
+          "titulo": "Crisis febril complicada (NICE 1.1.6)",
+          "paginas": "10",
+          "texto": "complicated febrile seizures (febrile seizures that last longer than 10 minutes or febrile seizures associated with other features, such as weakness, on one side of the body)",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag10_complicated_febrile_seizures_febrile_seizures_that.png"
+        }
+      ]
+    },
+    "diag_estudios_complementarios": {
+      "tipo": "pregunta",
+      "titulo": "Derivar y pedir estudios",
+      "texto": "- Derivar a pediatra con experiencia en epilepsia en **<2 semanas**.\n- EEG en vigilia lo antes posible, ideal **<72 h**; normal → con privación de sueño, luego ambulatorio hasta **48 h**.\n- RM cerebral con protocolo de epilepsia en **≤6 semanas**, salvo epilepsia generalizada idiopática o rolándica.\n- Explicar a los padres cómo volver si repite.",
+      "alertas": [
+        {
+          "titulo": "El EEG no descarta",
+          "texto": "Un EEG normal no excluye la epilepsia."
+        },
+        {
+          "titulo": "Sin TC de rutina",
+          "texto": "Epilepsia conocida con una crisis típica en urgencias: no pedir TC salvo otra sospecha."
+        }
+      ],
+      "pie_nodo": "¿Inicio **<2 años**, sospecha de síndrome genético o rasgos añadidos?",
+      "opciones": [
+        {
+          "texto": "Sí: estudio genético",
+          "siguiente_nodo": "diag_genetica"
+        },
+        {
+          "texto": "No: seguir",
+          "siguiente_nodo": "diag_fin_epilepsia"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Espasmos en <2 años: derivar en 24 h",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_espasmos"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Derivación urgente en 2 semanas (NICE 1.1.1)",
+          "paginas": "9",
+          "texto": "Refer children, young people and adults urgently (for an appointment within 2 weeks) for an assessment after a first suspected seizure:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag9_refer_children_young_people_and_adults.png"
+        },
+        {
+          "titulo": "A pediatra con experiencia (NICE 1.1.1)",
+          "paginas": "9",
+          "texto": "For children and young people, refer to a paediatrician with expertise in assessing first seizures and diagnosing epilepsy.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag9_for_children_and_young_people_refer.png"
+        },
+        {
+          "titulo": "EEG idealmente en 72 h (NICE 1.2.7)",
+          "paginas": "14",
+          "texto": "If an EEG is requested after a first seizure, perform it as soon as possible (ideally within 72 hours after the seizure).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_if_an_eeg_is_requested_after.png"
+        },
+        {
+          "titulo": "EEG en vigilia; no excluye (NICE 1.2.5-1.2.6)",
+          "paginas": "14",
+          "texto": "consider a routine EEG carried out while awake to support diagnosis and provide information about seizure type or epilepsy syndrome. Do not use EEG to exclude a diagnosis of epilepsy.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_consider_a_routine_eeg_carried_out.png"
+        },
+        {
+          "titulo": "EEG con privación de sueño (NICE 1.2.9)",
+          "paginas": "14",
+          "texto": "If routine EEG is normal, consider a sleep-deprived EEG if agreed with the person, and their family or carers if appropriate,",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_if_routine_eeg_is_normal_consider.png"
+        },
+        {
+          "titulo": "EEG ambulatorio hasta 48 h (NICE 1.2.10)",
+          "paginas": "14",
+          "texto": "If routine and sleep-deprived EEG results are normal and diagnostic uncertainty persists, consider ambulatory EEG (for up to 48 hours).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "TODO_EVIDENCIA: EEG ambulatorio hasta 48 h (NICE 1.2.10) (pág. 14)"
+        },
+        {
+          "titulo": "RM salvo epilepsia generalizada idiopática o rolándica (NICE 1.3.1)",
+          "paginas": "18",
+          "texto": "Offer an MRI scan to children, young people and adults diagnosed with epilepsy, unless they have idiopathic generalised epilepsy or self-limited epilepsy with centrotemporal spikes.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag18_offer_an_mri_scan_to_children.png"
+        },
+        {
+          "titulo": "RM en 6 semanas con protocolo (NICE 1.3.1)",
+          "paginas": "18",
+          "texto": "The MRI should be carried out: within 6 weeks of the MRI referral and following regionally agreed epilepsy MRI protocols.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag18_the_mri_should_be_carried_out.png"
+        },
+        {
+          "titulo": "Sin TC tras una crisis típica (NICE 1.3.7)",
+          "paginas": "19",
+          "texto": "Do not carry out a CT scan for people with established epilepsy presenting at an emergency department after a typical seizure, unless there are other concerns.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag19_do_not_carry_out_a_ct.png"
+        },
+        {
+          "titulo": "Cómo volver si repite (NICE 1.1.9)",
+          "paginas": "11",
+          "texto": "After a first afebrile seizure in a child, explain to their parents or carers how to self-refer the child urgently if they have a further seizure.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag11_after_a_first_afebrile_seizure_in.png"
+        }
+      ]
+    },
+    "diag_genetica": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "titulo": "Estudio genético: genoma completo",
+      "texto": "- Considerar secuenciación del genoma completo si la causa es desconocida.\n- Inicio a los **2-3 años**: si lo acuerda un equipo multidisciplinario.\n- Antes, consejo genético y consentimiento de la familia.\n- Sospecha de encefalitis autoinmune → anticuerpos, con neurología.",
+      "checklist": {
+        "titulo": "Genoma completo si la causa es desconocida y",
+        "items": [
+          "Inicio de la epilepsia antes de los **2 años**",
+          "Rasgos de un síndrome genético (p. ej., Dravet)",
+          "Discapacidad intelectual o autismo",
+          "Dismorfia o malformación congénita",
+          "Deterioro cognitivo o de memoria sin explicación"
+        ]
+      },
+      "nota_adicional": "Pensar en Dravet ante crisis febriles prolongadas en el lactante: evitar los bloqueadores de sodio (carbamazepina, lamotrigina).",
+      "enlaces": [
+        {
+          "texto": "Tratamiento del síndrome de Dravet",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_dravet"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Genoma completo: inicio antes de los 2 años (NICE 1.4.4)",
+          "paginas": "22",
+          "texto": "Consider whole-genome sequencing for people with epilepsy of unknown cause who: were aged under 2 years when epilepsy started or",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag22_consider_whole_genome_sequencing_for_people.png"
+        },
+        {
+          "titulo": "Rasgos de síndrome genético (NICE 1.4.4)",
+          "paginas": "22",
+          "texto": "have clinical features suggestive of a specific genetic epilepsy syndrome (for example, Dravet syndrome) or",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag22_have_clinical_features_suggestive_of_a.png"
+        },
+        {
+          "titulo": "Rasgos clínicos añadidos (NICE 1.4.4)",
+          "paginas": "22",
+          "texto": "have additional clinical features such as: a learning disability autism spectrum disorder a structural abnormality (for example, dysmorphism or congenital malformation) unexplained cognitive or memory decline.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag22_have_additional_clinical_features_such_as.png"
+        },
+        {
+          "titulo": "Inicio entre 2 y 3 años (NICE 1.4.5)",
+          "paginas": "23",
+          "texto": "who were aged between 2 and 3 years when epilepsy started, if clinically agreed by a specialist multidisciplinary team.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag23_who_were_aged_between_2_and.png"
+        },
+        {
+          "titulo": "Consejo y consentimiento (NICE 1.4.3)",
+          "paginas": "22",
+          "texto": "discuss the purpose of testing and the possible implications of the results with the person with epilepsy, and their family and carers if appropriate",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag22_discuss_the_purpose_of_testing_and.png"
+        },
+        {
+          "titulo": "Anticuerpos si se sospecha encefalitis autoinmune (NICE 1.5.1)",
+          "paginas": "25",
+          "texto": "Consider antibody testing in discussion with a neurologist for people with new-onset epilepsy if autoimmune encephalitis is suspected.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag25_consider_antibody_testing_in_discussion_with.png"
+        },
+        {
+          "titulo": "Fármacos que empeoran el Dravet (NICE 6.1.7)",
+          "paginas": "95",
+          "texto": "Be aware that the following medications may exacerbate seizures in people with Dravet syndrome:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag95_be_aware_that_the_following_medications.png"
+        }
+      ]
+    },
+    "diag_fin_epilepsia": {
+      "estilo": "exito",
+      "tipo": "pregunta",
+      "titulo": "¿Empezar el anticrisis?",
+      "texto": "- Diagnóstico de epilepsia confirmado → empezar el anticrisis.\n- Tras una primera crisis no provocada, sólo si hay algún criterio de la lista.\n- Elegir el fármaco según tipo de crisis, edad y sexo.",
+      "checklist": {
+        "titulo": "Tratar tras una primera crisis no provocada si",
+        "items": [
+          "Déficit neurológico en la exploración",
+          "EEG con actividad epiléptica inequívoca",
+          "Lesión estructural en la imagen",
+          "La familia considera el riesgo inaceptable"
+        ]
+      },
+      "pie_nodo": "¿Qué sigue?",
+      "opciones": [
+        {
+          "texto": "Elegir el anticrisis",
+          "siguiente_nodo": "nodo_tratamiento"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Iniciar con el diagnóstico confirmado (NICE 4.2.1)",
+          "paginas": "44",
+          "texto": "Start treatment with an antiseizure medication once the diagnosis of epilepsy is confirmed.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag44_start_treatment_with_an_antiseizure_medication.png"
+        },
+        {
+          "titulo": "Tras una primera crisis: déficit neurológico (NICE 4.2.2)",
+          "paginas": "44",
+          "texto": "Consider starting treatment after a first unprovoked seizure if any of the following apply: an examination identifies signs of neurological deficit",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag44_consider_starting_treatment_after_a_first.png"
+        },
+        {
+          "titulo": "EEG inequívoco o riesgo inaceptable (NICE 4.2.2)",
+          "paginas": "44",
+          "texto": "the electroencephalogram (EEG) shows unequivocal epileptic activity after a discussion of the risk of further seizures, the person or their family or carers consider the risk unacceptable",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag44_the_electroencephalogram_eeg_shows_unequivocal_epileptic.png"
+        },
+        {
+          "titulo": "Lesión estructural (NICE 4.2.2)",
+          "paginas": "44",
+          "texto": "the person or their family or carers consider the risk unacceptable brain imaging shows a structural abnormality.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Lesión estructural (NICE 4.2.2) (pág. 44)"
+        }
+      ]
+    },
+    "diag_fin_no_epilepsia": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "titulo": "No parece epiléptica",
+      "texto": "- Origen cardíaco (arritmia, QT largo en el ECG) → cardiología.\n- Causa metabólica → corregirla.\n- No empezar anticrisis.\n- Duda que persiste → pediatra con experiencia en epilepsia.",
+      "referencias": [
+        {
+          "titulo": "ECG para causas cardíacas que imitan una crisis (NICE 1.2.2)",
+          "paginas": "14",
+          "texto": "Evaluate people after a first suspected seizure with a 12-lead ECG to help identify cardiac-related conditions that could mimic an epileptic seizure.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_evaluate_people_after_a_first_suspected.png"
+        },
+        {
+          "titulo": "Causas metabólicas (NICE 1.2.3)",
+          "paginas": "14",
+          "texto": "Be aware that metabolic disturbance, including hypoglycaemia, can result in seizures. Offer brain neuroimaging tests if an underlying structural cause is suspected",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag14_be_aware_that_metabolic_disturbance_including.png"
+        },
+        {
+          "titulo": "Pediatra con experiencia (NICE 1.1.1)",
+          "paginas": "9",
+          "texto": "For children and young people, refer to a paediatrician with expertise in assessing first seizures and diagnosing epilepsy.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag9_for_children_and_young_people_refer.png"
         }
       ]
     },
     "trat_tcsg": {
       "tipo": "informativo",
-      "texto": "- Iniciar monoterapia de primera línea.\n- Opciones: **Levetiracetam**, **Lamotrigina**, o **Valproato sódico**.",
-      "nota_adicional": "ADVERTENCIA MHRA: El valproato NO debe iniciarse en mujeres o niñas con potencial fértil a menos que no haya otra alternativa tolerada y se cumpla con un estricto Programa de Prevención de Embarazo. Tampoco en varones < 55 años sin discusión exhaustiva de riesgos de fertilidad.",
+      "titulo": "Tónico-clónicas generalizadas",
+      "texto": "- Primera línea: **lamotrigina**, **levetiracetam** o **valproato**; si falla, otra de las tres.\n- Fallan las tres → añadir uno: clobazam, lamotrigina, levetiracetam, perampanel, valproato o topiramato.\n- Después: brivaracetam, lacosamida, fenobarbital, primidona o zonisamida.",
+      "alertas": [
+        {
+          "titulo": "Valproato",
+          "texto": "No empezarlo en menores de 55 años salvo que 2 especialistas documenten que no hay alternativa. En niñas: programa de prevención del embarazo."
+        }
+      ],
+      "nota_adicional": "Si además hay ausencias o mioclonías, evitar carbamazepina, oxcarbazepina, fenitoína, gabapentina, pregabalina, tiagabina y vigabatrina: las empeoran.",
+      "enlaces": [
+        {
+          "texto": "Seguridad del valproato y el topiramato",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_seguridad"
+        }
+      ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "Primera línea (NICE 5.1.1)",
+          "paginas": "65",
+          "texto": "Offer a choice of lamotrigine, levetiracetam or sodium valproate as first-line monotherapy for generalised tonic-clonic seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "41-42",
-          "imagen_evidencia": "TODO_EVIDENCIA: Box 2: Medidas de seguridad de MHRA y Recomendación 5.1.1",
-          "texto": "Opciones de primera línea: lamotrigina, levetiracetam o valproato sódico. Cumplir estrictamente con las normativas MHRA para la prescripción de valproato sódico en pacientes menores de 55 años (ambos sexos)."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_offer_a_choice_of_lamotrigine_levetiracetam.png"
+        },
+        {
+          "titulo": "Tratamiento añadido (NICE 5.1.2)",
+          "paginas": "66",
+          "texto": "If monotherapy is unsuccessful in people with generalised tonic-clonic seizures, consider 1 of the following first-line add-on treatment options:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag66_if_monotherapy_is_unsuccessful_in_people.png"
+        },
+        {
+          "titulo": "Fármacos que empeoran ausencias y mioclonías (NICE 5.1.4)",
+          "paginas": "67",
+          "texto": "Be aware that the following antiseizure medications may exacerbate seizures in people with absence or myoclonic seizures, including in juvenile myoclonic epilepsy:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag67_be_aware_that_the_following_antiseizure.png"
+        },
+        {
+          "titulo": "Valproato en menores de 55 años (NICE, recuadro 2)",
+          "paginas": "65",
+          "texto": "Do not start sodium valproate for the first time in people (male or female) younger than 55 years, unless 2 specialists independently agree and document",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_do_not_start_sodium_valproate_for.png"
+        }
+      ]
+    },
+    "trat_focales": {
+      "tipo": "informativo",
+      "titulo": "Crisis focales",
+      "texto": "- Primera línea: **lamotrigina** o **levetiracetam**; si falla, la otra.\n- Segunda línea: carbamazepina, oxcarbazepina o zonisamida.\n- Tercera línea: lacosamida.\n- Falla la monoterapia → añadir uno: carbamazepina, lacosamida, lamotrigina, levetiracetam, oxcarbazepina, topiramato o zonisamida.",
+      "alertas": [
+        {
+          "titulo": "Piel y origen familiar",
+          "texto": "Carbamazepina y oxcarbazepina: más reacciones cutáneas graves en familias han chinas, tailandesas, europeas o japonesas."
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Primera línea (NICE 5.2.1)",
+          "paginas": "70",
+          "texto": "Consider lamotrigine or levetiracetam as first-line monotherapy for people with focal seizures. If the first choice is unsuccessful, consider the other of these options.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag70_consider_lamotrigine_or_levetiracetam_as_first.png"
+        },
+        {
+          "titulo": "Segunda línea (NICE 5.2.2)",
+          "paginas": "70",
+          "texto": "If first-line monotherapies are unsuccessful in people with focal seizures, consider 1 of the following second-line monotherapy options: carbamazepine oxcarbazepine zonisamide.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag70_if_first_line_monotherapies_are_unsuccessful.png"
+        },
+        {
+          "titulo": "Tercera línea (NICE 5.2.3)",
+          "paginas": "70",
+          "texto": "If second-line monotherapies tried are unsuccessful in people with focal seizures, consider lacosamide as third-line monotherapy.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag70_if_second_line_monotherapies_tried_are.png"
+        },
+        {
+          "titulo": "Reacciones cutáneas graves (NICE 4.3.3)",
+          "paginas": "47",
+          "texto": "carbamazepine and potentially medicines with a similar chemical structure (such as oxcarbazepine and eslicarbazepine acetate) are associated with an increased risk of serious skin reactions",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag47_carbamazepine_and_potentially_medicines_with_a.png"
         }
       ]
     },
     "trat_ausencias": {
       "tipo": "informativo",
-      "texto": "- Iniciar monoterapia de primera línea.\n- Fármaco de elección: **Etosuximida**.\n- Alternativas de segunda línea: Valproato sódico, Lamotrigina o Levetiracetam.",
-      "nota_adicional": "Evitar estrictamente el uso de Carbamazepina, Gabapentina, Oxcarbazepina, Fenitoína o Pregabalina, ya que pueden exacerbar las crisis de ausencia y las crisis mioclónicas.",
+      "titulo": "Crisis de ausencia",
+      "texto": "- Primera línea: **etosuximida**.\n- Falla → lamotrigina, levetiracetam o valproato, solos o añadidos.\n- Ausencias con otro tipo de crisis → empezar por lamotrigina, levetiracetam o valproato.",
+      "alertas": [
+        {
+          "titulo": "Empeoran las ausencias",
+          "texto": "Carbamazepina, oxcarbazepina, fenitoína, fenobarbital, gabapentina, pregabalina, tiagabina y vigabatrina."
+        }
+      ],
       "referencias": [
         {
-          "titulo": "NICE Guideline NG217: Epilepsies in children, young people and adults",
+          "titulo": "Etosuximida primero (NICE 5.3.1-5.3.2)",
+          "paginas": "75",
+          "texto": "Offer ethosuximide as first-line treatment for absence seizures. If first-line treatment is unsuccessful, offer a choice of lamotrigine, levetiracetam or sodium valproate",
+          "fuente": "NICE NG217",
+          "anio": "2026",
           "url": "https://www.nice.org.uk/guidance/ng217",
-          "paginas": "48-49",
-          "imagen_evidencia": "TODO_EVIDENCIA: Sección 5.3 Absence seizures",
-          "texto": "Ofrecer etosuximida como tratamiento de primera línea para crisis de ausencia. Evitar carbamazepina, gabapentina, oxcarbazepina, fenobarbital, fenitoína, pregabalina, tiagabina o vigabatrina por exacerbación de crisis."
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag75_offer_ethosuximide_as_first_line_treatment.png"
+        },
+        {
+          "titulo": "Segunda línea (NICE 5.3.2)",
+          "paginas": "75",
+          "texto": "If first-line treatment is unsuccessful, offer a choice of lamotrigine, levetiracetam or sodium valproate as second-line monotherapy or add-on treatment for absence seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag75_if_first_line_treatment_is_unsuccessful.png"
+        },
+        {
+          "titulo": "Ausencias con otras crisis (NICE 5.3.4)",
+          "paginas": "76",
+          "texto": "Consider a choice of lamotrigine, levetiracetam or sodium valproate as first-line treatment for absence seizures with other seizure types (or at risk of these).",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag76_consider_a_choice_of_lamotrigine_levetiracetam.png"
+        },
+        {
+          "titulo": "Fármacos que empeoran las ausencias (NICE 5.3.3)",
+          "paginas": "76",
+          "texto": "Be aware that the following antiseizure medications may exacerbate seizures in people with absence seizures:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag76_be_aware_that_the_following_antiseizure.png"
+        }
+      ]
+    },
+    "trat_mioclonicas": {
+      "tipo": "informativo",
+      "titulo": "Crisis mioclónicas",
+      "texto": "- **<4 años** → consultar o derivar a neuropediatría terciaria.\n- Primera línea: **levetiracetam** o **valproato**; si falla, el otro.\n- Después: brivaracetam, clobazam, clonazepam, lamotrigina, fenobarbital, piracetam, topiramato o zonisamida.",
+      "nota_adicional": "La lamotrigina a veces empeora las mioclonías: si aparecen o aumentan tras empezarla, sospecharla.",
+      "alertas": [
+        {
+          "titulo": "Valproato",
+          "texto": "No empezarlo en menores de 55 años salvo que 2 especialistas documenten que no hay alternativa. En niñas: programa de prevención del embarazo."
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Menores de 4 años: neuropediatría terciaria (NICE 5.4.1)",
+          "paginas": "80",
+          "texto": "If a child under 4 years has myoclonic seizures, either seek guidance on treatment from or refer to a tertiary paediatric neurologist.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag80_if_a_child_under_4_years.png"
+        },
+        {
+          "titulo": "Primera línea (NICE 5.4.2)",
+          "paginas": "80",
+          "texto": "Offer a choice of levetiracetam or sodium valproate as first-line treatment for myoclonic seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag80_offer_a_choice_of_levetiracetam_or.png"
+        },
+        {
+          "titulo": "Segunda línea (NICE 5.4.3)",
+          "paginas": "81",
+          "texto": "If first-line treatment is unsuccessful for myoclonic seizures, consider 1 of the following as monotherapy or add-on treatment options:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag81_if_first_line_treatment_is_unsuccessful.png"
+        },
+        {
+          "titulo": "La lamotrigina puede empeorarlas (NICE 5.4.4)",
+          "paginas": "81",
+          "texto": "Be aware that lamotrigine can occasionally exacerbate myoclonic seizures. Do not use any of the following antiseizure medications in people with myoclonic",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag81_be_aware_that_lamotrigine_can_occasionally.png"
+        },
+        {
+          "titulo": "Valproato en niñas (NICE, recuadro 2)",
+          "paginas": "65",
+          "texto": "Only use sodium valproate in women and girls of childbearing potential (including young girls who are likely to need treatment when they are old enough to have children), if:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_only_use_sodium_valproate_in_women.png"
+        }
+      ]
+    },
+    "trat_espasmos": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "titulo": "Espasmos infantiles: <2 años",
+      "chips": [
+        {
+          "texto": "Derivar en 24 h",
+          "color": "rojo"
+        }
+      ],
+      "texto": "- En **<24 h**: consultar y derivar a neuropediatría terciaria, con EEG de sueño.\n- Primera línea: **prednisolona oral a dosis altas + vigabatrina**.\n- Esclerosis tuberosa o alto riesgo con corticoide → vigabatrina sola; en la tuberosa, sin respuesta a **1 semana** → añadir prednisolona.\n- Revisar cada semana; EEG de sueño a las **2 semanas**.",
+      "checklist": {
+        "titulo": "Antes de la prednisolona",
+        "items": [
+          "Explicar los efectos adversos del corticoide",
+          "Serología de varicela zóster",
+          "Tarjeta de corticoide e indicaciones de alarma",
+          "Plan de PA y glucosuria semanales"
+        ]
+      },
+      "nota_adicional": "Dosis de prednisolona y vigabatrina según el BNFc; si no ceden, neuropediatría decide la segunda línea.",
+      "referencias": [
+        {
+          "titulo": "Derivar en 24 h con EEG de sueño (NICE 6.3.1)",
+          "paginas": "103",
+          "texto": "If a child under 2 years has suspected or confirmed infantile spasms, within 24 hours seek guidance from, and refer the child urgently to, a tertiary paediatric neurologist",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_if_a_child_under_2_years.png"
+        },
+        {
+          "titulo": "Prednisolona + vigabatrina (NICE 6.3.4)",
+          "paginas": "103",
+          "texto": "Offer combination therapy with high-dose oral prednisolone and vigabatrin as first-line treatment for infantile spasms that are not due to tuberous sclerosis,",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_offer_combination_therapy_with_high_dose.png"
+        },
+        {
+          "titulo": "Vigabatrina sola si hay riesgo con el corticoide (NICE 6.3.5)",
+          "paginas": "103",
+          "texto": "Consider vigabatrin alone as first-line treatment for infantile spasms in children at high risk of steroid-related side effects.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_consider_vigabatrin_alone_as_first_line.png"
+        },
+        {
+          "titulo": "Esclerosis tuberosa (NICE 6.3.6)",
+          "paginas": "103",
+          "texto": "Offer vigabatrin alone as first-line treatment for infantile spasms due to tuberous sclerosis. If vigabatrin is ineffective after 1 week, add high-dose oral prednisolone.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_offer_vigabatrin_alone_as_first_line.png"
+        },
+        {
+          "titulo": "Revisión semanal y EEG a las 2 semanas (NICE 6.3.2)",
+          "paginas": "103",
+          "texto": "Review children under 2 years with infantile spasms at least weekly during treatment and repeat sleep EEG at 2 weeks after starting treatment.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag103_review_children_under_2_years_with.png"
+        },
+        {
+          "titulo": "Antes del corticoide (NICE 6.3.7)",
+          "paginas": "104",
+          "texto": "discuss the possible side effects of steroid treatment with parents and carers test whether the child has antibodies to the varicella zoster virus",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag104_discuss_the_possible_side_effects_of.png"
+        },
+        {
+          "titulo": "PA y glucosuria semanales (NICE 6.3.8)",
+          "paginas": "104",
+          "texto": "follow the advice in the BNF for children on prednisolone dosages. Monitor blood pressure and urinary glucose weekly during treatment.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag104_follow_the_advice_in_the_bnf.png"
+        },
+        {
+          "titulo": "Si falla la primera línea (NICE 6.3.10)",
+          "paginas": "104",
+          "texto": "If first-line treatment for infantile spasms is unsuccessful, discuss further treatment with a tertiary paediatric epilepsy specialist.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag104_if_first_line_treatment_for_infantile.png"
+        }
+      ]
+    },
+    "trat_selects": {
+      "tipo": "informativo",
+      "titulo": "Epilepsia rolándica (SeLECTS)",
+      "chips": [
+        "Cambio ago-2026"
+      ],
+      "texto": "- SeLECTS: epilepsia autolimitada con puntas centrotemporales.\n- Decidir con la familia si tratar: frecuencia, gravedad y efectos adversos.\n- Primera línea: **lamotrigina** o **levetiracetam**.\n- Falla → **sultiamo**, pautado por neuropediatría; después carbamazepina, oxcarbazepina o zonisamida.",
+      "nota_adicional": "No necesita RM de entrada; sí si no responde a la primera línea.",
+      "referencias": [
+        {
+          "titulo": "Decidir con la familia (NICE 6.4.1)",
+          "paginas": "107",
+          "texto": "Discuss with children and young people with self-limited epilepsy with centrotemporal spikes, and their families or carers as appropriate, whether they wish to start treatment.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Decidir con la familia (NICE 6.4.1) (pág. 107)"
+        },
+        {
+          "titulo": "Primera línea (NICE 6.4.2)",
+          "paginas": "108",
+          "texto": "Consider lamotrigine or levetiracetam as first-line monotherapy treatment for self-limited epilepsy with centrotemporal spikes.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag108_consider_lamotrigine_or_levetiracetam_as_first.png"
+        },
+        {
+          "titulo": "Sultiamo, recomendación de 2026 (NICE 6.4.3)",
+          "paginas": "108",
+          "texto": "Consider sultiame monotherapy treatment if first-line treatments for self-limited epilepsy with centrotemporal spikes are unsuccessful.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag108_consider_sultiame_monotherapy_treatment_if_first.png"
+        },
+        {
+          "titulo": "Sólo neuropediatría (NICE 6.4.3)",
+          "paginas": "108",
+          "texto": "Sultiame should only be prescribed by, or on the advice of, a paediatric epilepsy specialist.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag108_sultiame_should_only_be_prescribed_by.png"
+        },
+        {
+          "titulo": "Si el sultiamo falla (NICE 6.4.4)",
+          "paginas": "108",
+          "texto": "If sultiame is unsuccessful or unsuitable, consider either carbamazepine, oxcarbazepine or zonisamide as monotherapy treatment.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag108_if_sultiame_is_unsuccessful_or_unsuitable.png"
+        },
+        {
+          "titulo": "Sin RM de entrada en la rolándica (NICE 1.3.1)",
+          "paginas": "18",
+          "texto": "Offer an MRI scan to children, young people and adults diagnosed with epilepsy, unless they have idiopathic generalised epilepsy or self-limited epilepsy with centrotemporal spikes.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag18_offer_an_mri_scan_to_children.png"
+        }
+      ]
+    },
+    "trat_dravet": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "titulo": "Síndrome de Dravet",
+      "texto": "- Siempre con neurología con experiencia en epilepsia.\n- Primera línea: **valproato**, pese a las precauciones: la gravedad lo justifica.\n- Falla → triple terapia con **estiripentol + clobazam**.\n- **≥2 años** sin respuesta → fenfluramina o cannabidiol con clobazam.",
+      "alertas": [
+        {
+          "titulo": "Empeoran el Dravet",
+          "texto": "Carbamazepina, oxcarbazepina, lamotrigina, lacosamida, fenobarbital, gabapentina, pregabalina, tiagabina y vigabatrina."
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Neurólogo con experiencia (NICE 6.1.1)",
+          "paginas": "93",
+          "texto": "Ensure that people with Dravet syndrome have an adult or paediatric neurologist with expertise in epilepsy involved in their care.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag93_ensure_that_people_with_dravet_syndrome.png"
+        },
+        {
+          "titulo": "Valproato primero (NICE 6.1.2)",
+          "paginas": "93",
+          "texto": "Consider sodium valproate as first-line treatment for people with Dravet syndrome. Follow the MHRA safety measures and precautionary advice for sodium valproate in box 2.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag93_consider_sodium_valproate_as_first_line.png"
+        },
+        {
+          "titulo": "Estiripentol + clobazam (NICE 6.1.3)",
+          "paginas": "93",
+          "texto": "If sodium valproate alone is unsuccessful as first-line monotherapy for Dravet syndrome, consider triple therapy with stiripentol and clobazam as first-line add-on therapy.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag93_if_sodium_valproate_alone_is_unsuccessful.png"
+        },
+        {
+          "titulo": "Segunda línea desde los 2 años (NICE 6.1.4)",
+          "paginas": "94",
+          "texto": "If triple therapy is unsuccessful for Dravet syndrome and the child is aged 2 years or over, consider second-line add-on treatment options",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag94_if_triple_therapy_is_unsuccessful_for.png"
+        },
+        {
+          "titulo": "Fármacos que lo empeoran (NICE 6.1.7)",
+          "paginas": "95",
+          "texto": "Be aware that the following medications may exacerbate seizures in people with Dravet syndrome:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag95_be_aware_that_the_following_medications.png"
+        }
+      ]
+    },
+    "seg_racimos": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "titulo": "Racimo: ≥3 crisis en 24 h",
+      "texto": "- Racimo: **≥3** crisis que ceden solas en **24 h**. Es una emergencia.\n- Plan individual a mano → seguirlo.\n- Sin plan → benzodiacepina ya (clobazam o midazolam).\n- Si se repite: pedir guía experta y acordar un plan.",
+      "referencias": [
+        {
+          "titulo": "Definición y emergencia (NICE 7.2.1)",
+          "paginas": "122",
+          "texto": "Manage repeated or cluster seizures (typically 3 or more self-terminating seizures in 24 hours) as a medical emergency.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag122_manage_repeated_or_cluster_seizures_typically.png"
+        },
+        {
+          "titulo": "Benzodiacepina sin plan (NICE 7.2.2)",
+          "paginas": "122",
+          "texto": "consider giving a benzodiazepine, such as clobazam or midazolam, immediately if they do not have an individualised emergency management plan immediately available.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag122_consider_giving_a_benzodiazepine_such_as.png"
+        },
+        {
+          "titulo": "Guía experta si se repite (NICE 7.2.3)",
+          "paginas": "122",
+          "texto": "Seek expert guidance if the person has further episodes of repeated or cluster seizures.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag122_seek_expert_guidance_if_the_person.png"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_plan_emergencia.png",
+          "titulo": "Plan de emergencia individual",
+          "descripcion": "Qué fármaco, quién lo da y cuándo: si existe, se sigue primero.",
+          "en_texto": "Plan individual"
+        }
+      ]
+    },
+    "seg_prolongada": {
+      "estilo": "advertencia",
+      "tipo": "informativo",
+      "titulo": "Crisis más larga que la habitual",
+      "texto": "- Convulsión que dura **>2 min** más que la habitual del niño: emergencia.\n- Plan individual → seguirlo; sin plan → midazolam o clobazam ya.\n- Llega a **5 min** → tratarla como estado epiléptico.\n- Después: acordar un plan de emergencia.",
+      "enlaces": [
+        {
+          "texto": "Estado epiléptico convulsivo",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_status"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Crisis prolongada (NICE 7.3.1)",
+          "paginas": "123",
+          "texto": "Manage prolonged convulsive seizures (any convulsive seizure that continues for more than 2 minutes longer than a person's usual seizure) as a medical emergency.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "TODO_EVIDENCIA: Crisis prolongada (NICE 7.3.1) (pág. 123)"
+        },
+        {
+          "titulo": "Benzodiacepina sin plan (NICE 7.3.2)",
+          "paginas": "124",
+          "texto": "consider giving a benzodiazepine, such as midazolam or clobazam, immediately if they do not have an individualised emergency management plan immediately available.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag124_consider_giving_a_benzodiazepine_such_as.png"
+        },
+        {
+          "titulo": "5 minutos: estado epiléptico (NICE 7.3)",
+          "paginas": "123",
+          "texto": "For convulsive seizures that continue for 5 minutes or more, follow the recommendations in the section on status epilepticus.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag123_for_convulsive_seizures_that_continue_for.png"
+        }
+      ]
+    },
+    "seg_seguridad": {
+      "tipo": "informativo",
+      "titulo": "Seguridad de los anticrisis",
+      "texto": "- Valproato: no empezarlo en **<55 años** salvo que 2 especialistas documenten que no hay alternativa.\n- Niñas con potencial fértil: valproato y topiramato sólo con programa de prevención del embarazo.\n- Varones con valproato: preservativo y anticoncepción de la pareja hasta **3 meses** después.\n- Uso largo de carbamazepina, fenitoína, primidona o valproato: vigilar el hueso.",
+      "alertas": [
+        {
+          "titulo": "Piel y origen familiar",
+          "texto": "Fenitoína: más reacciones cutáneas graves en familias han chinas o tailandesas."
+        }
+      ],
+      "nota_adicional": "Seguridad diaria: ducha en vez de baño, natación siempre vigilada y no trepar alturas sin supervisión.",
+      "referencias": [
+        {
+          "titulo": "Valproato en menores de 55 años (NICE, recuadro 2)",
+          "paginas": "65",
+          "texto": "Do not start sodium valproate for the first time in people (male or female) younger than 55 years, unless 2 specialists independently agree and document",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_do_not_start_sodium_valproate_for.png"
+        },
+        {
+          "titulo": "Valproato en niñas (NICE, recuadro 2)",
+          "paginas": "65",
+          "texto": "Only use sodium valproate in women and girls of childbearing potential (including young girls who are likely to need treatment when they are old enough to have children), if:",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_only_use_sodium_valproate_in_women.png"
+        },
+        {
+          "titulo": "Programa de prevención del embarazo (NICE 4.3.9)",
+          "paginas": "49",
+          "texto": "These antiseizure medications should not be used in women and girls of childbearing potential unless the conditions of the Pregnancy Prevention Programme are fulfilled.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag49_these_antiseizure_medications_should_not_be.png"
+        },
+        {
+          "titulo": "Varones con valproato (NICE, recuadro 2)",
+          "paginas": "65",
+          "texto": "Advise boys and men that effective contraception (condoms, plus contraception used by a female sexual partner) is recommended throughout the valproate treatment period",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag65_advise_boys_and_men_that_effective.png"
+        },
+        {
+          "titulo": "Densidad ósea (NICE 4.3.4)",
+          "paginas": "47",
+          "texto": "long-term treatment with some antiseizure medications (such as carbamazepine, phenytoin, primidone and sodium valproate) is associated with decreased bone mineral density",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag47_long_term_treatment_with_some_antiseizure.png"
+        },
+        {
+          "titulo": "Fenitoína y piel (NICE 4.3.2)",
+          "paginas": "47",
+          "texto": "Be aware that phenytoin is associated with an increased risk of serious skin reactions in people of Han Chinese or Thai family background.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag47_be_aware_that_phenytoin_is_associated.png"
+        },
+        {
+          "titulo": "Seguridad en niños (NICE, recuadro 1)",
+          "paginas": "30",
+          "texto": "Safety issues for children and young people, including supervised swimming and water sports, not climbing above their height without supervision.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag30_safety_issues_for_children_and_young.png"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "epilepsia_seguridad.png",
+          "titulo": "Seguridad diaria",
+          "descripcion": "Ducha en vez de tina, natación vigilada y nada de alturas sin supervisión.",
+          "en_texto": "Seguridad diaria"
+        }
+      ]
+    },
+    "seg_retirada": {
+      "estilo": "exito",
+      "tipo": "informativo",
+      "titulo": "Retirar el anticrisis",
+      "texto": "- Tras **2 años** sin crisis: valorar el riesgo de recaída de forma individual.\n- Bajar poco a poco, en **≥3 meses**; benzodiacepinas y barbitúricos, más lento.\n- Con varios fármacos: retirar de uno en uno.\n- Recae → volver a la dosis previa y consultar al especialista.",
+      "referencias": [
+        {
+          "titulo": "Tras 2 años sin crisis (NICE 4.6.2)",
+          "paginas": "60",
+          "texto": "After a person has been seizure-free for 2 years, carry out an individualised assessment to determine the risk of seizure recurrence if antiseizure medications are discontinued.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag60_after_a_person_has_been_seizure.png"
+        },
+        {
+          "titulo": "Retirada en 3 meses o más (NICE 4.6.4)",
+          "paginas": "61",
+          "texto": "The plan should include reducing their antiseizure medications gradually: For most medicines, this would typically be over at least 3 months.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag61_the_plan_should_include_reducing_their.png"
+        },
+        {
+          "titulo": "Benzodiacepinas y barbitúricos (NICE 4.6.4)",
+          "paginas": "61",
+          "texto": "For benzodiazepines and barbiturates, this would typically be over a longer period to reduce the risk of drug-related withdrawal symptoms.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag61_for_benzodiazepines_and_barbiturates_this_would.png"
+        },
+        {
+          "titulo": "De uno en uno (NICE 4.6.5)",
+          "paginas": "61",
+          "texto": "For people with epilepsy taking multiple antiseizure medications, discontinue their medications one at a time.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag61_for_people_with_epilepsy_taking_multiple.png"
+        },
+        {
+          "titulo": "Si recae (NICE 4.6.6)",
+          "paginas": "61",
+          "texto": "If seizures recur during or after discontinuation, reverse the last dose reduction and seek guidance from the epilepsy specialist, in line with the agreed plan.",
+          "fuente": "NICE NG217",
+          "anio": "2026",
+          "url": "https://www.nice.org.uk/guidance/ng217",
+          "cita": "National Institute for Health and Care Excellence. Epilepsies in children, young people and adults (NG217). Publicada 27-abr-2022, última actualización 5-ago-2026.",
+          "imagen_evidencia": "evidencia_epilepsiapediatrica_pag61_if_seizures_recur_during_or_after.png"
         }
       ]
     }

@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+  Plantilla de las ilustraciones propias de Empirica. Se copia al scratchpad,
+  se cambia el dibujo y se pasa por tools/medios/capturar.js.
+
+  Reglas: 720×540 (4:3, se lee en la tarjeta de 288 px y a pantalla completa),
+  fondo blanco, tonos del contrato, rótulos en español y cifras en negrita.
+  `cuadro(i, total)` dibuja el estado i; con --cuadros 1 sale un PNG estático.
+
+  El ejemplo es el llenado capilar: presión, blanqueo y recoloración con el
+  cronómetro, para que se vea qué es normal. Sustituir entero por el tema.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --teal: #18B9A9; --violeta: #7B6CF6; --rojo: #EF5454; --ambar: #F2A23A;
+    --verde: #2FB36D; --azul: #4F8CF6; --celeste: #3BA7E0;
+    --tinta: #1F2A37; --suave: #6B7280; --linea: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; color: var(--tinta); }
+  #lienzo { width: 720px; height: 540px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; background: #fff; }
+  .cabecera { display: flex; align-items: center; justify-content: space-between; }
+  .titulo { font-size: 26px; font-weight: 700; }
+  .marca { font-size: 13px; font-weight: 600; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+  .escena { flex: 1; border: 1px solid var(--linea); border-radius: 16px; display: grid; place-items: center; }
+  .pie { display: flex; gap: 10px; }
+  .paso { flex: 1; padding: 10px 12px; border-radius: 10px; background: #F3F4F6; color: var(--suave); font-size: 15px; }
+  .paso b { color: var(--tinta); }
+  .paso.activo { background: color-mix(in srgb, var(--teal) 14%, white); color: var(--tinta); outline: 2px solid var(--teal); }
+  .tarjeta { border-radius: 14px; padding: 14px 16px; background: #F3F4F6; font-size: 17px; line-height: 1.35; }
+  .tarjeta b { color: var(--tinta); }
+  .rot { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div class="cabecera"><div class="titulo">Fenitoína: lenta y con ECG</div><div class="marca">Empirica</div></div>
+  <div class="escena"><svg id="dibujo" width="640" height="300" viewBox="0 0 640 300"></svg></div>
+  <div class="pie"><div class="paso" id="p0"><b>20 mg/kg</b> en infusión de <b>20 min</b></div>
+    <div class="paso" id="p1">ECG continuo durante la carga</div>
+    <div class="paso" id="p2" style="border-left:4px solid var(--rojo)">Rápida: <b>bradicardia o asistolia</b></div></div>
+</div>
+<script>const svg=document.getElementById("dibujo");
+ window.cuadro=function(i,total){
+   const t=total>1?i/(total-1):1; const min=Math.round(t*20);
+   let d="M20 200"; for(let x=20;x<620;x+=4){const f=((x+ t*600)%120); const y=f>58&&f<62?120:(f>62&&f<66?225:200); d+=` L${x} ${y}`;}
+   svg.innerHTML=`<rect x="10" y="20" width="620" height="260" rx="14" fill="#0F172A"/>
+     <path d="${d}" fill="none" stroke="#2FB36D" stroke-width="3"/>
+     <text x="34" y="62" font-size="20" fill="#9CA3AF">Monitor</text>
+     <text x="34" y="92" font-size="16" fill="#2FB36D">ritmo sinusal</text>
+     <g transform="translate(470,40)"><rect width="140" height="70" rx="10" fill="#1F2937"/>
+       <text x="70" y="30" text-anchor="middle" font-size="14" fill="#9CA3AF">infusión</text>
+       <text x="70" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">${min} / 20 min</text></g>
+     <rect x="470" y="118" width="${140*t}" height="8" rx="4" fill="#18B9A9"/>`;
+   const k=t<0.5?0:t<0.85?1:2;[0,1,2].forEach(j=>document.getElementById("p"+j).classList.toggle("activo",j===k));
+ }; window.cuadro(0,1);</script>
+</body></html>
