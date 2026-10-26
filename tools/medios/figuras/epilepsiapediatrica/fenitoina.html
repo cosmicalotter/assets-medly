@@ -41,7 +41,7 @@
   <div class="escena"><svg id="dibujo" width="640" height="300" viewBox="0 0 640 300"></svg></div>
   <div class="pie"><div class="paso" id="p0"><b>20 mg/kg</b> en infusión de <b>20 min</b></div>
     <div class="paso" id="p1">ECG continuo durante la carga</div>
-    <div class="paso" id="p2" style="border-left:4px solid var(--rojo)">Rápida: <b>bradicardia o asistolia</b></div></div>
+    <div class="paso" id="p2">Rápida: <b>bradicardia o asistolia</b></div></div>
 </div>
 <script>const svg=document.getElementById("dibujo");
  window.cuadro=function(i,total){
@@ -51,10 +51,10 @@
      <path d="${d}" fill="none" stroke="#2FB36D" stroke-width="3"/>
      <text x="34" y="62" font-size="20" fill="#9CA3AF">Monitor</text>
      <text x="34" y="92" font-size="16" fill="#2FB36D">ritmo sinusal</text>
-     <g transform="translate(470,40)"><rect width="140" height="70" rx="10" fill="#1F2937"/>
-       <text x="70" y="30" text-anchor="middle" font-size="14" fill="#9CA3AF">infusión</text>
-       <text x="70" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">${min} / 20 min</text></g>
-     <rect x="470" y="118" width="${140*t}" height="8" rx="4" fill="#18B9A9"/>`;
+     <g transform="translate(450,40)"><rect width="164" height="70" rx="10" fill="#1F2937"/>
+       <text x="82" y="30" text-anchor="middle" font-size="14" fill="#9CA3AF">infusión</text>
+       <text x="82" y="58" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">${min} / 20 min</text></g>
+     <rect x="450" y="118" width="${164*t}" height="8" rx="4" fill="#18B9A9"/>`;
    const k=t<0.5?0:t<0.85?1:2;[0,1,2].forEach(j=>document.getElementById("p"+j).classList.toggle("activo",j===k));
  }; window.cuadro(0,1);</script>
 </body></html>
