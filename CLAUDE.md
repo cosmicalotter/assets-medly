@@ -77,6 +77,13 @@ Firebase directamente, saltándose `indices/`.
 
 ## Cómo se trabaja
 
+- **La portada define.** En el nodo raíz, `titulo` es el nombre del tema y
+  `texto` es la lista de definiciones explícitas y técnicas que da la guía de
+  cada entidad del algoritmo (`- **Colangitis aguda:** …`): dos a cinco
+  viñetas, completas pero breves, sin conducta, cada una con su cita literal
+  en las `referencias` de `nodo_raiz`. `descripcion` sólo dice qué cubre el
+  algoritmo. Detalle en `NORMA.md` §1.
+
 - Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
 - La marca es **Empirica** (Praxis es el nombre antiguo).
 

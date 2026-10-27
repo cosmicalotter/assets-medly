@@ -20,7 +20,7 @@ cambian, se cambian allí y aquí a la vez.
 ## 1. La silueta
 
 ```
-[Nombre del tema]                    portada: sólo el tema
+[Nombre del tema]                    portada: el tema y sus definiciones
  ├── Diagnóstico                     estilo "rama"
  ├── Estratificación / gravedad      estilo "rama"   (si la guía estratifica)
  ├── Tratamiento                     estilo "rama"
@@ -29,14 +29,17 @@ cambian, se cambian allí y aquí a la vez.
 ```
 
 - Entre 2 y 5 secciones. Una sección sin al menos 3 pasos se funde con otra.
-- Portada: el `texto` de la raíz es sólo el nombre del tema (es el título del
-  mapa). El texto informativo de la portada es `descripcion`, en dos partes:
-  1. **Definición breve** de la enfermedad o condición, en una frase y en
-     lenguaje claro, citada (cita literal y página) en las `referencias` de
-     `nodo_raiz`, de la guía o, si la guía no la da, del documento de
-     definición de referencia.
-  2. **Qué contiene** el algoritmo: las partes que recorre y a quién no cubre.
-  Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
+- Portada: el `titulo` de la raíz es el nombre del tema (es el título del
+  mapa) y su `texto` son **las definiciones del tema**, en lista: una viñeta
+  por entidad que el algoritmo trata (`- **Colecistitis aguda:** …`,
+  `- **Coledocolitiasis:** …`, `- **Colangitis aguda:** …`). Cada definición
+  es la explícita y técnica que da la guía, completa pero directa: una o dos
+  líneas, sin conducta ni dosis. Entre dos y cinco viñetas; la portada es lo
+  primero que se ve y no puede asustar. Cada una lleva su cita literal y
+  página en las `referencias` de `nodo_raiz`. Si la guía no define una
+  entidad, no se escribe de memoria: se deja fuera y se dice en el PR.
+  `descripcion` dice sólo **qué contiene** el algoritmo: las partes que
+  recorre y a quién no cubre. Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
   la portada) y `referencias` generales con `url`. **Sin `puntos_clave`**: la
   portada ya no los enseña. Nada de lista de fuentes en `texto`.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino
