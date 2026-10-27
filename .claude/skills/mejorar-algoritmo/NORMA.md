@@ -59,6 +59,13 @@ cambian, se cambian allí y aquí a la vez.
     seguimiento. No incluye el periodo neonatal ni la crisis febril simple.» Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
   la portada) y `referencias` generales con `url`. **Sin `puntos_clave`**: la
   portada ya no los enseña. Nada de lista de fuentes en `texto`.
+- **En la biblioteca** el algoritmo se ve como nombre, guías y definiciones:
+  su entrada en `indices/` lleva `titulo` conciso (el nombre del tema, sin
+  «Manejo de…» ni la guía) y `descripcion` con **las guías principales**
+  separadas por « · » («Tokio 2018 · WSES 2020 · ASGE · ESGE»); debajo la app
+  enseña las definiciones de la portada en tres líneas como mucho. Por eso la
+  primera viñeta de la portada debe entenderse sola. Al terminar un algoritmo
+  oculto, se quita `"oculto": true` del JSON para publicarlo.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino
   continúa en otra sección (el diagnóstico confirma una colecistitis y sigue
   su tratamiento), la opción apunta al **nodo de sección** de destino

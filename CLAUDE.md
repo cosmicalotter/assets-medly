@@ -28,8 +28,26 @@ abrirse.
 - No se editan los índices en la consola de Firebase: si alguien lo hace, el
   workflow no pisa ese parámetro y falla; se copia el valor de Firebase al
   archivo y se vuelve a subir.
+- **Cómo se ve cada algoritmo en la biblioteca:** `titulo` es el nombre,
+  conciso («Patología biliar aguda», «ACV isquémico»); `descripcion` son las
+  guías principales en que se basa, separadas por « · » («Tokio 2018 · WSES
+  2020 · ASGE · ESGE»). Debajo, la app enseña las definiciones de la portada
+  (el `texto` del nodo raíz) en tres líneas como mucho: por eso la portada
+  empieza por las definiciones. Dentro de cada especialidad van en orden
+  alfabético.
+- Lo que se publica no es el archivo tal cual: el workflow quita los
+  algoritmos ocultos y añade a cada entrada `definiciones` (la portada en una
+  línea). `definiciones` no se escribe a mano en `indices/`.
+- **`"oculto": true`** en el JSON de un algoritmo lo saca de la app por
+  completo: no se publica en el índice (ni biblioteca, ni buscador, ni
+  recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
+  una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
+  quitar la llave. Hoy (octubre de 2026) están visibles sólo ACV isquémico,
+  ACV hemorrágico, patología biliar y epilepsia pediátrica; el resto espera
+  la reforma a la norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
-  Firebase. `data/*/disponibles.json` es antiguo: la app no lo lee.
+  Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
+  publicaría. `data/*/disponibles.json` es antiguo: la app no lo lee.
 
 ## Repositorios hermanos
 
