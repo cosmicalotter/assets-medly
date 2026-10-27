@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Signos de riesgo de expansión en TC reales (Kanj et al., Case Rep Radiol 2021, CC BY 4.0):
+// signo de mezcla en la TC sin contraste y spot sign en la angio-TC, ampliados y señalados por Empirica.
+const A = "#FDE047";
+lienzo("Signos de que el hematoma puede crecer", "En la TC inicial: vigilar más y repetir la TC",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/tc_signos_expansion_2021.jpg", w: 653, h: 474, vista: [222, 1, 211, 212], ancho: 324, alto: 322,
+      dibujo: (e) => flecha(345, 150, 300, 115, A, e) + rotulo(350, 168, "densidades mezcladas", A, e, "middle", 13),
+      pie: '<span class="r">TC sin contraste</span>: signo de mezcla, zonas claras y oscuras dentro del hematoma' }),
+    panel({ img: "fuentes/tc_signos_expansion_2021.jpg", w: 653, h: 474, vista: [438, 1, 214, 212], ancho: 324, alto: 322,
+      dibujo: (e) => flecha(565, 40, 516, 66, A, e) + rotulo(570, 34, "spot sign", A, e, "start", 13),
+      pie: '<span class="r">Angio-TC</span>: <i>spot sign</i>, contraste que se escapa dentro del hematoma' }),
+  ].join("")}</div>`,
+  "Imágenes: Kanj et al., Case Rep Radiol 2021 (PMC8608540), CC BY 4.0, ampliadas y señaladas por Empirica. Fuente: AHA/ASA 2022, 4.1.2.");
+</script></body></html>

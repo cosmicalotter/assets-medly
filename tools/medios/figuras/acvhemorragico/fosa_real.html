@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Hemorragia cerebelosa con hidrocefalia obstructiva: dos cortes de la serie de Yadav et al.,
+// BMC Neurol 2007 (Wikimedia Commons, CC BY 2.0), recortados y señalados por Empirica.
+const T = "#5EEAD4", A = "#FDE68A";
+const F = { img: "fuentes/tc_fosa_posterior_yadav_2007.jpg", w: 330, h: 400, ancho: 324, alto: 370 };
+lienzo("Hemorragia cerebelosa con hidrocefalia", "TC sin contraste: el hematoma de fosa posterior bloquea el paso del LCR",
+  `<div class="paneles">${[
+    panel({ ...F, vista: [168, 4, 160, 194],
+      dibujo: (e) => flecha(296, 116, 246, 150, T, e)
+        + rotulo(324, 108, "hematoma cerebeloso", T, e, "end", 15),
+      pie: '<span class="r">Fosa posterior</span>: hematoma cerebeloso' }),
+    panel({ ...F, vista: [170, 206, 160, 194],
+      dibujo: (e) => flecha(200, 232, 236, 252, A, e) + rotulo(176, 226, "ventrículos dilatados", A, e, "start", 15)
+        + flecha(222, 340, 244, 318, T, e) + rotulo(212, 356, "sangre", T, e, "start", 15),
+      pie: '<span class="r">Supratentorial</span>: <b>hidrocefalia</b> con sangre' }),
+  ].join("")}</div>`,
+  "TC: Yadav YR et al., BMC Neurol 2007, vía Wikimedia Commons, CC BY 2.0, recortadas y señaladas por Empirica.");
+</script></body></html>
