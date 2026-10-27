@@ -1,0 +1,91 @@
+{
+  "titulo": "HIC: ¿angio-TC para buscar causa macrovascular? (AHA/ASA 2022)",
+  "descripcion": "Quién necesita angio-TC aguda (con venografía si procede) tras una hemorragia intracerebral espontánea, según la localización, la edad y la HTA. Lobar con menos de 70 años; profunda o de fosa posterior con menos de 45, o de 45 a 70 sin HTA conocida.",
+  "tipoCalculo": "formula",
+  "formula": "loc * (edad * (edad - 1) * (3 - edad) / 2 + edad * (edad - 1) * (edad - 2) / 6) + (1 - loc) * (edad * (edad - 1) * (edad - 2) / 6 + (edad * (2 - edad) * (3 - edad) / 2 + edad * (edad - 1) * (3 - edad) / 2) * (1 - hta))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2022;53:e282-e361.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "loc",
+          "tipo": "opciones",
+          "label": "Localización del hematoma",
+          "opciones": [
+            {
+              "label": "Profunda (ganglios basales, tálamo) o fosa posterior",
+              "puntos": 0
+            },
+            {
+              "label": "Lobar (corteza y sustancia blanca subcortical)",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "edad",
+          "tipo": "opciones",
+          "label": "Edad",
+          "opciones": [
+            {
+              "label": "71 años o más",
+              "puntos": 0
+            },
+            {
+              "label": "70 años",
+              "puntos": 1
+            },
+            {
+              "label": "De 45 a 69 años",
+              "puntos": 2
+            },
+            {
+              "label": "Menos de 45 años",
+              "puntos": 3
+            }
+          ]
+        },
+        {
+          "id": "hta",
+          "tipo": "opciones",
+          "label": "HTA conocida (solo cuenta en la profunda o de fosa posterior)",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Riesgo vascular bajo",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "RM con secuencias de sangre para buscar la causa."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Angio-TC indicada",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Angio-TC aguda y considerar venografía (Clase I)."
+    }
+  ]
+}

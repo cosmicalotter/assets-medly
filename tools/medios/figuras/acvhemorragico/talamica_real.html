@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Hemorragia talámica abierta a los ventrículos con hidrocefalia: dos cortes de la serie de
+// Yadav et al., BMC Neurol 2007 (Wikimedia Commons, CC BY 2.0), recortados y señalados por Empirica.
+const T = "#5EEAD4", A = "#FDE68A";
+const F = { img: "fuentes/tc_talamica_yadav_2007.jpg", w: 400, h: 330, ancho: 324, alto: 370, filtro: "grayscale(1)" };
+lienzo("Hemorragia talámica abierta a los ventrículos", "TC sin contraste: el hematoma pasa a los ventrículos y los dilata",
+  `<div class="paneles">${[
+    panel({ ...F, vista: [12, 8, 112, 160],
+      dibujo: (e) => flecha(36, 40, 56, 80, T, e) + rotulo(16, 34, "hematoma talámico", T, e, "start", 15),
+      pie: '<span class="r">Al ingreso</span>: hematoma talámico' }),
+    panel({ ...F, vista: [266, 0, 134, 166],
+      dibujo: (e) => flecha(326, 148, 308, 139, T, e) + rotulo(318, 157, "sangre ventricular", T, e, "start", 15)
+        + flecha(300, 30, 318, 50, A, e) + rotulo(272, 24, "ventrículo dilatado", A, e, "start", 15),
+      pie: '<span class="r">Después</span>: sangre en los ventrículos e <b>hidrocefalia</b>' }),
+  ].join("")}</div>`,
+  "TC: Yadav YR et al., BMC Neurol 2007, vía Wikimedia Commons, CC BY 2.0, recortadas y señaladas por Empirica.");
+</script></body></html>

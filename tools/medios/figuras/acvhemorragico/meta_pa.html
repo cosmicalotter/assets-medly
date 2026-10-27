@@ -32,7 +32,7 @@ window.cuadro = function (i, n) {
     <text x="${X0 + 8}" y="${y(140) - 6}" font-size="13" fill="#1d7a49" font-weight="700">meta: &lt;140 mmHg</text>
     <text x="${X0 + 8}" y="${y(130) + 34}" font-size="13" fill="#b93434" font-weight="700">evitar &lt;130 mmHg</text>
     ${[100, 130, 140, 150, 180, 220].map((v) => `<text x="${X0 - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#6B7280">${v}</text>`).join("")}
-    ${[0, 30, 60, 90].map((m) => `<text x="${x(m)}" y="${Y0 + 20}" text-anchor="middle" font-size="12" fill="#6B7280">${m} min</text>`).join("")}
+    ${[0, 30, 60, 90].map((m) => `<text x="${x(m)}" y="${Y0 + 20}" text-anchor="middle" font-size="12" fill="#6B7280">${m ? m + " min" : "llegada"}</text>`).join("")}
     <line x1="${X0}" x2="${X1}" y1="${Y0}" y2="${Y0}" stroke="#D1D5DB"/>
     <line x1="${x(10)}" x2="${x(10)}" y1="${Y1}" y2="${Y0}" stroke="#4F8CF6" stroke-dasharray="4 4"/>
     <text x="${x(10) + 6}" y="${Y1 + 14}" font-size="12" fill="#4F8CF6" font-weight="700">inicia el antihipertensivo IV</text>
@@ -40,7 +40,7 @@ window.cuadro = function (i, n) {
     <text x="${x(70) + 6}" y="${Y1 + 44}" font-size="12" fill="#18B9A9" font-weight="700">meta en 1 h</text>
     <path d="${d}" fill="none" stroke="#1F2A37" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="${x(hasta)}" cy="${y(pas(hasta))}" r="6" fill="${meta ? "#2FB36D" : "#EF5454"}"/>
-    <g transform="translate(${Math.min(x(hasta) + 12, X1 - 120)},${y(pas(hasta)) - 34})">
+    <g transform="translate(${Math.min(Math.max(x(hasta) + 12, hasta >= 62 ? x(70) + 8 : 0), X1 - 112)},${y(pas(hasta)) - 34})">
       <rect width="112" height="28" rx="8" fill="#fff" stroke="#E5E7EB"/>
       <text x="56" y="19" text-anchor="middle" font-size="15" font-weight="800" fill="${meta ? "#1d7a49" : "#1F2A37"}">PAS ${actual}</text>
     </g>
@@ -54,7 +54,6 @@ window.cuadro = function (i, n) {
       <div class="nota">Iniciar en <b>&lt;2 h</b> desde el inicio de los síntomas</div>
       <div class="nota v">Bajar a <b>&lt;140</b> en <b>1 h</b> y mantener sin picos (ESO: hasta <b>7 días</b>)</div>
       <div class="nota r">No bajar de <b>130</b> (AHA: daño)</div>
-      <div class="nota a">No descender <b>&gt;70 mmHg</b> desde la basal ni <b>&lt;110</b> (ESO)</div>
     </div>`,
     "Esquema. Fuentes: AHA/ASA 2022 (Greenberg, Stroke 53:e282) y ESO/EANS 2025 (Steiner, Eur Stroke J 10:1007)."
   );

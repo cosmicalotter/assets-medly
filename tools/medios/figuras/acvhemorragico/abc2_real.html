@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// TC real de una HIC putaminal izquierda (Luo et al., Heliyon 2024, CC BY 4.0), editada por
+// Empirica: ejes A y B trazados sobre el hematoma del corte con más sangre y el segundo corte
+// de la figura para explicar C. Método: Kothari et al., Stroke 1996 (ABC/2).
+const ROJO = "#FCA5A5", AZUL = "#93C5FD", TURQ = "#5EEAD4", AMAR = "#FDE047";
+recorrido({
+  titulo: "Volumen del hematoma: ABC/2",
+  subtitulo: "En la TC sin contraste, sobre una hemorragia putaminal real",
+  credito: "TC: Luo et al., Heliyon 2024 (PMC11544056), CC BY 4.0, editada por Empirica. Método ABC/2: Kothari et al., Stroke 1996; AHA/ASA 2022.",
+  escenas: [
+    {
+      img: "fuentes/tc_putaminal_luo_2024.jpg", w: 790, h: 397, vista: [2, 2, 393, 393],
+      pasos: [
+        { texto: "Elegir el corte con <b>más sangre</b>",
+          dibujo: (u, e) => D.elipse(266, 154, 66, 34, 72, TURQ, e, u, true) + D.rotulo(318, 92, "hematoma", TURQ, e, { op: u }) },
+        { texto: "<b>A</b>: el diámetro mayor del hematoma", vista: [170, 60, 190, 190],
+          dibujo: (u, e) => D.calibre(244, 96, 281, 211, ROJO, e, u) + D.rotulo(226, 150, "A", ROJO, e, { ancla: "end", op: u, tam: 20 }) },
+        { texto: "<b>B</b>: perpendicular a A, en el <b>mismo</b> corte", vista: [170, 60, 190, 190],
+          dibujo: (u, e) => D.calibre(250, 158, 302, 141, AZUL, e, u) + D.rotulo(312, 134, "B", AZUL, e, { op: u, tam: 20 }) },
+      ],
+    },
+    {
+      img: "fuentes/tc_putaminal_luo_2024.jpg", w: 790, h: 397, vista: [397, 2, 393, 393],
+      pasos: [
+        { texto: "<b>C</b>: contar los cortes con sangre × grosor del corte (cm)",
+          dibujo: (u, e, t) => D.anillo(667, 160, 66, AMAR, e, u, t ? Math.sin(t * 70) : 0) + D.rotulo(667, 252, "otro corte con sangre", AMAR, e, { ancla: "middle", op: u }) },
+        { texto: "Volumen (mL) = <b>A × B × C ÷ 2</b>, con A, B y C en cm" },
+      ],
+    },
+  ],
+  final: `<span style="color:#5EEAD4">Ejemplo:</span> A 4 cm × B 3 cm × C 3 cm ÷ 2 = <b>18 mL</b>. Repetir en la TC de control.`,
+});
+</script></body></html>

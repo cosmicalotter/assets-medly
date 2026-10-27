@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Hemorragia por malformación arteriovenosa: TC y arteriografía reales (Nathal et al., Cureus 2024,
+// CC BY 4.0), recortadas sin las letras de panel y rotuladas por Empirica.
+const A = "#FDE047";
+lienzo("Causa macrovascular: malformación arteriovenosa", "La TC muestra el hematoma; la arteriografía, la lesión que sangró",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/tc_dsa_mav_2024.jpg", w: 750, h: 756, vista: [14, 4, 344, 342], ancho: 324, alto: 322,
+      dibujo: (e) => rotulo(250, 330, "hematoma frontal", A, e, "middle"),
+      pie: '<span class="r">TC sin contraste</span>: hematoma lobar frontal' }),
+    panel({ img: "fuentes/tc_dsa_mav_2024.jpg", w: 750, h: 756, vista: [382, 0, 344, 342], ancho: 324, alto: 322,
+      dibujo: (e) => rotulo(500, 110, "nido de la MAV", A, e, "start"),
+      pie: '<span class="r">Arteriografía (DSA)</span>: nido de la MAV con arterias que la alimentan' }),
+  ].join("")}</div>`,
+  "Imágenes: Nathal et al., Cureus 2024 (PMC11417440), CC BY 4.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2022, 4.2.");
+</script></body></html>
