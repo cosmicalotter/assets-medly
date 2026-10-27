@@ -1,43 +1,79 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script><script src="../biliar/recorrido.js"></script></head><body>
 <script>
-// Foto real (Nenad Stojković, Wikimedia Commons, CC BY 2.0): jeringa oral en la boca de un
-// niño. Encima, la técnica del midazolam bucal de la ficha técnica de Buccolam (EMA, 4.2 y 6.6):
-// punta al fondo del espacio entre la mejilla y la encía inferior, vaciar despacio y, si el
-// volumen es grande, la mitad en cada lado. Dosis de RCUK EPALS 2021; 2.ª dosis de NICE 7.1.8.
-const TURQ = "#2DD4BF", AMAR = "#FDE047", AZUL = "#93C5FD", ROJO = "#FCA5A5";
-const PUNTA = [697, 211];
-const BOLSILLO = "M697 214 C735 222 770 232 808 246 C835 256 858 262 880 262";
+// No hay foto libre de la técnica bucal, así que se cuenta con dos imágenes reales:
+// 1. Jeringa oral (多多123, Wikimedia Commons, CC BY 4.0), con la marca tapada.
+// 2. Arcada inferior vista desde arriba (modelo 3D de la boca, capturas de Mince, Wikimedia
+//    Commons, CC BY 4.0): la lengua en medio y las muelas alrededor. Fuera de las muelas,
+//    entre ellas y la mejilla, va la punta; por encima de la lengua, hacia la garganta, no.
+// Técnica y avisos de la ficha técnica de Buccolam (EMA): 4.2, pág. 4 («into the space between
+// the gum and the cheek. Laryngo-tracheal insertion should be avoided…», mitad en cada lado) y
+// 6.6, págs. 13-14 (quitar el tapón, pellizcar y separar la mejilla, punta al fondo, apretar
+// despacio hasta el tope). Una sola dosis en casa y emergencias a los 10 min: 4.2, pág. 3.
+// 2.ª dosis a los 5-10 min en urgencias: NICE NG217, 7.1.8.
+const TURQ = "#2DD4BF", AMAR = "#FDE047", ROJO = "#F87171", AZUL = "#93C5FD";
+const PUNTA = [378, 698];
+
+// Jeringa dibujada a lo largo de una recta, de (x0,y0) (émbolo) a (x1,y1) (punta); u la hace entrar.
+const jeringa = (x0, y0, x1, y1, col, e, u) => {
+  const xe = x0 + (x1 - x0) * u, ye = y0 + (y1 - y0) * u;
+  return `<g opacity="${Math.min(1, u * 3)}">
+    <line x1="${x0}" y1="${y0}" x2="${xe}" y2="${ye}" stroke="#111" stroke-width="${30 * e}" stroke-linecap="round"/>
+    <line x1="${x0}" y1="${y0}" x2="${xe}" y2="${ye}" stroke="#F5F5F4" stroke-opacity=".92" stroke-width="${24 * e}" stroke-linecap="round"/>
+    <line x1="${x0}" y1="${y0}" x2="${xe}" y2="${ye}" stroke="${col}" stroke-width="${6 * e}" stroke-linecap="round" stroke-dasharray="${2 * e} ${9 * e}"/>
+    <circle cx="${xe}" cy="${ye}" r="${11 * e}" fill="${col}" stroke="#111" stroke-width="${2.5 * e}"/></g>`;
+};
+// Franja entre las muelas y la mejilla (lado izquierdo de la imagen) y su espejo.
+const FRANJA_I = "300,1077 262,850 236,650 226,450 222,240 190,240 192,450 200,650 222,850 252,1077";
+const franja = (puntos, u) => `<polygon points="${puntos}" fill="${TURQ}" fill-opacity="${0.45 * u}"/>`;
+const FRANJA_D = "1575,1077 1610,850 1648,650 1668,450 1660,240 1692,240 1700,450 1680,650 1642,850 1610,1077";
+
 recorrido({
   titulo: "Midazolam bucal",
-  subtitulo: "Por dentro de la mejilla, nunca hacia la garganta",
-  credito: "Foto: Nenad Stojković, Wikimedia Commons, CC BY 2.0, editada por Empirica. Fuente: ficha técnica de Buccolam (EMA, 4.2 y 6.6), RCUK EPALS 2021 y NICE NG217 (7.1.8).",
+  subtitulo: "Entre la mejilla y la encía, nunca hacia la garganta",
+  credito: "Jeringa: 多多123; boca: modelo 3D de Mince; Wikimedia Commons, CC BY 4.0, editadas por Empirica. Fuente: ficha técnica de Buccolam (EMA, 4.2 y 6.6) y NICE NG217 (7.1.8).",
   escenas: [{
-    img: "fuentes/jeringa_oral_stojkovic.jpg", w: 1280, h: 853, vista: [300, 0, 856, 853],
+    img: "fuentes/jeringa_oral_baxa.jpg", w: 1920, h: 1277, vista: [250, 280, 1250, 1000],
+    // Marca y número de lote del fabricante, tapados.
+    encima: (e) => `<defs><filter id="difumina"><feGaussianBlur stdDeviation="9"/></filter></defs>
+      <g filter="url(#difumina)"><rect x="555" y="632" width="225" height="72" fill="#CFCBC1"/>
+      <rect x="1150" y="606" width="235" height="70" fill="#D6D3CA"/></g>`,
     pasos: [
-      { texto: "Dosis por edad (ficha técnica) o <b>0,3-0,5 mg/kg</b>",
-        dibujo: (u, e, ahora) => ahora === null ? "" : D.rotulo(470, 175, "jeringa oral", TURQ, e, { op: u, tam: 16 }) +
-          D.flecha(500, 190, 575, 255, TURQ, e, u) },
-      { texto: "Quitar el tapón de la punta", vista: [560, 80, 300, 299],
-        dibujo: (u, e, ahora) => D.anillo(PUNTA[0] - 6, PUNTA[1] + 2, 26, AMAR, e, u) + (ahora === null ? "" :
-          D.rotulo(PUNTA[0] - 6, PUNTA[1] - 40, "punta sin tapón", AMAR, e, { ancla: "middle", op: u })) },
-      { texto: "Pinzar y separar la mejilla", vista: [560, 40, 470, 468],
-        dibujo: (u, e, ahora) => ahora === null ? "" : D.flecha(830, 300, 830 + 70 * u, 335, AZUL, e, u) +
-          D.rotulo(845, 380, "separar la mejilla", AZUL, e, { op: u }) },
-      { texto: "Punta al fondo, entre mejilla y encía inferior", vista: [600, 70, 380, 378],
-        dibujo: (u, e, ahora) => D.elipse(800, 246, 92 * u, 38 * u, 14, TURQ, e, u, true) +
-          `<path d="${BOLSILLO}" fill="none" stroke="${TURQ}" stroke-width="${4 * e}" stroke-linecap="round"
-             stroke-dasharray="${400}" stroke-dashoffset="${400 * (1 - u)}"/>` +
-          (ahora === null ? "" : D.rotulo(800, 320, "entre mejilla y encía", "#5EEAD4", e, { ancla: "middle", op: u })) },
-      { texto: "Vaciar despacio, hasta el tope", vista: [430, 60, 520, 517],
-        dibujo: (u, e, ahora) => ahora === null ? "" : D.flecha(520, 345, 520 + 95 * u, 345 - 80 * u, AMAR, e, 1, 1) +
-          D.rotulo(500, 400, "despacio", AMAR, e, { op: u, tam: 16 }) },
-      { texto: "Mucho volumen o niño pequeño: mitad en cada lado", vista: [300, 0, 856, 853],
-        dibujo: (u, e) => `<g opacity="${u}"><rect x="${640}" y="${30}" width="${300}" height="${70}" rx="18" fill="#1F2A37" stroke="#111" stroke-width="2"/>
-          <text x="790" y="78" font-size="34" font-weight="800" fill="#fff" text-anchor="middle">½ + ½</text></g>` +
-          D.rotulo(790, 130, "una mitad en cada mejilla", "#E5E7EB", e, { ancla: "middle", op: u }) },
+      { texto: "Jeringa oral precargada: dosis por edad o <b>0,3-0,5 mg/kg</b>",
+        dibujo: (u, e, ahora) => ahora === null ? "" :
+          D.rotulo(560, 560, "jeringa oral precargada", TURQ, e, { op: u, tam: 16 }) +
+          D.flecha(700, 575, 760, 640, TURQ, e, u) },
+      { texto: "Quitar el tapón de la punta: puede atragantar", vista: [200, 470, 470, 460],
+        dibujo: (u, e, ahora) => ahora === null ? "" : D.anillo(PUNTA[0], PUNTA[1], 95, AMAR, e, u) +
+          D.rotulo(PUNTA[0], PUNTA[1] - 115, "tapón: quitarlo", AMAR, e, { ancla: "middle", op: u, tam: 16 }) },
+    ],
+  }, {
+    img: "fuentes/boca_modelo3d_mince.jpg", w: 1920, h: 1077, vista: [170, -240, 1560, 1557],
+    pasos: [
+      { texto: "Nunca hacia la garganta: riesgo de aspiración",
+        dibujo: (u, e, ahora) => ahora === null ? "" : D.flecha(900, 1180, 900, 1180 - 1100 * u, ROJO, e, 1, 1) +
+          D.rotulo(900, -40, "garganta", ROJO, e, { ancla: "middle", op: u, tam: 17 }) +
+          D.rotulo(1030, 330, "lengua", "#E5E7EB", e, { op: u, tam: 14 }) +
+          D.rotulo(1010, 1010, "dientes de delante", "#E5E7EB", e, { op: u, tam: 14 }) +
+          `<g opacity="${u}" stroke="#111" stroke-width="${12 * e}" stroke-linecap="round">
+             <line x1="${840}" y1="${560}" x2="${960}" y2="${680}"/><line x1="${960}" y1="${560}" x2="${840}" y2="${680}"/></g>
+           <g opacity="${u}" stroke="${ROJO}" stroke-width="${7 * e}" stroke-linecap="round">
+             <line x1="${840}" y1="${560}" x2="${960}" y2="${680}"/><line x1="${960}" y1="${560}" x2="${840}" y2="${680}"/></g>` },
+      { texto: "Pellizcar suave y separar la mejilla", vista: [-80, 0, 1000, 1077],
+        dibujo: (u, e, ahora) => ahora === null ? "" :
+          D.flecha(250, 330, 250 - 190 * u, 300, AZUL, e, 1, 1) +
+          D.rotulo(30, 200, "mejilla, hacia fuera", AZUL, e, { op: u, tam: 16 }) },
+      { texto: "Punta al fondo, entre la mejilla y la encía inferior", vista: [-80, 0, 1000, 1077],
+        dibujo: (u, e, ahora) => franja(FRANJA_I, u) + jeringa(300, 1250, 214, 270, TURQ, e, u) +
+          (ahora === null ? "" : D.rotulo(-50, 120, "mejilla", AZUL, e, { op: u, tam: 15 }) +
+            D.rotulo(-50, 640, "aquí: fuera de", "#5EEAD4", e, { op: u, tam: 15 }) +
+            D.rotulo(-50, 690, "las muelas", "#5EEAD4", e, { op: u, tam: 15 })) },
+      { texto: "Vaciar despacio hasta el tope; mucho volumen o niño pequeño: mitad en cada lado",
+        dibujo: (u, e, ahora) => franja(FRANJA_D, u) + jeringa(1590, 1250, 1676, 270, TURQ, e, u) +
+          (ahora === null ? "" : D.rotulo(205, 170, "½", "#fff", e, { ancla: "middle", op: u, tam: 24 }) +
+            D.rotulo(1680, 170, "½", "#fff", e, { ancla: "middle", op: u, tam: 24 })) },
     ],
   }],
-  final: `Anotar la hora. <span style="color:#FCA5A5">Sigue a los 5-10 min</span> → 2.ª dosis de benzodiacepina y ayuda experta.`,
+  final: `En casa, <b>una sola dosis</b>: sin respuesta en <span style="color:#FCA5A5">10 min</span> → emergencias. En urgencias, a los 5-10 min, 2.ª dosis.`,
 });
 </script></body></html>

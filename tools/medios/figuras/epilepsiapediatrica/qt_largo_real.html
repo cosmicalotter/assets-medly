@@ -24,6 +24,9 @@ recorridoAncho({
   escenas: [{
     img: "fuentes/ecg_qt_largo_ahmad_2025.jpg", w: 1500, h: 614, vista: [0, 0, 1500, 614],
     filtro: "grayscale(1) contrast(1.45) brightness(1.18)",
+    // Letras de panel (A, B) y números de registro del original, tapados.
+    tapas: ["1368,16 1418,16 1418,54 1368,54|#FAFAFA", "1368,314 1414,314 1414,352 1368,352|#FAFAFA",
+            "1050,258 1340,258 1340,286 1050,286|#FAFAFA"],
     pasos: [
       { texto: "Tras la crisis: ECG de <b>12 derivaciones</b>",
         dibujo: (u, e, t) => t === null ? "" :
@@ -32,8 +35,8 @@ recorridoAncho({
       { texto: "QT: del inicio del QRS al final de la T", vista: [290, 300, 267, 100],
         dibujo: (u, e, t) => t === null ? "" : compas(u, TURQ, e, "QT") },
       { texto: "QT <b>680 ms</b>, QTc <b>650 ms</b>: muy largo", vista: [290, 300, 267, 100],
-        dibujo: (u, e, t) => compas(1, ROJO, e, t === null ? "QTc 650 ms" : "QT 680 · QTc 650 ms") },
-      { texto: "Cribado: QTc <b>≥440 ms</b> niños, <b>≥450 ms</b> niñas", vista: [0, 0, 1500, 614] },
+        dibujo: (u, e, t) => compas(1, ROJO, e, t === null ? "QT 680 ms" : "QT 680 · QTc 650 ms") },
+      { texto: "Cribado: QTc <b>≥440 ms</b> varones, <b>≥450 ms</b> niñas", vista: [0, 0, 1500, 614] },
     ],
   }],
   final: `Crisis breve, síncope antes de convulsionar o muerte súbita en la familia → <span style="color:#FCA5A5">pensar en QT largo</span>.`,

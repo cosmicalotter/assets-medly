@@ -13,16 +13,19 @@ const ficha = (x, y, w, linea1, linea2, e, op) => `<g opacity="${op}">
   ${linea2 ? `<text x="${x + w / 2}" y="${y + 86}" font-size="${12.5 * e}" font-weight="600" fill="#9CA3AF" text-anchor="middle">${linea2}</text>` : ""}</g>`;
 recorridoAncho({
   titulo: "Fenitoína: lenta y con ECG",
-  subtitulo: "Trazado real de un monitor: dos latidos y después asistolia",
+  subtitulo: "Trazado de ejemplo de un monitor: latidos normales y después asistolia",
   credito: "Trazado: James Heilman, MD, Wikimedia Commons, CC BY-SA 3.0, editado por Empirica. Fuente: RCUK EPALS 2021 (estado epiléptico convulsivo en niños).",
   alto: 262,
   barrido: true,
-  fondo: "#DEBFBD",
+  fondo: "#E5E7EB",
   escenas: [{
     img: "fuentes/asistolia_heilman.jpg", w: 1400, h: 463, vista: [10, 0, 1180, 463],
     filtro: "brightness(1.45) contrast(1.15)",
+    // Letras de anotación del Holter (N, N, M) y números de la esquina, tapados.
+    tapas: ["110,0 142,0 142,28 110,28|#ECE4DF", "394,0 426,0 426,28 394,28|#ECE4DF",
+            "624,6 658,6 658,36 624,36|#ECE4DF", "1190,0 1400,0 1400,20 1190,20|#ECE4DF"],
     pasos: [
-      { texto: "Carga: <b>20 mg/kg</b> IV", barre: [0, 230],
+      { texto: "Carga: <b>20 mg/kg</b> IV", barre: [150, 230],
         dibujo: (u, e, t) => t === null ? "" : ficha(720, 150, 380, "Fenitoína 20 mg/kg", "", e, u) },
       { texto: "Infusión lenta en <b>20 min</b>, nunca en bolo", barre: [230, 470],
         dibujo: (u, e, t) => {
@@ -36,16 +39,16 @@ recorridoAncho({
         dibujo: (u, e, t) => t === null ? "" :
           D.anillo(392, 72, 52, TURQ, e, u) + D.anillo(100, 72, 52, TURQ, e, u) +
           D.rotulo(246, 210, "latidos normales", TURQ, e, { ancla: "middle", op: u, tam: 15 }) },
-      { texto: "Rápida: <b>bradicardia o asistolia</b>", barre: [600, 1200],
+      { texto: "En bolo: <b>bradicardia o asistolia</b>", barre: [600, 1200],
         dibujo: (u, e, t) => {
           const x1 = t === null ? 1190 : Math.min(1190, 600 + 600 * avance(t, 3));
           const op = t === null ? 1 : Math.max(0, Math.min(1, (avance(t, 3) - 0.5) / 0.3));
           return (x1 > 650 ? `<rect x="650" y="6" width="${x1 - 650}" height="451" rx="14" fill="${ROJO}" fill-opacity=".14"
               stroke="${ROJO}" stroke-width="${3 * e}" stroke-dasharray="${9 * e} ${6 * e}"/>` : "") +
-            D.rotulo(920, 228, "asistolia: no hay latidos", "#FCA5A5", e, { ancla: "middle", op, tam: 16 });
+            D.rotulo(920, 228, "en bolo: asistolia", "#FCA5A5", e, { ancla: "middle", op, tam: 16 });
         } },
     ],
   }],
-  final: `<b>20 mg/kg</b> en <b>20 min</b>, con monitor. <span style="color:#FCA5A5">Pasada rápida: bradicardia o asistolia.</span>`,
+  final: `<b>20 mg/kg</b> en <b>20 min</b>, con monitor. <span style="color:#FCA5A5">En bolo: bradicardia o asistolia.</span>`,
 });
 </script></body></html>

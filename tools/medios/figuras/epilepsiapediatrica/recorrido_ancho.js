@@ -41,6 +41,7 @@ function recorridoAncho(cfg) {
       });
     }
     let s = `<image href="${esc.img}" x="0" y="0" width="${esc.w}" height="${esc.h}" ${esc.filtro ? `style="filter:${esc.filtro}"` : ""}/>`;
+    s += (esc.tapas || []).map((p) => `<polygon points="${p.split("|")[0]}" fill="${p.split("|")[1] || "#000"}"/>`).join("");
     if (cfg.barrido && corte < esc.w) {
       s += `<rect x="${corte}" y="0" width="${esc.w - corte}" height="${esc.h}" fill="${cfg.fondo || "#fff"}"/>
         <line x1="${corte}" y1="0" x2="${corte}" y2="${esc.h}" stroke="#2FB36D" stroke-width="${3 * e}"/>`;
