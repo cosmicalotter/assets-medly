@@ -10,7 +10,7 @@ TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
 jpg() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1.png" >/dev/null
-        "$PY" -c "from PIL import Image; Image.open('$TMP/$1.png').convert('RGB').resize((720,540), Image.LANCZOS).save('$2', quality=86, optimize=True)"; echo "$2"; }
+        "$PY" -c "from PIL import Image; Image.open('$TMP/$1.png').convert('RGB').save('$2', quality=88, subsampling=0, optimize=True)"; echo "$2"; }
 gif() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1" --cuadros "$3" >/dev/null
         "$PY" tools/medios/armar_gif.py "$TMP/$1" "$2" --ms "$4" --pausa 2500 --colores "$5" | tail -1; }
 

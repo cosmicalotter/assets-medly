@@ -197,6 +197,11 @@ GIF) antes de conectarlo: textos cortados, solapes, colores que no se leen.
 | foto | JPG o WebP, lado largo ≤1280 px | 300 KB |
 | GIF | 720 px de ancho, 3-8 s, en bucle | 2 MB |
 
+Las figuras HTML se diseñan a 720×540 pero se **guardan a 1440×1080** (lo que da
+`capturar.js` con `--escala 2`): nunca se reducen a 720, porque en pantallas
+retina la app las amplía y se ven borrosas. JPG con `quality=88, subsampling=0`
+(sin submuestreo de color, para que el texto no se emborrone).
+
 La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
 
 ## Nombre, carpeta y conexión
