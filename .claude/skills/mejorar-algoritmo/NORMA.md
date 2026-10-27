@@ -34,12 +34,20 @@ cambian, se cambian allí y aquí a la vez.
   por entidad que el algoritmo trata (`- **Colecistitis aguda:** …`,
   `- **Coledocolitiasis:** …`, `- **Colangitis aguda:** …`). Cada definición
   es la explícita y técnica que da la guía, completa pero directa: una o dos
-  líneas, sin conducta ni dosis. Entre dos y cinco viñetas; la portada es lo
-  primero que se ve y no puede asustar. Cada una lleva su cita literal y
+  líneas, sin conducta ni dosis. Además de qué es, cada definición resume lo
+  técnico que la guía usa para delimitarla: los **criterios simples** (los que
+  el algoritmo desarrolla después en su sección), los **límites de tiempo**
+  (cuándo es aguda o crónica, los minutos que definen un estado, la ventana
+  de una complicación) y los umbrales que la definen. Entre dos y cinco
+  viñetas; la portada es lo primero que se ve y no puede asustar. Cada una lleva su cita literal y
   página en las `referencias` de `nodo_raiz`. Si la guía no define una
   entidad, no se escribe de memoria: se deja fuera y se dice en el PR.
-  `descripcion` dice sólo **qué contiene** el algoritmo: las partes que
-  recorre y a quién no cubre. Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
+  `descripcion` es la **entradilla**: un párrafo natural y general, en frases
+  completas («En este algoritmo se abordan las patologías agudas de la vía
+  biliar más frecuentes en cirugía: cómo llegar al diagnóstico, estimar la
+  gravedad…»). Dice qué problema cubre, en qué contexto, qué partes recorre y
+  a quién no cubre. Complementa las definiciones y no las repite: no define
+  ni enumera las entidades con sus criterios (eso va debajo, en la lista). Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
   la portada) y `referencias` generales con `url`. **Sin `puntos_clave`**: la
   portada ya no los enseña. Nada de lista de fuentes en `texto`.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino

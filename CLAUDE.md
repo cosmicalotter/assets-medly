@@ -81,8 +81,15 @@ Firebase directamente, saltándose `indices/`.
   `texto` es la lista de definiciones explícitas y técnicas que da la guía de
   cada entidad del algoritmo (`- **Colangitis aguda:** …`): dos a cinco
   viñetas, completas pero breves, sin conducta, cada una con su cita literal
-  en las `referencias` de `nodo_raiz`. `descripcion` sólo dice qué cubre el
-  algoritmo. Detalle en `NORMA.md` §1.
+  en las `referencias` de `nodo_raiz`. Cada definición incluye, resumido, lo
+  técnico que da la guía: los criterios simples (que el algoritmo desarrolla
+  después), los límites de tiempo (cuándo es agudo o crónico, los minutos que
+  definen un estado) y demás datos que delimitan la entidad.
+- **La entradilla presenta.** `descripcion` es un párrafo natural y general
+  («En este algoritmo se abordan…»): qué problema cubre, en qué contexto y qué
+  partes recorre (diagnóstico, gravedad, tratamiento…), y a quién no cubre.
+  Complementa las definiciones y no las repite: ni define ni enumera las
+  entidades con sus criterios. Detalle en `NORMA.md` §1.
 
 - Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
 - La marca es **Empirica** (Praxis es el nombre antiguo).
