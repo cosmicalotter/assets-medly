@@ -11,7 +11,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "ACV hemorrágico",
-      "texto": "- **HIC espontánea:** sangrado no traumático dentro del parénquima cerebral, que puede abrirse a los ventrículos; se atribuye a enfermedad cerebral de pequeño vaso.\n- **HIC menor o moderada:** hematoma de **<30 mL**, medido con la fórmula ABC/2; por encima de **30 mL**, la HIC es grande.\n- **Expansión del hematoma:** el hematoma crece en la TC de control; suele ocurrir en las primeras **24 h** y se asocia a peor evolución y más mortalidad.\n- **Extensión intraventricular:** la sangre de la HIC pasa a los ventrículos; con hidrocefalia, puede bajar la conciencia.",
+      "texto": "- **HIC (hemorragia intracerebral) espontánea:** sangrado no traumático dentro del parénquima cerebral, que puede abrirse a los ventrículos. Se atribuye a enfermedad cerebral de pequeño vaso si no se detecta una causa macrovascular, tumoral, infecciosa o inflamatoria, ni hemodinámica.\n- **HIC menor o moderada:** hematoma de **<30 mL**, medido con la fórmula ABC/2; por encima de **30 mL**, la HIC es grande.\n- **Expansión del hematoma:** el hematoma crece en la TC de control; suele ocurrir en las primeras **24 h** y se asocia a peor evolución y más mortalidad.\n- **Extensión intraventricular:** la sangre de la HIC pasa a los ventrículos; con hidrocefalia, puede bajar la conciencia.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -41,6 +41,16 @@
           "url": "https://doi.org/10.1177/23969873251340815",
           "cita": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
           "imagen_evidencia": "evidencia_acvhemorragico_pag1011_definicion_hic.png"
+        },
+        {
+          "titulo": "HIC espontánea: sin causa macrovascular, tumoral, infecciosa o hemodinámica (ESO/EANS 2025)",
+          "paginas": "1011",
+          "texto": "in the absence of a detected underlying macrovascular, neoplastic, infectious/inflammatory or haemodynamic cause",
+          "fuente": "ESO/EANS",
+          "anio": "2025",
+          "url": "https://doi.org/10.1177/23969873251340815",
+          "cita": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
+          "imagen_evidencia": "TODO_EVIDENCIA: ESO/EANS 2025 p. 1011, final de la frase que define la HIC espontánea"
         },
         {
           "titulo": "HIC menor o moderada: hematoma de menos de 30 mL; grande, más de 30 mL (ESO/EANS 2025)",
@@ -81,16 +91,6 @@
           "url": "https://doi.org/10.1177/23969873251340815",
           "cita": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
           "imagen_evidencia": "evidencia_acvhemorragico_pag1072_pico_4_2_1_dve.png"
-        },
-        {
-          "titulo": "AHA/ASA 2022: mortalidad temprana",
-          "paginas": "e284",
-          "texto": "ICH is arguably the deadliest form of acute stroke, with early-term mortality about 30% to 40%",
-          "fuente": "AHA/ASA",
-          "anio": "2022",
-          "url": "https://doi.org/10.1161/STR.0000000000000407",
-          "cita": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2022;53:e282-e361.",
-          "imagen_evidencia": "evidencia_acvhemorragico_page284_mortalidad_hic.png"
         }
       ]
     },
@@ -185,7 +185,7 @@
     "diag_evaluacion_inicial": {
       "tipo": "pregunta",
       "titulo": "Llegada: primeros minutos",
-      "texto": "- Activar el código ACV y asegurar **vía aérea, respiración y circulación**.\n- Medir **glucosa capilar** y **PA** al llegar.\n- Cuantificar el déficit con **NIHSS** y la conciencia con **GCS** (escala de coma de Glasgow).\n- Nada por boca hasta pasar el tamizaje de deglución.",
+      "texto": "- Activar el código ACV y asegurar **vía aérea, respiración y circulación**.\n- Medir **glucosa capilar** y **presión arterial (PA)** al llegar.\n- Cuantificar el déficit con la **NIHSS** (escala de ictus de los NIH) y la conciencia con **GCS** (escala de coma de Glasgow).\n- Nada por boca hasta pasar el tamizaje de deglución.",
       "pie_nodo": "¿**GCS ≤8**, no protege la vía aérea, no oxigena o empeora rápido?",
       "checklist": {
         "titulo": "Al llegar",
@@ -212,11 +212,11 @@
       "nota_adicional": "La **hora de la última dosis** del anticoagulante y la **función renal** son los datos que más guían la reversión.",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: estabilizar primero",
           "siguiente_nodo": "diag_estabilizacion_critica"
         },
         {
-          "texto": "No",
+          "texto": "No: TC ya",
           "siguiente_nodo": "diag_neuroimagen_urgente"
         }
       ],
@@ -442,9 +442,9 @@
     },
     "diag_confirmacion_y_laboratorios": {
       "tipo": "pregunta",
-      "titulo": "HIC confirmada: laboratorios y gravedad",
-      "texto": "- Pedir los laboratorios de la lista.\n- Registrar una escala de gravedad basal: **escala ICH**.\n- Repetir la TC en las primeras **24 h** para ver si el hematoma crece.\n- Buscar la causa según localización, edad e HTA.",
-      "pie_nodo": "¿Necesita angio-TC para buscar una causa macrovascular?",
+      "titulo": "HIC confirmada: laboratorios y causa",
+      "texto": "- Pedir los laboratorios de la lista.\n- Registrar una escala de gravedad basal: **escala ICH**.\n- Repetir la TC en las primeras **24 h** para ver si el hematoma crece.\n- Buscar la causa según localización, edad e hipertensión arterial (HTA).",
+      "pie_nodo": "¿**Lobar** con **<70 años**, o profunda o de fosa posterior con **<45 años** (o **45-70** sin HTA)?",
       "checklist": {
         "titulo": "Laboratorios de ingreso",
         "items": [
@@ -456,7 +456,7 @@
           "Troponina y ECG",
           "Tóxicos en orina",
           "PCR o VSG",
-          "Anti-Xa o tiempo de trombina diluido si toma un ACOD"
+          "Anti-Xa o tiempo de trombina diluido si toma un anticoagulante oral directo (ACOD)"
         ]
       },
       "media": [
@@ -480,12 +480,12 @@
       "nota_adicional": "La escala ICH comunica gravedad; **no** predice el desenlace de un paciente ni justifica limitar el soporte.",
       "opciones": [
         {
-          "texto": "Angio-TC indicada",
+          "texto": "Sí: angio-TC aguda",
           "siguiente_nodo": "diag_estudio_macrovascular",
           "descripcion": "Riesgo de causa vascular"
         },
         {
-          "texto": "Riesgo vascular bajo",
+          "texto": "No: riesgo vascular bajo",
           "siguiente_nodo": "diag_estudio_etiologico_selectivo"
         }
       ],
@@ -578,11 +578,11 @@
       "nota_adicional": "La ESO sugiere usar la angio-TC o angio-RM para **elegir** a quién hacer arteriografía, no para reemplazarla.",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: arteriografía",
           "siguiente_nodo": "diag_dsa_urgente"
         },
         {
-          "texto": "No",
+          "texto": "No: RM y angio-RM",
           "siguiente_nodo": "diag_imagen_avanzada"
         }
       ],
@@ -674,7 +674,7 @@
         {
           "recurso": "acvhemorragico_amiloide_real.jpg",
           "titulo": "RM: angiopatía amiloide",
-          "descripcion": "HIC lobar con microhemorragias y siderosis cortical en la secuencia SWI.",
+          "descripcion": "HIC lobar con microhemorragias y siderosis cortical en la RM de susceptibilidad (SWI).",
           "en_texto": "angiopatía amiloide"
         },
         {
@@ -731,21 +731,21 @@
     "diag_estudio_etiologico_selectivo": {
       "tipo": "informativo",
       "titulo": "Riesgo vascular bajo",
-      "texto": "- La angio-TC o angio-RM aguda con venografía **también es útil** aquí.\n- **RM** con secuencias sensibles a sangre para definir la causa.\n- Integrar localización, HTA, edad y microhemorragias.",
+      "texto": "- **RM y angio-RM** con secuencias sensibles a sangre para definir la causa.\n- Integrar localización, HTA, edad y microhemorragias.",
       "media": [
         {
           "recurso": "acvhemorragico_amiloide_real.jpg",
           "titulo": "RM: angiopatía amiloide",
-          "descripcion": "Microhemorragias y siderosis cortical en SWI junto a una HIC lobar.",
+          "descripcion": "Microhemorragias y siderosis cortical en RM de susceptibilidad (SWI) junto a una HIC lobar.",
           "en_texto": "microhemorragias"
         }
       ],
       "evidencia": {
         "clase": "IIa",
-        "nivel": "C",
+        "nivel": "B",
         "fuente": "AHA/ASA 2022"
       },
-      "nota_adicional": "La ESO sugiere usar algoritmos como **DIAGRAM** para decidir qué estudios pedir.",
+      "nota_adicional": "La ESO sugiere usar puntuaciones como **DIAGRAM** para decidir qué estudios pedir.",
       "referencias": [
         {
           "titulo": "Recomendación 4.2.5 (Clase 2a, B-NR)",
@@ -796,30 +796,22 @@
       "tabla": {
         "titulo": "¿Dónde ingresa?",
         "columnas": [
-          "Situación",
           "Destino",
-          "Clase"
+          "Cuándo"
         ],
+        "resaltar_primera_columna": true,
         "filas": [
           [
-            "Sin criterios de UCI",
             "Unidad de ACV",
-            "I"
+            "Sin criterios de UCI (Clase I)"
           ],
           [
-            "Moderada o grave, sangre intraventricular, hidrocefalia o infratentorial",
             "UCI neurocrítica",
-            "IIa"
+            "Moderada o grave, sangre intraventricular, hidrocefalia o infratentorial (Clase IIa)"
           ],
           [
-            "Hidrocefalia clínica",
             "Centro con neurocirugía",
-            "I"
-          ],
-          [
-            "Sangre intraventricular, infratentorial o supratentorial grande",
-            "Considerar centro con neurocirugía",
-            "IIb"
+            "Hidrocefalia clínica (Clase I); considerar si hay sangre intraventricular, infratentorial o supratentorial grande (Clase IIb)"
           ]
         ]
       },
@@ -842,11 +834,11 @@
       ],
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: tomaba un antitrombótico",
           "siguiente_nodo": "tx_identificar_antitrombotico"
         },
         {
-          "texto": "No",
+          "texto": "No: sin antitrombóticos",
           "siguiente_nodo": "tx_hemostaticos"
         }
       ],
@@ -985,23 +977,23 @@
         ],
         "filas": [
           [
-            "Warfarina u otro AVK",
-            "**CCP 4F** según INR y peso + **vitamina K 5-10 mg** IV; meta INR **<1,3**"
+            "AVK (antagonista de la vitamina K)",
+            "**CCP 4F** (concentrado de complejo protrombínico) + **vitamina K** IV"
           ],
           [
             "Anti-Xa (apixabán, rivaroxabán, edoxabán)",
-            "**CCP 4F 37,5-50 UI/kg**; carbón activado si la toma fue hace **<2 h**"
+            "**Andexanet** si se dispone; si no, **CCP 4F 37,5-50 UI/kg**"
           ],
           [
             "Dabigatrán",
-            "**Idarucizumab 5 g** IV; sin él, CCP activado o hemodiálisis"
+            "**Idarucizumab 5 g** IV"
           ],
           [
             "Heparina no fraccionada",
-            "**Protamina 1 mg** por **100 UI** activas; máx. **50 mg**"
+            "**Protamina 1 mg** por **100 UI**; máx. **50 mg** en **10 min**"
           ],
           [
-            "HBPM",
+            "HBPM (bajo peso molecular)",
             "Protamina: revierte **solo en parte**"
           ],
           [
@@ -1213,7 +1205,7 @@
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Inhibidor del factor Xa",
-      "texto": "- **CCP de 4 factores** (o CCP activado) para la hemostasia.\n- **Carbón activado** si la última dosis fue hace **<2 h** (posible hasta 8 h).\n- **Andexanet alfa**: apixabán o rivaroxabán tomado hace **<15 h** (o anti-Xa **>100 ng/mL**) y **<12 h** desde el inicio; solo donde siga disponible y con protocolo local.",
+      "texto": "- **Andexanet alfa** donde siga disponible y con protocolo local: apixabán o rivaroxabán tomado hace **<15 h** (o anti-Xa **>100 ng/mL**) y **<12 h** desde el inicio.\n- Sin andexanet → **CCP de 4 factores** (o CCP activado).\n- **Carbón activado** si la última dosis fue hace **<2 h** (posible hasta 8 h).",
       "farmacos": [
         {
           "nombre": "CCP 4 factores",
@@ -1256,6 +1248,16 @@
       ],
       "nota_adicional": "Pedir la hora de la última toma: decide el carbón activado y si el efecto sigue presente.",
       "referencias": [
+        {
+          "titulo": "Figura 2: andexanet si se dispone; si no, CCP (AHA/ASA 2022)",
+          "paginas": "e301",
+          "texto": "Is andexanet alfa available? YES: Andexanet alpha (Class 2a). NO: 4 Factor PCC or aPCC (Class 2b)",
+          "fuente": "AHA/ASA",
+          "anio": "2022",
+          "url": "https://doi.org/10.1161/STR.0000000000000407",
+          "cita": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2022;53:e282-e361.",
+          "imagen_evidencia": "evidencia_acvhemorragico_page301_figura_2_reversion.png"
+        },
         {
           "titulo": "Texto 5.2.1.7: dosis de CCP en anti-Xa",
           "paginas": "e303",
@@ -1520,11 +1522,11 @@
       },
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: aspirina y cirugía urgente",
           "siguiente_nodo": "tx_plaquetas_cirugia"
         },
         {
-          "texto": "No",
+          "texto": "No: sin cirugía urgente",
           "siguiente_nodo": "tx_evitar_plaquetas"
         }
       ],
@@ -1767,14 +1769,6 @@
           "pauta": "Duplicar cada 90 s al inicio; la mayoría necesita **≤16 mg/h**."
         }
       ],
-      "media": [
-        {
-          "recurso": "acvhemorragico_meta_presion.gif",
-          "titulo": "La primera hora de presión arterial",
-          "descripcion": "Empezar en <2 h y llegar a PAS <140 en 1 h, sin bajar de 130.",
-          "en_texto": "llegar a la meta"
-        }
-      ],
       "evidencia": {
         "clase": "IIa",
         "nivel": "C",
@@ -1783,11 +1777,11 @@
       "nota_adicional": "Las guías no fijan un fármaco: usar el que se pueda titular en el sitio. Evitar los venodilatadores como los **nitratos**.",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: meta de PAS <140",
           "siguiente_nodo": "tx_presion_estandar"
         },
         {
-          "texto": "No",
+          "texto": "No: bajar con cautela",
           "siguiente_nodo": "tx_presion_individualizada",
           "descripcion": "Grande, >220 o cirugía"
         }
@@ -1853,6 +1847,14 @@
       "tipo": "informativo",
       "titulo": "Meta de PAS: menos de 140",
       "texto": "- Llevar la PAS a **<140 mmHg** en 1 h.\n- **No bajar de 130 mmHg**.\n- Mantener por debajo de 140 hasta **7 días** (ESO).\n- Vigilar exploración, perfusión y función renal.",
+      "media": [
+        {
+          "recurso": "acvhemorragico_meta_presion.gif",
+          "titulo": "La primera hora de presión arterial",
+          "descripcion": "Empezar en <2 h y llegar a PAS <140 en 1 h, sin bajar de 130.",
+          "en_texto": "Llevar la PAS"
+        }
+      ],
       "alertas": [
         {
           "titulo": "Clase III: daño",
@@ -1983,7 +1985,7 @@
     "tx_hidrocefalia_deterioro": {
       "tipo": "pregunta",
       "titulo": "Vigilar y repetir la TC",
-      "texto": "- **GCS frecuente**: en urgencias y hasta **72 h** en UCI o unidad de ACV.\n- TC urgente si empeora.\n- Llamar a neurocirugía sin demora.",
+      "texto": "- **GCS frecuente**: en urgencias y hasta **72 h** en UCI o unidad de ACV.\n- TC urgente si empeora; buscar expansión del hematoma.\n- Llamar a neurocirugía sin demora.",
       "pie_nodo": "¿Hay **hidrocefalia** que baja la conciencia o crisis de hipertensión intracraneal (PIC alta)?",
       "checklist": {
         "titulo": "En la TC de control buscar",
@@ -2000,7 +2002,7 @@
           "recurso": "acvhemorragico_expansion_real.jpg",
           "titulo": "Signos de que el hematoma puede crecer",
           "descripcion": "Signo de mezcla en TC y spot sign en angio-TC: marcan riesgo de crecimiento.",
-          "en_texto": "Expansión del hematoma"
+          "en_texto": "expansión del hematoma"
         }
       ],
       "evidencia": {
@@ -2010,11 +2012,11 @@
       },
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: hidrocefalia o PIC alta",
           "siguiente_nodo": "tx_neuroemergencia"
         },
         {
-          "texto": "No",
+          "texto": "No: ¿operar el hematoma?",
           "siguiente_nodo": "tx_cirugia_cerebelosa"
         }
       ],
@@ -2060,7 +2062,7 @@
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Hidrocefalia o PIC alta",
-      "texto": "- **Drenaje ventricular externo (DVE) urgente**.\n- Considerar monitorizar la presión intracraneal (PIC) en HIC moderada o grave con conciencia baja.\n- Considerar un **bolo hiperosmolar** para bajar la PIC de forma transitoria.\n- Con DVE por sangre ventricular: valorar trombólisis intraventricular.",
+      "texto": "- Hidrocefalia con conciencia baja → **drenaje ventricular externo (DVE) urgente**.\n- Considerar monitorizar la presión intracraneal (PIC) en HIC moderada o grave con conciencia baja.\n- Considerar un **bolo hiperosmolar** para bajar la PIC de forma transitoria.\n- Con DVE por sangre ventricular: valorar trombólisis intraventricular.",
       "alertas": [
         {
           "titulo": "No corticoides",
@@ -2072,7 +2074,7 @@
           "recurso": "acvhemorragico_talamica_real.jpg",
           "titulo": "Hemorragia talámica abierta a los ventrículos",
           "descripcion": "El hematoma talámico pasa a los ventrículos y los dilata: hidrocefalia.",
-          "en_texto": "sangre ventricular"
+          "en_texto": "Hidrocefalia"
         }
       ],
       "evidencia": {
@@ -2227,7 +2229,7 @@
       "tipo": "pregunta",
       "titulo": "Cerebelosa: ¿criterios de cirugía?",
       "texto": "- Basta **un** criterio para operar de inmediato.\n- Medir el volumen con ABC/2 y explorar el tronco: pupilas, mirada, respiración.",
-      "pie_nodo": "¿Cumple algún criterio de cirugía inmediata?",
+      "pie_nodo": "¿Deterioro neurológico, compresión del tronco, hidrocefalia obstructiva o volumen **≥15 mL**?",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/hic_cerebelosa_cirugia.json",
         "etiqueta": "Criterios de cirugía cerebelosa",
@@ -2235,8 +2237,8 @@
       },
       "alertas": [
         {
-          "titulo": "DVE solo",
-          "texto": "En la cerebelosa con hidrocefalia, el drenaje **solo** puede dañar si las cisternas basales están comprimidas."
+          "titulo": "DVE sin evacuar",
+          "texto": "En la cerebelosa con hidrocefalia, el DVE aislado, sin evacuar el hematoma, puede dañar, sobre todo con las cisternas basales comprimidas."
         }
       ],
       "evidencia": {
@@ -2250,7 +2252,7 @@
           "siguiente_nodo": "tx_evacuacion_cerebelosa"
         },
         {
-          "texto": "Ningún criterio",
+          "texto": "Ninguno: manejo médico",
           "siguiente_nodo": "tx_manejo_medico"
         }
       ],
@@ -2332,7 +2334,7 @@
     },
     "tx_cirugia_supratentorial": {
       "tipo": "pregunta",
-      "titulo": "Supratentorial: ¿lobar seleccionada?",
+      "titulo": "Supratentorial: ¿evacuación mínimamente invasiva?",
       "texto": "- Medir el volumen (ABC/2) y anotar el GCS.\n- Decidir con neurocirugía: localización, edad, comorbilidad y experiencia del centro.",
       "tabla": {
         "titulo": "¿Qué cirugía?",
@@ -2340,29 +2342,29 @@
           "Escenario",
           "Opción"
         ],
+        "resaltar_primera_columna": true,
         "filas": [
           [
-            "Lobar **30-80 mL**, GCS **5-14**, **<24 h**",
-            "**Mínimamente invasiva** (ESO: débil a favor)"
+            "Lobar, **<24 h**",
+            "**Mínimamente invasiva** (ESO: débil a favor); el ensayo incluyó **30-80 mL** y GCS **5-14**"
           ],
           [
-            "Otra supratentorial **>20-30 mL**, GCS **5-12**",
-            "Mínimamente invasiva: reduce mortalidad (AHA 2a)"
+            "Otra, **>20-30 mL**",
+            "Mínimamente invasiva si GCS **5-12**: reduce mortalidad (AHA 2a)"
           ],
           [
-            "Profunda grave estable: GCS **8-13**, **30-100 mL**, **<72 h**",
-            "**Craniectomía descompresiva** sin evacuar (ESO: débil a favor)"
+            "Profunda grave estable",
+            "**Craniectomía descompresiva** sin evacuar: **18-75 años**, **<72 h**, GCS **8-13**, NIHSS **10-30**, **30-100 mL** (ESO)"
           ],
           [
-            "Deterioro neurológico",
+            "Deterioro",
             "**Craniotomía** para salvar la vida (AHA 2b)"
           ],
           [
-            "Estable sin indicación",
+            "Estable",
             "Manejo médico; TC si cambia la exploración"
           ]
-        ],
-        "resaltar_primera_columna": true
+        ]
       },
       "pie_nodo": "¿HIC **lobar** de **30-80 mL**, GCS **5-14** y cirugía posible en **<24 h**?",
       "enlaces": [
@@ -2383,11 +2385,11 @@
       },
       "opciones": [
         {
-          "texto": "Cumple el perfil",
+          "texto": "Sí: lobar con ese perfil",
           "siguiente_nodo": "tx_mis_lobar_seleccionada"
         },
         {
-          "texto": "No lo cumple",
+          "texto": "No: otra supratentorial",
           "siguiente_nodo": "tx_otros_candidatos_mis"
         }
       ],
@@ -2422,7 +2424,7 @@
     "tx_mis_lobar_seleccionada": {
       "estilo": "advertencia",
       "tipo": "informativo",
-      "titulo": "Evacuación mínimamente invasiva",
+      "titulo": "Lobar: evacuación mínimamente invasiva",
       "texto": "- **Evacuación mínimamente invasiva** en las primeras **24 h**, en un centro con experiencia.\n- Reduce mortalidad y mejora la función en la HIC **lobar**.\n- Hacerla con la coagulación corregida y la PA controlada.",
       "evidencia": {
         "texto": "GRADE: débil a favor",
@@ -2486,11 +2488,11 @@
       },
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: candidato a evacuar",
           "siguiente_nodo": "tx_evacuacion_minimamente_invasiva"
         },
         {
-          "texto": "No",
+          "texto": "No candidato",
           "siguiente_nodo": "tx_deterioro_supratentorial"
         }
       ],
@@ -2515,7 +2517,7 @@
     "tx_evacuacion_minimamente_invasiva": {
       "estilo": "advertencia",
       "tipo": "informativo",
-      "titulo": "Mínimamente invasiva",
+      "titulo": "Otra supratentorial: aspiración mínimamente invasiva",
       "texto": "- Aspiración **endoscópica o estereotáctica**, con o sin trombolítico: reduce mortalidad.\n- Preferirla a la craniotomía si se decide evacuar.\n- Explicar que el beneficio funcional es incierto.",
       "media": [
         {
@@ -2713,7 +2715,7 @@
     "tx_cuidados_hospitalarios": {
       "tipo": "pregunta",
       "titulo": "Primeras 72 horas",
-      "texto": "- Unidad de ACV o UCI neurocrítica con protocolos estandarizados.\n- Glucosa: tratar hipoglucemia **<40-60 mg/dL** e hiperglucemia **>180-200 mg/dL**.\n- Tratar la fiebre y buscar su causa.",
+      "texto": "- Unidad de ACV o UCI neurocrítica con protocolos estandarizados.",
       "tabla": {
         "titulo": "Las primeras 72 horas",
         "columnas": [
@@ -2735,7 +2737,7 @@
           ],
           [
             "HNF o HBPM profiláctica",
-            "A las **24-48 h** del inicio (AHA 2b)"
+            "Dosis baja a las **24-48 h** del inicio si no camina (AHA 2b)"
           ],
           [
             "Medias de compresión solas",
@@ -2788,11 +2790,11 @@
       "nota_adicional": "Trombosis venosa proximal en la fase aguda: la AHA considera un filtro de vena cava recuperable mientras no se pueda anticoagular.",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: crisis",
           "siguiente_nodo": "tx_convulsiones"
         },
         {
-          "texto": "No",
+          "texto": "No: sin crisis",
           "siguiente_nodo": "tx_sin_profilaxis_anticonvulsiva"
         }
       ],
@@ -3237,7 +3239,7 @@
       "estilo": "exito",
       "tipo": "informativo",
       "titulo": "Reinicio de antitrombóticos",
-      "texto": "- Decisión **individual y multidisciplinaria**: causa de la HIC, microhemorragias, PA e indicación cardiovascular.\n- Válvula mecánica o asistencia ventricular → reanudar **pronto**.\n- FA no valvular → si se anticoagula, hacia las **7-8 semanas**.",
+      "texto": "- Decisión **individual y multidisciplinaria**: causa de la HIC, microhemorragias, PA e indicación cardiovascular, como la fibrilación auricular (FA).",
       "tabla": {
         "titulo": "Reinicio de antitrombóticos",
         "columnas": [
@@ -3251,7 +3253,7 @@
           ],
           [
             "FA no valvular",
-            "Anticoagular hacia las **7-8 semanas**, tras valorar riesgo y beneficio"
+            "Si se decide anticoagular: hacia las **7-8 semanas**"
           ],
           [
             "FA sin anticoagulación a largo plazo",
