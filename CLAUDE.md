@@ -89,7 +89,8 @@ Firebase directamente, saltándose `indices/`.
   («En este algoritmo se abordan…»): qué problema cubre, en qué contexto y qué
   partes recorre (diagnóstico, gravedad, tratamiento…), y a quién no cubre.
   Complementa las definiciones y no las repite: ni define ni enumera las
-  entidades con sus criterios. Detalle en `NORMA.md` §1.
+  entidades con sus criterios. **Breve: una o dos frases, unas 25-35
+  palabras** (ejemplo en `NORMA.md` §1). Detalle en `NORMA.md` §1.
 
 - Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
 - La marca es **Empirica** (Praxis es el nombre antiguo).

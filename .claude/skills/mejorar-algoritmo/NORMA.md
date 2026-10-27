@@ -47,7 +47,16 @@ cambian, se cambian allí y aquí a la vez.
   biliar más frecuentes en cirugía: cómo llegar al diagnóstico, estimar la
   gravedad…»). Dice qué problema cubre, en qué contexto, qué partes recorre y
   a quién no cubre. Complementa las definiciones y no las repite: no define
-  ni enumera las entidades con sus criterios (eso va debajo, en la lista). Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
+  ni enumera las entidades con sus criterios (eso va debajo, en la lista).
+  **Breve: una o dos frases, unas 25-35 palabras.** Las partes se nombran,
+  no se explican; nada de fármacos, situaciones especiales ni detalles que ya
+  están en el mapa. Ejemplos de la medida:
+  - «En este algoritmo se abordan las patologías agudas de la vía biliar más
+    frecuentes en cirugía: diagnóstico, gravedad y cuándo indicar
+    antibiótico, drenaje, endoscopia o cirugía.»
+  - «En este algoritmo se aborda al niño con crisis epilépticas: la
+    convulsión en curso, la primera crisis, el tratamiento según el tipo y el
+    seguimiento. No incluye el periodo neonatal ni la crisis febril simple.» Además `especialidad`, `actualizado` (la app lo pone en una franja al pie de
   la portada) y `referencias` generales con `url`. **Sin `puntos_clave`**: la
   portada ya no los enseña. Nada de lista de fuentes en `texto`.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino
