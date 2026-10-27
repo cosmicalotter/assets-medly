@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script><script src="../biliar/recorrido.js"></script><script src="recorrido_ancho.js"></script></head><body>
+<script>
+// Trazado real (James Heilman, MD, Wikimedia Commons, CC BY-SA 3.0): dos latidos normales y
+// después asistolia, en un registro Holter de dos canales. Un cursor lo va descubriendo como
+// en el monitor mientras pasa la carga. Dosis, tiempo, ECG y riesgo: RCUK EPALS 2021, pág. 1.
+const ROJO = "#EF5454", TURQ = "#2DD4BF", AMAR = "#FDE047";
+const N = 5;  // 4 pasos + tarjeta final
+const avance = (t, k) => Math.max(0, Math.min(1, (t * N - k) / 0.8));
+const ficha = (x, y, w, linea1, linea2, e, op) => `<g opacity="${op}">
+  <rect x="${x}" y="${y}" width="${w}" height="${linea2 ? 104 : 70}" rx="16" fill="#1F2A37"/>
+  <text x="${x + w / 2}" y="${y + 46}" font-size="${17 * e}" font-weight="800" fill="#fff" text-anchor="middle">${linea1}</text>
+  ${linea2 ? `<text x="${x + w / 2}" y="${y + 86}" font-size="${12.5 * e}" font-weight="600" fill="#9CA3AF" text-anchor="middle">${linea2}</text>` : ""}</g>`;
+recorridoAncho({
+  titulo: "Fenitoína: lenta y con ECG",
+  subtitulo: "Trazado de ejemplo de un monitor: latidos normales y después asistolia",
+  credito: "Trazado: James Heilman, MD, Wikimedia Commons, CC BY-SA 3.0, editado por Empirica. Fuente: RCUK EPALS 2021 (estado epiléptico convulsivo en niños).",
+  alto: 262,
+  barrido: true,
+  fondo: "#E5E7EB",
+  escenas: [{
+    img: "fuentes/asistolia_heilman.jpg", w: 1400, h: 463, vista: [10, 0, 1180, 463],
+    filtro: "brightness(1.45) contrast(1.15)",
+    // Letras de anotación del Holter (N, N, M) y números de la esquina, tapados.
+    tapas: ["110,0 142,0 142,28 110,28|#ECE4DF", "394,0 426,0 426,28 394,28|#ECE4DF",
+            "624,6 658,6 658,36 624,36|#ECE4DF", "1190,0 1400,0 1400,20 1190,20|#ECE4DF"],
+    pasos: [
+      { texto: "Carga: <b>20 mg/kg</b> IV", barre: [150, 230],
+        dibujo: (u, e, t) => t === null ? "" : ficha(720, 150, 380, "Fenitoína 20 mg/kg", "", e, u) },
+      { texto: "Infusión lenta en <b>20 min</b>, nunca en bolo", barre: [230, 470],
+        dibujo: (u, e, t) => {
+          if (t === null) return "";
+          const a = avance(t, 1);
+          return ficha(720, 130, 380, `${Math.round(20 * a)} / 20 min`, "infusión", e, u) +
+            `<rect x="720" y="252" width="380" height="16" rx="8" fill="#1F2A37" opacity="${u}"/>
+             <rect x="720" y="252" width="${380 * a}" height="16" rx="8" fill="${TURQ}" opacity="${u}"/>`;
+        } },
+      { texto: "ECG continuo durante toda la carga", barre: [470, 600],
+        dibujo: (u, e, t) => t === null ? "" :
+          D.anillo(392, 72, 52, TURQ, e, u) + D.anillo(100, 72, 52, TURQ, e, u) +
+          D.rotulo(246, 210, "latidos normales", TURQ, e, { ancla: "middle", op: u, tam: 15 }) },
+      { texto: "En bolo: <b>bradicardia o asistolia</b>", barre: [600, 1200],
+        dibujo: (u, e, t) => {
+          const x1 = t === null ? 1190 : Math.min(1190, 600 + 600 * avance(t, 3));
+          const op = t === null ? 1 : Math.max(0, Math.min(1, (avance(t, 3) - 0.5) / 0.3));
+          return (x1 > 650 ? `<rect x="650" y="6" width="${x1 - 650}" height="451" rx="14" fill="${ROJO}" fill-opacity=".14"
+              stroke="${ROJO}" stroke-width="${3 * e}" stroke-dasharray="${9 * e} ${6 * e}"/>` : "") +
+            D.rotulo(920, 228, "en bolo: asistolia", "#FCA5A5", e, { ancla: "middle", op, tam: 16 });
+        } },
+    ],
+  }],
+  final: `<b>20 mg/kg</b> en <b>20 min</b>, con monitor. <span style="color:#FCA5A5">En bolo: bradicardia o asistolia.</span>`,
+});
+</script></body></html>

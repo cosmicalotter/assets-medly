@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="../biliar/base.js"></script></head><body>
+<script>
+// EEG reales (Nguyen C, Clegg T, Kumar A, Paudel S. Child Neurol Open 2022;9:2329048X221119575,
+// figuras 1 y 2, CC BY 4.0): adolescente de 16 años con encefalopatía por cefepima y estado
+// epiléptico no convulsivo; descargas generalizadas rítmicas de 2,5-3 Hz y, dos días después de
+// retirar la cefepima, el EEG mejorado. Mensaje de RCUK EPALS 2021: «Ongoing seizures are
+// not always easy to identify (EEG)». Se recortan los primeros 8 canales y 2/3 del ancho.
+const RECORTE = { x: 0, y: 0, w: 1350, h: 380 };   // en píxeles del original (1950 × 730)
+const ANCHO = 668, ALTO = Math.round(ANCHO * RECORTE.h / RECORTE.w);
+const panel = (img, color, rotulo, texto) => `
+  <div style="position:relative;width:${ANCHO}px;height:${ALTO}px;border-radius:12px;overflow:hidden;flex:none;border:2px solid ${color};
+    background:url('${img}') ${-RECORTE.x * ANCHO / RECORTE.w}px ${-RECORTE.y * ANCHO / RECORTE.w}px / ${1950 * ANCHO / RECORTE.w}px auto no-repeat">
+    <div style="position:absolute;right:8px;top:8px;background:#1F2A37;color:#fff;border-radius:9px;padding:5px 10px;font-size:13.5px;font-weight:700;line-height:1.25;box-shadow:0 1px 4px rgba(0,0,0,.35)">
+      <span style="color:${color}">${rotulo}</span> ${texto}</div>
+  </div>`;
+lienzo("EEG: la crisis que no se ve",
+  "Adolescente de 16 años con encefalopatía: estado epiléptico no convulsivo",
+  panel("fuentes/eeg_no_convulsivo_nguyen_2022.jpg", "#F87171", "Crisis en curso:", "descargas rítmicas de <b>2,5-3 Hz</b>") +
+  panel("fuentes/eeg_tras_tratar_nguyen_2022.jpg", "#2DD4BF", "2 días después:", "al retirar la causa, el EEG mejora"),
+  "EEG: Nguyen C, Clegg T, Kumar A, Paudel S. Child Neurol Open 2022;9:2329048X221119575, CC BY 4.0, recortado y rotulado por Empirica. Fuente: RCUK EPALS 2021.");
+</script></body></html>
