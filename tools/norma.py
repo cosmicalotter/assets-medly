@@ -87,6 +87,9 @@ _PIE_CON_CREDITO = re.compile(
 COLORES_INFO = {"teal", "turquesa", "amarillo", "rojo", "rosa", "azul", "celeste",
                 "ambar", "naranja", "verde", "violeta", "blanco"}
 _COLOR_INFO = re.compile(r"\{([^{}:]+):[^{}]+\}")
+# Un `info` con una cifra en negrita afirma un criterio o una dosis: lleva
+# sus `referencias` para el botón del libro del visor.
+_CIFRA_EN_NEGRITA = re.compile(r"\*\*[^*]*\d[^*]*\*\*")
 
 _AVISO_DE_MEDIO = re.compile(r"\((gif|imagen|foto|video|ver imagen)\)", re.I)
 _VISUAL = re.compile(
@@ -279,6 +282,12 @@ def chequear(ruta: Path) -> list[str]:
                     problemas.append(f"{nid}: «info» de «{m.get('recurso', '?')}» usa el color «{color}», que la app no conoce (se ve con llaves)")
             if info.count("{") != info.count("}") or info.count("**") % 2:
                 problemas.append(f"{nid}: «info» de «{m.get('recurso', '?')}» tiene llaves o ** sin cerrar")
+            for r in m.get("referencias") or []:
+                img = (r.get("imagen_evidencia") or "").strip() if isinstance(r, dict) else ""
+                if not isinstance(r, dict):
+                    problemas.append(f"{nid}: «referencias» de «{m.get('recurso', '?')}» con una entrada que no es objeto (la app la descarta)")
+                elif img and not img.startswith(("https://", "TODO_")):
+                    problemas.append(f"{nid}: «referencias» de «{m.get('recurso', '?')}»: «imagen_evidencia» sin URL raw completa (el visor no conoce la carpeta)")
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
@@ -425,6 +434,8 @@ def medir(ruta: Path) -> Informe:
                     inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» tiene saltos de línea; un solo párrafo")
                 if _PIE_CON_CREDITO.search(info):
                     inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» lleva el crédito; va dentro de la imagen")
+                if _CIFRA_EN_NEGRITA.search(info) and not m.get("referencias"):
+                    inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» da cifras o criterios sin «referencias» (botón del libro)")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
 
