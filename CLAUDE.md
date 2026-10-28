@@ -116,7 +116,9 @@ Firebase directamente, saltándose `indices/`.
 - Mejorar un algoritmo existente: skill **`mejorar-algoritmo`**. Su
   `NORMA.md` es la definición de terminado (Norma Empirica v2).
 - Escalas nuevas o conectar las que ya hay: skill **`crear-calculadora`**.
-- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**.
+- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. Toda imagen lleva título, pie (`descripcion`) e
+  **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
+  con su color exacto (`{#hex:…}`).
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
 - Estilo de redacción: nota de guardia, telegráfico, imperativo y con las

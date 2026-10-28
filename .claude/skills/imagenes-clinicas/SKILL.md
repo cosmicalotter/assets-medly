@@ -217,7 +217,7 @@ La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
 - **Los flujogramas de la guía que repiten el algoritmo no van en `media`**
   (y nunca como GIF): van fijos en las fuentes del paso, como
   `referencias[].imagen_evidencia` con la URL raw completa.
-- En el nodo, siempre `media` con título y pie (`descripcion`) **breve (≤18
+- En el nodo, siempre `media` con título, `info` (ver «Texto de información») y pie (`descripcion`) **breve (≤18
   palabras)** que diga **qué se ve**. La app nueva acepta también `pie`, pero las versiones ya
   instaladas sólo leen `descripcion`: se usa esa. La app lo dibuja como pie de
   foto: una franja algo más oscura, fundida bajo la imagen. Sin crédito: ya
@@ -240,6 +240,46 @@ La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
     "titulo": "Piel moteada en rodillas",
     "descripcion": "Signo de hipoperfusión: manchas violáceas en rodillas." }
 ]
+```
+
+## Texto de información (`info`)
+
+Toda imagen de `media` lleva, además del pie, un **`info`**: el texto que la
+app enseña al abrir la imagen a pantalla completa, en una franja oscura
+transparente abajo (arriba va otra franja igual con el título y la X).
+
+- **Qué dice:** qué se ve y qué señala cada flecha, círculo o rótulo, con su
+  significado, y lo que conviene saber de esa imagen (un dato que la
+  distingue, una trampa, qué cambia la conducta), dicho sin anunciarlo como
+  «perla». No repite el pie del nodo ni el título ni el texto de la tarjeta:
+  añade lo que ellos no dicen. Nada genérico («imagen ilustrativa de…»).
+- **Forma:** un solo párrafo, sin saltos de línea ni viñetas, **25-50
+  palabras** (2-3 frases). Cifras delante y en `**negrita**` (la app la pinta
+  en blanco pleno, sin color). Sin crédito ni licencia.
+- **Colores:** cada flecha o marca que se nombra va teñida con **su color
+  exacto**: `{#11B1ED:Flecha azul}: hematoma lobar`. El hex sale de la fuente,
+  nunca a ojo:
+  - figura propia: la constante del HTML en `tools/medios/figuras/<carpeta>/`
+    (`const A = "#FDE047"` → `{#FDE047:flecha amarilla}`);
+  - flecha que ya traía la foto original, o PNG sin HTML:
+    `python3 tools/medios/colores_imagen.py <imagen>` (mediana de los píxeles
+    de ese color; en GIF, el último cuadro).
+  - Los nombres de la paleta de la app (`amarillo`, `teal`, `rojo`,
+    `verde`, `azul`…, ver `docs/algoritmos_json.md` de praxis) sólo si el
+    dibujo usa ese mismo hex. Un nombre que la app no conoce se ve con llaves:
+    `python3 tools/norma.py --chequeo` lo denuncia.
+  - Sólo se tiñe lo que tiene color en la imagen; lo blanco o negro va en
+    `**negrita**` («**Flecha negra**: …»).
+- **Fuente:** lo clínico del `info` sale de la guía como todo lo demás: de lo
+  que el algoritmo ya cita en ese nodo o en otro, o de la propia figura y su
+  artículo. Si no hay fuente, el `info` se queda en describir lo que se ve.
+
+```json
+{ "recurso": "acvhemorragico_mav_real.jpg",
+  "titulo": "Causa macrovascular: malformación arteriovenosa",
+  "descripcion": "Hematoma lobar en la TC y la malformación que sangró en la arteriografía.",
+  "info": "{#FCFD01:Flechas amarillas}: en la TC, el hematoma lobar frontal; en la arteriografía, el nido de la MAV, ovillo de vasos que se llena de contraste con sus arterias nutricias. Si la angio-TC la sugiere, la **DSA** va lo antes posible; con sangre **solo intraventricular**, directa.",
+  "en_texto": "malformación arteriovenosa" }
 ```
 
 ## Créditos
