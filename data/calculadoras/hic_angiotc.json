@@ -2,7 +2,7 @@
   "titulo": "HIC: ¿angio-TC para buscar causa macrovascular? (AHA/ASA 2022)",
   "descripcion": "Quién necesita angio-TC aguda (con venografía si procede) tras una hemorragia intracerebral espontánea, según la localización, la edad y la HTA. Lobar con menos de 70 años; profunda o de fosa posterior con menos de 45, o de 45 a 70 sin HTA conocida.",
   "tipoCalculo": "formula",
-  "formula": "loc * (edad * (edad - 1) * (3 - edad) / 2 + edad * (edad - 1) * (edad - 2) / 6) + (1 - loc) * (edad * (edad - 1) * (edad - 2) / 6 + (edad * (2 - edad) * (3 - edad) / 2 + edad * (edad - 1) * (3 - edad) / 2) * (1 - hta))",
+  "formula": "loc * (grupo_edad * (grupo_edad - 1) * (3 - grupo_edad) / 2 + grupo_edad * (grupo_edad - 1) * (grupo_edad - 2) / 6) + (1 - loc) * (grupo_edad * (grupo_edad - 1) * (grupo_edad - 2) / 6 + (grupo_edad * (2 - grupo_edad) * (3 - grupo_edad) / 2 + grupo_edad * (grupo_edad - 1) * (3 - grupo_edad) / 2) * (1 - hta))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
   "referencias": [
@@ -30,7 +30,7 @@
           ]
         },
         {
-          "id": "edad",
+          "id": "grupo_edad",
           "tipo": "opciones",
           "label": "Edad",
           "opciones": [

@@ -35,8 +35,17 @@ por tramos. Dos detalles de la tabla:
   ausente. Si la escala resta desde un máximo (ASPECTS: 10 menos las regiones
   afectadas), los puntos cuentan lo afectado y cada `resultados[]` traduce el
   total a la puntuación real (`min`/`max` exactos y `categoria` «ASPECTS 7»).
-- Una celda que no aplica en esa fila lleva `"-"` en `descripciones`.
-- `nombre` de fila corto: la app lo corta a dos líneas.
+- Una celda que no aplica en esa fila lleva `"-"` en `descripciones` (la
+  app no la enseña).
+- Una fila **sin celda de 0 puntos** (Glasgow, Child-Pugh) es obligatoria: la
+  app no da resultado hasta que se marca. Si el 0 existe, tiene que ser lo
+  normal: lo no marcado cuenta 0.
+- `nombre` de fila corto: en la tabla clásica va en una columna estrecha.
+- En el móvil cada fila se ve como una tarjeta con sus celdas y, en cada una,
+  una pastilla con el `titulo` y el `color` de su columna: el título dice algo
+  («2», «Clase III», «Grado II»). Si el total es un código (1000 por factor,
+  10 por grado) va `"mostrarPuntaje": false` y la app enseña sólo la
+  categoría.
 
 **Imagen de ayuda**: `imagenTopUrl` (encima de la tabla o del formulario) o
 `imagenBottomUrl` (debajo), con URL raw completa. Va en
@@ -52,6 +61,10 @@ Antes de escribir, **abre un ejemplo del mismo tipo**:
 | tabla de puntos (preferida) | `abcd2.json`, `ich_score.json`, `aspects.json` | cada criterio suma 0/1 (o 0/1/2) |
 | fórmula | `ckdepi.json`, `cockcroft.json` | hay una ecuación con variables |
 | elementos con intervalos | `sofa.json`, `grace.json` | un valor numérico se convierte en puntos por tramos |
+
+En la fórmula, ningún `id` de variable empieza por `e` (`edad` →
+`grupo_edad`, `anios`): las versiones antiguas de la app leen esa `e` como el
+número e y la fórmula no da resultado.
 
 Llaves de primer nivel: `titulo`, `descripcion` (qué estima y en quién),
 `referencias`, y según el tipo `columnas` + `filas`, o `tipoCalculo:
