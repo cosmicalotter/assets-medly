@@ -53,7 +53,8 @@ abrirse.
 
 - `praxis` — la app. **El contrato del formato** es
   `praxis/docs/algoritmos_json.md` (+ `algoritmo.schema.json`): qué llaves
-  existen y cómo se dibujan. Es la fuente de verdad; ante la duda, se lee ahí
+  existen y cómo se dibujan; el de las calculadoras,
+  `praxis/docs/calculadoras_json.md`. Es la fuente de verdad; ante la duda, se lee ahí
   y, si hace falta, el parser en `lib/models/algoritmo.dart` y
   `lib/features/algoritmos/modelos/contenido_nodo.dart`.
 - `galgo-empirica` — la herramienta `galgo` (validar, auditar, resolver
@@ -67,6 +68,7 @@ galgo validar -a <algoritmo> --nivel error   # ¿se rompe algo? (esquema, grafo,
 galgo auditar --listar -a <algoritmo>        # ¿está completo lo que hay? nota 0-100
 python3 tools/norma.py [<algoritmo>]         # ¿usa todo lo que la app dibuja? nota 0-100
 python3 tools/norma.py --chequeo <algoritmo> # lo que la app no denuncia y se rompe
+python3 tools/calculadoras.py [<escala>]     # calculadoras: errores y nota 0-100
 node tools/medios/capturar.js …              # HTML → PNG o cuadros de GIF
 python3 tools/medios/armar_gif.py …          # cuadros → GIF
 ```
@@ -115,7 +117,11 @@ Firebase directamente, saltándose `indices/`.
 
 - Mejorar un algoritmo existente: skill **`mejorar-algoritmo`**. Su
   `NORMA.md` es la definición de terminado (Norma Empirica v2).
-- Escalas nuevas o conectar las que ya hay: skill **`crear-calculadora`**.
+- Escalas nuevas, mejorar las que hay o conectarlas: skill
+  **`crear-calculadora`**. Su `NORMA.md` es la definición de terminado de una
+  calculadora (modelos tabla / fórmula / reglas, conducta con fuente en cada
+  resultado); el formato está en `praxis/docs/calculadoras_json.md`. «Se usa
+  en» lo calcula el workflow; no se escribe a mano.
 - Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
   con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o

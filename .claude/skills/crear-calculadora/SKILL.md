@@ -1,137 +1,98 @@
 ---
 name: crear-calculadora
-description: Crea una escala o calculadora clínica nueva en data/calculadoras con el formato DatosEscala de Empirica, validada contra su publicación original, y la conecta por URL a los nodos que la usan. Usar cuando un algoritmo pide una escala que no existe (TODO_CALC_…), cuando se pida crear o corregir una calculadora, o al conectar una escala existente a un nodo.
+description: Crea, corrige o mejora una escala o calculadora clínica de data/calculadoras con el formato DatosEscala v3 de Empirica (tabla de puntos, formulario con fórmula o con reglas), validada contra su publicación original y con la Norma de calculadoras (NORMA.md), y la conecta por URL a los nodos que la usan. Usar cuando un algoritmo pide una escala que no existe (TODO_CALC_…), cuando se pida crear, corregir, completar o reformar una calculadora (conducta por resultado, instrucciones, unidades, valores medidos), o al conectar una escala existente a un nodo.
 argument-hint: "<nombre de la escala> [algoritmo y nodo que la usan]"
 ---
 
-# Crear o conectar una calculadora
+# Crear, mejorar o conectar una calculadora
 
-## Antes de crear: ¿ya existe?
+La definición de terminado es **`NORMA.md`** (en esta carpeta): qué modelo
+elegir, cómo se redacta, de dónde sale cada cifra y la lista de comprobación.
+El formato de cada llave está en `praxis/docs/calculadoras_json.md`.
+
+```bash
+python3 tools/calculadoras.py               # tablero de todas, lo peor primero
+python3 tools/calculadoras.py <escala>      # errores, avisos y lo que le falta
+python3 tools/calculadoras.py --chequeo <escala>   # sólo errores (sale con 1)
+node update_firebase_date.js --validar      # índices
+node update_firebase_date.js --mostrar      # lo que se publica, con «Se usa en»
+```
+
+Meta: **0 errores y nota ≥ 85**. Un error del validador es un paciente real
+que no recibe resultado o recibe uno equivocado.
+
+## 1. Antes de crear: ¿ya existe?
 
 `ls data/calculadoras/`. Muchos `TODO_CALC_` piden escalas que ya están con
 otro nombre (`TODO_CALC_curb65.json` → `curb65.json`,
 `TODO_CALC_wells_tep.json` → `wellstep.json`,
-`TODO_CALC_glasgow_blatchford.json` → `glasgowbratchford.json`). `galgo
-auditar` las señala como «regla». Si existe, sólo se conecta (abajo).
+`TODO_CALC_glasgow_blatchford.json` → `glasgowbratchford.json`,
+`TODO_CALC_sofa.json` → `sofa.json`, `TODO_CALC_criterios_light.json` →
+`light.json`, `TODO_CALC_GRACE_Score.json` → `grace.json`). `galgo auditar`
+las señala como «regla». Si existe, sólo se conecta (§6).
 
-## La fuente
+## 2. La fuente primero
 
-Toda escala sale de su **publicación original o de la guía que la adopta**,
-con la referencia en `referencias` (título y URL de PubMed o DOI). Los puntos
-de corte se copian de ahí, no de memoria. Si la guía del algoritmo usa una
-variante (p. ej. CHA₂DS₂-VA en vez de CHA₂DS₂-VASc), se crea esa variante.
+Toda escala sale de su **publicación original** y, para la conducta, de la
+**guía que la adopta**. Se leen antes de escribir:
 
-## El formato
+- resumen de PubMed: `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=<PMID>&rettype=abstract&retmode=text`;
+- texto completo abierto en PMC / Europe PMC si lo hay;
+- la guía (NICE, IDSA/ATS, AHA/ASA, Tokio, KDIGO, ESC…) para la conducta.
 
-Lo lee `DatosEscala.fromJson` en `praxis/lib/models/algoritmo.dart`.
+Los puntos de corte, coeficientes y criterios se copian de ahí. Cada
+referencia va con `url` y una **cita literal** (`texto`, 12-30 palabras) que
+respalde lo que la escala afirma. Si la guía del algoritmo usa una variante
+(CHA₂DS₂-VA en vez de CHA₂DS₂-VASc), se crea esa variante. Sin fuente a
+mano, no se añade contenido clínico.
 
-**Se prefiere la tabla** (`tipoCalculo: "suma"` con `columnas` + `filas`)
-siempre que la escala se pueda expresar como puntos que se suman: es más
-práctica y visual en la app. La fórmula queda para lo que de verdad es una
-ecuación (CKD-EPI, ABC/2) o para valores numéricos que se convierten en puntos
-por tramos. Dos detalles de la tabla:
+## 3. Elegir el modelo (NORMA §1)
 
-- Lo que no se marca cuenta **0**: el 0 tiene que ser el valor normal o
-  ausente. Si la escala resta desde un máximo (ASPECTS: 10 menos las regiones
-  afectadas), los puntos cuentan lo afectado y cada `resultados[]` traduce el
-  total a la puntuación real (`min`/`max` exactos y `categoria` «ASPECTS 7»).
-- Una celda que no aplica en esa fila lleva `"-"` en `descripciones` (la
-  app no la enseña).
-- Una fila **sin celda de 0 puntos** (Glasgow, Child-Pugh) es obligatoria: la
-  app no da resultado hasta que se marca. Si el 0 existe, tiene que ser lo
-  normal: lo no marcado cuenta 0.
-- `nombre` de fila corto: en la tabla clásica va en una columna estrecha.
-- En el móvil cada fila se ve como una tarjeta con sus celdas y, en cada una,
-  una pastilla con el `titulo` y el `color` de su columna: el título dice algo
-  («2», «Clase III», «Grado II»). Si el total es un código (1000 por factor,
-  10 por grado) va `"mostrarPuntaje": false` y la app enseña sólo la
-  categoría.
-
-**Imagen de ayuda**: `imagenTopUrl` (encima de la tabla o del formulario) o
-`imagenBottomUrl` (debajo), con URL raw completa. Va en
-`data/calculadoras/imagenes/<escala>.png` y sigue las reglas de la skill
-`imagenes-clinicas` (propia o con licencia, marca Empirica, ≤300 KB). Úsala
-cuando enseñe qué mirar para puntuar: regiones de una TC, grados de una
-clasificación, cómo medir.
-
-Antes de escribir, **abre un ejemplo del mismo tipo**:
-
-| tipo | ejemplo | cuándo |
+| la escala… | modelo | ejemplo para copiar |
 |---|---|---|
-| tabla de puntos (preferida) | `abcd2.json`, `ich_score.json`, `aspects.json` | cada criterio suma 0/1 (o 0/1/2) |
-| fórmula | `ckdepi.json`, `cockcroft.json` | hay una ecuación con variables |
-| elementos con intervalos | `sofa.json`, `grace.json` | un valor numérico se convierte en puntos por tramos |
+| suma puntos de ítems con niveles | tabla de puntos | `westley.json`, `glasgowcoma.json` |
+| cuenta criterios sí/no | tabla «No» 0 / «Sí» n | `curb65.json`, `hasbled.json` |
+| clasifica en una categoría | tabla de una fila con `detalles` | `asa.json`, `killipkimball.json` |
+| da puntos por valores medidos | tabla con `entrada` | `apacheii.json`, `sofa.json`, `childpugh.json` |
+| es una ecuación | formulario con fórmula | `ckdepi.json`, `cockcroft.json`, `volumen_abc2.json` |
+| combina criterios (y / o / al menos n) | formulario con reglas | `tokyocolecistitis_diagnostico.json`, `CamIcu.json` |
 
-En la fórmula, ningún `id` de variable empieza por `e` (`edad` →
-`grupo_edad`, `anios`): las versiones antiguas de la app leen esa `e` como el
-número e y la fórmula no da resultado.
+## 4. Escribirla
 
-Llaves de primer nivel: `titulo`, `descripcion` (qué estima y en quién),
-`referencias`, y según el tipo `columnas` + `filas`, o `tipoCalculo:
-"formula"` + `formula` + `secciones[].elementos[]` (`tipo`: `input_numero` u
-`opciones`; `opciones[].puntos` o `opciones[].valoresVariables`;
-`intervalos[]` con `min`, `max`, `puntos`), y `prefijoResultado` /
-`sufijoResultado`.
+Llaves (NORMA §2-§7): `titulo`, `descripcion` (40-80 palabras: qué estima,
+en quién, qué decide), `instrucciones` (cómo se puntúa, ≤ 45 palabras),
+`limitaciones` (cuándo no aplica), `referencias` (original + guía, con
+cita), el modelo, y `resultados` con `categoria` corta, `color`, `approach`
+(conducta con cifras, ≤ 40 palabras, de la fuente) y `match_opcion_index`.
 
-`resultados[]`: `min`, `max`, `categoria`, `color` (`verde`, `amarillo`,
-`naranja`, `rojo`), `approach` (la conducta que corresponde, con cifras y de
-la misma fuente) y `match_opcion_index`.
+Piezas que hacen la escala cómoda en el teléfono:
 
-### `match_opcion_index`
+- `detalles` / `detalle`: la definición de cada opción bajo su etiqueta.
+- `ayuda`: cómo medir o explorar un criterio (botón (i)).
+- `entrada`: escribir el valor medido y que se marque la celda.
+- `unidades`: mg/dL ↔ µmol/L, °C ↔ °F (tabla de factores en NORMA §5).
+- `min` / `max`: lo posible; un valor imposible no se usa.
+- `grupo`: filas alternativas (sólo una cuenta).
+- `extras`: otros valores del resultado (volumen por tramos, dosis).
+- `decimales`: como se informa en la clínica.
 
-Es la posición, desde 0, dentro de las `opciones` del nodo que abre la
-escala. **El archivo de la escala es uno y lo comparten todos los algoritmos**,
-así que sólo se rellena si las opciones del nodo que la usa siguen ese orden.
-Si dos algoritmos la usan con ramas distintas, se deja `-1` y el nodo la
-conecta con `ramificar: false`. Nunca se cambia el índice de una escala que ya
-usa otro algoritmo sin revisar ese otro nodo.
+**Compatibilidad**: el JSON de `main` lo leen todas las versiones de la app.
+Las llaves v3 se ignoran en las antiguas sin romper nada, salvo dos cosas
+que el validador vigila: una variable de fórmula que empiece por `e`, y una
+escala sólo con reglas (va con su `formula` equivalente; NORMA §6).
 
-Varios intervalos pueden llevar a la misma opción: el primero que contiene la
-puntuación decide.
+## 5. Comprobarla
 
-### Criterios que deciden la rama
+1. `python3 tools/calculadoras.py <escala>` sin errores y nota ≥ 85.
+2. **Tres casos** de la publicación (uno por categoría, con los bordes):
+   entrada → total → categoría. Se escriben en el PR.
+3. Si cambió una cifra respecto a la versión anterior: valor anterior, valor
+   de la fuente y cita, en el PR.
+4. Si la escala decide ramas (`ramificar: true` en algún nodo): el número y
+   el orden de los resultados no cambian (el validador comprueba los
+   índices; el sentido lo revisa quien edita).
 
-Cuando de unos criterios sale un resultado y de él la conducta (diagnóstico
-definitivo / sospecha / no; grado; riesgo), el nodo no lleva una `checklist`
-que el médico interpreta solo: lleva la escala con `ramificar: true`, y cada
-resultado abre su rama. Si la escala compartida no sigue el orden de las
-opciones del nodo, o mide otra cosa (gravedad en vez de diagnóstico), se crea
-una variante propia: `tokyocolecistitis_diagnostico.json` junto a
-`tokyocolecistitis.json` (gravedad).
-
-Para criterios que se combinan por grupos («A + B + C») se usa el
-**formulario Sí/No**, no la tabla: con textos largos, las celdas de una tabla
-de 4 columnas apilan las palabras en un cuadro pequeño. Un elemento
-`opciones` por grupo (`No` = 0, `Sí` = 1) y una `formula` que da
-directamente la categoría, con `"mostrarPuntaje": false` para que la app
-enseñe «Definitiva (A + B + C)» y no «Resultado: 2»:
-
-```json
-"tipoCalculo": "formula", "formula": "a * b * (1 + c)", "mostrarPuntaje": false,
-"secciones": [{"elementos": [
-  {"id": "a", "tipo": "opciones", "label": "A · Signos locales: Murphy, o masa…",
-   "opciones": [{"label": "No", "puntos": 0}, {"label": "Sí", "puntos": 1}]}, …]}]
-```
-
-(0 no cumple, 1 sospecha, 2 definitiva). Ver
-`tokyocolecistitis_diagnostico.json` y `tokyocolangitis_diagnostico.json`
-(`a * (b + 2 * c)` distingue A + B de A + C). Los casos de prueba cubren las
-8 combinaciones.
-
-**Resultados cortos**: `categoria` de ≤5 palabras y `approach` de ≤15: la
-app los enseña juntos bajo la tabla y uno largo empuja el resto hacia arriba
-(la app pliega el `approach` a tres líneas).
-
-## Nombre y comprobación
-
-- Nombre de archivo en minúsculas ASCII sin espacios: `news2.json`,
-  `ich_score.json`. La app los pide por URL cruda y un nombre con tildes o
-  espacios se sirve mal.
-- Comprueba la escala con **tres casos** sacados de la publicación (uno por
-  categoría de riesgo, incluidos los bordes) y escríbelos en el PR: entrada,
-  puntuación esperada, categoría.
-
-## Conectarla
+## 6. Conectarla a un algoritmo
 
 En el nodo, siempre por URL completa (con nombre suelto la app no la
 descarga):
@@ -146,13 +107,40 @@ descarga):
 
 Y quita el `calculadora_id: "TODO_CALC_…"` que hubiera.
 
-## Para que aparezca también en el menú de Calculadoras
+`match_opcion_index` es la posición, desde 0, dentro de las `opciones` del
+nodo que abre la escala. **El archivo de la escala es uno y lo comparten
+todos los algoritmos**: sólo se rellena si las opciones del nodo siguen ese
+orden; si dos algoritmos la usan con ramas distintas, `-1` y
+`ramificar: false`. Cuando de unos criterios sale la rama (diagnóstico
+definitivo / sospecha / no; grado), el nodo lleva la escala con
+`ramificar: true` en vez de una `checklist`; si la escala compartida no sigue
+el orden de las opciones del nodo, se crea una variante
+(`tokyocolecistitis_diagnostico.json` junto a `tokyocolecistitis.json`).
+
+«Se usa en» (la sección de la ventana de información con los algoritmos que
+usan la escala) **no se escribe**: lo calcula el workflow al publicar
+`index_calculadoras` con los algoritmos visibles.
+
+## 7. El menú de Calculadoras
 
 El menú sale de `indices/index_calculadoras.json` (el workflow lo publica en
-Firebase Remote Config en cada push a `main`). En el mismo commit que la
-escala se añade su entrada, con la URL raw completa (`…/refs/heads/main/…`),
-`categoria` y `palabrasClave` sin tildes, y se comprueba:
+Firebase Remote Config en cada push a `main`). En el mismo commit que una
+escala nueva se añade su entrada, con la URL raw completa
+(`…/refs/heads/main/…`), el mismo `titulo` que la escala, `categoria` y
+`palabrasClave` sin tildes, y se comprueba con
+`node update_firebase_date.js --validar`.
 
-```bash
-node update_firebase_date.js --validar
+Nombre de archivo en minúsculas ASCII sin espacios (`news2.json`,
+`ich_score.json`): la app los pide por URL cruda y un nombre con tildes o
+espacios se sirve mal.
+
+## 8. El validador como hook (opcional)
+
+`tools/calculadoras.py --hook` es un PostToolUse de Claude Code: tras cada
+edición de `data/calculadoras/*.json` devuelve los errores para
+arreglarlos en el momento. Para activarlo, el dueño del repositorio añade en
+`.claude/settings.json`, junto al de `norma.py`:
+
+```json
+{"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/tools/calculadoras.py --hook"}
 ```

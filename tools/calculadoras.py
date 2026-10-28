@@ -40,6 +40,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 CARPETA = RAIZ / "data" / "calculadoras"
+ALGORITMOS = [RAIZ / "data" / "Adultos", RAIZ / "data" / "Pediatria"]
 INDICE = RAIZ / "indices" / "index_calculadoras.json"
 
 COLORES = {"verde", "amarillo", "naranja", "rojo"}
@@ -673,6 +674,42 @@ def puntuar(d: dict, inf: Informe) -> None:
 
 # --------------------------------------------------------------------------
 
+_RAMAS: dict[str, list[tuple[str, str, int]]] | None = None
+
+
+def ramas() -> dict[str, list[tuple[str, str, int]]]:
+    """calculadora → [(algoritmo, nodo, nº de opciones)] de los nodos que la
+    abren con `ramificar: true` (su resultado elige la rama)."""
+    global _RAMAS
+    if _RAMAS is not None:
+        return _RAMAS
+    _RAMAS = {}
+    for carpeta in ALGORITMOS:
+        for ruta in sorted(carpeta.glob("*.json")):
+            try:
+                alg = json.loads(ruta.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                continue
+            for id_, nodo in (alg.get("nodos") or {}).items() if isinstance(alg, dict) else []:
+                calc = nodo.get("calculadora") if isinstance(nodo, dict) else None
+                if not isinstance(calc, dict) or calc.get("ramificar") is not True:
+                    continue
+                nombre = str(calc.get("archivo") or "").split("/")[-1].lower()
+                _RAMAS.setdefault(nombre, []).append(
+                    (f"{carpeta.name}/{ruta.name}", id_, len(nodo.get("opciones") or [])))
+    return _RAMAS
+
+
+def chequear_ramas(d: dict, nombre: str, inf: Informe) -> None:
+    for algoritmo, nodo, n in ramas().get(nombre.lower(), []):
+        for r in d.get("resultados") or []:
+            idx = r.get("match_opcion_index", r.get("matchOpcionIndex", -1))
+            if isinstance(idx, int) and idx >= n:
+                inf.errores.append(
+                    f"«{r.get('categoria')}» elige la opción {idx} y el nodo {nodo} de {algoritmo} "
+                    f"sólo tiene {n}: el resultado no lleva a ninguna rama")
+
+
 def medir(ruta: Path) -> Informe:
     inf = Informe(archivo=ruta.name)
     try:
@@ -695,6 +732,7 @@ def medir(ruta: Path) -> Informe:
         inf.modelo = "tabla"
         rangos_solapados(d, inf)
         chequear_tabla(d, inf)
+    chequear_ramas(d, ruta.name, inf)
     puntuar(d, inf)
     return inf
 
