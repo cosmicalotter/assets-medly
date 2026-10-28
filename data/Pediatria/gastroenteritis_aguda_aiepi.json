@@ -13,7 +13,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Enfermedad diarreica aguda",
-      "texto": "- **Enfermedad diarreica aguda (EDA):** heces líquidas o acuosas, **≥3 en 24 h**, con o sin vómito o fiebre; dura **<14 días**.\n- **Diarrea persistente:** la que dura **14 días** o más. En el menor de **2 meses**, la diarrea de **>7 días** obliga a evaluar a fondo.\n- **Disentería:** diarrea con sangre y moco. Con pus, fiebre **≥39 °C** o mal estado general tras hidratar, sugiere infección bacteriana invasora.\n- **Deshidratación (escala OMS/AIEPI):** grave con **≥2** de letargia, ojos hundidos o pliegue **>2 s**; algún grado con **≥2** de irritabilidad, sed, ojos hundidos o pliegue **<2 s**.",
+      "texto": "- **Enfermedad diarreica aguda (EDA):** heces líquidas o acuosas, **≥3 en 24 h**, con o sin vómito o fiebre; dura **<14 días**.\n- **Diarrea persistente:** la que dura **14 días** o más. En el menor de **2 meses**, la diarrea de **>7 días** obliga a evaluar a fondo.\n- **Disentería:** diarrea con sangre y moco. Con pus, fiebre **≥39 °C** o estado general regular tras hidratar, sugiere infección bacteriana invasora.\n- **Deshidratación (escala OMS/AIEPI):** grave con **≥2** de letargia, ojos hundidos o pliegue **>2 s**; algún grado con **≥2** de irritabilidad, sed, ojos hundidos o pliegue **<2 s**.",
       "pie_nodo": "¿Qué necesitas?",
       "opciones": [
         {
@@ -142,20 +142,26 @@
     "diag_evaluacion_clinica": {
       "tipo": "pregunta",
       "titulo": "Evaluación inicial: qué diarrea es",
-      "texto": "- Preguntar: días de diarrea, **sangre** en las heces, deposiciones en **24 h** y vómitos en las últimas **4 h**.\n- Clasificar siempre la hidratación con la escala OMS/AIEPI (Organización Mundial de la Salud / Atención Integrada a las Enfermedades Prevalentes de la Infancia).\n- Sin estudios de heces de rutina: ni coprológico ni coprocultivo.\n- Buscar factores de riesgo: piden seguimiento estricto.",
-      "checklist": {
-        "titulo": "Factores de riesgo: seguimiento estricto",
-        "items": [
-          "Edad **<3 meses**; o **<1 año**, sobre todo **<6 meses**",
-          "Desnutrición: peso/talla, talla/edad o peso/edad **<−2 DE**",
-          "Edemas en miembros inferiores",
-          "Infección mayor asociada: neumonía, sepsis o infección neurológica",
-          "Hospitalización previa por EDA",
-          "**≥10** deposiciones en **24 h** o **≥5** vómitos en **4 h**",
-          "Diarrea invasora o persistente",
-          "Bajo peso al nacer (**<2.500 g**)",
-          "Lactancia materna exclusiva **<3 meses** o suspendida en la diarrea",
-          "Sexo femenino"
+      "texto": "- Preguntar: días de diarrea, sangre en las heces, deposiciones en **24 h** y vómitos en las últimas **4 h**.\n- Sospechar bacteriemia o sepsis con fiebre **>38 °C** en el menor de **3 meses** o **>39 °C** entre **3 y 24 meses**, estado general regular o dolor abdominal intenso.\n- Clasificar siempre la hidratación con la escala OMS/AIEPI (Organización Mundial de la Salud / Atención Integrada a las Enfermedades Prevalentes de la Infancia).\n- Sin estudios de heces de rutina. Buscar factores de riesgo (tabla): piden seguimiento clínico estricto.",
+      "tabla": {
+        "titulo": "Factores de riesgo de complicaciones",
+        "columnas": [
+          "Riesgo de",
+          "Factores"
+        ],
+        "filas": [
+          [
+            "Muerte",
+            "Edad **<3 meses** · edemas en las piernas · sexo femenino · diarrea invasora o persistente · desnutrición **<−2 DE** (desviaciones estándar) · neumonía, sepsis o infección neurológica · ingreso previo por EDA · deshidratación moderada o grave"
+          ],
+          [
+            "Deshidratación",
+            "Edad **<1 año**, sobre todo **<6 meses** · suspender el pecho o lactancia exclusiva **<3 meses** · bajo peso al nacer **<2.500 g** · **≥10** deposiciones en **24 h** · **≥5** vómitos en **4 h** · desnutrición **<−2 DE** · hacinamiento · poca higiene de manos · rotavirus"
+          ],
+          [
+            "Diarrea persistente",
+            "Sin lactancia exclusiva · desnutrición grave **<−3 DE** · antibiótico en el episodio · inmunodeficiencia · **>10** deposiciones al día · deshidratación recurrente"
+          ]
         ]
       },
       "alertas": [
@@ -164,9 +170,9 @@
           "texto": "Azúcares reductores, pH, sangre oculta, leucocitos ni lactoferrina en heces: no detectan la infección bacteriana invasora."
         }
       ],
-      "nota_adicional": "En Colombia la causa más frecuente es el rotavirus. La sangre sola en las heces no predice infección bacteriana invasora: cuenta junto con pus, fiebre alta o mal estado general.",
+      "nota_adicional": "En Colombia la causa más frecuente es el rotavirus. La sangre sola en las heces no predice infección bacteriana invasora: cuenta junto con pus, fiebre alta o estado general regular.",
       "evidencia": {
-        "texto": "GRADE: fuerte a favor"
+        "texto": "GRADE: fuerte en contra"
       },
       "enlaces": [
         {
@@ -175,10 +181,10 @@
           "nodo_objetivo": "trat_triaje_hidratacion"
         }
       ],
-      "pie_nodo": "¿Qué tipo de diarrea?",
+      "pie_nodo": "¿Qué tipo de diarrea? (la primera que cumpla)",
       "opciones": [
         {
-          "texto": "Sospecha de bacteriemia, sepsis o shigelosis",
+          "texto": "Fiebre alta o mal estado: sepsis",
           "siguiente_nodo": "diag_sospecha_sepsis",
           "color": "rojo"
         },
@@ -188,17 +194,27 @@
           "color": "naranja"
         },
         {
-          "texto": "Diarrea de más de 7 días",
+          "texto": "Más de 7 días",
           "siguiente_nodo": "diag_diarrea_prolongada",
           "color": "amarillo"
         },
         {
-          "texto": "Menos de 7 días, sin sangre: hidratar",
+          "texto": "7 días o menos, sin sangre: hidratar",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "verde"
         }
       ],
       "referencias": [
+        {
+          "titulo": "Algoritmo I: sospecha clínica de bacteriemia, sepsis o shigelosis",
+          "paginas": "235",
+          "texto": "Sospecha clínica de bacteremia o sepsis, o de Shigellosis Fiebre: > 38°C en < 3 meses Fiebre: >39°niños de 3 meses-2 años Regular estado general Dolor abdominal intenso",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag235_sospecha_clinica_bacteremia_sepsis_shigellosis.png"
+        },
         {
           "titulo": "Sin estudios de heces de rutina (recomendación 11.2)",
           "paginas": "107",
@@ -240,16 +256,6 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_factores_aumentan_riesgo_muerte_diarrea.png"
         },
         {
-          "titulo": "Factores que aumentan el riesgo de deshidratación (recomendación 5)",
-          "paginas": "92",
-          "texto": "Diez o más deposiciones diarreicas en las últimas 24 horas Cinco o más vómitos en las últimas 4 horas",
-          "fuente": "MinSalud",
-          "anio": "2013",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_diez_mas_deposiciones_diarreicas_ultimas.png"
-        },
-        {
           "titulo": "Más factores de riesgo de muerte (recomendación 5)",
           "paginas": "92",
           "texto": "Índices antropométricos Z-P/T, Z-T/E y Z-P/E por debajo de – 2 DE Proceso infeccioso mayor asociado (neumonía, sepsis o infecciones neurológicas) Antecedente de hospitalización previa por EDA",
@@ -260,6 +266,26 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_indices_antropometricos_zpt_zte_zpe.png"
         },
         {
+          "titulo": "Riesgo de muerte: hospitalización previa y deshidratación (recomendación 5)",
+          "paginas": "92",
+          "texto": "Proceso infeccioso mayor asociado (neumonía, sepsis o infecciones neurológicas) Antecedente de hospitalización previa por EDA Deshidratación moderada a grave",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_proceso_infeccioso_mayor_asociado_neumonia.png"
+        },
+        {
+          "titulo": "Factores que aumentan el riesgo de deshidratación (recomendación 5)",
+          "paginas": "92",
+          "texto": "Diez o más deposiciones diarreicas en las últimas 24 horas Cinco o más vómitos en las últimas 4 horas",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_diez_mas_deposiciones_diarreicas_ultimas.png"
+        },
+        {
           "titulo": "Más factores de riesgo de deshidratación (recomendación 5)",
           "paginas": "92",
           "texto": "Lactancia materna exclusiva menor de 3 meses Edad menor de 1 año, principalmente menor de 6 meses Antecedente de bajo peso al nacer (peso menor de 2.500 gr)",
@@ -268,6 +294,36 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_lactancia_materna_exclusiva_menor_3.png"
+        },
+        {
+          "titulo": "Riesgo de deshidratación: hogar e higiene (recomendación 5)",
+          "paginas": "92",
+          "texto": "Hacinamiento en el hogar del niño Falta rutinaria de higiene de manos del niño y de sus cuidadores Infección por rotavirus",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_hacinamiento_hogar_nino_falta_rutinaria.png"
+        },
+        {
+          "titulo": "Riesgo de diarrea persistente (recomendación 5)",
+          "paginas": "92",
+          "texto": "Factores que aumentan el riesgo de desarrollar DP Ausencia de lactancia materna exclusiva Índices antropométricos Z-P/T, Z-T/E ó Z- P/E, por debajo de –3 DE (Desnutrición grave)",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_factores_aumentan_riesgo_desarrollar_dp.png"
+        },
+        {
+          "titulo": "Riesgo de diarrea persistente (continuación)",
+          "paginas": "92",
+          "texto": "Uso de antibióticos durante el episodio de EDA Presencia de cualquier tipo de inmunodeficiencia Tener más de 10 deposiciones por día Deshidratación recurrente",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag92_uso_antibioticos_durante_episodio_eda.png"
         },
         {
           "titulo": "Rotavirus, la causa más frecuente en Colombia (recomendación 12, etiología)",
@@ -315,7 +371,7 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Sospecha de bacteriemia, sepsis o shigelosis",
-      "texto": "- Sospechar con: fiebre **>38 °C** en el menor de **3 meses**, fiebre **>39 °C** entre **3 meses y 2 años**, mal estado general o dolor abdominal intenso.\n- Coprocultivo y antibiótico IV: cefotaxima o ciprofloxacino.\n- Hospitalizar en segundo o tercer nivel. En primer nivel: remitir tras la **1.ª dosis** del antibiótico.\n- Clasificar y tratar la deshidratación a la vez.",
+      "texto": "- Criterios: fiebre **>38 °C** en el menor de **3 meses**, fiebre **>39 °C** entre **3 meses y 2 años**, estado general regular o dolor abdominal intenso.\n- Coprocultivo y antibiótico IV: cefotaxima, ceftriaxona o ciprofloxacino.\n- Hospitalizar en segundo o tercer nivel. En primer nivel: **1.ª dosis** del antibiótico y remitir.\n- Clasificar y tratar la deshidratación a la vez.",
       "chips": [
         {
           "texto": "Urgencia",
@@ -340,7 +396,7 @@
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
-          "texto": "Antibiótico IV: segunda línea",
+          "texto": "Antibiótico IV: elegir y dosificar",
           "siguiente_nodo": "nodo_antibioticos",
           "color": "rojo"
         }
@@ -387,6 +443,26 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag141_recomienda_dar_antimicrobianos_ninos_menores.png"
         },
         {
+          "titulo": "Segunda línea: cefotaxima, ceftriaxona o ciprofloxacino (recomendación 23)",
+          "paginas": "141",
+          "texto": "Se recomiendan como alternativas de segunda línea cefotaxime, ceftriaxone o ciprofloxacina cuando esté indicado dar antimicrobiano a los niños menores de 5 años con EDA.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag141_recomiendan_como_alternativas_segunda_linea.png"
+        },
+        {
+          "titulo": "Segunda línea IV y sólo en el hospital (recomendación 23)",
+          "paginas": "141",
+          "texto": "cuyo uso debe restringirse al manejo intrahospitalario en los casos de niños con sospecha de bacteriemia y/o sepsis, o en quienes no mejoren con el medicamento de primera elección",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag141_cuyo_uso_debe_restringirse_al.png"
+        },
+        {
           "titulo": "Remitir a segundo o tercer nivel (recomendación 13.2)",
           "paginas": "113",
           "texto": "Se recomienda remitir a un nivel de mayor complejidad (segundo o tercer nivel de atención en salud) a los niños con EDA que además presenten: Sospecha o confirmación de bacteriemia o sepsis.",
@@ -402,11 +478,11 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Diarrea con sangre",
-      "texto": "- Descartar fisuras anales: la sangre tiene que venir de la diarrea.\n- Antibiótico empírico si hay fiebre **≥39 °C** con mal estado general, o si no se puede controlar al niño en **48 h**.\n- Si el control a las **48 h** es posible: coprocultivo y coprológico, sin antibiótico.",
+      "texto": "- Descartar fisuras anales: la sangre tiene que venir de la diarrea.\n- Antibiótico empírico con fiebre **≥39 °C** y estado general regular, o si no se puede controlar al niño en **48 h**.\n- Si el control a las **48 h** es posible: coprocultivo y coprológico, sin antibiótico.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
-      "pie_nodo": "¿Fiebre **≥39 °C** con mal estado, o sin control posible en **48 h**?",
+      "pie_nodo": "¿Fiebre **≥39 °C** con estado general regular, o sin control posible en **48 h**?",
       "opciones": [
         {
           "texto": "Sí: antibiótico empírico",
@@ -465,16 +541,45 @@
     "diag_disenteria_control": {
       "tipo": "pregunta",
       "titulo": "Disentería sin antibiótico: control en 48 h",
-      "texto": "- Coprocultivo y coprológico; no dar antibiótico.\n- Control clínico a las **48 h**.\n- Mejoría: desaparece la sangre o mejora el estado general. No hace falta que se quite la diarrea.\n- Igual o con Shigella: ácido nalidíxico. Peor: segunda línea IV en el hospital.",
-      "pie_nodo": "¿Cómo está a las **48 h**?",
+      "texto": "- Coprocultivo y coprológico; no dar antibiótico.\n- Control clínico a las **48 h**.\n- Mejoría: desaparece la sangre o mejora el estado general, aunque siga la diarrea.",
+      "media": [
+        {
+          "recurso": "eda_disenteria_mejoria.png",
+          "titulo": "Disentería: qué cuenta como mejoría",
+          "descripcion": "Qué cuenta como mejoría en el control de la diarrea con sangre.",
+          "info": "En {#2FB36D:verde}, lo que cuenta como mejoría a las **48 h**: se va la sangre o mejora el estado general. A la derecha, lo que no hace falta: que se quite la diarrea. Sin mejoría con el nalidíxico, segunda línea IV en el hospital.",
+          "en_texto": "Mejoría",
+          "referencias": [
+            {
+              "titulo": "Algoritmo I: qué es mejoría en la disentería",
+              "paginas": "235",
+              "texto": "Mejoría se define como desaparición de la sangre y/o mejoría de los síntomas clínicos de compromiso del estado general. No se debe interpretar como desaparición de la diarrea.",
+              "fuente": "MinSalud",
+              "anio": "2013",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
+            },
+            {
+              "titulo": "Algoritmo I: sin mejoría o peor, segunda línea",
+              "paginas": "235",
+              "texto": "Dar tratamiento cefotaxime o ciprofloxacina Hospitalizar en segundo o tercer nivel Considerar remisión si se encuentra en un primer nivel de atención",
+              "fuente": "MinSalud",
+              "anio": "2013",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
+            }
+          ]
+        }
+      ],
+      "pie_nodo": "¿A las **48 h** se fue la sangre o mejoró el estado general?",
       "opciones": [
         {
-          "texto": "Mejor y cultivo negativo: seguimiento",
+          "texto": "Sí, y cultivo negativo: seguimiento",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "verde"
         },
         {
-          "texto": "Igual, o Shigella, o peor: antibiótico",
+          "texto": "Igual, Shigella o peor: antibiótico",
           "siguiente_nodo": "nodo_antibioticos",
           "color": "rojo"
         }
@@ -525,10 +630,16 @@
     "diag_diarrea_prolongada": {
       "tipo": "pregunta",
       "titulo": "Diarrea de más de 7 días",
-      "texto": "- Pedir coprológico o coproscópico.\n- En el menor de **2 meses**, más de **7 días** de diarrea es una alerta: evaluar a fondo.\n- **14 días** o más ya es diarrea persistente.",
+      "texto": "- Pedir coprológico o coproscópico.\n- En el menor de **2 meses**, más de **7 días** de diarrea es una alerta: evaluar a fondo.\n- **14 días** o más: diarrea persistente, fuera de este algoritmo.",
       "evidencia": {
         "texto": "GRADE: débil a favor"
       },
+      "enlaces": [
+        {
+          "texto": "Diarrea persistente",
+          "archivo_objetivo": "TODO_LINK_diarrea_persistente.json"
+        }
+      ],
       "pie_nodo": "¿Qué muestra el coprológico?",
       "opciones": [
         {
@@ -537,7 +648,7 @@
           "color": "naranja"
         },
         {
-          "texto": "Negativo: hidratar y seguir",
+          "texto": "Negativo o pendiente: hidratar",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "verde"
         }
@@ -611,7 +722,7 @@
     "trat_triaje_hidratacion": {
       "tipo": "pregunta",
       "titulo": "Clasificar la deshidratación",
-      "texto": "- Mirar los 4 signos: conciencia, ojos hundidos, sed y signo del pliegue cutáneo.\n- Grave: **≥2** de letargia o inconsciencia, ojos hundidos o pliegue **>2 s**.\n- Algún grado: **≥2** de irritabilidad, ojos hundidos, bebe ávidamente o pliegue **<2 s**.\n- Sin deshidratación: **1** signo o ninguno.",
+      "texto": "- Mirar los 4 signos: conciencia, ojos hundidos, sed y signo del pliegue cutáneo.\n- Grave: **≥2** de letargia o inconsciencia, ojos hundidos o pliegue **>2 s**.\n- Algún grado: **≥2** de irritabilidad, ojos hundidos, bebe ávidamente o pliegue **<2 s** (los signos graves también cuentan).\n- Signos de choque (pulsos débiles, extremidades frías, llenado capilar lento): hospitalizar ya.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/deshidratacion_oms_aiepi.json",
         "etiqueta": "Clasificar con la escala OMS/AIEPI",
@@ -622,8 +733,8 @@
           "recurso": "eda_signos_deshidratacion.png",
           "titulo": "Signos de deshidratación (OMS/AIEPI)",
           "descripcion": "Los signos de cada grado de deshidratación y el plan que corresponde.",
-          "info": "Cada columna es un grado: {#EF5454:grave} → plan C, {#F07F3C:algún grado} → plan B y {#2FB36D:sin deshidratación} → plan A. Se clasifica en la primera columna con **2 o más** signos. Ningún signo aislado basta; si los padres cuentan que orina como siempre, la deshidratación es mucho menos probable.",
-          "en_texto": "ojos hundidos",
+          "info": "Cada columna es un grado: {#EF5454:grave} → plan C, {#F07F3C:algún grado} → plan B y {#2FB36D:sin deshidratación} → plan A. Se clasifica en la primera columna con **2 o más** signos; los signos graves cuentan también para algún grado. Ningún signo aislado basta por sí solo.",
+          "en_texto": "los 4 signos",
           "referencias": [
             {
               "titulo": "Tabla 1: deshidratación grave",
@@ -653,9 +764,9 @@
               "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
             },
             {
-              "titulo": "Orina normal según los padres: deshidratación menos probable",
-              "paginas": "111",
-              "texto": "la percepción de los padres de un gasto urinario normal en el niño antes de la consulta, disminuye de forma importante la posibilidad de deshidratación del niño",
+              "titulo": "Ningún signo aislado basta",
+              "paginas": "112",
+              "texto": "hay signos asociados con la pérdida de peso, pero de manera aislada tienen altas posibilidades de falsos positivos y negativos",
               "fuente": "MinSalud",
               "anio": "2013",
               "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
@@ -773,6 +884,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag111_percepcion_padres_gasto_urinario_normal.png"
+        },
+        {
+          "titulo": "Hospitalizar: deshidratación grave o choque (recomendación 13.1)",
+          "paginas": "113",
+          "texto": "Se recomienda hospitalizar a los niños con: Deshidratación grave o con signos choque (disminución del nivel de conciencia, piel pálida o moteada, extremidades frías, taquicardia, taquipnea, pulsos periféricos débiles",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag113_recomienda_hospitalizar_ninos_deshidratacion_grave.png"
         }
       ]
     },
@@ -780,7 +901,7 @@
       "tipo": "pregunta",
       "estilo": "exito",
       "titulo": "Plan A: prevenir la deshidratación en casa",
-      "texto": "- Tras cada deposición: **50-100 mL** en el menor de **2 años**; **100-200 mL** desde los **2 años**.\n- Líquidos: SRO (sales de rehidratación oral), agua de arroz, maíz, cebada, papa o plátano, o agua con comidas con almidón.\n- Zinc, comida habitual y signos de alarma para volver.",
+      "texto": "- Tras cada deposición: **50-100 mL** (¼ a ½ taza) en el menor de **2 años**; **100-200 mL** (½ a 1 taza) desde los **2 años**.\n- Líquidos: SRO (sales de rehidratación oral), agua de arroz, maíz, cebada, papa o plátano, o agua con comidas con almidón.\n- Menor de **6 meses**: sin líquidos caseros; más pecho y, si hace falta, SRO.\n- Zinc, comida habitual y signos de alarma para volver.",
       "media": [
         {
           "recurso": "eda_plan_a_liquidos.png",
@@ -823,7 +944,7 @@
       "alertas": [
         {
           "titulo": "No dar",
-          "texto": "Gaseosas, bebidas para deportistas, suero casero de agua, sal y azúcar, ni soluciones con **<40 mmol/L** de sodio."
+          "texto": "Gaseosas, jugos industrializados, bebidas para deportistas, suero casero de agua, sal y azúcar, ni soluciones con **<40 mmol/L** de sodio."
         }
       ],
       "evidencia": {
@@ -833,11 +954,11 @@
         {
           "nombre": "SRO o líquido casero (plan A)",
           "dosis": "**50-100 mL** (<2 años) o **100-200 mL** (≥2 años) tras cada deposición",
-          "pauta": "Hasta que pase la diarrea. Ofrecer en sorbos o con cuchara.",
-          "paginas": "116"
+          "pauta": "Tanto como quiera, hasta que pase la diarrea. En sorbos o con cuchara.",
+          "paginas": "116; guía rápida 40"
         }
       ],
-      "pie_nodo": "¿**≥3** vómitos en **1 h**, **≥5** en **4 h** o **≥10** deposiciones en **24 h**?",
+      "pie_nodo": "¿**≥3** vómitos en **1 h**, **≥5** en **4 h**, **≥10** deposiciones en **24 h** o **>4** en **4 h**?",
       "opciones": [
         {
           "texto": "Sí: alto riesgo, observar",
@@ -862,6 +983,26 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag116_prevencion_deshidratacion.png"
         },
         {
+          "titulo": "Volumen en tazas",
+          "paginas": "40",
+          "texto": "A los menores de dos años: 50-100 ml (un cuarto a media taza) de líquido; A los niños de dos a cinco años: 100-200 ml (de media a una taza);",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag40_rapida_menores_dos_anos_50100_ml.png"
+        },
+        {
+          "titulo": "Cuánto líquido: hasta que pase la diarrea",
+          "paginas": "40",
+          "texto": "La regla general es: dar al niño tanto líquido como desee hasta cuando la diarrea desaparezca.",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag40_rapida_regla_general_es_dar_al.png"
+        },
+        {
           "titulo": "Líquidos adecuados en casa (recomendación 14)",
           "paginas": "116",
           "texto": "Sales de Rehidratación Oral Líquidos preparados mediante cocción de cereales en grano o molidos (arroz, maíz o cebada) y cocinados en agua, o aquellos que se preparan con papa o plátano",
@@ -870,6 +1011,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag116_sales_rehidratacion_oral_liquidos_preparados.png"
+        },
+        {
+          "titulo": "Menores de 6 meses: sin líquidos caseros",
+          "paginas": "39",
+          "texto": "A los niños menores de seis meses no se les deben dar líquidos caseros, a ellos se les debe aumentar la cantidad de leche materna y si es necesario dar SRO.",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag39_rapida_ninos_menores_seis_meses_no.png"
         },
         {
           "titulo": "Líquidos que no se dan (recomendación 14)",
@@ -892,6 +1043,16 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag116_soluciones_orales_electrolitos_menos_40.png"
         },
         {
+          "titulo": "Sin jugos industrializados ni bebidas para deportistas (recomendación 20)",
+          "paginas": "136",
+          "texto": "No se recomienda el aporte de jugos de frutas industrializados, bebidas carbonatadas o bebidas para deportistas, en los niños menores 5 años con EDA.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag136_no_recomienda_aporte_jugos_frutas.png"
+        },
+        {
           "titulo": "Sin deshidratación: manejo en casa (recomendación 13)",
           "paginas": "112",
           "texto": "Cuando no tengan deshidratación sean tratados en el hogar, previa instrucción y educación a los padres y cuidadores para que reconozcan los signos de alarma para consultar nuevamente.",
@@ -910,6 +1071,23 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag157_recomienda_considerar_como_ninos_alto.png"
+        },
+        {
+          "titulo": "Algoritmo DHT 1/2: criterios de alto riesgo",
+          "paginas": "37",
+          "texto": ">3 vómitos/1 hora >5vómitos/4 horas >10 deposic/ 24 hrs > 4 dep / 4hrs",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag37_rapida_3_vomitos1_hora_5vomitos4_horas.png"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Signos de alarma para volver",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_signos_alarma"
         }
       ]
     },
@@ -917,7 +1095,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Alto riesgo de deshidratación: observar",
-      "texto": "- Dejar en observación en urgencias.\n- SRO lenta y fraccionada, con cuchara.\n- Seguir en el servicio hasta que la vía oral baste para mantenerlo hidratado en casa.",
+      "texto": "- Observación en urgencias.\n- SRO lenta y fraccionada, con cuchara.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -931,6 +1109,11 @@
         {
           "texto": "No: sigue vomitando",
           "siguiente_nodo": "trat_antiemetico",
+          "color": "naranja"
+        },
+        {
+          "texto": "Se deshidrata: clasificar",
+          "siguiente_nodo": "trat_triaje_hidratacion",
           "color": "rojo"
         }
       ],
@@ -966,16 +1149,6 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag112_criterios_observacion.png"
         },
         {
-          "titulo": "Observación hasta que la vía oral baste (recomendación 13)",
-          "paginas": "112",
-          "texto": "permanezcan en el servicio de salud, en observación u hospitalización, hasta que se garantice que se pueda mantener la hidratación por vía oral en el hogar.",
-          "fuente": "MinSalud",
-          "anio": "2013",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag112_permanezcan_servicio_salud_observacion_u.png"
-        },
-        {
           "titulo": "Algoritmo DHT 1/2: alto riesgo, observación y SRO",
           "paginas": "37",
           "texto": "Alto riesgo de DHT Observación en servicio de urgencias. Ofrecer SRO lento y con cuchara ¿Tolera las SRO o alimento por dos horas y no se deshidrata?",
@@ -990,7 +1163,7 @@
     "trat_plan_b": {
       "tipo": "pregunta",
       "titulo": "Plan B: rehidratación oral en urgencias",
-      "texto": "- SRO de baja osmolaridad: sodio **75-84 mmol/L**, **240-250 mOsm/L**.\n- **50-100 mL/kg** en **2-4 h**, en tomas pequeñas y frecuentes con cuchara.\n- Revisar al niño **cada hora**. Seguir con el pecho; la demás comida, al rehidratar.\n- No empezar la vía oral si hay íleo, abdomen quirúrgico, conciencia alterada o convulsiones: a la vía IV.",
+      "texto": "- SRO (sales de rehidratación oral) de baja osmolaridad: sodio **75-84 mmol/L**, **240-250 mOsm/L**.\n- **50-100 mL/kg** en **2-4 h**, en tomas pequeñas y frecuentes con cuchara.\n- Revisar al niño cada hora. Seguir con el pecho; la demás comida, al rehidratar.",
       "media": [
         {
           "recurso": "eda_plan_b_sro.png",
@@ -1048,20 +1221,20 @@
           }
         }
       ],
-      "pie_nodo": "¿Cómo va la rehidratación oral?",
+      "pie_nodo": "¿Cómo va en la revisión de cada hora?",
       "opciones": [
         {
-          "texto": "Vomita: ≥3 en 1 h o ≥5 en 4 h",
+          "texto": "No tolera la SRO: ondansetrón",
           "siguiente_nodo": "trat_antiemetico",
           "color": "naranja"
         },
         {
-          "texto": "Fracasa o está contraindicada",
+          "texto": "Fracasa o contraindicada: sonda o IV",
           "siguiente_nodo": "trat_sonda_o_iv",
           "color": "rojo"
         },
         {
-          "texto": "Hidratado: tolera la vía oral",
+          "texto": "Hidratado: plan A y zinc",
           "siguiente_nodo": "trat_zinc_alimentacion",
           "color": "verde"
         }
@@ -1157,13 +1330,19 @@
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag112_cuando_tengan_algun_grado_deshidratacion.png"
         }
+      ],
+      "alertas": [
+        {
+          "titulo": "No usar la vía oral",
+          "texto": "Íleo paralítico, sospecha de abdomen quirúrgico, conciencia alterada o convulsiones: ir a la vía IV."
+        }
       ]
     },
     "trat_antiemetico": {
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Vómito: ondansetrón en dosis única",
-      "texto": "- Para el niño con alto riesgo de deshidratarse, o deshidratado que no tolera la vía oral.\n- Ondansetrón **una dosis**: VO **2 mg** si pesa **<15 kg**, **4 mg** si **15-30 kg**; o IV **0,15 mg/kg**.\n- Probar la vía oral **30 min** después, con cuchara.",
+      "texto": "- Para el niño con alto riesgo de deshidratarse, o deshidratado que no tolera la vía oral.\n- Ondansetrón en dosis única, oral o IV (dosis en la pastilla).\n- Probar la vía oral **30 min** después, con cuchara.",
       "media": [
         {
           "recurso": "eda_ondansetron_dosis.png",
@@ -1234,14 +1413,24 @@
       "pie_nodo": "¿Tolera la vía oral **30 min** después?",
       "opciones": [
         {
-          "texto": "Sí: seguir el plan por boca",
+          "texto": "Tolera, venía del plan B: terminarlo",
+          "siguiente_nodo": "trat_plan_b",
+          "color": "verde"
+        },
+        {
+          "texto": "Tolera, sin deshidratación: plan A",
           "siguiente_nodo": "trat_zinc_alimentacion",
           "color": "verde"
         },
         {
-          "texto": "No: sonda o vía IV",
+          "texto": "Vomita y está deshidratado: sonda o IV",
           "siguiente_nodo": "trat_sonda_o_iv",
           "color": "rojo"
+        },
+        {
+          "texto": "Vomita sin deshidratación: ingreso, IV",
+          "siguiente_nodo": "trat_plan_c_fase2",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -1314,6 +1503,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag157_recomienda_administrar_sales_rehidratacion_oral.png"
+        },
+        {
+          "titulo": "Algoritmo DHT 1/2: sigue vomitando sin deshidratación",
+          "paginas": "37",
+          "texto": "Hospitalizar. Ondansetrón VO o EV (si no ha recibido previamente) Continuar en mantenimiento de la hidratación por vía endovenosa",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag37_rapida_hospitalizar_ondansetron_vo_ev_si.png"
         }
       ]
     },
@@ -1321,7 +1520,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Fracasa la vía oral: sonda o vía IV",
-      "texto": "- No puede beber o vomita sin parar: sonda nasogástrica, el mismo volumen (**50-100 mL/kg**) en **4 h**.\n- Vía IV sólo con deshidratación grave, fracaso de la rehidratación oral o una contraindicación de la vía oral o la sonda.",
+      "texto": "- No puede beber o vomita sin parar: SNG (sonda nasogástrica), el mismo volumen (**50-100 mL/kg**) en **4 h**.\n- Vía IV sólo con deshidratación grave, fracaso de la rehidratación oral o una contraindicación de la vía oral o la sonda.",
       "checklist": {
         "titulo": "Fracaso o contraindicación de la vía oral",
         "items": [
@@ -1349,20 +1548,20 @@
           }
         }
       ],
-      "pie_nodo": "¿Qué vía queda?",
+      "pie_nodo": "¿Funciona la sonda o hace falta la vía IV?",
       "opciones": [
         {
-          "texto": "Sonda: tolera y se hidrata",
+          "texto": "SNG: se hidrata y tolera",
           "siguiente_nodo": "trat_zinc_alimentacion",
           "color": "verde"
         },
         {
-          "texto": "IV: algún grado de deshidratación",
+          "texto": "Sonda fracasa o contraindicada: IV",
           "siguiente_nodo": "trat_iv_algun_grado",
           "color": "naranja"
         },
         {
-          "texto": "IV: deshidratación grave",
+          "texto": "Grave o choque: plan C",
           "siguiente_nodo": "trat_plan_c",
           "color": "rojo"
         }
@@ -1433,7 +1632,7 @@
     "trat_iv_algun_grado": {
       "tipo": "pregunta",
       "titulo": "Algún grado por vía IV: 25 mL/kg por hora",
-      "texto": "- Lactato de Ringer o solución polielectrolítica; si no hay, SSN (solución salina normal) **0,9 %**.\n- **25 mL/kg/h** hasta hidratar: suele bastar con **2-4 h** (**50-100 mL/kg**). Revisar **cada hora**.\n- Empezar la SRO a las **2-3 h** y terminar la rehidratación por boca.",
+      "texto": "- Lactato de Ringer o solución polielectrolítica; si no hay, SSN (solución salina normal) **0,9 %**.\n- **25 mL/kg/h** hasta hidratar: suele bastar con **2-4 h** (**50-100 mL/kg**). Revisar cada hora.\n- SRO **2-3 h** después de los líquidos IV, poco a poco; terminar la rehidratación por boca.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -1451,7 +1650,7 @@
           }
         }
       ],
-      "pie_nodo": "¿Hidratado y tolera la vía oral?",
+      "pie_nodo": "¿Hidratado y tolera la vía oral a las **2-4 h**?",
       "opciones": [
         {
           "texto": "Sí: terminar con SRO",
@@ -1459,8 +1658,13 @@
           "color": "verde"
         },
         {
-          "texto": "No: hospitalizar",
-          "siguiente_nodo": "nodo_seguimiento",
+          "texto": "No tolera la vía oral: seguir IV",
+          "siguiente_nodo": "trat_plan_c_fase2",
+          "color": "naranja"
+        },
+        {
+          "texto": "Empeora o grave: plan C",
+          "siguiente_nodo": "trat_plan_c",
           "color": "rojo"
         }
       ],
@@ -1506,7 +1710,7 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag126_lo_habitualmente_obtiene_dos_cuatro.png"
         },
         {
-          "titulo": "Vía oral 2-3 horas después de empezar la IV (recomendación 15)",
+          "titulo": "Vía oral 2-3 horas después de los líquidos IV (recomendación 15, débil)",
           "paginas": "118",
           "texto": "Se sugiere que la terapia de rehidratación oral, en los niños con EDA que necesitaron rehidratación con líquidos endovenosos, se inicie temprana y gradualmente dos a tres horas después",
           "fuente": "MinSalud",
@@ -1541,7 +1745,46 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Plan C: deshidratación grave o choque",
-      "texto": "- Hospitalizar y empezar líquidos IV **ya**: **100 mL/kg** de lactato de Ringer.\n- Si puede beber, SRO por boca mientras se coloca la vía.\n- Sin acceso venoso y sin poder beber: sonda nasogástrica, a la misma velocidad.",
+      "texto": "- Hospitalizar y empezar líquidos IV ya: **100 mL/kg** de lactato de Ringer (o SSN **0,9 %**).\n- **30 mL/kg** y luego **70 mL/kg**: menor de **12 meses** en **1 h** + **5 h**; desde **12 meses** en **30 min** + **2½ h**.\n- Si puede beber, SRO por boca mientras se coloca la vía. Sin vena y sin poder beber: sonda nasogástrica.",
+      "media": [
+        {
+          "recurso": "eda_plan_c_tiempos.gif",
+          "titulo": "Plan C: 100 mL/kg de lactato de Ringer IV",
+          "descripcion": "Los dos tiempos de los 100 mL/kg según la edad, sobre un reloj de 6 h.",
+          "info": "La barra {#EF5454:roja} son los primeros **30 mL/kg** y la {#F07F3C:naranja}, los **70 mL/kg** restantes: en el menor de 12 meses, **1 h** y **5 h**; desde los 12 meses, **30 min** y **2½ h**. La {#4F8CF6:etiqueta azul} marca la reevaluación completa.",
+          "en_texto": "y luego",
+          "referencias": [
+            {
+              "titulo": "Tabla 4: esquema de rehidratación IV (lactante, 1 hora)",
+              "paginas": "130",
+              "texto": "Tabla 4. Esquema de rehidratación endovenosa en el niño con deshidratación grave EDAD *Primero administrar 30 ml /Kg. en: Luego administrar 70ml/Kg. en: Lactantes (menos de meses) 1 hora* 5 horas",
+              "fuente": "MinSalud",
+              "anio": "2013",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
+            },
+            {
+              "titulo": "Guía de rehidratación intravenosa (tabla 3)",
+              "paginas": "14",
+              "texto": "Give 100 ml/kg Ringer's Lactate Solution divided as follows: Age First give 30 ml/kg in: Then give 70 ml/kg in: Infants (under 12 months) 1 hour 5 hours Older 30 minutes 2½ hours",
+              "fuente": "OMS",
+              "anio": "2005",
+              "url": "https://www.who.int/publications/i/item/9241593180",
+              "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/gastroenteritis_aguda_aiepi/evidencia_gastroenteritis_aguda_aiepi_pag14_oms2005_tabla3_rehidratacion_iv.png"
+            },
+            {
+              "titulo": "Reevaluar a las 6 h (lactantes) o 3 h (mayores) (recomendación 18)",
+              "paginas": "129",
+              "texto": "Después de seis horas en los lactantes, o tres horas en pacientes mayores, evaluar el estado del paciente. Luego elegir el plan de tratamiento apropiado (A, B o C)",
+              "fuente": "MinSalud",
+              "anio": "2013",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
+            }
+          ]
+        }
+      ],
       "checklist": {
         "titulo": "Signos de choque",
         "items": [
@@ -1563,23 +1806,28 @@
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
-      "farmacos": [
+      "discrepancias": [
         {
-          "nombre": "Lactato de Ringer (plan C)",
-          "dosis": "**100 mL/kg** IV, empezar ya",
-          "pauta": "30 mL/kg y luego 70 mL/kg; los tiempos, en la fase 1.",
-          "nota": "Sin Ringer: SSN 0,9 %.",
-          "paginas": "129",
-          "por_kg": {
-            "cantidad": 100,
-            "unidad": "ml"
-          }
+          "asunto": "Plan C por sonda nasogástrica cuando no hay vía IV",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2013",
+              "dice": "Pasar los líquidos endovenosos por la sonda a la misma velocidad",
+              "paginas": "129"
+            },
+            {
+              "fuente": "OMS 2013 (Pocket Book)",
+              "dice": "SRO por sonda a 20 mL/kg/h durante 6 h (120 mL/kg); reevaluar cada 1-2 h",
+              "paginas": "114"
+            }
+          ],
+          "nota": "La pauta de la OMS es más lenta y con SRO; con vómitos repetidos o distensión, pasar más despacio."
         }
       ],
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
-          "texto": "Fase 1: 100 mL/kg en dos tiempos",
+          "texto": "Fase 1: los 100 mL/kg",
           "siguiente_nodo": "trat_plan_c_fase1",
           "color": "rojo"
         }
@@ -1594,6 +1842,26 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag129_rehidratacion_endovenosa.png"
+        },
+        {
+          "titulo": "Tabla 4: esquema de rehidratación IV (lactante, 1 hora)",
+          "paginas": "130",
+          "texto": "Tabla 4. Esquema de rehidratación endovenosa en el niño con deshidratación grave EDAD *Primero administrar 30 ml /Kg. en: Luego administrar 70ml/Kg. en: Lactantes (menos de meses) 1 hora* 5 horas",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag130_tabla_4_esquema_rehidratacion_endovenosa.png"
+        },
+        {
+          "titulo": "Plan C: lactato de Ringer o, en su defecto, SSN 0,9 %",
+          "paginas": "130",
+          "texto": "usar liquido intravenoso tipo cristaloide (preferiblemente lactato de Ringer, en su defecto la solución de cloruro de sodio al 0,9%,",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag130_usar_liquido_intravenoso_tipo_cristaloide.png"
         },
         {
           "titulo": "Hospitalizar: deshidratación grave o choque (recomendación 13.1)",
@@ -1634,6 +1902,29 @@
           "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
           "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
+        },
+        {
+          "titulo": "Plan C por sonda: 20 mL/kg/h durante 6 h",
+          "paginas": "114",
+          "texto": "Start rehydration by tube (or mouth) with ORS solution: give 20 ml/kg/hour for 6 hours (total of 120 ml/kg).",
+          "fuente": "OMS",
+          "anio": "2013",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
+        }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Lactato de Ringer (plan C)",
+          "dosis": "**100 mL/kg** IV: **30 mL/kg** + **70 mL/kg**",
+          "pauta": "<12 meses: 1 h + 5 h. ≥12 meses: 30 min + 2½ h.",
+          "nota": "Sin Ringer: SSN 0,9 %.",
+          "paginas": "129-130",
+          "por_kg": {
+            "cantidad": 100,
+            "unidad": "ml"
+          }
         }
       ]
     },
@@ -1641,46 +1932,7 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Plan C · Fase 1: 100 mL/kg IV",
-      "texto": "- Lactato de Ringer; si no hay, SSN **0,9 %**.\n- **30 mL/kg** primero y luego **70 mL/kg**. Menor de **12 meses**: **1 h** y **5 h**; desde **12 meses**: **30 min** y **2½ h**.\n- Pulso débil tras la primera carga: repetir **30 mL/kg** en **30 min**.",
-      "media": [
-        {
-          "recurso": "eda_plan_c_tiempos.gif",
-          "titulo": "Plan C: 100 mL/kg de lactato de Ringer IV",
-          "descripcion": "Los dos tiempos de los 100 mL/kg según la edad, sobre un reloj de 6 h.",
-          "info": "La barra {#EF5454:roja} son los primeros **30 mL/kg** y la {#F07F3C:naranja}, los **70 mL/kg** restantes: en el menor de 12 meses, **1 h** y **5 h**; desde los 12 meses, **30 min** y **2½ h**. La {#4F8CF6:etiqueta azul} marca la reevaluación completa.",
-          "en_texto": "primero y luego",
-          "referencias": [
-            {
-              "titulo": "Tabla 4: esquema de rehidratación IV (lactante, 1 hora)",
-              "paginas": "130",
-              "texto": "Tabla 4. Esquema de rehidratación endovenosa en el niño con deshidratación grave EDAD *Primero administrar 30 ml /Kg. en: Luego administrar 70ml/Kg. en: Lactantes (menos de meses) 1 hora* 5 horas",
-              "fuente": "MinSalud",
-              "anio": "2013",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
-            },
-            {
-              "titulo": "Guía de rehidratación intravenosa (tabla 3)",
-              "paginas": "14",
-              "texto": "Give 100 ml/kg Ringer's Lactate Solution divided as follows: Infants (under 12 months) first give 30 ml/kg in 1 hour, then 70 ml/kg in 5 hours; older: 30 minutes and 2½ hours",
-              "fuente": "OMS",
-              "anio": "2005",
-              "url": "https://www.who.int/publications/i/item/9241593180",
-              "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/gastroenteritis_aguda_aiepi/evidencia_gastroenteritis_aguda_aiepi_pag14_oms2005_tabla3_rehidratacion_iv.png"
-            },
-            {
-              "titulo": "Reevaluar a las 6 h (lactantes) o 3 h (mayores) (recomendación 18)",
-              "paginas": "129",
-              "texto": "Después de seis horas en los lactantes, o tres horas en pacientes mayores, evaluar el estado del paciente. Luego elegir el plan de tratamiento apropiado (A, B o C)",
-              "fuente": "MinSalud",
-              "anio": "2013",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
-            }
-          ]
-        }
-      ],
+      "texto": "- Lactato de Ringer; si no hay, SSN **0,9 %**.\n- **30 mL/kg** primero; después **70 mL/kg** (tiempos por edad en la tabla).\n- Pulso radial débil tras los **30 mL/kg**: repetirlos **una vez** en **30 min**.",
       "tabla": {
         "titulo": "Plan C: 100 mL/kg de lactato de Ringer",
         "columnas": [
@@ -1704,7 +1956,7 @@
       "alertas": [
         {
           "titulo": "No usar",
-          "texto": "Dextrosa sola ni agua destilada con electrolitos. Tampoco solución polielectrolítica para empezar en el choque: tiene mucho potasio."
+          "texto": "Soluciones dextrosadas ni agua destilada con electrolitos. Tampoco solución polielectrolítica para empezar en el choque: tiene mucho potasio."
         }
       ],
       "evidencia": {
@@ -1715,7 +1967,7 @@
           "nombre": "Lactato de Ringer (plan C)",
           "dosis": "**100 mL/kg** IV: **30 mL/kg** + **70 mL/kg**",
           "pauta": "<12 meses: 30 mL/kg en 1 h y 70 mL/kg en 5 h. ≥12 meses: 30 mL/kg en 30 min y 70 mL/kg en 2½ h.",
-          "nota": "Pulso débil: repetir 30 mL/kg en 30 min. Sin Ringer: SSN 0,9 %.",
+          "nota": "Pulso débil: repetir 30 mL/kg una vez. Sin Ringer: SSN 0,9 %.",
           "paginas": "129-130",
           "por_kg": {
             "cantidad": 100,
@@ -1790,14 +2042,24 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag129_repetir_otra_carga_30_mlkg.png"
         },
         {
-          "titulo": "Sin lactato de Ringer: SSN 0,9 % (recomendación 17)",
-          "paginas": "126",
-          "texto": "En ausencia de estas soluciones, utilizar cloruro de sodio al 0,9%, con el fin de corregir el déficit.",
+          "titulo": "Repetir la carga una sola vez",
+          "paginas": "114",
+          "texto": "Repeat once if radial pulse is still very weak or not detectable.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
+        },
+        {
+          "titulo": "Plan C: lactato de Ringer o, en su defecto, SSN 0,9 %",
+          "paginas": "130",
+          "texto": "usar liquido intravenoso tipo cristaloide (preferiblemente lactato de Ringer, en su defecto la solución de cloruro de sodio al 0,9%,",
           "fuente": "MinSalud",
           "anio": "2013",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag126_ausencia_estas_soluciones_utilizar_cloruro.png"
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag130_usar_liquido_intravenoso_tipo_cristaloide.png"
         },
         {
           "titulo": "Sin soluciones dextrosadas (recomendación 18)",
@@ -1832,7 +2094,7 @@
         {
           "titulo": "Guía de rehidratación intravenosa (tabla 3)",
           "paginas": "14",
-          "texto": "Give 100 ml/kg Ringer's Lactate Solution divided as follows: Infants (under 12 months) first give 30 ml/kg in 1 hour, then 70 ml/kg in 5 hours; older: 30 minutes and 2½ hours",
+          "texto": "Give 100 ml/kg Ringer's Lactate Solution divided as follows: Age First give 30 ml/kg in: Then give 70 ml/kg in: Infants (under 12 months) 1 hour 5 hours Older 30 minutes 2½ hours",
           "fuente": "OMS",
           "anio": "2005",
           "url": "https://www.who.int/publications/i/item/9241593180",
@@ -1843,18 +2105,18 @@
     },
     "trat_plan_c_reeval_inicial": {
       "tipo": "pregunta",
-      "titulo": "Reevaluar durante la rehidratación IV",
-      "texto": "- Revisar cada **15-30 min** hasta tener **pulso radial fuerte**; después, al menos **cada hora**: pliegue, conciencia y si bebe.\n- Si la hidratación no mejora, pasar la solución más rápido.\n- En cuanto pueda beber, empezar la SRO (a las **2-3 h** de la vía IV).",
+      "titulo": "Durante el plan C: pulso tras los 30 mL/kg",
+      "texto": "- Revisar cada **15-30 min** hasta tener pulso radial fuerte; después, al menos cada hora: pliegue, conciencia y si bebe.\n- Si la hidratación no mejora, acortar el tiempo de la carga en curso.\n- En cuanto pueda beber, SRO por boca (OMS: hacia las **3-4 h** en el lactante y **1-2 h** en el mayor).",
       "nota_adicional": "Los ojos hundidos tardan más en recuperarse que los demás signos: sirven poco para vigilar la rehidratación.",
-      "pie_nodo": "¿Pulso radial fuerte y mejor perfusión?",
+      "pie_nodo": "¿Pulso radial fuerte tras los **30 mL/kg**?",
       "opciones": [
         {
-          "texto": "Sí: déficit y mantenimiento",
-          "siguiente_nodo": "trat_plan_c_fase2",
+          "texto": "Fuerte: completar los 70 mL/kg",
+          "siguiente_nodo": "trat_plan_c_reeval_formal",
           "color": "verde"
         },
         {
-          "texto": "No: pulso débil, repetir la carga",
+          "texto": "Débil: repetir 30 mL/kg una vez",
           "siguiente_nodo": "trat_plan_c_fase1",
           "color": "rojo"
         }
@@ -1869,6 +2131,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag129_repetir_otra_carga_30_mlkg.png"
+        },
+        {
+          "titulo": "Repetir la carga una sola vez",
+          "paginas": "114",
+          "texto": "Repeat once if radial pulse is still very weak or not detectable.",
+          "fuente": "OMS",
+          "anio": "2013",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
         },
         {
           "titulo": "Seguimiento de la rehidratación IV",
@@ -1911,55 +2183,62 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag38_rapida_evaluacion_continua_cada_hora_evaluacion.png"
         },
         {
-          "titulo": "Vía oral 2-3 horas después de empezar la IV (recomendación 15)",
-          "paginas": "118",
-          "texto": "Se sugiere que la terapia de rehidratación oral, en los niños con EDA que necesitaron rehidratación con líquidos endovenosos, se inicie temprana y gradualmente dos a tres horas después",
-          "fuente": "MinSalud",
+          "titulo": "SRO en cuanto pueda beber",
+          "paginas": "114",
+          "texto": "Also give ORS (about 5 ml/kg/hour) as soon as the child can drink: usually after 3–4 hours (infants) or 1–2 hours (children).",
+          "fuente": "OMS",
           "anio": "2013",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag118_sugiere_terapia_rehidratacion_oral_ninos.png"
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
         }
       ]
     },
     "trat_plan_c_fase2": {
       "tipo": "pregunta",
-      "titulo": "Plan C · Fase 2: déficit y mantenimiento",
-      "texto": "- Déficit estimado: algún grado **5-10 %** (**50-100 mL/kg**); grave **>10 %** (**>100 mL/kg**).\n- Sumar el mantenimiento diario: **100 mL/kg/día** los primeros **10 kg**, **50** los siguientes **10 kg** y **25** por cada kg más.\n- Con fiebre, **10 %** más por cada **1 °C**.",
+      "titulo": "No tolera la vía oral: mantenimiento IV",
+      "texto": "- Hospitalizar. Ondansetrón si no lo recibió.\n- Líquidos diarios: **100 mL/kg/día** hasta **10 kg**, **+50 mL/kg/día** de **11 a 20 kg** y **+25 mL/kg/día** por cada kg por encima de **20**.\n- Con fiebre, **10 %** más por cada **1 °C**. Probar de nuevo la vía oral y pasar a SRO en cuanto la tolere.",
       "tabla": {
         "titulo": "Mantenimiento diario por peso (OMS)",
         "columnas": [
           "Peso",
-          "Líquido al día"
+          "Al día",
+          "Por hora"
         ],
         "filas": [
           [
             "4 kg",
-            "**400 mL**"
+            "**400 mL**",
+            "17 mL/h"
           ],
           [
             "6 kg",
-            "**600 mL**"
+            "**600 mL**",
+            "25 mL/h"
           ],
           [
             "8 kg",
-            "**800 mL**"
+            "**800 mL**",
+            "33 mL/h"
           ],
           [
             "10 kg",
-            "**1.000 mL**"
+            "**1.000 mL**",
+            "42 mL/h"
           ],
           [
             "14 kg",
-            "**1.200 mL**"
+            "**1.200 mL**",
+            "50 mL/h"
           ],
           [
             "20 kg",
-            "**1.500 mL**"
+            "**1.500 mL**",
+            "63 mL/h"
           ]
         ]
       },
-      "nota_adicional": "La cuenta 100/50/25 es la misma para cualquier niño: 15 kg son 1.000 + 250 = 1.250 mL al día.",
+      "nota_adicional": "Es mantenimiento, no otra carga: el déficit ya lo cubrieron los planes B o C.",
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
@@ -1969,14 +2248,34 @@
       ],
       "referencias": [
         {
-          "titulo": "Estimación del déficit de líquidos",
-          "paginas": "7",
-          "texto": "Some dehydration 5-10% 50-100 ml/kg; Severe dehydration >10% >100 ml/kg",
-          "fuente": "OMS",
-          "anio": "2005",
-          "url": "https://www.who.int/publications/i/item/9241593180",
-          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag7_oms2005_estimacion_deficit.png"
+          "titulo": "Si no tolera la vía oral, seguir IV (recomendación 15)",
+          "paginas": "118",
+          "texto": "Si la terapia de rehidratación oral no es tolerada, debe continuarse la rehidratación por vía endovenosa hasta completar la rehidratación y continuar con reposición de pérdidas concomitantes por vía endovenosa.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag118_si_terapia_rehidratacion_oral_no.png"
+        },
+        {
+          "titulo": "Algoritmo DHT 1/2: sigue vomitando sin deshidratación",
+          "paginas": "37",
+          "texto": "Hospitalizar. Ondansetrón VO o EV (si no ha recibido previamente) Continuar en mantenimiento de la hidratación por vía endovenosa",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag37_rapida_hospitalizar_ondansetron_vo_ev_si.png"
+        },
+        {
+          "titulo": "Algoritmo DHT 2/2: tras el plan C, ¿tolera la vía oral 4 horas?",
+          "paginas": "38",
+          "texto": "Evaluación continua cada hora Evaluación al final de la difusión Terminar hidratación con SRO ¿Tolera la VO durante al menos 4 horas?",
+          "fuente": "MinSalud (guía rápida)",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de referencia rápida para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag38_rapida_evaluacion_continua_cada_hora_evaluacion.png"
         },
         {
           "titulo": "Manejo de líquidos: necesidades de mantenimiento",
@@ -1998,12 +2297,22 @@
           "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag273_oms_liquidos_mantenimiento.png"
         }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Líquidos de mantenimiento",
+          "dosis": "**100 / 50 / 25 mL/kg/día**",
+          "pauta": "Primeros 10 kg / de 11 a 20 kg / cada kg por encima de 20. Fiebre: +10 % por cada 1 °C.",
+          "nota": "Es mantenimiento, no otra carga.",
+          "paginas": "273 (OMS)"
+        }
       ]
     },
     "trat_plan_c_fase3": {
       "tipo": "pregunta",
-      "titulo": "Plan C · Fase 3: pérdidas que siguen",
-      "texto": "- Tras cada deposición líquida, SRO: **50-100 mL** en el menor de **2 años**; **100-200 mL** desde los **2 años**.\n- Mantener el pecho, la comida habitual y el zinc.\n- Pérdidas que la boca no compensa: mantenimiento IV con lactato de Ringer y cloruro de potasio; remitir si no se logra.",
+      "titulo": "Reponer las pérdidas que siguen",
+      "texto": "- Tras cada deposición líquida, SRO: **50-100 mL** en el menor de **2 años**; **100-200 mL** desde los **2 años**.\n- Mantener el pecho, la comida habitual y el zinc.\n- Cólera: las pérdidas pueden llegar a **200-350 mL/kg** en **24 h**; entonces, mantenimiento IV con lactato de Ringer y cloruro de potasio.\n- Si el gasto fecal supera la rehidratación IV continua: remitir.",
+      "nota_adicional": "Ni la GPC ni la OMS 2005 dan aquí la dosis de cloruro de potasio: seguir el protocolo institucional.",
       "farmacos": [
         {
           "nombre": "SRO (pérdidas que siguen)",
@@ -2015,7 +2324,7 @@
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
-          "texto": "Reevaluación completa",
+          "texto": "Reclasificar la hidratación",
           "siguiente_nodo": "trat_plan_c_reeval_formal"
         }
       ],
@@ -2051,6 +2360,16 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag148_suplementacion_zinc.png"
         },
         {
+          "titulo": "Cólera: pérdidas de 200 a 350 mL/kg en 24 h",
+          "paginas": "17",
+          "texto": "During this period, the average fluid requirement of such patients is 200 ml/kg of body weight, but some need 350 ml/kg or more.",
+          "fuente": "OMS",
+          "anio": "2005",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "cita": "OMS (2005). The treatment of diarrhoea: a manual for physicians and other senior health workers, 4.ª rev. Ginebra: Organización Mundial de la Salud. WHO/FCH/CAH/05.1.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag17_oms2005_perdidas_continuas.png"
+        },
+        {
           "titulo": "Pérdidas continuas voluminosas",
           "paginas": "17",
           "texto": "Patients whose ongoing stool losses are in this range, or higher, usually require intravenous maintenance therapy using Ringer's Lactate Solution with added potassium chloride.",
@@ -2069,23 +2388,13 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag113_nino_gasto_fecal_elevado_dificultad.png"
-        },
-        {
-          "titulo": "Si no tolera la vía oral, seguir IV (recomendación 15)",
-          "paginas": "118",
-          "texto": "Si la terapia de rehidratación oral no es tolerada, debe continuarse la rehidratación por vía endovenosa hasta completar la rehidratación y continuar con reposición de pérdidas concomitantes por vía endovenosa.",
-          "fuente": "MinSalud",
-          "anio": "2013",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag118_si_terapia_rehidratacion_oral_no.png"
         }
       ]
     },
     "trat_plan_c_reeval_formal": {
       "tipo": "pregunta",
-      "titulo": "Reevaluación completa tras el plan C",
-      "texto": "- Al terminar la infusión: a las **6 h** en el lactante y a las **3 h** en el mayor.\n- Volver a clasificar con la escala y elegir el plan A, B o C.\n- Terminar con SRO. Si no tolera la vía oral **4 h**: ondansetrón y mantenimiento IV.",
+      "titulo": "Al terminar el plan C: reclasificar",
+      "texto": "- A las **6 h** en el lactante y a las **3 h** en el mayor, al terminar la infusión.\n- Volver a clasificar con la escala y elegir el plan A, B o C.\n- Terminar con SRO. Debe tolerar la vía oral **4 h**; observar **6 h** tras rehidratar.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/deshidratacion_oms_aiepi.json",
         "etiqueta": "Reclasificar con la escala OMS/AIEPI",
@@ -2111,6 +2420,11 @@
           "texto": "Sin deshidratación: plan A",
           "siguiente_nodo": "trat_plan_a",
           "color": "verde"
+        },
+        {
+          "texto": "No tolera la vía oral: seguir IV",
+          "siguiente_nodo": "trat_plan_c_fase2",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -2165,14 +2479,14 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag126_terminar_rehidratacion_via_oral_sales.png"
         },
         {
-          "titulo": "Ondansetrón en dosis única (recomendación 27.2)",
-          "paginas": "157",
-          "texto": "Se recomienda el uso de ondansetrón en una dosis única oral (2 mg en menores de 15 Kg, y 4 mg en aquellos entre 15 y 30 Kg",
-          "fuente": "MinSalud",
+          "titulo": "Observar 6 horas tras rehidratar",
+          "paginas": "114",
+          "texto": "If possible, observe the child for at least 6 hours after rehydration to be sure the mother can maintain hydration giving the child ORS solution by mouth.",
+          "fuente": "OMS",
           "anio": "2013",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
-          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag157_uso_antiemeticos.png"
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "OMS (2013). Pocket Book of Hospital Care for Children: Guidelines for the Management of Common Childhood Illnesses, 2.ª ed. Ginebra: Organización Mundial de la Salud.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag114_oms_plan_c_rehidratacion_iv.png"
         }
       ]
     },
@@ -2180,11 +2494,15 @@
       "tipo": "pregunta",
       "estilo": "exito",
       "titulo": "Zinc y comida",
-      "texto": "- Zinc VO **10-14 días**: **10 mg/día** en el menor de **6 meses**; **20 mg/día** de **6 meses a 5 años**.\n- Seguir el pecho y la fórmula a su dilución normal; comida habitual en cuanto esté hidratado.\n- Nunca ayuno. Sin fórmulas sin lactosa, de soya o hidrolizadas, ni dietas astringentes.",
+      "texto": "- Zinc VO **10-14 días**: **10 mg/día** en el menor de **6 meses**; **20 mg/día** de **6 meses a 5 años**.\n- Seguir el pecho y la fórmula a su dilución normal; comida habitual en cuanto esté hidratado.\n- Nunca ayuno. No cambiar a fórmula sin lactosa, de soya o hidrolizada; no dietas astringentes.",
       "alertas": [
         {
           "titulo": "No dar",
-          "texto": "Loperamida. Tampoco antidiarreicos (bismuto, racecadotril, esmectita, carbón, caolín) ni probióticos de rutina."
+          "texto": "Loperamida. Tampoco antidiarreicos (bismuto, racecadotril, esmectita, carbón, caolín), probióticos de rutina ni vitamina A."
+        },
+        {
+          "titulo": "No recomendar",
+          "texto": "Homeopatía, acupuntura, curanderos, sobanderos ni otras terapias alternativas."
         }
       ],
       "evidencia": {
@@ -2199,7 +2517,7 @@
           "paginas": "148"
         }
       ],
-      "pie_nodo": "¿Tiene indicación de antibiótico?",
+      "pie_nodo": "¿Sepsis, sangre con fiebre o sin control a **48 h**, cólera o parásitos?",
       "opciones": [
         {
           "texto": "Sí: elegir el antibiótico",
@@ -2332,6 +2650,43 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag151_no_sugiere_rutinariamente_uso_probioticos.png"
+        },
+        {
+          "titulo": "Sin vitamina A como tratamiento (recomendación 24.1)",
+          "paginas": "146",
+          "texto": "No se sugiere ofrecer suplemento de vitamina A como tratamiento para disminuir la duración de la diarrea en los niños menores de 5 años con EDA.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag146_no_sugiere_ofrecer_suplemento_vitamina.png"
+        },
+        {
+          "titulo": "Sin homeopatía ni acupuntura (recomendación 28)",
+          "paginas": "163",
+          "texto": "No se recomienda el empleo de tratamientos homeopáticos, ni de acupuntura en niños menores de cinco años con EDA para disminuir la duración de la enfermedad.",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag163_no_recomienda_empleo_tratamientos_homeopaticos.png"
+        },
+        {
+          "titulo": "Sin curanderos ni sobanderos (recomendación 28)",
+          "paginas": "163",
+          "texto": "No se recomienda el tratamiento por “curanderos”, “sobanderos” o “sobadores de descuaje” en niños menores de cinco años con EDA",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag163_no_recomienda_tratamiento_curanderos_sobanderos.png"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Signos de alarma para volver",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_signos_alarma"
         }
       ]
     },
@@ -2362,16 +2717,16 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Cuándo dar antibiótico",
-      "texto": "- Casi nunca: no se dan de rutina.\n- Elegir según la sensibilidad local si hay un informe fiable.",
+      "texto": "- Casi nunca: no se dan de rutina.\n- Elegir según la sensibilidad local si hay un informe fiable.\n- Salmonella con riesgo de bacteriemia: la guía no nombra el antibiótico.",
       "checklist": {
         "titulo": "Indicaciones de antibiótico",
         "items": [
           "Sospecha o confirmación de bacteriemia o sepsis",
-          "Sangre en heces con fiebre **≥39 °C** y mal estado general",
+          "Sangre en heces con fiebre **≥39 °C** y estado general regular",
           "Sangre en heces sin control posible en **48 h**",
           "Sospecha de cólera en un brote de la región",
           "Shigella, Giardia o E. histolytica en heces",
-          "Salmonella con riesgo de bacteriemia: **<6 meses**, asplenia, VIH, desnutrición, inmunosupresión, hemoglobinopatía o enfermedad intestinal crónica"
+          "Salmonella con riesgo de bacteriemia: **<6 meses**, asplenia, VIH, desnutrición moderada o grave, inmunosupresión, hemoglobinopatía o enfermedad intestinal crónica"
         ]
       },
       "evidencia": {
@@ -2385,7 +2740,7 @@
           "color": "naranja"
         },
         {
-          "texto": "Sepsis o fracaso: segunda línea IV",
+          "texto": "Sepsis, o no mejora con nalidíxico: IV",
           "siguiente_nodo": "trat_ab_segunda_linea",
           "color": "rojo"
         },
@@ -2476,34 +2831,11 @@
     "trat_ab_nalidixico": {
       "tipo": "pregunta",
       "titulo": "Ácido nalidíxico: primera línea empírica",
-      "texto": "- Ácido nalidíxico **50-60 mg/kg/día** VO durante **7 días**.\n- Explicar que vuelva si no mejora.\n- Mejoría: desaparece la sangre o mejora el estado general, aunque siga la diarrea.",
-      "media": [
+      "texto": "- Ácido nalidíxico **50-60 mg/kg/día** VO durante **7 días**.\n- Volver a consulta si no mejora.\n- Mejoría: se va la sangre o mejora el estado general, aunque siga la diarrea.",
+      "alertas": [
         {
-          "recurso": "eda_disenteria_mejoria.png",
-          "titulo": "Disentería: qué cuenta como mejoría",
-          "descripcion": "Qué cuenta como mejoría en el control de la diarrea con sangre.",
-          "info": "En {#2FB36D:verde}, lo que cuenta como mejoría a las **48 h**: se va la sangre o mejora el estado general. A la derecha, lo que no hace falta: que se quite la diarrea. Sin mejoría con el nalidíxico, segunda línea IV en el hospital.",
-          "en_texto": "Mejoría",
-          "referencias": [
-            {
-              "titulo": "Algoritmo I: qué es mejoría en la disentería",
-              "paginas": "235",
-              "texto": "Mejoría se define como desaparición de la sangre y/o mejoría de los síntomas clínicos de compromiso del estado general. No se debe interpretar como desaparición de la diarrea.",
-              "fuente": "MinSalud",
-              "anio": "2013",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
-            },
-            {
-              "titulo": "Algoritmo I: sin mejoría o peor, segunda línea",
-              "paginas": "235",
-              "texto": "Dar tratamiento cefotaxime o ciprofloxacina Hospitalizar en segundo o tercer nivel Considerar remisión si se encuentra en un primer nivel de atención",
-              "fuente": "MinSalud",
-              "anio": "2013",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013."
-            }
-          ]
+          "titulo": "No en menores de 3 meses",
+          "texto": "Se asocia a pseudotumor cerebral: usar la segunda línea IV."
         }
       ],
       "evidencia": {
@@ -2513,9 +2845,9 @@
         {
           "nombre": "Ácido nalidíxico",
           "dosis": "**50-60 mg/kg/día** VO durante **7 días**",
-          "pauta": "Primera línea empírica en la EDA con indicación de antibiótico.",
-          "nota": "Si no mejora o empeora: segunda línea IV en el hospital.",
-          "paginas": "141",
+          "pauta": "Primera línea empírica cuando hay indicación de antibiótico.",
+          "nota": "No en menores de 3 meses. La guía no da el fraccionamiento: formulario institucional.",
+          "paginas": "141, 146",
           "por_kg": {
             "desde": 50,
             "hasta": 60,
@@ -2540,9 +2872,25 @@
             }
           ],
           "nota": "La guía colombiana elige el nalidíxico y deja el ciprofloxacino como segunda línea IV."
+        },
+        {
+          "asunto": "Duración del ácido nalidíxico",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2013 (recomendación 23)",
+              "dice": "7 días",
+              "paginas": "141"
+            },
+            {
+              "fuente": "MinSalud 2013 (algoritmo I)",
+              "dice": "Con mejoría, «finalizar tratamiento completar 5 días»",
+              "paginas": "235"
+            }
+          ],
+          "nota": "El mapa sigue la recomendación graduada (7 días)."
         }
       ],
-      "pie_nodo": "¿Mejora en el control?",
+      "pie_nodo": "¿Mejora: se fue la sangre o mejoró el estado general?",
       "opciones": [
         {
           "texto": "Sí: completar y seguir",
@@ -2550,7 +2898,7 @@
           "color": "verde"
         },
         {
-          "texto": "No mejora o empeora",
+          "texto": "No mejora o empeora: IV",
           "siguiente_nodo": "trat_ab_segunda_linea",
           "color": "rojo"
         }
@@ -2565,6 +2913,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag141_antibiotico_primera_linea.png"
+        },
+        {
+          "titulo": "Ácido nalidíxico: no en menores de 3 meses",
+          "paginas": "146",
+          "texto": "no se recomienda su uso en menores de tres meses puesto que se ha asociado con la aparición de pseudotumor cerebral",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag146_no_recomienda_su_uso_menores.png"
         },
         {
           "titulo": "Algoritmo I: nalidíxico y volver si no mejora",
@@ -2585,6 +2943,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag235_mejoria_define_como_desaparicion_sangre.png"
+        },
+        {
+          "titulo": "Algoritmo I: «completar 5 días» tras la mejoría",
+          "paginas": "235",
+          "texto": "Seguimiento clínico, finalizar tratamiento completar 5 días",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag235_seguimiento_clinico_finalizar_tratamiento_completar.png"
         },
         {
           "titulo": "Segunda línea IV y sólo en el hospital (recomendación 23)",
@@ -2611,8 +2979,8 @@
     "trat_ab_segunda_linea": {
       "tipo": "resultado",
       "estilo": "peligro",
-      "titulo": "Segunda línea IV: cefotaxima, ceftriaxona o ciprofloxacino",
-      "texto": "- Para la sospecha de bacteriemia o sepsis, o si no mejora con el nalidíxico.\n- Sólo IV y en el hospital: hospitalizar en segundo o tercer nivel.\n- En primer nivel: **1.ª dosis** y remitir.",
+      "titulo": "Antibiótico IV: cefotaxima, ceftriaxona o ciprofloxacino",
+      "texto": "- Para la sospecha de bacteriemia o sepsis, o si no mejora con el nalidíxico.\n- Sólo IV y en el hospital: segundo o tercer nivel.\n- En primer nivel: con sepsis, **1.ª dosis** y remitir; si falla el nalidíxico, considerar remitir.",
       "chips": [
         {
           "texto": "Hospital",
@@ -2622,13 +2990,14 @@
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
+      "nota_adicional": "La guía colombiana no da la dosis de cefotaxima ni de ciprofloxacino: usar el formulario institucional.",
       "farmacos": [
         {
           "nombre": "Ceftriaxona",
           "dosis": "**100 mg/kg/día** IV",
-          "pauta": "Dosis alta para la bacteriemia o la infección invasiva.",
-          "nota": "La guía colombiana no da dosis; esta cifra es de Bruzzese 2018.",
-          "paginas": "7",
+          "pauta": "Dosis alta que Bruzzese 2018 da para la bacteriemia por Salmonella no tifoidea.",
+          "nota": "La guía colombiana no da dosis; sin frecuencia, máximo ni duración en la fuente.",
+          "paginas": "7 (Bruzzese)",
           "por_kg": {
             "cantidad": 100,
             "unidad": "mg",
@@ -2685,7 +3054,7 @@
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag235_realizar_cultivo_materia_fecal_iniciar.png"
         },
         {
-          "titulo": "Ceftriaxona a dosis alta en la infección invasiva",
+          "titulo": "Ceftriaxona a dosis alta en la bacteriemia por Salmonella no tifoidea (Bruzzese 2018)",
           "paginas": "7",
           "texto": "Parenteral therapy should be started in children with bacteremia or in those with complicated infections (focal or invasive) and includes cefotaxime or ceftriaxone at high dose (ceftriaxone 100 mg/kg/day)",
           "fuente": "F1000Research",
@@ -2699,7 +3068,7 @@
     "trat_ab_parasitos": {
       "tipo": "resultado",
       "titulo": "Giardia o E. histolytica: metronidazol",
-      "texto": "- Metronidazol durante **7 días**.\n- Alternativas: tinidazol o secnidazol.\n- Sólo con trofozoítos o complejo E. histolytica/dispar en heces.",
+      "texto": "- Metronidazol durante **7 días**.\n- Alternativas: tinidazol o secnidazol.\n- Indicación: Giardia, o E. histolytica (trofozoítos o complejo E. histolytica/dispar), en heces.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -2821,24 +3190,24 @@
     "seg_ambito": {
       "tipo": "pregunta",
       "titulo": "Dónde se trata",
-      "texto": "- Sin deshidratación: en casa, con los padres instruidos en los signos de alarma.\n- Algún grado: urgencias u observación, donde se pueda rehidratar por boca o por vena.\n- **≥10** deposiciones en **24 h** o **≥5** vómitos en **4 h**: observación hasta que la vía oral baste.",
+      "texto": "- Grave, choque o cualquier criterio de ingreso: hospitalizar.\n- Algún grado: urgencias u observación, donde se pueda rehidratar por boca o por vena.\n- **≥10** deposiciones en **24 h** y **≥5** vómitos en **4 h**: observación hasta que la vía oral baste.\n- Sin deshidratación: en casa, con los padres instruidos en los signos de alarma.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
-      "pie_nodo": "¿Qué necesita?",
+      "pie_nodo": "¿Dónde sigue el niño?",
       "opciones": [
         {
-          "texto": "Hospitalizar o remitir",
+          "texto": "Grave o criterio de ingreso: hospitalizar",
           "siguiente_nodo": "seg_hospitalizar",
           "color": "rojo"
         },
         {
-          "texto": "Observación",
+          "texto": "Algún grado o alto riesgo: observación",
           "siguiente_nodo": "seg_observacion",
           "color": "naranja"
         },
         {
-          "texto": "Casa: criterios de alta",
+          "texto": "Sin deshidratación: casa",
           "siguiente_nodo": "seg_criterios_alta",
           "color": "verde"
         }
@@ -2883,6 +3252,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
           "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag112_permanezcan_servicio_salud_observacion_u.png"
+        },
+        {
+          "titulo": "Hospitalizar: deshidratación grave o choque (recomendación 13.1)",
+          "paginas": "113",
+          "texto": "Se recomienda hospitalizar a los niños con: Deshidratación grave o con signos choque (disminución del nivel de conciencia, piel pálida o moteada, extremidades frías, taquicardia, taquipnea, pulsos periféricos débiles",
+          "fuente": "MinSalud",
+          "anio": "2013",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá: MinSalud; 2013.",
+          "imagen_evidencia": "evidencia_gastroenteritis_aguda_aiepi_pag113_recomienda_hospitalizar_ninos_deshidratacion_grave.png"
         }
       ]
     },
@@ -3006,7 +3385,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Observación",
-      "texto": "- Para **≥10** deposiciones en **24 h** o **≥5** vómitos en **4 h**, o algún grado de deshidratación.\n- Reevaluar la hidratación cada hora mientras se rehidrata.\n- Sigue en el servicio hasta que la vía oral baste para mantenerlo hidratado en casa.",
+      "texto": "- Reevaluar la hidratación cada hora mientras se rehidrata.\n- El alta llega cuando la vía oral basta para mantenerlo hidratado en casa.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -3069,7 +3448,7 @@
     "seg_criterios_alta": {
       "tipo": "pregunta",
       "titulo": "Criterios de alta",
-      "texto": "- Alta sólo si se cumplen **todos**.\n- No hace falta que se haya quitado la diarrea.",
+      "texto": "- Alta sólo si se cumplen todos.\n- No hace falta que se haya quitado la diarrea.",
       "checklist": {
         "titulo": "Alta de urgencias u hospitalización",
         "items": [

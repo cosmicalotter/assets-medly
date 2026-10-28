@@ -57,7 +57,7 @@ window.cuadro = function (i, n) {
       <text x="56" y="64" text-anchor="middle" font-size="24" font-weight="800" fill="#1F2A37">${reloj.toFixed(1).replace(".", ",")} s</text>
       <text x="56" y="128" text-anchor="middle" font-size="13" fill="#6B7280">${suelta ? "tras soltar" : t < PELLIZCO ? "pellizcar" : "soltar"}</text>
     </g>
-    ${listo ? `<text x="340" y="282" text-anchor="middle" font-size="22" font-weight="800" fill="${c.color}">${c.nombre}: ${c.clase}</text>` : ""}
+    ${listo ? `<text x="340" y="282" text-anchor="middle" font-size="22" font-weight="800" fill="${c.color}">${c.nombre}: ${k ? "signo de " + c.clase : "normal"}</text>` : ""}
   </svg>`;
   const casos = CASOS.map((x, j) => `<div class="caso ${j === k ? "on" : ""}" style="--c:${x.color}"><b>${x.nombre}</b><br>${j === 0 ? "Normal" : j === 1 ? "Signo de <b>algún grado</b> de deshidratación" : "Signo de deshidratación <b>grave</b>"}</div>`).join("");
   lienzo("Signo del pliegue cutáneo", "Pellizcar la piel, soltarla y contar lo que tarda en volver", `${svg}<div class="casos">${casos}</div>`,
