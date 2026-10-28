@@ -81,6 +81,13 @@ _PIE_CON_CREDITO = re.compile(
     r"\bCC[ -]?(BY|0)\b|wikimedia|commons|dominio p[uú]blico|licencia|editada por|"
     r"^\s*(imagen|foto|figura|fuente)\s*:", re.I | re.M,
 )
+# `media[].info`: colores que el visor de la app sabe pintar (`kColoresInfo`
+# en praxis, media_nodo_widget.dart). Un nombre que no esté aquí se ve en
+# crudo, con sus llaves.
+COLORES_INFO = {"teal", "turquesa", "amarillo", "rojo", "rosa", "azul", "celeste",
+                "ambar", "naranja", "verde", "violeta", "blanco"}
+_COLOR_INFO = re.compile(r"\{([^{}:]+):[^{}]+\}")
+
 _AVISO_DE_MEDIO = re.compile(r"\((gif|imagen|foto|video|ver imagen)\)", re.I)
 _VISUAL = re.compile(
     r"exploraci[oó]n|examen f[ií]sico|signo de|t[eé]cnica|radiograf|ecograf|\btc\b|tomograf|"
@@ -266,6 +273,12 @@ def chequear(ruta: Path) -> list[str]:
             for frase in frases_en_texto(m):
                 if not contiene_palabra(visibles, frase):
                     problemas.append(f"{nid}: «en_texto» pide enlazar «{frase}», que no está en el texto del nodo (no se enlaza nada)")
+            info = m.get("info") or ""
+            for color in _COLOR_INFO.findall(info):
+                if not (re.fullmatch(r"#[0-9A-Fa-f]{6}", color) or color in COLORES_INFO):
+                    problemas.append(f"{nid}: «info» de «{m.get('recurso', '?')}» usa el color «{color}», que la app no conoce (se ve con llaves)")
+            if info.count("{") != info.count("}") or info.count("**") % 2:
+                problemas.append(f"{nid}: «info» de «{m.get('recurso', '?')}» tiene llaves o ** sin cerrar")
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
@@ -401,6 +414,17 @@ def medir(ruta: Path) -> Informe:
                 inf.faltas.append(f"{nid}: el pie de «{m.get('recurso', '?')}» tiene {palabras(pie)} palabras; ≤18, qué se ve")
             if not (m.get("titulo") or "").strip():
                 inf.faltas.append(f"{nid}: «{m.get('recurso', '?')}» sin título")
+            info = m.get("info") or ""
+            if not info.strip():
+                inf.faltas.append(f"{nid}: «{m.get('recurso', '?')}» sin «info» (texto del visor a pantalla completa)")
+            else:
+                limpio = _COLOR_INFO.sub(lambda c: c.group(0).split(":", 1)[1][:-1], info)
+                if palabras(limpio) > 50:
+                    inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» tiene {palabras(limpio)} palabras; ≤50")
+                if "\n" in info:
+                    inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» tiene saltos de línea; un solo párrafo")
+                if _PIE_CON_CREDITO.search(info):
+                    inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» lleva el crédito; va dentro de la imagen")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
 
