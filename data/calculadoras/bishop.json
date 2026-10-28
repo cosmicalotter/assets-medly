@@ -1,63 +1,142 @@
 {
-  "titulo": "Score de Bishop",
-  "descripcion": "Evalúa la madurez cervical y predice la probabilidad de éxito en la inducción del trabajo de parto a término.",
+  "titulo": "Índice de Bishop (cérvix para inducción)",
+  "descripcion": "Valora por tacto vaginal la madurez del cuello uterino con cinco parámetros (dilatación, borramiento, altura de la presentación, consistencia y posición), de 0 a 13 puntos. Propuesto en 1964 para la inducción electiva, decide si el cérvix es favorable para inducir con oxitocina o si antes hace falta maduración cervical.",
   "tipoCalculo": "suma",
-  "prefijoResultado": "Total",
-  "sufijoResultado": "puntos",
+  "prefijoResultado": "Bishop",
   "referencias": [
-    { "titulo": "Bishop EH. Pelvic Scoring for Elective Induction. Obstet Gynecol. 1964; 24:266-8.", "url": "https://pubmed.ncbi.nlm.nih.gov/14199536/" },
-    { "titulo": "Laughon SK, et al. Using a Simplified Bishop Score to Predict Vaginal Delivery. Obstet Gynecol. 2011; 117(4): 805-811.", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3297470/" },
-    { "titulo": "Newman RB, et al. Preterm Prediction Study: Comparison of the Cervical Score and Bishop Score. Obstet Gynecol. 2008; 112(3): 508-515.", "url": "https://pubmed.ncbi.nlm.nih.gov/18757646/" }
+    {
+      "titulo": "Bishop EH. Pelvic scoring for elective induction. Obstet Gynecol 1964;24:266-8.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14199536/"
+    },
+    {
+      "titulo": "Félix TMJ, Sim-Sim MMF, Ferrão ACC, et al. The Bishop index and birth outcomes in nulliparous women undergoing labor induction: a scoping review. Healthcare (Basel) 2026;14(15):2242.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42588210/",
+      "texto": "cervical ripening for unfavorable cervixes with a Bishop Index of 6 or less, or oxytocic perfusion for favorable cervixes"
+    },
+    {
+      "titulo": "Félix TMJ, Sim-Sim MMF, Ferrão ACC, et al. The Bishop index and birth outcomes in nulliparous women undergoing labor induction: a scoping review. Healthcare (Basel) 2026;14(15):2242. Limitaciones.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42588210/",
+      "texto": "the Bishop Index should not be interpreted in isolation, since maternal and obstetric factors, such as parity, gestational age, body mass index, maternal age"
+    },
+    {
+      "titulo": "Sinha P, Gupta M, Meena S, et al. Comparing transvaginal ultrasound measurements of cervical length to Bishop score in predicting cesarean section. Cureus 2024;16(2):e54335.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38500903/",
+      "paginas": "Tabla 1",
+      "texto": "Dilatation (cm) 0, 1-2, 3-4, ≥5; Effacement (%) 0-30, 40-50, 60-70, ≥80; Station -3, -2, -1 to 0, +1, +2; Consistency Firm, Medium, Soft"
+    }
   ],
   "columnas": [
-    {"puntos": 0, "titulo": "0", "color": "rojo"},
-    {"puntos": 1, "titulo": "1", "color": "naranja"},
-    {"puntos": 2, "titulo": "2", "color": "amarillo"},
-    {"puntos": 3, "titulo": "3", "color": "verde"}
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "rojo"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "naranja"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "verde"
+    }
   ],
   "filas": [
     {
       "nombre": "Dilatación",
-      "descripciones": ["Cerrado", "1 - 2 cm", "3 - 4 cm", "≥ 5 cm"]
+      "descripciones": [
+        "0 cm",
+        "1-2 cm",
+        "3-4 cm",
+        "≥ 5 cm"
+      ],
+      "entrada": {
+        "unidad": "cm",
+        "min": 0,
+        "max": 10,
+        "tramos": [
+          {
+            "max": 0.99,
+            "puntos": 0
+          },
+          {
+            "min": 1,
+            "max": 2.99,
+            "puntos": 1
+          },
+          {
+            "min": 3,
+            "max": 4.99,
+            "puntos": 2
+          },
+          {
+            "min": 5,
+            "puntos": 3
+          }
+        ]
+      }
     },
     {
       "nombre": "Borramiento",
-      "descripciones": ["0 - 30%", "40 - 50%", "60 - 70%", "≥ 80%"]
+      "descripciones": [
+        "0-30 %",
+        "40-50 %",
+        "60-70 %",
+        "≥ 80 %"
+      ]
     },
     {
-      "nombre": "Estación",
-      "descripciones": ["-3", "-2", "-1 o 0", "+1 o +2"]
+      "nombre": "Altura de la presentación",
+      "descripciones": [
+        "−3",
+        "−2",
+        "−1 o 0",
+        "+1 o +2"
+      ]
     },
     {
       "nombre": "Consistencia",
-      "descripciones": ["Firme", "Media", "Blanda", "-"]
+      "descripciones": [
+        "Firme",
+        "Media",
+        "Blanda",
+        "-"
+      ]
     },
     {
       "nombre": "Posición",
-      "descripciones": ["Posterior", "Media", "Anterior", "-"]
+      "descripciones": [
+        "Posterior",
+        "Media",
+        "Anterior",
+        "-"
+      ]
     }
   ],
   "resultados": [
     {
       "min": 0,
-      "max": 5,
-      "categoria": "Cérvix Desfavorable",
-      "color": "rojo",
-      "approach": "Maduración cervical recomendada"
+      "max": 6,
+      "categoria": "Cérvix desfavorable (≤ 6)",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Maduración cervical antes de la inducción."
     },
     {
-      "min": 6,
-      "max": 8,
-      "categoria": "Cérvix Intermedio",
-      "color": "amarillo",
-      "approach": "Considerar maduración o inducción clínica"
-    },
-    {
-      "min": 9,
+      "min": 7,
       "max": 13,
-      "categoria": "Cérvix Favorable",
+      "categoria": "Cérvix favorable (> 6)",
       "color": "verde",
-      "approach": "Inducción directa (oxitocina/amniotomía)"
+      "match_opcion_index": -1,
+      "approach": "Inducción con oxitocina."
     }
-  ]
+  ],
+  "instrucciones": "Tacto vaginal al ingreso para inducción. Altura de la presentación en planos (−3 a +2).",
+  "limitaciones": "No se interpreta aislado: paridad, edad gestacional, IMC, edad materna y peso fetal estimado también influyen en el éxito de la inducción."
 }

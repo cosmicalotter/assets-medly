@@ -1,10 +1,10 @@
 {
-  "titulo": "Tasa de Filtración Glomerular (CKD-EPI 2021)",
-  "descripcion": "Estima la TFG basándose en creatinina sérica, edad y sexo, omitiendo la raza según las guías clínicas actuales (Inker et al., NEJM 2021).",
+  "titulo": "Filtrado glomerular (CKD-EPI 2021)",
+  "descripcion": "Estima el filtrado glomerular de adultos a partir de la creatinina sérica, la edad y el sexo con la ecuación CKD-EPI de 2021, que no usa la raza. Se desarrolló con 8254 participantes y se validó frente al filtrado medido en 4050, y clasifica la función renal en las categorías G1 a G5 de KDIGO.",
   "tipoCalculo": "formula",
   "formula": "142 * ((0.5 * (scr/kappa + 1 - abs(scr/kappa - 1)))^alpha) * ((0.5 * (scr/kappa + 1 + abs(scr/kappa - 1)))^(-1.200)) * (0.9938^edad) * factorSexo",
   "prefijoResultado": "TFG",
-  "sufijoResultado": "ml/min/1.73 m²",
+  "sufijoResultado": "mL/min/1,73 m²",
   "secciones": [
     {
       "nombre": "Datos del paciente",
@@ -13,38 +13,113 @@
           "id": "edad",
           "tipo": "input_numero",
           "label": "Edad",
-          "unidad": "Años"
+          "unidad": "años",
+          "min": 18,
+          "max": 120
         },
         {
           "id": "sexo",
           "tipo": "opciones",
           "label": "Sexo",
           "opciones": [
-            { "label": "Femenino", "valoresVariables": { "kappa": 0.7, "alpha": -0.241, "factorSexo": 1.012 } },
-            { "label": "Masculino", "valoresVariables": { "kappa": 0.9, "alpha": -0.302, "factorSexo": 1 } }
+            {
+              "label": "Femenino",
+              "valoresVariables": {
+                "kappa": 0.7,
+                "alpha": -0.241,
+                "factorSexo": 1.012
+              }
+            },
+            {
+              "label": "Masculino",
+              "valoresVariables": {
+                "kappa": 0.9,
+                "alpha": -0.302,
+                "factorSexo": 1
+              }
+            }
           ]
         },
         {
           "id": "scr",
           "tipo": "input_numero",
-          "label": "Creatinina Sérica",
-          "unidad": "mg/dL"
+          "label": "Creatinina sérica",
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ]
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 90, "max": 999, "categoria": "G1: Normal o alta", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 60, "max": 89.99, "categoria": "G2: Ligeramente disminuida", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 45, "max": 59.99, "categoria": "G3a: Ligera a moderadamente disminuida", "color": "naranja", "matchOpcionIndex": 3 },
-    { "min": 30, "max": 44.99, "categoria": "G3b: Moderada a severamente disminuida", "color": "naranja", "matchOpcionIndex": 4 },
-    { "min": 15, "max": 29.99, "categoria": "G4: Severamente disminuida", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 0, "max": 14.99, "categoria": "G5: Falla renal", "color": "rojo", "matchOpcionIndex": 6 }
+    {
+      "min": 90,
+      "max": 999,
+      "categoria": "G1: normal o alto",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Filtrado normal o alto: por sí solo no indica enfermedad renal; valorar la albuminuria."
+    },
+    {
+      "min": 60,
+      "max": 89,
+      "categoria": "G2: descenso leve",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Descenso leve: valorar junto con la albuminuria (categorías A de KDIGO)."
+    },
+    {
+      "min": 45,
+      "max": 59,
+      "categoria": "G3a: descenso leve-moderado",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Descenso leve-moderado: valorar junto con la albuminuria (categorías A de KDIGO)."
+    },
+    {
+      "min": 30,
+      "max": 44,
+      "categoria": "G3b: descenso moderado-grave",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Descenso moderado-grave: valorar junto con la albuminuria (categorías A de KDIGO)."
+    },
+    {
+      "min": 15,
+      "max": 29,
+      "categoria": "G4: descenso grave",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Descenso grave: valorar junto con la albuminuria (categorías A de KDIGO)."
+    },
+    {
+      "min": 0,
+      "max": 14,
+      "categoria": "G5: fallo renal",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Fallo renal."
+    }
   ],
   "referencias": [
     {
-      "titulo": "Inker LA, et al. New creatinine- and cystatin C-based equations to estimate GFR without race. N Engl J Med 2021;385:1737-49.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/34554658/"
+      "titulo": "Inker LA, Eneanya ND, Coresh J, et al. New creatinine- and cystatin C-based equations to estimate GFR without race. N Engl J Med 2021;385(19):1737-49.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34554658/",
+      "texto": "For all equations, 85% or more of the eGFRs for Blacks and non-Blacks were within 30% of measured GFR."
+    },
+    {
+      "titulo": "Uriarte-Ayestarán MI, Gutiérrez-Misis A, Castell-Alcalá MV, et al. Implementation of KDIGO CKD screening and its prognostic implications in community-dwelling adults aged 75 years or older. J Clin Med 2026;15(16):6151.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42652556/",
+      "texto": "eGFR was categorized as G1 (≥90 mL/min/1.73 m2), G2 (60–89 mL/min/1.73 m2), G3a (45–59 mL/min/1.73 m2), G3b (30–44 mL/min/1.73 m2), G4 (15–29 mL/min/1.73 m2), and G5 (<15"
     }
-  ]
+  ],
+  "instrucciones": "Creatinina estable (no en lesión renal aguda), medida con método estandarizado. Cambia la unidad si la tienes en µmol/L.",
+  "limitaciones": "Es una estimación: el 85 % o más de los valores cae dentro de ±30 % del filtrado medido. Las categorías G se interpretan junto con la albuminuria (A1-A3).",
+  "decimales": 0
 }

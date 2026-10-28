@@ -1,67 +1,118 @@
 {
-  "titulo": "Aclaramiento de Creatinina (Cockcroft-Gault)",
-  "descripcion": "Estima la tasa de filtración glomerular a partir de la creatinina sérica, edad, peso y sexo, útil para ajuste de dosis de fármacos.",
+  "titulo": "Aclaramiento de creatinina (Cockcroft-Gault)",
+  "descripcion": "Estima el aclaramiento de creatinina en adultos a partir de la creatinina sérica, la edad, el peso y el sexo (15 % menos en mujeres). Se derivó en 249 pacientes de 18 a 92 años y se comparó con el aclaramiento medido en orina de 24 h. Se usa sobre todo para ajustar la dosis de fármacos según su ficha técnica.",
+  "instrucciones": "Creatinina estable, en mg/dL o µmol/L. Peso real en kg. El resultado está en mL/min, sin corregir por superficie corporal.",
+  "limitaciones": "Estima el aclaramiento de creatinina, no el filtrado glomerular (CKD-EPI), que es el que clasifica la enfermedad renal crónica. Necesita creatinina estable.",
+  "referencias": [
+    {
+      "titulo": "Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. Nephron 1976;16(1):31-41.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1244564/",
+      "texto": "A formula has been developed to predict creatinine clearance (Ccr) from serum creatinine (Scr) in adult males: (see article)(15% less in females)."
+    },
+    {
+      "titulo": "Yamazaki K, Kato T, Yamada T, et al. PROSPER: a phase III trial of lecithinized superoxide dismutase to prevent oxaliplatin-induced peripheral neuropathy. ESMO Gastrointest Oncol 2026;13(Pt B):100353.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42583153/",
+      "texto": "Male patients: CCr = {(140 – age) × body weight (kg)} / {72 × serum creatinine (mg/dl)}. Female patients: 0.85 × {(140 – age) × body weight (kg)} / {72 × serum creatinine (mg/dl)}"
+    }
+  ],
   "tipoCalculo": "formula",
   "formula": "(((140 - anios) * peso) / (72 * scr)) * factorSexo",
-  "prefijoResultado": "TFG",
+  "prefijoResultado": "CCr",
   "sufijoResultado": "mL/min",
+  "decimales": 0,
   "secciones": [
     {
-      "nombre": "Datos Demográficos",
       "elementos": [
         {
           "id": "sexo",
           "tipo": "opciones",
           "label": "Sexo",
           "opciones": [
-            { "label": "Femenino", "valoresVariables": { "factorSexo": 0.85 } },
-            { "label": "Masculino", "valoresVariables": { "factorSexo": 1.0 } }
+            {
+              "label": "Femenino",
+              "valoresVariables": {
+                "factorSexo": 0.85
+              }
+            },
+            {
+              "label": "Masculino",
+              "valoresVariables": {
+                "factorSexo": 1.0
+              }
+            }
           ]
         },
         {
           "id": "anios",
           "tipo": "input_numero",
           "label": "Edad",
-          "unidad": "años"
+          "unidad": "años",
+          "min": 18,
+          "max": 120
         },
         {
           "id": "peso",
           "tipo": "input_numero",
           "label": "Peso",
-          "unidad": "kg"
-        }
-      ]
-    },
-    {
-      "nombre": "Laboratorios",
-      "elementos": [
+          "unidad": "kg",
+          "min": 20,
+          "max": 300,
+          "unidades": [
+            {
+              "unidad": "lb",
+              "factor": 0.4536
+            }
+          ]
+        },
         {
           "id": "scr",
           "tipo": "input_numero",
           "label": "Creatinina sérica",
-          "unidad": "mg/dL"
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ]
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 90, "max": 9999, "categoria": "Normal o alto (G1)", "color": "verde", "approach": "Manejo rutinario" },
-    { "min": 60, "max": 89.9, "categoria": "Ligeramente disminuido (G2)", "color": "amarillo", "approach": "Vigilancia clínica" },
-    { "min": 30, "max": 59.9, "categoria": "Moderadamente disminuido (G3)", "color": "naranja", "approach": "Revisar los fármacos que requieren ajuste renal según su guía" },
-    { "min": 0, "max": 29.9, "categoria": "Severamente disminuido (G4-G5)", "color": "rojo", "approach": "Referir a nefrología" }
-  ],
-  "referencias": [
     {
-      "titulo": "Prediction of creatinine clearance from serum creatinine (Cockcroft & Gault, 1976)",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/1244564/"
+      "min": 60,
+      "max": 9999,
+      "categoria": "≥ 60 mL/min",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Usar el valor para ajustar los fármacos según su ficha técnica."
     },
     {
-      "titulo": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+      "min": 30,
+      "max": 59,
+      "categoria": "30-59 mL/min",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Usar el valor para ajustar los fármacos según su ficha técnica."
     },
     {
-      "titulo": "KDOQI US Commentary on the KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD ",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39556063/"
+      "min": 15,
+      "max": 29,
+      "categoria": "15-29 mL/min",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Usar el valor para ajustar los fármacos según su ficha técnica."
+    },
+    {
+      "min": 0,
+      "max": 14,
+      "categoria": "< 15 mL/min",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Usar el valor para ajustar los fármacos según su ficha técnica."
     }
   ]
 }
