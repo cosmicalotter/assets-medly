@@ -190,8 +190,10 @@ pide urea en mmol/L), BUN mg/dL = urea mg/dL × 0,467.
 
 - **Cubren todo**: cada total posible (o valor de la fórmula) cae en
   exactamente un resultado; sin huecos ni solapes. Límites copiados de la
-  fuente; decimales contiguos (`60-89.99` y `90-999`, o con `decimales: 0`,
-  `60-89` y `90-999`).
+  fuente; decimales contiguos (`60-89.99` y `90-999`) **aunque** la escala
+  lleve `decimales: 0`: las versiones antiguas de la app no redondean y un
+  14,67 entre `0-14` y `15-29` se quedaría sin resultado (el validador lo
+  marca como error).
 - **`categoria`**: ≤ 6 palabras, en minúscula salvo nombres propios: «Crup
   moderado», «Riesgo alto», «Clase III», «G3a: descenso moderado».
 - **`color`**: verde, amarillo, naranja, rojo según la gravedad.

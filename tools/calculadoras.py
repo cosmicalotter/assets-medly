@@ -585,6 +585,9 @@ def recorrer_formulario(d: dict, els: list[dict], formula: str | None, reglas: b
     decimales = int(d["decimales"]) if numero(d.get("decimales")) else 2
     resultados = d.get("resultados") or []
     sin, distintos, alcanzados = [], [], set()
+    # Las versiones antiguas de la app no redondean a «decimales» (sólo a 2):
+    # con tramos enteros (0-14 y 15-29), 14,67 se queda sin resultado.
+    sin_antigua, continua = [], False
     ids_campo = {e["id"] for e in campos}
     for combo in combinaciones:
         eleccion = {k: v for k, v in combo if k not in ids_campo}
@@ -598,9 +601,12 @@ def recorrer_formulario(d: dict, els: list[dict], formula: str | None, reglas: b
             else:
                 x = evaluar(formula, v)
             if x is not None:
+                continua = continua or abs(x - round(x)) > 1e-9
                 por_formula = resultado_por_rango(d, redondear(x, decimales))
                 if por_formula is None:
                     sin.append((describir(els, eleccion, numeros), fmt(round(x, 3))))
+                elif decimales < 2 and resultado_por_rango(d, redondear(x, 2)) is None:
+                    sin_antigua.append((describir(els, eleccion, numeros), fmt(round(x, 2))))
         if reglas:
             por_reglas = next((i for i, res in enumerate(resultados) if "si" not in res or r.cumple(res["si"])), None)
             alcanzados.add(por_reglas)
@@ -615,6 +621,16 @@ def recorrer_formulario(d: dict, els: list[dict], formula: str | None, reglas: b
         caso, valor = sin[0]
         texto = f"{len(sin)} combinación(es) sin resultado, p. ej. {caso} → {valor}"
         (inf.avisos if hay_campos and not reglas else inf.errores).append(texto)
+    if not sin_antigua and continua and decimales < 2 and not reglas:
+        tramos = sorted((r["min"], r["max"]) for r in resultados if numero(r.get("min")) and numero(r.get("max")))
+        for (_, hasta), (desde, _) in zip(tramos, tramos[1:]):
+            if desde - hasta > 0.01 + 1e-9:
+                sin_antigua.append((f"un valor entre {fmt(hasta)} y {fmt(desde)}", fmt(round((hasta + desde) / 2, 2))))
+    if sin_antigua:
+        caso, valor = sin_antigua[0]
+        inf.errores.append(
+            f"en las versiones antiguas de la app (no redondean a «decimales») {len(sin_antigua)} combinación(es) "
+            f"quedan sin resultado, p. ej. {caso} → {valor}: usa límites contiguos con decimales (14.99 y 15)")
     if distintos:
         caso, f_, r_ = distintos[0]
         inf.errores.append(f"la fórmula y las reglas no coinciden en {len(distintos)} caso(s), p. ej. {caso}: fórmula «{f_}», reglas «{r_}»")
