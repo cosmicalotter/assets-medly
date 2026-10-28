@@ -1,76 +1,154 @@
 {
-  "titulo": "Criterios de Wells para TVP",
-  "descripcion": "Evalúa la probabilidad clínica pretest de trombosis venosa profunda (TVP) en pacientes ambulatorios para guiar el diagnóstico (Dímero-D vs Doppler).",
+  "titulo": "Wells para TVP (2 niveles)",
+  "descripcion": "Estima la probabilidad clínica de trombosis venosa profunda de miembros inferiores con diez datos clínicos y la divide en TVP probable o improbable. Es la versión de Wells 2003, validada junto al dímero D y adoptada por NICE: decide entre ecografía de entrada o dímero D primero.",
+  "instrucciones": "Explora ambas piernas. «Diagnóstico alternativo al menos tan probable» resta 2 puntos. Pantorrilla: mide 10 cm bajo la tuberosidad tibial.",
+  "limitaciones": "Validada en pacientes ambulatorios; no en embarazadas ni en TVP de miembro superior. Un dímero D negativo sólo descarta la TVP con Wells improbable.",
   "referencias": [
     {
-      "titulo": "Value of assessment of pretest probability of DVT",
+      "titulo": "Wells PS, Anderson DR, Rodger M, et al. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. N Engl J Med 2003;349(13):1227-35.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14507948/",
+      "texto": "Deep-vein thrombosis can be ruled out in a patient who is judged clinically unlikely to have deep-vein thrombosis and who has a negative D-dimer test."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158). 2020, actualizada 2023.",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/Recommendations",
+      "paginas": "Tabla 1 y recomendaciones 1.1.3-1.1.11",
+      "texto": "Offer people with a likely DVT Wells score (2 points or more): a proximal leg vein ultrasound scan, with the result available within 4 hours if possible"
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158). 2020, actualizada 2023. TVP improbable.",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/Recommendations",
+      "paginas": "1.1.8",
+      "texto": "Offer people with an unlikely DVT Wells score (1 point or less): a D-dimer test with the result available within 4 hours"
+    },
+    {
+      "titulo": "Wells PS, Anderson DR, Bormanis J, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. Lancet 1997;350(9094):1795-8.",
       "url": "https://pubmed.ncbi.nlm.nih.gov/9428249/"
     }
   ],
   "columnas": [
-    {"puntos": -2, "titulo": "-2", "color": "verde"},
-    {"puntos": 0, "titulo": "0", "color": "verde"},
-    {"puntos": 1, "titulo": "1", "color": "amarillo"}
+    {
+      "puntos": -2,
+      "titulo": "−2",
+      "color": "verde"
+    },
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "naranja"
+    }
   ],
   "filas": [
     {
       "nombre": "Cáncer activo",
-      "descripciones": ["-", "No", "Sí"]
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "En tratamiento, en los últimos 6 meses o paliativo."
     },
     {
-      "nombre": "Inmovilización MMII",
-      "descripciones": ["-", "No", "Sí"]
+      "nombre": "Parálisis o yeso en pierna",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Parálisis, paresia o inmovilización reciente con yeso del miembro inferior."
     },
     {
-      "nombre": "Postración o cirugía",
-      "descripciones": ["-", "No", "Sí"]
+      "nombre": "Encamado o cirugía mayor",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Encamado ≥ 3 días o cirugía mayor con anestesia general o regional en las últimas 12 semanas."
     },
     {
-      "nombre": "Dolor trayecto venoso",
-      "descripciones": ["-", "No", "Sí"]
+      "nombre": "Dolor en trayecto venoso",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Dolor localizado en el trayecto del sistema venoso profundo."
     },
     {
-      "nombre": "Edema toda pierna",
-      "descripciones": ["-", "No", "Sí"]
+      "nombre": "Toda la pierna hinchada",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ]
     },
     {
-      "nombre": "Pantorrilla >3 cm",
-      "descripciones": ["-", "No", "Sí"]
+      "nombre": "Pantorrilla ≥ 3 cm mayor",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Que la pierna asintomática."
     },
     {
       "nombre": "Edema con fóvea",
-      "descripciones": ["-", "No", "Sí"]
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Limitado a la pierna sintomática."
     },
     {
       "nombre": "Venas colaterales",
-      "descripciones": ["-", "No", "Sí"]
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Venas superficiales colaterales no varicosas."
     },
     {
-      "nombre": "Dx alternativo probable",
-      "descripciones": ["Sí", "No", "-"]
+      "nombre": "TVP previa documentada",
+      "descripciones": [
+        "-",
+        "No",
+        "Sí"
+      ]
+    },
+    {
+      "nombre": "Otro diagnóstico probable",
+      "descripciones": [
+        "Sí",
+        "No",
+        "-"
+      ],
+      "ayuda": "Un diagnóstico alternativo al menos tan probable como la TVP."
     }
   ],
   "resultados": [
     {
-      "min": -2, "max": 0, 
-      "categoria": "Riesgo Bajo", 
-      "match_opcion_index": -1, 
+      "min": -2,
+      "max": 1,
+      "categoria": "TVP improbable (≤ 1)",
       "color": "verde",
-      "approach": "Pedir Dímero-D. Si es negativo, descarta TVP."
+      "match_opcion_index": -1,
+      "approach": "Dímero D (en < 4 h; si no, anticoagulación provisional). Negativo: TVP descartada. Positivo: ecografía venosa proximal."
     },
     {
-      "min": 1, "max": 2, 
-      "categoria": "Riesgo Moderado", 
-      "match_opcion_index": -1, 
-      "color": "amarillo",
-      "approach": "Dímero-D (Alta sensibilidad) o Eco Doppler."
-    },
-    {
-      "min": 3, "max": 8, 
-      "categoria": "Riesgo Alto", 
-      "match_opcion_index": -1, 
+      "min": 2,
+      "max": 9,
+      "categoria": "TVP probable (≥ 2)",
       "color": "rojo",
-      "approach": "Realizar Ecografía Doppler venosa directo."
+      "match_opcion_index": -1,
+      "approach": "Ecografía venosa proximal en < 4 h (si no, dímero D y anticoagulación provisional). Ecografía negativa con dímero D positivo: repetir a los 6-8 días."
     }
   ]
 }

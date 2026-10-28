@@ -1,26 +1,37 @@
 {
-  "titulo": "Escala CURB-65",
-  "descripcion": "Herramienta de estratificación de riesgo para evaluar la gravedad de la Neumonía Adquirida en la Comunidad (NAC), estimando la mortalidad a 30 días y guiando la decisión clínica sobre el entorno de tratamiento más adecuado.",
+  "titulo": "CURB-65 (neumonía comunitaria)",
+  "descripcion": "Estima la mortalidad a 30 días de la neumonía adquirida en la comunidad en adultos con cinco datos de la valoración inicial en el hospital: confusión, urea, frecuencia respiratoria, presión arterial y edad. Se derivó en 1068 pacientes de Reino Unido, Nueva Zelanda y Países Bajos, y orienta el lugar de tratamiento.",
+  "instrucciones": "Urea en mmol/L (> 7); con BUN o urea en mg/dL, cambia la unidad. Confusión: test mental abreviado ≤ 8 o desorientación nueva en persona, lugar o tiempo.",
+  "limitaciones": "Se usa junto al juicio clínico: comorbilidad, embarazo, hipoxemia o fragilidad pueden obligar a ingresar con puntuación baja. No decide el ingreso en UCI: para eso, criterios IDSA/ATS.",
   "referencias": [
     {
-      "titulo": "Defining community acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax 2003.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/12728155/"
+      "titulo": "Lim WS, van der Eerden MM, Laing R, et al. Defining community acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax 2003;58(5):377-82.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12728155/",
+      "texto": "enabled patients to be stratified according to increasing risk of mortality: score 0, 0.7%; score 1, 3.2%; score 2, 3%; score 3, 17%; score 4, 41.5% and score 5, 57%."
     },
     {
-      "titulo": "Prospective comparison of three validated prediction rules for prognosis in community-acquired pneumonia",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/15808136/"
+      "titulo": "National Institute for Health and Care Excellence. Pneumonia: diagnosis and management (NG250). 2025.",
+      "url": "https://www.nice.org.uk/guidance/ng250/chapter/Recommendations",
+      "paginas": "Recuadro 2 y recomendación 1.2.9",
+      "texto": "0 or 1: low risk (less than 3% mortality risk) 2: intermediate risk (3% to 15% mortality risk) 3 to 5: high risk (more than 15% mortality risk)."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Pneumonia: diagnosis and management (NG250). 2025. Lugar de atención.",
+      "url": "https://www.nice.org.uk/guidance/ng250/chapter/Recommendations",
+      "paginas": "1.2.9",
+      "texto": "Consider: inpatient care for adults with a CURB65 score of 3 or more, with referral to critical care services if appropriate"
     }
   ],
   "columnas": [
     {
       "puntos": 0,
-      "titulo": "0",
+      "titulo": "No",
       "color": "verde"
     },
     {
       "puntos": 1,
-      "titulo": "1",
-      "color": "rojo"
+      "titulo": "Sí",
+      "color": "naranja"
     }
   ],
   "filas": [
@@ -29,69 +40,117 @@
       "descripciones": [
         "No",
         "Sí"
+      ],
+      "ayuda": "Test mental abreviado ≤ 8, o desorientación nueva en persona, lugar o tiempo."
+    },
+    {
+      "nombre": "Urea > 7 mmol/L",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "entrada": {
+        "unidad": "mmol/L",
+        "min": 0,
+        "max": 100,
+        "unidades": [
+          {
+            "unidad": "BUN mg/dL",
+            "factor": 0.357
+          },
+          {
+            "unidad": "urea mg/dL",
+            "factor": 0.1665
+          }
+        ],
+        "tramos": [
+          {
+            "max": 7,
+            "puntos": 0
+          },
+          {
+            "min": 7.01,
+            "puntos": 1
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "FR ≥ 30 rpm",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "entrada": {
+        "unidad": "rpm",
+        "min": 0,
+        "max": 80,
+        "tramos": [
+          {
+            "max": 29.99,
+            "puntos": 0
+          },
+          {
+            "min": 30,
+            "puntos": 1
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "PAS < 90 o PAD ≤ 60 mmHg",
+      "descripciones": [
+        "No",
+        "Sí"
       ]
     },
     {
-      "nombre": "Urea o BUN",
+      "nombre": "Edad ≥ 65 años",
       "descripciones": [
-        "Normal",
-        "Urea >7 mmol/L o BUN >19 mg/dL"
-      ]
-    },
-    {
-      "nombre": "FR",
-      "descripciones": [
-        "< 30 rpm",
-        "≥ 30 rpm"
-      ]
-    },
-    {
-      "nombre": "PAS o PAD",
-      "descripciones": [
-        "Normal",
-        "PAS < 90 o PAD ≤ 60 mmHg"
-      ]
-    },
-    {
-      "nombre": "Edad",
-      "descripciones": [
-        "< 65 años",
-        "≥ 65 años"
-      ]
+        "No",
+        "Sí"
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 18,
+        "max": 120,
+        "tramos": [
+          {
+            "max": 64.99,
+            "puntos": 0
+          },
+          {
+            "min": 65,
+            "puntos": 1
+          }
+        ]
+      }
     }
   ],
   "resultados": [
     {
       "min": 0,
       "max": 1,
-      "categoria": "Riesgo Bajo",
-      "match_opcion_index": -1,
+      "categoria": "Riesgo bajo",
       "color": "verde",
-      "approach": "Manejo ambulatorio recomendado"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad < 3 %. Alta con seguimiento en atención primaria e indicaciones de alarma."
     },
     {
       "min": 2,
       "max": 2,
-      "categoria": "Riesgo Intermedio",
-      "match_opcion_index": -1,
+      "categoria": "Riesgo intermedio",
       "color": "amarillo",
-      "approach": "Considerar ingreso hospitalario"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad 3-15 %. Hospital de día, hospitalización a domicilio o ingreso, según la clínica y la preferencia del paciente."
     },
     {
       "min": 3,
-      "max": 3,
-      "categoria": "Riesgo Alto",
-      "match_opcion_index": -1,
-      "color": "naranja",
-      "approach": "Ingreso hospitalario urgente por neumonía severa"
-    },
-    {
-      "min": 4,
       "max": 5,
-      "categoria": "Riesgo Muy Alto",
-      "match_opcion_index": -1,
+      "categoria": "Riesgo alto",
       "color": "rojo",
-      "approach": "Ingreso a UCI recomendado"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad > 15 %. Ingreso hospitalario; valorar cuidados críticos."
     }
   ]
 }

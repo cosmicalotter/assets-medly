@@ -1,12 +1,11 @@
 {
-  "titulo": "Score de Centor Modificado (McIsaac)",
-  "descripcion": "Estima la probabilidad de faringitis por estreptococo del grupo A (EGA) para guiar el uso de pruebas y antibióticos.",
+  "titulo": "Centor modificada por McIsaac (faringitis)",
+  "descripcion": "Estima la probabilidad de faringoamigdalitis por estreptococo del grupo A con cuatro signos de Centor (fiebre, ausencia de tos, adenopatía cervical anterior dolorosa, exudado o hipertrofia amigdalar) más un ajuste por edad de McIsaac, válido desde los 3 años. Decide quién no necesita antibiótico ni pruebas y a quién hacer prueba rápida o cultivo.",
   "tipoCalculo": "formula",
   "formula": "anios_puntos + fiebre + sinTos + adenopatia + xudado",
-  "prefijoResultado": "Puntos",
+  "prefijoResultado": "McIsaac",
   "secciones": [
     {
-      "nombre": "Criterios Clínicos",
       "elementos": [
         {
           "id": "anios",
@@ -14,45 +13,84 @@
           "label": "Edad",
           "unidad": "años",
           "intervalos": [
-            { "max": 14.99, "puntos": 1 },
-            { "min": 15, "max": 44.99, "puntos": 0 },
-            { "min": 45, "puntos": -1 }
-          ]
+            {
+              "max": 14.99,
+              "puntos": 1
+            },
+            {
+              "min": 15,
+              "max": 44.99,
+              "puntos": 0
+            },
+            {
+              "min": 45,
+              "puntos": -1
+            }
+          ],
+          "min": 3,
+          "max": 120,
+          "ayuda": "+1 de 3 a 14 años; 0 de 15 a 44; −1 desde 45."
         },
         {
           "id": "fiebre",
           "tipo": "opciones",
-          "label": "Temperatura > 38°C",
+          "label": "Fiebre > 38 °C",
           "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Por historia o medida."
         },
         {
           "id": "sinTos",
           "tipo": "opciones",
           "label": "Ausencia de tos",
           "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
         },
         {
           "id": "adenopatia",
           "tipo": "opciones",
-          "label": "Adenopatía cervical",
+          "label": "Adenopatía cervical anterior",
           "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Dolorosa o aumentada de tamaño."
         },
         {
           "id": "xudado",
           "tipo": "opciones",
-          "label": "Exudado/Hipertrofia amigdalar",
+          "label": "Exudado o hipertrofia amigdalar",
           "opciones": [
-            { "label": "No", "puntos": 0 },
-            { "label": "Sí", "puntos": 1 }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
         }
       ]
@@ -61,52 +99,46 @@
   "resultados": [
     {
       "min": -1,
-      "max": 0,
-      "categoria": "Riesgo muy bajo (1-2.5%)",
-      "color": "verde",
-      "approach": "No requiere test rápido ni antibiótico."
-    },
-    {
-      "min": 1,
-      "max": 1,
-      "categoria": "Riesgo bajo (5-10%)",
-      "color": "verde",
-      "approach": "No requiere test rápido ni antibiótico."
-    },
-    {
-      "min": 2,
       "max": 2,
-      "categoria": "Riesgo moderado (11-17%)",
-      "color": "amarillo",
-      "approach": "Realizar test/cultivo. Antibiótico solo si es positivo."
+      "categoria": "Probabilidad baja de estreptococo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Sin antibiótico ni pruebas microbiológicas de rutina: tratamiento sintomático. Consultar si empeora o no mejora en 1 semana."
     },
     {
       "min": 3,
-      "max": 3,
-      "categoria": "Riesgo alto (28-35%)",
-      "color": "naranja",
-      "approach": "Realizar test/cultivo. Antibiótico solo si es positivo."
-    },
-    {
-      "min": 4,
       "max": 5,
-      "categoria": "Riesgo muy alto (51-53%)",
-      "color": "rojo",
-      "approach": "Considerar antibiótico empírico y/o cultivo."
+      "categoria": "Probabilidad alta de estreptococo",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Prueba rápida de antígeno o cultivo. Si no hay prueba disponible, se acepta iniciar antibiótico: penicilina V de primera elección, 5-10 días."
     }
   ],
   "referencias": [
     {
-      "titulo": "McIsaac WJ, et al. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998;158:75-83.",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1228750/"
+      "titulo": "Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making 1981;1(3):239-46.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6763125/",
+      "texto": "Patients with all 4 variables had a 56% probability of a positive culture; 3 variables, 32%; 2 variables, 15%; 1 variable, 6.5%; and 0 variables, 2.5%."
     },
     {
-      "titulo": "McIsaac WJ, et al. Empirical Validation of Guidelines for the Management of Pharyngitis in Children and Adults. JAMA. 2004;291:1587-1595.",
-      "url": "https://jamanetwork.com/journals/jama/fullarticle/198485"
+      "titulo": "McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ 1998;158(1):75-83.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9475915/",
+      "texto": "An age-appropriate sore throat score identified GAS infection in children and adults with sore throat better than usual care by family physicians"
     },
     {
-      "titulo": "Centor RM, et al. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1:239-246.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/6763125/"
+      "titulo": "National Institute for Health and Care Excellence. Sore throat (acute): antimicrobial prescribing (NG84). 2018, actualizada.",
+      "url": "https://www.nice.org.uk/guidance/ng84/chapter/Recommendations",
+      "paginas": "1.1.6 y 1.1.10",
+      "texto": "People who are unlikely to benefit from an antibiotic (FeverPAIN score of 0 or 1, or Centor score of 0, 1 or 2): Do not offer an antibiotic prescription."
+    },
+    {
+      "titulo": "Asociación Colombiana de Otorrinolaringología (ACORL). Guía para el diagnóstico y tratamiento de la faringoamigdalitis aguda. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4).",
+      "url": "https://doi.org/10.37076/acorl.v52i4.8124",
+      "paginas": "543",
+      "texto": "debido a la falta de disponibilidad de las PRDA en nuestro medio y las dificultades en su acceso, se acepta el inicio de terapia antibiótica en paciente con puntaje de Centor o McIsaac por encima de 3 puntos"
     }
-  ]
+  ],
+  "instrucciones": "Edad: +1 de 3 a 14 años, 0 de 15 a 44 y −1 desde 45. Fiebre por historia o medida (> 38 °C). Adenopatía cervical anterior, dolorosa o aumentada.",
+  "limitaciones": "En menores de 3 años la faringitis es casi siempre viral y la escala no se aplica. No identifica complicaciones (absceso periamigdalino, sepsis), que se derivan.",
+  "sufijoResultado": "puntos"
 }

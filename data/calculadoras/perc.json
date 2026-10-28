@@ -1,83 +1,172 @@
 {
-  "titulo": "Criterios PERC",
-  "descripcion": "Regla de decisión clínica para descartar embolia pulmonar (TEP) en pacientes con sospecha clínica baja (probabilidad pretest <15%), evitando pruebas adicionales como el Dímero-D o imágenes.",
+  "titulo": "Criterios PERC (descartar TEP)",
+  "descripcion": "Regla para descartar el tromboembolismo pulmonar sin pedir dímero D en pacientes de urgencias con probabilidad clínica baja. Si no hay ninguno de sus ocho criterios, la probabilidad de TEP baja de 2 %, por debajo del umbral del dímero D. Validada en 8138 pacientes de 13 servicios de urgencias.",
+  "instrucciones": "Sólo si la sospecha de TEP es baja por la impresión clínica y hay otros diagnósticos posibles. Cada criterio cumplido hace la regla positiva.",
+  "limitaciones": "No aplica con sospecha intermedia o alta: ahí se usa Wells. Baja especificidad: un PERC positivo no indica TEP, sólo que no se puede descartar así. No validado en COVID-19.",
   "referencias": [
     {
-      "titulo": "Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost 2004.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/15304025/"
+      "titulo": "Kline JA, Mitchell AM, Kabrhel C, Richman PB, Courtney DM. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost 2004;2(8):1247-55.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15304025/",
+      "texto": "Eight variables were included in a block rule: Age < 50 years, pulse < 100 bpm, SaO2 > 94%, no unilateral leg swelling, no hemoptysis, no recent trauma or surgery, no prior PE or DVT, no hormone use."
     },
     {
-      "titulo": "Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost 2004.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18318689/"
+      "titulo": "Kline JA, Courtney DM, Kabrhel C, et al. Prospective multicenter evaluation of the pulmonary embolism rule-out criteria. J Thromb Haemost 2008;6(5):772-80.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18318689/",
+      "texto": "The combination of gestalt estimate of low suspicion for PE and PERC(-) reduces the probability of VTE to below 2% in about 20% of outpatients with suspected PE."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158). 2020, actualizada 2023.",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/Recommendations",
+      "paginas": "1.1.16",
+      "texto": "If clinical suspicion of PE is low based on the overall clinical impression … and other diagnoses are feasible, consider using the pulmonary embolism rule-out criteria (PERC)"
     }
   ],
-  "columnas": [
+  "tipoCalculo": "formula",
+  "formula": "anios_puntos + fc_puntos + sat_puntos + hemoptisis + hormonas + cirugia + tev + hinchazon",
+  "prefijoResultado": "Criterios presentes",
+  "secciones": [
     {
-      "puntos": 0,
-      "titulo": "0",
-      "color": "verde"
-    },
-    {
-      "puntos": 1,
-      "titulo": "1",
-      "color": "rojo"
-    }
-  ],
-  "filas": [
-    {
-      "nombre": "Edad",
-      "descripciones": [
-        "< 50 años",
-        "≥ 50 años"
+      "nombre": "Constantes",
+      "elementos": [
+        {
+          "id": "anios",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "años",
+          "min": 14,
+          "max": 120,
+          "ayuda": "Cuenta si es ≥ 50 años.",
+          "intervalos": [
+            {
+              "max": 49.99,
+              "puntos": 0
+            },
+            {
+              "min": 50,
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "fc",
+          "tipo": "input_numero",
+          "label": "Frecuencia cardiaca",
+          "unidad": "lpm",
+          "min": 0,
+          "max": 300,
+          "ayuda": "Cuenta si es ≥ 100 lpm.",
+          "intervalos": [
+            {
+              "max": 99.99,
+              "puntos": 0
+            },
+            {
+              "min": 100,
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "sat",
+          "tipo": "input_numero",
+          "label": "SatO₂ (aire ambiente)",
+          "unidad": "%",
+          "min": 50,
+          "max": 100,
+          "ayuda": "Cuenta si es < 95 %.",
+          "intervalos": [
+            {
+              "max": 94.99,
+              "puntos": 1
+            },
+            {
+              "min": 95,
+              "puntos": 0
+            }
+          ]
+        }
       ]
     },
     {
-      "nombre": "FC",
-      "descripciones": [
-        "< 100 lpm",
-        "≥ 100 lpm"
-      ]
-    },
-    {
-      "nombre": "SatO2",
-      "descripciones": [
-        "≥ 95%",
-        "< 95%"
-      ]
-    },
-    {
-      "nombre": "Hemoptisis",
-      "descripciones": [
-        "No",
-        "Sí"
-      ]
-    },
-    {
-      "nombre": "Estrógenos",
-      "descripciones": [
-        "No",
-        "Sí"
-      ]
-    },
-    {
-      "nombre": "TVP/TEP previo",
-      "descripciones": [
-        "No",
-        "Sí"
-      ]
-    },
-    {
-      "nombre": "Cirugía/Trauma <4sem",
-      "descripciones": [
-        "No",
-        "Sí"
-      ]
-    },
-    {
-      "nombre": "Edema unilateral",
-      "descripciones": [
-        "No",
-        "Sí"
+      "nombre": "Historia y exploración",
+      "elementos": [
+        {
+          "id": "hemoptisis",
+          "tipo": "opciones",
+          "label": "Hemoptisis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "hormonas",
+          "tipo": "opciones",
+          "label": "Uso de estrógenos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Anticonceptivos hormonales o terapia hormonal."
+        },
+        {
+          "id": "cirugia",
+          "tipo": "opciones",
+          "label": "Cirugía o trauma reciente",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Que requirió hospitalización en las últimas 4 semanas."
+        },
+        {
+          "id": "tev",
+          "tipo": "opciones",
+          "label": "TVP o TEP previos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "hinchazon",
+          "tipo": "opciones",
+          "label": "Edema unilateral de pierna",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
       ]
     }
   ],
@@ -85,18 +174,18 @@
     {
       "min": 0,
       "max": 0,
-      "categoria": "PERC Negativo",
-      "match_opcion_index": -1,
+      "categoria": "PERC negativo",
       "color": "verde",
-      "approach": "Descartar TEP clínicamente; no solicitar Dímero-D."
+      "match_opcion_index": -1,
+      "approach": "Con sospecha baja, TEP o muerte < 2 %: no hace falta dímero D ni imagen por TEP. Buscar otro diagnóstico."
     },
     {
       "min": 1,
       "max": 8,
-      "categoria": "PERC Positivo",
+      "categoria": "PERC positivo",
+      "color": "naranja",
       "match_opcion_index": -1,
-      "color": "rojo",
-      "approach": "Continuar estudio diagnóstico (solicitar Dímero-D o Angio-TAC)."
+      "approach": "PERC no descarta el TEP: estimar la probabilidad con Wells y seguir con dímero D o angio-TC."
     }
   ]
 }

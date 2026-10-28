@@ -1,18 +1,39 @@
 {
-  "titulo": "Criterios IDSA/ATS para NAC Severa",
-  "descripcion": "Evalúa la gravedad de la Neumonía Adquirida en la Comunidad (NAC) para definir la necesidad de ingreso a la Unidad de Cuidados Intensivos (UCI).",
+  "titulo": "Criterios IDSA/ATS de NAC grave",
+  "descripcion": "Definen la neumonía adquirida en la comunidad grave con dos criterios mayores (shock con vasopresores, ventilación mecánica) y nueve menores. Se publicaron en 2007 y la guía ATS/IDSA 2019 los mantiene para decidir el nivel de cuidados (UCI, intermedios) y el tratamiento empírico de la NAC grave.",
+  "instrucciones": "Grave con 1 criterio mayor o 3 o más menores. Leucopenia sólo si es por la infección (no por quimioterapia). El resultado sale en cuanto queda decidido.",
+  "limitaciones": "Los criterios menores se usan junto al juicio clínico para el nivel de cuidados; no sustituyen la valoración de la gravedad global. No aplican a neumonía nosocomial ni a inmunodeprimidos graves.",
+  "referencias": [
+    {
+      "titulo": "Metlay JP, Waterer GW, Long AC, et al. Diagnosis and treatment of adults with community-acquired pneumonia. An official clinical practice guideline of the ATS and IDSA. Am J Respir Crit Care Med 2019;200(7):e45-67.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/",
+      "paginas": "Tabla 1",
+      "texto": "Validated definition includes either one major criterion or three or more minor criteria"
+    },
+    {
+      "titulo": "Metlay JP, Waterer GW, Long AC, et al. Diagnosis and treatment of adults with community-acquired pneumonia. An official clinical practice guideline of the ATS and IDSA. Am J Respir Crit Care Med 2019;200(7):e45-67. Pregunta 7.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/",
+      "paginas": "Recomendación 7",
+      "texto": "We recommend direct admission to an ICU for patients with hypotension requiring vasopressors or respiratory failure requiring mechanical ventilation"
+    },
+    {
+      "titulo": "Metlay JP, Waterer GW, Long AC, et al. Diagnosis and treatment of adults with community-acquired pneumonia. An official clinical practice guideline of the ATS and IDSA. Am J Respir Crit Care Med 2019;200(7):e45-67. Tratamiento de la NAC grave.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/",
+      "paginas": "Recomendaciones 2 y 10",
+      "texto": "In inpatient adults with severe CAP without risk factors for MRSA or P. aeruginosa, we recommend: a β-lactam plus a macrolide (strong recommendation, moderate quality of evidence)"
+    }
+  ],
   "tipoCalculo": "formula",
-  "prefijoResultado": "Puntaje:",
-  "sufijoResultado": "puntos",
-  "formula": "shock + vm + fr + pafi + rx + neuro + bun + leuco + plaq + temp + pa",
+  "formula": "10 * shock + 10 * vm + fr + pafi + rx + neuro + bun + leuco + plaq + temp + pa",
+  "mostrarPuntaje": false,
   "secciones": [
     {
-      "nombre": "Criterios Mayores",
+      "nombre": "Criterios mayores",
       "elementos": [
         {
           "id": "shock",
           "tipo": "opciones",
-          "label": "Shock séptico",
+          "label": "Shock séptico con vasopresores",
           "opciones": [
             {
               "label": "No",
@@ -20,7 +41,7 @@
             },
             {
               "label": "Sí",
-              "puntos": 10
+              "puntos": 1
             }
           ]
         },
@@ -35,19 +56,20 @@
             },
             {
               "label": "Sí",
-              "puntos": 10
+              "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Insuficiencia respiratoria que la requiere."
         }
       ]
     },
     {
-      "nombre": "Criterios Menores",
+      "nombre": "Criterios menores (≥ 3)",
       "elementos": [
         {
           "id": "fr",
           "tipo": "opciones",
-          "label": "FR ≥30 rpm",
+          "label": "FR ≥ 30 rpm",
           "opciones": [
             {
               "label": "No",
@@ -62,7 +84,7 @@
         {
           "id": "pafi",
           "tipo": "opciones",
-          "label": "PaO2/FiO2 ≤250",
+          "label": "PaO₂/FiO₂ ≤ 250",
           "opciones": [
             {
               "label": "No",
@@ -92,7 +114,7 @@
         {
           "id": "neuro",
           "tipo": "opciones",
-          "label": "Confusión/Desorientación",
+          "label": "Confusión o desorientación",
           "opciones": [
             {
               "label": "No",
@@ -107,7 +129,7 @@
         {
           "id": "bun",
           "tipo": "opciones",
-          "label": "BUN ≥20 mg/dL",
+          "label": "BUN ≥ 20 mg/dL",
           "opciones": [
             {
               "label": "No",
@@ -117,12 +139,13 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Urea ≥ 7,1 mmol/L."
         },
         {
           "id": "leuco",
           "tipo": "opciones",
-          "label": "Leucopenia <4000",
+          "label": "Leucocitos < 4000/µL",
           "opciones": [
             {
               "label": "No",
@@ -132,12 +155,13 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Por la infección, no por quimioterapia."
         },
         {
           "id": "plaq",
           "tipo": "opciones",
-          "label": "Trombocitopenia <100000",
+          "label": "Plaquetas < 100 000/µL",
           "opciones": [
             {
               "label": "No",
@@ -152,7 +176,7 @@
         {
           "id": "temp",
           "tipo": "opciones",
-          "label": "Hipotermia <36°C",
+          "label": "Temperatura central < 36 °C",
           "opciones": [
             {
               "label": "No",
@@ -167,7 +191,7 @@
         {
           "id": "pa",
           "tipo": "opciones",
-          "label": "Hipotensión con fluidoterapia",
+          "label": "Hipotensión con fluidos intensivos",
           "opciones": [
             {
               "label": "No",
@@ -177,46 +201,62 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Que requiere reposición agresiva de volumen."
         }
       ]
     }
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 2,
-      "categoria": "NAC No Severa",
-      "color": "verde",
-      "approach": "Manejo en sala general"
+      "min": 10,
+      "max": 29,
+      "categoria": "NAC grave: criterio mayor",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "alguno": [
+          {
+            "id": "shock",
+            "igual": 1
+          },
+          {
+            "id": "vm",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Ingreso directo en UCI. Hemocultivos y cultivo de esputo antes del antibiótico; β-lactámico + macrólido (o + quinolona respiratoria)."
     },
     {
       "min": 3,
       "max": 9,
-      "categoria": "NAC Severa (Criterios Menores)",
+      "categoria": "NAC grave: ≥ 3 menores",
       "color": "naranja",
-      "approach": "Considerar ingreso a UCI"
+      "match_opcion_index": -1,
+      "si": {
+        "suma": [
+          "fr",
+          "pafi",
+          "rx",
+          "neuro",
+          "bun",
+          "leuco",
+          "plaq",
+          "temp",
+          "pa"
+        ],
+        "minimo": 3
+      },
+      "approach": "Valorar UCI o cuidados intermedios con el juicio clínico. Hemocultivos y cultivo de esputo; β-lactámico + macrólido (o + quinolona respiratoria)."
     },
     {
-      "min": 10,
-      "max": 29,
-      "categoria": "NAC Severa (Criterio Mayor)",
-      "color": "rojo",
-      "approach": "Ingreso directo a UCI"
-    }
-  ],
-  "referencias": [
-    {
-      "titulo": "Diagnosis and Treatment of Adults with Community-acquired Pneumonia. An Official Clinical Practice Guideline of the ATS and IDSA (2019)",
-      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST"
-    },
-    {
-      "titulo": "Infectious Diseases Society of America/American Thoracic Society Consensus Guidelines on the Management of Community-Acquired Pneumonia in Adults (2007)",
-      "url": "https://academic.oup.com/cid/article/44/Supplement_2/S27/372079"
-    },
-    {
-      "titulo": "Validation and clinical implications of the IDSA/ATS minor criteria for severe community-acquired pneumonia. Thorax (2009)",
-      "url": "https://thorax.bmj.com/content/64/7/598"
+      "min": 0,
+      "max": 2,
+      "categoria": "NAC no grave",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "No cumple criterios de gravedad IDSA/ATS. Lugar de atención según CURB-65 o PSI y el juicio clínico."
     }
   ]
 }

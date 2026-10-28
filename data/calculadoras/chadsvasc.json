@@ -1,18 +1,28 @@
 {
-  "titulo": "Score CHA2DS2-VASc",
-  "descripcion": "El Score CHA2DS2-VASc estima el riesgo de accidente cerebrovascular en pacientes con fibrilación auricular (FA) no valvular para guiar el inicio de anticoagulación.",
+  "titulo": "CHA₂DS₂-VASc (ictus en fibrilación auricular)",
+  "descripcion": "Estima el riesgo de ictus y embolia sistémica en la fibrilación auricular no valvular con factores de riesgo clásicos, de 0 a 9 puntos, y decide a quién anticoagular. Se derivó en el Euro Heart Survey. La guía ESC 2024 usa la versión sin sexo (CHA₂DS₂-VA): el resultado indica ambas lecturas.",
+  "instrucciones": "Marca cada factor presente. Edad: 1 punto de 65 a 74 años y 2 desde 75. Ictus, AIT o embolia previa: 2 puntos. El sexo femenino suma 1 sólo en CHA₂DS₂-VASc.",
+  "limitaciones": "No aplica a la FA con válvula mecánica o estenosis mitral moderada-grave, que se anticoagulan siempre. La decisión depende de los factores de riesgo, no del tipo de FA ni del control del ritmo.",
   "referencias": [
     {
-      "titulo": " Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the euro heart survey on atrial fibrillation ",
+      "titulo": "Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the Euro Heart Survey on atrial fibrillation. Chest 2010;137(2):263-72.",
       "url": "https://pubmed.ncbi.nlm.nih.gov/19762550/"
     },
     {
-      "titulo": "Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22246443/"
+      "titulo": "Rienstra M, Tzeis S, Bunting KV, et al. Spotlight on the 2024 ESC/EACTS management of atrial fibrillation guidelines: 10 novel key aspects. Europace 2024;26(12):euae298.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39716733/",
+      "texto": "Oral anticoagulation using a DOAC, unless the patient has a mechanical valve or moderate–severe mitral stenosis, is advised for patients with AF with clearly elevated thromboembolic risk (CHA2DS2-VA score ≥2)."
     },
     {
-      "titulo": "Validation of CHA₂DS₂-VASc and HAS-BLED scores in Japanese patients with nonvalvular atrial fibrillation: an analysis of the J-RHYTHM Registry.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24759791/"
+      "titulo": "Rienstra M, Tzeis S, Bunting KV, et al. Spotlight on the 2024 ESC/EACTS management of atrial fibrillation guidelines: 10 novel key aspects. Europace 2024;26(12):euae298. Sexo.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39716733/",
+      "texto": "the CHA2DS2-VA score omits consideration of gender, with the rationale that female sex does not contribute to decision making and is a risk modifier only in older patients"
+    },
+    {
+      "titulo": "Caldarola P, De Iaco F, Pugliese FR, et al. ANMCO-SIMEU consensus document: appropriate management of atrial fibrillation in the emergency department. Eur Heart J Suppl 2023;25(Suppl D):D255-77.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37213798/",
+      "paginas": "Tabla 6",
+      "texto": "C Heart failure/Left ventricle dysfunction 1; H Hypertension 1; A2 Age ≥ 75 years 2; D Diabetes 1; S2 Stroke/TIA/TE 2; V Vascular diseases (CAD, PAD, Aortic plaque) 1"
     }
   ],
   "columnas": [
@@ -34,15 +44,16 @@
   ],
   "filas": [
     {
-      "nombre": "ICC / Disfunción VI",
+      "nombre": "Insuficiencia cardiaca",
       "descripciones": [
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "O disfunción del ventrículo izquierdo."
     },
     {
-      "nombre": "Hipertensión (HTA)",
+      "nombre": "Hipertensión",
       "descripciones": [
         "No",
         "Sí",
@@ -52,10 +63,30 @@
     {
       "nombre": "Edad",
       "descripciones": [
-        "< 65",
-        "65 - 74",
-        "≥ 75"
-      ]
+        "< 65 años",
+        "65-74 años",
+        "≥ 75 años"
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 18,
+        "max": 120,
+        "tramos": [
+          {
+            "max": 64.99,
+            "puntos": 0
+          },
+          {
+            "min": 65,
+            "max": 74.99,
+            "puntos": 1
+          },
+          {
+            "min": 75,
+            "puntos": 2
+          }
+        ]
+      }
     },
     {
       "nombre": "Diabetes",
@@ -66,7 +97,7 @@
       ]
     },
     {
-      "nombre": "ACV / AIT previo",
+      "nombre": "Ictus, AIT o embolia previa",
       "descripciones": [
         "No",
         "-",
@@ -74,46 +105,56 @@
       ]
     },
     {
-      "nombre": "Enf. Vascular",
+      "nombre": "Enfermedad vascular",
       "descripciones": [
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "Infarto previo, arteriopatía periférica o placa aórtica."
     },
     {
-      "nombre": "Sexo Femenino",
+      "nombre": "Sexo femenino",
       "descripciones": [
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "Sólo en CHA₂DS₂-VASc; la guía ESC 2024 no lo cuenta."
     }
   ],
   "resultados": [
     {
       "min": 0,
       "max": 0,
-      "categoria": "Riesgo Bajo",
-      "match_opcion_index": -1,
+      "categoria": "0 puntos: riesgo bajo",
       "color": "verde",
-      "approach": "No requiere terapia antitrombótica"
+      "match_opcion_index": -1,
+      "approach": "Sin indicación de anticoagulación por la escala. Reevaluar el riesgo periódicamente."
     },
     {
       "min": 1,
       "max": 1,
-      "categoria": "Riesgo Moderado",
-      "match_opcion_index": -1,
+      "categoria": "1 punto",
       "color": "amarillo",
-      "approach": "Considerar anticoagulación oral o AAS"
+      "match_opcion_index": -1,
+      "approach": "Si el punto es el sexo femenino: riesgo bajo, sin anticoagulación. Si no (CHA₂DS₂-VA 1): considerar anticoagulación oral."
     },
     {
       "min": 2,
-      "max": 9,
-      "categoria": "Riesgo Alto",
+      "max": 2,
+      "categoria": "2 puntos",
+      "color": "naranja",
       "match_opcion_index": -1,
+      "approach": "Si incluye el sexo femenino (CHA₂DS₂-VA 1): considerar anticoagulación. Si no: anticoagulación oral, de preferencia ACOD."
+    },
+    {
+      "min": 3,
+      "max": 9,
+      "categoria": "≥ 3 puntos: riesgo alto",
       "color": "rojo",
-      "approach": "Anticoagulación oral estrictamente recomendada"
+      "match_opcion_index": -1,
+      "approach": "Anticoagulación oral, de preferencia ACOD (CHA₂DS₂-VA ≥ 2), salvo válvula mecánica o estenosis mitral moderada-grave."
     }
   ]
 }

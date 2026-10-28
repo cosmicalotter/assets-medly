@@ -1,73 +1,153 @@
 {
-  "titulo": "Criterios de Wells para TEP",
-  "descripcion": "Evalúa la probabilidad pretest de tromboembolismo pulmonar (TEP) para guiar el uso de Dímero-D o Angio-TAC. ⚠️ NOTA: Solo aplique en pacientes con sospecha clínica real.",
+  "titulo": "Wells para TEP (2 niveles)",
+  "descripcion": "Estima la probabilidad clínica de tromboembolismo pulmonar con siete datos de la historia y la exploración, y la divide en TEP probable o improbable. Derivada por Wells en 2000 y adoptada por NICE, decide entre angio-TC directa o dímero D primero. Con probabilidad baja por impresión clínica, antes puede aplicarse PERC.",
+  "instrucciones": "Aplica tras historia, exploración y radiografía de tórax. «Otro diagnóstico menos probable» es juicio clínico: puntúa 3 si el TEP es el diagnóstico más probable.",
+  "limitaciones": "No se usa en embarazadas ni en pacientes ya anticoagulados, en quienes no se validó. Un dímero D negativo sólo descarta el TEP con Wells improbable.",
   "referencias": [
     {
-      "titulo": "Excluding Pulmonary Embolism at the Bedside",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/11453709/"
+      "titulo": "Wells PS, Anderson DR, Rodger M, et al. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism: increasing the models utility with the SimpliRED D-dimer. Thromb Haemost 2000;83(3):416-20.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10744147/"
     },
     {
-      "titulo": "Prospective Validation of Wells Criteria",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/15520710/"
+      "titulo": "National Institute for Health and Care Excellence. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158). 2020, actualizada 2023.",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/Recommendations",
+      "paginas": "Tabla 2 y recomendaciones 1.1.17-1.1.21",
+      "texto": "Offer people with an unlikely PE Wells score (4 points or less): a D-dimer test with the result available within 4 hours if possible"
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158). 2020, actualizada 2023. TEP probable.",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/Recommendations",
+      "paginas": "1.1.18",
+      "texto": "For people with a likely PE Wells score (more than 4 points): offer a computed tomography pulmonary angiogram (CTPA) immediately if possible"
+    },
+    {
+      "titulo": "Wolf SJ, McCubbin TR, Feldhaus KM, et al. Prospective validation of Wells Criteria in the evaluation of patients with suspected pulmonary embolism. Ann Emerg Med 2004;44(5):503-10.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15520710/",
+      "texto": "When Wells Criteria were dichotomized into pulmonary embolism-unlikely (n=88, 66%) or pulmonary embolism-likely (n=46, 34%), the prevalence was 3% and 28%, respectively."
     }
   ],
   "columnas": [
-    {"puntos": 0, "titulo": "0", "color": "verde"},
-    {"puntos": 1, "titulo": "1", "color": "amarillo"},
-    {"puntos": 1.5, "titulo": "1.5", "color": "naranja"},
-    {"puntos": 3, "titulo": "3", "color": "rojo"}
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 1.5,
+      "titulo": "1,5",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    }
   ],
   "filas": [
     {
-      "nombre": "Clínica de TVP",
-      "descripciones": ["No", "-", "-", "Sí"]
+      "nombre": "Signos clínicos de TVP",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí"
+      ],
+      "ayuda": "Como mínimo, edema de la pierna y dolor a la palpación de las venas profundas."
     },
     {
-      "nombre": "TEP Dx más probable",
-      "descripciones": ["No", "-", "-", "Sí"]
+      "nombre": "Otro diagnóstico menos probable",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí"
+      ],
+      "ayuda": "El TEP es el diagnóstico más probable."
     },
     {
-      "nombre": "FC >100 lpm",
-      "descripciones": ["No", "-", "Sí", "-"]
+      "nombre": "FC > 100 lpm",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 100,
+            "puntos": 0
+          },
+          {
+            "min": 100.01,
+            "puntos": 1.5
+          }
+        ]
+      }
     },
     {
-      "nombre": "Cirugía/Inmovilizado",
-      "descripciones": ["No", "-", "Sí", "-"]
+      "nombre": "Inmovilización o cirugía",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-"
+      ],
+      "ayuda": "Inmovilización más de 3 días o cirugía en las 4 semanas previas."
     },
     {
-      "nombre": "TVP/TEP previo",
-      "descripciones": ["No", "-", "Sí", "-"]
+      "nombre": "TVP o TEP previos",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-"
+      ]
     },
     {
       "nombre": "Hemoptisis",
-      "descripciones": ["No", "Sí", "-", "-"]
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-"
+      ]
     },
     {
-      "nombre": "Cáncer Activo",
-      "descripciones": ["No", "Sí", "-", "-"]
+      "nombre": "Cáncer",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-"
+      ],
+      "ayuda": "En tratamiento, tratado en los últimos 6 meses o paliativo."
     }
   ],
   "resultados": [
     {
-      "min": 0, "max": 1.5, 
-      "categoria": "Riesgo Bajo", 
-      "match_opcion_index": -1, 
+      "min": 0,
+      "max": 4,
+      "categoria": "TEP improbable (≤ 4)",
       "color": "verde",
-      "approach": "Aplicar regla PERC o pedir Dímero-D"
+      "match_opcion_index": -1,
+      "approach": "Dímero D (resultado en < 4 h; si no, anticoagulación provisional). Negativo: TEP descartado, buscar otro diagnóstico. Positivo: angio-TC."
     },
     {
-      "min": 2, "max": 6, 
-      "categoria": "Riesgo Moderado", 
-      "match_opcion_index": -1, 
-      "color": "naranja",
-      "approach": "Solicitar Dímero-D (Alta Sensibilidad)"
-    },
-    {
-      "min": 6.5, "max": 12.5, 
-      "categoria": "Riesgo Alto", 
-      "match_opcion_index": -1, 
+      "min": 4.5,
+      "max": 12.5,
+      "categoria": "TEP probable (> 4)",
       "color": "rojo",
-      "approach": "Realizar Angio-TAC de tórax directamente"
+      "match_opcion_index": -1,
+      "approach": "Angio-TC de inmediato (gammagrafía V/Q si alergia al contraste, insuficiencia renal grave o riesgo por radiación). Anticoagulación provisional si se retrasa."
     }
   ]
 }

@@ -1,140 +1,353 @@
 {
-  "titulo": "Score GRACE (Mortalidad 6 meses)",
-  "descripcion": "Estima la mortalidad a los 6 meses del ingreso en pacientes con Síndrome Coronario Agudo (SCA).",
+  "titulo": "GRACE (síndrome coronario agudo)",
+  "descripcion": "Estima la mortalidad hospitalaria del síndrome coronario agudo con ocho datos del ingreso (edad, FC, PAS, creatinina, Killip, paro, desviación del ST y marcadores elevados), derivados del registro internacional GRACE. Es la escala de riesgo recomendada en el SCA sin elevación del ST y decide la urgencia de la estrategia invasiva.",
+  "instrucciones": "Con los datos del ingreso. Marcadores elevados: troponina o CK-MB por encima del límite. Desviación del ST: elevación o descenso.",
+  "limitaciones": "Es el modelo hospitalario de GRACE (Granger 2003). La decisión invasiva también depende de criterios de muy alto riesgo (inestabilidad, angina refractaria, arritmias), que no puntúan aquí.",
+  "referencias": [
+    {
+      "titulo": "Granger CB, Goldberg RJ, Dabbous O, et al. Predictors of hospital mortality in the global registry of acute coronary events. Arch Intern Med 2003;163(19):2345-53.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14581255/"
+    },
+    {
+      "titulo": "Keremu M, Zhou ZX, Li XL, et al. Small dense LDL cholesterol as a prognostic risk factor in premature acute coronary syndrome with multivessel disease. J Atheroscler Thromb 2026;33(4):470-87.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41371706/",
+      "paginas": "Tabla suplementaria 1 (sistema GRACE)",
+      "texto": "Age <30: 0; 30–39: 8; 40–49: 25 … Killip Class I 0, II 20, III 39, IV 59; Cardiac arrest at admission 39; ST segment deviation 28; Elevated cardiac enzymes 14"
+    },
+    {
+      "titulo": "Nicolau JC, Feitosa Filho GS, Petriz JL, et al. Diretrizes da Sociedade Brasileira de Cardiologia sobre angina instável e infarto agudo do miocárdio sem supradesnível do segmento ST – 2021. Arq Bras Cardiol 2021;117(1):181-264.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34320090/",
+      "paginas": "Figura 1.4 y tabla 1.5",
+      "texto": "Idade em anos – variando de 0 ponto (< 30) a 100 pontos (> 90)."
+    },
+    {
+      "titulo": "Nicolau JC, Feitosa Filho GS, Petriz JL, et al. Diretrizes da Sociedade Brasileira de Cardiologia sobre angina instável e infarto agudo do miocárdio sem supradesnível do segmento ST – 2021. Arq Bras Cardiol 2021;117(1):181-264. Riesgo.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34320090/",
+      "paginas": "Figura 1.4 y tabla 1.5",
+      "texto": "Quando a soma dos pontos for ≤ 108, o paciente é considerado de baixo risco para óbito hospitalar, cuja incidência é ≤ 1%. Quando se situa entre 109 e 140 (risco intermediário) a mortalidade está entre 1% e 3%"
+    },
+    {
+      "titulo": "Gawinski L, Engelseth P, Kozlowski R. Application of modern clinical risk scores in the global assessment of risks related to the diagnosis and treatment of myocardial infarction. Int J Environ Res Public Health 2021;18(17):9103.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34501692/",
+      "texto": "The GRACE score above 140 points qualifies the patient to the group of high-risk patients, which is related to the recommendations for implementing an early routine invasive strategy within 24 h"
+    }
+  ],
   "tipoCalculo": "formula",
   "formula": "anios_puntos + fc_puntos + pas_puntos + creatinina_puntos + pKillip + pArrest + pST + pEnz",
-  "prefijoResultado": "Puntos",
+  "prefijoResultado": "GRACE",
+  "sufijoResultado": "puntos",
   "secciones": [
     {
-      "nombre": "Datos Clínicos",
+      "nombre": "Constantes y laboratorio",
       "elementos": [
         {
           "id": "anios",
           "tipo": "input_numero",
           "label": "Edad",
           "unidad": "años",
+          "min": 18,
+          "max": 120,
           "intervalos": [
-            { "max": 39.99, "puntos": 0 },
-            { "min": 40, "max": 49.99, "puntos": 14 },
-            { "min": 50, "max": 59.99, "puntos": 27 },
-            { "min": 60, "max": 69.99, "puntos": 41 },
-            { "min": 70, "max": 79.99, "puntos": 54 },
-            { "min": 80, "max": 89.99, "puntos": 67 },
-            { "min": 90, "puntos": 81 }
+            {
+              "max": 29.99,
+              "puntos": 0
+            },
+            {
+              "min": 30,
+              "max": 39.99,
+              "puntos": 8
+            },
+            {
+              "min": 40,
+              "max": 49.99,
+              "puntos": 25
+            },
+            {
+              "min": 50,
+              "max": 59.99,
+              "puntos": 41
+            },
+            {
+              "min": 60,
+              "max": 69.99,
+              "puntos": 58
+            },
+            {
+              "min": 70,
+              "max": 79.99,
+              "puntos": 75
+            },
+            {
+              "min": 80,
+              "max": 89.99,
+              "puntos": 91
+            },
+            {
+              "min": 90,
+              "puntos": 100
+            }
           ]
         },
         {
           "id": "fc",
           "tipo": "input_numero",
-          "label": "Frecuencia Cardíaca",
+          "label": "Frecuencia cardiaca",
           "unidad": "lpm",
+          "min": 0,
+          "max": 300,
           "intervalos": [
-            { "max": 49.99, "puntos": 0 },
-            { "min": 50, "max": 69.99, "puntos": 2 },
-            { "min": 70, "max": 89.99, "puntos": 7 },
-            { "min": 90, "max": 109.99, "puntos": 11 },
-            { "min": 110, "max": 149.99, "puntos": 16 },
-            { "min": 150, "max": 199.99, "puntos": 22 },
-            { "min": 200, "puntos": 29 }
+            {
+              "max": 49.99,
+              "puntos": 0
+            },
+            {
+              "min": 50,
+              "max": 69.99,
+              "puntos": 3
+            },
+            {
+              "min": 70,
+              "max": 89.99,
+              "puntos": 9
+            },
+            {
+              "min": 90,
+              "max": 109.99,
+              "puntos": 15
+            },
+            {
+              "min": 110,
+              "max": 149.99,
+              "puntos": 24
+            },
+            {
+              "min": 150,
+              "max": 199.99,
+              "puntos": 38
+            },
+            {
+              "min": 200,
+              "puntos": 46
+            }
           ]
         },
         {
           "id": "pas",
           "tipo": "input_numero",
-          "label": "Presión Sistólica",
+          "label": "PAS",
           "unidad": "mmHg",
+          "min": 0,
+          "max": 300,
           "intervalos": [
-            { "max": 79.99, "puntos": 53 },
-            { "min": 80, "max": 99.99, "puntos": 48 },
-            { "min": 100, "max": 119.99, "puntos": 39 },
-            { "min": 120, "max": 139.99, "puntos": 30 },
-            { "min": 140, "max": 159.99, "puntos": 22 },
-            { "min": 160, "max": 199.99, "puntos": 9 },
-            { "min": 200, "puntos": 0 }
+            {
+              "max": 79.99,
+              "puntos": 58
+            },
+            {
+              "min": 80,
+              "max": 99.99,
+              "puntos": 53
+            },
+            {
+              "min": 100,
+              "max": 119.99,
+              "puntos": 43
+            },
+            {
+              "min": 120,
+              "max": 139.99,
+              "puntos": 34
+            },
+            {
+              "min": 140,
+              "max": 159.99,
+              "puntos": 24
+            },
+            {
+              "min": 160,
+              "max": 199.99,
+              "puntos": 10
+            },
+            {
+              "min": 200,
+              "puntos": 0
+            }
           ]
         },
-        {
-          "id": "killip",
-          "tipo": "opciones",
-          "label": "Clase Killip",
-          "opciones": [
-            { "label": "I", "valoresVariables": { "pKillip": 0 } },
-            { "label": "II", "valoresVariables": { "pKillip": 14 } },
-            { "label": "III", "valoresVariables": { "pKillip": 27 } },
-            { "label": "IV", "valoresVariables": { "pKillip": 40 } }
-          ]
-        },
-        {
-          "id": "paro",
-          "tipo": "opciones",
-          "label": "Paro al ingreso",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "pArrest": 0 } },
-            { "label": "Sí", "valoresVariables": { "pArrest": 30 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Laboratorio y ECG",
-      "elementos": [
         {
           "id": "creatinina",
           "tipo": "input_numero",
           "label": "Creatinina",
           "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ],
           "intervalos": [
-            { "max": 0.39, "puntos": 1 },
-            { "min": 0.40, "max": 0.79, "puntos": 2 },
-            { "min": 0.80, "max": 1.19, "puntos": 4 },
-            { "min": 1.20, "max": 1.59, "puntos": 6 },
-            { "min": 1.60, "max": 1.99, "puntos": 8 },
-            { "min": 2.00, "max": 3.99, "puntos": 13 },
-            { "min": 4.00, "puntos": 18 }
+            {
+              "max": 0.39,
+              "puntos": 1
+            },
+            {
+              "min": 0.4,
+              "max": 0.79,
+              "puntos": 4
+            },
+            {
+              "min": 0.8,
+              "max": 1.19,
+              "puntos": 7
+            },
+            {
+              "min": 1.2,
+              "max": 1.59,
+              "puntos": 10
+            },
+            {
+              "min": 1.6,
+              "max": 1.99,
+              "puntos": 13
+            },
+            {
+              "min": 2,
+              "max": 3.99,
+              "puntos": 21
+            },
+            {
+              "min": 4,
+              "puntos": 28
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Clínica y ECG",
+      "elementos": [
+        {
+          "id": "killip",
+          "tipo": "opciones",
+          "label": "Clase Killip",
+          "opciones": [
+            {
+              "label": "I",
+              "detalle": "Sin signos de insuficiencia cardiaca",
+              "valoresVariables": {
+                "pKillip": 0
+              }
+            },
+            {
+              "label": "II",
+              "detalle": "Crepitantes en bases o tercer ruido",
+              "valoresVariables": {
+                "pKillip": 20
+              }
+            },
+            {
+              "label": "III",
+              "detalle": "Edema agudo de pulmón",
+              "valoresVariables": {
+                "pKillip": 39
+              }
+            },
+            {
+              "label": "IV",
+              "detalle": "Shock cardiogénico",
+              "valoresVariables": {
+                "pKillip": 59
+              }
+            }
+          ]
+        },
+        {
+          "id": "paro",
+          "tipo": "opciones",
+          "label": "Paro cardiaco al ingreso",
+          "opciones": [
+            {
+              "label": "No",
+              "valoresVariables": {
+                "pArrest": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "valoresVariables": {
+                "pArrest": 39
+              }
+            }
           ]
         },
         {
           "id": "st",
           "tipo": "opciones",
-          "label": "Desviación ST",
+          "label": "Desviación del ST",
           "opciones": [
-            { "label": "No", "valoresVariables": { "pST": 0 } },
-            { "label": "Sí", "valoresVariables": { "pST": 20 } }
+            {
+              "label": "No",
+              "valoresVariables": {
+                "pST": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "valoresVariables": {
+                "pST": 28
+              }
+            }
           ]
         },
         {
           "id": "enzimas",
           "tipo": "opciones",
-          "label": "Enzimas elevadas",
+          "label": "Marcadores de daño elevados",
           "opciones": [
-            { "label": "No", "valoresVariables": { "pEnz": 0 } },
-            { "label": "Sí", "valoresVariables": { "pEnz": 11 } }
+            {
+              "label": "No",
+              "valoresVariables": {
+                "pEnz": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "valoresVariables": {
+                "pEnz": 14
+              }
+            }
           ]
         }
       ]
     }
   ],
+  "decimales": 0,
   "resultados": [
-    { "min": 0, "max": 88, "categoria": "Mortalidad <3%", "color": "verde", "approach": "Riesgo Bajo. Manejo conservador inicial." },
-    { "min": 89, "max": 118, "categoria": "Mortalidad 3-8%", "color": "amarillo", "approach": "Riesgo Intermedio. Estrategia invasiva." },
-    { "min": 119, "max": 999, "categoria": "Mortalidad >8%", "color": "rojo", "approach": "Riesgo Alto. Estrategia invasiva urgente." }
-  ],
-  "referencias": [
     {
-      "titulo": "Prediction of risk of death and myocardial infarction in the six months after presentation with acute coronary syndrome: prospective multinational observational study (GRACE)",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17032691/"
+      "min": 0,
+      "max": 108,
+      "categoria": "Riesgo bajo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria ≤ 1 %. Sin criterio GRACE para estrategia invasiva precoz."
     },
     {
-      "titulo": "Should patients with acute coronary disease be stratified for management according to their risk? Derivation, external validation and outcomes using the updated GRACE risk score ",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24561498/"
+      "min": 109,
+      "max": 140,
+      "categoria": "Riesgo intermedio",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria 1-3 %. Estrategia invasiva en < 72 h."
     },
     {
-      "titulo": " Validation of the Global Registry of Acute Coronary Event (GRACE) risk score for in-hospital mortality in patients with acute coronary syndrome in Canada ",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/19699862/"
-    },
-    {
-      "titulo": "Performance of the GRACE Risk Score 2.0 Simplified Algorithm for Predicting 1-Year Death After Hospitalization for an Acute Coronary Syndrome in a Contemporary Multiracial Cohort",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27561191/"
+      "min": 141,
+      "max": 999,
+      "categoria": "Riesgo alto",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria > 3 %. Estrategia invasiva precoz en < 24 h."
     }
   ]
 }

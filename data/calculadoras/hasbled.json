@@ -1,121 +1,141 @@
 {
-  "titulo": "Escala HAS-BLED",
-  "descripcion": "Estima el riesgo de sangrado mayor a 1 año en pacientes con fibrilación auricular bajo tratamiento anticoagulante. Ayuda a identificar factores de riesgo potencialmente reversibles antes de iniciar o durante la terapia.",
+  "titulo": "HAS-BLED (sangrado con anticoagulación)",
+  "descripcion": "Estima el riesgo de sangrado mayor a un año en pacientes con fibrilación auricular, de 0 a 9 puntos. Se derivó en 3978 pacientes del Euro Heart Survey. Su utilidad principal es señalar los factores de riesgo modificables y la frecuencia de seguimiento, no decidir si anticoagular.",
+  "instrucciones": "Marca cada factor presente. Función renal y hepática suman 1 cada una; fármacos y alcohol, también 1 cada uno. La definición de cada factor está en el botón (i).",
+  "limitaciones": "Un HAS-BLED alto no contraindica la anticoagulación: obliga a corregir lo modificable (PA, fármacos, alcohol, INR) y a vigilar más de cerca.",
   "referencias": [
     {
-      "titulo": "A Novel User-Friendly Score (HAS-BLED) To Assess 1-Year Risk of Major Bleeding in Patients With Atrial Fibrillation. CHEST 2010.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20299623/"
+      "titulo": "Pisters R, Lane DA, Nieuwlaat R, et al. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation: the Euro Heart Survey. Chest 2010;138(5):1093-100.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20299623/",
+      "texto": "Hypertension, Abnormal renal/liver function, Stroke, Bleeding history or predisposition, Labile international normalized ratio, Elderly (> 65 years), Drugs/alcohol concomitantly"
     },
     {
-      "titulo": "Comparative validation of a novel risk score for predicting bleeding risk in anticoagulated patients with atrial fibrillation: the HAS-BLED (Hypertension, Abnormal Renal/Liver Function, Stroke, Bleeding History or Predisposition, Labile INR, Elderly, Drugs/Alcohol Concomitantly) score.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21111555/"
+      "titulo": "Caldarola P, De Iaco F, Pugliese FR, et al. ANMCO-SIMEU consensus document: appropriate management of atrial fibrillation in the emergency department. Eur Heart J Suppl 2023;25(Suppl D):D255-77.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37213798/",
+      "paginas": "Tabla 6",
+      "texto": "Correct identification of haemorrhage probability in patients suffering from AF is essential not as much to prevent anticoagulants prescription or to decrease their dosage, but rather to correct modifiable risk factors"
     },
     {
-      "titulo": "The HAS-BLED Score for Predicting Major Bleeding Risk in Anticoagulated Patients With Atrial Fibrillation: A Systematic Review and Meta-analysis",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26418409/"
+      "titulo": "Sen L, Kangpin X, Yihui L, et al. Research progress on bleeding risk assessment models in anticoagulant therapy. Front Cardiovasc Med 2025;12:1645823.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41306267/",
+      "texto": "use of medications or alcohol abuse (1 point each). A total score of ≥3 indicates a high bleeding risk."
     }
   ],
   "columnas": [
     {
       "puntos": 0,
-      "titulo": "0",
+      "titulo": "No",
       "color": "verde"
     },
     {
       "puntos": 1,
-      "titulo": "1",
-      "color": "rojo"
+      "titulo": "Sí",
+      "color": "naranja"
     }
   ],
   "filas": [
     {
-      "nombre": "Hipertensión",
-      "descripciones": [
-        "No",
-        "Sí (PAS >160)"
-      ]
-    },
-    {
-      "nombre": "Disf. Renal",
+      "nombre": "Hipertensión no controlada",
       "descripciones": [
         "No",
         "Sí"
-      ]
+      ],
+      "ayuda": "PAS > 160 mmHg."
     },
     {
-      "nombre": "Disf. Hepática",
+      "nombre": "Función renal alterada",
       "descripciones": [
         "No",
         "Sí"
-      ]
+      ],
+      "ayuda": "Diálisis crónica, trasplante renal o creatinina ≥ 2,2 mg/dL (≈ 200 µmol/L)."
+    },
+    {
+      "nombre": "Función hepática alterada",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Cirrosis, o bilirrubina > 2 veces y transaminasas > 3 veces el normal."
     },
     {
       "nombre": "Ictus previo",
       "descripciones": [
         "No",
         "Sí"
-      ]
+      ],
+      "ayuda": "Isquémico o hemorrágico."
     },
     {
-      "nombre": "Sangrado previo",
+      "nombre": "Sangrado o predisposición",
       "descripciones": [
         "No",
         "Sí"
-      ]
+      ],
+      "ayuda": "Sangrado mayor previo, anemia o trombocitopenia grave."
     },
     {
       "nombre": "INR lábil",
       "descripciones": [
         "No",
-        "Sí (<60% rango)"
-      ]
+        "Sí"
+      ],
+      "ayuda": "INR inestable o tiempo en rango terapéutico < 60 %. 0 si no toma antivitamina K."
     },
     {
-      "nombre": "Edad > 65",
+      "nombre": "Edad > 65 años",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 18,
+        "max": 120,
+        "tramos": [
+          {
+            "max": 65,
+            "puntos": 0
+          },
+          {
+            "min": 65.01,
+            "puntos": 1
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Antiagregantes o AINE",
       "descripciones": [
         "No",
         "Sí"
       ]
     },
     {
-      "nombre": "Uso fármacos",
+      "nombre": "Alcohol",
       "descripciones": [
         "No",
-        "Sí (AINEs/AAS)"
-      ]
-    },
-    {
-      "nombre": "Uso alcohol",
-      "descripciones": [
-        "No",
-        "Sí (≥8 U/sem)"
-      ]
+        "Sí"
+      ],
+      "ayuda": "Consumo de riesgo."
     }
   ],
   "resultados": [
     {
       "min": 0,
-      "max": 0,
-      "categoria": "Riesgo Bajo",
-      "match_opcion_index": -1,
-      "color": "verde",
-      "approach": "Anticoagulación segura recomendada."
-    },
-    {
-      "min": 1,
       "max": 2,
-      "categoria": "Riesgo Moderado",
+      "categoria": "Riesgo de sangrado no alto",
+      "color": "verde",
       "match_opcion_index": -1,
-      "color": "amarillo",
-      "approach": "Anticoagulación con monitorización clínica regular."
+      "approach": "Corregir los factores modificables que haya y seguir con el control habitual."
     },
     {
       "min": 3,
       "max": 9,
-      "categoria": "Riesgo Alto",
-      "match_opcion_index": -1,
+      "categoria": "Riesgo de sangrado alto",
       "color": "rojo",
-      "approach": "Precaución extrema; corregir activamente los factores reversibles."
+      "match_opcion_index": -1,
+      "approach": "No retirar la anticoagulación por la escala: corregir lo modificable (PA, antiagregantes, AINE, alcohol, INR) y acortar el seguimiento."
     }
   ]
 }

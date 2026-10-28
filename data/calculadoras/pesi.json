@@ -1,142 +1,245 @@
 {
-  "titulo": "Pulmonary Embolism Severity Index (PESI)",
-  "descripcion": "Modelo de estratificación clínica para predecir la mortalidad a 30 días en pacientes con tromboembolismo pulmonar (TEP) y guiar el manejo ambulatorio o intrahospitalario. ⚠️ NOTA: A ESTE PUNTAJE SE LE DEBE SUMAR LA EDAD DEL PACIENTE EN AÑOS (1 año = 1 punto). LAS FILAS A CONTINUACIÓN SOLO EVALÚAN LOS CRITERIOS CLÍNICOS ADICIONALES.",
+  "titulo": "PESI (gravedad del TEP)",
+  "descripcion": "Estima la mortalidad a 30 días del tromboembolismo pulmonar confirmado con la edad y diez datos clínicos, y clasifica en cinco clases. Se derivó en 15 531 altas hospitalarias de Pensilvania. Las clases I-II identifican a quién puede tratarse de forma ambulatoria o con alta precoz. Incluye el PESI simplificado (sPESI).",
+  "instrucciones": "La edad suma 1 punto por año. Datos del momento del diagnóstico. El sPESI se calcula a la vez: 0 puntos es riesgo bajo.",
+  "limitaciones": "Sólo con TEP confirmado y hemodinámicamente estable; el TEP con shock es de alto riesgo sin necesidad de escala. La definición de cáncer (activo o cualquiera) cambia la clase.",
   "referencias": [
     {
-      "titulo": "Derivation and Validation of a Prognostic Model for Pulmonary Embolism. Am J Respir Crit Care Med 2005.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16020800/"
+      "titulo": "Aujesky D, Obrosky DS, Stone RA, et al. Derivation and validation of a prognostic model for pulmonary embolism. Am J Respir Crit Care Med 2005;172(8):1041-6.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16020800/",
+      "texto": "stratifies patients with pulmonary embolism into five severity classes, with 30-day mortality rates of 0-1.6% in class I, 1.7-3.5% in class II, 3.2-7.1% in class III"
     },
     {
-      "titulo": "Prospective validation of the Pulmonary Embolism Severity Index. A clinical prognostic model for pulmonary embolism.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18989542/"
+      "titulo": "Campbell AR, Smith CM, Heringer GV, et al. Expanding outpatient eligibility using a narrow definition of cancer in the Pulmonary Embolism Severity Index. Res Pract Thromb Haemost 2026;10(5):106869.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42657321/",
+      "paginas": "Tabla 1",
+      "texto": "Using these indices, outpatient eligibility requires either a class I or II score on the PESI (with points totaling <86) or 0 points on the sPESI"
+    },
+    {
+      "titulo": "Tiwari A, Kumhar SD, Tagore PK, et al. Comparative analysis of clinical decision tools for acute pulmonary embolism at a tertiary care center. Bioinformation 2026;22(2):754-8.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42109371/",
+      "texto": "Age >80 years, History of cancer, Chronic cardiopulmonary disease, Pulse >110/min, Systolic BP <100 mmHg and Arterial oxyhemoglobin saturation <90%."
     }
   ],
-  "columnas": [
+  "tipoCalculo": "formula",
+  "formula": "anios + varon + cancer + ic + neumopatia + fc_puntos + pas_puntos + fr_puntos + temp_puntos + mental + sat_puntos",
+  "prefijoResultado": "PESI",
+  "sufijoResultado": "puntos",
+  "decimales": 0,
+  "extras": [
     {
-      "puntos": 0,
-      "titulo": "0",
-      "color": "verde"
-    },
-    {
-      "puntos": 10,
-      "titulo": "10",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 20,
-      "titulo": "20",
-      "color": "amarillo"
-    },
-    {
-      "puntos": 30,
-      "titulo": "30",
-      "color": "naranja"
-    },
-    {
-      "puntos": 60,
-      "titulo": "60",
-      "color": "rojo"
+      "etiqueta": "sPESI (0 = riesgo bajo)",
+      "formula": "anios_puntos + cancer / 30 + (1 - (1 - ic / 10) * (1 - neumopatia / 10)) + fc_puntos / 20 + pas_puntos / 30 + sat_puntos / 20",
+      "decimales": 0
     }
   ],
-  "filas": [
+  "secciones": [
     {
-      "nombre": "Sexo masculino",
-      "descripciones": [
-        "No",
-        "Sí",
-        "-",
-        "-",
-        "-"
+      "nombre": "Paciente",
+      "elementos": [
+        {
+          "id": "anios",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "años",
+          "min": 18,
+          "max": 120,
+          "ayuda": "1 punto por año. En el sPESI cuenta si es > 80 años.",
+          "intervalos": [
+            {
+              "max": 80,
+              "puntos": 0
+            },
+            {
+              "min": 80.01,
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "varon",
+          "tipo": "opciones",
+          "label": "Sexo masculino",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 10
+            }
+          ]
+        },
+        {
+          "id": "cancer",
+          "tipo": "opciones",
+          "label": "Cáncer",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 30
+            }
+          ],
+          "ayuda": "Activo o reciente; la definición cambia la clasificación."
+        },
+        {
+          "id": "ic",
+          "tipo": "opciones",
+          "label": "Insuficiencia cardiaca",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 10
+            }
+          ]
+        },
+        {
+          "id": "neumopatia",
+          "tipo": "opciones",
+          "label": "Enfermedad pulmonar crónica",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 10
+            }
+          ]
+        }
       ]
     },
     {
-      "nombre": "Cáncer",
-      "descripciones": [
-        "No",
-        "-",
-        "-",
-        "Sí",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Falla cardíaca",
-      "descripciones": [
-        "No",
-        "Sí",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Enf. pulmonar crónica",
-      "descripciones": [
-        "No",
-        "Sí",
-        "-",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "FC ≥ 110",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "PAS < 100",
-      "descripciones": [
-        "No",
-        "-",
-        "-",
-        "Sí",
-        "-"
-      ]
-    },
-    {
-      "nombre": "FR ≥ 30",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Temp < 36°C",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-"
-      ]
-    },
-    {
-      "nombre": "Estado mental alterado",
-      "descripciones": [
-        "No",
-        "-",
-        "-",
-        "-",
-        "Sí"
-      ]
-    },
-    {
-      "nombre": "SatO2 < 90%",
-      "descripciones": [
-        "No",
-        "-",
-        "Sí",
-        "-",
-        "-"
+      "nombre": "Exploración",
+      "elementos": [
+        {
+          "id": "fc",
+          "tipo": "input_numero",
+          "label": "Frecuencia cardiaca",
+          "unidad": "lpm",
+          "min": 0,
+          "max": 300,
+          "ayuda": "Suma 20 si es ≥ 110 lpm.",
+          "intervalos": [
+            {
+              "max": 109.99,
+              "puntos": 0
+            },
+            {
+              "min": 110,
+              "puntos": 20
+            }
+          ]
+        },
+        {
+          "id": "pas",
+          "tipo": "input_numero",
+          "label": "PAS",
+          "unidad": "mmHg",
+          "min": 0,
+          "max": 300,
+          "ayuda": "Suma 30 si es < 100 mmHg.",
+          "intervalos": [
+            {
+              "max": 99.99,
+              "puntos": 30
+            },
+            {
+              "min": 100,
+              "puntos": 0
+            }
+          ]
+        },
+        {
+          "id": "fr",
+          "tipo": "input_numero",
+          "label": "Frecuencia respiratoria",
+          "unidad": "rpm",
+          "min": 0,
+          "max": 80,
+          "ayuda": "Suma 20 si es ≥ 30 rpm.",
+          "intervalos": [
+            {
+              "max": 29.99,
+              "puntos": 0
+            },
+            {
+              "min": 30,
+              "puntos": 20
+            }
+          ]
+        },
+        {
+          "id": "temp",
+          "tipo": "input_numero",
+          "label": "Temperatura",
+          "unidad": "°C",
+          "min": 25,
+          "max": 45,
+          "unidades": [
+            {
+              "unidad": "°F",
+              "factor": 0.5556,
+              "suma": -17.778
+            }
+          ],
+          "ayuda": "Suma 20 si es < 36 °C.",
+          "intervalos": [
+            {
+              "max": 35.99,
+              "puntos": 20
+            },
+            {
+              "min": 36,
+              "puntos": 0
+            }
+          ]
+        },
+        {
+          "id": "mental",
+          "tipo": "opciones",
+          "label": "Alteración del estado mental",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 60
+            }
+          ],
+          "ayuda": "Desorientación, letargia, estupor o coma."
+        },
+        {
+          "id": "sat",
+          "tipo": "input_numero",
+          "label": "SatO₂",
+          "unidad": "%",
+          "min": 40,
+          "max": 100,
+          "ayuda": "Suma 20 si es < 90 %, con o sin oxígeno.",
+          "intervalos": [
+            {
+              "max": 89.99,
+              "puntos": 20
+            },
+            {
+              "min": 90,
+              "puntos": 0
+            }
+          ]
+        }
       ]
     }
   ],
@@ -144,42 +247,42 @@
     {
       "min": 0,
       "max": 65,
-      "categoria": "Clase I (Muy Bajo)",
-      "match_opcion_index": -1,
+      "categoria": "Clase I: riesgo muy bajo",
       "color": "verde",
-      "approach": "Considerar manejo ambulatorio o alta temprana"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad a 30 días 0-1,6 %. Candidato a tratamiento ambulatorio o alta precoz si no hay otros motivos de ingreso."
     },
     {
       "min": 66,
       "max": 85,
-      "categoria": "Clase II (Bajo)",
-      "match_opcion_index": -1,
+      "categoria": "Clase II: riesgo bajo",
       "color": "verde",
-      "approach": "Considerar manejo ambulatorio o alta temprana"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad a 30 días 1,7-3,5 %. Candidato a tratamiento ambulatorio o alta precoz si no hay otros motivos de ingreso."
     },
     {
       "min": 86,
       "max": 105,
-      "categoria": "Clase III (Intermedio)",
-      "match_opcion_index": -1,
+      "categoria": "Clase III: riesgo intermedio",
       "color": "amarillo",
-      "approach": "Ingreso hospitalario para manejo y vigilancia"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad a 30 días 3,2-7,1 %. Ingreso y estudiar disfunción del VD y biomarcadores."
     },
     {
       "min": 106,
       "max": 125,
-      "categoria": "Clase IV (Alto)",
-      "match_opcion_index": -1,
+      "categoria": "Clase IV: riesgo alto",
       "color": "naranja",
-      "approach": "Ingreso hospitalario, considerar cuidados intermedios"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad a 30 días 4-11,4 %. Ingreso y estudiar disfunción del VD y biomarcadores."
     },
     {
       "min": 126,
       "max": 999,
-      "categoria": "Clase V (Muy Alto)",
-      "match_opcion_index": -1,
+      "categoria": "Clase V: riesgo muy alto",
       "color": "rojo",
-      "approach": "Ingreso a UCI o monitorización estricta"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad a 30 días 10-24,5 %. Ingreso con monitorización estrecha; estudiar disfunción del VD y biomarcadores."
     }
   ]
 }
