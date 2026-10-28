@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .notas{display:flex;gap:8px}
+  .nota{flex:1;border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.3;background:#F3F4F6}
+  .nota.r{background:color-mix(in srgb,var(--rojo) 11%,white)}
+</style></head><body>
+<script>
+const X0 = 40, X1 = 640, x = (kg) => X0 + ((X1 - X0) * kg) / 30;
+const svg = `<svg class="esc" viewBox="0 0 680 250">
+  <rect x="${x(0)}" y="70" width="${x(15) - x(0)}" height="70" rx="10" fill="${tinte(TEAL, 22)}" stroke="${TEAL}" stroke-width="2.5"/>
+  <rect x="${x(15)}" y="70" width="${x(30) - x(15)}" height="70" rx="10" fill="${tinte(AZUL, 20)}" stroke="${AZUL}" stroke-width="2.5"/>
+  <text x="${x(7.5)}" y="115" text-anchor="middle" font-size="34" font-weight="800" fill="#0f766e">2 mg</text>
+  <text x="${x(22.5)}" y="115" text-anchor="middle" font-size="34" font-weight="800" fill="#1d4ed8">4 mg</text>
+  ${[0, 5, 10, 15, 20, 25, 30].map((k) => `<line x1="${x(k)}" x2="${x(k)}" y1="144" y2="154" stroke="#9CA3AF" stroke-width="2"/><text x="${x(k)}" y="172" text-anchor="middle" font-size="13" fill="#6B7280">${k} kg</text>`).join("")}
+  <text x="${x(7.5)}" y="56" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2A37">Menos de 15 kg</text>
+  <text x="${x(22.5)}" y="56" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2A37">De 15 a 30 kg</text>
+  <text x="10" y="22" font-size="15" font-weight="800" fill="#1F2A37">Por boca (VO), una sola dosis:</text>
+  <rect x="${x(0)}" y="196" width="${x(30) - x(0)}" height="40" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="${x(15)}" y="222" text-anchor="middle" font-size="16" fill="#1F2A37">Por vena (IV): <tspan font-weight="800">0,15 mg/kg</tspan>, una sola dosis</text>
+</svg>`;
+lienzo(
+  "Ondansetrón en el vómito de la EDA",
+  "Niño con alto riesgo de deshidratarse, o deshidratado que no tolera la vía oral",
+  `${svg}<div class="notas">
+     <div class="nota">Probar la vía oral <b>30 min</b> después, con cuchara</div>
+     <div class="nota r">No con sepsis, obstrucción intestinal, abdomen agudo o convulsiones</div>
+     <div class="nota r">Nunca metoclopramida ni alizaprida</div></div>`,
+  FUENTE_GPC + " Recomendación 27; algoritmo DHT 1/2 de la guía rápida."
+);
+</script></body></html>

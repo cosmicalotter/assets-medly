@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .grande{display:flex;gap:12px;align-items:stretch}
+  .dosis{flex:1.1;border-radius:14px;background:color-mix(in srgb,var(--naranja) 10%,white);border:2px solid var(--naranja);padding:10px 14px}
+  .dosis .n{font-size:34px;font-weight:800;color:var(--naranja);line-height:1.1}
+  .dosis .s{font-size:14px}
+  .ej{flex:1;border-radius:14px;background:#F3F4F6;padding:10px 14px;font-size:13.5px;line-height:1.4}
+  .linea{flex:1;min-height:0}
+  .notas{display:flex;gap:8px}
+  .nota{flex:1;border-radius:10px;padding:7px 9px;font-size:12.5px;line-height:1.3;background:#F3F4F6}
+  .nota.r{background:color-mix(in srgb,var(--rojo) 10%,white)}
+</style></head><body>
+<script>
+const X0 = 60, X1 = 640, x = (h) => X0 + ((X1 - X0) * h) / 4;
+const horas = [0, 1, 2, 3, 4].map((h) => `<line x1="${x(h)}" x2="${x(h)}" y1="70" y2="120" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="${x(h)}" y="140" text-anchor="middle" font-size="14" fill="#6B7280">${h} h</text>
+  ${h ? `<g transform="translate(${x(h)},40)"><circle r="15" fill="${AZUL}"/><path d="M-6 0 l4 5 l8 -10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></g>` : ""}`).join("");
+const tomas = Array.from({ length: 24 }, (_, i) => `<circle cx="${x(0.08 + i * 0.165)}" cy="95" r="5.5" fill="${NARANJA}" opacity=".85"/>`).join("");
+const svg = `<svg class="linea" viewBox="0 0 700 160">
+  <rect x="${X0}" y="80" width="${x(2) - X0}" height="30" rx="8" fill="${NARANJA}" opacity=".18"/>
+  <rect x="${x(2)}" y="80" width="${x(4) - x(2)}" height="30" rx="8" fill="${NARANJA}" opacity=".08"/>
+  ${tomas}${horas}
+  <text x="${x(0.1)}" y="20" font-size="13.5" font-weight="700" fill="${AZUL}">reevaluar cada hora</text>
+  ${cuchara(18, 95, 0.9)}
+</svg>`;
+lienzo(
+  "Plan B: rehidratación oral con SRO",
+  "Algún grado de deshidratación, en urgencias u observación",
+  `<div class="grande">
+     <div class="dosis"><div class="n">50-100 mL/kg</div><div class="s">de SRO de baja osmolaridad en <b>2-4 h</b>, en tomas pequeñas y frecuentes, con cuchara</div></div>
+     <div class="ej"><b>Ejemplo, 10 kg:</b> 500-1.000 mL en 2-4 h.<br>Si vomita: más despacio, a cucharaditas.<br>Seguir con el pecho; el resto de la comida, al rehidratar.</div>
+   </div>
+   ${svg}
+   <div class="notas">
+     <div class="nota">SRO: sodio <b>75-84 mmol/L</b>, <b>240-250 mOsm/L</b></div>
+     <div class="nota">No bebe o vomita sin parar: <b>sonda nasogástrica</b>, mismo volumen en <b>4 h</b></div>
+     <div class="nota r">Íleo, abdomen quirúrgico, conciencia alterada o convulsiones: <b>no</b> vía oral</div>
+   </div>`,
+  FUENTE_GPC + " Recomendaciones 16 y 27."
+);
+</script></body></html>

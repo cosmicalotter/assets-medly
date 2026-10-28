@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .rej{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;flex:1;min-height:0}
+  .t{border-radius:14px;border:2px solid var(--rojo);background:color-mix(in srgb,var(--rojo) 6%,white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;text-align:center;font-size:14px;line-height:1.25}
+  .t.casa{border-color:var(--verde);background:color-mix(in srgb,var(--verde) 10%,white)}
+</style></head><body>
+<script>
+const I = (svg) => `<svg width="64" height="56" viewBox="0 0 64 56">${svg}</svg>`;
+const tiles = [
+  [I(cara(32, 28, 22, { estado: "letargico" })), "<b>Empeora</b> o no se ve bien"],
+  [I(`${[0, 1, 2, 3].map((k) => `<path d="M${10 + k * 13} 12 q4 10 0 20 q-4 10 0 20" stroke="${AMBAR}" stroke-width="4" fill="none" stroke-linecap="round"/>`).join("")}`), "Heces muy líquidas: <b>más de 10</b> en 24 h"],
+  [I(`${cara(26, 22, 17, { estado: "irritable" })}<path d="M30 42 q8 4 14 2 q8 -2 14 6" stroke="${VERDE}" stroke-width="5" fill="none" stroke-linecap="round"/>`), "<b>Vomita todo</b>"],
+  [I(`<rect x="28" y="4" width="10" height="36" rx="5" fill="#fff" stroke="#1F2A37" stroke-width="2.5"/><circle cx="33" cy="44" r="9" fill="${ROJO}" stroke="#1F2A37" stroke-width="2.5"/><rect x="31" y="16" width="4" height="26" fill="${ROJO}"/>`), "Aparece <b>fiebre</b> que no tenía"],
+  [I(`${vaso(14, 8, 26, 34, 0.15)}<path d="M8 50 L56 6" stroke="${ROJO}" stroke-width="4.5" stroke-linecap="round"/>`), "<b>No come</b> ni bebe normalmente"],
+  [I(`<path d="M32 6 C39 17 45 24 45 31 a13 13 0 0 1 -26 0 C19 24 25 17 32 6Z" fill="${ROJO}"/>`), "<b>Sangre</b> en las heces"],
+  [I(`<rect x="10" y="10" width="44" height="40" rx="6" fill="#fff" stroke="#1F2A37" stroke-width="2.5"/><rect x="10" y="10" width="44" height="11" rx="5" fill="${ROJO}"/><text x="32" y="44" text-anchor="middle" font-size="19" font-weight="800" fill="#1F2A37">3.º</text>`), "Sin mejoría al <b>tercer día</b>"],
+  [I(`<path d="M10 30 L32 10 L54 30 V52 H10 Z" fill="${tinte(VERDE, 25)}" stroke="${VERDE}" stroke-width="3" stroke-linejoin="round"/><rect x="27" y="36" width="10" height="16" fill="${VERDE}"/>`), "En casa: plan A, <b>zinc</b> y comida habitual"],
+];
+lienzo(
+  "Signos de alarma: volver de inmediato",
+  "Para explicar al cuidador antes del alta",
+  `<div class="rej">${tiles.map(([s, t], k) => `<div class="t ${k === 7 ? "casa" : ""}">${s}<div>${t}</div></div>`).join("")}</div>`,
+  "Esquema. Fuente: guía para pacientes y cuidadores de la GPC de la EDA, MinSalud Colombia 2013 (cuarta regla, p. 17)."
+);
+</script></body></html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .notas{display:flex;gap:8px}
+  .nota{flex:1;border-radius:10px;padding:7px 9px;font-size:12.5px;line-height:1.3;background:#F3F4F6}
+  .nota.r{background:color-mix(in srgb,var(--rojo) 11%,white)}
+</style></head><body>
+<script>
+// Dos relojes en paralelo: lactante (1 h + 5 h) y desde 12 meses (30 min + 2,5 h). Eje 0-6 h.
+const X0 = 150, X1 = 650, x = (h) => X0 + ((X1 - X0) * h) / 6;
+const FILAS = [
+  { nombre: "Menor de 12 meses", y: 70, a: 1, b: 6, ta: "1 h", tb: "5 h", fin: "reevaluar a las 6 h" },
+  { nombre: "12 meses o más", y: 190, a: 0.5, b: 3, ta: "30 min", tb: "2½ h", fin: "reevaluar a las 3 h" },
+];
+window.cuadro = function (i, n) {
+  const t = 6.3 * (n > 1 ? i / (n - 1) : 1);
+  const ahora = Math.min(t, 6);
+  const filas = FILAS.map((f) => {
+    const llenoA = Math.min(ahora, f.a), llenoB = Math.max(0, Math.min(ahora, f.b) - f.a);
+    const ml = Math.round(30 * tramo(ahora, 0, f.a) + 70 * tramo(ahora, f.a, f.b));
+    return `<text x="10" y="${f.y + 6}" font-size="14.5" font-weight="700" fill="#1F2A37">${f.nombre}</text>
+      <text x="10" y="${f.y + 26}" font-size="13" fill="${ROJO}" font-weight="800">${ml} de 100 mL/kg</text>
+      <rect x="${x(0)}" y="${f.y - 14}" width="${x(f.a) - x(0)}" height="34" rx="6" fill="#fff" stroke="${ROJO}" stroke-width="2"/>
+      <rect x="${x(f.a)}" y="${f.y - 14}" width="${x(f.b) - x(f.a)}" height="34" rx="6" fill="#fff" stroke="${NARANJA}" stroke-width="2"/>
+      <rect x="${x(0)}" y="${f.y - 14}" width="${x(llenoA) - x(0)}" height="34" rx="6" fill="${ROJO}" opacity=".8"/>
+      <rect x="${x(f.a)}" y="${f.y - 14}" width="${x(f.a + llenoB) - x(f.a)}" height="34" rx="6" fill="${NARANJA}" opacity=".75"/>
+      <text x="${(x(0) + x(f.a)) / 2}" y="${f.y + 8}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1F2A37">${f.a < 1 ? "30" : "30 mL/kg"}</text>
+      <text x="${(x(0) + x(f.a)) / 2}" y="${f.y + 40}" text-anchor="middle" font-size="12" fill="${ROJO}" font-weight="700">${f.ta}</text>
+      <text x="${(x(f.a) + x(f.b)) / 2}" y="${f.y + 8}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1F2A37">70 mL/kg</text>
+      <text x="${(x(f.a) + x(f.b)) / 2}" y="${f.y + 40}" text-anchor="middle" font-size="12" fill="#B45309" font-weight="700">${f.tb}</text>
+      ${ahora >= f.b ? `<g transform="translate(${x(f.b) - 4},${f.y - 40})"><rect x="-150" y="-4" width="154" height="22" rx="7" fill="${AZUL}"/><text x="-73" y="12" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">${f.fin}</text></g>` : ""}`;
+  }).join("");
+  const eje = [0, 1, 2, 3, 4, 5, 6].map((h) => `<line x1="${x(h)}" x2="${x(h)}" y1="40" y2="250" stroke="#E5E7EB"/><text x="${x(h)}" y="270" text-anchor="middle" font-size="12.5" fill="#6B7280">${h} h</text>`).join("");
+  const svg = `<svg class="esc" viewBox="0 0 680 280">${eje}${filas}
+    <line x1="${x(ahora)}" x2="${x(ahora)}" y1="34" y2="254" stroke="#1F2A37" stroke-width="2.5"/>
+    <circle cx="${x(ahora)}" cy="34" r="5" fill="#1F2A37"/></svg>`;
+  lienzo(
+    "Plan C: 100 mL/kg de lactato de Ringer IV",
+    "Deshidratación grave: 30 mL/kg y luego 70 mL/kg, según la edad",
+    `${svg}<div class="notas">
+      <div class="nota">Reevaluar cada <b>15-30 min</b> hasta pulso radial fuerte</div>
+      <div class="nota r">Pulso débil: repetir <b>30 mL/kg</b> en 30 min</div>
+      <div class="nota">Sin Ringer: <b>SSN 0,9 %</b>. Nunca dextrosa sola</div></div>`,
+    "Esquema. Fuentes: GPC de la EDA, MinSalud Colombia 2013 (recomendación 18 y tabla 4); OMS, The treatment of diarrhoea, 2005 (tabla 3)."
+  );
+};
+window.cuadro(0, 1);
+</script></body></html>

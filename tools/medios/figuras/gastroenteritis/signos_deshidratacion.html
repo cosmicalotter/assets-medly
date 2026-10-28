@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:flex;gap:10px;flex:1;min-height:0}
+  .col{flex:1;border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);display:flex;flex-direction:column;overflow:hidden}
+  .col h3{background:var(--c);color:#fff;font-size:15.5px;padding:8px 10px;line-height:1.15}
+  .col h3 small{display:block;font-size:12px;font-weight:600;opacity:.95;margin-top:2px}
+  .signo{display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:13px;line-height:1.2;border-bottom:1px solid color-mix(in srgb,var(--c) 18%,white)}
+  .signo:last-child{border-bottom:0}
+  .signo svg{flex:none}
+  .plan{margin-top:auto;padding:8px 10px;font-size:13px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,white)}
+</style></head><body>
+<script>
+const ic = {
+  letargico: `<svg width="40" height="40" viewBox="0 0 40 40">${cara(20, 21, 16, { estado: "letargico" })}</svg>`,
+  irritable: `<svg width="40" height="40" viewBox="0 0 40 40">${cara(20, 21, 16, { estado: "irritable" })}</svg>`,
+  ojos: `<svg width="40" height="40" viewBox="0 0 40 40">${cara(20, 21, 16, { hundidos: true })}</svg>`,
+  sed: `<svg width="40" height="40" viewBox="0 0 40 40">${vaso(9, 8, 22, 26, 0.7)}<path d="M26 4 q4 4 0 8" stroke="${AZUL}" stroke-width="2" fill="none"/></svg>`,
+  pliegue: (lento) => `<svg width="40" height="40" viewBox="0 0 40 40"><path d="M2 30 Q12 30 16 ${lento ? 12 : 22} Q20 ${lento ? 8 : 20} 24 ${lento ? 12 : 22} Q28 30 38 30" fill="#FDE7D3" stroke="#B45309" stroke-width="2"/>
+    <text x="20" y="38.5" font-size="9" font-weight="800" text-anchor="middle" fill="#1F2A37">${lento ? "&gt;2 s" : "&lt;2 s"}</text></svg>`,
+};
+const fila = (svg, txt) => `<div class="signo">${svg}<div>${txt}</div></div>`;
+lienzo(
+  "Signos de deshidratación (OMS/AIEPI)",
+  "Clasificar con 2 o más signos de la columna; si no, mirar la siguiente",
+  `<div class="cols">
+    <div class="col" style="--c:${ROJO}"><h3>Deshidratación grave<small>≥2 de estos signos</small></h3>
+      ${fila(ic.letargico, "<b>Letárgico</b> o inconsciente")}
+      ${fila(ic.ojos, "<b>Ojos hundidos</b>")}
+      ${fila(ic.pliegue(true), "Pliegue cutáneo: vuelve en <b>&gt;2 s</b>")}
+      <div class="plan">→ Plan C: hospitalizar y lactato de Ringer <b>100 mL/kg</b> IV ya</div></div>
+    <div class="col" style="--c:${NARANJA}"><h3>Algún grado<small>≥2 de estos signos</small></h3>
+      ${fila(ic.irritable, "<b>Intranquilo</b> o irritable")}
+      ${fila(ic.ojos, "<b>Ojos hundidos</b>")}
+      ${fila(ic.sed, "Bebe <b>ávidamente</b>, con sed")}
+      ${fila(ic.pliegue(false), "Pliegue cutáneo: vuelve en <b>&lt;2 s</b>")}
+      <div class="plan">→ Plan B: SRO <b>50-100 mL/kg</b> en <b>2-4 h</b>, en urgencias</div></div>
+    <div class="col" style="--c:${VERDE}"><h3>Sin deshidratación<small>1 signo o ninguno</small></h3>
+      ${fila(`<svg width="40" height="40" viewBox="0 0 40 40">${cara(20, 21, 16)}</svg>`, "Alerta, ojos normales, bebe normal, pliegue que vuelve en el acto")}
+      <div class="plan">→ Plan A en casa: líquidos tras cada deposición y zinc</div></div>
+  </div>`,
+  "Esquema. Fuente: guía de referencia rápida de la GPC de la EDA en menores de 5 años, MinSalud Colombia 2013, tabla 1 (escala de la OMS para AIEPI)."
+);
+</script></body></html>
