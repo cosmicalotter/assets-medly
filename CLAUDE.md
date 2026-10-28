@@ -118,7 +118,9 @@ Firebase directamente, saltándose `indices/`.
 - Escalas nuevas o conectar las que ya hay: skill **`crear-calculadora`**.
 - Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
-  con su color exacto (`{#hex:…}`).
+  con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o
+  conducta, la imagen lleva sus propias `referencias` (sólo las que respaldan
+  ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
 - Estilo de redacción: nota de guardia, telegráfico, imperativo y con las

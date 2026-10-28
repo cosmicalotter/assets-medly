@@ -273,13 +273,31 @@ transparente abajo (arriba va otra franja igual con el título y la X).
 - **Fuente:** lo clínico del `info` sale de la guía como todo lo demás: de lo
   que el algoritmo ya cita en ese nodo o en otro, o de la propia figura y su
   artículo. Si no hay fuente, el `info` se queda en describir lo que se ve.
+- **Referencias del `info` (`media[].referencias`):** si el `info` afirma
+  una cifra, un criterio o una conducta («en la cerebelosa, **≥15 mL** es
+  criterio de cirugía»), la imagen lleva sus propias `referencias`: **sólo
+  las que respaldan lo que dice ese texto**, no todas las del nodo. Son copia
+  exacta de referencias que el algoritmo ya cita (mismo `texto`, `paginas`,
+  `fuente`…), con `imagen_evidencia` por **URL raw completa**
+  (`…/data/imagenes/evidencia/<carpeta_evidencia>/<archivo>`), porque el
+  visor no conoce la carpeta. La app pone en la franja del `info` un botón con
+  un libro abierto y el número de fuentes, que abre la hoja de referencias
+  con ésas. Un `info` que sólo describe lo que se ve no lleva. `norma.py`
+  avisa de un `info` con cifras en negrita y sin `referencias`; `--chequeo`,
+  de un `imagen_evidencia` sin URL completa.
 
 ```json
 { "recurso": "acvhemorragico_mav_real.jpg",
   "titulo": "Causa macrovascular: malformación arteriovenosa",
   "descripcion": "Hematoma lobar en la TC y la malformación que sangró en la arteriografía.",
   "info": "{#FCFD01:Flechas amarillas}: en la TC, el hematoma lobar frontal; en la arteriografía, el nido de la MAV, ovillo de vasos que se llena de contraste con sus arterias nutricias. Si la angio-TC la sugiere, la **DSA** va lo antes posible; con sangre **solo intraventricular**, directa.",
-  "en_texto": "malformación arteriovenosa" }
+  "en_texto": "malformación arteriovenosa",
+  "referencias": [
+    { "titulo": "Recomendación 4.2.3 (Clase 1, C-LD)", "paginas": "e295",
+      "texto": "catheter intra-arterial DSA should be performed as soon as possible to confirm and manage underlying intracranial vascular malformations",
+      "fuente": "AHA/ASA", "anio": "2022", "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/acvhemorragico/evidencia_acvhemorragico_page295_recomendacion_4_2_3.png" }
+  ] }
 ```
 
 ## Créditos
