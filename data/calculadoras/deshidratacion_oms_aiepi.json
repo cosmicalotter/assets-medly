@@ -1,0 +1,298 @@
+{
+  "titulo": "Deshidratación en la diarrea aguda (OMS/AIEPI)",
+  "descripcion": "Clasifica el estado de hidratación del niño menor de 5 años con enfermedad diarreica aguda en deshidratación grave, algún grado de deshidratación o sin deshidratación, con los signos de la escala de la OMS que adopta la estrategia AIEPI. Del resultado sale el plan de rehidratación: C, B o A. Es la escala que recomienda la guía colombiana de 2013 (GPC No. 8).",
+  "instrucciones": "Explorar los cuatro signos tras evaluar al niño completo. Grave: 2 o más signos de la columna grave. Algún grado: 2 o más de los demás. Un signo grave cuenta también como signo de algún grado.",
+  "limitaciones": "Ningún signo aislado basta y ninguna escala predice bien el déficit exacto. No sustituye la búsqueda de choque (pulsos débiles, llenado capilar lento, extremidades frías), que obliga a tratar como deshidratación grave.",
+  "tipoCalculo": "formula",
+  "formula": "2 - (ac * oj + ac * sd + ac * ap + oj * sd + oj * ap + sd * ap - 2 * (ac * oj * sd + ac * oj * ap + ac * sd * ap + oj * sd * ap) + 3 * ac * oj * sd * ap) - (gc * oj + gc * gp + oj * gp - 2 * gc * oj * gp)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Clasificación",
+  "decimales": 0,
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá, 2013. Recomendación 12, p. 110.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+      "paginas": "110",
+      "texto": "Se recomienda utilizar la escala de signos de deshidratación propuesta por la OMS para la estrategia AIEPI para Colombia, que clasifica los niños con EDA en una de tres posibilidades"
+    },
+    {
+      "titulo": "Guía de referencia rápida de la GPC No. 8 (EDA), 2013. Tabla 1: clasificación de signos de deshidratación, p. 39.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Prof_Sal_EDA.pdf",
+      "paginas": "39",
+      "texto": "Deshidratación grave: presencia de 2 o mas delos siguientes signos ojos hundidos letárgico o inconsciente signo de pliegue >2 segundos"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá, 2013. Recomendación 18 (deshidratación grave), p. 129.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+      "paginas": "129",
+      "texto": "Se recomienda administrar líquidos intravenosos inmediatamente al niño menor de 5 años con EDA y deshidratación grave: Administrar 100 ml/Kg."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá, 2013. Recomendación 16 (algún grado de deshidratación), p. 120.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+      "paginas": "120",
+      "texto": "Ofrecer entre 50 y 100 ml/kg durante 2 a 4 horas. Las Sales de Rehidratación Oral deben ofrecerse frecuentemente, a libre demanda, en cantidades pequeñas y con cuchara."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para prevención, diagnóstico y tratamiento de la enfermedad diarreica aguda en niños menores de 5 años. Guía No. 8. Bogotá, 2013. Recomendación 13 (ámbito de manejo), p. 112.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC_Comple_EDA.pdf",
+      "paginas": "112",
+      "texto": "Cuando no tengan deshidratación sean tratados en el hogar, previa instrucción y educación a los padres y cuidadores para que reconozcan los signos de alarma"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "conciencia",
+          "tipo": "opciones",
+          "label": "Estado de conciencia",
+          "opciones": [
+            {
+              "label": "Alerta",
+              "puntos": 0,
+              "valoresVariables": {
+                "gc": 0,
+                "ac": 0
+              }
+            },
+            {
+              "label": "Intranquilo o irritable",
+              "puntos": 1,
+              "valoresVariables": {
+                "gc": 0,
+                "ac": 1
+              }
+            },
+            {
+              "label": "Letárgico o inconsciente",
+              "puntos": 2,
+              "valoresVariables": {
+                "gc": 1,
+                "ac": 1
+              },
+              "detalle": "Signo de deshidratación grave"
+            }
+          ]
+        },
+        {
+          "id": "ojos",
+          "tipo": "opciones",
+          "label": "Ojos hundidos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "oj": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "oj": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "pliegue",
+          "tipo": "opciones",
+          "label": "Signo del pliegue cutáneo",
+          "ayuda": "Pellizcar la piel, soltarla y contar lo que tarda en volver a su sitio.",
+          "opciones": [
+            {
+              "label": "Vuelve en el acto",
+              "puntos": 0,
+              "valoresVariables": {
+                "gp": 0,
+                "ap": 0
+              }
+            },
+            {
+              "label": "Vuelve en <2 s",
+              "puntos": 1,
+              "valoresVariables": {
+                "gp": 0,
+                "ap": 1
+              }
+            },
+            {
+              "label": "Vuelve en >2 s",
+              "puntos": 2,
+              "valoresVariables": {
+                "gp": 1,
+                "ap": 1
+              },
+              "detalle": "Signo de deshidratación grave"
+            }
+          ]
+        },
+        {
+          "id": "sed",
+          "tipo": "opciones",
+          "label": "Bebe ávidamente, con sed",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "sd": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "sd": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 0.49,
+      "categoria": "Deshidratación grave",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Plan C: líquidos IV ya, lactato de Ringer 100 mL/kg (o SSN 0,9 %); hospitalizar.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "conciencia",
+                "igual": 2
+              },
+              {
+                "id": "ojos",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "conciencia",
+                "igual": 2
+              },
+              {
+                "id": "pliegue",
+                "igual": 2
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "ojos",
+                "igual": 1
+              },
+              {
+                "id": "pliegue",
+                "igual": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Algún grado de deshidratación",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Plan B en urgencias u observación: SRO 50-100 mL/kg en 2-4 h, con cuchara; reevaluar cada hora.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "conciencia",
+                "mayorIgual": 1
+              },
+              {
+                "id": "ojos",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "conciencia",
+                "mayorIgual": 1
+              },
+              {
+                "id": "sed",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "conciencia",
+                "mayorIgual": 1
+              },
+              {
+                "id": "pliegue",
+                "mayorIgual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "ojos",
+                "igual": 1
+              },
+              {
+                "id": "sed",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "ojos",
+                "igual": 1
+              },
+              {
+                "id": "pliegue",
+                "mayorIgual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "sed",
+                "igual": 1
+              },
+              {
+                "id": "pliegue",
+                "mayorIgual": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2,
+      "categoria": "Sin deshidratación",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Plan A en casa: líquidos tras cada deposición, zinc y alimentación habitual; enseñar signos de alarma."
+    }
+  ]
+}
