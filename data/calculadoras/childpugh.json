@@ -1,14 +1,36 @@
 {
-  "titulo": "Escala Child-Pugh",
-  "descripcion": "Sistema de puntuación diseñado para predecir la mortalidad en pacientes con cirrosis, clasificar la gravedad de la disfunción hepática y guiar la viabilidad de una cirugía electiva. ⚠️ NOTA: EN LA ÚLTIMA FILA, USE EL TIEMPO DE PROTROMBINA (PT) O EL INR, SOLO RELLENE UNO DE LOS DOS PARÁMETROS.",
+  "titulo": "Child-Pugh (función hepática en cirrosis)",
+  "descripcion": "Gradúa la reserva funcional del hígado en la cirrosis con cinco datos: encefalopatía, ascitis, bilirrubina, albúmina y tiempo de protrombina o INR, de 5 a 15 puntos, en clases A (compensada), B (disfunción moderada) y C (descompensación grave). Orienta el pronóstico y la tolerancia a la cirugía y a otros tratamientos.",
+  "instrucciones": "Puntúa los cinco criterios (1 a 3 cada uno). Escribe los valores de laboratorio o marca su tramo. Coagulación: INR o segundos de prolongación del tiempo de protrombina, uno de los dos.",
+  "limitaciones": "Encefalopatía y ascitis son subjetivas, y varias variables se solapan: albúmina y ascitis reflejan la presión oncótica; albúmina y protrombina, la síntesis hepática.",
   "referencias": [
     {
-      "titulo": "Surgery and portal hypertension",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/4950264/"
+      "titulo": "Pugh RN, Murray-Lyon IM, Dawson JL, Pietroni MC, Williams R. Transection of the oesophagus for bleeding oesophageal varices. Br J Surg 1973;60(8):646-9.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4541913/"
     },
     {
-      "titulo": "Transection of the oesophagus for bleeding oesophageal varices. Br J Surg. 1973",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/4541913/"
+      "titulo": "Decraecker M, Bourien H, Blanc JF, et al. Impact of Child Pugh B stage for the treatment of advanced HCC. J Hepatocell Carcinoma 2026;13:579537.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42052125/",
+      "paginas": "Tabla 1",
+      "texto": "Total bilirubin (mg/dL) < 2, 2–3, > 3; Serum albumin (g/dL) > 3.5, 2.8–3.5, < 2.8; International normalized ratio (INR) < 1.7, 1.7–2.3, > 2.3"
+    },
+    {
+      "titulo": "Decraecker M, Bourien H, Blanc JF, et al. Impact of Child Pugh B stage for the treatment of advanced HCC. J Hepatocell Carcinoma 2026;13:579537. Clases.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42052125/",
+      "paginas": "Tabla 1",
+      "texto": "5–6 points: Class A (well-compensated) | 7–9 points: Class B (moderate dysfunction) | 10–15 points: Class C (severe dysfunction)"
+    },
+    {
+      "titulo": "Pisano M, Allievi N, Gurusamy K, et al. 2020 World Society of Emergency Surgery updated guidelines for the diagnosis and treatment of acute calculus cholecystitis. World J Emerg Surg 2020;15(1):61.",
+      "url": "https://doi.org/10.1186/s13017-020-00336-x",
+      "paginas": "Recomendación 3.3, p. 10",
+      "texto": "We suggest performing laparoscopic cholecystectomy for ACC patients with Child’s A and B cirrhosis, patients with advanced age (including more than 80 years old) and patients who are pregnant."
+    },
+    {
+      "titulo": "Pisano M, Allievi N, Gurusamy K, et al. 2020 World Society of Emergency Surgery updated guidelines for the diagnosis and treatment of acute calculus cholecystitis. World J Emerg Surg 2020;15(1):61. Child C.",
+      "url": "https://doi.org/10.1186/s13017-020-00336-x",
+      "paginas": "p. 11",
+      "texto": "The approach to patients with child C or uncompensated cirrhosis remains a matter of debate. As a first recommendation, cholecystectomy should be avoided in these patients"
     }
   ],
   "columnas": [
@@ -33,41 +55,154 @@
       "nombre": "Encefalopatía",
       "descripciones": [
         "Ninguna",
-        "Grado 1 - 2",
-        "Grado 3 - 4"
+        "Grado I-II",
+        "Grado III-IV"
+      ],
+      "detalles": [
+        "",
+        "Leve a moderada",
+        "Grave"
       ]
     },
     {
       "nombre": "Ascitis",
       "descripciones": [
         "Ninguna",
-        "Leve",
-        "Moderada"
+        "Leve-moderada",
+        "Grave"
+      ],
+      "detalles": [
+        "",
+        "Responde a diuréticos",
+        "Refractaria a diuréticos"
       ]
     },
     {
-      "nombre": "Bilirrubina",
+      "nombre": "Bilirrubina total",
       "descripciones": [
-        "< 2 mg/dl",
-        "2 - 3 mg/dl",
-        "> 3 mg/dl"
-      ]
+        "< 2 mg/dL",
+        "2-3 mg/dL",
+        "> 3 mg/dL"
+      ],
+      "entrada": {
+        "unidad": "mg/dL",
+        "unidades": [
+          {
+            "unidad": "µmol/L",
+            "factor": 0.0585
+          }
+        ],
+        "min": 0.1,
+        "max": 60,
+        "tramos": [
+          {
+            "max": 1.99,
+            "puntos": 1
+          },
+          {
+            "min": 2,
+            "max": 3,
+            "puntos": 2
+          },
+          {
+            "min": 3.01,
+            "puntos": 3
+          }
+        ]
+      }
     },
     {
       "nombre": "Albúmina",
       "descripciones": [
-        "> 3.5 g/dl",
-        "2.8 - 3.5 g/dl",
-        "< 2.8 g/dl"
-      ]
+        "> 3,5 g/dL",
+        "2,8-3,5 g/dL",
+        "< 2,8 g/dL"
+      ],
+      "entrada": {
+        "unidad": "g/dL",
+        "unidades": [
+          {
+            "unidad": "g/L",
+            "factor": 0.1
+          }
+        ],
+        "min": 0.5,
+        "max": 7,
+        "tramos": [
+          {
+            "max": 2.79,
+            "puntos": 3
+          },
+          {
+            "min": 2.8,
+            "max": 3.5,
+            "puntos": 2
+          },
+          {
+            "min": 3.51,
+            "puntos": 1
+          }
+        ]
+      }
     },
     {
-      "nombre": "PT o INR",
+      "nombre": "INR",
+      "grupo": "coagulacion",
       "descripciones": [
-        "< 4s o < 1.7",
-        "4 - 6s o 1.7 - 2.2",
-        "> 6s o > 2.2"
-      ]
+        "< 1,7",
+        "1,7-2,3",
+        "> 2,3"
+      ],
+      "entrada": {
+        "unidad": "",
+        "min": 0.5,
+        "max": 15,
+        "tramos": [
+          {
+            "max": 1.69,
+            "puntos": 1
+          },
+          {
+            "min": 1.7,
+            "max": 2.3,
+            "puntos": 2
+          },
+          {
+            "min": 2.31,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Protrombina prolongada",
+      "grupo": "coagulacion",
+      "descripciones": [
+        "< 4 s",
+        "4-6 s",
+        "> 6 s"
+      ],
+      "ayuda": "Segundos por encima del control.",
+      "entrada": {
+        "unidad": "s",
+        "min": 0,
+        "max": 60,
+        "tramos": [
+          {
+            "max": 3.99,
+            "puntos": 1
+          },
+          {
+            "min": 4,
+            "max": 6,
+            "puntos": 2
+          },
+          {
+            "min": 6.01,
+            "puntos": 3
+          }
+        ]
+      }
     }
   ],
   "resultados": [
@@ -75,25 +210,25 @@
       "min": 5,
       "max": 6,
       "categoria": "Child-Pugh A",
-      "match_opcion_index": -1,
       "color": "verde",
-      "approach": "Cirugía electiva segura"
+      "match_opcion_index": -1,
+      "approach": "Cirrosis bien compensada. En colecistitis aguda, colecistectomía laparoscópica posible."
     },
     {
       "min": 7,
       "max": 9,
       "categoria": "Child-Pugh B",
-      "match_opcion_index": -1,
       "color": "naranja",
-      "approach": "Optimización médica preoperatoria"
+      "match_opcion_index": -1,
+      "approach": "Disfunción moderada. En colecistitis aguda, colecistectomía laparoscópica posible."
     },
     {
       "min": 10,
       "max": 15,
       "categoria": "Child-Pugh C",
-      "match_opcion_index": -1,
       "color": "rojo",
-      "approach": "Cirugía electiva contraindicada"
+      "match_opcion_index": -1,
+      "approach": "Descompensación grave. En colecistitis aguda, evitar la colecistectomía salvo que no responda al tratamiento conservador."
     }
   ]
 }

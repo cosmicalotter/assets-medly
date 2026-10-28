@@ -8,8 +8,22 @@
   "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolecistitis.png",
   "referencias": [
     {
-      "titulo": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
-      "url": "https://doi.org/10.1002/jhbp.515"
+      "titulo": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci 2018;25(1):41-54.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29032636/",
+      "paginas": "Tabla 1, p. 43",
+      "texto": "Suspected diagnosis: one item in A + one item in B. Definite diagnosis: one item in A + one item in B + C"
+    },
+    {
+      "titulo": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci 2018;25(1):41-54. Criterios A.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29032636/",
+      "paginas": "Tabla 1, p. 43",
+      "texto": "A. Local signs of inflammation etc. (1) Murphy’s sign, (2) RUQ mass/pain/tenderness"
+    },
+    {
+      "titulo": "Mayumi T, Okamoto K, Takada T, et al. Tokyo Guidelines 2018: management bundles for acute cholangitis and cholecystitis. J Hepatobiliary Pancreat Sci 2018;25(1):96-100.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29090868/",
+      "paginas": "98",
+      "texto": "When acute cholecystitis is suspected, perform a diagnostic assessment every 6 to 12 h using TG18 diagnostic criteria until a diagnosis is reached."
     }
   ],
   "secciones": [
@@ -43,7 +57,8 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Fiebre, PCR elevada o leucocitosis."
         },
         {
           "id": "c",
@@ -58,19 +73,36 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Ecografía primero: pared engrosada, distensión, líquido perivesicular, cálculos o barro, Murphy ecográfico."
         }
       ]
     }
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 0,
-      "categoria": "No cumple A + B",
-      "color": "verde",
-      "match_opcion_index": 2,
-      "approach": "Buscar otro diagnóstico (hepatitis aguda, otro abdomen agudo, colecistitis crónica)."
+      "min": 2,
+      "max": 2,
+      "categoria": "Definitiva (A + B + C)",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Tratamiento inicial y graduar la gravedad.",
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "b",
+            "igual": 1
+          },
+          {
+            "id": "c",
+            "igual": 1
+          }
+        ]
+      }
     },
     {
       "min": 1,
@@ -78,15 +110,29 @@
       "categoria": "Sospecha (A + B)",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Falta la imagen: ecografía; si no es concluyente, TC o RM."
+      "approach": "Falta la imagen: ecografía; si no es concluyente, TC o RM.",
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "b",
+            "igual": 1
+          }
+        ]
+      }
     },
     {
-      "min": 2,
-      "max": 2,
-      "categoria": "Definitiva (A + B + C)",
-      "color": "rojo",
-      "match_opcion_index": 0,
-      "approach": "Tratamiento inicial y graduar la gravedad."
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple A + B",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Buscar otro diagnóstico (hepatitis aguda, otro abdomen agudo, colecistitis crónica)."
     }
-  ]
+  ],
+  "instrucciones": "Basta un criterio de cada grupo. Repite la valoración cada 6-12 h hasta llegar al diagnóstico. El resultado sale en cuanto queda decidido (sin A o sin B, no cumple).",
+  "limitaciones": "En el embarazo la leucocitosis puede confundir y el Murphy cuesta valorarlo al final del tercer trimestre. Descartar hepatitis aguda, otro abdomen agudo y colecistitis crónica."
 }

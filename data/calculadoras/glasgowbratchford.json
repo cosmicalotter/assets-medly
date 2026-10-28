@@ -1,41 +1,79 @@
 {
-  "titulo": "Score de Glasgow-Blatchford (GBS)",
-  "descripcion": "Estratifica el riesgo de requerir intervención médica (endoscopia, transfusión o cirugía) en pacientes con hemorragia digestiva alta no variceal.",
+  "titulo": "Glasgow-Blatchford (hemorragia digestiva alta)",
+  "descripcion": "Estima antes de la endoscopia la necesidad de tratamiento hospitalario (transfusión, endoscopia terapéutica o cirugía) en la hemorragia digestiva alta, con urea, hemoglobina, PAS, FC, melena, síncope y comorbilidad, de 0 a 23 puntos. Derivada en 1748 pacientes, identifica a quién puede tratarse de forma ambulatoria.",
+  "instrucciones": "Con los datos de la llegada. Urea en mmol/L; con BUN o urea en mg/dL, cambia la unidad. Hemoglobina según el sexo.",
+  "limitaciones": "Predice peor la mortalidad que la necesidad de intervención. No sustituye la reanimación ni la valoración clínica del paciente inestable.",
+  "referencias": [
+    {
+      "titulo": "Blatchford O, Murray WR, Blatchford M. A risk score to predict need for treatment for upper-gastrointestinal haemorrhage. Lancet 2000;356(9238):1318-21.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11073021/"
+    },
+    {
+      "titulo": "Orpen-Palmer J, Stanley AJ. A review of risk scores within upper gastrointestinal bleeding. J Clin Med 2023;12(11):3678.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37297873/",
+      "paginas": "Tabla 1",
+      "texto": "Blood Urea (mmol/L) 6.5–7.9: 2; 8.0–9.9: 3; 10.0–24.9: 4; >25.0: 6. Haemoglobin (g/L) Male 120–130: 1; 100–119: 3; <100: 6. Female 100–120: 1; <100: 6"
+    },
+    {
+      "titulo": "Gralnek IM, Stanley AJ, Morris AJ, et al. Endoscopic diagnosis and management of nonvariceal upper gastrointestinal hemorrhage (NVUGIH): ESGE Guideline – Update 2021. Endoscopy 2021;53(3):300-32.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33567467/",
+      "paginas": "Recomendación 1",
+      "texto": "Patients with GBS ≤ 1 are at very low risk of rebleeding, mortality within 30 days, or needing hospital-based intervention and can be safely managed as outpatients with outpatient endoscopy."
+    },
+    {
+      "titulo": "Gralnek IM, Stanley AJ, Morris AJ, et al. Endoscopic diagnosis and management of nonvariceal upper gastrointestinal hemorrhage (NVUGIH): ESGE Guideline – Update 2021. Endoscopy 2021;53(3):300-32. Endoscopia.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33567467/",
+      "paginas": "Recomendaciones 3-4",
+      "texto": "following hemodynamic resuscitation, early (≤ 24 hours) upper gastrointestinal (GI) endoscopy should be performed."
+    }
+  ],
   "tipoCalculo": "formula",
-  "prefijoResultado": "Total",
+  "formula": "urea_puntos + pas_puntos + fc_puntos + hb + melena + sincope + hepatopatia + icc",
+  "prefijoResultado": "GBS",
   "sufijoResultado": "puntos",
-  "formula": "bun_puntos + pas_puntos + fc_puntos + hb + melena + sincope + hepatopatia + icc",
   "secciones": [
     {
       "nombre": "Laboratorio",
       "elementos": [
         {
-          "id": "bun",
+          "id": "urea",
           "tipo": "input_numero",
-          "label": "BUN",
-          "unidad": "mg/dL",
+          "label": "Urea",
+          "unidad": "mmol/L",
+          "min": 0,
+          "max": 120,
+          "unidades": [
+            {
+              "unidad": "BUN mg/dL",
+              "factor": 0.357
+            },
+            {
+              "unidad": "urea mg/dL",
+              "factor": 0.1665
+            }
+          ],
           "intervalos": [
             {
-              "max": 18.19,
+              "max": 6.49,
               "puntos": 0
             },
             {
-              "min": 18.2,
-              "max": 22.39,
+              "min": 6.5,
+              "max": 7.99,
               "puntos": 2
             },
             {
-              "min": 22.4,
-              "max": 27.99,
+              "min": 8,
+              "max": 9.99,
               "puntos": 3
             },
             {
-              "min": 28.0,
-              "max": 69.99,
+              "min": 10,
+              "max": 24.99,
               "puntos": 4
             },
             {
-              "min": 70.0,
+              "min": 25,
               "puntos": 6
             }
           ]
@@ -43,26 +81,26 @@
         {
           "id": "hb",
           "tipo": "opciones",
-          "label": "Hemoglobina (Hb)",
+          "label": "Hemoglobina",
           "opciones": [
             {
-              "label": "≥ 13 (H) o ≥ 12 (M)",
+              "label": "Hombre ≥ 13 · Mujer ≥ 12 g/dL",
               "puntos": 0
             },
             {
-              "label": "12 - 12.9 (Hombres)",
+              "label": "Hombre 12-12,9 g/dL",
               "puntos": 1
             },
             {
-              "label": "10 - 11.9 (Mujeres)",
+              "label": "Mujer 10-11,9 g/dL",
               "puntos": 1
             },
             {
-              "label": "10 - 11.9 (Hombres)",
+              "label": "Hombre 10-11,9 g/dL",
               "puntos": 3
             },
             {
-              "label": "< 10 (Ambos)",
+              "label": "< 10 g/dL",
               "puntos": 6
             }
           ]
@@ -70,30 +108,32 @@
       ]
     },
     {
-      "nombre": "Signos Vitales",
+      "nombre": "Constantes",
       "elementos": [
         {
           "id": "pas",
           "tipo": "input_numero",
           "label": "PAS",
           "unidad": "mmHg",
+          "min": 0,
+          "max": 300,
           "intervalos": [
             {
               "max": 89.99,
               "puntos": 3
             },
             {
-              "min": 90.0,
+              "min": 90,
               "max": 99.99,
               "puntos": 2
             },
             {
-              "min": 100.0,
+              "min": 100,
               "max": 109.99,
               "puntos": 1
             },
             {
-              "min": 110.0,
+              "min": 110,
               "puntos": 0
             }
           ]
@@ -101,15 +141,17 @@
         {
           "id": "fc",
           "tipo": "input_numero",
-          "label": "Frec. Cardíaca",
+          "label": "Frecuencia cardiaca",
           "unidad": "lpm",
+          "min": 0,
+          "max": 300,
           "intervalos": [
             {
               "max": 99.99,
               "puntos": 0
             },
             {
-              "min": 100.0,
+              "min": 100,
               "puntos": 1
             }
           ]
@@ -117,7 +159,7 @@
       ]
     },
     {
-      "nombre": "Clínica y Comorbilidades",
+      "nombre": "Presentación y comorbilidad",
       "elementos": [
         {
           "id": "melena",
@@ -152,7 +194,7 @@
         {
           "id": "hepatopatia",
           "tipo": "opciones",
-          "label": "Enf. Hepática",
+          "label": "Enfermedad hepática",
           "opciones": [
             {
               "label": "No",
@@ -167,7 +209,7 @@
         {
           "id": "icc",
           "tipo": "opciones",
-          "label": "Falla Cardíaca",
+          "label": "Insuficiencia cardiaca",
           "opciones": [
             {
               "label": "No",
@@ -185,31 +227,19 @@
   "resultados": [
     {
       "min": 0,
-      "max": 0,
-      "categoria": "Riesgo Bajo",
+      "max": 1,
+      "categoria": "Riesgo muy bajo (≤ 1)",
       "color": "verde",
-      "approach": "Alta médica, manejo ambulatorio sin requerir endoscopia de urgencia."
+      "match_opcion_index": -1,
+      "approach": "Bajo riesgo de resangrado, muerte a 30 días o intervención: manejo ambulatorio con endoscopia ambulatoria."
     },
     {
-      "min": 1,
+      "min": 2,
       "max": 23,
-      "categoria": "Alto Riesgo",
+      "categoria": "Necesita valoración hospitalaria",
       "color": "rojo",
-      "approach": "Ingreso hospitalario. Considerar endoscopia e intervención clínica."
-    }
-  ],
-  "referencias": [
-    {
-      "titulo": "Blatchford O, et al. A risk score to predict need for treatment for upper-gastrointestinal haemorrhage. Lancet. 2000;356(9238):1318-21.",
-      "url": "https://doi.org/10.1016/S0140-6736(00)02816-6"
-    },
-    {
-      "titulo": "Chen IC, et al. Risk scoring systems to predict need for clinical intervention for patients with nonvariceal upper gastrointestinal tract bleeding. Am J Emerg Med. 2007;25(7):774-9.",
-      "url": "https://doi.org/10.1016/j.ajem.2006.12.024"
-    },
-    {
-      "titulo": "Laine L, Jensen DM. Management of patients with ulcer bleeding. Am J Gastroenterol. 2012;107(3):345-60.",
-      "url": "https://doi.org/10.1038/ajg.2011.480"
+      "match_opcion_index": -1,
+      "approach": "Ingreso; tras la reanimación, endoscopia precoz (≤ 24 h). Urgente (≤ 12 h) sólo si sigue inestable pese a la reanimación."
     }
   ]
 }

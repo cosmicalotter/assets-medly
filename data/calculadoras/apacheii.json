@@ -1,17 +1,29 @@
 {
-  "titulo": "APACHE II",
-  "descripcion": "Escala de gravedad utilizada en UCI para clasificar el riesgo de mortalidad hospitalaria basándose en el peor valor fisiológico de las primeras 24 horas. NOTA: LLENE SOLO UNA DE LAS DOS FILAS DE CREATININA (SIN O CON INSUFICIENCIA RENAL AGUDA). PARA OXIGENACIÓN: USE AaDO2 SI FiO2 ≥ 0.5, DE LO CONTRARIO USE PaO2.",
+  "titulo": "APACHE II (gravedad en UCI)",
+  "descripcion": "Mide la gravedad de la enfermedad al ingreso en la UCI con doce variables fisiológicas, la edad y la salud crónica previa, de 0 a 71 puntos. Se validó en 5815 ingresos de 13 hospitales: la puntuación se correlaciona con la mortalidad hospitalaria y, junto al diagnóstico, estratifica el pronóstico.",
+  "instrucciones": "Usa los valores de las primeras 24 h en UCI. Escribe cada valor o marca su tramo. Oxigenación: AaDO₂ si FiO₂ ≥ 0,5; PaO₂ si < 0,5. Creatinina: una fila u otra según haya IRA.",
+  "limitaciones": "Estima la mortalidad de grupos: en un paciente concreto el pronóstico depende también del diagnóstico de ingreso.",
   "referencias": [
     {
-      "titulo": "APACHE II: a severity of disease classification system. Crit Care Med. 1985",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/3928249/"
+      "titulo": "Knaus WA, Draper EA, Wagner DP, Zimmerman JE. APACHE II: a severity of disease classification system. Crit Care Med 1985;13(10):818-29.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3928249/",
+      "texto": "An increasing score (range 0 to 71) was closely correlated with the subsequent risk of hospital death for 5815 intensive care admissions from 13 hospitals."
     },
     {
-      "titulo": "Independent validation of APACHE II severity of illness score for predicting mortality in patients with breast cancer admitted to the intensive care unit",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/1617599/"
+      "titulo": "Ahmed AS, Iqbal M, Sethi SM, et al. Comparison of critical illness score in patients admitted to intermediate care units of a tertiary care hospital. J Crit Care Med (Targu Mures) 2024;10(1):38-48.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39108804/",
+      "paginas": "Tabla de APACHE II",
+      "texto": "Serum Cr (Normal: 0.6–1.4 mg/dL) Score × 2 (if AKI) ≥ 3.5 = 4 points, 2–3.4 = 3 points, 1.5–1.9 / <0.6 = 2 points"
+    },
+    {
+      "titulo": "Ahmed AS, Iqbal M, Sethi SM, et al. Comparison of critical illness score in patients admitted to intermediate care units of a tertiary care hospital. J Crit Care Med (Targu Mures) 2024;10(1):38-48. Mortalidad.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39108804/",
+      "paginas": "Tabla de APACHE II",
+      "texto": "Score 0–4: 4%; 5–9: 8%; 10–14: 15%; 15–19: 25%; 20–24: 40%; 25–29: 55%; 30–34: 75%; >34: 85%"
     }
   ],
-   "columnas": [
+  "prefijoResultado": "APACHE II",
+  "columnas": [
     {
       "puntos": 0,
       "titulo": "0",
@@ -80,13 +92,13 @@
   ],
   "filas": [
     {
-      "nombre": "Temp (°C)",
+      "nombre": "Temperatura central",
       "descripciones": [
-        "36-38.4",
-        "38.5-38.9 / 34-35.9",
-        "32-33.9",
-        "39-40.9 / 30-31.9",
-        "≥41 / ≤29.9",
+        "36-38,4",
+        "38,5-38,9 / 34-35,9",
+        "32-33,9",
+        "39-40,9 / 30-31,9",
+        "≥ 41 / ≤ 29,9",
         "-",
         "-",
         "-",
@@ -95,16 +107,68 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "°C",
+        "unidades": [
+          {
+            "unidad": "°F",
+            "factor": 0.5556,
+            "suma": -17.778
+          }
+        ],
+        "min": 20,
+        "max": 45,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 29.99
+          },
+          {
+            "puntos": 3,
+            "min": 30,
+            "max": 31.99
+          },
+          {
+            "puntos": 2,
+            "min": 32,
+            "max": 33.99
+          },
+          {
+            "puntos": 1,
+            "min": 34,
+            "max": 35.99
+          },
+          {
+            "puntos": 0,
+            "min": 36,
+            "max": 38.49
+          },
+          {
+            "puntos": 1,
+            "min": 38.5,
+            "max": 38.99
+          },
+          {
+            "puntos": 3,
+            "min": 39,
+            "max": 40.99
+          },
+          {
+            "puntos": 4,
+            "min": 41
+          }
+        ]
+      }
     },
     {
-      "nombre": "PAM (mmHg)",
+      "nombre": "PAM",
       "descripciones": [
         "70-109",
         "-",
         "110-129 / 50-69",
         "130-159",
-        "≥160 / ≤49",
+        "≥ 160 / ≤ 49",
         "-",
         "-",
         "-",
@@ -113,16 +177,51 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 0,
+        "max": 250,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 49.99
+          },
+          {
+            "puntos": 2,
+            "min": 50,
+            "max": 69.99
+          },
+          {
+            "puntos": 0,
+            "min": 70,
+            "max": 109.99
+          },
+          {
+            "puntos": 2,
+            "min": 110,
+            "max": 129.99
+          },
+          {
+            "puntos": 3,
+            "min": 130,
+            "max": 159.99
+          },
+          {
+            "puntos": 4,
+            "min": 160
+          }
+        ]
+      }
     },
     {
-      "nombre": "FC (lpm)",
+      "nombre": "Frecuencia cardiaca",
       "descripciones": [
         "70-109",
         "-",
         "110-139 / 55-69",
         "140-179 / 40-54",
-        "≥180 / ≤39",
+        "≥ 180 / ≤ 39",
         "-",
         "-",
         "-",
@@ -131,16 +230,56 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 39.99
+          },
+          {
+            "puntos": 3,
+            "min": 40,
+            "max": 54.99
+          },
+          {
+            "puntos": 2,
+            "min": 55,
+            "max": 69.99
+          },
+          {
+            "puntos": 0,
+            "min": 70,
+            "max": 109.99
+          },
+          {
+            "puntos": 2,
+            "min": 110,
+            "max": 139.99
+          },
+          {
+            "puntos": 3,
+            "min": 140,
+            "max": 179.99
+          },
+          {
+            "puntos": 4,
+            "min": 180
+          }
+        ]
+      }
     },
     {
-      "nombre": "FR (rpm)",
+      "nombre": "Frecuencia respiratoria",
       "descripciones": [
         "12-24",
         "25-34 / 10-11",
         "6-9",
         "35-49",
-        "≥50 / ≤5",
+        "≥ 50 / ≤ 5",
         "-",
         "-",
         "-",
@@ -149,16 +288,58 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "ayuda": "Ventilado o no.",
+      "entrada": {
+        "unidad": "rpm",
+        "min": 0,
+        "max": 80,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 5.99
+          },
+          {
+            "puntos": 2,
+            "min": 6,
+            "max": 9.99
+          },
+          {
+            "puntos": 1,
+            "min": 10,
+            "max": 11.99
+          },
+          {
+            "puntos": 0,
+            "min": 12,
+            "max": 24.99
+          },
+          {
+            "puntos": 1,
+            "min": 25,
+            "max": 34.99
+          },
+          {
+            "puntos": 3,
+            "min": 35,
+            "max": 49.99
+          },
+          {
+            "puntos": 4,
+            "min": 50
+          }
+        ]
+      }
     },
     {
-      "nombre": "O2 (AaDO2/PaO2)",
+      "nombre": "AaDO₂ (FiO₂ ≥ 0,5)",
+      "grupo": "oxigenacion",
       "descripciones": [
-        "Aa<200 / Pa>70",
-        "Pa 61-70",
-        "Aa 200-349",
-        "Aa 350-499 / Pa 55-60",
-        "Aa≥500 / Pa<55",
+        "< 200",
+        "-",
+        "200-349",
+        "350-499",
+        "≥ 500",
         "-",
         "-",
         "-",
@@ -167,16 +348,43 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "ayuda": "Con FiO₂ ≥ 0,5 se usa el gradiente alveoloarterial; con FiO₂ < 0,5, la PaO₂.",
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 0,
+        "max": 800,
+        "tramos": [
+          {
+            "puntos": 0,
+            "max": 199.99
+          },
+          {
+            "puntos": 2,
+            "min": 200,
+            "max": 349.99
+          },
+          {
+            "puntos": 3,
+            "min": 350,
+            "max": 499.99
+          },
+          {
+            "puntos": 4,
+            "min": 500
+          }
+        ]
+      }
     },
     {
-      "nombre": "pH Arterial",
+      "nombre": "PaO₂ (FiO₂ < 0,5)",
+      "grupo": "oxigenacion",
       "descripciones": [
-        "7.33-7.49",
-        "7.50-7.59",
-        "7.25-7.32",
-        "7.60-7.69 / 7.15-7.24",
-        "≥7.7 / <7.15",
+        "> 70",
+        "61-70",
+        "-",
+        "55-60",
+        "< 55",
         "-",
         "-",
         "-",
@@ -185,16 +393,160 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 10,
+        "max": 700,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 54.99
+          },
+          {
+            "puntos": 3,
+            "min": 55,
+            "max": 60.99
+          },
+          {
+            "puntos": 1,
+            "min": 61,
+            "max": 70
+          },
+          {
+            "puntos": 0,
+            "min": 70.01
+          }
+        ]
+      }
     },
     {
-      "nombre": "Sodio (mEq/L)",
+      "nombre": "pH arterial",
+      "grupo": "acido_base",
+      "descripciones": [
+        "7,33-7,49",
+        "7,50-7,59",
+        "7,25-7,32",
+        "7,60-7,69 / 7,15-7,24",
+        "≥ 7,70 / < 7,15",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "",
+        "min": 6.5,
+        "max": 8,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 7.149
+          },
+          {
+            "puntos": 3,
+            "min": 7.15,
+            "max": 7.249
+          },
+          {
+            "puntos": 2,
+            "min": 7.25,
+            "max": 7.329
+          },
+          {
+            "puntos": 0,
+            "min": 7.33,
+            "max": 7.499
+          },
+          {
+            "puntos": 1,
+            "min": 7.5,
+            "max": 7.599
+          },
+          {
+            "puntos": 3,
+            "min": 7.6,
+            "max": 7.699
+          },
+          {
+            "puntos": 4,
+            "min": 7.7
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "HCO₃ (sin gasometría)",
+      "grupo": "acido_base",
+      "descripciones": [
+        "22-31,9",
+        "32-40,9",
+        "18-21,9",
+        "41-51,9 / 15-17,9",
+        "≥ 52 / < 15",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "ayuda": "Bicarbonato venoso sólo si no hay gasometría arterial.",
+      "entrada": {
+        "unidad": "mmol/L",
+        "min": 0,
+        "max": 80,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 14.99
+          },
+          {
+            "puntos": 3,
+            "min": 15,
+            "max": 17.99
+          },
+          {
+            "puntos": 2,
+            "min": 18,
+            "max": 21.99
+          },
+          {
+            "puntos": 0,
+            "min": 22,
+            "max": 31.99
+          },
+          {
+            "puntos": 1,
+            "min": 32,
+            "max": 40.99
+          },
+          {
+            "puntos": 3,
+            "min": 41,
+            "max": 51.99
+          },
+          {
+            "puntos": 4,
+            "min": 52
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Sodio",
       "descripciones": [
         "130-149",
         "150-154",
         "155-159 / 120-129",
         "160-179 / 111-119",
-        "≥180 / ≤110",
+        "≥ 180 / ≤ 110",
         "-",
         "-",
         "-",
@@ -203,16 +555,61 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "mmol/L",
+        "min": 80,
+        "max": 220,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 110.99
+          },
+          {
+            "puntos": 3,
+            "min": 111,
+            "max": 119.99
+          },
+          {
+            "puntos": 2,
+            "min": 120,
+            "max": 129.99
+          },
+          {
+            "puntos": 0,
+            "min": 130,
+            "max": 149.99
+          },
+          {
+            "puntos": 1,
+            "min": 150,
+            "max": 154.99
+          },
+          {
+            "puntos": 2,
+            "min": 155,
+            "max": 159.99
+          },
+          {
+            "puntos": 3,
+            "min": 160,
+            "max": 179.99
+          },
+          {
+            "puntos": 4,
+            "min": 180
+          }
+        ]
+      }
     },
     {
-      "nombre": "Potasio (mEq/L)",
+      "nombre": "Potasio",
       "descripciones": [
-        "3.5-5.4",
-        "5.5-5.9 / 3.0-3.4",
-        "2.5-2.9",
-        "6.0-6.9",
-        "≥7.0 / <2.5",
+        "3,5-5,4",
+        "5,5-5,9 / 3-3,4",
+        "2,5-2,9",
+        "6-6,9",
+        "≥ 7 / < 2,5",
         "-",
         "-",
         "-",
@@ -221,16 +618,57 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "mmol/L",
+        "min": 1,
+        "max": 12,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 2.49
+          },
+          {
+            "puntos": 2,
+            "min": 2.5,
+            "max": 2.99
+          },
+          {
+            "puntos": 1,
+            "min": 3,
+            "max": 3.49
+          },
+          {
+            "puntos": 0,
+            "min": 3.5,
+            "max": 5.49
+          },
+          {
+            "puntos": 1,
+            "min": 5.5,
+            "max": 5.99
+          },
+          {
+            "puntos": 3,
+            "min": 6,
+            "max": 6.99
+          },
+          {
+            "puntos": 4,
+            "min": 7
+          }
+        ]
+      }
     },
     {
-      "nombre": "Cr Sin IRA",
+      "nombre": "Creatinina sin IRA",
+      "grupo": "creatinina",
       "descripciones": [
-        "0.6-1.4",
+        "0,6-1,4",
         "-",
-        "1.5-1.9",
-        "2.0-3.4",
-        "≥3.5",
+        "1,5-1,9 / < 0,6",
+        "2-3,4",
+        "≥ 3,5",
         "-",
         "-",
         "-",
@@ -239,34 +677,108 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "ayuda": "Con insuficiencia renal aguda los puntos se duplican: usa la otra fila.",
+      "entrada": {
+        "unidad": "mg/dL",
+        "unidades": [
+          {
+            "unidad": "µmol/L",
+            "factor": 0.01131
+          }
+        ],
+        "min": 0.1,
+        "max": 30,
+        "tramos": [
+          {
+            "puntos": 2,
+            "max": 0.59
+          },
+          {
+            "puntos": 0,
+            "min": 0.6,
+            "max": 1.49
+          },
+          {
+            "puntos": 2,
+            "min": 1.5,
+            "max": 1.99
+          },
+          {
+            "puntos": 3,
+            "min": 2,
+            "max": 3.49
+          },
+          {
+            "puntos": 4,
+            "min": 3.5
+          }
+        ]
+      }
     },
     {
-      "nombre": "Cr Con IRA",
+      "nombre": "Creatinina con IRA",
+      "grupo": "creatinina",
       "descripciones": [
-        "0.6-1.4",
+        "0,6-1,4",
         "-",
         "-",
         "-",
-        "1.5-1.9",
+        "1,5-1,9 / < 0,6",
         "-",
-        "2.0-3.4",
+        "2-3,4",
         "-",
-        "≥3.5",
+        "≥ 3,5",
         "-",
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "mg/dL",
+        "unidades": [
+          {
+            "unidad": "µmol/L",
+            "factor": 0.01131
+          }
+        ],
+        "min": 0.1,
+        "max": 30,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 0.59
+          },
+          {
+            "puntos": 0,
+            "min": 0.6,
+            "max": 1.49
+          },
+          {
+            "puntos": 4,
+            "min": 1.5,
+            "max": 1.99
+          },
+          {
+            "puntos": 6,
+            "min": 2,
+            "max": 3.49
+          },
+          {
+            "puntos": 8,
+            "min": 3.5
+          }
+        ]
+      }
     },
     {
-      "nombre": "Hto (%)",
+      "nombre": "Hematocrito",
       "descripciones": [
-        "30-45.9",
-        "46-49.9",
-        "20-29.9",
+        "30-45,9",
+        "46-49,9",
+        "50-59,9 / 20-29,9",
         "-",
-        "≥60 / <20",
+        "≥ 60 / < 20",
         "-",
         "-",
         "-",
@@ -275,16 +787,51 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "%",
+        "min": 5,
+        "max": 80,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 19.99
+          },
+          {
+            "puntos": 2,
+            "min": 20,
+            "max": 29.99
+          },
+          {
+            "puntos": 0,
+            "min": 30,
+            "max": 45.99
+          },
+          {
+            "puntos": 1,
+            "min": 46,
+            "max": 49.99
+          },
+          {
+            "puntos": 2,
+            "min": 50,
+            "max": 59.99
+          },
+          {
+            "puntos": 4,
+            "min": 60
+          }
+        ]
+      }
     },
     {
-      "nombre": "Leucos (k/mm3)",
+      "nombre": "Leucocitos",
       "descripciones": [
-        "3-14.9",
-        "15-19.9",
-        "1-2.9",
+        "3-14,9",
+        "15-19,9",
+        "20-39,9 / 1-2,9",
         "-",
-        "≥40 / <1",
+        "≥ 40 / < 1",
         "-",
         "-",
         "-",
@@ -293,35 +840,100 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "×10³/µL",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "puntos": 4,
+            "max": 0.99
+          },
+          {
+            "puntos": 2,
+            "min": 1,
+            "max": 2.99
+          },
+          {
+            "puntos": 0,
+            "min": 3,
+            "max": 14.99
+          },
+          {
+            "puntos": 1,
+            "min": 15,
+            "max": 19.99
+          },
+          {
+            "puntos": 2,
+            "min": 20,
+            "max": 39.99
+          },
+          {
+            "puntos": 4,
+            "min": 40
+          }
+        ]
+      }
     },
     {
-      "nombre": "Edad (años)",
+      "nombre": "Edad",
       "descripciones": [
-        "≤44",
+        "≤ 44",
         "-",
         "45-54",
         "55-64",
         "-",
         "65-74",
-        "≥75",
+        "≥ 75",
         "-",
         "-",
         "-",
         "-",
         "-",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 16,
+        "max": 120,
+        "tramos": [
+          {
+            "puntos": 0,
+            "max": 44.99
+          },
+          {
+            "puntos": 2,
+            "min": 45,
+            "max": 54.99
+          },
+          {
+            "puntos": 3,
+            "min": 55,
+            "max": 64.99
+          },
+          {
+            "puntos": 5,
+            "min": 65,
+            "max": 74.99
+          },
+          {
+            "puntos": 6,
+            "min": 75
+          }
+        ]
+      }
     },
     {
-      "nombre": "Enf. Crónica",
+      "nombre": "Salud crónica",
       "descripciones": [
-        "Ninguna",
+        "Sin enfermedad grave",
         "-",
-        "Post-op Electivo",
+        "Posoperatorio programado",
         "-",
         "-",
-        "Médico/Urgencia",
+        "Médico o cirugía urgente",
         "-",
         "-",
         "-",
@@ -329,7 +941,23 @@
         "-",
         "-",
         "-"
-      ]
+      ],
+      "detalles": [
+        "Sin inmunodepresión ni insuficiencia orgánica grave",
+        "-",
+        "Con inmunodepresión o insuficiencia orgánica grave",
+        "-",
+        "-",
+        "Con inmunodepresión o insuficiencia orgánica grave",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "ayuda": "Sólo puntúa si hay inmunodepresión o antecedente de insuficiencia orgánica grave."
     },
     {
       "nombre": "Glasgow (GCS)",
@@ -347,49 +975,144 @@
         "5",
         "4",
         "3"
-      ]
+      ],
+      "ayuda": "Puntúa 15 menos el GCS.",
+      "entrada": {
+        "unidad": "puntos",
+        "min": 3,
+        "max": 15,
+        "tramos": [
+          {
+            "puntos": 0,
+            "min": 15
+          },
+          {
+            "puntos": 1,
+            "min": 14,
+            "max": 14.99
+          },
+          {
+            "puntos": 2,
+            "min": 13,
+            "max": 13.99
+          },
+          {
+            "puntos": 3,
+            "min": 12,
+            "max": 12.99
+          },
+          {
+            "puntos": 4,
+            "min": 11,
+            "max": 11.99
+          },
+          {
+            "puntos": 5,
+            "min": 10,
+            "max": 10.99
+          },
+          {
+            "puntos": 6,
+            "min": 9,
+            "max": 9.99
+          },
+          {
+            "puntos": 7,
+            "min": 8,
+            "max": 8.99
+          },
+          {
+            "puntos": 8,
+            "min": 7,
+            "max": 7.99
+          },
+          {
+            "puntos": 9,
+            "min": 6,
+            "max": 6.99
+          },
+          {
+            "puntos": 10,
+            "min": 5,
+            "max": 5.99
+          },
+          {
+            "puntos": 11,
+            "min": 4,
+            "max": 4.99
+          },
+          {
+            "puntos": 12,
+            "max": 3.99
+          }
+        ]
+      }
     }
   ],
   "resultados": [
     {
       "min": 0,
-      "max": 9,
-      "categoria": "Riesgo Bajo",
-      "match_opcion_index": -1,
+      "max": 4,
+      "categoria": "APACHE II 0-4",
       "color": "verde",
-      "approach": "Manejo hospitalario estándar, monitorización regular"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 4 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
+    },
+    {
+      "min": 5,
+      "max": 9,
+      "categoria": "APACHE II 5-9",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 8 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
     },
     {
       "min": 10,
       "max": 14,
-      "categoria": "Riesgo Moderado",
-      "match_opcion_index": -1,
+      "categoria": "APACHE II 10-14",
       "color": "amarillo",
-      "approach": "Vigilancia estrecha, considerar UCI o cuidados intermedios"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 15 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
     },
     {
       "min": 15,
       "max": 19,
-      "categoria": "Riesgo Alto",
+      "categoria": "APACHE II 15-19",
+      "color": "amarillo",
       "match_opcion_index": -1,
-      "color": "naranja",
-      "approach": "Ingreso a UCI recomendado, optimización hemodinámica"
+      "approach": "Mortalidad hospitalaria aproximada 25 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
     },
     {
       "min": 20,
       "max": 24,
-      "categoria": "Riesgo Muy Alto",
+      "categoria": "APACHE II 20-24",
+      "color": "naranja",
       "match_opcion_index": -1,
-      "color": "rojo",
-      "approach": "Manejo intensivo en UCI, soporte de órganos vitales"
+      "approach": "Mortalidad hospitalaria aproximada 40 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
     },
     {
       "min": 25,
-      "max": 71,
-      "categoria": "Riesgo Crítico",
+      "max": 29,
+      "categoria": "APACHE II 25-29",
+      "color": "naranja",
       "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 55 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
+    },
+    {
+      "min": 30,
+      "max": 34,
+      "categoria": "APACHE II 30-34",
       "color": "rojo",
-      "approach": "Soporte vital avanzado en UCI, evaluar respuesta"
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 75 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
+    },
+    {
+      "min": 35,
+      "max": 71,
+      "categoria": "APACHE II ≥ 35",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Mortalidad hospitalaria aproximada 85 %. Describe la gravedad del grupo: interpretar con el diagnóstico de ingreso."
     }
   ]
 }

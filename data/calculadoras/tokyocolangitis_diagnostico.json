@@ -8,8 +8,22 @@
   "imagenBottomUrl": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/imagenes/tokyocolangitis.png",
   "referencias": [
     {
-      "titulo": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):17-30.",
-      "url": "https://doi.org/10.1002/jhbp.512"
+      "titulo": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci 2018;25(1):17-30.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29032610/",
+      "paginas": "Tabla 2, p. 19",
+      "texto": "Suspected diagnosis: one item in A + one item in either B or C. Definite diagnosis: one item in A, one item in B and one item in C"
+    },
+    {
+      "titulo": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci 2018;25(1):17-30. Criterios C.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29032610/",
+      "paginas": "Tabla 2, p. 19",
+      "texto": "C-1. Biliary dilatation. C-2. Evidence of the etiology on imaging (stricture, stone, stent etc.)"
+    },
+    {
+      "titulo": "Mayumi T, Okamoto K, Takada T, et al. Tokyo Guidelines 2018: management bundles for acute cholangitis and cholecystitis. J Hepatobiliary Pancreat Sci 2018;25(1):96-100.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29090868/",
+      "paginas": "97",
+      "texto": "When acute cholangitis is suspected, perform a diagnostic assessment every 6 to 12 h using TG18 diagnostic criteria until a diagnosis is reached."
     }
   ],
   "secciones": [
@@ -65,12 +79,28 @@
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 0,
-      "categoria": "No cumple A + (B o C)",
-      "color": "verde",
-      "match_opcion_index": 2,
-      "approach": "Buscar otro diagnóstico."
+      "min": 3,
+      "max": 3,
+      "categoria": "Definitiva (A + B + C)",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Tratamiento inicial y graduar la gravedad.",
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "b",
+            "igual": 1
+          },
+          {
+            "id": "c",
+            "igual": 1
+          }
+        ]
+      }
     },
     {
       "min": 1,
@@ -78,7 +108,19 @@
       "categoria": "Sospecha (A + B)",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Confirmar la obstrucción y su causa con imagen (TC, colangio-RM o USE)."
+      "approach": "Confirmar la obstrucción y su causa con imagen (TC, colangio-RM o USE).",
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "b",
+            "igual": 1
+          }
+        ]
+      }
     },
     {
       "min": 2,
@@ -86,15 +128,29 @@
       "categoria": "Sospecha (A + C)",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Falta la colestasis en el laboratorio: completar el estudio."
+      "approach": "Falta la colestasis en el laboratorio: completar el estudio.",
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "c",
+            "igual": 1
+          }
+        ]
+      }
     },
     {
-      "min": 3,
-      "max": 3,
-      "categoria": "Definitiva (A + B + C)",
-      "color": "rojo",
-      "match_opcion_index": 0,
-      "approach": "Tratamiento inicial y graduar la gravedad."
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple A + (B o C)",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Buscar otro diagnóstico."
     }
-  ]
+  ],
+  "instrucciones": "Basta un criterio de cada grupo. Repite la valoración cada 6-12 h hasta llegar al diagnóstico. El resultado sale en cuanto queda decidido (sin A, no cumple).",
+  "limitaciones": "Descartar hepatitis aguda y otras causas de colestasis con fiebre. La ecografía es la primera imagen; si no muestra la causa, TC o colangio-RM."
 }
