@@ -10,7 +10,9 @@
 //   2. arma lo que se publica de los índices de algoritmos (ver `publicable`):
 //      sin los algoritmos con `"oculto": true` en su JSON (no existen para la
 //      app ni para Nodo) y con `definiciones`, el texto de su portada en una
-//      línea, que la biblioteca enseña bajo las guías;
+//      línea, que la biblioteca enseña bajo las guías; y a cada calculadora
+//      le añade `usadaEn`, los pasos de los algoritmos visibles que la abren
+//      (la sección «Se usa en» de su ventana de información);
 //   3. protege lo que se cambió a mano en la consola: si el valor de Firebase
 //      no coincide con el que el repo publicó la vez anterior (PREV_SHA), ese
 //      parámetro no se pisa y el workflow falla avisando. Se arregla copiando
@@ -106,8 +108,70 @@ function definiciones(algoritmo, titulo) {
   return texto.length <= MAX_DEFINICIONES ? texto : `${texto.slice(0, MAX_DEFINICIONES - 1).trim()}…`;
 }
 
-// El índice tal como lo ve la app: sin los ocultos y con sus definiciones.
+// -------------------------------------------------------------------------
+// DÓNDE SE USA CADA CALCULADORA
+// -------------------------------------------------------------------------
+// Un nodo cita una calculadora con su botón (`calculadora`, `calculadora_id`)
+// o con un enlace (`calculadora_objetivo`). Se comparan por el nombre del
+// archivo: la URL raw y el nombre suelto son la misma escala.
+const LLAVES_CALCULADORA = ['calculadora', 'calculadora_id', 'calculadoraId', 'calculadora_objetivo', 'calculadoraObjetivo'];
+
+const nombreArchivo = (ruta) => String(ruta || '').split(/[?#]/)[0].split('/').pop().trim().toLowerCase();
+
+function calculadorasDe(valor, salida = new Set()) {
+  if (Array.isArray(valor)) valor.forEach((v) => calculadorasDe(v, salida));
+  else if (valor && typeof valor === 'object') {
+    for (const [llave, v] of Object.entries(valor)) {
+      if (LLAVES_CALCULADORA.includes(llave)) {
+        const ruta = typeof v === 'string' ? v : v && typeof v === 'object' ? v.archivo : '';
+        const nombre = nombreArchivo(ruta);
+        if (nombre.endsWith('.json') && !nombre.startsWith('todo_')) salida.add(nombre);
+      }
+      calculadorasDe(v, salida);
+    }
+  }
+  return salida;
+}
+
+const textoPlano = (t) => String(t || '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+
+// nombre de archivo de la calculadora → [{ titulo, archivo, pediatria, nodo, nodoTitulo }]
+function usosDeCalculadoras(leer) {
+  const usos = new Map();
+  for (const [parametro, pediatria] of [['index_adultos', false], ['index_pediatria', true]]) {
+    const indice = lee(leer(`${CARPETA}/${parametro}.json`) ?? '');
+    if (!Array.isArray(indice)) continue;
+    for (const seccion of indice) {
+      for (const item of seccion.items || []) {
+        const algoritmo = algoritmoDe(item.archivo, leer);
+        if (!algoritmo || algoritmo.oculto === true) continue;
+        for (const [id, nodo] of Object.entries(algoritmo.nodos || {})) {
+          for (const calculadora of calculadorasDe(nodo)) {
+            const lista = usos.get(calculadora) || [];
+            if (lista.some((u) => u.archivo === item.archivo && u.nodo === id)) continue;
+            const nodoTitulo = textoPlano(nodo.titulo).slice(0, 90);
+            lista.push({ titulo: item.titulo, archivo: item.archivo, pediatria, nodo: id, ...(nodoTitulo ? { nodoTitulo } : {}) });
+            usos.set(calculadora, lista);
+          }
+        }
+      }
+    }
+  }
+  for (const lista of usos.values()) lista.sort((a, b) => a.titulo.localeCompare(b.titulo, 'es'));
+  return usos;
+}
+
+// El índice tal como lo ve la app: sin los ocultos y con sus definiciones;
+// las calculadoras, con dónde se usan.
 function publicable(parametro, datos, leer) {
+  if (parametro === 'index_calculadoras' && Array.isArray(datos)) {
+    const usos = usosDeCalculadoras(leer);
+    return datos.map((item) => {
+      const { usadaEn: _viejo, ...resto } = item;
+      const lista = usos.get(nombreArchivo(item.archivo));
+      return lista && lista.length ? { ...resto, usadaEn: lista } : resto;
+    });
+  }
   if (!INDICES_ALGORITMOS.includes(parametro) || !Array.isArray(datos)) return datos;
   return datos.map((seccion) => ({
     ...seccion,
@@ -176,6 +240,10 @@ async function main() {
   console.log(`Índices válidos: ${indices.map((i) => i.parametro).join(', ')}`);
   for (const ix of indices) {
     ix.publicado = publicable(ix.parametro, ix.datos, leerActual);
+    if (ix.parametro === 'index_calculadoras') {
+      const conUsos = ix.publicado.filter((c) => c.usadaEn).length;
+      console.log(`  index_calculadoras: ${ix.publicado.length} calculadoras, ${conUsos} con «Se usa en»`);
+    }
     if (!INDICES_ALGORITMOS.includes(ix.parametro)) continue;
     const total = ix.datos.reduce((n, s) => n + (s.items || []).length, 0);
     const visibles = ix.publicado.reduce((n, s) => n + s.items.length, 0);
