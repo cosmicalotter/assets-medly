@@ -1,51 +1,174 @@
 {
-  "titulo": "Escala de Wood Downes Ferres",
-  "descripcion": "Esta calculadora busca evaluar la severidad de la crisis asmática o bronquiolitis en pacientes pediátricos mediante la valoración de signos clínicos como sibilancias, tirajes, etc. La puntuación final clasifica la crisis para orientar el manejo terapéutico.",
+  "titulo": "Escala de Wood-Downes-Ferrés",
+  "descripcion": "Gradúa la dificultad respiratoria del lactante con bronquiolitis (y de la crisis asmática, para la que se creó) con seis signos: sibilancias, tiraje, frecuencia respiratoria, frecuencia cardiaca, ventilación y cianosis, de 0 a 14 puntos. Es la modificación de Ferrés (1988) de la escala de Wood y Downes (1972) y la más usada en España; clasifica en leve, moderada o grave.",
+  "instrucciones": "Valora al niño tranquilo y repite la escala para seguir la evolución. La saturación de oxígeno no forma parte de la escala: mídela siempre aparte (NICE la pide en todo niño con sospecha de bronquiolitis).",
+  "limitaciones": "No está validada específicamente para la bronquiolitis (nació para el asma) y otras escalas se correlacionan mejor con la gravedad clínica. Las decisiones de ingreso y oxígeno siguen criterios propios (NICE), no sólo el puntaje.",
   "referencias": [
     {
-      "texto": "Escala original Wood-Downes",
-      "enlace": "https://pubmed.ncbi.nlm.nih.gov/4604571/"
+      "titulo": "Wood DW, Downes JJ, Lecks HI. A clinical scoring system for the diagnosis of respiratory failure. Preliminary report on childhood status asthmaticus. Am J Dis Child 1972;123(3):227-8.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/5026202/"
     },
     {
-      "texto": "Validación de la escala modificada para bronquiolitis",
-      "enlace": "https://www.aeped.es/sites/default/files/documentos/bronquiolitis.pdf"
+      "titulo": "Martín-Latorre MDM, et al. Comparison of easy-to-use bronchiolitis scores in the post-COVID-19 era: an observational study. Children (Basel) 2023;10(12):1925.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38136036/",
+      "texto": "Each of the items can be scored from 0 to 3 points. The score provides values from 0 to 14. Three degrees of impairment are established: mild (from 0 to 3 points), moderate (from 4 to 7 points), and severe (from 8 to 14 points)."
+    },
+    {
+      "titulo": "NICE. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada en 2021.",
+      "url": "https://www.nice.org.uk/guidance/ng9/chapter/Recommendations",
+      "texto": "Consider referring babies and children with bronchiolitis to hospital if they have any of the following: a respiratory rate of over 60 breaths/minute",
+      "paginas": "1.2.2, 1.4.4"
     }
   ],
   "columnas": [
-    {"puntos": 0, "titulo": "0", "color": "verde"},
-    {"puntos": 1, "titulo": "1", "color": "amarillo"},
-    {"puntos": 2, "titulo": "2", "color": "naranja"},
-    {"puntos": 3, "titulo": "3", "color": "rojo"}
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    }
   ],
   "filas": [
     {
       "nombre": "Sibilancias",
-      "descripciones": ["Ausentes", "Final de espiración", "Toda la espiración", "Inspiración y espiración"]
+      "descripciones": [
+        "No",
+        "Final de la espiración",
+        "Toda la espiración",
+        "Inspiración y espiración"
+      ]
     },
     {
-      "nombre": "Tirajes",
-      "descripciones": ["Ausentes", "Subcostal o intercostal", "Supraclavicular + Aleteo", "Supraesternal + Intercostal"]
+      "nombre": "Tiraje",
+      "descripciones": [
+        "No",
+        "Subcostal o intercostal inferior",
+        "+ supraclavicular y aleteo nasal",
+        "+ intercostal superior y supraesternal"
+      ],
+      "ayuda": "Cada nivel incluye los anteriores."
     },
     {
-      "nombre": "Frecuencia Respiratoria",
-      "descripciones": ["< 30 rpm", "31-45 rpm", "46-60 rpm", "> 60 rpm"]
+      "nombre": "Frecuencia respiratoria",
+      "descripciones": [
+        "< 30 rpm",
+        "31-45 rpm",
+        "46-60 rpm",
+        "> 60 rpm"
+      ],
+      "entrada": {
+        "unidad": "rpm",
+        "min": 5,
+        "max": 150,
+        "tramos": [
+          {
+            "max": 30.99,
+            "puntos": 0
+          },
+          {
+            "min": 31,
+            "max": 45.99,
+            "puntos": 1
+          },
+          {
+            "min": 46,
+            "max": 60.99,
+            "puntos": 2
+          },
+          {
+            "min": 61,
+            "puntos": 3
+          }
+        ]
+      }
     },
     {
-      "nombre": "Frecuencia Cardíaca",
-      "descripciones": ["< 120 lpm", "> 120 lpm", "-", "-"]
+      "nombre": "Frecuencia cardiaca",
+      "descripciones": [
+        "< 120 lpm",
+        "> 120 lpm",
+        "-",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 30,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 120.99,
+            "puntos": 0
+          },
+          {
+            "min": 121,
+            "puntos": 1
+          }
+        ]
+      }
     },
     {
-      "nombre": "Entrada de Aire",
-      "descripciones": ["Normal", "Regular y simétrica", "Silencio y simétrico", "Tórax silente"]
+      "nombre": "Ventilación",
+      "descripciones": [
+        "Buena, simétrica",
+        "Regular, simétrica",
+        "Muy disminuida",
+        "Tórax silente"
+      ],
+      "detalles": [
+        "",
+        "",
+        "",
+        "Sin sibilancias por falta de entrada de aire"
+      ]
     },
     {
       "nombre": "Cianosis",
-      "descripciones": ["NO", "Sí (con aire ambiente)", "-", "-"]
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-"
+      ]
     }
   ],
   "resultados": [
-    {"min": 0, "max": 3, "categoria": "Crisis Leve", "match_opcion_index": 0, "color": "verde"},
-    {"min": 4, "max": 7, "categoria": "Crisis Moderada", "match_opcion_index": 1, "color": "naranja"},
-    {"min": 8, "max": 14, "categoria": "Crisis Grave", "match_opcion_index": 2, "color": "rojo"}
+    {
+      "min": 0,
+      "max": 3,
+      "categoria": "Dificultad leve",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Bronquiolitis: manejo en domicilio si FR ≤ 60, toma > 50-75 % de lo habitual, sin deshidratación y SatO₂ ≥ 92 %. No dar salbutamol, adrenalina, corticoides ni antibióticos."
+    },
+    {
+      "min": 4,
+      "max": 7,
+      "categoria": "Dificultad moderada",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Bronquiolitis: valorar ingreso si FR > 60, toma < 50-75 %, deshidratación o SatO₂ < 92 % persistente. Oxígeno si SatO₂ < 90 % (< 92 % si < 6 semanas o comorbilidad)."
+    },
+    {
+      "min": 8,
+      "max": 14,
+      "categoria": "Dificultad grave",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Urgencias si apneas, quejido, tiraje marcado, FR > 70 o cianosis central. Oxígeno según SatO₂; considerar CPAP si hay insuficiencia respiratoria inminente."
+    }
   ]
 }

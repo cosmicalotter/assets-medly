@@ -1,143 +1,372 @@
 {
-  "titulo": "Criterios SIRS, Sepsis y Shock Séptico (Pediátrico)",
-  "mostrarPuntaje": false,
-  "descripcion": "Evalúa el SIRS y su progresión en pediatría. Requiere ≥2 criterios SIRS, y obligatoriamente 1 de ellos debe ser temperatura o leucocitos anormales.",
+  "titulo": "SIRS y sepsis pediátrica (Goldstein 2005)",
+  "descripcion": "Clasifica a un niño en SIRS, sepsis, sepsis grave o shock séptico con las definiciones del consenso pediátrico internacional de 2005, que adaptaron los criterios del adulto a cada grupo de edad y exigen fiebre o leucocitos alterados. Sirve para reconocer la respuesta inflamatoria a una infección y la disfunción orgánica que obliga a tratar sin demora.",
+  "instrucciones": "Compara FC, FR y leucocitos con los valores normales para la edad. SIRS: 2 de 4 criterios, uno de ellos temperatura o leucocitos. Temperatura central: rectal, vesical, oral o por catéter.",
+  "limitaciones": "Los criterios SIRS predicen mal la evolución. Desde 2024 (criterios de Phoenix) la sepsis pediátrica se define como infección con Phoenix Sepsis Score ≥ 2, y el shock séptico, como sepsis con ≥ 1 punto cardiovascular.",
+  "referencias": [
+    {
+      "titulo": "Goldstein B, Giroir B, Randolph A; International Consensus Conference on Pediatric Sepsis. International pediatric sepsis consensus conference: definitions for sepsis and organ dysfunction in pediatrics. Pediatr Crit Care Med 2005;6(1):2-8.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15636651/",
+      "texto": "the SIRS definition was modified so that either criteria for fever or white blood count had to be met."
+    },
+    {
+      "titulo": "Mousa SO, Afifi MF, et al. Assessment of serum proprotein convertase subtilisin/kexin type 9 in pediatric sepsis syndrome. Sci Rep 2024;14(1):15634 (definiciones de Goldstein 2005).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38972879/",
+      "paginas": "Tabla 1",
+      "texto": "Severe sepsis: Sepsis plus one of the following: cardiovascular organ dysfunction OR acute respiratory distress syndrome OR two or more other organ dysfunctions. Septic shock: Sepsis and cardiovascular organ dysfunction"
+    },
+    {
+      "titulo": "Weiss SL, Peters MJ, Alhazzani W, et al. Surviving Sepsis Campaign international guidelines for the management of septic shock and sepsis-associated organ dysfunction in children. Intensive Care Med 2020;46(Suppl 1):10-67.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32030529/",
+      "paginas": "Recomendaciones 5, 6 y 17",
+      "texto": "In children with septic shock, we recommend starting antimicrobial therapy as soon as possible, within 1 h of recognition (strong recommendation, very low quality of evidence)."
+    },
+    {
+      "titulo": "Schlapbach LJ, Watson RS, Sorce LR, et al. International consensus criteria for pediatric sepsis and septic shock. JAMA 2024;331(8):665-74.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38245889/",
+      "texto": "The SCCM task force recommends that sepsis in children be identified by a Phoenix Sepsis Score of at least 2 points in children with suspected infection"
+    }
+  ],
   "tipoCalculo": "formula",
-  "formula": "v1 + v2 + v3 + v4 + v5 + v6 + v7",
-  "prefijoResultado": "Código interno: ",
-  "sufijoResultado": "",
+  "formula": "(1 - (1 - temp_puntos * leuco) * (1 - temp_puntos * fc) * (1 - temp_puntos * fr) * (1 - leuco * fc) * (1 - leuco * fr)) * (1 + infeccion * (1 + (1 - (1 - sdra) * (1 - otras)) + cv * (1 + (1 - sdra) * (1 - otras))))",
+  "mostrarPuntaje": false,
   "secciones": [
     {
-      "nombre": "Criterios SIRS (Core/Obligatorios)",
+      "nombre": "SIRS: 2 de 4, uno de ellos temperatura o leucocitos",
       "elementos": [
         {
-          "id": "sirs_temp",
-          "tipo": "opciones",
-          "label": "Temperatura >38.5°C (101.3°F) o <36°C (96.8°F)",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v1": 0 } },
-            { "label": "Sí", "valoresVariables": { "v1": 10 } }
+          "id": "temp",
+          "tipo": "input_numero",
+          "label": "Temperatura central",
+          "unidad": "°C",
+          "unidades": [
+            {
+              "unidad": "°F",
+              "factor": 0.5556,
+              "suma": -17.778
+            }
+          ],
+          "min": 25,
+          "max": 45,
+          "ayuda": "Rectal, vesical, oral o por catéter central. Cuenta si es > 38,5 °C o < 36 °C.",
+          "intervalos": [
+            {
+              "max": 35.99,
+              "puntos": 1
+            },
+            {
+              "min": 36,
+              "max": 38.5,
+              "puntos": 0
+            },
+            {
+              "min": 38.51,
+              "puntos": 1
+            }
           ]
         },
         {
-          "id": "sirs_leuco",
+          "id": "leuco",
           "tipo": "opciones",
-          "label": "Recuento de leucocitos anormal o >10% bandas (cayados)",
+          "label": "Leucocitos alterados para la edad",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v4": 0 } },
-            { "label": "Sí", "valoresVariables": { "v4": 10 } }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Elevados o descendidos para la edad (no por quimioterapia), o > 10 % de neutrófilos inmaduros."
+        },
+        {
+          "id": "fc",
+          "tipo": "opciones",
+          "label": "FC alterada para la edad",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Taquicardia: FC media > 2 DE para la edad sin estímulo externo, fármacos ni dolor, o elevación inexplicada persistente 0,5-4 h. En < 1 año también bradicardia < p10 para la edad."
+        },
+        {
+          "id": "fr",
+          "tipo": "opciones",
+          "label": "FR > 2 DE para la edad o VM",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "FR media > 2 DE para la edad, o ventilación mecánica por un proceso agudo (no por enfermedad neuromuscular ni anestesia general)."
         }
       ]
     },
     {
-      "nombre": "Criterios SIRS (Clínicos)",
+      "nombre": "Infección",
       "elementos": [
         {
-          "id": "sirs_fc",
+          "id": "infeccion",
           "tipo": "opciones",
-          "label": "Taquicardia, o bradicardia (si es <1 año)",
+          "label": "Infección sospechada o probada",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v2": 0 } },
-            { "label": "Sí", "valoresVariables": { "v2": 1 } }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Por cultivo, tinción o PCR, o síndrome clínico con alta probabilidad de infección: leucocitos en un líquido estéril, víscera perforada, neumonía en la radiografía, exantema petequial o purpúrico, púrpura fulminante."
+        }
+      ]
+    },
+    {
+      "nombre": "Disfunción orgánica",
+      "elementos": [
+        {
+          "id": "cv",
+          "tipo": "opciones",
+          "label": "Disfunción cardiovascular",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
         },
         {
-          "id": "sirs_fr",
+          "id": "sdra",
           "tipo": "opciones",
-          "label": "Taquipnea o ventilación mecánica (por proceso agudo)",
+          "label": "Síndrome de dificultad respiratoria aguda",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v3": 0 } },
-            { "label": "Sí", "valoresVariables": { "v3": 1 } }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
-        }
-      ]
-    },
-    {
-      "nombre": "Criterios de Sepsis",
-      "elementos": [
+        },
         {
-          "id": "sepsis_inf",
+          "id": "otras",
           "tipo": "opciones",
-          "label": "Foco de infección (sospechado o presente)",
+          "label": "Otras disfunciones orgánicas",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v5": 0 } },
-            { "label": "Sí", "valoresVariables": { "v5": 100 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Criterios de Sepsis Severa",
-      "elementos": [
-        {
-          "id": "sepsis_sev",
-          "tipo": "opciones",
-          "label": "Disfunción cardiovascular, SDRA, o disfunción en ≥2 otros órganos",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v6": 0 } },
-            { "label": "Sí", "valoresVariables": { "v6": 1000 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Criterios de Shock Séptico",
-      "elementos": [
-        {
-          "id": "shock",
-          "tipo": "opciones",
-          "label": "Disfunción cardiovascular a pesar de adecuada resucitación con fluidos",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v7": 0 } },
-            { "label": "Sí", "valoresVariables": { "v7": 10000 } }
+            {
+              "label": "Ninguna o una",
+              "puntos": 0
+            },
+            {
+              "label": "Dos o más",
+              "puntos": 1
+            }
           ]
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 0, "max": 2, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10, "max": 10, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 100, "max": 102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 110, "max": 110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1000, "max": 1002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1010, "max": 1010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1100, "max": 1102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1110, "max": 1110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10000, "max": 10002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10010, "max": 10010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10100, "max": 10102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10110, "max": 10110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11000, "max": 11002, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11010, "max": 11010, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11100, "max": 11102, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11110, "max": 11110, "categoria": "No cumple criterios de SIRS Pediátrico.", "color": "verde", "matchOpcionIndex": 1 },
-    
-    { "min": 11, "max": 12, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 20, "max": 22, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 1011, "max": 1012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 1020, "max": 1022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 10011, "max": 10012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 10020, "max": 10022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 11011, "max": 11012, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 11020, "max": 11022, "categoria": "SIRS Pediátrico (Sin foco de infección).", "color": "amarillo", "matchOpcionIndex": 2 },
-    
-    { "min": 111, "max": 112, "categoria": "SEPSIS Pediátrica (SIRS + Infección).", "color": "naranja", "matchOpcionIndex": 3 },
-    { "min": 120, "max": 122, "categoria": "SEPSIS Pediátrica (SIRS + Infección).", "color": "naranja", "matchOpcionIndex": 3 },
-    
-    { "min": 1111, "max": 1112, "categoria": "SEPSIS SEVERA Pediátrica (Disfunción orgánica).", "color": "rojo", "matchOpcionIndex": 4 },
-    { "min": 1120, "max": 1122, "categoria": "SEPSIS SEVERA Pediátrica (Disfunción orgánica).", "color": "rojo", "matchOpcionIndex": 4 },
-    
-    { "min": 10111, "max": 10112, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 10120, "max": 10122, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 11111, "max": 11112, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 11120, "max": 11122, "categoria": "SHOCK SÉPTICO Pediátrico (Disfunción CV refractaria).", "color": "rojo", "matchOpcionIndex": 5 }
-  ],
-  "referencias": [
     {
-      "titulo": "Goldstein B, et al. International pediatric sepsis consensus conference. Pediatr Crit Care Med 2005;6:2-8.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/15636651/"
+      "min": 4,
+      "max": 4,
+      "categoria": "Shock séptico",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "todos": [
+              {
+                "suma": [
+                  "temp_puntos",
+                  "fc",
+                  "fr",
+                  "leuco"
+                ],
+                "minimo": 2
+              },
+              {
+                "alguno": [
+                  {
+                    "id": "temp_puntos",
+                    "igual": 1
+                  },
+                  {
+                    "id": "leuco",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "infeccion",
+            "igual": 1
+          },
+          {
+            "id": "cv",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Antimicrobianos de amplio espectro en < 1 h (hemocultivos antes si no retrasan). Bolos de 10-20 mL/kg hasta 40-60 mL/kg en la 1.ª h si hay UCI; vasoactivos si persiste la hipoperfusión."
+    },
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Sepsis grave",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "todos": [
+              {
+                "suma": [
+                  "temp_puntos",
+                  "fc",
+                  "fr",
+                  "leuco"
+                ],
+                "minimo": 2
+              },
+              {
+                "alguno": [
+                  {
+                    "id": "temp_puntos",
+                    "igual": 1
+                  },
+                  {
+                    "id": "leuco",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "infeccion",
+            "igual": 1
+          },
+          {
+            "alguno": [
+              {
+                "id": "sdra",
+                "igual": 1
+              },
+              {
+                "id": "otras",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Antimicrobianos en < 3 h tras evaluar (hemocultivos antes). Con UCI disponible, bolos de 10-20 mL/kg hasta 40-60 mL/kg en la 1.ª h, titulados al gasto cardiaco."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Sepsis",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "todos": [
+              {
+                "suma": [
+                  "temp_puntos",
+                  "fc",
+                  "fr",
+                  "leuco"
+                ],
+                "minimo": 2
+              },
+              {
+                "alguno": [
+                  {
+                    "id": "temp_puntos",
+                    "igual": 1
+                  },
+                  {
+                    "id": "leuco",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "infeccion",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "SIRS con infección. Buscar disfunción orgánica (Phoenix ≥ 2 define hoy la sepsis) y obtener hemocultivos antes del antibiótico."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "SIRS sin infección",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "suma": [
+              "temp_puntos",
+              "fc",
+              "fr",
+              "leuco"
+            ],
+            "minimo": 2
+          },
+          {
+            "alguno": [
+              {
+                "id": "temp_puntos",
+                "igual": 1
+              },
+              {
+                "id": "leuco",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Sin infección sospechada no es sepsis. Reevaluar si aparece un foco."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple SIRS",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Si hay infección, valorar la disfunción orgánica: los criterios de Phoenix no exigen SIRS."
     }
   ]
 }

@@ -1,14 +1,29 @@
 {
-  "titulo": "Índice predictivo de Asma (IPA)",
-  "descripcion": "Herramienta clínica para predecir el riesgo de desarrollar asma en edad escolar en niños menores de 3 años. ⚠️ NOTA: Solo debe aplicarse a pacientes que ya presentan sibilancias. Para el índice 'Laxo' basta cualquier antecedente de sibilancias; para el índice 'Estricto' se requiere historia de sibilancias frecuentes. Un puntaje total ≥ 2 equivale a un API Positivo.",
+  "titulo": "Índice predictivo de asma (IPA)",
+  "descripcion": "Estima el riesgo de que un niño menor de 3 años con sibilancias tenga asma activa en edad escolar (6 a 13 años). Se derivó en la cohorte de Tucson con datos clínicos sencillos y un hemograma, y apoya la decisión de educar a la familia y vigilar al niño de riesgo. Tiene dos versiones: laxa (cualquier sibilancia) y estricta (sibilancias frecuentes).",
+  "instrucciones": "Sólo en menores de 3 años con sibilancias. Positivo con 1 criterio mayor (2 puntos) o 2 menores (1 punto cada uno). Índice laxo: cualquier sibilancia; estricto: sibilancias frecuentes.",
+  "limitaciones": "Predice asma futura, no diagnostica asma actual. Su LR negativo es pobre: un IPA negativo no descarta el asma. En la validación externa (Leicester) su capacidad predictiva fue modesta.",
   "referencias": [
     {
-      "titulo": "A Clinical Index to Define Risk of Asthma in Young Children with Recurrent Wheezing",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/11029352/"
+      "titulo": "Castro-Rodríguez JA, Holberg CJ, Wright AL, Martinez FD. A clinical index to define risk of asthma in young children with recurrent wheezing. Am J Respir Crit Care Med 2000;162(4 Pt 1):1403-6.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11029352/",
+      "texto": "A stringent index included frequent wheezing during the first 3 yr of life and either one major risk factor (parental history of asthma or eczema) or two of three minor risk factors"
     },
     {
-      "titulo": "Validation of the Asthma Predictive Index and comparison with simpler clinical prediction rules",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21453960/"
+      "titulo": "Sapartini G, Wong GWK, Indrati AR, et al. Asthma risk prevalence and associated factors in stunted children: a study using Asthma Predictive Index. Medicina (Kaunas) 2025;61(1):140.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39859122/",
+      "paginas": "Tabla 1",
+      "texto": "Major Criteria: Parental MD asthma, MD eczema. Minor Criteria: MD allergic rhinitis, Wheezing apart from colds, Eosinophilia (≥4%)."
+    },
+    {
+      "titulo": "Castro-Rodríguez JA, Cifuentes L, Martinez FD. Predicting asthma using clinical indexes. Front Pediatr 2019;7:320.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31463300/",
+      "texto": "Because its negative LR is not good, it cannot be used to rule out the development of asthma."
+    },
+    {
+      "titulo": "Leonardi NA, Spycher BD, Strippoli MP, et al. Validation of the Asthma Predictive Index and comparison with simpler clinical prediction rules. J Allergy Clin Immunol 2011;127(6):1466-72.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21453960/",
+      "texto": "Predictive performance of the API in Leicester, although comparable to the original study, was modest and similar to prediction based only on preschool wheeze."
     }
   ],
   "columnas": [
@@ -30,20 +45,22 @@
   ],
   "filas": [
     {
-      "nombre": "Asma en padres",
+      "nombre": "Asma en padre o madre",
       "descripciones": [
         "No",
         "-",
         "Sí"
-      ]
+      ],
+      "ayuda": "Criterio mayor: diagnóstico médico de asma en el padre o la madre."
     },
     {
-      "nombre": "Eccema infantil",
+      "nombre": "Eccema (dermatitis atópica)",
       "descripciones": [
         "No",
         "-",
         "Sí"
-      ]
+      ],
+      "ayuda": "Criterio mayor: diagnosticado por un médico."
     },
     {
       "nombre": "Rinitis alérgica",
@@ -51,7 +68,8 @@
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "Criterio menor: diagnosticada por un médico."
     },
     {
       "nombre": "Sibilancias sin resfriado",
@@ -59,31 +77,50 @@
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "Criterio menor: sibilancias fuera de los catarros."
     },
     {
-      "nombre": "Eosinofilia ≥ 4%",
+      "nombre": "Eosinofilia",
       "descripciones": [
-        "No",
-        "Sí",
+        "< 4 %",
+        "≥ 4 %",
         "-"
-      ]
+      ],
+      "ayuda": "Criterio menor: eosinófilos en sangre periférica (porcentaje del recuento leucocitario).",
+      "entrada": {
+        "unidad": "%",
+        "min": 0,
+        "max": 100,
+        "tramos": [
+          {
+            "max": 3.99,
+            "puntos": 0
+          },
+          {
+            "min": 4,
+            "puntos": 1
+          }
+        ]
+      }
     }
   ],
   "resultados": [
     {
       "min": 0,
       "max": 1,
-      "categoria": "API Negativo (Riesgo Bajo)",
+      "categoria": "IPA negativo",
+      "color": "verde",
       "match_opcion_index": -1,
-      "color": "verde"
+      "approach": "Más del 95 % con índice estricto negativo no tuvo asma activa a los 6-13 años. No descarta asma: reevaluar si persisten las sibilancias."
     },
     {
       "min": 2,
       "max": 7,
-      "categoria": "API Positivo (Riesgo Alto)",
+      "categoria": "IPA positivo",
+      "color": "naranja",
       "match_opcion_index": -1,
-      "color": "rojo"
+      "approach": "Asma activa en edad escolar: 59 % con índice laxo y 76 % con estricto (riesgo 2,6-5,5 y 4,3-9,8 veces mayor). Educar a la familia en el tratamiento de mantenimiento y de las crisis."
     }
   ]
 }

@@ -1,10 +1,17 @@
 {
-  "titulo": "Escala de severidad de Silverman-Andersen",
-  "descripcion": "Escala utilizada para cuantificar la gravedad de la dificultad respiratoria en neonatos prematuros y a término, evaluando el trabajo respiratorio. Permite predecir tempranamente la necesidad de soporte respiratorio avanzado como CPAP o ventilación mecánica.",
+  "titulo": "Escala de Silverman-Andersen",
+  "descripcion": "Cuantifica la dificultad respiratoria del recién nacido, prematuro o a término, con cinco signos de trabajo respiratorio: movimiento toracoabdominal, tiraje intercostal, retracción xifoidea, aleteo nasal y quejido, de 0 (respira cómodo) a 10 (dificultad grave). Se describió en 1956; un puntaje ≥ 5 en la primera hora se asoció a necesitar más soporte respiratorio en las 24 h siguientes.",
+  "instrucciones": "Observa al recién nacido sin estimularlo. Puntúa en la primera hora de vida y repite para seguir la evolución: cada signo vale 0, 1 o 2.",
+  "limitaciones": "Los puntos de corte de 3 a 6 que se usan para iniciar o aumentar el soporte no están validados como predictores; el puntaje no sustituye a la gasometría ni a la saturación.",
   "referencias": [
     {
-      "titulo": "Performance of the Silverman Andersen Respiratory Severity Score in predicting PCO2 and respiratory support in newborns: a prospective cohort study",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29426853/"
+      "titulo": "Silverman WA, Andersen DH. A controlled clinical trial of effects of water mist on obstructive respiratory signs, death rate and necropsy findings among premature infants. Pediatrics 1956;17(1):1-10.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13353856/"
+    },
+    {
+      "titulo": "Hedstrom AB, Gove NE, Mayock DE, Batra M. Performance of the Silverman Andersen Respiratory Severity Score in predicting PCO2 and respiratory support in newborns: a prospective cohort study. J Perinatol 2018;38(5):505-11.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29426853/",
+      "texto": "Patients with respiratory scores ≥5 had respiratory support increased within 24 h more often than those with scores <5 (79% vs. 28%, p < 0.001)."
     }
   ],
   "columnas": [
@@ -26,15 +33,20 @@
   ],
   "filas": [
     {
-      "nombre": "Movimiento Torácico",
+      "nombre": "Movimiento toracoabdominal",
       "descripciones": [
         "Sincrónico",
-        "Retraso inspiratorio",
-        "Balancín"
+        "Tórax inmóvil, abdomen se mueve",
+        "Disociación (balanceo)"
+      ],
+      "detalles": [
+        "Tórax y abdomen suben juntos",
+        "Retraso del tórax en la inspiración",
+        "El tórax se hunde cuando el abdomen sube"
       ]
     },
     {
-      "nombre": "Tiraje Intercostal",
+      "nombre": "Tiraje intercostal",
       "descripciones": [
         "Ausente",
         "Apenas visible",
@@ -42,7 +54,7 @@
       ]
     },
     {
-      "nombre": "Retracción Xifoidea",
+      "nombre": "Retracción xifoidea",
       "descripciones": [
         "Ausente",
         "Apenas visible",
@@ -50,19 +62,19 @@
       ]
     },
     {
-      "nombre": "Aleteo Nasal",
+      "nombre": "Aleteo nasal",
       "descripciones": [
         "Ausente",
-        "Apenas visible",
+        "Leve",
         "Marcado"
       ]
     },
     {
-      "nombre": "Quejido Espiratorio",
+      "nombre": "Quejido espiratorio",
       "descripciones": [
         "Ausente",
-        "Con estetoscopio",
-        "A simple vista"
+        "Audible con fonendoscopio",
+        "Audible sin fonendoscopio"
       ]
     }
   ],
@@ -70,23 +82,26 @@
     {
       "min": 0,
       "max": 0,
-      "categoria": "Sin Dificultad",
+      "categoria": "Sin dificultad respiratoria",
+      "color": "verde",
       "match_opcion_index": -1,
-      "color": "verde"
+      "approach": "Respira cómodo. Repetir la escala si cambia la clínica."
     },
     {
       "min": 1,
       "max": 4,
-      "categoria": "Dificultad Leve-Moderada",
+      "categoria": "Dificultad leve a moderada",
+      "color": "amarillo",
       "match_opcion_index": -1,
-      "color": "naranja"
+      "approach": "Vigilar y repetir la escala: con < 5 en la primera hora, 28 % necesitó aumentar el soporte respiratorio en 24 h."
     },
     {
       "min": 5,
       "max": 10,
-      "categoria": "Dificultad Severa",
+      "categoria": "Dificultad grave",
+      "color": "rojo",
       "match_opcion_index": -1,
-      "color": "rojo"
+      "approach": "Alto riesgo de necesitar más soporte (79 % lo necesitó en 24 h): preparar soporte respiratorio o traslado a un centro que lo tenga."
     }
   ]
 }

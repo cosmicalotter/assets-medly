@@ -445,7 +445,8 @@ def chequear_formulario(d: dict, inf: Informe) -> None:
             inf.errores.append(f"extras[{i}] usa «{v}» y ningún elemento la fija")
 
     if reglas:
-        chequear_sintaxis_reglas(d, {e.get("id") for e in els}, inf)
+        ids_reglas = {e.get("id") for e in els} | {f"{e.get('id')}_puntos" for e in els if e.get("intervalos")}
+        chequear_sintaxis_reglas(d, ids_reglas, inf)
         if d.get("tipoCalculo") == "reglas" and not formula:
             inf.avisos.append("sólo reglas: las versiones antiguas de la app no la calculan (añade una «formula» equivalente)")
         ultimas = [i for i, r in enumerate(d["resultados"]) if "si" not in r]
@@ -501,6 +502,14 @@ class Respuestas:
 
     def valor(self, id_: str) -> float | None:
         e = self.els.get(id_)
+        if e is None and id_.endswith("_puntos"):
+            # «<id>_puntos»: los puntos del intervalo en que cae el número.
+            base = self.els.get(id_[: -len("_puntos")])
+            if base is None or base.get("tipo") != "input_numero":
+                return None
+            x = self.numeros.get(base["id"])
+            t = tramo_de(base.get("intervalos") or [], x) if x is not None else None
+            return None if t is None else float(t["puntos"])
         if e is None:
             return None
         if e.get("tipo") == "input_numero":

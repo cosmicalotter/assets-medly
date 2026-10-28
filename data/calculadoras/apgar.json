@@ -1,16 +1,24 @@
 {
-  "titulo": "Test de Apgar",
-  "descripcion": "El Test de Apgar es una evaluación clínica rápida y estandarizada que se realiza a los recién nacidos al primer y quinto minuto tras el nacimiento. Evalúa el estado físico general del neonato mediante cinco parámetros fisiológicos (Apariencia, Pulso, Gestos, Actividad y Respiración) para determinar si es requerida la asistencia médica inmediata o maniobras de reanimación.",
+  "titulo": "Puntuación de Apgar",
+  "descripcion": "Describe el estado del recién nacido inmediatamente después del parto y su respuesta a la reanimación, con cinco signos: color, frecuencia cardiaca, respuesta refleja, tono y respiración, de 0 a 10. La propuso Virginia Apgar en 1953; se asigna al minuto y a los 5 minutos. A los 5 minutos, 7-10 es tranquilizador, 4-6 moderadamente anormal y 0-3 bajo.",
+  "instrucciones": "Puntúa al minuto y a los 5 minutos de vida. Si se está reanimando, anótalo: un Apgar asignado durante la reanimación no equivale al de un niño que respira solo.",
+  "limitaciones": "No decide si se inicia la reanimación. Por sí solo no prueba ni descarta asfixia y no predice la mortalidad ni el pronóstico neurológico de un niño concreto.",
   "referencias": [
     {
-      "titulo": "A Proposal for a New Method of Evaluation of the Newborn Infant. Virginia Apgar. Anesth Analg 1953; 32:260-7.",
+      "titulo": "Apgar V. A proposal for a new method of evaluation of the newborn infant. Curr Res Anesth Analg 1953;32(4):260-7.",
       "url": "https://pubmed.ncbi.nlm.nih.gov/13083014/"
     },
     {
-      "titulo": "The Apgar score has survived the test of time",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/15791116/"
+      "titulo": "American Academy of Pediatrics Committee on Fetus and Newborn; American College of Obstetricians and Gynecologists Committee on Obstetric Practice. The Apgar Score. Pediatrics 2015;136(4):819-22.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26416932/",
+      "texto": "The Apgar score alone cannot be considered as evidence of, or a consequence of, asphyxia; does not predict individual neonatal mortality or neurologic outcome; and should not be used for that purpose."
+    },
+    {
+      "titulo": "Myrhøj C, et al. No association between umbilical cord pH and special educational needs among children with normal 5-minute Apgar scores. Acta Paediatr 2026.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42260728/",
+      "texto": "A 5‐min Apgar score of 7–10 is considered reassuring in term and late‐preterm infants, while 4–6 is moderately abnormal, and 0–3 is low."
     }
-    ],
+  ],
   "columnas": [
     {
       "puntos": 0,
@@ -30,43 +38,64 @@
   ],
   "filas": [
     {
-      "nombre": "Apariencia (Color)",
+      "nombre": "Color (apariencia)",
       "descripciones": [
-        "Cianosis generalizada",
-        "Cianosis distal",
-        "Color rosado"
+        "Cianosis o palidez total",
+        "Cuerpo rosado, extremidades azules",
+        "Completamente rosado"
       ]
     },
     {
-      "nombre": "Pulso (Frecuencia cardíaca)",
-      "descripciones": [
-        "Sin pulso",
-        "<100 lpm",
-        ">100 lpm"
-      ]
-    },
-    {
-      "nombre": "Gestos (Irritabilidad refleja)",
-      "descripciones": [
-        "Sin respuesta",
-        "Mueca y llanto débil",
-        "Tos o estornudo"
-      ]
-    },
-    {
-      "nombre": "Actividad (Tono muscular)",
-      "descripciones": [
-        "Flácido",
-        "Tono bajo",
-        "Tono normal"
-      ]
-    },
-    {
-      "nombre": "Respiración (Esfuerzo respiratorio)",
+      "nombre": "Frecuencia cardiaca",
       "descripciones": [
         "Ausente",
-        "Lenta e irregular",
-        "Fuerte y regular"
+        "< 100 lpm",
+        "≥ 100 lpm"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 0,
+        "max": 250,
+        "tramos": [
+          {
+            "max": 0.99,
+            "puntos": 0
+          },
+          {
+            "min": 1,
+            "max": 99.99,
+            "puntos": 1
+          },
+          {
+            "min": 100,
+            "puntos": 2
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Respuesta refleja",
+      "descripciones": [
+        "Sin respuesta",
+        "Mueca",
+        "Llanto, tos o estornudo"
+      ],
+      "ayuda": "Al estímulo (sonda nasal o estimulación táctil)."
+    },
+    {
+      "nombre": "Tono muscular",
+      "descripciones": [
+        "Flácido",
+        "Alguna flexión",
+        "Movimiento activo"
+      ]
+    },
+    {
+      "nombre": "Respiración",
+      "descripciones": [
+        "Ausente",
+        "Lenta, irregular",
+        "Buena, llanto fuerte"
       ]
     }
   ],
@@ -74,23 +103,26 @@
     {
       "min": 0,
       "max": 3,
-      "categoria": "Depresión severa",
+      "categoria": "Apgar bajo",
+      "color": "rojo",
       "match_opcion_index": -1,
-      "color": "rojo"
+      "approach": "A los 5 min, 0-3 es bajo. Registrar las maniobras de reanimación en curso junto al puntaje; no usarlo solo como prueba de asfixia."
     },
     {
       "min": 4,
       "max": 6,
-      "categoria": "Depresión moderada",
+      "categoria": "Moderadamente anormal",
+      "color": "naranja",
       "match_opcion_index": -1,
-      "color": "naranja"
+      "approach": "A los 5 min, 4-6 es moderadamente anormal. Seguir puntuando y registrar las intervenciones de reanimación."
     },
     {
       "min": 7,
       "max": 10,
-      "categoria": "Condición normal / Vigoroso",
+      "categoria": "Tranquilizador",
+      "color": "verde",
       "match_opcion_index": -1,
-      "color": "verde"
+      "approach": "A los 5 min, 7-10 es tranquilizador."
     }
   ]
 }
