@@ -1,108 +1,175 @@
 {
-  "titulo": "Método de Evaluación de Confusión en UCI (CAM-ICU)",
-  "descripcion": "Herramienta para evaluar la presencia de delírium en pacientes de la Unidad de Cuidados Intensivos (UCI).Utilizar C-A-S-A-B-L-A-N-C-A pidiendo que cuando escuche la A apriete tus manos, más de 2 errores pulsar si",
+  "titulo": "CAM-ICU (delírium en UCI)",
+  "descripcion": "Detecta delírium en pacientes de UCI, también intubados, con cuatro rasgos que no requieren hablar: inicio agudo o curso fluctuante, inatención, nivel de conciencia alterado y pensamiento desorganizado. Validado frente a expertos con criterios DSM-IV en ventilación mecánica (sensibilidad 93-100 %, especificidad 98-100 %), se aplica en unos 2 minutos.",
+  "instrucciones": "Primero el RASS: con −4 o −5 no se evalúa. Responde los rasgos en orden: el resultado sale en cuanto queda decidido (sin el rasgo 1 o el 2, negativo).",
+  "limitaciones": "Un CAM-ICU positivo indica síntomas de delírium: en daño cerebral estructural puede deberse a la propia lesión. La depresión grave puede dar falsos positivos. Delírium resuelto: CAM-ICU negativo durante 24 h.",
+  "referencias": [
+    {
+      "titulo": "Ely EW, Inouye SK, Bernard GR, et al. Delirium in mechanically ventilated patients: validity and reliability of the confusion assessment method for the intensive care unit (CAM-ICU). JAMA 2001;286(21):2703-10.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11730446/",
+      "texto": "2 study nurses using the CAM-ICU had sensitivities of 100% and 93%, specificities of 98% and 100%, and high interrater reliability (kappa = 0.96"
+    },
+    {
+      "titulo": "Ely EW. Confusion Assessment Method for the ICU (CAM-ICU): the complete training manual. Revised edition, August 31, 2016. Vanderbilt University.",
+      "url": "https://www.icudelirium.org/medical-professionals/delirium/monitoring-delirium-in-the-icu",
+      "paginas": "p. 5 y 7",
+      "texto": "Feature 1 plus 2 and either 3 or 4 present = CAM-ICU positive"
+    },
+    {
+      "titulo": "Ely EW. Confusion Assessment Method for the ICU (CAM-ICU): the complete training manual. Revised edition, August 31, 2016. Vanderbilt University. Preguntas frecuentes.",
+      "url": "https://www.icudelirium.org/medical-professionals/delirium/monitoring-delirium-in-the-icu",
+      "paginas": "p. 16-17",
+      "texto": "Considering the patient’s findings of a positive CAM-ICU to mean “symptoms of delirium” acknowledges that these symptoms could, yes, be caused by the list of things we know bring on delirium"
+    }
+  ],
   "tipoCalculo": "formula",
-  "formula": "v0 + v1a + v1b + v2 + v3 + v4",
-  "prefijoResultado": "Resultado: ",
-  "sufijoResultado": "",
+  "formula": "rass * (1 + f1 * f2 * (1 - (1 - f3) * (1 - f4)))",
+  "mostrarPuntaje": false,
   "secciones": [
     {
-      "nombre": "Paso Previo: Nivel de Conciencia",
+      "nombre": "Paso 1: nivel de conciencia",
       "elementos": [
         {
           "id": "rass",
           "tipo": "opciones",
-          "label": "RASS ≥ -3",
-          "descripcion": "U otro sistema de puntuación que muestre un nivel de conciencia suficiente.",
+          "label": "RASS actual",
           "opciones": [
-            { "label": "No (Detener evaluación)", "valoresVariables": { "v0": 0 } },
-            { "label": "Sí", "valoresVariables": { "v0": 1000 } }
+            {
+              "label": "−3 a +4",
+              "puntos": 1,
+              "detalle": "Responde a la voz: se puede evaluar"
+            },
+            {
+              "label": "−4 o −5",
+              "puntos": 0,
+              "detalle": "Sin respuesta a la voz: inconsciente"
+            }
           ]
         }
       ]
     },
     {
-      "nombre": "Característica 1: Inicio Agudo o Curso Fluctuante",
+      "nombre": "Paso 2: rasgos del delírium",
       "elementos": [
         {
-          "id": "agudo",
+          "id": "f1",
           "tipo": "opciones",
-          "label": "Estado mental diferente al basal (prehospitalario)",
-          "descripcion": "¿Existe evidencia de un cambio agudo en el estado mental desde el estado basal del paciente?",
+          "label": "1. Inicio agudo o curso fluctuante",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v1a": 0 } },
-            { "label": "Sí", "valoresVariables": { "v1a": 100 } }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "¿Cambio agudo respecto al estado mental basal? o ¿ha fluctuado en las últimas 24 h (RASS, Glasgow o evaluación previa de delírium)? Basta un sí."
         },
         {
-          "id": "fluctuante",
+          "id": "f2",
           "tipo": "opciones",
-          "label": "Estado mental fluctuante en las últimas 24 horas",
-          "descripcion": "Fluctuación evidenciada por cambios en el nivel de conciencia o sedación.",
+          "label": "2. Inatención: más de 2 errores",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v1b": 0 } },
-            { "label": "Sí", "valoresVariables": { "v1b": 100 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Característica 2: Inatención",
-      "elementos": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Di 10 letras («SAVEAHAART» o «CASABLANCA») y pide que apriete tu mano sólo con la «A». Error: no apretar con la «A» o apretar con otra letra. Si no se puede, prueba de imágenes."
+        },
         {
-          "id": "inatencion",
+          "id": "f3",
           "tipo": "opciones",
-          "label": "Prueba de atención de letras con >2 errores",
-          "descripcion": "Diga C-A-S-A-B-L-A-N-C-A. El paciente debe apretar su mano cuando escuche la letra 'A'. Un error es no apretar en la letra 'A' o apretar en una letra distinta.",
+          "label": "3. Nivel de conciencia alterado",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v2": 0 } },
-            { "label": "Sí", "valoresVariables": { "v2": 10 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Característica 3: Nivel de Conciencia Alterado",
-      "elementos": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "RASS actual distinto de 0 (alerta y tranquilo)."
+        },
         {
-          "id": "conciencia_alterada",
+          "id": "f4",
           "tipo": "opciones",
-          "label": "El RASS actual NO es 0 (alerta y tranquilo)",
-          "descripcion": "",
+          "label": "4. Pensamiento desorganizado: más de 1 error",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v3": 0 } },
-            { "label": "Sí", "valoresVariables": { "v3": 1 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Característica 4: Pensamiento Desorganizado",
-      "elementos": [
-        {
-          "id": "pensamiento",
-          "tipo": "opciones",
-          "label": "Número combinado de errores a preguntas y comandos >1",
-          "descripcion": "Haga estas preguntas de sí/no: 1. ¿Flota una piedra en el agua? 2. ¿Hay peces en el mar? 3. ¿Pesa más 1 kilo que 2 kilos? 4. ¿Se usa un martillo para clavar un clavo? LUEGO, comandos: a) 'Levante esta cantidad de dedos' (muéstrele 2); b) 'Ahora haga lo mismo con la otra mano'. Si no puede mover ambos brazos, pida que levante un dedo más. Cuente error si no completa todo el comando.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v4": 0 } },
-            { "label": "Sí", "valoresVariables": { "v4": 1 } }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Preguntas de sí/no: ¿flota una piedra en el agua? ¿Hay peces en el mar? ¿Pesa más una libra que dos? ¿Se usa un martillo para clavar un clavo? Orden: «levante estos dedos» (2) y «ahora lo mismo con la otra mano». Cada fallo, un error."
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 0, "max": 999, "categoria": "No evaluable: Paciente en estupor profundo o coma (RASS -4 o -5). No se puede determinar delírium.", "color": "gris", "matchOpcionIndex": 1 },
-    { "min": 1000, "max": 1110, "categoria": "CAM-ICU Negativo (Sin Delírium)", "color": "verde", "matchOpcionIndex": 2 },
-    { "min": 1111, "max": 1112, "categoria": "CAM-ICU POSITIVO (Delírium presente)", "color": "rojo", "matchOpcionIndex": 3 },
-    { "min": 1113, "max": 1210, "categoria": "CAM-ICU Negativo (Sin Delírium)", "color": "verde", "matchOpcionIndex": 4 },
-    { "min": 1211, "max": 1212, "categoria": "CAM-ICU POSITIVO (Delírium presente)", "color": "rojo", "matchOpcionIndex": 5 }
-  ],
-  "referencias": [
     {
-      "titulo": "Ely EW, et al. Evaluation of delirium in critically ill patients: validation of the CAM-ICU. JAMA 2001;286:2703-10.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/11730446/"
+      "min": 0,
+      "max": 0,
+      "categoria": "No evaluable (RASS −4 o −5)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "si": {
+        "id": "rass",
+        "igual": 0
+      },
+      "approach": "Paciente inconsciente: no se aplica el CAM-ICU. Reevaluar más tarde."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "CAM-ICU positivo",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "id": "f1",
+            "igual": 1
+          },
+          {
+            "id": "f2",
+            "igual": 1
+          },
+          {
+            "alguno": [
+              {
+                "id": "f3",
+                "igual": 1
+              },
+              {
+                "id": "f4",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Síntomas de delírium: buscar y tratar la causa (sepsis, fármacos como benzodiacepinas, privación de sueño, sin gafas ni audífonos). Reevaluar cada turno."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "CAM-ICU negativo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Sin delírium ahora. Reevaluar cada turno: el delírium fluctúa."
     }
   ]
 }

@@ -1,66 +1,112 @@
 {
-  "titulo": "Score ABCD2",
-  "descripcion": "Predice el riesgo temprano (2, 7 y 90 días) de ACV tras un Ataque Isquémico Transitorio (AIT).",
-  "tipoCalculo": "suma",
+  "titulo": "ABCD² (riesgo de ictus tras un AIT)",
+  "descripcion": "Estima el riesgo de ictus en los días siguientes a un accidente isquémico transitorio (AIT) con cinco datos: edad, presión arterial, clínica, duración y diabetes, de 0 a 7 puntos. Se validó en 4809 pacientes de urgencias y consultas de EE. UU. y Reino Unido, y hoy decide qué AIT es de alto riesgo para la doble antiagregación.",
+  "instrucciones": "Presión arterial: la primera tras el episodio. Clínica: puntúa la peor (debilidad unilateral 2; trastorno del habla sin debilidad 1). Duración total de los síntomas.",
+  "limitaciones": "Un ABCD² bajo no descarta un AIT de riesgo: la estenosis carotídea sintomática o la fibrilación auricular cambian la conducta sea cual sea la puntuación. Todo AIT necesita estudio urgente.",
   "referencias": [
     {
-      "titulo": "Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack",
-      "url": "https://doi.org/10.1016/S0140-6736(07)60150-0"
+      "titulo": "Johnston SC, Rothwell PM, Nguyen-Huynh MN, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. Lancet 2007;369(9558):283-92.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17258668/",
+      "texto": "classified as high risk (score 6-7, 8.1% 2-day risk), 2169 (45%) as moderate risk (score 4-5, 4.1%), and 1628 (34%) as low risk (score 0-3, 1.0%)."
     },
     {
-      "titulo": "Higher ABCD2 score predicts patients most likely to have true transient ischemic attack",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18688003/"
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 4.8.12 (Clase 1, A).",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e62",
+      "texto": "high-risk TIA (ABCD2 score ≥4) who did not receive IVT, DAPT (aspirin and clopidogrel with loading dose of clopidogrel) should be initiated early (within 24 hours after symptom onset) and continued for 21 days"
+    },
+    {
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 4.8.13.",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e62",
+      "texto": "or high-risk TIA (ABCD2 score ≥6 or symptomatic intracranial or extracranial ≥50% stenosis of an artery that could account for TIA) who did not receive IVT, DAPT with ticagrelor"
     }
   ],
   "columnas": [
     {
       "puntos": 0,
-      "titulo": "0 ptos",
+      "titulo": "0",
       "color": "verde"
     },
     {
       "puntos": 1,
-      "titulo": "1 pto",
+      "titulo": "1",
       "color": "amarillo"
     },
     {
       "puntos": 2,
-      "titulo": "2 ptos",
-      "color": "rojo"
+      "titulo": "2",
+      "color": "naranja"
     }
   ],
   "filas": [
     {
-      "nombre": "Edad ≥60 años",
+      "nombre": "Edad ≥ 60 años",
       "descripciones": [
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 18,
+        "max": 120,
+        "tramos": [
+          {
+            "max": 59.99,
+            "puntos": 0
+          },
+          {
+            "min": 60,
+            "puntos": 1
+          }
+        ]
+      }
     },
     {
-      "nombre": "PA ≥140/90",
+      "nombre": "PA ≥ 140/90 mmHg",
       "descripciones": [
         "No",
         "Sí",
         "-"
-      ]
+      ],
+      "ayuda": "Sistólica ≥ 140 o diastólica ≥ 90 mmHg."
     },
     {
-      "nombre": "Clínica AIT",
+      "nombre": "Clínica",
       "descripciones": [
         "Otra",
-        "Alt. habla",
+        "Habla sin debilidad",
         "Debilidad unilateral"
       ]
     },
     {
-      "nombre": "Duración AIT",
+      "nombre": "Duración",
       "descripciones": [
-        "<10 min",
+        "< 10 min",
         "10-59 min",
-        "≥60 min"
-      ]
+        "≥ 60 min"
+      ],
+      "entrada": {
+        "unidad": "min",
+        "min": 0,
+        "max": 1440,
+        "tramos": [
+          {
+            "max": 9.99,
+            "puntos": 0
+          },
+          {
+            "min": 10,
+            "max": 59.99,
+            "puntos": 1
+          },
+          {
+            "min": 60,
+            "puntos": 2
+          }
+        ]
+      }
     },
     {
       "nombre": "Diabetes",
@@ -75,23 +121,26 @@
     {
       "min": 0,
       "max": 3,
-      "categoria": "Riesgo Bajo",
+      "categoria": "Riesgo bajo",
       "color": "verde",
-      "approach": "Manejo ambulatorio (Riesgo ACV a 2 días: 1.0%)"
+      "match_opcion_index": -1,
+      "approach": "Ictus a 2 días 1,0 %. No es AIT de alto riesgo para doble antiagregación; completar el estudio urgente del AIT."
     },
     {
       "min": 4,
       "max": 5,
-      "categoria": "Riesgo Moderado",
-      "color": "amarillo",
-      "approach": "Observación o ingreso según caso (Riesgo ACV a 2 días: 4.1%)"
+      "categoria": "Riesgo moderado",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Ictus a 2 días 4,1 %. AIT de alto riesgo (≥ 4): si no es cardioembólico, aspirina + clopidogrel (con carga) en < 24 h, 21 días; después, un antiagregante."
     },
     {
       "min": 6,
       "max": 7,
-      "categoria": "Riesgo Alto",
+      "categoria": "Riesgo alto",
       "color": "rojo",
-      "approach": "Evaluación urgente e ingreso (Riesgo ACV a 2 días: 8.1%)"
+      "match_opcion_index": -1,
+      "approach": "Ictus a 2 días 8,1 %: evaluación inmediata. Doble antiagregación en < 24 h: clopidogrel + aspirina 21 días, o ticagrelor + aspirina 30 días."
     }
   ]
 }

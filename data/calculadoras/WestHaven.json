@@ -1,70 +1,119 @@
 {
-  "titulo": "Criterios de West Haven",
-  "descripcion": "Define los estadios o grados de la encefalopatía hepática en pacientes con enfermedad hepática aguda o crónica.",
-  "tipoCalculo": "formula",
-  "formula": "v1",
-  "prefijoResultado": "Grado ",
-  "sufijoResultado": " puntos",
-  "secciones": [
+  "titulo": "Criterios de West Haven (encefalopatía hepática)",
+  "descripcion": "Gradúa la encefalopatía hepática del paciente con hepatopatía crónica, de la mínima (sólo pruebas psicométricas alteradas) al coma. Los grados mínimo y I son la encefalopatía encubierta; del II al IV, la manifiesta. Orienta el tratamiento con lactulosa, la búsqueda de desencadenantes y la necesidad de proteger la vía aérea.",
+  "instrucciones": "Elige el grado más alto con algún signo presente. El amonio normal casi descarta encefalopatía manifiesta; TC o RM si hay dudas u otra causa posible.",
+  "limitaciones": "Los grados mínimo y I son difíciles de separar a pie de cama: la mínima exige pruebas psicométricas o neurofisiológicas. No descarta otras causas de alteración mental (hemorragia intracraneal, fármacos, hipoglucemia).",
+  "referencias": [
     {
-      "nombre": "Evaluación Clínica (Signos y Síntomas)",
-      "elementos": [
-        {
-          "id": "sintomas",
-          "tipo": "opciones",
-          "label": "Seleccione la presentación clínica del paciente",
-          "opciones": [
-            { "label": "Pruebas psicométricas/neuropsicológicas anormales sin manifestaciones clínicas evidentes", "valoresVariables": { "v1": 0 } },
-            { "label": "Alteración de atención, cálculo o sueño; euforia/ansiedad; orientado en tiempo y espacio", "valoresVariables": { "v1": 1 } },
-            { "label": "Desorientado en tiempo/espacio; comportamiento inapropiado; cambios de personalidad; asterixis; apatía", "valoresVariables": { "v1": 2 } },
-            { "label": "Somnolencia/semiestupor; desorientación severa; confusión; comportamiento bizarro; responde a estímulos", "valoresVariables": { "v1": 3 } },
-            { "label": "Coma", "valoresVariables": { "v1": 4 } }
-          ]
-        }
+      "titulo": "Vilstrup H, Amodio P, Bajaj J, et al. Hepatic encephalopathy in chronic liver disease: 2014 practice guideline by AASLD and EASL. Hepatology 2014;60(2):715-35.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25042402/"
+    },
+    {
+      "titulo": "Kerbert AJC, Jalan R. Recent advances in understanding and managing hepatic encephalopathy in chronic liver disease. F1000Res 2020;9:F1000 Faculty Rev-312.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32399191/",
+      "paginas": "Tabla 1 (según Vilstrup 2014)",
+      "texto": "HE can be classified as overt (West Haven grade II–IV, diagnosed based on clinical symptoms ranging from disorientation to coma) or covert (minimal HE or West Haven grade I"
+    },
+    {
+      "titulo": "Mandorfer M, Aigner E, Cejna M, et al. Austrian consensus on the diagnosis and management of portal hypertension in advanced chronic liver disease (Billroth IV). Wien Klin Wochenschr 2023;135(Suppl 3):493-523.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37358642/",
+      "paginas": "Encefalopatía hepática",
+      "texto": "Covert and overt HE should be treated with lactulose (titrated to achieve 2–3 bowel movements/d) … Precipitating factors of HE should be identified and treated"
+    },
+    {
+      "titulo": "Mandorfer M, Aigner E, Cejna M, et al. Austrian consensus on the diagnosis and management of portal hypertension in advanced chronic liver disease (Billroth IV). Wien Klin Wochenschr 2023;135(Suppl 3):493-523. Grados III-IV.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37358642/",
+      "paginas": "Encefalopatía hepática",
+      "texto": "Patients with HE West Haven Grade III–IV are at risk for aspiration and ICU management/intubation must be considered"
+    }
+  ],
+  "mostrarPuntaje": false,
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "Mínima",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 1,
+      "titulo": "Grado I",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "Grado II",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "Grado III",
+      "color": "rojo"
+    },
+    {
+      "puntos": 4,
+      "titulo": "Grado IV",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Clínica",
+      "descripciones": [
+        "Sólo pruebas alteradas",
+        "Atención, cálculo o sueño",
+        "Letargia, desorientación",
+        "Somnolencia, confusión",
+        "Coma"
+      ],
+      "detalles": [
+        "Pruebas psicométricas o neuropsicológicas alteradas (PHES, frecuencia crítica de parpadeo, EEG) sin clínica",
+        "Leve falta de conciencia de sí, euforia o ansiedad, atención acortada, fallos al sumar o restar, ritmo de sueño alterado",
+        "Letargia o apatía, desorientación en el tiempo, cambio de personalidad, conducta inapropiada, dispraxia, asterixis",
+        "Somnolencia a semiestupor, responde a estímulos, confusión, desorientación grosera, conducta extraña",
+        "Coma"
       ]
     }
   ],
   "resultados": [
-    { 
-      "min": 0, 
-      "max": 0, 
-      "categoria": "0 (Encefalopatía Mínima / Encubierta). MANEJO: Evaluar estado cognitivo basal. Las pruebas de amonio de rutina no son necesarias para guiar el tratamiento.", 
-      "color": "verde", 
-      "matchOpcionIndex": 1 
-    },
-    { 
-      "min": 1, 
-      "max": 1, 
-      "categoria": "1 (Encefalopatía Encubierta). MANEJO: Buscar y tratar factores desencadenantes (infecciones, sangrado, alteraciones electrolíticas). Amonio de rutina no recomendado.", 
-      "color": "amarillo", 
-      "matchOpcionIndex": 2 
-    },
-    { 
-      "min": 2, 
-      "max": 2, 
-      "categoria": "2 (Encefalopatía Manifiesta). TRATAMIENTO: Lactulosa (con o sin rifaximina). Descarte siempre otras causas de alteración del estado mental (sangrado GI, infección, fármacos).", 
-      "color": "naranja", 
-      "matchOpcionIndex": 3 
-    },
-    { 
-      "min": 3, 
-      "max": 3, 
-      "categoria": "3 (Encefalopatía Manifiesta Severa). TRATAMIENTO: Lactulosa (con o sin rifaximina). Evaluar necesidad de protección de vía aérea y calcular Glasgow. Buscar activamente desencadenantes.", 
-      "color": "rojo", 
-      "matchOpcionIndex": 4 
-    },
-    { 
-      "min": 4, 
-      "max": 4, 
-      "categoria": "4 (Coma Hepático). ACCIÓN CRÍTICA: Escalar atención urgentemente (UCI). Evaluar intubación por incapacidad de proteger vía aérea. Descartar patología intracraneal o shock.", 
-      "color": "rojo", 
-      "matchOpcionIndex": 5 
-    }
-  ],
-  "referencias": [
     {
-      "titulo": "Vilstrup H, et al. Hepatic encephalopathy in chronic liver disease: 2014 Practice Guideline by AASLD and EASL. Hepatology 2014;60:715-35.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25042402/"
+      "min": 0,
+      "max": 0,
+      "categoria": "EH mínima (encubierta)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Lactulosa ajustada a 2-3 deposiciones/día. Buscar y tratar desencadenantes: deshidratación (diuréticos), infección, hemorragia digestiva."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Grado I (encubierta)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Lactulosa ajustada a 2-3 deposiciones/día. Buscar y tratar desencadenantes: deshidratación (diuréticos), infección, hemorragia digestiva."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Grado II (manifiesta)",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Lactulosa a 2-3 deposiciones/día; tratar desencadenantes (deshidratación, infección, hemorragia digestiva). No restringir proteínas. Rifaximina si recurre o persiste."
+    },
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Grado III (manifiesta)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Riesgo de aspiración: considerar UCI e intubación. Lactulosa y tratar desencadenantes (deshidratación, infección, hemorragia digestiva)."
+    },
+    {
+      "min": 4,
+      "max": 4,
+      "categoria": "Grado IV: coma",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Riesgo de aspiración: UCI e intubación a considerar. Lactulosa y tratar desencadenantes; TC si hay dudas sobre otra causa."
     }
   ]
 }

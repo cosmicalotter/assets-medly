@@ -1,14 +1,28 @@
 {
-  "titulo": "HIC supratentorial: ¿evacuación mínimamente invasiva? (ESO/EANS 2025)",
-  "descripcion": "Perfil en que la ESO/EANS 2025 sugiere la evacuación mínimamente invasiva del hematoma (población del ensayo ENRICH): HIC lobar de 30 a 80 mL por ABC/2, GCS de 5 a 14 y cirugía en menos de 24 h desde el inicio.",
+  "titulo": "HIC lobar: ¿evacuación mínimamente invasiva?",
+  "descripcion": "Perfil en el que la guía ESO/EANS 2025 sugiere evacuar por vía mínimamente invasiva una hemorragia intracerebral supratentorial lobar, el de la población del ensayo ENRICH: volumen de 30 a 80 mL por ABC/2, GCS de 5 a 14 y cirugía antes de 24 horas desde el inicio. En los hematomas profundos el efecto es incierto.",
   "tipoCalculo": "formula",
-  "formula": "a * b * c * d",
+  "formula": "a * vol_puntos * gcs_puntos * d",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
   "referencias": [
     {
-      "titulo": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
-      "url": "https://doi.org/10.1177/23969873251340815"
+      "titulo": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J 2025;10(4):1007-86. PICO 4.1.3 (débil a favor).",
+      "url": "https://doi.org/10.1177/23969873251340815",
+      "paginas": "1072",
+      "texto": "we suggest minimally invasive evacuation of the haematoma to reduce mortality and to improve functional outcome in adults with lobar ICH, whereas the effect in deep haematomas remains uncertain"
+    },
+    {
+      "titulo": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J 2025;10(4):1007-86. Criterios del ensayo.",
+      "url": "https://doi.org/10.1177/23969873251340815",
+      "paginas": "1037",
+      "texto": "with respect to the haematoma volume (30–80 mL as calculated by the ABC/2 method), level of consciousness (GCS 5–14), and a time from onset of symptoms to surgery (<24 h)"
+    },
+    {
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke 2022;53(7):e282-e361. Recomendación 6.1.1.1 (Clase 2a).",
+      "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "paginas": "e318",
+      "texto": "For patients with supratentorial ICH of >20- to 30-mL volume with GCS scores in the moderate range (5–12), minimally invasive hematoma evacuation"
     }
   ],
   "secciones": [
@@ -18,6 +32,7 @@
           "id": "a",
           "tipo": "opciones",
           "label": "HIC lobar",
+          "ayuda": "Corteza y sustancia blanca subcortical.",
           "opciones": [
             {
               "label": "No",
@@ -30,39 +45,55 @@
           ]
         },
         {
-          "id": "b",
-          "tipo": "opciones",
-          "label": "Volumen de 30 a 80 mL (ABC/2)",
-          "opciones": [
+          "id": "vol",
+          "tipo": "input_numero",
+          "label": "Volumen (ABC/2)",
+          "unidad": "mL",
+          "min": 0,
+          "max": 300,
+          "intervalos": [
             {
-              "label": "No",
+              "max": 29.99,
               "puntos": 0
             },
             {
-              "label": "Sí",
+              "min": 30,
+              "max": 80,
               "puntos": 1
+            },
+            {
+              "min": 80.01,
+              "puntos": 0
             }
           ]
         },
         {
-          "id": "c",
-          "tipo": "opciones",
-          "label": "GCS de 5 a 14",
-          "opciones": [
+          "id": "gcs",
+          "tipo": "input_numero",
+          "label": "Glasgow (GCS)",
+          "unidad": "puntos",
+          "min": 3,
+          "max": 15,
+          "intervalos": [
             {
-              "label": "No",
+              "max": 4.99,
               "puntos": 0
             },
             {
-              "label": "Sí",
+              "min": 5,
+              "max": 14,
               "puntos": 1
+            },
+            {
+              "min": 14.01,
+              "puntos": 0
             }
           ]
         },
         {
           "id": "d",
           "tipo": "opciones",
-          "label": "Cirugía posible en <24 h desde el inicio",
+          "label": "Cirugía posible en < 24 h desde el inicio",
           "opciones": [
             {
               "label": "No",
@@ -79,20 +110,42 @@
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 0,
-      "categoria": "No cumple el perfil",
-      "color": "amarillo",
-      "match_opcion_index": 1,
-      "approach": "Valorar otras opciones con neurocirugía."
-    },
-    {
       "min": 1,
       "max": 1,
       "categoria": "Candidata a evacuación",
       "color": "verde",
       "match_opcion_index": 0,
-      "approach": "Mínimamente invasiva en <24 h, centro con experiencia."
+      "si": {
+        "todos": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "vol_puntos",
+            "igual": 1
+          },
+          {
+            "id": "gcs_puntos",
+            "igual": 1
+          },
+          {
+            "id": "d",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Evacuación mínimamente invasiva en < 24 h, en un centro con experiencia."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple el perfil",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Fuera del perfil del ensayo ENRICH: decidir con neurocirugía otras opciones."
     }
-  ]
+  ],
+  "instrucciones": "Hacen falta los cuatro: el resultado sale en cuanto uno es «No». Volumen por ABC/2.",
+  "limitaciones": "Fuera de este perfil la evidencia es menor: la guía AHA/ASA 2022 considera razonable la evacuación mínimamente invasiva en supratentoriales de más de 20-30 mL con GCS 5-12."
 }

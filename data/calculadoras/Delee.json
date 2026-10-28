@@ -1,87 +1,120 @@
 {
-  "titulo": "Índice de Riesgo Cardíaco Revisado (Score de Lee / RCRI)",
-  "descripcion": "Estima el riesgo de complicaciones cardíacas mayores tras una cirugía no cardíaca.",
-  "tipoCalculo": "formula",
-  "formula": "v1 + v2 + v3 + v4 + v5 + v6",
-  "prefijoResultado": "Puntuación RCRI: ",
-  "sufijoResultado": "puntos",
-  "secciones": [
+  "titulo": "Índice de riesgo cardiaco revisado (Lee, RCRI)",
+  "descripcion": "Estima el riesgo de complicaciones cardiacas mayores tras cirugía no cardiaca con seis factores de riesgo de igual peso. Se derivó y validó en 4315 pacientes de 50 años o más operados de cirugía mayor programada, y separa a quién conviene estratificar más (pruebas no invasivas, otras estrategias) de quién no necesita más estudios.",
+  "instrucciones": "Marca los factores presentes. La definición de cada uno está en el botón (i).",
+  "limitaciones": "Derivado en cirugía mayor programada de pacientes estables ≥ 50 años: no se validó en cirugía urgente. En un estudio internacional subestimó 6 veces los eventos en cirugía oncológica de centros especializados.",
+  "referencias": [
     {
-      "nombre": "Criterios de Evaluación",
-      "elementos": [
-        {
-          "id": "cirugia",
-          "tipo": "opciones",
-          "label": "Cirugía de alto riesgo",
-          "descripcion": "Intraperitoneal; intratorácica; vascular suprainguinal.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v1": 0 } },
-            { "label": "Sí", "valoresVariables": { "v1": 1 } }
-          ]
-        },
-        {
-          "id": "isquemia",
-          "tipo": "opciones",
-          "label": "Historia de cardiopatía isquémica",
-          "descripcion": "Historia de infarto de miocardio; prueba de esfuerzo positiva; dolor torácico actual por isquemia; uso de nitratos o ECG con ondas Q patológicas.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v2": 0 } },
-            { "label": "Sí", "valoresVariables": { "v2": 1 } }
-          ]
-        },
-        {
-          "id": "icc",
-          "tipo": "opciones",
-          "label": "Historia de insuficiencia cardíaca congestiva",
-          "descripcion": "Edema pulmonar, estertores bilaterales o galope S3; disnea paroxística nocturna; radiografía de tórax mostrando redistribución vascular pulmonar.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v3": 0 } },
-            { "label": "Sí", "valoresVariables": { "v3": 1 } }
-          ]
-        },
-        {
-          "id": "ecv",
-          "tipo": "opciones",
-          "label": "Historia de enfermedad cerebrovascular",
-          "descripcion": "Ataque isquémico transitorio (AIT) o accidente cerebrovascular (ACV) previo.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v4": 0 } },
-            { "label": "Sí", "valoresVariables": { "v4": 1 } }
-          ]
-        },
-        {
-          "id": "insulina",
-          "tipo": "opciones",
-          "label": "Tratamiento preoperatorio con insulina",
-          "descripcion": "",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v5": 0 } },
-            { "label": "Sí", "valoresVariables": { "v5": 1 } }
-          ]
-        },
-        {
-          "id": "creatinina",
-          "tipo": "opciones",
-          "label": "Creatinina preoperatoria >2 mg/dL (176.8 µmol/L)",
-          "descripcion": "",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v6": 0 } },
-            { "label": "Sí", "valoresVariables": { "v6": 1 } }
-          ]
-        }
-      ]
+      "titulo": "Lee TH, Marcantonio ER, Mangione CM, et al. Derivation and prospective validation of a simple index for prediction of cardiac risk of major noncardiac surgery. Circulation 1999;100(10):1043-9.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10477528/",
+      "texto": "Rates of major cardiac complication with 0, 1, 2, or ≥3 of these factors were … 0.4%, 0.9%, 7%, and 11%, respectively, among 1422 patients in the validation cohort."
+    },
+    {
+      "titulo": "Lee TH, et al. Circulation 1999 (conclusiones).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10477528/",
+      "texto": "This index may be useful for identification of candidates for further risk stratification with noninvasive technologies or other management strategies, as well as low-risk patients in whom additional evaluation is unlikely to be helpful."
+    },
+    {
+      "titulo": "Johnson EP, Monsour R, Hafez O, et al. Major perioperative cardiac risk assessment: a review for cardio-oncologists and perioperative physicians. Clin Pract 2024;14(3):906-14.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38804403/",
+      "paginas": "Tabla 1",
+      "texto": "History of myocardial infarction; history of positive exercise test; current chest pain due to myocardial ischemia; use of nitrate therapy or electrocardiogram with pathological Q waves"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "No",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "Sí",
+      "color": "naranja"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Cirugía de alto riesgo",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Intraperitoneal, intratorácica o vascular suprainguinal."
+    },
+    {
+      "nombre": "Cardiopatía isquémica",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Infarto previo, prueba de esfuerzo positiva, angina actual, uso de nitratos u ondas Q patológicas en el ECG."
+    },
+    {
+      "nombre": "Insuficiencia cardiaca",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Edema pulmonar, crepitantes bilaterales o galope S3; disnea paroxística nocturna; redistribución vascular en la radiografía de tórax."
+    },
+    {
+      "nombre": "Enfermedad cerebrovascular",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Ictus o AIT previo."
+    },
+    {
+      "nombre": "Insulina preoperatoria",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Diabetes tratada con insulina."
+    },
+    {
+      "nombre": "Creatinina > 2 mg/dL",
+      "descripciones": [
+        "No",
+        "Sí"
+      ],
+      "ayuda": "Preoperatoria; 2 mg/dL ≈ 177 µmol/L."
     }
   ],
   "resultados": [
-    { "min": 0, "max": 0, "categoria": "Clase I (Riesgo bajo): ~0.4% - 0.5% riesgo de evento cardíaco mayor", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1, "max": 1, "categoria": "Clase II (Riesgo bajo): ~0.9% - 1% riesgo de evento cardíaco mayor", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 2, "max": 2, "categoria": "Clase III (Riesgo moderado): ~2.4% - 4% riesgo de evento cardíaco mayor", "color": "naranja", "matchOpcionIndex": 3 },
-    { "min": 3, "max": 6, "categoria": "Clase IV (Riesgo alto): ≥ 5.4% riesgo de evento cardíaco mayor", "color": "rojo", "matchOpcionIndex": 4 }
-  ],
-  "referencias": [
     {
-      "titulo": "Lee TH, et al. Derivation and prospective validation of a simple index for prediction of cardiac risk of major noncardiac surgery. Circulation 1999;100:1043-9.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10477528/"
+      "min": 0,
+      "max": 0,
+      "categoria": "Riesgo bajo (0 factores)",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Complicación cardiaca mayor 0,4 %. Más estudios preoperatorios difícilmente aportan."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "1 factor",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Complicación cardiaca mayor 0,9 %."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "2 factores",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Complicación cardiaca mayor 7 %. Candidato a estratificar más (pruebas no invasivas u otras estrategias)."
+    },
+    {
+      "min": 3,
+      "max": 6,
+      "categoria": "≥ 3 factores: riesgo alto",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Complicación cardiaca mayor 11 %. Candidato a estratificar más (pruebas no invasivas u otras estrategias)."
     }
   ]
 }

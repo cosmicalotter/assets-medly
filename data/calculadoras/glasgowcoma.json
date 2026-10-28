@@ -1,27 +1,70 @@
 {
-  "titulo": "Escala de Coma de Glasgow (GCS)",
-  "descripcion": "Evalúa el nivel de consciencia en pacientes con daño cerebral agudo o alteración neurológica, midiendo la respuesta motora, verbal y ocular.",
+  "titulo": "Escala de coma de Glasgow (GCS)",
+  "descripcion": "Mide el nivel de conciencia tras una lesión cerebral aguda (traumatismo, ictus, hemorragia, coma de otra causa) con tres respuestas independientes: apertura ocular, respuesta verbal y respuesta motora, de 3 a 15 puntos. Clasifica la gravedad del traumatismo craneoencefálico y apoya decisiones como la TC urgente o la protección de la vía aérea.",
   "referencias": [
     {
-      "titulo": "Assessment of coma and impaired consciousness. A practical scale.",
+      "titulo": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. A practical scale. Lancet 1974;2(7872):81-4.",
       "url": "https://pubmed.ncbi.nlm.nih.gov/4136544/"
     },
     {
-      "titulo": "The reliability of the Glasgow Coma Scale: a systematic review",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26564211/"
+      "titulo": "Teasdale G, Maas A, Lecky F, et al. The Glasgow Coma Scale at 40 years: standing the test of time. Lancet Neurol 2014;13(8):844-54.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25030516/",
+      "texto": "Individual patients are best described by the three components of the coma scale; whereas the derived total coma score should be used to characterise groups."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Head injury: assessment and early management (NG232). 2023.",
+      "url": "https://www.nice.org.uk/guidance/ng232/chapter/Recommendations",
+      "paginas": "Términos usados",
+      "texto": "Mild traumatic brain injury is a GCS score of 13 to 15. Moderate traumatic brain injury is a GCS score of 9 to 12. Severe traumatic brain injury is a GCS score of 8 or less."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Head injury: assessment and early management (NG232). 2023. Recomendaciones 1.5.8 y 1.8.7.",
+      "url": "https://www.nice.org.uk/guidance/ng232/chapter/Recommendations",
+      "paginas": "1.5.8, 1.8.7",
+      "texto": "do a CT head scan within 1 hour of any of these risk factors being identified: a GCS score of 12 or less on initial assessment in the emergency department"
+    },
+    {
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke 2022;53(7):e282-e361. Sección 5.3.1.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "paginas": "e307",
+      "texto": "It is reasonable to consider patients with decreased level of consciousness (eg, GCS score ≤8) or a declining neurological examination for invasive mechanical ventilation"
     }
   ],
   "columnas": [
-    {"puntos": 1, "titulo": "1", "color": "rojo"},
-    {"puntos": 2, "titulo": "2", "color": "naranja"},
-    {"puntos": 3, "titulo": "3", "color": "amarillo"},
-    {"puntos": 4, "titulo": "4", "color": "verde"},
-    {"puntos": 5, "titulo": "5", "color": "verde"},
-    {"puntos": 6, "titulo": "6", "color": "verde"}
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "rojo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 4,
+      "titulo": "4",
+      "color": "verde"
+    },
+    {
+      "puntos": 5,
+      "titulo": "5",
+      "color": "verde"
+    },
+    {
+      "puntos": 6,
+      "titulo": "6",
+      "color": "verde"
+    }
   ],
   "filas": [
     {
-      "nombre": "Apertura Ocular",
+      "nombre": "Apertura ocular",
       "descripciones": [
         "Ninguna",
         "Al dolor",
@@ -32,18 +75,26 @@
       ]
     },
     {
-      "nombre": "Resp. Verbal",
+      "nombre": "Respuesta verbal",
       "descripciones": [
         "Ninguna",
-        "Sonidos incomprensibles",
+        "Sonidos",
         "Palabras inapropiadas",
-        "Confuso",
-        "Orientado",
+        "Confusa",
+        "Orientada",
         "-"
+      ],
+      "detalles": [
+        "",
+        "Sonidos incomprensibles, sin palabras",
+        "Palabras sueltas, sin conversación",
+        "Conversa, pero desorientado",
+        "Sabe quién es, dónde está y la fecha",
+        ""
       ]
     },
     {
-      "nombre": "Resp. Motora",
+      "nombre": "Respuesta motora",
       "descripciones": [
         "Ninguna",
         "Extensión anormal",
@@ -51,12 +102,44 @@
         "Retirada al dolor",
         "Localiza el dolor",
         "Obedece órdenes"
+      ],
+      "detalles": [
+        "",
+        "Extensión del brazo al estímulo (descerebración)",
+        "Flexión lenta y estereotipada (decorticación)",
+        "Flexión rápida, retira el miembro",
+        "Lleva la mano al estímulo",
+        ""
       ]
     }
   ],
   "resultados": [
-    {"min": 3, "max": 8, "categoria": "TCE Grave", "match_opcion_index": -1, "color": "rojo"},
-    {"min": 9, "max": 12, "categoria": "TCE Moderado", "match_opcion_index": -1, "color": "naranja"},
-    {"min": 13, "max": 15, "categoria": "TCE Leve", "match_opcion_index": -1, "color": "verde"}
-  ]
+    {
+      "min": 3,
+      "max": 8,
+      "categoria": "Grave (coma)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "TCE grave si es traumático. Vía aérea avanzada precoz: intubar y ventilar si se traslada. En HIC, considerar ventilación mecánica invasiva."
+    },
+    {
+      "min": 9,
+      "max": 12,
+      "categoria": "Moderada",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "TCE moderado si es traumático: TC craneal en < 1 h. Vigilar el GCS cada 30 min hasta 15."
+    },
+    {
+      "min": 13,
+      "max": 15,
+      "categoria": "Leve",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "TCE leve si es traumático. TC en < 1 h si sigue < 15 a las 2 h u otro factor de riesgo; vigilar cada 30 min hasta 15."
+    }
+  ],
+  "instrucciones": "Anota los tres componentes junto al total (p. ej., E4 V4 M5 = 13/15). En un paciente concreto, los componentes describen mejor que el total. Repite la valoración: los cambios importan.",
+  "limitaciones": "El total no se puede calcular bien si un componente no es valorable (intubado, edema palpebral, afasia): descríbelo. Los rangos de gravedad son los del traumatismo craneoencefálico; en otras causas orientan, no clasifican.",
+  "prefijoResultado": "GCS"
 }

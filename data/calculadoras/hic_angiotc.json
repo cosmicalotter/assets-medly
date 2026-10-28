@@ -1,14 +1,16 @@
 {
-  "titulo": "HIC: ¿angio-TC para buscar causa macrovascular? (AHA/ASA 2022)",
-  "descripcion": "Quién necesita angio-TC aguda (con venografía si procede) tras una hemorragia intracerebral espontánea, según la localización, la edad y la HTA. Lobar con menos de 70 años; profunda o de fosa posterior con menos de 45, o de 45 a 70 sin HTA conocida.",
+  "titulo": "HIC: ¿angio-TC para buscar causa macrovascular?",
+  "descripcion": "Decide a quién hacer angio-TC aguda, con valoración de venografía, tras una hemorragia intracerebral espontánea, para descartar una malformación vascular o una trombosis venosa cerebral. La probabilidad de causa macrovascular depende de la localización, la edad y la hipertensión previa, según la guía AHA/ASA 2022.",
   "tipoCalculo": "formula",
-  "formula": "loc * (grupo_edad * (grupo_edad - 1) * (3 - grupo_edad) / 2 + grupo_edad * (grupo_edad - 1) * (grupo_edad - 2) / 6) + (1 - loc) * (grupo_edad * (grupo_edad - 1) * (grupo_edad - 2) / 6 + (grupo_edad * (2 - grupo_edad) * (3 - grupo_edad) / 2 + grupo_edad * (grupo_edad - 1) * (3 - grupo_edad) / 2) * (1 - hta))",
+  "formula": "loc * (anios_puntos * (anios_puntos - 1) * (3 - anios_puntos) / 2 + anios_puntos * (anios_puntos - 1) * (anios_puntos - 2) / 6) + (1 - loc) * (anios_puntos * (anios_puntos - 1) * (anios_puntos - 2) / 6 + (anios_puntos * (2 - anios_puntos) * (3 - anios_puntos) / 2 + anios_puntos * (anios_puntos - 1) * (3 - anios_puntos) / 2) * (1 - hta))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
   "referencias": [
     {
-      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2022;53:e282-e361.",
-      "url": "https://doi.org/10.1161/STR.0000000000000407"
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke 2022;53(7):e282-e361. Recomendación 4.2.1.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "paginas": "e295",
+      "texto": "In patients with lobar spontaneous ICH and age <70 years, deep/posterior fossa spontaneous ICH and age <45 years, or deep/posterior fossa and age 45 to 70 years without history of hypertension"
     }
   ],
   "secciones": [
@@ -20,42 +22,50 @@
           "label": "Localización del hematoma",
           "opciones": [
             {
-              "label": "Profunda (ganglios basales, tálamo) o fosa posterior",
-              "puntos": 0
+              "label": "Profunda o fosa posterior",
+              "puntos": 0,
+              "detalle": "Ganglios basales, tálamo, cerebelo o tronco"
             },
             {
-              "label": "Lobar (corteza y sustancia blanca subcortical)",
-              "puntos": 1
+              "label": "Lobar",
+              "puntos": 1,
+              "detalle": "Corteza y sustancia blanca subcortical"
             }
           ]
         },
         {
-          "id": "grupo_edad",
-          "tipo": "opciones",
+          "id": "anios",
+          "tipo": "input_numero",
           "label": "Edad",
-          "opciones": [
+          "unidad": "años",
+          "min": 18,
+          "max": 120,
+          "intervalos": [
             {
-              "label": "71 años o más",
-              "puntos": 0
+              "max": 44.99,
+              "puntos": 3
             },
             {
-              "label": "70 años",
-              "puntos": 1
-            },
-            {
-              "label": "De 45 a 69 años",
+              "min": 45,
+              "max": 69.99,
               "puntos": 2
             },
             {
-              "label": "Menos de 45 años",
-              "puntos": 3
+              "min": 70,
+              "max": 70.99,
+              "puntos": 1
+            },
+            {
+              "min": 71,
+              "puntos": 0
             }
           ]
         },
         {
           "id": "hta",
           "tipo": "opciones",
-          "label": "HTA conocida (solo cuenta en la profunda o de fosa posterior)",
+          "label": "HTA conocida",
+          "ayuda": "Sólo cuenta en la profunda o de fosa posterior.",
           "opciones": [
             {
               "label": "No",
@@ -72,20 +82,66 @@
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 0,
-      "categoria": "Riesgo vascular bajo",
-      "color": "verde",
-      "match_opcion_index": 1,
-      "approach": "RM con secuencias de sangre para buscar la causa."
-    },
-    {
       "min": 1,
       "max": 1,
       "categoria": "Angio-TC indicada",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Angio-TC aguda y considerar venografía (Clase I)."
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "loc",
+                "igual": 1
+              },
+              {
+                "id": "anios",
+                "menor": 70
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "loc",
+                "igual": 0
+              },
+              {
+                "id": "anios",
+                "menor": 45
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "loc",
+                "igual": 0
+              },
+              {
+                "id": "anios",
+                "menor": 71
+              },
+              {
+                "id": "hta",
+                "igual": 0
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Angio-TC aguda y considerar venografía para descartar causa macrovascular o trombosis venosa cerebral (Clase 1)."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Riesgo vascular bajo",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "La guía no indica angio-TC aguda por la edad y la localización. Buscar la causa con RM con secuencias de sangre."
     }
-  ]
+  ],
+  "instrucciones": "Lobar: corteza y sustancia blanca subcortical. Profunda: ganglios basales o tálamo. La HTA sólo cuenta en la profunda o de fosa posterior.",
+  "limitaciones": "No sustituye el juicio clínico: datos de la TC que sugieren causa secundaria (sangre subaracnoidea, calcificaciones, venas hiperdensas) indican estudio vascular a cualquier edad."
 }

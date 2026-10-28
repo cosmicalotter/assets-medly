@@ -1,43 +1,157 @@
 {
-  "titulo": "Escala de Agitación y Sedación de Richmond (RASS)",
-  "descripcion": "Evalúa el grado de agitación y la profundidad de la sedación en pacientes, guiando la titulación de fármacos sedantes.",
-  "tipoCalculo": "formula",
-  "formula": "v1",
-  "prefijoResultado": "RASS: ",
-  "sufijoResultado": " puntos",
-  "secciones": [
+  "titulo": "Escala de agitación y sedación de Richmond (RASS)",
+  "descripcion": "Mide en diez niveles, de +4 (combativo) a −5 (no despertable), la agitación y la profundidad de la sedación del adulto en UCI. Validada en pacientes médicos, quirúrgicos, cardiacos y neurológicos, con y sin ventilación mecánica o sedantes, ajusta la sedación y es el primer paso del CAM-ICU.",
+  "instrucciones": "Observa al paciente; si no está alerta, háblale; sólo si no responde a la voz, estimúlalo físicamente. De −1 a −3 cuenta el contacto visual y su duración.",
+  "limitaciones": "No mide el dolor ni el delírium: con RASS de −3 a +4 se evalúa el delírium con el CAM-ICU. En pacientes con bloqueo neuromuscular no es valorable.",
+  "referencias": [
     {
-      "nombre": "Evaluación del Paciente",
-      "elementos": [
-        {
-          "id": "estado_paciente",
-          "tipo": "opciones",
-          "label": "Descripción clínica actual",
-          "opciones": [
-            { "label": "+4 Combativo (Violento, peligro inmediato para el equipo)", "valoresVariables": { "v1": 4 } },
-            { "label": "+3 Muy agitado (Agresivo, intenta retirarse tubos o catéteres)", "valoresVariables": { "v1": 3 } },
-            { "label": "+2 Agitado (Movimientos desordenados, lucha con el ventilador)", "valoresVariables": { "v1": 2 } },
-            { "label": "+1 Inquieto (Ansioso pero sin movimientos agresivos)", "valoresVariables": { "v1": 1 } },
-            { "label": "0 Alerta y tranquilo", "valoresVariables": { "v1": 0 } },
-            { "label": "-1 Somnoliento (Despierta a la voz, mantiene ojos abiertos >10 seg)", "valoresVariables": { "v1": -1 } },
-            { "label": "-2 Sedación leve (Despierta a la voz, contacto visual <10 seg)", "valoresVariables": { "v1": -2 } },
-            { "label": "-3 Sedación moderada (Movimiento/apertura ocular a la voz, sin contacto visual)", "valoresVariables": { "v1": -3 } },
-            { "label": "-4 Sedación profunda (Sin respuesta a la voz; movimiento/apertura al estímulo físico)", "valoresVariables": { "v1": -4 } },
-            { "label": "-5 Sedación muy profunda / Sin respuesta (No responde a voz ni estímulo físico)", "valoresVariables": { "v1": -5 } }
-          ]
-        }
+      "titulo": "Sessler CN, Gosnell MS, Grap MJ, et al. The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. Am J Respir Crit Care Med 2002;166(10):1338-44.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12421743/",
+      "texto": "RASS has high reliability and validity in medical and surgical, ventilated and nonventilated, and sedated and nonsedated adult ICU patients."
+    },
+    {
+      "titulo": "Ely EW. Confusion Assessment Method for the ICU (CAM-ICU): the complete training manual. Revised edition, August 31, 2016. Vanderbilt University.",
+      "url": "https://www.icudelirium.org/medical-professionals/delirium/monitoring-delirium-in-the-icu",
+      "paginas": "p. 5",
+      "texto": "If RASS is ≥ -3 proceed to CAM-ICU (Is patient CAM-ICU positive or negative?) … If RASS is -4 or -5 STOP (patient unconscious), RECHECK later"
+    },
+    {
+      "titulo": "Saudi Critical Care Society. Saudi guideline for mechanical ventilation in adults — executive summary. Saudi J Med Med Sci 2026.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41836607/",
+      "texto": "In adults receiving invasive mechanical ventilation, we suggest using light sedation"
+    }
+  ],
+  "mostrarPuntaje": true,
+  "columnas": [
+    {
+      "puntos": 4,
+      "titulo": "+4",
+      "color": "rojo"
+    },
+    {
+      "puntos": 3,
+      "titulo": "+3",
+      "color": "rojo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "+2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 1,
+      "titulo": "+1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": -1,
+      "titulo": "−1",
+      "color": "verde"
+    },
+    {
+      "puntos": -2,
+      "titulo": "−2",
+      "color": "verde"
+    },
+    {
+      "puntos": -3,
+      "titulo": "−3",
+      "color": "amarillo"
+    },
+    {
+      "puntos": -4,
+      "titulo": "−4",
+      "color": "naranja"
+    },
+    {
+      "puntos": -5,
+      "titulo": "−5",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Nivel",
+      "descripciones": [
+        "Combativo",
+        "Muy agitado",
+        "Agitado",
+        "Inquieto",
+        "Alerta y tranquilo",
+        "Somnoliento",
+        "Sedación ligera",
+        "Sedación moderada",
+        "Sedación profunda",
+        "No despertable"
+      ],
+      "detalles": [
+        "Violento, peligro inmediato para el personal",
+        "Se quita tubos o catéteres; agresivo",
+        "Movimientos sin propósito frecuentes, lucha con el ventilador",
+        "Ansioso, aprensivo, movimientos no agresivos",
+        "Presta atención espontáneamente",
+        "No del todo alerta; despierta a la voz y mantiene ojos abiertos y contacto > 10 s",
+        "Despierta brevemente a la voz (ojos abiertos y contacto < 10 s)",
+        "Se mueve o abre los ojos a la voz, sin contacto visual",
+        "Sin respuesta a la voz; se mueve o abre los ojos al estímulo físico",
+        "Sin respuesta a la voz ni al estímulo físico"
       ]
     }
   ],
   "resultados": [
-    { "min": -5, "max": -3, "categoria": "Sobresedación: Se debe disminuir o modificar la sedación para alcanzar un objetivo RASS de -2 a 0.", "color": "naranja", "matchOpcionIndex": 1 },
-    { "min": -2, "max": 0, "categoria": "Sedación óptima: A menos que haya indicación para sedación profunda, mantenga este protocolo de sedación mínima.", "color": "verde", "matchOpcionIndex": 2 },
-    { "min": 1, "max": 4, "categoria": "Agitación / Infrasedación: Evaluar causas (dolor, ansiedad, delírium). Tratar la etiología para lograr RASS de -2 a 0.", "color": "rojo", "matchOpcionIndex": 3 }
-  ],
-  "referencias": [
     {
-      "titulo": "Sessler CN, et al. The Richmond Agitation-Sedation Scale: validity and reliability in adult ICU patients. Am J Respir Crit Care Med 2002;166:1338-44.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/12421743/"
+      "min": 2,
+      "max": 4,
+      "categoria": "Agitación",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Evaluar delírium con CAM-ICU (aplicable de −3 a +4) y buscar su causa."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Inquieto",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Evaluar delírium con CAM-ICU."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Alerta y tranquilo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Evaluar delírium con CAM-ICU (con RASS 0, el rasgo 3 es negativo)."
+    },
+    {
+      "min": -2,
+      "max": -1,
+      "categoria": "Sedación ligera",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Nivel de sedación ligera, la sugerida en ventilación mecánica. Evaluar delírium con CAM-ICU."
+    },
+    {
+      "min": -3,
+      "max": -3,
+      "categoria": "Sedación moderada",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Aún se puede evaluar el delírium con CAM-ICU. Valorar aligerar la sedación si no hay indicación de sedación profunda."
+    },
+    {
+      "min": -5,
+      "max": -4,
+      "categoria": "Sedación profunda o coma",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Inconsciente: no se evalúa el CAM-ICU; reevaluar más tarde. Si no hay indicación de sedación profunda, aligerarla."
     }
-  ]
+  ],
+  "prefijoResultado": "RASS"
 }

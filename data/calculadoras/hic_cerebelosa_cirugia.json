@@ -1,18 +1,28 @@
 {
-  "titulo": "HIC cerebelosa: ¿cirugía inmediata? (AHA/ASA 2022)",
-  "descripcion": "Criterios de evacuación quirúrgica inmediata de la hemorragia cerebelosa. Basta uno: deterioro neurológico, compresión del tronco, hidrocefalia por obstrucción ventricular o volumen de 15 mL o más.",
+  "titulo": "HIC cerebelosa: ¿cirugía inmediata?",
+  "descripcion": "Criterios de la guía AHA/ASA 2022 para evacuar de inmediato una hemorragia cerebelosa, con o sin drenaje ventricular, en lugar del tratamiento médico solo: basta uno de deterioro neurológico, compresión del tronco, hidrocefalia por obstrucción ventricular o volumen de 15 mL o más. La ESO/EANS 2025 también sugiere evacuar los hematomas cerebelosos mayores de 15 mL.",
   "tipoCalculo": "formula",
-  "formula": "1 - (1 - a) * (1 - b) * (1 - c) * (1 - d)",
+  "formula": "1 - (1 - a) * (1 - b) * (1 - c) * (1 - vol_puntos)",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
   "referencias": [
     {
-      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2022;53:e282-e361.",
-      "url": "https://doi.org/10.1161/STR.0000000000000407"
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke 2022;53(7):e282-e361. Recomendación 6.1.4.1 (Clase 1, B-NR).",
+      "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "paginas": "e323",
+      "texto": "For patients with cerebellar ICH who are deteriorating neurologically, have brainstem compression and/or hydrocephalus from ventricular obstruction, or have cerebellar ICH volume ≥15 mL, immediate surgical removal"
     },
     {
-      "titulo": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J. 2025;10(4):1007-1086.",
-      "url": "https://doi.org/10.1177/23969873251340815"
+      "titulo": "Greenberg SM, Ziai WC, Cordonnier C, et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage (AHA/ASA). Stroke 2022;53(7):e282-e361. Sinopsis 6.1.4.",
+      "url": "https://doi.org/10.1161/STR.0000000000000407",
+      "paginas": "e323",
+      "texto": "For patients with cerebellar ICH and clinical hydrocephalus, EVD alone is, in theory, potentially harmful, especially if the basal cisterns are compressed"
+    },
+    {
+      "titulo": "Steiner T, Purrucker JC, Aguiar de Sousa D, et al. ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J 2025;10(4):1007-86. PICO 4.3.",
+      "url": "https://doi.org/10.1177/23969873251340815",
+      "paginas": "1043",
+      "texto": "In adults with acute cerebellar haemorrhage, we suggest surgical evacuation of haematomas larger than 15 mL to improve survival"
     }
   ],
   "secciones": [
@@ -64,16 +74,19 @@
           ]
         },
         {
-          "id": "d",
-          "tipo": "opciones",
-          "label": "Volumen ≥15 mL (ABC/2)",
-          "opciones": [
+          "id": "vol",
+          "tipo": "input_numero",
+          "label": "Volumen (ABC/2)",
+          "unidad": "mL",
+          "min": 0,
+          "max": 200,
+          "intervalos": [
             {
-              "label": "No",
+              "max": 14.99,
               "puntos": 0
             },
             {
-              "label": "Sí",
+              "min": 15,
               "puntos": 1
             }
           ]
@@ -83,20 +96,42 @@
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 0,
-      "categoria": "Sin criterios de cirugía",
-      "color": "amarillo",
-      "match_opcion_index": 1,
-      "approach": "Manejo médico y vigilancia estrecha; TC si empeora."
-    },
-    {
       "min": 1,
       "max": 1,
       "categoria": "Cirugía inmediata",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Evacuar el hematoma, con o sin DVE (Clase I)."
+      "si": {
+        "alguno": [
+          {
+            "id": "a",
+            "igual": 1
+          },
+          {
+            "id": "b",
+            "igual": 1
+          },
+          {
+            "id": "c",
+            "igual": 1
+          },
+          {
+            "id": "vol_puntos",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Evacuación quirúrgica inmediata, con o sin drenaje ventricular (Clase 1)."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Sin criterios de cirugía",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Tratamiento médico y exploración neurológica frecuente; TC si empeora."
     }
-  ]
+  ],
+  "instrucciones": "Basta un criterio: el resultado sale en cuanto uno es «Sí». Volumen por ABC/2.",
+  "limitaciones": "Con hidrocefalia, el drenaje ventricular solo, sin evacuar, puede ser dañino si las cisternas basales están comprimidas."
 }

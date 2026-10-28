@@ -1,197 +1,317 @@
 {
-  "titulo": "NIHSS (National Institutes of Health Stroke Scale)",
-  "descripcion": "Escala estandarizada mundialmente para cuantificar la severidad de un accidente cerebrovascular (ACV) isquémico, evaluar el pronóstico y guiar la decisión de terapia trombolítica.",
-  "tipoCalculo": "formula",
-  "formula": "loc + locPreguntas + locOrdenes + mirada + visual + facial + brazoIzq + brazoDer + piernaIzq + piernaDer + ataxia + sensitivo + lenguaje + disartria + inatencion",
-  "prefijoResultado": "Total",
+  "titulo": "NIHSS (escala de ictus del NIH)",
+  "descripcion": "Cuantifica el déficit neurológico del ictus agudo con 15 ítems (conciencia, mirada, campos visuales, cara, fuerza de cada miembro, ataxia, sensibilidad, lenguaje, disartria y extinción), de 0 a 42 puntos. Es la escala de gravedad recomendada al ingreso y tras la reperfusión, y ayuda a decidir trombólisis, trombectomía y doble antiagregación.",
+  "instrucciones": "Puntúa en orden lo que observas en ese momento; cada nivel tiene su definición. Ataxia: 0 si está paralizado. Disartria: 0 si está intubado. Lo no marcado cuenta 0.",
+  "limitaciones": "Con NIHSS 0-5 decide si el déficit es incapacitante, no el número: la trombólisis se indica en déficits incapacitantes sea cual sea el NIHSS. Los ítems más fiables no siempre son los más válidos.",
+  "referencias": [
+    {
+      "titulo": "Brott T, Adams HP Jr, Olinger CP, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke 1989;20(7):864-70.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2749846/",
+      "texto": "We designed a 15-item neurologic examination stroke scale for use in acute stroke therapy trials. In a study of 24 stroke patients, interrater reliability for the scale was found to be high"
+    },
+    {
+      "titulo": "Lyden P, Brott T, Tilley B, et al. Improved reliability of the NIH Stroke Scale using video training. Stroke 1994;25(11):2220-6.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7974549/"
+    },
+    {
+      "titulo": "Alamri AF, Alamri FF, Alkhiri A, et al. National Institutes of Health Stroke Scale scoring tool utilizing medical records: a single-center validation study. Med Princ Pract 2026;35(3):244-54.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41313727/",
+      "paginas": "Tabla 1",
+      "texto": "Not alert, arousable by minor stimulation to obey, answer, respond … Not alert, responds to repeated or painful stimulation (with movements)"
+    },
+    {
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 3.1.1.",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e26",
+      "texto": "the use of a stroke severity rating scale, preferably the NIHSS, is recommended for measuring clinical deficits at baseline and after reperfusion therapies"
+    },
+    {
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 4.6.1.1.",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e38",
+      "texto": "In adult patients with AIS with disabling deficits, regardless of NIHSS score), and eligible for IVT, faster treatment improves functional outcomes."
+    },
+    {
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 4.8.12.",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e62",
+      "texto": "In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) who did not receive IVT, DAPT"
+    },
+    {
+      "titulo": "Prabhakaran S, Gonzalez NR, Zachrison KS, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (AHA/ASA). Stroke 2026;57. Recomendación 4.7.2.1.",
+      "url": "https://doi.org/10.1161/STR.0000000000000513",
+      "paginas": "e53",
+      "texto": "presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended"
+    }
+  ],
+  "tipoCalculo": "suma",
+  "prefijoResultado": "NIHSS",
   "sufijoResultado": "puntos",
-  "secciones": [
+  "columnas": [
     {
-      "nombre": "Nivel de Conciencia",
-      "elementos": [
-        {
-          "id": "loc",
-          "tipo": "opciones",
-          "label": "Estado de alerta",
-          "opciones": [
-            { "label": "Alerta", "puntos": 0 },
-            { "label": "Somnoliento", "puntos": 1 },
-            { "label": "Estuporoso", "puntos": 2 },
-            { "label": "Coma", "puntos": 3 }
-          ]
-        },
-        {
-          "id": "locPreguntas",
-          "tipo": "opciones",
-          "label": "Preguntas",
-          "opciones": [
-            { "label": "Ambas correctas", "puntos": 0 },
-            { "label": "Una correcta", "puntos": 1 },
-            { "label": "Ninguna correcta", "puntos": 2 }
-          ]
-        },
-        {
-          "id": "locOrdenes",
-          "tipo": "opciones",
-          "label": "Órdenes",
-          "opciones": [
-            { "label": "Ambas correctas", "puntos": 0 },
-            { "label": "Una correcta", "puntos": 1 },
-            { "label": "Ninguna correcta", "puntos": 2 }
-          ]
-        }
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    },
+    {
+      "puntos": 4,
+      "titulo": "4",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "1a. Nivel de conciencia",
+      "descripciones": [
+        "Alerta",
+        "Somnoliento",
+        "Estuporoso",
+        "Coma",
+        "-"
+      ],
+      "detalles": [
+        "Alerta, responde con viveza",
+        "No alerta; despierta con un estímulo leve para obedecer o responder",
+        "No alerta; responde a estímulos repetidos o dolorosos (con movimientos)",
+        "Sin respuesta, o sólo reflejos motores o autonómicos",
+        ""
       ]
     },
     {
-      "nombre": "Visión y Rostro",
-      "elementos": [
-        {
-          "id": "mirada",
-          "tipo": "opciones",
-          "label": "Mirada conjugada",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Paresia parcial", "puntos": 1 },
-            { "label": "Paresia total", "puntos": 2 }
-          ]
-        },
-        {
-          "id": "visual",
-          "tipo": "opciones",
-          "label": "Campos visuales",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Hemianopsia parcial", "puntos": 1 },
-            { "label": "Hemianopsia completa", "puntos": 2 },
-            { "label": "Hemianopsia bilateral", "puntos": 3 }
-          ]
-        },
-        {
-          "id": "facial",
-          "tipo": "opciones",
-          "label": "Paresia facial",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Paresia leve", "puntos": 1 },
-            { "label": "Paresia parcial", "puntos": 2 },
-            { "label": "Paresia completa", "puntos": 3 }
-          ]
-        }
+      "nombre": "1b. Preguntas de orientación",
+      "descripciones": [
+        "Ambas bien",
+        "Una bien",
+        "Ninguna bien",
+        "-",
+        "-"
       ]
     },
     {
-      "nombre": "Motor: Brazos y Piernas",
-      "elementos": [
-        {
-          "id": "brazoIzq",
-          "tipo": "opciones",
-          "label": "Brazo Izquierdo",
-          "opciones": [
-            { "label": "Mantiene 10s", "puntos": 0 },
-            { "label": "Cae < 10s", "puntos": 1 },
-            { "label": "Toca la cama", "puntos": 2 },
-            { "label": "No vence gravedad", "puntos": 3 },
-            { "label": "Sin movimiento", "puntos": 4 }
-          ]
-        },
-        {
-          "id": "brazoDer",
-          "tipo": "opciones",
-          "label": "Brazo Derecho",
-          "opciones": [
-            { "label": "Mantiene 10s", "puntos": 0 },
-            { "label": "Cae < 10s", "puntos": 1 },
-            { "label": "Toca la cama", "puntos": 2 },
-            { "label": "No vence gravedad", "puntos": 3 },
-            { "label": "Sin movimiento", "puntos": 4 }
-          ]
-        },
-        {
-          "id": "piernaIzq",
-          "tipo": "opciones",
-          "label": "Pierna Izquierda",
-          "opciones": [
-            { "label": "Mantiene 5s", "puntos": 0 },
-            { "label": "Cae < 5s", "puntos": 1 },
-            { "label": "Toca la cama", "puntos": 2 },
-            { "label": "No vence gravedad", "puntos": 3 },
-            { "label": "Sin movimiento", "puntos": 4 }
-          ]
-        },
-        {
-          "id": "piernaDer",
-          "tipo": "opciones",
-          "label": "Pierna Derecha",
-          "opciones": [
-            { "label": "Mantiene 5s", "puntos": 0 },
-            { "label": "Cae < 5s", "puntos": 1 },
-            { "label": "Toca la cama", "puntos": 2 },
-            { "label": "No vence gravedad", "puntos": 3 },
-            { "label": "Sin movimiento", "puntos": 4 }
-          ]
-        }
+      "nombre": "1c. Órdenes",
+      "descripciones": [
+        "Ambas bien",
+        "Una bien",
+        "Ninguna bien",
+        "-",
+        "-"
       ]
     },
     {
-      "nombre": "Ataxia y Sensibilidad",
-      "elementos": [
-        {
-          "id": "ataxia",
-          "tipo": "opciones",
-          "label": "Ataxia",
-          "opciones": [
-            { "label": "Ausente", "puntos": 0 },
-            { "label": "En 1 extremidad", "puntos": 1 },
-            { "label": "En 2 extremidades", "puntos": 2 }
-          ]
-        },
-        {
-          "id": "sensitivo",
-          "tipo": "opciones",
-          "label": "Sensibilidad",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Pérdida parcial", "puntos": 1 },
-            { "label": "Pérdida severa", "puntos": 2 }
-          ]
-        }
+      "nombre": "2. Mirada conjugada",
+      "descripciones": [
+        "Normal",
+        "Paresia parcial",
+        "Desviación forzada",
+        "-",
+        "-"
+      ],
+      "detalles": [
+        "",
+        "Anormal en uno o ambos ojos; se corrige con el seguimiento o el reflejo oculocefálico",
+        "Desviación forzada o paresia total que no vence el reflejo oculocefálico",
+        "",
+        ""
       ]
     },
     {
-      "nombre": "Lenguaje y Atención",
-      "elementos": [
-        {
-          "id": "lenguaje",
-          "tipo": "opciones",
-          "label": "Lenguaje",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Afasia leve/moderada", "puntos": 1 },
-            { "label": "Afasia severa", "puntos": 2 },
-            { "label": "Mudo / Global", "puntos": 3 }
-          ]
-        },
-        {
-          "id": "disartria",
-          "tipo": "opciones",
-          "label": "Disartria",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Leve a moderada", "puntos": 1 },
-            { "label": "Severa / Anartria", "puntos": 2 },
-            { "label": "Intubado", "puntos": 0 }
-          ]
-        },
-        {
-          "id": "inatencion",
-          "tipo": "opciones",
-          "label": "Inatención",
-          "opciones": [
-            { "label": "Normal", "puntos": 0 },
-            { "label": "Parcial / Leve", "puntos": 1 },
-            { "label": "Completa / Severa", "puntos": 2 }
-          ]
-        }
+      "nombre": "3. Campos visuales",
+      "descripciones": [
+        "Normal",
+        "Hemianopsia parcial",
+        "Hemianopsia completa",
+        "Hemianopsia bilateral",
+        "-"
+      ],
+      "detalles": [
+        "",
+        "Incluye cuadrantanopsia",
+        "",
+        "Incluye ceguera cortical",
+        ""
+      ]
+    },
+    {
+      "nombre": "4. Parálisis facial",
+      "descripciones": [
+        "Normal",
+        "Menor",
+        "Parcial",
+        "Completa",
+        "-"
+      ],
+      "detalles": [
+        "Simetría normal",
+        "Surco nasogeniano borrado, asimetría al sonreír",
+        "Debilidad de la parte baja de la cara (respeta la frente)",
+        "Incluye la frente, o bilateral",
+        ""
+      ]
+    },
+    {
+      "descripciones": [
+        "Sin caída",
+        "Cae sin tocar",
+        "Toca la cama",
+        "Sin esfuerzo contra gravedad",
+        "Sin movimiento"
+      ],
+      "detalles": [
+        "Mantiene la posición 10 s",
+        "Cae, pero no toca la cama ni otro apoyo",
+        "Cae y toca la cama, con algo de esfuerzo contra la gravedad",
+        "El miembro cae solo",
+        ""
+      ],
+      "nombre": "5a. Brazo izquierdo",
+      "ayuda": "Miembro extendido; cuenta 10 s."
+    },
+    {
+      "descripciones": [
+        "Sin caída",
+        "Cae sin tocar",
+        "Toca la cama",
+        "Sin esfuerzo contra gravedad",
+        "Sin movimiento"
+      ],
+      "detalles": [
+        "Mantiene la posición 10 s",
+        "Cae, pero no toca la cama ni otro apoyo",
+        "Cae y toca la cama, con algo de esfuerzo contra la gravedad",
+        "El miembro cae solo",
+        ""
+      ],
+      "nombre": "5b. Brazo derecho",
+      "ayuda": "Miembro extendido; cuenta 10 s."
+    },
+    {
+      "descripciones": [
+        "Sin caída",
+        "Cae sin tocar",
+        "Toca la cama",
+        "Sin esfuerzo contra gravedad",
+        "Sin movimiento"
+      ],
+      "detalles": [
+        "Mantiene la posición 5 s",
+        "Cae, pero no toca la cama ni otro apoyo",
+        "Cae y toca la cama, con algo de esfuerzo contra la gravedad",
+        "El miembro cae solo",
+        ""
+      ],
+      "nombre": "6a. Pierna izquierda",
+      "ayuda": "Miembro extendido; cuenta 5 s."
+    },
+    {
+      "descripciones": [
+        "Sin caída",
+        "Cae sin tocar",
+        "Toca la cama",
+        "Sin esfuerzo contra gravedad",
+        "Sin movimiento"
+      ],
+      "detalles": [
+        "Mantiene la posición 5 s",
+        "Cae, pero no toca la cama ni otro apoyo",
+        "Cae y toca la cama, con algo de esfuerzo contra la gravedad",
+        "El miembro cae solo",
+        ""
+      ],
+      "nombre": "6b. Pierna derecha",
+      "ayuda": "Miembro extendido; cuenta 5 s."
+    },
+    {
+      "nombre": "7. Ataxia de miembros",
+      "descripciones": [
+        "Ausente",
+        "En 1 miembro",
+        "En 2 miembros",
+        "-",
+        "-"
+      ],
+      "ayuda": "Dedo-nariz y talón-rodilla. Puntúa 0 si el miembro está paralizado o amputado."
+    },
+    {
+      "nombre": "8. Sensibilidad",
+      "descripciones": [
+        "Normal",
+        "Pérdida leve-moderada",
+        "Pérdida grave o total",
+        "-",
+        "-"
+      ],
+      "detalles": [
+        "",
+        "Nota el pinchazo menos agudo, pero nota que lo tocan",
+        "No nota que lo tocan",
+        "",
+        ""
+      ]
+    },
+    {
+      "nombre": "9. Lenguaje",
+      "descripciones": [
+        "Normal",
+        "Afasia leve-moderada",
+        "Afasia grave",
+        "Mutismo o afasia global",
+        "-"
+      ],
+      "detalles": [
+        "",
+        "Pierde fluidez o comprensión sin limitar mucho lo que expresa",
+        "El oyente tiene que inferir, preguntar y adivinar",
+        "Sin lenguaje útil ni comprensión auditiva",
+        ""
+      ]
+    },
+    {
+      "nombre": "10. Disartria",
+      "descripciones": [
+        "Normal",
+        "Leve-moderada",
+        "Grave",
+        "-",
+        "-"
+      ],
+      "detalles": [
+        "También si está intubado",
+        "Arrastra algunas palabras; se le entiende con dificultad",
+        "Ininteligible, desproporcionada a la afasia, o anartria",
+        "",
+        ""
+      ]
+    },
+    {
+      "nombre": "11. Extinción e inatención",
+      "descripciones": [
+        "Normal",
+        "Inatención o extinción",
+        "Hemi-inatención profunda",
+        "-",
+        "-"
+      ],
+      "detalles": [
+        "",
+        "Visual, táctil, auditiva, espacial o personal, o extinción a la estimulación bilateral simultánea",
+        "No reconoce su mano o sólo se orienta a un lado del espacio",
+        "",
+        ""
       ]
     }
   ],
@@ -227,24 +347,6 @@
       "color": "rojo",
       "match_opcion_index": -1,
       "approach": "Trombólisis si es candidato y buscar oclusión de gran vaso: carótida interna o M1 según ASPECTS; basilar hasta 24 h con PC-ASPECTS ≥6 y mRS previo 0-1 (Clase I) (AHA/ASA 2026)."
-    }
-  ],
-  "referencias": [
-    {
-      "titulo": "Lyden P, et al. Improved reliability of the NIH Stroke Scale using video training. NINDS TPA Stroke Study Group. Stroke. 1994;25:2220-2226.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/7974549/"
-    },
-    {
-      "titulo": "Brott T, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke. 1989;20:864-870.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2749846/"
-    },
-    {
-      "titulo": "The National Institute of Neurological Disorders and Stroke rt-PA Stroke Study Group. Tissue plasminogen activator for acute ischemic stroke. N Engl J Med. 1995.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/7477192/"
-    },
-    {
-      "titulo": "Prabhakaran S, et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke. AHA/ASA. Stroke. 2026;57.",
-      "url": "https://doi.org/10.1161/STR.0000000000000513"
     }
   ]
 }

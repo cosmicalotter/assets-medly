@@ -1,84 +1,229 @@
 {
-  "titulo": "Modified Early Warning Score (MEWS)",
-  "descripcion": "Identifica de forma temprana el deterioro clínico en pacientes hospitalizados basándose en alteraciones de los signos vitales.",
-  "tipoCalculo": "formula",
-  "formula": "pas + fc + fr + temp + avpu",
-  "prefijoResultado": "Puntuación MEWS: ",
-  "sufijoResultado": "puntos",
-  "secciones": [
+  "titulo": "MEWS (Modified Early Warning Score)",
+  "descripcion": "Puntúa cinco constantes (FR, FC, PAS, temperatura y nivel de conciencia AVPU) para detectar a pie de cama el deterioro de pacientes hospitalizados. Se validó en 709 ingresos urgentes de medicina: un MEWS de 5 o más se asoció a más muerte e ingreso en UCI o cuidados intermedios, y señala a quién avisar.",
+  "instrucciones": "Escribe cada constante o marca su tramo. Nivel de conciencia por AVPU: alerta, responde a la voz, al dolor o no responde. Repite con cada toma de constantes.",
+  "limitaciones": "No incluye la SatO₂ ni el oxígeno suplementario. Se validó en ingresos médicos de un hospital general; no sustituye la valoración clínica ante un paciente preocupante.",
+  "referencias": [
     {
-      "nombre": "Signos Vitales y Estado Neurológico",
-      "elementos": [
-        {
-          "id": "pas",
-          "tipo": "opciones",
-          "label": "Presión Arterial Sistólica (PAS)",
-          "opciones": [
-            { "label": "≤ 70 mmHg", "valoresVariables": { "pas": 3 } },
-            { "label": "71 - 80 mmHg", "valoresVariables": { "pas": 2 } },
-            { "label": "81 - 100 mmHg", "valoresVariables": { "pas": 1 } },
-            { "label": "101 - 199 mmHg", "valoresVariables": { "pas": 0 } },
-            { "label": "≥ 200 mmHg", "valoresVariables": { "pas": 2 } }
-          ]
-        },
-        {
-          "id": "fc",
-          "tipo": "opciones",
-          "label": "Frecuencia Cardíaca (FC)",
-          "opciones": [
-            { "label": "< 40 lpm", "valoresVariables": { "fc": 2 } },
-            { "label": "41 - 50 lpm", "valoresVariables": { "fc": 1 } },
-            { "label": "51 - 100 lpm", "valoresVariables": { "fc": 0 } },
-            { "label": "101 - 110 lpm", "valoresVariables": { "fc": 1 } },
-            { "label": "111 - 129 lpm", "valoresVariables": { "fc": 2 } },
-            { "label": "≥ 130 lpm", "valoresVariables": { "fc": 3 } }
-          ]
-        },
-        {
-          "id": "fr",
-          "tipo": "opciones",
-          "label": "Frecuencia Respiratoria (FR)",
-          "opciones": [
-            { "label": "< 9 rpm", "valoresVariables": { "fr": 2 } },
-            { "label": "9 - 14 rpm", "valoresVariables": { "fr": 0 } },
-            { "label": "15 - 20 rpm", "valoresVariables": { "fr": 1 } },
-            { "label": "21 - 29 rpm", "valoresVariables": { "fr": 2 } },
-            { "label": "≥ 30 rpm", "valoresVariables": { "fr": 3 } }
-          ]
-        },
-        {
-          "id": "temp",
-          "tipo": "opciones",
-          "label": "Temperatura",
-          "opciones": [
-            { "label": "< 35°C (95°F)", "valoresVariables": { "temp": 2 } },
-            { "label": "35 - 38.4°C (95 - 101.1°F)", "valoresVariables": { "temp": 0 } },
-            { "label": "≥ 38.5°C (101.3°F)", "valoresVariables": { "temp": 2 } }
-          ]
-        },
-        {
-          "id": "avpu",
-          "tipo": "opciones",
-          "label": "Nivel de Conciencia (Escala AVPU)",
-          "opciones": [
-            { "label": "Alerta (A)", "valoresVariables": { "avpu": 0 } },
-            { "label": "Reacciona a la voz (V)", "valoresVariables": { "avpu": 1 } },
-            { "label": "Reacciona al dolor (P)", "valoresVariables": { "avpu": 2 } },
-            { "label": "No responde / Inconsciente (U)", "valoresVariables": { "avpu": 3 } }
-          ]
-        }
+      "titulo": "Subbe CP, Kruger M, Rutherford P, Gemmel L. Validation of a modified Early Warning Score in medical admissions. QJM 2001;94(10):521-6.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11588210/",
+      "texto": "Scores of 5 or more were associated with increased risk of death (OR 5.4, 95%CI 2.8-10.7), ICU admission (OR 10.9, 95%CI 2.2-55.6) and HDU admission"
+    },
+    {
+      "titulo": "Zhu S, Yang Y, Long B, et al. Modified Early Warning Score (MEWS) combined with biomarkers in predicting 7-day mortality in traumatic brain injury patients in the emergency department. PeerJ 2025;13:e18936.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39959820/",
+      "paginas": "Tabla 1",
+      "texto": "Respiratory rate: 9–14 (0), 15–20 (1), 21–29/≤8 (2), ≥30 (3). Systolic BP: 101–199 (0), 81–100 (1), ≥200/71–80 (2), ≤70 (3)."
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Frecuencia respiratoria",
+      "descripciones": [
+        "9-14",
+        "15-20",
+        "21-29 / ≤ 8",
+        "≥ 30"
+      ],
+      "entrada": {
+        "unidad": "rpm",
+        "min": 0,
+        "max": 80,
+        "tramos": [
+          {
+            "max": 8.99,
+            "puntos": 2
+          },
+          {
+            "min": 9,
+            "max": 14.99,
+            "puntos": 0
+          },
+          {
+            "min": 15,
+            "max": 20.99,
+            "puntos": 1
+          },
+          {
+            "min": 21,
+            "max": 29.99,
+            "puntos": 2
+          },
+          {
+            "min": 30,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Frecuencia cardiaca",
+      "descripciones": [
+        "51-100",
+        "101-110 / 41-50",
+        "111-129 / ≤ 40",
+        "≥ 130"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 40.99,
+            "puntos": 2
+          },
+          {
+            "min": 41,
+            "max": 50.99,
+            "puntos": 1
+          },
+          {
+            "min": 51,
+            "max": 100.99,
+            "puntos": 0
+          },
+          {
+            "min": 101,
+            "max": 110.99,
+            "puntos": 1
+          },
+          {
+            "min": 111,
+            "max": 129.99,
+            "puntos": 2
+          },
+          {
+            "min": 130,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "PAS",
+      "descripciones": [
+        "101-199",
+        "81-100",
+        "≥ 200 / 71-80",
+        "≤ 70"
+      ],
+      "ayuda": "Presión arterial sistólica, en mmHg.",
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 70.99,
+            "puntos": 3
+          },
+          {
+            "min": 71,
+            "max": 80.99,
+            "puntos": 2
+          },
+          {
+            "min": 81,
+            "max": 100.99,
+            "puntos": 1
+          },
+          {
+            "min": 101,
+            "max": 199.99,
+            "puntos": 0
+          },
+          {
+            "min": 200,
+            "puntos": 2
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Temperatura",
+      "descripciones": [
+        "35,1-38,4 °C",
+        "-",
+        "≥ 38,5 / ≤ 35 °C",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "°C",
+        "unidades": [
+          {
+            "unidad": "°F",
+            "factor": 0.5556,
+            "suma": -17.778
+          }
+        ],
+        "min": 25,
+        "max": 45,
+        "tramos": [
+          {
+            "max": 35,
+            "puntos": 2
+          },
+          {
+            "min": 35.01,
+            "max": 38.49,
+            "puntos": 0
+          },
+          {
+            "min": 38.5,
+            "puntos": 2
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Conciencia (AVPU)",
+      "descripciones": [
+        "Alerta",
+        "Responde a la voz",
+        "Responde al dolor",
+        "No responde"
       ]
     }
   ],
   "resultados": [
-    { "min": 0, "max": 2, "categoria": "Riesgo Bajo. Continuar monitoreo de rutina.", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 3, "max": 4, "categoria": "Riesgo Moderado. Requiere evaluación médica y monitoreo frecuente.", "color": "amarillo", "matchOpcionIndex": 2 },
-    { "min": 5, "max": 14, "categoria": "Riesgo Alto. Deterioro clínico inminente. Activar Equipo de Respuesta Rápida / Evaluar UCI.", "color": "rojo", "matchOpcionIndex": 3 }
-  ],
-  "referencias": [
     {
-      "titulo": "Subbe CP, et al. Validation of a modified Early Warning Score in medical admissions. QJM 2001;94:521-6.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/11588210/"
+      "min": 0,
+      "max": 4,
+      "categoria": "MEWS < 5",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Por debajo del umbral de riesgo del estudio original. Seguir vigilando constantes y repetir el MEWS."
+    },
+    {
+      "min": 5,
+      "max": 14,
+      "categoria": "MEWS ≥ 5: riesgo de deterioro",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Más muerte (OR 5,4) e ingreso en UCI (OR 10,9). Valoración médica urgente; considerar cuidados intermedios o UCI."
     }
   ]
 }

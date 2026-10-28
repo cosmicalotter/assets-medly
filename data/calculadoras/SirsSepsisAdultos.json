@@ -1,158 +1,269 @@
 {
-  "titulo": "Criterios SIRS, Sepsis y Shock Séptico (Adultos)",
-  "mostrarPuntaje": false,
-  "descripcion": "Evalúa el síndrome de respuesta inflamatoria sistémica (SIRS) y la progresión a sepsis, sepsis severa, shock y disfunción multiorgánica en adultos.",
+  "titulo": "SIRS y sepsis en adultos (Sepsis-3)",
+  "descripcion": "Reúne los criterios de SIRS (ACCP/SCCM 1992) y las definiciones vigentes de Sepsis-3 (2016): sepsis es la disfunción orgánica por una respuesta desregulada a la infección (SOFA ≥ 2 puntos sobre la basal) y shock séptico, la sepsis con vasopresor y lactato elevado. Ayuda a reconocer al adulto infectado que necesita tratamiento inmediato.",
+  "instrucciones": "Usa los peores valores del momento. El SOFA basal se supone 0 si no se conoce disfunción previa. Shock: vasopresor para PAM ≥ 65 mmHg y lactato > 2 mmol/L sin hipovolemia.",
+  "limitaciones": "El SIRS no define la sepsis desde 2016: es frecuente en hospitalizados sin infección y 1 de cada 8 pacientes con infección y fallo orgánico no lo cumple. Sólo adultos; en niños, criterios pediátricos.",
+  "referencias": [
+    {
+      "titulo": "Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA 2016;315(8):801-10.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26903338/",
+      "texto": "Sepsis should be defined as life-threatening organ dysfunction caused by a dysregulated host response to infection."
+    },
+    {
+      "titulo": "Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA 2016;315(8):801-10. Shock séptico.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26903338/",
+      "texto": "Patients with septic shock can be clinically identified by a vasopressor requirement to maintain a mean arterial pressure of 65 mm Hg or greater and serum lactate level greater than 2 mmol/L"
+    },
+    {
+      "titulo": "Bone RC, Balk RA, Cerra FB, et al. Definitions for sepsis and organ failure and guidelines for the use of innovative therapies in sepsis. The ACCP/SCCM Consensus Conference Committee. Chest 1992;101(6):1644-55.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1303622/",
+      "paginas": "Reproducido en Sepsis-3, recuadro 1",
+      "texto": "Two or more of: Temperature >38°C or <36°C; Heart rate >90/min; Respiratory rate >20/min or PaCO2 <32 mm Hg"
+    },
+    {
+      "titulo": "Evans L, Rhodes A, Alhazzani W, et al. Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2021. Intensive Care Med 2021;47(11):1181-247.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34599691/",
+      "paginas": "Recomendaciones 5, 9, 10, 12 y 14",
+      "texto": "For adults with possible septic shock or a high likelihood for sepsis, we recommend administering antimicrobials immediately, ideally within 1 h of recognition"
+    }
+  ],
   "tipoCalculo": "formula",
-  "formula": "v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8",
-  "prefijoResultado": "Código interno: ",
-  "sufijoResultado": "",
+  "formula": "4 * infeccion * shock + 3 * infeccion * (1 - shock) * sofa + 2 * infeccion * (1 - shock) * (1 - sofa) * (1 - (1 - temp_puntos * fc_puntos) * (1 - temp_puntos * resp) * (1 - temp_puntos * leuco) * (1 - fc_puntos * resp) * (1 - fc_puntos * leuco) * (1 - resp * leuco)) + (1 - infeccion) * (1 - (1 - temp_puntos * fc_puntos) * (1 - temp_puntos * resp) * (1 - temp_puntos * leuco) * (1 - fc_puntos * resp) * (1 - fc_puntos * leuco) * (1 - resp * leuco))",
+  "mostrarPuntaje": false,
   "secciones": [
     {
-      "nombre": "Criterios SIRS (≥2 cumple definición SIRS)",
+      "nombre": "Infección",
       "elementos": [
         {
-          "id": "sirs_temp",
+          "id": "infeccion",
           "tipo": "opciones",
-          "label": "Temp >38°C (100.4°F) o <36°C (96.8°F)",
+          "label": "Infección sospechada o confirmada",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v1": 0 } },
-            { "label": "Sí", "valoresVariables": { "v1": 1 } }
-          ]
-        },
-        {
-          "id": "sirs_fc",
-          "tipo": "opciones",
-          "label": "Frecuencia cardíaca >90 lpm",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v2": 0 } },
-            { "label": "Sí", "valoresVariables": { "v2": 1 } }
-          ]
-        },
-        {
-          "id": "sirs_fr",
-          "tipo": "opciones",
-          "label": "Frecuencia respiratoria >20 rpm o PaCO2 <32 mm Hg",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v3": 0 } },
-            { "label": "Sí", "valoresVariables": { "v3": 1 } }
-          ]
-        },
-        {
-          "id": "sirs_leuco",
-          "tipo": "opciones",
-          "label": "Leucocitos >12,000/mm³, <4,000/mm³, o >10% bandas",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v4": 0 } },
-            { "label": "Sí", "valoresVariables": { "v4": 1 } }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
         }
       ]
     },
     {
-      "nombre": "Criterios de Sepsis",
+      "nombre": "Sepsis-3",
       "elementos": [
         {
-          "id": "sepsis_inf",
+          "id": "sofa",
           "tipo": "opciones",
-          "label": "Foco de infección (SIRS + Foco sospechado o presente)",
+          "label": "Aumento del SOFA ≥ 2 puntos",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v5": 0 } },
-            { "label": "Sí", "valoresVariables": { "v5": 10 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Criterios de Sepsis Severa",
-      "elementos": [
-        {
-          "id": "sepsis_sev",
-          "tipo": "opciones",
-          "label": "Disfunción orgánica, hipotensión o hipoperfusión",
-          "descripcion": "Acidosis láctica, PAS <90 o caída de la PAS ≥40 mm Hg de su basal.",
-          "opciones": [
-            { "label": "No", "valoresVariables": { "v6": 0 } },
-            { "label": "Sí", "valoresVariables": { "v6": 100 } }
-          ]
-        }
-      ]
-    },
-    {
-      "nombre": "Criterios de Shock Séptico",
-      "elementos": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Disfunción orgánica aguda por la infección. SOFA basal 0 si no se conoce disfunción previa."
+        },
         {
           "id": "shock",
           "tipo": "opciones",
-          "label": "Sepsis severa con hipotensión a pesar de adecuada resucitación con fluidos",
+          "label": "Vasopresor y lactato > 2 mmol/L",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v7": 0 } },
-            { "label": "Sí", "valoresVariables": { "v7": 1000 } }
-          ]
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Vasopresor para mantener PAM ≥ 65 mmHg y lactato > 2 mmol/L (> 18 mg/dL) pese a reanimación con volumen adecuada."
         }
       ]
     },
     {
-      "nombre": "Criterios de Síndrome de Disfunción Multiorgánica (MODS)",
+      "nombre": "SIRS: 2 o más de 4",
       "elementos": [
         {
-          "id": "mods",
+          "id": "temp",
+          "tipo": "input_numero",
+          "label": "Temperatura",
+          "unidad": "°C",
+          "unidades": [
+            {
+              "unidad": "°F",
+              "factor": 0.5556,
+              "suma": -17.778
+            }
+          ],
+          "min": 25,
+          "max": 45,
+          "ayuda": "Cuenta si es > 38 °C o < 36 °C.",
+          "intervalos": [
+            {
+              "max": 35.99,
+              "puntos": 1
+            },
+            {
+              "min": 36,
+              "max": 38,
+              "puntos": 0
+            },
+            {
+              "min": 38.01,
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "fc",
+          "tipo": "input_numero",
+          "label": "Frecuencia cardiaca",
+          "unidad": "lpm",
+          "min": 0,
+          "max": 300,
+          "ayuda": "Cuenta si es > 90 lpm.",
+          "intervalos": [
+            {
+              "max": 90,
+              "puntos": 0
+            },
+            {
+              "min": 90.01,
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "resp",
           "tipo": "opciones",
-          "label": "Evidencia de fallo en ≥2 órganos",
+          "label": "FR > 20 rpm o PaCO₂ < 32 mmHg",
           "opciones": [
-            { "label": "No", "valoresVariables": { "v8": 0 } },
-            { "label": "Sí", "valoresVariables": { "v8": 10000 } }
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "leuco",
+          "tipo": "opciones",
+          "label": "Leucocitos > 12 000, < 4000/mm³ o > 10 % cayados",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
           ]
         }
       ]
     }
   ],
   "resultados": [
-    { "min": 0, "max": 1, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10, "max": 11, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 100, "max": 101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 110, "max": 111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1000, "max": 1001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1010, "max": 1011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1100, "max": 1101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 1110, "max": 1111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10000, "max": 10001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10010, "max": 10011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10100, "max": 10101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 10110, "max": 10111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11000, "max": 11001, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11010, "max": 11011, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11100, "max": 11101, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    { "min": 11110, "max": 11111, "categoria": "No cumple criterios de SIRS (Requiere ≥2).", "color": "verde", "matchOpcionIndex": 1 },
-    
-    { "min": 2, "max": 4, "categoria": "SIRS (Cumple criterios, sin foco infeccioso evidente)", "color": "amarillo", "matchOpcionIndex": 2 },
-    
-    { "min": 12, "max": 14, "categoria": "SEPSIS (SIRS + Infección)", "color": "naranja", "matchOpcionIndex": 3 },
-    
-    { "min": 102, "max": 104, "categoria": "SEPSIS SEVERA (Disfunción orgánica / Hipoperfusión)", "color": "rojo", "matchOpcionIndex": 4 },
-    { "min": 112, "max": 114, "categoria": "SEPSIS SEVERA (Disfunción orgánica / Hipoperfusión)", "color": "rojo", "matchOpcionIndex": 4 },
-    
-    { "min": 1002, "max": 1004, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 1012, "max": 1014, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 1102, "max": 1104, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
-    { "min": 1112, "max": 1114, "categoria": "SHOCK SÉPTICO (Hipotensión refractaria)", "color": "rojo", "matchOpcionIndex": 5 },
-    
-    { "min": 10002, "max": 10004, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 10012, "max": 10014, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 10102, "max": 10104, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 10112, "max": 10114, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 11002, "max": 11004, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 11012, "max": 11014, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 11102, "max": 11104, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 },
-    { "min": 11112, "max": 11114, "categoria": "SÍNDROME DE DISFUNCIÓN MULTIORGÁNICA (MODS)", "color": "rojo", "matchOpcionIndex": 6 }
-  ],
-  "referencias": [
     {
-      "titulo": "Bone RC, et al. Definitions for sepsis and organ failure (ACCP/SCCM Consensus Conference). Chest 1992;101:1644-55.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/1303622/"
+      "min": 4,
+      "max": 4,
+      "categoria": "Shock séptico",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "id": "infeccion",
+            "igual": 1
+          },
+          {
+            "id": "shock",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Mortalidad hospitalaria > 40 %. Antimicrobianos de inmediato (< 1 h). Cristaloide ≥ 30 mL/kg en 3 h, vasopresor con PAM objetivo 65 mmHg e ingreso en UCI en < 6 h."
     },
     {
-      "titulo": "Singer M, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA 2016;315:801-10.",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26903338/"
+      "min": 3,
+      "max": 3,
+      "categoria": "Sepsis",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "id": "infeccion",
+            "igual": 1
+          },
+          {
+            "id": "sofa",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Mortalidad hospitalaria > 10 %. Antimicrobianos de inmediato (< 1 h) y medir lactato. Con hipoperfusión, cristaloide ≥ 30 mL/kg en las primeras 3 h."
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Infección con SIRS",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "si": {
+        "todos": [
+          {
+            "id": "infeccion",
+            "igual": 1
+          },
+          {
+            "suma": [
+              "temp_puntos",
+              "fc_puntos",
+              "resp",
+              "leuco"
+            ],
+            "minimo": 2
+          }
+        ]
+      },
+      "approach": "Sin disfunción orgánica no es sepsis (Sepsis-3). Buscar disfunción (SOFA, lactato); si persiste la sospecha, antimicrobianos en < 3 h."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "SIRS sin infección",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "si": {
+        "suma": [
+          "temp_puntos",
+          "fc_puntos",
+          "resp",
+          "leuco"
+        ],
+        "minimo": 2
+      },
+      "approach": "Valorar causa infecciosa frente a no infecciosa y reevaluar."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Sin SIRS ni sepsis",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "No descarta sepsis: si hay infección, buscar disfunción orgánica aunque no cumpla SIRS."
     }
   ]
 }
