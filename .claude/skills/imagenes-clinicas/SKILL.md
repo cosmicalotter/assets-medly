@@ -280,7 +280,7 @@ transparente abajo (arriba va otra franja igual con el título y la X).
   exacta de referencias que el algoritmo ya cita (mismo `texto`, `paginas`,
   `fuente`…), con `imagen_evidencia` por **URL raw completa**
   (`…/data/imagenes/evidencia/<carpeta_evidencia>/<archivo>`), porque el
-  visor no conoce la carpeta. La app pone en la franja del `info` un botón con
+  visor no conoce la carpeta. La app pone junto a la X del visor un botón con
   un libro abierto y el número de fuentes, que abre la hoja de referencias
   con ésas. Un `info` que sólo describe lo que se ve no lleva. `norma.py`
   avisa de un `info` con cifras en negrita y sin `referencias`; `--chequeo`,
