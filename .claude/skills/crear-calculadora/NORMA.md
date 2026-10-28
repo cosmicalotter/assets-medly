@@ -25,7 +25,7 @@ app; lo que cambia es qué piezas se usan.
 | la escala… | modelo | piezas | ejemplos |
 |---|---|---|---|
 | **suma puntos** de varios ítems con niveles | tabla de puntos | `detalles` si un nivel necesita explicación | Westley, Wood-Downes, Glasgow, Silverman, NIHSS |
-| **cuenta criterios** presentes (sí/no) | tabla de dos columnas: «No» 0 / «Sí» n | la app los pinta «No · Sí» junto al criterio | CURB-65, HAS-BLED, CHA₂DS₂-VASc, Wells, PERC, Alvarado |
+| **cuenta criterios** presentes (sí/no) | tabla de dos columnas: «No» 0 / «Sí» n | la app los pinta «No · Sí» junto al criterio | CURB-65, HAS-BLED, CHA₂DS₂-VASc, Wells, Alvarado |
 | **clasifica** en una categoría (una sola elección) | tabla de **una fila**, una columna por clase | `detalles` con la definición de cada clase; imagen si ayuda | ASA, Killip, Mallampati, Forrest, West Haven |
 | da puntos por **valores medidos** en tramos | tabla con `entrada` en esas filas (o formulario con `intervalos` si no hay nada que describir) | `entrada.tramos`, `unidades`, `min`/`max` | APACHE II, SOFA, Child-Pugh, GRACE, Glasgow-Blatchford |
 | es una **ecuación** | formulario con fórmula | `min`/`max`, `unidades`, `decimales`, `extras` | CKD-EPI, Cockcroft-Gault, ABC/2 |
@@ -42,6 +42,11 @@ Reglas para decidir:
   100, 1000): la regla se lee y se revisa; el código no.
 - Si un valor medido da puntos, el usuario tiene que poder **escribirlo**
   (`entrada` o `intervalos`): no se le hace buscar «38,5-38,9» en una lista.
+- Una **regla de descarte** (PERC, Rochester: «bajo riesgo sólo si no hay
+  ninguno») va como **formulario**, no como tabla: en la tabla lo no marcado
+  cuenta 0 y un criterio olvidado daría «descartado». En el formulario cada
+  pregunta se responde (Sí / No o el valor medido) y el resultado no sale
+  hasta que están todas.
 
 ---
 
@@ -49,7 +54,7 @@ Reglas para decidir:
 
 - **`titulo`**: el nombre de la escala y, si la tiene, la sigla; sin
   «Calculadora de»: «Escala de Westley (crup)», «CURB-65 (neumonía
-  comunitaria)», «Tasa de filtración glomerular (CKD-EPI 2021)». El mismo
+  comunitaria)», «Filtrado glomerular (CKD-EPI 2021)». El mismo
   título va en `indices/index_calculadoras.json`.
 - **`descripcion`** («Para qué sirve»): 2-3 frases, **40-80 palabras**: qué
   estima o clasifica, **en quién** se derivó o validó (adultos con NAC,
@@ -167,6 +172,17 @@ pide urea en mmol/L), BUN mg/dL = urea mg/dL × 0,467.
 - Patrones de fórmula para criterios 0/1: Y = `a * b`; O = `1 - (1 - a) * (1 - b)`;
   NO = `1 - a`; elegir entre categorías: `c1 * 1 + c2 * 2` con categorías
   excluyentes.
+- Un **valor medido** entra en las reglas por su tramo: un `input_numero`
+  con `intervalos` (`[{"min": 30, "max": 9999, "puntos": 1}]`) da
+  `<id>_puntos`, y la regla pregunta `{"id": "vol_puntos", "igual": 1}`
+  («hematoma ≥ 30 mL»). El usuario escribe el número; no elige un tramo.
+- **El resultado sale en cuanto es seguro.** Con reglas la app no espera a
+  que se responda todo: si lo que falta ya no puede cambiar el resultado
+  (CAM-ICU con la característica 1 negativa; HIC cerebelosa con un criterio
+  presente), lo enseña y avisa «Lo que falta por responder ya no cambia el
+  resultado». Por eso los elementos van **en el orden de la escala**, con
+  el criterio que decide antes, y las reglas se escriben sin atajos que
+  dependan de lo que aún no se respondió.
 
 ---
 

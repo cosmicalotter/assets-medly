@@ -52,10 +52,11 @@ mano, no se añade contenido clínico.
 |---|---|---|
 | suma puntos de ítems con niveles | tabla de puntos | `westley.json`, `glasgowcoma.json` |
 | cuenta criterios sí/no | tabla «No» 0 / «Sí» n | `curb65.json`, `hasbled.json` |
+| descarta si no hay ninguno (PERC, Rochester) | formulario, todo obligatorio | `perc.json`, `rochester.json` |
 | clasifica en una categoría | tabla de una fila con `detalles` | `asa.json`, `killipkimball.json` |
 | da puntos por valores medidos | tabla con `entrada` | `apacheii.json`, `sofa.json`, `childpugh.json` |
 | es una ecuación | formulario con fórmula | `ckdepi.json`, `cockcroft.json`, `volumen_abc2.json` |
-| combina criterios (y / o / al menos n) | formulario con reglas | `tokyocolecistitis_diagnostico.json`, `CamIcu.json` |
+| combina criterios (y / o / al menos n) | formulario con reglas | `tokyocolecistitis_diagnostico.json`, `CamIcu.json`, `hic_cerebelosa_cirugia.json` (valor medido en la regla) |
 
 ## 4. Escribirla
 
