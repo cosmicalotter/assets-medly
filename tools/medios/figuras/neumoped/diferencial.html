@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1;min-height:0}
+  .col{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:10px 11px;display:flex;flex-direction:column;gap:7px}
+  .col h3{font-size:19px;color:var(--c);display:flex;align-items:center;gap:8px}
+  .col ul{padding-left:18px;font-size:15.5px;line-height:1.32;display:flex;flex-direction:column;gap:9px}
+  .pie{font-size:13px;color:var(--tinta);border-radius:10px;background:#F3F4F6;padding:7px 10px}
+</style></head><body>
+<script>
+const P = (c) => `<svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="${c}"/></svg>`;
+const COLS = [
+  [AZUL, "Bronquiolitis", ["Menor de <b>2 años</b>", "<b>Primer</b> episodio de sibilancias", "Tras <b>2-3 días</b> de catarro", "Fiebre, si hay, casi siempre <b>&lt;39 °C</b>", "<6 semanas: puede debutar con <b>apnea</b>"]],
+  [NARANJA, "Neumonía", ["Respiración <b>rápida</b> para la edad", "<b>Tiraje subcostal</b> o signo de peligro: grave", "Fiebre <b>&gt;39 °C</b>", "Crepitantes <b>focales</b> persistentes"]],
+  [MORADO, "Asma (≤5 años)", ["<b>≥2</b> episodios de sibilancias en <b>12 meses</b>", "Sibilancias persistentes <b>sin crepitantes</b>", "Atopia personal o familiar", "Raro antes de <b>1 año</b>", "Mejora en <b>20-60 min</b> con salbutamol"]],
+];
+lienzo("Bronquiolitis, neumonía o asma", "Lo que orienta en el menor de 5 años con tos o dificultad para respirar",
+  `<div class="cols">${COLS.map(([c, t, xs]) => `<div class="col" style="--c:${c}"><h3>${P(c)}${t}</h3><ul>${xs.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
+   <div class="pie">Con sibilancias, preguntar <b>siempre</b> por episodios previos. Con VRS en la nariz cuesta separar la bronquiolitis de un primer episodio de asma.</div>`,
+  "Esquema. Fuentes: GPC 42 MinSalud 2014 (p. 30, 33, 51, 55); NICE NG9 2021 (p. 6-7); GINA 2026 (p. 198-199).");
+</script></body></html>

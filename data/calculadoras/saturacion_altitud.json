@@ -1,0 +1,187 @@
+{
+  "titulo": "Hipoxemia según la altitud (GPC neumonía y bronquiolitis)",
+  "descripcion": "Dice si la saturación de oxígeno al aire ambiente de un niño menor de 5 años con neumonía o bronquiolitis es hipoxemia para la altitud del sitio de atención, con los límites de la guía colombiana de 2014 (Guía No. 42). La hipoxemia con signos de neumonía obliga a hospitalizar o remitir con oxígeno.",
+  "instrucciones": "Escribir la altitud del sitio en metros sobre el nivel del mar y la saturación medida con el niño despierto, al aire ambiente, con un sensor de su edad y la extremidad bien perfundida.",
+  "limitaciones": "Dormido, la saturación baja: entre 2501 y 3000 msnm puede ir de 84,6 % a 98,5 %. En valores limítrofes, la guía decide el ingreso por AIEPI, la edad, lo social y la fase de la enfermedad. Sin datos por encima de 4000 msnm.",
+  "tipoCalculo": "formula",
+  "formula": "sat - altitud_puntos",
+  "mostrarPuntaje": false,
+  "decimales": 2,
+  "prefijoResultado": "Saturación",
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 4.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "30",
+      "texto": "cualquiera de los signos que definen un caso de neumonía más una saturación de oxígeno ≤94% (de 0 a 1500 msnm) debe hospitalizarse o remitirse para hospitalizar"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 4: límites por altitud.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "30",
+      "texto": "en sitios 1501-2000 msnm considerar hipoxemia una cifra de SaO2 ≤92%, de 2001-2500 msnm ≤90%, 2501-3000 mnsm ≤88%, 3000-3500 msnm ≤85%, 3500-4000 msnm ≤83."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Punto de buena práctica: técnica.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "31",
+      "texto": "practicar la oximetría d e pulso con una técnica estandarizada, con los respectivos sensores adecuados para cada grupo de edad (neonatos, escolares y adultos), en estado alerta y la extremidad bien perfundida"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Punto de buena práctica: valores limítrofes.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "31",
+      "texto": "En los menores con SaO2 limítrofes al ambiente (1% por debajo del límite inferior) según la altitud sobre el nivel del mar, la decisión de hospitalización se basará en la definición de caso AIEPI"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "altitud",
+          "tipo": "input_numero",
+          "label": "Altitud del sitio de atención",
+          "unidad": "msnm",
+          "min": 0,
+          "max": 4000,
+          "ayuda": "Metros sobre el nivel del mar del sitio donde se mide. La guía da límites hasta 4000 msnm.",
+          "intervalos": [
+            {
+              "min": 0,
+              "max": 1500.99,
+              "puntos": 94
+            },
+            {
+              "min": 1501,
+              "max": 2000.99,
+              "puntos": 92
+            },
+            {
+              "min": 2001,
+              "max": 2500.99,
+              "puntos": 90
+            },
+            {
+              "min": 2501,
+              "max": 3000.99,
+              "puntos": 88
+            },
+            {
+              "min": 3001,
+              "max": 3500.99,
+              "puntos": 85
+            },
+            {
+              "min": 3501,
+              "max": 4000,
+              "puntos": 83
+            }
+          ]
+        },
+        {
+          "id": "sat",
+          "tipo": "input_numero",
+          "label": "Saturación de oxígeno al aire",
+          "unidad": "%",
+          "min": 50,
+          "max": 100,
+          "ayuda": "Despierto, en reposo, sin oxígeno."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -100,
+      "max": 0.49,
+      "categoria": "Hipoxemia para la altitud",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Con signos de neumonía o bronquiolitis: hospitalizar o remitir para hospitalizar, con oxígeno durante el traslado.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 94
+              },
+              {
+                "id": "sat",
+                "menorIgual": 94.49
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 92
+              },
+              {
+                "id": "sat",
+                "menorIgual": 92.49
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 90
+              },
+              {
+                "id": "sat",
+                "menorIgual": 90.49
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 88
+              },
+              {
+                "id": "sat",
+                "menorIgual": 88.49
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 85
+              },
+              {
+                "id": "sat",
+                "menorIgual": 85.49
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "altitud_puntos",
+                "igual": 83
+              },
+              {
+                "id": "sat",
+                "menorIgual": 83.49
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 100,
+      "categoria": "Sin hipoxemia para la altitud",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Decidir el sitio de manejo por la clasificación AIEPI, la edad, lo social y la fase de la enfermedad."
+    }
+  ]
+}

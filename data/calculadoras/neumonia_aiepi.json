@@ -1,0 +1,247 @@
+{
+  "titulo": "Neumonía: clasificación AIEPI (2 a 59 meses)",
+  "descripcion": "Clasifica al niño de 2 a 59 meses con tos o dificultad para respirar en neumonía grave, neumonía o no neumonía, con la frecuencia respiratoria para la edad, el tiraje subcostal, los signos generales de peligro y la hipoxemia, como adopta la guía colombiana de 2014 (Guía No. 42) de la estrategia AIEPI y la OMS.",
+  "instrucciones": "Contar la frecuencia respiratoria 1 minuto con el niño tranquilo. Basta un signo de peligro, tiraje o hipoxemia para que sea grave.",
+  "limitaciones": "No aplica en menores de 2 meses (respiración rápida ≥60/min y otro manejo) ni en niños con enfermedad pulmonar crónica, inmunodeficiencia o desnutrición aguda grave. La fiebre sola no hace el diagnóstico.",
+  "tipoCalculo": "formula",
+  "formula": "2 - 2 * (1 - (1 - pe) * (1 - ti) * (1 - hx)) - (g1 * (fr_puntos * (fr_puntos - 1) / 2) + g2 * (fr_puntos * (3 - fr_puntos) / 2)) * (1 - (1 - (1 - pe) * (1 - ti) * (1 - hx)))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Clasificación",
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 1: criterios AIEPI.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "51",
+      "texto": "la frecuencia respiratoria es el signo sensible y específico para el diagnóstico de neumonía y el tiraje subcostal o cualquier signo general de peligro le imprime gravedad al cuadro clínico"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 4: hipoxemia.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "30",
+      "texto": "cualquiera de los signos que definen un caso de neumonía más una saturación de oxígeno ≤94% (de 0 a 1500 msnm) debe hospitalizarse o remitirse para hospitalizar"
+    },
+    {
+      "titulo": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005. Conteo de la frecuencia respiratoria.",
+      "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+      "paginas": "90",
+      "texto": "respiratory rate (make a count during 1 minute when the child is calm) fast breathing: <2 months old:"
+    },
+    {
+      "titulo": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005. Neumonía no grave.",
+      "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+      "paginas": "100",
+      "texto": "On examination, the child has cough or difficult breathing and fast breathing: — age 2–11 months: ≥50/minute — age 1–5 years: ≥40/minute."
+    },
+    {
+      "titulo": "OMS. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Ginebra: OMS; 2024. Signos generales de peligro.",
+      "url": "https://www.who.int/publications/i/item/9789240103412",
+      "paginas": "19",
+      "texto": "Child is not able to drink or breastfeed, or vomits everything, or has had convulsions, or is lethargic or unconscious, or stridor or hypoxaemia."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 10: neumonía grave.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "33",
+      "texto": "Se recomienda usar en todo menor con diagnóstico de neumonía grave, la penicilina cristalina, a dosis de 250.000 u/kg/día, repartido en 6 dosis durante 7 días."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 10: neumonía.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "33",
+      "texto": "Se recomienda usar la amoxicilina oral a dosis de 90 mg/kg/día durante 5 días, en todo menor con diagnóstico de neumonía y sin acceso a la radiografía simple del tórax."
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "peligro",
+          "tipo": "opciones",
+          "label": "Signo general de peligro",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "pe": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "pe": 1
+              }
+            }
+          ],
+          "ayuda": "No puede beber ni tomar el pecho, vomita todo, ha convulsionado, está letárgico o inconsciente, o tiene estridor."
+        },
+        {
+          "id": "tiraje",
+          "tipo": "opciones",
+          "label": "Tiraje subcostal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "ti": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "ti": 1
+              }
+            }
+          ],
+          "ayuda": "La parte baja del tórax se hunde al inspirar; sólo entre las costillas no cuenta."
+        },
+        {
+          "id": "hipoxemia",
+          "tipo": "opciones",
+          "label": "Saturación baja para la altitud",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "hx": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "hx": 1
+              }
+            }
+          ],
+          "ayuda": "≤94 % hasta 1500 msnm; ≤92 % de 1501 a 2000; ≤90 % de 2001 a 2500; ≤88 % de 2501 a 3000."
+        },
+        {
+          "id": "grupo",
+          "tipo": "opciones",
+          "label": "Edad",
+          "opciones": [
+            {
+              "label": "2 a 11 meses",
+              "puntos": 1,
+              "valoresVariables": {
+                "g1": 1,
+                "g2": 0
+              },
+              "detalle": "Respiración rápida: ≥50/min"
+            },
+            {
+              "label": "12 a 59 meses",
+              "puntos": 2,
+              "valoresVariables": {
+                "g1": 0,
+                "g2": 1
+              },
+              "detalle": "Respiración rápida: ≥40/min"
+            }
+          ]
+        },
+        {
+          "id": "fr",
+          "tipo": "input_numero",
+          "label": "Frecuencia respiratoria",
+          "unidad": "rpm",
+          "min": 10,
+          "max": 150,
+          "ayuda": "Contar 1 minuto entero, con el niño tranquilo y el tórax descubierto.",
+          "intervalos": [
+            {
+              "min": 0,
+              "max": 39.99,
+              "puntos": 0
+            },
+            {
+              "min": 40,
+              "max": 49.99,
+              "puntos": 1
+            },
+            {
+              "min": 50,
+              "max": 150,
+              "puntos": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -1,
+      "max": 0.49,
+      "categoria": "Neumonía grave",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Hospitalizar o remitir con oxígeno si hay hipoxemia. Penicilina cristalina 250.000 U/kg/día en 6 dosis, 7 días.",
+      "si": {
+        "alguno": [
+          {
+            "id": "peligro",
+            "igual": 1
+          },
+          {
+            "id": "tiraje",
+            "igual": 1
+          },
+          {
+            "id": "hipoxemia",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Neumonía",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Amoxicilina 90 mg/kg/día VO 5 días si hay consolidación o no hay radiografía; control a las 72 h.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "grupo",
+                "igual": 1
+              },
+              {
+                "id": "fr_puntos",
+                "igual": 2
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "grupo",
+                "igual": 2
+              },
+              {
+                "id": "fr_puntos",
+                "mayorIgual": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2.5,
+      "categoria": "No es neumonía",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Sin respiración rápida ni signos de gravedad: pensar en resfriado, bronquiolitis o asma; sin antibiótico."
+    }
+  ]
+}

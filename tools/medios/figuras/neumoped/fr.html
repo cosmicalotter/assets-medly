@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .edades{display:flex;gap:8px}
+  .edad{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#6B7280;text-align:center}
+  .edad b{font-size:18px;color:var(--tinta)}
+  .edad.on{border-color:var(--naranja);background:color-mix(in srgb,var(--naranja) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// Ejemplo: lactante de 8 meses que respira a 52/min. Los primeros 10 s se ven a
+// tiempo real; luego el reloj corre hasta el minuto y queda el resultado.
+const FR = 52, REAL = 10, CUADROS_REAL = 100, CUADROS_RAPIDO = 16;
+const EDADES = [["<2 meses", "≥60/min"], ["2 a 11 meses", "≥50/min"], ["1 a 4 años", "≥40/min"]];
+
+window.cuadro = function (i, n) {
+  let seg, fase;
+  if (i < CUADROS_REAL) { seg = (i / CUADROS_REAL) * REAL; fase = "real"; }
+  else if (i < CUADROS_REAL + CUADROS_RAPIDO) { seg = lerp(REAL, 60, suave((i - CUADROS_REAL) / (CUADROS_RAPIDO - 1))); fase = "rapido"; }
+  else { seg = 60; fase = "fin"; }
+  const periodo = 60 / FR;
+  const ciclo = (seg % periodo) / periodo;
+  // Inspira en el primer 40 % del ciclo y espira en el resto.
+  const insp = fase === "real" ? (ciclo < 0.4 ? suave(ciclo / 0.4) : 1 - suave((ciclo - 0.4) / 0.6)) : 0.3;
+  const cuenta = Math.min(FR, Math.floor(seg / periodo + 0.6));
+  const p = perfil(insp, { w: 680, base: 300 });
+  const arco = (s) => { const a = (2 * Math.PI * s) / 60; return `${70 + 60 * Math.sin(a)} ${70 - 60 * Math.cos(a)}`; };
+  const fin = fase === "fin";
+  const svg = `<svg class="esc" viewBox="0 0 680 320">
+    <g transform="translate(6,62) scale(0.7)">${p.svg}
+      ${insp > 0.55 && fase === "real" ? `<path d="M270 ${p.yRef(270) - 22} v-40 m-12 15 l12 -15 l12 15" stroke="${AZUL}" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` : ""}
+    </g>
+    <g transform="translate(500,20)">
+      <circle cx="70" cy="70" r="60" fill="#fff" stroke="#E5E7EB" stroke-width="8"/>
+      <path d="M70 10 A60 60 0 ${seg > 30 ? 1 : 0} 1 ${seg >= 59.99 ? "69.99 10" : arco(seg)}" stroke="${fin ? NARANJA : AZUL}" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <text x="70" y="66" text-anchor="middle" font-size="30" font-weight="800" fill="#1F2A37">${Math.floor(seg)} s</text>
+      <text x="70" y="90" text-anchor="middle" font-size="13" fill="#6B7280">de 60 s</text>
+      <text x="70" y="172" text-anchor="middle" font-size="15" fill="#6B7280">respiraciones</text>
+      <text x="70" y="214" text-anchor="middle" font-size="42" font-weight="800" fill="${fin ? NARANJA : AZUL}">${cuenta}</text>
+      ${fase === "rapido" ? `<text x="70" y="250" text-anchor="middle" font-size="13" fill="#6B7280">… hasta el minuto</text>` : ""}
+    </g>
+    ${fin ? `<text x="240" y="40" text-anchor="middle" font-size="21" font-weight="800" fill="${NARANJA}">8 meses, 52/min: respiración rápida</text>` :
+      `<text x="240" y="40" text-anchor="middle" font-size="17" fill="#6B7280">Cada subida del tórax es una respiración</text>`}
+  </svg>`;
+  const edades = EDADES.map(([e, v], k) => `<div class="edad ${fin && k === 1 ? "on" : ""}">${e}<br><b>${v}</b></div>`).join("");
+  lienzo("Contar la frecuencia respiratoria", "Un minuto entero, con el niño tranquilo: es rápida si llega al límite de su edad",
+    `${svg}<div class="edades">${edades}</div>`,
+    "Esquema; el caso es un ejemplo. Fuente: OMS, Pocket book of hospital care for children 2005 (p. 90 y 93); GPC 42 MinSalud 2014 (p. 51).");
+};
+window.cuadro(0, 1);
+</script></body></html>

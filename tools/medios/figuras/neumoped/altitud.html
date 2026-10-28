@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.esc{flex:1;min-height:0}</style></head><body>
+<script>
+// Franjas de altitud y la saturación al aire que ya es hipoxemia en cada una.
+const FR = [[0, 1500, 94], [1501, 2000, 92], [2001, 2500, 90], [2501, 3000, 88], [3001, 3500, 85], [3501, 4000, 83]];
+const COL = [AZUL, "#5C86E8", "#7B7ED6", "#A06FBF", "#C9609A", ROJO];
+const x0 = 40, x1 = 640, yBase = 330, yTop = 20;
+const Y = (m) => yBase - ((yBase - yTop) * Math.min(m, 4000)) / 4000;
+// Escalones de abajo arriba; la altura de 0-1500 se comprime menos para que se lea.
+const franjas = FR.map(([a, b, s], k) => {
+  const ya = Y(a), yb = Y(b + (k === FR.length - 1 ? 0 : 1));
+  const h = ya - yb;
+  return `<rect x="${x0}" y="${yb}" width="${x1 - x0}" height="${h}" fill="${tinte(COL[k], 16)}" stroke="#fff" stroke-width="2"/>
+    <text x="${x0 + 14}" y="${yb + h / 2 + 6}" font-size="17" fill="#334155">${a.toLocaleString("es-CO")}-${b.toLocaleString("es-CO")} msnm</text>
+    <text x="${x1 - 16}" y="${yb + h / 2 + 9}" text-anchor="end" font-size="26" font-weight="800" fill="${COL[k]}">≤${s} %</text>`;
+}).join("");
+// (sin silueta: las franjas ocupan todo el ancho)
+const _montana = `<path d="M240 ${yBase} L350 ${Y(1800)} L400 ${Y(1500)} L470 ${Y(3900)} L540 ${Y(2600)} L600 ${yBase} Z" fill="#94A3B8" opacity=".22"/>`;
+lienzo("Hipoxemia según la altitud", "Saturación al aire que ya es hipoxemia: en ese límite o por debajo, oxígeno",
+  `<svg class="esc" viewBox="0 0 680 340">${franjas}</svg>`,
+  FUENTE_GPC + ", p. 30.");
+</script></body></html>
