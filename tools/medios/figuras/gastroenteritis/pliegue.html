@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .casos{display:flex;gap:8px}
+  .caso{flex:1;border-radius:10px;padding:7px 9px;font-size:13px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF}
+  .caso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+  .caso b{color:inherit}
+</style></head><body>
+<script>
+// Tres casos seguidos: la piel vuelve en el acto, en <2 s o en >2 s.
+const CASOS = [
+  { nombre: "Vuelve en el acto", vuelta: 0.3, color: VERDE, clase: "normal" },
+  { nombre: "Vuelve en <2 s", vuelta: 1.5, color: NARANJA, clase: "algún grado" },
+  { nombre: "Vuelve en >2 s", vuelta: 3.0, color: ROJO, clase: "grave" },
+];
+const PELLIZCO = 0.8, SOSTEN = 0.6, LECTURA = 1.6;
+const dur = (c) => PELLIZCO + SOSTEN + c.vuelta + LECTURA;
+const TOTAL = CASOS.reduce((s, c) => s + dur(c), 0);
+
+function piel(alto) {
+  // Superficie de la piel con un pliegue de altura `alto` en el centro (x = 340).
+  const pts = [];
+  for (let x = 40; x <= 640; x += 6) {
+    const d = (x - 340) / 46;
+    pts.push(`${x},${200 - alto * Math.exp(-d * d)}`);
+  }
+  return `<path d="M40,330 L${pts.join(" L")} L640,330 Z" fill="#FDE7D3" stroke="#B45309" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M40,260 C200,250 480,270 640,258" stroke="#F5C9A6" stroke-width="2" fill="none"/>`;
+}
+function dedo(x, y, lado) {
+  // Yema del dedo vista de lado, apuntando al pliegue.
+  return `<g transform="translate(${x},${y}) rotate(${lado * 18})"><rect x="-22" y="-120" width="44" height="130" rx="22" fill="#F8D5BB" stroke="#9A5B32" stroke-width="2.5"/>
+    <rect x="-14" y="-8" width="28" height="12" rx="5" fill="#FBE9DD" stroke="#C08460" stroke-width="1.5"/></g>`;
+}
+
+window.cuadro = function (i, n) {
+  let t = (n > 1 ? i / (n - 1) : 1) * TOTAL, k = 0;
+  while (k < CASOS.length - 1 && t > dur(CASOS[k])) { t -= dur(CASOS[k]); k++; }
+  const c = CASOS[k];
+  const sube = suave(tramo(t, 0, PELLIZCO));
+  const suelta = t > PELLIZCO + SOSTEN;
+  const tr = Math.max(0, t - PELLIZCO - SOSTEN);
+  const baja = suelta ? suave(tramo(tr, 0, c.vuelta)) : 0;
+  const alto = 110 * sube * (1 - baja);
+  const sep = suelta ? 46 + 50 * tramo(tr, 0, 0.35) : lerp(110, 46, sube);
+  const yDedo = 200 - 110 * sube * (suelta ? 1 : 1) + 6;
+  const reloj = suelta ? Math.min(tr, c.vuelta) : 0;
+  const listo = suelta && tr >= c.vuelta;
+  const svg = `<svg class="esc" viewBox="0 0 680 340">
+    ${piel(alto)}
+    ${dedo(340 - sep, suelta ? lerp(yDedo, 30, tramo(tr, 0, 0.35)) : yDedo, 1)}${dedo(340 + sep, suelta ? lerp(yDedo, 30, tramo(tr, 0, 0.35)) : yDedo, -1)}
+    <g transform="translate(560,30)">
+      <circle cx="56" cy="56" r="52" fill="#fff" stroke="${listo ? c.color : "#CBD5E1"}" stroke-width="6"/>
+      <path d="M56 56 L56 ${56 - 40}" stroke="#E5E7EB" stroke-width="3"/>
+      ${suelta ? `<path d="M56 4 A52 52 0 ${reloj / 4 > 0.5 ? 1 : 0} 1 ${56 + 52 * Math.sin((2 * Math.PI * reloj) / 4)} ${56 - 52 * Math.cos((2 * Math.PI * reloj) / 4)}" stroke="${c.color}" stroke-width="6" fill="none"/>` : ""}
+      <text x="56" y="64" text-anchor="middle" font-size="24" font-weight="800" fill="#1F2A37">${reloj.toFixed(1).replace(".", ",")} s</text>
+      <text x="56" y="128" text-anchor="middle" font-size="13" fill="#6B7280">${suelta ? "tras soltar" : t < PELLIZCO ? "pellizcar" : "soltar"}</text>
+    </g>
+    ${listo ? `<text x="340" y="282" text-anchor="middle" font-size="22" font-weight="800" fill="${c.color}">${c.nombre}: ${k ? "signo de " + c.clase : "normal"}</text>` : ""}
+  </svg>`;
+  const casos = CASOS.map((x, j) => `<div class="caso ${j === k ? "on" : ""}" style="--c:${x.color}"><b>${x.nombre}</b><br>${j === 0 ? "Normal" : j === 1 ? "Signo de <b>algún grado</b> de deshidratación" : "Signo de deshidratación <b>grave</b>"}</div>`).join("");
+  lienzo("Signo del pliegue cutáneo", "Pellizcar la piel, soltarla y contar lo que tarda en volver", `${svg}<div class="casos">${casos}</div>`,
+    "Esquema. Fuente: guía de referencia rápida de la GPC de la EDA, MinSalud Colombia 2013, tabla 1 (pliegue <2 s y >2 s).");
+};
+window.cuadro(0, 1);
+</script></body></html>

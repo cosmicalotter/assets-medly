@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:12px}
+  .edad{flex:1;border-radius:14px;border:2px solid var(--azul);padding:10px 12px;display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--azul) 6%,white)}
+  .edad .t{font-size:15px;font-weight:700}
+  .edad .n{font-size:30px;font-weight:800;color:var(--azul);line-height:1.05}
+  .edad .s{font-size:12.5px;color:var(--suave)}
+  .listas{display:flex;gap:12px;flex:1;min-height:0}
+  .lista{flex:1;border-radius:14px;padding:12px 14px;font-size:15.5px;line-height:1.55}
+  .lista h4{font-size:16.5px;margin-bottom:6px}
+  .si{background:color-mix(in srgb,var(--verde) 10%,white);border:2px solid var(--verde)}
+  .si h4{color:#1d7a49}
+  .no{background:color-mix(in srgb,var(--rojo) 8%,white);border:2px solid var(--rojo)}
+  .no h4{color:#b93434}
+  ul{padding-left:18px}
+  .pie{font-size:13.5px;border-radius:12px;padding:8px 12px;background:#F3F4F6}
+</style></head><body>
+<script>
+const v = (n) => `<svg width="58" height="70" viewBox="0 0 58 70">${vaso(6, 6, 46, 58, n)}</svg>`;
+lienzo(
+  "Plan A: líquidos tras cada deposición",
+  "Niño sin deshidratación, en casa, hasta que pase la diarrea",
+  `<div class="fila">
+     <div class="edad">${v(0.35)}<div><div class="t">Menor de 2 años</div><div class="n">50-100 mL</div><div class="s">(¼ a ½ taza) tras cada deposición</div></div></div>
+     <div class="edad">${v(0.75)}<div><div class="t">2 años o más</div><div class="n">100-200 mL</div><div class="s">(½ a 1 taza) tras cada deposición</div></div></div>
+   </div>
+   <div class="listas">
+     <div class="lista si"><h4>Sí: líquidos adecuados</h4><ul>
+       <li>Sales de rehidratación oral (SRO)</li>
+       <li>Agua de arroz, maíz o cebada cocidos</li>
+       <li>Caldo de papa o de plátano</li>
+       <li>Agua, junto con comidas con almidón (papa, yuca, ñame, maíz) y algo de sal</li></ul></div>
+     <div class="lista no"><h4>No dar</h4><ul>
+       <li>Gaseosas</li>
+       <li>Bebidas para deportistas</li>
+       <li>Suero casero de agua, sal y azúcar</li>
+       <li>Soluciones con <b>&lt;40 mmol/L</b> de sodio</li>
+       <li>Jugos industrializados</li></ul></div>
+   </div>
+   <div class="pie"><b>Menor de 6 meses:</b> sin líquidos caseros; más pecho y, si hace falta, SRO.<br>Además: <b>zinc</b> 10-14 días, comida habitual sin ayuno y volver con cualquier signo de alarma.</div>`,
+  FUENTE_GPC + " Recomendaciones 14, 19, 20 y 24; guía rápida, p. 39-40."
+);
+</script></body></html>
