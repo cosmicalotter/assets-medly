@@ -13,7 +13,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Neumonía y bronquiolitis",
-      "texto": "- **Neumonía (OMS/AIEPI):** síntomas respiratorios de **<15 días** con respiración rápida para la edad (**≥50/min** de 2 a 11 meses; **≥40/min** de 1 a 4 años), con o sin fiebre. Tiraje subcostal o un signo de peligro la hacen grave.\n- **Bronquiolitis (AIEPI):** menor de **2 años** con un primer episodio de sibilancias tras **2-3 días** de cuadro gripal.\n- **Hipoxemia:** saturación al aire **≤94 %** hasta **1500 msnm**; el límite baja con la altitud hasta **≤83 %** a **3500-4000 msnm**.\n- **Asma en ≤5 años (GINA 2026):** **≥2** episodios agudos de sibilancias en **12 meses**, o uno con síntomas entre episodios, sin otra causa y con respuesta al tratamiento.",
+      "texto": "- **Neumonía:** tos o dificultad respiratoria de **<15 días** con respiración rápida para la edad (**≥50/min** de 2-11 meses; **≥40/min** de 1-4 años); grave con tiraje subcostal o un signo de peligro.\n- **Bronquiolitis:** menor de **2 años** con un primer episodio de sibilancias tras **2-3 días** de cuadro gripal.\n- **Hipoxemia:** saturación al aire **≤94 %** hasta **1500 msnm** (metros sobre el nivel del mar); el límite baja con la altitud hasta **≤83 %** a **3500-4000 msnm**.\n- **Asma en ≤5 años (GINA 2026):** **≥2** episodios agudos de sibilancias en **12 meses**, o uno con síntomas entre episodios, sin otra causa y con respuesta al tratamiento.",
       "pie_nodo": "¿Qué necesitas?",
       "opciones": [
         {
@@ -76,7 +76,7 @@
         {
           "titulo": "Recomendación 2: definición de bronquiolitis",
           "paginas": "30",
-          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas",
+          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
@@ -158,16 +158,17 @@
     "diag_oximetria": {
       "tipo": "pregunta",
       "titulo": "Evaluación inicial: peligro, respiración y saturación",
-      "texto": "- Buscar signos generales de peligro (lista).\n- Contar la frecuencia respiratoria 1 minuto, tranquilo: rápida si **≥60** (<2 meses), **≥50** (2-11 meses) o **≥40** (1-4 años).\n- Mirar el tiraje subcostal: la parte baja del tórax se hunde al inspirar.\n- Oximetría a todos, despiertos, con sensor de su edad; la hipoxemia depende de la altitud.",
+      "texto": "- Un signo de peligro o hipoxemia: grave; hospitalizar o remitir con oxígeno.\n- Contar la frecuencia respiratoria 1 minuto, con el niño tranquilo: rápida si **≥60** (<2 meses), **≥50** (2-11 meses) o **≥40** (1-4 años).\n- Mirar el tiraje subcostal: la parte baja del tórax se hunde al inspirar.\n- Oximetría a todos, despiertos, con sensor de su edad; la hipoxemia depende de la altitud.",
       "checklist": {
-        "titulo": "Signos generales de peligro",
+        "titulo": "Signos de peligro (OMS)",
         "items": [
           "No puede beber ni tomar el pecho",
           "Vomita todo",
           "Ha tenido convulsiones",
           "Letárgico o inconsciente",
           "Estridor",
-          "Hipoxemia para la altitud"
+          "Hipoxemia para la altitud",
+          "Cianosis central o dificultad respiratoria grave"
         ]
       },
       "media": [
@@ -212,7 +213,7 @@
           "recurso": "neumo_tiraje_subcostal.gif",
           "titulo": "Tiraje subcostal",
           "descripcion": "La parte baja del tórax se hunde al inspirar; el tiraje intercostal solo no cuenta.",
-          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde mientras el abdomen sale. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
+          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde; es signo de gravedad. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
           "en_texto": "tiraje",
           "referencias": [
             {
@@ -247,33 +248,6 @@
           ]
         }
       ],
-      "tabla": {
-        "titulo": "Respiración rápida según la edad",
-        "columnas": [
-          "Edad",
-          "Rápida si"
-        ],
-        "filas": [
-          [
-            "<2 meses",
-            "**≥60/min**"
-          ],
-          [
-            "2 a 11 meses",
-            "**≥50/min**"
-          ],
-          [
-            "1 a 4 años",
-            "**≥40/min**"
-          ]
-        ]
-      },
-      "cronometros": [
-        {
-          "etiqueta": "Contar la frecuencia respiratoria",
-          "segundos": 60
-        }
-      ],
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/saturacion_altitud.json",
         "etiqueta": "¿Hipoxemia para esta altitud?",
@@ -282,14 +256,21 @@
       "alertas": [
         {
           "titulo": "No pedir de rutina",
-          "texto": "Hemograma, PCR ni VSG: no cambian el manejo inicial."
+          "texto": "Hemograma, PCR (proteína C reactiva) ni VSG (velocidad de sedimentación): no cambian el manejo inicial."
         }
       ],
       "nota_adicional": "Dormido, la saturación baja: entre 2501 y 3000 msnm puede ir de **84,6 %** a **98,5 %** en el lactante. Medirla despierto.",
       "evidencia": {
-        "texto": "GRADE: fuerte a favor"
+        "texto": "GRADE: fuerte, calidad moderada"
       },
       "pie_nodo": "¿Qué sigue?",
+      "enlaces": [
+        {
+          "texto": "Hospitalizar o remitir",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_remision"
+        }
+      ],
       "opciones": [
         {
           "texto": "Definir el cuadro",
@@ -305,6 +286,16 @@
           "anio": "2024",
           "url": "https://www.who.int/publications/i/item/9789240103412",
           "cita": "OMS. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Ginebra: OMS; 2024."
+        },
+        {
+          "titulo": "Punto de buena práctica: remitir con oxígeno",
+          "paginas": "32",
+          "texto": "todo menor con clasificaciones graves, con signos de peligro, con problemas respiratorios o cuadros de choque o enfermedades clasificadas como enfermedad muy grave",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag32_todo_menor_clasificaciones_graves_signos.png"
         },
         {
           "titulo": "Signos generales de peligro para los padres",
@@ -402,25 +393,34 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
           "imagen_evidencia": "evidencia_neumoped_pag31_no_recomienda_uso_rutinario_hemograma.png"
+        },
+        {
+          "titulo": "Neumonía muy grave",
+          "paginas": "93",
+          "texto": "Cough or difficult breathing plus at least one of the following: central cyanosis inability to breastfeed or drink, or vomiting everything convulsions, lethargy or unconsciousness severe respiratory distress.",
+          "fuente": "OMS (Pocket book)",
+          "anio": "2005",
+          "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+          "cita": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005."
         }
       ]
     },
     "diag_tipo_infeccion": {
       "tipo": "pregunta",
       "titulo": "Bronquiolitis, neumonía o asma",
-      "texto": "- Bronquiolitis: menor de **2 años**, primer episodio de sibilancias tras **2-3 días** de catarro.\n- Neumonía: respiración rápida o tiraje; pensarla con fiebre **>39 °C** o crepitantes focales persistentes.\n- Asma o sibilancias por virus: sibilancias persistentes sin crepitantes, episodios recurrentes o atopia; rara antes de **1 año**.\n- Preguntar siempre por episodios previos de sibilancias.",
+      "texto": "- Bronquiolitis: menor de **2 años**, primer episodio de sibilancias tras **2-3 días** de catarro.\n- Neumonía: respiración rápida o tiraje; pensarla con fiebre **>39 °C** o crepitantes focales persistentes.\n- Asma o sibilancias por virus: sibilancias persistentes sin crepitantes, episodios recurrentes o atopia; rara antes de **1 año**.\n- Preguntar siempre por episodios previos de sibilancias.\n- Menor de **2 meses** nacido a término: fuera de esta guía (OMS: guía de infección bacteriana grave del lactante).",
       "media": [
         {
           "recurso": "neumo_diferencial.png",
           "titulo": "Bronquiolitis, neumonía o asma",
           "descripcion": "Lo que orienta a cada cuadro en el menor de 5 años con tos o dificultad respiratoria.",
           "info": "{#4F8CF6:Bronquiolitis}: menor de 2 años, primer episodio sibilante tras 2-3 días de catarro. {#F07F3C:Neumonía}: respiración rápida o tiraje; fiebre **>39 °C** o crepitantes focales. {#8B5CF6:Asma}: sibilancias recurrentes sin crepitantes o atopia; rara antes de **1 año**.",
-          "en_texto": "Asma o sibilancias por virus",
+          "en_texto": "episodios previos de sibilancias",
           "referencias": [
             {
               "titulo": "Recomendación 2: definición de bronquiolitis",
               "paginas": "30",
-              "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas",
+              "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal",
               "fuente": "MinSalud",
               "anio": "2014",
               "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
@@ -466,7 +466,7 @@
           ]
         }
       ],
-      "nota_adicional": "Con sibilancias y VRS en la nariz cuesta saber si es bronquiolitis o un primer episodio de asma; la respuesta al salbutamol ayuda a separarlos.",
+      "nota_adicional": "Con sibilancias y VRS (virus respiratorio sincitial) en la nariz cuesta saber si es bronquiolitis o un primer episodio de asma; la respuesta al salbutamol ayuda a separarlos.",
       "pie_nodo": "¿Qué cuadro es?",
       "opciones": [
         {
@@ -475,7 +475,7 @@
           "color": "azul"
         },
         {
-          "texto": "Respiración rápida o tiraje: neumonía",
+          "texto": "Tos sin sibilancias: ¿neumonía?",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "naranja"
         },
@@ -489,7 +489,7 @@
         {
           "titulo": "Recomendación 2: definición de bronquiolitis",
           "paginas": "30",
-          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas",
+          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
@@ -552,6 +552,25 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
           "imagen_evidencia": "evidencia_neumoped_pag55_paciente_sibilancias_colonizacion_nasofaringe_vrs.png"
+        },
+        {
+          "titulo": "Población no incluida en la guía",
+          "paginas": "27",
+          "texto": "Niños nacidos a término con menos de 2 meses de edad, preescolares mayores de 5 años.",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag27_ninos_nacidos_termino_menos_2.png"
+        },
+        {
+          "titulo": "Menores de 2 meses: otra guía de la OMS",
+          "paginas": "16",
+          "texto": "Recommendations for children less than 2 months of age for pneumonia are covered by guidelines for serious bacterial infection in young infants",
+          "fuente": "OMS",
+          "anio": "2024",
+          "url": "https://www.who.int/publications/i/item/9789240103412",
+          "cita": "OMS. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Ginebra: OMS; 2024."
         }
       ]
     },
@@ -559,7 +578,7 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Sospecha de asma en el menor de 5 años",
-      "texto": "- Asma con los 3 criterios (lista); con 1 o 2, «sospecha de asma» y seguimiento.\n- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si también necesita corticoide oral.\n- Antes de **12 meses**, el primer episodio sibilante suele ser bronquiolitis.\n- La guía colombiana de neumonía y bronquiolitis no cubre el asma: seguir en el algoritmo de asma.",
+      "texto": "- Asma con los 3 criterios de la lista; con 1 o 2, «sospecha de asma» y seguimiento.\n- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si también necesita corticoide oral.\n- Antes de **12 meses**, el primer episodio sibilante suele ser bronquiolitis.\n- La guía colombiana de neumonía y bronquiolitis no cubre el asma: seguir en el algoritmo de asma.",
       "checklist": {
         "titulo": "Asma en ≤5 años (GINA 2026)",
         "items": [
@@ -571,10 +590,10 @@
       "alertas": [
         {
           "titulo": "Pensar en otra causa",
-          "texto": "Falla de medro, síntomas desde el nacimiento, vómitos con los síntomas, sibilancia continua o estridor, signos focales o sin respuesta al tratamiento: derivar."
+          "texto": "Falla de medro, síntomas desde el nacimiento, vómitos con los síntomas, sibilancia continua, estridor recurrente o tos perruna, signos focales, acropaquias, saturación <95 % despierto fuera de la crisis o sin respuesta al tratamiento: derivar."
         }
       ],
-      "nota_adicional": "El IPA y los demás índices predicen el asma futura, no la diagnostican, y su precisión es pobre (GINA 2026).",
+      "nota_adicional": "El índice predictivo de asma (IPA) y los demás índices predicen el asma futura, no la diagnostican, y su precisión es pobre (GINA 2026).",
       "enlaces": [
         {
           "texto": "Algoritmo de asma pediátrica",
@@ -656,6 +675,24 @@
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update."
         },
         {
+          "titulo": "Derivar: otros signos de alarma (Box 10-5)",
+          "paginas": "200",
+          "texto": "Continuous wheezing, recurrent stridor or seal-like barking cough (airway malacia) Focal lung or cardiovascular signs, or finger clubbing Hypoxemia (<95%) when awake",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update."
+        },
+        {
+          "titulo": "Uno o dos criterios: sospecha de asma",
+          "paginas": "196",
+          "texto": "All three criteria listed below must be fulfilled for diagnosis of asthma in this age-group. If only 1 or 2 criteria are fulfilled, record as suspected asthma.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update."
+        },
+        {
           "titulo": "Índices predictivos de asma (API, PIAMA, Leicester)",
           "paginas": "206",
           "texto": "A systematic review has shown that these tools have poor predictive accuracy, with variation in sensitivity and positive predictive value.",
@@ -692,7 +729,7 @@
       "texto": "Bronquiolitis (menor de 2 años)",
       "opciones": [
         {
-          "texto": "¿Grave o de alto riesgo?",
+          "texto": "Clasificar la gravedad",
           "siguiente_nodo": "diag_bronquiolitis_criterios"
         }
       ],
@@ -700,7 +737,7 @@
         {
           "titulo": "Recomendación 2: definición de bronquiolitis",
           "paginas": "30",
-          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas",
+          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
@@ -712,13 +749,13 @@
     "diag_bronquiolitis_criterios": {
       "tipo": "pregunta",
       "titulo": "Bronquiolitis: ¿grave o de alto riesgo?",
-      "texto": "- No es leve con tiraje subcostal, respiración rápida, apneas o saturación baja para la altitud.\n- Alto riesgo (BAR): **<3 meses**, prematuro (**<2.000 g**) y **<6 meses**, cardiopatía, displasia broncopulmonar, fibrosis quística, inmunodeficiencia, Down o desnutrición grave.\n- La fiebre suele ser **<39 °C**. El lactante de **<6 semanas** puede debutar sólo con apnea.\n- Sin radiografía ni hemograma o PCR de rutina.",
+      "texto": "- No es leve con un signo general de peligro, tiraje subcostal, apneas, hipoxemia, respiración rápida (**≥50/min** de 2-11 meses; **≥40/min** de 12-23 meses), edad **<3 meses** o prematuridad con **<6 meses**.\n- Bronquiolitis de alto riesgo (BAR): **<2 meses**; prematuro de **<2000 g** al nacer con **<6 meses**; cardiopatía congénita con repercusión, displasia broncopulmonar, fibrosis quística, malformación de la vía aérea inferior, inmunodeficiencia, trasplante, enfermedad congénita pulmonar o cardiovascular, enfermedad neurológica moderada o grave, Down, apneas o desnutrición aguda grave.\n- La fiebre suele ser **<39 °C**. El lactante de **<6 semanas** puede debutar sólo con apnea.\n- Sin radiografía ni hemograma o PCR de rutina.",
       "media": [
         {
           "recurso": "neumo_tiraje_subcostal.gif",
           "titulo": "Tiraje subcostal",
           "descripcion": "La parte baja del tórax se hunde al inspirar; el tiraje intercostal solo no cuenta.",
-          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde mientras el abdomen sale. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
+          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde; es signo de gravedad. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
           "en_texto": "tiraje",
           "referencias": [
             {
@@ -820,13 +857,13 @@
       "alertas": [
         {
           "titulo": "Lactante tóxico",
-          "texto": "Somnoliento, letárgico, pálido, moteado o taquicárdico: no es una bronquiolitis típica; buscar otro diagnóstico."
+          "texto": "Somnoliento, letárgico, irritable, pálido, moteado o taquicárdico: no es una bronquiolitis típica; buscar otro diagnóstico."
         }
       ],
       "evidencia": {
-        "texto": "GRADE: fuerte a favor"
+        "texto": "GRADE: fuerte, calidad moderada"
       },
-      "pie_nodo": "¿Grave o de alto riesgo?",
+      "pie_nodo": "¿Algún criterio de gravedad o de alto riesgo (BAR)?",
       "opciones": [
         {
           "texto": "Grave o alto riesgo: hospitalizar",
@@ -843,7 +880,7 @@
         {
           "titulo": "Recomendación 2: definición de bronquiolitis",
           "paginas": "30",
-          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas",
+          "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
@@ -869,6 +906,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
           "imagen_evidencia": "evidencia_neumoped_pag32_sugiere_usar_signos_sintomas_enfermedad.png"
+        },
+        {
+          "titulo": "Punto de buena práctica: remitir con oxígeno",
+          "paginas": "32",
+          "texto": "todo menor con clasificaciones graves, con signos de peligro, con problemas respiratorios o cuadros de choque o enfermedades clasificadas como enfermedad muy grave",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag32_todo_menor_clasificaciones_graves_signos.png"
         },
         {
           "titulo": "Punto de buena práctica: bronquiolitis de alto riesgo (BAR)",
@@ -945,25 +992,25 @@
       "tipo": "pregunta",
       "estilo": "exito",
       "titulo": "Bronquiolitis sin signos de gravedad: casa",
-      "texto": "- Nariz limpia con suero fisiológico antes de comer.\n- Pecho más seguido y más líquidos.\n- Nadie fuma en casa. En casa mientras dure, sin guardería.\n- Preguntar por sibilancias previas: si las hubo, pensar en asma.",
+      "texto": "- Nariz limpia con suero fisiológico antes de comer.\n- Pecho más seguido y más líquidos.\n- Nadie fuma en casa. En casa mientras dure, sin guardería.",
       "alertas": [
         {
           "titulo": "No dar",
-          "texto": "Antibióticos, salbutamol, esteroides, adrenalina ni jarabes (antihistamínicos, antitusígenos, descongestionantes, mucolíticos)."
+          "texto": "Antibióticos, salbutamol de rutina (sólo la prueba única si se sospecha asma), esteroides, adrenalina, salina al 3 %, gotas nasales medicadas ni jarabes (antihistamínicos, antitusígenos, descongestionantes, mucolíticos)."
         }
       ],
       "evidencia": {
-        "texto": "GRADE: fuerte en contra"
+        "texto": "GRADE: fuerte en contra (antibióticos, esteroides, jarabes); débil en contra (salbutamol, adrenalina, salina al 3 %)"
       },
-      "pie_nodo": "¿Hubo sibilancias antes o hay duda de asma?",
+      "pie_nodo": "¿Sospecha de asma (sibilancias previas, atopia, sibilancias persistentes sin crepitantes)?",
       "opciones": [
         {
-          "texto": "Sí: prueba única con salbutamol",
+          "texto": "Sospecha de asma: prueba única con salbutamol",
           "siguiente_nodo": "trat_bronq_asma",
           "color": "morado"
         },
         {
-          "texto": "No: casa con signos de alarma",
+          "texto": "Sin sospecha: casa con signos de alarma",
           "siguiente_nodo": "alta_bronquiolitis",
           "color": "verde"
         }
@@ -1098,19 +1145,39 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
           "imagen_evidencia": "evidencia_neumoped_pag34_no_recomienda_uso_tratamientos_sintomaticos.png"
+        },
+        {
+          "titulo": "Recomendación 12: sin salina al 3 % para evitar el ingreso",
+          "paginas": "34",
+          "texto": "No se recomienda el uso de solución salina al 3% para el tratamiento de menores de 2 años de edad con bronquiolitis, para disminuir el riesgo de hospitalización.",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag34_no_recomienda_uso_solucion_salina.png"
+        },
+        {
+          "titulo": "Remedios que no se recomiendan",
+          "paginas": "20",
+          "texto": "Los preparados o jarabes que contengan codeína y sus derivados, atropina y sus derivados o alcohol, pueden interferir con la capacidad de sacar el moco a la hora de toser.",
+          "fuente": "MinSalud (guía para padres)",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag20_padres_preparados_jarabes_contengan_codeina_sus.png"
         }
       ]
     },
     "trat_bronq_asma": {
       "tipo": "pregunta",
       "titulo": "Prueba terapéutica única con salbutamol",
-      "texto": "- Una sola prueba: salbutamol inhalado con espaciador (no nebulizado), **200 mcg** cada **10 min**.\n- Reevaluar frecuencia respiratoria y saturación a más tardar a los **60 min**.\n- Si mejoran: añadir esteroide y pensar en asma.",
+      "texto": "- Prueba única de hasta **60 min**: salbutamol inhalado con espaciador (no nebulizado), **200 mcg** cada **10 min**.\n- Reevaluar frecuencia respiratoria y saturación a más tardar a los **60 min**.",
       "media": [
         {
           "recurso": "neumo_salbutamol_espaciador.png",
           "titulo": "Salbutamol con espaciador y máscara",
           "descripcion": "Inhalador, espaciador y máscara facial; 200 mcg cada 10 min y evaluar a los 60 min.",
-          "info": "El {#4F8CF6:inhalador} va en la cámara espaciadora y la {#18B9A9:máscara} cubre nariz y boca. Dar **200 mcg** cada **10 min**, nunca nebulizado. A más tardar a los **60 min**, {#2FB36D:mirar si bajan la frecuencia respiratoria y suben la saturación}.",
+          "info": "El {#4F8CF6:inhalador} va en la cámara espaciadora y la {#18B9A9:máscara} cubre nariz y boca. Dar **200 mcg** cada **10 min** hasta evaluar, nunca nebulizado. A más tardar a los **60 min**, {#2FB36D:mirar si bajan la frecuencia respiratoria y suben la saturación}.",
           "en_texto": "con espaciador",
           "referencias": [
             {
@@ -1151,7 +1218,7 @@
           "posturas": [
             {
               "fuente": "MinSalud 2014",
-              "dice": "Prueba terapéutica única con 200 mcg cada 10 min si hay sospecha de asma",
+              "dice": "Prueba terapéutica única con 200 mcg cada 10 min y evaluación en ≤60 min",
               "paginas": "33"
             },
             {
@@ -1222,8 +1289,8 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Responde al salbutamol: pensar en asma",
-      "texto": "- Añadir esteroide al tratamiento.\n- La mejoría en **20-60 min** tras el salbutamol cuenta como respuesta a tiempo (criterio 3 de GINA).\n- Seguir en el algoritmo de asma pediátrica.",
-      "nota_adicional": "La GPC no da la dosis del esteroide: la remite a la guía de asma.",
+      "texto": "- Añadir esteroide oral; la dosis está en la guía de asma (algoritmo pendiente).\n- Mejoría en **20-60 min** = «respuesta a tiempo al tratamiento», el 3.er criterio de asma de GINA.\n- Seguir en el algoritmo de asma pediátrica.",
+      "nota_adicional": "La guía colombiana (GPC 42) no da la dosis del esteroide: la remite a la guía de asma.",
       "enlaces": [
         {
           "texto": "Algoritmo de asma pediátrica",
@@ -1271,7 +1338,13 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Bronquiolitis grave o de alto riesgo: hospitalizar",
-      "texto": "- Hospitalizar o remitir; remitir con oxígeno.\n- Oxígeno por cánula nasal con saturación baja para la altitud: lactante **0,25-0,5 L/min**, máximo **1 L/min**.\n- Sin antibiótico, salbutamol, adrenalina ni esteroides.",
+      "texto": "- Hospitalizar; con signos de peligro, hipoxemia o dificultad respiratoria, remitir con oxígeno.\n- Oxígeno por cánula nasal con saturación baja para la altitud: lactante **0,25-0,5 L/min**, máximo **1 L/min**.",
+      "alertas": [
+        {
+          "titulo": "No dar",
+          "texto": "Antibióticos, salbutamol, adrenalina ni esteroides."
+        }
+      ],
       "checklist": {
         "titulo": "Fallo respiratorio inminente: UCI",
         "items": [
@@ -1280,24 +1353,6 @@
           "Saturación que no se mantiene pese al oxígeno"
         ]
       },
-      "discrepancias": [
-        {
-          "asunto": "Saturación para dar oxígeno en la bronquiolitis",
-          "posturas": [
-            {
-              "fuente": "MinSalud 2014",
-              "dice": "Hipoxemia según la altitud: ≤94 % hasta 1500 msnm, hasta ≤83 % a 3500-4000 msnm",
-              "paginas": "30"
-            },
-            {
-              "fuente": "NICE NG9 (2021)",
-              "dice": "<90 % desde las 6 semanas; <92 % antes de las 6 semanas o con enfermedad de base",
-              "paginas": "16"
-            }
-          ],
-          "nota": "NICE no ajusta por altitud; la GPC sí, y es la que vale en Colombia."
-        }
-      ],
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -1469,10 +1524,10 @@
       "alertas": [
         {
           "titulo": "No hacer",
-          "texto": "Fisioterapia respiratoria sin comorbilidad, ni salina al 3 % para evitar el ingreso."
+          "texto": "Fisioterapia respiratoria si no hay comorbilidad que la indique. Salina al 3 % en urgencias para evitar el ingreso."
         }
       ],
-      "nota_adicional": "La GPC no da la dosis ni la frecuencia de la salina al 3 %: seguir el protocolo institucional.",
+      "nota_adicional": "La guía colombiana (GPC 42) no da la dosis ni la frecuencia de la salina al 3 %: seguir el protocolo institucional.",
       "discrepancias": [
         {
           "asunto": "Solución salina hipertónica",
@@ -1488,7 +1543,7 @@
               "paginas": "15"
             }
           ],
-          "nota": "Dos lecturas distintas de la misma evidencia; la GPC es la guía local."
+          "nota": "La GPC colombiana es la guía local."
         }
       ],
       "evidencia": {
@@ -1574,13 +1629,46 @@
       "tipo": "resultado",
       "estilo": "exito",
       "titulo": "Bronquiolitis: alta y signos de alarma",
-      "texto": "- Alta del hospital: estable, bebe lo suficiente y saturación adecuada **4 h**, incluido un rato de sueño.\n- Nadie fuma en casa; riesgo mayor en las épocas de lluvia.\n- Enseñar los signos de alarma para volver.",
+      "texto": "- Desde urgencias, o del hospital tras la lista: enseñar los signos de alarma para volver.\n- Nadie fuma en casa; en casa, sin guardería, mientras dure.",
+      "checklist": {
+        "titulo": "Alta del hospital (NICE)",
+        "items": [
+          "Clínicamente estable",
+          "Bebe lo suficiente",
+          "Sin hipoxemia para la altitud, al aire, durante **4 h**, incluido un periodo de sueño"
+        ]
+      },
+      "discrepancias": [
+        {
+          "asunto": "Saturación para el alta",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2014",
+              "dice": "No da criterio de alta; hipoxemia según la altitud (≤94 % hasta 1500 msnm)",
+              "paginas": "30"
+            },
+            {
+              "fuente": "NICE NG9 (2021)",
+              "dice": ">90 % desde las 6 semanas; >92 % antes o con enfermedad de base, durante 4 h con sueño",
+              "paginas": "19"
+            }
+          ],
+          "nota": "NICE no ajusta por altitud."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Prevención en casa",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_prevencion"
+        }
+      ],
       "media": [
         {
           "recurso": "neumo_signos_alarma.png",
           "titulo": "Signos de alarma: volver de inmediato",
           "descripcion": "Lo que obliga a volver de inmediato y lo que se hace en casa.",
-          "info": "Los recuadros {#EF5454:rojos} son los signos para volver de inmediato: respiración rápida o difícil, tiraje, no puede beber, vomita todo, convulsiones, letargo, apnea o cianosis, o menos pañales mojados. El {#2FB36D:verde} es lo que se hace en casa.",
+          "info": "Los recuadros {#EF5454:rojos} son los signos para volver de inmediato: respiración rápida, difícil o ruidosa, tiraje, no puede beber, vomita todo, convulsiones, letargo, apnea o cianosis, o bebe mucho menos y moja menos pañales. El {#2FB36D:verde} es lo que se hace en casa.",
           "en_texto": "signos de alarma",
           "referencias": [
             {
@@ -1592,6 +1680,16 @@
               "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
               "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_dificultad_respirar_respiracion_rapida_cualquier.png"
+            },
+            {
+              "titulo": "Ruidos raros al respirar",
+              "paginas": "20",
+              "texto": "Ruidos raros al respirar. Existen ruidos respiratorios que se escuchan a distancia y se producen cuando hay inflamación de las vías respiratorias",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_ruidos_raros_al_respirar_existen.png"
             },
             {
               "titulo": "Signos de alarma: tiraje y ruidos",
@@ -1625,9 +1723,6 @@
           ]
         }
       ],
-      "evidencia": {
-        "texto": "GRADE: fuerte a favor"
-      },
       "referencias": [
         {
           "titulo": "NICE 1.5.1: alta",
@@ -1649,14 +1744,14 @@
           "imagen_evidencia": "evidencia_neumoped_pag30_sugiere_desaconsejar_tabaquismo_familiares_durante.png"
         },
         {
-          "titulo": "Punto de buena práctica: épocas de lluvia",
+          "titulo": "Punto de buena práctica: aislamiento en casa",
           "paginas": "30",
-          "texto": "Se sugiere advertir sobre el aumento en el riesgo en las épocas lluviosas de cada región, en la evaluación inicial de menores de 2 años de edad con sospecha de bronquiolitis.",
+          "texto": "Se sugiere el aislamiento del niño o niña en casa durante el tiempo de enfermedad por bronquiolitis, en la evaluación inicial de menores de 2 años",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-          "imagen_evidencia": "evidencia_neumoped_pag30_sugiere_advertir_sobre_aumento_riesgo.png"
+          "imagen_evidencia": "evidencia_neumoped_pag30_sugiere_aislamiento_nino_nina_casa.png"
         },
         {
           "titulo": "Signos de alarma: dificultad o respiración rápida y tiraje",
@@ -1725,7 +1820,7 @@
     "diag_neumonia_criterios": {
       "tipo": "pregunta",
       "titulo": "Neumonía: clasificar la gravedad",
-      "texto": "- Respiración rápida para la edad: neumonía.\n- Tiraje subcostal, signo general de peligro o hipoxemia: neumonía grave.\n- Radiografía AP si el resultado llega en **≤6 h**: decide el antibiótico. En toda neumonía grave.\n- Sin hemograma, PCR ni VSG de rutina.",
+      "texto": "- Respiración rápida para la edad: neumonía.\n- Tiraje subcostal, signo general de peligro o hipoxemia: neumonía grave.\n- Radiografía AP si el resultado está en **≤6 h**: con consolidación, amoxicilina. Neumonía grave: en todos.\n- Sin hemograma, PCR ni VSG de rutina. Menor de **2 meses** a término: fuera de esta guía.",
       "media": [
         {
           "recurso": "neumo_frecuencia_respiratoria.gif",
@@ -1768,7 +1863,7 @@
           "recurso": "neumo_tiraje_subcostal.gif",
           "titulo": "Tiraje subcostal",
           "descripcion": "La parte baja del tórax se hunde al inspirar; el tiraje intercostal solo no cuenta.",
-          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde mientras el abdomen sale. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
+          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde; es signo de gravedad. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
           "en_texto": "tiraje",
           "referencias": [
             {
@@ -1867,28 +1962,10 @@
         "etiqueta": "Clasificar con AIEPI",
         "ramificar": true
       },
-      "discrepancias": [
-        {
-          "asunto": "Tiraje subcostal sin signos de peligro",
-          "posturas": [
-            {
-              "fuente": "MinSalud 2014",
-              "dice": "Neumonía grave: hospitalizar y penicilina cristalina IV",
-              "paginas": "33"
-            },
-            {
-              "fuente": "OMS 2024",
-              "dice": "Amoxicilina oral 5 días en casa, mejor que antibiótico inyectable hospitalizado (fuerte)",
-              "paginas": "12"
-            }
-          ],
-          "nota": "La GPC es anterior; con hipoxemia, ambas hospitalizan."
-        }
-      ],
       "evidencia": {
-        "texto": "GRADE: fuerte a favor"
+        "texto": "GRADE: fuerte, calidad moderada"
       },
-      "pie_nodo": "¿Qué gravedad?",
+      "pie_nodo": "¿Tiraje, signo de peligro o hipoxemia, o sólo respiración rápida para la edad?",
       "opciones": [
         {
           "texto": "Neumonía grave: hospitalizar",
@@ -1896,13 +1973,13 @@
           "color": "rojo"
         },
         {
-          "texto": "Neumonía: amoxicilina en casa",
+          "texto": "Sólo respiración rápida: amoxicilina en casa",
           "siguiente_nodo": "trat_neumonia_leve",
           "color": "naranja"
         },
         {
-          "texto": "No es neumonía: reconsiderar",
-          "siguiente_nodo": "nodo_diagnostico",
+          "texto": "Sin respiración rápida ni tiraje: no es neumonía",
+          "siguiente_nodo": "diag_no_neumonia",
           "color": "verde"
         }
       ],
@@ -1987,20 +2064,30 @@
           "imagen_evidencia": "evidencia_neumoped_pag31_no_recomienda_uso_rutinario_hemograma.png"
         },
         {
-          "titulo": "OMS 2024: tiraje sin signos de peligro, amoxicilina oral ambulatoria",
-          "paginas": "12",
-          "texto": "with chest indrawing (with or without fast breathing) and no general danger signs WHO recommends the use of oral amoxicillin for five days in the outpatient setting rather than injectable antibiotics",
-          "fuente": "OMS",
-          "anio": "2024",
-          "url": "https://www.who.int/publications/i/item/9789240103412",
-          "cita": "OMS. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Ginebra: OMS; 2024."
+          "titulo": "Neumonía muy grave",
+          "paginas": "93",
+          "texto": "Cough or difficult breathing plus at least one of the following: central cyanosis inability to breastfeed or drink, or vomiting everything convulsions, lethargy or unconsciousness severe respiratory distress.",
+          "fuente": "OMS (Pocket book)",
+          "anio": "2005",
+          "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+          "cita": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005."
+        },
+        {
+          "titulo": "Población no incluida en la guía",
+          "paginas": "27",
+          "texto": "Niños nacidos a término con menos de 2 meses de edad, preescolares mayores de 5 años.",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag27_ninos_nacidos_termino_menos_2.png"
         }
       ]
     },
     "trat_neumonia_leve": {
       "tipo": "pregunta",
       "titulo": "Neumonía: amoxicilina oral en casa",
-      "texto": "- Amoxicilina **90 mg/kg/día** VO durante **5 días** si la radiografía muestra consolidación o no hay acceso a ella.\n- Más líquidos y pecho; nariz limpia con suero.\n- Control a las **72 h**, o antes con signos de alarma.",
+      "texto": "- Amoxicilina **90 mg/kg/día** VO durante **5 días** si la radiografía muestra consolidación o no hay acceso a ella.\n- Más líquidos y pecho; nariz limpia con suero.\n- Control a los **2 días** (OMS), o antes con signos de alarma; vigilar el fracaso las primeras **72 h**.",
       "alertas": [
         {
           "titulo": "No dar",
@@ -2046,69 +2133,8 @@
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
-          "texto": "Control a las 72 h",
+          "texto": "Control de la neumonía",
           "siguiente_nodo": "seguimiento_neumonia"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "neumo_radiografia_cuando.png",
-          "titulo": "Radiografía de tórax: cuándo pedirla",
-          "descripcion": "Cuándo pedir la radiografía AP en la neumonía y cuándo no en la bronquiolitis.",
-          "info": "{#F07F3C:Neumonía}: radiografía AP si el resultado llega en **≤6 h**. {#EF5454:Neumonía grave}: en todos. A las **72 h**, con fiebre y respiración rápida, una de control. {#4F8CF6:Bronquiolitis}: no se pide en la evaluación inicial.",
-          "en_texto": "radiografía",
-          "referencias": [
-            {
-              "titulo": "Recomendación 5: radiografía en la neumonía",
-              "paginas": "31",
-              "texto": "Se recomienda realizar una radiografía simple del tórax en proyección anteroposterior, en la evaluación inicial de menores de 5 años de edad con neumonía, en lugares del país donde es posible el fácil acceso",
-              "fuente": "MinSalud",
-              "anio": "2014",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_recomienda_realizar_radiografia_simple_torax.png"
-            },
-            {
-              "titulo": "Punto de buena práctica: fácil acceso es resultado en 6 h",
-              "paginas": "31",
-              "texto": "Se sugiere considerar como fácil acceso a la radiografía, la posibilidad de disponer del resultado de una radiografía simple del tórax en proyección anteroposterior en las siguientes 6 horas",
-              "fuente": "MinSalud",
-              "anio": "2014",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_sugiere_considerar_como_facil_acceso.png"
-            },
-            {
-              "titulo": "Recomendación 5: radiografía en toda neumonía grave",
-              "paginas": "31",
-              "texto": "Se recomienda realizar una radiografía simple del tórax solo en proyección anteroposterior, en la evaluación inicial de todos los casos de menores de 5 años de edad con neumonía grave",
-              "fuente": "MinSalud",
-              "anio": "2014",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_recomienda_realizar_radiografia_simple_torax_2.png"
-            },
-            {
-              "titulo": "Recomendación 5: radiografía de control a las 72 h",
-              "paginas": "31",
-              "texto": "para el control o seguimiento de menores de 5 años de edad con neumonía si a la 72 horas persiste la fiebre y la respiración rápida, tenga una consolidación previa o no.",
-              "fuente": "MinSalud",
-              "anio": "2014",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_control_seguimiento_menores_5_anos.png"
-            },
-            {
-              "titulo": "Recomendación 5: sin radiografía en la bronquiolitis",
-              "paginas": "31",
-              "texto": "No se recomienda realizar una radiografía simple del tórax en la evaluación inicial de menores de 2 años de edad con bronquiolitis.",
-              "fuente": "MinSalud",
-              "anio": "2014",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-              "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_no_recomienda_realizar_radiografia_simple.png"
-            }
-          ]
         }
       ],
       "referencias": [
@@ -2199,17 +2225,26 @@
           "anio": "2024",
           "url": "https://www.who.int/publications/i/item/9789240103412",
           "cita": "OMS. Guideline on management of pneumonia and diarrhoea in children up to 10 years of age. Ginebra: OMS; 2024."
+        },
+        {
+          "titulo": "Neumonía: control a los 2 días",
+          "paginas": "92",
+          "texto": "Give appropriate antibiotic for 5 days — Soothe the throat and relieve cough with a safe remedy — Advise the mother when to return immediately — Follow up in 2 days",
+          "fuente": "OMS (Pocket book)",
+          "anio": "2005",
+          "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+          "cita": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005."
         }
       ]
     },
     "seguimiento_neumonia": {
       "tipo": "pregunta",
-      "titulo": "Control a las 72 h",
+      "titulo": "Control de la neumonía",
       "texto": "- Fracaso: aparecen signos de peligro, tiraje, cianosis o estridor en las primeras **72 h**.\n- Siguen la fiebre y la respiración rápida a las **72 h**: radiografía AP de control.\n- Mejora: completar los **5 días**.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
-      "pie_nodo": "¿Cómo está a las **72 h**?",
+      "pie_nodo": "¿Cómo va en las primeras **72 h**: mejor, igual o peor?",
       "opciones": [
         {
           "texto": "Mejora: completar y alta",
@@ -2217,7 +2252,12 @@
           "color": "verde"
         },
         {
-          "texto": "Signos de peligro, tiraje, cianosis o estridor",
+          "texto": "Siguen la fiebre y la respiración rápida: radiografía de control",
+          "siguiente_nodo": "seg_neumonia_persiste",
+          "color": "naranja"
+        },
+        {
+          "texto": "Empeora (peligro, tiraje, cianosis, estridor): fracaso",
           "siguiente_nodo": "trat_neumonia_falla",
           "color": "rojo"
         }
@@ -2227,7 +2267,7 @@
           "recurso": "neumo_tiraje_subcostal.gif",
           "titulo": "Tiraje subcostal",
           "descripcion": "La parte baja del tórax se hunde al inspirar; el tiraje intercostal solo no cuenta.",
-          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde mientras el abdomen sale. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
+          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde; es signo de gravedad. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
           "en_texto": "tiraje",
           "referencias": [
             {
@@ -2354,118 +2394,143 @@
         }
       ]
     },
-    "trat_neumonia_falla": {
+    "diag_no_neumonia": {
       "tipo": "resultado",
-      "estilo": "peligro",
-      "titulo": "Fracaso de la amoxicilina: neumonía grave",
-      "texto": "- Clasificar como neumonía grave y remitir a mayor complejidad.\n- Amoxicilina con ácido clavulánico a dosis alta (**90 mg/kg/día** de amoxicilina) durante **5 días**.",
-      "farmacos": [
+      "estilo": "exito",
+      "titulo": "Tos o resfriado: no es neumonía",
+      "texto": "- Sin respiración rápida, tiraje ni signos de peligro: infección viral que se cura sola, casi siempre en **<14 días**.\n- Sin antibiótico ni jarabes para la tos; nariz limpia con suero antes de comer.\n- Control a los **5 días** si no mejora. Enseñar los signos de alarma.",
+      "alertas": [
         {
-          "nombre": "Amoxicilina/clavulánico",
-          "dosis": "**90 mg/kg/día** de amoxicilina, **5 días**",
-          "pauta": "Fracaso de la amoxicilina en las primeras 72 h.",
-          "paginas": "33",
-          "por_kg": {
-            "cantidad": 90,
-            "unidad": "mg",
-            "periodo": "dia"
-          }
+          "titulo": "No dar",
+          "texto": "Antibióticos: no sirven ni previenen la neumonía. Tampoco antihistamínicos, antitusígenos, descongestionantes ni mucolíticos."
         }
       ],
-      "enlaces": [
+      "media": [
         {
-          "texto": "Neumonía grave: oxígeno y penicilina",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_neumonia_grave"
+          "recurso": "neumo_signos_alarma.png",
+          "titulo": "Signos de alarma: volver de inmediato",
+          "descripcion": "Lo que obliga a volver de inmediato y lo que se hace en casa.",
+          "info": "Los recuadros {#EF5454:rojos} son los signos para volver de inmediato: respiración rápida, difícil o ruidosa, tiraje, no puede beber, vomita todo, convulsiones, letargo, apnea o cianosis, o bebe mucho menos y moja menos pañales. El {#2FB36D:verde} es lo que se hace en casa.",
+          "en_texto": "signos de alarma",
+          "referencias": [
+            {
+              "titulo": "Signos de alarma: dificultad o respiración rápida y tiraje",
+              "paginas": "20",
+              "texto": "Dificultad para respirar o respiración rápida. Cualquier forma anormal de respiración debe ser atendida.",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_dificultad_respirar_respiracion_rapida_cualquier.png"
+            },
+            {
+              "titulo": "Ruidos raros al respirar",
+              "paginas": "20",
+              "texto": "Ruidos raros al respirar. Existen ruidos respiratorios que se escuchan a distancia y se producen cuando hay inflamación de las vías respiratorias",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_ruidos_raros_al_respirar_existen.png"
+            },
+            {
+              "titulo": "Signos de alarma: tiraje y ruidos",
+              "paginas": "20",
+              "texto": "Tiraje o hundimiento debajo de las costillas. Para identificarlo debe observarse al niño acostado boca arriba y con el pecho y el abdomen descubiertos",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_tiraje_hundimiento_debajo_costillas_identificarlo.png"
+            },
+            {
+              "titulo": "Signos generales de peligro para los padres",
+              "paginas": "20",
+              "texto": "Si el niño no puede beber ni tomar la leche materna, si vomita todo, ha tenido convulsiones, o está letárgico o inconsciente, significa que su estado es muy grave",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_si_nino_no_puede_beber.png"
+            },
+            {
+              "titulo": "NICE 1.6.1: signos de alarma para la casa",
+              "paginas": "22",
+              "texto": "worsening work of breathing (for example grunting, nasal flaring, marked chest recession) fluid intake is 50% to 75% of normal or no wet nappy for 12 hours apnoea or cyanosis",
+              "fuente": "NICE NG9",
+              "anio": "2021",
+              "url": "https://www.nice.org.uk/guidance/ng9",
+              "cita": "National Institute for Health and Care Excellence. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada 2021."
+            }
+          ]
         }
       ],
       "referencias": [
         {
-          "titulo": "Punto de buena práctica: fracaso de la amoxicilina",
-          "paginas": "33",
-          "texto": "y que presente aparición de signos de peligro, tiraje, cianosis o estridor en las siguientes 72 horas de inicio del tratamiento, clasificarlo como neumonía grave",
-          "fuente": "MinSalud",
-          "anio": "2014",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
-          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-          "imagen_evidencia": "evidencia_neumoped_pag33_presente_aparicion_signos_peligro_tiraje.png"
+          "titulo": "Tos o resfriado: sin antibiótico",
+          "paginas": "102",
+          "texto": "These are common, self-limited viral infections that require only supportive care. Antibiotics should not be given.",
+          "fuente": "OMS (Pocket book)",
+          "anio": "2005",
+          "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+          "cita": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005."
         },
         {
-          "titulo": "Fracaso: remitir y amoxicilina con clavulánico",
-          "paginas": "33",
-          "texto": "remitirlo a un lugar de mayor complejidad y usar amoxicilina con ácido clavulánico a dosis altas (90 mg / kg al día amoxicilina) por 5 días.",
+          "titulo": "Tos o resfriado: cuándo volver",
+          "paginas": "93",
+          "texto": "Home care — Soothe the throat and relieve cough with safe remedy — Advise the mother when to return — Follow up in 5 days if not improving",
+          "fuente": "OMS (Pocket book)",
+          "anio": "2005",
+          "url": "https://www.afro.who.int/sites/default/files/2017-06/pocket_booklet_hospital_care.pdf",
+          "cita": "OMS. Pocket book of hospital care for children: guidelines for the management of common illnesses with limited resources. Ginebra: OMS; 2005."
+        },
+        {
+          "titulo": "Recomendación 15: sin tratamientos sintomáticos",
+          "paginas": "34",
+          "texto": "No se recomienda el uso de tratamientos sintomáticos (antihistamínicos, antitusígenos, descongestionantes, mucolíticos) en menores de 2 años con bronquiolitis y en menores de 5 años de con neumonía.",
           "fuente": "MinSalud",
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
           "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
-          "imagen_evidencia": "evidencia_neumoped_pag33_remitirlo_lugar_mayor_complejidad_usar.png"
+          "imagen_evidencia": "evidencia_neumoped_pag34_no_recomienda_uso_tratamientos_sintomaticos.png"
+        },
+        {
+          "titulo": "Limpiar la nariz antes de comer; sin gotas medicadas",
+          "paginas": "21",
+          "texto": "La nariz se debe limpiar antes de alimentarlo. Mantener la nariz destapada le ayudará al niño a respirar mejor y le evitará dificultades con la alimentación.",
+          "fuente": "MinSalud (guía para padres)",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag21_padres_nariz_debe_limpiar_antes_alimentarlo.png"
+        },
+        {
+          "titulo": "Signos de alarma: dificultad o respiración rápida y tiraje",
+          "paginas": "20",
+          "texto": "Dificultad para respirar o respiración rápida. Cualquier forma anormal de respiración debe ser atendida.",
+          "fuente": "MinSalud (guía para padres)",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag20_padres_dificultad_respirar_respiracion_rapida_cualquier.png"
+        },
+        {
+          "titulo": "Signos generales de peligro para los padres",
+          "paginas": "20",
+          "texto": "Si el niño no puede beber ni tomar la leche materna, si vomita todo, ha tenido convulsiones, o está letárgico o inconsciente, significa que su estado es muy grave",
+          "fuente": "MinSalud (guía para padres)",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag20_padres_si_nino_no_puede_beber.png"
         }
       ]
     },
-    "trat_neumonia_grave": {
-      "tipo": "pregunta",
-      "estilo": "peligro",
-      "titulo": "Neumonía grave: hospitalizar",
-      "texto": "- Hospitalizar o remitir; con oxígeno si hay hipoxemia, signos de peligro o dificultad respiratoria.\n- Penicilina cristalina **250.000 U/kg/día** IV en **6 dosis**, **7 días**.\n- Remisión por oxígeno, tolera la vía oral y sin vía venosa: amoxicilina **90 mg/kg/día** durante el traslado.\n- Radiografía AP en todos.",
-      "farmacos": [
-        {
-          "nombre": "Penicilina cristalina",
-          "dosis": "**250.000 U/kg/día** IV en **6 dosis**, **7 días**",
-          "pauta": "Neumonía grave.",
-          "paginas": "33",
-          "por_kg": {
-            "cantidad": 250000,
-            "unidad": "UI",
-            "periodo": "dia",
-            "tomas": 6
-          }
-        },
-        {
-          "nombre": "Amoxicilina (traslado)",
-          "dosis": "**90 mg/kg/día** VO",
-          "pauta": "Mientras dura el traslado, si tolera la vía oral y no necesita vía venosa.",
-          "paginas": "33",
-          "por_kg": {
-            "cantidad": 90,
-            "unidad": "mg",
-            "periodo": "dia"
-          }
-        }
-      ],
-      "discrepancias": [
-        {
-          "asunto": "Tiraje subcostal sin signos de peligro",
-          "posturas": [
-            {
-              "fuente": "MinSalud 2014",
-              "dice": "Neumonía grave: penicilina cristalina IV hospitalizado",
-              "paginas": "33"
-            },
-            {
-              "fuente": "OMS 2024",
-              "dice": "Amoxicilina oral 5 días en casa, mejor que antibiótico inyectable hospitalizado (fuerte)",
-              "paginas": "12"
-            }
-          ],
-          "nota": "Con hipoxemia o signos de peligro, ambas hospitalizan."
-        }
-      ],
-      "evidencia": {
-        "texto": "GRADE: fuerte a favor"
-      },
-      "pie_nodo": "¿Tiene al menos **2 dosis** de vacuna contra Hib?",
-      "opciones": [
-        {
-          "texto": "No: ampicilina",
-          "siguiente_nodo": "trat_neumonia_grave_sin_hib",
-          "color": "naranja"
-        },
-        {
-          "texto": "Sí: oxígeno y remisión",
-          "siguiente_nodo": "nodo_hospital",
-          "color": "rojo"
-        }
-      ],
+    "seg_neumonia_persiste": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Siguen la fiebre y la respiración rápida a las 72 h",
+      "texto": "- Radiografía AP de control, haya o no consolidación previa.\n- La guía no dice qué hacer con el resultado: decidir con la radiografía y la clínica.\n- Si aparecen signos de peligro, tiraje, cianosis o estridor: fracaso, neumonía grave.",
       "media": [
         {
           "recurso": "neumo_radiografia_cuando.png",
@@ -2525,6 +2590,148 @@
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag31_no_recomienda_realizar_radiografia_simple.png"
             }
           ]
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Fracaso: neumonía grave",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_neumonia_falla"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Recomendación 5: radiografía de control a las 72 h",
+          "paginas": "31",
+          "texto": "para el control o seguimiento de menores de 5 años de edad con neumonía si a la 72 horas persiste la fiebre y la respiración rápida, tenga una consolidación previa o no.",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag31_control_seguimiento_menores_5_anos.png"
+        },
+        {
+          "titulo": "Punto de buena práctica: fracaso de la amoxicilina",
+          "paginas": "33",
+          "texto": "y que presente aparición de signos de peligro, tiraje, cianosis o estridor en las siguientes 72 horas de inicio del tratamiento, clasificarlo como neumonía grave",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag33_presente_aparicion_signos_peligro_tiraje.png"
+        }
+      ]
+    },
+    "trat_neumonia_falla": {
+      "tipo": "resultado",
+      "estilo": "peligro",
+      "titulo": "Fracaso de la amoxicilina: neumonía grave",
+      "texto": "- Clasificar como neumonía grave y remitir a mayor complejidad.\n- Cambiar a amoxicilina con ácido clavulánico a dosis alta (**90 mg/kg/día** de amoxicilina) durante **5 días**, desde la remisión.",
+      "farmacos": [
+        {
+          "nombre": "Amoxicilina/clavulánico",
+          "dosis": "**90 mg/kg/día** de amoxicilina, **5 días**",
+          "pauta": "Fracaso de la amoxicilina en las primeras 72 h.",
+          "paginas": "33",
+          "por_kg": {
+            "cantidad": 90,
+            "unidad": "mg",
+            "periodo": "dia"
+          }
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Oxígeno, ingreso y remisión",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_remision"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Punto de buena práctica: fracaso de la amoxicilina",
+          "paginas": "33",
+          "texto": "y que presente aparición de signos de peligro, tiraje, cianosis o estridor en las siguientes 72 horas de inicio del tratamiento, clasificarlo como neumonía grave",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag33_presente_aparicion_signos_peligro_tiraje.png"
+        },
+        {
+          "titulo": "Fracaso: remitir y amoxicilina con clavulánico",
+          "paginas": "33",
+          "texto": "remitirlo a un lugar de mayor complejidad y usar amoxicilina con ácido clavulánico a dosis altas (90 mg / kg al día amoxicilina) por 5 días.",
+          "fuente": "MinSalud",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Universidad de Antioquia. Guía de práctica clínica para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+          "imagen_evidencia": "evidencia_neumoped_pag33_remitirlo_lugar_mayor_complejidad_usar.png"
+        }
+      ]
+    },
+    "trat_neumonia_grave": {
+      "tipo": "pregunta",
+      "estilo": "peligro",
+      "titulo": "Neumonía grave: hospitalizar",
+      "texto": "- Hospitalizar o remitir; toda neumonía grave se remite con oxígeno.\n- Penicilina cristalina **250.000 U/kg/día** IV en **6 dosis**, **7 días**, si tiene **≥2 dosis** de vacuna Hib; si no, ampicilina.\n- Si se remite sólo por oxígeno, tolera la vía oral y no tiene vía venosa: amoxicilina **90 mg/kg/día** VO durante el traslado.\n- Radiografía AP en todos.",
+      "farmacos": [
+        {
+          "nombre": "Penicilina cristalina",
+          "dosis": "**250.000 U/kg/día** IV en **6 dosis**, **7 días**",
+          "pauta": "Neumonía grave.",
+          "paginas": "33",
+          "por_kg": {
+            "cantidad": 250000,
+            "unidad": "UI",
+            "periodo": "dia",
+            "tomas": 6
+          }
+        },
+        {
+          "nombre": "Amoxicilina (traslado)",
+          "dosis": "**90 mg/kg/día** VO",
+          "pauta": "Mientras dura el traslado, si tolera la vía oral y no necesita vía venosa.",
+          "paginas": "33",
+          "por_kg": {
+            "cantidad": 90,
+            "unidad": "mg",
+            "periodo": "dia"
+          }
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Tiraje subcostal sin signos de peligro",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2014",
+              "dice": "Neumonía grave: penicilina cristalina IV hospitalizado",
+              "paginas": "33"
+            },
+            {
+              "fuente": "OMS 2024",
+              "dice": "Amoxicilina oral 5 días en casa, mejor que antibiótico inyectable hospitalizado (fuerte)",
+              "paginas": "12"
+            }
+          ],
+          "nota": "Con hipoxemia o signos de peligro, ambas hospitalizan."
+        }
+      ],
+      "evidencia": {
+        "texto": "GRADE: fuerte a favor"
+      },
+      "pie_nodo": "¿Tiene **≥2 dosis** de vacuna contra Haemophilus influenzae tipo b (Hib)?",
+      "opciones": [
+        {
+          "texto": "Sí: penicilina; oxígeno y remisión",
+          "siguiente_nodo": "nodo_hospital",
+          "color": "rojo"
+        },
+        {
+          "texto": "No: ampicilina",
+          "siguiente_nodo": "trat_neumonia_grave_sin_hib",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -2600,14 +2807,14 @@
       ]
     },
     "trat_neumonia_grave_sin_hib": {
-      "tipo": "resultado",
+      "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Neumonía grave sin vacuna Hib: ampicilina",
-      "texto": "- Sin al menos **2 dosis** de vacuna contra Haemophilus influenzae tipo b.\n- Ampicilina **200 mg/kg/día** IV en **4 dosis**, **7 días**, en lugar de la penicilina.",
+      "texto": "- Menos de **2 dosis** de vacuna Hib: ampicilina **200 mg/kg/día** en **4 dosis**, **7 días**, en lugar de la penicilina.\n- Oxígeno y remisión como en toda neumonía grave.",
       "farmacos": [
         {
           "nombre": "Ampicilina",
-          "dosis": "**200 mg/kg/día** IV en **4 dosis**, **7 días**",
+          "dosis": "**200 mg/kg/día** en **4 dosis**, **7 días**",
           "pauta": "Neumonía grave sin 2 dosis de vacuna Hib.",
           "paginas": "33",
           "por_kg": {
@@ -2618,11 +2825,12 @@
           }
         }
       ],
-      "enlaces": [
+      "pie_nodo": "¿Qué sigue?",
+      "opciones": [
         {
           "texto": "Oxígeno, ingreso y remisión",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "seg_remision"
+          "siguiente_nodo": "nodo_hospital",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -2648,7 +2856,7 @@
           "recurso": "neumo_signos_alarma.png",
           "titulo": "Signos de alarma: volver de inmediato",
           "descripcion": "Lo que obliga a volver de inmediato y lo que se hace en casa.",
-          "info": "Los recuadros {#EF5454:rojos} son los signos para volver de inmediato: respiración rápida o difícil, tiraje, no puede beber, vomita todo, convulsiones, letargo, apnea o cianosis, o menos pañales mojados. El {#2FB36D:verde} es lo que se hace en casa.",
+          "info": "Los recuadros {#EF5454:rojos} son los signos para volver de inmediato: respiración rápida, difícil o ruidosa, tiraje, no puede beber, vomita todo, convulsiones, letargo, apnea o cianosis, o bebe mucho menos y moja menos pañales. El {#2FB36D:verde} es lo que se hace en casa.",
           "en_texto": "signos de alarma",
           "referencias": [
             {
@@ -2660,6 +2868,16 @@
               "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
               "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_dificultad_respirar_respiracion_rapida_cualquier.png"
+            },
+            {
+              "titulo": "Ruidos raros al respirar",
+              "paginas": "20",
+              "texto": "Ruidos raros al respirar. Existen ruidos respiratorios que se escuchan a distancia y se producen cuando hay inflamación de las vías respiratorias",
+              "fuente": "MinSalud (guía para padres)",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-neumonia-ninos-menores-2-anos.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Guía de padres y cuidadores: neumonía en niños y niñas menores de 5 años y bronquiolitis en menores de 2 años. Guía No. 42. Bogotá: MinSalud; 2014.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/neumoped/evidencia_neumoped_pag20_padres_ruidos_raros_al_respirar_existen.png"
             },
             {
               "titulo": "Signos de alarma: tiraje y ruidos",
@@ -2691,6 +2909,13 @@
               "cita": "National Institute for Health and Care Excellence. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada 2021."
             }
           ]
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Prevención en casa",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_prevencion"
         }
       ],
       "referencias": [
@@ -2793,7 +3018,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Hospitalizar o remitir",
-      "texto": "- Remitir con oxígeno a todo niño grave, con signos de peligro, dificultad respiratoria o choque.\n- Saturación limítrofe (**1 %** bajo el límite): decidir por AIEPI, la edad, lo social y la fase de la enfermedad.\n- Urgencia (NICE): apnea, aspecto grave, quejido, tiraje marcado, frecuencia **>70/min** o cianosis central.",
+      "texto": "- Remitir con oxígeno a todo niño grave, con signos de peligro, dificultad respiratoria o choque, o tras una maniobra de reanimación.\n- Saturación limítrofe (en el límite o hasta **1 %** por debajo): decidir por AIEPI, la edad, lo social y la fase de la enfermedad.\n- Remitir de urgencia (NICE, bronquiolitis): apnea, aspecto grave, quejido, tiraje marcado, frecuencia **>70/min** o cianosis central.",
       "checklist": {
         "titulo": "Hospitalizar o remitir",
         "items": [
@@ -2802,7 +3027,7 @@
           "Signo general de peligro",
           "Bronquiolitis de alto riesgo (BAR)",
           "Cuidador sin capacidad o lejos del servicio de salud",
-          "Bronquiolitis: bebe 50-75 % de lo habitual o deshidratación clínica (NICE)"
+          "Considerar (NICE): bronquiolitis que bebe sólo el 50-75 % de lo habitual o con deshidratación clínica"
         ]
       },
       "media": [
@@ -2810,7 +3035,7 @@
           "recurso": "neumo_tiraje_subcostal.gif",
           "titulo": "Tiraje subcostal",
           "descripcion": "La parte baja del tórax se hunde al inspirar; el tiraje intercostal solo no cuenta.",
-          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde mientras el abdomen sale. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
+          "info": "Con el pecho descubierto, mirar al inspirar: en el tiraje, {#EF5454:la parte baja del tórax} se hunde; es signo de gravedad. Si sólo se hunden {#F2A23A:los espacios entre las costillas} o encima de la clavícula, no es tiraje subcostal.",
           "en_texto": "tiraje",
           "referencias": [
             {
@@ -3025,39 +3250,6 @@
           ]
         }
       ],
-      "tabla": {
-        "titulo": "Hipoxemia según la altitud",
-        "columnas": [
-          "Altitud",
-          "Hipoxemia si"
-        ],
-        "filas": [
-          [
-            "0-1500 msnm",
-            "**≤94 %**"
-          ],
-          [
-            "1501-2000 msnm",
-            "**≤92 %**"
-          ],
-          [
-            "2001-2500 msnm",
-            "**≤90 %**"
-          ],
-          [
-            "2501-3000 msnm",
-            "**≤88 %**"
-          ],
-          [
-            "3001-3500 msnm",
-            "**≤85 %**"
-          ],
-          [
-            "3501-4000 msnm",
-            "**≤83 %**"
-          ]
-        ]
-      },
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/saturacion_altitud.json",
         "etiqueta": "¿Hipoxemia para esta altitud?",
@@ -3087,7 +3279,7 @@
       "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
-          "texto": "Prevenir que empeore",
+          "texto": "Prevención en casa",
           "siguiente_nodo": "seg_prevencion"
         }
       ],
@@ -3156,16 +3348,21 @@
     "seg_prevencion": {
       "tipo": "resultado",
       "estilo": "exito",
-      "titulo": "Prevenir que empeore",
+      "titulo": "Prevención en casa",
       "texto": "- Desaconsejar el tabaco en la familia.\n- Advertir del riesgo mayor en las épocas de lluvia de cada región.\n- En casa mientras dure la enfermedad, sin guardería, para no contagiar.",
       "evidencia": {
-        "texto": "GRADE: fuerte a favor"
+        "texto": "GRADE: fuerte, calidad baja (tabaco); el resto, buena práctica"
       },
       "enlaces": [
         {
-          "texto": "Signos de alarma para la casa",
+          "texto": "Alta de la bronquiolitis",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "alta_bronquiolitis"
+        },
+        {
+          "texto": "Alta de la neumonía",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "alta_neumonia"
         }
       ],
       "referencias": [

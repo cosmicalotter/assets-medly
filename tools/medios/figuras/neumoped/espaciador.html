@@ -21,9 +21,9 @@ const etiquetas = `<text x="196" y="40" font-size="15" font-weight="700" fill="$
 const linea = (() => {
   const x0 = 50, x1 = 590, y = 262;
   const X = (m) => x0 + ((x1 - x0) * m) / 60;
-  const marcas = [0, 10, 20, 30, 40, 50].map((m) => `<circle cx="${X(m)}" cy="${y}" r="10" fill="${AZUL}"/><text x="${X(m)}" y="${y + 30}" text-anchor="middle" font-size="14" fill="#475569">${m} min</text>`).join("");
-  return `<path d="M${x0} ${y} H${x1}" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>${marcas}
-    <text x="${X(25)}" y="${y - 22}" text-anchor="middle" font-size="16" font-weight="800" fill="${AZUL}">200 mcg cada 10 min</text>
+  const marcas = [0, 10, 20, 30, 40, 50].map((m) => `<path d="M${X(m)} ${y - 9} v18" stroke="#94A3B8" stroke-width="3"/><text x="${X(m)}" y="${y + 30}" text-anchor="middle" font-size="14" fill="#475569">${m} min</text>`).join("");
+  return `<path d="M${x0} ${y} H${X(60)}" stroke="${tinte(AZUL, 45)}" stroke-width="10" stroke-linecap="round"/>${marcas}
+    <text x="${X(25)}" y="${y - 22}" text-anchor="middle" font-size="16" font-weight="800" fill="${AZUL}">200 mcg cada 10 min hasta evaluar</text>
     <path d="M${X(60)} ${y - 26} v40" stroke="${VERDE}" stroke-width="5" stroke-linecap="round"/>
     <text x="${X(60)}" y="${y + 36}" text-anchor="middle" font-size="15" font-weight="800" fill="${VERDE}">evaluar ≤60 min</text>`;
 })();

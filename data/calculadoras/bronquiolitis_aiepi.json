@@ -2,9 +2,9 @@
   "titulo": "Bronquiolitis: clasificación AIEPI (GPC 2014)",
   "descripcion": "Separa la bronquiolitis que puede tratarse en casa de la grave o de alto riesgo, que se hospitaliza o se remite, en menores de 2 años con un primer episodio de sibilancias tras un cuadro gripal. Usa los criterios AIEPI y el concepto de bronquiolitis de alto riesgo de la guía colombiana de 2014 (Guía No. 42).",
   "instrucciones": "Contar la frecuencia respiratoria 1 minuto con el niño tranquilo. La hipoxemia se juzga por la altitud del sitio (calculadora aparte). Basta un criterio para que no sea leve.",
-  "limitaciones": "Sólo para el primer episodio sibilante en menores de 2 años. Con episodios previos o recurrentes, considerar asma. Un lactante tóxico (letárgico, pálido, moteado) obliga a buscar otro diagnóstico.",
+  "limitaciones": "Sólo para el primer episodio sibilante en menores de 2 años. Con episodios previos o recurrentes, considerar asma. Un lactante tóxico (somnoliento, letárgico, irritable, pálido, moteado, taquicárdico) obliga a buscar otro diagnóstico.",
   "tipoCalculo": "formula",
-  "formula": "2 - (1 - (1 - g0) * (1 - ap) * (1 - ti) * (1 - hx) * (1 - pm) * (1 - br) * (1 - (g1 * (fr_puntos * (fr_puntos - 1) / 2) + g2 * (fr_puntos * (3 - fr_puntos) / 2)))) - 1",
+  "formula": "2 - (1 - (1 - g0) * (1 - pg) * (1 - ap) * (1 - ti) * (1 - hx) * (1 - pm) * (1 - br) * (1 - (g1 * (fr_puntos * (fr_puntos - 1) / 2) + g2 * (fr_puntos * (3 - fr_puntos) / 2)))) - 1",
   "mostrarPuntaje": false,
   "prefijoResultado": "Clasificación",
   "referencias": [
@@ -12,7 +12,7 @@
       "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 2: definición de bronquiolitis.",
       "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
       "paginas": "30",
-      "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal, no tiene respiración rápida, sin apneas"
+      "texto": "Menor de 2 años de edad con: un primer episodio sibilante precedido de cuadro gripal de hace 2 o 3 días y no tiene tiraje subcostal"
     },
     {
       "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Recomendación 2 (continuación).",
@@ -25,6 +25,12 @@
       "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
       "paginas": "30",
       "texto": "Este incluye los menores que tengan las siguientes características: <2 meses, prematuridad (definida por peso <2000 gramos al nacer) en <6 meses, enfermedades congénitas cardiovasculares y repercusión clínica, displasia broncopulmonar, fibrosis quística"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Punto de buena práctica: remitir con oxígeno.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-neumonia-bronquiolitis.pdf",
+      "paginas": "32",
+      "texto": "todo menor con clasificaciones graves, con signos de peligro, con problemas respiratorios o cuadros de choque o enfermedades clasificadas como enfermedad muy grave"
     },
     {
       "titulo": "Ministerio de Salud y Protección Social, Universidad de Antioquia. GPC para la evaluación del riesgo y manejo inicial de la neumonía en niños y niñas menores de 5 años y bronquiolitis en niños y niñas menores de 2 años. Guía No. 42. Bogotá, 2014. Punto de buena práctica: criterios de remisión.",
@@ -61,7 +67,7 @@
                 "g1": 0,
                 "g2": 0
               },
-              "detalle": "Bronquiolitis de alto riesgo"
+              "detalle": "No es leve; <2 meses: alto riesgo (BAR)"
             },
             {
               "label": "3 a 11 meses",
@@ -84,6 +90,28 @@
               "detalle": "Respiración rápida: ≥40/min"
             }
           ]
+        },
+        {
+          "id": "peligro",
+          "tipo": "opciones",
+          "label": "Signo general de peligro",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "pg": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "pg": 1
+              }
+            }
+          ],
+          "ayuda": "No puede beber ni tomar el pecho, vomita todo, ha convulsionado, o está letárgico o inconsciente."
         },
         {
           "id": "apneas",
@@ -175,12 +203,12 @@
               }
             }
           ],
-          "ayuda": "≤94 % hasta 1500 msnm; ≤92 % de 1501 a 2000; ≤90 % de 2001 a 2500; ≤88 % de 2501 a 3000."
+          "ayuda": "≤94 % hasta 1500 msnm; ≤92 % de 1501 a 2000; ≤90 % de 2001 a 2500; ≤88 % de 2501 a 3000; ≤85 % de 3001 a 3500; ≤83 % de 3501 a 4000."
         },
         {
           "id": "prematuro",
           "tipo": "opciones",
-          "label": "Prematuro (<2.000 g al nacer) y menor de 6 meses",
+          "label": "Prematuro y menor de 6 meses",
           "opciones": [
             {
               "label": "No",
@@ -196,7 +224,8 @@
                 "pm": 1
               }
             }
-          ]
+          ],
+          "ayuda": "Cualquier prematuridad. Con <2000 g al nacer es, además, de alto riesgo (BAR)."
         },
         {
           "id": "bar",
@@ -218,7 +247,7 @@
               }
             }
           ],
-          "ayuda": "Cardiopatía con repercusión, displasia broncopulmonar, fibrosis quística, malformación de la vía aérea inferior, inmunodeficiencia, trasplante, enfermedad neurológica moderada o grave, síndrome de Down o desnutrición aguda grave."
+          "ayuda": "Cardiopatía con repercusión, displasia broncopulmonar, fibrosis quística, malformación de la vía aérea inferior, enfermedad congénita con compromiso pulmonar o cardiovascular, inmunodeficiencia, trasplante, enfermedad neurológica moderada o grave, síndrome de Down o desnutrición aguda grave."
         }
       ]
     }
@@ -230,12 +259,16 @@
       "categoria": "Grave o de alto riesgo",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Hospitalizar o remitir; oxígeno si hay hipoxemia. Sin antibiótico, broncodilatador ni esteroide.",
+      "approach": "Hospitalizar o remitir; con signos de peligro, remitir con oxígeno. Sin antibiótico, broncodilatador ni esteroide.",
       "si": {
         "alguno": [
           {
             "id": "grupo",
             "igual": 0
+          },
+          {
+            "id": "peligro",
+            "igual": 1
           },
           {
             "id": "apneas",
