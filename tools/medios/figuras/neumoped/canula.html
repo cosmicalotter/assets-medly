@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:14px;flex:1;min-height:0;align-items:center}
+  .esc{flex:1;min-width:0;height:100%}
+  .datos{width:280px;flex:none;display:flex;flex-direction:column;gap:9px}
+  .datos .caja{font-size:15px}
+  .datos .caja b{font-size:20px}
+</style></head><body>
+<script>
+// Cara de perfil con la cánula: las puntas entran sólo en los orificios nasales.
+const svg = `<svg class="esc" viewBox="0 0 360 330">
+  <path d="M110 40 C190 20 250 70 255 130 L285 168 L262 176 L268 200 C270 230 240 250 200 250 L150 300 L80 300 C70 230 40 200 40 140 C40 80 70 50 110 40 Z" fill="#FDE7D3" stroke="#9A5B32" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M62 60 C100 22 180 18 232 70" stroke="#7C5A3C" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <circle cx="210" cy="118" r="7" fill="#1F2A37"/>
+  <path d="M232 222 q14 6 26 -2" stroke="#9A5B32" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M30 175 C100 182 200 186 252 186" stroke="${AZUL}" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M252 186 L268 182" stroke="${AZUL}" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="268" cy="181" r="5" fill="${AZUL}"/>
+  <path d="M90 180 C90 230 150 270 200 300" stroke="${AZUL}" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <text x="300" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="${AZUL}">puntas</text>
+  <path d="M296 156 L274 176" stroke="${AZUL}" stroke-width="2.5"/>
+</svg>`;
+const datos = `<div class="datos">
+  <div class="caja" style="background:${tinte(TEAL, 14)};border:2px solid ${TEAL}">Lactante<br><b style="color:${TEAL}">0,25-0,5 L/min</b></div>
+  <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">Flujo máximo<br><b style="color:${ROJO}">1 L/min</b></div>
+  <div class="caja" style="background:#F3F4F6">Con cánula <b style="font-size:15px">no hace falta humidificar</b>. Si no basta, otro método según el equipo, la tolerancia y la concentración que necesita.</div>
+</div>`;
+lienzo("Oxígeno por cánula nasal", "El método preferido en la mayoría de los niños",
+  `<div class="fila">${svg}${datos}</div>`, FUENTE_GPC + ", p. 32.");
+</script></body></html>

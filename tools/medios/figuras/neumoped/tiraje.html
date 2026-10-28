@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:12px;flex:1;min-height:0}
+  .esc{flex:1;min-width:0}
+  .casos{display:flex;gap:8px}
+  .caso{flex:1;border-radius:10px;padding:7px 9px;font-size:13px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF}
+  .caso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+  .ic{width:190px;flex:none;align-self:center;border-radius:12px;border:2px solid var(--ambar);background:color-mix(in srgb,var(--ambar) 8%,white);padding:8px;font-size:12.5px;line-height:1.25;display:flex;flex-direction:column;gap:4px}
+</style></head><body>
+<script>
+// Dos respiraciones normales y dos con tiraje subcostal; al lado, fijo, el tiraje
+// intercostal que no cuenta.
+const CASOS = [
+  { nombre: "Normal", hundir: 0, color: VERDE, texto: "Al inspirar suben a la vez el tórax y el abdomen." },
+  { nombre: "Tiraje subcostal", hundir: 1, color: ROJO, texto: "Al inspirar, la <b>parte baja del tórax se hunde</b>: signo de gravedad." },
+];
+const RESP = 2, POR_RESP = 22;
+const POR_CASO = RESP * POR_RESP;
+
+function intercostal() {
+  // Tórax de frente: costillas pardas y, entre ellas, los espacios hundidos en ámbar.
+  const espacios = [0, 1, 2, 3].map((k) => `<path d="M30 ${30 + k * 17} q55 10 110 0 v9 q-55 10 -110 0 Z" fill="${AMBAR}" opacity=".75"/>`).join("");
+  const costillas = [0, 1, 2, 3, 4].map((k) => `<path d="M22 ${24 + k * 17} q63 -8 126 0" stroke="#9A5B32" stroke-width="6" fill="none" stroke-linecap="round"/>`).join("");
+  return `<svg viewBox="0 0 170 110" width="170" height="104"><rect x="8" y="6" width="154" height="98" rx="40" fill="#FDE7D3" stroke="#9A5B32" stroke-width="2.5"/>${espacios}${costillas}</svg>`;
+}
+
+window.cuadro = function (i, n) {
+  const k = Math.min(CASOS.length - 1, Math.floor(i / POR_CASO));
+  const c = CASOS[k];
+  const u = (i % POR_RESP) / POR_RESP;
+  const insp = u < 0.45 ? suave(u / 0.45) : 1 - suave((u - 0.45) / 0.55);
+  const p = perfil(insp, { hundir: c.hundir, w: 680, base: 300, marca: true });
+  const yHundido = p.yRef(392), yAbd = p.yRef(480);
+  const flechas = insp > 0.35 ? (c.hundir
+    ? `<path d="M392 ${yHundido - 62} v40 m-13 -15 l13 15 l13 -15" stroke="${ROJO}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+       <path d="M482 ${yAbd - 20} v-40 m-13 15 l13 -15 l13 15" stroke="${VERDE}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`
+    : `<path d="M270 ${p.yRef(270) - 20} v-40 m-13 15 l13 -15 l13 15" stroke="${VERDE}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+       <path d="M482 ${yAbd - 20} v-40 m-13 15 l13 -15 l13 15" stroke="${VERDE}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`) : "";
+  const svg = `<svg class="esc" viewBox="0 0 680 330">
+    <text x="340" y="26" text-anchor="middle" font-size="22" font-weight="800" fill="${c.color}">${c.nombre} · ${insp > 0.35 ? "inspira" : "espira"}</text>
+    <g transform="translate(0,6)">${p.svg}${flechas}
+      <text x="392" y="322" text-anchor="middle" font-size="14" fill="#6B7280">reborde costal</text></g>
+  </svg>`;
+  const ic = `<div class="ic">${intercostal()}<div><b>No es tiraje subcostal:</b> sólo se hunden los espacios entre las costillas o encima de la clavícula.</div></div>`;
+  const casos = CASOS.map((x, j) => `<div class="caso ${j === k ? "on" : ""}" style="--c:${x.color}"><b>${x.nombre}</b><br>${x.texto}</div>`).join("");
+  lienzo("Tiraje subcostal", "Acostado boca arriba, con el pecho y el abdomen descubiertos: mirar al inspirar",
+    `<div class="fila">${svg}${ic}</div><div class="casos">${casos}</div>`,
+    "Esquema. Fuente: OMS, Pocket book of hospital care for children 2005 (p. 93); guía para padres de la GPC 42, MinSalud 2014 (p. 20).");
+};
+window.cuadro(0, 1);
+</script></body></html>

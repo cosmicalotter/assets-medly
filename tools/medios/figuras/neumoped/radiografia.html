@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .filas{display:flex;flex-direction:column;gap:9px;flex:1;min-height:0}
+  .f{flex:1;display:flex;align-items:center;gap:12px;border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:6px 12px}
+  .f .q{width:190px;flex:none;font-size:17px;font-weight:800;color:var(--c)}
+  .f .r{flex:1;font-size:15px;line-height:1.3}
+  .f svg{flex:none}
+</style></head><body>
+<script>
+// Placa AP esquemática: con consolidación (mancha) o tachada si no se pide.
+const placa = (c, { mancha = false, no = false, reloj = "" } = {}) => `<svg width="74" height="62" viewBox="0 0 74 62">
+  <rect x="2" y="2" width="70" height="58" rx="6" fill="#1F2A37"/>
+  <path d="M35 10 C20 8 10 24 12 44 C14 54 30 54 33 46 Z" fill="#475569"/><path d="M39 10 C54 8 64 24 62 44 C60 54 44 54 41 46 Z" fill="#475569"/>
+  ${mancha ? `<ellipse cx="50" cy="38" rx="9" ry="8" fill="#E2E8F0" opacity=".85"/>` : ""}
+  ${no ? `<path d="M6 56 L68 6" stroke="${c}" stroke-width="5" stroke-linecap="round"/>` : ""}
+  ${reloj ? `<rect x="40" y="2" width="32" height="18" rx="5" fill="${c}"/><text x="56" y="15" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">${reloj}</text>` : ""}</svg>`;
+const FILAS = [
+  [NARANJA, "Neumonía", placa(NARANJA, { mancha: true, reloj: "≤6 h" }), "Radiografía <b>AP</b> si el resultado llega en <b>≤6 h</b>: con consolidación, amoxicilina."],
+  [ROJO, "Neumonía grave", placa(ROJO, { mancha: true }), "Radiografía <b>AP en todos</b>, en la evaluación inicial."],
+  [AMBAR, "Control a las 72 h", placa(AMBAR, { reloj: "72 h" }), "Si a las <b>72 h</b> siguen la fiebre y la respiración rápida, con o sin consolidación previa."],
+  [AZUL, "Bronquiolitis", placa(AZUL, { no: true }), "<b>No</b> pedirla en la evaluación inicial del menor de 2 años."],
+];
+lienzo("Radiografía de tórax: cuándo pedirla", "Sólo en proyección anteroposterior (AP)",
+  `<div class="filas">${FILAS.map(([c, q, s, r]) => `<div class="f" style="--c:${c}">${s}<div class="q">${q}</div><div class="r">${r}</div></div>`).join("")}</div>`,
+  FUENTE_GPC + ", p. 31.");
+</script></body></html>

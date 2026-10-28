@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .rej{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;flex:1;min-height:0}
+  .t{border-radius:14px;border:2px solid var(--rojo);background:color-mix(in srgb,var(--rojo) 6%,white);display:flex;align-items:center;gap:10px;padding:6px 10px;font-size:14.5px;line-height:1.25}
+  .t.casa{border-color:var(--verde);background:color-mix(in srgb,var(--verde) 10%,white)}
+  .t svg{flex:none}
+</style></head><body>
+<script>
+const I = (svg) => `<svg width="58" height="52" viewBox="0 0 64 56">${svg}</svg>`;
+const pulmones = `<path d="M30 10 v14 M34 10 v14" stroke="#1F2A37" stroke-width="3"/><path d="M28 22 C14 14 6 30 8 44 C10 52 26 50 28 42 Z" fill="${tinte(ROJO, 40)}" stroke="${ROJO}" stroke-width="2.5"/><path d="M36 22 C50 14 58 30 56 44 C54 52 38 50 36 42 Z" fill="${tinte(ROJO, 40)}" stroke="${ROJO}" stroke-width="2.5"/>`;
+const tiles = [
+  [I(`${pulmones}`), "Respira <b>rápido</b>, con dificultad o con <b>ruidos raros</b>"],
+  [I(`<path d="M6 20 q26 26 52 0" stroke="#9A5B32" stroke-width="4" fill="${tinte(ROJO, 15)}"/><path d="M32 8 v20 m-8 -8 l8 8 l8 -8" stroke="${ROJO}" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`), "<b>Tiraje:</b> se hunde debajo de las costillas"],
+  [I(`<rect x="24" y="16" width="16" height="34" rx="6" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2.5"/><rect x="25.5" y="32" width="13" height="16.5" rx="4" fill="#E0ECFF"/><path d="M27 16 v-4 h10 v4" fill="#FDE7D3" stroke="#94A3B8" stroke-width="2.5"/><path d="M29 12 q3 -8 6 0" fill="#FDE7D3" stroke="#94A3B8" stroke-width="2.5"/><path d="M8 50 L56 6" stroke="${ROJO}" stroke-width="4.5" stroke-linecap="round"/>`), "<b>No puede beber</b> ni tomar el pecho"],
+  [I(`${cara(24, 22, 16, { estado: "irritable" })}<path d="M28 40 q8 4 14 2 q8 -2 14 6" stroke="${VERDE}" stroke-width="5" fill="none" stroke-linecap="round"/>`), "<b>Vomita todo</b>"],
+  [I(`<path d="M34 4 L18 30 H32 L26 52 L46 22 H32 Z" fill="${ROJO}"/>`), "Ha tenido <b>convulsiones</b>"],
+  [I(cara(32, 28, 22, { estado: "letargico" })), "<b>Letárgico</b> o inconsciente"],
+  [I(`${cara(32, 28, 22)}<path d="M22 40 q10 6 20 0" stroke="${AZUL}" stroke-width="5" fill="none" stroke-linecap="round"/><text x="54" y="16" font-size="16" font-weight="800" fill="${ROJO}">!</text>`), "<b>Pausas</b> al respirar o labios <b>morados</b>"],
+  [I(`<path d="M12 14 h40 l-4 30 q-16 8 -32 0 Z" fill="#fff" stroke="#94A3B8" stroke-width="2.5"/><text x="32" y="38" text-anchor="middle" font-size="15" font-weight="800" fill="${ROJO}">12 h</text>`), "Bebe <b>mucho menos</b> de lo habitual o <b>sin pañal mojado en 12 h</b>"],
+  [I(`<path d="M10 30 L32 10 L54 30 V52 H10 Z" fill="${tinte(VERDE, 25)}" stroke="${VERDE}" stroke-width="3" stroke-linejoin="round"/><rect x="27" y="36" width="10" height="16" fill="${VERDE}"/>`), "En casa: nariz limpia con suero, <b>más pecho</b> y líquidos, <b>sin humo</b>"],
+];
+lienzo(
+  "Signos de alarma: volver de inmediato",
+  "Para explicar al cuidador antes del alta",
+  `<div class="rej">${tiles.map(([s, t], k) => `<div class="t ${k === 8 ? "casa" : ""}">${s}<div>${t}</div></div>`).join("")}</div>`,
+  "Esquema. Fuentes: guía para padres de la GPC 42, MinSalud 2014 (p. 19-21); NICE NG9 2021 (p. 22)."
+);
+</script></body></html>

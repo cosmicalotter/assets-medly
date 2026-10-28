@@ -43,9 +43,11 @@ def main() -> int:
             img = img.resize((args.ancho, round(img.height * args.ancho / img.width)), Image.LANCZOS)
         cuadros.append(img)
 
-    # La paleta sale de una muestra de todos los cuadros, no sólo del primero.
-    muestra = Image.new("RGB", (cuadros[0].width, cuadros[0].height * min(4, len(cuadros))))
-    for i, img in enumerate(cuadros[:: max(1, len(cuadros) // 4)][:4]):
+    # La paleta sale de una muestra de todos los cuadros, no sólo del primero; el
+    # último entra siempre, porque suele ser el cuadro del resultado.
+    elegidos = cuadros[:: max(1, len(cuadros) // 3)][:3] + [cuadros[-1]] if len(cuadros) > 4 else cuadros
+    muestra = Image.new("RGB", (cuadros[0].width, cuadros[0].height * len(elegidos)))
+    for i, img in enumerate(elegidos):
         muestra.paste(img, (0, i * img.height))
     paleta = muestra.quantize(colors=args.colores, method=Image.Quantize.MEDIANCUT)
     indexados = [img.quantize(palette=paleta, dither=Image.Dither.NONE) for img in cuadros]
