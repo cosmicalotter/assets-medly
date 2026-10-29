@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Oclusión de gran vaso en angio-TC: M1 derecha y basilar del mismo paciente (Bseiso et al., Oxf Med Case
+// Reports 2025, CC BY 4.0). Las flechas azul y amarilla son de los autores (colores medidos con
+// colores_imagen.py); los rótulos, de Empirica.
+const AZ = "#188ECB", AM = "#FFD742";
+lienzo("Oclusión de gran vaso (LVO) en la angio-TC", "El contraste se corta de golpe en el vaso proximal",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/angiotc_m1_bseiso_2025.jpg", w: 627, h: 366, vista: [60, 30, 420, 330], ancho: 324, alto: 300,
+      dibujo: (e) => rotulo(160, 140, "M1 derecha", AZ, e, "middle", 15),
+      pie: `<span class="r" style="color:${AZ}">Circulación anterior</span>: M1 derecha cortada; sus ramas distales, apenas llenas` }),
+    panel({ img: "fuentes/angiotc_basilar_bseiso_2025.jpg", w: 600, h: 269, vista: [150, 20, 290, 249], ancho: 324, alto: 300,
+      dibujo: (e) => rotulo(290, 215, "basilar", AM, e, "middle", 15),
+      pie: `<span class="r" style="color:#CA8A04">Circulación posterior</span>: la basilar no se llena de contraste` }),
+  ].join("")}</div>`,
+  "Imágenes: Bseiso et al., Oxf Med Case Reports 2025 (PMC12570003), CC BY 4.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2026, 4.7.2 y 4.7.3.");
+</script></body></html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// ASPECTS sobre una TC real normal (Kargiotis et al., Medicina 2025, Fig. 8 A-B, CC BY 4.0): las flechas
+// de colores son de los autores; los anillos, rótulos y pasos, de Empirica. Fuente: AHA/ASA 2026, Figura 2 y 4.7.2.
+const T = "#5EEAD4";
+const anillo = (x, y, txt, u, e, t, dx = 0, dy = -14) => (dx *= e * 1.5, dy *= e * 1.5, D.anillo(x, y, 9 * e, T, e, u, t ? Math.sin(t * 60) : 0) + D.rotulo(x + dx, y + dy, txt, T, e, { ancla: "middle", op: u, tam: 15 }));
+recorrido({
+  titulo: "ASPECTS: 10 regiones de la ACM",
+  subtitulo: "Dos cortes de una TC sin contraste; cada región con cambio temprano resta 1",
+  credito: "TC: Kargiotis et al., Medicina 2025 (PMC12471958), CC BY 4.0, editada por Empirica. Fuente: AHA/ASA 2026, Figura 2 y 4.7.2.",
+  escenas: [
+    {
+      img: "fuentes/tc_aspects_kargiotis_2025.jpg", w: 784, h: 664, vista: [0, 8, 258, 258],
+      tapas: ["6,8 38,8 38,38 6,38"],
+      pasos: [
+        { texto: "Corte de <b>ganglios basales</b>: 7 regiones" },
+        { texto: "<b>C</b> caudado, <b>L</b> lenticular, <b>CI</b> cápsula interna", vista: [95, 55, 165, 165],
+          dibujo: (u, e, t) => anillo(150, 100, "C", u, e, t, -16, 4) + anillo(174, 124, "L", u, e, t, -4, 22) + anillo(160, 152, "CI", u, e, t, -20, 6) },
+        { texto: "<b>I</b> ínsula", vista: [105, 55, 165, 165],
+          dibujo: (u, e, t) => anillo(193, 129, "I", u, e, t, 16, 4) },
+        { texto: "<b>M1</b>, <b>M2</b>, <b>M3</b>: corteza de la ACM, de delante atrás",
+          dibujo: (u, e, t) => anillo(203, 102, "M1", u, e, t, -22, 0) + anillo(205, 170, "M2", u, e, t, -22, 4) + anillo(203, 226, "M3", u, e, t, -22, 4) },
+      ],
+    },
+    {
+      img: "fuentes/tc_aspects_kargiotis_2025.jpg", w: 784, h: 664, vista: [262, 8, 258, 258],
+      tapas: ["280,8 310,8 310,38 280,38"],
+      pasos: [
+        { texto: "Corte <b>supraganglionar</b>: <b>M4</b>, <b>M5</b>, <b>M6</b>",
+          dibujo: (u, e, t) => anillo(452, 104, "M4", u, e, t, -22, 0) + anillo(467, 170, "M5", u, e, t, -22, 4) + anillo(456, 231, "M6", u, e, t, -22, 4) },
+        { texto: "Se parte de <b>10</b>: cada región con cambio isquémico temprano resta <b>1</b>", vista: [262, 52, 258, 258] },
+      ],
+    },
+  ],
+  final: `<span style="color:#5EEAD4">ACI o M1, 0-6 h:</span> ASPECTS <b>3-10</b>, NIHSS ≥6 y mRS previo 0-1 → trombectomía (Clase I).`,
+});
+</script></body></html>

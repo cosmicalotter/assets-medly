@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Imagen avanzada en ventana extendida: perfusión por TC con núcleo (rojo) y penumbra (amarillo) del
+// software automático (Eichel et al., J Med Life 2026, CC BY 4.0) y desajuste DWI-FLAIR en RM (Hirata et
+// al., Cureus 2024, CC BY 4.0; flechas blancas de los autores). Colores medidos con colores_imagen.py.
+const ROJO = "#FD0100", AMAR = "#F9FC15";
+lienzo("Perfusión y desajuste DWI-FLAIR", "Lo que ya está perdido frente a lo que aún se salva",
+  `<div class="paneles" style="gap:12px">
+    <div style="flex:none;width:330px">${panel({ img: "fuentes/perfusion_eichel_2026.png", w: 736, h: 338, vista: [78, 22, 250, 250], ancho: 330, alto: 330,
+      tapas: [[0, 300, 140, 38], [300, 0, 68, 338]],
+      dibujo: (e) => flecha(232, 112, 166, 128, ROJO, e) + rotulo(236, 106, "núcleo", ROJO, e, "start", 15) + flecha(232, 236, 166, 194, AMAR, e) + rotulo(236, 248, "penumbra", AMAR, e, "start", 15),
+      pie: `<b>Perfusión por TC</b>: <span class="r" style="color:#DC2626">núcleo</span> ya infartado y <span class="r" style="color:#A16207">penumbra</span> salvable alrededor` })}</div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
+      <div class="paneles" style="flex:none;gap:8px">${[
+        panel({ img: "fuentes/rm_dwi_flair_hirata_2024.jpg", w: 750, h: 233, vista: [6, 0, 176, 233], ancho: 158, alto: 210,
+          tapas: [[0, 200, 34, 33]], dibujo: (e) => rotulo(90, 20, "DWI", "#FFFFFF", e, "middle", 14) }),
+        panel({ img: "fuentes/rm_dwi_flair_hirata_2024.jpg", w: 750, h: 233, vista: [196, 0, 176, 233], ancho: 158, alto: 210,
+          tapas: [[190, 200, 34, 33]], dibujo: (e) => rotulo(282, 20, "FLAIR", "#FFFFFF", e, "middle", 14) }),
+      ].join("")}</div>
+      <div class="pie"><b>RM</b>: la lesión brilla en DWI (difusión) y el FLAIR sigue normal. Ese desajuste hace de reloj cuando no se sabe la hora.</div>
+    </div></div>`,
+  "Imágenes: Eichel et al., J Med Life 2026 (PMC13674049) y Hirata et al., Cureus 2024 (PMC10955183), CC BY 4.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2026, 3.2 y 4.6.3.");
+</script></body></html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Trombectomía: arteriografía de la carótida interna derecha antes (M1 ocluida: sólo se llena la cerebral
+// anterior) y después (recanalización completa, TICI 3), del mismo paciente adulto (Eichel et al., J Med
+// Life 2026, CC BY 4.0). Recortadas sin rótulos ni datos del equipo.
+const R = "#EF5454", V = "#2FB36D";
+lienzo("Trombectomía: antes y después", "Arteriografía de la carótida interna derecha, mismo paciente",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/dsa_oclusion_m1_eichel_2026.png", w: 355, h: 353, vista: [35, 25, 280, 295], ancho: 324, alto: 340,
+      dibujo: (e) => flecha(70, 250, 138, 200, R, e) + rotulo(80, 272, "M1 ocluida", R, e, "middle", 15),
+      pie: `<span class="r" style="color:${R}">Antes</span>: sólo se llena la cerebral anterior; la ACM no aparece` }),
+    panel({ img: "fuentes/dsa_tici3_eichel_2026.png", w: 355, h: 353, vista: [35, 25, 280, 295], ancho: 324, alto: 340,
+      dibujo: (e) => rotulo(95, 250, "ACM", V, e, "middle", 16) + rotulo(95, 270, "reperfundida", V, e, "middle", 15),
+      pie: `<span class="r" style="color:${V}">Después</span>: todo el territorio se vuelve a llenar (TICI 3)` }),
+  ].join("")}</div>`,
+  "Imágenes: Eichel et al., J Med Life 2026 (PMC13674049), CC BY 4.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2026, 4.7.4.");
+</script></body></html>

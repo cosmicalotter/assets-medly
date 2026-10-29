@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Oclusión de la ACM izquierda en el mismo paciente: TC sin contraste con la arteria hiperdensa y
+// angio-TC con el corte del contraste (Sop y Allen, Cureus 2022, CC BY 3.0). Se dejan las flechas
+// blancas de los autores; los rótulos son de Empirica.
+const A = "#FDE047";
+lienzo("TC y angio-TC: oclusión de la ACM izquierda", "Mismo paciente: el trombo se ve denso en la TC y corta el contraste en la angio-TC",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/tc_acm_hiperdensa_sop_2022.jpg", w: 750, h: 845, vista: [150, 170, 500, 500], ancho: 324, alto: 340,
+      dibujo: (e) => rotulo(505, 300, "ACM hiperdensa", A, e, "middle"),
+      pie: '<span class="r">TC sin contraste</span>: la ACM izquierda, más blanca que la derecha' }),
+    panel({ img: "fuentes/angiotc_m1_sop_2022.jpg", w: 750, h: 880, vista: [130, 160, 500, 500], ancho: 324, alto: 340,
+      dibujo: (e) => rotulo(530, 290, "M1 se corta", A, e, "middle"),
+      pie: '<span class="r">Angio-TC</span>: el contraste se detiene en M1; más allá, sin ramas' }),
+  ].join("")}</div>`,
+  "Imágenes: Sop y Allen, Cureus 2022 (PMC9763129), CC BY 3.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2026, 3.2 y 4.6.1.");
+</script></body></html>

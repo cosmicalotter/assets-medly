@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// PC-ASPECTS sobre una TC real normal (Kargiotis et al., Medicina 2025, Fig. 8 C-E, CC BY 4.0): los
+// números blancos son de los autores; los nombres de región, de Empirica. Fuente: AHA/ASA 2026, 4.7.3.
+const TAL = "#93C5FD", OCC = "#86EFAC", TRO = "#F9A8D4", CER = "#FDE047";
+const img = { img: "fuentes/tc_aspects_kargiotis_2025.jpg", w: 784, h: 664, ancho: 214, alto: 300 };
+lienzo("PC-ASPECTS: circulación posterior", "Cada región con cambio isquémico temprano resta lo que marca su número",
+  `<div class="paneles">${[
+    panel({ ...img, vista: [8, 330, 244, 320], tapas: [[6, 324, 34, 34]],
+      dibujo: (e) => rotulo(134, 478, "tálamos", TAL, e, "middle", 12) + rotulo(134, 638, "occipitales", OCC, e, "middle", 12),
+      pie: `<span class="r" style="color:#2563EB">Tálamos</span> y <span class="r" style="color:#16A34A">lóbulos occipitales</span>: <b>1</b> cada uno` }),
+    panel({ ...img, vista: [266, 330, 246, 320], tapas: [[265, 324, 34, 34]],
+      dibujo: (e) => rotulo(385, 545, "mesencéfalo", TRO, e, "middle", 12),
+      pie: `<span class="r" style="color:#DB2777">Mesencéfalo</span>: <b>2</b>` }),
+    panel({ ...img, vista: [529, 330, 248, 320], tapas: [[528, 324, 34, 34]],
+      dibujo: (e) => rotulo(650, 540, "protuberancia", TRO, e, "middle", 12) + rotulo(645, 618, "cerebelo", CER, e, "middle", 12),
+      pie: `<span class="r" style="color:#DB2777">Protuberancia</span>: <b>2</b>; <span class="r" style="color:#CA8A04">hemisferios cerebelosos</span>: <b>1</b> cada uno` }),
+  ].join("")}</div>`,
+  "TC: Kargiotis et al., Medicina 2025 (PMC12471958), CC BY 4.0, rotulada por Empirica. Fuente: AHA/ASA 2026, 4.7.3.");
+</script></body></html>

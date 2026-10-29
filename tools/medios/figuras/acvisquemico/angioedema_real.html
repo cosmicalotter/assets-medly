@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Angioedema orolingual tras alteplasa: edema de una hemilengua (Harris y Harter, Cureus 2018, CC BY 3.0;
+// la flecha negra es de los autores), con el riesgo para la vía aérea según la Tabla 6 de AHA/ASA 2026.
+const AMB = "#FDBA74";
+const tarjeta = (c, t, x) => `<div style="border-left:5px solid ${c};background:#F3F4F6;border-radius:10px;padding:9px 11px;font-size:13.5px;line-height:1.3"><b>${t}</b><br>${x}</div>`;
+lienzo("Angioedema orolingual tras la trombólisis", "Edema de media lengua tras alteplasa y qué zonas amenazan la vía aérea",
+  `<div class="paneles" style="gap:14px">
+    <div style="flex:none;width:340px">${panel({ img: "fuentes/angioedema_harris_2018.jpg", w: 800, h: 1421, vista: [90, 330, 620, 730], ancho: 340, alto: 400,
+      dibujo: (e) => rotulo(560, 455, "hemilengua", AMB, e, "middle", 15) + rotulo(560, 485, "hinchada", AMB, e, "middle", 15) })}</div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center">
+      ${tarjeta("#2FB36D", "Sólo labios y lengua anterior", "Puede no necesitar intubación.")}
+      ${tarjeta("#EF5454", "Laringe, paladar, suelo de la boca u orofaringe", "Si progresa en menos de <b>30 min</b>: alto riesgo de necesitar intubación.")}
+    </div></div>`,
+  "Imagen: Harris y Harter, Cureus 2018 (PMC6107327), CC BY 3.0, recortada y rotulada por Empirica. Fuente: AHA/ASA 2026, Tabla 6.");
+</script></body></html>
