@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="real.js"></script></head><body>
+<script>
+// Edema maligno de la ACM izquierda antes y después de la craniectomía descompresiva (Faizan et al.,
+// Oxf Med Case Reports 2025, CC BY 4.0). Las flechas azules y naranjas son de los autores (colores medidos
+// con colores_imagen.py); se tapan las letras de panel.
+const AZ = "#4973BF", NA = "#E77F38";
+lienzo("Edema cerebral maligno y craniectomía", "Infarto extenso de la ACM izquierda, mismo paciente",
+  `<div class="paneles">${[
+    panel({ img: "fuentes/tc_edema_maligno_faizan_2025.jpg", w: 666, h: 375, vista: [6, 12, 318, 340], ancho: 324, alto: 340,
+      tapas: [[0, 322, 52, 53]],
+      dibujo: (e) => rotulo(200, 300, "línea media desviada", AZ, e, "middle", 14),
+      pie: `<span class="r" style="color:${AZ}">Antes</span>: el edema empuja la línea media <b>6,8 mm</b> y borra el ventrículo` }),
+    panel({ img: "fuentes/tc_edema_maligno_faizan_2025.jpg", w: 666, h: 375, vista: [340, 12, 318, 340], ancho: 324, alto: 340,
+      tapas: [[334, 322, 52, 53]],
+      dibujo: (e) => rotulo(500, 300, "ventrículos reexpandidos", NA, e, "middle", 14),
+      pie: `<span class="r" style="color:#C2410C">Tras la craniectomía</span>: desviación de <b>1,5 mm</b>; sin el hueso, el edema tiene sitio` }),
+  ].join("")}</div>`,
+  "Imágenes: Faizan et al., Oxf Med Case Reports 2025 (PMC12296337), CC BY 4.0, recortadas y rotuladas por Empirica. Fuente: AHA/ASA 2026, 6.2 y 6.3.");
+</script></body></html>
