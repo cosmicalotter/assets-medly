@@ -33,4 +33,4 @@ function lienzo(titulo, subtitulo, cuerpo, fuente) {
 
 const tramo = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
 const lerp = (a, b, u) => a + (b - a) * u;
-const KDIGO = (que) => `Esquema propio. Fuente: KDIGO 2026, guía de LRA y ERA (borrador de revisión pública, marzo 2026)${que ? ", " + que : ""}.`;
+const KDIGO = (que) => `Esquema propio. Fuente: KDIGO 2026, guía de LRA y ERA (marzo 2026)${que ? ", " + que : ""}.`;
