@@ -4,7 +4,7 @@
 .ps{border-radius:12px;background:#F3F4F6;color:var(--suave);padding:8px 10px;font-size:13px;line-height:1.3;min-height:70px}
 .ps b{color:var(--tinta)} .ps .n{font-weight:800;font-size:12px;letter-spacing:.06em}
 .ps.on{background:color-mix(in srgb,var(--teal) 14%,white);color:var(--tinta);outline:2px solid var(--teal)} .ps.hecho{background:#EEF7F5;color:var(--tinta)}</style></head><body><script>
-const P=[["1 · EMPEZAR","<b>1 comprimido/día</b> de sal ferrosa, en ayunas"],["2 · 2-4 SEMANAS","Hb <b>↑ ≥10 g/L</b> a las 2 semanas o <b>≥20 g/L</b> a las 4"],["3 · SIN RESPUESTA","Revisar causas; pasar a hierro IV"],["4 · MANTENER","<b>3 meses</b> tras normalizar la Hb; hemograma cada <b>6 meses</b>"]];
+const P=[["1 · EMPEZAR","<b>1 comprimido/día</b> de sal ferrosa, en ayunas"],["2 · 2-4 SEMANAS","Hb <b>↑ ≥10 g/L</b> a las 2 semanas o <b>≥20 g/L</b> a las 4"],["3 · SIN RESPUESTA","Revisar causas; Hb <b>>95</b>: días alternos o maltol; si no, IV"],["4 · MANTENER","<b>3 meses</b> tras normalizar la Hb; hemograma cada <b>6 meses</b>"]];
 const X=(s)=>60+s/20*500, Y=(hb)=>250-(hb-70)/80*210;
 function curva(hasta){let p=[];for(let s=0;s<=hasta;s+=0.25){const hb=82+48*(1-Math.exp(-s/4.5));p.push(`${X(s).toFixed(1)},${Y(hb).toFixed(1)}`);}return p.join(" ");}
 window.cuadro=function(i,total){const t=total>1?i/(total-1):1;
@@ -21,7 +21,7 @@ window.cuadro=function(i,total){const t=total>1?i/(total-1):1;
   ${sinresp?`<polyline points="${X(0)},${Y(82)} ${X(2)},${Y(85)}" fill="none" stroke="#EF5454" stroke-width="4"/><text x="${X(2)+10}" y="${Y(85)}" font-size="15" font-weight="800" fill="#EF5454">↑ &lt;10 g/L: no responde</text>`
    :`<polyline points="${curva(hasta)}" fill="none" stroke="#18B9A9" stroke-width="4"/>`}
   ${hasta>=2&&!sinresp?`<text x="${X(2)+8}" y="${Y(97)}" font-size="13" font-weight="700" fill="#18B9A9">+10 g/L</text>`:""}
-  ${hasta>=12&&!sinresp?`<rect x="${X(10)}" y="${Y(140)}" width="${X(20)-X(10)}" height="22" rx="6" fill="#18B9A9" opacity=".15"/><text x="${X(15)}" y="${Y(140)+15}" text-anchor="middle" font-size="13" font-weight="700" fill="#0F766E">3 meses más tras normalizar</text>`:""}
+  ${hasta>=9&&!sinresp?`<rect x="${X(7)}" y="${Y(140)}" width="${X(20)-X(7)}" height="22" rx="6" fill="#18B9A9" opacity=".15"/><line x1="${X(7)}" x2="${X(7)}" y1="${Y(140)}" y2="250" stroke="#18B9A9" stroke-dasharray="4 4"/><text x="${X(13.5)}" y="${Y(140)+15}" text-anchor="middle" font-size="13" font-weight="700" fill="#0F766E">3 meses más tras normalizar</text>`:""}
  </svg>`;
  lienzo("Respuesta al hierro oral","Cuándo mirar la Hb y qué hacer si no sube.",
   `<div class="esc">${esc}</div><div class="pasos">${P.map(([n,s],k)=>`<div class="ps ${k===paso?"on":k<paso?"hecho":""}"><div class="n">${n}</div>${s}</div>`).join("")}</div>`,

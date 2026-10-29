@@ -1,7 +1,7 @@
 {
   "titulo": "Anemia por hemoglobina (OMS 2024)",
   "descripcion": "Dice si hay anemia y su gravedad según los cortes de hemoglobina de la OMS 2024 para adolescentes de 15 años en adelante y adultos hasta 65 años, y en el embarazo por trimestre. Ajusta antes la hemoglobina por la altitud de residencia y el tabaquismo, como pide la guía. Es el primer paso antes de estudiar la causa.",
-  "instrucciones": "Escribe la hemoglobina medida, la altitud donde vive o trabaja y si fuma. La calculadora resta el ajuste a la hemoglobina medida y la compara con el corte de su grupo.",
+  "instrucciones": "Escribe la hemoglobina medida, la altitud de residencia y si fuma. La calculadora resta el ajuste a la hemoglobina medida y la compara con el corte de su grupo.",
   "limitaciones": "Cortes basados en el percentil 5 de población sana; no aplican a niños menores de 15 años ni a mayores de 65 sin valorar. Los ajustes para más de 3000 m proceden sobre todo de Centroamérica y Sudamérica.",
   "tipoCalculo": "reglas",
   "mostrarPuntaje": false,
@@ -31,9 +31,23 @@
     {
       "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
       "url": "https://www.who.int/publications/i/item/9789240088542",
-      "paginas": "xiii",
-      "texto": "Data in adult men may suggest a higher haemoglobin cutoff (i.e. 135 g/L) but there was uncertainty in the evidence.",
+      "paginas": "xi",
+      "texto": "Adults, 15–65 years, nonpregnant women <120 Adults, 15–65 years, men <130 Pregnancy First trimester Second trimester Third trimester <110 <105 <110",
       "anio": "2024"
+    },
+    {
+      "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
+      "url": "https://www.who.int/publications/i/item/9789240088542",
+      "paginas": "xii",
+      "texto": "Adults, 15–65 years, nonpregnant women ≥120 110–119 80–109 <80 Adults, 15–65, years men ≥130 110–129 80–109 <80",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Cubelos Fernández N, Fernández Ramos C, Turégano Yedro M. Manejo de las anemias en atención primaria. SEMERGEN, 2025.",
+      "url": "https://semergen.es/files/docs/biblioteca/docConsultaRapida/2025/manejoAnemias.pdf",
+      "paginas": "9",
+      "anio": "2025",
+      "texto": "Establecer la anemia como diagnóstico final. Debemos indagar en las posibles causas subyacentes. Para ello, además de realizar una exhaustiva historia clínica"
     }
   ],
   "secciones": [
@@ -92,7 +106,7 @@
           "unidad": "m",
           "min": 0,
           "max": 4999.99,
-          "ayuda": "Metros sobre el nivel del mar donde vive o trabaja. Por debajo de 500 m no se ajusta.",
+          "ayuda": "Metros sobre el nivel del mar donde reside. Por debajo de 500 m no se ajusta.",
           "intervalos": [
             {
               "min": 4500,
@@ -172,7 +186,7 @@
       "categoria": "Anemia grave",
       "color": "rojo",
       "match_opcion_index": -1,
-      "approach": "Hb ajustada <80 g/L (<70 en el embarazo). Estudiar la causa sin demora; con síntomas, puede necesitar transfusión además del tratamiento de la causa.",
+      "approach": "Hb ajustada <80 g/L (<70 en el embarazo). Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
       "si": {
         "alguno": [
           {
@@ -262,7 +276,7 @@
       "categoria": "Anemia moderada",
       "color": "naranja",
       "match_opcion_index": -1,
-      "approach": "Estudiar la causa: VCM, reticulocitos y estudio del hierro (ferritina e IST).",
+      "approach": "Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
       "si": {
         "alguno": [
           {
@@ -357,7 +371,7 @@
       "categoria": "Anemia leve",
       "color": "amarillo",
       "match_opcion_index": -1,
-      "approach": "Estudiar la causa: VCM, reticulocitos y estudio del hierro (ferritina e IST).",
+      "approach": "Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
       "si": {
         "alguno": [
           {
@@ -452,7 +466,7 @@
       "categoria": "Sin anemia",
       "color": "verde",
       "match_opcion_index": -1,
-      "approach": "Hb ajustada por encima del corte de su grupo. Si hay síntomas de ferropenia, la ferritina puede estar baja sin anemia.",
+      "approach": "Hb ajustada igual o por encima del corte de su grupo: no hay anemia según la OMS.",
       "si": {
         "alguno": [
           {
