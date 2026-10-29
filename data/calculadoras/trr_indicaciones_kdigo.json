@@ -1,7 +1,7 @@
 {
   "titulo": "Indicaciones de terapia de reemplazo renal en la LRA (KDIGO 2026)",
   "descripcion": "Revisa en el adulto con lesión renal aguda (LRA) las indicaciones urgentes y relativas para iniciar terapia de reemplazo renal (TRR) y sus contraindicaciones relativas, según KDIGO 2026, que recomienda una estrategia de inicio diferido. Decide entre iniciar ya, decidir de forma compartida o diferir y vigilar.",
-  "instrucciones": "Las urgentes cuentan si no responden al tratamiento médico. Responde también las contraindicaciones relativas: si hay alguna, la decisión es compartida aunque exista una indicación.",
+  "instrucciones": "Hiperpotasemia, acidosis y acumulación de líquido cuentan si no responden al tratamiento médico; las demás urgentes, siempre. Responde también las contraindicaciones relativas: si hay alguna, la decisión es compartida.",
   "limitaciones": "Para adultos; en niños y neonatos los criterios difieren. No sustituye la valoración de nefrología ni la reevaluación diaria: las indicaciones cambian en horas.",
   "tipoCalculo": "formula",
   "formula": "(1 - (1 - futil) * (1 - paliativo) * (1 - norecupera)) + (1 - (1 - (1 - futil) * (1 - paliativo) * (1 - norecupera))) * ((1 - (1 - hiperk) * (1 - acidosis) * (1 - pulmon) * (1 - liquido) * (1 - uremia) * (1 - amonio) * (1 - toxico)) * 3 + (1 - (1 - (1 - hiperk) * (1 - acidosis) * (1 - pulmon) * (1 - liquido) * (1 - uremia) * (1 - amonio) * (1 - toxico))) * (1 - (1 - persistente) * (1 - organo) * (1 - agudeza) * (1 - solutos) * (1 - reserva) * (1 - nutricion)) * 2)",
@@ -13,6 +13,13 @@
       "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
       "paginas": "247",
       "texto": "A deferred RRT initiation strategy is based on the emergence of clinical indications for RRT (medically refractory metabolic or volume-related complications of AKI)",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "249",
+      "texto": "Severe hyperkalemia (K+ ≥6.0 mmol/l, rapidly rising, or cardiac toxicity) refractory to medical therapy",
       "anio": "2026"
     },
     {
@@ -44,7 +51,7 @@
         {
           "id": "hiperk",
           "tipo": "opciones",
-          "label": "K ≥6,0 mmol/L, en ascenso rápido o refractario",
+          "label": "Hiperpotasemia grave refractaria",
           "opciones": [
             {
               "label": "No",
@@ -54,7 +61,8 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "K ≥6,0 mmol/L, en ascenso rápido o con toxicidad cardiaca, que no responde al tratamiento médico."
         },
         {
           "id": "acidosis",
@@ -101,7 +109,8 @@
               "label": "Sí",
               "puntos": 1
             }
-          ]
+          ],
+          "ayuda": "Que no responde al tratamiento médico."
         },
         {
           "id": "uremia",

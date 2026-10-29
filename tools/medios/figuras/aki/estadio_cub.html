@@ -20,7 +20,7 @@ lienzo(
   "Cada componente se estadifica por separado y se informan juntos.",
   `<div class="g">
      <div></div><div class="h">Creatinina (C)</div><div class="h">Diuresis (U)</div><div class="h">Biomarcador (B)</div>
-     ${F.map(([n, c, u], i) => `<div class="e" style="background:${ESTADIO[n]}">${n}</div><div class="c"><span><b>C${n}</b>: ${c}</span></div><div class="c"><span><b>U${n}</b>: ${u}</span></div>${i === 0 ? `<div class="b"><div>${pill("#2FB36D", "B0")} negativo</div><div>${pill("#EF5454", "B1")} positivo: daño estructural, peor pronóstico</div><div style="color:var(--suave);font-size:12px">Sólo en su indicación validada</div></div>` : ""}`).join("")}
+     ${F.map(([n, c, u], i) => `<div class="e" style="background:${ESTADIO[n]}">${n}</div><div class="c"><span><b>C${n}</b>: ${c}</span></div><div class="c"><span><b>U${n}</b>: ${u}</span></div>${i === 0 ? `<div class="b"><div>${pill("#2FB36D", "B0")} negativo</div><div>${pill("#EF5454", "B1")} positivo: daño estructural, peor pronóstico</div><div><b>C0 U0 B1</b>: LRA sólo estructural</div><div style="color:var(--suave);font-size:12px">Sólo en su indicación validada</div></div>` : ""}`).join("")}
      <div class="ej">Ejemplo: <b>C1 U2 B1</b> → creatinina en estadio 1, diuresis en estadio 2 y biomarcador positivo. Diuresis por kg de <b>peso ideal</b>.</div>
    </div>`,
   KDIGO("tabla 6, p. 50")
