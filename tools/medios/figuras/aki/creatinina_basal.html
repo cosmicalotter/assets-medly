@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center}
+  .p{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;border-radius:14px;padding:10px 14px;background:#F7F8FA}
+  .n{width:40px;height:40px;border-radius:12px;color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+  .t{font-size:16px;font-weight:700;line-height:1.25}
+  .t small{display:block;font-weight:400;font-size:13px;color:var(--suave);margin-top:2px}
+  .no{font-size:12.5px;color:var(--suave);padding-left:56px;line-height:1}
+</style></head><body>
+<script>
+const P = [
+  ["#18B9A9", "Ambulatoria previa al ingreso", "La que refleja el estado estable: media, mediana o la más reciente de <b>8-365 días</b> antes."],
+  ["#4F8CF6", "La del ingreso", "Salvo que se sospeche LRA al ingreso (LRA comunitaria)."],
+  ["#7B6CF6", "La más baja del ingreso", "Incluida la posterior a la LRA, si no recibía TRR."],
+  ["#9CA3AF", "Estimada con CKD-EPI", "Suponiendo una TFG de <b>75 mL/min/1,73 m²</b>; puede sobre o infraestimar la LRA."],
+];
+lienzo(
+  "Creatinina basal: por orden",
+  "Se usa la primera disponible; si no la hay, se baja al siguiente escalón.",
+  `<div class="esc">${P.map(([c, t, s], i) => `${i ? '<div class="no">↓ si no hay</div>' : ""}<div class="p"><div class="n" style="background:${c}">${i + 1}</div><div class="t">${t}<small>${s}</small></div></div>`).join("")}</div>`,
+  KDIGO("figura 1 y p. 48-49")
+);
+</script></body></html>

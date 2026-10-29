@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .ps{border-radius:12px;background:#F3F4F6;color:var(--suave);padding:8px 10px;font-size:13px;line-height:1.3;min-height:74px}
+  .ps b{color:var(--tinta)} .ps .n{font-weight:800;font-size:12px;letter-spacing:.06em}
+  .ps.on{background:color-mix(in srgb,var(--teal) 14%,white);color:var(--tinta);outline:2px solid var(--teal)}
+  .ps.hecho{background:#EEF7F5;color:var(--tinta)}
+  .esc{flex:1;border:1px solid var(--linea);border-radius:16px;display:grid;place-items:center}
+</style></head><body>
+<script>
+// Cuatro escenas: candidato → dosis → 2 h de diuresis → lectura de dos casos.
+const PASOS = [
+  ["1 · CANDIDATO", "Estadio <b>1-2</b>, euvolemia o hipervolemia; sin hipovolemia ni obstrucción"],
+  ["2 · DOSIS", "Furosemida IV <b>1 mg/kg</b>; <b>1,5 mg/kg</b> si ya tomaba diurético de asa"],
+  ["3 · 2 HORAS", "Medir la orina de las <b>2 h</b> siguientes"],
+  ["4 · LECTURA", "<b>&lt;200 mL</b>: alto riesgo · <b>≥200 mL</b>: probable reversible"],
+];
+function bolsa(x, ml, maxml, color, rotulo) {
+  const h = 150, y0 = 40, alto = Math.min(1, ml / maxml) * h;
+  const linea = y0 + h - (200 / maxml) * h;
+  return `<g transform="translate(${x} 0)">
+    <rect x="0" y="${y0}" width="96" height="${h}" rx="18" fill="#FBFBF7" stroke="#9CA3AF" stroke-width="3"/>
+    <clipPath id="b${x}"><rect x="2" y="${y0 + 2}" width="92" height="${h - 4}" rx="16"/></clipPath>
+    <rect x="0" y="${y0 + h - alto}" width="96" height="${alto}" fill="var(--orina)" opacity=".85" clip-path="url(#b${x})"/>
+    <line x1="-8" x2="104" y1="${linea}" y2="${linea}" stroke="var(--tinta)" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="110" y="${linea + 5}" font-size="14" font-weight="700" fill="var(--tinta)">200 mL</text>
+    <text x="48" y="${y0 + h + 30}" text-anchor="middle" font-size="22" font-weight="800" fill="${color}">${Math.round(ml)} mL</text>
+    ${rotulo ? `<text x="48" y="${y0 + h + 54}" text-anchor="middle" font-size="15" font-weight="700" fill="${color}">${rotulo}</text>` : ""}
+    <path d="M48 ${y0} L48 ${y0 - 26}" stroke="#9CA3AF" stroke-width="5"/>
+  </g>`;
+}
+window.cuadro = function (i, total) {
+  const t = total > 1 ? i / (total - 1) : 1;
+  const paso = t < 0.2 ? 0 : t < 0.4 ? 1 : t < 0.75 ? 2 : 3;
+  const u = tramo(t, 0.4, 0.75);
+  let escena = "";
+  if (paso === 0) {
+    escena = `<text x="310" y="110" text-anchor="middle" font-size="22" font-weight="800" fill="var(--tinta)">¿Es candidato?</text>
+      ${["LRA estadio 1 o 2", "Euvolemia o hipervolemia", "Sin hipovolemia ni obstrucción", "Sin alergia a la furosemida"].map((s, k) =>
+        `<g transform="translate(150 ${140 + k * 34})"><rect width="22" height="22" rx="6" fill="var(--teal)"/><path d="M5 11 l5 5 l8 -10" stroke="#fff" stroke-width="3" fill="none"/><text x="34" y="17" font-size="17" fill="var(--tinta)">${s}</text></g>`).join("")}`;
+  } else if (paso === 1) {
+    escena = `<g transform="translate(140 70)"><rect x="0" y="40" width="200" height="56" rx="12" fill="#EEF2FF" stroke="var(--azul)" stroke-width="3"/>
+      <rect x="200" y="58" width="60" height="20" fill="var(--azul)"/><rect x="-30" y="52" width="30" height="32" rx="4" fill="#9CA3AF"/>
+      <text x="100" y="76" text-anchor="middle" font-size="20" font-weight="800" fill="var(--azul)">Furosemida IV</text></g>
+      <text x="310" y="230" text-anchor="middle" font-size="24" font-weight="800" fill="var(--tinta)">1 mg/kg · sin diurético previo</text>
+      <text x="310" y="262" text-anchor="middle" font-size="24" font-weight="800" fill="var(--naranja)">1,5 mg/kg · si ya lo tomaba</text>`;
+  } else if (paso === 2) {
+    const min = Math.round(u * 120);
+    escena = `${bolsa(110, 230 * u, 320, "var(--tinta)")}
+      <g transform="translate(380 70)"><circle cx="80" cy="80" r="70" fill="none" stroke="var(--linea)" stroke-width="12"/>
+      <circle cx="80" cy="80" r="70" fill="none" stroke="var(--teal)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${(440 * u).toFixed(1)} 440" transform="rotate(-90 80 80)"/>
+      <text x="80" y="90" text-anchor="middle" font-size="30" font-weight="800" fill="var(--tinta)">${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}</text></g>`;
+  } else {
+    escena = `${bolsa(110, 260, 320, "var(--verde)", "probable reversible")}${bolsa(370, 120, 320, "var(--rojo)", "alto riesgo: estadio 3 o TRR")}`;
+  }
+  lienzo(
+    "Prueba de estrés con furosemida",
+    "Pronóstico en la LRA estadio 1-2: riesgo de llegar a estadio 3 o TRR en 14 días.",
+    `<div class="esc"><svg width="620" height="300" viewBox="0 0 620 300">${escena}</svg></div>
+     <div class="pasos">${PASOS.map(([n, s], k) => `<div class="ps ${k === paso ? "on" : k < paso ? "hecho" : ""}"><div class="n">${n}</div>${s}</div>`).join("")}</div>`,
+    KDIGO("Rec 2.3.1, figura 7 y p. 86-87")
+  );
+};
+window.cuadro(39, 40);
+</script></body></html>

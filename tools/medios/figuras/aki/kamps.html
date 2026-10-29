@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .lista{display:flex;flex-direction:column;gap:7px;flex:1;justify-content:center}
+  .k{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;border-radius:14px;background:#F7F8FA;padding:8px 12px}
+  .l{width:48px;height:48px;border-radius:12px;color:#fff;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center}
+  .t{font-size:16px;font-weight:700}.t small{display:block;font-weight:400;font-size:13.5px;color:var(--suave);margin-top:2px}
+</style></head><body>
+<script>
+const K = [
+  ["K", "#18B9A9", "Función renal (<i>Kidney function</i>)", "Creatinina o cistatina C, análisis de orina y albuminuria"],
+  ["A", "#4F8CF6", "Educación (<i>Advocacy</i>)", "Qué es la LRA, qué esperar de la recuperación y cómo cuidarse"],
+  ["M", "#7B6CF6", "Medicación", "Revisar y conciliar; reiniciar lo indicado (IECA/ARA II)"],
+  ["P", "#F07F3C", "Presión arterial", "Medirla y llevarla a las metas de su guía"],
+  ["S", "#EF5454", "Días de enfermedad (<i>Sick day</i>)", "Qué fármacos parar si se deshidrata y cuándo reiniciarlos"],
+];
+lienzo(
+  "Tras la LRA: KAMPS",
+  "Lo que se revisa al alta y a los 3 meses.",
+  `<div class="lista">${K.map(([l, c, t, s]) => `<div class="k"><div class="l" style="background:${c}">${l}</div><div class="t">${t}<small>${s}</small></div></div>`).join("")}</div>`,
+  KDIGO("tabla 58, p. 329")
+);
+</script></body></html>

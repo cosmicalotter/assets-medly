@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:1}
+  .col{border-radius:14px;background:#F7F8FA;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+  .si{font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--suave)}
+  .md{font-size:19px;font-weight:800;line-height:1.2}
+  .ds{background:#fff;border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.35}
+  .nota{border-radius:12px;background:#F7F8FA;padding:8px 12px;font-size:13.5px;line-height:1.35}
+</style></head><body>
+<script>
+const C = [
+  ["#18B9A9", "INESTABLE", "TRR continua o diálisis peritoneal aguda", "Efluente <b>20-25 mL/kg/h</b>; con IMC <b>≥30</b>, por peso ideal o ajustado", "Peritoneal: Kt/V <b>2,2</b> semanal (<b>18-24 L/día</b>)"],
+  ["#7B6CF6", "LESIÓN CEREBRAL", "TRR continua", "Lesión cerebral aguda, hipertensión intracraneal o edema cerebral, o riesgo de tenerlos", "Pasar a intermitente cuando lo tolere y se haya resuelto el riesgo cerebral"],
+  ["#4F8CF6", "ESTABLE", "Intermitente o intermitente prolongada", "Kt/V <b>3,9</b> semanal", "La prolongada también vale en el inestable"],
+];
+lienzo(
+  "Modalidad y dosis de TRR",
+  "Elegir según la hemodinámica y el cerebro; revisar la dosis cada día.",
+  `<div class="fila">${C.map(([c, si, md, d1, d2]) => `<div class="col" style="border-top:5px solid ${c}"><div class="si">${si}</div><div class="md" style="color:${c}">${md}</div><div class="ds">${d1}</div><div class="ds">${d2}</div></div>`).join("")}</div>
+   <div class="nota">Anticoagulación de la continua: <b>citrato regional</b> si no está contraindicado. Sin hemofiltración de alto volumen en la sepsis.</div>`,
+  KDIGO("cap. 5")
+);
+</script></body></html>
