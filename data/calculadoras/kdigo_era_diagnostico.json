@@ -1,0 +1,198 @@
+{
+  "titulo": "Criterios de enfermedad renal aguda (KDIGO 2026)",
+  "descripcion": "Dice si un adulto o un niño sin criterios de lesión renal aguda (LRA) cumple la definición de enfermedad renal aguda (ERA) de KDIGO 2026: alteración funcional o estructural renal de 3 meses o menos. Separa la ERA sin LRA de la enfermedad renal crónica y de la ausencia de enfermedad.",
+  "instrucciones": "Úsala cuando no se cumplen criterios de LRA. Basta un criterio funcional o estructural; después indica si la alteración dura 3 meses o menos.",
+  "limitaciones": "El criterio de TFG <60 no se aplica a menores de 2 años. Sin pruebas previas, una ERC puede pasar por ERA: buscar creatinina o albuminuria antiguas.",
+  "tipoCalculo": "formula",
+  "formula": "(1 - (1 - tfg60) * (1 - tfg35) * (1 - cr50) * (1 - dano)) * (1 + duracion)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "55",
+      "texto": "is defined as the presence of any of the following functional or structural criteria in the appropriate clinical context with a duration ≤3 months (Table 9).",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "55",
+      "texto": "Patients with AKD may not meet the criteria for AKI because the GFR decline is not sufficient to fulfill criteria for AKI",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "58",
+      "texto": "Beyond 3 months, patients without resolution of AKD meet the criteria for CKD and should be described as having CKD and a history of AKD",
+      "anio": "2026"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "tfg60",
+          "tipo": "opciones",
+          "label": "TFG <60 mL/min/1,73 m²",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "No aplica a menores de 2 años."
+        },
+        {
+          "id": "tfg35",
+          "tipo": "opciones",
+          "label": "TFG ↓ ≥35 mL/min/1,73 m² desde la basal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "cr50",
+          "tipo": "opciones",
+          "label": "Creatinina ↑ >50 % sobre la basal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "dano",
+          "tipo": "opciones",
+          "label": "Marcador de daño renal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Lo más frecuente: albuminuria, hematuria o leucocituria."
+        },
+        {
+          "id": "duracion",
+          "tipo": "opciones",
+          "label": "¿Cuánto dura la alteración?",
+          "opciones": [
+            {
+              "label": "Más de 3 meses",
+              "puntos": 0
+            },
+            {
+              "label": "3 meses o menos",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "ERA sin LRA",
+      "color": "naranja",
+      "match_opcion_index": 0,
+      "approach": "Buscar y tratar la causa; reevaluar función y albuminuria antes de los 3 meses para ver si resuelve.",
+      "si": {
+        "todos": [
+          {
+            "alguno": [
+              {
+                "id": "tfg60",
+                "igual": 1
+              },
+              {
+                "id": "tfg35",
+                "igual": 1
+              },
+              {
+                "id": "cr50",
+                "igual": 1
+              },
+              {
+                "id": "dano",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "id": "duracion",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Más de 3 meses: ERC",
+      "color": "rojo",
+      "match_opcion_index": 1,
+      "approach": "Cumple criterios de ERC: estudiar y tratar como enfermedad renal crónica.",
+      "si": {
+        "todos": [
+          {
+            "alguno": [
+              {
+                "id": "tfg60",
+                "igual": 1
+              },
+              {
+                "id": "tfg35",
+                "igual": 1
+              },
+              {
+                "id": "cr50",
+                "igual": 1
+              },
+              {
+                "id": "dano",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "id": "duracion",
+            "igual": 0
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Ni LRA ni ERA",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Sin enfermedad renal aguda: vigilancia habitual y evitar nefrotóxicos si hay riesgo."
+    }
+  ]
+}

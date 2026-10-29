@@ -1,0 +1,161 @@
+{
+  "titulo": "Filtrado glomerular cinético (KeGFR, Chen)",
+  "descripcion": "Estima el filtrado glomerular cuando la creatinina está cambiando (lesión renal aguda o recuperación), con la fórmula cinética de Chen (2013): parte de una creatinina y un filtrado de estado estable y de dos creatininas seriadas. KDIGO 2026 la sugiere en adultos hospitalizados cuando la estimación cambia una decisión, como la dosis de un fármaco.",
+  "instrucciones": "Creatinina y TFG estables previas al episodio (TFG por CKD-EPI). Luego dos creatininas seguidas y las horas entre ellas. Usa 1,5 mg/dL/día como aumento máximo diario, el que propone Chen en adultos.",
+  "limitaciones": "Menos fiable si cambia la producción de creatinina (enfermo crítico, desnutrición), si oscila mucho el balance hídrico o si las creatininas son escasas o tardías. Validez incierta en niños. Apoya el juicio clínico; no lo sustituye.",
+  "tipoCalculo": "formula",
+  "formula": "(crbasal * tfgbasal / ((cr1 + cr2) / 2)) * (1 - (24 * (cr2 - cr1)) / (horas * 1.5))",
+  "prefijoResultado": "KeGFR",
+  "sufijoResultado": "mL/min/1,73 m²",
+  "decimales": 0,
+  "referencias": [
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "88",
+      "texto": "We suggest calculating kinetic estimated glomerular filtration rate (KeGFR) in hospitalized adults with or at risk of AKI when an estimate of GFR under non-steady-state conditions will affect clinical decision-making (2B).",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "90",
+      "texto": "ΔSCrMax/ΔTimeMax is the maximum theoretic change possible in SCr per day.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "91",
+      "texto": "KeGFR estimates have important limitations and may be less reliable when creatinine generation is changing (e.g., critical illness, malnutrition)",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "212",
+      "texto": "Dosing of drugs excreted by the kidneys should not be based on creatinine clearance or glomerular filtration rate (GFR) estimated using equations that assume a steady state",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Chen S. Retooling the creatinine clearance equation to estimate kinetic GFR when the plasma creatinine is changing acutely. J Am Soc Nephrol 2013;24(6):877-888.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23704286/",
+      "anio": "2013",
+      "texto": "The additional formula variables needed are any steady-state plasma creatinine, the corresponding eGFR by an empirical formula, and the maximum increase in creatinine per day if anuric."
+    },
+    {
+      "titulo": "Dumnicka P, Mazur-Laskowska M, Ceranowicz P, et al. Acute changes in serum creatinine and kinetic glomerular filtration rate estimation in early phase of acute pancreatitis. J Clin Med 2022;11(20):6159.",
+      "url": "https://doi.org/10.3390/jcm11206159",
+      "anio": "2022",
+      "texto": "For maxΔSCr, we used a value of 132.6 µmol/L (equal to 1.5 mg/dL as suggested by Chen [20] for adult patients)."
+    }
+  ],
+  "secciones": [
+    {
+      "nombre": "Estado estable (antes del episodio)",
+      "elementos": [
+        {
+          "id": "crbasal",
+          "tipo": "input_numero",
+          "label": "Creatinina estable",
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ],
+          "ayuda": "La basal: ambulatoria del último año o la más baja reciente sin LRA."
+        },
+        {
+          "id": "tfgbasal",
+          "tipo": "input_numero",
+          "label": "TFG con esa creatinina",
+          "unidad": "mL/min/1,73 m²",
+          "min": 1,
+          "max": 200,
+          "ayuda": "La TFG estimada (CKD-EPI) que corresponde a la creatinina estable."
+        }
+      ]
+    },
+    {
+      "nombre": "Creatininas seriadas",
+      "elementos": [
+        {
+          "id": "cr1",
+          "tipo": "input_numero",
+          "label": "Primera creatinina",
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ],
+          "ayuda": "La más antigua de las dos."
+        },
+        {
+          "id": "cr2",
+          "tipo": "input_numero",
+          "label": "Segunda creatinina",
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ],
+          "ayuda": "La más reciente."
+        },
+        {
+          "id": "horas",
+          "tipo": "input_numero",
+          "label": "Horas entre las dos",
+          "unidad": "h",
+          "min": 1,
+          "max": 168
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -1000000000,
+      "max": 14.99,
+      "categoria": "<15: filtrado muy bajo",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Dosificar con esta cifra y la tendencia de creatinina y diuresis, no con la TFG de estado estable; evitar nefrotóxicos."
+    },
+    {
+      "min": 15,
+      "max": 29.99,
+      "categoria": "15-29: filtrado bajo",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Ajustar dosis de eliminación renal. Con contraste yodado, suspender metformina y no reiniciarla antes de 48 h."
+    },
+    {
+      "min": 30,
+      "max": 59.99,
+      "categoria": "30-59: filtrado reducido",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Ajustar dosis de eliminación renal a esta estimación y a la tendencia de creatinina y diuresis."
+    },
+    {
+      "min": 60,
+      "max": 1000000000,
+      "categoria": "≥60: filtrado conservado",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Recalcular con cada nueva creatinina mientras no se estabilice."
+    }
+  ]
+}

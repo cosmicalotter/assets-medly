@@ -1,0 +1,204 @@
+{
+  "titulo": "Estadio de la lesión renal aguda (KDIGO 2026)",
+  "descripcion": "Estadifica la gravedad de la lesión renal aguda (LRA) en adultos y niños con el sistema KDIGO 2026: componente de creatinina (C0-C3), de diuresis (U0-U3) y de biomarcador de daño (B0/B1). Orienta las medidas de protección renal según el estadio y el riesgo de progresión.",
+  "instrucciones": "Marca el peor tramo alcanzado de cada componente. Creatinina contra la basal; diuresis por kg de peso ideal. Si no hay biomarcador, marca «No medido».",
+  "limitaciones": "KDIGO 2026 informa cada componente por separado (p. ej., C1 U2 B1); el resultado da el más grave de C y U y el resumen copiado conserva los tres. No sirve en neonatos (estadios propios).",
+  "tipoCalculo": "formula",
+  "formula": "(c + u + abs(c - u)) + b",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Estadio",
+  "referencias": [
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "49",
+      "texto": "The severity of AKI in children and adults is staged according to individual components or combinations of the following SCr and urine output criteria",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "50",
+      "texto": "Relevant components of the staging system can be employed to classify the severity of AKI according to the measurements collected for an individual.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "50",
+      "texto": "with the patient assigned a severity Stage (1–3) according to the highest (worst) SCr or urine output stage",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "144",
+      "texto": "The key components are optimization of volume status and perfusion pressure, discontinuation, and avoidance of nephrotoxic agents when possible, monitoring of SCr and urine output",
+      "anio": "2026"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "c",
+          "tipo": "opciones",
+          "label": "Creatinina sérica (C)",
+          "opciones": [
+            {
+              "label": "C0",
+              "puntos": 0,
+              "detalle": "Sin criterio de creatinina"
+            },
+            {
+              "label": "C1",
+              "puntos": 1,
+              "detalle": "↑ ≥0,3 mg/dL o 1,5-1,9 × la basal"
+            },
+            {
+              "label": "C2",
+              "puntos": 2,
+              "detalle": "2-2,9 × la basal"
+            },
+            {
+              "label": "C3",
+              "puntos": 3,
+              "detalle": "≥3 × la basal, ≥4 mg/dL (≥353,6 µmol/L) o inicio de TRR"
+            }
+          ]
+        },
+        {
+          "id": "u",
+          "tipo": "opciones",
+          "label": "Diuresis (U)",
+          "opciones": [
+            {
+              "label": "U0",
+              "puntos": 0,
+              "detalle": "Sin criterio de diuresis"
+            },
+            {
+              "label": "U1",
+              "puntos": 1,
+              "detalle": "<0,5 mL/kg/h durante 6-12 h"
+            },
+            {
+              "label": "U2",
+              "puntos": 2,
+              "detalle": "<0,5 mL/kg/h durante >12 h"
+            },
+            {
+              "label": "U3",
+              "puntos": 3,
+              "detalle": "<0,3 mL/kg/h durante >24 h, o anuria >12 h"
+            }
+          ],
+          "ayuda": "Por kg de peso ideal. Sin sonda vesical la diuresis suele no poder medirse con exactitud."
+        },
+        {
+          "id": "b",
+          "tipo": "opciones",
+          "label": "Biomarcador de daño (B)",
+          "opciones": [
+            {
+              "label": "No medido",
+              "puntos": 0
+            },
+            {
+              "label": "B0",
+              "puntos": 0,
+              "detalle": "Negativo"
+            },
+            {
+              "label": "B1",
+              "puntos": 1,
+              "detalle": "Positivo"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 6,
+      "max": 7,
+      "categoria": "Estadio 3 (C3 o U3)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Medidas de los estadios 1-2 y valorar TRR si persiste o hay indicaciones. B1 añade peor pronóstico.",
+      "si": {
+        "alguno": [
+          {
+            "id": "c",
+            "igual": 3
+          },
+          {
+            "id": "u",
+            "igual": 3
+          }
+        ]
+      }
+    },
+    {
+      "min": 4,
+      "max": 5,
+      "categoria": "Estadio 2 (C2 o U2)",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Suspender nefrotóxicos, optimizar volemia y PAM, vigilar creatinina y diuresis, ajustar dosis y estudiar la causa.",
+      "si": {
+        "alguno": [
+          {
+            "id": "c",
+            "igual": 2
+          },
+          {
+            "id": "u",
+            "igual": 2
+          }
+        ]
+      }
+    },
+    {
+      "min": 2,
+      "max": 3,
+      "categoria": "Estadio 1 (C1 o U1)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Suspender nefrotóxicos, optimizar volemia y PAM, vigilar creatinina y diuresis, ajustar dosis y estudiar la causa.",
+      "si": {
+        "alguno": [
+          {
+            "id": "c",
+            "igual": 1
+          },
+          {
+            "id": "u",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Sólo biomarcador (C0 U0 B1)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "LRA por criterio estructural: suspender nefrotóxicos, optimizar volemia y PAM y vigilar creatinina y diuresis.",
+      "si": {
+        "id": "b",
+        "igual": 1
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Sin criterio de estadio",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "No alcanza ningún componente: revisar la creatinina basal y repetir creatinina y diuresis."
+    }
+  ]
+}

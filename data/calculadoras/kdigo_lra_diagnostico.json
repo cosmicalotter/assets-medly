@@ -1,0 +1,160 @@
+{
+  "titulo": "Criterios de lesión renal aguda (KDIGO 2026)",
+  "descripcion": "Dice si un adulto o un niño (no neonato) cumple la definición de lesión renal aguda (LRA) de KDIGO 2026: una o más alteraciones de la función o de la estructura renal en los 7 días previos. Basta un criterio. Decide si se estadifica la LRA o se buscan criterios de enfermedad renal aguda.",
+  "instrucciones": "Compara con la creatinina basal: la ambulatoria del último año; si no la hay, la del ingreso (salvo LRA al ingreso) o la menor del ingreso. Diuresis por kg de peso ideal. Basta un Sí.",
+  "limitaciones": "No sirve en neonatos (criterios propios). Sin creatinina basal fiable la LRA se infra o sobrediagnostica; la cistatina C ayuda cuando la creatinina es poco exacta (poca masa muscular, hepatopatía). El biomarcador sólo cuenta en su indicación validada.",
+  "tipoCalculo": "formula",
+  "formula": "(1 - (1 - cr48) * (1 - cr7d) * (1 - cistatina) * (1 - diuresis) * (1 - biomarcador))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "35",
+      "texto": "is defined by the presence of one or more abnormalities of kidney function or structure known or presumed to have occurred within 7 days",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "45",
+      "texto": "We suggest using serum cystatin C to identify AKI in children and adults in clinical situations when serum creatinine (SCr) is less accurate (2B).",
+      "anio": "2026"
+    },
+    {
+      "titulo": "KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). Public review draft, March 2026.",
+      "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+      "paginas": "47",
+      "texto": "A baseline SCr value should be ascertained for all patients with suspected or confirmed AKI.",
+      "anio": "2026"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "cr48",
+          "tipo": "opciones",
+          "label": "Creatinina ↑ ≥0,3 mg/dL (≥26,5 µmol/L) en 48 h",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "cr7d",
+          "tipo": "opciones",
+          "label": "Creatinina ≥1,5 × la basal en los 7 días previos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Subida conocida o que se presume ocurrida en los últimos 7 días."
+        },
+        {
+          "id": "cistatina",
+          "tipo": "opciones",
+          "label": "Cistatina C ≥1,5 × la basal en los 7 días previos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Útil si la creatinina es poco exacta: sarcopenia, amputación, hepatopatía, desnutrición."
+        },
+        {
+          "id": "diuresis",
+          "tipo": "opciones",
+          "label": "Diuresis <0,5 mL/kg/h durante ≥6 h",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Media horaria por kg de peso ideal, no real."
+        },
+        {
+          "id": "biomarcador",
+          "tipo": "opciones",
+          "label": "Biomarcador de daño renal elevado",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Sólo en su indicación clínica validada y aprobada (p. ej., NGAL urinario)."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Cumple criterios de LRA",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Estadificar (creatinina, diuresis y biomarcador) y buscar la causa con historia, exploración, sedimento y ecografía.",
+      "si": {
+        "alguno": [
+          {
+            "id": "cr48",
+            "igual": 1
+          },
+          {
+            "id": "cr7d",
+            "igual": 1
+          },
+          {
+            "id": "cistatina",
+            "igual": 1
+          },
+          {
+            "id": "diuresis",
+            "igual": 1
+          },
+          {
+            "id": "biomarcador",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple criterios de LRA",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "Si la función o la estructura renal están alteradas, comprobar criterios de enfermedad renal aguda (≤3 meses)."
+    }
+  ]
+}
