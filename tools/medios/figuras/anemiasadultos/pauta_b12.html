@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.esc{flex:1;display:flex;flex-direction:column;gap:10px}
+.fila{display:flex;gap:6px;align-items:center}.et{width:150px;font-size:13.5px;font-weight:700}
+.d{width:34px;height:34px;border-radius:9px;background:#E5E7EB;display:grid;place-items:center;font-size:11px;color:#6B7280}
+.d.on{background:var(--violeta);color:#fff;font-weight:800}.d.ya{background:#C4B5FD;color:#3B0764}
+.caja{border-radius:14px;background:#F7F8FA;padding:10px 12px;font-size:13.5px;line-height:1.35}</style></head><body><script>
+window.cuadro=function(i,total){const t=total>1?i/(total-1):1; const n=Math.floor(t*12);
+ const dias=[...Array(7)].map((_,k)=>`<div class="d ${k<n?(k===n-1?"on":"ya"):""}">${k+1}</div>`).join("");
+ const sem=[...Array(3)].map((_,k)=>`<div class="d ${7+k<n?(7+k===n-1?"on":"ya"):""}" style="width:64px">sem ${k+2}</div>`).join("");
+ const man=[...Array(2)].map((_,k)=>`<div class="d ${10+k<n?(10+k===n-1?"on":"ya"):""}" style="width:110px">cada 2-3 meses</div>`).join("");
+ lienzo("Hidroxocobalamina IM: la pauta","Déficit de vitamina B12; cada casilla es una dosis de 1 mg.",
+  `<div class="esc"><div class="fila"><div class="et">Semana 1: diaria</div>${dias}</div>
+   <div class="fila"><div class="et">Semanas 2-4: semanal</div>${sem}</div>
+   <div class="fila"><div class="et">Mantenimiento</div>${man}<div style="font-size:13px;color:#6B7280">de por vida si la causa no se corrige</div></div>
+   <div class="caja">De por vida con <b>gastritis autoinmune</b>, gastrectomía total o resección ileal completa. Primera revisión a los <b>3 meses</b> (al mes en el embarazo o la lactancia).</div></div>`,
+  "Esquema propio. Fuentes: SEMERGEN 2025 (pauta y mantenimiento); NICE NG239, 1.5.3 y 1.6.1.");};
+window.cuadro(11,12);
+</script></body></html>

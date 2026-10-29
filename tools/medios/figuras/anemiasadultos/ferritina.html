@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.f{border-radius:14px;background:#F7F8FA;padding:10px 12px}.h{font-weight:800;font-size:14px;margin-bottom:6px}
+.nota{font-size:13px;line-height:1.35}</style></head><body><script>
+const W=620, X=(v)=>20+v/160*(W-40);
+function regla(marcas, zonas){
+ return `<svg width="${W}" height="78" viewBox="0 0 ${W} 78">
+  ${zonas.map(([a,b,c])=>`<rect x="${X(a)}" y="22" width="${X(b)-X(a)}" height="18" fill="${c}" opacity=".85"/>`).join("")}
+  <rect x="${X(0)}" y="22" width="${X(160)-X(0)}" height="18" fill="none" stroke="#9CA3AF"/>
+  ${[0,15,30,45,50,100,150].map(v=>`<text x="${X(v)}" y="56" text-anchor="middle" font-size="11" fill="#6B7280">${v}</text>`).join("")}
+  ${marcas.map(([v,t,c])=>`<line x1="${X(v)}" x2="${X(v)}" y1="14" y2="44" stroke="${c}" stroke-width="3"/><text x="${X(v)}" y="11" text-anchor="middle" font-size="12" font-weight="800" fill="${c}">${t}</text>`).join("")}
+  <text x="${W-20}" y="72" text-anchor="end" font-size="11" fill="#6B7280">ferritina, ng/mL (= µg/L)</text></svg>`;}
+lienzo("Ferritina: dónde está el corte", "La misma ferritina se lee distinto según la guía y si hay inflamación.",
+ `<div class="f"><div class="h">ASH 2026 (diagnóstico de ferropenia, con o sin anemia)</div>
+   ${regla([[30,"≤30","#EF5454"],[50,"≤50*","#F07F3C"],[100,"<100 con inflamación","#7B6CF6"]],[[0,30,"#FCA5A5"],[30,50,"#FED7AA"],[50,100,"#DDD6FE"]])}
+   <div class="nota">* ≤50 con síntomas o factores de riesgo de ferropenia o sangrado menstrual abundante. Con inflamación: ferritina <b>&lt;100</b> o IST <b>&lt;20 %</b>.</div></div>
+  <div class="f"><div class="h">BSG 2021 (anemia ferropénica)</div>
+   ${regla([[15,"<15","#EF5454"],[45,"45","#F07F3C"],[150,">150","#2FB36D"]],[[0,15,"#FCA5A5"],[15,45,"#FED7AA"],[150,160,"#BBF7D0"]])}
+   <div class="nota"><b>&lt;15</b>: sin depósitos; <b>45</b>: mejor equilibrio para decidir el estudio digestivo; <b>&gt;150</b>: ferropenia absoluta improbable.</div></div>`,
+ "Esquema propio. Fuentes: ASH 2026, Rec 2-5 (Powers et al., Blood Adv 2026); BSG 2021 (Snook et al., Gut 2021).");
+</script></body></html>

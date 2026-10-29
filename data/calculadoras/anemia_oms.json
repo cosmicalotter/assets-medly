@@ -1,0 +1,542 @@
+{
+  "titulo": "Anemia por hemoglobina (OMS 2024)",
+  "descripcion": "Dice si hay anemia y su gravedad según los cortes de hemoglobina de la OMS 2024 para adolescentes de 15 años en adelante y adultos hasta 65 años, y en el embarazo por trimestre. Ajusta antes la hemoglobina por la altitud de residencia y el tabaquismo, como pide la guía. Es el primer paso antes de estudiar la causa.",
+  "instrucciones": "Escribe la hemoglobina medida, la altitud donde vive o trabaja y si fuma. La calculadora resta el ajuste a la hemoglobina medida y la compara con el corte de su grupo.",
+  "limitaciones": "Cortes basados en el percentil 5 de población sana; no aplican a niños menores de 15 años ni a mayores de 65 sin valorar. Los ajustes para más de 3000 m proceden sobre todo de Centroamérica y Sudamérica.",
+  "tipoCalculo": "reglas",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
+      "url": "https://www.who.int/publications/i/item/9789240088542",
+      "paginas": "xiii",
+      "texto": "Adjustments of haemoglobin concentrations are recommended to diagnose anaemia in individuals and populations to account for the effect of elevation of place of residency on haemoglobin concentrations.",
+      "anio": "2024"
+    },
+    {
+      "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
+      "url": "https://www.who.int/publications/i/item/9789240088542",
+      "paginas": "xiv",
+      "texto": "Haemoglobin concentrations should be adjusted to diagnose anaemia in individuals and populations to account for the effect of smoking on haemoglobin concentrations.",
+      "anio": "2024"
+    },
+    {
+      "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
+      "url": "https://www.who.int/publications/i/item/9789240088542",
+      "paginas": "xiii",
+      "texto": "Adjustments are the amount subtracted from an individual’s observed haemoglobin level or added to the haemoglobin cutoff defining anaemia (in g/L).",
+      "anio": "2024"
+    },
+    {
+      "titulo": "World Health Organization. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations. Geneva: WHO; 2024.",
+      "url": "https://www.who.int/publications/i/item/9789240088542",
+      "paginas": "xiii",
+      "texto": "Data in adult men may suggest a higher haemoglobin cutoff (i.e. 135 g/L) but there was uncertainty in the evidence.",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "poblacion",
+          "tipo": "opciones",
+          "label": "Grupo",
+          "opciones": [
+            {
+              "label": "Mujer no embarazada",
+              "puntos": 1,
+              "detalle": "15-65 años; anemia si Hb <120 g/L"
+            },
+            {
+              "label": "Hombre",
+              "puntos": 2,
+              "detalle": "15-65 años; anemia si Hb <130 g/L"
+            },
+            {
+              "label": "Embarazo, 1.er trimestre",
+              "puntos": 3,
+              "detalle": "Anemia si Hb <110 g/L"
+            },
+            {
+              "label": "Embarazo, 2.º trimestre",
+              "puntos": 4,
+              "detalle": "Anemia si Hb <105 g/L"
+            },
+            {
+              "label": "Embarazo, 3.er trimestre",
+              "puntos": 5,
+              "detalle": "Anemia si Hb <110 g/L"
+            }
+          ]
+        },
+        {
+          "id": "hb",
+          "tipo": "input_numero",
+          "label": "Hemoglobina medida",
+          "unidad": "g/L",
+          "min": 20,
+          "max": 250,
+          "unidades": [
+            {
+              "unidad": "g/dL",
+              "factor": 10
+            }
+          ]
+        },
+        {
+          "id": "altitud",
+          "tipo": "input_numero",
+          "label": "Altitud de residencia",
+          "unidad": "m",
+          "min": 0,
+          "max": 4999.99,
+          "ayuda": "Metros sobre el nivel del mar donde vive o trabaja. Por debajo de 500 m no se ajusta.",
+          "intervalos": [
+            {
+              "min": 4500,
+              "puntos": -33
+            },
+            {
+              "min": 4000,
+              "puntos": -29
+            },
+            {
+              "min": 3500,
+              "puntos": -25
+            },
+            {
+              "min": 3000,
+              "puntos": -21
+            },
+            {
+              "min": 2500,
+              "puntos": -18
+            },
+            {
+              "min": 2000,
+              "puntos": -14
+            },
+            {
+              "min": 1500,
+              "puntos": -11
+            },
+            {
+              "min": 1000,
+              "puntos": -8
+            },
+            {
+              "min": 500,
+              "puntos": -4
+            },
+            {
+              "min": 0,
+              "puntos": 0
+            }
+          ]
+        },
+        {
+          "id": "tabaco",
+          "tipo": "opciones",
+          "label": "Tabaquismo",
+          "opciones": [
+            {
+              "label": "No fuma",
+              "puntos": 0
+            },
+            {
+              "label": "Fuma, cantidad desconocida",
+              "puntos": -3
+            },
+            {
+              "label": "Menos de 10 cigarrillos/día",
+              "puntos": -3
+            },
+            {
+              "label": "10-19 cigarrillos/día",
+              "puntos": -5
+            },
+            {
+              "label": "20 o más cigarrillos/día",
+              "puntos": -6,
+              "detalle": "«Más de 20» en la tabla de la OMS"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "categoria": "Anemia grave",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Hb ajustada <80 g/L (<70 en el embarazo). Estudiar la causa sin demora; con síntomas, puede necesitar transfusión además del tratamiento de la causa.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "maximo": 79.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "maximo": 79.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "maximo": 69.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "maximo": 69.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "maximo": 69.99
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Anemia moderada",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Estudiar la causa: VCM, reticulocitos y estudio del hierro (ferritina e IST).",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 80,
+                "maximo": 109.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 80,
+                "maximo": 109.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 70,
+                "maximo": 99.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 70,
+                "maximo": 94.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 70,
+                "maximo": 99.99
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Anemia leve",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Estudiar la causa: VCM, reticulocitos y estudio del hierro (ferritina e IST).",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 110,
+                "maximo": 119.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 110,
+                "maximo": 129.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 100,
+                "maximo": 109.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 95,
+                "maximo": 104.99
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 100,
+                "maximo": 109.99
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Sin anemia",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Hb ajustada por encima del corte de su grupo. Si hay síntomas de ferropenia, la ferritina puede estar baja sin anemia.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 120
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 130
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 110
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 105
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 110
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.g{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;flex:1}
+.bar{display:flex;align-items:center;gap:8px;font-size:13px;margin:3px 0}.bar span.m{width:92px;text-align:right;color:var(--suave)}
+.bar div{height:16px;border-radius:5px;background:var(--teal)}.bar b{min-width:34px}
+.caja{border-radius:14px;background:#F7F8FA;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.h{font-weight:800;font-size:14px;margin-bottom:4px}.ej{border:2px dashed var(--teal);border-radius:12px;padding:8px 12px;font-size:14px;line-height:1.35}</style></head><body><script>
+const ALT = [["0-499 m",0],["500-999",4],["1000-1499",8],["1500-1999",11],["2000-2499",14],["2500-2999",18],["3000-3499",21],["3500-3999",25],["4000-4499",29],["4500-4999",33]];
+const TAB = [["No fuma",0],["Cantidad desconocida",3],["<10 cigarrillos/día",3],["10-19 cigarrillos/día",5],[">20 cigarrillos/día",6]];
+const fila = ([m,v]) => `<div class="bar"><span class="m">${m}</span><div style="width:${v*5+2}px"></div><b>${v ? "−" + v : "0"}</b></div>`;
+lienzo("Hemoglobina: ajuste por altitud y tabaco", "Restar a la Hb medida (g/L) antes de compararla con el corte de anemia.",
+ `<div class="g"><div class="caja"><div class="h">Altitud de residencia</div>${ALT.map(fila).join("")}</div>
+   <div style="display:flex;flex-direction:column;gap:10px"><div class="caja"><div class="h">Tabaquismo</div>${TAB.map(fila).join("")}</div>
+   <div class="ej">Ejemplo: mujer a <b>2600 m</b> que no fuma, Hb <b>125 g/L</b> → 125 − 18 = <b>107 g/L</b>: anemia moderada (corte <b>120</b>).</div></div></div>`,
+ "Esquema propio. Fuente: OMS 2024, Guideline on haemoglobin cutoffs to define anaemia, tablas 3, 4 y 5.");
+</script></body></html>
