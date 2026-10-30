@@ -2,6 +2,8 @@
 // y rótulos en español. Las coordenadas de las marcas son las de la imagen original.
 // panel: { src, tam: [ancho, alto], recorte: [x, y, w, h], marcas, rotulo }
 // marca: { x, y, r } (anillo) o { x, y, rx, ry, rot } (elipse), con color c y texto t opcional.
+// tapar: [[x, y, w, h]] rectángulos blancos sobre los rótulos del original; textos: [{ x, y, t, ancla }]
+// rótulos traducidos en negro (fondo blanco, como en las figuras dibujadas).
 const AMARILLO = "#FDE047", ROSA = "#E11D74", CIAN = "#22D3EE";
 
 function panelSvg(p, k) {
@@ -15,9 +17,11 @@ function panelSvg(p, k) {
   };
   const marcas = (p.marcas || []).map((m) => `${forma(m, "#000", 7, 0.35)}${forma(m, m.c, 3.5)}
     ${m.t ? `<text x="${m.tx ?? m.x}" y="${m.ty ?? m.y - (m.ry || m.r) - 8 / k}" text-anchor="${m.ancla || "middle"}" font-size="${15 / k}" font-weight="800" fill="${m.c}" stroke="#111" stroke-width="${3.5 / k}" paint-order="stroke">${m.t}</text>` : ""}`).join("");
+  const tapas = (p.tapar || []).map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#fff"/>`).join("");
+  const textos = (p.textos || []).map((t) => `<text x="${t.x}" y="${t.y}" text-anchor="${t.ancla || "start"}" font-size="${t.tam || 15 / k}" font-weight="600" fill="#1F2937">${t.t}</text>`).join("");
   return `<div style="position:relative;flex:none">
     <svg width="${W}" height="${H}" viewBox="${x0} ${y0} ${w} ${h}" style="display:block;border-radius:10px">
-      <image href="${p.src}" x="0" y="0" width="${p.tam[0]}" height="${p.tam[1]}"/>${marcas}
+      ${tapas || textos ? `<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="#fff"/>` : ""}<image href="${p.src}" x="0" y="0" width="${p.tam[0]}" height="${p.tam[1]}"/>${tapas}${textos}${marcas}
     </svg>
     ${p.rotulo ? `<div style="position:absolute;left:7px;top:7px;background:rgba(17,24,39,.78);color:#fff;font-size:12.5px;font-weight:700;padding:3px 8px;border-radius:6px">${p.rotulo}</div>` : ""}
   </div>`;

@@ -1,47 +1,26 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
-<style>
-  .esc{flex:1;min-height:0}
-  .pasos{display:flex;gap:8px}
-  .paso{flex:1;border-radius:10px;padding:7px 8px;font-size:13px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
-  .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
-</style></head><body>
-<script>
-// Nuca vista por detrás: protuberancia occipital externa (POE), mastoides, línea que las une,
-// punto de Arnold (unión del tercio medial con los dos tercios laterales), arteria occipital y aguja.
-const PASOS = [["1", "Localizar la POE y la mastoides", AZUL], ["2", "Punto de Arnold: tercio medial de la línea", TEAL],
-               ["3", "Palpar el pulso de la arteria occipital", ROJO], ["4", "Aspirar e inyectar 2-2,5 mL", MORADO]];
-const POE = [340, 150], MAST = [520, 215];
-const ARN = [POE[0] + (MAST[0] - POE[0]) / 3, POE[1] + (MAST[1] - POE[1]) / 3];
-window.cuadro = function (i, n) {
-  const paso = n > 1 ? Math.min(3, Math.floor((i / n) * 4)) : 3;
-  const u = n > 1 ? ((i / n) * 4) % 1 : 1;
-  const linea = paso >= 1 ? 1 : suave(u);
-  const x2 = POE[0] + (MAST[0] - POE[0]) * linea, y2 = POE[1] + (MAST[1] - POE[1]) * linea;
-  const latido = 6 + 4 * Math.abs(Math.sin(i * 1.3));
-  const aguja = paso === 3 ? suave(Math.min(1, u * 1.6)) : 0;
-  const svg = `<svg class="esc" viewBox="0 0 680 300">
-    <rect x="270" y="235" width="140" height="70" fill="#F5D6BF" stroke="#C69C80" stroke-width="3"/>
-    <ellipse cx="340" cy="140" rx="185" ry="125" fill="#F5D6BF" stroke="#C69C80" stroke-width="3"/>
-    <path d="M160 125 C175 40 250 14 340 14 C430 14 505 40 520 125 C470 108 410 100 340 100 C270 100 210 108 160 125 Z" fill="#6B4F3A" opacity=".85"/>
-    <ellipse cx="${MAST[0]}" cy="${MAST[1]}" rx="16" ry="24" fill="#EFD3BD" stroke="#A97D60" stroke-width="3"/>
-    <circle cx="${POE[0]}" cy="${POE[1]}" r="10" fill="${AZUL}"/>
-    <text x="${POE[0] - 16}" y="${POE[1] + 5}" text-anchor="end" font-size="15" font-weight="800" fill="${AZUL}">POE</text>
-    <text x="${MAST[0] + 24}" y="${MAST[1] + 6}" font-size="15" font-weight="800" fill="${AZUL}">Mastoides</text>
-    <line x1="${POE[0]}" y1="${POE[1]}" x2="${x2}" y2="${y2}" stroke="${AZUL}" stroke-width="4" stroke-dasharray="8 6"/>
-    ${paso >= 1 ? `<circle cx="${ARN[0]}" cy="${ARN[1]}" r="11" fill="none" stroke="${TEAL}" stroke-width="5"/>
-      <text x="40" y="250" font-size="15" font-weight="800" fill="${TEAL}">Punto de Arnold:</text>
-      <text x="40" y="268" font-size="14" fill="${TEAL}">1/3 medial de la línea</text>
-      <line x1="150" y1="240" x2="${ARN[0] - 12}" y2="${ARN[1] + 8}" stroke="${TEAL}" stroke-width="2"/>` : ""}
-    ${paso >= 2 ? `<circle cx="${ARN[0] + 24}" cy="${ARN[1] + 4}" r="${latido}" fill="${tinte(ROJO, 40)}" stroke="${ROJO}" stroke-width="3"/>
-      <text x="${ARN[0] + 40}" y="${ARN[1] - 14}" font-size="14" font-weight="700" fill="${ROJO}">arteria occipital</text>` : ""}
-    ${paso === 3 ? `<g transform="translate(${ARN[0] - 4},${ARN[1] + 62 - 52 * aguja})"><rect x="-3" y="0" width="6" height="60" rx="2" fill="#94A3B8"/><rect x="-11" y="60" width="22" height="60" rx="5" fill="#E2E8F0" stroke="#64748B" stroke-width="2"/></g>
-      <text x="560" y="275" text-anchor="middle" font-size="14" font-weight="700" fill="${MORADO}">Por dentro del pulso,</text>
-      <text x="560" y="293" text-anchor="middle" font-size="14" font-weight="700" fill="${MORADO}">hacia craneal, 3-4 mm</text>` : ""}
-  </svg>`;
-  const pasos = PASOS.map(([k, t, c], j) => `<div class="paso ${j === paso ? "on" : ""}" style="--c:${c}"><b>${k}.</b> ${t}</div>`).join("");
-  lienzo("Bloqueo del nervio occipital mayor", "Paciente sentado, médico detrás; aguja 25-30 G, anestésico local",
-    `${svg}<div class="pasos">${pasos}</div>`, "Esquema. Fuente: Manual de Cefaleas SEN 2020, anexo I (p. 421).");
-};
-window.cuadro(3, 1);
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+const T = (x, y, t, ancla) => ({ x, y, t, ancla, tam: 40 });
+fotos({
+ "titulo": "Bloqueo del nervio occipital mayor",
+ "sub": "Punto de punción en la línea de la protuberancia occipital externa a la mastoides.",
+ "alto": 400,
+ "paneles": [
+  {
+   "src": "fuentes/bloqueo_occipital.png",
+   "tam": [1600, 1404],
+   "recorte": [0, 140, 1720, 1110],
+   "tapar": [[0, 325, 203, 150], [1362, 515, 260, 455]],
+   "textos": [
+    T(100, 372, "Nervio", "middle"), T(100, 416, "occipital", "middle"), T(100, 460, "mayor", "middle"),
+    T(1370, 548, "Protuberancia"), T(1370, 590, "occipital"), T(1370, 632, "externa"),
+    T(1370, 704, "Nervio"), T(1370, 746, "occipital"), T(1370, 788, "menor"),
+    T(1370, 900, "Apófisis"), T(1370, 942, "mastoides")
+   ],
+   "marcas": [
+    { "x": 605, "y": 695, "r": 62, "c": AMARILLO, "t": "Punto de Arnold", "tx": 650, "ty": 885 }
+   ]
+  }
+ ],
+ "fuente": "Ilustración: Zoë Rushetsky, en Int J Emerg Med 2026;19:224 (fig. 11). CC BY 4.0. Traducida y marcada por Empirica."
+});
 </script></body></html>
