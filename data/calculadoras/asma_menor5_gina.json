@@ -1,0 +1,152 @@
+{
+  "titulo": "Asma en ≤5 años: criterios GINA 2026",
+  "descripcion": "Aplica los tres criterios de GINA 2026 para el diagnóstico de asma en niños de 5 años o menos: episodios de sibilancias, ausencia de otro diagnóstico y respuesta a tiempo al tratamiento.",
+  "instrucciones": "Marcar cada criterio. Con los 3: asma. Con 1 o 2: sospecha de asma. Si hay otro diagnóstico que lo explique, buscarlo antes de llamarlo asma.",
+  "limitaciones": "Criterios de consenso. Antes de 12 meses el primer episodio sibilante suele ser bronquiolitis. GEMA pide en <3 años más de 3 episodios al año o episodios graves.",
+  "tipoCalculo": "formula",
+  "formula": "2 * (1 - cb) + (1 - ca * cc) * cb",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Diagnóstico",
+  "referencias": [
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Box 10-2.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "196",
+      "texto": "All three criteria listed below must be fulfilled for diagnosis of asthma in this age-group. If only 1 or 2 criteria are fulfilled, record as suspected asthma."
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Criterio 1.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "198",
+      "texto": "At least 2 acute wheezing episodes in the last 12 months OR at least one acute wheezing episode plus interval symptoms/signs at another time."
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Criterio 2.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "199",
+      "texto": "Clinical assessment that the signs and symptoms are unlikely to be explained by an alternative diagnosis."
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Criterio 3.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "201",
+      "texto": "A timely response to SABA means that symptoms/signs improve within 20–60 minutes after SABA is given."
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "episodios",
+          "tipo": "opciones",
+          "label": "≥2 episodios de sibilancias en 12 meses, o 1 con síntomas entre episodios",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "ca": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "ca": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "alternativo",
+          "tipo": "opciones",
+          "label": "Sin otro diagnóstico que lo explique",
+          "opciones": [
+            {
+              "label": "No (hay otra causa posible)",
+              "puntos": 0,
+              "valoresVariables": {
+                "cb": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "cb": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "respuesta",
+          "tipo": "opciones",
+          "label": "Respuesta a tiempo al tratamiento",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "cc": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "cc": 1
+              }
+            }
+          ],
+          "ayuda": "Mejora a los 20-60 min del salbutamol, a las 3-4 h con corticoide oral, o en una prueba de 2-3 meses con corticoide inhalado."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -0.5,
+      "max": 0.49,
+      "categoria": "Asma",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Cumple los 3 criterios: tratamiento de mantenimiento según el escalón.",
+      "si": {
+        "todos": [
+          {
+            "id": "episodios",
+            "igual": 1
+          },
+          {
+            "id": "alternativo",
+            "igual": 1
+          },
+          {
+            "id": "respuesta",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Sospecha de asma",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "1-2 criterios: prueba con corticoide inhalado diario 2-3 meses (fluticasona 100-250 mcg/día o equivalente).",
+      "si": {
+        "id": "alternativo",
+        "igual": 1
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2.5,
+      "categoria": "Buscar otro diagnóstico",
+      "color": "amarillo",
+      "match_opcion_index": 2,
+      "approach": "Hay otra causa posible: buscarla y derivar antes de diagnosticar asma."
+    }
+  ]
+}

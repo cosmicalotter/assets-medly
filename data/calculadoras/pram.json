@@ -1,0 +1,156 @@
+{
+  "titulo": "PRAM (crisis de asma, 2 a 17 años)",
+  "descripcion": "Pediatric Respiratory Assessment Measure: gradúa la crisis de asma de 2 a 17 años con la saturación, el tiraje supraesternal, la contracción de los escalenos, la entrada de aire y las sibilancias (0-12 puntos). Es la escala que GINA 2026 destaca por validez y predicción de ingreso.",
+  "instrucciones": "Si la exploración es asimétrica, puntuar el campo pulmonar (entrada de aire) o las dos zonas (sibilancias) más afectados. Repetir tras cada tanda de broncodilatador.",
+  "limitaciones": "Sólo de 2 a 17 años. Guía la valoración, no la sustituye. La oximetría puede sobrestimar la saturación en la piel oscura, y en altura los cortes deben ajustarse a la altitud.",
+  "mostrarPuntaje": true,
+  "referencias": [
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. PRAM.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "217",
+      "texto": "The PRAM score, which includes oxygen saturation, suprasternal retractions, scalene muscle contraction by palpation, air entry, and wheezing,791,792 consistently receives high ratings for validity"
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Box 12-2: puntos de corte.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "219",
+      "texto": "PRAM score: (max.12) Score 0–3 4–7 8–12 Severity Mild Moderate Severe"
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Riesgo vital: PRAM 11-12.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "225",
+      "texto": "If the child has any feature of life-threatening asthma (drowsy, confused or cyanosed, or with the highest (worst) clinical score (e.g., PRAM 11–12), start treatment immediately"
+    },
+    {
+      "titulo": "Ducharme FM, Chalut D, Plotnick L, et al. The Pediatric Respiratory Assessment Measure: a valid clinical score for assessing acute asthma severity from toddlers to teenagers. J Pediatr 2008;152(4):476-80.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18346499/",
+      "paginas": "476"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Saturación de oxígeno",
+      "descripciones": [
+        "≥95 %",
+        "92-94 %",
+        "<92 %",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "%",
+        "min": 50,
+        "max": 100,
+        "tramos": [
+          {
+            "min": 95,
+            "puntos": 0
+          },
+          {
+            "min": 92,
+            "max": 94.99,
+            "puntos": 1
+          },
+          {
+            "max": 91.99,
+            "puntos": 2
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Tiraje supraesternal",
+      "descripciones": [
+        "Ausente",
+        "-",
+        "Presente",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Contracción de los escalenos",
+      "descripciones": [
+        "Ausente",
+        "-",
+        "Presente",
+        "-"
+      ],
+      "ayuda": "A la palpación."
+    },
+    {
+      "nombre": "Entrada de aire",
+      "descripciones": [
+        "Normal",
+        "Disminuida en la base",
+        "Disminuida en ápex y base",
+        "Mínima o ausente"
+      ]
+    },
+    {
+      "nombre": "Sibilancias",
+      "descripciones": [
+        "Ausentes",
+        "Sólo espiratorias",
+        "Inspiratorias (± espiratorias)",
+        "Audibles sin estetoscopio o tórax silente"
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 3,
+      "categoria": "Crisis leve",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Salbutamol 4 pulsaciones con cámara; reevaluar y, si hace falta, repetir una vez a los 30-60 min (GINA)."
+    },
+    {
+      "min": 4,
+      "max": 7,
+      "categoria": "Crisis moderada",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Salbutamol 4-6 pulsaciones cada 20-30 min hasta 3 veces, con ipratropio, y corticoide oral (GINA, ≤5 años)."
+    },
+    {
+      "min": 8,
+      "max": 10,
+      "categoria": "Crisis grave",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Traslado a urgencias; salbutamol (4-6 pulsaciones en ≤5 años, 6-10 en 6-11 años) con ipratropio, oxígeno y corticoide sistémico (GINA)."
+    },
+    {
+      "min": 11,
+      "max": 12,
+      "categoria": "Riesgo vital",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Tratar ya con salbutamol, ipratropio, oxígeno y corticoide sistémico, y avisar a la UCI pediátrica (GINA)."
+    }
+  ]
+}
