@@ -4,16 +4,16 @@
   .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:1;min-height:0}
   .c{border-radius:12px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 8%,white);padding:8px 10px;display:flex;flex-direction:column;gap:5px}
   .c h3{margin:0;font-size:17px;color:var(--c)} .c .q{font-size:13.5px;color:#475569;font-weight:700}
-  .c li{font-size:15.5px;line-height:1.35;margin-left:16px}
+  .c li{font-size:14.5px;line-height:1.3;margin-left:16px}
   .vital{border-radius:12px;background:#7F1D1D;color:#fff;padding:9px 12px;font-size:14.5px}
 </style></head><body>
 <script>
 const col = (c, t, q, xs) => `<div class="c" style="--c:${c}"><h3>${t}</h3><div class="q">${q}</div><ul>${xs.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
-lienzo("Gravedad de la crisis en el adulto", "Saturación con aire ambiente; PEF o FEV1 frente al mejor personal o al teórico",
+lienzo("Gravedad de la crisis en el adulto", "≥18 años; en menores, escala PRAM. Saturación con aire ambiente; PEF o FEV1 frente al mejor o al teórico",
   `<div class="cols">
-    ${col(VERDE, "Leve", "Todo esto:", ["Habla con frases completas, puede tumbarse", "FR normal o algo alta", "Sin tiraje o leve", "Saturación <b>≥94 %</b>", "PEF o FEV1 <b>&gt;70 %</b>"])}
-    ${col(NARANJA, "Moderada", "Rasgos como:", ["Habla con frases cortas, prefiere sentarse", "FR aumentada", "Tiraje y sibilancias", "Saturación <b>≥92 %</b>", "PEF o FEV1 <b>50-70 %</b>"])}
-    ${col(ROJO, "Grave", "Cualquiera:", ["No puede hablar, beber ni tumbarse", "FR <b>&gt;30</b>", "Tiraje; tórax silente", "Saturación <b>&lt;92 %</b>", "PEF o FEV1 <b>&lt;50 %</b>"])}
+    ${col(VERDE, "Leve", "Todo esto:", ["Habla con frases completas, puede tumbarse", "FR normal o algo alta", "Tiraje y sibilancias ausentes o leves", "Entrada de aire normal", "Saturación <b>≥94 %</b>", "PEF o FEV1 <b>&gt;70 %</b>"])}
+    ${col(NARANJA, "Moderada", "Rasgos como:", ["Habla con frases cortas, prefiere sentarse, no agitado", "FR aumentada", "Tiraje y sibilancias", "Entrada de aire reducida", "Saturación <b>≥92 %</b>", "PEF o FEV1 <b>50-70 %</b>"])}
+    ${col(ROJO, "Grave", "Cualquiera:", ["No puede hablar, beber ni tumbarse", "FR <b>&gt;30</b>", "Tiraje marcado", "Tórax silente o casi", "Saturación <b>&lt;92 %</b>", "PEF o FEV1 <b>&lt;50 %</b>"])}
   </div>
   <div class="vital"><b>Riesgo vital:</b> somnolencia, confusión, cianosis o tórax silente → tratar ya y pedir ayuda a UCI o anestesia</div>`,
   FUENTE_GINA + " (Box 9-6, p. 186).");

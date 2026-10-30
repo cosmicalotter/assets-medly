@@ -1,7 +1,7 @@
 {
   "titulo": "Gravedad de la crisis de asma (GINA, adultos)",
-  "descripcion": "Clasifica la crisis de asma de adultos y adolescentes que llegan a urgencias en leve, moderada, grave o con riesgo vital, con los criterios clínicos, la saturación y la función pulmonar de la figura de urgencias de GINA 2026. De la gravedad sale la dosis inicial de broncodilatador, el oxígeno, el corticoide y el aviso a la UCI.",
-  "instrucciones": "Valora antes de tratar, sin retrasar el tratamiento. Saturación con aire ambiente. Si no se puede medir el PEF o el FEV1, elige «No se pudo medir»: clasifica el resto.",
+  "descripcion": "Clasifica la crisis de asma de los adultos que llegan a urgencias en leve, moderada, grave o con riesgo vital, con los criterios clínicos, la saturación y la función pulmonar de la figura de urgencias de GINA 2026. De la gravedad sale la dosis inicial de broncodilatador, el oxígeno, el corticoide y el aviso a la UCI.",
+  "instrucciones": "Valora antes de tratar, sin retrasarlo. Saturación con aire ambiente. GINA pone el tiraje en la moderada y en la grave: aquí el marcado cuenta como grave. Sin PEF ni FEV1, elige «No se pudo medir».",
   "limitaciones": "Para 18 años o más; en menores de 18 GINA usa una escala clínica validada (PRAM). La oximetría puede sobrestimar la saturación en la piel oscura y, en altitud, la saturación normal es menor. Descartar otras causas: neumotórax, anafilaxia, embolia.",
   "tipoCalculo": "reglas",
   "mostrarPuntaje": false,
@@ -39,6 +39,20 @@
       "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
       "url": "https://ginasthma.org/2026-gina-strategy-report/",
       "paginas": "186",
+      "texto": "Give O2, target on O2 92–95%. Start systemic corticosteroids Consider IV magnesium sulfate",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
+      "url": "https://ginasthma.org/2026-gina-strategy-report/",
+      "paginas": "185",
+      "texto": "In adults with severe exacerbations, controlled low flow oxygen therapy using pulse oximetry to maintain saturation at 93–95% is associated with better physiological outcomes",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
+      "url": "https://ginasthma.org/2026-gina-strategy-report/",
+      "paginas": "186",
       "texto": "MILD presentation All of: Talks in sentence, can lie down Respiratory rate normal/mildly ↑ No/mild accessory muscle use No/mild expiratory wheeze Normal air entry or mild basal ↓ O2 saturation (room air) ≥94%",
       "anio": "2026"
     },
@@ -46,21 +60,21 @@
       "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
       "url": "https://ginasthma.org/2026-gina-strategy-report/",
       "paginas": "186",
-      "texto": "Salbutamol 4 puffs by pMDI + spacer or budesonide-formoterol 160/4.5 mcg 2 puffs. Assess response and, if needed, repeat once after 30–60 min",
+      "texto": "Salbutamol 4 puffs by pMDI + spacer (see below) or budesonide-formoterol 160/4.5 mcg 2 puffs (see below) Assess response and, if needed, repeat once after 30–60 min",
       "anio": "2026"
     },
     {
       "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
       "url": "https://ginasthma.org/2026-gina-strategy-report/",
       "paginas": "186",
-      "texto": "Give salbutamol 4–6 puffs and ipratropium 4 puffs by pMDI + spacer OR salbutamol 2.5mg and ipratropium 0.25mg by nebulizer. If needed, give up to 3 times, 20–30 min apart.",
+      "texto": "Give salbutamol 4–6 puffs and ipratropium 4 puffs by pMDI + spacer (see below) OR salbutamol 2.5mg and ipratropium 0.25mg by nebulizer. If needed, give up to 3 times",
       "anio": "2026"
     },
     {
       "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. GINA; 2026.",
       "url": "https://ginasthma.org/2026-gina-strategy-report/",
       "paginas": "186",
-      "texto": "Give salbutamol 6–10 puffs and ipratropium 4 puffs by pMDI + spacer OR salbutamol 5mg and ipratropium 0.25mg by nebulizer. Give O2, target on O2 92–95%.",
+      "texto": "Give salbutamol 6–10 puffs and ipratropium 4 puffs by pMDI + spacer (see below) OR salbutamol 5mg and ipratropium 0.25mg by nebulizer. If needed, give up to 3 times",
       "anio": "2026"
     }
   ],
@@ -151,15 +165,19 @@
           "id": "musculos",
           "tipo": "opciones",
           "label": "Uso de músculos accesorios",
-          "ayuda": "Más que leve: tiraje o contracción de esternocleidomastoideos.",
+          "ayuda": "Tiraje o contracción de los esternocleidomastoideos.",
           "opciones": [
             {
-              "label": "No",
+              "label": "No o leve",
               "puntos": 0
             },
             {
-              "label": "Sí",
+              "label": "Moderado",
               "puntos": 1
+            },
+            {
+              "label": "Marcado",
+              "puntos": 2
             }
           ]
         },
@@ -234,13 +252,17 @@
           {
             "id": "pef",
             "igual": 2
+          },
+          {
+            "id": "musculos",
+            "igual": 2
           }
         ]
       },
       "categoria": "Crisis grave",
       "color": "rojo",
       "match_opcion_index": 1,
-      "approach": "Salbutamol 6-10 pulsaciones + ipratropio 4 con cámara (o 5 mg + 0,25 mg nebulizados), hasta 3 veces cada 20-30 min; O₂ a 92-95 %; corticoide sistémico."
+      "approach": "Salbutamol 6-10 pulsaciones + ipratropio 4 con cámara (o 5 mg + 0,25 mg nebulizados), hasta 3 veces cada 20-30 min; O₂ a 92-95 % (93-95 % en el adulto grave); corticoide sistémico."
     },
     {
       "si": {
