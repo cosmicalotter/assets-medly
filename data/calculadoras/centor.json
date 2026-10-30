@@ -1,6 +1,6 @@
 {
   "titulo": "Centor modificada por McIsaac (faringitis)",
-  "descripcion": "Estima la probabilidad de faringoamigdalitis por estreptococo del grupo A con cuatro signos de Centor (fiebre, ausencia de tos, adenopatía cervical anterior dolorosa, exudado o hipertrofia amigdalar) más un ajuste por edad de McIsaac, válido desde los 3 años. Decide quién no necesita antibiótico ni pruebas y a quién hacer prueba rápida o cultivo.",
+  "descripcion": "Estima la probabilidad de faringoamigdalitis por estreptococo del grupo A con cuatro signos de Centor (fiebre, ausencia de tos, adenopatía cervical anterior dolorosa, exudado o hipertrofia amigdalar) más el ajuste por edad de McIsaac. Decide quién no necesita antibiótico ni pruebas y a quién hacer prueba rápida o cultivo.",
   "tipoCalculo": "formula",
   "formula": "anios_puntos + fiebre + sinTos + adenopatia + xudado",
   "prefijoResultado": "McIsaac",
@@ -14,6 +14,11 @@
           "unidad": "años",
           "intervalos": [
             {
+              "max": 2.99,
+              "puntos": -1
+            },
+            {
+              "min": 3,
               "max": 14.99,
               "puntos": 1
             },
@@ -27,9 +32,9 @@
               "puntos": -1
             }
           ],
-          "min": 3,
+          "min": 0,
           "max": 120,
-          "ayuda": "+1 de 3 a 14 años; 0 de 15 a 44; −1 desde 45."
+          "ayuda": "−1 en menores de 3 años; +1 de 3 a 14; 0 de 15 a 44; −1 desde 45."
         },
         {
           "id": "fiebre",
@@ -108,10 +113,10 @@
     {
       "min": 3,
       "max": 5,
-      "categoria": "Probabilidad alta de estreptococo",
+      "categoria": "Probabilidad intermedia o alta de estreptococo",
       "color": "naranja",
       "match_opcion_index": 1,
-      "approach": "Prueba rápida de antígeno o cultivo; antibiótico si es positiva. Sin prueba disponible se acepta iniciar antibiótico (ACORL): amoxicilina 50 mg/kg/día, 10 días, o penicilina benzatínica IM en dosis única. NICE: penicilina V 5-10 días, inmediata o diferida."
+      "approach": "Prueba rápida de antígeno o cultivo; antibiótico si es positiva. Sin prueba disponible se acepta iniciar antibiótico (ACORL): amoxicilina 50 mg/kg/día (máx. 1 g), 10 días, o penicilina benzatínica IM en dosis única. NICE: penicilina V 5-10 días, inmediata o diferida."
     }
   ],
   "referencias": [
@@ -132,19 +137,61 @@
       "texto": "People who are unlikely to benefit from an antibiotic (FeverPAIN score of 0 or 1, or Centor score of 0, 1 or 2): Do not offer an antibiotic prescription."
     },
     {
-      "titulo": "Asociación Colombiana de Otorrinolaringología (ACORL). Guía para el diagnóstico y tratamiento de la faringoamigdalitis aguda. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4).",
-      "url": "https://doi.org/10.37076/acorl.v52i4.8124",
-      "paginas": "543",
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "11",
       "texto": "debido a la falta de disponibilidad de las PRDA en nuestro medio y las dificultades en su acceso, se acepta el inicio de terapia antibiótica en paciente con puntaje de Centor o McIsaac por encima de 3 puntos"
     },
     {
-      "titulo": "Asociación Colombiana de Otorrinolaringología (ACORL). Guía para el diagnóstico y tratamiento de la faringoamigdalitis aguda. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4). Tabla 6.",
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. McIsaac.",
       "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
-      "paginas": "547",
+      "paginas": "9",
+      "texto": "La Escala de McIsaac, también conocida como Escala de Centor modificada, mide los mismos parámetros y resta un punto para los grupos poblacionales menores de 3 años y mayores de 45"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. Tabla 6.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "15",
+      "texto": "se debe considerar la Amoxicilina oral como primera línea de tratamiento contra FAAB o la penicilina benzatínica intramuscular"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "11",
+      "texto": "debido a la falta de disponibilidad de las PRDA en nuestro medio y las dificultades en su acceso, se acepta el inicio de terapia antibiótica en paciente con puntaje de Centor o McIsaac por encima de 3 puntos"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. McIsaac.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "9",
+      "texto": "La Escala de McIsaac, también conocida como Escala de Centor modificada, mide los mismos parámetros y resta un punto para los grupos poblacionales menores de 3 años y mayores de 45"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. Tabla 6.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "15",
+      "texto": "se debe considerar la Amoxicilina oral como primera línea de tratamiento contra FAAB o la penicilina benzatínica intramuscular"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "11",
+      "texto": "debido a la falta de disponibilidad de las PRDA en nuestro medio y las dificultades en su acceso, se acepta el inicio de terapia antibiótica en paciente con puntaje de Centor o McIsaac por encima de 3 puntos"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. McIsaac.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "9",
+      "texto": "La Escala de McIsaac, también conocida como Escala de Centor modificada, mide los mismos parámetros y resta un punto para los grupos poblacionales menores de 3 años y mayores de 45"
+    },
+    {
+      "titulo": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello 2024;52(4):533-555. Tabla 6.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
+      "paginas": "15",
       "texto": "se debe considerar la Amoxicilina oral como primera línea de tratamiento contra FAAB o la penicilina benzatínica intramuscular"
     }
   ],
-  "instrucciones": "Edad: +1 de 3 a 14 años, 0 de 15 a 44 y −1 desde 45. Fiebre por historia o medida (> 38 °C). Adenopatía cervical anterior, dolorosa o aumentada.",
-  "limitaciones": "En menores de 3 años la faringitis es casi siempre viral y la escala no se aplica. No identifica complicaciones (absceso periamigdalino, sepsis), que se derivan.",
+  "instrucciones": "Edad: −1 en menores de 3 años, +1 de 3 a 14, 0 de 15 a 44 y −1 desde 45. Fiebre por historia o medida (> 38 °C). Adenopatía cervical anterior, dolorosa o aumentada.",
+  "limitaciones": "En menores de 3 años la faringoamigdalitis es viral en el 70-95 % (ACORL); McIsaac resta 1 punto. Ninguna escala detecta el estreptococo de forma 100 % fiable. No identifica complicaciones (absceso periamigdalino, sepsis), que se derivan.",
   "sufijoResultado": "puntos"
 }

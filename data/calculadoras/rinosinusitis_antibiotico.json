@@ -1,10 +1,10 @@
 {
   "titulo": "Rinosinusitis aguda en niños: ¿antibiótico? (ACORL)",
-  "descripcion": "Separa la rinosinusitis viral o posviral, que no lleva antibiótico, de la que cumple alguna indicación de antibiótico de la guía ACORL 2024 (persistente, inicio grave, doble enfermedad y otras), y detecta los signos de complicación.",
+  "descripcion": "Separa la rinosinusitis viral o posviral, que no lleva antibiótico, de la bacteriana por los tres patrones de la guía ACORL 2024 (persistente, inicio grave y doble enfermedad), y detecta los signos de complicación.",
   "instrucciones": "Niños de 1 a 17 años con dos o más síntomas nasosinusales, uno de ellos obstrucción o rinorrea. Marcar cada dato; los signos de complicación mandan sobre todo lo demás.",
-  "limitaciones": "Criterios clínicos de consenso. La guía excluye las anomalías anatómicas, la fibrosis quística y las inmunodeficiencias, aunque las nombra entre las indicaciones de antibiótico. NICE NG79 es más restrictiva: con 10 días o más sin mejoría ofrece no dar antibiótico o darlo diferido.",
+  "limitaciones": "Criterios clínicos de consenso. La guía excluye las anomalías anatómicas, la fibrosis quística y las inmunodeficiencias. El antibiótico reciente, otra infección bacteriana o una enfermedad de base no bastan solos: pesan al elegir el antibiótico. NICE NG79 es más restrictiva: con 10 días o más sin mejoría ofrece no dar antibiótico o darlo diferido.",
   "tipoCalculo": "formula",
-  "formula": "2 * x + (1 - x) * 0.5 * (1 + ((p + g + d + a + c + b) - 0.5) / abs((p + g + d + a + c + b) - 0.5))",
+  "formula": "2 * x + (1 - x) * 0.5 * (1 + ((p + g + d) - 0.5) / abs((p + g + d) - 0.5))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Rinosinusitis",
   "referencias": [
@@ -118,69 +118,6 @@
           ]
         },
         {
-          "id": "previo",
-          "tipo": "opciones",
-          "label": "Antibiótico en las últimas 4 semanas",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0,
-              "valoresVariables": {
-                "a": 0
-              }
-            },
-            {
-              "label": "Sí",
-              "puntos": 1,
-              "valoresVariables": {
-                "a": 1
-              }
-            }
-          ]
-        },
-        {
-          "id": "concurrente",
-          "tipo": "opciones",
-          "label": "Infección bacteriana a la vez: neumonía, otitis media aguda, amigdalitis estreptocócica o adenitis supurativa",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0,
-              "valoresVariables": {
-                "c": 0
-              }
-            },
-            {
-              "label": "Sí",
-              "puntos": 1,
-              "valoresVariables": {
-                "c": 1
-              }
-            }
-          ]
-        },
-        {
-          "id": "base",
-          "tipo": "opciones",
-          "label": "Enfermedad de base: fibrosis quística, asma, inmunodeficiencia, cirugía de senos o alteración anatómica",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0,
-              "valoresVariables": {
-                "b": 0
-              }
-            },
-            {
-              "label": "Sí",
-              "puntos": 1,
-              "valoresVariables": {
-                "b": 1
-              }
-            }
-          ]
-        },
-        {
           "id": "complicacion",
           "tipo": "opciones",
           "label": "Signos de complicación: edema palpebral, proptosis, dolor o limitación ocular, cefalea intensa, alteración neurológica o tumefacción frontal",
@@ -228,18 +165,6 @@
             "igual": 1
           },
           {
-            "id": "previo",
-            "igual": 1
-          },
-          {
-            "id": "concurrente",
-            "igual": 1
-          },
-          {
-            "id": "base",
-            "igual": 1
-          },
-          {
             "id": "complicacion",
             "igual": 1
           }
@@ -252,7 +177,7 @@
       "categoria": "Bacteriana: antibiótico",
       "color": "naranja",
       "match_opcion_index": 1,
-      "approach": "Amoxicilina 80-90 mg/kg/día en 2 dosis, 7 días; amoxicilina-clavulanato si es <2 años, va a guardería, recibió antibiótico el último mes o tiene enfermedad de base (ACORL).",
+      "approach": "Amoxicilina 80-90 mg/kg/día en 2 dosis, 7 días; amoxicilina-clavulanato si es <2 años, va a guardería, recibió antibiótico el último mes, tiene enfermedad de base o inmunosupresión, o hay neumococo resistente en la región (ACORL).",
       "si": {
         "todos": [
           {
@@ -271,18 +196,6 @@
               },
               {
                 "id": "doble",
-                "igual": 1
-              },
-              {
-                "id": "previo",
-                "igual": 1
-              },
-              {
-                "id": "concurrente",
-                "igual": 1
-              },
-              {
-                "id": "base",
                 "igual": 1
               }
             ]

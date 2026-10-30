@@ -7,7 +7,7 @@
 </style></head><body>
 <script>
 // De la membrana normal a la OMA: primero se enrojece y se opacifica, luego se abomba.
-const PASOS = [["Normal: gris perlada, translúcida", GRIS], ["Roja y opaca", ROJO], ["Abombada: borra el mango", NARANJA]];
+const PASOS = [["Normal: gris perlada, translúcida", GRIS], ["Roja y opaca", ROJO], ["Abombada hacia el conducto", NARANJA]];
 window.cuadro = function (i, n) {
   const t = n > 1 ? i / (n - 1) : 1;
   const rojo = suave(tramo(t, 0.12, 0.5)), abombe = suave(tramo(t, 0.5, 0.92));
@@ -15,8 +15,8 @@ window.cuadro = function (i, n) {
   const svg = `<svg class="esc" viewBox="0 0 668 340">
     ${membrana(190, 170, 140, { rojo, abombe })}
     <g opacity="${1 - suave(tramo(t, 0.3, 0.6))}">
-      <path d="M262 64 L212 92" stroke="${AZUL}" stroke-width="3"/><text x="268" y="62" font-size="15" font-weight="700" fill="${AZUL}">mango del martillo</text>
-      <path d="M262 290 L258 268" stroke="${AMBAR}" stroke-width="3"/><text x="230" y="312" font-size="15" font-weight="700" fill="#B7791F">reflejo luminoso</text>
+      <path d="M150 18 L192 60" stroke="${AZUL}" stroke-width="3"/><text x="20" y="12" font-size="15" font-weight="700" fill="${AZUL}">mango del martillo</text>
+      <path d="M300 300 L262 270" stroke="${AMBAR}" stroke-width="3"/><text x="296" y="320" font-size="15" font-weight="700" fill="#B7791F">reflejo luminoso</text>
     </g>
     <g transform="translate(520,170)">${perfilMembrana(0, 0, 200, { abombe, rojo, liquido: rojo })}</g>
     <text x="520" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#475569">De perfil</text>
