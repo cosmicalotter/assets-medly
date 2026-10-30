@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1;min-height:0}
+  .p{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .p h3{font-size:17px;color:var(--c)}
+  .p ul{font-size:13px;line-height:1.35;padding-left:16px;align-self:stretch}
+  .p svg{width:100%;height:235px}
+</style></head><body>
+<script>
+const panel = (c, titulo, op, items) => `<div class="p" style="--c:${c}"><h3>${titulo}</h3>
+  <svg viewBox="0 0 220 220">${membrana(110, 110, 88, op)}</svg><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
+lienzo("OMA u otitis media con efusión", "Las dos tienen líquido en el oído medio; sólo la OMA tiene inflamación aguda",
+  `<div class="fila">
+    ${panel("#64748B", "Normal", { id: "a" }, ["Gris perlada, translúcida", "Mango del martillo y reflejo luminoso", "Se mueve con la neumatoscopia"])}
+    ${panel(ROJO, "Otitis media aguda", { rojo: 1, abombe: 1, id: "b" }, ["Roja u opaca, <b>abombada</b>", "Otalgia, fiebre o irritabilidad de <b>&lt;48 h</b>", "Inmóvil"])}
+    ${panel("#D97706", "Otitis con efusión", { efusion: 1, id: "c" }, ["Niveles hidroaéreos o efusión mucoide", "Sin signos de inflamación", "Hipoacusia; <b>sin antibiótico</b>"])}
+  </div>`,
+  "Esquema. Fuente: ACORL 2024, guías de otitis media aguda (p. 575) y de otitis media con efusión (p. 593, 599-601).");
+</script></body></html>

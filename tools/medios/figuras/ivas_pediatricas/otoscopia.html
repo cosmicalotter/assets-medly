@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .pasos{display:flex;gap:8px}
+  .paso{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
+  .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// De la membrana normal a la OMA: primero se enrojece y se opacifica, luego se abomba.
+const PASOS = [["Normal: gris perlada, translúcida", GRIS], ["Roja y opaca", ROJO], ["Abombada hacia el conducto", NARANJA]];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const rojo = suave(tramo(t, 0.12, 0.5)), abombe = suave(tramo(t, 0.5, 0.92));
+  const paso = t < 0.12 ? 0 : t < 0.5 ? 1 : 2;
+  const svg = `<svg class="esc" viewBox="0 0 668 340">
+    ${membrana(190, 170, 140, { rojo, abombe })}
+    <g opacity="${1 - suave(tramo(t, 0.3, 0.6))}">
+      <path d="M150 18 L192 60" stroke="${AZUL}" stroke-width="3"/><text x="20" y="12" font-size="15" font-weight="700" fill="${AZUL}">mango del martillo</text>
+      <path d="M300 300 L262 270" stroke="${AMBAR}" stroke-width="3"/><text x="296" y="320" font-size="15" font-weight="700" fill="#B7791F">reflejo luminoso</text>
+    </g>
+    <g transform="translate(520,170)">${perfilMembrana(0, 0, 200, { abombe, rojo, liquido: rojo })}</g>
+    <text x="520" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#475569">De perfil</text>
+    ${abombe > 0.5 ? `<path d="M486 170 l-40 0" stroke="${NARANJA}" stroke-width="5" marker-end="url(#fl)"/>` : ""}
+    <defs><marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="${NARANJA}"/></marker></defs>
+  </svg>`;
+  const pasos = PASOS.map(([txt, c], j) => `<div class="paso ${j === paso ? "on" : ""}" style="--c:${c}">${txt}</div>`).join("");
+  lienzo("Otoscopia: de la membrana normal a la OMA", "Oído derecho. El abombamiento es el signo más sensible (97 %)",
+    `${svg}<div class="pasos">${pasos}</div>`, FUENTE_OMA + " (p. 575 y tabla 2, p. 577).");
+};
+window.cuadro(0, 1);
+</script></body></html>

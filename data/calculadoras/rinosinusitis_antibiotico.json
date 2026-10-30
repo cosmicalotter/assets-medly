@@ -1,0 +1,219 @@
+{
+  "titulo": "Rinosinusitis aguda en niños: ¿antibiótico? (ACORL)",
+  "descripcion": "Separa la rinosinusitis viral o posviral, que no lleva antibiótico, de la bacteriana por los tres patrones de la guía ACORL 2024 (persistente, inicio grave y doble enfermedad), y detecta los signos de complicación.",
+  "instrucciones": "Niños de 1 a 17 años con dos o más síntomas nasosinusales, uno de ellos obstrucción o rinorrea. Marcar cada dato; los signos de complicación mandan sobre todo lo demás.",
+  "limitaciones": "Criterios clínicos de consenso. La guía excluye las anomalías anatómicas, la fibrosis quística y las inmunodeficiencias. El antibiótico reciente, otra infección bacteriana o una enfermedad de base no bastan solos: pesan al elegir el antibiótico. NICE NG79 es más restrictiva: con 10 días o más sin mejoría ofrece no dar antibiótico o darlo diferido.",
+  "tipoCalculo": "formula",
+  "formula": "2 * x + (1 - x) * 0.5 * (1 + ((p + g + d) - 0.5) / abs((p + g + d) - 0.5))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Rinosinusitis",
+  "referencias": [
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicaciones de antibiótico.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "Pacientes con signos y síntomas persistentes compatibles con rinosinusitis aguda, que duran ≥ 10 días sin evidencia de mejoría clínica"
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicaciones de antibiótico.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "Pacientes con signos y síntomas graves como fiebre alta (≥ 39 °C), secreción nasal purulenta o dolor facial que duren al menos 3 a 4 días consecutivos al comienzo de la enfermedad."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicaciones de antibiótico.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "Pacientes con síntomas de empeoramiento caracterizados por la nueva aparición de fiebre, cefalea o aumento de la secreción nasal después de una infección viral de las vías respiratorias superiores"
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Primera línea.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "y con buen estado general sin sospecha de complicaciones, se recomienda amoxicilina en dosis de 80-90 mg/kg/día dividido en dos dosis, por 7 días."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Tratamiento de la viral.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "12",
+      "texto": "Se recomienda el uso de irrigaciones con solución salina en altos volúmenes (60-100 mL día) en el tratamiento de la rinosinusitis viral o resfriado común en niños."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Complicaciones.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "10",
+      "texto": "En caso de sospechar alguna complicación, la tomografía simple de senos paranasales sería la ayuda diagnóstica inicial a solicitar"
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Sinusitis (acute): antimicrobial prescribing (NG79). 2017. 1.1.5.",
+      "url": "https://www.nice.org.uk/guidance/ng79",
+      "paginas": "7",
+      "texto": "Consider no antibiotic prescription or a back-up antibiotic prescription (see the recommendations on choice of antibiotic), taking account of"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "persistente",
+          "tipo": "opciones",
+          "label": "Síntomas 10 días o más sin mejoría",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "p": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "p": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "grave",
+          "tipo": "opciones",
+          "label": "Inicio grave: fiebre ≥ 39 °C con rinorrea purulenta o dolor facial, 3-4 días seguidos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "g": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "g": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "doble",
+          "tipo": "opciones",
+          "label": "Empeora tras mejorar: fiebre, cefalea o más secreción nuevas (doble enfermedad)",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "d": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "d": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "complicacion",
+          "tipo": "opciones",
+          "label": "Signos de complicación: edema palpebral, proptosis, dolor o limitación ocular, cefalea intensa, alteración neurológica o tumefacción frontal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "x": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "x": 1
+              }
+            }
+          ],
+          "ayuda": "Orbitaria, intracraneal u ósea (tumor de Pott)."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -0.5,
+      "max": 0.49,
+      "categoria": "Viral o posviral: sin antibiótico",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Lavados con solución salina 60-100 mL al día; sin antibiótico, corticoide nasal u oral ni antigripales combinados. Volver si dura 10 días o más o empeora tras mejorar (ACORL).",
+      "si": {
+        "ninguno": [
+          {
+            "id": "persistente",
+            "igual": 1
+          },
+          {
+            "id": "grave",
+            "igual": 1
+          },
+          {
+            "id": "doble",
+            "igual": 1
+          },
+          {
+            "id": "complicacion",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Bacteriana: antibiótico",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Amoxicilina 80-90 mg/kg/día en 2 dosis, 7 días; amoxicilina-clavulanato si es <2 años, va a guardería, recibió antibiótico el último mes, tiene enfermedad de base o inmunosupresión, o hay neumococo resistente en la región (ACORL).",
+      "si": {
+        "todos": [
+          {
+            "id": "complicacion",
+            "igual": 0
+          },
+          {
+            "alguno": [
+              {
+                "id": "persistente",
+                "igual": 1
+              },
+              {
+                "id": "grave",
+                "igual": 1
+              },
+              {
+                "id": "doble",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2.5,
+      "categoria": "Sospecha de complicación",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "TC de senos paranasales como estudio inicial, antibiótico IV y valoración por ORL en el hospital (ACORL).",
+      "si": {
+        "id": "complicacion",
+        "igual": 1
+      }
+    }
+  ]
+}

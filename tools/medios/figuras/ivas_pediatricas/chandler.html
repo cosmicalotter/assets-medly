@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .g{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .k{border-radius:12px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 6%,white);padding:7px;display:flex;flex-direction:column;gap:5px;text-align:center}
+  .k h3{font-size:17px;color:var(--c)} .k h4{font-size:13px;line-height:1.2}
+  .k svg{width:100%;height:150px}
+  .k p{font-size:11.8px;line-height:1.3;color:#334155;text-align:left}
+  .nota{font-size:13px;color:#475569;text-align:center}
+</style></head><body>
+<script>
+// Órbita derecha en corte axial: pared medial a la izquierda, globo delante, septo orbitario punteado.
+function orbita(g) {
+  const proptosis = [0, 4, 8, 16, 10][g], dxGlobo = g === 3 ? 10 : 0;
+  const cono = `<path d="M18 40 L58 128 L68 128 L104 40" fill="#FEF3C7" stroke="#A8A29E" stroke-width="3"/>`;
+  const globo = `<circle cx="${61 + dxGlobo}" cy="${36 - proptosis}" r="25" fill="#fff" stroke="#475569" stroke-width="3"/>
+    <circle cx="${61 + dxGlobo}" cy="${14 - proptosis}" r="7" fill="#1F2A37"/>`;
+  const septo = `<path d="M8 50 L114 50" stroke="#64748B" stroke-width="2" stroke-dasharray="5 4"/>`;
+  const parpado = g === 1 ? `<ellipse cx="61" cy="6" rx="52" ry="14" fill="${AMBAR}" opacity=".55"/>` : `<ellipse cx="61" cy="8" rx="44" ry="7" fill="#FDE7D3" opacity=".9"/>`;
+  const lesion = {
+    1: "",
+    2: `<path d="M24 54 L58 124 L68 124 L98 54 Z" fill="${NARANJA}" opacity=".35"/>`,
+    3: `<ellipse cx="26" cy="72" rx="9" ry="22" fill="${ROJO}" opacity=".85" transform="rotate(-24 26 72)"/>`,
+    4: `<ellipse cx="62" cy="86" rx="17" ry="20" fill="${ROJO}" opacity=".85"/>`,
+    5: `<path d="M24 54 L58 124 L68 124 L98 54 Z" fill="${NARANJA}" opacity=".25"/><rect x="40" y="124" width="46" height="18" rx="6" fill="${MORADO}" opacity=".9"/>`,
+  }[g];
+  return `<svg viewBox="0 -14 122 160">${parpado}${cono}${lesion}${septo}${globo}</svg>`;
+}
+const G = [
+  [1, AMBAR, "Celulitis preseptal", "Edema de párpados; motilidad y visión normales."],
+  [2, NARANJA, "Celulitis orbitaria", "Proptosis, quemosis y limitación del movimiento ocular."],
+  [3, ROJO, "Absceso subperióstico", "Desplaza el ojo abajo y afuera; baja la agudeza visual."],
+  [4, ROJO, "Absceso orbitario", "Proptosis grave, oftalmoplejía; riesgo de ceguera."],
+  [5, MORADO, "Trombosis del seno cavernoso", "Sepsis, oftalmoplejía; puede pasar al otro ojo."],
+];
+lienzo("Complicaciones orbitarias (Chandler)", "Órbita en corte axial; el septo orbitario es la línea punteada",
+  `<div class="g">${G.map(([g, c, t, p]) => `<div class="k" style="--c:${c}"><h3>Chandler ${"I II III IV V".split(" ")[g - 1]}</h3><h4>${t}</h4>${orbita(g)}<p>${p}</p></div>`).join("")}</div>`,
+  FUENTE_RS + ", tabla 1 (p. 621).");
+</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .cols{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .k{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:12px;display:flex;flex-direction:column;gap:9px;text-align:center}
+  .k h3{font-size:18px;color:var(--c)}
+  .dosis{font-size:34px;font-weight:800;color:var(--c);line-height:1}
+  .u{font-size:13px;color:#475569}
+  .d{border-top:1px solid #E5E7EB;padding-top:8px;font-size:14px;line-height:1.35}
+</style></head><body>
+<script>
+const k = (c, t, dosis, tomas, dias, extra) => `<div class="k" style="--c:${c}"><h3>${t}</h3><div class="dosis">${dosis}</div><div class="u">mg/kg/día</div>
+  <div class="d"><b>${tomas}</b></div><div class="d"><b>${dias}</b></div><div class="d">${extra}</div></div>`;
+lienzo("Amoxicilina: dosis según la infección", "Primera línea en las tres infecciones; la dosis por kilo y los días cambian",
+  `<div class="cols">
+    ${k(AZUL, "Otitis media aguda", "90", "En 2 dosis", "5-7 días; 10 si es grave", "Amoxicilina-clavulanato si tomó antibiótico en 30 días o hay conjuntivitis purulenta")}
+    ${k(TEAL, "Rinosinusitis", "80-90", "En 2 dosis", "7 días (5-10)", "Amoxicilina-clavulanato si es &lt;2 años, va a guardería o tomó antibiótico el último mes")}
+    ${k(NARANJA, "Faringoamigdalitis", "50", "En 1 o 2 dosis; máx. 1 g", "10 días", "O penicilina benzatínica IM en dosis única")}
+  </div>`,
+  "Esquema. Fuente: ACORL 2024, guías de otitis media aguda (p. 585-586), rinosinusitis en niños (p. 624) y faringoamigdalitis (tabla 6, p. 547).");
+</script></body></html>
