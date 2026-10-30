@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .g{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .k{border-radius:12px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 6%,white);padding:7px 10px;display:flex;flex-direction:column}
+  .k h3{font-size:15.5px;color:var(--c)} .k p{font-size:12.5px;color:#475569;line-height:1.25}
+  .k svg{flex:1;min-height:0;width:100%}
+</style></head><body>
+<script>
+// Intensidad de síntomas (0-1) por día, del 0 al 14.
+const curva = (fn) => Array.from({ length: 57 }, (_, k) => { const d = k / 4; return [d, fn(d)]; });
+function grafica(c, pts, { fiebre = null, marca = null } = {}) {
+  const X = (d) => 30 + d * 21, Y = (v) => 118 - v * 96;
+  const linea = pts.map(([d, v], k) => `${k ? "L" : "M"}${X(d).toFixed(1)} ${Y(v).toFixed(1)}`).join(" ");
+  const f = fiebre ? `<rect x="${X(fiebre[0])}" y="16" width="${X(fiebre[1]) - X(fiebre[0])}" height="102" fill="${ROJO}" opacity=".12"/>
+     <text x="${(X(fiebre[0]) + X(fiebre[1])) / 2}" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="${ROJO}">≥39 °C</text>` : "";
+  const m = marca ? `<path d="M${X(marca)} 16 L${X(marca)} 118" stroke="#64748B" stroke-dasharray="4 4"/><text x="${X(marca) + 4}" y="30" font-size="11" fill="#64748B">día ${marca}</text>` : "";
+  return `<svg viewBox="0 0 330 140">${f}${m}
+    <path d="M30 118 L326 118" stroke="#CBD5E1"/><path d="M30 16 L30 118" stroke="#CBD5E1"/>
+    ${[0, 5, 10, 14].map((d) => `<text x="${X(d)}" y="134" text-anchor="middle" font-size="11" fill="#6B7280">${d}</text>`).join("")}
+    <path d="${linea}" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`;
+}
+const viral = curva((d) => d < 3 ? 0.35 + 0.15 * d : Math.max(0.05, 0.8 - 0.1 * (d - 3)));
+const persistente = curva((d) => d < 3 ? 0.35 + 0.12 * d : 0.66 + 0.02 * Math.sin(d));
+const grave = curva((d) => d < 1 ? 0.6 + 0.35 * d : d < 4.5 ? 0.95 : Math.max(0.6, 0.95 - 0.05 * (d - 4.5)));
+const doble = curva((d) => d < 3 ? 0.35 + 0.15 * d : d < 6 ? 0.8 - 0.14 * (d - 3) : Math.min(0.92, 0.38 + 0.18 * (d - 6)));
+const k = (c, t, p, svg) => `<div class="k" style="--c:${c}"><h3>${t}</h3><p>${p}</p>${svg}</div>`;
+lienzo("Rinosinusitis: los patrones que piden antibiótico", "Síntomas a lo largo de los días (0 a 14)",
+  `<div class="g">
+    ${k(VERDE, "Viral (resfriado): sin antibiótico", "Mejora antes de 10 días.", grafica(VERDE, viral, { marca: 10 }))}
+    ${k("#D97706", "Persistente", "10 días o más sin mejoría.", grafica(AMBAR, persistente, { marca: 10 }))}
+    ${k(ROJO, "Inicio grave", "Fiebre ≥39 °C con rinorrea purulenta o dolor facial 3-4 días seguidos.", grafica(ROJO, grave, { fiebre: [0, 4] }))}
+    ${k(MORADO, "Doble enfermedad", "Mejora y luego empeora: fiebre, cefalea o más secreción.", grafica(MORADO, doble))}
+  </div>`,
+  FUENTE_RS + " (p. 613 y 624).");
+</script></body></html>

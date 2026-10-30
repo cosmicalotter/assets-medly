@@ -1,0 +1,190 @@
+{
+  "titulo": "Otitis media aguda: ¿antibiótico ya u observar? (ACORL)",
+  "descripcion": "Decide, en el niño con otitis media aguda confirmada, si el antibiótico va en la consulta inicial (menor de 24 meses u OMA grave) o si basta con analgesia y control a las 48-72 horas, según la guía ACORL 2024.",
+  "instrucciones": "Sólo con la otitis media aguda ya confirmada en la otoscopia. Marcar cada dato; con uno solo, antibiótico en la consulta inicial.",
+  "limitaciones": "No sirve para la otitis media con efusión (líquido sin inflamación), que no lleva antibiótico. NICE NG91 es más restrictiva: ofrece observar también a muchos menores de 2 años y reserva el inmediato para la OMA bilateral en <2 años, la otorrea o el niño muy enfermo.",
+  "tipoCalculo": "formula",
+  "formula": "0.5 * (1 + ((m + d + h + f + r) - 0.5) / abs((m + d + h + f + r) - 0.5))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Conducta",
+  "referencias": [
+    {
+      "titulo": "Ospina-García JC, Téllez-Cortés PA, Baquero-Hoyos MM, et al. Guía para el diagnóstico y el tratamiento de otitis media aguda. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):574-591. Recomendación 13.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244e.pdf",
+      "paginas": "12",
+      "texto": "En paciente con otitis media aguda grave (dolor intenso, otalgia mayor de 48 horas, fiebre definida como temperatura mayor a 39 °C) o que tenga menos de 24 meses"
+    },
+    {
+      "titulo": "Ospina-García JC, Téllez-Cortés PA, Baquero-Hoyos MM, et al. Guía para el diagnóstico y el tratamiento de otitis media aguda. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):574-591. Recomendación 12.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244e.pdf",
+      "paginas": "12",
+      "texto": "En pacientes mayores de dos años, en ausencia de otros factores de riesgo (malformaciones craneofaciales, signos y síntomas graves, imposibilidad de seguimiento), se indica control en 48-72 horas"
+    },
+    {
+      "titulo": "Ospina-García JC, Téllez-Cortés PA, Baquero-Hoyos MM, et al. Guía para el diagnóstico y el tratamiento de otitis media aguda. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):574-591. Recomendación 14.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244e.pdf",
+      "paginas": "12",
+      "texto": "Si el médico considera el inicio del manejo antibiótico, se recomienda amoxicilina en dosis de 90 mg/kg al día dividida en dos dosis."
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Otitis media (acute): antimicrobial prescribing (NG91). 2018, actualizada 2022. 1.1.11.",
+      "url": "https://www.nice.org.uk/guidance/ng91",
+      "paginas": "7",
+      "texto": "Children and young people who may be more likely to benefit from antibiotics (those of any age with otorrhoea or those under 2 years with infection in both ears)"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "menor24",
+          "tipo": "opciones",
+          "label": "Edad menor de 24 meses",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "m": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "m": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "dolor",
+          "tipo": "opciones",
+          "label": "Dolor intenso",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "d": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "d": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "otalgia48",
+          "tipo": "opciones",
+          "label": "Otalgia de más de 48 horas",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "h": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "h": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "fiebre39",
+          "tipo": "opciones",
+          "label": "Fiebre > 39 °C",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "f": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "f": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "riesgo",
+          "tipo": "opciones",
+          "label": "Malformación craneofacial o imposible hacer el control",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "r": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "r": 1
+              }
+            }
+          ],
+          "ayuda": "Factores de riesgo de la recomendación 12: con ellos no se observa."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0.5,
+      "max": 1.5,
+      "categoria": "Antibiótico en la consulta inicial",
+      "color": "naranja",
+      "match_opcion_index": 0,
+      "approach": "Amoxicilina 90 mg/kg/día en 2 dosis, 5-7 días (10 si es grave); amoxicilina-clavulanato si recibió antibiótico en 30 días o hay conjuntivitis purulenta. Revalorar a las 48-72 h (ACORL).",
+      "si": {
+        "alguno": [
+          {
+            "id": "menor24",
+            "igual": 1
+          },
+          {
+            "id": "dolor",
+            "igual": 1
+          },
+          {
+            "id": "otalgia48",
+            "igual": 1
+          },
+          {
+            "id": "fiebre39",
+            "igual": 1
+          },
+          {
+            "id": "riesgo",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": -0.5,
+      "max": 0.49,
+      "categoria": "Observar: control a las 48-72 h",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "Acetaminofén o ibuprofeno y control a las 48-72 h; antibiótico si no mejora o empeora (ACORL)."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:grid;grid-template-columns:1.05fr 1fr;gap:14px;flex:1;min-height:0}
+  .crit{display:flex;flex-direction:column;gap:7px}
+  .c{display:flex;align-items:center;gap:10px;border-radius:10px;background:#F8FAFC;padding:8px 10px;font-size:14.5px}
+  .c b.p{margin-left:auto;font-size:16px;color:${"#0F766E"}}
+  .c.ed{background:#F0FDFA;border:2px dashed #18B9A9}
+  .bar{display:flex;flex-direction:column;gap:9px}
+  .bar h3{font-size:15px}
+  .b{display:grid;grid-template-columns:62px 1fr 54px;align-items:center;gap:8px;font-size:13.5px}
+  .t{height:22px;border-radius:6px;background:#F1F5F9;position:relative}
+  .t i{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+</style></head><body>
+<script>
+const crit = [["Fiebre > 38 °C", "+1"], ["Exudado o edema amigdalino", "+1"], ["Adenopatía cervical", "+1"], ["Sin tos", "+1"]];
+const barras = (filas) => filas.map(([e, p, c]) => `<div class="b"><span>${e}</span><div class="t"><i style="width:${p * 1.6}%;background:${c}"></i></div><b style="color:${c}">${p} %</b></div>`).join("");
+lienzo("Centor y McIsaac: puntos y probabilidad", "Probabilidad de estreptococo del grupo A según el puntaje",
+  `<div class="fila"><div class="crit">${crit.map(([t, p]) => `<div class="c">${t}<b class="p">${p}</b></div>`).join("")}
+     <div class="c ed">McIsaac: <b>3-14 años</b><b class="p">+1</b></div>
+     <div class="c ed">McIsaac: <b>&lt;3 o ≥45 años</b><b class="p">−1</b></div></div>
+   <div class="bar"><h3>Centor</h3>${barras([["0-2", 13, VERDE], ["3", 38, AMBAR], ["4", 57, ROJO]])}
+     <h3 style="margin-top:8px">McIsaac</h3>${barras([["0-2", 11, VERDE], ["3", 37, AMBAR], ["4-5", 55, ROJO]])}
+     <div style="font-size:13px;color:#475569;margin-top:6px">Con <b>3 o más</b>: prueba rápida o cultivo. Ninguna escala es 100 % fiable.</div></div></div>`,
+  FUENTE_FAAB + ", tabla 5 (p. 542).");
+</script></body></html>

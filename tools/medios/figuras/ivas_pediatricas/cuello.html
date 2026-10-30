@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.ley{display:flex;gap:14px;justify-content:center;font-size:13.5px}.ley span{display:flex;align-items:center;gap:6px}.ley i{width:14px;height:14px;border-radius:4px;display:inline-block}</style>
+</head><body>
+<script>
+// Corte axial del cuello a la altura de la orofaringe, visto desde abajo (ventral arriba).
+const lado = (s) => `
+  <ellipse cx="${340 + s * 70}" cy="150" rx="40" ry="36" fill="${NARANJA}" opacity=".45"/>
+  <ellipse cx="${340 + s * 64}" cy="150" rx="24" ry="22" fill="#F28B82" stroke="#B4443C" stroke-width="3"/>
+  <path d="M${340 + s * 112} 110 Q${340 + s * 170} 150 ${340 + s * 140} 230 L${340 + s * 100} 220 Q${340 + s * 118} 160 ${340 + s * 100} 120 Z" fill="${ROJO}" opacity=".4"/>
+  <circle cx="${340 + s * 150}" cy="214" r="15" fill="${AZUL}"/><circle cx="${340 + s * 124}" cy="228" r="11" fill="#DC2626"/>`;
+const svg = `<svg class="esc" viewBox="0 0 680 330">
+  <ellipse cx="340" cy="170" rx="300" ry="150" fill="#FDE7D3" stroke="#D6A77A" stroke-width="3"/>
+  ${lado(-1)}${lado(1)}
+  <path d="M290 150 Q340 120 390 150 Q340 190 290 150 Z" fill="#fff" stroke="#94A3B8" stroke-width="2"/>
+  <path d="M250 212 Q340 188 430 212 L420 236 Q340 216 260 236 Z" fill="${MORADO}" opacity=".55"/>
+  <ellipse cx="340" cy="282" rx="58" ry="32" fill="#E2E8F0" stroke="#94A3B8" stroke-width="3"/>
+  <text x="340" y="288" text-anchor="middle" font-size="13" fill="#475569">vértebra</text>
+  <text x="340" y="146" text-anchor="middle" font-size="12" fill="#475569">faringe</text>
+  <text x="196" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#C2410C">periamigdalino</text>
+  <text x="560" y="128" text-anchor="middle" font-size="14" font-weight="700" fill="#B91C1C">parafaríngeo</text>
+  <text x="340" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#6D28D9">retrofaríngeo</text>
+  <text x="520" y="262" text-anchor="middle" font-size="12.5" fill="${AZUL}">yugular · carótida</text>
+  <text x="340" y="40" text-anchor="middle" font-size="12" fill="#6B7280">anterior</text>
+</svg>`;
+lienzo("Espacios profundos del cuello", "Corte axial esquemático a la altura de las amígdalas",
+  `${svg}<div class="ley"><span><i style="background:${NARANJA}"></i>Periamigdalino: absceso más frecuente</span>
+   <span><i style="background:${ROJO}"></i>Parafaríngeo: TC con contraste</span><span><i style="background:${MORADO}"></i>Retrofaríngeo: vía aérea</span></div>`,
+  FUENTE_FAAB + " (p. 545 y 548).");
+</script></body></html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .flujo{flex:1;display:grid;grid-template-rows:auto 1fr;gap:12px}
+  .ini{justify-self:center;border-radius:12px;background:#EEF2F7;padding:9px 22px;font-size:17px;font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .k{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 8%,white);padding:12px;display:flex;flex-direction:column;gap:8px}
+  .k h3{font-size:18px;color:var(--c)}
+  .k p{font-size:14px;line-height:1.35}
+  .k .res{margin-top:auto;border-radius:10px;background:var(--c);color:#fff;font-weight:700;font-size:15px;padding:9px;text-align:center}
+</style></head><body>
+<script>
+lienzo("OMA: ¿antibiótico ya u observar?", "Con la OMA confirmada en la otoscopia",
+  `<div class="flujo"><div class="ini">Otitis media aguda confirmada</div><div class="cols">
+    <div class="k" style="--c:${ROJO}"><h3>Menor de 24 meses</h3><p>A cualquier gravedad.</p><div class="res">Antibiótico en la consulta inicial</div></div>
+    <div class="k" style="--c:${NARANJA}"><h3>OMA grave</h3><p>Dolor intenso, otalgia de <b>más de 48 h</b> o fiebre de <b>más de 39 °C</b>.</p><div class="res">Antibiótico en la consulta inicial</div></div>
+    <div class="k" style="--c:${VERDE}"><h3>2 años o más, sin riesgo</h3><p>Sin malformación craneofacial, signos graves ni problemas para el control.</p><div class="res">Analgesia y control a las 48-72 h</div></div>
+  </div></div>`,
+  FUENTE_OMA + ", recomendaciones 12 y 13 (p. 585).");
+</script></body></html>
