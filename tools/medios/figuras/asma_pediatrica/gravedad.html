@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  table{width:100%;border-collapse:separate;border-spacing:5px;font-size:15px;table-layout:fixed}
+  th{font-size:13px;color:#fff;padding:6px;border-radius:8px}
+  td{background:#F8FAFC;border-radius:8px;padding:10px 7px;text-align:center;line-height:1.3;hyphens:manual}
+  td.n{background:#EEF2F7;text-align:left;font-weight:700}
+  .bandas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .b{border-radius:12px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 9%,white);padding:7px 10px;font-size:14px;text-align:center}
+  .b b{color:var(--c);font-size:17px}
+</style></head><body>
+<script>
+const C = [VERDE, AMBAR, NARANJA, ROJO];
+const filas = [
+  ["Frecuencia respiratoria", ["<6 a: <30<br>≥6 a: <20", "<6 a: 31-45<br>≥6 a: 21-35", "<6 a: 46-60<br>≥6 a: 36-50", "<6 a: >60<br>≥6 a: >50"]],
+  ["Sibilancias", ["No", "Final de la espiración", "Toda la espiración (estetoscopio)", "Inspiración y espiración sin estetoscopio*"]],
+  ["Esternocleido&shy;mastoideo", ["No", "Incremento leve", "Aumentado", "Actividad máxima"]],
+];
+const tabla = `<table><colgroup><col style="width:24%"><col><col><col><col></colgroup><tr><th style="background:#475569">Signo</th>${[0, 1, 2, 3].map((k) => `<th style="background:${C[k]}">${k}</th>`).join("")}</tr>
+  ${filas.map(([n, xs]) => `<tr><td class="n">${n}</td>${xs.map((x) => `<td>${x}</td>`).join("")}</tr>`).join("")}</table>`;
+const bandas = `<div class="bandas">
+  <div class="b" style="--c:${VERDE}"><b>Leve</b><br>0-3 puntos · SaO2 >94 %</div>
+  <div class="b" style="--c:${NARANJA}"><b>Moderada</b><br>4-6 puntos · SaO2 91-94 %</div>
+  <div class="b" style="--c:${ROJO}"><b>Grave</b><br>7-9 puntos · SaO2 <91 %</div></div>`;
+lienzo("Gravedad de la crisis", "Pulmonary Score más saturación: si no coinciden, manda la más grave",
+  `${tabla}${bandas}<div style="font-size:12.5px;color:#475569">* Sin sibilancias y con el esternocleidomastoideo activo: puntuar 3. Cortes de saturación a nivel del mar.</div>`,
+  FUENTE_GEMA + ", tablas 5.6 y 5.7 (p. 124-125).");
+</script></body></html>

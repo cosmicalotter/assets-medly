@@ -1,0 +1,233 @@
+{
+  "titulo": "Pulmonary Score con saturación (crisis de asma en niños)",
+  "descripcion": "Gradúa la crisis de asma en el niño con tres signos (0-9 puntos) y la saturación de oxígeno, como propone GEMA 5.5. Manda el que indique más gravedad.",
+  "instrucciones": "Puntuar cada signo de 0 a 3 (se suman, 0-9) y escribir la saturación al aire. Si no hay sibilancias y el esternocleidomastoideo está más activo, puntuar las sibilancias con 3. Repetir tras cada tanda de broncodilatador.",
+  "limitaciones": "Ninguna escala clínica de la crisis está bien validada. Los cortes de saturación son a nivel del mar: en altura, juzgar la hipoxemia por la altitud del sitio. GINA prefiere el PRAM, validado de 2 a 17 años.",
+  "tipoCalculo": "formula",
+  "formula": "0.5 * ((0.5 * (1 + ((fr + sb + cm) - 3.5) / abs((fr + sb + cm) - 3.5)) + 0.5 * (1 + ((fr + sb + cm) - 6.5) / abs((fr + sb + cm) - 6.5))) + sat_puntos + abs((0.5 * (1 + ((fr + sb + cm) - 3.5) / abs((fr + sb + cm) - 3.5)) + 0.5 * (1 + ((fr + sb + cm) - 6.5) / abs((fr + sb + cm) - 6.5))) - sat_puntos))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Crisis",
+  "referencias": [
+    {
+      "titulo": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025. Tabla 5.6.",
+      "url": "https://www.gemasma.com/",
+      "paginas": "124",
+      "texto": "Aunque ninguna escala clínica está bien validada58,59 el Pulmonary Score (tabla 5.6)60 es sencillo y aplicable a todas las edades."
+    },
+    {
+      "titulo": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025. Tabla 5.6, nota.",
+      "url": "https://www.gemasma.com/",
+      "paginas": "124",
+      "texto": "Si no hay sibilancias y la actividad del esternocleidomastoideo está aumentada, puntuar el apartado sibilancias con un 3."
+    },
+    {
+      "titulo": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025. Tabla 5.7.",
+      "url": "https://www.gemasma.com/",
+      "paginas": "125",
+      "texto": "En caso de discordancia entre la puntuación clínica y la saturación de oxígeno se utilizará el de mayor gravedad."
+    },
+    {
+      "titulo": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Saturación y altitud.",
+      "url": "https://ginasthma.org/reports/",
+      "paginas": "218",
+      "texto": "Note potential for overestimation of oxygen saturation with pulse oximetry in people with dark skin color.797 Oxygen saturation targets should be adjusted for altitude, where appropriate.798"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "fr",
+          "tipo": "opciones",
+          "label": "Frecuencia respiratoria",
+          "opciones": [
+            {
+              "label": "<6 años: <30 · ≥6 años: <20",
+              "puntos": 0,
+              "valoresVariables": {
+                "fr": 0
+              }
+            },
+            {
+              "label": "<6 años: 31-45 · ≥6 años: 21-35",
+              "puntos": 1,
+              "valoresVariables": {
+                "fr": 1
+              }
+            },
+            {
+              "label": "<6 años: 46-60 · ≥6 años: 36-50",
+              "puntos": 2,
+              "valoresVariables": {
+                "fr": 2
+              }
+            },
+            {
+              "label": "<6 años: >60 · ≥6 años: >50",
+              "puntos": 3,
+              "valoresVariables": {
+                "fr": 3
+              }
+            }
+          ],
+          "ayuda": "Respiraciones por minuto. La tabla de GEMA salta de <30 a 31-45 (<6 años) y de <20 a 21-35 (≥6 años)."
+        },
+        {
+          "id": "sibilancias",
+          "tipo": "opciones",
+          "label": "Sibilancias",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "sb": 0
+              }
+            },
+            {
+              "label": "Final de la espiración",
+              "puntos": 1,
+              "valoresVariables": {
+                "sb": 1
+              }
+            },
+            {
+              "label": "Toda la espiración (con estetoscopio)",
+              "puntos": 2,
+              "valoresVariables": {
+                "sb": 2
+              }
+            },
+            {
+              "label": "Inspiración y espiración, sin estetoscopio",
+              "puntos": 3,
+              "valoresVariables": {
+                "sb": 3
+              }
+            }
+          ],
+          "ayuda": "Sin sibilancias y con el esternocleidomastoideo más activo: marcar 3."
+        },
+        {
+          "id": "ecm",
+          "tipo": "opciones",
+          "label": "Uso del esternocleidomastoideo",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "cm": 0
+              }
+            },
+            {
+              "label": "Incremento leve",
+              "puntos": 1,
+              "valoresVariables": {
+                "cm": 1
+              }
+            },
+            {
+              "label": "Aumentado",
+              "puntos": 2,
+              "valoresVariables": {
+                "cm": 2
+              }
+            },
+            {
+              "label": "Actividad máxima",
+              "puntos": 3,
+              "valoresVariables": {
+                "cm": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "sat",
+          "tipo": "input_numero",
+          "label": "Saturación de oxígeno al aire",
+          "unidad": "%",
+          "min": 50,
+          "max": 100,
+          "ayuda": "Antes del oxígeno. >94 %: leve; 91-94 %: moderada; <91 %: grave.",
+          "intervalos": [
+            {
+              "min": 50,
+              "max": 90.99,
+              "puntos": 2
+            },
+            {
+              "min": 91,
+              "max": 94.99,
+              "puntos": 1
+            },
+            {
+              "min": 95,
+              "max": 100,
+              "puntos": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -0.5,
+      "max": 0.49,
+      "categoria": "Crisis leve",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Salbutamol 2-4 pulsaciones con cámara y reevaluar a los 15 min (GEMA).",
+      "si": {
+        "ninguno": [
+          {
+            "suma": [
+              "fr",
+              "sibilancias",
+              "ecm"
+            ],
+            "minimo": 4
+          },
+          {
+            "id": "sat_puntos",
+            "mayorIgual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Crisis moderada",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Salbutamol 6-8 pulsaciones con cámara cada 20 min hasta 3 dosis; prednisolona 1-2 mg/kg (máx. 40 mg; GINA en ≤5 años, 20-30 mg); oxígeno si SaO2 <94 % (GEMA).",
+      "si": {
+        "ninguno": [
+          {
+            "suma": [
+              "fr",
+              "sibilancias",
+              "ecm"
+            ],
+            "minimo": 7
+          },
+          {
+            "id": "sat_puntos",
+            "igual": 2
+          }
+        ]
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2.5,
+      "categoria": "Crisis grave",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Oxígeno, salbutamol 10 pulsaciones + ipratropio 2-4 pulsaciones cada 20 min hasta 3 dosis, prednisona 2 mg/kg (máx. 40 mg); derivar al hospital en ambulancia medicalizada (GEMA)."
+    }
+  ]
+}
