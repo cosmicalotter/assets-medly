@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .pasos{display:flex;gap:8px}
+  .paso{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
+  .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// Un ciclo por pulsación: agitar, disparar una pulsación en la cámara y 6 respiraciones.
+const AGITAR = 14, PULSAR = 8, RESP = 6, POR_RESP = 12, FIN = 10;
+const TOTAL = AGITAR + PULSAR + RESP * POR_RESP + FIN;
+const PASOS = [["1", "Agitar el inhalador", AZUL], ["2", "Una pulsación en la cámara", TEAL], ["3", "5-6 respiraciones", VERDE]];
+
+window.cuadro = function (i, n) {
+  const t = n > 1 ? Math.round((i / (n - 1)) * (TOTAL - 1)) : 0;
+  let paso = 0, sacude = 0, nube = 0, resp = 0, insp = 0;
+  if (t < AGITAR) { paso = 0; sacude = 10 * Math.sin(t * 1.6); }
+  else if (t < AGITAR + PULSAR) { paso = 1; nube = suave(tramo(t, AGITAR, AGITAR + PULSAR - 2)); }
+  else if (t < AGITAR + PULSAR + RESP * POR_RESP) {
+    paso = 2; const u = t - AGITAR - PULSAR; resp = Math.floor(u / POR_RESP) + 1;
+    const f = (u % POR_RESP) / POR_RESP; insp = f < 0.5 ? suave(f / 0.5) : 1 - suave((f - 0.5) / 0.5);
+    nube = Math.max(0, 1 - (u + POR_RESP * f * 0) / (RESP * POR_RESP));
+  } else { paso = 3; resp = RESP; }
+  const svg = `<svg class="esc" viewBox="0 0 680 300">
+    <g>${cara(150, 140, 80)}</g>
+    ${camara(206, 172, { nube, sacude, mascarilla: false })}
+    <ellipse cx="160" cy="172" rx="${48 + 3 * insp}" ry="${34 + 2 * insp}" fill="${tinte(MORADO, 30)}" stroke="${MORADO}" stroke-width="5" opacity=".92"/>
+    <g transform="translate(560,40)">
+      <circle cx="50" cy="50" r="46" fill="#fff" stroke="${paso >= 2 ? VERDE : "#E5E7EB"}" stroke-width="7"/>
+      <text x="50" y="62" text-anchor="middle" font-size="36" font-weight="800" fill="${paso >= 2 ? VERDE : "#94A3B8"}">${resp}</text>
+      <text x="50" y="118" text-anchor="middle" font-size="14" fill="#6B7280">respiraciones</text>
+    </g>
+    <text x="300" y="268" text-anchor="middle" font-size="18" font-weight="700" fill="${MORADO}">Mascarilla bien ajustada a nariz y boca</text>
+    ${paso === 3 ? `<text x="300" y="40" text-anchor="middle" font-size="20" font-weight="800" fill="${AZUL}">Repetir por cada pulsación</text>` : ""}
+  </svg>`;
+  const pasos = PASOS.map(([k, txt, c], j) => `<div class="paso ${j === Math.min(paso, 2) ? "on" : ""}" style="--c:${c}"><b>${k}.</b> ${txt}</div>`).join("");
+  lienzo("Inhalador con cámara: técnica", "0-3 años con mascarilla; desde los 4 años, con boquilla",
+    `${svg}<div class="pasos">${pasos}</div>`, FUENTE_GINA + " (p. 212-213, Box 11-4).");
+};
+window.cuadro(0, 1);
+</script></body></html>

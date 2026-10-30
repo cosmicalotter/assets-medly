@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .fila{display:flex;gap:12px;flex:1;min-height:0}
+  .pasos{flex:1.1;display:flex;flex-direction:column;gap:8px}
+  .p{border-radius:12px;border:2px solid var(--azul);background:color-mix(in srgb,var(--azul) 8%,white);padding:8px 11px;font-size:14.5px;line-height:1.3}
+  .p b{color:var(--azul)}
+  .peligro{flex:1;display:flex;flex-direction:column;gap:8px}
+  .t{border-radius:12px;border:2px solid var(--rojo);background:color-mix(in srgb,var(--rojo) 7%,white);padding:12px 12px;font-size:15px;font-weight:600}
+  h4{font-size:15px;color:var(--rojo)}
+</style></head><body>
+<script>
+const pasos = `<div class="pasos">
+  <div class="p"><b>1.</b> Al empezar la crisis: <b>salbutamol con cámara</b>, 2 pulsaciones (GINA) o 2-4 (GEMA), una cada vez.</div>
+  <div class="p"><b>2.</b> Si hace falta, repetir cada <b>20 min</b> hasta <b>3 veces</b>.</div>
+  <div class="p"><b>3.</b> Observar 1 hora, en calma.</div>
+  <div class="p" style="border-color:${NARANJA};background:${tinte(NARANJA, 9)}"><b style="color:${NARANJA}">Consultar el mismo día</b> si necesita ≥4 pulsaciones en 4 h.</div>
+</div>`;
+const peligro = `<div class="peligro"><h4>Urgencias ya</h4>
+  <div class="t">Se hunden las costillas al respirar</div>
+  <div class="t">Labios morados</div>
+  <div class="t">No puede hablar o está adormilado</div>
+  <div class="t">Empeora pese al salbutamol</div></div>`;
+lienzo("Plan de acción: la crisis en casa", "Para la familia, por escrito",
+  `<div class="fila">${pasos}${peligro}</div>`,
+  "Esquema. Fuentes: GINA 2026 (p. 215-216); GEMA 5.5, tabla 5.4 (p. 118).");
+</script></body></html>
