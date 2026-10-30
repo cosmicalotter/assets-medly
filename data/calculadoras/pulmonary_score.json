@@ -1,7 +1,7 @@
 {
   "titulo": "Pulmonary Score con saturación (crisis de asma en niños)",
-  "descripcion": "Gradúa la gravedad de la crisis de asma en el niño con tres signos clínicos (frecuencia respiratoria por edad, sibilancias y uso del esternocleidomastoideo, 0-9 puntos) y la saturación de oxígeno, como propone GEMA 5.5: gana el que indique más gravedad.",
-  "instrucciones": "Puntuar cada signo de 0 a 3 y escribir la saturación al aire. Si no hay sibilancias y el esternocleidomastoideo está más activo, puntuar las sibilancias con 3. Repetir tras cada tanda de broncodilatador.",
+  "descripcion": "Gradúa la crisis de asma en el niño con tres signos (0-9 puntos) y la saturación de oxígeno, como propone GEMA 5.5. Manda el que indique más gravedad.",
+  "instrucciones": "Puntuar cada signo de 0 a 3 (se suman, 0-9) y escribir la saturación al aire. Si no hay sibilancias y el esternocleidomastoideo está más activo, puntuar las sibilancias con 3. Repetir tras cada tanda de broncodilatador.",
   "limitaciones": "Ninguna escala clínica de la crisis está bien validada. Los cortes de saturación son a nivel del mar: en altura, juzgar la hipoxemia por la altitud del sitio. GINA prefiere el PRAM, validado de 2 a 17 años.",
   "tipoCalculo": "formula",
   "formula": "0.5 * ((0.5 * (1 + ((fr + sb + cm) - 3.5) / abs((fr + sb + cm) - 3.5)) + 0.5 * (1 + ((fr + sb + cm) - 6.5) / abs((fr + sb + cm) - 6.5))) + sat_puntos + abs((0.5 * (1 + ((fr + sb + cm) - 3.5) / abs((fr + sb + cm) - 3.5)) + 0.5 * (1 + ((fr + sb + cm) - 6.5) / abs((fr + sb + cm) - 6.5))) - sat_puntos))",
@@ -70,7 +70,7 @@
               }
             }
           ],
-          "ayuda": "Respiraciones por minuto, contadas con el niño tranquilo."
+          "ayuda": "Respiraciones por minuto. La tabla de GEMA salta de <30 a 31-45 (<6 años) y de <20 a 21-35 (≥6 años)."
         },
         {
           "id": "sibilancias",
@@ -203,7 +203,7 @@
       "categoria": "Crisis moderada",
       "color": "naranja",
       "match_opcion_index": 1,
-      "approach": "Salbutamol 6-8 pulsaciones con cámara cada 20 min hasta 3 dosis; prednisolona 1-2 mg/kg (máx. 40 mg); oxígeno si SaO2 <94 % (GEMA).",
+      "approach": "Salbutamol 6-8 pulsaciones con cámara cada 20 min hasta 3 dosis; prednisolona 1-2 mg/kg (máx. 40 mg; GINA en ≤5 años, 20-30 mg); oxígeno si SaO2 <94 % (GEMA).",
       "si": {
         "ninguno": [
           {
@@ -227,7 +227,7 @@
       "categoria": "Crisis grave",
       "color": "rojo",
       "match_opcion_index": 2,
-      "approach": "Oxígeno, salbutamol 10 pulsaciones + ipratropio 2-4 pulsaciones cada 20 min hasta 3 dosis, prednisona 2 mg/kg; derivar al hospital en ambulancia medicalizada (GEMA)."
+      "approach": "Oxígeno, salbutamol 10 pulsaciones + ipratropio 2-4 pulsaciones cada 20 min hasta 3 dosis, prednisona 2 mg/kg (máx. 40 mg); derivar al hospital en ambulancia medicalizada (GEMA)."
     }
   ]
 }

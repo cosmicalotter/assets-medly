@@ -1,6 +1,6 @@
 {
   "titulo": "Asma en niños",
-  "descripcion": "En este algoritmo se aborda al niño menor de 12 años con sibilancias recurrentes: confirmar el asma según la edad, tratar la crisis por gravedad, elegir el escalón de mantenimiento y el plan de acción.",
+  "descripcion": "En este algoritmo se aborda al niño menor de 12 años con sibilancias recurrentes: diagnóstico según la edad, crisis por gravedad, escalones de mantenimiento y plan de acción. No incluye la bronquiolitis del lactante.",
   "version": "GINA 2026 · GEMA 5.5",
   "especialidad": "Neumología pediátrica",
   "actualizado": "Octubre 2026",
@@ -30,7 +30,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Asma en niños",
-      "texto": "- **Asma:** inflamación crónica de la vía aérea con hiperrespuesta bronquial y obstrucción variable al flujo aéreo, reversible total o parcialmente.\n- **Asma en ≤5 años (GINA):** los 3 criterios: **≥2** episodios de sibilancias en **12 meses** (o 1 con síntomas entre episodios), sin otra causa y mejoría a los **20-60 min** del salbutamol. Con 1 o 2: sospecha de asma.\n- **Asma en <3 años (GEMA):** **>3** episodios al año o episodios graves de tos, sibilancias y disnea, que responden al corticoide inhalado y empeoran al retirarlo.\n- **Crisis:** empeoramiento agudo o subagudo de los síntomas que causa malestar o riesgo para la salud.",
+      "texto": "- **Asma:** inflamación crónica de la vía aérea con hiperrespuesta bronquial y obstrucción variable al flujo aéreo, reversible total o parcialmente.\n- **Asma en ≤5 años (GINA):** 3 criterios: **≥2** episodios de sibilancias en **12 meses** (o 1 con síntomas entre ellos), sin otra causa y respuesta al tratamiento. Con 1-2: sospecha.\n- **Asma en <3 años (GEMA):** **>3** episodios al año o episodios graves, que responden al corticoide inhalado y empeoran al retirarlo.\n- **Crisis:** empeoramiento agudo o subagudo de los síntomas que causa malestar o riesgo para la salud.",
       "pie_nodo": "¿Qué necesitas?",
       "opciones": [
         {
@@ -103,6 +103,36 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag201_gina_timely_response_saba_means_that.png"
         },
         {
+          "titulo": "Criterio 3: mejoría en casa",
+          "paginas": "196",
+          "texto": "At home, the parent/caregiver reports that the child’s wheezing or difficulty breathing improves within 20–60 mins after being given SABA.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag196_gina_at_home_parentcaregiver_reports_that.png"
+        },
+        {
+          "titulo": "Respuesta a tiempo con corticoide oral",
+          "paginas": "201",
+          "texto": "For a child with a moderate or severe exacerbation requiring SABA and oral corticosteroids (OCS), a timely response to treatment means that symptoms/signs improve within 3–4 hours",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag201_gina_for_child_with_moderate_or.png"
+        },
+        {
+          "titulo": "Prueba diagnóstica con ICS: dosis",
+          "paginas": "196",
+          "texto": "During a 2- to 3-month trial of daily ICS (e.g., 100–250 mcg/day fluticasone-propionate equivalent by pMDI via spacer) plus as-needed SABA",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag196_gina_during_2_3month_trial_daily.png"
+        },
+        {
           "titulo": "Uno o dos criterios: sospecha de asma",
           "paginas": "196",
           "texto": "All three criteria listed below must be fulfilled for diagnosis of asthma in this age-group. If only 1 or 2 criteria are fulfilled, record as suspected asthma.",
@@ -170,22 +200,21 @@
     "diag_edad": {
       "tipo": "pregunta",
       "titulo": "Sibilancias recurrentes: ¿qué edad?",
-      "texto": "- Antes de **12 meses**, el primer episodio sibilante suele ser bronquiolitis, no asma.\n- Hasta los **5 años** el diagnóstico es clínico y probabilístico; más probable con atopia.\n- Desde los **3 años** la espirometría es fiable; a partir de los 6 se confirma como en el adulto.",
+      "texto": "- Antes de **12 meses**, el primer episodio sibilante suele ser bronquiolitis, no asma.\n- Antes de los **3 años** el diagnóstico es probabilístico; más probable con atopia (GEMA).\n- Con el método adecuado, la espirometría es fiable desde los **3 años**; desde los 5-6, como en el adulto.",
       "alertas": [
         {
-          "titulo": "Buscar otro diagnóstico",
-          "texto": "Síntomas desde el nacimiento, falla de medro, vómitos con la tos, estridor recurrente, signos focales o acropaquias."
+          "titulo": "No es asma hasta descartar otra causa",
+          "texto": "Síntomas desde el nacimiento, falla de medro, estridor recurrente o signos focales."
         }
       ],
-      "nota_adicional": "Cuanto más pequeño el niño, más probable otro diagnóstico.",
       "enlaces": [
         {
-          "texto": "Primer episodio sibilante <2 años: bronquiolitis",
+          "texto": "¿Primer episodio sibilante en <12 meses? Bronquiolitis",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Pediatria/neumoped.json",
           "nodo_objetivo": "nodo_bronquiolitis"
         }
       ],
-      "pie_nodo": "¿Qué edad tiene?",
+      "pie_nodo": "¿≤5 o 6-11 años, o hay signos de otro diagnóstico?",
       "opciones": [
         {
           "texto": "5 años o menos",
@@ -198,7 +227,7 @@
           "color": "teal"
         },
         {
-          "texto": "Signos de otra enfermedad",
+          "texto": "Signos de otro diagnóstico: derivar",
           "siguiente_nodo": "diag_diferencial",
           "color": "naranja"
         }
@@ -237,7 +266,7 @@
         {
           "titulo": "Derivar: signos de otro diagnóstico (Box 10-5)",
           "paginas": "200",
-          "texto": "Neonatal or very early onset of symptoms (especially if associated with failure to thrive) Vomiting associated with respiratory symptoms Continuous wheezing, recurrent stridor or seal-like barking cough (airway malacia)",
+          "texto": "Neonatal or very early onset of symptoms (especially if associated with failure to thrive) • Vomiting associated with respiratory symptoms • Continuous wheezing, recurrent stridor or seal-like barking cough (airway malacia)",
           "fuente": "GINA",
           "anio": "2026",
           "url": "https://ginasthma.org/reports/",
@@ -247,7 +276,7 @@
         {
           "titulo": "Derivar: signos focales e hipoxemia",
           "paginas": "200",
-          "texto": "Focal lung or cardiovascular signs, or finger clubbing Hypoxemia (<95%) when awake (outside the context of an exacerbation).",
+          "texto": "Focal lung or cardiovascular signs, or finger clubbing • Hypoxemia (<95%) when awake (outside the context of an exacerbation).",
           "fuente": "GINA",
           "anio": "2026",
           "url": "https://ginasthma.org/reports/",
@@ -259,7 +288,7 @@
     "diag_menor5": {
       "tipo": "pregunta",
       "titulo": "Asma en ≤5 años: los 3 criterios",
-      "texto": "- Con 1 o 2 criterios: «sospecha de asma»; reevaluar y tratar igual las crisis.\n- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si también necesitó corticoide oral.\n- Si dudas: prueba con corticoide inhalado diario **2-3 meses** y valorar la respuesta.",
+      "texto": "- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si necesitó corticoide oral.\n- Con 1-2 criterios: «sospecha de asma»; prueba con corticoide inhalado **2-3 meses**.\n- Si falla «sin otro diagnóstico»: buscarlo y derivar.",
       "checklist": {
         "titulo": "Asma en ≤5 años (GINA 2026)",
         "items": [
@@ -268,44 +297,54 @@
           "Respuesta a tiempo al tratamiento del asma"
         ]
       },
+      "calculadora": {
+        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/asma_menor5_gina.json",
+        "etiqueta": "Criterios de asma en ≤5 años",
+        "ramificar": true
+      },
       "discrepancias": [
         {
           "asunto": "Cuántos episodios hacen pensar en asma",
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "≥2 episodios agudos de sibilancias en 12 meses (o 1 con síntomas entre episodios)",
+              "dice": "≥2 episodios agudos de sibilancias en 12 meses (o 1 con síntomas entre episodios), en ≤5 años",
               "paginas": "198"
             },
             {
               "fuente": "GEMA 5.5",
-              "dice": "En <3 años, >3 episodios al año o episodios graves, con respuesta al GCI y empeoramiento al retirarlo",
+              "dice": "En <3 años, >3 episodios al año o episodios graves, con respuesta al GCI (corticoide inhalado) y empeoramiento al retirarlo",
               "paginas": "34"
             }
           ],
-          "nota": "GINA exige menos episodios; GEMA pide además la respuesta al tratamiento de mantenimiento."
+          "nota": "Las dos piden respuesta al tratamiento; cambian el número de episodios y la edad."
         }
       ],
-      "nota_adicional": "El índice predictivo de asma (IPA) predice el asma escolar, no la diagnostica; su precisión es pobre.",
+      "nota_adicional": "El índice predictivo de asma (IPA) estima el asma escolar; no diagnostica y su precisión es pobre.",
       "enlaces": [
         {
-          "texto": "Índice predictivo de asma (IPA)",
+          "texto": "IPA: riesgo de asma escolar (no diagnostica)",
           "tipo": "calculadora",
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/IPAsma.json"
         }
       ],
       "evidencia": {
-        "texto": "GINA: consenso de expertos · GEMA: evidencia C-D"
+        "texto": "GEMA: evidencia C-D"
       },
-      "pie_nodo": "¿Cuántos criterios cumple?",
+      "pie_nodo": "¿Cuántos de los 3 criterios cumple?",
       "opciones": [
         {
-          "texto": "Los 3, o 1-2 con síntomas: tratar",
+          "texto": "3 de 3: asma",
           "siguiente_nodo": "nodo_mantenimiento",
           "color": "azul"
         },
         {
-          "texto": "Signos de otra enfermedad: derivar",
+          "texto": "1-2 de 3: sospecha, prueba con corticoide inhalado",
+          "siguiente_nodo": "diag_prueba_ics",
+          "color": "teal"
+        },
+        {
+          "texto": "Falla «sin otro diagnóstico»: derivar",
           "siguiente_nodo": "diag_diferencial",
           "color": "naranja"
         }
@@ -382,26 +421,6 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag34_gema_buena_respuesta_al_tratamiento_mantenimiento.png"
         },
         {
-          "titulo": "Prueba con ICS diario 2-3 meses",
-          "paginas": "210",
-          "texto": "This treatment should be given initially for at least 2–3 months to establish its effectiveness in achieving good asthma control.",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag210_gina_this_treatment_should_be_given.png"
-        },
-        {
-          "titulo": "Ensayo terapéutico en el lactante",
-          "paginas": "120",
-          "texto": "siendo limitada la respuesta en las sibilancias episódicas inducidas por virus23, por lo que se recomienda realizar un ensayo terapéutico y valorar la respuesta24.",
-          "fuente": "GEMA",
-          "anio": "2025",
-          "url": "https://www.gemasma.com/",
-          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag120_gema_siendo_limitada_respuesta_sibilancias_episodicas.png"
-        },
-        {
           "titulo": "Índice Predictivo de Asma: condición previa",
           "paginas": "34",
           "texto": "Lactantes con 3 o más episodios al año de sibilancias durante los primeros 3 años de vida que cumplen un criterio mayor o 2 criterios menores.",
@@ -423,17 +442,89 @@
         }
       ]
     },
+    "diag_prueba_ics": {
+      "tipo": "pregunta",
+      "titulo": "Sospecha de asma: prueba con corticoide inhalado",
+      "texto": "- Fluticasona **100-250 mcg/día** (o equivalente) con cámara, **2-3 meses**, y salbutamol a demanda.\n- Valorar si bajan la gravedad o la frecuencia de las crisis y los síntomas entre ellas.\n- En las sibilancias episódicas por virus la respuesta es limitada (GEMA).",
+      "farmacos": [
+        {
+          "nombre": "Fluticasona propionato inhalador con cámara (prueba)",
+          "dosis": "**100-250 mcg/día** durante **2-3 meses**",
+          "pauta": "Dosis de prueba diagnóstica, mayor que la dosis baja de mantenimiento.",
+          "paginas": "196, 202"
+        }
+      ],
+      "nota_adicional": "La dosis de prueba es mayor que la dosis baja de mantenimiento: no confundirlas.",
+      "evidencia": {
+        "texto": "GINA: evidencia D"
+      },
+      "pie_nodo": "¿Mejoran las crisis o los síntomas entre ellas?",
+      "opciones": [
+        {
+          "texto": "Sí: asma, seguir el tratamiento",
+          "siguiente_nodo": "nodo_mantenimiento",
+          "color": "azul"
+        },
+        {
+          "texto": "No: buscar otro diagnóstico",
+          "siguiente_nodo": "diag_diferencial",
+          "color": "naranja"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Prueba diagnóstica con ICS: dosis",
+          "paginas": "196",
+          "texto": "During a 2- to 3-month trial of daily ICS (e.g., 100–250 mcg/day fluticasone-propionate equivalent by pMDI via spacer) plus as-needed SABA",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag196_gina_during_2_3month_trial_daily.png"
+        },
+        {
+          "titulo": "La dosis de prueba es mayor que la de mantenimiento",
+          "paginas": "202",
+          "texto": "These ICS doses are higher than the low doses recommended for ongoing treatment of asthma in children aged 5 years and younger in clinical practice (Box 11-3).",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag202_gina_these_ics_doses_are_higher.png"
+        },
+        {
+          "titulo": "Prueba con ICS diario 2-3 meses",
+          "paginas": "210",
+          "texto": "This treatment should be given initially for at least 2–3 months to establish its effectiveness in achieving good asthma control.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag210_gina_this_treatment_should_be_given.png"
+        },
+        {
+          "titulo": "Ensayo terapéutico en el lactante",
+          "paginas": "120",
+          "texto": "siendo limitada la respuesta en las sibilancias episódicas inducidas por virus23, por lo que se recomienda realizar un ensayo terapéutico y valorar la respuesta24.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag120_gema_siendo_limitada_respuesta_sibilancias_episodicas.png"
+        }
+      ]
+    },
     "diag_6_11": {
       "tipo": "pregunta",
       "titulo": "Asma en 6-11 años: confirmar con espirometría",
-      "texto": "- Síntomas variables (sibilancias, tos, disnea, opresión) más obstrucción variable al flujo aéreo.\n- Prueba broncodilatadora positiva: FEV1 **≥12 %** respecto al basal (GEMA) o **≥12 % del teórico** (GINA).\n- Negativa: prueba con corticoide inhalado y salbutamol **6-10 semanas**, o provocación con metacolina o ejercicio.\n- FENO **>25 ppb** con síntomas compatibles apoya el diagnóstico.",
+      "texto": "- Síntomas variables (sibilancias, tos, disnea, opresión) y obstrucción variable al flujo aéreo.\n- Prueba broncodilatadora positiva: FEV1 (volumen espirado en el primer segundo) sube **≥12 %**.\n- Negativa: provocación con metacolina o ejercicio; considerar FENO (óxido nítrico exhalado).\n- Sin espirometría: prueba con corticoide inhalado y salbutamol **6-10 semanas** (GEMA).",
       "discrepancias": [
         {
           "asunto": "Prueba broncodilatadora positiva",
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "Aumento del FEV1 ≥12 % del teórico (o PEF ≥15 %)",
+              "dice": "Aumento del FEV1 ≥12 % del teórico (o PEF, pico flujo, ≥15 %)",
               "paginas": "29"
             },
             {
@@ -443,16 +534,32 @@
             }
           ],
           "nota": "Cambia la referencia: el basal (GEMA) o el teórico (GINA)."
+        },
+        {
+          "asunto": "FENO que apoya el asma",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "Niños: >35 ppb (partes por mil millones)",
+              "paginas": "29"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": ">25 ppb con síntomas compatibles apoya el diagnóstico; otros sugieren >35 ppb",
+              "paginas": "47"
+            }
+          ],
+          "nota": "Ninguna lo usa sola: un FENO bajo no descarta asma."
         }
       ],
       "nota_adicional": "Una espirometría normal no descarta el asma: repetirla de forma periódica.",
       "evidencia": {
         "texto": "GEMA: evidencia C-D"
       },
-      "pie_nodo": "¿Se confirma la obstrucción variable?",
+      "pie_nodo": "¿FEV1 sube ≥12 %, o la provocación o la prueba terapéutica lo confirman?",
       "opciones": [
         {
-          "texto": "Sí, o mejora con la prueba terapéutica: asma",
+          "texto": "Sí: asma",
           "siguiente_nodo": "nodo_mantenimiento",
           "color": "teal"
         },
@@ -504,6 +611,26 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag29_gina_children_increase_from_baseline_fev1.png"
         },
         {
+          "titulo": "Figura 2.2: diagnóstico de asma en niños",
+          "paginas": "46",
+          "texto": "FIGURA 2.2. Algoritmo de diagnóstico de asma en niños. Prueba broncodilatadora (PBD) positiva: incremento del FEV1 > 12 % con respecto al valor basal.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag46_gema_figura_22_algoritmo_diagnostico_asma.png"
+        },
+        {
+          "titulo": "Provocación con metacolina o ejercicio",
+          "paginas": "45",
+          "texto": "Cuando existen dudas diagnósticas, las pruebas de provocación con metacolina y ejercicio son de especial interés en el niño",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag45_gema_cuando_existen_dudas_diagnosticas_pruebas.png"
+        },
+        {
           "titulo": "Algoritmo diagnóstico: prueba terapéutica",
           "paginas": "46",
           "texto": "Prueba terapéutica con GCI + SABA Evaluación en 6-10 semanas",
@@ -522,6 +649,26 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag47_gema_valores_encima_25_ppb_nino.png"
+        },
+        {
+          "titulo": "FENO: cortes de 35 y 25 ppb",
+          "paginas": "47",
+          "texto": "Se han sugerido puntos de corte por encima de 35 ppb para considerar como positivo55,56, pero valores por encima de 25 ppb",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag47_gema_han_sugerido_puntos_corte_encima.png"
+        },
+        {
+          "titulo": "FeNO en niños: >35 ppb",
+          "paginas": "29",
+          "texto": "elevated FeNO (adults/adolescents: >50 ppb; children: >35 ppb) or blood eosinophils above national/regional reference range can support the diagnosis of Type 2 asthma",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag29_gina_elevated_feno_adultsadolescents_50_ppb.png"
         }
       ]
     },
@@ -553,7 +700,7 @@
         {
           "titulo": "Derivar: signos de otro diagnóstico (Box 10-5)",
           "paginas": "200",
-          "texto": "Neonatal or very early onset of symptoms (especially if associated with failure to thrive) Vomiting associated with respiratory symptoms Continuous wheezing, recurrent stridor or seal-like barking cough (airway malacia)",
+          "texto": "Neonatal or very early onset of symptoms (especially if associated with failure to thrive) • Vomiting associated with respiratory symptoms • Continuous wheezing, recurrent stridor or seal-like barking cough (airway malacia)",
           "fuente": "GINA",
           "anio": "2026",
           "url": "https://ginasthma.org/reports/",
@@ -563,7 +710,7 @@
         {
           "titulo": "Derivar: sin respuesta ni desencadenante típico",
           "paginas": "200",
-          "texto": "Failure to respond to asthma medications (inhaled ICS, oral steroids or SABA) No association of symptoms with typical triggers, such as viral URTI",
+          "texto": "Failure to respond to asthma medications (inhaled ICS, oral steroids or SABA) • No association of symptoms with typical triggers, such as viral URTI",
           "fuente": "GINA",
           "anio": "2026",
           "url": "https://ginasthma.org/reports/",
@@ -573,7 +720,7 @@
         {
           "titulo": "Derivar: signos focales e hipoxemia",
           "paginas": "200",
-          "texto": "Focal lung or cardiovascular signs, or finger clubbing Hypoxemia (<95%) when awake (outside the context of an exacerbation).",
+          "texto": "Focal lung or cardiovascular signs, or finger clubbing • Hypoxemia (<95%) when awake (outside the context of an exacerbation).",
           "fuente": "GINA",
           "anio": "2026",
           "url": "https://ginasthma.org/reports/",
@@ -629,15 +776,15 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Crisis: valorar la gravedad mientras se trata",
-      "texto": "- Pulmonary Score (frecuencia respiratoria, sibilancias, esternocleidomastoideo) y saturación: manda el más grave.\n- Saturación antes del oxígeno; en altura, juzgarla por la altitud del sitio.\n- Preguntar por UCI o intubación previa, ingresos y urgencias en el último año y corticoides orales.",
+      "texto": "- Pulmonary Score (frecuencia respiratoria, sibilancias, esternocleidomastoideo) y SaO2 (saturación de oxígeno) antes del oxígeno: manda la peor.\n- Cualquier signo de la lista: crisis grave y traslado.\n- Riesgo de crisis fatal: UCI o intubación previa, ingreso o urgencias en el último año, corticoide oral reciente.",
       "checklist": {
-        "titulo": "Traslado inmediato al hospital (GINA, ≤5 años)",
+        "titulo": "Grave: traslado inmediato (GINA)",
         "items": [
-          "Cianosis",
+          "Cianosis, somnolencia o confusión",
           "No puede hablar ni beber",
-          "Frecuencia respiratoria **>40/min**",
-          "Saturación **<92 %** al aire",
-          "Tórax silente con disnea"
+          "Frecuencia respiratoria **>40/min** (≤5 años) o **>30/min** (6-11 años)",
+          "SaO2 **<92 %** al aire",
+          "Tórax silente o casi silente"
         ]
       },
       "media": [
@@ -645,7 +792,7 @@
           "recurso": "asma_gravedad_crisis.png",
           "titulo": "Gravedad de la crisis: Pulmonary Score y saturación",
           "descripcion": "Los tres signos del Pulmonary Score por edad y los cortes de saturación de GEMA.",
-          "info": "Cada signo puntúa de 0 a 3: {#2FB36D:0-3 leve}, {#F07F3C:4-6 moderada} y {#EF5454:7-9 grave}. La saturación clasifica por su cuenta: **>94 %**, **91-94 %** y **<91 %**; si no coinciden, manda la más grave. Cortes a nivel del mar.",
+          "info": "Cada signo puntúa de 0 a 3 y se suman: {#2FB36D:0-3 leve}, {#F07F3C:4-6 moderada} y {#EF5454:7-9 grave}. La saturación clasifica por su cuenta: **>94 %**, **91-94 %** y **<91 %**; si no coinciden, manda la más grave. Cortes a nivel del mar.",
           "en_texto": "Pulmonary Score",
           "referencias": [
             {
@@ -693,7 +840,7 @@
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/pram.json"
         },
         {
-          "texto": "¿Hipoxemia para esta altitud?",
+          "texto": "Hipoxemia por altitud (GPC colombiana, <5 años)",
           "tipo": "calculadora",
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/saturacion_altitud.json"
         }
@@ -705,7 +852,7 @@
         },
         {
           "titulo": "Riesgo vital",
-          "texto": "Somnoliento, confuso o cianótico: tratar ya y avisar a la UCI pediátrica."
+          "texto": "Somnoliento, confuso, cianótico o PRAM 11-12: tratar ya y avisar a la UCI pediátrica."
         }
       ],
       "discrepancias": [
@@ -726,21 +873,20 @@
           "nota": "Las dos clasifican en leve, moderada y grave; usar una y repetirla."
         }
       ],
-      "nota_adicional": "Los cortes de saturación de las guías son a nivel del mar; GINA pide ajustarlos por altitud.",
-      "pie_nodo": "¿Qué gravedad tiene la crisis?",
+      "pie_nodo": "¿Gravedad por Pulmonary Score y SaO2 (manda la peor)?",
       "opciones": [
         {
-          "texto": "Leve",
+          "texto": "Leve: 0-3 y SaO2 >94 %",
           "siguiente_nodo": "crisis_leve",
           "color": "verde"
         },
         {
-          "texto": "Moderada",
+          "texto": "Moderada: 4-6 o SaO2 91-94 %",
           "siguiente_nodo": "crisis_moderada",
           "color": "naranja"
         },
         {
-          "texto": "Grave",
+          "texto": "Grave: 7-9, SaO2 <91 % o un signo de la lista",
           "siguiente_nodo": "crisis_grave",
           "color": "rojo"
         }
@@ -807,6 +953,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag220_gina_cyanosis_child_unable_speak_or.png"
         },
         {
+          "titulo": "Crisis grave en 6-11 años (Box 9-4)",
+          "paginas": "182",
+          "texto": "SEVERE or LIFE-THREATENING presentation – any of the following Unable to speak, drink or lie down O2 saturation (room air) <92%* Respiratory rate >30/min Silent or quiet chest",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag182_gina_severe_or_lifethreatening_presentation_any.png"
+        },
+        {
           "titulo": "Crisis con riesgo vital (≤5 años)",
           "paginas": "225",
           "texto": "If the child has any feature of life-threatening asthma (drowsy, confused or cyanosed, or with the highest (worst) clinical score (e.g., PRAM 11–12), start treatment immediately",
@@ -841,13 +997,13 @@
     "crisis_leve": {
       "tipo": "pregunta",
       "titulo": "Crisis leve: salbutamol con cámara",
-      "texto": "- Salbutamol **2-4 pulsaciones** de 100 mcg con cámara (GEMA); GINA da **4** en ≤5 años.\n- Una pulsación cada vez, con **5-6 respiraciones** tras cada una.\n- Reevaluar a los **15 min** (GEMA); GINA repite una vez a los **30-60 min** si hace falta.",
+      "texto": "- Salbutamol **2-4 pulsaciones** de 100 mcg con cámara.\n- Una pulsación cada vez, con **5-6 respiraciones** tras cada una.\n- Reevaluar a los **15 min**.",
       "media": [
         {
           "recurso": "asma_inhalador_camara.gif",
           "titulo": "Inhalador con cámara: técnica",
           "descripcion": "Agitar, una pulsación en la cámara y 5-6 respiraciones; repetir por cada pulsación.",
-          "info": "Se {#4F8CF6:agita el inhalador} antes de cada pulsación, se dispara **una** en la cámara y el niño hace {#18B9A9:5-6 respiraciones}. De **0 a 3 años**, con {#8B5CF6:mascarilla} bien ajustada a nariz y boca; desde los **4**, con boquilla.",
+          "info": "Se {#4F8CF6:agita el inhalador} antes de cada pulsación, se dispara **una** en la cámara ({#18B9A9:nube del fármaco}) y el niño hace {#2FB36D:5-6 respiraciones}. De **0 a 3 años**, con {#8B5CF6:mascarilla} bien ajustada a nariz y boca; desde los **4**, con boquilla.",
           "en_texto": "5-6 respiraciones",
           "referencias": [
             {
@@ -886,16 +1042,34 @@
       "farmacos": [
         {
           "nombre": "Salbutamol inhalador 100 mcg con cámara",
-          "dosis": "**2-4 pulsaciones** (GEMA) · **4 pulsaciones** (GINA, ≤5 años)",
-          "pauta": "Una pulsación cada vez; reevaluar.",
-          "paginas": "125, 221"
+          "dosis": "**2-4 pulsaciones**",
+          "pauta": "Una pulsación cada vez; reevaluar a los 15 min.",
+          "paginas": "125, 127"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Dosis y reevaluación en la crisis leve",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "≤5 años: 4 pulsaciones; si hace falta, repetir una vez a los 30-60 min",
+              "paginas": "221"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "2-4 pulsaciones; reevaluar a los 15 min",
+              "paginas": "125, 127"
+            }
+          ],
+          "nota": "Las dos: inhalador con cámara antes que nebulizador."
         }
       ],
       "nota_adicional": "La cámara con inhalador es tan eficaz como el nebulizador (GEMA).",
       "evidencia": {
         "texto": "GEMA: R1"
       },
-      "pie_nodo": "¿Responde?",
+      "pie_nodo": "¿Sigue leve a los 15 min (Pulmonary Score ≤3 y SaO2 >94 %)?",
       "opciones": [
         {
           "texto": "Sí: alta con plan",
@@ -918,6 +1092,16 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag125_gema_tratamiento_episodio_agudo_asma_deben.png"
+        },
+        {
+          "titulo": "Cámara tan eficaz como el nebulizador",
+          "paginas": "125",
+          "texto": "ya que esta forma de administración es tan efectiva como la de los nebulizadores en el tratamiento del episodio agudo de asma62-65.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag125_gema_ya_esta_forma_administracion_es.png"
         },
         {
           "titulo": "Salbutamol en tandas",
@@ -958,16 +1142,6 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag127_gema_figura_52_tratamiento_crisis_asmatica.png"
-        },
-        {
-          "titulo": "Cámara tan eficaz como el nebulizador",
-          "paginas": "125",
-          "texto": "ya que esta forma de administración es tan efectiva como la de los nebulizadores en el tratamiento del episodio agudo de asma62-65.",
-          "fuente": "GEMA",
-          "anio": "2025",
-          "url": "https://www.gemasma.com/",
-          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag125_gema_ya_esta_forma_administracion_es.png"
         },
         {
           "titulo": "Salbutamol en la crisis (≤5 años)",
@@ -1015,17 +1189,28 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Crisis moderada: salbutamol repetido y corticoide",
-      "texto": "- Salbutamol **6-8 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; nebulizado **0,15 mg/kg** (máx. **5 mg**) sólo si necesita oxígeno.\n- Oxígeno si la saturación es **<94 %**, para mantener **94-98 %** (GEMA).\n- Corticoide oral precoz. Sin respuesta: añadir ipratropio.\n- Reevaluar **15 min** tras la última dosis.",
+      "texto": "- Salbutamol **6-8 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; nebulizado sólo si necesita oxígeno.\n- Oxígeno si la SaO2 es **<94 %**, para mantener **94-98 %**.\n- Prednisona o prednisolona oral precoz.\n- Si no responde al salbutamol inicial: añadir ipratropio.",
       "farmacos": [
         {
           "nombre": "Salbutamol inhalador 100 mcg con cámara",
           "dosis": "**6-8 pulsaciones** cada **20 min**, hasta **3 dosis**",
-          "pauta": "GINA (≤5 años): 4 pulsaciones cada 20-30 min hasta 3 veces.",
+          "pauta": "Reevaluar 15 min tras la última dosis.",
           "paginas": "127"
         },
         {
-          "nombre": "Prednisolona oral",
-          "dosis": "**1-2 mg/kg/día**, máx. **40 mg** (GEMA), **3-5 días**",
+          "nombre": "Salbutamol nebulizado",
+          "dosis": "**0,15 mg/kg** (máx. **5 mg**) cada **20 min**, hasta **3 dosis**",
+          "pauta": "Sólo si necesita oxígeno.",
+          "paginas": "127, 125",
+          "por_kg": {
+            "cantidad": 0.15,
+            "unidad": "mg",
+            "tope": 5
+          }
+        },
+        {
+          "nombre": "Prednisona o prednisolona oral",
+          "dosis": "**1-2 mg/kg/día**, máx. **40 mg**, **3-5 días**",
           "pauta": "GINA en ≤5 años: máx. 20 mg (<2 años) o 30 mg (2-5 años).",
           "paginas": "126, 221",
           "por_kg": {
@@ -1038,15 +1223,21 @@
         },
         {
           "nombre": "Dexametasona oral (alternativa)",
-          "dosis": "**0,3-0,6 mg/kg** dosis única, máx. **12 mg** (GINA)",
-          "pauta": "Vomita menos que la prednisolona.",
-          "paginas": "126, 221",
+          "dosis": "**0,3-0,6 mg/kg**, máx. **12 mg**",
+          "pauta": "Dosis única (GEMA) o 1-2 días (GINA); vomita menos que la prednisolona.",
+          "paginas": "126, 224",
           "por_kg": {
             "desde": 0.3,
             "hasta": 0.6,
             "unidad": "mg",
             "tope": 12
           }
+        },
+        {
+          "nombre": "Bromuro de ipratropio",
+          "dosis": "**2-4 pulsaciones** (40-80 mcg) con cámara, o **250 mcg** (<30 kg) / **500 mcg** (≥30 kg) nebulizado",
+          "pauta": "Cada 20 min las 2 primeras horas, si no responde al salbutamol.",
+          "paginas": "126"
         }
       ],
       "discrepancias": [
@@ -1064,10 +1255,10 @@
               "paginas": "127"
             }
           ],
-          "nota": "Ninguna ajusta por altitud; en altura, usar el límite de la altitud."
+          "nota": "GINA pide ajustar los objetivos por altitud, sin dar cifras; GEMA no lo trata."
         },
         {
-          "asunto": "Máximo de prednisolona",
+          "asunto": "Máximo de prednisona o prednisolona",
           "posturas": [
             {
               "fuente": "GINA 2026",
@@ -1080,14 +1271,14 @@
               "paginas": "126"
             }
           ],
-          "nota": "En ≤5 años GINA topa más bajo."
+          "nota": "En ≤5 años GINA pone el tope más bajo."
         }
       ],
-      "nota_adicional": "En el preescolar con sibilancias por virus leves a moderadas, el beneficio del corticoide sistémico está cuestionado (GEMA).",
+      "nota_adicional": "En el preescolar con sibilancias leves-moderadas por virus, GEMA reserva el corticoide sistémico para las crisis más graves.",
       "evidencia": {
         "texto": "GEMA: R1 (corticoide precoz) · GINA: evidencia A"
       },
-      "pie_nodo": "¿Responde a los 15 min de la última dosis?",
+      "pie_nodo": "¿Baja a leve 15 min tras la última dosis (Pulmonary Score ≤3, SaO2 >94 %)?",
       "opciones": [
         {
           "texto": "Sí: alta con plan y corticoide",
@@ -1172,6 +1363,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag126_gema_eficacia_glucocorticoides_sistemicos_preescolares_episodios.png"
         },
         {
+          "titulo": "Corticoide en el preescolar: sólo las crisis más graves",
+          "paginas": "126",
+          "texto": "está cuestionada, por lo que su uso debería restringirse a las crisis más graves (1-2 mg/kg/día)37,75,76.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag126_gema_esta_cuestionada_lo_su_uso.png"
+        },
+        {
           "titulo": "Prednisolona: dosis",
           "paginas": "126",
           "texto": "El más utilizado es prednisolona a dosis de 1-2 mg/kg/día (máximo 40 mg) durante 3 a 5 días o hasta la resolución80,81.",
@@ -1200,6 +1401,26 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag126_gema_bromuro_ipratropio_durante_2_primeras.png"
+        },
+        {
+          "titulo": "Ipratropio: dosis nebulizada",
+          "paginas": "126",
+          "texto": "La dosis nebulizada es de 250 μg en menores de 30 kg y 500 μg en mayores de 30 kg.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag126_gema_dosis_nebulizada_es_250_g.png"
+        },
+        {
+          "titulo": "Ipratropio: dosis con cámara",
+          "paginas": "126",
+          "texto": "La dosis con cámara de inhalación es de 40-80 μg (2-4 pulsaciones). El efecto máximo se produce en las primeras dosis",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag126_gema_dosis_camara_inhalacion_es_4080.png"
         },
         {
           "titulo": "Crisis moderada (≤5 años)",
@@ -1232,6 +1453,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag221_gina_or_oral_dexamethasone_0306_mgkg.png"
         },
         {
+          "titulo": "Dexametasona: 1-2 días; menos vómitos",
+          "paginas": "224",
+          "texto": "OR oral dexamethasone 0.3–0.6 mg/kg (max 12 mg) for total 1–2 days. Dexamethasone is less likely to cause vomiting.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag224_gina_or_oral_dexamethasone_0306_mgkg.png"
+        },
+        {
           "titulo": "Oxígeno (≤5 años)",
           "paginas": "221",
           "texto": "Delivered by face nasal prongs or mask, as indicated to maintain oxygen saturation at ≥92%",
@@ -1260,6 +1491,16 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag181_gina_oxygen_therapy_should_be_titrated.png"
+        },
+        {
+          "titulo": "Saturación: ajustar por altitud",
+          "paginas": "218",
+          "texto": "Note potential for overestimation of oxygen saturation with pulse oximetry in people with dark skin color.797 Oxygen saturation targets should be adjusted for altitude, where appropriate.798",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag218_gina_note_potential_for_overestimation_oxygen.png"
         }
       ]
     },
@@ -1267,13 +1508,13 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Crisis grave: oxígeno, broncodilatadores y traslado",
-      "texto": "- Oxígeno para saturación **94-98 %** (GEMA).\n- Salbutamol **10 pulsaciones** + ipratropio **2-4 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; o nebulizado.\n- Prednisona **2 mg/kg** oral o IV.\n- Desde el centro de salud: al hospital en ambulancia medicalizada.",
+      "texto": "- Oxígeno para SaO2 **94-98 %**.\n- Salbutamol **10 pulsaciones** + ipratropio **2-4 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; o nebulizados.\n- Prednisona **2 mg/kg** oral o IV, máx. **40 mg**.\n- Sin respuesta al tratamiento inicial: sulfato de magnesio IV.\n- Desde el centro de salud: al hospital en ambulancia medicalizada.",
       "media": [
         {
           "recurso": "asma_crisis_tratamiento.png",
           "titulo": "Tratamiento de la crisis según la gravedad",
           "descripcion": "Dosis de salbutamol, ipratropio y corticoide en la crisis leve, moderada y grave (GEMA).",
-          "info": "{#2FB36D:Leve}: salbutamol **2-4 pulsaciones**. {#F07F3C:Moderada}: **6-8 pulsaciones** cada 20 min hasta 3 dosis y prednisolona **1-2 mg/kg**. {#EF5454:Grave}: oxígeno, salbutamol **10 pulsaciones** + ipratropio **2-4**, cada 20 min hasta 3 dosis, y prednisona **2 mg/kg**.",
+          "info": "{#2FB36D:Leve}: salbutamol **2-4 pulsaciones**. {#F07F3C:Moderada}: **6-8 pulsaciones** cada 20 min hasta 3 dosis y prednisolona **1-2 mg/kg** (máx. **40 mg**). {#EF5454:Grave}: oxígeno, salbutamol **10 pulsaciones** + ipratropio **2-4**, cada 20 min hasta 3 dosis, y prednisona **2 mg/kg** (máx. **40 mg**).",
           "en_texto": "ipratropio",
           "referencias": [
             {
@@ -1339,8 +1580,8 @@
         },
         {
           "nombre": "Prednisona",
-          "dosis": "**2 mg/kg** oral o IV (GEMA)",
-          "pauta": "Máx. 40 mg/día.",
+          "dosis": "**2 mg/kg** oral o IV, máx. **40 mg/día**",
+          "pauta": "GINA en ≤5 años: máx. 20 mg (<2 años) o 30 mg (2-5 años).",
           "paginas": "127, 126",
           "por_kg": {
             "cantidad": 2,
@@ -1363,12 +1604,28 @@
       ],
       "discrepancias": [
         {
+          "asunto": "Salbutamol en la crisis grave",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "4-6 pulsaciones (≤5 años); 6-10 pulsaciones (6-11 años), cada 20-30 min",
+              "paginas": "221, 182"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "10 pulsaciones con 2-4 de ipratropio, cada 20 min hasta 3 dosis",
+              "paginas": "127"
+            }
+          ],
+          "nota": "GEMA da la dosis más alta para todas las edades."
+        },
+        {
           "asunto": "Sulfato de magnesio IV",
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "40-50 mg/kg (máx. 2 g) en 10-20 min, desde los 2 años, tras la primera hora",
-              "paginas": "221"
+              "dice": "40-50 mg/kg (máx. 2 g) en 10-20 min (p. 221) o 20-60 min (p. 226), desde los 2 años y tras la primera hora",
+              "paginas": "221, 226"
             },
             {
               "fuente": "GEMA 5.5",
@@ -1377,9 +1634,29 @@
             }
           ],
           "nota": "GINA lo limita a ≥2 años."
+        },
+        {
+          "asunto": "Máximo de prednisona o prednisolona",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "1-2 mg/kg; máx. 20 mg (<2 años), 30 mg (2-5 años), 40 mg (6-11 años)",
+              "paginas": "221, 181"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "1-2 mg/kg/día, máx. 40 mg a cualquier edad",
+              "paginas": "126"
+            }
+          ],
+          "nota": "En ≤5 años GINA pone el tope más bajo."
         }
       ],
       "alertas": [
+        {
+          "titulo": "No dar",
+          "texto": "Sedantes, aminofilina ni teofilina."
+        },
         {
           "titulo": "Toxicidad del salbutamol",
           "texto": "Taquicardia, ansiedad, hipopotasemia o acidosis láctica pueden imitar un asma que empeora."
@@ -1388,10 +1665,15 @@
       "evidencia": {
         "texto": "GEMA: R1 · GINA: evidencia A (oxígeno, corticoide)"
       },
-      "pie_nodo": "¿Qué sigue?",
+      "pie_nodo": "¿Mejora en 1 h (3 tandas) y satura ≥92 % al aire?",
       "opciones": [
         {
-          "texto": "Ingreso o UCI",
+          "texto": "Sí: observar y alta con plan",
+          "siguiente_nodo": "crisis_alta",
+          "color": "verde"
+        },
+        {
+          "texto": "No: ingreso o UCI",
           "siguiente_nodo": "crisis_ingreso",
           "color": "rojo"
         }
@@ -1426,16 +1708,6 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag127_gema_figura_52_tratamiento_crisis_asmatica.png"
-        },
-        {
-          "titulo": "Toxicidad del salbutamol",
-          "paginas": "225",
-          "texto": "Administration of high doses of SABA is associated with increased pulse rate, palpitations and anxiety, and may be associated with hypokalemia, arrhythmias, lactic acidosis and hyperventilation.",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_administration_high_doses_saba_associated.png"
         },
         {
           "titulo": "Oxígeno: objetivo 94-98 %",
@@ -1518,6 +1790,26 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag128_gema_crisis_graves_cuando_haya_sospecha.png"
         },
         {
+          "titulo": "Anafilaxia: adrenalina primero",
+          "paginas": "221",
+          "texto": "If the child has features of anaphylaxis as well as asthma, give IM epinephrine (adrenaline) first. Give salbutamol 4–6 puffs by pMDI plus spacer",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag221_gina_if_child_has_features_anaphylaxis.png"
+        },
+        {
+          "titulo": "Crisis grave en 6-11 años: salbutamol (Box 9-4)",
+          "paginas": "182",
+          "texto": "Give salbutamol 6–10 puffs by pMDI + spacer (or 5 mg by nebulizer), repeat if needed every 20–30 minutes",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag182_gina_give_salbutamol_610_puffs_by.png"
+        },
+        {
           "titulo": "Ipratropio (≤5 años)",
           "paginas": "221",
           "texto": "Give 4 puffs of 20 mcg ipratropium bromide by pMDI and spacer (or 0.25 mg by nebulization) with SABA up to 3 times.",
@@ -1536,19 +1828,80 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag221_gina_ed_consider_intravenous_isotonic_magnesium.png"
+        },
+        {
+          "titulo": "Magnesio: infusión lenta",
+          "paginas": "226",
+          "texto": "Intravenous MgSO4 in a single dose of 40–50 mg/kg (maximum 2 g) by slow infusion (20–60 minutes) may be considered in addition to standard treatment",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag226_gina_intravenous_mgso4_single_dose_4050.png"
+        },
+        {
+          "titulo": "Magnesio: tras la primera hora",
+          "paginas": "226",
+          "texto": "after the first hour of treatment for children ≥2 years old with severe acute asthma (e.g., oxygen saturation <92%, Box 12-6, p.223).",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag226_gina_after_first_hour_treatment_for.png"
+        },
+        {
+          "titulo": "Corticoide oral (≤5 años)",
+          "paginas": "221",
+          "texto": "give initial dose of oral prednisone/prednisolone (1–2 mg/kg up to a maximum 20 mg for children <2 years old; 30 mg for children 2–5 years)",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag221_gina_give_initial_dose_oral_prednisoneprednisolone.png"
+        },
+        {
+          "titulo": "No sedar en la crisis",
+          "paginas": "190",
+          "texto": "Sedation should be strictly avoided during exacerbations of asthma because of the respiratory depressant effect of anxiolytic and hypnotic drugs.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag190_gina_sedation_should_be_strictly_avoided.png"
+        },
+        {
+          "titulo": "Sin aminofilina ni teofilina",
+          "paginas": "190",
+          "texto": "Intravenous aminophylline and theophylline should not be used in the management of asthma exacerbations, in view of their poor efficacy and safety profile",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag190_gina_intravenous_aminophylline_theophylline_should_not.png"
+        },
+        {
+          "titulo": "Toxicidad del salbutamol",
+          "paginas": "225",
+          "texto": "Administration of high doses of SABA is associated with increased pulse rate, palpitations and anxiety, and may be associated with hypokalemia, arrhythmias, lactic acidosis and hyperventilation.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_administration_high_doses_saba_associated.png"
         }
       ]
     },
     "crisis_ingreso": {
       "tipo": "resultado",
       "estilo": "peligro",
-      "titulo": "Hospitalizar o UCI",
-      "texto": "- Hospitalizar: saturación **<92 %** tras el tratamiento inicial, sin respuesta en **1 h** o disnea **4-6 h** después del corticoide.\n- UCI: somnoliento, confuso, cianótico o tórax silente.\n- Seguir salbutamol, oxígeno y corticoide durante el traslado.",
+      "titulo": "Ingreso en planta o UCI",
+      "texto": "- UCI: somnoliento, confuso, cianótico o PRAM **11-12**.\n- Seguir salbutamol, oxígeno y corticoide durante el traslado.",
       "checklist": {
-        "titulo": "Ingresar si (GINA, ≤5 años)",
+        "titulo": "Hospitalizar si",
         "items": [
+          "SaO2 **<92 %** tras el tratamiento inicial",
           "Sin respuesta a 4-6 pulsaciones de salbutamol cada 20 min, 3 veces en 1 h",
-          "Taquipnea que persiste tras 3 tandas de salbutamol",
+          "Taquipnea tras 3 tandas (normal: **<50** de 2-12 meses; **<40** de 1-5 años)",
           "Disnea **4-6 h** después del corticoide oral",
           "Casa sin capacidad de tratar la crisis"
         ]
@@ -1598,6 +1951,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag220_gina_persisting_tachypnea_despite_three_administrations.png"
         },
         {
+          "titulo": "Frecuencia respiratoria normal (≤5 años)",
+          "paginas": "220",
+          "texto": "*Normal respiratory rate: <50 breaths/minute in children 2–12 months; <40 breaths/minute in children 1–5 years.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag220_gina_normal_respiratory_rate_50_breathsminute.png"
+        },
+        {
           "titulo": "Disnea 4-6 h tras el corticoide: ingresar",
           "paginas": "226",
           "texto": "Children with persisting dyspnea 4–6 hours after OCS have been given should be admitted to hospital (Evidence D).",
@@ -1633,52 +1996,85 @@
       "tipo": "pregunta",
       "estilo": "exito",
       "titulo": "Alta tras la crisis",
-      "texto": "- Salbutamol a demanda con cámara, dentro de un plan escrito; no pautado.\n- Completar el corticoide oral **3-5 días** si se empezó.\n- Crisis moderada o grave, o síntomas entre crisis: empezar o subir el corticoide inhalado.\n- Control en **24-48 h** (GEMA); **1-3 días** (GINA, ≤5 años) o **2-5 días** (6-11 años).",
+      "texto": "- Salbutamol a demanda con cámara, dentro de un plan escrito; no pautado.\n- Completar el corticoide oral **3-5 días** si se empezó.\n- Control en **24-48 h**.",
       "checklist": {
-        "titulo": "Antes del alta",
+        "titulo": "Criterios de alta (GINA)",
         "items": [
-          "Revisar la técnica del inhalador",
-          "Plan de acción escrito",
-          "Salbutamol y corticoide suficientes hasta el control",
-          "Buscar el desencadenante y el control previo"
+          "Criterios de crisis leve **1-2 h** después del último salbutamol",
+          "SaO2 **≥92 %** al aire",
+          "Recursos suficientes en casa",
+          "Técnica del inhalador revisada y plan de acción escrito"
         ]
       },
-      "nota_adicional": "Si tuvo ≥1 crisis en 12 meses o más de un ciclo de corticoide oral en el año, derivar a especialista (GINA).",
+      "discrepancias": [
+        {
+          "asunto": "Control tras la crisis",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "1-3 días (≤5 años); 2-5 días (6-11 años)",
+              "paginas": "224, 183"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "24-48 h",
+              "paginas": "119"
+            }
+          ],
+          "nota": "Con cualquiera de las dos, antes de 3-5 días."
+        },
+        {
+          "asunto": "Corticoide inhalado al alta",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "≤5 años: si la crisis fue moderada-grave o hay síntomas entre crisis; 6-11 años: a todos",
+              "paginas": "223, 184"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "Evaluar el control previo y ajustar el escalón en el seguimiento",
+              "paginas": "128"
+            }
+          ],
+          "nota": "Ante la duda, empezar o subir el corticoide inhalado."
+        }
+      ],
       "evidencia": {
         "texto": "GEMA: R2 · GINA: evidencia D"
       },
-      "pie_nodo": "¿Qué sigue?",
+      "pie_nodo": "¿Necesita empezar o subir el corticoide inhalado?",
       "opciones": [
         {
-          "texto": "Tratamiento de mantenimiento",
+          "texto": "Sí: escalones de mantenimiento",
           "siguiente_nodo": "nodo_mantenimiento"
         },
         {
-          "texto": "Plan de acción y derivación",
+          "texto": "No: plan de acción y control",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "verde"
         }
       ],
       "referencias": [
         {
-          "titulo": "Tras la crisis: salbutamol y control en 24-48 h",
-          "paginas": "119",
-          "texto": "Si mejoras en una hora y la mejoría se mantiene 4 horas, continúa con salbutamol: 2-4 inhalaciones cada 4-6 horas (según síntomas) y acuda a tu pediatra en 24-48 horas.",
-          "fuente": "GEMA",
-          "anio": "2025",
-          "url": "https://www.gemasma.com/",
-          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag119_gema_si_mejoras_hora_mejoria_mantiene.png"
+          "titulo": "Alta en ≤5 años: criterios de crisis leve",
+          "paginas": "223",
+          "texto": "If the child is improving, consider discharge home if they have all of the features of a “mild” presentation (Box 12-1, p.217).",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag223_gina_if_child_improving_consider_discharge.png"
         },
         {
-          "titulo": "Seguimiento tras la crisis",
-          "paginas": "128",
-          "texto": "Es preciso evaluar el grado de control de los síntomas en las semanas previas, los factores de riesgo, los posibles factores desencadenantes y el tratamiento previo.",
-          "fuente": "GEMA",
-          "anio": "2025",
-          "url": "https://www.gemasma.com/",
-          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag128_gema_es_preciso_evaluar_grado_control.png"
+          "titulo": "Alta en 6-11 años (Box 9-4)",
+          "paginas": "182",
+          "texto": "ASSESS FOR DISCHARGE Symptoms and signs improved and satisfy ‘mild’ criteria above for at least 1–2 hours after last salbutamol dose",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag182_gina_assess_for_discharge_symptoms_signs.png"
         },
         {
           "titulo": "Alta: salbutamol a demanda",
@@ -1701,6 +2097,26 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag223_gina_if_child_had_moderate_or.png"
         },
         {
+          "titulo": "6-11 años: corticoide inhalado al alta",
+          "paginas": "184",
+          "texto": "Inhaled corticosteroids (ICS): Initiate ICS-containing therapy before discharge, if not already prescribed. The preferred regimen for adults/adolescents is maintenance-and-reliever therapy",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag184_gina_inhaled_corticosteroids_ics_initiate_icscontaining.png"
+        },
+        {
+          "titulo": "6-11 años: debut con una crisis",
+          "paginas": "103",
+          "texto": "Treat as for exacerbation (Box 9-4, p.180), including a short course of OCS if the exacerbation is severe; commence Step 3 or Step 4 treatment before discharge.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag103_gina_treat_as_for_exacerbation_box.png"
+        },
+        {
           "titulo": "Alta: técnica y plan escrito",
           "paginas": "224",
           "texto": "Review and correct inhaler technique. Provide or review a written asthma action plan. Ask how the exacerbation developed, and how the parent/caregiver responded.",
@@ -1709,6 +2125,26 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag224_gina_review_correct_inhaler_technique_provide.png"
+        },
+        {
+          "titulo": "Tras la crisis: salbutamol y control en 24-48 h",
+          "paginas": "119",
+          "texto": "Si mejoras en una hora y la mejoría se mantiene 4 horas, continúa con salbutamol: 2-4 inhalaciones cada 4-6 horas (según síntomas) y acuda a tu pediatra en 24-48 horas.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag119_gema_si_mejoras_hora_mejoria_mantiene.png"
+        },
+        {
+          "titulo": "Seguimiento tras la crisis",
+          "paginas": "128",
+          "texto": "Es preciso evaluar el grado de control de los síntomas en las semanas previas, los factores de riesgo, los posibles factores desencadenantes y el tratamiento previo.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag128_gema_es_preciso_evaluar_grado_control.png"
         },
         {
           "titulo": "Control en 1-3 días (≤5 años)",
@@ -1729,16 +2165,6 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag183_gina_followup_appointment_should_be_arranged.png"
-        },
-        {
-          "titulo": "Derivar tras más de un ciclo de corticoide",
-          "paginas": "224",
-          "texto": "Refer for expert advice if the child has required more than one course of OCS in the past year.",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag224_gina_refer_for_expert_advice_if.png"
         }
       ]
     },
@@ -1774,7 +2200,7 @@
     "mant_menor5": {
       "tipo": "pregunta",
       "titulo": "Mantenimiento en ≤5 años: escalones",
-      "texto": "- Escalón 1: salbutamol a demanda, si síntomas **≤2 veces/semana**.\n- Escalón 2: corticoide inhalado diario a dosis baja si no está controlado o tuvo **≥1** crisis grave en el año; probar **2-3 meses**.\n- Escalón 3: doblar la dosis baja y valorar a los **2-3 meses**.\n- Escalón 4: seguir y derivar a especialista.",
+      "texto": "- Escalón 1: salbutamol a demanda, si síntomas **≤2 veces/semana**.\n- Escalón 2: corticoide inhalado diario a dosis baja si no está controlado o tuvo **≥1** crisis grave en el año; probar **2-3 meses**. Otra opción: montelukast.\n- Escalón 3: doblar la dosis baja, valorar a los **2-3 meses** y pensar en derivar.\n- Escalón 4: seguir y derivar a especialista.",
       "media": [
         {
           "recurso": "asma_escalones_menor5.png",
@@ -1842,8 +2268,24 @@
             "**50 mcg** (desde 4 años)"
           ],
           [
-            "Beclometasona, inhalador",
+            "Beclometasona, inhalador de partícula estándar",
             "**100 mcg** (desde 5 años)"
+          ],
+          [
+            "Beclometasona, inhalador de partícula extrafina",
+            "**50 mcg** (desde 5 años)"
+          ],
+          [
+            "Mometasona, inhalador",
+            "**100 mcg** (desde 5 años)"
+          ],
+          [
+            "Budesonida en inhalador",
+            "Pendiente de revisión"
+          ],
+          [
+            "Ciclesonida, fluticasona furoato",
+            "Sin estudios suficientes"
           ]
         ]
       },
@@ -1853,7 +2295,7 @@
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "4 escalones: SABA, ICS diario bajo, doble de la dosis baja, derivar; montelukast o ICS intermitente como otras opciones",
+              "dice": "4 escalones: salbutamol, corticoide inhalado diario bajo, doble de la dosis baja, derivar; montelukast como otra opción",
               "paginas": "208, 210-211"
             },
             {
@@ -1865,20 +2307,20 @@
           "nota": "GEMA da más peso al montelukast; GINA advierte de sus efectos neuropsiquiátricos."
         },
         {
-          "asunto": "Corticoide inhalado intermitente",
+          "asunto": "Corticoide inhalado a dosis altas intermitente",
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "ICS a dosis alta intermitente como otra opción si se usará bien",
+              "dice": "Opción si el médico confía en que se usará bien",
               "paginas": "210"
             },
             {
               "fuente": "GEMA 5.5",
-              "dice": "No se recomiendan controladores intermitentes a dosis habituales",
+              "dice": "Opción en casos muy seleccionados con educación y aceptación de la familia garantizadas",
               "paginas": "120"
             }
           ],
-          "nota": "Ambas prefieren el corticoide inhalado diario."
+          "nota": "Coinciden: no es de rutina; ambas prefieren el corticoide inhalado diario."
         }
       ],
       "alertas": [
@@ -1887,11 +2329,10 @@
           "texto": "Avisar a la familia de alteraciones del sueño y de la conducta."
         }
       ],
-      "nota_adicional": "Antes de subir de escalón: confirmar que es asma, revisar técnica, adherencia y exposiciones.",
+      "nota_adicional": "Antes de subir de escalón: confirmar que es asma, revisar el uso del inhalador, la adherencia y las exposiciones.",
       "evidencia": {
-        "texto": "GINA: evidencia A (ICS diario) · GEMA: R1"
+        "texto": "GINA: evidencia A (corticoide inhalado diario) · GEMA: R1"
       },
-      "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
           "texto": "Elegir el inhalador",
@@ -1990,6 +2431,26 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag209_gina_budesonide_nebulized_500_ages_1.png"
         },
         {
+          "titulo": "Dosis bajas de ICS (≤5 años): beclometasona",
+          "paginas": "209",
+          "texto": "BDP (pMDI, standard particle, HFA) 100 (ages 5 years and older) BDP (pMDI, extrafine particle, HFA) 50 (ages 5 years and older)",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag209_gina_bdp_pmdi_standard_particle_hfa.png"
+        },
+        {
+          "titulo": "Dosis bajas de ICS (≤5 años): mometasona y ciclesonida",
+          "paginas": "209",
+          "texto": "Mometasone furoate (pMDI, standard particle, HFA) 100 (ages 5 years and older) Ciclesonide (pMDI, extrafine particle, HFA) Not sufficiently studied in children 5 years and younger",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag209_gina_mometasone_furoate_pmdi_standard_particle.png"
+        },
+        {
           "titulo": "GCI de primera línea a cualquier edad",
           "paginas": "128",
           "texto": "Se recomienda el empleo de GCI como primera línea de tratamiento para el control del asma persistente del niño de cualquier edad.",
@@ -2008,6 +2469,16 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag120_gema_preescolares_ninos_no_recomienda_uso.png"
+        },
+        {
+          "titulo": "GCI a dosis altas intermitente: casos seleccionados",
+          "paginas": "120",
+          "texto": "Podría ser una opción en casos muy seleccionados en los que la educación y aceptación por parte de las familias estén garantizadas31,32.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag120_gema_podria_ser_opcion_casos_muy.png"
         },
         {
           "titulo": "Escalones 3-4 en menores de 4 años",
@@ -2044,13 +2515,13 @@
     "mant_6_11": {
       "tipo": "pregunta",
       "titulo": "Mantenimiento en 6-11 años: escalones",
-      "texto": "- Escalón 1: corticoide inhalado cada vez que se usa el alivio (budesonida-formoterol o ICS + salbutamol).\n- Escalón 2: corticoide inhalado diario a dosis baja.\n- Escalón 3: dosis media, o dosis baja + LABA, o MART con budesonida-formoterol.\n- Escalón 4: dosis media + LABA o MART. Escalón 5: derivar.",
+      "texto": "- Escalón 1: corticoide inhalado con cada alivio (budesonida-formoterol, o corticoide inhalado + salbutamol).\n- Escalón 2: corticoide inhalado diario a dosis baja.\n- Escalón 3: dosis media, baja + LABA (agonista β2 de acción larga) o MART (budesonida-formoterol de mantenimiento y alivio).\n- Escalón 4: dosis media + LABA, o MART; sin control, derivar (escalón 5).",
       "media": [
         {
           "recurso": "asma_escalones_6_11.png",
           "titulo": "Escalones de tratamiento en 6-11 años (GINA)",
           "descripcion": "Los cinco escalones de GINA de 6 a 11 años, con el corticoide inhalado desde el primero.",
-          "info": "{#4F8CF6:1} corticoide inhalado cada vez que se usa el alivio; {#18B9A9:2} dosis baja diaria; {#F2A23A:3} dosis media, baja + LABA o MART; {#F07F3C:4} media + LABA o MART; {#EF5454:5} derivar. GINA no acepta salbutamol solo.",
+          "info": "{#4F8CF6:1} corticoide inhalado cada vez que se usa el alivio; {#18B9A9:2} dosis baja diaria; {#F2A23A:3} dosis media, baja + LABA o MART; {#F07F3C:4} media + LABA (agonista β2 de acción larga) o MART; {#EF5454:5} derivar. GINA no acepta el salbutamol solo.",
           "en_texto": "Escalón 1",
           "referencias": [
             {
@@ -2132,15 +2603,33 @@
             "**50-100**",
             ">100-200",
             ">200"
+          ],
+          [
+            "Beclometasona, partícula estándar",
+            "**100-200**",
+            ">200-400",
+            ">400"
+          ],
+          [
+            "Beclometasona, partícula extrafina",
+            "**50-100**",
+            ">100-200",
+            ">200"
+          ],
+          [
+            "Mometasona, inhalador",
+            "**100**",
+            "200",
+            "—"
           ]
         ]
       },
       "farmacos": [
         {
           "nombre": "Budesonida-formoterol (MART)",
-          "dosis": "**80/4,5 mcg**: 1 inhalación al día y 1 a demanda",
-          "pauta": "Escalón 3 (GINA); en escalón 4, 1 inhalación dos veces al día.",
-          "paginas": "108-109"
+          "dosis": "**80/4,5 mcg**: 1 inhalación al día y 1 a demanda; máx. **8 inhalaciones/24 h**",
+          "pauta": "Escalón 3 (GINA); en el escalón 4, 1 inhalación dos veces al día. Más de 8 en 24 h: consultar.",
+          "paginas": "107-109"
         }
       ],
       "discrepancias": [
@@ -2175,13 +2664,28 @@
             }
           ],
           "nota": "GINA se apoya en un único ensayo en niños."
+        },
+        {
+          "asunto": "Dosis media y alta de fluticasona propionato",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": ">100-200 (media) y >200 mcg/día (alta)",
+              "paginas": "78"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": ">100-250 (media) y >250 mcg/día (alta), en <12 años",
+              "paginas": "121"
+            }
+          ],
+          "nota": "La dosis baja coincide: 50-100 mcg/día."
         }
       ],
       "nota_adicional": "Doblar el corticoide inhalado rinde parecido a añadir LABA en 6-11 años (GEMA); el LABA nunca va solo.",
       "evidencia": {
         "texto": "GINA: evidencia A-B · GEMA: R1"
       },
-      "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
           "texto": "Elegir el inhalador",
@@ -2208,6 +2712,16 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag107_gina_gina_does_not_recommend_sabaonly.png"
+        },
+        {
+          "titulo": "SABA solo: más riesgo de muerte",
+          "paginas": "107",
+          "texto": "children whose asthma is treated with SABA alone (compared with ICS) are at increased risk of asthma-related death, compared with use of any ICS (Evidence A)366",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag107_gina_children_whose_asthma_treated_with.png"
         },
         {
           "titulo": "Escalón 2 (6-11 años)",
@@ -2250,6 +2764,36 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag108_gina_budesonideformoterol_8045_mcg_delivered_dose.png"
         },
         {
+          "titulo": "MART en el escalón 4 (6-11 años)",
+          "paginas": "109",
+          "texto": "the maintenance dose may be increased to 80/4.5 mcg delivered dose (100/6 mcg metered dose) twice daily (Evidence D); this is still a low-dose regimen.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag109_gina_maintenance_dose_may_be_increased.png"
+        },
+        {
+          "titulo": "MART en niños: un solo ensayo",
+          "paginas": "108",
+          "texto": "In children, a single study of maintenance-and-reliever therapy (MART) with a low dose of budesonide-formoterol",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag108_gina_children_single_study_maintenanceandreliever_therapy.png"
+        },
+        {
+          "titulo": "MART: máximo diario",
+          "paginas": "107",
+          "texto": "Medical care should be sought if the child has needed more than 8 inhalations in a 24-hour period (Box 4-8, p.90).",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag107_gina_medical_care_should_be_sought.png"
+        },
+        {
           "titulo": "Escalón 4 (6-11 años)",
           "paginas": "109",
           "texto": "Preferred Step 4 treatment options for children 6–11 years: increase treatment to medium-dose ICS- LABA plus as-needed SABA, or MART with low-dose ICS-formoterol",
@@ -2288,6 +2832,16 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag78_gina_fluticasone_propionate_pmdi_standard_particle.png"
+        },
+        {
+          "titulo": "Dosis de ICS (6-11 años): beclometasona",
+          "paginas": "78",
+          "texto": "Beclometasone dipropionate (pMDI, standard particle, HFA) 100–200 >200–400 >400 Beclometasone dipropionate (pMDI, extrafine particle, HFA) 50–100 >100–200 >200",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag78_gina_beclometasone_dipropionate_pmdi_standard_particle.png"
         },
         {
           "titulo": "Escalón 1 (GEMA)",
@@ -2378,49 +2932,19 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag121_gema_dosis_bajas_dosis_medias_dosis.png"
-        },
-        {
-          "titulo": "SABA solo: más riesgo de muerte",
-          "paginas": "107",
-          "texto": "children whose asthma is treated with SABA alone (compared with ICS) are at increased risk of asthma-related death, compared with use of any ICS (Evidence A)366",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag107_gina_children_whose_asthma_treated_with.png"
-        },
-        {
-          "titulo": "MART en el escalón 4 (6-11 años)",
-          "paginas": "109",
-          "texto": "the maintenance dose may be increased to 80/4.5 mcg delivered dose (100/6 mcg metered dose) twice daily (Evidence D); this is still a low-dose regimen.",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag109_gina_maintenance_dose_may_be_increased.png"
-        },
-        {
-          "titulo": "MART en niños: un solo ensayo",
-          "paginas": "108",
-          "texto": "In children, a single study of maintenance-and-reliever therapy (MART) with a low dose of budesonide-formoterol",
-          "fuente": "GINA",
-          "anio": "2026",
-          "url": "https://ginasthma.org/reports/",
-          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag108_gina_children_single_study_maintenanceandreliever_therapy.png"
         }
       ]
     },
     "mant_dispositivo": {
       "tipo": "pregunta",
       "titulo": "Inhalador con cámara según la edad",
-      "texto": "- **0-3 años:** inhalador con cámara y mascarilla bien ajustada a nariz y boca.\n- **4-5 años:** cámara con boquilla; pasar a boquilla en cuanto pueda.\n- Agitar antes de cada pulsación, **una** pulsación cada vez y **5-6 respiraciones**.\n- Nebulizador sólo si no aprende a usar la cámara.",
+      "texto": "- 0-3 años: inhalador con cámara y mascarilla bien ajustada; pasar a boquilla en cuanto pueda.\n- 4-5 años: cámara con boquilla.\n- 6-11 años: el inhalador presurizado, mejor con cámara.\n- Agitar antes de cada pulsación, **una** pulsación cada vez y **5-6 respiraciones**.",
       "media": [
         {
           "recurso": "asma_inhalador_camara.gif",
           "titulo": "Inhalador con cámara: técnica",
           "descripcion": "Agitar, una pulsación en la cámara y 5-6 respiraciones; repetir por cada pulsación.",
-          "info": "Se {#4F8CF6:agita el inhalador} antes de cada pulsación, se dispara **una** en la cámara y el niño hace {#18B9A9:5-6 respiraciones}. De **0 a 3 años**, con {#8B5CF6:mascarilla} bien ajustada a nariz y boca; desde los **4**, con boquilla.",
+          "info": "Se {#4F8CF6:agita el inhalador} antes de cada pulsación, se dispara **una** en la cámara ({#18B9A9:nube del fármaco}) y el niño hace {#2FB36D:5-6 respiraciones}. De **0 a 3 años**, con {#8B5CF6:mascarilla} bien ajustada a nariz y boca; desde los **4**, con boquilla.",
           "en_texto": "5-6 respiraciones",
           "referencias": [
             {
@@ -2456,11 +2980,10 @@
           ]
         }
       ],
-      "nota_adicional": "Tras la mascarilla, limpiar la piel de nariz y boca.",
+      "nota_adicional": "Tras la mascarilla, limpiar la piel de nariz y boca. Nebulizador sólo si no aprende a usar la cámara.",
       "evidencia": {
-        "texto": "GINA: evidencia A · GEMA: R1"
+        "texto": "GINA: evidencia A"
       },
-      "pie_nodo": "¿Qué sigue?",
       "opciones": [
         {
           "texto": "Valorar el control",
@@ -2509,21 +3032,21 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag213_gina_skin_on_nose_around_mouth.png"
         },
         {
-          "titulo": "pMDI con cámara de preferencia",
-          "paginas": "129",
-          "texto": "Se debería utilizar de forma preferente un pMDI con cámara espaciadora para administrar los broncodilatadores, sobre todo en las crisis leves-moderadas.",
-          "fuente": "GEMA",
-          "anio": "2025",
-          "url": "https://www.gemasma.com/",
-          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
-          "imagen_evidencia": "evidencia_asma_pediatrica_pag129_gema_deberia_utilizar_forma_preferente_pmdi.png"
+          "titulo": "Inhalador presurizado con cámara",
+          "paginas": "78",
+          "texto": "LABA: long-acting beta2-agonist; pMDI: pressurized metered-dose inhaler. ICS by pMDI should preferably be used with a spacer.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag78_gina_laba_longacting_beta2agonist_pmdi_pressurized.png"
         }
       ]
     },
     "mant_control": {
       "tipo": "pregunta",
       "titulo": "¿Está controlado? Subir o bajar",
-      "texto": "- Revisar a los **2-3 meses** de empezar y luego cada **3-6 meses**.\n- Mal control: CAN **≥8** (GEMA) o cualquiera de la lista (GINA).\n- Antes de subir: confirmar el asma, el uso del inhalador, la adherencia y las exposiciones.\n- Controlado **3 meses**: bajar de escalón y revisar a las **3-6 semanas**.",
+      "texto": "- Revisar a los **2-3 meses** de empezar y luego cada **3-6 meses**.\n- Mal control: CAN (cuestionario de Control del Asma en Niños) **≥8** (GEMA) o cualquiera de la lista (GINA).\n- Antes de subir: confirmar el asma, el uso del inhalador, la adherencia y las exposiciones.\n- Controlado **3 meses**: bajar de escalón y revisar a las **3-6 semanas**.",
       "checklist": {
         "titulo": "Últimas 4 semanas (GINA)",
         "items": [
@@ -2544,15 +3067,15 @@
       "evidencia": {
         "texto": "GEMA: R1 · GINA: evidencia D"
       },
-      "pie_nodo": "¿Cómo está?",
+      "pie_nodo": "¿Algún punto de la lista en 4 semanas, o CAN ≥8?",
       "opciones": [
         {
-          "texto": "Controlado: mantener o bajar; plan de acción",
+          "texto": "No: controlado, mantener o bajar",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "verde"
         },
         {
-          "texto": "No controlado pese a buen uso y adherencia: subir de escalón",
+          "texto": "Sí: no controlado, subir de escalón",
           "siguiente_nodo": "nodo_mantenimiento",
           "color": "naranja"
         }
@@ -2671,13 +3194,13 @@
       "tipo": "resultado",
       "estilo": "exito",
       "titulo": "Plan de acción escrito para casa",
-      "texto": "- Al empezar la crisis: salbutamol con cámara **2 pulsaciones** (GINA) o **2-4** (GEMA), repetibles cada **20 min** hasta **3 veces**.\n- Urgencias ya: se hunden las costillas, labios morados, no puede hablar, está adormilado o empeora.\n- Consultar el mismo día si necesita **≥4 pulsaciones** en **4 h**.\n- Plan basado en síntomas, no en el pico flujo.",
+      "texto": "- Al empezar la crisis: salbutamol con cámara, repetible cada **20 min** hasta **3 veces**; observar **1 h**.\n- Urgencias ya: costillas que se hunden, labios morados, no puede hablar, adormilado, empeora, alivio de **<4 h** o <12 meses con salbutamol repetido.\n- Consultar el mismo día: **≥4 pulsaciones** en **4 h** o más de **3 veces** en **12 h**.\n- Plan basado en síntomas, no en el pico flujo.",
       "media": [
         {
           "recurso": "asma_plan_crisis_casa.png",
           "titulo": "Plan de acción: la crisis en casa",
           "descripcion": "Qué hacer en casa al empezar la crisis y cuándo ir a urgencias.",
-          "info": "El {#4F8CF6:salbutamol con cámara} se repite cada **20 min** hasta **3 veces**. Los recuadros {#EF5454:rojos} son las señales de peligro: costillas que se hunden, labios morados, no puede hablar o está adormilado. Con **≥4 pulsaciones en 4 h**, consulta el mismo día.",
+          "info": "El {#4F8CF6:salbutamol con cámara} se repite cada **20 min** hasta **3 veces**. Los recuadros {#EF5454:rojos} son las señales de peligro: costillas que se hunden, labios morados, no puede hablar o está adormilado. {#F07F3C:Con ≥4 pulsaciones en 4 h}, consulta el mismo día.",
           "en_texto": "Al empezar la crisis",
           "referencias": [
             {
@@ -2733,14 +3256,22 @@
           ]
         }
       ],
+      "farmacos": [
+        {
+          "nombre": "Salbutamol 100 mcg con cámara (en casa)",
+          "dosis": "**2 pulsaciones** (GINA, ≤5 años) o **2-4** (GEMA)",
+          "pauta": "Una pulsación cada vez; repetir cada 20 min hasta 3 veces.",
+          "paginas": "216, 119"
+        }
+      ],
       "discrepancias": [
         {
           "asunto": "Corticoide oral empezado en casa",
           "posturas": [
             {
               "fuente": "GINA 2026",
-              "dice": "No recomendado: evidencia débil y riesgo de efectos acumulados",
-              "paginas": "217"
+              "dice": "≤5 años: no recomendado; 6-11 años: el plan puede indicar cuándo y cómo empezarlo",
+              "paginas": "215, 178"
             },
             {
               "fuente": "GEMA 5.5",
@@ -2748,7 +3279,7 @@
               "paginas": "119"
             }
           ],
-          "nota": "Decidir con la familia y con un plan escrito."
+          "nota": "Decidir con la familia y dejarlo por escrito."
         }
       ],
       "evidencia": {
@@ -2786,6 +3317,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag216_gina_child_acutely_distressed_eg_severe.png"
         },
         {
+          "titulo": "Atención inmediata: alivio corto y <12 meses",
+          "paginas": "216",
+          "texto": "The period of relief after doses of SABA is less than 4 hours, or becomes progressively shorter • A child younger than 12 months requires repeated inhaled SABA over several hours.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag216_gina_period_relief_after_doses_saba.png"
+        },
+        {
           "titulo": "Atención el mismo día",
           "paginas": "217",
           "texto": "on the same day if ≥4 puffs of inhaled SABA are required for symptom relief within 4 hours, or if SABA is needed on >3 occasions within the first 12 hours.",
@@ -2794,6 +3335,16 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag217_gina_on_same_day_if_4.png"
+        },
+        {
+          "titulo": "≤5 años: sin corticoide oral iniciado en casa",
+          "paginas": "215",
+          "texto": "Obtain medical care on the same day if SABA is needed in less than 4 hours or on >3 occasions within 12 hours. Parent/caregiver-initiated oral corticosteroid treatment is not recommended.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag215_gina_obtain_medical_care_on_same.png"
         },
         {
           "titulo": "Corticoide oral en casa: evidencia débil",
@@ -2806,6 +3357,16 @@
           "imagen_evidencia": "evidencia_asma_pediatrica_pag217_gina_evidence_support_initiation_oral_corticosteroid.png"
         },
         {
+          "titulo": "6-11 años: el plan puede incluir el corticoide oral",
+          "paginas": "178",
+          "texto": "For most patients, the written asthma action plan should provide instructions for when to contact their doctor. Instructions may also be provided on when and how to commence OCS.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag178_gina_for_most_patients_written_asthma.png"
+        },
+        {
           "titulo": "Plan de crisis en casa: salbutamol",
           "paginas": "119",
           "texto": "Toma tu medicamento de alivio rápido: salbutamol __________ con cámara, 2-4 inhalaciones, separados por 30-60 segundos. Se puede repetir esta dosis cada 20 minutos, hasta un máximo de 3 veces.",
@@ -2814,6 +3375,16 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag119_gema_toma_tu_medicamento_alivio_rapido.png"
+        },
+        {
+          "titulo": "Plan en casa: observar 1 hora",
+          "paginas": "119",
+          "texto": "Nunca esperar a ver si se pasa solo. – Tras dar la medicación, observar durante 1 hora y valorar la respuesta.",
+          "fuente": "GEMA",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag119_gema_nunca_esperar_ver_si_pasa.png"
         },
         {
           "titulo": "Plan de crisis en casa: corticoide oral",
@@ -2861,7 +3432,15 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Derivar a neumología o alergología pediátrica",
-      "texto": "- Asma no controlada en el escalón 3 (≤5 años) o 4 (6-11 años) pese a buen uso del inhalador y buena adherencia.\n- Más de un ciclo de corticoide oral en el año, o crisis repetidas.\n- Dudas diagnósticas o signos de otra enfermedad.\n- Biológicos desde los **6 años** en el asma grave no controlada.",
+      "texto": "- Asma grave no controlada: valorar biológico (desde **6 años**) en consulta especializada.",
+      "checklist": {
+        "titulo": "Derivar si (cualquiera)",
+        "items": [
+          "No controlada en el escalón 3 (≤5 años) o 4 (6-11 años) con buen uso del inhalador y adherencia",
+          "Más de un ciclo de corticoide oral en 12 meses, o crisis previas en el año (≤5 años)",
+          "Dudas diagnósticas o signos de otra enfermedad"
+        ]
+      },
       "enlaces": [
         {
           "texto": "Signos de otra enfermedad",
