@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .lin{display:flex;align-items:stretch;gap:6px;flex:1;min-height:0}
+  .e{flex:1;border-radius:12px;padding:9px 10px;display:flex;flex-direction:column;gap:6px;justify-content:flex-start;font-size:14px;line-height:1.3}
+  .e h3{margin:0;font-size:16px}
+  .fl{align-self:center;font-size:26px;color:#94A3B8;font-weight:800}
+  .no{border-radius:10px;padding:8px 12px;background:#FEF2F2;border:2px solid #EF5454;font-size:14.5px;text-align:center}
+</style></head><body>
+<script>
+const e = (c, t, x) => `<div class="e" style="background:${tinte(c, 12)};border:2px solid ${c}"><h3 style="color:${c}">${t}</h3>${x}</div>`;
+lienzo("Bajar de escalón", "Cada bajada es una prueba terapéutica, con plan de acción y medicación para volver atrás",
+  `<div class="lin">
+    ${e(VERDE, "Bien controlada ≥3 meses", "Síntomas controlados y función pulmonar estable.<br><br>Momento adecuado: sin infección, sin viaje, sin embarazo.")}
+    <div class="fl">→</div>
+    ${e(AZUL, "Bajar el ICS 25-50 %", "Documentar control, función pulmonar y riesgo.<br><br>Dar el plan de acción escrito.")}
+    <div class="fl">→</div>
+    ${e(TEAL, "Revisar a los 3 meses", "Si sigue bien: otra bajada de 25-50 %.<br><br>Si empeora: volver a la dosis previa.")}
+  </div>
+  <div class="no"><b>No retirar el ICS por completo:</b> aumenta mucho el riesgo de crisis. Con crisis en el último año, bajar sólo con vigilancia estrecha.</div>`,
+  FUENTE_GINA + " (Box 4-13, p. 112; p. 111).");
+</script></body></html>

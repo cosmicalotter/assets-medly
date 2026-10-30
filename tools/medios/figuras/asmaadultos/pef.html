@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.f{font-size:15px;text-align:center;background:#F1F5F9;border-radius:10px;padding:9px}.n{font-size:12.5px;color:#475569}</style></head><body>
+<script>
+// Ejemplo ilustrativo: PEF de la mañana (bajo) y de la tarde (alto) durante 14 días.
+const man = [380, 360, 395, 350, 370, 340, 385, 355, 365, 345, 390, 360, 350, 375];
+const tar = [440, 430, 445, 425, 440, 420, 445, 430, 435, 425, 440, 435, 425, 440];
+const X = (d) => 60 + d * 42, Y = (v) => 230 - (v - 320) * 1.6;
+const var_ = man.map((m, d) => (tar[d] - m) / ((tar[d] + m) / 2) * 100);
+const media = var_.reduce((a, b) => a + b, 0) / var_.length;
+let svg = `<svg viewBox="0 0 680 250" style="flex:1;min-height:0">`;
+for (let v = 340; v <= 460; v += 40) svg += `<line x1="50" x2="660" y1="${Y(v)}" y2="${Y(v)}" stroke="#E5E7EB"/><text x="44" y="${Y(v) + 4}" font-size="12" text-anchor="end" fill="#6B7280">${v}</text>`;
+man.forEach((m, d) => { svg += `<line x1="${X(d)}" x2="${X(d)}" y1="${Y(m)}" y2="${Y(tar[d])}" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>`; });
+svg += `<polyline fill="none" stroke="${AZUL}" stroke-width="3" points="${man.map((m, d) => `${X(d)},${Y(m)}`).join(" ")}"/>`;
+svg += `<polyline fill="none" stroke="${NARANJA}" stroke-width="3" points="${tar.map((m, d) => `${X(d)},${Y(m)}`).join(" ")}"/>`;
+man.forEach((m, d) => { svg += `<circle cx="${X(d)}" cy="${Y(m)}" r="5" fill="${AZUL}"/><circle cx="${X(d)}" cy="${Y(tar[d])}" r="5" fill="${NARANJA}"/>`; });
+svg += `<text x="660" y="${Y(445) - 10}" text-anchor="end" font-size="14" font-weight="700" fill="${NARANJA}">Más alto del día</text>
+  <text x="660" y="${Y(345) + 24}" text-anchor="end" font-size="14" font-weight="700" fill="${AZUL}">Más bajo del día</text>
+  <text x="355" y="246" text-anchor="middle" font-size="12" fill="#6B7280">Días 1-14 · PEF en L/min (ejemplo)</text></svg>`;
+lienzo("Variabilidad del PEF en 2 semanas", "PEF mañana y tarde; cada medida, el mejor de 3 soplidos con el mismo medidor",
+  `${svg}<div class="f">Variabilidad del día = (más alto − más bajo) ÷ media de ambos · media de 14 días: <b>${media.toFixed(0)} %</b> en este ejemplo<br><b style="color:${ROJO}">&gt;10 % en adultos apoya el asma</b></div>`,
+  FUENTE_GINA + " (Box 1-2, p. 28-29). Datos del ejemplo inventados para ilustrar el cálculo.");
+</script></body></html>

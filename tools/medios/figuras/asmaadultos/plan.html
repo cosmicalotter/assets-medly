@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  table{width:100%;border-collapse:separate;border-spacing:6px;font-size:14px;table-layout:fixed}
+  th{font-size:13px;color:#fff;padding:7px;border-radius:8px;background:#475569}
+  td{background:#F8FAFC;border-radius:8px;padding:9px 9px;line-height:1.3;vertical-align:top}
+  td.n{font-weight:700;color:#fff}
+</style></head><body>
+<script>
+const f = (c, a, b, d) => `<tr><td class="n" style="background:${c}">${a}</td><td>${b}</td><td>${d}</td></tr>`;
+lienzo("Plan de acción: si empeora", "Cambio a corto plazo según el inhalador de rescate que usa",
+  `<table><colgroup><col style="width:26%"><col style="width:40%"><col></colgroup>
+    <tr><th>Rescate</th><th>Qué hacer</th><th>Consultar si…</th></tr>
+    ${f(AZUL, "ICS-formoterol (AIR o MART)", "1 inhalación cuando haga falta; seguir el mantenimiento si lo tiene", "&gt;<b>12 inhalaciones</b> en 24 h (rescate + mantenimiento)")}
+    ${f(TEAL, "ICS-SABA", "2 inhalaciones cuando haga falta; seguir el mantenimiento", "&gt;<b>6 dosis</b> (&gt;12 inhalaciones) en 24 h")}
+    ${f(NARANJA, "SABA con ICS de mantenimiento", "Valorar cuadruplicar el ICS <b>1-2 semanas</b>; SABA para los síntomas", "Empeora pese al cambio")}
+  </table>`,
+  FUENTE_GINA + " (Box 9-2, p. 174).");
+</script></body></html>

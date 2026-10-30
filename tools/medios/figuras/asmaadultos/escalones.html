@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{display:flex;align-items:flex-end;gap:10px;flex:1;min-height:0;padding-top:6px}
+  .p{flex:1;border-radius:12px 12px 0 0;padding:10px 10px;color:#fff;display:flex;flex-direction:column;gap:6px;transition:none}
+  .p h3{font-size:17px;margin:0}
+  .p .d{font-size:13.5px;line-height:1.3;background:rgba(255,255,255,.18);border-radius:8px;padding:6px 7px}
+  .p.off{opacity:.35}
+  .tope{border-radius:10px;padding:8px 12px;background:#FEF2F2;border:2px solid #EF5454;font-size:14px;text-align:center}
+</style></head><body>
+<script>
+const P = [
+  ["Pasos 1-2", "Sólo a demanda (AIR)", "<b>1 inhalación</b> a demanda y antes del ejercicio", 175, "#60A5FA"],
+  ["Paso 3", "MART dosis baja", "<b>1 cada 12 h</b> (o 1 al día) + 1 a demanda", 215, "#3B82F6"],
+  ["Paso 4", "MART dosis media", "<b>2 cada 12 h</b> + 1 a demanda", 255, "#2563EB"],
+  ["Paso 5", "Derivar", "MART + LAMA; fenotipar y valorar biológico", 295, "#1E40AF"],
+];
+window.cuadro = function (i, n) {
+  const k = n > 1 ? Math.min(3, i) : 3;
+  const cols = P.map(([t, s, d, h, c], j) => `<div class="p ${j > k ? "off" : ""}" style="height:${h}px;background:${c}"><h3>${t}</h3><div style="font-size:13px;opacity:.95">${s}</div><div class="d">${d}</div></div>`).join("");
+  lienzo("Vía 1: un solo inhalador", "Budesonida-formoterol 200/6 mcg (160/4,5 liberados) como rescate en todos los pasos",
+    `<div class="esc">${cols}</div><div class="tope">Tope en 24 h: <b>12 inhalaciones</b> sumando rescate y mantenimiento. Si necesita más, consultar.</div>`,
+    FUENTE_GINA + " (Box 4-8B, p. 91; p. 84 y 98).");
+};
+window.cuadro(3, 1);
+</script></body></html>

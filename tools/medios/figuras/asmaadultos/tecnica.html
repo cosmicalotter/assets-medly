@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+  .esc{flex:1;min-height:0}
+  .pasos{display:flex;gap:8px}
+  .paso{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
+  .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// Un ciclo por pulsación: agitar, una pulsación en la cámara, inspiración profunda y apnea.
+const AGITAR = 14, PULSAR = 8, INSP = 16, APNEA = 22, FIN = 12;
+const TOTAL = AGITAR + PULSAR + INSP + APNEA + FIN;
+const PASOS = [["1", "Agitar antes de cada pulsación", AZUL], ["2", "Una pulsación en la cámara", TEAL],
+               ["3", "Inspirar hondo y aguantar", VERDE], ["4", "Repetir por cada pulsación", MORADO]];
+
+window.cuadro = function (i, n) {
+  const t = n > 1 ? Math.round((i / (n - 1)) * (TOTAL - 1)) : 0;
+  let paso = 0, sacude = 0, nube = 0, insp = 0, apnea = 0;
+  if (t < AGITAR) { sacude = 10 * Math.sin(t * 1.6); }
+  else if (t < AGITAR + PULSAR) { paso = 1; nube = suave(tramo(t, AGITAR, AGITAR + PULSAR - 2)); }
+  else if (t < AGITAR + PULSAR + INSP) { paso = 2; const u = tramo(t, AGITAR + PULSAR, AGITAR + PULSAR + INSP); insp = suave(u); nube = 1 - u; }
+  else if (t < AGITAR + PULSAR + INSP + APNEA) { paso = 2; insp = 1; apnea = tramo(t, AGITAR + PULSAR + INSP, AGITAR + PULSAR + INSP + APNEA); }
+  else { paso = 3; insp = 0; }
+  const svg = `<svg class="esc" viewBox="0 0 680 290">
+    <g>${cara(150, 140, 80)}</g>
+    ${camara(206, 172, { nube, sacude, mascarilla: false })}
+    <ellipse cx="160" cy="172" rx="${42 + 6 * insp}" ry="${30 + 4 * insp}" fill="${tinte(MORADO, 30)}" stroke="${MORADO}" stroke-width="5" opacity=".9"/>
+    <g transform="translate(560,36)">
+      <circle cx="50" cy="50" r="46" fill="#fff" stroke="#E5E7EB" stroke-width="7"/>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="${VERDE}" stroke-width="7" stroke-dasharray="${289 * apnea} 289" transform="rotate(-90 50 50)"/>
+      <text x="50" y="58" text-anchor="middle" font-size="16" font-weight="800" fill="${apnea > 0 ? VERDE : "#94A3B8"}">aguantar</text>
+    </g>
+    <text x="320" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#475569">Si está muy disneico: respiraciones normales en la cámara</text>
+  </svg>`;
+  const pasos = PASOS.map(([k, txt, c], j) => `<div class="paso ${j === paso ? "on" : ""}" style="--c:${c}"><b>${k}.</b> ${txt}</div>`).join("");
+  lienzo("Inhalador con cámara en la crisis", "Salbutamol 100 mcg e ipratropio 20 mcg por pulsación, de una en una",
+    `${svg}<div class="pasos">${pasos}</div>`, FUENTE_GINA + " (Box 9-6, p. 186).");
+};
+window.cuadro(0, 1);
+</script></body></html>
