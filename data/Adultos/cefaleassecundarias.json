@@ -1,7 +1,7 @@
 {
   "titulo": "Cefalea en el adulto",
   "version": "ICHD-3 · SISC-IHS 2025 · AAN/AHS 2026 · AHS 2025 · EAN 2023 · SEN 2020",
-  "descripcion": "En este algoritmo se aborda la cefalea del adulto: cómo reconocer los signos de alarma de una causa secundaria, clasificar la cefalea primaria y tratarla en la consulta y en urgencias.",
+  "descripcion": "En este algoritmo se aborda la cefalea del adulto: signos de alarma de una causa secundaria, clasificación de la primaria y su tratamiento en consulta y urgencias. No incluye la cefalea infantil.",
   "especialidad": "Neurología",
   "actualizado": "Octubre 2026",
   "carpeta_evidencia": "cefaleassecundarias",
@@ -55,7 +55,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Cefalea en el adulto",
-      "texto": "- **Migraña sin aura:** ≥5 crisis de **4-72 h** con 2 de 4 rasgos (unilateral, pulsátil, moderada-grave, empeora con la actividad) y náuseas o vómitos, o fotofobia y fonofobia.\n- **Cefalea tipo tensión:** de **30 min a 7 días**, bilateral, opresiva, leve-moderada, sin empeorar con la actividad; crónica si **≥15 días/mes** más de 3 meses.\n- **Cefalea en racimos:** dolor orbitario o temporal unilateral, muy intenso, de **15-180 min**, con signos autonómicos del mismo lado o inquietud.\n- **Uso excesivo de medicación:** cefalea **≥15 días/mes** en quien ya tenía cefalea, con abuso del tratamiento sintomático más de **3 meses**.",
+      "texto": "- **Migraña sin aura:** ≥5 crisis de **4-72 h** con 2 de 4 rasgos (unilateral, pulsátil, moderada-grave, empeora con actividad) y náuseas/vómitos o foto y fonofobia.\n- **Cefalea tipo tensión:** de **30 min a 7 días** con 2 de 4 rasgos (bilateral, opresiva, leve-moderada, no empeora con la actividad); crónica si **≥15 días/mes** más de 3 meses.\n- **Cefalea en racimos:** dolor orbitario o temporal unilateral, muy intenso, de **15-180 min**, con signos autonómicos del mismo lado o inquietud.\n- **Uso excesivo de medicación:** cefalea **≥15 días/mes** en quien ya tenía cefalea, con abuso del tratamiento sintomático más de **3 meses**.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -71,11 +71,7 @@
           "siguiente_nodo": "nodo_treatment"
         },
         {
-          "texto": "Situaciones especiales",
-          "siguiente_nodo": "nodo_especiales"
-        },
-        {
-          "texto": "Seguimiento y derivación",
+          "texto": "Situaciones especiales y seguimiento",
           "siguiente_nodo": "nodo_seguimiento"
         }
       ],
@@ -165,11 +161,11 @@
     "diag_eval_inicial": {
       "tipo": "pregunta",
       "titulo": "Primera valoración",
-      "texto": "- Constantes (tensión arterial, temperatura) y exploración neurológica con fondo de ojo y signos meníngeos.\n- Anamnesis: cómo y cuándo empezó, perfil temporal, si es igual o distinta a sus cefaleas previas, fármacos que toma y cuántos días al mes.\n- Cefalea en trueno: dolor intenso que llega a su máximo en **<1 min**; obliga a descartar una hemorragia subaracnoidea.",
-      "pie_nodo": "¿Llegó a su máxima intensidad en **<1 min** (en trueno)?",
+      "texto": "- Constantes (tensión arterial, temperatura) y exploración neurológica con fondo de ojo y signos meníngeos.\n- Anamnesis: cómo y cuándo empezó, perfil temporal, si es igual o distinta a sus cefaleas previas, fármacos que toma y cuántos días al mes.\n- Cefalea aguda no traumática que llega al máximo en **≤1 h** (**>15 años**): regla de Ottawa (calculadora); con **≥1** criterio, descartar HSA.\n- Cefalea en trueno: dolor intenso que llega a su máximo en **<1 min**; obliga a descartar una hemorragia subaracnoidea (HSA).",
+      "pie_nodo": "¿En trueno (máximo en **<1 min**) u Ottawa positiva?",
       "opciones": [
         {
-          "texto": "Sí: en trueno, descartar HSA",
+          "texto": "Sí: descartar HSA",
           "siguiente_nodo": "diag_emergencia_vascular"
         },
         {
@@ -208,39 +204,7 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_hsa_el_inicio_es_la_clave.png"
-        }
-      ]
-    },
-    "diag_emergencia_vascular": {
-      "tipo": "pregunta",
-      "titulo": "Cefalea en trueno: descartar HSA",
-      "texto": "- Regla de Ottawa (calculadora): con **≥1** criterio no se puede descartar la HSA (hemorragia subaracnoidea).\n- TC craneal sin contraste ya: sensibilidad del **98 %** en las primeras **12 h**.\n- TC no diagnóstica: punción lumbar para buscar xantocromía (de **12 h a 2 semanas**), tras descartar masa, coagulopatía y plaquetas **<50 000**.\n- Otras causas en trueno: hemorragia intracerebral, trombosis venosa, disección arterial, vasoconstricción reversible, apoplejía hipofisaria.",
-      "calculadora": {
-        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ottawa_hsa.json",
-        "etiqueta": "Regla de Ottawa (HSA)",
-        "ramificar": true
-      },
-      "pie_nodo": "¿La TC o la punción lumbar confirman una causa?",
-      "opciones": [
-        {
-          "texto": "Sí: tratar la causa",
-          "siguiente_nodo": "nodo_treatment"
         },
-        {
-          "texto": "No: seguir buscando signos de alarma",
-          "siguiente_nodo": "diag_cribado_snnoop"
-        }
-      ],
-      "alertas": [
-        {
-          "titulo": "Una de cada 4 HSA pasa por migraña",
-          "texto": "El 25-50 % no se reconocen al inicio. Ante cefalea brusca, estudiarla aunque ceda."
-        }
-      ],
-      "chips": [
-        "Urgente"
-      ],
-      "referencias": [
         {
           "titulo": "Ottawa: sensibilidad 98,5 %",
           "paginas": "236",
@@ -251,6 +215,48 @@
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_ottawa_sensibilidad_98_5.png"
         },
+        {
+          "titulo": "Ottawa: a quién se aplica",
+          "paginas": "236",
+          "texto": "Pacientes > 15 años con cefalea no traumática que alcanza su máximo en 1 hora Valorar si hay ≥ 1 criterio de alto riesgo:",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_ottawa_a_quien_se_aplica.png"
+        }
+      ],
+      "calculadora": {
+        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ottawa_hsa.json",
+        "etiqueta": "Regla de Ottawa (HSA)",
+        "ramificar": true
+      }
+    },
+    "diag_emergencia_vascular": {
+      "tipo": "pregunta",
+      "titulo": "Cefalea en trueno: descartar HSA",
+      "texto": "- TC (tomografía computarizada) craneal sin contraste ya: sensibilidad del **98 %** en las primeras **12 h**.\n- TC no diagnóstica: punción lumbar para buscar xantocromía (de **12 h a 2 semanas**), tras descartar masa, coagulopatía, plaquetas **<50 000** o anticoagulación.\n- Otras causas en trueno: hemorragia intracerebral, trombosis venosa, disección arterial, vasoconstricción reversible, apoplejía hipofisaria.\n- TC y punción normales no bastan: hay que estudiar los vasos.",
+      "pie_nodo": "¿La TC o la punción lumbar muestran la causa?",
+      "opciones": [
+        {
+          "texto": "Causa hallada: tratarla",
+          "siguiente_nodo": "nodo_treatment"
+        },
+        {
+          "texto": "TC y punción normales: estudiar los vasos",
+          "siguiente_nodo": "diag_trueno_vasos"
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Hasta la mitad de las HSA se toman por migraña",
+          "texto": "El 25-50 % no se reconocen al inicio. Ante cefalea brusca, estudiarla aunque ceda."
+        }
+      ],
+      "chips": [
+        "Urgente"
+      ],
+      "referencias": [
         {
           "titulo": "HSA: TC sin contraste",
           "paginas": "236",
@@ -300,6 +306,26 @@
           "url": "https://ichd-3.org/",
           "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
           "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_otras_causas_que_descartar.png"
+        },
+        {
+          "titulo": "Punción lumbar: anticoagulación",
+          "paginas": "59",
+          "texto": "una plaquetopenia (< 50.000/ml) o cuando el paciente sigue un tratamiento anticoagulante",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag59_puncion_lumbar_anticoagulacion.png"
+        },
+        {
+          "titulo": "4.4: vasoconstricción y apoplejía",
+          "paginas": "51",
+          "texto": "reversible cerebral vaso- constriction syndrome (RCVS) and pituitary apo- plexy.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_vasoconstriccion_y_apoplej.png"
         }
       ],
       "media": [
@@ -308,7 +334,7 @@
           "titulo": "Hemorragia subaracnoidea en la TC",
           "descripcion": "TC sin contraste con sangre en las cisternas de la base.",
           "info": "{#FDE047:Elipse amarilla}: sangre (hiperdensa, blanca) que rellena las cisternas de la base, señalada también con las {#E81820:flechas rojas} del original. La TC sin contraste tiene una sensibilidad del **98 %** en las primeras **12 h**.",
-          "en_texto": "TC craneal sin contraste",
+          "en_texto": "sin contraste",
           "referencias": [
             {
               "titulo": "HSA: TC sin contraste",
@@ -327,15 +353,15 @@
     "diag_cribado_snnoop": {
       "tipo": "pregunta",
       "titulo": "Signos de alarma: inicio y evolución",
-      "texto": "- Cefalea de inicio reciente con **>50 años**, neoplasia o inmunodepresión, o riesgo de sangrado aumentado.\n- Inicio brusco tras esfuerzo o Valsalva; o reciente y cada vez más intensa o frecuente.\n- Cambia sin causa, empeora o no responde a tratamientos antes eficaces.\n- Empeora con el movimiento o la postura, despierta por la noche o es estrictamente unilateral (salvo las primarias unilaterales, como los racimos).",
-      "pie_nodo": "¿Algún signo de alarma de inicio o evolución?",
+      "texto": "- Cualquiera de estos criterios obliga a pedir pruebas para buscar una causa secundaria.",
+      "pie_nodo": "¿**≥1** signo de alarma de inicio o evolución?",
       "opciones": [
         {
-          "texto": "Sí: estudiar la causa",
+          "texto": "Algún signo: estudiar la causa",
           "siguiente_nodo": "diag_neuroimagen_urgente"
         },
         {
-          "texto": "No: revisar los signos asociados",
+          "texto": "Ninguno: revisar síntomas y exploración",
           "siguiente_nodo": "diag_snnoop_continuacion"
         }
       ],
@@ -379,21 +405,42 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag58_tabla_iii_postura_noche_unilat.png"
+        },
+        {
+          "titulo": "Pruebas ante signos de alarma",
+          "paginas": "58",
+          "texto": "La sospecha diagnóstica marcará la necesidad de realizar pruebas complemen- tarias. Algunos de los motivos que hacen necesaria su realización son:",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag58_pruebas_ante_signos_de_alarma.png"
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Alarma: inicio y evolución",
+        "items": [
+          "Cefalea nueva con **>50 años**, cáncer, inmunodepresión o riesgo de sangrado",
+          "Inicio brusco tras esfuerzo o Valsalva",
+          "Reciente y cada vez más intensa o frecuente",
+          "Cambia sin causa o deja de responder a lo que antes funcionaba",
+          "Empeora con el movimiento o la postura, o despierta por la noche",
+          "Estrictamente unilateral (salvo primarias unilaterales, como los racimos)"
+        ]
+      }
     },
     "diag_snnoop_continuacion": {
       "tipo": "pregunta",
       "titulo": "Signos de alarma: síntomas y exploración",
-      "texto": "- Fiebre sin foco; vómitos inexplicables o en escopetazo.\n- Signos neurológicos focales, signos meníngeos o papiledema.\n- Alteración de la conciencia, de la conducta o crisis epilépticas.\n- Exploración anormal o cefalea de características atípicas.",
-      "pie_nodo": "¿Algún síntoma o signo de alarma?",
+      "texto": "- Cualquiera de estos criterios obliga a buscar una causa secundaria.\n- Mirar el fondo de ojo: el papiledema es un signo de alarma.",
+      "pie_nodo": "¿**≥1** síntoma o signo de alarma?",
       "opciones": [
         {
-          "texto": "Sí: estudiar la causa",
+          "texto": "Algún signo: estudiar la causa",
           "siguiente_nodo": "diag_neuroimagen_urgente"
         },
         {
-          "texto": "No: cefalea primaria probable",
+          "texto": "Ninguno: cefalea primaria probable",
           "siguiente_nodo": "diag_cefalea_primaria"
         }
       ],
@@ -423,6 +470,16 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag58_tabla_iii_conciencia_y_conduct.png"
+        },
+        {
+          "titulo": "Pruebas ante signos de alarma",
+          "paginas": "58",
+          "texto": "La sospecha diagnóstica marcará la necesidad de realizar pruebas complemen- tarias. Algunos de los motivos que hacen necesaria su realización son:",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag58_pruebas_ante_signos_de_alarma.png"
         }
       ],
       "media": [
@@ -445,32 +502,34 @@
             }
           ]
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Alarma: síntomas y exploración",
+        "items": [
+          "Fiebre sin foco",
+          "Vómitos inexplicables o en escopetazo",
+          "Focalidad neurológica, signos meníngeos o papiledema",
+          "Alteración de la conciencia o de la conducta",
+          "Crisis epilépticas",
+          "Exploración anormal o cefalea de características atípicas"
+        ]
+      }
     },
     "diag_neuroimagen_urgente": {
       "tipo": "pregunta",
       "titulo": "Estudiar la causa secundaria",
-      "texto": "- Neuroimagen: TC si hay traumatismo, sospecha de HSA o contraindicación para la RM; si no, mejor RM, más sensible.\n- La TC puede ser normal en aneurismas, disección, trombosis venosa, vasculitis, tumores de fosa posterior o carcinomatosis meníngea.\n- **>50 años** con cefalea reciente: VSG y PCR (arteritis de células gigantes).\n- Punción lumbar si se sospecha meningitis, HSA, carcinomatosis o hipertensión intracraneal, tras descartar masa y coagulopatía.",
-      "pie_nodo": "¿Qué sugiere el estudio?",
+      "texto": "- Neuroimagen: TC si hay traumatismo, sospecha de HSA o contraindicación para la RM; si no, mejor RM (resonancia magnética), más sensible.\n- La TC puede ser normal en aneurismas, disección, trombosis venosa, vasculitis, tumores de fosa posterior o carcinomatosis meníngea.\n- **>50 años** con cefalea reciente: VSG (velocidad de sedimentación) y PCR (proteína C reactiva) (arteritis de células gigantes).\n- Punción lumbar si se sospecha meningitis, HSA, carcinomatosis o hipertensión intracraneal idiopática, tras descartar masa, coagulopatía, plaquetas **<50 000** o anticoagulación.",
+      "pie_nodo": "¿El estudio muestra una causa secundaria?",
       "opciones": [
         {
-          "texto": "Causa secundaria: tratarla",
+          "texto": "Causa hallada: tratarla",
           "siguiente_nodo": "nodo_treatment"
         },
         {
-          "texto": "Normal y sin alarma: cefalea primaria",
+          "texto": "Estudio normal: cefalea primaria",
           "siguiente_nodo": "diag_cefalea_primaria"
         }
       ],
-      "checklist": {
-        "titulo": "Derivar a urgencias (SEN)",
-        "items": [
-          "Cefalea aguda, sobre todo si se sospecha HSA",
-          "Sospecha de cefalea secundaria grave",
-          "Focalidad, irritación meníngea o alteración de la conciencia recientes, con o sin fiebre",
-          "Cefalea intensa que persiste pese al tratamiento sintomático adecuado"
-        ]
-      },
       "referencias": [
         {
           "titulo": "TC: indicaciones",
@@ -523,31 +582,21 @@
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag59_antes_de_la_puncion_lumbar.png"
         },
         {
-          "titulo": "Derivación a urgencias",
-          "paginas": "67",
-          "texto": "Cefalea de presentación aguda (sobre todo, la sospecha de posible hemo- rragia subaracnoidea). ◗◗ Cefalea de presentación aguda de etiología confusa. ◗◗ Sospecha de cefalea secundaria grave.",
+          "titulo": "Punción lumbar: anticoagulación",
+          "paginas": "59",
+          "texto": "una plaquetopenia (< 50.000/ml) o cuando el paciente sigue un tratamiento anticoagulante",
           "fuente": "SEN 2020",
           "anio": "2020",
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_derivacion_a_urgencias.png"
-        },
-        {
-          "titulo": "Derivación: focalidad y persistencia",
-          "paginas": "67",
-          "texto": "Aparición de signos neurológicos focales, irritación meníngea y alteración del nivel de consciencia, con o sin aumento de temperatura, de aparición reciente.",
-          "fuente": "SEN 2020",
-          "anio": "2020",
-          "url": "https://www.sen.es/",
-          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_derivacion_focalidad_y_persist.png"
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag59_puncion_lumbar_anticoagulacion.png"
         }
       ]
     },
     "diag_cefalea_primaria": {
       "tipo": "pregunta",
       "titulo": "Sin alarma: clasificar la cefalea",
-      "texto": "- Sin signos de alarma, clasificar según la ICHD-3 (tabla); para la migraña sin aura, la calculadora.\n- Contar los días de cefalea al mes y los de tratamiento sintomático: **≥10-15 días** orienta a uso excesivo de medicación.\n- Los pacientes pueden tener más de un tipo de cefalea.",
+      "texto": "- Sin signos de alarma, clasificar según la ICHD-3 (Clasificación Internacional de las Cefaleas, tabla); para la migraña sin aura, la calculadora.\n- Contar los días de cefalea al mes y los de tratamiento sintomático: **≥10-15 días** orienta a uso excesivo de medicación.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/migrana_ichd3.json",
         "etiqueta": "Migraña sin aura (ICHD-3)",
@@ -594,10 +643,9 @@
           ]
         ]
       },
-      "pie_nodo": "¿Qué tipo de cefalea primaria?",
       "opciones": [
         {
-          "texto": "Ir a cefaleas primarias",
+          "texto": "Elegir: migraña, tensión, racimos o abuso",
           "siguiente_nodo": "nodo_primarias"
         }
       ],
@@ -631,6 +679,16 @@
           "url": "https://ichd-3.org/",
           "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
           "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag41_3_1_racimos_inquietud.png"
+        },
+        {
+          "titulo": "Tabla IV: umbrales",
+          "paginas": "301",
+          "texto": "Uso excesivo de triptanes 10 o más días al mes durante más de 3 meses Uso excesivo de analgésicos no opioides",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag301_tabla_iv_umbrales.png"
         }
       ]
     },
@@ -659,20 +717,20 @@
     "diag_migrana": {
       "tipo": "pregunta",
       "titulo": "Migraña",
-      "texto": "- Sin aura: ≥5 crisis de **4-72 h** con 2 de 4 rasgos y náuseas o vómitos, o fotofobia y fonofobia (calculadora).\n- Con aura: ≥2 crisis con síntomas reversibles visuales, sensitivos, del lenguaje o motores.\n- Crónica: **≥15 días/mes** de cefalea más de **3 meses**, con **≥8 días/mes** de rasgos de migraña.\n- Toda migraña necesita tratamiento de las crisis; con **≥4 días/mes** de migraña, además preventivo.",
+      "texto": "- Sin aura: ≥5 crisis de **4-72 h** con 2 de 4 rasgos y náuseas o vómitos, o fotofobia y fonofobia (calculadora).\n- Con aura: ≥2 crisis con aura reversible (visual, sensitiva, del lenguaje, motora, troncoencefálica o retiniana) y ≥3 de 6 rasgos del aura.\n- Crónica: **≥15 días/mes** de cefalea más de **3 meses**, con **≥8 días/mes** de rasgos de migraña.\n- Con **≥4 días/mes** de migraña o discapacidad, además de tratar las crisis, preventivo.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/migrana_ichd3.json",
         "etiqueta": "Migraña sin aura (ICHD-3)",
         "ramificar": false
       },
-      "pie_nodo": "¿Cuántos días de migraña al mes?",
+      "pie_nodo": "¿**≥4 días/mes** de migraña o discapacidad importante?",
       "opciones": [
         {
           "texto": "<4 días/mes: tratar las crisis",
           "siguiente_nodo": "trat_migrana_crisis"
         },
         {
-          "texto": "≥4 días/mes o discapacidad: además, preventivo",
+          "texto": "≥4 días/mes o discapacidad: crisis y preventivo",
           "siguiente_nodo": "trat_migrana_preventivo"
         }
       ],
@@ -680,7 +738,7 @@
         {
           "titulo": "1.2 Migraña con aura",
           "paginas": "20",
-          "texto": "At least two attacks fulﬁlling criteria B and C B. One or more of the following fully reversible aura symptoms: 1. visual 2. sensory 3. speech and/or language 4. motor",
+          "texto": "One or more of the following fully reversible aura symptoms: 1. visual 2. sensory 3. speech and/or language 4. motor 5. brainstem 6. retinal",
           "fuente": "ICHD-3",
           "anio": "2018",
           "url": "https://ichd-3.org/",
@@ -726,13 +784,23 @@
           "url": "https://doi.org/10.1212/WNL.0000000000214881",
           "cita": "Potrebic S, et al. Pharmacologic Treatment for Migraine Prevention in Adults: Practice Guideline Recommendations. Report of the AAN Guidelines Subcommittee and the AHS. Neurology 2026;107(7):e214881.",
           "imagen_evidencia": "evidencia_cefaleas_aan_ahs_page214881_3_rec_1c_preventivo_si_hay_disca.png"
+        },
+        {
+          "titulo": "1.2: tres de seis rasgos",
+          "paginas": "20",
+          "texto": "At least three of the following six characteristics: 1. at least one aura symptom spreads gradually over 5 minutes",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag20_1_2_tres_de_seis_rasgos.png"
         }
       ]
     },
     "trat_migrana_crisis": {
       "tipo": "pregunta",
       "titulo": "Migraña: tratar la crisis",
-      "texto": "- Tratar pronto, con el dolor aún leve; elegir según la intensidad y la respuesta previa (tabla).\n- Leve-moderada: AINE o paracetamol; sin respuesta o moderada-grave: triptán.\n- Náuseas o vómitos: antiemético precoz y otra vía (nasal o subcutánea).\n- Un triptán que falla en una crisis puede servir en otra: probarlo en **3 crisis** antes de cambiarlo.",
+      "texto": "- Tratar pronto, con el dolor aún leve; elegir según la intensidad y la respuesta previa (tabla).\n- Leve-moderada: AINE (antiinflamatorios no esteroideos) o paracetamol; sin respuesta o moderada-grave: triptán.\n- Náuseas o vómitos: antiemético precoz y otra vía (nasal o subcutánea).\n- Un triptán que falla en una crisis puede servir en otra: probarlo en **3 crisis** antes de cambiarlo.",
       "tabla": {
         "titulo": "Tratamiento de la crisis de migraña (recomendación fuerte, SISC-IHS 2025)",
         "columnas": [
@@ -766,21 +834,17 @@
       "alertas": [
         {
           "titulo": "Triptanes contraindicados",
-          "texto": "Patología vascular, HTA no controlada o migraña hemipléjica o basilar."
-        },
-        {
-          "titulo": "No sólo sintomático",
-          "texto": "Con **≥10 días** de dolor al mes, añadir preventivo: riesgo de uso excesivo."
+          "texto": "Hipertensión no controlada, enfermedad coronaria, cerebrovascular o vascular periférica; migraña hemipléjica o basilar."
         }
       ],
-      "pie_nodo": "¿Responde la crisis?",
+      "pie_nodo": "¿Crisis que no cede con tratamiento oral, o **≥4 días/mes** de migraña?",
       "opciones": [
         {
-          "texto": "No, crisis grave: urgencias",
+          "texto": "No cede por vía oral: urgencias",
           "siguiente_nodo": "trat_migrana_urgencias"
         },
         {
-          "texto": "≥4 días/mes o ≥10 días de analgésicos: preventivo",
+          "texto": "≥4 días/mes de migraña o ≥10 días/mes de dolor: preventivo",
           "siguiente_nodo": "trat_migrana_preventivo"
         }
       ],
@@ -888,31 +952,44 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag84_no_solo_sintomatico_con_10_dia.png"
+        },
+        {
+          "titulo": "Triptanes: enfermedad vascular",
+          "paginas": "86",
+          "texto": "están contraindicados en pacientes con hipertensión arterial no controlada, enfermedad coronaria y cerebrovascu- lar, y enfermedad vascular periférica",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag86_triptanes_enfermedad_vascular.png"
         }
       ]
     },
     "trat_migrana_urgencias": {
       "tipo": "informativo",
       "titulo": "Migraña en urgencias",
-      "texto": "- Confirmar el diagnóstico y descartar signos de alarma; revisar qué ha tomado ya (sin triptán ni ergótico en las últimas **24 h** antes de otro).\n- Sueros IV si vomita o no hay contraindicación; tratamiento parenteral y combinado.\n- Primera línea: proclorperazina IV o bloqueo del nervio occipital mayor; alternativas: metoclopramida, ketorolaco o dexketoprofeno IV, sumatriptán SC.\n- Dexametasona IV para prevenir la recurrencia; evitar opioides.",
+      "texto": "- Confirmar el diagnóstico y descartar signos de alarma; revisar qué ha tomado: si tomó triptán o ergótico en las últimas **24 h**, no dar sumatriptán.\n- Sueros IV salvo contraindicación; tratamiento parenteral y combinado.\n- Primera línea: proclorperazina IV o bloqueo del nervio occipital mayor; alternativas: metoclopramida, ketorolaco o dexketoprofeno IV, sumatriptán SC.\n- Dexametasona IV para prevenir la recurrencia; evitar opioides.",
       "farmacos": [
         {
           "nombre": "Proclorperazina",
           "dosis": "**10-12,5 mg** IV",
           "pauta": "Nivel A (debe ofrecerse) si bajo riesgo extrapiramidal.",
-          "paginas": "62"
+          "paginas": "63",
+          "nota": "Acatisia: tratar con difenhidramina."
         },
         {
           "nombre": "Metoclopramida",
           "dosis": "**10 mg** IV",
-          "pauta": "Si no se puede usar proclorperazina.",
-          "paginas": "62"
+          "pauta": "Si no se puede usar proclorperazina; bajo riesgo extrapiramidal.",
+          "paginas": "63",
+          "nota": "Distonía aguda o acatisia: difenhidramina."
         },
         {
           "nombre": "Ketorolaco",
           "dosis": "**30-60 mg** IV",
           "pauta": "Sin contraindicación para AINE.",
-          "paginas": "66"
+          "paginas": "66",
+          "nota": "No más de 2 días: riesgo digestivo grave y de fallo renal agudo."
         },
         {
           "nombre": "Dexketoprofeno",
@@ -929,17 +1006,18 @@
         {
           "nombre": "Dexametasona",
           "dosis": "**8-16 mg** IV",
-          "pauta": "Nivel C; menos recurrencia.",
-          "paginas": "63"
+          "pauta": "Nivel B para evitar la recurrencia; nivel C para el dolor.",
+          "paginas": "64",
+          "nota": "Vigilar la exposición acumulada a corticoides."
         }
       ],
       "alertas": [
         {
           "titulo": "No opioides",
-          "texto": "La hidromorfona IV no debe ofrecerse (nivel A); la morfina tampoco en la mayoría."
+          "texto": "La hidromorfona IV no debe ofrecerse (nivel A); la morfina IV, tampoco (nivel C)."
         }
       ],
-      "nota_adicional": "Estado migrañoso: crisis incapacitante de más de 72 h; si no responde al tratamiento oral, valorar ingreso.",
+      "nota_adicional": "Estado migrañoso (crisis incapacitante de más de 72 h) o crisis que no responde a la vía oral: criterio de ingreso.",
       "evidencia": {
         "texto": "Proclorperazina IV y bloqueo occipital: nivel A",
         "fuente": "AHS 2025"
@@ -1038,7 +1116,7 @@
         {
           "titulo": "Sumatriptán: sin triptán ni ergótico en 24 h",
           "paginas": "90",
-          "texto": "Se recomienda el uso de sumatriptán 6 mg s.c. en los pacientes sin contraindicaciones para su uso que no han tomado triptanes",
+          "texto": "pacientes sin contraindicaciones para su uso que no han tomado triptanes ni ergó­ ticos en las últimas 24 horas",
           "fuente": "SEN 2020",
           "anio": "2020",
           "url": "https://www.sen.es/",
@@ -1054,6 +1132,76 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag89_estado_migranoso.png"
+        },
+        {
+          "titulo": "Dexametasona: nivel B para la recurrencia",
+          "paginas": "64",
+          "texto": "it already has level B – should offer evidence for acute treatment of migraine in the ED to prevent attack recurrence.",
+          "fuente": "AHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1111/head.70016",
+          "cita": "Robblee J, et al. 2025 guideline update to acute treatment of migraine for adults in the emergency department: The American Headache Society evidence assessment of parenteral pharmacotherapies. Headache 2026;66:53-76.",
+          "imagen_evidencia": "evidencia_cefaleas_ahs_2025_pag64_dexametasona_nivel_b_para_la_r.png"
+        },
+        {
+          "titulo": "Dexametasona: exposición acumulada",
+          "paginas": "64",
+          "texto": "Caution is warranted regarding potential cumulative corticosteroid exposure.",
+          "fuente": "AHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1111/head.70016",
+          "cita": "Robblee J, et al. 2025 guideline update to acute treatment of migraine for adults in the emergency department: The American Headache Society evidence assessment of parenteral pharmacotherapies. Headache 2026;66:53-76.",
+          "imagen_evidencia": "evidencia_cefaleas_ahs_2025_pag64_dexametasona_exposicion_acumul.png"
+        },
+        {
+          "titulo": "Acatisia: difenhidramina",
+          "paginas": "56",
+          "texto": "Commonly reported adverse effects included sedation, postural hypotension, and akathisia. Akathisia can be treated with various agents including diphenhydr- amine",
+          "fuente": "AHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1111/head.70016",
+          "cita": "Robblee J, et al. 2025 guideline update to acute treatment of migraine for adults in the emergency department: The American Headache Society evidence assessment of parenteral pharmacotherapies. Headache 2026;66:53-76.",
+          "imagen_evidencia": "evidencia_cefaleas_ahs_2025_pag56_acatisia_difenhidramina.png"
+        },
+        {
+          "titulo": "Metoclopramida: distonía y acatisia",
+          "paginas": "90",
+          "texto": "en el caso de la metoclopramida son más frecuentes las posibles reacciones distónicas agudas y la acatisia",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag90_metoclopramida_distonia_y_acat.png"
+        },
+        {
+          "titulo": "Ketorolaco: no más de 2 días",
+          "paginas": "90",
+          "texto": "cuyo uso se recomienda que no supere los 2 días por su alto riesgo de toxicidad gastrointestinal grave",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag90_ketorolaco_no_mas_de_2_dias.png"
+        },
+        {
+          "titulo": "Morfina IV: nivel C",
+          "paginas": "68",
+          "texto": "Morphine IV: Level C – May NOT Offer",
+          "fuente": "AHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1111/head.70016",
+          "cita": "Robblee J, et al. 2025 guideline update to acute treatment of migraine for adults in the emergency department: The American Headache Society evidence assessment of parenteral pharmacotherapies. Headache 2026;66:53-76.",
+          "imagen_evidencia": "evidencia_cefaleas_ahs_2025_pag68_morfina_iv_nivel_c.png"
+        },
+        {
+          "titulo": "Ingreso: estado migrañoso",
+          "paginas": "66",
+          "texto": "Estado migrañoso. – – Dolor de características migrañosas incapacitante que no responde a la medicación oral (probable estado migrañoso).",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag66_ingreso_estado_migranoso.png"
         }
       ],
       "media": [
@@ -1096,12 +1244,19 @@
             }
           ]
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "Criterios de ingreso",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_derivar"
+        }
       ]
     },
     "trat_migrana_preventivo": {
       "tipo": "informativo",
       "titulo": "Migraña: tratamiento preventivo",
-      "texto": "- Ofrecerlo con **≥4 días/mes** de migraña o de cefalea moderada-grave, o con discapacidad importante.\n- Episódica: atogepant, anticuerpos anti-CGRP, propranolol, topiramato o valproato; crónica: además toxina botulínica.\n- Elegir con el paciente según eficacia, tolerancia, coste y comorbilidad (tabla de dosis).\n- Valorar la eficacia tras **8-12 semanas** a dosis tolerada (**24** con toxina botulínica).",
+      "texto": "- Ofrecerlo con **≥4 días/mes** de migraña o de cefalea moderada-grave, o con discapacidad importante.\n- Episódica: atogepant, anticuerpos anti-CGRP (péptido relacionado con el gen de la calcitonina), propranolol, topiramato o valproato.\n- Crónica: atogepant, anti-CGRP, toxina botulínica, topiramato o valproato.\n- Valorar la eficacia tras **8-12 semanas** a dosis tolerada (**24** con toxina botulínica).",
       "tabla": {
         "titulo": "Dosis diarias de preventivos orales (SEN)",
         "columnas": [
@@ -1157,8 +1312,8 @@
       },
       "alertas": [
         {
-          "titulo": "Valproato y topiramato",
-          "texto": "Teratógenos: evitarlos si puede quedar embarazada; el topiramato >200 mg/día resta eficacia al anticonceptivo."
+          "titulo": "Valproato, topiramato y anti-CGRP",
+          "texto": "Evitarlos si puede quedar embarazada; el topiramato >200 mg/día resta eficacia al anticonceptivo."
         }
       ],
       "nota_adicional": "Con uso excesivo de medicación, el preventivo también está indicado: priorizar anti-CGRP, atogepant, toxina botulínica o topiramato.",
@@ -1173,11 +1328,11 @@
             },
             {
               "fuente": "SISC-IHS 2025",
-              "dice": "Recomendación fuerte sólo para rimegepant cada 48 h y eptinezumab; débil para candesartán, propranolol, valproato, bisoprolol y metoprolol.",
-              "paginas": "4"
+              "dice": "Fuerte para atogepant, anti-CGRP y topiramato 100-200 mg (episódica) y toxina botulínica (crónica); sólo débil para propranolol y valproato.",
+              "paginas": "5"
             }
           ],
-          "nota": "Difieren por el método: la SISC-IHS gradúa cada fármaco por separado."
+          "nota": "La AAN/AHS pone propranolol y valproato al mismo nivel que los anti-CGRP; la SISC-IHS, por debajo."
         }
       ],
       "evidencia": {
@@ -1304,13 +1459,50 @@
           "url": "https://doi.org/10.1177/03331024241305381",
           "cita": "Ornello R, Caponnetto V, Ahmed F, et al. Evidence-based guidelines for the pharmacological treatment of migraine. Cephalalgia 2025;45(4):3331024241305381.",
           "imagen_evidencia": "evidencia_cefaleas_sisc_ihs_pag4_tabla_1_3_prevencion.png"
+        },
+        {
+          "titulo": "Anti-CGRP: contraindicados en el embarazo",
+          "paginas": "392",
+          "texto": "Por último, los anticuerpos monoclonales anti-CGRP de momento están con- traindicados durante el embarazo.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag392_anti_cgrp_contraindicados_en_e.png"
+        },
+        {
+          "titulo": "Tabla 1.4: fuerte en episódica",
+          "paginas": "5",
+          "texto": "Strong in favor Atogepant 60 mg oral Topiramate 100 and 200 mg",
+          "fuente": "SISC-IHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1177/03331024241305381",
+          "cita": "Ornello R, Caponnetto V, Ahmed F, et al. Evidence-based guidelines for the pharmacological treatment of migraine. Cephalalgia 2025;45(4):3331024241305381.",
+          "imagen_evidencia": "evidencia_cefaleas_sisc_ihs_pag5_tabla_1_4_fuerte_en_episodica.png"
+        },
+        {
+          "titulo": "Tabla 1.4: anti-CGRP",
+          "paginas": "5",
+          "texto": "Erenumab 70 and 140 mg every four weeks, subcutaneous Fremanezumab 225 mg monthly and 675 quarterly, subcutaneous Galcanezumab 120 mg monthly, subcutaneous",
+          "fuente": "SISC-IHS 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1177/03331024241305381",
+          "cita": "Ornello R, Caponnetto V, Ahmed F, et al. Evidence-based guidelines for the pharmacological treatment of migraine. Cephalalgia 2025;45(4):3331024241305381.",
+          "imagen_evidencia": "evidencia_cefaleas_sisc_ihs_pag5_tabla_1_4_anti_cgrp.png"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Tratar también las crisis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_migrana_crisis"
         }
       ]
     },
     "diag_tension": {
       "tipo": "informativo",
       "titulo": "Cefalea tipo tensión",
-      "texto": "- Bilateral, opresiva, leve o moderada, sin empeorar con la actividad, sin náuseas; dura de **30 min a 7 días**.\n- Episódica frecuente: **1-14 días/mes**; crónica: **≥15 días/mes** más de **3 meses**.\n- Crisis: paracetamol, ibuprofeno, naproxeno, dexketoprofeno o metamizol (tabla).\n- Frecuente o crónica: amitriptilina **10-75 mg/día** como preventivo.",
+      "texto": "- 2 de 4: bilateral, opresiva, leve-moderada, no empeora con la actividad; sin náuseas; dura de **30 min a 7 días**.\n- Episódica frecuente: **1-14 días/mes**; crónica: **≥15 días/mes** más de **3 meses**.\n- Crisis: paracetamol, ibuprofeno, naproxeno, dexketoprofeno o metamizol (tabla); **≥15 días/mes** de analgésicos: riesgo de uso excesivo.\n- Frecuente o crónica: amitriptilina **10-75 mg/día** como preventivo.",
       "tabla": {
         "titulo": "Tratamiento de la crisis de cefalea tipo tensión (SEN)",
         "columnas": [
@@ -1340,6 +1532,11 @@
             "A"
           ],
           [
+            "Diclofenaco",
+            "12,5-25 mg",
+            "A"
+          ],
+          [
             "Metamizol",
             "500-1000 mg",
             "A"
@@ -1356,16 +1553,10 @@
           "nombre": "Amitriptilina",
           "dosis": "**10-75 mg/día** VO",
           "pauta": "Preventivo en la cefalea tipo tensión frecuente o crónica.",
-          "paginas": "148"
+          "paginas": "154"
         }
       ],
       "nota_adicional": "La palpación pericraneal detecta contractura, pero no distingue la cefalea tipo tensión de otras cefaleas.",
-      "alertas": [
-        {
-          "titulo": "Cuidado con los analgésicos",
-          "texto": "Con **≥15 días** al mes de analgésicos simples, riesgo de cefalea por uso excesivo."
-        }
-      ],
       "referencias": [
         {
           "titulo": "2.2 Tensional: frecuencia",
@@ -1436,6 +1627,16 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag301_tabla_iv_cuem_analgesicos_simp.png"
+        },
+        {
+          "titulo": "Tabla VIII: diclofenaco",
+          "paginas": "154",
+          "texto": "Diclofenaco 12,5-25 mg A Metamizol 500-1.000 mg A",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag154_tabla_viii_diclofenaco.png"
         }
       ]
     },
@@ -1499,14 +1700,24 @@
           "url": "https://doi.org/10.1111/ene.15956",
           "cita": "May A, Evers S, Goadsby PJ, et al. European Academy of Neurology guidelines on the treatment of cluster headache. Eur J Neurol 2023;30(10):2955-2979.",
           "imagen_evidencia": "evidencia_cefaleas_ean_2023_pag2958_neuroimagen_al_diagnostico.png"
+        },
+        {
+          "titulo": "3.1.2 Racimos crónica",
+          "paginas": "42",
+          "texto": "Cluster headache attacks occurring for one year or longer without remission, or with remission periods lasting less than three months.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag42_3_1_2_racimos_cronica.png"
         }
       ],
       "media": [
         {
           "recurso": "cefalea_racimos_signos_real.jpg",
           "titulo": "Signos autonómicos en los racimos",
-          "descripcion": "Ptosis y ojo rojo del lado del dolor en una cefalea en racimos.",
-          "info": "{#FDE047:Elipse amarilla}: ojo izquierdo, del lado del dolor, con ptosis y ojo rojo; a la izquierda de la imagen, el ojo sano para comparar. Los signos autonómicos van del mismo lado que el dolor.",
+          "descripcion": "Ptosis del lado del dolor en una cefalea en racimos izquierda.",
+          "info": "{#FDE047:Elipse amarilla}: ojo izquierdo, del lado del dolor, con ptosis (el párpado cae y estrecha la hendidura); a la izquierda, el ojo sano para comparar. Los signos autonómicos van del mismo lado que el dolor.",
           "en_texto": "miosis o ptosis",
           "referencias": [
             {
@@ -1526,35 +1737,40 @@
     "trat_racimos": {
       "tipo": "informativo",
       "titulo": "Racimos: crisis y prevención",
-      "texto": "- Crisis: oxígeno al **100 %** a **≥12 L/min** durante **15 min**, o sumatriptán **6 mg** SC; alternativa, zolmitriptán **5 mg** o sumatriptán **20 mg** nasal.\n- Preventivo de elección: verapamilo desde **240 mg/día**, con ECG antes y al subir la dosis.\n- Puente mientras actúa: prednisona **≥100 mg/día** VO (o metilprednisolona hasta **500 mg/día** IV) **5 días** y bajar; o bloqueo del nervio occipital mayor.\n- Segunda línea: litio; topiramato; galcanezumab en la episódica.",
+      "texto": "- Crisis: oxígeno al **100 %** a **≥12 L/min** durante **15 min**, o sumatriptán **6 mg** SC; alternativa, zolmitriptán **5 mg** o sumatriptán **20 mg** nasal.\n- Preventivo de elección: verapamilo desde **240 mg/día**.\n- Puente mientras actúa: prednisona **≥100 mg/día** VO (o metilprednisolona hasta **500 mg/día** IV) **5 días** y bajar; o bloqueo del nervio occipital mayor.\n- Segunda línea: litio **600-900 mg/día** (litemia, función renal y tiroidea); topiramato **50-200 mg/día** (no si nefrolitiasis); galcanezumab en la episódica.",
       "farmacos": [
         {
           "nombre": "Oxígeno al 100 %",
           "dosis": "**≥12 L/min**",
-          "pauta": "Durante 15 min, con mascarilla, al inicio de la crisis.",
-          "paginas": "2956"
+          "pauta": "Durante 15 min, al inicio de la crisis.",
+          "paginas": "2955"
         },
         {
           "nombre": "Sumatriptán",
           "dosis": "**6 mg** SC",
           "pauta": "Al inicio de la crisis.",
-          "paginas": "2956"
+          "paginas": "2955"
         },
         {
           "nombre": "Verapamilo",
           "dosis": "**240 mg/día** VO para empezar",
           "pauta": "Repartido en 2-3 tomas; subir según eficacia y tolerancia (200-960 mg/día).",
           "nota": "Contraindicado en bloqueos cardiacos e insuficiencia cardiaca.",
-          "paginas": "2956; SEN 189"
+          "paginas": "2955; SEN 174"
         },
         {
           "nombre": "Prednisona",
           "dosis": "**≥100 mg/día** VO",
           "pauta": "5 días y después pauta descendente.",
-          "paginas": "2956"
+          "paginas": "2955-2956",
+          "nota": "Precaución en diabetes, hipertensión, infección o úlcera gastroduodenal."
         }
       ],
       "alertas": [
+        {
+          "titulo": "Oxígeno: insuficiencia cardiaca o respiratoria",
+          "texto": "Contraindicado por riesgo de hipercapnia; en la patología vascular sí puede usarse."
+        },
         {
           "titulo": "ECG con verapamilo",
           "texto": "ECG antes de empezar y antes de cada subida; obligatorio por encima de **480 mg/día**."
@@ -1654,13 +1870,100 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag174_verapamilo_dosis_y_ecg_480_mg.png"
+        },
+        {
+          "titulo": "Oxígeno: contraindicaciones",
+          "paginas": "172",
+          "texto": "No está contraindicada en pacientes con patología vascular, pero sí en insuficiencia cardíaca o respiratoria por el riesgo de hipercapnia.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag172_oxigeno_contraindicaciones.png"
+        },
+        {
+          "titulo": "Prednisona 60 mg y descenso",
+          "paginas": "173",
+          "texto": "El más utilizado es la prednisona por vía oral a dosis de 60 mg/día, durante 3-5 días seguido de una reducción de 10 mg cada 3 días",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag173_prednisona_60_mg_y_descenso.png"
+        },
+        {
+          "titulo": "Corticoides: precauciones",
+          "paginas": "173",
+          "texto": "Los corticoides deben utilizarse con precaución en pacientes diabéticos, hipertensos, infecciosos o con úlcera gastroduodenal.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag173_corticoides_precauciones.png"
+        },
+        {
+          "titulo": "Litio: 600-900 mg/día",
+          "paginas": "175",
+          "texto": "Las dosis habituales son 600-900 mg/día, que gene­ ralmente procuran unos niveles de litio en sangre entre 0,4 y 0,8 mEq/l.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag175_litio_600_900_mg_dia.png"
+        },
+        {
+          "titulo": "Litio: vigilancia",
+          "paginas": "175",
+          "texto": "obligan a monitorizar los niveles de litio en sangre y las funciones renal y tiroidea durante el tratamiento.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag175_litio_vigilancia.png"
+        },
+        {
+          "titulo": "Topiramato: 50-200 mg/día",
+          "paginas": "175",
+          "texto": "Topiramato. Puede ser eficaz a dosis de entre 50 y 200 mg/día (nivel de evidencia II, grado de recomendación B)",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag175_topiramato_50_200_mg_dia.png"
+        },
+        {
+          "titulo": "Topiramato: no con nefrolitiasis",
+          "paginas": "175",
+          "texto": "No deben recibir topiramato los pacientes con historia de nefrolitiasis.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag175_topiramato_no_con_nefrolitiasi.png"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Corticoide de transición",
+          "posturas": [
+            {
+              "fuente": "EAN 2023",
+              "dice": "Metilprednisolona **≥100 mg/día** VO o hasta **500 mg/día** IV, 5 días, y bajar.",
+              "paginas": "2955"
+            },
+            {
+              "fuente": "SEN 2020",
+              "dice": "Prednisona **60 mg/día** 3-5 días y bajar **10 mg cada 3 días**; no más de 3 semanas ni más de 2 veces al año.",
+              "paginas": "173"
+            }
+          ]
         }
       ]
     },
     "diag_cuem": {
       "tipo": "informativo",
       "titulo": "Cefalea por uso excesivo de medicación",
-      "texto": "- Cefalea **≥15 días/mes** en quien ya tenía una cefalea, con uso excesivo del tratamiento sintomático más de **3 meses**.\n- Umbral: triptanes, ergóticos, opioides o combinaciones **≥10 días/mes**; analgésicos simples o AINE **≥15 días/mes**.\n- Tratar: retirar el fármaco en exceso, empezar un preventivo y dar un rescate distinto del que se abusaba.\n- Cefalea de rebote al retirar: prednisona **60-100 mg/día 3-5 días** y bajar, o naproxeno **500-550 mg/12 h** 5-10 días.",
+      "texto": "- Cefalea **≥15 días/mes** en quien ya tenía una cefalea, con uso excesivo del tratamiento sintomático más de **3 meses**.\n- Umbral según el fármaco: tabla.\n- Tratar: retirar de golpe el fármaco en exceso (los opioides, poco a poco), empezar un preventivo y dar un rescate distinto del que se abusaba.\n- Cefalea de rebote al retirar: prednisona **60-100 mg/día 3-5 días** y bajar, o naproxeno **500-550 mg/12 h** 5-10 días.",
       "tabla": {
         "titulo": "Uso excesivo según el fármaco (ICHD-3)",
         "columnas": [
@@ -1688,13 +1991,13 @@
           "nombre": "Prednisona (cefalea de rebote)",
           "dosis": "**60-100 mg/día** VO",
           "pauta": "3-5 días y después pauta descendente.",
-          "paginas": "303"
+          "paginas": "308"
         },
         {
           "nombre": "Naproxeno",
           "dosis": "**500-550 mg/12 h** VO",
           "pauta": "5-10 días.",
-          "paginas": "303"
+          "paginas": "308"
         }
       ],
       "referencias": [
@@ -1767,6 +2070,16 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag302_diario_de_cefaleas.png"
+        },
+        {
+          "titulo": "Retirada brusca salvo opioides",
+          "paginas": "306",
+          "texto": "En general, se recomienda la suspensión brusca de la medicación de abuso, salvo en el caso de los opioides, que debe ser progresiva",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag306_retirada_brusca_salvo_opioides.png"
         }
       ]
     },
@@ -1775,7 +2088,7 @@
       "texto": "Cefalea secundaria",
       "opciones": [
         {
-          "texto": "Según la causa",
+          "texto": "Elegir la causa sospechada",
           "siguiente_nodo": "trata_especifico"
         }
       ]
@@ -1783,7 +2096,7 @@
     "trata_especifico": {
       "tipo": "pregunta",
       "titulo": "Según la causa",
-      "texto": "- Ingresar si hacen falta pruebas específicas (arteriografía), para tratar la causa, si no responde en ambulatorio o si otra enfermedad lo impide.\n- Derivar con carácter preferente a neurología la sospecha de cefalea secundaria que no necesita urgencias.",
+      "texto": "- Sospecha de secundaria sin urgencia: derivar preferente a neurología (**≤15 días**).",
       "pie_nodo": "¿Qué causa se sospecha o se confirmó?",
       "opciones": [
         {
@@ -1823,13 +2136,39 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag68_derivacion_preferente.png"
+        },
+        {
+          "titulo": "Ingreso: sin respuesta o comorbilidad",
+          "paginas": "67",
+          "texto": "Ausencia de respuesta terapéutica ambulatoria. – – Presencia de otras enfermedades que imposibilitan un manejo adecuado ambulatorio.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_ingreso_sin_respuesta_o_comorb.png"
+        }
+      ],
+      "checklist": {
+        "titulo": "Ingreso en la cefalea secundaria (SEN)",
+        "items": [
+          "Pruebas específicas (arteriografía)",
+          "Tratar la causa",
+          "Sin respuesta al tratamiento ambulatorio",
+          "Otra enfermedad que impide el manejo ambulatorio"
+        ]
+      },
+      "enlaces": [
+        {
+          "texto": "Criterios de derivación",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_derivar"
         }
       ]
     },
     "trata_emergencia": {
       "tipo": "informativo",
       "titulo": "Hemorragia subaracnoidea o intracraneal",
-      "texto": "- TC sin contraste: **98 %** de sensibilidad en las primeras **12 h**; si no es diagnóstica, punción lumbar (xantocromía de **12 h a 2 semanas**).\n- RM (FLAIR y eco de gradiente) si la TC es normal y el LCR patológico.\n- El **11 %** de las HSA aneurismáticas tiene antes una cefalea centinela por un sangrado menor.\n- Hematoma subdural espontáneo con trueno y focalidad: urgencia neuroquirúrgica.",
+      "texto": "- RM (FLAIR y eco de gradiente) si la TC es normal y el LCR (líquido cefalorraquídeo) patológico.\n- El **11 %** de las HSA aneurismáticas tiene antes una cefalea centinela por un sangrado menor.\n- Hematoma subdural espontáneo con trueno y focalidad: urgencia neuroquirúrgica.",
       "chips": [
         "Urgente"
       ],
@@ -1840,26 +2179,6 @@
         }
       ],
       "referencias": [
-        {
-          "titulo": "HSA: TC sin contraste",
-          "paginas": "236",
-          "texto": "El diagnóstico de HSA se confirma mediante TC sin contraste (sensibilidad del 98% en las primeras 12 horas).",
-          "fuente": "SEN 2020",
-          "anio": "2020",
-          "url": "https://www.sen.es/",
-          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_hsa_tc_sin_contraste.png"
-        },
-        {
-          "titulo": "HSA: punción lumbar si la TC no es diagnóstica",
-          "paginas": "236",
-          "texto": "Si los resultados de la TC no son diagnósticos, la punción lumbar es fundamental21, ya que la xantocromía es detectable entre las 12 horas y las 2 semanas de evolución.",
-          "fuente": "SEN 2020",
-          "anio": "2020",
-          "url": "https://www.sen.es/",
-          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_hsa_puncion_lumbar_si_la_tc_no.png"
-        },
         {
           "titulo": "RM si la TC es normal",
           "paginas": "236",
@@ -1895,7 +2214,7 @@
     "trata_infeccion": {
       "tipo": "informativo",
       "titulo": "Meningitis o encefalitis",
-      "texto": "- Sospechar con fiebre sin foco, signos meníngeos o alteración de la conciencia.\n- Punción lumbar con medida de la presión de apertura, tras descartar proceso expansivo, coagulopatía, plaquetas **<50 000/mL** o anticoagulación.\n- En el embarazo, pensar también en *Listeria monocytogenes*.",
+      "texto": "- Sospechar con fiebre sin foco, signos meníngeos o alteración de la conciencia.\n- Meningitis bacteriana sin focalidad franca: punción lumbar y antibiótico **cuanto antes**; no retrasarlos por la TC.\n- Punción con presión de apertura; antes, descartar coagulopatía, plaquetas **<50 000/mL** o anticoagulación, y masa si hay focalidad.\n- En el embarazo, pensar también en *Listeria monocytogenes*.",
       "chips": [
         "Urgente"
       ],
@@ -1929,13 +2248,39 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag388_embarazo_meningitis.png"
+        },
+        {
+          "titulo": "Meningitis: punción y antibiótico cuanto antes",
+          "paginas": "259",
+          "texto": "Ante la sospecha de una meningitis bacteriana aguda, y en ausencia de focalidad neurológica franca, la muestra de líquido y el tratamiento antibiótico deben hacerse cuanto antes.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag259_meningitis_puncion_y_antibioti.png"
+        },
+        {
+          "titulo": "Sin TC previa: mejor pronóstico",
+          "paginas": "259",
+          "texto": "el tratamiento precoz en los casos sin tomografía craneal previa a la punción (con menor tiempo puerta-antibiótico) mejora el pronóstico",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag259_sin_tc_previa_mejor_pronostico.png"
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Antibiótico sin demora",
+          "texto": "Sin focalidad franca, no esperar a la TC para la punción y el antibiótico: el tratamiento precoz mejora el pronóstico."
         }
       ]
     },
     "trata_onco": {
       "tipo": "informativo",
       "titulo": "Masa o hipertensión intracraneal",
-      "texto": "- Sospechar con papiledema, focalidad subaguda, vómitos o cefalea que empeora con el decúbito o la maniobra de Valsalva.\n- RM con contraste: la TC puede ser normal en tumores de fosa posterior, carcinomatosis meníngea y tumores hipofisarios.\n- Punción lumbar sólo tras la imagen; medir la presión de apertura si se sospecha hipertensión intracraneal idiopática.",
+      "texto": "- Sospechar con papiledema o focalidad neurológica de instauración subaguda.\n- RM: la TC puede ser normal en tumores de fosa posterior, carcinomatosis meníngea y tumores hipofisarios.\n- Punción lumbar sólo tras la imagen; medir la presión de apertura si se sospecha hipertensión intracraneal idiopática.",
       "referencias": [
         {
           "titulo": "Neoplasia en el anciano",
@@ -1972,13 +2317,13 @@
     "trata_vascular": {
       "tipo": "informativo",
       "titulo": "Trombosis venosa, disección o arteritis",
-      "texto": "- Trombosis venosa cerebral: RM con angio-RM o angio-TC; anticoagular con heparina y después anticoagulante oral **≥6 meses**.\n- Arteritis de células gigantes (**>50 años**, claudicación mandibular, arteria temporal dolorosa, polimialgia): VSG y PCR.\n- Arteritis: prednisona **1 mg/kg/día** al menos **1 mes** de inmediato, sin esperar a la biopsia; después, bajar despacio.\n- Puede perderse la visión de un ojo y, rápido, la del otro.",
+      "texto": "- Trombosis venosa cerebral: RM con angio-RM o angio-TC; anticoagular con heparina y después anticoagulante oral **≥6 meses**.\n- Disección arterial: cefalea del mismo lado, a veces en trueno, con dolor cervical, Horner o amaurosis fugaz; anticoagular **3-6 meses**.\n- Arteritis de células gigantes (**>50 años**, claudicación mandibular, arteria temporal dolorosa, polimialgia): VSG y PCR.\n- Arteritis: prednisona **1 mg/kg/día** al menos **1 mes**, de inmediato; después, bajar despacio.",
       "farmacos": [
         {
           "nombre": "Prednisona (arteritis)",
           "dosis": "**1 mg/kg/día** VO",
           "pauta": "Al menos 1 mes; después, descenso lento hasta la dosis mínima eficaz.",
-          "paginas": "331",
+          "paginas": "381",
           "por_kg": {
             "cantidad": 1,
             "unidad": "mg",
@@ -1989,8 +2334,8 @@
       "nota_adicional": "La VSG puede ser normal hasta en el **1 %** de las arteritis: si la sospecha es alta, tratar igual y pedir la biopsia.",
       "alertas": [
         {
-          "titulo": "No esperar a la biopsia",
-          "texto": "En la sospecha de arteritis, empezar el corticoide antes de confirmarla."
+          "titulo": "Riesgo de ceguera",
+          "texto": "La pérdida de visión de un ojo puede seguirse, rápido, de la del otro: prednisona el mismo día, sin esperar a la biopsia."
         }
       ],
       "chips": [
@@ -2066,6 +2411,36 @@
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag381_arteritis_perdida_visual.png"
+        },
+        {
+          "titulo": "Disección: clínica",
+          "paginas": "238",
+          "texto": "El inicio es muchas veces repentino (incluso en trueno), habi- tualmente ipsilateral a la disección, y se acompaña de otras manifestaciones,",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag238_diseccion_clinica.png"
+        },
+        {
+          "titulo": "Disección: signos acompañantes",
+          "paginas": "238",
+          "texto": "como soplos, mareos, dolor cervical, síncope, amaurosis fugaz, síndrome de Horner, tumefacción facial y disgeusia.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag238_diseccion_signos_acompanantes.png"
+        },
+        {
+          "titulo": "Disección: anticoagular 3-6 meses",
+          "paginas": "238",
+          "texto": "El tratamiento con anticoagulantes con heparina sódica o heparina de bajo peso molecular seguido de anticoagu- lantes orales durante 3-6 meses",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag238_diseccion_anticoagular_3_6_mes.png"
         }
       ],
       "media": [
@@ -2073,7 +2448,7 @@
           "recurso": "cefalea_arteritis_temporal_real.jpg",
           "titulo": "Arteria temporal en la arteritis",
           "descripcion": "Rama frontal de la arteria temporal engrosada en una arteritis de células gigantes.",
-          "info": "{#FDE047:Elipse amarilla}: rama frontal de la arteria temporal izquierda engrosada, señalada con las flechas blancas del original. Con cefalea nueva en un mayor de 50 años: VSG, PCR y prednisona sin esperar a la biopsia.",
+          "info": "{#FDE047:Elipse amarilla}: rama frontal de la arteria temporal izquierda engrosada, señalada con las {#FFFFFF:flechas blancas} del original. Con cefalea nueva en un mayor de 50 años: VSG, PCR y prednisona sin esperar a la biopsia.",
           "en_texto": "arteria temporal dolorosa",
           "referencias": [
             {
@@ -2119,31 +2494,17 @@
         }
       ]
     },
-    "nodo_especiales": {
-      "estilo": "rama",
-      "texto": "Situaciones especiales",
-      "opciones": [
-        {
-          "texto": "Embarazo y lactancia",
-          "siguiente_nodo": "esp_embarazo"
-        },
-        {
-          "texto": "Mayores de 50 años",
-          "siguiente_nodo": "esp_anciano"
-        }
-      ]
-    },
     "esp_embarazo": {
       "tipo": "informativo",
       "titulo": "Embarazo y lactancia",
-      "texto": "- Cefalea nueva: descartar preeclampsia, trombosis venosa, ictus, HSA, apoplejía hipofisaria y leucoencefalopatía posterior reversible.\n- Crisis: paracetamol; sumatriptán es el triptán más estudiado; AINE nunca en el tercer trimestre.\n- Preventivo: primero medidas no farmacológicas; si hace falta, nifedipino, o propranolol o metoprolol; nunca valproato ni topiramato.\n- Lactancia: los preventivos pasan a la leche; consultar el riesgo de cada fármaco (LactMed).",
+      "texto": "- Cefalea nueva: descartar las causas secundarias de la lista.\n- Crisis: paracetamol de elección; sumatriptán, el triptán más estudiado.\n- Preventivo: primero medidas no farmacológicas; si hace falta, nifedipino, o propranolol o metoprolol; nunca valproato, topiramato ni anti-CGRP.\n- Lactancia: los preventivos pasan a la leche; consultar el riesgo de cada fármaco en LactMed (base de datos de fármacos en la lactancia).",
       "chips": [
         "Embarazo"
       ],
       "nota_adicional": "Si se hace un bloqueo anestésico en el embarazo, sólo con lidocaína y sin corticoide.",
       "alertas": [
         {
-          "titulo": "AINE en el tercer trimestre",
+          "titulo": "No AINE en el tercer trimestre",
           "texto": "Riesgo de cierre prematuro del conducto arterioso fetal."
         }
       ],
@@ -2237,13 +2598,54 @@
           "url": "https://doi.org/10.1212/WNL.0000000000214881",
           "cita": "Potrebic S, et al. Pharmacologic Treatment for Migraine Prevention in Adults: Practice Guideline Recommendations. Report of the AAN Guidelines Subcommittee and the AHS. Neurology 2026;107(7):e214881.",
           "imagen_evidencia": "evidencia_cefaleas_aan_ahs_page214881_5_rec_5_lactancia.png"
+        },
+        {
+          "titulo": "Paracetamol, primera línea",
+          "paginas": "392",
+          "texto": "El paracetamol es el fármaco recomendado como primera línea de tratamiento abortivo y que además puede utilizarse con seguridad a lo largo de todo el em- barazo",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag392_paracetamol_primera_linea.png"
+        },
+        {
+          "titulo": "AINE: contraindicados en el tercer trimestre",
+          "paginas": "392",
+          "texto": "También los antiinflamatorios como el ibuprofeno o el naproxeno son seguros durante el primer y segundo trimestre,",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag392_aine_contraindicados_en_el_ter.png"
+        },
+        {
+          "titulo": "Anti-CGRP: contraindicados en el embarazo",
+          "paginas": "392",
+          "texto": "Por último, los anticuerpos monoclonales anti-CGRP de momento están con- traindicados durante el embarazo.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag392_anti_cgrp_contraindicados_en_e.png"
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Descartar ante cefalea nueva en el embarazo",
+        "items": [
+          "Preeclampsia",
+          "Trombosis venosa cerebral",
+          "Ictus",
+          "Hemorragia subaracnoidea",
+          "Apoplejía hipofisaria",
+          "Leucoencefalopatía posterior reversible"
+        ]
+      }
     },
     "esp_anciano": {
       "tipo": "informativo",
       "titulo": "Mayores de 50 años",
-      "texto": "- Cefalea nueva **>50 años**: es un signo de alarma; pensar en arteritis de células gigantes, hemorragia, neoplasia, ictus o fármacos.\n- Arteritis: VSG y PCR el mismo día; prednisona sin esperar a la biopsia.\n- Preventivos: valorar enfermedad vascular, interacciones, función renal y hepática; empezar con dosis bajas.\n- Evitar los que bajan mucho la tensión y, en varones mayores, los anticolinérgicos (amitriptilina) por retención urinaria.",
+      "texto": "- Cefalea nueva **>50 años**: es un signo de alarma; pensar en arteritis de células gigantes, hemorragia, neoplasia, ictus o fármacos.\n- Arteritis de células gigantes: VSG y PCR (ver cefalea secundaria).\n- Preventivos: valorar enfermedad vascular, interacciones, función renal y hepática; empezar con dosis bajas.\n- Evitar los que bajan mucho la tensión y, en varones mayores, los anticolinérgicos (amitriptilina) por retención urinaria.",
       "referencias": [
         {
           "titulo": "Tabla III: inicio reciente y evolución",
@@ -2284,23 +2686,28 @@
           "url": "https://doi.org/10.1212/WNL.0000000000214881",
           "cita": "Potrebic S, et al. Pharmacologic Treatment for Migraine Prevention in Adults: Practice Guideline Recommendations. Report of the AAN Guidelines Subcommittee and the AHS. Neurology 2026;107(7):e214881.",
           "imagen_evidencia": "evidencia_cefaleas_aan_ahs_page214881_5_rec_7c_retencion_urinaria.png"
-        },
+        }
+      ],
+      "enlaces": [
         {
-          "titulo": "Arteritis: biopsia sin demorar el tratamiento",
-          "paginas": "381",
-          "texto": "Ante la sospecha diagnóstica debe realizarse biopsia de la arteria temporal, aunque la VSG sea normal, pero la confirmación diagnóstica no debe demorar el inicio del tratamiento.",
-          "fuente": "SEN 2020",
-          "anio": "2020",
-          "url": "https://www.sen.es/",
-          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag381_arteritis_biopsia_sin_demorar.png"
+          "texto": "Arteritis de células gigantes",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trata_vascular"
         }
       ]
     },
     "nodo_seguimiento": {
       "estilo": "rama",
-      "texto": "Seguimiento y derivación",
+      "texto": "Situaciones especiales y seguimiento",
       "opciones": [
+        {
+          "texto": "Embarazo y lactancia",
+          "siguiente_nodo": "esp_embarazo"
+        },
+        {
+          "texto": "Mayores de 50 años",
+          "siguiente_nodo": "esp_anciano"
+        },
         {
           "texto": "Revisar el tratamiento",
           "siguiente_nodo": "seg_control"
@@ -2314,7 +2721,7 @@
     "seg_control": {
       "tipo": "informativo",
       "titulo": "Revisar el tratamiento",
-      "texto": "- Diario de cefaleas: días de dolor, intensidad y tratamiento sintomático.\n- Preventivo: valorar a las **8-12 semanas** a dosis tolerada; si responde poco a las 8, subir hasta la dosis máxima tolerada.\n- Sin respuesta a las **12-24 semanas**: cambiar de preventivo con el paciente.\n- Mantener las medidas de estilo de vida y evitar los desencadenantes.",
+      "texto": "- Diario de cefaleas: días de dolor, intensidad y tratamiento sintomático.\n- Preventivo: valorar a las **8-12 semanas** a dosis tolerada; con respuesta insuficiente a las **8 semanas**, subir a la dosis máxima tolerada.\n- Sin respuesta a las **12-24 semanas**: cambiar de preventivo con el paciente.\n- Mantener las medidas de estilo de vida y evitar los desencadenantes.",
       "referencias": [
         {
           "titulo": "Rec 15A: documentar la frecuencia",
@@ -2371,14 +2778,15 @@
     "seg_derivar": {
       "tipo": "informativo",
       "titulo": "Derivar o ingresar",
-      "texto": "- Urgente (mismo día): cefalea aguda o secundaria grave, focalidad o alteración de la conciencia recientes.\n- Preferente a neurología (≤15 días): sospecha de cefalea secundaria sin urgencia, exploración anormal o cefalea trigémino-autonómica.\n- Normal: falta de respuesta a un preventivo, migraña crónica, auras atípicas o prolongadas, abuso de analgésicos que no se resuelve.\n- Ingresar: estado migrañoso, migraña hemipléjica o con aura prolongada, racimos sin respuesta oral, deshabituación fallida.",
+      "texto": "- Urgente (mismo día): cefalea aguda o secundaria grave, focalidad o alteración de la conciencia recientes.\n- Preferente a neurología (≤15 días): sospecha de cefalea secundaria sin urgencia, exploración anormal o cefalea trigémino-autonómica.\n- Ordinaria (consulta): falta de respuesta a un preventivo, migraña crónica, auras atípicas o prolongadas, abuso de analgésicos que no se resuelve.",
       "checklist": {
         "titulo": "Ingreso en una cefalea primaria (SEN)",
         "items": [
           "Estado migrañoso o crisis incapacitante que no responde a la vía oral",
-          "Migraña hemipléjica, con aura prolongada o con ictus",
+          "Migraña hemipléjica, con aura prolongada, con pleocitosis o con ictus",
           "Uso excesivo de analgésicos que no responde a la deshabituación ambulatoria",
-          "Racimos con mala respuesta al tratamiento oral"
+          "Racimos con mala respuesta al tratamiento oral",
+          "Trastorno psiquiátrico o médico que dificulta el manejo ambulatorio"
         ]
       },
       "referencias": [
@@ -2413,24 +2821,115 @@
           "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag66_ingreso_estado_migranoso.png"
         },
         {
-          "titulo": "Ingreso: hemipléjica y aura prolongada",
+          "titulo": "Ingreso: pleocitosis, hemipléjica, ictus",
           "paginas": "66",
-          "texto": "Migraña hemipléjica. – – Ictus en paciente con migraña.",
+          "texto": "Migraña con pleocitosis. – – Migraña hemipléjica. – – Ictus en paciente con migraña.",
           "fuente": "SEN 2020",
           "anio": "2020",
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag66_ingreso_hemiplejica_y_aura_pro.png"
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag66_ingreso_pleocitosis_hemiplejic.png"
         },
         {
-          "titulo": "Ingreso: deshabituación y racimos",
+          "titulo": "Ingreso: aura prolongada y deshabituación",
           "paginas": "67",
-          "texto": "Cefalea por abuso de analgésicos que no responde a protocolos ambula- torios de deshabituación de analgésicos.",
+          "texto": "Migraña con aura prolongada. – – Cefalea por abuso de analgésicos que no responde a protocolos ambula- torios de deshabituación de analgésicos.",
           "fuente": "SEN 2020",
           "anio": "2020",
           "url": "https://www.sen.es/",
           "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
-          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_ingreso_deshabituacion_y_racim.png"
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_ingreso_aura_prolongada_y_desh.png"
+        },
+        {
+          "titulo": "Ingreso: comorbilidad y racimos",
+          "paginas": "67",
+          "texto": "Trastorno psiquiátrico o médico asociado que dificulta el manejo ambu- latorio del paciente. – – CR con mala respuesta a terapias orales.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag67_ingreso_comorbilidad_y_racimos.png"
+        }
+      ]
+    },
+    "diag_trueno_vasos": {
+      "tipo": "pregunta",
+      "titulo": "Trueno con TC y punción normales",
+      "texto": "- Estudiar los vasos (angio-TC o angio-RM) y el parénquima con RM.\n- Buscar disección, trombosis venosa, vasoconstricción cerebral reversible y apoplejía hipofisaria.\n- La vasoconstricción puede no verse al principio: no diagnosticar cefalea en trueno primaria, ni siquiera de forma provisional.\n- Trueno primaria: sólo con todo normal, vasos incluidos.",
+      "pie_nodo": "¿El estudio vascular muestra la causa?",
+      "opciones": [
+        {
+          "texto": "Causa hallada: tratarla",
+          "siguiente_nodo": "nodo_treatment"
+        },
+        {
+          "texto": "Todo normal: derivar a neurología",
+          "siguiente_nodo": "seg_derivar"
+        }
+      ],
+      "chips": [
+        "Urgente"
+      ],
+      "referencias": [
+        {
+          "titulo": "4.4 primaria: último recurso",
+          "paginas": "51",
+          "texto": "Primary thunderclap headache should be a diag- nosis of last resort, reached only when all organic causes have been demonstrably excluded.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_primaria_ultimo_recurso.png"
+        },
+        {
+          "titulo": "4.4 primaria: vasos normales",
+          "paginas": "51",
+          "texto": "This implies normal brain imaging, including the brain vessels, and/or normal CSF.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_primaria_vasos_normales.png"
+        },
+        {
+          "titulo": "4.4: ni siquiera provisional",
+          "paginas": "51",
+          "texto": "probable primary thunderclap headache is not a diagnosis that should be made even temporarily.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_ni_siquiera_provisional.png"
+        },
+        {
+          "titulo": "4.4: otras causas que descartar",
+          "paginas": "51",
+          "texto": "including intracerebral haemorrhage, cerebral venous thrombosis, unruptured vascular malformation (mostly aneurysm), arterial dissection",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_otras_causas_que_descartar.png"
+        },
+        {
+          "titulo": "4.4: vasoconstricción y apoplejía",
+          "paginas": "51",
+          "texto": "reversible cerebral vaso- constriction syndrome (RCVS) and pituitary apo- plexy.",
+          "fuente": "ICHD-3",
+          "anio": "2018",
+          "url": "https://ichd-3.org/",
+          "cita": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+          "imagen_evidencia": "evidencia_cefaleas_ichd_3_pag51_4_4_vasoconstriccion_y_apoplej.png"
+        },
+        {
+          "titulo": "RM si la TC es normal",
+          "paginas": "236",
+          "texto": "Las secuencias FLAIR y eco-­gradiente potenciadas en T2 de la RM pueden ser útiles si la TC es normal y el LCR es patológico.",
+          "fuente": "SEN 2020",
+          "anio": "2020",
+          "url": "https://www.sen.es/",
+          "cita": "Santos Lasaosa S, Pozo Rosich P (eds.). Manual de Práctica Clínica en Cefaleas. Recomendaciones diagnóstico-terapéuticas de la Sociedad Española de Neurología 2020. Madrid: Luzán 5; 2020.",
+          "imagen_evidencia": "evidencia_cefaleas_sen_2020_pag236_rm_si_la_tc_es_normal.png"
         }
       ]
     }
