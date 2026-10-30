@@ -1,26 +1,40 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// Animación en 3 pasos sobre la ilustración CC BY: referencias óseas, línea y tercio medial, punción.
 const T = (x, y, t, ancla) => ({ x, y, t, ancla, tam: 40 });
-fotos({
- "titulo": "Bloqueo del nervio occipital mayor",
- "sub": "Punto de punción en la línea de la protuberancia occipital externa a la mastoides.",
- "alto": 400,
- "paneles": [
-  {
-   "src": "fuentes/bloqueo_occipital.png",
-   "tam": [1600, 1404],
-   "recorte": [0, 140, 1720, 1110],
-   "tapar": [[0, 325, 203, 150], [1362, 515, 260, 455]],
-   "textos": [
-    T(100, 372, "Nervio", "middle"), T(100, 416, "occipital", "middle"), T(100, 460, "mayor", "middle"),
-    T(1370, 548, "Protuberancia"), T(1370, 590, "occipital"), T(1370, 632, "externa"),
-    T(1370, 704, "Nervio"), T(1370, 746, "occipital"), T(1370, 788, "menor"),
-    T(1370, 900, "Apófisis"), T(1370, 942, "mastoides")
-   ],
-   "marcas": [
-    { "x": 605, "y": 695, "r": 62, "c": AMARILLO, "t": "Punto de Arnold", "tx": 650, "ty": 885 }
-   ]
-  }
- ],
- "fuente": "Ilustración: Zoë Rushetsky, en Int J Emerg Med 2026;19:224 (fig. 11). CC BY 4.0. Traducida y marcada por Empirica."
-});
+const POE = [790, 597], MAST = [335, 880], ARN = [605, 695];
+const PASOS = [
+  "1 · Localizar la protuberancia occipital externa (POE) y la mastoides.",
+  "2 · Unirlas con una línea: el punto de Arnold está en su tercio medial.",
+  "3 · Pinchar en el punto de Arnold: 2-2,5 mL con aguja de 25-30 G.",
+];
+window.cuadro = function (i, n) {
+  const paso = n > 1 ? Math.min(2, Math.floor((i / n) * 3)) : 2;
+  const marcas = [
+    { x: POE[0], y: POE[1], r: 48, c: CIAN, t: "POE", tx: POE[0], ty: POE[1] - 62 },
+    { x: MAST[0], y: MAST[1], r: 48, c: CIAN, t: "Mastoides", tx: MAST[0] + 10, ty: MAST[1] + 100 },
+  ];
+  const lineas = paso >= 1 ? [
+    { x1: POE[0], y1: POE[1], x2: MAST[0], y2: MAST[1], c: CIAN },
+    { x1: POE[0], y1: POE[1], x2: ARN[0], y2: ARN[1], c: AMARILLO },
+  ] : [];
+  if (paso >= 1) marcas.push({ x: 700, y: 610, r: 0.1, c: AMARILLO, t: "Tercio medial", tx: 850, ty: 775 });
+  if (paso === 2) marcas.push({ x: ARN[0], y: ARN[1], r: 62, c: AMARILLO, t: "Punto de Arnold", tx: 650, ty: 885 });
+  fotos({
+    titulo: "Bloqueo del nervio occipital mayor",
+    sub: PASOS[paso],
+    alto: 400,
+    paneles: [{
+      src: "fuentes/bloqueo_occipital.png", tam: [1600, 1404], recorte: [0, 140, 1720, 1110],
+      tapar: [[0, 325, 203, 150], [1362, 515, 260, 455]],
+      textos: [
+        T(100, 372, "Nervio", "middle"), T(100, 416, "occipital", "middle"), T(100, 460, "mayor", "middle"),
+        T(1370, 548, "Protuberancia"), T(1370, 590, "occipital"), T(1370, 632, "externa"),
+        T(1370, 704, "Nervio"), T(1370, 746, "occipital"), T(1370, 788, "menor"),
+        T(1370, 900, "Apófisis"), T(1370, 942, "mastoides"),
+      ],
+      lineas, marcas, rotulo: `Paso ${paso + 1} de 3`,
+    }],
+    fuente: "Ilustración: Zoë Rushetsky, en Int J Emerg Med 2026;19:224 (fig. 11). CC BY 4.0. Traducida, marcada y animada por Empirica.",
+  });
+};
 </script></body></html>

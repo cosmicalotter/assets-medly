@@ -21,4 +21,5 @@ jpg papiledema "$D/cefalea_papiledema_real.jpg"
 jpg racimos "$D/cefalea_racimos_signos_real.jpg"
 jpg arteritis "$D/cefalea_arteritis_temporal_real.jpg"
 jpg tvc "$D/cefalea_trombosis_venosa_real.jpg"
-jpg bloqueo "$D/cefalea_bloqueo_occipital_real.jpg"
+# Ilustración real animada en 3 pasos
+gif bloqueo "$D/cefalea_bloqueo_occipital_pasos.gif" 3 2600 3500 192
