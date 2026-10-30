@@ -1,0 +1,226 @@
+{
+  "titulo": "Migraña sin aura (criterios ICHD-3)",
+  "descripcion": "Comprueba si una cefalea cumple los criterios diagnósticos de migraña sin aura de la Clasificación Internacional de las Cefaleas (ICHD-3): número de crisis, duración, dos de cuatro características del dolor y al menos un síntoma acompañante. Se usa en adultos sin signos de alarma para diagnosticar la cefalea primaria y elegir su tratamiento.",
+  "instrucciones": "Pregunta por crisis sin tratar o tratadas sin éxito. Antes, descarta los signos de alarma de cefalea secundaria.",
+  "limitaciones": "Con menos de 5 crisis la ICHD-3 no permite el diagnóstico definitivo. No sirve para la migraña con aura ni para distinguir la migraña crónica, que exige 15 días de cefalea al mes.",
+  "tipoCalculo": "reglas",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+      "url": "https://doi.org/10.1177/0333102417738202",
+      "paginas": "19",
+      "texto": "At least ﬁve attacks1 fulﬁlling criteria B–D B. Headache attacks lasting 4–72 hours (when untreated or unsuccessfully treated)",
+      "anio": "2018"
+    },
+    {
+      "titulo": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+      "url": "https://doi.org/10.1177/0333102417738202",
+      "paginas": "19",
+      "texto": "Headache has at least two of the following four characteristics: 1. unilateral location 2. pulsating quality 3. moderate or severe pain intensity",
+      "anio": "2018"
+    },
+    {
+      "titulo": "Headache Classification Committee of the International Headache Society (IHS). The International Classification of Headache Disorders, 3rd edition. Cephalalgia 2018;38(1):1-211.",
+      "url": "https://doi.org/10.1177/0333102417738202",
+      "paginas": "19",
+      "texto": "During headache at least one of the following: 1. nausea and/or vomiting 2. photophobia and phonophobia E. Not better accounted for by another ICHD-3 diagnosis.",
+      "anio": "2018"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "cinco",
+          "tipo": "opciones",
+          "label": "Al menos 5 crisis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "duracion",
+          "tipo": "opciones",
+          "label": "Crisis de 4 a 72 h",
+          "ayuda": "Sin tratar o tratadas sin éxito.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "unilateral",
+          "tipo": "opciones",
+          "label": "Localización unilateral",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "pulsatil",
+          "tipo": "opciones",
+          "label": "Dolor pulsátil",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "intensidad",
+          "tipo": "opciones",
+          "label": "Intensidad moderada o grave",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "actividad",
+          "tipo": "opciones",
+          "label": "Empeora con la actividad física habitual o hace evitarla",
+          "ayuda": "Por ejemplo, caminar o subir escaleras.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "nauseas",
+          "tipo": "opciones",
+          "label": "Náuseas o vómitos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "foto",
+          "tipo": "opciones",
+          "label": "Fotofobia y fonofobia",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "otro",
+          "tipo": "opciones",
+          "label": "Lo explica mejor otro diagnóstico",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "si": {
+        "todos": [
+          {
+            "id": "cinco",
+            "igual": 1
+          },
+          {
+            "id": "duracion",
+            "igual": 1
+          },
+          {
+            "id": "otro",
+            "igual": 0
+          },
+          {
+            "suma": [
+              "unilateral",
+              "pulsatil",
+              "intensidad",
+              "actividad"
+            ],
+            "minimo": 2
+          },
+          {
+            "alguno": [
+              {
+                "id": "nauseas",
+                "igual": 1
+              },
+              {
+                "id": "foto",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      },
+      "categoria": "Cumple criterios de migraña sin aura",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Migraña sin aura según la ICHD-3: tratar las crisis y valorar el tratamiento preventivo según su frecuencia."
+    },
+    {
+      "categoria": "No cumple los criterios",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "No es una migraña sin aura definida: valorar otra cefalea primaria y repasar los signos de alarma de cefalea secundaria."
+    }
+  ]
+}
