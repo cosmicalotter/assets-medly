@@ -139,7 +139,9 @@ Firebase directamente, saltándose `indices/`.
   para los fármacos; «solución salina 0,9 %» y «lactato de Ringer» (no
   «salino» ni «Ringer lactato»); secciones de una palabra («Diagnóstico»,
   «Tratamiento»); negritas también en las palabras clave de cada viñeta
-  («**hipovolemia grave**»); subviñetas (dos espacios, numeradas si son pasos
+  («**hipovolemia grave**»), del `contexto`, de la perla y de los datos extra;
+  textos de enlace cortos (caben en media tarjeta) y, en un paso sin ramas, el
+  salto principal primero (va al pie como «Ir al…»); subviñetas (dos espacios, numeradas si son pasos
   en orden) para partir las viñetas con varios pasos; «Si hay X → acción»;
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio
   en **mg/dL** aunque la guía dé mmol/L (tabla de conversión en `NORMA.md` §4).

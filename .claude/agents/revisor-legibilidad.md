@@ -29,7 +29,10 @@ como lo haría un usuario y revisa:
    (NORMA §4, «Unidades»); «salino» o «Ringer lactato» (se dice «solución
    salina 0,9 %» y «lactato de Ringer»); viñetas con varios pasos seguidos
    («…; después…») que deberían ir en subviñetas numeradas; viñetas sin
-   ninguna palabra clave en negrita, o con frases enteras en negrita.
+   ninguna palabra clave en negrita, o con frases enteras en negrita; un
+   `contexto` o una perla sin negritas; textos de enlace que no caben en media
+   tarjeta; en un paso sin ramas con varios saltos, el principal no va
+   primero.
 1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
    no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
    el título repite la pill en vez de decir la acción; el texto repite el

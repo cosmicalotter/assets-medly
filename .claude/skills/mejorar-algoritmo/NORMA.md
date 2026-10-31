@@ -139,9 +139,9 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
-| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar | al menos 2 hacia fuera |
+| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone en la **rejilla de dos columnas** del final de la tarjeta (con la perla y las discrepancias, piezas iguales; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha de «Fin de la ruta», y «mantener ↓» lo sigue; por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente | cuando pase; nunca inventada |
-| `chips` | población, urgencia, clase | 1-3, no en todos los nodos |
+| `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | la situación y el porqué del paso (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | todo nodo clínico |
 | `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app la marca como la frase de una imagen, pero en naranja (subrayada, texto teñido y un Σ pequeño arriba a la derecha) y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos), con las fuentes en el botón del libro. Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mmol/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
 | `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo; **1 de cada 4-5 nodos clínicos** (5-6 en un algoritmo de 25 nodos) |
@@ -260,6 +260,11 @@ título no repite la pill y el texto no vuelve a decir el título.
 - Lleva su cita como todo lo clínico: lo que afirma sale de la guía y está en
   las `referencias` del nodo.
 - Va en todo nodo clínico (no en las portadas de sección `estilo: "rama"`).
+- **Negritas en las palabras clave**, como en el texto: lo que el lector tiene
+  que captar de un vistazo («En la cetoacidosis el **potasio total del cuerpo
+  está bajo**, aunque en sangre parezca normal o alto»). La app las pinta en
+  el color del nodo. No en la frase de un `en_texto`, que tiene que quedar
+  entera fuera de la negrita.
 
 ### Preguntas y opciones
 
@@ -274,10 +279,11 @@ título no repite la pill y el texto no vuelve a decir el título.
 ### Perlas y alertas
 
 - `nota_adicional` (perla): explicada, con el porqué, en 1-2 frases completas:
-  qué pasa, por qué y qué hacer. «Al poner mucho suero salino 0,9 % aparece una
-  acidosis hiperclorémica: el bicarbonato sigue bajo aunque las cetonas ya se
-  hayan ido. Por eso la resolución se juzga por las cetonas en sangre, no por
-  el bicarbonato.»
+  qué pasa, por qué y qué hacer, con **negritas en las palabras clave** (la app
+  las pinta en el naranja de la perla). «Al poner mucha solución salina 0,9 %
+  aparece una **acidosis hiperclorémica**: el **bicarbonato sigue bajo**
+  aunque las cetonas ya se hayan ido. Por eso la resolución se juzga por las
+  **cetonas en sangre**, no por el bicarbonato.»
 - `alertas`: el título nombra el peligro y el texto dice qué pasa y cómo
   evitarlo. Título «Insulina antes de los líquidos en el EHH»; texto «Poner
   insulina antes de reponer el volumen mete agua en las células y puede causar
