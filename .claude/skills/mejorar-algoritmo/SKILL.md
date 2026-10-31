@@ -66,7 +66,11 @@ Orden de trabajo, nodo a nodo:
 2. **Contenido**: cada cifra, dosis, umbral o criterio nuevo lleva su
    referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
    `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`.
-3. **Lenguaje**: reescribe lo confuso según `NORMA.md` §4. Aquí sí se
+3. **Lenguaje**: reescribe lo confuso según `NORMA.md` §4: cada nodo
+   clínico con su `contexto` (el porqué), título con la acción, pills con
+   sólo el dato, preguntas clínicas completas, viñetas completas pero breves
+   en infinitivo. Las siglas no se desarrollan: se añaden a
+   `data/glosario.json` si faltan. Aquí sí se
    reescribe `texto` (a diferencia de `galgo expandir`): el diff del PR es
    la revisión.
 4. **Conexiones**: `checklist`, `alertas`, `nota_adicional`, `evidencia`,
@@ -103,6 +107,8 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
 
 ## 5. Verificar
 
+1. `python3 tools/glosario.py --faltan <algoritmo>`: ninguna sigla fuera del
+   glosario.
 1. `galgo validar -a <algoritmo> --nivel error`: ningún error de estructura
    o esquema que no estuviera en la línea base.
 2. `python3 tools/norma.py <algoritmo>` ≥ 80 y `galgo auditar --listar -a

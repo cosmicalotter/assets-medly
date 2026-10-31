@@ -117,7 +117,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
-| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-50 palabras, sin saltos de línea, que explica qué señala cada flecha —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
+| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw) | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar | al menos 2 hacia fuera |
@@ -126,38 +126,102 @@ es un hueco; lo que la guía no trae, no se escribe.
 
 ## 4. Cómo se escribe
 
-El contrato de estilo completo está en `galgo/plantillas.py` (`ESTILO`) del
-repositorio `galgo-empirica`. Lo esencial:
+Estilo decidido con el dueño en octubre de 2026 (sustituye al «telegráfico de
+guardia»). La app la usa también un estudiante que empieza: cada nodo tiene que
+entenderse solo, sin dar por sabido el protocolo. Se escribe con las palabras y
+los conectores necesarios («porque», «hasta que», «mientras», «si…, entonces»),
+pero sin relleno.
 
-- Nota de guardia: telegráfico, imperativo, cifras delante.
-- 1 a 4 viñetas por nodo; si salen más, sobra texto o falta un `checklist` o
-  una `tabla`.
-- Ninguna frase pasa de 30 palabras. Un nodo pasa de 120 palabras sólo si no
-  hay forma de partirlo.
-- `**` sólo en dosis, umbrales, tiempos y metas.
-- Viñeta que abre con un rótulo corto y dos puntos («- Soporte de órganos: …»,
-  «- Leve: …»): la app pinta el rótulo en negrita y en el color del nodo,
-  como un semititular. Se usa para enumerar categorías, no en cada viñeta; el
-  rótulo, de 1 a 6 palabras, sin comas ni puntos.
-- «→» para encadenar condición y conducta cuando quede cómodo: «Sangre solo intraventricular → arteriografía». Con moderación, no en cada viñeta.
-- Siglas: la primera vez que aparecen en el algoritmo van con su nombre
-  («PAM (presión arterial media)»), después solas.
-- Cada decisión con su umbral y sus unidades: «¿**Lactato >2 mmol/L**?», no
-  «¿lactato elevado?».
-- `pie_nodo` es la pregunta que abre las ramas, con «¿» y «?»; rótulos de
-  opción cortos y distintos entre sí.
-- Cada opción se entiende sola: en el modo lectura de la app las tarjetas
-  hermanas se leen de una en una (las demás quedan como fantasmas), así que
-  ninguna dice «lo mismo que la anterior» ni depende de leer la de al lado.
-  El título de la tarjeta nombra la situación («Deterioro grave: tratar ya»),
-  no sólo «Sí».
+### Las piezas de un nodo y qué dice cada una
+
+| pieza | qué dice | ejemplo (potasio <3,5 en la cetoacidosis) |
+|---|---|---|
+| respuesta del nodo anterior (pill) | **sólo el dato** que lleva aquí | «Menor de 3,5 mmol/L» |
+| `titulo` | **la acción** del paso | «Reponer potasio y retrasar la insulina» |
+| `contexto` | **la situación y el porqué**, 1-2 frases completas | «En la cetoacidosis el potasio total del cuerpo está bajo, aunque en sangre parezca normal o alto. La insulina lo mete en las células y puede hundirlo en pocas horas.» |
+| `texto` | **el cómo**: viñetas completas pero breves, con las cifras en negrita | «- No empezar la insulina hasta que el potasio supere **3,5 mmol/L**.» |
+| `pie_nodo` | **pregunta clínica completa** que dice qué mirar y para qué | «¿Cuánto potasio tiene en sangre antes de empezar la insulina?» |
+
+Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
+título no repite la pill y el texto no vuelve a decir el título.
+
+### Texto (`texto`)
+
+- **Mixto**: el `contexto` sitúa el paso y el `texto` da las indicaciones en
+  viñetas completas pero breves. Cada viñeta es una frase con sentido propio
+  («Reponer cloruro potásico IV a **10-20 mmol/h**; si hace falta más rápido,
+  por vía central»), no una lista de palabras («Cloruro potásico 10-20 mmol/h;
+  más rápido, central»).
+- **Verbos en infinitivo**, como en las guías: «Reponer», «No empezar»,
+  «Medir». Ni «repón» ni «reponga».
+- **Sin límite fijo de viñetas**: las que hagan falta para que se entienda.
+  Si un nodo crece tanto que mezcla dos decisiones, se parte; si es una lista
+  de criterios, va a `checklist`; si es una tabla de dosis o cortes, a `tabla`.
+- `**` en dosis, umbrales, tiempos y metas.
+- **Rótulo de viñeta** («- CAD y mixta: …»): la app lo pinta en el color del
+  nodo. Fuera de los paréntesis, hasta 8 palabras y sin comas ni puntos; lo que
+  va entre paréntesis no cuenta, así que caben las condiciones: «- EHH sin
+  cetonemia (β-hidroxibutirato **<3,0**, pH **≥7,3**, bicarbonato **≥18**):
+  insulina a **0,05 U/kg/h**». Se usa para enumerar categorías, no en cada
+  viñeta.
+- «→» sólo si aclara; mejor una frase con «si…, …».
 - Lenguaje claro sin perder precisión: se explica el término difícil, no se
-  sustituye por uno vago.
-- Nada de «es importante destacar», «cabe mencionar», «piedra angular»… (la
-  lista está en `galgo/estilo.py`).
+  sustituye por uno vago. Nada de «es importante destacar», «cabe mencionar»,
+  «piedra angular» (lista en `galgo/estilo.py` de `galgo-empirica`).
+
+### Contexto (`contexto`)
+
+- 1-2 frases completas (como mucho 2 párrafos cortos): qué situación clínica
+  es y **por qué** se hace este paso. Sin viñetas ni dosis (las indicaciones
+  van en `texto`). La app lo pinta en cursiva suave con una barra lateral,
+  entre el título y el texto.
+- Lleva su cita como todo lo clínico: lo que afirma sale de la guía y está en
+  las `referencias` del nodo.
+- Va en todo nodo clínico (no en las portadas de sección `estilo: "rama"`).
+
+### Preguntas y opciones
+
+- `pie_nodo`: pregunta clínica completa, con «¿» y «?», que diga qué mirar y
+  para qué: «¿Cuánto potasio tiene en sangre antes de empezar la insulina?»,
+  «¿Cumple los criterios de resolución de su crisis?».
+- Cada opción (pill) dice **sólo el dato o la condición** que lleva a esa rama,
+  con su umbral y unidades: «Menor de 3,5 mmol/L», «Entre 3,5 y 5,0 mmol/L».
+  La acción va en el título del nodo al que lleva. Cada opción se entiende
+  sola (en el modo lectura las hermanas se leen de una en una).
+
+### Perlas y alertas
+
+- `nota_adicional` (perla): explicada, con el porqué, en 1-2 frases completas:
+  qué pasa, por qué y qué hacer. «Al poner mucho suero salino 0,9 % aparece una
+  acidosis hiperclorémica: el bicarbonato sigue bajo aunque las cetonas ya se
+  hayan ido. Por eso la resolución se juzga por las cetonas en sangre, no por
+  el bicarbonato.»
+- `alertas`: el título nombra el peligro y el texto dice qué pasa y cómo
+  evitarlo. Título «Insulina antes de los líquidos en el EHH»; texto «Poner
+  insulina antes de reponer el volumen mete agua en las células y puede causar
+  un colapso cardiovascular. Empezar con los sueros y dar la insulina cuando la
+  glucosa deje de bajar sólo con ellos.»
+
+### Siglas
+
+- Se escriben solas («CAD», «HBPM»), sin desarrollarlas en el texto: la app
+  las subraya con puntos y enseña su significado al tocarlas, desde el
+  glosario común **`data/glosario.json`**.
+- Toda sigla que se use en un algoritmo tiene que estar en el glosario; una
+  nueva se añade en el mismo cambio (`python3 tools/glosario.py --faltan
+  <algoritmo>` las lista).
+
+### Texto del visor de imágenes (`info`)
+
+- Frases completas: qué señala cada flecha o recuadro (con su color), qué
+  significa y por qué importa para la conducta. «Flechas azules: ondas U, una
+  onda pequeña después de la T. Flecha verde: descenso del ST. Son signos de
+  potasio bajo; con menos de 3,5 mmol/L se repone a 10-20 mmol/h y se retrasa
+  la insulina.»
 
 ## 5. Sin repetir
 
+- La pill dice el dato, el título la acción, el contexto el porqué y el texto el cómo: ninguno repite a otro (§4).
 - Si una imagen ya muestra una tabla, una lista de criterios o una secuencia, **se queda la imagen** y no se repite como `tabla` o `checklist` en el mismo nodo.
 - La misma imagen no se pone en dos nodos seguidos de la misma vía.
 - Lo que dice el texto no se repite en la perla ni en la alerta.

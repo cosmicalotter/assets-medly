@@ -198,8 +198,8 @@ pide urea en mmol/L), BUN mg/dL = urea mg/dL × 0,467.
   moderado», «Riesgo alto», «Clase III», «G3a: descenso moderado».
 - **`color`**: verde, amarillo, naranja, rojo según la gravedad.
 - **`approach`** (la conducta): lo que se hace con ese resultado según la
-  fuente, en estilo de nota de guardia: telegráfico, imperativo, cifras
-  delante, **≤ 40 palabras**, 1-3 acciones. «Ingreso; considerar UCI si
+  fuente, en frases completas pero breves (verbos en infinitivo, cifras en
+  negrita si caben), **≤ 40 palabras**, 1-3 acciones (NORMA de algoritmos §4). «Ingreso; considerar UCI si
   PAS < 90 o FR ≥ 30.» No se escribe conducta que la fuente no da: si la
   escala sólo estima un riesgo, la conducta dice qué riesgo es y qué decisión
   apoya, sin inventar tratamientos.

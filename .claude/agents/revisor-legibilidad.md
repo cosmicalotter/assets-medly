@@ -13,13 +13,23 @@ Lee primero `.claude/skills/mejorar-algoritmo/NORMA.md` y ejecuta
 `python3 tools/norma.py <algoritmo>`. Luego recorre el mapa desde la portada
 como lo haría un usuario y revisa:
 
-1. **Lenguaje**: frases de más de 30 palabras, párrafos en vez de viñetas,
-   términos o siglas sin explicar la primera vez, frases vagas donde debería
-   haber un umbral («si empeora»), muletillas de texto generado, `**` sobre
-   frases enteras.
+1. **Lenguaje** (NORMA §4): ¿lo entendería un estudiante que empieza?
+   Viñetas telegráficas que se comen verbos y conectores («Cloruro potásico
+   10-20 mmol/h; más rápido, central») en vez de frases completas y breves;
+   verbos que no van en infinitivo; frases de más de 30 palabras; términos
+   difíciles sin explicar; siglas que no están en `data/glosario.json` (las
+   siglas no se desarrollan en el texto); frases vagas donde debería haber un
+   umbral («si empeora»); muletillas de texto generado; `**` sobre frases
+   enteras.
+1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
+   no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
+   el título repite la pill en vez de decir la acción; el texto repite el
+   título; `pie_nodo` telegráfico («¿Potasio sérico?») en vez de una pregunta
+   clínica completa; perlas sin el porqué; alertas sin qué hacer; un `info`
+   de imagen que no explica por qué importa lo que se ve.
 2. **Decisiones**: cada nodo con 2 o más ramas tiene `pie_nodo` en forma de
-   pregunta con su umbral; los rótulos de opción son cortos, distintos y
-   se entienden sin leer el nodo.
+   pregunta clínica completa; cada opción dice sólo su dato o condición, con
+   umbral y unidades, distinta de las demás y entendible sin leer el nodo.
 3. **Estructura**: secciones coherentes; cadenas largas de pasos sin decidir;
    nodos que sólo dicen «continuar» o «fin»; duplicados; un nodo que mezcla
    dos decisiones; ramas que dejan al usuario sin saber qué hacer si falla
@@ -28,8 +38,9 @@ como lo haría un usuario y revisa:
    deberían ser `checklist`; dosis en el texto sin `farmacos`; dosis «/kg» sin
    `por_kg`; tablas escritas en prosa; tablas o checklists que repiten lo que ya muestra una imagen del mismo nodo; uso de `cronometros` (no se usan por ahora);
    pasos visuales sin imagen; algoritmos relacionados sin enlazar.
-5. **Densidad**: tarjetas de más de 120 palabras; `alertas` en exceso (si
-   todo es alerta, nada lo es); perlas que repiten el texto.
+5. **Densidad**: no hay límite fijo de palabras, pero un nodo que mezcla dos
+   decisiones se parte y una lista de criterios va a `checklist`; `alertas` en
+   exceso (si todo es alerta, nada lo es); perlas que repiten el texto.
 6. **Ids**: ningún id que existía en `main` ha desaparecido
    (`git diff main -- <archivo>`): las notas de los usuarios van por id.
 

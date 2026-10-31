@@ -129,8 +129,12 @@ Firebase directamente, saltándose `indices/`.
   ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
-- Estilo de redacción: nota de guardia, telegráfico, imperativo y con las
-  cifras delante; el contrato completo está en `galgo/plantillas.py`
-  (`ESTILO`) de `galgo-empirica`.
+- Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
+  para un estudiante. La pill dice el dato, el `titulo` la acción, el
+  `contexto` (1-2 frases) el porqué y el `texto` el cómo, en viñetas completas
+  pero breves, con verbos en infinitivo y cifras en negrita. Preguntas clínicas
+  completas; perlas y alertas con el porqué y qué hacer; siglas sin
+  desarrollar, porque las explica el glosario (`data/glosario.json`). Detalle y
+  ejemplos en `NORMA.md` §4.
 - Todo en español, con tildes. Ids, nombres de archivo y carpetas en ASCII
   minúscula con guion bajo.
