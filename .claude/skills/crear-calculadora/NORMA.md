@@ -135,6 +135,12 @@ Reglas para decidir:
 
 ## 5. Unidades alternativas
 
+**Unidad base: la de Colombia**, como en los algoritmos (NORMA de
+`mejorar-algoritmo` §4): glucosa, creatinina, BUN, calcio, fósforo y
+magnesio en **mg/dL**; sodio, potasio, cloro y bicarbonato en **mEq/L** (la
+misma cifra que en mmol/L); β-hidroxibutirato y lactato en mmol/L;
+osmolalidad en mOsm/kg. Las fórmulas, también con esas unidades
+(«2 × Na + glucosa/18»), y los `sufijo` de los `extras` igual («mEq/L»).
 Se escriben en la unidad base de la fórmula o de los tramos; `unidades`
 añade las otras: base = valor × `factor` + `suma`. Factores de conversión
 (SI ↔ convencional) que se usan en la app:

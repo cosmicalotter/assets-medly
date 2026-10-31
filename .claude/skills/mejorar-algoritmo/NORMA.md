@@ -81,6 +81,13 @@ cambian, se cambian allí y aquí a la vez.
   lo cierra («Insulina en marcha»). La única vuelta atrás es la de «aún no»:
   al paso que se repite (la vigilancia), dentro de la misma sección, nunca
   al principio de la sección.
+- **Color por rama.** La app da a cada rama hermana un tono distinto (azul,
+  turquesa, púrpura, rosa, cian) y sus pasos siguientes lo heredan: la
+  tarjeta, su título, su pill y su línea. No hace falta escribir nada; un
+  `color` en la opción lo fija a mano cuando la entidad tiene un color
+  propio en todo el algoritmo (por ejemplo, la CAD siempre azul). La
+  portada, las secciones y los estados clínicos (`peligro`, `advertencia`,
+  `exito`) guardan el suyo, y Sí/No conservan su verde y su rojo.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino
   continúa en otra sección (el diagnóstico confirma una colecistitis y sigue
   su tratamiento), la opción apunta al **nodo de sección** de destino
@@ -205,7 +212,7 @@ salina 0,45 %»** y **«lactato de Ringer»** (no «Ringer lactato»).
 | pieza | qué dice | ejemplo (potasio <3,5 en la cetoacidosis) |
 |---|---|---|
 | respuesta del nodo anterior (pill) | **sólo el dato** que lleva aquí | «Menor de 3,5 mmol/L» |
-| `titulo` | **la acción** del paso (la app lo pinta en el color del tipo de nodo) | «Reponer potasio y retrasar la insulina» |
+| `titulo` | **la acción** del paso (la app lo pinta en el color de la rama: ver «Color por rama» en §1) | «Reponer potasio y retrasar la insulina» |
 | `contexto` (opcional) | **el porqué que no es obvio**, 1-2 frases completas | «En la cetoacidosis el potasio total del cuerpo está bajo, aunque en sangre parezca normal o alto. La insulina lo mete en las células y puede hundirlo en pocas horas.» |
 | `texto` | **el cómo**: viñetas completas pero breves, con las cifras en negrita | «- No empezar la insulina hasta que el potasio supere **3,5 mmol/L**.» |
 | `pie_nodo` | **pregunta clínica completa** que dice qué mirar y para qué | «¿Cuánto potasio tiene en sangre antes de empezar la insulina?» |
