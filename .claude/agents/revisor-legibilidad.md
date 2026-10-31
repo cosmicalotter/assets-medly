@@ -25,7 +25,8 @@ como lo haría un usuario y revisa:
    que con la tira de orina» → «es mejor que con la tira de orina»; «valorar
    intermedios o UCI» → «valorar el requerimiento de cuidados intermedios o
    de UCI»); «perfusión» para un fármaco (se dice «infusión»); glucosa,
-   creatinina, urea, calcio, fósforo o magnesio en mmol/L en vez de mg/dL
+   creatinina, urea, calcio, fósforo o magnesio en mmol/L en vez de mg/dL,
+   o sodio, potasio, cloro o bicarbonato en mmol/L en vez de mEq/L
    (NORMA §4, «Unidades»); «salino» o «Ringer lactato» (se dice «solución
    salina 0,9 %» y «lactato de Ringer»); viñetas con varios pasos seguidos
    («…; después…») que deberían ir en subviñetas numeradas; viñetas sin

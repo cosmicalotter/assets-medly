@@ -172,7 +172,10 @@ usan los laboratorios colombianos, aunque la guía use el SI:
 | creatinina | **mg/dL** | ÷ 88,4 (µmol/L → mg/dL) |
 | urea | **BUN en mg/dL** | urea mmol/L × 2,8 |
 | calcio, fósforo, magnesio | **mg/dL** | × 4,0 · × 3,1 · × 2,43 |
-| sodio, potasio, cloro, bicarbonato, lactato, β-hidroxibutirato, osmolalidad | mmol/L (o mEq/L) y mOsm/kg, como se informan | — |
+| sodio, potasio, cloro, bicarbonato, anion gap | **mEq/L** (y las dosis de cloruro potásico y de bicarbonato en **mEq**: «**10-20 mEq/h**») | igual cifra: son iones de carga 1, 1 mmol/L = 1 mEq/L |
+| β-hidroxibutirato, lactato | mmol/L (no tienen equivalente en mEq) | — |
+| osmolalidad | mOsm/kg | — |
+| fosfato (dosis) | mmol, como la guía («**20-30 mmol** de fosfato potásico») | — |
 
 - Las fórmulas, también en mg/dL («glucosa/18», «BUN/2,8»).
 - Si la guía sólo da la cifra en mmol/L, la cita literal se queda como está
@@ -285,7 +288,8 @@ título no repite la pill y el texto no vuelve a decir el título.
   aunque las cetonas ya se hayan ido. Por eso la resolución se juzga por las
   **cetonas en sangre**, no por el bicarbonato.»
 - `alertas`: el título nombra el peligro y el texto dice qué pasa y cómo
-  evitarlo. Título «Insulina antes de los líquidos en el EHH»; texto «Poner
+  evitarlo, con **negritas** en el riesgo y en lo que hay que hacer («puede
+  causar **arritmias mortales**… **Reponer primero**»). Título «Insulina antes de los líquidos en el EHH»; texto «Poner
   insulina antes de reponer el volumen mete agua en las células y puede causar
   un colapso cardiovascular. Empezar con los sueros y dar la insulina cuando la
   glucosa deje de bajar sólo con ellos.»

@@ -2,7 +2,7 @@
   "titulo": "Osmolalidad efectiva y sodio corregido",
   "descripcion": "Calcula la osmolalidad sérica efectiva (2 × Na + glucosa) que define el estado hiperosmolar hiperglucémico (>300 mOsm/kg) y guía su corrección, la osmolalidad total (con la urea) y el sodio corregido por la glucosa, según el consenso ADA/EASD/JBDS/AACE/DTS 2024.",
   "instrucciones": "Sodio y glucosa de la misma muestra. La urea sólo cuenta en la osmolalidad total; la urea no es un osmol eficaz. Repetir cada 2-4 h durante el tratamiento.",
-  "limitaciones": "Es una estimación: la osmolalidad medida puede diferir. El sodio corregido usa 1,6 mmol/L por cada 100 mg/dL de glucosa sobre 100 (ADA); las JBDS usan 2,4 por cada 5,5 mmol/L. El EHH también se define por osmolalidad total >320 mOsm/kg.",
+  "limitaciones": "Es una estimación: la osmolalidad medida puede diferir. El sodio corregido usa 1,6 mEq/L por cada 100 mg/dL de glucosa sobre 100 (ADA); las JBDS usan 2,4 por cada 100 mg/dL (~5,5 mmol/L). El EHH también se define por osmolalidad total >320 mOsm/kg.",
   "tipoCalculo": "formula",
   "formula": "2 * na + glu / 18",
   "mostrarPuntaje": false,
@@ -39,7 +39,7 @@
           "id": "na",
           "tipo": "input_numero",
           "label": "Sodio",
-          "unidad": "mmol/L",
+          "unidad": "mEq/L",
           "min": 100,
           "max": 200
         },
@@ -94,20 +94,20 @@
       "categoria": "Hiperosmolalidad (criterio de EHH)",
       "color": "rojo",
       "match_opcion_index": -1,
-      "approach": "Osmolalidad efectiva >300 mOsm/kg. Bajarla 3-8 mOsm/kg/h y el sodio ≤10 mmol/L en 24 h para evitar complicaciones neurológicas."
+      "approach": "Osmolalidad efectiva >300 mOsm/kg. Bajarla 3-8 mOsm/kg/h y el sodio ≤10 mEq/L en 24 h para evitar complicaciones neurológicas."
     }
   ],
   "extras": [
     {
       "etiqueta": "Sodio corregido",
       "formula": "na + 1.6 * (glu - 100) / 100",
-      "sufijo": "mmol/L",
+      "sufijo": "mEq/L",
       "decimales": 0
     },
     {
       "etiqueta": "Sodio corregido (JBDS, 2,4)",
       "formula": "na + 2.4 * (glu - 100) / 99",
-      "sufijo": "mmol/L",
+      "sufijo": "mEq/L",
       "decimales": 0
     },
     {
