@@ -2,6 +2,8 @@
 // y rótulos en español. Las coordenadas de las marcas son las de la imagen original.
 // panel: { src, tam: [ancho, alto], recorte: [x, y, w, h], marcas, rotulo }
 // marca: { x, y, r } (anillo) o { x, y, rx, ry, rot } (elipse), con color c y texto t opcional.
+// Con solo: true es sólo el rótulo (tx, ty): para nombrar lo que ya señala una flecha del original
+// sin añadir un segundo señalador.
 // tapar: [[x, y, w, h]] rectángulos blancos sobre los rótulos del original; textos: [{ x, y, t, ancla }]
 // rótulos traducidos en negro (fondo blanco, como en las figuras dibujadas).
 // lineas: [{ x1, y1, x2, y2, c }] trazos de color con borde oscuro.
@@ -16,7 +18,7 @@ function panelSvg(p, k) {
       ? `<ellipse cx="${m.x}" cy="${m.y}" rx="${m.rx}" ry="${m.ry}" transform="rotate(${m.rot || 0} ${m.x} ${m.y})" ${trazo}/>`
       : `<circle cx="${m.x}" cy="${m.y}" r="${m.r}" ${trazo}/>`;
   };
-  const marcas = (p.marcas || []).map((m) => `${forma(m, "#000", 7, 0.35)}${forma(m, m.c, 3.5)}
+  const marcas = (p.marcas || []).map((m) => `${m.solo ? "" : forma(m, "#000", 7, 0.35) + forma(m, m.c, 3.5)}
     ${m.t ? `<text x="${m.tx ?? m.x}" y="${m.ty ?? m.y - (m.ry || m.r) - 8 / k}" text-anchor="${m.ancla || "middle"}" font-size="${15 / k}" font-weight="800" fill="${m.c}" stroke="#111" stroke-width="${3.5 / k}" paint-order="stroke">${m.t}</text>` : ""}`).join("");
   const lineas = (p.lineas || []).map((l) => [["#000", 11, 0.35], [l.c, 6, 1]].map(([c, a, o]) =>
     `<line x1="${l.x1}" y1="${l.y1}" x2="${l.x2}" y2="${l.y2}" stroke="${c}" stroke-opacity="${o}" stroke-width="${a / k}" stroke-linecap="round"/>`).join("")).join("");

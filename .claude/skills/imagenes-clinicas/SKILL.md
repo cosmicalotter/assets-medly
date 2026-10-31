@@ -88,7 +88,8 @@ algo:
   borde y escribir el texto en español encima, con leyenda y definiciones
   incluidas. La geometría de las cajas sale del PDF (`page.get_drawings()`,
   rellenos y rectángulos) y los colores, de muestrear la imagen.
-- **Señalar**: contornos, círculos que laten, flechas, puntas de calibre.
+- **Señalar**: contornos, círculos que laten, flechas, puntas de calibre;
+  sólo lo que el original no señala ya (ver «Señaladores del original»).
 - **Trazar** estructuras (un conducto, un vaso, un borde) con un trazo que
   se dibuja solo (`stroke-dashoffset`). Para que caiga encima de verdad, la
   línea media se mide sobre el brillo de la imagen, no a ojo.
@@ -98,6 +99,50 @@ algo:
   `transform` CSS), y vuelta a la vista completa al final.
 - **Rótulos y pasos**: una barra con el paso actual y su número, o una
   lista de pasos que se va encendiendo; tarjeta final con la conducta.
+
+### Señaladores del original: se usan, no se duplican
+
+Si la foto o figura original **ya trae flechas, recuadros o círculos** que
+señalan el hallazgo, **no se añade otro señalador encima** (ni anillo, ni
+elipse, ni flecha propia sobre lo mismo). Se usan los del original y se
+citan: en la leyenda de la imagen y en el `info`, con su color exacto medido
+(`colores_imagen.py`): «**Flechas rojas** (del original): sangre en las
+cisternas». Lo más que se pone encima es un **rótulo en español sin forma**
+junto a la flecha original (`marcas: [{…, solo: true, t: "T picudas", tx, ty, c}]`
+en `foto.js`), del mismo color que ella, o se traduce el rótulo en inglés
+que traiga el original.
+
+Sólo se dibuja un señalador propio para algo que el original **no** señala.
+Si se prefiere el señalador propio (porque el original es confuso), se
+borran antes los del original (`borrar_rotulos.py`): nunca quedan los dos a
+la vez.
+
+### Foto o figura real rotulada: el formato de la casa
+
+Para una imagen fija real (TC, ECG, foto clínica, figura CC BY) el formato es
+el lienzo de Empirica de `foto.js` + `base.js` (copiarlos de
+`tools/medios/figuras/crisishiperglicemica/`), con la función
+`fotos({ titulo, sub, paneles, notas, fuente })`:
+
+- **Título y subtítulo dentro de la imagen**: qué es y qué se ve, en una línea
+  cada uno.
+- **La imagen original**, recortada a lo que importa (uno o varios
+  `paneles` con `recorte` y `rotulo`: «Coronal», «Ojo izquierdo»), con sus
+  señaladores originales y, si hacen falta, rótulos en español (`solo: true`)
+  o rótulos en inglés traducidos (`tapar` + `textos`).
+- **Leyenda debajo** (`notas`): una caja por señalador, con un punto de su
+  color exacto, el nombre en negrita y entre paréntesis «(del original)» si
+  lo trae la fuente: `["#EB1C24", "<b>Flechas rojas</b> (del original): …"]`.
+  Una caja más, con punto gris (`#64748B`), puede dar la conducta que cambia
+  esa imagen («Potasio >5,0 mmol/L: insulina sin potasio»). Para un
+  señalador blanco o negro, el punto va en gris (`#94A3B8`).
+- **Crédito** en la línea de fuente: autor o revista, año, licencia y
+  «Rotulada por Empirica» si se añadió algo.
+- La leyenda no debe cortarse: si no cabe, se baja `alto` del panel y se
+  comprueba con `solapes.js` y mirando el PNG.
+
+Ejemplos: `crisishiperglicemica/hiperk.html`, `hipok.html`, `edema.html`;
+`cefaleassecundarias/hsa.html`, `racimos.html`.
 
 Coordenadas: el SVG usa las de la imagen original (`viewBox="0 0 ancho alto"`),
 así los trazos no se mueven al hacer zoom; el grosor y el tamaño de letra se
@@ -263,7 +308,9 @@ transparente abajo (arriba va otra franja igual con el título y la X).
     (`const A = "#FDE047"` → `{#FDE047:flecha amarilla}`);
   - flecha que ya traía la foto original, o PNG sin HTML:
     `python3 tools/medios/colores_imagen.py <imagen>` (mediana de los píxeles
-    de ese color; en GIF, el último cuadro).
+    de ese color; en GIF, el último cuadro). Se nombra como del original:
+    `{#EB1C24:Flechas rojas} del original: …`, y no se le suma un señalador
+    propio sobre lo mismo (ver «Señaladores del original»).
   - Los nombres de la paleta de la app (`amarillo`, `teal`, `rojo`,
     `verde`, `azul`…, ver `docs/algoritmos_json.md` de praxis) sólo si el
     dibujo usa ese mismo hex. Un nombre que la app no conoce se ve con llaves:
