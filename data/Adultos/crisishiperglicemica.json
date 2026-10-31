@@ -1639,14 +1639,9 @@
           "nota": "Riesgo de hipoglucemia e hipopotasemia."
         }
       ],
-      "pie_nodo": "¿La glucosa ya ha bajado de 250 mg/dL?",
       "opciones": [
         {
-          "texto": "Sí, menor de 250 mg/dL",
-          "siguiente_nodo": "trat_ajuste_dextrosa"
-        },
-        {
-          "texto": "No, todavía mayor de 250 mg/dL",
+          "texto": "Insulina en marcha",
           "siguiente_nodo": "trat_monitorizacion"
         }
       ],
@@ -1929,14 +1924,9 @@
           }
         }
       ],
-      "pie_nodo": "¿La glucosa ya ha bajado de 250 mg/dL?",
       "opciones": [
         {
-          "texto": "Sí, menor de 250 mg/dL",
-          "siguiente_nodo": "trat_ajuste_dextrosa"
-        },
-        {
-          "texto": "No, todavía mayor de 250 mg/dL",
+          "texto": "Insulina en marcha",
           "siguiente_nodo": "trat_monitorizacion"
         }
       ]
@@ -1951,11 +1941,6 @@
         "ramificar": false
       },
       "enlaces": [
-        {
-          "texto": "Glucosa <250: dextrosa",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_ajuste_dextrosa"
-        },
         {
           "texto": "Fósforo bajo: fosfato",
           "archivo_objetivo": "INTERNO",
@@ -2219,7 +2204,14 @@
             }
           ]
         }
-      ]
+      ],
+      "opciones": [
+        {
+          "texto": "Sí, menor de 250 mg/dL",
+          "siguiente_nodo": "trat_ajuste_dextrosa"
+        }
+      ],
+      "pie_nodo": "¿Ha bajado ya la glucosa de 250 mg/dL?"
     },
     "trat_ajuste_dextrosa": {
       "tipo": "pregunta",
@@ -2238,15 +2230,10 @@
           }
         }
       ],
-      "pie_nodo": "¿Se ha resuelto ya la crisis: cetonas **<0,6 mmol/L** y pH **≥7,3** en la CAD, u osmolalidad **<300 mOsm/kg** en el EHH?",
       "opciones": [
         {
-          "texto": "Sí, cumple los criterios",
-          "siguiente_nodo": "nodo_resolucion"
-        },
-        {
-          "texto": "No, todavía no",
-          "siguiente_nodo": "trat_monitorizacion"
+          "texto": "Dextrosa en marcha",
+          "siguiente_nodo": "trat_resolucion"
         }
       ],
       "referencias": [
@@ -2574,8 +2561,8 @@
       "texto": "Resolución",
       "opciones": [
         {
-          "texto": "Criterios de resolución",
-          "siguiente_nodo": "trat_resolucion"
+          "texto": "Paso a insulina subcutánea",
+          "siguiente_nodo": "seg_transicion"
         }
       ]
     },
@@ -2588,11 +2575,11 @@
       "opciones": [
         {
           "texto": "Sí, todos",
-          "siguiente_nodo": "seg_transicion"
+          "siguiente_nodo": "nodo_resolucion"
         },
         {
           "texto": "No, falta alguno",
-          "siguiente_nodo": "nodo_tratamiento"
+          "siguiente_nodo": "trat_monitorizacion"
         }
       ],
       "discrepancias": [

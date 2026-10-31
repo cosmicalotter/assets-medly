@@ -50,7 +50,11 @@ como lo haría un usuario y revisa:
 2. **Decisiones**: cada nodo con 2 o más ramas tiene `pie_nodo` en forma de
    pregunta clínica completa; cada opción dice sólo su dato o condición, con
    umbral y unidades, distinta de las demás y entendible sin leer el nodo.
-3. **Estructura**: secciones coherentes y con título de una palabra
+3. **Estructura**: cada sección se sigue como una cadena, en el orden en
+   que se hace; ramas sólo donde la guía decide por un dato; la misma
+   pregunta repetida en varios pasos, saltos a un paso «de vigilancia»
+   desde varios sitios o vueltas al principio de la sección (proponer la
+   cadena lineal, NORMA §1); secciones coherentes y con título de una palabra
    («Diagnóstico», «Tratamiento»; dos o tres sólo si hace falta: «Situaciones
    especiales»); cadenas largas de pasos sin decidir;
    nodos que sólo dicen «continuar» o «fin»; duplicados; un nodo que mezcla

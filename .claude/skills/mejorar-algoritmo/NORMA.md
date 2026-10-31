@@ -70,6 +70,17 @@ cambian, se cambian allí y aquí a la vez.
   enseña las definiciones de la portada en tres líneas como mucho. Por eso la
   primera viñeta de la portada debe entenderse sola. Al terminar un algoritmo
   oculto, se quita `"oculto": true` del JSON para publicarlo.
+- **Cada sección es una cadena que se sigue de arriba abajo.** Los pasos van
+  en el orden en que se hacen («líquidos → potasio → insulina → vigilar →
+  dextrosa → ¿resuelta?») y sólo se ramifica donde la guía decide algo
+  distinto según un dato (el potasio, la gravedad). Lo que se hace mientras
+  tanto, como la vigilancia, es un **paso de la cadena**, no un callejón al
+  que se salta desde varios sitios. Una misma pregunta no se repite en
+  varios pasos (la de la glucosa, una sola vez, en la vigilancia), y un
+  paso que sólo sigue adelante lleva una única respuesta con el dato que
+  lo cierra («Insulina en marcha»). La única vuelta atrás es la de «aún no»:
+  al paso que se repite (la vigilancia), dentro de la misma sección, nunca
+  al principio de la sección.
 - **Un camino no se mete en otra sección.** Cuando el final de un camino
   continúa en otra sección (el diagnóstico confirma una colecistitis y sigue
   su tratamiento), la opción apunta al **nodo de sección** de destino

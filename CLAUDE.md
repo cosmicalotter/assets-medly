@@ -129,6 +129,10 @@ Firebase directamente, saltándose `indices/`.
   ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
+- **Secuencia:** cada sección es una cadena que se sigue de arriba abajo, en
+  el orden en que se hace; sólo se ramifica donde la guía decide por un dato,
+  la vigilancia es un paso de la cadena y la única vuelta atrás es «aún no»
+  al paso que se repite (`NORMA.md` §1).
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
   `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué
