@@ -141,6 +141,6 @@ unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio en
 **mg/dL** aunque la guía dé mmol/L (tabla de conversión en `NORMA.md` §4).
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
-  `burbujas` (globito). Detalle y ejemplos en `NORMA.md` §3-§4.
+  `burbujas` (bombilla al final de la frase). Detalle y ejemplos en `NORMA.md` §3-§4.
 - Todo en español, con tildes. Ids, nombres de archivo y carpetas en ASCII
   minúscula con guion bajo.
