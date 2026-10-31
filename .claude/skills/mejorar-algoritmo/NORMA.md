@@ -150,7 +150,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `evidencia` | la clase y el nivel que da la guía para ese paso, simplificados: `{"clase": "IIa", "nivel": "B"}` (sin -R, -NR, -LD, -EO); con GRADE, `{"texto": "GRADE: débil a favor"}` | siempre que la guía los dé; si no, nunca |
 | `farmacos` | todo fármaco nombrado con dosis en la guía | todos |
 | `farmacos[].por_kg` | toda dosis «/kg», con `tope` y `concentracion` si la guía los da | todas (en pediatría es obligatorio) |
-| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios con las cifras en negrita. En la tarjeta es una pieza de la rejilla del final (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en media tarjeta («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
+| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios con las cifras en negrita. En la tarjeta es una de las pastillas del final (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en media tarjeta («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
@@ -190,10 +190,10 @@ usan los laboratorios colombianos, aunque la guía use el SI:
 | creatinina | **mg/dL** | ÷ 88,4 (µmol/L → mg/dL) |
 | urea | **BUN en mg/dL** | urea mmol/L × 2,8 |
 | calcio, fósforo, magnesio | **mg/dL** | × 4,0 · × 3,1 · × 2,43 |
-| sodio, potasio, cloro, bicarbonato, anion gap | **mEq/L** (y las dosis de cloruro potásico y de bicarbonato en **mEq**: «**10-20 mEq/h**») | igual cifra: son iones de carga 1, 1 mmol/L = 1 mEq/L |
+| sodio, potasio, cloro, bicarbonato, anion gap | **mEq/L** (y las dosis de cloruro de potasio y de bicarbonato en **mEq**: «**10-20 mEq/h**») | igual cifra: son iones de carga 1, 1 mmol/L = 1 mEq/L |
 | β-hidroxibutirato, lactato | mmol/L (no tienen equivalente en mEq) | — |
 | osmolalidad | mOsm/kg | — |
-| fosfato (dosis) | mmol, como la guía («**20-30 mmol** de fosfato potásico») | — |
+| fosfato (dosis) | mmol, como la guía («**20-30 mmol** de fosfato de potasio») | — |
 
 - Las fórmulas, también en mg/dL («glucosa/18», «BUN/2,8»).
 - Si la guía sólo da la cifra en mmol/L, la cita literal se queda como está
@@ -206,6 +206,30 @@ de insulina a **0,1 U/kg/h**»), nunca «perfusión» (que queda para el riego d
 un órgano: «perfusión renal»). Los sueros, con su nombre completo:
 **«solución salina 0,9 %»** (no «salino» ni «suero salino»), **«solución
 salina 0,45 %»** y **«lactato de Ringer»** (no «Ringer lactato»).
+
+**Español de Colombia.** La app es colombiana y muchas guías llegan con el
+español de España: se escribe como se dice en un hospital colombiano. Las
+citas literales (`referencias[].texto`) se quedan como están.
+
+| así no | así sí |
+|---|---|
+| paracetamol · metamizol | **acetaminofén** · **dipirona** |
+| cloruro potásico · bicarbonato sódico · valproato sódico | **cloruro de potasio** · **bicarbonato de sodio** · **valproato de sodio** |
+| amoxicilina-clavulánico | **amoxicilina-clavulanato** |
+| sueros (los que se ponen IV) | **líquidos IV** (el suero sanguíneo y el «suero casero» de AIEPI se quedan) |
+| derivar a hematología | **remitir** a hematología |
+| ingresar en planta · paritorio | **hospitalización** (o piso) · **sala de partos** |
+| gasometría | **gases** (arteriales, venosos o sanguíneos) |
+| ictus | **ACV** |
+| pauta · pautar · pautado | **esquema**, **formular**, **indicado**; «sin pauta descendente» → «sin **reducción gradual**» |
+| comprimido | **tableta** |
+| mascarilla (reservorio) | **máscara** (con reservorio) |
+| médico sénior | **especialista** |
+| analíticas | **laboratorios** o paraclínicos |
+
+`python3 tools/norma.py --vocabulario <algoritmo>` lista lo que se cuela y
+`--corregir` aplica los cambios seguros (sin tocar citas, ids ni el formato
+del archivo); lo que depende de la frase («suero», «pauta») se corrige a mano.
 
 ### Las piezas de un nodo y qué dice cada una
 
@@ -246,9 +270,13 @@ título no repite la pill y el texto no vuelve a decir el título.
   palabras clave** de cada viñeta: la condición que decide («**hipovolemia
   grave**», «**compromiso cardiaco**»), el fármaco o el suero («**lactato de
   Ringer**»), el hallazgo o la población («**anciano**», «**embarazo**»).
-  Palabras o expresiones cortas, no frases enteras: una a tres por viñeta,
-  para que la vista salte de una a otra. La app las pinta en el color del
-  nodo.
+  Palabras o expresiones cortas, no frases enteras: **una o dos por viñeta**
+  (las cifras y el rótulo no cuentan), para que la vista salte de una a
+  otra. En una enumeración, una sola negrita para el grupo («**glucosa, las
+  cetonas y el potasio**»), no una por elemento. La app pinta **las cifras en
+  el color del nodo** y **las palabras clave en negrita del color del texto**:
+  si todo lo resaltado llevara color, el ojo no sabría adónde ir.
+  `tools/norma.py` avisa de las frases con más de dos.
 - **Subviñetas.** Una viñeta que junta varios pasos (simultáneos o
   seguidos), o una condición con datos que dependen de ella, se parte en
   subviñetas con dos espacios delante. Pasos en orden → numeradas (`  1.`,
@@ -304,8 +332,8 @@ título no repite la pill y el texto no vuelve a decir el título.
   mejor corta. Nunca en las portadas de sección (`estilo: "rama"`).
 - **Negritas en las palabras clave**, como en el texto: lo que el lector tiene
   que captar de un vistazo («En la cetoacidosis el **potasio total del cuerpo
-  está bajo**, aunque en sangre parezca normal o alto»). La app las pinta en
-  el color del nodo. No en la frase de un `en_texto`, que tiene que quedar
+  está bajo**, aunque en sangre parezca normal o alto»), dos por frase como
+  mucho. No en la frase de un `en_texto`, que tiene que quedar
   entera fuera de la negrita.
 
 ### Preguntas y opciones
@@ -321,8 +349,8 @@ título no repite la pill y el texto no vuelve a decir el título.
 ### Perlas y alertas
 
 - `nota_adicional` (perla): explicada, con el porqué, en 1-2 frases completas:
-  qué pasa, por qué y qué hacer, con **negritas en las palabras clave** (la app
-  las pinta en el naranja de la perla). «Al poner mucha solución salina 0,9 %
+  qué pasa, por qué y qué hacer, con **negritas en las palabras clave** (dos
+  por frase como mucho; las cifras salen en el naranja de la perla). «Al poner mucha solución salina 0,9 %
   aparece una **acidosis hiperclorémica**: el **bicarbonato sigue bajo**
   aunque las cetonas ya se hayan ido. Por eso la resolución se juzga por las
   **cetonas en sangre**, no por el bicarbonato.»
@@ -330,8 +358,8 @@ título no repite la pill y el texto no vuelve a decir el título.
   evitarlo, con **negritas** en el riesgo y en lo que hay que hacer («puede
   causar **arritmias mortales**… **Reponer primero**»). Título «Insulina antes de los líquidos en el EHH»; texto «Poner
   insulina antes de reponer el volumen mete agua en las células y puede causar
-  un colapso cardiovascular. Empezar con los sueros y dar la insulina cuando la
-  glucosa deje de bajar sólo con ellos.»
+  un colapso cardiovascular. Empezar con los líquidos IV y dar la insulina
+  cuando la glucosa deje de bajar sólo con ellos.»
 
 ### Siglas
 

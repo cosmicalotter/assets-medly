@@ -68,6 +68,7 @@ galgo validar -a <algoritmo> --nivel error   # ¿se rompe algo? (esquema, grafo,
 galgo auditar --listar -a <algoritmo>        # ¿está completo lo que hay? nota 0-100
 python3 tools/norma.py [<algoritmo>]         # ¿usa todo lo que la app dibuja? nota 0-100
 python3 tools/norma.py --chequeo <algoritmo> # lo que la app no denuncia y se rompe
+python3 tools/norma.py --vocabulario [<alg>] # español de España que se cuela (--corregir)
 python3 tools/calculadoras.py [<escala>]     # calculadoras: errores y nota 0-100
 node tools/medios/capturar.js …              # HTML → PNG o cuadros de GIF
 python3 tools/medios/armar_gif.py …          # cuadros → GIF
@@ -148,7 +149,11 @@ Firebase directamente, saltándose `indices/`.
   para los fármacos; «solución salina 0,9 %» y «lactato de Ringer» (no
   «salino» ni «Ringer lactato»); secciones de una palabra («Diagnóstico»,
   «Tratamiento»); negritas también en las palabras clave de cada viñeta
-  («**hipovolemia grave**»), del `contexto`, de la perla y de los datos extra;
+  («**hipovolemia grave**»), del `contexto`, de la perla y de los datos extra,
+  **una o dos por frase** (la app pinta en color sólo las cifras; las palabras
+  clave, en negrita del color del texto); **español de Colombia**
+  (acetaminofén, cloruro de potasio, líquidos IV, remitir, hospitalización,
+  gases…; tabla en `NORMA.md` §4 y `tools/norma.py --vocabulario`);
   textos de enlace cortos (caben en media tarjeta) y, en un paso sin ramas, el
   salto principal primero (va al pie como «Ir al…»); subviñetas (dos espacios, numeradas si son pasos
   en orden) para partir las viñetas con varios pasos; «Si hay X → acción»;

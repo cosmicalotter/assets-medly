@@ -17,6 +17,10 @@ Uso:
   python3 tools/norma.py --md                  la tabla en Markdown, para un PR
   python3 tools/norma.py --json                para otro script
   python3 tools/norma.py --chequeo RUTA        lo que rompe en la app; sale con 1
+  python3 tools/norma.py --vocabulario [RUTA]  español de España que se cuela
+  python3 tools/norma.py --vocabulario RUTA --corregir
+                                               aplica los cambios seguros (no
+                                               toca citas ni el formato)
   python3 tools/norma.py --hook                lo mismo, leyendo el evento de
                                                Claude Code por stdin
 
@@ -220,6 +224,138 @@ def secciones_hogar(alg: dict) -> dict[str, str]:
                 hogar[sig] = hogar[actual]
                 cola.append(sig)
     return hogar
+
+
+# --- vocabulario: español de Colombia ----------------------------------------
+#
+# La app es colombiana y muchas guías (GEMA, JBDS traducidas, apuntes) llegan
+# con el español de España. Cada entrada: el patrón, el cambio y por qué. Con
+# `cambio` se aplica sola (`--corregir`); con `None` depende de la frase y
+# sólo se avisa. Nunca se toca una cita literal (`referencias`), ni ids ni URL.
+VOCABULARIO: list[tuple[str, str | None, str]] = [
+    (r"cloruro potásico", "cloruro de potasio", "en Colombia, «de potasio»"),
+    (r"fosfato potásico", "fosfato de potasio", "en Colombia, «de potasio»"),
+    (r"bicarbonato sódico", "bicarbonato de sodio", "en Colombia, «de sodio»"),
+    (r"valproato sódico", "valproato de sodio", "en Colombia, «de sodio»"),
+    (r"paracetamol", "acetaminofén", "nombre de uso en Colombia"),
+    (r"metamizol", "dipirona", "nombre de uso en Colombia"),
+    (r"amoxicilina-clavulánico", "amoxicilina-clavulanato", "nombre de uso en Colombia"),
+    (r"amoxicilina/clavulánico", "amoxicilina/clavulanato", "nombre de uso en Colombia"),
+    (r"(?:suero|salino) hipertónico", "solución salina hipertónica", "norma: «solución salina»"),
+    (r"salino 0,9", "solución salina 0,9", "norma: «solución salina 0,9 %»"),
+    (r"suero salino", "solución salina", "norma: «solución salina»"),
+    (r"paritorio", "sala de partos", "en Colombia, «sala de partos»"),
+    (r"médico sénior", "especialista", "en Colombia, «especialista»"),
+    (r"derivar(á|án|lo|la|los|las)?\b", r"remitir\1", "en Colombia se «remite» al especialista"),
+    (r"ictus", "ACV", "en Colombia, «ACV»"),
+    (r"gasometría venosa", "gases venosos", "en Colombia, «gases»"),
+    (r"gasometría arterial", "gases arteriales", "en Colombia, «gases»"),
+    (r"(?<!la )(?<!una )gasometría", "gases sanguíneos", "en Colombia, «gases»"),
+    (r"(\d+) comprimido\b", r"\1 tableta", "en Colombia, «tableta»"),
+    (r"(\d+) comprimidos\b", r"\1 tabletas", "en Colombia, «tableta»"),
+    (r"pauta descendente", "reducción gradual", "en Colombia, «reducción gradual»"),
+    (r"en planta\b", "en hospitalización", "en Colombia, «hospitalización» o «piso»"),
+    (r"planta u observación", "hospitalización u observación", "en Colombia, «hospitalización»"),
+    (r"mascarilla reservorio", "máscara con reservorio", "en Colombia, «máscara»"),
+    (r"mascarilla", "máscara", "en Colombia, «máscara»"),
+    (r"analíticas ambulatorias", "laboratorios ambulatorios", "en Colombia, «laboratorios»"),
+    # Dependen de la frase: sólo se avisa.
+    (r"\bsueros?\b", None, "si son líquidos IV, «líquidos IV»; si es suero sanguíneo o «suero casero» (AIEPI), se queda"),
+    (r"\bpaut(?:a|as|ar|ado|ada|ados|adas)\b", None, "«esquema», «formulado», «indicado» o «plan», según la frase"),
+    (r"\banalític[ao]s?\b", None, "«laboratorios» o «paraclínicos»"),
+    (r"\bplanta\b", None, "«hospitalización» o «piso»"),
+    (r"\bcomprimidos?\b", None, "«tableta»"),
+    (r"\b112\b", None, "en Colombia el número de emergencias es el 123 (si no es una página)"),
+]
+_VOCABULARIO = [(re.compile(p if p.startswith("(") or p.startswith("\\b") else r"\b" + p, re.I), c, n) for p, c, n in VOCABULARIO]
+_SIN_TOCAR = {"referencias", "paginas", "imagen_evidencia", "id", "siguiente_nodo", "recurso",
+              "archivo", "archivo_objetivo", "nodo_objetivo", "calculadora_objetivo", "nodoInicial",
+              "nodo_inicial", "carpeta_imagenes", "carpeta_evidencia", "url", "enlace", "color", "icono"}
+
+
+def _mayuscula_como(original: str, nuevo: str) -> str:
+    return nuevo[:1].upper() + nuevo[1:] if original[:1].isupper() and nuevo[:1].islower() else nuevo
+
+
+def _cadenas(valor, ruta: str = ""):
+    """Las cadenas que ve el usuario, con su ruta; nunca citas, ids ni URL."""
+    if isinstance(valor, dict):
+        for k, v in valor.items():
+            if k not in _SIN_TOCAR:
+                yield from _cadenas(v, f"{ruta}.{k}" if ruta else k)
+    elif isinstance(valor, list):
+        for i, v in enumerate(valor):
+            yield from _cadenas(v, f"{ruta}[{i}]")
+    elif isinstance(valor, str) and not es_url(valor):
+        yield ruta, valor
+
+
+def vocabulario(alg: dict) -> list[tuple[str, str, str | None, str]]:
+    """(ruta, término encontrado, cambio o None, por qué) de cada aparición."""
+    hallazgos = []
+    for ruta, texto in _cadenas(alg):
+        ocupado: list[tuple[int, int]] = []
+        for patron, cambio, nota in _VOCABULARIO:
+            for m in patron.finditer(texto):
+                if any(a < m.end() and m.start() < b for a, b in ocupado):
+                    continue  # ya lo cubre una entrada más precisa
+                ocupado.append((m.start(), m.end()))
+                sugerido = _mayuscula_como(m.group(0), m.expand(cambio)) if cambio else None
+                hallazgos.append((ruta, m.group(0), sugerido, nota))
+    return hallazgos
+
+
+def corregir_vocabulario(valor):
+    """Aplica los cambios seguros de [VOCABULARIO]; devuelve (valor, cuántos)."""
+    cuantos = 0
+
+    def cambiar(texto: str) -> str:
+        nonlocal cuantos
+        for patron, cambio, _ in _VOCABULARIO:
+            if cambio is None:
+                continue
+
+            def sustituto(m: re.Match) -> str:
+                nonlocal cuantos
+                cuantos += 1
+                return _mayuscula_como(m.group(0), m.expand(cambio))
+
+            texto = patron.sub(sustituto, texto)
+        return texto
+
+    def recorrer(v, clave: str = ""):
+        if isinstance(v, dict):
+            return {k: (x if k in _SIN_TOCAR else recorrer(x, k)) for k, x in v.items()}
+        if isinstance(v, list):
+            return [recorrer(x, clave) for x in v]
+        if isinstance(v, str) and not es_url(v):
+            return cambiar(v)
+        return v
+
+    return recorrer(valor), cuantos
+
+
+# Negritas: la app pinta las cifras en el color del nodo y las palabras clave
+# en negrita del color del texto. Más de dos palabras clave por frase y la
+# vista ya no sabe adónde saltar.
+_NEGRITA = re.compile(r"\*\*([^*]+)\*\*")
+_ROTULO_INICIAL = re.compile(r"^\s*(?:-|\d+\.)\s+\*\*[^*]+:\*\*")
+
+
+def negritas_densas(nodo: dict, tope: int = 2) -> list[tuple[str, int]]:
+    """Frases (viñetas del texto; frases de la perla, el contexto y las
+    alertas) con más de [tope] palabras clave en negrita."""
+    frases: list[str] = (nodo.get("texto") or "").split("\n")
+    for prosa in [nodo.get("contexto") or "", nodo.get("nota_adicional") or "",
+                  *[(a.get("texto") or "") for a in nodo.get("alertas") or [] if isinstance(a, dict)]]:
+        frases += re.split(r"(?<=[.;])\s+(?=[A-ZÁÉÍÓÚ¿*])", prosa)
+    densas = []
+    for frase in frases:
+        sin_rotulo = _ROTULO_INICIAL.sub("", frase)
+        claves = [x for x in _NEGRITA.findall(sin_rotulo) if not re.search(r"\d", x)]
+        if len(claves) > tope:
+            densas.append((frase.strip(), len(claves)))
+    return densas
 
 
 def palabras(texto: str) -> int:
@@ -438,6 +574,8 @@ def medir(ruta: Path) -> Informe:
                     inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» da cifras o criterios sin «referencias» (botón del libro)")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
+        for frase, n_clave in negritas_densas(n):
+            inf.faltas.append(f"{nid}: {n_clave} palabras clave en negrita en «{frase[:60]}…»; dos como mucho (las cifras y el rótulo no cuentan)")
 
     # Un camino que entra en otra sección por la mitad: mejor al nodo de sección.
     hogar = secciones_hogar(alg)
@@ -450,6 +588,16 @@ def medir(ruta: Path) -> Informe:
                 inf.faltas.append(
                     f"{nid}: la rama «{o.get('texto', '')}» entra en la sección «{hogar[dest]}» por la mitad; apuntar a «{hogar[dest]}»"
                 )
+
+    # Español de Colombia: cada término una vez, con cuántas veces sale.
+    vistos: dict[tuple[str, str | None], int] = {}
+    for _, termino, cambio, nota in vocabulario(alg):
+        clave = (termino.lower(), cambio.lower() if cambio else nota)
+        vistos[clave] = vistos.get(clave, 0) + 1
+    for (termino, cambio), n in vistos.items():
+        veces = f" ({n} veces)" if n > 1 else ""
+        sugerencia = f"«{cambio}»" if cambio and not cambio.startswith(("en Colombia", "si son", "«", "nombre", "norma")) else cambio
+        inf.faltas.append(f"vocabulario: «{termino}»{veces} → {sugerencia}")
 
     inf.cuentas = {
         "nodos": len(nodos), "clinicos": len(clinicos), "checklist": n_check, "alertas": n_alert,
@@ -528,7 +676,34 @@ def main() -> int:
     ap.add_argument("--json", action="store_true", help="salida JSON")
     ap.add_argument("--chequeo", metavar="RUTA", nargs="+", help="sólo lo que rompe en la app")
     ap.add_argument("--hook", action="store_true", help="modo PostToolUse de Claude Code")
+    ap.add_argument("--vocabulario", action="store_true", help="español de España que se cuela")
+    ap.add_argument("--corregir", action="store_true", help="con --vocabulario: aplica los cambios seguros")
     args = ap.parse_args()
+
+    if args.vocabulario:
+        rutas = [resolver(a) for a in args.algoritmos] if args.algoritmos else todos()
+        total = 0
+        for ruta in rutas:
+            crudo = ruta.read_text(encoding="utf-8")
+            alg = json.loads(crudo)
+            if alg.get("oculto") and not args.algoritmos:
+                continue
+            if args.corregir:
+                sangria = next((n for n in (2, 1, 4) if json.dumps(alg, ensure_ascii=False, indent=n) + "\n" == crudo), None)
+                if sangria is None:
+                    print(f"{ruta.relative_to(DATA)}: no se reescribe (su formato no es el estándar); corregir a mano")
+                    continue
+                nuevo, cuantos = corregir_vocabulario(alg)
+                if cuantos:
+                    ruta.write_text(json.dumps(nuevo, ensure_ascii=False, indent=sangria) + "\n", encoding="utf-8")
+                    print(f"{ruta.relative_to(DATA)}: {cuantos} cambio(s)")
+                alg = nuevo
+            hallazgos = vocabulario(alg)
+            total += len(hallazgos)
+            for r, termino, cambio, nota in hallazgos:
+                print(f"{ruta.relative_to(DATA)}: {r}: «{termino}» → {('«' + cambio + '»') if cambio else 'revisar: ' + nota}")
+        print(f"{total} aparición(es)")
+        return 0
 
     if args.hook:
         return hook()
