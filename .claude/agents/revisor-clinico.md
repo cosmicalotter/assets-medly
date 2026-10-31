@@ -20,6 +20,11 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
    que dice `paginas`. Una cita que no está es un hallazgo.
 3. **Criterios y listas**: `checklist`, criterios contados («2 de 4») y
    tablas completos y con los mismos elementos que la guía.
+3b. **Recorrido completo** (NORMA §2): que el algoritmo cubra todo lo que se
+   hace con el paciente desde que llega: en una urgencia, el ABCDE y las
+   pruebas de la primera hora como primer paso; después diagnóstico,
+   gravedad, tratamiento, monitorización, complicaciones, resolución, alta y
+   seguimiento. Un paso que la guía trae y el mapa no es un hallazgo.
 4. **Conducta**: que la rama lleve a lo que la guía manda en ese caso; que
    la segunda línea y el criterio de fallo estén; que ninguna contraindicación
    o Clase III de la guía falte en `alertas`.
