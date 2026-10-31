@@ -21,16 +21,27 @@ como lo haría un usuario y revisa:
    siglas no se desarrollan en el texto); frases vagas donde debería haber un
    umbral («si empeora»); muletillas de texto generado; `**` sobre frases
    enteras.
+   Frases elípticas a las que les falta el verbo o la preposición («mejor
+   que con la tira de orina» → «es mejor que con la tira de orina»; «valorar
+   intermedios o UCI» → «valorar el requerimiento de cuidados intermedios o
+   de UCI»); «perfusión» para un fármaco (se dice «infusión»).
 1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
    no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
    el título repite la pill en vez de decir la acción; el texto repite el
    título; `pie_nodo` telegráfico («¿Potasio sérico?») en vez de una pregunta
    clínica completa; perlas sin el porqué; alertas sin qué hacer; un `info`
    de imagen que no explica por qué importa lo que se ve.
+1c. **Fórmulas y datos extra**: una fórmula escrita en notación plana en el
+   texto («2 × Na + glucosa / 18») en vez de nombrada y declarada en
+   `formulas` con su `tex`, variables y cita; `burbujas` que repiten el texto,
+   que esconden algo que cambia la conducta (eso va al texto o a una alerta)
+   o que se usan en casi todos los nodos.
 2. **Decisiones**: cada nodo con 2 o más ramas tiene `pie_nodo` en forma de
    pregunta clínica completa; cada opción dice sólo su dato o condición, con
    umbral y unidades, distinta de las demás y entendible sin leer el nodo.
-3. **Estructura**: secciones coherentes; cadenas largas de pasos sin decidir;
+3. **Estructura**: secciones coherentes y con título de una palabra
+   («Diagnóstico», «Tratamiento»; dos o tres sólo si hace falta: «Situaciones
+   especiales»); cadenas largas de pasos sin decidir;
    nodos que sólo dicen «continuar» o «fin»; duplicados; un nodo que mezcla
    dos decisiones; ramas que dejan al usuario sin saber qué hacer si falla
    la primera línea.

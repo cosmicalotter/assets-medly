@@ -38,19 +38,19 @@
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
-          "texto": "Llegada, diagnóstico y gravedad",
+          "texto": "Diagnóstico",
           "siguiente_nodo": "nodo_diagnostico"
         },
         {
-          "texto": "Tratamiento: líquidos, potasio e insulina",
+          "texto": "Tratamiento",
           "siguiente_nodo": "nodo_tratamiento"
         },
         {
-          "texto": "Resolución y paso a insulina subcutánea",
+          "texto": "Resolución",
           "siguiente_nodo": "nodo_resolucion"
         },
         {
-          "texto": "Complicaciones y situaciones especiales",
+          "texto": "Situaciones especiales",
           "siguiente_nodo": "nodo_especiales"
         }
       ],
@@ -129,7 +129,7 @@
     },
     "nodo_diagnostico": {
       "estilo": "rama",
-      "texto": "Llegada, diagnóstico y gravedad",
+      "texto": "Diagnóstico",
       "opciones": [
         {
           "texto": "Llegada del paciente: ABCDE",
@@ -140,7 +140,7 @@
     "diag_triada": {
       "tipo": "pregunta",
       "titulo": "Confirmar la crisis y buscar su causa",
-      "texto": "- Medir las cetonas con β-hidroxibutirato en sangre, mejor que con la tira de orina.\n- Hacer un ECG para ver si el potasio altera la repolarización o si hay isquemia.\n- Fijarse en cómo empezó: la CAD aparece en horas o pocos días; el EHH, en días o una semana y a menudo con alteración cognitiva.\n- Buscar el desencadenante: infección, omisión de la insulina, iSGLT2, corticoides, infarto, ictus o pancreatitis.",
+      "texto": "- Medir las cetonas con β-hidroxibutirato en sangre, porque es más fiable que la tira de orina.\n- Hacer un ECG para ver si el potasio altera la repolarización o si hay isquemia.\n- Fijarse en cómo empezó: la CAD suele aparecer en horas o en pocos días; el EHH tarda días o una semana y a menudo se acompaña de alteración cognitiva.\n- Buscar el desencadenante, que puede ser una infección, la omisión de la insulina, un iSGLT2, los corticoides, un infarto, un ictus o una pancreatitis.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/crisis_hiperglucemica_dx.json",
         "etiqueta": "Diagnóstico: CAD, EHH o mixta",
@@ -411,7 +411,7 @@
     "diag_cad_severidad": {
       "tipo": "pregunta",
       "titulo": "Valorar la gravedad de la CAD",
-      "texto": "- **Leve:** pH **>7,25-7,30** o bicarbonato **15-18 mmol/L**, con el paciente alerta.\n- **Moderada:** pH **7,0-7,25** o bicarbonato **10-<15 mmol/L**, alerta o somnoliento.\n- **Grave:** pH **<7,0**, bicarbonato **<10 mmol/L**, β-hidroxibutirato **>6,0 mmol/L** o estupor o coma.\n- No hace falta cumplir todos los criterios de un grado; el lugar de ingreso es, al final, una decisión clínica.",
+      "texto": "- **Leve:** pH entre **7,25 y 7,30** o bicarbonato de **15-18 mmol/L**, con el paciente alerta.\n- **Moderada:** pH entre **7,0 y 7,25** o bicarbonato de **10 a <15 mmol/L**, con el paciente alerta o somnoliento.\n- **Grave:** pH menor de **7,0**, bicarbonato menor de **10 mmol/L**, β-hidroxibutirato mayor de **6,0 mmol/L** o estupor o coma.\n- No hace falta cumplir todos los criterios de un grado, y el lugar de ingreso es, al final, una decisión clínica.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/cad_gravedad.json",
         "etiqueta": "Gravedad de la CAD (ADA 2024)",
@@ -443,7 +443,7 @@
               "paginas": "24"
             }
           ],
-          "nota": "Con signos JBDS, valorar intermedios o UCI aunque la ADA la clasifique leve o moderada."
+          "nota": "Con algún signo de la lista de las JBDS, valorar el ingreso en cuidados intermedios o en la UCI, aunque la ADA la clasifique como leve o moderada."
         }
       ],
       "referencias": [
@@ -539,26 +539,26 @@
         }
       ],
       "checklist": {
-        "titulo": "Signos de gravedad JBDS: intermedios o UCI",
+        "titulo": "Signos de gravedad (JBDS): valorar cuidados intermedios o UCI",
         "items": [
           "Cetonas **>6,0 mmol/L**",
           "Bicarbonato **<5 mmol/L**",
           "pH **<7,0**",
           "Potasio **<3,5 mmol/L** al ingreso",
-          "GCS (escala de coma de Glasgow) **<12**",
-          "SatO2 (saturación de oxígeno) **<92 %** con aire ambiente",
-          "PAS (presión arterial sistólica) **<90 mmHg**",
+          "GCS **<12**",
+          "SatO2 **<92 %** con aire ambiente",
+          "PAS **<90 mmHg**",
           "Pulso **>100** o **<60 lpm**",
           "Anion gap **>16**"
         ]
       },
-      "contexto": "La gravedad de la CAD depende de cuánta acidosis hay y de si el paciente está alerta. Decide dónde tratarla: planta, intermedios o UCI."
+      "contexto": "La gravedad de la CAD depende de cuánta acidosis hay y de si el paciente está alerta. Según la gravedad se decide dónde tratarla: en planta, en cuidados intermedios o en la UCI."
     },
     "diag_cad_severa": {
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "Ingresar en UCI y empezar el tratamiento",
-      "texto": "- Usar insulina IV en perfusión: los análogos subcutáneos no se usan en la CAD grave o complicada.\n- Si está somnoliento, valorar la vía aérea y poner una sonda nasogástrica para evitar la aspiración.\n- Si el pH es menor de **7,0**, valorar el bicarbonato.",
+      "texto": "- Usar insulina IV en infusión continua, porque los análogos subcutáneos no están indicados en la CAD grave o complicada.\n- Si está somnoliento, valorar la protección de la vía aérea y poner una sonda nasogástrica para evitar la aspiración.\n- Si el pH es menor de **7,0**, valorar si está indicado el bicarbonato.",
       "checklist": {
         "titulo": "Criterios de UCI (ADA 2024)",
         "items": [
@@ -625,12 +625,12 @@
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1264_uci.png"
         }
       ],
-      "contexto": "La CAD grave, el EHH y la crisis con alteración de la conciencia o con una enfermedad crítica detrás se tratan en la UCI, con perfusión de insulina y vigilancia estrecha."
+      "contexto": "La CAD grave, el EHH y la crisis con alteración de la conciencia o con una enfermedad crítica detrás se tratan en la UCI, con infusión de insulina y vigilancia estrecha."
     },
     "diag_ehh_confirmar": {
       "tipo": "informativo",
       "titulo": "Confirmar el EHH e ingresar en UCI",
-      "texto": "- Calcular la osmolalidad efectiva (2 × Na + glucosa/18) con la calculadora; la urea no cuenta porque no es un osmol eficaz.\n- Buscar el desencadenante: es una infección en el **30-60 %**, sobre todo urinaria o neumonía.\n- Ingresar en UCI y poner HBPM profiláctica durante todo el ingreso, salvo contraindicación.\n- Revisar los pies al ingreso y cada día: tienen riesgo de úlcera por presión.",
+      "texto": "- Calcular la osmolalidad efectiva con la calculadora; la urea no entra en el cálculo porque no es un osmol eficaz.\n- Buscar el desencadenante, que es una infección en el **30-60 %** de los casos, sobre todo urinaria o neumonía.\n- Ingresar en UCI y poner HBPM profiláctica durante todo el ingreso, salvo contraindicación.\n- Revisar los pies al ingreso y cada día, porque tienen riesgo de úlcera por presión.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -763,14 +763,93 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1263_fig_3_tiempo_de_instauracion.png"
+        },
+        {
+          "titulo": "Urea: osmol ineficaz",
+          "paginas": "6 de 12",
+          "texto": "recognising that because they are able to freely move across cell membranes they play no role in the distribution of free water.",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag6_urea_osmol_ineficaz.png"
+        },
+        {
+          "titulo": "Sin urea: tonicidad",
+          "paginas": "6 de 12",
+          "texto": "as urea is an ineffective osmolyte, it can be omitted from the equation to allow calculation of tonicity (or effec- tive osmolality).",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag6_sin_urea_tonicidad.png"
         }
       ],
-      "contexto": "En el EHH no hay una cetoacidosis importante: el problema es la deshidratación y la hiperosmolalidad, que se instauran en días y alteran la conciencia."
+      "contexto": "En el EHH no hay una cetoacidosis importante: el problema es la deshidratación y la hiperosmolalidad, que se instauran en días y alteran la conciencia.",
+      "formulas": [
+        {
+          "en_texto": "osmolalidad efectiva",
+          "titulo": "Osmolalidad efectiva",
+          "tex": "\\mathrm{Osm}_{\\text{ef}} = 2\\,[\\mathrm{Na^+}] + \\text{glucosa}",
+          "variables": [
+            [
+              "[Na⁺]",
+              "sodio sérico (mmol/L)"
+            ],
+            [
+              "glucosa",
+              "glucosa plasmática (mmol/L); en mg/dL, dividirla entre 18"
+            ]
+          ],
+          "nota": "Mayor de **300 mOsm/kg** es criterio de EHH. La osmolalidad total suma además la urea (mmol/L).",
+          "referencias": [
+            {
+              "titulo": "Fig. 2B: EHH, glucosa y osmolalidad",
+              "paginas": "1262",
+              "texto": "Plasma glucose ≥600 mg/dL (33.3 mmol/L) Hyperosmolarity Calculated effective serum osmolality >300 mOsm/kg (calculated as [2xNa+ (mmol/L) + glucose (mmol/L)])",
+              "fuente": "ADA 2024",
+              "anio": "2024",
+              "url": "https://doi.org/10.2337/dci24-0032",
+              "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+              "imagen_evidencia": "TODO_EVIDENCIA: ADA 2024 p. 1262, Fig. 2B: EHH, glucosa y osmolalidad"
+            }
+          ]
+        }
+      ],
+      "burbujas": [
+        {
+          "en_texto": "no es un osmol eficaz",
+          "titulo": "¿Por qué la urea no cuenta?",
+          "texto": "La urea atraviesa libremente las membranas de las células, así que no arrastra agua de un compartimento a otro. Por eso se deja fuera para calcular la tonicidad (osmolalidad efectiva), que es la que mueve el agua entre el plasma y el cerebro.",
+          "referencias": [
+            {
+              "titulo": "Urea: osmol ineficaz",
+              "paginas": "6 de 12",
+              "texto": "recognising that because they are able to freely move across cell membranes they play no role in the distribution of free water.",
+              "fuente": "JBDS EHH 2023",
+              "anio": "2023",
+              "url": "https://doi.org/10.1111/dme.15005",
+              "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+              "imagen_evidencia": "TODO_EVIDENCIA: JBDS EHH 2023 p. 6 de 12, Urea: osmol ineficaz"
+            },
+            {
+              "titulo": "Sin urea: tonicidad",
+              "paginas": "6 de 12",
+              "texto": "as urea is an ineffective osmolyte, it can be omitted from the equation to allow calculation of tonicity (or effec- tive osmolality).",
+              "fuente": "JBDS EHH 2023",
+              "anio": "2023",
+              "url": "https://doi.org/10.1111/dme.15005",
+              "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+              "imagen_evidencia": "TODO_EVIDENCIA: JBDS EHH 2023 p. 6 de 12, Sin urea: tonicidad"
+            }
+          ]
+        }
+      ]
     },
     "diag_mixta": {
       "tipo": "informativo",
       "titulo": "Tratar como CAD y bajar la osmolalidad despacio",
-      "texto": "- Empezar la insulina IV a **0,1 U/kg/h** desde el inicio, como en la CAD.\n- Reponer líquidos hasta un balance positivo de **3-6 L** en las primeras **12 h**, y el resto en las 12 h siguientes (JBDS).\n- Bajar la osmolalidad a un ritmo de **3-8 mOsm/kg/h**, como en el EHH.",
+      "texto": "- Empezar la insulina IV a **0,1 U/kg/h** desde el inicio, como en la CAD.\n- Reponer líquidos hasta conseguir un balance positivo de **3-6 L** en las primeras **12 h**, y el resto en las 12 h siguientes (JBDS).\n- Bajar la osmolalidad a un ritmo de **3-8 mOsm/kg/h**, como en el EHH.",
       "enlaces": [
         {
           "texto": "Ir al tratamiento",
@@ -847,7 +926,7 @@
         {
           "nombre": "Insulina regular IV",
           "dosis": "**0,1 U/kg/h**",
-          "pauta": "Perfusión a ritmo fijo.",
+          "pauta": "Infusión a ritmo fijo.",
           "paginas": "1266",
           "por_kg": {
             "cantidad": 0.1,
@@ -861,7 +940,7 @@
     "diag_diferencial": {
       "tipo": "informativo",
       "titulo": "Buscar otra causa de cetosis",
-      "texto": "- Cetosis de ayuno: aparece con una ingesta menor de **500 kcal/día**, por la insulina baja.\n- Cetoacidosis alcohólica: consumo crónico con un atracón reciente, vómitos y ayuno, con o sin hiperglucemia.\n- Cetosis del embarazo e hiperémesis gravídica.\n- Si no hay cetonas en sangre, el anion gap ayuda: más de **12 mmol/L** indica una acidosis con anion gap elevado.",
+      "texto": "- **Cetosis de ayuno:** aparece cuando la ingesta es menor de **500 kcal/día**, porque la insulina baja.\n- **Cetoacidosis alcohólica:** consumo crónico con un atracón reciente, vómitos y ayuno, con o sin hiperglucemia.\n- **Embarazo:** cetosis del embarazo e hiperémesis gravídica.\n- Si no se pueden medir las cetonas en sangre, el anion gap ayuda: si es mayor de **12 mmol/L**, hay una acidosis con anion gap elevado.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -917,14 +996,58 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1262_anion_gap_no_de_primera_linea.png"
+        },
+        {
+          "titulo": "Anion gap: cómo se calcula",
+          "paginas": "1262",
+          "texto": "The anion gap is calculated by subtracting the major measured anions (chloride and bicarbonate) from the major mea- sured cation (sodium).",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1262_anion_gap_como_se_calcula.png"
         }
       ],
-      "contexto": "Si no se cumplen los criterios de CAD ni de EHH, las cetonas altas pueden deberse a otra causa, que se trata de otra forma."
+      "contexto": "Si no se cumplen los criterios de CAD ni de EHH, las cetonas altas pueden deberse a otra causa, que se trata de otra forma.",
+      "formulas": [
+        {
+          "en_texto": "anion gap",
+          "titulo": "Anion gap",
+          "tex": "\\mathrm{AG} = [\\mathrm{Na^+}] - \\left([\\mathrm{Cl^-}] + [\\mathrm{HCO_3^-}]\\right)",
+          "variables": [
+            [
+              "[Na⁺]",
+              "sodio (mmol/L)"
+            ],
+            [
+              "[Cl⁻]",
+              "cloro (mmol/L)"
+            ],
+            [
+              "[HCO₃⁻]",
+              "bicarbonato (mmol/L)"
+            ]
+          ],
+          "nota": "Mayor de **12 mmol/L**: acidosis con anion gap elevado.",
+          "referencias": [
+            {
+              "titulo": "Anion gap: cómo se calcula",
+              "paginas": "1262",
+              "texto": "The anion gap is calculated by subtracting the major measured anions (chloride and bicarbonate) from the major mea- sured cation (sodium).",
+              "fuente": "ADA 2024",
+              "anio": "2024",
+              "url": "https://doi.org/10.2337/dci24-0032",
+              "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+              "imagen_evidencia": "TODO_EVIDENCIA: ADA 2024 p. 1262, Anion gap: cómo se calcula"
+            }
+          ]
+        }
+      ]
     },
     "enlace_tratamiento": {
       "tipo": "informativo",
       "titulo": "Tratar en planta o en intermedios",
-      "texto": "- Ingresar la leve en planta u observación, y la moderada en intermedios o urgencias.\n- Si no hay complicaciones, se puede usar análogo de insulina rápida subcutáneo en lugar de la perfusión IV (dosis abajo).\n- Medir la glucemia capilar cada **1-2 h**, y los iones, el fósforo, la creatinina, el β-hidroxibutirato y el pH venoso cada **4 h**.",
+      "texto": "- Ingresar la leve en planta u observación, y la moderada en intermedios o urgencias.\n- Si no hay complicaciones, se puede usar análogo de insulina rápida subcutáneo en lugar de la infusión IV (dosis abajo).\n- Medir la glucemia capilar cada **1-2 h**, y los iones, el fósforo, la creatinina, el β-hidroxibutirato y el pH venoso cada **4 h**.",
       "farmacos": [
         {
           "nombre": "Análogo de insulina rápida SC (bolo)",
@@ -1011,7 +1134,7 @@
     },
     "nodo_tratamiento": {
       "estilo": "rama",
-      "texto": "Tratamiento: líquidos, potasio e insulina",
+      "texto": "Tratamiento",
       "opciones": [
         {
           "texto": "Líquidos, potasio e insulina",
@@ -1026,7 +1149,7 @@
     "trat_liquidos": {
       "tipo": "pregunta",
       "titulo": "Reponer líquidos primero",
-      "texto": "- Con hipovolemia grave, poner salino 0,9 % o cristaloide a **1 L/h**; si hay compromiso cardiaco, monitorizar y usar vasopresores.\n- Sin compromiso renal ni cardiaco, poner **500-1.000 mL/h** las primeras **2-4 h**; después, reponer el **50 %** del déficit en **8-12 h** y el resto en **24-48 h**.\n- En el anciano, la insuficiencia cardiaca o la ERC terminal en diálisis, usar bolos de **250 mL** y revalorar a menudo; en el embarazo o la nefropatía, ir con precaución.\n- El cristaloide balanceado (Ringer lactato) resuelve la CAD antes que el salino 0,9 %.",
+      "texto": "- Si hay hipovolemia grave, poner salino 0,9 % o cristaloide a **1 L/h**; si además hay compromiso cardiaco, monitorizar y usar vasopresores.\n- Si no hay compromiso renal ni cardiaco, poner **500-1.000 mL/h** las primeras **2-4 h**; después, reponer el **50 %** del déficit en **8-12 h** y el resto en **24-48 h**.\n- En el anciano, en la insuficiencia cardiaca o en la ERC terminal en diálisis, usar bolos de **250 mL** y revalorar a menudo; en el embarazo o en la nefropatía, reponer con precaución.\n- El cristaloide balanceado (Ringer lactato) resuelve la CAD antes que el salino 0,9 %.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -1373,12 +1496,12 @@
     "trat_insulina_fase1": {
       "tipo": "pregunta",
       "titulo": "Empezar la insulina y añadir potasio al suero",
-      "texto": "- **CAD y mixta:** insulina regular IV a **0,1 U/kg/h**; bolo de **0,1 U/kg** sólo si la perfusión se retrasa.\n- **EHH sin cetonemia (β-hidroxibutirato <3,0, pH ≥7,3, bicarbonato ≥18):** insulina IV a **0,05 U/kg/h**; si no se cumple alguna condición, **0,1** como en la mixta.\n- Añadir potasio a cada litro de suero para mantenerlo entre **4 y 5 mmol/L**.\n- Mantener la insulina basal habitual. Si no la usaba, añadir basal SC **0,15-0,3 U/kg** es opcional: acorta la crisis, pero aumenta la hipoglucemia y la hipopotasemia.",
+      "texto": "- **CAD y mixta:** insulina regular IV a **0,1 U/kg/h**; bolo de **0,1 U/kg** sólo si la infusión se retrasa.\n- **EHH sin cetonemia (β-hidroxibutirato <3,0, pH ≥7,3, bicarbonato ≥18):** insulina IV a **0,05 U/kg/h**; si no se cumple alguna condición, **0,1** como en la mixta.\n- Añadir potasio a cada litro de suero para mantenerlo entre **4 y 5 mmol/L**.\n- Mantener la insulina basal que ya usaba. Si no la usaba, se puede añadir basal SC **0,15-0,3 U/kg**: acorta la crisis, pero aumenta el riesgo de hipoglucemia y de hipopotasemia.",
       "farmacos": [
         {
           "nombre": "Insulina regular IV (bolo)",
           "dosis": "**0,1 U/kg** IV",
-          "pauta": "Sólo si se retrasa la perfusión.",
+          "pauta": "Sólo si se retrasa la infusión.",
           "paginas": "1265",
           "por_kg": {
             "cantidad": 0.1,
@@ -1388,7 +1511,7 @@
         {
           "nombre": "Insulina regular IV (CAD, mixta)",
           "dosis": "**0,1 U/kg/h**",
-          "pauta": "Perfusión a ritmo fijo.",
+          "pauta": "Infusión a ritmo fijo.",
           "paginas": "1264-1265",
           "por_kg": {
             "cantidad": 0.1,
@@ -1416,7 +1539,7 @@
         {
           "nombre": "Insulina basal SC",
           "dosis": "**0,15-0,3 U/kg**",
-          "pauta": "Opcional, junto a la perfusión, si no la usaba.",
+          "pauta": "Opcional, junto a la infusión, si no la usaba.",
           "paginas": "1265",
           "por_kg": {
             "desde": 0.15,
@@ -1577,14 +1700,14 @@
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1266_cetonemia_ph_o_bicarbonato_mix.png"
         },
         {
-          "titulo": "Basal junto a la perfusión: debate",
+          "titulo": "Basal junto a la infusión: debate",
           "paginas": "1265",
           "texto": "insulin while on ﬁxed-rate intravenous insulin infusion is advocated by many clinicians but avoided by others because of the risk of hypoglycemia (134) or hypokale- mia (135).",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
-          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_junto_a_la_perfusion_deb.png"
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_junto_a_la_infusion_deba.png"
         },
         {
           "titulo": "Basal 0,15-0,3 U/kg: resuelve antes",
@@ -1696,7 +1819,7 @@
         {
           "nombre": "Insulina regular IV (CAD, mixta)",
           "dosis": "**0,1 U/kg/h**",
-          "pauta": "Perfusión a ritmo fijo.",
+          "pauta": "Infusión a ritmo fijo.",
           "paginas": "1264-1265",
           "por_kg": {
             "cantidad": 0.1,
@@ -1707,7 +1830,7 @@
         {
           "nombre": "Insulina regular IV (EHH)",
           "dosis": "**0,05 U/kg/h**",
-          "pauta": "Perfusión a ritmo fijo.",
+          "pauta": "Infusión a ritmo fijo.",
           "paginas": "1264, 1266",
           "por_kg": {
             "cantidad": 0.05,
@@ -1732,7 +1855,7 @@
     "trat_monitorizacion": {
       "tipo": "informativo",
       "titulo": "Comprobar que la respuesta va al ritmo esperado",
-      "texto": "- Si en la CAD las cetonas no bajan al ritmo de la tabla, subir la insulina **1 U/h** cada hora y revisar la bomba y la vía.\n- El sodio sube **1,6 mmol/L** por cada **100 mg/dL** que baja la glucosa: esa subida, por sí sola, no obliga a pasar a salino hipotónico.\n- Pasar a salino 0,45 % sólo si la osmolalidad no baja pese a un balance positivo y a la insulina.",
+      "texto": "- Si en la CAD las cetonas no bajan al ritmo de la tabla, subir la insulina **1 U/h** cada hora y revisar la bomba y la vía.\n- El sodio sube **1,6 mmol/L** por cada **100 mg/dL** que baja la glucosa (sodio corregido): esa subida, por sí sola, no obliga a pasar a salino hipotónico.\n- Pasar a salino 0,45 % sólo si la osmolalidad no baja pese a un balance positivo y a la insulina.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -1928,12 +2051,42 @@
           ]
         }
       ],
-      "contexto": "Cada 1-2 horas hay que comprobar que la crisis mejora a buen ritmo: en la CAD, que bajan las cetonas; en el EHH, que la osmolalidad baja, pero despacio."
+      "contexto": "Cada 1-2 horas hay que comprobar que la crisis mejora a buen ritmo: en la CAD, que bajan las cetonas; en el EHH, que la osmolalidad baja, pero despacio.",
+      "formulas": [
+        {
+          "en_texto": "sodio corregido",
+          "titulo": "Sodio corregido por la glucosa",
+          "tex": "\\mathrm{Na}_{\\text{corr}} = \\mathrm{Na}_{\\text{medido}} + 1{,}6 \\times \\dfrac{\\text{glucosa} - 100}{100}",
+          "variables": [
+            [
+              "Na medido",
+              "sodio sérico (mmol/L)"
+            ],
+            [
+              "glucosa",
+              "glucosa plasmática (mg/dL)"
+            ]
+          ],
+          "nota": "Por cada **100 mg/dL** de glucosa por encima de 100, el sodio medido está **1,6 mmol/L** por debajo del real.",
+          "referencias": [
+            {
+              "titulo": "Sodio: sube al bajar la glucosa",
+              "paginas": "1265",
+              "texto": "a reduction of 100 mg/dL [5.6 mmol/L] of glucose will result in a 1.6 mmol/L rise in sodium concentration",
+              "fuente": "ADA 2024",
+              "anio": "2024",
+              "url": "https://doi.org/10.2337/dci24-0032",
+              "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+              "imagen_evidencia": "TODO_EVIDENCIA: ADA 2024 p. 1265, Sodio: sube al bajar la glucosa"
+            }
+          ]
+        }
+      ]
     },
     "trat_ajuste_dextrosa": {
       "tipo": "pregunta",
       "titulo": "Añadir dextrosa y bajar la insulina",
-      "texto": "- Añadir dextrosa **5-10 %** al salino y bajar la insulina a **0,05 U/kg/h**; en la CAD leve con insulina SC, **0,05 U/kg/h** o **0,1 U/kg** cada 2 h.\n- Mantener la glucosa en **150-200 mg/dL** en la CAD y en **200-250 mg/dL** en el EHH hasta la resolución.\n- En la CAD euglucémica, poner dextrosa desde el inicio de la insulina.\n- Repetir iones, función renal, pH venoso, osmolalidad y glucosa cada **2-4 h** hasta que esté estable.",
+      "texto": "- Añadir dextrosa **5-10 %** al salino y bajar la insulina a **0,05 U/kg/h**; en la CAD leve con insulina SC, **0,05 U/kg/h** o **0,1 U/kg** cada 2 h.\n- Mantener la glucosa entre **150 y 200 mg/dL** en la CAD y entre **200 y 250 mg/dL** en el EHH hasta la resolución.\n- En la CAD euglucémica, poner la dextrosa desde que se empieza la insulina.\n- Repetir los iones, la función renal, el pH venoso, la osmolalidad y la glucosa cada **2-4 h** hasta que esté estable.",
       "farmacos": [
         {
           "nombre": "Insulina regular IV",
@@ -2056,7 +2209,7 @@
           "recurso": "chh_glucosa_antes_que_cetosis.gif",
           "titulo": "La glucosa se corrige antes que la cetosis",
           "descripcion": "Curso típico de la CAD tratada, en 4 pasos: glucosa, cetonas y cuándo añadir dextrosa.",
-          "info": "{#EF5454:Línea roja}: la glucosa, que baja de **250 mg/dL** en **4-8 h**; entonces se añade dextrosa **5-10 %** y se baja la insulina a **0,05 U/kg/h**. {#8B5CF6:Línea morada}: el β-hidroxibutirato, que tarda más; la insulina sigue hasta que es menor de **0,6 mmol/L**.",
+          "info": "{#EF5454:Línea roja}: la glucosa, que baja de **250 mg/dL** en **4-8 h**; se añade dextrosa **5-10 %** y se baja la insulina a **0,05 U/kg/h**. {#8B5CF6:Línea morada}: el β-hidroxibutirato, que tarda más; la insulina sigue hasta que es menor de **0,6 mmol/L**.",
           "en_texto": "Añadir dextrosa",
           "referencias": [
             {
@@ -2232,7 +2385,7 @@
     },
     "nodo_resolucion": {
       "estilo": "rama",
-      "texto": "Resolución y paso a insulina subcutánea",
+      "texto": "Resolución",
       "opciones": [
         {
           "texto": "Criterios de resolución",
@@ -2244,7 +2397,7 @@
       "estilo": "exito",
       "tipo": "pregunta",
       "titulo": "Comprobar que la crisis se ha resuelto",
-      "texto": "- **CAD:** cetonas menores de **0,6 mmol/L** y pH venoso **≥7,3** o bicarbonato **≥18 mmol/L**.\n- **EHH:** osmolalidad menor de **300 mOsm/kg**, diuresis mayor de **0,5 mL/kg/h**, mejoría cognitiva y glucosa menor de **250 mg/dL**.\n- No usar el anion gap ni las cetonas en orina: la acidosis hiperclorémica y el acetoacetato los alteran.",
+      "texto": "- **CAD:** cetonas menores de **0,6 mmol/L** y pH venoso **≥7,3** o bicarbonato **≥18 mmol/L**.\n- **EHH:** osmolalidad menor de **300 mOsm/kg**, diuresis mayor de **0,5 mL/kg/h**, mejoría cognitiva y glucosa menor de **250 mg/dL**.\n- No usar el anion gap ni las cetonas en orina para decidirlo, porque la acidosis hiperclorémica y el acetoacetato los alteran.",
       "pie_nodo": "¿Cumple todos los criterios de resolución de su crisis?",
       "opciones": [
         {
@@ -2253,7 +2406,7 @@
         },
         {
           "texto": "No, falta alguno",
-          "siguiente_nodo": "trat_monitorizacion"
+          "siguiente_nodo": "nodo_tratamiento"
         }
       ],
       "discrepancias": [
@@ -2370,22 +2523,22 @@
           "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag1_jbds_resolucion_del_ehh.png"
         },
         {
-          "titulo": "Seguir la perfusión hasta resolver",
+          "titulo": "Seguir la infusión hasta resolver",
           "paginas": "29",
           "texto": "Continue the FRIII until the ketone measurement is less than 0.6 mmol/L, venous pH over 7.3 and/or venous bicarbonate over 18 mmol/L",
           "fuente": "JBDS CAD 2023",
           "anio": "2023",
           "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
           "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
-          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag29_seguir_la_perfusion_hasta_reso.png"
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag29_seguir_la_infusion_hasta_resol.png"
         }
       ],
-      "contexto": "La perfusión de insulina no se para hasta que la crisis esté resuelta, aunque la glucosa ya sea normal."
+      "contexto": "La infusión de insulina no se para hasta que la crisis esté resuelta, aunque la glucosa ya sea normal."
     },
     "seg_transicion": {
       "tipo": "pregunta",
       "titulo": "Pasar a insulina subcutánea",
-      "texto": "- Calcular la dosis total diaria: **0,5-0,6 U/kg/día** si no usaba insulina, o **0,3 U/kg/día** si hay riesgo de hipoglucemia (fragilidad, ERC).\n- Si ya usaba insulina, partir de su dosis previa (y cambiarla si estaba mal controlado) o de la suma de la insulina IV de las **6 h** previas.\n- Repartirla en basal-bolo: **40-60 %** como basal y el resto en 3 bolos de análogo rápido con las comidas.\n- Si está en ayunas, poner la basal y corrección con insulina rápida cada **4-6 h**. No reiniciar el iSGLT2 durante el ingreso.",
+      "texto": "- Calcular la dosis total diaria: **0,5-0,6 U/kg/día** si no usaba insulina, o **0,3 U/kg/día** si hay riesgo de hipoglucemia (fragilidad, ERC).\n- Si ya usaba insulina, partir de su dosis previa (y ajustarla si la diabetes estaba mal controlada) o de la suma de la insulina IV de las **6 h** previas.\n- Repartirla en basal-bolo: **40-60 %** como basal y el resto en 3 bolos de análogo rápido con las comidas.\n- Si está en ayunas, poner la basal y corregir con insulina rápida cada **4-6 h**. No reiniciar el iSGLT2 durante el ingreso.",
       "farmacos": [
         {
           "nombre": "Insulina SC, dosis total diaria",
@@ -2403,8 +2556,8 @@
       ],
       "alertas": [
         {
-          "titulo": "Parar la perfusión sin insulina subcutánea",
-          "texto": "Si se para la perfusión IV sin haber puesto antes la basal subcutánea, la cetoacidosis recae. Poner la basal **1-2 h** antes de parar la perfusión."
+          "titulo": "Parar la infusión sin insulina subcutánea",
+          "texto": "Si se para la infusión IV sin haber puesto antes la basal subcutánea, la cetoacidosis recae. Poner la basal **1-2 h** antes de parar la infusión."
         }
       ],
       "discrepancias": [
@@ -2513,7 +2666,7 @@
           "siguiente_nodo": "seg_alta"
         }
       ],
-      "contexto": "Cuando la crisis se ha resuelto y el paciente puede comer, se pasa a insulina subcutánea en pauta basal-bolo. La perfusión no se para hasta que la subcutánea ya actúa."
+      "contexto": "Cuando la crisis se ha resuelto y el paciente puede comer, se pasa a insulina subcutánea en pauta basal-bolo. La infusión no se para hasta que la subcutánea ya actúa."
     },
     "seg_alta": {
       "tipo": "informativo",
@@ -2607,7 +2760,7 @@
     },
     "nodo_especiales": {
       "estilo": "rama",
-      "texto": "Complicaciones y situaciones especiales",
+      "texto": "Situaciones especiales",
       "opciones": [
         {
           "texto": "Complicaciones del tratamiento",
@@ -3054,7 +3207,7 @@
       "estilo": "advertencia",
       "titulo": "Estabilizar al llegar: ABCDE",
       "contexto": "Antes de confirmar qué crisis es, se asegura la vía aérea, la respiración y la circulación: la CAD y el EHH pueden llegar con hipovolemia grave, bajo nivel de conciencia y riesgo de aspiración.",
-      "texto": "- **A, vía aérea:** si está somnoliento, es grave: pedir valoración de UCI, proteger la vía aérea y poner una sonda nasogástrica por el riesgo de aspiración.\n- **B, respiración:** medir la frecuencia respiratoria y la saturación, con pulsioximetría continua. La respiración profunda y con olor a acetona (Kussmaul) es la compensación de la acidosis.\n- **C, circulación:** tomar el pulso y la presión arterial, monitorizar el ECG y canalizar una vía IV de calibre grueso para empezar los líquidos. Con PAS **<90 mmHg**, **500 mL** de salino 0,9 % en **10-15 min**.\n- **D, neurológico:** valorar la conciencia con la escala de Glasgow y medir la glucemia capilar.\n- **E, exposición:** tomar la temperatura y explorar entero buscando el desencadenante; en la mujer en edad fértil, pedir un test de embarazo.",
+      "texto": "- **A, vía aérea:** si está somnoliento, la situación es grave: pedir valoración de UCI, proteger la vía aérea y poner una sonda nasogástrica por el riesgo de aspiración.\n- **B, respiración:** medir la frecuencia respiratoria y la saturación, con pulsioximetría continua. La respiración profunda y con olor a acetona (Kussmaul) es la compensación de la acidosis.\n- **C, circulación:** tomar el pulso y la presión arterial, monitorizar el ECG y canalizar una vía IV de calibre grueso para empezar los líquidos. Con PAS **<90 mmHg**, **500 mL** de salino 0,9 % en **10-15 min**.\n- **D, neurológico:** valorar la conciencia con la escala de Glasgow y medir la glucemia capilar.\n- **E, exposición:** tomar la temperatura y explorar entero buscando el desencadenante; en la mujer en edad fértil, pedir un test de embarazo.",
       "checklist": {
         "titulo": "Pruebas de la primera hora (JBDS)",
         "items": [

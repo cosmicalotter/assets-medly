@@ -22,13 +22,17 @@ cambian, se cambian allí y aquí a la vez.
 ```
 [Nombre del tema]                    portada: el tema y sus definiciones
  ├── Diagnóstico                     estilo "rama"
- ├── Estratificación / gravedad      estilo "rama"   (si la guía estratifica)
+ ├── Gravedad                        estilo "rama"   (si la guía estratifica)
  ├── Tratamiento                     estilo "rama"
  ├── Situaciones especiales          estilo "rama"   (embarazo, ERC, pediatría, anciano…)
- └── Seguimiento y alta              estilo "rama"
+ └── Seguimiento                     estilo "rama"
 ```
 
 - Entre 2 y 5 secciones. Una sección sin al menos 3 pasos se funde con otra.
+- **El título de una sección es una sola palabra**: «Diagnóstico»,
+  «Gravedad», «Tratamiento», «Resolución», «Seguimiento». Sólo cuando una
+  palabra no basta, dos o tres: «Situaciones especiales». Nada de «Diagnóstico
+  y confirmación de la crisis» ni de barras («Estratificación / gravedad»).
 - Portada: el `titulo` de la raíz es el nombre del tema (es el título del
   mapa) y su `texto` son **las definiciones del tema**, en lista: una viñeta
   por entidad que el algoritmo trata (`- **Colecistitis aguda:** …`,
@@ -138,6 +142,9 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente | cuando pase; nunca inventada |
 | `chips` | población, urgencia, clase | 1-3, no en todos los nodos |
+| `contexto` | la situación y el porqué del paso (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | todo nodo clínico |
+| `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app marca la frase en naranja claro con el rótulo «Fórmula» y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos). Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mmol/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
+| `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone un globito al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases) con sus `referencias`. **Con mesura**: sólo si es clínicamente importante o de verdad interesante, nunca para lo que ya debería estar en el texto | 0-1 por nodo; unas pocas por algoritmo |
 
 ## 4. Cómo se escribe
 
@@ -147,12 +154,25 @@ entenderse solo, sin dar por sabido el protocolo. Se escribe con las palabras y
 los conectores necesarios («porque», «hasta que», «mientras», «si…, entonces»),
 pero sin relleno.
 
+**Sin elipsis.** Cada frase lleva su verbo y sus artículos y preposiciones;
+no se comprime a estilo de apunte:
+
+| así no | así sí |
+|---|---|
+| «mejor que con la tira de orina» | «es mejor que con la tira de orina» |
+| «valorar intermedios o UCI» | «valorar el requerimiento de cuidados intermedios o de UCI» |
+| «potasio <3,5 → no insulina» | «si el potasio es menor de **3,5 mmol/L**, no empezar la insulina» |
+
+**Palabras fijas.** Un fármaco IV continuo es una **«infusión»** («infusión
+de insulina a **0,1 U/kg/h**»), nunca «perfusión» (que queda para el riego de
+un órgano: «perfusión renal»).
+
 ### Las piezas de un nodo y qué dice cada una
 
 | pieza | qué dice | ejemplo (potasio <3,5 en la cetoacidosis) |
 |---|---|---|
 | respuesta del nodo anterior (pill) | **sólo el dato** que lleva aquí | «Menor de 3,5 mmol/L» |
-| `titulo` | **la acción** del paso | «Reponer potasio y retrasar la insulina» |
+| `titulo` | **la acción** del paso (la app lo pinta en el color del tipo de nodo) | «Reponer potasio y retrasar la insulina» |
 | `contexto` | **la situación y el porqué**, 1-2 frases completas | «En la cetoacidosis el potasio total del cuerpo está bajo, aunque en sangre parezca normal o alto. La insulina lo mete en las células y puede hundirlo en pocas horas.» |
 | `texto` | **el cómo**: viñetas completas pero breves, con las cifras en negrita | «- No empezar la insulina hasta que el potasio supere **3,5 mmol/L**.» |
 | `pie_nodo` | **pregunta clínica completa** que dice qué mirar y para qué | «¿Cuánto potasio tiene en sangre antes de empezar la insulina?» |
@@ -188,8 +208,10 @@ título no repite la pill y el texto no vuelve a decir el título.
 
 - 1-2 frases completas (como mucho 2 párrafos cortos): qué situación clínica
   es y **por qué** se hace este paso. Sin viñetas ni dosis (las indicaciones
-  van en `texto`). La app lo pinta en cursiva suave con una barra lateral,
-  entre el título y el texto.
+  van en `texto`). La app lo pinta entre el título y el texto, en un cuadro
+  teñido con el color del nodo, como el cuadro de definiciones de la portada.
+- Puede llevar `formulas` o `burbujas` igual que el `texto` (la frase de
+  `en_texto` se busca en los dos).
 - Lleva su cita como todo lo clínico: lo que afirma sale de la guía y está en
   las `referencias` del nodo.
 - Va en todo nodo clínico (no en las portadas de sección `estilo: "rama"`).
@@ -225,6 +247,19 @@ título no repite la pill y el texto no vuelve a decir el título.
 - Toda sigla que se use en un algoritmo tiene que estar en el glosario; una
   nueva se añade en el mismo cambio (`python3 tools/glosario.py --faltan
   <algoritmo>` las lista).
+
+### Fórmulas y datos extra
+
+- Una fórmula **nunca** se escribe en notación plana en el texto: se nombra
+  («Calcular la osmolalidad efectiva») y se declara en `formulas` con su `tex`
+  (`2\,[\mathrm{Na^+}] + \dfrac{\text{glucosa}}{18}`), sus `variables` con
+  unidades y la cita. La calculadora, si existe, sigue en `calculadora`: la
+  fórmula enseña de dónde sale el número; la calculadora lo hace.
+- `burbujas` (globito al final de la frase): para el **porqué** que un
+  residente curioso preguntaría y el texto no puede contestar sin alargarse.
+  Título como pregunta o como dato («¿Por qué la urea no cuenta?»), 1-3
+  frases, con fuente. Si el dato cambia la conducta, no va en un globito: va
+  en el `texto`, la perla o la alerta.
 
 ### Texto del visor de imágenes (`info`)
 

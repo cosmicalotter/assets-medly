@@ -134,7 +134,11 @@ Firebase directamente, saltándose `indices/`.
   `contexto` (1-2 frases) el porqué y el `texto` el cómo, en viñetas completas
   pero breves, con verbos en infinitivo y cifras en negrita. Preguntas clínicas
   completas; perlas y alertas con el porqué y qué hacer; siglas sin
-  desarrollar, porque las explica el glosario (`data/glosario.json`). Detalle y
-  ejemplos en `NORMA.md` §4.
+  desarrollar, porque las explica el glosario (`data/glosario.json`). Frases
+  sin elipsis («es mejor que…», no «mejor que…»); «infusión», no «perfusión»,
+  para los fármacos; secciones de una palabra («Diagnóstico», «Tratamiento»).
+  Las fórmulas no se escriben en notación plana: se nombran y se declaran en
+  `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
+  `burbujas` (globito). Detalle y ejemplos en `NORMA.md` §3-§4.
 - Todo en español, con tildes. Ids, nombres de archivo y carpetas en ASCII
   minúscula con guion bajo.
