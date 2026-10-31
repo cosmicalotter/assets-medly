@@ -106,8 +106,9 @@ Si la foto o figura original **ya trae flechas, recuadros o círculos** que
 señalan el hallazgo, **no se añade otro señalador encima** (ni anillo, ni
 elipse, ni flecha propia sobre lo mismo). Se usan los del original y se
 citan: en la leyenda de la imagen y en el `info`, con su color exacto medido
-(`colores_imagen.py`): «**Flechas rojas** (del original): sangre en las
-cisternas». Lo más que se pone encima es un **rótulo en español sin forma**
+(`colores_imagen.py`): «**Flechas rojas**: sangre en las cisternas». No se
+escribe «del original» ni en la leyenda, ni en el `info`, ni en el crédito:
+quien mira la imagen no necesita saber quién puso la flecha. Lo más que se pone encima es un **rótulo en español sin forma**
 junto a la flecha original (`marcas: [{…, solo: true, t: "T picudas", tx, ty, c}]`
 en `foto.js`), del mismo color que ella, o se traduce el rótulo en inglés
 que traiga el original.
@@ -131,13 +132,14 @@ el lienzo de Empirica de `foto.js` + `base.js` (copiarlos de
   señaladores originales y, si hacen falta, rótulos en español (`solo: true`)
   o rótulos en inglés traducidos (`tapar` + `textos`).
 - **Leyenda debajo** (`notas`): una caja por señalador, con un punto de su
-  color exacto, el nombre en negrita y entre paréntesis «(del original)» si
-  lo trae la fuente: `["#EB1C24", "<b>Flechas rojas</b> (del original): …"]`.
+  color exacto y el nombre en negrita, sin «del original»:
+  `["#EB1C24", "<b>Flechas rojas</b>: …"]`.
   Una caja más, con punto gris (`#64748B`), puede dar la conducta que cambia
   esa imagen («Potasio >5,0 mmol/L: insulina sin potasio»). Para un
   señalador blanco o negro, el punto va en gris (`#94A3B8`).
 - **Crédito** en la línea de fuente: autor o revista, año, licencia y
-  «Rotulada por Empirica» si se añadió algo.
+  «Rotulada por Empirica» si se añadió algo (sin decir qué flechas eran del
+  original).
 - La leyenda no debe cortarse: si no cabe, se baja `alto` del panel y se
   comprueba con `solapes.js` y mirando el PNG.
 
@@ -308,8 +310,8 @@ transparente abajo (arriba va otra franja igual con el título y la X).
     (`const A = "#FDE047"` → `{#FDE047:flecha amarilla}`);
   - flecha que ya traía la foto original, o PNG sin HTML:
     `python3 tools/medios/colores_imagen.py <imagen>` (mediana de los píxeles
-    de ese color; en GIF, el último cuadro). Se nombra como del original:
-    `{#EB1C24:Flechas rojas} del original: …`, y no se le suma un señalador
+    de ese color; en GIF, el último cuadro). Se nombra sin decir que es del
+    original (`{#EB1C24:Flechas rojas}: …`) y no se le suma un señalador
     propio sobre lo mismo (ver «Señaladores del original»).
   - Los nombres de la paleta de la app (`amarillo`, `teal`, `rojo`,
     `verde`, `azul`…, ver `docs/algoritmos_json.md` de praxis) sólo si el
