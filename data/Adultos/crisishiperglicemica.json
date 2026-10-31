@@ -38,7 +38,7 @@
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
-          "texto": "Diagnóstico y gravedad",
+          "texto": "Llegada, diagnóstico y gravedad",
           "siguiente_nodo": "nodo_diagnostico"
         },
         {
@@ -129,18 +129,18 @@
     },
     "nodo_diagnostico": {
       "estilo": "rama",
-      "texto": "Diagnóstico y gravedad",
+      "texto": "Llegada, diagnóstico y gravedad",
       "opciones": [
         {
-          "texto": "Primera valoración",
-          "siguiente_nodo": "diag_triada"
+          "texto": "Llegada del paciente: ABCDE",
+          "siguiente_nodo": "diag_abcde"
         }
       ]
     },
     "diag_triada": {
       "tipo": "pregunta",
       "titulo": "Confirmar la crisis y buscar su causa",
-      "texto": "- Pedir glucosa, iones, urea, gasometría venosa, hemograma y cetonas, mejor β-hidroxibutirato en sangre que la tira de orina.\n- Hacer un ECG para ver si el potasio altera la repolarización o si hay isquemia.\n- Fijarse en cómo empezó: la CAD aparece en horas o pocos días; el EHH, en días o una semana y a menudo con alteración cognitiva.\n- Buscar el desencadenante: infección, omisión de la insulina, iSGLT2, corticoides, infarto, ictus o pancreatitis.",
+      "texto": "- Medir las cetonas con β-hidroxibutirato en sangre, mejor que con la tira de orina.\n- Hacer un ECG para ver si el potasio altera la repolarización o si hay isquemia.\n- Fijarse en cómo empezó: la CAD aparece en horas o pocos días; el EHH, en días o una semana y a menudo con alteración cognitiva.\n- Buscar el desencadenante: infección, omisión de la insulina, iSGLT2, corticoides, infarto, ictus o pancreatitis.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/crisis_hiperglucemica_dx.json",
         "etiqueta": "Diagnóstico: CAD, EHH o mixta",
@@ -3048,6 +3048,130 @@
         }
       ],
       "contexto": "En el anciano, la insuficiencia cardiaca y la ERC terminal, el protocolo de líquidos estándar puede causar sobrecarga de volumen."
+    },
+    "diag_abcde": {
+      "tipo": "pregunta",
+      "estilo": "advertencia",
+      "titulo": "Estabilizar al llegar: ABCDE",
+      "contexto": "Antes de confirmar qué crisis es, se asegura la vía aérea, la respiración y la circulación: la CAD y el EHH pueden llegar con hipovolemia grave, bajo nivel de conciencia y riesgo de aspiración.",
+      "texto": "- **A, vía aérea:** si está somnoliento, es grave: pedir valoración de UCI, proteger la vía aérea y poner una sonda nasogástrica por el riesgo de aspiración.\n- **B, respiración:** medir la frecuencia respiratoria y la saturación, con pulsioximetría continua. La respiración profunda y con olor a acetona (Kussmaul) es la compensación de la acidosis.\n- **C, circulación:** tomar el pulso y la presión arterial, monitorizar el ECG y canalizar una vía IV de calibre grueso para empezar los líquidos. Con PAS **<90 mmHg**, **500 mL** de salino 0,9 % en **10-15 min**.\n- **D, neurológico:** valorar la conciencia con la escala de Glasgow y medir la glucemia capilar.\n- **E, exposición:** tomar la temperatura y explorar entero buscando el desencadenante; en la mujer en edad fértil, pedir un test de embarazo.",
+      "checklist": {
+        "titulo": "Pruebas de la primera hora (JBDS)",
+        "items": [
+          "Glucemia capilar y glucosa venosa",
+          "Cetonas en sangre",
+          "Iones, urea y creatinina (y fosfato si hace falta)",
+          "Gasometría venosa",
+          "Hemograma",
+          "Hemocultivos",
+          "ECG",
+          "Radiografía de tórax si está indicada",
+          "Orina y urocultivo",
+          "Test de embarazo en edad fértil"
+        ]
+      },
+      "pie_nodo": "¿Está ya estable para confirmar el tipo de crisis?",
+      "opciones": [
+        {
+          "texto": "Sí, vía aérea y circulación aseguradas",
+          "siguiente_nodo": "diag_triada"
+        }
+      ],
+      "chips": [
+        "Urgente"
+      ],
+      "referencias": [
+        {
+          "titulo": "EHH: enfoque ABCDE",
+          "paginas": "2 de 12",
+          "texto": "Clinical evaluation of HHS should follow the ABCDE approach.",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag2_ehh_enfoque_abcde.png"
+        },
+        {
+          "titulo": "Primera hora: ABC y vía gruesa",
+          "paginas": "25",
+          "texto": "Rapid ABC (Airway, Breathing, Circulation) • Large bore IV cannula, and commence IV fluid replacement (See Action 2)",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag25_primera_hora_abc_y_via_gruesa.png"
+        },
+        {
+          "titulo": "Constantes y Glasgow",
+          "paginas": "25",
+          "texto": "Respiratory rate; temperature; blood pressure; pulse; oxygen saturation • Glasgow Coma Scale. N.B.: a drowsy individual in the context of DKA is seriously concerning",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag25_constantes_y_glasgow.png"
+        },
+        {
+          "titulo": "Somnolencia: UCI y sonda",
+          "paginas": "25",
+          "texto": "the person requires critical care assessment. Consider an NG tube with airway protection to prevent aspiration",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag25_somnolencia_uci_y_sonda_2.png"
+        },
+        {
+          "titulo": "Pruebas iniciales",
+          "paginas": "25",
+          "texto": "Venous blood gases • Full blood count • Blood cultures • ECG",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag25_pruebas_iniciales.png"
+        },
+        {
+          "titulo": "Monitorización y embarazo",
+          "paginas": "26",
+          "texto": "Urinalysis and culture • Continuous cardiac monitoring • Continuous pulse oximetry • Consider precipitating causes and treat appropriately",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag26_monitorizacion_y_embarazo.png"
+        },
+        {
+          "titulo": "Test de embarazo",
+          "paginas": "26",
+          "texto": "Establish usual medication for diabetes • Pregnancy test in women of child bearing age",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag26_test_de_embarazo.png"
+        },
+        {
+          "titulo": "PAS <90: 500 mL",
+          "paginas": "26",
+          "texto": "Give 500 ml of 0.9% sodium chloride solution over 10-15 minutes. If SBP remains below 90 mmHg this may be repeated whilst awaiting senior input.",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag26_pas_90_500_ml.png"
+        },
+        {
+          "titulo": "Respiración de Kussmaul",
+          "paginas": "1263",
+          "texto": "is manifest by Kussmaul breathing, which consists of deep breaths with a fruity odor smell because of the presence of acetone",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1263_respiracion_de_kussmaul.png"
+        }
+      ]
     }
   }
 }

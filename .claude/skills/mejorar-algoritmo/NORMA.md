@@ -86,9 +86,24 @@ cambian, se cambian allí y aquí a la vez.
 
 ## 2. Lo que no puede faltar (los datos cruciales)
 
+Un algoritmo contiene **todo lo que hay que hacer cuando llega un paciente con
+esa patología**, en el orden en que se hace: desde que cruza la puerta hasta el
+alta y el seguimiento. Quien lo abra de guardia no debería tener que buscar
+fuera ningún paso (la estabilización, las pruebas de la primera hora, la
+monitorización, las complicaciones del tratamiento, el alta).
+
 Cada algoritmo se recorre contra esta lista. Lo que la guía trae y el mapa no,
 es un hueco; lo que la guía no trae, no se escribe.
 
+- **Llegada y estabilización** (en toda urgencia): el **ABCDE** como primer
+  paso del recorrido, antes de confirmar el diagnóstico (vía aérea,
+  respiración, circulación con su acceso y su primer bolo, estado
+  neurológico, exposición con temperatura y búsqueda del desencadenante), y
+  las pruebas de la primera hora como `checklist`. Cada letra con lo que la
+  guía dice para esa patología, con su cita; si la guía no lo trae, se cita
+  la guía de la patología que sí lo dice (p. ej. JBDS para el ABCDE de la
+  cetoacidosis). En un algoritmo de consulta (no urgente), la primera
+  valoración ordenada ocupa ese lugar.
 - **Definición y criterios diagnósticos**, contados («2 de 4») y completos.
 - **Criterios de gravedad** con sus umbrales y la escala que usa la guía.
 - **Criterios de ingreso, de UCI y de alta**, cada uno como `checklist`.
