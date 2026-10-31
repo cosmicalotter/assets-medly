@@ -1,8 +1,8 @@
 {
   "titulo": "Crisis hiperglucémica: CAD, EHH o mixta (ADA 2024)",
   "descripcion": "Aplica los criterios diagnósticos del consenso ADA/EASD/JBDS/AACE/DTS 2024 para decidir si un adulto con hiperglucemia o diabetes tiene cetoacidosis diabética (CAD), estado hiperosmolar hiperglucémico (EHH), una forma mixta o ninguna. La CAD exige los tres criterios (D, K y A) y el EHH los cuatro (glucosa, osmolalidad, sin cetonemia ni acidosis importantes).",
-  "instrucciones": "Usa gasometría venosa. La osmolalidad efectiva es 2 × Na + glucosa (mmol/L); calcúlala con la calculadora de osmolalidad. Con β-hidroxibutirato en sangre no hace falta la tira de orina.",
-  "limitaciones": "No gradúa la gravedad de la CAD (usa la calculadora de gravedad). La CAD euglucémica (glucosa <200 mg/dL) entra por el antecedente de diabetes. La tira de orina puede infraestimar las cetonas al inicio.",
+  "instrucciones": "Usa gasometría venosa. La osmolalidad efectiva es 2 × Na + glucosa (mmol/L); calcúlala con la calculadora de osmolalidad. Para las cetonas, mejor β-hidroxibutirato en sangre que la tira.",
+  "limitaciones": "No gradúa la gravedad de la CAD (usa la calculadora de gravedad). La CAD euglucémica (glucosa <200 mg/dL) entra por el antecedente de diabetes. La ADA define el EHH con bicarbonato ≥15, pero con bicarbonato <18, pH <7,3 o cetonemia lo trata como mixta (0,1 U/kg/h); aquí sale como mixta.",
   "tipoCalculo": "reglas",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
@@ -33,6 +33,13 @@
       "url": "https://doi.org/10.2337/dci24-0032",
       "paginas": "1262",
       "texto": "β-Hydroxybutyrate concentration <3.0 mmol/L OR urine ketone strip less than 2+ Absence of acidosis pH ≥7.3 and bicarbonate concentration ≥15 mmol/L",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1266",
+      "texto": "pH <7.30, or bicarbonate <18 mmol/L), which represents mixed DKA/HHS, then a ﬁxed- rate intravenous insulin infusion should be started at 0.1 units/kg/h",
       "anio": "2024"
     },
     {
@@ -76,26 +83,17 @@
           ]
         },
         {
-          "id": "bohb",
-          "tipo": "input_numero",
-          "label": "β-hidroxibutirato en sangre",
-          "unidad": "mmol/L",
-          "min": 0,
-          "max": 15,
-          "ayuda": "Venoso o capilar. Si no lo tienes, déjalo y responde la tira de orina."
-        },
-        {
-          "id": "tira",
+          "id": "ceto",
           "tipo": "opciones",
-          "label": "Cetonas en orina (tira)",
-          "ayuda": "Sólo si no hay β-hidroxibutirato en sangre.",
+          "label": "Cetonas",
+          "ayuda": "Mejor β-hidroxibutirato en sangre (venoso o capilar); la tira de orina sólo si no lo hay.",
           "opciones": [
             {
-              "label": "Negativa o 1+",
+              "label": "β-hidroxibutirato <3,0 mmol/L (o tira <2+)",
               "puntos": 0
             },
             {
-              "label": "2+ o más",
+              "label": "β-hidroxibutirato ≥3,0 mmol/L (o tira ≥2+)",
               "puntos": 1
             }
           ]
@@ -132,31 +130,19 @@
       "si": {
         "todos": [
           {
-            "alguno": [
-              {
-                "id": "glu",
-                "mayorIgual": 200
-              },
-              {
-                "id": "diabetes_previa",
-                "igual": 1
-              }
-            ]
+            "id": "glu",
+            "mayorIgual": 600
+          },
+          {
+            "id": "osm",
+            "mayor": 300
           },
           {
             "alguno": [
               {
-                "id": "bohb",
-                "mayorIgual": 3
-              },
-              {
-                "id": "tira",
+                "id": "ceto",
                 "igual": 1
-              }
-            ]
-          },
-          {
-            "alguno": [
+              },
               {
                 "id": "ph",
                 "menor": 7.3
@@ -166,7 +152,17 @@
                 "menor": 18
               }
             ]
-          },
+          }
+        ]
+      },
+      "categoria": "CAD-EHH mixta",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Hiperosmolar con cetonemia, pH <7,3 o bicarbonato <18. UCI. Insulina IV a 0,1 U/kg/h desde el inicio, como en la CAD; balance positivo de 3-6 L en 12 h."
+    },
+    {
+      "si": {
+        "todos": [
           {
             "id": "glu",
             "mayorIgual": 600
@@ -174,13 +170,25 @@
           {
             "id": "osm",
             "mayor": 300
+          },
+          {
+            "id": "ceto",
+            "igual": 0
+          },
+          {
+            "id": "ph",
+            "mayorIgual": 7.3
+          },
+          {
+            "id": "bic",
+            "mayorIgual": 18
           }
         ]
       },
-      "categoria": "CAD-EHH mixta",
+      "categoria": "Estado hiperosmolar hiperglucémico",
       "color": "rojo",
-      "match_opcion_index": 2,
-      "approach": "Criterios de CAD y de EHH a la vez. UCI. Insulina IV a 0,1 U/kg/h con líquidos y bajada de osmolalidad como en el EHH (3-8 mOsm/kg/h)."
+      "match_opcion_index": 1,
+      "approach": "UCI. Líquidos primero; insulina IV a 0,05 U/kg/h. Bajar la osmolalidad 3-8 mOsm/kg/h y el sodio ≤10 mmol/L en 24 h."
     },
     {
       "si": {
@@ -198,16 +206,8 @@
             ]
           },
           {
-            "alguno": [
-              {
-                "id": "bohb",
-                "mayorIgual": 3
-              },
-              {
-                "id": "tira",
-                "igual": 1
-              }
-            ]
+            "id": "ceto",
+            "igual": 1
           },
           {
             "alguno": [
@@ -233,44 +233,32 @@
         "todos": [
           {
             "id": "glu",
-            "mayorIgual": 600
+            "mayorIgual": 540
           },
           {
             "id": "osm",
             "mayor": 300
           },
           {
-            "alguno": [
-              {
-                "id": "bohb",
-                "menor": 3
-              },
-              {
-                "id": "tira",
-                "igual": 0
-              }
-            ]
+            "id": "ceto",
+            "igual": 0
           },
           {
             "id": "ph",
             "mayorIgual": 7.3
-          },
-          {
-            "id": "bic",
-            "mayorIgual": 15
           }
         ]
       },
-      "categoria": "Estado hiperosmolar hiperglucémico",
-      "color": "rojo",
+      "categoria": "Hiperosmolar (EHH según JBDS)",
+      "color": "naranja",
       "match_opcion_index": 1,
-      "approach": "UCI. Líquidos primero; insulina IV a 0,05 U/kg/h. Bajar la osmolalidad 3-8 mOsm/kg/h y el sodio ≤10 mmol/L en 24 h."
+      "approach": "Glucosa 540-599 mg/dL con hiperosmolalidad: no llega al umbral ADA (600) pero sí al JBDS (≥30 mmol/L). Tratar como EHH."
     },
     {
       "categoria": "Ni CAD ni EHH",
       "color": "amarillo",
       "match_opcion_index": 3,
-      "approach": "Buscar otra causa: cetosis de ayuno, cetoacidosis alcohólica, cetosis del embarazo u otra acidosis con anion gap elevado."
+      "approach": "No cumple criterios. Buscar otra causa: cetosis de ayuno, cetoacidosis alcohólica, cetosis del embarazo u otra acidosis con anion gap elevado; repetir la analítica si la sospecha persiste."
     }
   ]
 }

@@ -34,7 +34,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Crisis hiperglucémicas: CAD y EHH",
-      "texto": "- **Cetoacidosis diabética (CAD):** glucosa **≥200 mg/dL** o diabetes conocida, β-hidroxibutirato **≥3,0 mmol/L** (o cetonuria ≥2+) y pH **<7,3** o bicarbonato **<18 mmol/L**.\n- **CAD euglucémica:** criterios de CAD con glucosa **<200 mg/dL**; la mayoría, con iSGLT2.\n- **Estado hiperosmolar hiperglucémico (EHH):** glucosa **≥600 mg/dL**, osmolalidad efectiva **>300 mOsm/kg**, β-hidroxibutirato **<3,0**, pH **≥7,3** y bicarbonato **≥15**.\n- **CAD-EHH mixta:** cumple criterios de las dos; más de un tercio de las crisis.",
+      "texto": "- **Cetoacidosis diabética (CAD):** glucosa **≥200 mg/dL** o diabetes conocida, β-hidroxibutirato **≥3,0 mmol/L** (o cetonuria ≥2+) y pH **<7,3** o bicarbonato **<18 mmol/L**.\n- **CAD euglucémica:** criterios de CAD con glucosa **<200 mg/dL**; la mayoría, con iSGLT2 (inhibidores del cotransportador sodio-glucosa tipo 2).\n- **Estado hiperosmolar hiperglucémico (EHH):** glucosa **≥600 mg/dL**, osmolalidad efectiva **>300 mOsm/kg** (o total **>320**), β-hidroxibutirato **<3,0 mmol/L**, pH **≥7,3** y bicarbonato **≥15 mmol/L**.\n- **CAD-EHH mixta:** cumple criterios de las dos; más de un tercio de las crisis.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -140,20 +140,20 @@
     "diag_triada": {
       "tipo": "pregunta",
       "titulo": "Primera valoración",
-      "texto": "- Pedir glucosa, iones, gasometría venosa, hemograma y cetonas en sangre u orina; ECG para ver la repolarización (potasio, isquemia).\n- Cetonas: medir β-hidroxibutirato en sangre venosa o capilar mejor que con tira de orina.\n- CAD: horas a días; EHH: días a una semana, con alteración cognitiva frecuente.\n- Buscar el desencadenante: infección, omisión de insulina, iSGLT2, corticoides, infarto, ictus o pancreatitis.",
+      "texto": "- Pedir glucosa, iones, urea, gasometría venosa, hemograma, β-hidroxibutirato (mejor que la tira de orina) y ECG (potasio, isquemia).\n- Instauración: CAD en horas a días; EHH en días a 1 semana, a menudo con alteración cognitiva.\n- Buscar el desencadenante: infección, omisión de insulina, iSGLT2, corticoides, infarto, ictus o pancreatitis.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/crisis_hiperglucemica_dx.json",
         "etiqueta": "Diagnóstico: CAD, EHH o mixta",
         "ramificar": true
       },
-      "pie_nodo": "¿Qué crisis es (calculadora)?",
+      "pie_nodo": "¿Cumple criterios de CAD, EHH, ambas o ninguna?",
       "opciones": [
         {
           "texto": "CAD: valorar gravedad",
           "siguiente_nodo": "diag_cad_severidad"
         },
         {
-          "texto": "EHH",
+          "texto": "EHH: osmolalidad y UCI",
           "siguiente_nodo": "diag_ehh_confirmar"
         },
         {
@@ -161,7 +161,7 @@
           "siguiente_nodo": "diag_mixta"
         },
         {
-          "texto": "No cumple: otra causa de cetosis",
+          "texto": "Ni CAD ni EHH: otras causas",
           "siguiente_nodo": "diag_diferencial"
         }
       ],
@@ -255,6 +255,46 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1262_falsos_positivos.png"
+        },
+        {
+          "titulo": "JBDS: la D y la K",
+          "paginas": "10",
+          "texto": "The ‘D’ – a blood glucose concentration of >11.0 mmol/L or known to have diabetes mellitus The ‘K’",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag10_jbds_la_d_y_la_k.png"
+        },
+        {
+          "titulo": "JBDS: la A",
+          "paginas": "10",
+          "texto": "The ‘A’ – a bicarbonate concentration of <15.0 mmol/L and/or venous pH <7.3",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag10_jbds_la_a.png"
+        },
+        {
+          "titulo": "Fig. 3: tiempo de instauración",
+          "paginas": "1263",
+          "texto": "DKA HHS Develops over hours to days Develops over days to a week Usually alert Change in cognitive state common",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1263_fig_3_tiempo_de_instauracion.png"
+        },
+        {
+          "titulo": "Infección: desencadenante más frecuente",
+          "paginas": "1259",
+          "texto": "Worldwide, infection is the most common precipitating factor for DKA, occurring in 14–58% of cases (3,24).",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1259_infeccion_desencadenante_mas_f.png"
         }
       ],
       "nota_adicional": "La tira de orina infraestima las cetonas al principio y las sobreestima al mejorar; captopril o valproato dan falsos positivos.",
@@ -263,7 +303,7 @@
           "recurso": "chh_ecg_hiperpotasemia_real.jpg",
           "titulo": "Hiperpotasemia en el ECG",
           "descripcion": "Ondas T altas y picudas en V2-V3 por hiperpotasemia.",
-          "info": "{#FDE047:Elipse amarilla} y rectángulo rojo del original: ondas T altas, estrechas y picudas en V2-V3. Con potasio **>5,0 mmol/L** se empieza la insulina sin añadir potasio y se mide cada **2 h**.",
+          "info": "{#FDE047:Elipse amarilla}: ondas T altas, estrechas y picudas en V2 (también en V3). Con potasio **>5,0 mmol/L**, insulina sin añadir potasio y potasio cada **2 h**.",
           "en_texto": "ECG",
           "referencias": [
             {
@@ -307,21 +347,49 @@
             }
           ]
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "Calcular osmolalidad",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json"
+        },
+        {
+          "texto": "ACV isquémico (desencadenante)",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/acv.json"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Criterios diagnósticos de la CAD",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "Glucosa **≥200 mg/dL** o diabetes; β-hidroxibutirato **≥3,0**; pH **<7,3** y/o bicarbonato **<18**.",
+              "paginas": "1262"
+            },
+            {
+              "fuente": "JBDS CAD 2023",
+              "dice": "Glucosa **>11,0 mmol/L** (198 mg/dL) o diabetes; cetonas **>3,0**; bicarbonato **<15** y/o pH **<7,3**.",
+              "paginas": "10"
+            }
+          ]
+        }
       ]
     },
     "diag_cad_severidad": {
       "tipo": "pregunta",
       "titulo": "CAD: gravedad",
-      "texto": "- Leve: pH **7,25-7,30** o bicarbonato **15-18**, alerta; moderada: pH **7,0-7,25** o bicarbonato **10-15**, alerta o somnoliento.\n- Grave: β-hidroxibutirato **>6,0**, pH **<7,0**, bicarbonato **<10** o estupor/coma.\n- No hace falta cumplir todo: la gravedad y el sitio de ingreso son una decisión clínica.",
+      "texto": "- Leve: pH **>7,25-7,30** o bicarbonato **15-18 mmol/L**; alerta.\n- Moderada: pH **7,0-7,25** o bicarbonato **10-<15**; alerta o somnoliento.\n- Grave: pH **<7,0**, bicarbonato **<10**, β-hidroxibutirato **>6,0 mmol/L** o estupor/coma.\n- No hace falta cumplir todos los criterios de un grado; el sitio de ingreso es una decisión clínica.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/cad_gravedad.json",
         "etiqueta": "Gravedad de la CAD (ADA 2024)",
         "ramificar": true
       },
-      "pie_nodo": "¿Gravedad de la CAD (calculadora)?",
+      "pie_nodo": "¿CAD grave: pH <7,0, bicarbonato <10, β-hidroxibutirato >6,0 o estupor?",
       "opciones": [
         {
-          "texto": "Leve o moderada: urgencias o intermedios",
+          "texto": "Leve o moderada: planta o intermedios",
           "siguiente_nodo": "enlace_tratamiento"
         },
         {
@@ -340,11 +408,11 @@
             },
             {
               "fuente": "JBDS CAD 2023",
-              "dice": "Además: bicarbonato **<5**, K **<3,5** al ingreso, GCS **<12**, SatO2 **<92 %**, PAS **<90**, pulso **>100** o **<60**, anion gap **>16**.",
+              "dice": "Cualquiera de los signos de la lista (bicarbonato **<5**, potasio, GCS, saturación, PAS, pulso, anion gap).",
               "paginas": "24"
             }
           ],
-          "nota": "Con criterios JBDS, valorar unidad de alta dependencia."
+          "nota": "Con signos JBDS, valorar intermedios o UCI aunque la ADA la clasifique leve o moderada."
         }
       ],
       "referencias": [
@@ -407,26 +475,55 @@
           "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
           "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
           "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_gravedad_gcs_saturacion_pas.png"
+        },
+        {
+          "titulo": "Gravedad: pulso y anion gap",
+          "paginas": "24",
+          "texto": "Pulse over 100 or below 60 bpm • Anion gap above 16 [Anion Gap = (Na+ + K+) – (Cl- + HCO3-)]",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_gravedad_pulso_y_anion_gap.png"
+        },
+        {
+          "titulo": "Signos JBDS: unidad de alta dependencia",
+          "paginas": "24",
+          "texto": "consultant physician and considered for swift referral to a Level 2/HDU (High Dependency Unit) environment",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_signos_jbds_unidad_de_alta_dep.png"
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Signos de gravedad JBDS: intermedios o UCI",
+        "items": [
+          "Cetonas **>6,0 mmol/L**",
+          "Bicarbonato **<5 mmol/L**",
+          "pH **<7,0**",
+          "Potasio **<3,5 mmol/L** al ingreso",
+          "GCS (escala de coma de Glasgow) **<12**",
+          "SatO2 (saturación de oxígeno) **<92 %** con aire ambiente",
+          "PAS (presión arterial sistólica) **<90 mmHg**",
+          "Pulso **>100** o **<60 lpm**",
+          "Anion gap **>16**"
+        ]
+      }
     },
     "diag_cad_severa": {
       "estilo": "peligro",
       "tipo": "informativo",
       "titulo": "CAD grave: UCI",
-      "texto": "- Ingreso en UCI: CAD grave, EHH, alteración del estado mental o enfermedad crítica como desencadenante (infarto, hemorragia digestiva, sepsis).\n- Insulina IV en perfusión: los análogos subcutáneos no se usan en la CAD grave o complicada.\n- Somnolencia en la CAD: valorar la vía aérea y sonda nasogástrica para evitar la aspiración.",
+      "texto": "- Insulina IV en perfusión: los análogos subcutáneos no se usan en la CAD grave o complicada.\n- Somnolencia en la CAD: valorar la vía aérea y sonda nasogástrica para evitar la aspiración.\n- pH **<7,0**: valorar bicarbonato.",
       "checklist": {
-        "titulo": "Signos de gravedad (JBDS): alta dependencia",
+        "titulo": "Criterios de UCI (ADA 2024)",
         "items": [
-          "Cetonas **>6,0 mmol/L**",
-          "Bicarbonato **<5 mmol/L**",
-          "pH **<7,0**",
-          "Potasio **<3,5** al ingreso",
-          "GCS **<12**",
-          "SatO2 **<92 %** con aire ambiente",
-          "PAS **<90 mmHg**",
-          "Pulso **>100** o **<60 lpm**",
-          "Anion gap **>16**"
+          "CAD grave",
+          "EHH o CAD-EHH mixta",
+          "Alteración del estado mental",
+          "Enfermedad crítica como desencadenante (infarto, hemorragia digestiva, sepsis)"
         ]
       },
       "enlaces": [
@@ -434,6 +531,11 @@
           "texto": "Ir al tratamiento",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "nodo_tratamiento"
+        },
+        {
+          "texto": "pH <7,0: bicarbonato",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_bicarbonato_fosfato"
         }
       ],
       "chips": [
@@ -471,41 +573,21 @@
           "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag25_somnolencia_uci_y_sonda.png"
         },
         {
-          "titulo": "Gravedad: cetonas, bicarbonato, pH, potasio",
-          "paginas": "24",
-          "texto": "Blood ketones over 6.0 mmol/L • Bicarbonate level below 5.0 mmol/L • Venous/arterial pH below 7.0 • Hypokalaemia on admission (under 3.5 mmol/L)",
-          "fuente": "JBDS CAD 2023",
-          "anio": "2023",
-          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
-          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
-          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_gravedad_cetonas_bicarbonato_p.png"
-        },
-        {
-          "titulo": "Gravedad: GCS, saturación, PAS",
-          "paginas": "24",
-          "texto": "GCS less than 12 or abnormal AVPU scale • Oxygen saturation below 92% on air (assuming normal baseline respiratory function) • Systolic BP below 90 mmHg",
-          "fuente": "JBDS CAD 2023",
-          "anio": "2023",
-          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
-          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
-          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_gravedad_gcs_saturacion_pas.png"
-        },
-        {
-          "titulo": "Gravedad: pulso y anion gap",
-          "paginas": "24",
-          "texto": "Pulse over 100 or below 60 bpm • Anion gap above 16 [Anion Gap = (Na+ + K+) – (Cl- + HCO3-)]",
-          "fuente": "JBDS CAD 2023",
-          "anio": "2023",
-          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
-          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
-          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag24_gravedad_pulso_y_anion_gap.png"
+          "titulo": "UCI",
+          "paginas": "1264",
+          "texto": "or with altered mental status (1,3,12,124) should be treated in the ICU, as outlined in Table 2.",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1264_uci.png"
         }
       ]
     },
     "diag_ehh_confirmar": {
       "tipo": "informativo",
       "titulo": "Estado hiperosmolar hiperglucémico",
-      "texto": "- Glucosa **≥600 mg/dL**, osmolalidad efectiva **>300 mOsm/kg** (2 × Na + glucosa/18), sin cetonemia ni acidosis importantes (calculadora).\n- Clínica: deshidratación marcada y alteración cognitiva; desencadenante infeccioso en el **30-60 %** (orina y neumonía).\n- Ingreso en UCI; HBPM profiláctica todo el ingreso salvo contraindicación.\n- Los pies, en riesgo de úlcera por presión: revisarlos al ingreso y cada día.",
+      "texto": "- Osmolalidad efectiva = 2 × Na + glucosa/18 (calculadora); la urea no cuenta.\n- Clínica: deshidratación marcada y alteración cognitiva; desencadenante infeccioso en el **30-60 %** (orina y neumonía).\n- Ingreso en UCI; HBPM (heparina de bajo peso molecular) profiláctica todo el ingreso salvo contraindicación.\n- Pies en riesgo de úlcera por presión: revisarlos al ingreso y cada día.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -629,13 +711,12 @@
           "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
           "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag3_urea_osmol_ineficaz.png"
         }
-      ],
-      "nota_adicional": "La urea cuenta en la osmolalidad total pero no es un osmol eficaz: para la tonicidad, la efectiva."
+      ]
     },
     "diag_mixta": {
       "tipo": "informativo",
       "titulo": "CAD-EHH mixta",
-      "texto": "- Criterios de CAD y de EHH a la vez: más de un tercio de las crisis.\n- Insulina IV a **0,1 U/kg/h** (como en la CAD), con los líquidos y los ritmos de bajada de osmolalidad del EHH.\n- Más mortalidad que la CAD o el EHH aislados: UCI.",
+      "texto": "- Insulina IV a **0,1 U/kg/h** desde el inicio, como en la CAD.\n- Líquidos: balance positivo de **3-6 L** en las primeras **12 h** y el resto en las 12 h siguientes (JBDS).\n- Más mortalidad que la CAD o el EHH aislados; bajar la osmolalidad **3-8 mOsm/kg/h**.",
       "enlaces": [
         {
           "texto": "Ir al tratamiento",
@@ -656,16 +737,6 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1263_solapamiento_cad_y_ehh.png"
-        },
-        {
-          "titulo": "Mixta: 0,1 U/kg/h",
-          "paginas": "1266",
-          "texto": "which represents mixed DKA/HHS, then a ﬁxed- rate intravenous insulin infusion should be started at 0.1 units/kg/h (117).",
-          "fuente": "ADA 2024",
-          "anio": "2024",
-          "url": "https://doi.org/10.2337/dci24-0032",
-          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
-          "imagen_evidencia": "evidencia_chh_ada_2024_pag1266_mixta_0_1_u_kg_h.png"
         },
         {
           "titulo": "Sodio y osmolalidad: ritmo",
@@ -696,6 +767,26 @@
           "url": "https://doi.org/10.1111/dme.15005",
           "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
           "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag5_mixta_criterios_jbds.png"
+        },
+        {
+          "titulo": "Cetonemia, pH o bicarbonato: mixta",
+          "paginas": "1266",
+          "texto": "pH <7.30, or bicarbonate <18 mmol/L), which represents mixed DKA/HHS, then a ﬁxed- rate intravenous insulin infusion should be started at 0.1 units/kg/h",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1266_cetonemia_ph_o_bicarbonato_mix.png"
+        },
+        {
+          "titulo": "Mixta: líquidos 3-6 L en 12 h",
+          "paginas": "5 de 12",
+          "texto": "aim to achieve a positive balance of 3–­6 L during the first 12 h and the remaining replacement of estimated fluid loss during the following 12 h",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag5_mixta_liquidos_3_6_l_en_12_h.png"
         }
       ],
       "farmacos": [
@@ -718,7 +809,7 @@
       "texto": "- Cetosis de ayuno: ingesta **<500 kcal/día**, con insulina baja.\n- Cetoacidosis alcohólica: consumo crónico con atracón reciente, vómitos y ayuno; con o sin hiperglucemia.\n- Cetosis del embarazo e hiperémesis gravídica.\n- El anion gap no es criterio de primera línea; sirve si no hay cetonas en sangre (**>12** = acidosis con anion gap elevado).",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
-        "etiqueta": "Osmolalidad, sodio corregido y anion gap",
+        "etiqueta": "Osmolalidad y sodio corregido",
         "ramificar": false
       },
       "referencias": [
@@ -777,7 +868,7 @@
     "enlace_tratamiento": {
       "tipo": "informativo",
       "titulo": "CAD leve o moderada",
-      "texto": "- Urgencias o unidad de intermedios, con vigilancia de enfermería estrecha.\n- Leve o moderada sin complicaciones: el análogo rápido subcutáneo es una alternativa a la perfusión IV (dosis abajo).\n- Glucemia capilar cada **1-2 h**; iones, fósforo, creatinina, β-hidroxibutirato y pH venoso cada **4 h**.",
+      "texto": "- Leve: planta u observación; moderada: intermedios o urgencias, con vigilancia de enfermería estrecha.\n- Leve o moderada sin complicaciones: el análogo rápido subcutáneo es una alternativa a la perfusión IV (dosis abajo).\n- Glucemia capilar cada **1-2 h**; iones, fósforo, creatinina, β-hidroxibutirato y pH venoso cada **4 h**.",
       "farmacos": [
         {
           "nombre": "Análogo de insulina rápida SC (bolo)",
@@ -878,16 +969,15 @@
     "trat_liquidos": {
       "tipo": "pregunta",
       "titulo": "Líquidos",
-      "texto": "- Hipovolemia grave: suero salino 0,9 % o cristaloide a **1 L/h**; shock cardiogénico: monitorización y vasopresores.\n- Sin compromiso renal ni cardiaco: **500-1.000 mL/h** las primeras **2-4 h**; reponer el **50 %** del déficit en **8-12 h** y el resto en **24-48 h**.\n- Anciano, embarazo, insuficiencia cardiaca o renal: bolos de **250 mL** y revaloración frecuente.\n- El cristaloide balanceado (Ringer lactato) resuelve antes la CAD que el salino 0,9 %.",
+      "texto": "- Hipovolemia grave: suero salino 0,9 % o cristaloide a **1 L/h**; compromiso cardiaco: monitorización y vasopresores.\n- Sin compromiso renal ni cardiaco: **500-1.000 mL/h** las primeras **2-4 h**; reponer el **50 %** del déficit en **8-12 h** y el resto en **24-48 h**.\n- Anciano, insuficiencia cardiaca o ERC terminal en diálisis: bolos de **250 mL** y revaloración frecuente; embarazo o nefropatía: precaución.\n- El cristaloide balanceado (Ringer lactato) resuelve antes la CAD que el salino 0,9 %.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
         "ramificar": false
       },
-      "pie_nodo": "¿Potasio sérico antes de la insulina?",
       "opciones": [
         {
-          "texto": "Ver el potasio",
+          "texto": "Siguiente: potasio antes de la insulina",
           "siguiente_nodo": "trat_prioridad_k"
         }
       ],
@@ -1008,6 +1098,16 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_glucosa_baja_con_liquidos.png"
+        },
+        {
+          "titulo": "Bolos: quién",
+          "paginas": "1265",
+          "texto": "Older adults with DKA or HHS, as well as individuals with heart failure or end-stage kidney disease on dialysis, should be treated cautiously",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_bolos_quien.png"
         }
       ],
       "nota_adicional": "Sólo con líquidos, sin insulina, la glucosa ya baja **50-70 mg/dL/h**; más en el EHH.",
@@ -1019,7 +1119,7 @@
           "paginas": "1264-1265"
         },
         {
-          "nombre": "Bolos (anciano, IC, ERC, embarazo)",
+          "nombre": "Bolos (anciano, insuficiencia cardiaca, ERC en diálisis)",
           "dosis": "**250 mL**",
           "pauta": "Y revaloración hemodinámica frecuente.",
           "paginas": "1265"
@@ -1030,7 +1130,7 @@
       "tipo": "pregunta",
       "titulo": "Potasio antes de la insulina",
       "texto": "- Medir el potasio antes de empezar la insulina y asegurar diuresis (**~0,5 mL/kg/h**).\n- El potasio corporal total está bajo aunque el sérico sea normal o alto: la insulina lo hace caer.\n- Potasio a las **2 h** de empezar la insulina y después cada **4 h** hasta la resolución.",
-      "pie_nodo": "¿Potasio sérico?",
+      "pie_nodo": "¿Potasio sérico (mmol/L)?",
       "opciones": [
         {
           "texto": "<3,5 mmol/L: reponer y retrasar la insulina",
@@ -1101,15 +1201,15 @@
     },
     "trat_k_bajo": {
       "estilo": "advertencia",
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Potasio <3,5: retrasar la insulina",
-      "texto": "- No empezar la insulina hasta potasio **>3,5 mmol/L**: riesgo de arritmia y debilidad respiratoria.\n- Cloruro potásico **10-20 mmol/h** hasta potasio **>3,5**; más rápido, sólo por vía central.\n- Seguir con los líquidos; potasio cada hora mientras esté fuera de rango.",
+      "texto": "- No empezar la insulina hasta potasio **>3,5 mmol/L**.\n- Cloruro potásico **10-20 mmol/h** hasta potasio **>3,5**; más rápido, sólo por vía central.\n- Seguir con los líquidos; potasio cada hora mientras esté fuera de rango.",
       "farmacos": [
         {
           "nombre": "Cloruro potásico IV",
           "dosis": "**10-20 mmol/h**",
           "pauta": "Hasta potasio **>3,5 mmol/L**; después, empezar la insulina.",
-          "nota": "Más de 20 mmol/h, por vía central.",
+          "nota": "Reponer más rápido exige vía central.",
           "paginas": "1264, 1266"
         }
       ],
@@ -1117,13 +1217,6 @@
         {
           "titulo": "Insulina con potasio <3,5",
           "texto": "Puede causar arritmias mortales y fallo de la musculatura respiratoria: reponer primero."
-        }
-      ],
-      "enlaces": [
-        {
-          "texto": "Potasio >3,5: empezar la insulina",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_insulina_fase1"
         }
       ],
       "referencias": [
@@ -1174,7 +1267,7 @@
           "titulo": "Hipopotasemia en el ECG",
           "descripcion": "Ondas U y descenso del ST por hipopotasemia.",
           "info": "{#38A9E8:Flechas azules} del original: ondas U; {#3FBF5F:flecha verde}: descenso del ST. Con potasio **<3,5 mmol/L** se repone a **10-20 mmol/h** y se retrasa la insulina hasta superar **3,5**.",
-          "en_texto": "riesgo de arritmia",
+          "en_texto": "fuera de rango",
           "referencias": [
             {
               "titulo": "Fig. 4: K <3,5",
@@ -1198,13 +1291,30 @@
             }
           ]
         }
+      ],
+      "pie_nodo": "¿Potasio ya **>3,5 mmol/L**?",
+      "opciones": [
+        {
+          "texto": "Sí: empezar la insulina",
+          "siguiente_nodo": "trat_insulina_fase1"
+        }
       ]
     },
     "trat_insulina_fase1": {
       "tipo": "pregunta",
-      "titulo": "Insulina y potasio (K 3,5-5,0)",
-      "texto": "- CAD moderada o grave y mixta: insulina regular IV a **0,1 U/kg/h**; bolo de **0,1 U/kg** sólo si se retrasa la perfusión.\n- EHH: **0,05 U/kg/h** IV.\n- Potasio en cada litro de suero para mantenerlo en **4-5 mmol/L**.\n- Seguir la insulina basal habitual; si no la usaba, empezar basal SC **0,15-0,3 U/kg**.",
+      "titulo": "Insulina IV con potasio (K 3,5-5,0)",
+      "texto": "- CAD y mixta: insulina regular IV a **0,1 U/kg/h**; bolo de **0,1 U/kg** sólo si se retrasa la perfusión.\n- EHH sin cetonemia (β-hidroxibutirato **<3,0**, pH **≥7,3**, bicarbonato **≥18**): **0,05 U/kg/h** IV; si no, **0,1** como la mixta.\n- Potasio en cada litro de suero para mantenerlo en **4-5 mmol/L**.\n- Seguir la basal habitual; si no la usaba, basal SC **0,15-0,3 U/kg** es opcional (resuelve antes, más hipoglucemia e hipopotasemia).",
       "farmacos": [
+        {
+          "nombre": "Insulina regular IV (bolo)",
+          "dosis": "**0,1 U/kg** IV",
+          "pauta": "Sólo si se retrasa la perfusión.",
+          "paginas": "1265",
+          "por_kg": {
+            "cantidad": 0.1,
+            "unidad": "U"
+          }
+        },
         {
           "nombre": "Insulina regular IV (CAD, mixta)",
           "dosis": "**0,1 U/kg/h**",
@@ -1219,7 +1329,7 @@
         {
           "nombre": "Insulina regular IV (EHH)",
           "dosis": "**0,05 U/kg/h**",
-          "pauta": "Perfusión a ritmo fijo.",
+          "pauta": "Sólo si β-hidroxibutirato <3,0, pH ≥7,3 y bicarbonato ≥18.",
           "paginas": "1264, 1266",
           "por_kg": {
             "cantidad": 0.05,
@@ -1236,13 +1346,14 @@
         {
           "nombre": "Insulina basal SC",
           "dosis": "**0,15-0,3 U/kg**",
-          "pauta": "Junto a la perfusión, si no la usaba.",
+          "pauta": "Opcional, junto a la perfusión, si no la usaba.",
           "paginas": "1265",
           "por_kg": {
             "desde": 0.15,
             "hasta": 0.3,
             "unidad": "U"
-          }
+          },
+          "nota": "Riesgo de hipoglucemia e hipopotasemia."
         }
       ],
       "pie_nodo": "¿Glucosa por debajo de 250 mg/dL?",
@@ -1286,6 +1397,22 @@
               "paginas": "7 de 12"
             }
           ]
+        },
+        {
+          "asunto": "Bicarbonato en el EHH (dentro de la ADA)",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "Criterio diagnóstico: bicarbonato **≥15 mmol/L** (figura 2B).",
+              "paginas": "1262"
+            },
+            {
+              "fuente": "ADA 2024",
+              "dice": "0,05 U/kg/h sólo con bicarbonato **≥18**; con **<18**, tratar como mixta (0,1 U/kg/h).",
+              "paginas": "1266"
+            }
+          ],
+          "nota": "El algoritmo sigue la regla del tratamiento: bicarbonato 15-18 recibe 0,1 U/kg/h."
         }
       ],
       "referencias": [
@@ -1320,16 +1447,6 @@
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1264_fig_4_ehh_0_05_u_kg_h.png"
         },
         {
-          "titulo": "Mixta: 0,1 U/kg/h",
-          "paginas": "1266",
-          "texto": "which represents mixed DKA/HHS, then a ﬁxed- rate intravenous insulin infusion should be started at 0.1 units/kg/h (117).",
-          "fuente": "ADA 2024",
-          "anio": "2024",
-          "url": "https://doi.org/10.2337/dci24-0032",
-          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
-          "imagen_evidencia": "evidencia_chh_ada_2024_pag1266_mixta_0_1_u_kg_h.png"
-        },
-        {
           "titulo": "Fig. 4: K 3,5-5,0",
           "paginas": "1264",
           "texto": "Give 10–20 mmol/L K+ in each liter of i.v. ﬂuid as needed to keep serum K+ between 4 and 5 mmol/L",
@@ -1360,16 +1477,6 @@
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_habitual.png"
         },
         {
-          "titulo": "Basal 0,15-0,3 U/kg",
-          "paginas": "1265",
-          "texto": "Long-acting basal insu- lin should be initiated subcutaneously at 0.15–0.3 units/kg.",
-          "fuente": "ADA 2024",
-          "anio": "2024",
-          "url": "https://doi.org/10.2337/dci24-0032",
-          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
-          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_0_15_0_3_u_kg.png"
-        },
-        {
           "titulo": "Potasio JBDS",
           "paginas": "27",
           "texto": "Over 5.5 Nil 3.5-5.5 40",
@@ -1390,34 +1497,57 @@
           "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag7_ehh_insulina_cuando_la_glucosa.png"
         },
         {
-          "titulo": "Revisar la bomba",
-          "paginas": "9",
-          "texto": "If ketones and glucose are not falling as expected always check the insulin infusion pump is working and connected and that the correct insulin residual volume is present",
-          "fuente": "JBDS CAD 2023",
-          "anio": "2023",
-          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
-          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
-          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag9_revisar_la_bomba.png"
-        }
-      ],
-      "nota_adicional": "Si las cetonas y la glucosa no bajan, comprobar antes que la bomba funciona, está conectada y tiene insulina."
-    },
-    "trat_insulina_directa": {
-      "tipo": "informativo",
-      "titulo": "Potasio >5,0: insulina sin potasio",
-      "texto": "- Empezar la insulina (dosis según la crisis) sin añadir potasio.\n- Potasio cada **2 h**: en cuanto baje de **5,0**, añadirlo al suero.\n- Con insuficiencia renal aguda la hiperpotasemia dura más: vigilar más.",
-      "enlaces": [
-        {
-          "texto": "Dosis de insulina y objetivos",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_insulina_fase1"
+          "titulo": "Cetonemia, pH o bicarbonato: mixta",
+          "paginas": "1266",
+          "texto": "pH <7.30, or bicarbonate <18 mmol/L), which represents mixed DKA/HHS, then a ﬁxed- rate intravenous insulin infusion should be started at 0.1 units/kg/h",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1266_cetonemia_ph_o_bicarbonato_mix.png"
         },
         {
-          "texto": "Glucosa <250: dextrosa",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_ajuste_dextrosa"
+          "titulo": "Basal junto a la perfusión: debate",
+          "paginas": "1265",
+          "texto": "insulin while on ﬁxed-rate intravenous insulin infusion is advocated by many clinicians but avoided by others because of the risk of hypoglycemia (134) or hypokale- mia (135).",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_junto_a_la_perfusion_deb.png"
+        },
+        {
+          "titulo": "Basal 0,15-0,3 U/kg: resuelve antes",
+          "paginas": "1265",
+          "texto": "the coadministration of a low dose (0.15–0.3 units/kg) of basal insulin dur- ing insulin infusion reduces time to DKA resolution",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_basal_0_15_0_3_u_kg_resuelve_a.png"
+        },
+        {
+          "titulo": "EHH: colapso con insulina precoz",
+          "paginas": "7 de 12",
+          "texto": "Insulin treatment prior to adequate fluid replacement may result in cardiovascular collapse because water will move out of the intravascu- lar space",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag7_ehh_colapso_con_insulina_preco.png"
         }
       ],
+      "alertas": [
+        {
+          "titulo": "EHH: líquidos antes que insulina",
+          "texto": "Insulina antes de reponer el volumen puede causar colapso cardiovascular."
+        }
+      ]
+    },
+    "trat_insulina_directa": {
+      "tipo": "pregunta",
+      "titulo": "Potasio >5,0: insulina sin potasio",
+      "texto": "- Empezar la insulina IV sin añadir potasio.\n- Potasio cada **2 h**: en cuanto baje de **5,0**, añadirlo al suero.\n- Con lesión renal aguda la hiperpotasemia dura más: potasio cada **2 h** hasta normalizarlo.",
       "referencias": [
         {
           "titulo": "Fig. 4: K >5,0",
@@ -1438,6 +1568,26 @@
           "url": "https://doi.org/10.1111/dme.15005",
           "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
           "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag7_hiperpotasemia_con_fracaso_ren.png"
+        },
+        {
+          "titulo": "Insulina IV 0,1 U/kg/h",
+          "paginas": "1265",
+          "texto": "this should be done using a ﬁxed-rate intravenous insulin infusion started at 0.1 units/kg/h (1–3,12,132) or by a nurse- driven insulin infusion protocol",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_insulina_iv_0_1_u_kg_h.png"
+        },
+        {
+          "titulo": "Fig. 4: EHH, 0,05 U/kg/h",
+          "paginas": "1264",
+          "texto": "HHS i.v. insulin Start 0.05 units/kg/h short-acting insulin as ﬁxed-rate i.v. insulin infusion",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1264_fig_4_ehh_0_05_u_kg_h.png"
         }
       ],
       "media": [
@@ -1445,7 +1595,7 @@
           "recurso": "chh_ecg_hiperpotasemia_real.jpg",
           "titulo": "Hiperpotasemia en el ECG",
           "descripcion": "Ondas T altas y picudas en V2-V3 por hiperpotasemia.",
-          "info": "{#FDE047:Elipse amarilla} y rectángulo rojo del original: ondas T altas, estrechas y picudas en V2-V3. Con potasio **>5,0 mmol/L** se empieza la insulina sin añadir potasio y se mide cada **2 h**.",
+          "info": "{#FDE047:Elipse amarilla}: ondas T altas, estrechas y picudas en V2 (también en V3). Con potasio **>5,0 mmol/L**, insulina sin añadir potasio y potasio cada **2 h**.",
           "en_texto": "sin añadir potasio",
           "referencias": [
             {
@@ -1460,12 +1610,47 @@
             }
           ]
         }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Insulina regular IV (CAD, mixta)",
+          "dosis": "**0,1 U/kg/h**",
+          "pauta": "Perfusión a ritmo fijo.",
+          "paginas": "1264-1265",
+          "por_kg": {
+            "cantidad": 0.1,
+            "unidad": "U",
+            "periodo": "hora"
+          }
+        },
+        {
+          "nombre": "Insulina regular IV (EHH)",
+          "dosis": "**0,05 U/kg/h**",
+          "pauta": "Perfusión a ritmo fijo.",
+          "paginas": "1264, 1266",
+          "por_kg": {
+            "cantidad": 0.05,
+            "unidad": "U",
+            "periodo": "hora"
+          }
+        }
+      ],
+      "pie_nodo": "¿Glucosa por debajo de 250 mg/dL?",
+      "opciones": [
+        {
+          "texto": "Glucosa <250 mg/dL: añadir dextrosa",
+          "siguiente_nodo": "trat_ajuste_dextrosa"
+        },
+        {
+          "texto": "Aún no: vigilar el ritmo",
+          "siguiente_nodo": "trat_monitorizacion"
+        }
       ]
     },
     "trat_monitorizacion": {
       "tipo": "informativo",
       "titulo": "Vigilar el ritmo de respuesta",
-      "texto": "- CAD: cetonas bajan **≥0,5 mmol/L/h**; sin cetonas, bicarbonato sube **≥3 mmol/L/h** y glucosa baja **≥54 mg/dL/h** (3 mmol/L/h).\n- Si no: subir la insulina **1 U/h** cada hora y revisar la bomba y la vía.\n- EHH: glucosa baja **≤90-120 mg/dL/h**, sodio **≤10 mmol/L en 24 h**, osmolalidad **3-8 mOsm/kg/h**.\n- El sodio sube al bajar la glucosa (**1,6** por cada **100 mg/dL**): no indica salino hipotónico por sí solo.",
+      "texto": "- CAD fuera de meta: subir la insulina **1 U/h** cada hora; revisar bomba y vía.\n- El sodio sube **1,6 mmol/L** por cada **100 mg/dL** que baja la glucosa: por sí solo no indica salino hipotónico.\n- Salino 0,45 % sólo si la osmolalidad no baja pese a balance positivo e insulina.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/osmolalidad_sodio.json",
         "etiqueta": "Osmolalidad y sodio corregido",
@@ -1476,6 +1661,11 @@
           "texto": "Glucosa <250: dextrosa",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "trat_ajuste_dextrosa"
+        },
+        {
+          "texto": "Fósforo <1,0 con debilidad: fosfato",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_bicarbonato_fosfato"
         }
       ],
       "referencias": [
@@ -1538,6 +1728,46 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_salino_0_45_solo_si_no_baja_la.png"
+        },
+        {
+          "titulo": "Revisar la bomba",
+          "paginas": "9",
+          "texto": "If ketones and glucose are not falling as expected always check the insulin infusion pump is working and connected and that the correct insulin residual volume is present",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag9_revisar_la_bomba.png"
+        },
+        {
+          "titulo": "Glucosa 3 mmol/L/h",
+          "paginas": "28",
+          "texto": "bicarbonate should rise by 3.0 mmol/L/hr and blood glucose should fall by 3.0 mmol/L/hr",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag28_glucosa_3_mmol_l_h.png"
+        },
+        {
+          "titulo": "JBDS: 2,4 por cada 5,5",
+          "paginas": "7 de 12",
+          "texto": "a fall in blood glucose of 5.5 mmol/L will result in a 2.4 mmol/L rise in sodium).",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag7_jbds_2_4_por_cada_5_5.png"
+        },
+        {
+          "titulo": "JBDS: glucosa ≤5 mmol/L/h",
+          "paginas": "7 de 12",
+          "texto": "the plasma glucose should ideally fall by no more than 5 mmol/L/h.",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag7_jbds_glucosa_5_mmol_l_h.png"
         }
       ],
       "farmacos": [
@@ -1547,12 +1777,80 @@
           "pauta": "Si las cetonas no bajan ≥0,5 mmol/L/h (o el bicarbonato no sube ≥3).",
           "paginas": "29"
         }
+      ],
+      "tabla": {
+        "titulo": "Ritmo de respuesta",
+        "columnas": [
+          "Medida",
+          "CAD",
+          "EHH"
+        ],
+        "filas": [
+          [
+            "Cetonas",
+            "baja **≥0,5 mmol/L/h**",
+            "—"
+          ],
+          [
+            "Sin cetonas: bicarbonato",
+            "sube **≥3 mmol/L/h**",
+            "—"
+          ],
+          [
+            "Glucosa",
+            "baja **≥54 mg/dL/h**",
+            "baja **≤90-120 mg/dL/h**"
+          ],
+          [
+            "Osmolalidad",
+            "—",
+            "baja **3-8 mOsm/kg/h**"
+          ],
+          [
+            "Sodio",
+            "—",
+            "**≤10 mmol/L** en 24 h"
+          ]
+        ]
+      },
+      "nota_adicional": "Si las cetonas y la glucosa no bajan, comprobar antes que la bomba funciona, está conectada y tiene insulina.",
+      "discrepancias": [
+        {
+          "asunto": "Subida del sodio al bajar la glucosa",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "**1,6 mmol/L** por cada 100 mg/dL.",
+              "paginas": "1265"
+            },
+            {
+              "fuente": "JBDS EHH 2023",
+              "dice": "**2,4 mmol/L** por cada 5,5 mmol/L (~100 mg/dL); si sube mucho más, faltan líquidos.",
+              "paginas": "7 de 12"
+            }
+          ]
+        },
+        {
+          "asunto": "Bajada máxima de glucosa en el EHH",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "**≤90-120 mg/dL/h**.",
+              "paginas": "1265"
+            },
+            {
+              "fuente": "JBDS EHH 2023",
+              "dice": "**≤5 mmol/L/h** (~90 mg/dL/h).",
+              "paginas": "7 de 12"
+            }
+          ]
+        }
       ]
     },
     "trat_ajuste_dextrosa": {
       "tipo": "pregunta",
       "titulo": "Glucosa <250 mg/dL: dextrosa",
-      "texto": "- Añadir dextrosa **5-10 %** al salino y bajar la insulina a **0,05 U/kg/h** (en la leve SC, **0,1 U/kg cada 2 h**).\n- Objetivo hasta la resolución: CAD **150-200 mg/dL**; EHH **200-250 mg/dL**.\n- CAD euglucémica: dextrosa desde el inicio de la insulina.\n- Analítica (iones, función renal, pH venoso, osmolalidad y glucosa) cada **2-4 h** hasta estabilizar.",
+      "texto": "- Añadir dextrosa **5-10 %** al salino y bajar la insulina a **0,05 U/kg/h** (en la leve SC, **0,05 U/kg/h** o **0,1 U/kg cada 2 h**).\n- Objetivo hasta la resolución: CAD **150-200 mg/dL**; EHH **200-250 mg/dL**.\n- CAD euglucémica: dextrosa desde el inicio de la insulina.\n- Analítica (iones, función renal, pH venoso, osmolalidad y glucosa) cada **2-4 h** hasta estabilizar.",
       "farmacos": [
         {
           "nombre": "Insulina regular IV",
@@ -1566,10 +1864,10 @@
           }
         }
       ],
-      "pie_nodo": "¿Cumple los criterios de resolución?",
+      "pie_nodo": "¿Resuelta: cetonas **<0,6 mmol/L** y pH **≥7,3** (CAD) u osmolalidad **<300 mOsm/kg** (EHH)?",
       "opciones": [
         {
-          "texto": "Sí: resolución",
+          "texto": "Resuelta: pasar a insulina SC",
           "siguiente_nodo": "nodo_resolucion"
         },
         {
@@ -1647,6 +1945,16 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_glucosa_250_en_4_8_h_antes_que.png"
+        },
+        {
+          "titulo": "JBDS: glucosa 10 % a 125 mL/h",
+          "paginas": "29",
+          "texto": "If the glucose falls below 14.0 mmol/L, commence 10% glucose given at 125 ml/ hour alongside the 0.9% sodium chloride solution.",
+          "fuente": "JBDS CAD 2023",
+          "anio": "2023",
+          "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
+          "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
+          "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag29_jbds_glucosa_10_a_125_ml_h.png"
         }
       ],
       "nota_adicional": "Mucho salino 0,9 % da acidosis hiperclorémica: el bicarbonato sigue bajo aunque las cetonas ya se hayan ido.",
@@ -1697,6 +2005,23 @@
               "url": "https://doi.org/10.2337/dci24-0032",
               "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/crisishiperglicemica/evidencia_chh_ada_2024_pag1264_fig_4_resolucion_de_la_cad.png"
+            }
+          ]
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Cuándo y cómo añadir glucosa",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "Glucosa **<250 mg/dL**: dextrosa **5-10 %** en el salino e insulina a **0,05 U/kg/h**.",
+              "paginas": "1265"
+            },
+            {
+              "fuente": "JBDS CAD 2023",
+              "dice": "Glucosa **<14 mmol/L** (250 mg/dL): glucosa **10 % a 125 mL/h** junto al salino 0,9 %; valorar bajar la insulina a 0,05.",
+              "paginas": "29"
             }
           ]
         }
@@ -1781,6 +2106,22 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1267_fosfato_20_30_mmol.png"
+        },
+        {
+          "titulo": "Fosfato: hipocalcemia",
+          "paginas": "1267",
+          "texto": "excessively rapid phosphate replacement may precipitate hypocalcemia (152).",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1267_fosfato_hipocalcemia.png"
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Fosfato rápido",
+          "texto": "Reponerlo demasiado deprisa puede causar hipocalcemia."
         }
       ]
     },
@@ -1791,14 +2132,6 @@
         {
           "texto": "Criterios de resolución",
           "siguiente_nodo": "trat_resolucion"
-        },
-        {
-          "texto": "Paso a insulina subcutánea",
-          "siguiente_nodo": "seg_transicion"
-        },
-        {
-          "texto": "Alta y prevención",
-          "siguiente_nodo": "seg_alta"
         }
       ]
     },
@@ -1807,11 +2140,15 @@
       "tipo": "pregunta",
       "titulo": "Criterios de resolución",
       "texto": "- CAD: cetonas **<0,6 mmol/L** y pH venoso **≥7,3** o bicarbonato **≥18 mmol/L**.\n- EHH: osmolalidad **<300 mOsm/kg**, diuresis **>0,5 mL/kg/h**, mejoría cognitiva y glucosa **<250 mg/dL**.\n- No usar el anion gap ni las cetonas en orina: la acidosis hiperclorémica y el acetoacetato confunden.",
-      "pie_nodo": "¿Resuelta y puede comer?",
+      "pie_nodo": "¿Cumple todos los criterios de su crisis?",
       "opciones": [
         {
           "texto": "Sí: pasar a insulina SC",
           "siguiente_nodo": "seg_transicion"
+        },
+        {
+          "texto": "No: seguir la perfusión IV",
+          "siguiente_nodo": "trat_monitorizacion"
         }
       ],
       "discrepancias": [
@@ -1827,6 +2164,21 @@
               "fuente": "JBDS CAD 2023",
               "dice": "Cetonas **<0,6** y pH **>7,3**; no usar el bicarbonato (acidosis hiperclorémica).",
               "paginas": "30"
+            }
+          ]
+        },
+        {
+          "asunto": "Resolución del EHH",
+          "posturas": [
+            {
+              "fuente": "ADA 2024",
+              "dice": "Osmolalidad **<300**, diuresis **>0,5 mL/kg/h**, mejoría cognitiva y glucosa **<250 mg/dL**.",
+              "paginas": "1267"
+            },
+            {
+              "fuente": "JBDS EHH 2023",
+              "dice": "Igual, pero cognición como antes del cuadro y glucosa **<15 mmol/L** (270 mg/dL).",
+              "paginas": "1 de 12"
             }
           ]
         }
@@ -1891,13 +2243,33 @@
           "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
           "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
           "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag30_jbds_resolucion.png"
+        },
+        {
+          "titulo": "Resolución CAD (texto)",
+          "paginas": "1267",
+          "texto": "Criteria for Resolution of DKA and HHS Resolution of DKA is deﬁned as achieving plasma ketone <0.6 mmol/L and venous pH",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1267_resolucion_cad_texto.png"
+        },
+        {
+          "titulo": "JBDS: resolución del EHH",
+          "paginas": "1 de 12",
+          "texto": "HHS resolution criteria are: osmolality <300 mOsm/kg, hypovolaemia corrected (urine output ≥0.5 ml/kg/h), cognitive status returned to pre-­morbid state and blood glucose <15 mmol/L.",
+          "fuente": "JBDS EHH 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1111/dme.15005",
+          "cita": "Mustafa OG, Haq M, Dashora U, et al. Management of Hyperosmolar Hyperglycaemic State (HHS) in Adults: An updated guideline from the Joint British Diabetes Societies (JBDS) for Inpatient Care Group. Diabet Med 2023;40(3):e15005.",
+          "imagen_evidencia": "evidencia_chh_jbds_ehh_2_pag1_jbds_resolucion_del_ehh.png"
         }
       ]
     },
     "seg_transicion": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Paso a insulina subcutánea",
-      "texto": "- Dosis total diaria: **0,5-0,6 U/kg/día** si no usaba insulina; **0,3 U/kg/día** con riesgo de hipoglucemia (fragilidad, ERC).\n- Basal-bolo: **40-60 %** como basal y el resto en 3 bolos de análogo rápido con las comidas.\n- Empezar la SC **1-2 h** antes de parar la perfusión IV.\n- En ayunas: basal más corrección con rápida cada **4-6 h**; iSGLT2, no durante el ingreso.",
+      "texto": "- Dosis total diaria: **0,5-0,6 U/kg/día** si no usaba insulina; **0,3 U/kg/día** con riesgo de hipoglucemia (fragilidad, enfermedad renal crónica).\n- Si ya usaba insulina: su dosis previa (cambiarla si estaba mal controlado); o la suma de la insulina IV de las **6 h** previas.\n- Basal-bolo: **40-60 %** como basal y el resto en 3 bolos de análogo rápido con las comidas.\n- En ayunas: basal y corrección con rápida cada **4-6 h**; iSGLT2, no durante el ingreso.",
       "farmacos": [
         {
           "nombre": "Insulina SC, dosis total diaria",
@@ -1916,7 +2288,7 @@
       "alertas": [
         {
           "titulo": "Solapar la insulina",
-          "texto": "Parar la perfusión IV sin basal SC previa (1-2 h antes) hace recaer la cetoacidosis."
+          "texto": "Basal SC **1-2 h** antes de parar la perfusión IV; sin solapar, la cetoacidosis recae."
         }
       ],
       "discrepancias": [
@@ -1996,13 +2368,40 @@
           "url": "https://abcd.care/joint-british-diabetes-societies-jbds-inpatient-care-group",
           "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
           "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag29_jbds_dm1_nueva_basal_0_25_u_kg.png"
+        },
+        {
+          "titulo": "Fig. 5: dosis previa",
+          "paginas": "1267",
+          "texto": "Consider TDD of insulin regimen prescribed for outpatient use prior to admission",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1267_fig_5_dosis_previa.png"
+        },
+        {
+          "titulo": "Fig. 5: suma de la insulina IV",
+          "paginas": "1267",
+          "texto": "Summation of stable hourly intravenous insulin requirements may help estimate TDD (e.g., the prior 6 h)",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1267_fig_5_suma_de_la_insulina_iv.png"
+        }
+      ],
+      "pie_nodo": "¿Preparado para el alta?",
+      "opciones": [
+        {
+          "texto": "Sí: antes del alta",
+          "siguiente_nodo": "seg_alta"
         }
       ]
     },
     "seg_alta": {
       "tipo": "informativo",
       "titulo": "Alta y prevención",
-      "texto": "- Educación antes del alta: técnica de insulina, medición de glucosa y cetonas, y pautas para los días de enfermedad.\n- Revisión en **2-4 semanas**: reduce la CAD recurrente.\n- Ofrecer monitorización continua de glucosa tras la CAD.\n- Cribar salud mental y barreras sociales: son las causas más fuertes de recurrencia.",
+      "texto": "- Ofrecer monitorización continua de glucosa tras la CAD.\n- Salud mental y barreras sociales: las causas más fuertes de recurrencia.",
       "referencias": [
         {
           "titulo": "Educación antes del alta",
@@ -2057,7 +2456,7 @@
         {
           "titulo": "Material y contacto al alta",
           "paginas": "1269",
-          "texto": "Upon discharge, patients should receive an adequate sup- ply of insulin and diabetes-durable med- ical equipment (i.e., glucose monitoring and insulin administration devices)",
+          "texto": "insulin administration devices) as well as contact information for health care professionals who can assist in managing future episodes",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
@@ -2067,7 +2466,7 @@
         {
           "titulo": "Días de enfermedad",
           "paginas": "1269",
-          "texto": "Thus, education on insulin administration and “sick day” advice” must be provided or reinforced.",
+          "texto": "Thus, education on insulin admin- istration and “sick day advice” must be provided or reinforced.",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
@@ -2105,7 +2504,7 @@
           "siguiente_nodo": "esp_embarazo"
         },
         {
-          "texto": "Anciano, ERC terminal o insuficiencia cardiaca",
+          "texto": "Anciano, enfermedad renal crónica o insuficiencia cardiaca",
           "siguiente_nodo": "esp_erc_anciano"
         }
       ]
@@ -2113,7 +2512,7 @@
     "comp_tratamiento": {
       "tipo": "informativo",
       "titulo": "Complicaciones del tratamiento",
-      "texto": "- Hipoglucemia (**<70 mg/dL** en el 16-28 %): glucemia cada **1-2 h** y dextrosa al bajar de **250**.\n- Hipopotasemia (**~55 %**): potasio cada **4 h** y reposición en el suero.\n- Trombosis, sobre todo en el EHH: HBPM profiláctica salvo sospecha de trombosis.\n- Edema cerebral (raro, **~30 %** de mortalidad): ante cambios de conciencia, imagen cerebral; manitol y ventilación.",
+      "texto": "- Hipoglucemia <70 mg/dL (16-28 %): glucemia cada **1-2 h**; dextrosa con glucosa **<250 mg/dL**.\n- Hipopotasemia (**~55 %**): potasio cada **4 h** y reposición en el suero.\n- Trombosis, sobre todo en el EHH: HBPM profiláctica salvo sospecha de trombosis.\n- Edema cerebral (raro; mortalidad **~30 %**): manitol y ventilación.",
       "tabla": {
         "titulo": "Complicaciones y cómo evitarlas (ADA 2024, tabla 3)",
         "columnas": [
@@ -2165,7 +2564,7 @@
         {
           "titulo": "Hipopotasemia 55 %",
           "paginas": "1268",
-          "texto": "Hypokalemia (<3.5 mmol/L) occurred in ~55% of DKA and 51% of HHS patients.",
+          "texto": "Hypokalemia (<3.5 mmol/L) occurred in 55% of DKA and 51% of HHS patients.",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
@@ -2195,7 +2594,7 @@
         {
           "titulo": "Edema cerebral: mortalidad",
           "paginas": "1268",
-          "texto": "Cerebral edema is a serious complication with a reported mortality of ~30% compared with those without edema.",
+          "texto": "Cerebral edema is a serious complication with a reported mortality of 30% compared with those without edema.",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
@@ -2235,7 +2634,7 @@
         {
           "titulo": "Desmielinización osmótica",
           "paginas": "1268",
-          "texto": "In patients with HHS, the fall in serum osmolality should be corrected with 0.9% saline solution. The fall in serum osmolality should be between 3.0 and 8.0 mOsm/kg/h.",
+          "texto": "In patients with HHS, the fall in serum osmolarity should be corrected with 0.9% saline solution. The fall in serum osmolality should be between 3.0 and 8.0 mOsm/kg/h.",
           "fuente": "ADA 2024",
           "anio": "2024",
           "url": "https://doi.org/10.2337/dci24-0032",
@@ -2264,13 +2663,13 @@
           "recurso": "chh_edema_cerebral_tc_real.jpg",
           "titulo": "Edema cerebral en la CAD del adulto",
           "descripcion": "TC sin contraste: cerebro hinchado, surcos borrados y ventrículos en hendidura.",
-          "info": "{#E5322D:Flechas rojas} del original: pérdida de la diferenciación gris-blanca, surcos borrados y ventrículos estrechos en un adulto con CAD grave. Es raro, pero su mortalidad ronda el **30 %**: ante un cambio de conciencia, imagen cerebral.",
+          "info": "{#E5322D:Flechas rojas} del original: pérdida de la diferenciación gris-blanca, surcos borrados y ventrículos estrechos en un adulto con CAD grave. Es raro, pero su mortalidad ronda el **30 %**.",
           "en_texto": "Edema cerebral",
           "referencias": [
             {
               "titulo": "Edema cerebral: mortalidad",
               "paginas": "1268",
-              "texto": "Cerebral edema is a serious complication with a reported mortality of ~30% compared with those without edema.",
+              "texto": "Cerebral edema is a serious complication with a reported mortality of 30% compared with those without edema.",
               "fuente": "ADA 2024",
               "anio": "2024",
               "url": "https://doi.org/10.2337/dci24-0032",
@@ -2294,7 +2693,7 @@
     "esp_isglt2": {
       "tipo": "informativo",
       "titulo": "CAD euglucémica e iSGLT2",
-      "texto": "- Con iSGLT2 la CAD puede presentarse con glucosa casi normal (**<200 mg/dL**): medir cetonas aunque la glucosa no impresione.\n- Tratamiento como la CAD, con dextrosa **5-10 %** desde el inicio junto al salino.\n- Suspender el iSGLT2 al ingreso; no se recomienda en la DM1 ni reiniciarlo de rutina tras la CAD en la DM2.",
+      "texto": "- Con iSGLT2 la CAD puede presentarse con glucosa casi normal (**<200 mg/dL**): medir cetonas aunque la glucosa no impresione.\n- Tratamiento como la CAD; si es euglucémica (**<200 mg/dL**), dextrosa **5-10 %** desde el inicio junto al salino.\n- Suspender el iSGLT2 al ingreso.\n- Diabetes tipo 1: no usar iSGLT2. Tipo 2: no reiniciarlo de rutina tras la CAD.",
       "referencias": [
         {
           "titulo": "Tabla 4: casi normoglucemia",
@@ -2347,12 +2746,19 @@
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1260_isglt2_factores_de_riesgo.png"
         }
       ],
-      "nota_adicional": "Con iSGLT2 aumentan el riesgo las dietas muy bajas en hidratos, el ayuno prolongado, la deshidratación y el alcohol."
+      "nota_adicional": "Con iSGLT2 aumentan el riesgo las dietas muy bajas en hidratos, el ayuno prolongado, la deshidratación y el alcohol.",
+      "enlaces": [
+        {
+          "texto": "Ir al tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
+        }
+      ]
     },
     "esp_embarazo": {
       "tipo": "informativo",
       "titulo": "CAD en el embarazo",
-      "texto": "- Hasta el **2 %** de los embarazos con diabetes pregestacional; puede ser euglucémica (**<200 mg/dL**).\n- Riesgo materno-fetal alto: médico experto y obstetra de inmediato; atender en paritorio o alta dependencia.\n- Líquidos con precaución (riesgo de sobrecarga); insulina con el peso actual.",
+      "texto": "- Hasta el **2 %** de los embarazos con diabetes pregestacional; puede ser euglucémica (**<200 mg/dL**).\n- Riesgo materno-fetal alto: médico sénior y obstetra de inmediato; atender en paritorio, intermedios o UCI.\n- Líquidos con precaución (riesgo de sobrecarga); insulina con el peso actual.",
       "chips": [
         "Embarazo"
       ],
@@ -2417,12 +2823,19 @@
           "cita": "Joint British Diabetes Societies for Inpatient Care. The Management of Diabetic Ketoacidosis in Adults. JBDS 02, revised March 2023.",
           "imagen_evidencia": "evidencia_chh_jbds_cad_2_pag27_peso_actual_en_el_embarazo.png"
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "CAD euglucémica: dextrosa desde el inicio",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "esp_isglt2"
+        }
       ]
     },
     "esp_erc_anciano": {
       "tipo": "informativo",
-      "titulo": "Anciano, ERC terminal o insuficiencia cardiaca",
-      "texto": "- Bolos de **250 mL** de cristaloide y valoración hemodinámica frecuente: el protocolo estándar causa sobrecarga.\n- ERC terminal: más hiperglucemia, hiponatremia, osmolalidad e hiperpotasemia, y menos cetonas; potasio con cuidado.\n- Anciano frágil: más EHH y formas mixtas; buscar infarto, infección y fármacos.",
+      "titulo": "Anciano, enfermedad renal crónica terminal o insuficiencia cardiaca",
+      "texto": "- Bolos de **250 mL** y revaloración frecuente: el protocolo estándar sobrecarga.\n- ERC (enfermedad renal crónica) terminal: más hiperglucemia, hiponatremia, osmolalidad e hiperpotasemia, y menos cetonas; vigilar más la glucosa, las cetonas y el potasio.\n- Anciano frágil: más EHH y formas mixtas; buscar infarto, infección y fármacos.",
       "referencias": [
         {
           "titulo": "Bolos de 250 mL",
@@ -2473,6 +2886,26 @@
           "url": "https://doi.org/10.2337/dci24-0032",
           "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
           "imagen_evidencia": "evidencia_chh_ada_2024_pag1270_tabla_4_anciano.png"
+        },
+        {
+          "titulo": "Tabla 4: vigilancia en la ERC terminal",
+          "paginas": "1270",
+          "texto": "Closer glucose and ketone monitoring is necessary.",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1270_tabla_4_vigilancia_en_la_erc_t.png"
+        },
+        {
+          "titulo": "Bolos: quién",
+          "paginas": "1265",
+          "texto": "Older adults with DKA or HHS, as well as individuals with heart failure or end-stage kidney disease on dialysis, should be treated cautiously",
+          "fuente": "ADA 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.2337/dci24-0032",
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47(8):1257-1275.",
+          "imagen_evidencia": "evidencia_chh_ada_2024_pag1265_bolos_quien.png"
         }
       ],
       "farmacos": [
