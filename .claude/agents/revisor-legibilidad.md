@@ -26,7 +26,10 @@ como lo haría un usuario y revisa:
    intermedios o UCI» → «valorar el requerimiento de cuidados intermedios o
    de UCI»); «perfusión» para un fármaco (se dice «infusión»); glucosa,
    creatinina, urea, calcio, fósforo o magnesio en mmol/L en vez de mg/dL
-   (NORMA §4, «Unidades»).
+   (NORMA §4, «Unidades»); «salino» o «Ringer lactato» (se dice «solución
+   salina 0,9 %» y «lactato de Ringer»); viñetas con varios pasos seguidos
+   («…; después…») que deberían ir en subviñetas numeradas; viñetas sin
+   ninguna palabra clave en negrita, o con frases enteras en negrita.
 1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
    no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
    el título repite la pill en vez de decir la acción; el texto repite el

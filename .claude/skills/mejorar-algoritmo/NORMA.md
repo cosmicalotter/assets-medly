@@ -182,7 +182,9 @@ usan los laboratorios colombianos, aunque la guía use el SI:
 
 **Palabras fijas.** Un fármaco IV continuo es una **«infusión»** («infusión
 de insulina a **0,1 U/kg/h**»), nunca «perfusión» (que queda para el riego de
-un órgano: «perfusión renal»).
+un órgano: «perfusión renal»). Los sueros, con su nombre completo:
+**«solución salina 0,9 %»** (no «salino» ni «suero salino»), **«solución
+salina 0,45 %»** y **«lactato de Ringer»** (no «Ringer lactato»).
 
 ### Las piezas de un nodo y qué dice cada una
 
@@ -209,14 +211,40 @@ título no repite la pill y el texto no vuelve a decir el título.
 - **Sin límite fijo de viñetas**: las que hagan falta para que se entienda.
   Si un nodo crece tanto que mezcla dos decisiones, se parte; si es una lista
   de criterios, va a `checklist`; si es una tabla de dosis o cortes, a `tabla`.
-- `**` en dosis, umbrales, tiempos y metas.
+- **Negritas** en dosis, umbrales, tiempos y metas, y también en **las
+  palabras clave** de cada viñeta: la condición que decide («**hipovolemia
+  grave**», «**compromiso cardiaco**»), el fármaco o el suero («**lactato de
+  Ringer**»), el hallazgo o la población («**anciano**», «**embarazo**»).
+  Palabras o expresiones cortas, no frases enteras: una a tres por viñeta,
+  para que la vista salte de una a otra. La app las pinta en el color del
+  nodo.
+- **Subviñetas.** Una viñeta que junta varios pasos (simultáneos o
+  seguidos), o una condición con datos que dependen de ella, se parte en
+  subviñetas con dos espacios delante. Pasos en orden → numeradas (`  1.`,
+  `  2.`); datos en paralelo o un matiz de la viñeta de arriba → con punto
+  (`  - `). La viñeta que abre una sublista puede terminar en «:» y la app la
+  pinta entera como rótulo. Dos niveles como mucho. Ejemplo:
+
+  ```
+  - Si hay **hipovolemia grave** → **solución salina 0,9 %** o cristaloide a **1 L/h**.
+    - Si además hay **compromiso cardiaco**, monitorizar y valorar vasopresores.
+  - Si no hay **compromiso renal ni cardiaco**:
+    1. Poner **500-1.000 mL/h** las primeras **2-4 h**.
+    2. Después, reponer el **50 %** del déficit en **8-12 h** y el resto en **24-48 h**.
+  ```
+
+  Se usan mucho: toda viñeta con «; después…», «y además…» o dos acciones
+  seguidas es candidata.
 - **Rótulo de viñeta** («- CAD y mixta: …»): la app lo pinta en el color del
   nodo. Fuera de los paréntesis, hasta 8 palabras y sin comas ni puntos; lo que
   va entre paréntesis no cuenta, así que caben las condiciones: «- EHH sin
   cetonemia (β-hidroxibutirato **<3,0**, pH **≥7,3**, bicarbonato **≥18**):
   insulina a **0,05 U/kg/h**». Se usa para enumerar categorías, no en cada
   viñeta.
-- «→» sólo si aclara; mejor una frase con «si…, …».
+- **«→» para condición → acción** al principio de una viñeta («Si hay
+  **hipovolemia grave** → solución salina 0,9 % a **1 L/h**»): se lee de un
+  vistazo qué hacer en cada caso. No se encadenan flechas ni se usan como
+  abreviatura de un verbo en medio de la frase.
 - Lenguaje claro sin perder precisión: se explica el término difícil, no se
   sustituye por uno vago. Nada de «es importante destacar», «cabe mencionar»,
   «piedra angular» (lista en `galgo/estilo.py` de `galgo-empirica`).
@@ -275,8 +303,10 @@ título no repite la pill y el texto no vuelve a decir el título.
 - `burbujas` (globito al final de la frase): para el **porqué** que un
   residente curioso preguntaría y el texto no puede contestar sin alargarse.
   Título como pregunta o como dato («¿Por qué la urea no cuenta?»), 1-3
-  frases, con fuente. Si el dato cambia la conducta, no va en un globito: va
-  en el `texto`, la perla o la alerta.
+  frases, con fuente, y con **negritas** en las palabras clave del
+  mecanismo, que la app pinta en el color del nodo («La urea **atraviesa
+  libremente las membranas**…»). Si el dato cambia la conducta, no va en un
+  dato extra: va en el `texto`, la perla o la alerta.
 
 ### Texto del visor de imágenes (`info`)
 
