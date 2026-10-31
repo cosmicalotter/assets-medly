@@ -1,0 +1,110 @@
+{
+  "titulo": "Osmolalidad efectiva y sodio corregido",
+  "descripcion": "Calcula la osmolalidad sérica efectiva (2 × Na + glucosa) que define el estado hiperosmolar hiperglucémico (>300 mOsm/kg) y guía su corrección, la osmolalidad total (con la urea) y el sodio corregido por la glucosa, según el consenso ADA/EASD/JBDS/AACE/DTS 2024.",
+  "instrucciones": "Sodio y glucosa de la misma muestra. La urea sólo cuenta en la osmolalidad total; la urea no es un osmol eficaz. Repetir cada 2-4 h durante el tratamiento.",
+  "limitaciones": "Es una estimación: la osmolalidad medida puede diferir. El sodio corregido usa 1,6 mmol/L por cada 100 mg/dL de glucosa sobre 100.",
+  "tipoCalculo": "formula",
+  "formula": "2 * na + glu / 18",
+  "mostrarPuntaje": false,
+  "decimales": 0,
+  "prefijoResultado": "Osmolalidad efectiva",
+  "sufijoResultado": "mOsm/kg",
+  "referencias": [
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "Plasma glucose ≥600 mg/dL (33.3 mmol/L) Hyperosmolarity Calculated effective serum osmolality >300 mOsm/kg (calculated as [2xNa+ (mmol/L) + glucose (mmol/L)])",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1265",
+      "texto": "a reduction of 100 mg/dL [5.6 mmol/L] of glucose will result in a 1.6 mmol/L rise in sodium concentration",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1265",
+      "texto": "the rate of decline of serum sodium should not exceed 10 mmol/L in 24 h and the rate of fall in osmolality should be no greater than 3.0–8.0 mOsm/kg/h",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "na",
+          "tipo": "input_numero",
+          "label": "Sodio",
+          "unidad": "mmol/L",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "id": "glu",
+          "tipo": "input_numero",
+          "label": "Glucosa plasmática",
+          "unidad": "mg/dL",
+          "min": 10,
+          "max": 3000,
+          "unidades": [
+            {
+              "unidad": "mmol/L",
+              "factor": 18.016
+            }
+          ]
+        },
+        {
+          "id": "bun",
+          "tipo": "input_numero",
+          "label": "BUN (nitrógeno ureico)",
+          "unidad": "mg/dL",
+          "min": 1,
+          "max": 300,
+          "unidades": [
+            {
+              "unidad": "urea mmol/L",
+              "factor": 2.8
+            }
+          ],
+          "ayuda": "Para la osmolalidad total."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 300,
+      "categoria": "Sin hiperosmolalidad efectiva",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "No cumple el criterio de osmolalidad del EHH (>300 mOsm/kg). En el EHH, resolución con <300 mOsm/kg."
+    },
+    {
+      "min": 300.01,
+      "max": 999,
+      "categoria": "Hiperosmolalidad (criterio de EHH)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Osmolalidad efectiva >300 mOsm/kg. Bajarla 3-8 mOsm/kg/h y el sodio ≤10 mmol/L en 24 h para evitar complicaciones neurológicas."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "Sodio corregido",
+      "formula": "na + 1.6 * (glu - 100) / 100",
+      "sufijo": "mmol/L",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Osmolalidad total",
+      "formula": "2 * na + glu / 18 + bun / 2.8",
+      "sufijo": "mOsm/kg",
+      "decimales": 0
+    }
+  ]
+}

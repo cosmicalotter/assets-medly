@@ -1,0 +1,276 @@
+{
+  "titulo": "Crisis hiperglucémica: CAD, EHH o mixta (ADA 2024)",
+  "descripcion": "Aplica los criterios diagnósticos del consenso ADA/EASD/JBDS/AACE/DTS 2024 para decidir si un adulto con hiperglucemia o diabetes tiene cetoacidosis diabética (CAD), estado hiperosmolar hiperglucémico (EHH), una forma mixta o ninguna. La CAD exige los tres criterios (D, K y A) y el EHH los cuatro (glucosa, osmolalidad, sin cetonemia ni acidosis importantes).",
+  "instrucciones": "Usa gasometría venosa. La osmolalidad efectiva es 2 × Na + glucosa (mmol/L); calcúlala con la calculadora de osmolalidad. Con β-hidroxibutirato en sangre no hace falta la tira de orina.",
+  "limitaciones": "No gradúa la gravedad de la CAD (usa la calculadora de gravedad). La CAD euglucémica (glucosa <200 mg/dL) entra por el antecedente de diabetes. La tira de orina puede infraestimar las cetonas al inicio.",
+  "tipoCalculo": "reglas",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "Diabetes/hyperglycemia Glucose ≥200 mg/dL (11.1 mmol/L) OR prior history of diabetes Ketosis β-Hydroxybutyrate concentration ≥3.0 mmol/L OR urine ketone strip 2+ or greater",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "Metabolic Acidosis pH <7.3 and/or bicarbonate concentration <18 mmol/L",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "Plasma glucose ≥600 mg/dL (33.3 mmol/L) Hyperosmolarity Calculated effective serum osmolality >300 mOsm/kg (calculated as [2xNa+ (mmol/L) + glucose (mmol/L)])",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "β-Hydroxybutyrate concentration <3.0 mmol/L OR urine ketone strip less than 2+ Absence of acidosis pH ≥7.3 and bicarbonate concentration ≥15 mmol/L",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1263",
+      "texto": "Clinical overlap between DKA and HHS has been reported in more than one-third of people with hyperglycemic crises",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "diabetes_previa",
+          "tipo": "opciones",
+          "label": "Diabetes conocida",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "glu",
+          "tipo": "input_numero",
+          "label": "Glucosa plasmática",
+          "unidad": "mg/dL",
+          "min": 10,
+          "max": 3000,
+          "unidades": [
+            {
+              "unidad": "mmol/L",
+              "factor": 18.016
+            }
+          ]
+        },
+        {
+          "id": "bohb",
+          "tipo": "input_numero",
+          "label": "β-hidroxibutirato en sangre",
+          "unidad": "mmol/L",
+          "min": 0,
+          "max": 15,
+          "ayuda": "Venoso o capilar. Si no lo tienes, déjalo y responde la tira de orina."
+        },
+        {
+          "id": "tira",
+          "tipo": "opciones",
+          "label": "Cetonas en orina (tira)",
+          "ayuda": "Sólo si no hay β-hidroxibutirato en sangre.",
+          "opciones": [
+            {
+              "label": "Negativa o 1+",
+              "puntos": 0
+            },
+            {
+              "label": "2+ o más",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "tipo": "input_numero",
+          "label": "pH venoso",
+          "min": 6.5,
+          "max": 7.8
+        },
+        {
+          "id": "bic",
+          "tipo": "input_numero",
+          "label": "Bicarbonato",
+          "unidad": "mmol/L",
+          "min": 1,
+          "max": 45
+        },
+        {
+          "id": "osm",
+          "tipo": "input_numero",
+          "label": "Osmolalidad efectiva",
+          "unidad": "mOsm/kg",
+          "min": 200,
+          "max": 450,
+          "ayuda": "2 × Na + glucosa (mmol/L)."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "si": {
+        "todos": [
+          {
+            "alguno": [
+              {
+                "id": "glu",
+                "mayorIgual": 200
+              },
+              {
+                "id": "diabetes_previa",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "alguno": [
+              {
+                "id": "bohb",
+                "mayorIgual": 3
+              },
+              {
+                "id": "tira",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "alguno": [
+              {
+                "id": "ph",
+                "menor": 7.3
+              },
+              {
+                "id": "bic",
+                "menor": 18
+              }
+            ]
+          },
+          {
+            "id": "glu",
+            "mayorIgual": 600
+          },
+          {
+            "id": "osm",
+            "mayor": 300
+          }
+        ]
+      },
+      "categoria": "CAD-EHH mixta",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Criterios de CAD y de EHH a la vez. UCI. Insulina IV a 0,1 U/kg/h con líquidos y bajada de osmolalidad como en el EHH (3-8 mOsm/kg/h)."
+    },
+    {
+      "si": {
+        "todos": [
+          {
+            "alguno": [
+              {
+                "id": "glu",
+                "mayorIgual": 200
+              },
+              {
+                "id": "diabetes_previa",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "alguno": [
+              {
+                "id": "bohb",
+                "mayorIgual": 3
+              },
+              {
+                "id": "tira",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "alguno": [
+              {
+                "id": "ph",
+                "menor": 7.3
+              },
+              {
+                "id": "bic",
+                "menor": 18
+              }
+            ]
+          }
+        ]
+      },
+      "categoria": "Cetoacidosis diabética",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Cumple D, K y A. Valorar la gravedad (calculadora de gravedad de la CAD) para decidir el sitio de tratamiento."
+    },
+    {
+      "si": {
+        "todos": [
+          {
+            "id": "glu",
+            "mayorIgual": 600
+          },
+          {
+            "id": "osm",
+            "mayor": 300
+          },
+          {
+            "alguno": [
+              {
+                "id": "bohb",
+                "menor": 3
+              },
+              {
+                "id": "tira",
+                "igual": 0
+              }
+            ]
+          },
+          {
+            "id": "ph",
+            "mayorIgual": 7.3
+          },
+          {
+            "id": "bic",
+            "mayorIgual": 15
+          }
+        ]
+      },
+      "categoria": "Estado hiperosmolar hiperglucémico",
+      "color": "rojo",
+      "match_opcion_index": 1,
+      "approach": "UCI. Líquidos primero; insulina IV a 0,05 U/kg/h. Bajar la osmolalidad 3-8 mOsm/kg/h y el sodio ≤10 mmol/L en 24 h."
+    },
+    {
+      "categoria": "Ni CAD ni EHH",
+      "color": "amarillo",
+      "match_opcion_index": 3,
+      "approach": "Buscar otra causa: cetosis de ayuno, cetoacidosis alcohólica, cetosis del embarazo u otra acidosis con anion gap elevado."
+    }
+  ]
+}

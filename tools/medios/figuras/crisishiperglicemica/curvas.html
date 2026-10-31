@@ -1,0 +1,59 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Curso ilustrativo de la CAD con tratamiento: la glucosa llega a <250 mg/dL (4-8 h) antes de que se resuelva
+// la cetosis; por eso se añade dextrosa y se sigue con la insulina hasta cetonas <0,6 mmol/L (ADA 2024, JBDS 2023).
+const W = 668, H = 380, X0 = 52, X1 = 616, Y0 = 340, Y1 = 22, TMAX = 14;
+const x = (t) => X0 + (X1 - X0) * t / TMAX;
+const yg = (g) => Y0 - (Y0 - Y1) * g / 600;        // glucosa 0-600 mg/dL
+const yk = (k) => Y0 - (Y0 - Y1) * k / 6;          // cetonas 0-6 mmol/L
+const T250 = 250 / 60 + 0.2;                         // ~4,4 h
+const glu = (t) => t <= T250 ? 520 - 60 * t : 520 - 60 * T250 - (520 - 60 * T250 - 180) * suave(Math.min(1, (t - T250) / 1.6));
+const cet = (t) => Math.max(0.3, 5.5 - 0.5 * t);
+const TRES = (5.5 - 0.6) / 0.5;                      // cetonas <0,6 a las ~9,8 h
+const PASOS = [
+  [2, "Hora 0: líquidos e insulina IV a 0,1 U/kg/h."],
+  [5.4, "Glucosa <250 mg/dL: añadir dextrosa 5-10 % y bajar la insulina a 0,05 U/kg/h."],
+  [9.2, "La glucosa ya está en objetivo, pero la cetosis sigue: no parar la insulina."],
+  [TMAX, "Cetonas <0,6 y pH ≥7,3: resuelta. Insulina SC 1-2 h antes de parar la IV."],
+];
+const ruta = (f, hasta) => {
+  let d = "";
+  for (let t = 0; t <= hasta + 1e-6; t += 0.1) d += `${d ? "L" : "M"}${x(t).toFixed(1)},${f(t).toFixed(1)}`;
+  return d;
+};
+window.cuadro = function (i, n) {
+  const paso = n > 1 ? Math.min(3, Math.floor((i / n) * 4)) : 3;
+  const hasta = PASOS[paso][0];
+  const ejes = [0, 2, 4, 6, 8, 10, 12, 14].map((t) =>
+    `<line x1="${x(t)}" y1="${Y0}" x2="${x(t)}" y2="${Y0 + 5}" stroke="#9CA3AF"/><text x="${x(t)}" y="${Y0 + 18}" font-size="11" text-anchor="middle" fill="#6B7280">${t} h</text>`).join("");
+  const gTicks = [0, 200, 400, 600].map((g) => `<text x="${X0 - 6}" y="${yg(g) + 4}" font-size="11" text-anchor="end" fill="${ROJO}">${g}</text>`).join("");
+  const kTicks = [0, 2, 4, 6].map((k) => `<text x="${X1 + 6}" y="${yk(k) + 4}" font-size="11" fill="${MORADO}">${k}</text>`).join("");
+  const banda = paso >= 1 ? `<rect x="${x(0)}" y="${yg(200)}" width="${X1 - X0}" height="${yg(150) - yg(200)}" fill="${tinte(VERDE, 22)}"/>
+      <text x="${X1 - 4}" y="${yg(200) - 5}" font-size="11" text-anchor="end" fill="${VERDE}" font-weight="700">Objetivo CAD 150-200 mg/dL</text>` : "";
+  const l250 = `<line x1="${X0}" y1="${yg(250)}" x2="${X1}" y2="${yg(250)}" stroke="${AMBAR}" stroke-dasharray="5 4"/>
+      <text x="${X0 + 6}" y="${yg(250) - 5}" font-size="11" fill="${AMBAR}" font-weight="700">250 mg/dL</text>`;
+  const l06 = paso >= 2 ? `<line x1="${X0}" y1="${yk(0.6)}" x2="${X1}" y2="${yk(0.6)}" stroke="${MORADO}" stroke-dasharray="5 4"/>
+      <text x="${X0 + 6}" y="${yk(0.6) - 5}" font-size="11" fill="${MORADO}" font-weight="700">Cetonas 0,6 mmol/L</text>` : "";
+  const dext = paso >= 1 ? `<line x1="${x(T250)}" y1="${Y1}" x2="${x(T250)}" y2="${Y0}" stroke="${AMBAR}" stroke-width="2"/>
+      <rect x="${x(T250) + 6}" y="${Y1 + 2}" width="150" height="38" rx="7" fill="${tinte(AMBAR, 18)}" stroke="${AMBAR}"/>
+      <text x="${x(T250) + 14}" y="${Y1 + 18}" font-size="11.5" font-weight="700" fill="#92400E">+ Dextrosa 5-10 %</text>
+      <text x="${x(T250) + 14}" y="${Y1 + 33}" font-size="11.5" font-weight="700" fill="#92400E">Insulina 0,05 U/kg/h</text>` : "";
+  const res = paso === 3 ? `<line x1="${x(TRES)}" y1="${Y1}" x2="${x(TRES)}" y2="${Y0}" stroke="${VERDE}" stroke-width="2"/>
+      <rect x="${x(TRES) - 128}" y="${Y1 + 50}" width="122" height="38" rx="7" fill="${tinte(VERDE, 18)}" stroke="${VERDE}"/>
+      <text x="${x(TRES) - 120}" y="${Y1 + 66}" font-size="11.5" font-weight="700" fill="#166534">Resolución</text>
+      <text x="${x(TRES) - 120}" y="${Y1 + 81}" font-size="11.5" font-weight="700" fill="#166534">Paso a insulina SC</text>` : "";
+  const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      ${banda}${l250}${l06}
+      <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>
+      <line x1="${X1}" y1="${Y1}" x2="${X1}" y2="${Y0}" stroke="#9CA3AF"/>${ejes}${gTicks}${kTicks}
+      <path d="${ruta((t) => yg(glu(t)), hasta)}" fill="none" stroke="${ROJO}" stroke-width="4" stroke-linecap="round"/>
+      <path d="${ruta((t) => yk(cet(t)), hasta)}" fill="none" stroke="${MORADO}" stroke-width="4" stroke-linecap="round"/>
+      ${dext}${res}
+    </svg>`;
+  const ley = `<div style="display:flex;gap:18px;font-size:12.5px;align-items:center">
+      <span><b style="color:${ROJO}">━</b> Glucosa (mg/dL, eje izquierdo)</span>
+      <span><b style="color:${MORADO}">━</b> β-hidroxibutirato (mmol/L, eje derecho)</span>
+      <span style="margin-left:auto;color:#6B7280">Paso ${paso + 1} de 4</span></div>`;
+  lienzo("CAD: la glucosa se corrige antes que la cetosis", PASOS[paso][1], ley + svg,
+    "Esquema ilustrativo, no datos de un paciente. Fuente: ADA/EASD/JBDS/AACE/DTS 2024 (Diabetes Care 2024;47:1257-75) y JBDS 2023.");
+};
+</script></body></html>

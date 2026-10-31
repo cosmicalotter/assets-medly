@@ -1,0 +1,144 @@
+{
+  "titulo": "Gravedad de la cetoacidosis diabética (ADA 2024)",
+  "descripcion": "Clasifica la cetoacidosis diabética del adulto en leve, moderada o grave según el β-hidroxibutirato, el pH, el bicarbonato y el estado mental (tabla 2 del consenso ADA/EASD/JBDS/AACE/DTS 2024), y sugiere dónde tratarla: planta, intermedios o UCI.",
+  "instrucciones": "Aplícala con la CAD ya diagnosticada. Basta un criterio de un grado para clasificarla en él; manda el más grave.",
+  "limitaciones": "No hace falta cumplir todos los criterios de un grado, y el sitio de ingreso es en último término una decisión clínica. Las JBDS añaden otros signos de gravedad (potasio, GCS, saturación, PAS, pulso, anion gap).",
+  "tipoCalculo": "reglas",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "CAD",
+  "referencias": [
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1263",
+      "texto": "“K”: ketonemia b-Hydroxybutyrate 3.0–6.0 mmol/L b-Hydroxybutyrate 3.0–6.0 mmol/L b-Hydroxybutyrate >6.0 mmol/L",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1263",
+      "texto": "pH >7.25 to <7.30 or bicarbonate 15–18 mmol/L pH 7.0–7.25 Bicarbonate 10 to <15 mmol/L pH <7.0 Bicarbonate <10 mmol/L",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1263",
+      "texto": "Mental status Alert Alert/drowsy Stupor/coma Suggested level of care Regular or observation nursing unit Step-down unit or intermediate care unit Intensive care unit",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1263",
+      "texto": "Not all variables need to be fulﬁlled to be deﬁned as either mild, moderate, or severe, and the admission site and level of care are ultimately a clinical decision.",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "mental",
+          "tipo": "opciones",
+          "label": "Estado mental",
+          "opciones": [
+            {
+              "label": "Alerta",
+              "puntos": 0
+            },
+            {
+              "label": "Somnoliento",
+              "puntos": 1
+            },
+            {
+              "label": "Estupor o coma",
+              "puntos": 2
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "tipo": "input_numero",
+          "label": "pH venoso",
+          "min": 6.5,
+          "max": 7.8
+        },
+        {
+          "id": "bic",
+          "tipo": "input_numero",
+          "label": "Bicarbonato",
+          "unidad": "mmol/L",
+          "min": 1,
+          "max": 45
+        },
+        {
+          "id": "bohb",
+          "tipo": "input_numero",
+          "label": "β-hidroxibutirato en sangre",
+          "unidad": "mmol/L",
+          "min": 0,
+          "max": 15,
+          "ayuda": "Venoso o capilar."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "si": {
+        "alguno": [
+          {
+            "id": "mental",
+            "igual": 2
+          },
+          {
+            "id": "ph",
+            "menor": 7.0
+          },
+          {
+            "id": "bic",
+            "menor": 10
+          },
+          {
+            "id": "bohb",
+            "mayor": 6
+          }
+        ]
+      },
+      "categoria": "Grave",
+      "color": "rojo",
+      "match_opcion_index": 1,
+      "approach": "UCI. Insulina IV en perfusión a 0,1 U/kg/h (no análogos subcutáneos). Bicarbonato sólo si pH <7,0."
+    },
+    {
+      "si": {
+        "alguno": [
+          {
+            "id": "mental",
+            "igual": 1
+          },
+          {
+            "id": "ph",
+            "menorIgual": 7.25
+          },
+          {
+            "id": "bic",
+            "menor": 15
+          }
+        ]
+      },
+      "categoria": "Moderada",
+      "color": "naranja",
+      "match_opcion_index": 0,
+      "approach": "Unidad de intermedios o urgencias con vigilancia estrecha. Insulina IV a 0,1 U/kg/h o, sin complicaciones, análogo rápido SC."
+    },
+    {
+      "categoria": "Leve",
+      "color": "amarillo",
+      "match_opcion_index": 0,
+      "approach": "Planta u observación. Análogo rápido SC: 0,1 U/kg de bolo y 0,1 U/kg cada hora o 0,2 U/kg cada 2 h."
+    }
+  ]
+}
