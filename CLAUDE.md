@@ -145,7 +145,9 @@ Firebase directamente, saltándose `indices/`.
   en orden) para partir las viñetas con varios pasos; «Si hay X → acción»;
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio
   en **mg/dL** y sodio, potasio, cloro y bicarbonato en **mEq/L** aunque la
-  guía dé mmol/L (tabla en `NORMA.md` §4); negritas también en las alertas.
+  guía dé mmol/L (tabla en `NORMA.md` §4); negritas también en las alertas;
+  criterios por entidad (CAD, EHH…) en `tabla`, y «la tabla» del texto como
+  `tabla.en_texto`, que la abre.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
   `burbujas` (bombilla al final de la frase). Detalle y ejemplos en `NORMA.md` §3-§4.
