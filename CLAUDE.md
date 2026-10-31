@@ -131,8 +131,11 @@ Firebase directamente, saltándose `indices/`.
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
-  `contexto` (1-2 frases) el porqué y el `texto` el cómo, en viñetas completas
-  pero breves, con verbos en infinitivo y cifras en negrita. Preguntas clínicas
+  `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué
+  que no es obvio, nunca para repetir el título o el texto) el porqué y el
+  `texto` el cómo, en viñetas completas
+  pero breves (que no se sature: unas **60-70 palabras visibles por nodo**,
+  90 como mucho; lo opcional a la perla, los criterios a una tabla), con verbos en infinitivo y cifras en negrita. Preguntas clínicas
   completas; perlas y alertas con el porqué y qué hacer; siglas sin
   desarrollar, porque las explica el glosario (`data/glosario.json`). Frases
   sin elipsis («es mejor que…», no «mejor que…»); «infusión», no «perfusión»,

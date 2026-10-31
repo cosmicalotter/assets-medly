@@ -34,8 +34,10 @@ como lo haría un usuario y revisa:
    `contexto` o una perla sin negritas; textos de enlace que no caben en media
    tarjeta; en un paso sin ramas con varios saltos, el principal no va
    primero.
-1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
-   no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
+1b. **Piezas del nodo**: un `contexto` que sobra (repite el título, resume
+   el texto o la tabla, dice lo obvio o repite una perla, una alerta o el
+   paso vecino: proponer quitarlo), o uno que falta donde la conducta no se
+   entiende sin un porqué; la pill adelanta la acción en vez de dar sólo el dato;
    el título repite la pill en vez de decir la acción; el texto repite el
    título; `pie_nodo` telegráfico («¿Potasio sérico?») en vez de una pregunta
    clínica completa; perlas sin el porqué; alertas sin qué hacer; un `info`
@@ -58,7 +60,9 @@ como lo haría un usuario y revisa:
    deberían ser `checklist`; dosis en el texto sin `farmacos`; dosis «/kg» sin
    `por_kg`; tablas escritas en prosa; tablas o checklists que repiten lo que ya muestra una imagen del mismo nodo; uso de `cronometros` (no se usan por ahora);
    pasos visuales sin imagen; algoritmos relacionados sin enlazar.
-5. **Densidad**: no hay límite fijo de palabras, pero un nodo que mezcla dos
+5. **Densidad**: lo visible sin desplegar (contexto, texto, alertas) ronda
+   60-70 palabras por nodo, 90 como mucho (NORMA §4); por encima, proponer
+   qué quitar, qué pasar a la perla y qué a una tabla. Además, un nodo que mezcla dos
    decisiones se parte y una lista de criterios va a `checklist`; `alertas` en
    exceso (si todo es alerta, nada lo es); perlas que repiten el texto.
 6. **Ids**: ningún id que existía en `main` ha desaparecido

@@ -67,7 +67,8 @@ Orden de trabajo, nodo a nodo:
    referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
    `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`.
 3. **Lenguaje**: reescribe lo confuso según `NORMA.md` §4: cada nodo
-   clínico con su `contexto` (el porqué), título con la acción, pills con
+   clínico con `contexto` sólo si hace falta un porqué que no es obvio (no
+   en todos), título con la acción, pills con
    sólo el dato, preguntas clínicas completas, viñetas completas pero breves
    en infinitivo. Las siglas no se desarrollan: se añaden a
    `data/glosario.json` si faltan. Aquí sí se

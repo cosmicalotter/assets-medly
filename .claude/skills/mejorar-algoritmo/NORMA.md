@@ -142,7 +142,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone en la **rejilla de dos columnas** del final de la tarjeta (con la perla y las discrepancias, piezas iguales; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente | cuando pase; nunca inventada |
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
-| `contexto` | la situación y el porqué del paso (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | todo nodo clínico |
+| `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: más o menos la mitad de los nodos clínicos, no todos |
 | `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app la marca como la frase de una imagen, pero en naranja (subrayada, texto teñido y un Σ pequeño arriba a la derecha) y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos), con las fuentes en el botón del libro. Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mmol/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
 | `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo; **1 de cada 4-5 nodos clínicos** (5-6 en un algoritmo de 25 nodos) |
 
@@ -195,7 +195,7 @@ salina 0,45 %»** y **«lactato de Ringer»** (no «Ringer lactato»).
 |---|---|---|
 | respuesta del nodo anterior (pill) | **sólo el dato** que lleva aquí | «Menor de 3,5 mmol/L» |
 | `titulo` | **la acción** del paso (la app lo pinta en el color del tipo de nodo) | «Reponer potasio y retrasar la insulina» |
-| `contexto` | **la situación y el porqué**, 1-2 frases completas | «En la cetoacidosis el potasio total del cuerpo está bajo, aunque en sangre parezca normal o alto. La insulina lo mete en las células y puede hundirlo en pocas horas.» |
+| `contexto` (opcional) | **el porqué que no es obvio**, 1-2 frases completas | «En la cetoacidosis el potasio total del cuerpo está bajo, aunque en sangre parezca normal o alto. La insulina lo mete en las células y puede hundirlo en pocas horas.» |
 | `texto` | **el cómo**: viñetas completas pero breves, con las cifras en negrita | «- No empezar la insulina hasta que el potasio supere **3,5 mmol/L**.» |
 | `pie_nodo` | **pregunta clínica completa** que dice qué mirar y para qué | «¿Cuánto potasio tiene en sangre antes de empezar la insulina?» |
 
@@ -211,9 +211,19 @@ título no repite la pill y el texto no vuelve a decir el título.
   más rápido, central»).
 - **Verbos en infinitivo**, como en las guías: «Reponer», «No empezar»,
   «Medir». Ni «repón» ni «reponga».
-- **Sin límite fijo de viñetas**: las que hagan falta para que se entienda.
-  Si un nodo crece tanto que mezcla dos decisiones, se parte; si es una lista
-  de criterios, va a `checklist`; si es una tabla de dosis o cortes, a `tabla`.
+- **Que no se sature de texto.** Lo que se ve sin desplegar nada (contexto,
+  texto y alertas) ronda las **60-70 palabras por nodo**, y **90 como
+  mucho** salvo un paso de dosis complejo. Si un nodo se pasa:
+  - quitar el `contexto` si no es imprescindible (queda en **un tercio** de
+    los nodos más o menos, y con **25 palabras** como mucho);
+  - llevar la conducta opcional o el matiz a la **perla**, que va plegada
+    («si no la usaba, se puede añadir basal SC…»);
+  - pasar a `tabla` los criterios por grados o por entidad, y a `checklist`
+    las listas que se marcan;
+  - no repetir lo que ya dice otro paso (se enlaza);
+  - partir el nodo si mezcla dos decisiones.
+  Las viñetas siguen siendo frases completas, pero cortas: un paso, una
+  viñeta.
 - **Negritas** en dosis, umbrales, tiempos y metas, y también en **las
   palabras clave** de cada viñeta: la condición que decide («**hipovolemia
   grave**», «**compromiso cardiaco**»), el fármaco o el suero («**lactato de
@@ -262,7 +272,18 @@ título no repite la pill y el texto no vuelve a decir el título.
   `en_texto` se busca en los dos).
 - Lleva su cita como todo lo clínico: lo que afirma sale de la guía y está en
   las `referencias` del nodo.
-- Va en todo nodo clínico (no en las portadas de sección `estilo: "rama"`).
+- **Sólo donde hace falta, no en todos los nodos.** Va cuando explica algo
+  que el título y el texto no dicen y que ayuda a entender la conducta: el
+  mecanismo («la insulina mete el potasio en las células»), la lógica de la
+  decisión («la glucosa baja antes que las cetonas, por eso se añade
+  dextrosa»), por qué importa el paso («su mortalidad es mayor que la de
+  cualquiera de las dos por separado»). **No va** si repite el título («Con
+  un iSGLT2 la CAD puede aparecer con la glucosa casi normal» bajo «Sospechar
+  CAD aunque la glucosa sea casi normal»), si resume el texto o la tabla que
+  vienen debajo, si dice lo obvio («Antes de confirmar qué crisis es, se
+  asegura la vía aérea…» en el ABCDE) o si repite una perla, una alerta o el
+  contexto de un paso vecino. Ante la duda, sin contexto: la tarjeta se lee
+  mejor corta. Nunca en las portadas de sección (`estilo: "rama"`).
 - **Negritas en las palabras clave**, como en el texto: lo que el lector tiene
   que captar de un vistazo («En la cetoacidosis el **potasio total del cuerpo
   está bajo**, aunque en sangre parezca normal o alto»). La app las pinta en
