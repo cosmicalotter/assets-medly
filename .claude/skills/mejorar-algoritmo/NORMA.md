@@ -163,6 +163,23 @@ no se comprime a estilo de apunte:
 | «valorar intermedios o UCI» | «valorar el requerimiento de cuidados intermedios o de UCI» |
 | «potasio <3,5 → no insulina» | «si el potasio es menor de **3,5 mmol/L**, no empezar la insulina» |
 
+**Unidades: las de Colombia.** Se escriben las unidades convencionales que
+usan los laboratorios colombianos, aunque la guía use el SI:
+
+| analito | unidad | si la guía sólo da mmol/L |
+|---|---|---|
+| glucosa | **mg/dL** | × 18 (33,3 mmol/L = **600 mg/dL**) |
+| creatinina | **mg/dL** | ÷ 88,4 (µmol/L → mg/dL) |
+| urea | **BUN en mg/dL** | urea mmol/L × 2,8 |
+| calcio, fósforo, magnesio | **mg/dL** | × 4,0 · × 3,1 · × 2,43 |
+| sodio, potasio, cloro, bicarbonato, lactato, β-hidroxibutirato, osmolalidad | mmol/L (o mEq/L) y mOsm/kg, como se informan | — |
+
+- Las fórmulas, también en mg/dL («glucosa/18», «BUN/2,8»).
+- Si la guía sólo da la cifra en mmol/L, la cita literal se queda como está
+  y el texto da la conversión redondeada como la guía (**250 mg/dL**, no
+  «249,8»). Si al convertir la cifra resulta extraña (cae en el rango normal,
+  no cuadra con otra guía), no se corrige: se consulta con el dueño.
+
 **Palabras fijas.** Un fármaco IV continuo es una **«infusión»** («infusión
 de insulina a **0,1 U/kg/h**»), nunca «perfusión» (que queda para el riego de
 un órgano: «perfusión renal»).

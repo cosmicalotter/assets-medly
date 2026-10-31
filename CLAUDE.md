@@ -136,7 +136,9 @@ Firebase directamente, saltándose `indices/`.
   completas; perlas y alertas con el porqué y qué hacer; siglas sin
   desarrollar, porque las explica el glosario (`data/glosario.json`). Frases
   sin elipsis («es mejor que…», no «mejor que…»); «infusión», no «perfusión»,
-  para los fármacos; secciones de una palabra («Diagnóstico», «Tratamiento»).
+  para los fármacos; secciones de una palabra («Diagnóstico», «Tratamiento»);
+unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio en
+**mg/dL** aunque la guía dé mmol/L (tabla de conversión en `NORMA.md` §4).
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
   `burbujas` (globito). Detalle y ejemplos en `NORMA.md` §3-§4.

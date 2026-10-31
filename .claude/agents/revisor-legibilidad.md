@@ -24,7 +24,9 @@ como lo haría un usuario y revisa:
    Frases elípticas a las que les falta el verbo o la preposición («mejor
    que con la tira de orina» → «es mejor que con la tira de orina»; «valorar
    intermedios o UCI» → «valorar el requerimiento de cuidados intermedios o
-   de UCI»); «perfusión» para un fármaco (se dice «infusión»).
+   de UCI»); «perfusión» para un fármaco (se dice «infusión»); glucosa,
+   creatinina, urea, calcio, fósforo o magnesio en mmol/L en vez de mg/dL
+   (NORMA §4, «Unidades»).
 1b. **Piezas del nodo**: falta `contexto` en un nodo clínico, o el contexto
    no dice el porqué; la pill adelanta la acción en vez de dar sólo el dato;
    el título repite la pill en vez de decir la acción; el texto repite el
