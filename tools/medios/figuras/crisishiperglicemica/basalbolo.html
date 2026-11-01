@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Paso de la infusión IV a basal-bolo SC (ADA 2024, Fig. 5 y p. 1266). Esquema ilustrativo de un día.
+const W = 668, X0 = 120, X1 = 650, H0 = 6, HN = 30; // de 06:00 a 06:00 del día siguiente
+const x = (h) => X0 + (X1 - X0) * (h - H0) / (HN - H0);
+const fila = (yy, alto, txt, c) => `<text x="0" y="${yy + alto / 2 + 5}" font-size="13" font-weight="700" fill="${c}">${txt}</text>`;
+const yIV = 20, yB = 92, yR = 170;
+const iv = `<rect x="${x(6)}" y="${yIV}" width="${x(9) - x(6)}" height="34" rx="6" fill="${tinte(ROJO, 25)}" stroke="${ROJO}"/>
+  <text x="${(x(6) + x(9)) / 2}" y="${yIV + 22}" font-size="12" font-weight="700" text-anchor="middle" fill="#991B1B">Infusión IV</text>`;
+const solape = `<rect x="${x(7)}" y="${yIV - 6}" width="${x(9) - x(7)}" height="${yB + 40 - yIV}" fill="${tinte(AMBAR, 22)}" stroke="${AMBAR}" stroke-dasharray="5 4"/>
+  <text x="${x(9) + 6}" y="${yIV + 16}" font-size="12" font-weight="700" fill="#92400E">1-2 h de solapamiento:</text>
+  <text x="${x(9) + 6}" y="${yIV + 31}" font-size="12" fill="#92400E">la basal entra antes de parar la IV</text>`;
+const basal = `<rect x="${x(7)}" y="${yB}" width="${X1 - x(7)}" height="28" rx="6" fill="${tinte(TEAL, 28)}" stroke="${TEAL}"/>
+  <text x="${x(16)}" y="${yB + 19}" font-size="12" font-weight="700" text-anchor="middle" fill="#0F766E">Basal: 40-60 % de la dosis total, cubre las 24 h</text>`;
+const bolo = (h, n) => `<path d="M${x(h) - 22},${yR + 60} Q${x(h)},${yR - 10} ${x(h) + 34},${yR + 60}" fill="${tinte(AZUL, 30)}" stroke="${AZUL}" stroke-width="2"/>
+  <text x="${x(h) + 6}" y="${yR + 78}" font-size="12" text-anchor="middle" fill="#1E3A8A" font-weight="700">${n}</text>`;
+const bolos = bolo(7.5, "Desayuno") + bolo(12.5, "Almuerzo") + bolo(19, "Cena");
+const horas = [6, 9, 12, 15, 18, 21, 24, 27, 30].map((h) => `<line x1="${x(h)}" y1="${yR + 86}" x2="${x(h)}" y2="${yR + 92}" stroke="#94A3B8"/><text x="${x(h)}" y="${yR + 106}" font-size="11" text-anchor="middle" fill="#64748B">${String(h % 24).padStart(2, "0")}:00</text>`).join("");
+const svg = `<svg width="${W}" height="285" viewBox="0 0 ${W} 285">
+  ${fila(yIV, 34, "Insulina IV", ROJO)}${fila(yB, 28, "Basal SC", TEAL)}${fila(yR + 20, 40, "Bolos SC", AZUL)}
+  ${solape}${iv}${basal}${bolos}<line x1="${X0}" y1="${yR + 86}" x2="${X1}" y2="${yR + 86}" stroke="#94A3B8"/>${horas}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="caja" style="background:${tinte(AZUL, 10)};border:1px solid ${tinte(AZUL, 40)}"><b>Bolos</b>: el resto de la dosis, en 3 dosis de análogo rápido con las comidas.</div>
+  <div class="caja" style="background:#F8FAFC;border:1px solid #E2E8F0"><b>En ayunas</b>: basal y corrección con insulina rápida cada 4-6 h.</div></div>`;
+lienzo("Paso a insulina subcutánea: basal-bolo", "Esquema de un día tras resolver la crisis, con el paciente comiendo", svg + notas,
+  "Esquema ilustrativo. Fuente: ADA/EASD/JBDS/AACE/DTS 2024 (Diabetes Care 2024;47:1257-75), Fig. 5.");
+</script></body></html>
