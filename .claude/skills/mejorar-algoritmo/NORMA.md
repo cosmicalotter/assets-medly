@@ -244,9 +244,13 @@ del archivo); lo que depende de la frase («suero», «pauta») se corrige a man
 
 En la tarjeta, el tipo de paso y el `titulo` van en una franja del color del
 nodo; el `contexto`, el texto, las alertas, la lista y las imágenes, en la
-zona blanca; la calculadora, la tabla, la dosis, la perla, los enlaces y el
-`pie_nodo`, en la franja de abajo. Por eso el título se lee solo, como la
-cabecera del paso.
+zona blanca; la calculadora, la tabla, la dosis, la perla y los enlaces a
+otros algoritmos o calculadoras, en una bandeja gris; y el `pie_nodo`, con los
+saltos laterales a otros pasos (enlaces internos que no son la salida del
+camino), en una franja final del color del nodo, junto a los botones. Por eso
+el título se lee solo, como la cabecera del paso, y la pregunta como lo que
+decide el siguiente. Un salto lateral es una salida condicional («Fósforo
+bajo: fosfato»): su texto dice la condición y adónde lleva, corto.
 
 Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
 título no repite la pill y el texto no vuelve a decir el título.
