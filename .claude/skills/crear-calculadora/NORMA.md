@@ -189,6 +189,18 @@ pide urea en mmol/L), BUN mg/dL = urea mg/dL × 0,467.
   resultado». Por eso los elementos van **en el orden de la escala**, con
   el criterio que decide antes, y las reglas se escriben sin atajos que
   dependan de lo que aún no se respondió.
+- **Calculadora diagnóstica que reparte entre entidades** (la de crisis
+  hiperglucémicas, `crisis_hiperglucemica_dx.json`: CAD, CAD euglucémica,
+  EHH, mixta): la app se queda con el **primer resultado cuyo `si` se
+  cumple**, así que los resultados van **de lo más específico a lo más
+  general** (mixta → EHH → CAD euglucémica → CAD) y al final uno de
+  respaldo sin `si` («Ni CAD ni EHH») que lleva a la
+  opción «Ninguno: otra causa» del nodo. Si dos guías definen una entidad
+  con umbrales distintos, cada definición es su propio resultado con el
+  mismo `match_opcion_index` (EHH por ADA y EHH por JBDS → la opción del
+  EHH). Al añadir una entidad: se reordenan los `match_opcion_index`, se
+  añade la opción (con su `color` de rama) en el nodo que ramifica y se
+  revisa el título de la calculadora en `indices/index_calculadoras.json`.
 
 ---
 

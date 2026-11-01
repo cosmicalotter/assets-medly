@@ -130,12 +130,23 @@ Firebase directamente, saltándose `indices/`.
   ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
-- **Secuencia:** cada sección es una cadena que se sigue de arriba abajo, en
-  el orden en que se hace; sólo se ramifica donde la guía decide por un dato,
-  la vigilancia es un paso de la cadena y la única vuelta atrás es «aún no»
-  al paso que se repite (`NORMA.md` §1). Cada rama hermana sale en su
-  propio color, que heredan sus pasos (un `color` en la opción lo fija).
-  Las calculadoras, con las mismas unidades que los algoritmos.
+- **El modelo es `data/Adultos/crisishiperglicemica.json`** (noviembre de
+  2026): todo algoritmo que se crea o se reforma tiene que parecerse a él en
+  estructura, piezas y estilo. Su mapa está en `NORMA.md` §1.
+- **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una
+  lista. Si la guía trata distinto a cada entidad, el tratamiento empieza
+  con «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
+  propia cadena**, con su `color` fijo y sus criterios en la `descripcion`
+  de la opción; las cadenas se juntan donde el tratamiento es común. Dentro
+  de cada cadena, los pasos en el orden en que se hacen. Cada decisión es
+  una pregunta con **todas sus respuestas** (ningún «Sí» sin su «No»;
+  opciones sin huecos ni solapes, con los límites de la guía). La
+  vigilancia es un paso con su pregunta de ritmo y las complicaciones una
+  pregunta del bucle; «Aún no» vuelve al paso que se repite de su cadena,
+  nunca al principio de la sección; un paso compartido pregunta «¿Qué
+  crisis estás tratando?» y devuelve a cada una a la suya. Cada rama
+  hermana sale en su propio color, que heredan sus pasos. Las calculadoras,
+  con las mismas unidades que los algoritmos.
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
   `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué

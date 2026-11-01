@@ -240,6 +240,34 @@ Toda cifra que aparezca dibujada sale de la guía, igual que en el texto.
 **Mira siempre el resultado** (`Read` sobre el PNG, o sobre unos cuadros del
 GIF) antes de conectarlo: textos cortados, solapes, colores que no se leen.
 
+### Esquemas propios que funcionan
+
+Cuando no hay foto ni figura con licencia, un esquema propio hecho con
+`base.js` resume de un vistazo lo que el nodo dice. Los de Crisis
+hiperglucémicas son el modelo (plantillas en
+`tools/medios/figuras/crisishiperglicemica/`, rehechas por su
+`regenerar.sh`):
+
+| tipo | para qué | plantilla |
+|---|---|---|
+| **cuadrícula por entidad** | comparar los criterios de las entidades que el algoritmo divide (una columna por entidad, con su color de rama) | `tres.html` |
+| **línea de tiempo litro a litro** | un esquema de líquidos o de dosis por horas (cada tramo con su volumen y su tiempo) | `liquidos.html` |
+| **gráfica de ritmo con banda meta** | el ritmo al que debe bajar un valor (osmolalidad, glucosa): banda verde de la meta y zonas de «demasiado lento» y «demasiado rápido» | `osmolalidad.html` |
+| **línea de tiempo de la transición** | el paso de un tratamiento a otro (infusión IV → basal-bolo SC, con el solape) | `basalbolo.html` |
+
+- La figura dice **exactamente lo que dice su nodo**: las mismas cifras,
+  umbrales, tiempos y nombres (si el texto dice «lactato de Ringer», la
+  figura también). Si el nodo cambia, se rehace la figura.
+- Los colores de cada entidad son los de su rama en el algoritmo (CAD azul,
+  EHH morado…).
+- Los rótulos van fuera de las curvas y de las bandas, nunca encima.
+- En una celda `display: flex`, el contenido con negritas va envuelto en un
+  `<span>`: si no, cada `<b>` se vuelve una columna y la frase se parte.
+- Una figura puede repetirse en el paso equivalente de otra cadena
+  (el ECG del potasio bajo en la CAD y en el EHH), con su `en_texto` y su `info` adaptados a
+  ese paso; nunca en dos pasos seguidos del mismo camino.
+- Antes de subirla: `solapes.js` sin fallos y el PNG mirado con `Read`.
+
 ## Peso y formato
 
 | | formato | tope |

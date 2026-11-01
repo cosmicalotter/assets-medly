@@ -28,6 +28,15 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
 4. **Conducta**: que la rama lleve a lo que la guía manda en ese caso; que
    la segunda línea y el criterio de fallo estén; que ninguna contraindicación
    o Clase III de la guía falte en `alertas`.
+4b. **Ramas por entidad y bucles** (NORMA §1): que cada cadena de
+   tratamiento (CAD, EHH…) lleve lo que la guía manda para **esa** entidad y
+   no lo de la otra; que los criterios de la `descripcion` de cada opción de
+   entidad y los de la calculadora diagnóstica sean los de la guía; que una
+   entidad que sigue la cadena de otra (la mixta) se vigile y se dé por
+   resuelta con los criterios de las dos; que cada respuesta negativa o
+   «Aún no» lleve a una conducta que la guía respalda (no a repetir un
+   paso que la guía no repite), y que los umbrales de las opciones
+   coincidan con la guía en el límite (≤ o <).
 5. **Grado de evidencia**: `evidencia` igual a la clase y nivel de la guía;
    si la guía no lo da, no debe estar.
 6. **Contenido sin fuente**: cualquier afirmación clínica que no encuentres
@@ -40,7 +49,10 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
    sus puntos de corte (`data/calculadoras/<archivo>`) coincidan.
 8. **Imágenes**: que lo que muestra cada imagen (míralas con `Read`)
    corresponda a su `titulo` y `descripcion`, y que sus cifras sean las de
-   la guía.
+   la guía. En una figura propia (esquema, línea de tiempo, gráfica de
+   ritmo), que diga **lo mismo que su nodo**: las mismas cifras, umbrales,
+   tiempos y fluidos; una figura que contradice el texto es un hallazgo
+   importante.
 
 Devuelve una lista ordenada por gravedad. Cada hallazgo con:
 `nodo` · `campo` · qué dice el JSON · qué dice la guía (con página y cita
