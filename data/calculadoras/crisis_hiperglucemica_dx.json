@@ -1,8 +1,8 @@
 {
-  "titulo": "Crisis hiperglucémica: CAD, EHH o mixta (ADA 2024)",
-  "descripcion": "Aplica los criterios diagnósticos del consenso ADA/EASD/JBDS/AACE/DTS 2024 para decidir si un adulto con hiperglucemia o diabetes tiene cetoacidosis diabética (CAD), estado hiperosmolar hiperglucémico (EHH), una forma mixta o ninguna. La CAD exige los tres criterios (D, K y A) y el EHH los cuatro (glucosa, osmolalidad, sin cetonemia ni acidosis importantes).",
+  "titulo": "Crisis hiperglucémica: CAD, euglucémica, EHH o mixta (ADA 2024)",
+  "descripcion": "Aplica los criterios diagnósticos del consenso ADA/EASD/JBDS/AACE/DTS 2024 para decidir si un adulto con hiperglucemia o diabetes tiene cetoacidosis diabética (CAD), CAD euglucémica, estado hiperosmolar hiperglucémico (EHH), una forma mixta o ninguna. La CAD exige los tres criterios (D, K y A) y el EHH los cuatro (glucosa, osmolalidad, sin cetonemia ni acidosis importantes); la CAD euglucémica es una CAD con glucosa menor de 200 mg/dL.",
   "instrucciones": "Usa gases venosos. La osmolalidad efectiva es 2 × Na + glucosa/18 (glucosa en mg/dL); calcúlala con la calculadora de osmolalidad. Para las cetonas, mejor β-hidroxibutirato en sangre que la tira.",
-  "limitaciones": "No gradúa la gravedad de la CAD (usa la calculadora de gravedad). La CAD euglucémica (glucosa <200 mg/dL) entra por el antecedente de diabetes. La ADA define el EHH con bicarbonato ≥15, pero con bicarbonato <18, pH <7,3 o cetonemia lo trata como mixta (0,1 U/kg/h); aquí sale como mixta.",
+  "limitaciones": "No gradúa la gravedad de la CAD (usa la calculadora de gravedad). La CAD euglucémica exige diabetes conocida: sin ella, la cetoacidosis con glucosa menor de 200 mg/dL sale como «ni CAD ni EHH» para descartar el ayuno o el alcohol. La ADA define el EHH con bicarbonato ≥15, pero con bicarbonato <18, pH <7,3 o cetonemia lo trata como mixta (0,1 U/kg/h); aquí sale como mixta.",
   "tipoCalculo": "reglas",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
@@ -47,6 +47,20 @@
       "url": "https://doi.org/10.2337/dci24-0032",
       "paginas": "1263",
       "texto": "Clinical overlap between DKA and HHS has been reported in more than one-third of people with hyperglycemic crises",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1262",
+      "texto": "Approximately 10% of patients with DKA present with euglycemic DKA, which is deﬁned as plasma glucose levels <200 mg/dL [11.1 mmol/L] in the presence of ketosis and metabolic acidosis criteria of DKA",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA/EASD/JBDS/AACE/DTS). Diabetes Care 2024;47(8):1257-1275.",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "paginas": "1270",
+      "texto": "In euglycemic DKA, 5–10% dextrose should be added to intravenous ﬂuid or started at the same time as the 0.9% sodium chloride. SGLT2 inhibitors should be stopped on admission.",
       "anio": "2024"
     }
   ],
@@ -157,7 +171,7 @@
       },
       "categoria": "CAD-EHH mixta",
       "color": "rojo",
-      "match_opcion_index": 2,
+      "match_opcion_index": 3,
       "approach": "Hiperosmolar con cetonemia, pH <7,3 o bicarbonato <18. UCI. Insulina IV a 0,1 U/kg/h desde el inicio, como en la CAD; balance positivo de 3-6 L en 12 h."
     },
     {
@@ -187,8 +201,42 @@
       },
       "categoria": "Estado hiperosmolar hiperglucémico",
       "color": "rojo",
-      "match_opcion_index": 1,
+      "match_opcion_index": 2,
       "approach": "UCI. Líquidos primero; insulina IV a 0,05 U/kg/h. Bajar la osmolalidad 3-8 mOsm/kg/h y el sodio ≤10 mEq/L en 24 h."
+    },
+    {
+      "si": {
+        "todos": [
+          {
+            "id": "diabetes_previa",
+            "igual": 1
+          },
+          {
+            "id": "glu",
+            "menor": 200
+          },
+          {
+            "id": "ceto",
+            "igual": 1
+          },
+          {
+            "alguno": [
+              {
+                "id": "ph",
+                "menor": 7.3
+              },
+              {
+                "id": "bic",
+                "menor": 18
+              }
+            ]
+          }
+        ]
+      },
+      "categoria": "CAD euglucémica",
+      "color": "rojo",
+      "match_opcion_index": 1,
+      "approach": "Cetonemia y acidosis con glucosa <200 mg/dL. Tratar como una CAD, con insulina IV a 0,1 U/kg/h y dextrosa 5-10 % desde que empieza la insulina; suspender el iSGLT2."
     },
     {
       "si": {
@@ -251,13 +299,13 @@
       },
       "categoria": "Hiperosmolar (EHH según JBDS)",
       "color": "naranja",
-      "match_opcion_index": 1,
+      "match_opcion_index": 2,
       "approach": "Glucosa 540-599 mg/dL con hiperosmolalidad: no llega al umbral ADA (600) pero sí al JBDS (≥540 mg/dL). Tratar como EHH."
     },
     {
       "categoria": "Ni CAD ni EHH",
       "color": "amarillo",
-      "match_opcion_index": 3,
+      "match_opcion_index": 4,
       "approach": "No cumple criterios. Buscar otra causa: cetosis de ayuno, cetoacidosis alcohólica, cetosis del embarazo u otra acidosis con anion gap elevado; repetir los laboratorios si la sospecha persiste."
     }
   ]

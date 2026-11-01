@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Qué cambia en el tratamiento de la CAD, la CAD euglucémica y el EHH (ADA 2024, Fig. 2 y 4, Tabla 4;
+// JBDS 2023 CAD p. 11; JBDS 2022 EHH p. 14-16).
+const COLS = [
+  ["CAD y mixta", AZUL, ["≥200 mg/dL o diabetes conocida", "β-hidroxibutirato ≥3,0 y pH <7,3 o bicarbonato <18", "Líquidos y potasio", "<b>0,1 U/kg/h</b> desde el inicio", "Al bajar de <b>250 mg/dL</b>"]],
+  ["CAD euglucémica", TEAL, ["<b>&lt;200 mg/dL</b>", "Como en la CAD", "Suspender el iSGLT2; líquidos y potasio", "<b>0,1 U/kg/h</b>; <b>0,05</b> si la glucosa cae pese a la dextrosa", "<b>Desde el inicio</b>: 10 % a 125 mL/h"]],
+  ["Estado hiperosmolar", MORADO, ["≥600 mg/dL y osmolalidad >300", "β-hidroxibutirato <3,0, pH ≥7,3", "<b>1 L</b> de solución salina 0,9&nbsp;% en la primera hora", "<b>0,05 U/kg/h</b>; JBDS: cuando la glucosa deja de bajar", "Al bajar de <b>250 mg/dL</b>; meta 200-250"]],
+];
+const FILAS = ["Glucosa", "Cetonas y pH", "Primer paso", "Insulina IV", "Dextrosa"];
+let html = `<div style="display:grid;grid-template-columns:92px repeat(3,1fr);gap:6px 8px;align-items:stretch">`;
+html += `<div></div>` + COLS.map(([t, c]) => `<div style="background:${c};color:#fff;border-radius:10px;padding:8px 10px;font-weight:700;font-size:15px;text-align:center">${t}</div>`).join("");
+FILAS.forEach((f, i) => {
+  const fuerte = i >= 2;
+  html += `<div style="font-size:12.5px;font-weight:700;color:#475569;display:flex;align-items:center">${f}</div>`;
+  html += COLS.map(([, c, v]) => `<div class="caja" style="background:${tinte(c, fuerte ? 16 : 8)};border:1.5px solid ${tinte(c, fuerte ? 55 : 30)};font-size:12.8px;display:flex;align-items:center"><span>${v[i]}</span></div>`).join("");
+});
+html += `</div>`;
+lienzo("Tres crisis, tres tratamientos", "Las tres llevan líquidos, potasio e insulina; cambian el orden, la dosis y la dextrosa", html,
+  "Esquema. Fuente: ADA/EASD/JBDS/AACE/DTS 2024 (Diabetes Care 2024;47:1257-75); JBDS 2023 (CAD) y JBDS 2022 (EHH).");
+</script></body></html>

@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquema orientativo de líquidos de las JBDS para un adulto previamente sano de 70 kg con PAS ≥90 mmHg (JBDS 2023 CAD, p. 26).
+const TR = [[1, false], [2, true], [2, true], [4, true], [4, true], [6, true]];
+const TOT = TR.reduce((a, [h]) => a + h, 0); // 19 h
+const X0 = 30, X1 = 640, W = X1 - X0, Y = 120, ALTO = 56;
+const x = (h) => X0 + W * h / TOT;
+let t = 0, barras = "";
+TR.forEach(([h, k], i) => {
+  const a = x(t), b = x(t + h), c = i === 0 ? ROJO : AZUL;
+  barras += `<rect x="${a + 2}" y="${Y}" width="${b - a - 4}" height="${ALTO}" rx="8" fill="${tinte(c, i === 0 ? 30 : 14 + i * 5)}" stroke="${c}" stroke-width="1.5"/>
+    <text x="${(a + b) / 2}" y="${Y + 25}" font-size="15" font-weight="700" text-anchor="middle" fill="#1F2A37">1 L</text>
+    ${i ? `<text x="${(a + b) / 2}" y="${Y + 43}" font-size="11.5" text-anchor="middle" fill="#334155">en ${h} h</text>` : ""}
+    ${k ? `<text x="${(a + b) / 2}" y="${Y + ALTO + 16}" font-size="11" font-weight="700" text-anchor="middle" fill="${VERDE}">+ potasio</text>` : ""}`;
+  t += h;
+});
+const marcas = [0, 1, 3, 5, 9, 13, 19].map((h) => `<line x1="${x(h)}" y1="${Y + ALTO + 22}" x2="${x(h)}" y2="${Y + ALTO + 28}" stroke="#94A3B8"/><text x="${x(h)}" y="${Y + ALTO + 41}" font-size="11" text-anchor="middle" fill="#64748B">${h} h</text>`).join("");
+const r12 = `<line x1="${x(12)}" y1="${Y - 34}" x2="${x(12)}" y2="${Y + ALTO + 4}" stroke="${AMBAR}" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <rect x="${x(12) - 80}" y="${Y - 70}" width="320" height="34" rx="8" fill="${tinte(AMBAR, 18)}" stroke="${AMBAR}"/>
+  <text x="${x(12) + 80}" y="${Y - 49}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#92400E">12 h: reevaluar el estado cardiovascular</text>`;
+const ini = `<rect x="${X0}" y="${Y - 70}" width="250" height="34" rx="8" fill="${tinte(ROJO, 14)}" stroke="${ROJO}"/>
+  <text x="${X0 + 125}" y="${Y - 49}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#991B1B">Primer litro: sin potasio, en 1 h</text>`;
+const svg = `<svg width="668" height="250" viewBox="0 0 668 250">${ini}${r12}${barras}${marcas}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="caja" style="background:${tinte(ROJO, 10)};border:1px solid ${tinte(ROJO, 40)}"><b>PAS &lt;90 mmHg</b>: antes, bolos de <b>500 mL</b> en 10-15 min hasta superar 90.</div>
+  <div class="caja" style="background:${tinte(VERDE, 10)};border:1px solid ${tinte(VERDE, 40)}"><b>Potasio</b>: cloruro de potasio en cada litro, según su valor y si orina.</div>
+  <div class="caja" style="background:${tinte(MORADO, 10)};border:1px solid ${tinte(MORADO, 40)};grid-column:1 / span 2"><b>Más despacio</b> entre los 18 y 25 años, en el anciano, el embarazo y la insuficiencia cardiaca o renal.</div></div>`;
+lienzo("Líquidos en la CAD: el esquema de las JBDS", "Solución salina 0,9 % en un adulto de 70 kg, previamente sano, con PAS ≥90 mmHg", svg + notas,
+  "Esquema orientativo. Fuente: JBDS, The Management of Diabetic Ketoacidosis in Adults, 2023, p. 15 y 26.");
+</script></body></html>
