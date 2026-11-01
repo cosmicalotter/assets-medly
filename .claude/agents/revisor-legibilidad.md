@@ -56,11 +56,33 @@ como lo haría un usuario y revisa:
 2. **Decisiones**: cada nodo con 2 o más ramas tiene `pie_nodo` en forma de
    pregunta clínica completa; cada opción dice sólo su dato o condición, con
    umbral y unidades, distinta de las demás y entendible sin leer el nodo.
-3. **Estructura**: cada sección se sigue como una cadena, en el orden en
-   que se hace; ramas sólo donde la guía decide por un dato; la misma
-   pregunta repetida en varios pasos, saltos a un paso «de vigilancia»
-   desde varios sitios o vueltas al principio de la sección (proponer la
-   cadena lineal, NORMA §1); secciones coherentes y con título de una palabra
+   Las opciones de una pregunta no se solapan ni dejan huecos («≤1,0» ·
+   «>1,0 y <3,0» · «≥3,0»); un «Sí» sin su «No», o una pregunta con una sola
+   respuesta, es un hallazgo; la de entidad lleva `color` y, en la
+   `descripcion`, los criterios.
+3. **Estructura** (NORMA §1; el modelo es
+   `data/Adultos/crisishiperglicemica.json`): dibuja el mapa de ramas (nodo
+   → pregunta → opciones → destino) y compáralo con las reglas:
+   - si la guía trata distinto a cada entidad, ¿hay una pregunta «¿Cuál es
+     el trastorno que vas a tratar?» que abre una cadena por entidad, cada
+     una con su color, y se juntan donde el tratamiento es común? Un
+     tratamiento que mezcla las entidades en los mismos pasos con viñetas
+     «- CAD: … - EHH: …» es un hallazgo (proponer la división);
+   - dentro de cada cadena, los pasos en el orden en que se hacen;
+   - cada decisión con todas sus respuestas, y la negativa con su propio
+     paso cuando la guía dice qué hacer (PAS <90 → choque → refractario);
+   - la vigilancia como paso de la cadena con su pregunta de ritmo, y las
+     complicaciones como pregunta del bucle que vuelve a la vigilancia;
+   - «Aún no» vuelve al paso que se repite de su cadena (o al mismo paso en
+     un «reponer hasta que…»), nunca al principio de la sección;
+   - un paso que se hace una vez no se repite en cada vuelta (falta un «Ya
+     lleva…»);
+   - un paso compartido por varias cadenas devuelve a cada una a la suya
+     («¿Qué crisis estás tratando?»); una entidad que sigue la cadena de
+     otra (la mixta) tiene sus propios criterios de vigilancia y de
+     resolución;
+   - la misma pregunta repetida en varios pasos de una cadena;
+   secciones coherentes y con título de una palabra
    («Diagnóstico», «Tratamiento»; dos o tres sólo si hace falta: «Situaciones
    especiales»); cadenas largas de pasos sin decidir;
    nodos que sólo dicen «continuar» o «fin»; duplicados; un nodo que mezcla

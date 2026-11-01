@@ -51,6 +51,8 @@ METAS = {
     "nodos_por_alerta": 10,
     "nodos_por_evidencia": 8,
     "enlaces_fuera": 2,      # a otro algoritmo o a una calculadora
+    "palabras_visibles": 90, # contexto + texto + alertas de un nodo (60-70 es lo normal)
+    "palabras_contexto": 25,
 }
 
 #: Peso de cada dimensión en la nota. Una dimensión que no aplica no cuenta.
@@ -259,6 +261,8 @@ VOCABULARIO: list[tuple[str, str | None, str]] = [
     (r"mascarilla reservorio", "máscara con reservorio", "en Colombia, «máscara»"),
     (r"mascarilla", "máscara", "en Colombia, «máscara»"),
     (r"analíticas ambulatorias", "laboratorios ambulatorios", "en Colombia, «laboratorios»"),
+    (r"hidratos de carbono", "carbohidratos", "en Colombia, «carbohidratos»"),
+    (r"deprisa", "rápido", "en Colombia, «rápido»"),
     # Dependen de la frase: sólo se avisa.
     (r"\bsueros?\b", None, "si son líquidos IV, «líquidos IV»; si es suero sanguíneo o «suero casero» (AIEPI), se queda"),
     (r"\bpaut(?:a|as|ar|ado|ada|ados|adas)\b", None, "«esquema», «formulado», «indicado» o «plan», según la frase"),
@@ -266,6 +270,9 @@ VOCABULARIO: list[tuple[str, str | None, str]] = [
     (r"\bplanta\b", None, "«hospitalización» o «piso»"),
     (r"\bcomprimidos?\b", None, "«tableta»"),
     (r"\b112\b", None, "en Colombia el número de emergencias es el 123 (si no es una página)"),
+    (r"\biones\b", None, "«electrolitos» (si son el sodio, el potasio, el cloro…)"),
+    (r"\bhidratos\b", None, "«carbohidratos»"),
+    (r"\bbioquímicas?\b", None, "si es el examen, «química sanguínea» o «laboratorios»"),
 ]
 _VOCABULARIO = [(re.compile(p if p.startswith("(") or p.startswith("\\b") else r"\b" + p, re.I), c, n) for p, c, n in VOCABULARIO]
 _SIN_TOCAR = {"referencias", "paginas", "imagen_evidencia", "id", "siguiente_nodo", "recurso",
@@ -378,6 +385,27 @@ def piezas_sin_negritas(nodo: dict) -> list[str]:
 
 def palabras(texto: str) -> int:
     return len(re.findall(r"\w+", texto or ""))
+
+
+_MARCAS = re.compile(r"\*\*|\{#?[0-9A-Za-z]+:|\}")
+
+
+def palabras_visibles(nodo: dict) -> tuple[int, int]:
+    """(palabras que se ven sin desplegar nada —contexto, texto y alertas—,
+    palabras del contexto), contadas como las cuenta quien lee: «3,5 mEq/L»
+    es una palabra, no tres."""
+    def contar(t: str) -> int:
+        return len([x for x in _MARCAS.sub("", t or "").split() if re.search(r"\w", x)])
+    alertas = [a for a in nodo.get("alertas") or [] if isinstance(a, dict)]
+    contexto = contar(nodo.get("contexto") or "")
+    total = contexto + contar(nodo.get("texto") or "") + sum(
+        contar(a.get("titulo") or "") + contar(a.get("texto") or "") for a in alertas)
+    return total, contexto
+
+
+# Una respuesta «Sí» pide su contraria (con otras palabras vale: «Diferir»,
+# «Controlada», «Aún no»): un «Sí» que es la única salida es un hueco.
+_SI = re.compile(r"^\s*s[ií]\b", re.I)
 
 
 # --- chequeo: lo que rompe en la app ----------------------------------------
@@ -592,6 +620,11 @@ def medir(ruta: Path) -> Informe:
                     inf.faltas.append(f"{nid}: el «info» de «{m.get('recurso', '?')}» da cifras o criterios sin «referencias» (botón del libro)")
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
+        visibles, en_contexto = palabras_visibles(n)
+        if visibles > METAS["palabras_visibles"]:
+            inf.faltas.append(f"{nid}: {visibles} palabras visibles (contexto, texto y alertas); 60-70, {METAS['palabras_visibles']} como mucho: quitar el contexto, pasar lo opcional a la perla o los criterios a una tabla")
+        if en_contexto > METAS["palabras_contexto"]:
+            inf.faltas.append(f"{nid}: el contexto tiene {en_contexto} palabras; {METAS['palabras_contexto']} como mucho (o quitarlo)")
         for frase, n_clave in negritas_densas(n):
             inf.faltas.append(f"{nid}: {n_clave} palabras clave en negrita en «{frase[:60]}…»; tres como mucho (las cifras y el rótulo no cuentan)")
         for pieza in piezas_sin_negritas(n):
@@ -608,6 +641,18 @@ def medir(ruta: Path) -> Informe:
                 inf.faltas.append(
                     f"{nid}: la rama «{o.get('texto', '')}» entra en la sección «{hogar[dest]}» por la mitad; apuntar a «{hogar[dest]}»"
                 )
+
+    # Cada decisión, con todas sus respuestas (NORMA §1): una pregunta con una
+    # sola salida no es una pregunta, y un «Sí» lleva su «No» o su «Aún no».
+    for nid, n in nodos.items():
+        if not isinstance(n, dict):
+            continue
+        ops = opciones(n)
+        textos = [str(o.get("texto") or "") for o in ops]
+        if len(ops) == 1 and _SI.search(textos[0]):
+            inf.faltas.append(f"{nid}: «{textos[0][:40]}» es la única respuesta; falta la negativa (el «No» o el «Aún no» también lleva a algún sitio)")
+        elif (n.get("pie_nodo") or "").strip().endswith("?") and len(ops) < 2:
+            inf.faltas.append(f"{nid}: pregunta «{n['pie_nodo'][:50]}» con una sola respuesta; añadir las demás o quitar la pregunta (un paso que sólo sigue adelante no pregunta)")
 
     # Español de Colombia: cada término una vez, con cuántas veces sale.
     vistos: dict[tuple[str, str | None], int] = {}

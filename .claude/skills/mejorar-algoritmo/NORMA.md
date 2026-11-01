@@ -71,17 +71,87 @@ cambian, se cambian allí y aquí a la vez.
   enseña las definiciones de la portada en tres líneas como mucho. Por eso la
   primera viñeta de la portada debe entenderse sola. Al terminar un algoritmo
   oculto, se quita `"oculto": true` del JSON para publicarlo.
-- **Cada sección es una cadena que se sigue de arriba abajo.** Los pasos van
-  en el orden en que se hacen («líquidos → potasio → insulina → vigilar →
-  dextrosa → ¿resuelta?») y sólo se ramifica donde la guía decide algo
-  distinto según un dato (el potasio, la gravedad). Lo que se hace mientras
-  tanto, como la vigilancia, es un **paso de la cadena**, no un callejón al
-  que se salta desde varios sitios. Una misma pregunta no se repite en
-  varios pasos (la de la glucosa, una sola vez, en la vigilancia), y un
-  paso que sólo sigue adelante lleva una única respuesta con el dato que
-  lo cierra («Insulina en marcha»). La única vuelta atrás es la de «aún no»:
-  al paso que se repite (la vigilancia), dentro de la misma sección, nunca
-  al principio de la sección.
+- **Cada sección es un algoritmo de verdad**: cadenas ordenadas que se
+  dividen donde la guía decide por un dato, con todas sus respuestas y sus
+  vueltas. El modelo es `data/Adultos/crisishiperglicemica.json` (su mapa,
+  en «El modelo», abajo); un algoritmo nuevo o reformado tiene que parecerse
+  a él. Las reglas:
+  - **Se divide por trastorno.** Si la guía trata distinto a cada entidad,
+    el tratamiento empieza con la pregunta «¿Cuál es el trastorno que vas a
+    tratar?» y cada respuesta abre **su propia cadena** (CAD, CAD
+    euglucémica, EHH), con un `color` fijo en la opción y, en la
+    `descripcion` de la opción, los criterios que identifican la entidad.
+    Las cadenas se juntan donde el tratamiento vuelve a ser común (la CAD
+    euglucémica hace su primer paso propio y sigue por la de la CAD). La
+    calculadora diagnóstica con `ramificar` lleva a esas mismas entidades,
+    con los mismos colores, más «Ninguno: otra causa» en gris.
+  - **Dentro de cada cadena, los pasos van en el orden en que se hacen**
+    («líquidos → potasio → insulina → bicarbonato → fosfato →
+    complicaciones → vigilancia → dextrosa → ¿resuelta?»). Un paso que sólo
+    sigue adelante lleva una única respuesta con el dato que lo cierra
+    («Insulina en marcha»).
+  - **Cada decisión de la guía es una pregunta con todas sus respuestas.**
+    No hay «Sí» sin su «No»: la respuesta negativa también lleva a algún
+    sitio, y si la guía dice qué hacer en ese caso, a su propio paso (PAS
+    menor de 90 → choque → «¿Ha subido la PAS con los bolos?» → No → choque
+    refractario). Las opciones de una pregunta **no se solapan y cubren
+    todos los casos**, con los límites como los da la guía («1,0 mmol/L o
+    menos», «Más de 1,0 y menos de 3,0», «3,0 mmol/L o más»).
+  - **La vigilancia es un paso de la cadena con su pregunta de ritmo**
+    («¿Bajan las cetonas al menos 0,5 mmol/L/h?», «¿A qué ritmo baja la
+    osmolalidad cada hora?»): cada ritmo lleva a su paso (respuesta lenta,
+    caída demasiado rápida) y de ahí se vuelve a la vigilancia. En la
+    vigilancia van también las medidas de todo el ingreso (HBPM, cuidado de
+    los pies, balance de líquidos). Las **complicaciones del tratamiento**
+    son una pregunta del bucle («¿Tiene algún signo de complicación?»), con
+    una respuesta por complicación (edema cerebral, hipoglucemia) y «No,
+    ninguno» hacia la vigilancia.
+  - **«Aún no» vuelve atrás, nunca al principio de la sección**: al bucle de
+    su propia cadena (la pregunta de complicaciones o la vigilancia), o al
+    mismo paso cuando es «reponer hasta que…» (potasio bajo, bicarbonato:
+    «¿Ha subido ya…?» → «Aún no»). Una opción como «Ya lleva dextrosa»
+    evita repetir en cada vuelta un paso que se hace una sola vez.
+  - **Un paso al que llegan varias cadenas devuelve a cada una a la suya**:
+    pregunta «¿Qué crisis estás tratando?» y cada respuesta, con el color de
+    su cadena, vuelve a su vigilancia (edema cerebral → CAD o EHH).
+  - **Una entidad que sigue la cadena de otra lleva sus propios criterios**
+    de vigilancia y de resolución (la mixta va por la cadena de la CAD, pero
+    vigila también la osmolalidad y se resuelve cuando cumple los criterios
+    de las dos).
+  - Una misma pregunta no se repite en varios pasos de una cadena (la de la
+    glucosa, una sola vez, en su paso).
+  - El **ABCDE se divide por la hemodinámica** cuando la guía actúa distinto
+    (PAS ≥90 → criterios; PAS <90 → choque).
+  - Una **sección menú** (Situaciones especiales) es una `rama` con varias
+    opciones y un `pie_nodo` que pregunta («¿Qué situación especial tiene
+    el paciente?»).
+
+  **El modelo** (Crisis hiperglucémicas, 58 pasos). Las opciones de cada
+  pregunta van entre paréntesis; ↺ es el «Aún no» que repite el paso:
+
+  ```
+  Diagnóstico   ABCDE: ¿PAS al llegar? (≥90 → criterios · <90 → choque: ¿sube con los bolos? Sí → criterios · No → choque refractario)
+                Criterios, calculadora con ramificar: CAD → gravedad (leve/moderada · grave) → ¿criterios de UCI? → Tratamiento
+                  · CAD euglucémica → ¿alcohol o ayuno? · EHH → confirmar · Mixta · Ninguno: otra causa → diferencial
+  Tratamiento   ¿Cuál es el trastorno que vas a tratar?
+   CAD o mixta (azul)   líquidos (¿cautela? No · Sí → esquema prudente) → ¿potasio? (<3,5 reponer ↺ · 3,5-5,0 · >5,0)
+                        → insulina (IV · SC) → ¿pH <7,0? (No · Sí → bicarbonato ↺) → ¿fósforo bajo con clínica? (No · Sí → reponer)
+                        → ¿complicación? (No, ninguno · baja la conciencia → edema cerebral · la glucosa cae demasiado → hipoglucemia)
+                        → vigilancia: ¿bajan las cetonas ≥0,5/h? (Sí → glucosa · No → respuesta lenta → ¿complicación?)
+                        → ¿glucosa <250? (Sí → dextrosa · Ya lleva dextrosa · Aún no → ¿complicación?)
+                        → ¿resuelta? (Sí → Seguimiento · Aún no, antes de 24 h → ¿complicación? · No, tras 24 h → sin resolver)
+   CAD euglucémica      dextrosa desde el inicio → sigue la cadena de la CAD
+   EHH (morado)         líquidos → ¿potasio <3,5? (No · Sí → reponer ↺) → ¿cetonas? (≤1,0 · >1,0 y <3,0 → insulina 0,05 · ≥3,0 o acidosis → cadena de la CAD)
+                        → vigilancia: ¿ritmo de la osmolalidad? (3-8 → glucosa · <3 o sube → lenta · >8 → demasiado rápida)
+                        → ¿cómo baja la glucosa? (<250 → dextrosa · baja bien · se estanca → insulina · ya lleva dextrosa) → ¿resuelta? (Sí · Aún no)
+   Edema cerebral       ¿Qué crisis estás tratando? (CAD o mixta → su vigilancia · EHH → la suya)
+  Seguimiento   ¿Puede comer y beber? (Sí → basal-bolo · No → ayunas → basal-bolo) → alta → seguimiento
+  Situaciones   ¿Qué situación especial tiene? (iSGLT2 · embarazo · anciano, diálisis o insuficiencia cardiaca)
+  ```
+
+  Antes de escribir los nodos, se dibuja así el mapa del algoritmo que se
+  trabaja: qué pregunta divide por trastorno, todas las respuestas de cada
+  pregunta y adónde vuelve cada «Aún no».
 - **Color por rama.** La app da a cada rama hermana un tono distinto (azul,
   turquesa, púrpura, rosa, cian) y sus pasos siguientes lo heredan: la
   tarjeta, su título, su pill y su línea. No hace falta escribir nada; un
@@ -125,8 +195,10 @@ es un hueco; lo que la guía no trae, no se escribe.
   las pruebas de la primera hora como `checklist`. Cada letra con lo que la
   guía dice para esa patología, con su cita; si la guía no lo trae, se cita
   la guía de la patología que sí lo dice (p. ej. JBDS para el ABCDE de la
-  cetoacidosis). En un algoritmo de consulta (no urgente), la primera
-  valoración ordenada ocupa ese lugar.
+  cetoacidosis). Si la guía actúa distinto según la hemodinámica, el ABCDE
+  termina en una pregunta («¿Qué presión arterial sistólica tiene al
+  llegar?») y el choque tiene su propio camino (§1). En un algoritmo de
+  consulta (no urgente), la primera valoración ordenada ocupa ese lugar.
 - **Definición y criterios diagnósticos**, contados («2 de 4») y completos.
 - **Criterios de gravedad** con sus umbrales y la escala que usa la guía.
 - **Criterios de ingreso, de UCI y de alta**, cada uno como `checklist`.
@@ -137,7 +209,13 @@ es un hueco; lo que la guía no trae, no se escribe.
   ERC), segunda línea si falla y **el criterio de fallo** que la dispara.
 - **Dosis**: fármaco, dosis, vía, frecuencia, máximo y duración. Ajuste renal
   o hepático si la guía lo da.
-- **Signos de alarma y cuándo derivar**, con el motivo.
+- **Complicaciones del tratamiento** (hipoglucemia, hipopotasemia, edema
+  cerebral, sobrecarga de volumen, caída demasiado rápida de la
+  osmolalidad): qué las anuncia y qué hacer, como pregunta del bucle de
+  vigilancia (§1), no como un párrafo en un paso.
+- **Medidas de todo el ingreso** (tromboprofilaxis, cuidado de los pies,
+  balance de líquidos): en el paso de vigilancia de cada cadena.
+- **Signos de alarma y cuándo remitir**, con el motivo.
 - **Seguimiento**: cuándo se revisa y qué se mide.
 - **Discrepancias** entre guías cuando hay dos y se contradicen.
 
@@ -155,13 +233,13 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
-| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw). **Con dos o más imágenes en un nodo, la app las pone de dos en dos y lado a lado** (la que sobra, a todo el ancho): en media columna la imagen sólo se reconoce y se lee al tocarla, así que el título escrito dentro y el pie corto cuentan aún más, y más de cuatro alargan la tarjeta | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
+| `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw). **Con dos o más imágenes en un nodo, la app las pone de dos en dos y lado a lado** (la que sobra, a todo el ancho): en media columna la imagen sólo se reconoce y se lee al tocarla, así que el título escrito dentro y el pie corto cuentan aún más, y más de cuatro alargan la tarjeta | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos. Una figura puede repetirse en **cadenas paralelas** (el ECG del potasio bajo en la CAD y en el EHH), con su `en_texto` y su `info` adaptados a cada paso; nunca en dos pasos seguidos del mismo camino |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
 | `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone al final de la tarjeta, **una pieza por fila y a todo el ancho** (con la tabla, la dosis, la perla y las discrepancias; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
-| `discrepancias` | dos guías dicen cosas distintas para el mismo paciente **y eso cambia lo que se hace**: la dosis, el destino (planta, intermedios, UCI), el momento de un tratamiento o un umbral que cambia la conducta. Una diferencia de redondeo o de unidades (>198 frente a ≥200 mg/dL, ≤90 frente a ≤90-120 mg/dL/h) **no** se escribe: el algoritmo ya eligió y sólo confunde. La app las enseña como un aviso pequeño en la cabecera de la tarjeta, junto a las fuentes, que abre una hoja | sólo las que cambian la conducta; nunca inventadas (en Crisis hiperglucémicas, 5 en 28 pasos) |
+| `discrepancias` | dos guías dicen cosas distintas para el mismo paciente **y eso cambia lo que se hace**: la dosis, el destino (planta, intermedios, UCI), el momento de un tratamiento o un umbral que cambia la conducta. Una diferencia de redondeo o de unidades (>198 frente a ≥200 mg/dL, ≤90 frente a ≤90-120 mg/dL/h) **no** se escribe: el algoritmo ya eligió y sólo confunde. La app las enseña como un aviso pequeño en la cabecera de la tarjeta, junto a las fuentes, que abre una hoja | sólo las que cambian la conducta; nunca inventadas (en Crisis hiperglucémicas, 15 en 58 pasos) |
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
-| `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: más o menos la mitad de los nodos clínicos, no todos |
+| `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: un tercio de los nodos clínicos más o menos (en Crisis hiperglucémicas, 14 de 53), con **25 palabras** como mucho |
 | `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app la marca como la frase de una imagen, pero en naranja (subrayada, texto teñido y un Σ pequeño arriba a la derecha) y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos), con las fuentes en el botón del libro. Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mEq/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
 | `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo; **1 de cada 4-5 nodos clínicos** (5-6 en un algoritmo de 25 nodos) |
 
@@ -226,7 +304,10 @@ citas literales (`referencias[].texto`) se quedan como están.
 | comprimido | **tableta** |
 | mascarilla (reservorio) | **máscara** (con reservorio) |
 | médico sénior | **especialista** |
-| analíticas | **laboratorios** o paraclínicos |
+| analíticas · bioquímica (el examen) | **laboratorios** o paraclínicos; «química sanguínea» |
+| iones | **electrolitos** |
+| hidratos de carbono | **carbohidratos** |
+| deprisa | **rápido** («baja **demasiado rápido**») |
 
 `python3 tools/norma.py --vocabulario <algoritmo>` lista lo que se cuela y
 `--corregir` aplica los cambios seguros (sin tocar citas, ids ni el formato
@@ -277,7 +358,9 @@ título no repite la pill y el texto no vuelve a decir el título.
   - no repetir lo que ya dice otro paso (se enlaza);
   - partir el nodo si mezcla dos decisiones.
   Las viñetas siguen siendo frases completas, pero cortas: un paso, una
-  viñeta.
+  viñeta. `tools/norma.py` lista los nodos con más de **90 palabras
+  visibles** y los `contexto` de más de **25** (`METAS`), y las preguntas
+  que se quedan con una sola respuesta.
 - **Negritas** en dosis, umbrales, tiempos y metas, y también en **las
   palabras clave** de cada viñeta: la condición que decide («**hipovolemia
   grave**», «**compromiso cardiaco**»), el fármaco o el suero («**lactato de
@@ -361,6 +444,19 @@ título no repite la pill y el texto no vuelve a decir el título.
   con su umbral y unidades: «Menor de 3,5 mEq/L», «Entre 3,5 y 5,0 mEq/L».
   La acción va en el título del nodo al que lleva. Cada opción se entiende
   sola (en el modo lectura las hermanas se leen de una en una).
+- **Todas las respuestas, sin huecos ni solapes** (§1): una pregunta de Sí
+  lleva su No; las opciones con cifras cubren todo el rango y no comparten
+  límite («1,0 mmol/L o menos» · «Más de 1,0 y menos de 3,0» · «3,0 mmol/L o
+  más»). Si la respuesta negativa es «todavía no», se escribe «Aún no» y
+  vuelve al paso que se repite.
+- **Opciones de entidad** (¿Cuál es el trastorno…?, ¿Qué crisis estás
+  tratando?): el nombre corto como rótulo («CAD o mixta»), su `color` fijo
+  en todo el algoritmo y, en la `descripcion` de la opción, los criterios
+  que la identifican en una línea («Glucosa ≥600 mg/dL y osmolalidad >300,
+  sin acidosis»). En «¿Qué crisis estás tratando?», la `descripcion` dice
+  adónde vuelve («Seguir la vigilancia de las cetonas»).
+- Una opción que evita repetir un paso ya hecho se nombra por el hecho
+  («Ya lleva dextrosa»).
 
 ### Perlas y alertas
 
@@ -413,7 +509,7 @@ título no repite la pill y el texto no vuelve a decir el título.
 
 - La pill dice el dato, el título la acción, el contexto el porqué y el texto el cómo: ninguno repite a otro (§4).
 - Si una imagen ya muestra una tabla, una lista de criterios o una secuencia, **se queda la imagen** y no se repite como `tabla` o `checklist` en el mismo nodo.
-- La misma imagen no se pone en dos nodos seguidos de la misma vía.
+- La misma imagen no se pone en dos nodos seguidos de la misma vía. Sí puede ir en el paso equivalente de otra cadena (el ECG del potasio bajo en la CAD y en el EHH), con el `en_texto` y el `info` de ese paso, y la figura dice lo mismo que el nodo (cifras, umbrales, tiempos).
 - Lo que dice el texto no se repite en la perla ni en la alerta.
 
 ## 6. Alcance

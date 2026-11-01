@@ -7,7 +7,9 @@ argument-hint: "<algoritmo> [--guia RUTA_O_URL] [--sin-pausas]"
 # Mejorar un algoritmo
 
 Una sesión, un algoritmo, una rama, un PR. Lee primero `NORMA.md` (en esta
-carpeta): es la definición de terminado.
+carpeta): es la definición de terminado. El resultado tiene que parecerse a
+`data/Adultos/crisishiperglicemica.json`, el modelo: ábrelo (o su mapa en
+`NORMA.md` §1) antes de diseñar.
 
 Argumentos: `$ARGUMENTS`. El algoritmo puede venir como `sepsis`,
 `sepsis.json` o `Adultos/sepsis.json`. Con `--sin-pausas` no se espera la
@@ -49,6 +51,13 @@ Escribe `$SCRATCH/plan_<algoritmo>.md` con:
 
 - la silueta actual y la propuesta (secciones, nodos nuevos, nodos que se
   parten), respetando los ids existentes;
+- **el mapa de ramas**, dibujado como el del modelo (`NORMA.md` §1): qué
+  pregunta divide el tratamiento por trastorno y qué cadena sigue cada
+  entidad (con su color), dónde se juntan, todas las respuestas de cada
+  pregunta (ningún «Sí» sin su «No»), el paso de vigilancia de cada cadena
+  con su pregunta de ritmo, la pregunta de complicaciones, adónde vuelve
+  cada «Aún no» y qué pasos compartidos preguntan «¿Qué crisis estás
+  tratando?»;
 - los huecos de la lista «Lo que no puede faltar» de `NORMA.md`, cada uno
   con la página de la guía donde está el dato;
 - por los cinco frentes: contenido nuevo, calculadoras (conectar / crear),
@@ -63,7 +72,15 @@ Enseña un resumen corto y **espera la aprobación** (salvo `--sin-pausas`).
 Orden de trabajo, nodo a nodo:
 
 1. **Estructura**: secciones, nodos nuevos colgados de los que ya existen,
-   `pie_nodo` en cada decisión, rótulos en cada opción.
+   `pie_nodo` en cada decisión, rótulos en cada opción, según el mapa de
+   ramas del plan y las reglas de `NORMA.md` §1: una cadena por trastorno
+   con su `color` y la `descripcion` de sus criterios en la opción, opciones
+   sin huecos ni solapes, la vigilancia y las complicaciones como bucle,
+   «Aún no» al paso que se repite, «Ya lleva…» para no repetir un paso
+   hecho. En una reforma completa conviene escribir el algoritmo con un
+   script en el scratchpad (un diccionario por nodo, las citas en un solo
+   sitio) que genere el JSON y regenerarlo tras cada cambio; al repositorio
+   sólo va el JSON.
 2. **Contenido**: cada cifra, dosis, umbral o criterio nuevo lleva su
    referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
    `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`.
@@ -125,6 +142,17 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
 2b. `python3 tools/norma.py --vocabulario <algoritmo>`: sin cambios
    automáticos pendientes; cada «revisar» decidido (el suero sanguíneo o el
    «suero casero» de AIEPI se quedan).
+2c. Recorre el mapa de ramas que sale del JSON (cada nodo con su
+   `pie_nodo` y sus opciones → destino) y compáralo con el del plan: toda
+   pregunta con dos opciones o más, ningún «Sí» suelto, todo «Aún no» hacia
+   el paso que se repite, ninguna rama a la nada. Cuenta las palabras
+   visibles de cada nodo (contexto + texto + alertas): 60-70, 90 como
+   mucho; `tools/norma.py` lista los que se pasan.
+2d. Figuras propias: `node tools/medios/solapes.js
+   tools/medios/figuras/<carpeta>/*.html` sin fallos, y **mira cada PNG**
+   con `Read` antes de subirlo (rótulos sobre las curvas, cajas que se
+   salen, negritas partidas). La figura dice exactamente lo que dice su
+   nodo.
 3. Lanza **en paralelo** los subagentes `revisor-clinico` y
    `revisor-legibilidad` con la ruta del algoritmo, la del PDF y el plan.
    Corrige lo que encuentren; lo que no se corrija, al PR con el motivo.
@@ -138,5 +166,10 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
   - **decisiones para el revisor médico**: toda conducta, dosis o umbral
     nuevo o cambiado, con la página de la guía;
   - pendientes (`TODO_*`) y créditos de imágenes de terceros.
-- **No se hace merge.** `main` es producción: la app lee de ahí en cuanto
-  entra. El merge lo hace el médico que revisa.
+- **`main` es producción**: la app lee de ahí en cuanto entra. El dueño
+  autorizó (octubre de 2026) que Claude pase a `main` el trabajo validado
+  (todo lo de §5 en verde y las correcciones de los revisores aplicadas, o
+  listadas en el PR con su motivo): merge del PR por squash y comprobar que
+  el workflow de Firebase termina bien. Sin forzar el push nunca. Si el
+  algoritmo estaba oculto, quitar `"oculto": true` es una decisión del
+  dueño: se pregunta antes.
