@@ -77,7 +77,9 @@ como lo haría un usuario y revisa:
    perla, discrepancias, enlaces) también satura: proponer qué sobra o qué va a otro
    paso; y más de cuatro imágenes en un nodo, qué se queda. Además, un nodo que mezcla dos
    decisiones se parte y una lista de criterios va a `checklist`; `alertas` en
-   exceso (si todo es alerta, nada lo es); perlas que repiten el texto.
+   exceso (si todo es alerta, nada lo es); perlas que repiten el texto;
+   `discrepancias` que no cambian lo que se hace (redondeos, unidades, matices
+   que el algoritmo ya resolvió): proponer quitarlas.
 6. **Ids**: ningún id que existía en `main` ha desaparecido
    (`git diff main -- <archivo>`): las notas de los usuarios van por id.
 

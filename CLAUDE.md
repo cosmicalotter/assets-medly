@@ -162,7 +162,9 @@ Firebase directamente, saltándose `indices/`.
   en **mg/dL** y sodio, potasio, cloro y bicarbonato en **mEq/L** aunque la
   guía dé mmol/L (tabla en `NORMA.md` §4); negritas también en las alertas;
   criterios por entidad (CAD, EHH…) en `tabla`, y «la tabla» del texto como
-  `tabla.en_texto`, que la abre.
+  `tabla.en_texto`, que la abre; `discrepancias` sólo si cambian lo que se
+  hace (dosis, destino, momento, umbral de conducta), nunca por redondeos o
+  unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
   `burbujas` (bombilla al final de la frase). Detalle y ejemplos en `NORMA.md` §3-§4.
