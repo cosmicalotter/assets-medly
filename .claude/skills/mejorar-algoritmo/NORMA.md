@@ -70,7 +70,8 @@ cambian, se cambian allí y aquí a la vez.
   separadas por « · » («Tokio 2018 · WSES 2020 · ASGE · ESGE»); debajo la app
   enseña las definiciones de la portada en tres líneas como mucho. Por eso la
   primera viñeta de la portada debe entenderse sola. Al terminar un algoritmo
-  oculto, se quita `"oculto": true` del JSON para publicarlo.
+  oculto, se pregunta al dueño antes de quitar `"oculto": true` del JSON:
+  desocultarlo lo publica para todos los usuarios.
 - **Cada sección es un algoritmo de verdad**: cadenas ordenadas que se
   dividen donde la guía decide por un dato, con todas sus respuestas y sus
   vueltas. El modelo es `data/Adultos/crisishiperglicemica.json` (su mapa,
