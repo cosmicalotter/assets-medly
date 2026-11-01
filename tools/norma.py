@@ -336,13 +336,13 @@ def corregir_vocabulario(valor):
 
 
 # Negritas: la app pinta las cifras en el color del nodo y las palabras clave
-# en negrita del color del texto. Más de dos palabras clave por frase y la
-# vista ya no sabe adónde saltar.
+# en negrita del color del texto. Dos o tres palabras clave por frase (más y la
+# vista ya no sabe adónde saltar) y alguna en cada pieza de texto.
 _NEGRITA = re.compile(r"\*\*([^*]+)\*\*")
 _ROTULO_INICIAL = re.compile(r"^\s*(?:-|\d+\.)\s+\*\*[^*]+:\*\*")
 
 
-def negritas_densas(nodo: dict, tope: int = 2) -> list[tuple[str, int]]:
+def negritas_densas(nodo: dict, tope: int = 3) -> list[tuple[str, int]]:
     """Frases (viñetas del texto; frases de la perla, el contexto y las
     alertas) con más de [tope] palabras clave en negrita."""
     frases: list[str] = (nodo.get("texto") or "").split("\n")
@@ -356,6 +356,23 @@ def negritas_densas(nodo: dict, tope: int = 2) -> list[tuple[str, int]]:
         if len(claves) > tope:
             densas.append((frase.strip(), len(claves)))
     return densas
+
+
+def piezas_sin_negritas(nodo: dict) -> list[str]:
+    """Piezas de prosa (8 palabras o más) sin ninguna palabra clave en
+    negrita: perla, contexto, alertas, datos extra, `info` de las imágenes,
+    notas de discrepancias y de dosis."""
+    piezas = [("contexto", nodo.get("contexto")), ("perla", nodo.get("nota_adicional"))]
+    piezas += [("alerta", a.get("texto")) for a in nodo.get("alertas") or [] if isinstance(a, dict)]
+    piezas += [("dato extra", b.get("texto")) for b in nodo.get("burbujas") or [] if isinstance(b, dict)]
+    piezas += [("info de imagen", m.get("info")) for m in nodo.get("media") or [] if isinstance(m, dict)]
+    piezas += [("nota de discrepancia", d.get("nota")) for d in nodo.get("discrepancias") or [] if isinstance(d, dict)]
+    piezas += [("nota de dosis", f.get("nota")) for f in nodo.get("farmacos") or [] if isinstance(f, dict)]
+    faltan = []
+    for nombre, texto in piezas:
+        if texto and palabras(texto) >= 8 and not [x for x in _NEGRITA.findall(texto) if not re.search(r"\d", x)]:
+            faltan.append(nombre)
+    return faltan
 
 
 def palabras(texto: str) -> int:
@@ -575,7 +592,9 @@ def medir(ruta: Path) -> Informe:
         if palabras(texto) > 120:
             inf.faltas.append(f"{nid}: {palabras(texto)} palabras en el texto; partir o pasar a tabla/checklist")
         for frase, n_clave in negritas_densas(n):
-            inf.faltas.append(f"{nid}: {n_clave} palabras clave en negrita en «{frase[:60]}…»; dos como mucho (las cifras y el rótulo no cuentan)")
+            inf.faltas.append(f"{nid}: {n_clave} palabras clave en negrita en «{frase[:60]}…»; tres como mucho (las cifras y el rótulo no cuentan)")
+        for pieza in piezas_sin_negritas(n):
+            inf.faltas.append(f"{nid}: {pieza} sin ninguna palabra clave en negrita")
 
     # Un camino que entra en otra sección por la mitad: mejor al nodo de sección.
     hogar = secciones_hogar(alg)

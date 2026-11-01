@@ -31,13 +31,14 @@ como lo haría un usuario y revisa:
    salina 0,9 %» y «lactato de Ringer»); viñetas con varios pasos seguidos
    («…; después…») que deberían ir en subviñetas numeradas; viñetas sin
    ninguna palabra clave en negrita, con frases enteras en negrita o con más
-   de dos palabras clave por frase (las cifras y el rótulo no cuentan; en
+   de tres palabras clave por frase (las cifras y el rótulo no cuentan; en
    una enumeración, una negrita para el grupo: la app pinta en color sólo las
-   cifras); un `contexto` o una perla sin negritas; español de España
+   cifras); un `contexto`, una perla, una alerta, un dato extra, un `info` o
+   una nota de discrepancia sin ninguna palabra clave en negrita; español de España
    (paracetamol, cloruro potásico, «sueros» por líquidos IV, derivar,
    planta, gasometría, ictus, pauta…: NORMA §4, «Español de Colombia», y
-   `python3 tools/norma.py --vocabulario <algoritmo>`); textos de enlace que no caben en una
-   pastilla; en un paso sin ramas con varios saltos, el principal no va
+   `python3 tools/norma.py --vocabulario <algoritmo>`); textos de enlace que no caben en media
+   tarjeta; en un paso sin ramas con varios saltos, el principal no va
    primero.
 1b. **Piezas del nodo**: un `contexto` que sobra (repite el título, resume
    el texto o la tabla, dice lo obvio o repite una perla, una alerta o el
@@ -72,8 +73,8 @@ como lo haría un usuario y revisa:
 5. **Densidad**: lo visible sin desplegar (contexto, texto, alertas) ronda
    60-70 palabras por nodo, 90 como mucho (NORMA §4); por encima, proponer
    qué quitar, qué pasar a la perla y qué a una tabla. Al final de la
-   tarjeta, más de cinco o seis pastillas (tabla, dosis, perla,
-   discrepancias, enlaces) también satura: proponer qué sobra o qué va a otro
+   tarjeta, más de cinco o seis piezas en la rejilla (tabla, dosis,
+   perla, discrepancias, enlaces) también satura: proponer qué sobra o qué va a otro
    paso; y más de cuatro imágenes en un nodo, qué se queda. Además, un nodo que mezcla dos
    decisiones se parte y una lista de criterios va a `checklist`; `alertas` en
    exceso (si todo es alerta, nada lo es); perlas que repiten el texto.

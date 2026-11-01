@@ -150,11 +150,12 @@ Firebase directamente, saltándose `indices/`.
   «salino» ni «Ringer lactato»); secciones de una palabra («Diagnóstico»,
   «Tratamiento»); negritas también en las palabras clave de cada viñeta
   («**hipovolemia grave**»), del `contexto`, de la perla y de los datos extra,
-  **una o dos por frase** (la app pinta en color sólo las cifras; las palabras
-  clave, en negrita del color del texto); **español de Colombia**
+  **dos o tres por frase** y alguna en cada pieza de texto (perla, alerta,
+  dato extra, `info`, discrepancias, dosis); la app pinta en color sólo las
+  cifras y las palabras clave, en negrita del color del texto; **español de Colombia**
   (acetaminofén, cloruro de potasio, líquidos IV, remitir, hospitalización,
   gases…; tabla en `NORMA.md` §4 y `tools/norma.py --vocabulario`);
-  textos de enlace cortos (caben en una pastilla del final de la tarjeta) y, en un paso sin ramas, el
+  textos de enlace cortos (caben en media tarjeta) y, en un paso sin ramas, el
   salto principal primero (va al pie como «Ir al…»); subviñetas (dos espacios, numeradas si son pasos
   en orden) para partir las viñetas con varios pasos; «Si hay X → acción»;
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio

@@ -151,14 +151,14 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `evidencia` | la clase y el nivel que da la guía para ese paso, simplificados: `{"clase": "IIa", "nivel": "B"}` (sin -R, -NR, -LD, -EO); con GRADE, `{"texto": "GRADE: débil a favor"}` | siempre que la guía los dé; si no, nunca |
 | `farmacos` | todo fármaco nombrado con dosis en la guía | todos |
 | `farmacos[].por_kg` | toda dosis «/kg», con `tope` y `concentracion` si la guía los da | todas (en pediatría es obligatorio) |
-| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios con las cifras en negrita. En la tarjeta es una de las pastillas del final (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en una pastilla («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
+| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios con las cifras en negrita. En la tarjeta es una pieza de la rejilla del final (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en media tarjeta («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
 | `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw). **Con dos o más imágenes en un nodo, la app las pone de dos en dos y lado a lado** (la que sobra, a todo el ancho): en media columna la imagen sólo se reconoce y se lee al tocarla, así que el título escrito dentro y el pie corto cuentan aún más, y más de cuatro alargan la tarjeta | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
-| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone en las **pastillas** del final de la tarjeta (con la tabla, la dosis, la perla y las discrepancias; una línea cada una, con el color sólo en el icono; las calculadoras primero, con su icono naranja): el `texto` tiene que caber en una pastilla, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
+| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone en la **rejilla de dos columnas** del final de la tarjeta (con la perla y las discrepancias, piezas iguales; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente | cuando pase; nunca inventada |
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: más o menos la mitad de los nodos clínicos, no todos |
@@ -271,13 +271,17 @@ título no repite la pill y el texto no vuelve a decir el título.
   palabras clave** de cada viñeta: la condición que decide («**hipovolemia
   grave**», «**compromiso cardiaco**»), el fármaco o el suero («**lactato de
   Ringer**»), el hallazgo o la población («**anciano**», «**embarazo**»).
-  Palabras o expresiones cortas, no frases enteras: **una o dos por viñeta**
-  (las cifras y el rótulo no cuentan), para que la vista salte de una a
-  otra. En una enumeración, una sola negrita para el grupo («**glucosa, las
+  Palabras o expresiones cortas, no frases enteras: **dos o tres por
+  viñeta** (las cifras y el rótulo no cuentan), para que la vista salte de
+  una a otra. Y **en todas las piezas de texto**, no sólo en el `texto`: la
+  perla, el contexto, las alertas, los datos extra (bombilla), el `info` de
+  las imágenes, las notas de las discrepancias y de las dosis llevan sus
+  palabras clave en negrita. En una enumeración, una sola negrita para el grupo («**glucosa, las
   cetonas y el potasio**»), no una por elemento. La app pinta **las cifras en
   el color del nodo** y **las palabras clave en negrita del color del texto**:
   si todo lo resaltado llevara color, el ojo no sabría adónde ir.
-  `tools/norma.py` avisa de las frases con más de dos.
+  `tools/norma.py` avisa de las frases con más de tres y de las piezas sin
+  ninguna.
 - **Subviñetas.** Una viñeta que junta varios pasos (simultáneos o
   seguidos), o una condición con datos que dependen de ella, se parte en
   subviñetas con dos espacios delante. Pasos en orden → numeradas (`  1.`,
@@ -333,8 +337,8 @@ título no repite la pill y el texto no vuelve a decir el título.
   mejor corta. Nunca en las portadas de sección (`estilo: "rama"`).
 - **Negritas en las palabras clave**, como en el texto: lo que el lector tiene
   que captar de un vistazo («En la cetoacidosis el **potasio total del cuerpo
-  está bajo**, aunque en sangre parezca normal o alto»), dos por frase como
-  mucho. No en la frase de un `en_texto`, que tiene que quedar
+  está bajo**, aunque en sangre parezca normal o alto»), dos o tres por
+  frase. No en la frase de un `en_texto`, que tiene que quedar
   entera fuera de la negrita.
 
 ### Preguntas y opciones
@@ -342,9 +346,6 @@ título no repite la pill y el texto no vuelve a decir el título.
 - `pie_nodo`: pregunta clínica completa, con «¿» y «?», que diga qué mirar y
   para qué: «¿Cuánto potasio tiene en sangre antes de empezar la insulina?»,
   «¿Cumple los criterios de resolución de su crisis?».
-  La app la pinta sin caja, al final de la tarjeta y justo encima del botón
-  que abre las ramas: es lo último que se lee antes de seguir, así que una
-  sola frase.
 - Cada opción (pill) dice **sólo el dato o la condición** que lleva a esa rama,
   con su umbral y unidades: «Menor de 3,5 mEq/L», «Entre 3,5 y 5,0 mEq/L».
   La acción va en el título del nodo al que lleva. Cada opción se entiende
@@ -353,8 +354,8 @@ título no repite la pill y el texto no vuelve a decir el título.
 ### Perlas y alertas
 
 - `nota_adicional` (perla): explicada, con el porqué, en 1-2 frases completas:
-  qué pasa, por qué y qué hacer, con **negritas en las palabras clave** (dos
-  por frase como mucho; las cifras salen en el naranja de la perla). «Al poner mucha solución salina 0,9 %
+  qué pasa, por qué y qué hacer, con **negritas en las palabras clave** (dos o
+  tres por frase; las cifras salen en el naranja de la perla). «Al poner mucha solución salina 0,9 %
   aparece una **acidosis hiperclorémica**: el **bicarbonato sigue bajo**
   aunque las cetonas ya se hayan ido. Por eso la resolución se juzga por las
   **cetonas en sangre**, no por el bicarbonato.»

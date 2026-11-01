@@ -71,8 +71,9 @@ Orden de trabajo, nodo a nodo:
    clínico con `contexto` sólo si hace falta un porqué que no es obvio (no
    en todos), título con la acción, pills con
    sólo el dato, preguntas clínicas completas, viñetas completas pero breves
-   en infinitivo; negritas con mesura (cifras y una o dos palabras clave por
-   frase: la app pinta en color sólo las cifras) y español de Colombia
+   en infinitivo; negritas en las cifras y en dos o tres palabras clave por
+   frase, también en perlas, alertas, datos extra, `info` y discrepancias
+   (la app pinta en color sólo las cifras) y español de Colombia
    (`python3 tools/norma.py --vocabulario <algoritmo> --corregir` aplica lo
    seguro; «suero», «pauta» y demás «revisar», a mano). Las siglas no se
    desarrollan: se añaden a `data/glosario.json` si faltan. Aquí sí se
@@ -118,7 +119,8 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
    o esquema que no estuviera en la línea base.
 2. `python3 tools/norma.py <algoritmo>` ≥ 80 y `galgo auditar --listar -a
    <algoritmo>` ≥ 85. Si no llega, la lista «qué le falta» dice por dónde
-   (también las frases con más de dos palabras clave en negrita y el
+   (también las frases con más de tres palabras clave en negrita, las
+   piezas sin ninguna y el
    vocabulario de España).
 2b. `python3 tools/norma.py --vocabulario <algoritmo>`: sin cambios
    automáticos pendientes; cada «revisar» decidido (el suero sanguíneo o el
