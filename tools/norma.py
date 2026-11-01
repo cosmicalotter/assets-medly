@@ -368,9 +368,10 @@ def piezas_sin_negritas(nodo: dict) -> list[str]:
     piezas += [("info de imagen", m.get("info")) for m in nodo.get("media") or [] if isinstance(m, dict)]
     piezas += [("nota de discrepancia", d.get("nota")) for d in nodo.get("discrepancias") or [] if isinstance(d, dict)]
     piezas += [("nota de dosis", f.get("nota")) for f in nodo.get("farmacos") or [] if isinstance(f, dict)]
+    piezas += [("pauta de dosis", f.get("pauta")) for f in nodo.get("farmacos") or [] if isinstance(f, dict)]
     faltan = []
     for nombre, texto in piezas:
-        if texto and palabras(texto) >= 8 and not [x for x in _NEGRITA.findall(texto) if not re.search(r"\d", x)]:
+        if texto and palabras(texto) >= 3 and not [x for x in _NEGRITA.findall(texto) if not re.search(r"\d", x)]:
             faltan.append(nombre)
     return faltan
 
