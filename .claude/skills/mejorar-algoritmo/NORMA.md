@@ -242,6 +242,12 @@ del archivo); lo que depende de la frase («suero», «pauta») se corrige a man
 | `texto` | **el cómo**: viñetas completas pero breves, con las cifras en negrita | «- No empezar la insulina hasta que el potasio supere **3,5 mEq/L**.» |
 | `pie_nodo` | **pregunta clínica completa** que dice qué mirar y para qué | «¿Cuánto potasio tiene en sangre antes de empezar la insulina?» |
 
+En la tarjeta, el tipo de paso y el `titulo` van en una franja del color del
+nodo; el `contexto`, el texto, las alertas, la lista y las imágenes, en la
+zona blanca; la calculadora, la tabla, la dosis, la perla, los enlaces y el
+`pie_nodo`, en la franja de abajo. Por eso el título se lee solo, como la
+cabecera del paso.
+
 Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
 título no repite la pill y el texto no vuelve a decir el título.
 
