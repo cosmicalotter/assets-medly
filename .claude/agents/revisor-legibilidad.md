@@ -73,7 +73,7 @@ como lo haría un usuario y revisa:
 5. **Densidad**: lo visible sin desplegar (contexto, texto, alertas) ronda
    60-70 palabras por nodo, 90 como mucho (NORMA §4); por encima, proponer
    qué quitar, qué pasar a la perla y qué a una tabla. Al final de la
-   tarjeta, más de cinco o seis piezas en la rejilla (tabla, dosis,
+   tarjeta, más de cinco o seis piezas al final (tabla, dosis,
    perla, discrepancias, enlaces) también satura: proponer qué sobra o qué va a otro
    paso; y más de cuatro imágenes en un nodo, qué se queda. Además, un nodo que mezcla dos
    decisiones se parte y una lista de criterios va a `checklist`; `alertas` en
