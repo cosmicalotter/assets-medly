@@ -246,7 +246,7 @@ En la tarjeta, el tipo de paso y el `titulo` van en una franja del color del
 nodo; el `contexto`, el texto, las alertas, la lista y las imágenes, en la
 zona blanca; la calculadora, la tabla, la dosis, la perla y los enlaces a
 otros algoritmos o calculadoras, en una bandeja gris, y al final de ella, bajo
-«Ver también», los saltos laterales a otros pasos (enlaces internos que no son
+«Ver también en este algoritmo», los saltos laterales a otros pasos (enlaces internos que no son
 la salida del camino); y el `pie_nodo`, solo con los botones, en una franja
 final del color del nodo. Por eso
 el título se lee solo, como la cabecera del paso, y la pregunta como lo que
