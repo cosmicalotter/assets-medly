@@ -42,7 +42,8 @@ abrirse.
   completo: no se publica en el índice (ni biblioteca, ni buscador, ni
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
-  quitar la llave. Hoy (octubre de 2026) están visibles sólo ACV isquémico,
+  quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
+  aunque el algoritmo ya esté terminado. Hoy (octubre de 2026) están visibles sólo ACV isquémico,
   ACV hemorrágico, patología biliar y epilepsia pediátrica; el resto espera
   la reforma a la norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
