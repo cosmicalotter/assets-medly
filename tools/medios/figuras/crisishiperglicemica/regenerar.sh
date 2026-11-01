@@ -19,5 +19,8 @@ gif() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1" --cuadros "$3" >/de
 jpg hiperk "$D/chh_ecg_hiperpotasemia_real.jpg"
 jpg hipok "$D/chh_ecg_hipopotasemia_real.jpg"
 jpg edema "$D/chh_edema_cerebral_tc_real.jpg"
+# Fotos de Commons rotuladas (tira de orina CC BY-SA 3.0; bomba de jeringa CC BY-SA 4.0)
+jpg tira "$D/chh_tira_orina_cetonas_real.jpg"
+jpg bomba "$D/chh_bomba_insulina_real.jpg"
 # Animación propia: curso de glucosa y cetonas
 gif curvas "$D/chh_glucosa_antes_que_cetosis.gif" 4 2600 3500 128
