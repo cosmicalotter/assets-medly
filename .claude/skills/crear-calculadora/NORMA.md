@@ -227,6 +227,11 @@ pide urea en mmol/L), BUN mg/dL = urea mg/dL × 0,467.
 - Abreviaturas comunes sin explicar (FC, FR, PAS, PAM, IMC, TFG, UCI, VO,
   IV); las demás, la primera vez en `descripcion` o `ayuda`.
 - La conducta no repite la categoría.
+- **Español de Colombia**, como en los algoritmos (tabla en la NORMA de
+  algoritmos §4): acetaminofén, cloruro de potasio, remitir, hospitalización,
+  gases, ACV… `python3 tools/norma.py --vocabulario
+  data/calculadoras/<escala>.json` lo revisa (`--corregir` aplica lo
+  seguro); las citas literales no se tocan.
 
 ---
 
@@ -255,6 +260,8 @@ la fuente, cita). Los PDF de guías no entran al repositorio.
 - [ ] Resultados: cubren todo, categoría corta, color, conducta con fuente
   en cada uno; `match_opcion_index` sin romper ramas.
 - [ ] `python3 tools/calculadoras.py <escala>`: 0 errores, nota ≥ 85.
+- [ ] `python3 tools/norma.py --vocabulario data/calculadoras/<escala>.json`:
+  sin español de España (salvo citas).
 - [ ] Entrada en `indices/index_calculadoras.json` con URL raw completa,
   `categoria` y `palabrasClave` sin tildes; `node update_firebase_date.js
   --validar`.

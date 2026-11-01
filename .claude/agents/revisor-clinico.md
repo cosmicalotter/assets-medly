@@ -31,7 +31,11 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
 5. **Grado de evidencia**: `evidencia` igual a la clase y nivel de la guía;
    si la guía no lo da, no debe estar.
 6. **Contenido sin fuente**: cualquier afirmación clínica que no encuentres
-   en la guía, aunque sea correcta.
+   en la guía, aunque sea correcta. Los nombres de uso en Colombia
+   (acetaminofén por paracetamol, dipirona por metamizol, cloruro de potasio,
+   «líquidos IV», «remitir», mEq/L por mmol/L en los iones) no son una
+   discrepancia con una guía española o inglesa: sí lo es una cifra mal
+   convertida.
 7. **Calculadoras**: que la escala conectada sea la que la guía usa, y que
    sus puntos de corte (`data/calculadoras/<archivo>`) coincidan.
 8. **Imágenes**: que lo que muestra cada imagen (míralas con `Read`)

@@ -16,7 +16,11 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   diagnóstica (Rx, ECO, TC), ECG, lesiones, dispositivos (inhaladores,
   sondas), y secuencias de un protocolo.
 - **Galería** (`media` con 2-4 elementos) cuando hay que comparar: normal vs
-  patológico, grados de una clasificación, hallazgos que se confunden.
+  patológico, grados de una clasificación, hallazgos que se confunden. En la
+  tarjeta van **de dos en dos, lado a lado** (la que sobra, a todo el
+  ancho): cada una en media columna, así que tiene que reconocerse pequeña
+  (título escrito dentro, señaladores gruesos) y se lee al tocarla. Más de
+  cuatro alargan la tarjeta.
 - **GIF** cuando algo se mueve: la técnica, la maniobra, el signo dinámico
   (tiraje, llenado capilar), la cuenta atrás de un protocolo.
 - Meta: 1 de cada 4 nodos clínicos con imagen y al menos 1 GIF si el tema

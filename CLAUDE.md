@@ -154,7 +154,7 @@ Firebase directamente, saltándose `indices/`.
   clave, en negrita del color del texto); **español de Colombia**
   (acetaminofén, cloruro de potasio, líquidos IV, remitir, hospitalización,
   gases…; tabla en `NORMA.md` §4 y `tools/norma.py --vocabulario`);
-  textos de enlace cortos (caben en media tarjeta) y, en un paso sin ramas, el
+  textos de enlace cortos (caben en una pastilla del final de la tarjeta) y, en un paso sin ramas, el
   salto principal primero (va al pie como «Ir al…»); subviñetas (dos espacios, numeradas si son pasos
   en orden) para partir las viñetas con varios pasos; «Si hay X → acción»;
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio

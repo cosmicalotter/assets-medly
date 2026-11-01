@@ -19,6 +19,7 @@ aprobación del plan del paso 2 (se deja escrito en el PR).
 galgo validar -a <algoritmo> --ejemplos 0 > "$SCRATCH/antes_validar.txt"
 galgo auditar --listar -a <algoritmo>      > "$SCRATCH/antes_auditar.txt"
 python3 tools/norma.py <algoritmo>          > "$SCRATCH/antes_norma.txt"
+python3 tools/norma.py --vocabulario <algoritmo> > "$SCRATCH/antes_vocabulario.txt"
 ```
 
 (`$SCRATCH` es el scratchpad de la sesión.) Si `galgo` no existe, el hook de
@@ -70,8 +71,11 @@ Orden de trabajo, nodo a nodo:
    clínico con `contexto` sólo si hace falta un porqué que no es obvio (no
    en todos), título con la acción, pills con
    sólo el dato, preguntas clínicas completas, viñetas completas pero breves
-   en infinitivo. Las siglas no se desarrollan: se añaden a
-   `data/glosario.json` si faltan. Aquí sí se
+   en infinitivo; negritas con mesura (cifras y una o dos palabras clave por
+   frase: la app pinta en color sólo las cifras) y español de Colombia
+   (`python3 tools/norma.py --vocabulario <algoritmo> --corregir` aplica lo
+   seguro; «suero», «pauta» y demás «revisar», a mano). Las siglas no se
+   desarrollan: se añaden a `data/glosario.json` si faltan. Aquí sí se
    reescribe `texto` (a diferencia de `galgo expandir`): el diff del PR es
    la revisión.
 4. **Conexiones**: `checklist`, `alertas`, `nota_adicional`, `evidencia`,
@@ -113,7 +117,12 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
 1. `galgo validar -a <algoritmo> --nivel error`: ningún error de estructura
    o esquema que no estuviera en la línea base.
 2. `python3 tools/norma.py <algoritmo>` ≥ 80 y `galgo auditar --listar -a
-   <algoritmo>` ≥ 85. Si no llega, la lista «qué le falta» dice por dónde.
+   <algoritmo>` ≥ 85. Si no llega, la lista «qué le falta» dice por dónde
+   (también las frases con más de dos palabras clave en negrita y el
+   vocabulario de España).
+2b. `python3 tools/norma.py --vocabulario <algoritmo>`: sin cambios
+   automáticos pendientes; cada «revisar» decidido (el suero sanguíneo o el
+   «suero casero» de AIEPI se quedan).
 3. Lanza **en paralelo** los subagentes `revisor-clinico` y
    `revisor-legibilidad` con la ruta del algoritmo, la del PDF y el plan.
    Corrige lo que encuentren; lo que no se corrija, al PR con el motivo.
