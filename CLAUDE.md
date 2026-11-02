@@ -137,7 +137,15 @@ Firebase directamente, saltándose `indices/`.
   sin copiar el de otro algoritmo (`NORMA.md` §2).
 - **El modelo es `data/Adultos/crisishiperglicemica.json`** (noviembre de
   2026): todo algoritmo que se crea o se reforma tiene que parecerse a él en
-  estructura, piezas y estilo. Su mapa está en `NORMA.md` §1.
+  estructura, piezas y estilo. Su mapa está en `NORMA.md` §1. **El segundo
+  modelo es `data/Adultos/patologia_biliar.json`**: un paso común (el
+  antibiótico) dentro del flujo, saltos laterales a pasos con rama, un paso
+  al que se llega desde lejos escrito para entenderse solo y nodos-enlace con
+  `contexto` (`NORMA.md` §1).
+- **Texto de los enlaces:** a otro algoritmo, sólo el nombre («Sepsis y
+  shock séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
+  («Calcular el índice de Charlson»), que se ve igual que la calculadora
+  principal (`NORMA.md` §3).
 - **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una
   lista. **Dividir se hace sólo cuando la patología lo amerita** y la
   pregunta que divide tiene lógica en ese punto del recorrido, en cualquier
