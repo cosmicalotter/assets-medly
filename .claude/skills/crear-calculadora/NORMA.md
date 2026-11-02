@@ -117,6 +117,16 @@ Reglas para decidir:
   → `anios`, `grupo_edad`): las versiones antiguas de la app la leen como el
   número e. El validador lo marca como error.
 - **`label`**: el criterio, como en una tabla. `ayuda` si hace falta.
+- **Cómo lo dibuja la app** (tablas y formularios): un criterio de dos
+  opciones exactamente «No» y «Sí» (en ese texto, sin `detalle` y con el
+  «No» en 0 puntos) se responde con un interruptor (X roja / V verde); otra
+  etiqueta («Ausente» / «Presente») lo deja en botones. Al responderlo, la
+  tarjeta se pliega a un renglón con **el rótulo antes de los dos puntos**
+  («Signos locales» en «A · Signos locales: Murphy…»), así que si el nombre
+  es largo se escribe «Rótulo: lo demás», con el rótulo de ≤ 30 caracteres.
+  Si la escala nombra sus criterios con letra o número («A · …», «1a. …»),
+  se escriben así al principio: la app los pone en la insignia del
+  criterio. Contrato: `praxis/docs/calculadoras_json.md` §3.
 - **`input_numero`** lleva siempre `unidad`, `min` y `max` (lo posible, no lo
   normal: edad 18-120 en adultos, creatinina 0,1-30 mg/dL) y `unidades` si
   el valor se informa de más de una forma (§5).
