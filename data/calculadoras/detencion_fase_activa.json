@@ -1,0 +1,133 @@
+{
+  "titulo": "Detención de la fase activa (ACOG 2024)",
+  "descripcion": "Criterios del ACOG 2024 para diagnosticar la detención de la fase activa del trabajo de parto en la gestante a término: dilatación de 6 cm o más, membranas rotas y ningún cambio cervical pese a 4 h de contracciones adecuadas o 6 h de oxitocina con contracciones inadecuadas. Separa la detención, que indica cesárea, de la fase activa lenta que sigue avanzando.",
+  "instrucciones": "Responder las tres preguntas en el último tacto. Contracciones adecuadas: más de 200 unidades Montevideo con catéter de presión intrauterina; si no se pueden medir, contar el tiempo con oxitocina.",
+  "limitaciones": "No se aplica antes de 6 cm ni con las membranas íntegras. Una fase activa lenta con algún cambio cada 4 h y madre y feto bien no es una detención.",
+  "tipoCalculo": "formula",
+  "formula": "dilatacion * membranas * tiempo",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162. Definición de detención de la fase activa.",
+      "url": "https://doi.org/10.1097/AOG.0000000000005447",
+      "paginas": "145",
+      "texto": "no progression in cervical dilation in patients who are at least 6-cm dilated with rupture of membranes despite 4 hours of adequate uterine activity"
+    },
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162. Detención: 6 h con oxitocina y actividad inadecuada.",
+      "url": "https://doi.org/10.1097/AOG.0000000000005447",
+      "paginas": "145",
+      "texto": "despite 4 hours of adequate uterine activity or 6 hours of inadequate uterine activity with oxytocin augmentation"
+    },
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162. Las normas de detención no se aplican antes de 6 cm.",
+      "url": "https://doi.org/10.1097/AOG.0000000000005447",
+      "paginas": "148",
+      "texto": "standards of active-phase management and activephase arrest should not be applied until at least 6 cm dilation"
+    },
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162. Contracciones adecuadas: más de 200 unidades Montevideo.",
+      "url": "https://doi.org/10.1097/AOG.0000000000005447",
+      "paginas": "149",
+      "texto": "adequate uterine activity (more than 200 Montevideo units [MVUs] by intrauterine pressure catheter)"
+    },
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162. Cesárea por detención de la fase activa.",
+      "url": "https://doi.org/10.1097/AOG.0000000000005447",
+      "paginas": "146",
+      "texto": "ACOG recommends that cesarean delivery be performed in patients with active phase arrest of labor."
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "dilatacion",
+          "tipo": "opciones",
+          "label": "Dilatación de 6 cm o más",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "membranas",
+          "tipo": "opciones",
+          "label": "Membranas rotas",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "tiempo",
+          "tipo": "opciones",
+          "label": "Tiempo sin ningún cambio cervical",
+          "ayuda": "Contracciones adecuadas: más de 200 unidades Montevideo con catéter de presión intrauterina.",
+          "opciones": [
+            {
+              "label": "Hay cambio, o aún no se cumple",
+              "puntos": 0,
+              "detalle": "Algún avance desde el tacto anterior, o menos tiempo que el de abajo"
+            },
+            {
+              "label": "4 h o más con contracciones adecuadas",
+              "puntos": 1
+            },
+            {
+              "label": "6 h o más con oxitocina y contracciones inadecuadas",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Detención de la fase activa",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "si": {
+        "todos": [
+          {
+            "id": "dilatacion",
+            "igual": 1
+          },
+          {
+            "id": "membranas",
+            "igual": 1
+          },
+          {
+            "id": "tiempo",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "El ACOG recomienda la cesárea ante la detención de la fase activa (recomendación fuerte, calidad baja)."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple los criterios",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Si avanza, aunque lento, con algún cambio cada 4 h y madre y feto bien, no es indicación de cesárea: seguir la oxitocina y repetir el tacto."
+    }
+  ]
+}
