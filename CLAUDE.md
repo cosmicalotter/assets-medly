@@ -206,7 +206,9 @@ Firebase directamente, saltándose `indices/`.
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio
   en **mg/dL** y sodio, potasio, cloro y bicarbonato en **mEq/L** aunque la
   guía dé mmol/L (tabla en `NORMA.md` §4); negritas también en las alertas;
-  criterios por entidad (CAD, EHH…) en `tabla`, y «la tabla» del texto como
+  criterios por entidad (CAD, EHH…) en `tabla`, **cada criterio en su viñeta**
+  (también dentro de las celdas: `- …` separadas por `\n`; nunca una lista
+  encadenada con comas, en ningún sitio del algoritmo), y «la tabla» del texto como
   `tabla.en_texto`, que la abre; `discrepancias` sólo si cambian lo que se
   hace (dosis, destino, momento, umbral de conducta), nunca por redondeos o
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
