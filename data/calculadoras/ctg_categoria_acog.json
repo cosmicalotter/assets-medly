@@ -1,0 +1,262 @@
+{
+  "titulo": "Categoría de la cardiotocografía (ACOG)",
+  "descripcion": "Clasifica un trazado de cardiotocografía intraparto en las tres categorías de la ACOG (taller NICHD de 2008, reafirmado en la guía ACOG de 2025), el sistema que recomienda la guía colombiana. La categoría I predice un estado ácido-base fetal normal, la II es indeterminada y la III se asocia a uno anormal y pide actuar ya.",
+  "instrucciones": "Primero lee el trazado: línea de base y variabilidad en 10 min y desaceleraciones en relación con las contracciones. Recurrentes: con más del 50 % de las contracciones. Las precoces y las aceleraciones no cambian la categoría.",
+  "limitaciones": "Describe al feto en ese momento: el trazado cambia y hay que reclasificarlo. Sólo para el trabajo de parto, no para la monitoría anteparto. La categoría II es muy amplia: busca sus rasgos de alto riesgo y los protectores.",
+  "tipoCalculo": "formula",
+  "formula": "(1 - (1 - sinusoidal) * (1 - ausente) * (1 - tardias) * (1 - variables) * (1 - bradicardia) * (1 - taquicardia) * (1 - variab_otra) * (1 - otras_desac)) + (1 - (1 - sinusoidal) * (1 - ausente * (1 - (1 - tardias) * (1 - variables) * (1 - bradicardia))))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599 (Box 1, datos de Macones 2008).",
+      "url": "https://doi.org/10.1097/AOG.0000000000006049",
+      "paginas": "587",
+      "texto": "Category III FHR tracings include either: Absent baseline FHR variability and any of the following: Recurrent late decelerations Recurrent variable decelerations Bradycardia Sinusoidal pattern"
+    },
+    {
+      "titulo": "American College of Obstetricians and Gynecologists. Clinical Practice Guideline No. 10, 2025: categoría I.",
+      "url": "https://doi.org/10.1097/AOG.0000000000006049",
+      "paginas": "587",
+      "texto": "Category I FHR tracings include all of the following: Baseline rate: 110–160 beats per minute Baseline FHR variability: moderate Late or variable decelerations: absent"
+    },
+    {
+      "titulo": "Macones GA, Hankins GD, Spong CY, et al. The 2008 National Institute of Child Health and Human Development workshop report on electronic fetal monitoring. Obstet Gynecol 2008;112:661-6.",
+      "url": "https://doi.org/10.1097/AOG.0b013e3181841395",
+      "paginas": "587 (en ACOG 2025)",
+      "texto": "Category II FHR tracings include all FHR tracings not categorized as category I or category III."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Guía de práctica clínica del embarazo, parto o puerperio (Guía 11-15), 2013.",
+      "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+      "paginas": "418",
+      "texto": "Se recomienda la utilización de la clasificación del American College of Obstetricians and Gynecologists para la interpretación de la monitoría fetal electrónica."
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "sinusoidal",
+          "tipo": "opciones",
+          "label": "Patrón sinusoidal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Onda suave y regular de 3-5 ciclos/min que dura 20 min o más."
+        },
+        {
+          "id": "ausente",
+          "tipo": "opciones",
+          "label": "Variabilidad ausente",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Amplitud de pico a valle indetectable."
+        },
+        {
+          "id": "tardias",
+          "tipo": "opciones",
+          "label": "Desaceleraciones tardías recurrentes",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Con más del 50 % de las contracciones."
+        },
+        {
+          "id": "variables",
+          "tipo": "opciones",
+          "label": "Desaceleraciones variables recurrentes",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Con más del 50 % de las contracciones."
+        },
+        {
+          "id": "bradicardia",
+          "tipo": "opciones",
+          "label": "Línea de base menor de 110 lpm",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "taquicardia",
+          "tipo": "opciones",
+          "label": "Línea de base mayor de 160 lpm",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "variab_otra",
+          "tipo": "opciones",
+          "label": "Variabilidad mínima o marcada",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Mínima: detectable pero de 5 lpm o menos. Marcada: más de 25 lpm."
+        },
+        {
+          "id": "otras_desac",
+          "tipo": "opciones",
+          "label": "Otras tardías, variables o prolongadas",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Aunque no sean recurrentes, o una desaceleración prolongada (2 a menos de 10 min)."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Categoría III (anormal)",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Preparar el parto e iniciar ya las medidas de reanimación intrauterina. Si el trazado no mejora, parto expedito por la vía más rápida y segura.",
+      "si": {
+        "alguno": [
+          {
+            "id": "sinusoidal",
+            "igual": 1
+          },
+          {
+            "todos": [
+              {
+                "id": "ausente",
+                "igual": 1
+              },
+              {
+                "alguno": [
+                  {
+                    "id": "tardias",
+                    "igual": 1
+                  },
+                  {
+                    "id": "variables",
+                    "igual": 1
+                  },
+                  {
+                    "id": "bradicardia",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Categoría II (indeterminada)",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Evaluar la causa, vigilar y reevaluar con el cuadro clínico. Aplicar las medidas de reanimación intrauterina y buscar variabilidad moderada o aceleraciones.",
+      "si": {
+        "alguno": [
+          {
+            "id": "sinusoidal",
+            "igual": 1
+          },
+          {
+            "id": "ausente",
+            "igual": 1
+          },
+          {
+            "id": "tardias",
+            "igual": 1
+          },
+          {
+            "id": "variables",
+            "igual": 1
+          },
+          {
+            "id": "bradicardia",
+            "igual": 1
+          },
+          {
+            "id": "taquicardia",
+            "igual": 1
+          },
+          {
+            "id": "variab_otra",
+            "igual": 1
+          },
+          {
+            "id": "otras_desac",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Categoría I (normal)",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Seguir la atención habitual del parto: predice con fuerza un estado ácido-base fetal normal. Reevaluar el trazado al menos cada 30 min."
+    }
+  ]
+}
