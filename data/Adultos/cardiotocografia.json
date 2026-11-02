@@ -49,7 +49,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Cardiotocografía intraparto",
-      "texto": "- **Cardiotocografía (CTG):** registro simultáneo de la **frecuencia cardiaca fetal**, los movimientos fetales y las **contracciones**; la línea de base se estima en ventanas de **10 min**.\n- **Categoría I (normal):** línea de base de **110-160 lpm**, variabilidad **moderada** y sin desaceleraciones **tardías ni variables**; predice un estado ácido-base **normal**.\n- **Categoría II (indeterminada):** todo trazado que no es **I ni III**; no predice acidemia, pero obliga a **evaluar y reevaluar**.\n- **Categoría III (anormal):** variabilidad **ausente** con tardías o variables **recurrentes** o con **bradicardia**, o patrón **sinusoidal** de **20 min** o más.\n- **Taquisistolia:** **más de 5** contracciones en **10 min**, promediadas en **30 min**.",
+      "texto": "- **Cardiotocografía (CTG):** registro simultáneo de la **frecuencia cardiaca fetal**, los movimientos fetales y las **contracciones uterinas**.\n- **Categoría I (normal):** línea de base de **110-160 lpm**, variabilidad **moderada** y sin desaceleraciones **tardías ni variables**; predice un estado ácido-base normal.\n- **Categoría II (indeterminada):** todo trazado que no es **I ni III**; por sí sola no predice acidemia.\n- **Categoría III (anormal):** variabilidad **ausente** con tardías o variables **recurrentes** o con bradicardia, o patrón **sinusoidal** de **20 min** o más.\n- **Taquisistolia:** **más de 5** contracciones en **10 min**, promediadas en **30 min**.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -79,15 +79,6 @@
           "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag562_cardiotocografia.png"
-        },
-        {
-          "titulo": "Tabla 1: línea de base",
-          "paginas": "588",
-          "texto": "The mean FHR rounded to increments of 5 beats per minute during a 10-minute segment, excluding: Periodic or episodic changes Periods of marked FHR variability",
-          "fuente": "ACOG 2025",
-          "anio": "2025",
-          "url": "https://doi.org/10.1097/AOG.0000000000006049",
-          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
           "titulo": "Box 1: criterios de la categoría I",
@@ -179,39 +170,63 @@
     "ind_riesgo": {
       "tipo": "pregunta",
       "titulo": "Elegir la vigilancia fetal según el riesgo",
-      "texto": "- Revisar los **factores de riesgo** de la madre y del feto al empezar el parto y en cada **valoración horaria**.\n- En el embarazo de **bajo riesgo** y sin **oxitocina**, la **auscultación intermitente** es tan válida como la CTG continua.\n- No hacer CTG de **rutina al ingreso** en el embarazo de bajo riesgo.",
+      "texto": "- Revisar los **factores de riesgo** de la madre y del feto al empezar el parto y en cada **valoración horaria**.\n- En el embarazo de **bajo riesgo** y sin **oxitocina**, la **auscultación intermitente** es tan válida como la CTG continua; también la monitoría electrónica intermitente con auscultación.\n- No hacer CTG de **rutina al ingreso** en el embarazo de bajo riesgo.",
       "checklist": {
         "titulo": "Factores de riesgo: CTG continua",
         "items": [
           "Cesárea previa u otra cicatriz uterina completa",
           "Trastorno hipertensivo con medicación",
-          "Diabetes pregestacional o gestacional con medicación",
-          "Sangrado vaginal distinto del tapón mucoso",
-          "Sospecha de corioamnionitis o sepsis, o fiebre de **38 °C** o más",
-          "Restricción del crecimiento fetal (peso **<p3**)",
+          "En el parto: PA **≥160/110** una vez, o **≥140/90** dos veces con **30 min** de diferencia",
+          "Proteinuria **2+** con PA **≥140/90**",
+          "Diabetes tipo 1 o 2, o gestacional con medicación",
+          "Sangrado vaginal distinto del tapón mucoso, o líquido teñido de sangre",
+          "Sospecha de corioamnionitis o sepsis",
+          "Fiebre de **38 °C** una vez o de **37,5 °C** dos veces",
+          "Pulso materno de más de **120** dos veces con **30 min** de diferencia",
+          "Dolor distinto del de las contracciones",
+          "Ruptura prolongada de membranas",
+          "Restricción del crecimiento fetal (peso por debajo del **percentil 3**), o por debajo del **10** con Doppler anormal, poco líquido o crecimiento lento",
           "Presentación no cefálica",
           "Más de **42 semanas**, anhidramnios o polihidramnios",
           "Menos movimientos fetales en las **24 h** previas",
           "Meconio",
           "Oxitocina o analgesia epidural",
-          "Contracciones de más de **2 min**, o **5 o más** en **10 min**",
+          "Contracciones de **2 min** o más, o **5 o más** en **10 min** (NICE)",
           "Retraso confirmado del primer o del segundo periodo"
         ]
       },
       "pie_nodo": "¿Tiene algún factor de riesgo de compromiso fetal?",
       "opciones": [
         {
-          "texto": "No, bajo riesgo",
+          "texto": "Ninguno: bajo riesgo",
           "siguiente_nodo": "ind_auscultacion",
-          "descripcion": "Auscultación intermitente"
+          "color": "verde"
         },
         {
-          "texto": "Sí, al menos uno",
+          "texto": "Al menos uno",
           "siguiente_nodo": "ind_ctg_continua",
-          "descripcion": "CTG continua"
+          "color": "naranja"
         }
       ],
       "nota_adicional": "La CTG continua frente a la auscultación **reduce las convulsiones neonatales**, pero **aumenta las cesáreas** y los **partos instrumentados**. Por eso en el bajo riesgo no se pone de rutina.",
+      "discrepancias": [
+        {
+          "asunto": "Fiebre materna en el parto",
+          "posturas": [
+            {
+              "fuente": "NICE NG229",
+              "dice": "**38 °C** una vez o **37,5 °C** dos veces con **1 h** de diferencia: CTG continua.",
+              "paginas": "13"
+            },
+            {
+              "fuente": "GPC Colombia 2013",
+              "dice": "**38,0 °C** una vez o **37,5 °C** dos veces con **2 h** de diferencia: remitir a nivel II o superior.",
+              "paginas": "402"
+            }
+          ],
+          "nota": "Con **37,5 °C**, NICE confirma la fiebre **antes**."
+        }
+      ],
       "evidencia": {
         "texto": "Grado B",
         "fuente": "MinSalud 2013"
@@ -246,6 +261,16 @@
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag417_mefc_ai.png"
         },
         {
+          "titulo": "Recomendación: MEFI con AI (grado A)",
+          "paginas": "417",
+          "texto": "Tanto la monitoría electrónica fetal continua (MEFC) como la monitoría electrónica fetal intermitente (MEFI) acompañada de auscultación intermitente son dos métodos válidos y recomendables",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag417_mefi.png"
+        },
+        {
           "titulo": "No CTG de rutina al ingreso",
           "paginas": "385",
           "texto": "No se recomienda el uso rutinario de la monitorización fetal electrónica ni la medición del índice de líquido amniótico en la admisión de pacientes con embarazo de bajo riesgo",
@@ -262,6 +287,78 @@
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.2 Ruptura prolongada de membranas",
+          "paginas": "12",
+          "texto": "prolonged ruptured membranes (but women who are already in established labour at 24 hours after their membranes ruptured do not need CTG unless there are other concerns)",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.3 PEG con rasgos de riesgo",
+          "paginas": "12",
+          "texto": "small for gestational age (estimated fetal weight below 10th centile) with other high-risk features such as abnormal doppler scan results, reduced liquor volume or reduced growth velocity",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.8 Dolor distinto",
+          "paginas": "14",
+          "texto": "pain reported by the woman that appears, based on her description or her previous experience, to differ from the pain normally associated with contractions",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.8 Sangrado en el parto",
+          "paginas": "14",
+          "texto": "fresh vaginal bleeding that develops in labour • blood-stained liquor not associated with vaginal examination, that is likely to be uterine in origin",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.8 Pulso e hipertensión grave",
+          "paginas": "14",
+          "texto": "maternal pulse over 120 beats a minute on 2 occasions 30 minutes apart • severe hypertension (a single reading of either systolic blood pressure of 160 mmHg or more",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.8 Hipertensión",
+          "paginas": "14",
+          "texto": "hypertension (either systolic blood pressure of 140 mmHg or more or diastolic blood pressure of 90 mmHg or more on 2 consecutive readings taken 30 minutes apart",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.3.8 Proteinuria",
+          "paginas": "14",
+          "texto": "a reading of 2+ of protein on urinalysis and a single reading of either raised systolic blood pressure (140 mmHg or more) or raised diastolic blood pressure",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Remitir a nivel II: fiebre materna",
+          "paginas": "402",
+          "texto": "Fiebre materna en el trabajo de parto (38,0 °C una vez o 37,5 °C en dos ocasiones con dos horas de diferencia).",
+          "fuente": "GPC Colombia 2013",
+          "anio": "2013",
+          "url": "https://revista.fecolsog.org/index.php/rcog/article/view/90",
+          "cita": "Grupo Desarrollador de la Guía (Universidad Nacional de Colombia, Alianza CINETS). Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol 2013;64(4):379-424."
         },
         {
           "titulo": "1.3.2 Más riesgos maternos",
@@ -345,34 +442,32 @@
       "pie_nodo": "¿Aparece algún signo de alarma al auscultar?",
       "opciones": [
         {
-          "texto": "No, FCF normal",
+          "texto": "FCF normal, sin alarma",
           "siguiente_nodo": "ind_auscultacion",
+          "color": "verde",
           "descripcion": "Seguir auscultando a su ritmo"
         },
         {
-          "texto": "Sí, signo de alarma",
+          "texto": "Signo de alarma",
           "siguiente_nodo": "ind_ctg_continua",
-          "descripcion": "FCF 20 lpm o más sobre la inicial, desaceleración o nuevo factor de riesgo"
+          "color": "naranja",
+          "descripcion": "FCF fuera de 110-160 o 20 lpm sobre la inicial, desaceleración o nuevo factor de riesgo"
         },
         {
           "texto": "No se oye el latido",
-          "siguiente_nodo": "ind_sin_latido"
+          "siguiente_nodo": "ind_sin_latido",
+          "color": "rojo"
         }
       ],
-      "nota_adicional": "La auscultación sólo protege si se cumple su **frecuencia**, y para eso hace falta **personal suficiente**. El tiempo de los **tactos vaginales** de más se puede dedicar a auscultar.",
+      "nota_adicional": "La guía colombiana pide dar **más relevancia** a la auscultación, con su **frecuencia y técnica**, y la ACOG insiste en tener **personal suficiente**. El tiempo de los **tactos vaginales** de más se puede dedicar a auscultar.",
       "discrepancias": [
         {
           "asunto": "Frecuencia de la auscultación",
           "posturas": [
             {
               "fuente": "MinSalud 2013",
-              "dice": "Cada **15-30 min** en la fase activa y cada **5-15 min** en el expulsivo.",
+              "dice": "Cada **15-30 min** en la fase activa y cada **5-15 min** en el expulsivo (igual que la ACOG).",
               "paginas": "561"
-            },
-            {
-              "fuente": "ACOG 2025",
-              "dice": "Cada **15-30 min** en la fase activa y cada **5-15 min** en el expulsivo (ACNM y AWHONN).",
-              "paginas": "586"
             },
             {
               "fuente": "NICE NG229",
@@ -450,6 +545,15 @@
           "cita": "Grupo Desarrollador de la Guía (Universidad Nacional de Colombia, Alianza CINETS). Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol 2013;64(4):379-424."
         },
         {
+          "titulo": "Auscultar durante y después de la contracción",
+          "paginas": "586",
+          "texto": "Intermittent auscultation should include an assessment of FHR baseline and screening for decelerations during and after contractions.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
           "titulo": "1.2.9 Anotar aceleraciones y desaceleraciones",
           "paginas": "8",
           "texto": "record accelerations and decelerations, if heard • palpate and record the maternal pulse hourly, or more often if there are any concerns",
@@ -471,6 +575,15 @@
           "titulo": "Pasar de la auscultación a la MEF continua",
           "paginas": "586",
           "texto": "Intermittent auscultation should be transitioned to continuous FHR monitoring if the patient develops risk factors for fetal acidemia (eg, chorioamnionitis, prolonged labor)",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Pasar a CTG con una FCF basal anormal",
+          "paginas": "586",
+          "texto": "or there is suspicion for FHR decelerations or an abnormal baseline FHR.",
           "fuente": "ACOG 2025",
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
@@ -508,8 +621,8 @@
       ]
     },
     "ind_ctg_continua": {
-      "titulo": "Pasar a CTG continua y revisarla a menudo",
-      "texto": "- Explicar a la gestante **por qué** se pasa a CTG continua.\n- En un centro de **baja complejidad**, la necesidad de monitoría electrónica o una **FCF anormal** al auscultar son motivo para **remitir** a nivel II o superior.\n- Revisar el trazado con **frecuencia** y valorar el riesgo **cada hora**, con una segunda mirada de otro profesional.\n- Si la CTG se puso por una **alarma** al auscultar y es **normal** a los **20 min**, se puede volver a auscultar.",
+      "titulo": "Pasar a CTG continua y revisarla cada hora",
+      "texto": "- Explicar a la gestante **por qué** se pasa a CTG continua.\n- En un centro de **baja complejidad**, la necesidad de monitoría electrónica o una **FCF anormal** al auscultar son motivo para **remitir** a nivel II o superior.\n- Valorar el trazado y el riesgo **cada hora**, con la revisión de un **segundo profesional** antes de la siguiente.",
       "opciones": [
         {
           "texto": "CTG en marcha",
@@ -561,15 +674,6 @@
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-        },
-        {
-          "titulo": "1.2.13 Volver a la auscultación",
-          "paginas": "9",
-          "texto": "Return to intermittent auscultation if continuous CTG monitoring has been started because of concerns arising from intermittent auscultation but the CTG trace is normal after 20 minutes",
-          "fuente": "NICE NG229",
-          "anio": "2022",
-          "url": "https://www.nice.org.uk/guidance/ng229",
-          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
@@ -579,7 +683,7 @@
         "Urgente"
       ],
       "titulo": "Confirmar el latido con una ecografía urgente",
-      "texto": "- Pedir una **ecografía en tiempo real** urgente para comprobar la **vitalidad fetal**.\n- Pedir **valoración urgente** del obstetra si no se oye el latido o hay dudas con la FC materna.\n- En un centro de baja complejidad, la **duda sobre el latido** es motivo de **remisión**.",
+      "texto": "- Pedir una **ecografía en tiempo real** urgente para comprobar la **vitalidad fetal**.\n- Pedir **valoración urgente** del obstetra.\n- En un centro de baja complejidad, la **duda sobre el latido** es motivo de **remisión**.",
       "opciones": [
         {
           "texto": "Latido confirmado",
@@ -640,7 +744,7 @@
     "lect_registro": {
       "tipo": "pregunta",
       "titulo": "Comprobar el registro antes de leerlo",
-      "texto": "- Comprobar el **nombre**, la fecha, la hora y la velocidad del papel: el mismo trazado se ve distinto a **1** y a **3 cm/min**.\n- Evitar el **decúbito supino**, que comprime la aorta y la cava y reduce la **perfusión placentaria**.\n- Diferenciar la **FC materna** de la fetal cada hora.\n- Si la señal es mala, recolocar el **transductor** o usar un **electrodo de calota**.",
+      "texto": "- Comprobar el **nombre**, la fecha, la hora y la velocidad del papel: el mismo trazado se ve distinto a **1** y a **3 cm/min**.\n- Evitar el decúbito supino mientras dura el registro.\n- Diferenciar la **FC materna** de la fetal cada hora.\n- Si la señal es mala, recolocar el **transductor** o usar un **electrodo de calota**.",
       "pie_nodo": "¿Es buena la señal y es seguro que registra la FCF?",
       "opciones": [
         {
@@ -657,7 +761,7 @@
           "recurso": "ctg_escalas.png",
           "titulo": "El mismo trazado a 1 y a 3 cm/min",
           "descripcion": "Diez minutos de FCF dibujados a 1 cm/min y a 3 cm/min.",
-          "info": "Es el **mismo registro**. {#4F8CF6:Banda azul}: la **variabilidad**, que a **3 cm/min** parece menor y a **1 cm/min** más ancha. Por eso se lee siempre con la escala **habitual** del servicio, y la velocidad va **anotada** en el trazado.",
+          "info": "Es el **mismo registro**. {#4F8CF6:Banda azul}: el mismo minuto de **variabilidad**, que a **3 cm/min** se estira y parece **menor**, y a **1 cm/min** parece **mayor**. Por eso se lee siempre con la escala **habitual** del servicio, y la velocidad va **anotada** en el trazado.",
           "en_texto": "velocidad del papel",
           "referencias": [
             {
@@ -683,7 +787,7 @@
       ],
       "burbujas": [
         {
-          "en_texto": "reduce la **perfusión placentaria**",
+          "en_texto": "decúbito supino",
           "titulo": "¿Por qué no en decúbito supino?",
           "texto": "El útero grávido **comprime la aorta y la cava**: baja el flujo a la placenta y la **oxigenación fetal**. El decúbito lateral, semisentada o de pie son mejores.",
           "referencias": [
@@ -760,11 +864,30 @@
       "estilo": "advertencia",
       "tipo": "pregunta",
       "titulo": "Diferenciar la FC materna y mejorar la señal",
-      "texto": "- Sospechar **FC materna** si sube con cada contracción o **pujo**, sobre todo en el expulsivo.\n- Confirmar con un **oxímetro de pulso** materno, palpando el pulso a la vez o con **ecografía**.\n- Si sigue la duda, colocar un **electrodo de calota**; sin latido fetal, puede captar el pulso materno.",
+      "texto": "- Sospechar **FC materna** si sube con cada contracción o **pujo**, sobre todo en el expulsivo.\n- Confirmar con un **oxímetro de pulso** materno, palpando el pulso a la vez o con **ecografía**.\n- Si sigue la duda, colocar un **electrodo de calota**.",
       "alertas": [
         {
           "titulo": "Cuándo no poner el electrodo de calota",
-          "texto": "No ponerlo con presentación **anómala o desconocida**, VIH con más de **1.000 copias/mL**, herpes genital activo, placenta o vasa previa, ni con sospecha de trastorno **hematológico** fetal."
+          "texto": "Necesita **membranas rotas**. No ponerlo con presentación **anómala o desconocida**, VIH con más de **1.000 copias/mL**, herpes genital activo, placenta o vasa previa, ni con sospecha de trastorno **hematológico** fetal."
+        }
+      ],
+      "nota_adicional": "Si el feto **no tiene latido**, el electrodo puede registrar el **pulso materno**: usarlo siempre junto a la **monitoría de la FC materna**.",
+      "discrepancias": [
+        {
+          "asunto": "Electrodo de calota con VIH o hepatitis",
+          "posturas": [
+            {
+              "fuente": "ACOG 2025",
+              "dice": "Contraindicado con VIH y carga de más de **1.000 copias/mL**; la hepatitis B o C es contraindicación **relativa**.",
+              "paginas": "591-592"
+            },
+            {
+              "fuente": "FIGO 2015",
+              "dice": "No usarlo con **cualquier VIH** ni con hepatitis **B, C, D o E**.",
+              "paginas": "14"
+            }
+          ],
+          "nota": "Con VIH de carga baja, la ACOG lo permite y FIGO **no**."
         }
       ],
       "pie_nodo": "¿Se confirma que el trazado es de la FCF?",
@@ -776,6 +899,44 @@
         {
           "texto": "No se detecta latido fetal",
           "siguiente_nodo": "lect_sin_latido"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "ctg_fc_materna.png",
+          "titulo": "FCF real frente a pulso materno",
+          "descripcion": "En el expulsivo, la FCF baja con el pujo; el pulso materno sube con él.",
+          "info": "{#7B6CF6:Curvas violeta}: las contracciones con **pujo**. {#2FB36D:Arriba}: la **FCF**, que **baja** con el pujo. {#EF5454:Abajo}: el monitor capta el **pulso materno**, que **sube** con cada pujo. Una aceleración con cada pujo es la clave de la FC materna: confirmar con **oxímetro** o **electrodo de calota**.",
+          "en_texto": "sube con cada contracción",
+          "referencias": [
+            {
+              "titulo": "FC materna: aceleración con el pujo",
+              "paginas": "592",
+              "texto": "A key indicator of an MHR tracing rather than an FHR tracing is an acceleration of the heart rate in response to pushing efforts.",
+              "fuente": "ACOG 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.1097/AOG.0000000000006049",
+              "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+            },
+            {
+              "titulo": "Aceleraciones con las contracciones",
+              "paginas": "18",
+              "texto": "Accelerations coinciding with uterine contractions, especially in the second stage of labor, suggest possible erroneous recording of the maternal heart rate",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+            },
+            {
+              "titulo": "Oxímetro materno y electrodo",
+              "paginas": "592",
+              "texto": "To distinguish between MHR and FHR, a maternal pulse oximeter can be used. If there is ongoing difficulty in distinguishing between the two",
+              "fuente": "ACOG 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.1097/AOG.0000000000006049",
+              "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+            }
+          ]
         }
       ],
       "referencias": [
@@ -859,6 +1020,33 @@
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Electrodo: contraindicaciones relativas",
+          "paginas": "591",
+          "texto": "These contraindications can be categorized as absolute contraindications (Box 2) and relative contraindications (eg, maternal hepatitis B or hepatitis C infection).",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Electrodo: contraindicaciones",
+          "paginas": "14",
+          "texto": "It should not be used in patients with active genital herpes infection, those who are seropositive to hepatitis B, C, D, E, or to HIV",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "Monitorización interna: membranas rotas",
+          "paginas": "14",
+          "texto": "Internal FHR monitoring requires ruptured membranes and has established contraindications, mainly related to the increased risk of vertical transmission of infections.",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
         }
       ]
     },
@@ -917,16 +1105,17 @@
     "lect_contracciones": {
       "tipo": "pregunta",
       "titulo": "Contar las contracciones",
-      "texto": "- Contar las contracciones en **10 min**, promediadas en **30 min**.\n- La dinámica normal en la fase activa es de **3 a 5** contracciones en 10 min, de **30 a 60 s**; con **2 o menos** hay **bradisistolia**.\n- El tocodinamómetro externo sólo mide bien la **frecuencia**: la intensidad y el **tono basal** necesitan un **catéter intrauterino**.",
+      "texto": "- Usar tramos de **10 min** y promediarlos a lo largo de **30 min**.\n- La dinámica normal es de **3 a 5** contracciones en 10 min, de **30 a 60 s**; con **2 o menos** hay **bradisistolia**.\n- Una contracción de **2 min** o más es **hipertonía**.\n- El tocodinamómetro externo sólo mide bien la **frecuencia**: la intensidad y el **tono basal** necesitan un **catéter intrauterino**.",
       "pie_nodo": "¿Cuántas contracciones hay en 10 minutos, promediadas en 30?",
       "opciones": [
         {
-          "texto": "5 o menos",
+          "texto": "5 o menos en 10 min, sin hipertonía",
           "siguiente_nodo": "lect_linea_base"
         },
         {
-          "texto": "Más de 5: taquisistolia",
-          "siguiente_nodo": "lect_taquisistolia"
+          "texto": "Más de 5, o hipertonía",
+          "siguiente_nodo": "lect_taquisistolia",
+          "descripcion": "Taquisistolia o contracción de 2 min o más"
         }
       ],
       "media": [
@@ -935,7 +1124,7 @@
           "titulo": "Dinámica normal y taquisistolia",
           "descripcion": "Diez minutos de contracciones: cuatro, dentro de lo normal, y seis, taquisistolia.",
           "info": "{#7B6CF6:Curvas violeta}: cada **contracción** en el canal del tocodinamómetro. Arriba, **4** en 10 min, con reposo entre ellas. Abajo, **6** en 10 min: es **taquisistolia** si se mantiene al promediar **30 min**, y acorta el **reposo** en el que el feto recupera el oxígeno.",
-          "en_texto": "promediadas en",
+          "en_texto": "dinámica normal",
           "referencias": [
             {
               "titulo": "Tabla 1: taquisistolia",
@@ -957,6 +1146,24 @@
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag562_dinamica.png"
             }
           ]
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Cuántas contracciones son demasiadas",
+          "posturas": [
+            {
+              "fuente": "ACOG 2025",
+              "dice": "Taquisistolia: **más de 5** en 10 min, promediadas en 30 min.",
+              "paginas": "589"
+            },
+            {
+              "fuente": "NICE NG229",
+              "dice": "**5 o más** en 10 min es rasgo ámbar: valoración completa y **reducir** la frecuencia de las contracciones.",
+              "paginas": "17-18"
+            }
+          ],
+          "nota": "Con **5 exactas**, NICE ya pide **actuar**."
         }
       ],
       "referencias": [
@@ -990,6 +1197,24 @@
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag562_bradisistolia.png"
         },
         {
+          "titulo": "1.4.12 Taquisistolia e hipertonía: ámbar",
+          "paginas": "18",
+          "texto": "5 or more contractions in 10 minutes, leading to reduced resting time between contractions, or － hypertonus.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Definición de hipertonía",
+          "paginas": "31",
+          "texto": "Hypertonus A contraction lasting 2 minutes or longer.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "El tocodinamómetro sólo mide la frecuencia",
           "paginas": "15",
           "texto": "It is not possible to extract reliable information regarding the intensity and duration of contractions, nor on basal uterine tone.",
@@ -1002,18 +1227,18 @@
     },
     "lect_taquisistolia": {
       "estilo": "advertencia",
-      "titulo": "Calificar la taquisistolia",
+      "titulo": "Anotar la taquisistolia y empezar a reducirla",
       "contexto": "La **actividad uterina excesiva** es la causa más frecuente de **hipoxia fetal** en el parto: cada contracción reduce la **perfusión placentaria**.",
-      "texto": "- Anotar si es **espontánea** o con **oxitocina**, y si se acompaña de **alteraciones de la FCF**.\n- Hacer una **valoración completa** del riesgo y empezar a reducir la frecuencia de las contracciones.\n- Explicar a la gestante qué pasa y asegurar una **analgesia** adecuada.",
+      "texto": "- Anotar si es **espontánea** o con **oxitocina** y si se acompaña de **alteraciones de la FCF**.\n- Hacer una **valoración completa** del riesgo y empezar a reducir la frecuencia de las contracciones.\n- Explicar a la gestante qué pasa y asegurar una **analgesia** adecuada.",
       "opciones": [
         {
-          "texto": "Taquisistolia anotada",
+          "texto": "Actividad uterina anotada",
           "siguiente_nodo": "lect_linea_base"
         }
       ],
       "enlaces": [
         {
-          "texto": "Tratar la taquisistolia",
+          "texto": "Taquisistolia: tocolítico",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "cond_taquisistolia"
         }
@@ -1038,6 +1263,15 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
+          "titulo": "1.4.12 Taquisistolia e hipertonía: ámbar",
+          "paginas": "18",
+          "texto": "5 or more contractions in 10 minutes, leading to reduced resting time between contractions, or － hypertonus.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "1.4.14 Cinco o más contracciones",
           "paginas": "18",
           "texto": "If 5 or more contractions per 10 minutes are present: • perform a full risk assessment • take action to reduce contraction frequency",
@@ -1060,7 +1294,7 @@
     "lect_linea_base": {
       "tipo": "pregunta",
       "titulo": "Medir la línea de base",
-      "texto": "- Estimar la **FCF media** en 10 min, redondeada a **5 lpm**, sin aceleraciones, desaceleraciones ni tramos de **variabilidad marcada**.\n- Se necesitan **2 min** de línea de base en esos 10 min; si no, es **indeterminada** y se mira la ventana anterior.\n- Compararla con la del **inicio del parto**: una subida de **20 lpm** o más es una alarma.",
+      "texto": "- Estimar la **FCF media** en 10 min, redondeada a **5 lpm**, sin aceleraciones, desaceleraciones ni tramos de **variabilidad marcada**.\n- Exigir al menos **2 min** de línea de base estable en esos 10 min; si no los hay, es **indeterminada** y se toma la de los **10 min anteriores**.\n- Compararla con la del **inicio del parto**: si sube **20 lpm** o más, buscar la causa como en la **taquicardia**.",
       "pie_nodo": "¿En qué rango está la línea de base?",
       "opciones": [
         {
@@ -1078,12 +1312,19 @@
           "descripcion": "Bradicardia o caída aguda"
         }
       ],
+      "enlaces": [
+        {
+          "texto": "Subida de 20 lpm: causas",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "lect_taquicardia"
+        }
+      ],
       "media": [
         {
           "recurso": "ctg_linea_base.png",
           "titulo": "Cómo se estima la línea de base",
           "descripcion": "Diez minutos de FCF con la línea de base trazada, sin contar aceleraciones ni desaceleraciones.",
-          "info": "{#18B9A9:Línea teal}: la **línea de base**, la media de la FCF en **10 min**, redondeada a **5 lpm**. {#2FB36D:Tramo verde}: una aceleración y {#EF5454:tramo rojo}: una desaceleración, que **no entran** en la media. Hacen falta al menos **2 min** de línea de base estable.",
+          "info": "{#18B9A9:Línea turquesa}: la **línea de base**, la media de la FCF en **10 min**, redondeada a **5 lpm**. {#2FB36D:Tramo verde}: una aceleración y {#EF5454:tramo rojo}: una desaceleración, que **no entran** en la media. Hacen falta al menos **2 min** de línea de base estable.",
           "en_texto": "FCF media",
           "referencias": [
             {
@@ -1156,6 +1397,24 @@
         }
       ],
       "nota_adicional": "Una **subida de la línea de base** con **variabilidad reducida** es un signo fuerte de **compromiso fetal**: pedir valoración urgente y considerar el parto.",
+      "discrepancias": [
+        {
+          "asunto": "Línea de base de más de 160 lpm",
+          "posturas": [
+            {
+              "fuente": "ACOG 2025",
+              "dice": "Taquicardia: categoría **II**.",
+              "paginas": "587"
+            },
+            {
+              "fuente": "NICE NG229",
+              "dice": "Rasgo **rojo**: el trazado es **patológico** (revisión urgente y descartar un evento agudo).",
+              "paginas": "19, 26"
+            }
+          ],
+          "nota": "Con NICE, la taquicardia sola ya pide **revisión urgente**."
+        }
+      ],
       "enlaces": [
         {
           "texto": "Sepsis",
@@ -1229,6 +1488,33 @@
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.15 Subida de 20 lpm",
+          "paginas": "18",
+          "texto": "increase in baseline fetal heart rate of 20 beats a minute or more from the start of labour or since the last review an hour ago",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.15 Línea de base: rojo",
+          "paginas": "19",
+          "texto": "red － below 100 beats a minute, or － above 160 beats a minute.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.5.7 Patológico: descartar un evento agudo",
+          "paginas": "27",
+          "texto": "exclude acute events (for example, cord prolapse, suspected placental abruption or suspected uterine rupture) that need immediate intervention",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
@@ -1245,25 +1531,31 @@
         {
           "texto": "Caída aguda de la FCF",
           "siguiente_nodo": "nodo_conducta",
-          "descripcion": "Desaceleración prolongada o bradicardia aguda: ir a Conducta"
+          "color": "rojo",
+          "descripcion": "Desaceleración prolongada o bradicardia aguda"
         }
       ],
       "discrepancias": [
         {
-          "asunto": "Línea de base de 100-109 lpm",
+          "asunto": "Línea de base baja",
           "posturas": [
             {
               "fuente": "ACOG 2025",
-              "dice": "Es **bradicardia**: categoría **II** (o **III** con variabilidad ausente).",
+              "dice": "Menos de **110 lpm** es bradicardia: categoría **II** (o **III** con variabilidad ausente).",
               "paginas": "587-588"
             },
             {
               "fuente": "NICE NG229",
-              "dice": "Rasgo **ámbar**, pero se sigue la **atención habitual** si es estable desde el inicio, con variabilidad normal y sin desaceleraciones variables o tardías.",
+              "dice": "**100-109**: ámbar, pero **atención habitual** si es estable, con variabilidad normal y sin variables ni tardías. Menos de **100**: **rojo**.",
               "paginas": "19"
+            },
+            {
+              "fuente": "FIGO 2015",
+              "dice": "Menos de **100 lpm**: trazado **patológico**.",
+              "paginas": "22"
             }
           ],
-          "nota": "Con la ACOG obliga a **evaluar**; con NICE puede no cambiar la conducta."
+          "nota": "Por debajo de **100 lpm**, NICE y FIGO piden **actuar ya**; entre 100 y 109 puede no cambiar la conducta."
         }
       ],
       "referencias": [
@@ -1304,9 +1596,27 @@
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         },
         {
+          "titulo": "1.4.15 Línea de base: rojo",
+          "paginas": "19",
+          "texto": "red － below 100 beats a minute, or － above 160 beats a minute.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "100-110 lpm puede ser normal",
           "paginas": "16",
           "texto": "Values between 100 and 110 bpm may occur in normal fetuses, especially in postdate pregnancies.",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "Tabla 1: línea de base patológica",
+          "paginas": "22",
+          "texto": "Baseline 110−160 bpm <100 bpm Variability 5−25 bpm Lacking at least one characteristic of normality",
           "fuente": "FIGO 2015",
           "anio": "2015",
           "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
@@ -1326,7 +1636,7 @@
     "lect_variabilidad": {
       "tipo": "pregunta",
       "titulo": "Medir la variabilidad",
-      "texto": "- Medir la amplitud pico-valle de las oscilaciones de la línea de base, en lpm.\n- Medirla en tramos de **1 min** entre contracciones, sin aceleraciones ni desaceleraciones.\n- Leerla con la escala de papel **habitual**: a 3 cm/min parece **menor** que a 1 cm/min.",
+      "texto": "- Medir la amplitud pico-valle de las oscilaciones de la línea de base, en lpm.\n- Medirla en tramos de **1 min** entre contracciones, sin aceleraciones ni desaceleraciones.",
       "pie_nodo": "¿Qué amplitud tiene la variabilidad?",
       "opciones": [
         {
@@ -1356,8 +1666,8 @@
         {
           "recurso": "ctg_variabilidad.png",
           "titulo": "Los cuatro grados de variabilidad",
-          "descripcion": "Un minuto de FCF con variabilidad ausente, mínima, moderada y marcada.",
-          "info": "{#4F8CF6:Banda azul}: la amplitud de **pico a valle** en cada tramo. **Ausente**: indetectable. **Mínima**: **5 lpm** o menos. **Moderada**: **6-25 lpm**, la normal y un marcador de **bienestar fetal**. **Marcada**: más de **25 lpm**.",
+          "descripcion": "Tres minutos de FCF por grado; la banda azul mide un minuto.",
+          "info": "{#4F8CF6:Banda azul}: la amplitud de **pico a valle** en un minuto. **Ausente**: indetectable. **Mínima**: **5 lpm** o menos. **Moderada**: **6-25 lpm**, la normal y un marcador de **bienestar fetal**. **Marcada**: más de **25 lpm**.",
           "en_texto": "amplitud pico-valle",
           "referencias": [
             {
@@ -1396,21 +1706,21 @@
           "posturas": [
             {
               "fuente": "ACOG 2025",
-              "dice": "Mínima (**≤5 lpm**) es categoría **II** en cuanto aparece; ausente con desaceleraciones recurrentes o bradicardia, **III**.",
+              "dice": "**5 lpm** o menos es mínima y categoría **II** en cuanto aparece; ausente con desaceleraciones recurrentes o bradicardia, **III**.",
               "paginas": "587-588"
             },
             {
               "fuente": "NICE NG229",
-              "dice": "Menos de **5 lpm** es **ámbar** si dura **30-50 min** y **rojo** si pasa de **50 min**.",
+              "dice": "Normal de **5 a 25 lpm**; menos de **5** es **ámbar** si dura **30-50 min** y **rojo** si pasa de **50 min**.",
               "paginas": "20"
             },
             {
               "fuente": "FIGO 2015",
-              "dice": "Reducida si está por debajo de **5 lpm** más de **50 min**.",
+              "dice": "Normal de **5 a 25 lpm**; reducida si está por debajo de **5** más de **50 min**.",
               "paginas": "16"
             }
           ],
-          "nota": "NICE y FIGO dan **tiempo** al sueño fetal antes de escalar; la ACOG la clasifica en el momento."
+          "nota": "Con **5 lpm** justos, la ACOG ya clasifica en II; NICE y FIGO dan **tiempo** al sueño fetal antes de escalar."
         }
       ],
       "referencias": [
@@ -1442,15 +1752,6 @@
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         },
         {
-          "titulo": "La escala del papel",
-          "paginas": "14",
-          "texto": "at 3 cm/min variability appears reduced to a clinician familiar with the 1 cm/min scale, while it may appear exaggerated in the opposite situation",
-          "fuente": "FIGO 2015",
-          "anio": "2015",
-          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
-          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
-        },
-        {
           "titulo": "1.4.18 Variabilidad: ámbar y rojo",
           "paginas": "20",
           "texto": "amber － fewer than 5 beats a minute for between 30 and 50 minutes, or － more than 25 beats a minute for up to 10 minutes",
@@ -1472,15 +1773,41 @@
     },
     "lect_variab_minima": {
       "titulo": "Buscar la causa de la variabilidad mínima",
-      "contexto": "La variabilidad refleja el **control autonómico** del corazón fetal: la baja la **hipoxia del sistema nervioso**, pero también el sueño y los fármacos.",
-      "texto": "- Pensar en **sueño fetal profundo**, que dura hasta **50 min**.\n- Revisar los **opioides** y otros depresores del SNC, sin dejar de buscar otras causas como la **sepsis**.\n- Mirar si hay **desaceleraciones** o **subida de la línea de base**: sin ellas, la hipoxia es **muy improbable**.\n- Si dura más de **30 min** y hay **factores de riesgo** → valoración urgente.",
+      "texto": "- Pensar en **sueño fetal profundo**, que dura hasta **50 min**.\n- Revisar los **opioides** y otros depresores del SNC, sin dejar de buscar otras causas como la **sepsis**.\n- Mirar si hay **desaceleraciones** o **subida de la línea de base**: con ellas, es un signo fuerte de **compromiso fetal**; sin ellas, la hipoxia es muy improbable.\n- Si dura más de **30 min** y hay **factores de riesgo** → valoración urgente y considerar el **parto**.",
       "opciones": [
         {
           "texto": "Causa revisada",
           "siguiente_nodo": "lect_aceleraciones"
         }
       ],
-      "nota_adicional": "Si persiste **sin desaceleraciones**, la ACOG propone buscar una **aceleración** con estimulación de la calota o vibroacústica. También un **bolo de líquidos IV** y tratar la causa.",
+      "nota_adicional": "Si persiste **sin desaceleraciones**, la ACOG propone buscar una **aceleración** con estimulación de la calota o vibroacústica. También se puede dar un **bolo de líquidos IV** y tratar la causa.",
+      "burbujas": [
+        {
+          "en_texto": "sueño fetal profundo",
+          "titulo": "¿Por qué baja la variabilidad?",
+          "texto": "La variabilidad refleja el **control autonómico** del corazón fetal. La **hipoxia del sistema nervioso** la reduce, pero en el **sueño profundo** también queda en el límite, con línea de base estable y casi sin aceleraciones.",
+          "referencias": [
+            {
+              "titulo": "Por qué baja la variabilidad",
+              "paginas": "16",
+              "texto": "Reduced variability can occur due to central nervous system hypoxia/acidosis and resulting decreased sympathetic and parasympathetic activity",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+            },
+            {
+              "titulo": "Sueño profundo",
+              "paginas": "20",
+              "texto": "Deep sleep can last up to 50 minutes [21] and is associated with a stable baseline, very rare accelerations, and borderline variability.",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+            }
+          ]
+        }
+      ],
       "referencias": [
         {
           "titulo": "Por qué baja la variabilidad",
@@ -1519,6 +1846,24 @@
           "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
         },
         {
+          "titulo": "1.4.20 Variabilidad baja y subida de la línea de base",
+          "paginas": "21",
+          "texto": "a reduction in variability to fewer than 5 beats per minute combined with other CTG changes, particularly a rise in the baseline fetal heart rate",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.20 Considerar el parto",
+          "paginas": "20",
+          "texto": "Obtain an urgent review by an obstetrician or senior midwife and consider expediting birth if:",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "1.4.20 Variabilidad baja más de 30 minutos",
           "paginas": "20",
           "texto": "there is an isolated reduction in variability to fewer than 5 beats per minute for more than 30 minutes when combined with antenatal or intrapartum risk",
@@ -1553,10 +1898,10 @@
         "Urgente"
       ],
       "titulo": "Buscar desaceleraciones y bradicardia con variabilidad ausente",
-      "texto": "- Revisar el **cuadro completo** con un umbral bajo para el **parto expedito**: es el rasgo que más preocupa.\n- Si se acompaña de **tardías o variables recurrentes** o de **bradicardia**, el trazado es **categoría III**.\n- Sin desaceleraciones recurrentes es **categoría II**, de **alto riesgo**.",
+      "texto": "- Revisar todo el **cuadro clínico** y estar listo para un **parto expedito**: es el rasgo que **más preocupa**.\n- Si se acompaña de **tardías o variables recurrentes** o de **bradicardia**, el trazado es **categoría III**.\n- Sin desaceleraciones recurrentes es **categoría II**, de **alto riesgo**.",
       "opciones": [
         {
-          "texto": "Seguir con las aceleraciones",
+          "texto": "Variabilidad ausente anotada",
           "siguiente_nodo": "lect_aceleraciones"
         }
       ],
@@ -1600,12 +1945,35 @@
       ]
     },
     "lect_variab_marcada": {
-      "titulo": "Vigilar la variabilidad marcada",
-      "texto": "- Su causa no se conoce bien; puede verse con **desaceleraciones recurrentes** cuando la **hipoxia** avanza rápido.\n- Para la ACOG es **categoría II**; NICE la considera **roja** si dura más de **10 min**.\n- Los episodios de pocos minutos pueden anunciar un **empeoramiento**.",
+      "titulo": "Buscar desaceleraciones con la variabilidad marcada",
+      "texto": "- Buscar **desaceleraciones recurrentes**: junto a ellas puede indicar una **hipoxia** que avanza rápido.\n- Anotar cuánto dura y vigilar de cerca los **episodios cortos**, que pueden anunciar un **empeoramiento**.",
       "opciones": [
         {
-          "texto": "Variabilidad anotada",
+          "texto": "Variabilidad marcada anotada",
           "siguiente_nodo": "lect_aceleraciones"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Variabilidad marcada",
+          "posturas": [
+            {
+              "fuente": "ACOG 2025",
+              "dice": "Categoría **II**, dure lo que dure.",
+              "paginas": "587"
+            },
+            {
+              "fuente": "NICE NG229",
+              "dice": "**Ámbar** hasta **10 min**; **rojo** (patológico) si dura más.",
+              "paginas": "20"
+            },
+            {
+              "fuente": "FIGO 2015",
+              "dice": "Patrón saltatorio si pasa de **25 lpm** más de **30 min**.",
+              "paginas": "18"
+            }
+          ],
+          "nota": "Con NICE, más de **10 min** ya pide **revisión urgente**."
         }
       ],
       "referencias": [
@@ -1619,6 +1987,15 @@
           "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
         },
         {
+          "titulo": "1.4.19 Variabilidad aumentada",
+          "paginas": "20",
+          "texto": "increased variability refers to oscillations around the baseline fetal heart rate of more than 25 beats a minute, and shorter episodes lasting a few minutes may represent worsening fetal condition.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "Box 1: variabilidad ausente sin recurrentes",
           "paginas": "587",
           "texto": "Minimal baseline variability Absent baseline variability with no recurrent decelerations Marked baseline variability",
@@ -1628,18 +2005,18 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
-          "titulo": "1.4.18 Variabilidad: rojo",
+          "titulo": "1.4.18 Variabilidad: ámbar y rojo",
           "paginas": "20",
-          "texto": "fewer than 5 beats a minute for more than 50 minutes, or － more than 25 beats a minute for more than 10 minutes, or － sinusoidal.",
+          "texto": "amber － fewer than 5 beats a minute for between 30 and 50 minutes, or － more than 25 beats a minute for up to 10 minutes",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         },
         {
-          "titulo": "1.4.19 Variabilidad aumentada",
+          "titulo": "1.4.18 Variabilidad: rojo",
           "paginas": "20",
-          "texto": "increased variability refers to oscillations around the baseline fetal heart rate of more than 25 beats a minute, and shorter episodes lasting a few minutes may represent worsening fetal condition.",
+          "texto": "fewer than 5 beats a minute for more than 50 minutes, or － more than 25 beats a minute for more than 10 minutes, or － sinusoidal.",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
@@ -1661,18 +2038,27 @@
       "chips": [
         "Urgente"
       ],
+      "tipo": "pregunta",
       "titulo": "Reconocer el patrón sinusoidal",
-      "texto": "- Buscar ondas **suaves y regulares** de **3-5 ciclos/min** que duran **20 min** o más; FIGO pide además amplitud de **5-15 lpm** y que no haya aceleraciones.\n- Distinguirlo del **pseudosinusoidal**, en dientes de sierra y breve, que aparece tras **analgésicos** o con la succión fetal.\n- Pensar en **anemia fetal grave**: isoinmunización anti-D, hemorragia feto-materna o **vasa previa** rota.",
+      "texto": "- Buscar ondas **suaves y regulares** de **3-5 ciclos/min** que duran **20 min** o más (ACOG); FIGO pide más de **30 min**, sin aceleraciones.\n- Distinguirlo del **pseudosinusoidal**, en dientes de sierra y breve, que aparece tras **analgésicos** o con la succión fetal.\n- Pensar en **anemia fetal grave**: isoinmunización anti-D, hemorragia feto-materna o **vasa previa** rota.",
       "alertas": [
         {
           "titulo": "Sinusoidal de más de 30 min",
-          "texto": "Ninguna medida intrauterina **ayuda al feto**: avanzar hacia el **parto operatorio** sin demora."
+          "texto": "Según la ACOG, ninguna medida intrauterina **ayuda al feto**: ir al **parto operatorio** sin demora."
         }
       ],
+      "pie_nodo": "¿Es un patrón sinusoidal verdadero?",
       "opciones": [
         {
-          "texto": "Patrón confirmado: categoría III",
-          "siguiente_nodo": "nodo_conducta"
+          "texto": "Sí, sinusoidal verdadero",
+          "siguiente_nodo": "nodo_conducta",
+          "color": "rojo",
+          "descripcion": "Categoría III"
+        },
+        {
+          "texto": "No, pseudosinusoidal",
+          "siguiente_nodo": "lect_aceleraciones",
+          "descripcion": "Seguir leyendo el trazado"
         }
       ],
       "media": [
@@ -1680,7 +2066,7 @@
           "recurso": "ctg_sinusoidal.png",
           "titulo": "Sinusoidal y pseudosinusoidal",
           "descripcion": "Patrón sinusoidal, en ondas suaves y regulares, frente al pseudosinusoidal en dientes de sierra.",
-          "info": "{#EF5454:Arriba}: el **sinusoidal**, una onda suave de **3-5 ciclos/min** y **5-15 lpm**, sin aceleraciones, que dura **20 min** o más. {#F2A23A:Abajo}: el **pseudosinusoidal**, en **dientes de sierra**, breve y con trazado normal antes y después.",
+          "info": "{#EF5454:Arriba}: el **sinusoidal**, una onda suave de **3-5 ciclos/min** que dura **20 min** o más (ACOG); FIGO añade **5-15 lpm**, más de **30 min** y sin aceleraciones. {#F2A23A:Abajo}: el **pseudosinusoidal**, en **dientes de sierra**, breve y con trazado normal antes y después.",
           "en_texto": "pseudosinusoidal",
           "referencias": [
             {
@@ -1696,6 +2082,15 @@
               "titulo": "Patrón sinusoidal",
               "paginas": "20",
               "texto": "A regular, smooth, undulating signal, resembling a sine wave, with an amplitude of 5−15 bpm, and a frequency of 3−5 cycles per minute.",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+            },
+            {
+              "titulo": "Sinusoidal: más de 30 minutos",
+              "paginas": "20",
+              "texto": "This pattern lasts more than 30 minutes, and coincides with absent accelerations",
               "fuente": "FIGO 2015",
               "anio": "2015",
               "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
@@ -1790,7 +2185,7 @@
     },
     "lect_aceleraciones": {
       "titulo": "Buscar aceleraciones",
-      "texto": "- Desde las **32 semanas**, una aceleración sube **15 lpm** o más durante **15 s** o más; antes, **10 lpm** durante **10 s**.\n- Una que dura **10 min** o más es un **cambio de la línea de base**.\n- Con aceleraciones, la **acidosis fetal** es improbable; su ausencia en un trazado **normal** no indica acidosis.\n- En el **expulsivo**, las que coinciden con cada contracción suelen ser **pulso materno**.",
+      "texto": "- Desde las **32 semanas**, una aceleración sube **15 lpm** o más durante **15 s** o más; antes, **10 lpm** durante **10 s**.\n- Si dura de **2 a menos de 10 min** es **prolongada**; de 10 min o más, es un **cambio de la línea de base**.\n- Su ausencia en un trazado **normal** no indica acidosis.\n- En el **expulsivo**, las que coinciden con cada contracción suelen ser **pulso materno**.",
       "opciones": [
         {
           "texto": "Aceleraciones anotadas",
@@ -1802,7 +2197,7 @@
           "recurso": "ctg_aceleracion.png",
           "titulo": "Aceleración según la edad gestacional",
           "descripcion": "Aceleración de 15 lpm durante 15 s desde la semana 32, y de 10 por 10 antes.",
-          "info": "{#2FB36D:Aceleración verde}: sube de forma **abrupta** (menos de **30 s** hasta el pico). Desde las **32 semanas** cuenta si sube **15 lpm** durante **15 s**; antes, **10 lpm** durante **10 s**. Dura menos de **2 min**; si dura **10 min** o más, es un **cambio de la línea de base**.",
+          "info": "{#2FB36D:Aceleración verde}: sube de forma **abrupta** (menos de **30 s** hasta el pico). Desde las **32 semanas** cuenta si sube **15 lpm** durante **15 s**; antes, **10 lpm** durante **10 s**. Dura menos de **2 min**; de 2 a menos de 10 es **prolongada**.",
           "en_texto": "una aceleración sube",
           "referencias": [
             {
@@ -1831,6 +2226,24 @@
               "anio": "2025",
               "url": "https://doi.org/10.1097/AOG.0000000000006049",
               "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+            }
+          ]
+        }
+      ],
+      "burbujas": [
+        {
+          "en_texto": "no indica acidosis",
+          "titulo": "¿Por qué tranquilizan?",
+          "texto": "La mayoría coincide con los **movimientos fetales**: son la señal de un feto **neurológicamente reactivo** y sin hipoxia ni acidosis.",
+          "referencias": [
+            {
+              "titulo": "Aceleraciones y feto reactivo",
+              "paginas": "18",
+              "texto": "Most accelerations coincide with fetal movements and are a sign of a neurologically responsive fetus that does not have hypoxia/acidosis.",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
             }
           ]
         }
@@ -1895,30 +2308,31 @@
     "lect_desaceleraciones": {
       "tipo": "pregunta",
       "titulo": "Clasificar las desaceleraciones",
-      "texto": "- Medir el tiempo del inicio al nadir: **30 s** o más es una caída **gradual** (precoz o tardía) y menos de 30 s, **abrupta** (variable).\n- Comparar el **nadir** con el **pico de la contracción**: coincide en la precoz y llega **después** en la tardía.\n- Son **recurrentes** si acompañan a **más del 50 %** de las contracciones.",
-      "pie_nodo": "¿Qué desaceleraciones hay en el trazado?",
+      "texto": "- Medir el tiempo del inicio al nadir (el punto más bajo): si tarda **30 s** o más, la caída es **gradual** (precoz o tardía); si tarda menos, es **abrupta** (variable).\n- Comparar el **nadir** con el **pico de la contracción**: coincide en la precoz y llega **después** en la tardía.\n- Son **recurrentes** si acompañan a **más del 50 %** de las contracciones.",
+      "pie_nodo": "¿Cuál es la desaceleración más preocupante del trazado?",
       "opciones": [
         {
-          "texto": "Ninguna",
+          "texto": "Prolongada: de 2 a menos de 10 min",
           "siguiente_nodo": "nodo_conducta",
-          "descripcion": "Ir a clasificar el trazado"
-        },
-        {
-          "texto": "Precoces",
-          "siguiente_nodo": "lect_precoces"
-        },
-        {
-          "texto": "Variables",
-          "siguiente_nodo": "lect_variables"
+          "color": "rojo",
+          "descripcion": "Si sigue en curso, es una caída aguda"
         },
         {
           "texto": "Tardías",
           "siguiente_nodo": "lect_tardias"
         },
         {
-          "texto": "Prolongada: 2 a 10 min",
-          "siguiente_nodo": "lect_bradicardia",
-          "descripcion": "Distinguirla de la bradicardia"
+          "texto": "Variables",
+          "siguiente_nodo": "lect_variables"
+        },
+        {
+          "texto": "Precoces",
+          "siguiente_nodo": "lect_precoces"
+        },
+        {
+          "texto": "Ninguna",
+          "siguiente_nodo": "nodo_conducta",
+          "color": "verde"
         }
       ],
       "media": [
@@ -1926,7 +2340,7 @@
           "recurso": "ctg_desaceleraciones.png",
           "titulo": "Los cuatro tipos de desaceleración",
           "descripcion": "Precoz, tardía, variable y prolongada, cada una con su contracción debajo.",
-          "info": "{#7B6CF6:Línea violeta}: el **pico de la contracción**. **Precoz**: gradual, con el nadir **a la vez** que el pico. **Tardía**: gradual, con el nadir **después** del pico. **Variable**: **abrupta**, de **15 s** a menos de **2 min**. **Prolongada**: de **2 a menos de 10 min**.",
+          "info": "{#7B6CF6:Línea violeta}: el **pico de la contracción**; el punto marca el **nadir**. {#2FB36D:Precoz}: gradual, nadir **a la vez** que el pico. {#EF5454:Tardía}: gradual, nadir **después** del pico. {#F2A23A:Variable}: **abrupta**, de **15 s** a menos de **2 min**. Prolongada: de **2 a menos de 10 min**.",
           "en_texto": "inicio al nadir",
           "referencias": [
             {
@@ -2022,16 +2436,32 @@
           "anio": "2015",
           "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
           "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "1.4.24 Desaceleraciones: rojo",
+          "paginas": "22",
+          "texto": "repetitive variable decelerations with any concerning characteristics for more than 30 minutes, or － late decelerations, or － acute bradycardia, or a single prolonged deceleration lasting 3 minutes or more.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
     "lect_precoces": {
-      "titulo": "Reconocer las desaceleraciones precoces",
-      "texto": "- Son **simétricas** y graduales, con el **nadir a la vez** que el pico de la contracción.\n- Se deben a la **compresión de la cabeza** y no indican **hipoxia**.\n- Son **poco frecuentes**: si hay **variabilidad reducida** o sube la línea de base, no son precoces.",
+      "tipo": "pregunta",
+      "titulo": "Confirmar que son precoces",
+      "texto": "- Son **simétricas** y graduales, con el **nadir a la vez** que el pico de la contracción.\n- Se deben a la **compresión de la cabeza** y no indican **hipoxia**.\n- Son **poco frecuentes** y no van con **variabilidad reducida** ni con subida de la línea de base.",
+      "pie_nodo": "¿Cumplen todos los rasgos de las precoces?",
       "opciones": [
         {
-          "texto": "Precoces confirmadas",
+          "texto": "Sí, son precoces",
           "siguiente_nodo": "nodo_conducta"
+        },
+        {
+          "texto": "No: variabilidad reducida o sube la línea de base",
+          "siguiente_nodo": "lect_desaceleraciones",
+          "descripcion": "Volver a clasificarlas"
         }
       ],
       "referencias": [
@@ -2067,7 +2497,7 @@
     "lect_variables": {
       "titulo": "Valorar las desaceleraciones variables",
       "contexto": "Son las **más frecuentes** del parto y suelen deberse a **compresión del cordón**; preocupan cuando se **alargan** o cambian de forma.",
-      "texto": "- Reconocerlas: caída **abrupta** de **15 lpm** o más, de **15 s** a menos de **2 min**, distinta en cada contracción.\n- Buscar los rasgos preocupantes de **la tabla**.\n- Si no tienen rasgos preocupantes ni hay otros cambios → ayudar a la gestante a **cambiar de posición** o a caminar.",
+      "texto": "- Reconocerlas: caída **abrupta** de **15 lpm** o más, de **15 s** a menos de **2 min**, distinta en cada contracción.\n- Buscar los rasgos preocupantes y su color NICE en la tabla.\n- Si no tienen rasgos preocupantes ni hay otros cambios → ayudar a la gestante a **cambiar de posición** o a caminar.",
       "opciones": [
         {
           "texto": "Variables valoradas",
@@ -2075,19 +2505,15 @@
         }
       ],
       "tabla": {
-        "titulo": "Variables: rasgos y color NICE",
+        "titulo": "Variables: color NICE",
         "columnas": [
-          "Clave",
-          "Qué mirar"
+          "Color NICE",
+          "Criterio"
         ],
         "filas": [
           [
-            "Rasgos preocupantes",
-            "Duran más de **60 s**, **variabilidad reducida** dentro, **regreso lento** a la línea de base o **pérdida de los hombros**"
-          ],
-          [
             "Blanco",
-            "Sin rasgos preocupantes que aparezcan"
+            "Sin rasgos preocupantes"
           ],
           [
             "Ámbar",
@@ -2105,7 +2531,7 @@
           "recurso": "ctg_variable_preocupante.png",
           "titulo": "Variable sin y con rasgos preocupantes",
           "descripcion": "Variable con hombros y regreso rápido, frente a otra larga, sin hombros y de regreso lento.",
-          "info": "{#2FB36D:Arriba}: variable **en V**, con **hombros** y regreso rápido. {#EF5454:Abajo}: dura más de **60 s**, ha **perdido los hombros**, tiene **variabilidad reducida** dentro y **vuelve lento** a la línea de base: son los rasgos que NICE considera **preocupantes**.",
+          "info": "{#2FB36D:Arriba}: variable **en V**, con **hombros** (pequeñas subidas antes y después) y regreso rápido. {#EF5454:Abajo}: dura más de **60 s**, ha **perdido los hombros**, tiene **variabilidad reducida** dentro y **vuelve lento** a la línea de base: los rasgos que NICE considera **preocupantes**.",
           "en_texto": "rasgos preocupantes",
           "referencias": [
             {
@@ -2125,6 +2551,24 @@
               "anio": "2022",
               "url": "https://www.nice.org.uk/guidance/ng229",
               "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+            }
+          ]
+        }
+      ],
+      "burbujas": [
+        {
+          "en_texto": "distinta en cada contracción",
+          "titulo": "¿Por qué caen tan rápido?",
+          "texto": "Al comprimirse el cordón **sube la presión arterial** fetal y los **barorreceptores** frenan el corazón en segundos. Por eso la caída es abrupta y su forma cambia con cada contracción.",
+          "referencias": [
+            {
+              "titulo": "Variables: compresión del cordón",
+              "paginas": "18",
+              "texto": "Variable decelerations constitute the majority of decelerations during labor, and they translate a baroreceptor-mediated response to increased arterial pressure, as occurs with umbilical cord compression",
+              "fuente": "FIGO 2015",
+              "anio": "2015",
+              "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+              "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
             }
           ]
         }
@@ -2276,6 +2720,11 @@
               "fuente": "NICE NG229",
               "dice": "Toda desaceleración tardía es un rasgo **rojo**: el trazado es **patológico**.",
               "paginas": "22"
+            },
+            {
+              "fuente": "FIGO 2015",
+              "dice": "Patológico si son repetidas más de **30 min**, o **20 min** con variabilidad reducida.",
+              "paginas": "22"
             }
           ],
           "nota": "Con NICE, una sola serie de tardías ya pide **revisión urgente** y descartar un evento agudo."
@@ -2344,24 +2793,33 @@
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Tabla 1: tardías o prolongadas repetidas",
+          "paginas": "22",
+          "texto": "Repetitive late or prolonged decelerations during >30 min or 20 min if reduced variability, or one prolonged deceleration with >5 min",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
         }
       ]
     },
     "nodo_conducta": {
       "estilo": "rama",
       "texto": "Conducta",
-      "pie_nodo": "¿Qué encontraste en la lectura?",
+      "pie_nodo": "¿Qué muestra el trazado ahora?",
       "opciones": [
-        {
-          "texto": "Trazado leído",
-          "siguiente_nodo": "cond_clasificar",
-          "descripcion": "Clasificar en tres categorías"
-        },
         {
           "texto": "Caída aguda de la FCF",
           "siguiente_nodo": "cond_bradicardia_aguda",
           "color": "rojo",
-          "descripcion": "Desaceleración prolongada o bradicardia aguda"
+          "descripcion": "Desaceleración prolongada o bradicardia aguda en curso"
+        },
+        {
+          "texto": "Trazado estable, ya leído",
+          "siguiente_nodo": "cond_clasificar",
+          "descripcion": "Clasificarlo en tres categorías"
         }
       ],
       "referencias": [
@@ -2374,6 +2832,15 @@
           "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag418_acog.png"
+        },
+        {
+          "titulo": "1.5.9 Bradicardia aguda",
+          "paginas": "27",
+          "texto": "If there is an acute bradycardia, or a single prolonged deceleration for 3 minutes or more: • urgently seek obstetric review",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
@@ -2383,63 +2850,18 @@
         "Urgente"
       ],
       "tipo": "pregunta",
-      "titulo": "Actuar ya ante la caída aguda de la FCF",
-      "texto": "- Pedir **valoración obstétrica urgente** y descartar un **evento agudo**: prolapso de cordón, desprendimiento de placenta o rotura uterina.\n- Si hay un evento agudo → **parto expedito**.\n- Si no, empezar las **medidas intrauterinas** y preparar un **parto urgente** con apoyo de **neonatología**.\n- Si la bradicardia dura **9 min**, o menos con factores de riesgo → **parto expedito**.",
-      "pie_nodo": "¿Se recupera la FCF antes de los 9 minutos?",
+      "titulo": "Descartar un evento agudo y preparar el parto",
+      "texto": "- Si la caída dura **3 min** o más, pedir **valoración obstétrica urgente** y apoyo de **neonatología**.\n- Buscar un **evento agudo**: prolapso de cordón, desprendimiento de placenta o rotura uterina.\n- Si no lo hay, empezar las **medidas intrauterinas** y preparar un **parto urgente**.",
+      "pie_nodo": "¿Hay un evento agudo?",
       "opciones": [
         {
-          "texto": "Sí, se recupera",
-          "siguiente_nodo": "cond_clasificar",
-          "descripcion": "Reconsiderar el parto y clasificar el trazado"
+          "texto": "Prolapso, desprendimiento o rotura",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo"
         },
         {
-          "texto": "No, o hay un evento agudo",
-          "siguiente_nodo": "cond_parto_expedito"
-        }
-      ],
-      "enlaces": [
-        {
-          "texto": "Medidas intrauterinas",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "cond_reanimacion"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "ctg_bradicardia_9min.png",
-          "titulo": "Bradicardia aguda: la regla de los 9 minutos",
-          "descripcion": "Caída aguda de la FCF con los hitos de los 3 y los 9 minutos.",
-          "info": "{#EF5454:Tramo rojo}: la **caída aguda** de la FCF. {#F2A23A:Marca ámbar}: a los **3 min** es un rasgo rojo para NICE: valoración urgente, buscar un evento agudo y preparar el parto. {#1F2A37:Marca oscura}: si a los **9 min** no se ha recuperado, **parto expedito**.",
-          "en_texto": "dura **9 min**",
-          "referencias": [
-            {
-              "titulo": "1.5.9 Bradicardia aguda",
-              "paginas": "27",
-              "texto": "If there is an acute bradycardia, or a single prolonged deceleration for 3 minutes or more: • urgently seek obstetric review",
-              "fuente": "NICE NG229",
-              "anio": "2022",
-              "url": "https://www.nice.org.uk/guidance/ng229",
-              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-            },
-            {
-              "titulo": "1.5.9 Nueve minutos",
-              "paginas": "28",
-              "texto": "expedite the birth if the acute bradycardia persists for 9 minutes, or less if there are significant antenatal or intrapartum risk factors for fetal compromise.",
-              "fuente": "NICE NG229",
-              "anio": "2022",
-              "url": "https://www.nice.org.uk/guidance/ng229",
-              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-            },
-            {
-              "titulo": "1.4.24 Desaceleraciones: rojo",
-              "paginas": "22",
-              "texto": "repetitive variable decelerations with any concerning characteristics for more than 30 minutes, or － late decelerations, or － acute bradycardia, or a single prolonged deceleration lasting 3 minutes or more.",
-              "fuente": "NICE NG229",
-              "anio": "2022",
-              "url": "https://www.nice.org.uk/guidance/ng229",
-              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-            }
-          ]
+          "texto": "No hay evento agudo",
+          "siguiente_nodo": "cond_reanimacion"
         }
       ],
       "discrepancias": [
@@ -2448,13 +2870,13 @@
           "posturas": [
             {
               "fuente": "ACOG 2025",
-              "dice": "De **2 a menos de 10 min** es categoría **II**; con variabilidad ausente y bradicardia, **III**.",
+              "dice": "De **2 a menos de 10 min** es categoría **II**; con variabilidad ausente y bradicardia, **III**. No fija plazos.",
               "paginas": "587"
             },
             {
               "fuente": "NICE NG229",
               "dice": "Desde los **3 min**, revisión urgente y preparar el parto; **parto expedito** si dura **9 min**.",
-              "paginas": "26-27"
+              "paginas": "22, 27-28"
             },
             {
               "fuente": "FIGO 2015",
@@ -2462,7 +2884,7 @@
               "paginas": "18"
             }
           ],
-          "nota": "Este algoritmo usa los **plazos de NICE** porque la ACOG no fija tiempos."
+          "nota": "Este algoritmo usa los **plazos de NICE** porque la ACOG no los fija."
         }
       ],
       "referencias": [
@@ -2470,6 +2892,24 @@
           "titulo": "1.5.9 Bradicardia aguda",
           "paginas": "27",
           "texto": "If there is an acute bradycardia, or a single prolonged deceleration for 3 minutes or more: • urgently seek obstetric review",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.24 Desaceleraciones: rojo",
+          "paginas": "22",
+          "texto": "repetitive variable decelerations with any concerning characteristics for more than 30 minutes, or － late decelerations, or － acute bradycardia, or a single prolonged deceleration lasting 3 minutes or more.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.5.9 Preparar el parto urgente",
+          "paginas": "28",
+          "texto": "make preparations for an urgent birth, including a request for paediatric or neonatal support.",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
@@ -2488,33 +2928,6 @@
           "titulo": "1.5.9 Evento agudo",
           "paginas": "27",
           "texto": "if there has been an acute event (for example, cord prolapse, suspected placental abruption or suspected uterine rupture), expedite the birth",
-          "fuente": "NICE NG229",
-          "anio": "2022",
-          "url": "https://www.nice.org.uk/guidance/ng229",
-          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-        },
-        {
-          "titulo": "1.5.9 Preparar el parto urgente",
-          "paginas": "28",
-          "texto": "make preparations for an urgent birth, including a request for paediatric or neonatal support.",
-          "fuente": "NICE NG229",
-          "anio": "2022",
-          "url": "https://www.nice.org.uk/guidance/ng229",
-          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-        },
-        {
-          "titulo": "1.5.9 Nueve minutos",
-          "paginas": "28",
-          "texto": "expedite the birth if the acute bradycardia persists for 9 minutes, or less if there are significant antenatal or intrapartum risk factors for fetal compromise.",
-          "fuente": "NICE NG229",
-          "anio": "2022",
-          "url": "https://www.nice.org.uk/guidance/ng229",
-          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
-        },
-        {
-          "titulo": "1.5.9 Si se recupera",
-          "paginas": "28",
-          "texto": "If the fetal heart rate recovers at any time up to 9 minutes, reassess any decision to expedite the birth",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
@@ -2549,16 +2962,111 @@
         }
       ]
     },
+    "cond_bradicardia_9min": {
+      "estilo": "peligro",
+      "tipo": "pregunta",
+      "titulo": "Vigilar la recuperación de la FCF",
+      "texto": "- Si la FCF no se recupera a los **9 min**, o antes si hay **factores de riesgo** importantes → **parto expedito**.\n- Si hay una **contracción tetánica**, suspender la oxitocina o dar un **relajante uterino** (terbutalina) mientras se prepara el parto.\n- Si se recupera antes, **reconsiderar** la decisión de terminar el parto.",
+      "pie_nodo": "¿Se recupera la FCF antes de los 9 minutos?",
+      "opciones": [
+        {
+          "texto": "Sí, se recupera",
+          "siguiente_nodo": "cond_clasificar",
+          "descripcion": "Volver a clasificar el trazado"
+        },
+        {
+          "texto": "Sigue baja a los 9 min, o hay factores de riesgo",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "ctg_bradicardia_9min.png",
+          "titulo": "Bradicardia aguda: la regla de los 9 minutos",
+          "descripcion": "Caída aguda de la FCF con los hitos de los 3 y los 9 minutos.",
+          "info": "{#EF5454:Tramo rojo}: la **caída aguda** de la FCF. {#F2A23A:Marca ámbar}: a los **3 min**, NICE pide valoración urgente, buscar un **evento agudo** y preparar el parto. {#1F2A37:Marca oscura}: si a los **9 min** no se ha recuperado, **parto expedito**.",
+          "en_texto": "no se recupera a los",
+          "referencias": [
+            {
+              "titulo": "1.5.9 Bradicardia aguda",
+              "paginas": "27",
+              "texto": "If there is an acute bradycardia, or a single prolonged deceleration for 3 minutes or more: • urgently seek obstetric review",
+              "fuente": "NICE NG229",
+              "anio": "2022",
+              "url": "https://www.nice.org.uk/guidance/ng229",
+              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+            },
+            {
+              "titulo": "1.5.9 Nueve minutos",
+              "paginas": "28",
+              "texto": "expedite the birth if the acute bradycardia persists for 9 minutes, or less if there are significant antenatal or intrapartum risk factors for fetal compromise.",
+              "fuente": "NICE NG229",
+              "anio": "2022",
+              "url": "https://www.nice.org.uk/guidance/ng229",
+              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+            },
+            {
+              "titulo": "1.4.24 Desaceleraciones: rojo",
+              "paginas": "22",
+              "texto": "repetitive variable decelerations with any concerning characteristics for more than 30 minutes, or － late decelerations, or － acute bradycardia, or a single prolonged deceleration lasting 3 minutes or more.",
+              "fuente": "NICE NG229",
+              "anio": "2022",
+              "url": "https://www.nice.org.uk/guidance/ng229",
+              "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+            }
+          ]
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "1.5.9 Nueve minutos",
+          "paginas": "28",
+          "texto": "expedite the birth if the acute bradycardia persists for 9 minutes, or less if there are significant antenatal or intrapartum risk factors for fetal compromise.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.5.9 Si se recupera",
+          "paginas": "28",
+          "texto": "If the fetal heart rate recovers at any time up to 9 minutes, reassess any decision to expedite the birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Contracción tetánica",
+          "paginas": "594",
+          "texto": "in the setting of a tetanic uterine contraction, an intervention of ceasing uterotonic agents or giving a short-acting uterine relaxation agent (eg, terbutaline) might precede an emergent delivery.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "1.5.9 Preparar el parto urgente",
+          "paginas": "28",
+          "texto": "make preparations for an urgent birth, including a request for paediatric or neonatal support.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        }
+      ]
+    },
     "cond_clasificar": {
       "tipo": "pregunta",
-      "titulo": "Clasificar el trazado en tres categorías",
-      "texto": "- Clasificar con el sistema de **tres categorías** de la ACOG, el que recomienda la **guía colombiana**.\n- La categoría describe al feto **en ese momento**: el trazado cambia y puede pasar de una a otra.\n- Usar todo el equipo la **misma clasificación**; la equivalencia con NICE y FIGO está en **la tabla**.",
+      "titulo": "Clasificar el trazado",
+      "texto": "- Usar las tres categorías de la **ACOG**, el sistema que recomienda la **guía colombiana**.\n- La categoría describe al feto **en ese momento**: el trazado cambia y puede pasar de una a otra.\n- Usar todo el equipo la **misma clasificación**; NICE y FIGO clasifican distinto (ver **la tabla**).",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ctg_categoria_acog.json",
         "etiqueta": "Categoría de la CTG (ACOG)",
         "ramificar": true
       },
-      "pie_nodo": "¿Qué categoría da la calculadora?",
+      "pie_nodo": "¿En qué categoría de la ACOG queda el trazado?",
       "opciones": [
         {
           "texto": "Categoría I",
@@ -2580,31 +3088,27 @@
         }
       ],
       "tabla": {
-        "titulo": "ACOG, NICE y FIGO",
+        "titulo": "Cómo clasifica cada guía",
         "columnas": [
-          "Sistema",
-          "Normal",
-          "Intermedio",
-          "Anormal"
+          "Guía",
+          "Categorías"
         ],
         "filas": [
           [
             "ACOG",
-            "Categoría **I**",
-            "Categoría **II**",
-            "Categoría **III**"
+            "**I** normal · **II** indeterminada · **III** anormal"
           ],
           [
             "NICE",
-            "Normal: todo **blanco**",
-            "Sospechoso: **1** ámbar",
-            "Patológico: **1** rojo o **2** ámbar"
+            "Normal (todo **blanco**) · sospechoso (**1** ámbar) · patológico (**1** rojo, o **2 o más** ámbar)"
           ],
           [
             "FIGO",
-            "Normal",
-            "Sospechoso",
-            "Patológico"
+            "Normal · sospechoso · patológico (línea de base **<100**, variabilidad reducida o aumentada, sinusoidal, o tardías o prolongadas repetidas más de **30 min**)"
+          ],
+          [
+            "No equivalen",
+            "Tardías con variabilidad moderada, línea de base **>160** o **<100** y variabilidad **>25** más de **10 min** son **II** para la ACOG y **patológico** para NICE"
           ]
         ],
         "en_texto": "la tabla"
@@ -2733,6 +3237,51 @@
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Tabla 1: línea de base patológica",
+          "paginas": "22",
+          "texto": "Baseline 110−160 bpm <100 bpm Variability 5−25 bpm Lacking at least one characteristic of normality",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "Tabla 1: tardías o prolongadas repetidas",
+          "paginas": "22",
+          "texto": "Repetitive late or prolonged decelerations during >30 min or 20 min if reduced variability, or one prolonged deceleration with >5 min",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "1.4.15 Línea de base: rojo",
+          "paginas": "19",
+          "texto": "red － below 100 beats a minute, or － above 160 beats a minute.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.18 Variabilidad: rojo",
+          "paginas": "20",
+          "texto": "fewer than 5 beats a minute for more than 50 minutes, or － more than 25 beats a minute for more than 10 minutes, or － sinusoidal.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.24 Desaceleraciones: rojo",
+          "paginas": "22",
+          "texto": "repetitive variable decelerations with any concerning characteristics for more than 30 minutes, or － late decelerations, or － acute bradycardia, or a single prolonged deceleration lasting 3 minutes or more.",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
@@ -2740,15 +3289,21 @@
       "estilo": "exito",
       "tipo": "pregunta",
       "titulo": "Seguir la atención habitual del parto",
-      "texto": "- Seguir el **manejo habitual**: el trazado predice con fuerza un estado ácido-base **normal**.\n- Mantener la CTG y la **valoración horaria** del riesgo; si se puso por una alarma al auscultar y no hay riesgos, se puede volver a **auscultar**.\n- Reevaluar el trazado al menos cada **30 min**.",
+      "texto": "- El trazado predice con fuerza un estado ácido-base **normal** en ese momento.\n- Mantener la CTG y la **valoración horaria** del riesgo.\n- Si la CTG se puso por una alarma al auscultar y no hay **factores de riesgo**, se puede volver a **auscultar**.\n- Reevaluar el trazado al menos cada **30 min**.",
       "pie_nodo": "¿Cómo está el trazado en la siguiente revisión?",
       "opciones": [
         {
           "texto": "Sigue en categoría I",
-          "siguiente_nodo": "cond_cat1"
+          "siguiente_nodo": "cond_cat1",
+          "color": "verde"
         },
         {
-          "texto": "Cambió",
+          "texto": "Caída aguda de la FCF",
+          "siguiente_nodo": "cond_bradicardia_aguda",
+          "color": "rojo"
+        },
+        {
+          "texto": "Cambia de categoría",
           "siguiente_nodo": "cond_clasificar",
           "descripcion": "Volver a clasificar"
         }
@@ -2780,6 +3335,15 @@
           "titulo": "1.5.4 Trazado normal",
           "paginas": "26",
           "texto": "continue CTG (unless it was started because of concerns arising from intermittent auscultation and there are no ongoing antenatal or intrapartum risk factors) and usual care",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.2.13 Volver a la auscultación",
+          "paginas": "9",
+          "texto": "Return to intermittent auscultation if continuous CTG monitoring has been started because of concerns arising from intermittent auscultation but the CTG trace is normal after 20 minutes",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
@@ -2831,7 +3395,6 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
         }
       ],
-      "nota_adicional": "Si el trazado es sospechoso y además hay **progreso lento, sepsis o meconio**, NICE pide **valoración urgente**. Después, considerar la **estimulación de la calota** o el parto.",
       "referencias": [
         {
           "titulo": "Categoría II: indeterminada",
@@ -2895,15 +3458,6 @@
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
-        },
-        {
-          "titulo": "1.5.6 Sospechoso con factores de riesgo",
-          "paginas": "26",
-          "texto": "If the CTG trace is categorised as suspicious and there are additional intrapartum risk factors such as slow progress, sepsis or meconium",
-          "fuente": "NICE NG229",
-          "anio": "2022",
-          "url": "https://www.nice.org.uk/guidance/ng229",
-          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         }
       ]
     },
@@ -2915,27 +3469,31 @@
       "tipo": "pregunta",
       "titulo": "Preparar el parto y reanimar al feto ya",
       "contexto": "La categoría III es **rara** (menos del **1 %**) y se asocia a un estado ácido-base **anormal** en ese momento.",
-      "texto": "- Pedir **valoración urgente** del obstetra y apoyo de **neonatología**.\n- Descartar un **evento agudo**: prolapso de cordón, **desprendimiento de placenta** o **rotura uterina**.\n- **Preparar el parto** mientras se empiezan las **medidas intrauterinas**.",
+      "texto": "- Pedir **valoración urgente** del obstetra y descartar un **evento agudo**: prolapso de cordón, desprendimiento de placenta o rotura uterina.\n- Preparar el parto **mientras** se hacen las **medidas intrauterinas**; no esperar a ver si responden.",
       "checklist": {
         "titulo": "Primeros minutos de la categoría III",
         "items": [
           "Valoración obstétrica urgente pedida",
-          "Prolapso de cordón, desprendimiento y rotura uterina descartados",
-          "Oxitocina suspendida",
-          "Gestante en decúbito lateral",
-          "Hipotensión materna tratada",
+          "Evento agudo descartado",
           "Neonatología avisada",
           "Quirófano o sala de partos preparada"
         ]
       },
-      "pie_nodo": "¿Hay un evento agudo?",
+      "pie_nodo": "¿Hay un evento agudo o un sinusoidal de más de 30 minutos?",
       "opciones": [
         {
-          "texto": "Sí: prolapso, desprendimiento o rotura",
-          "siguiente_nodo": "cond_parto_expedito"
+          "texto": "Prolapso, desprendimiento o rotura",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo"
         },
         {
-          "texto": "No",
+          "texto": "Sinusoidal de más de 30 min",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo",
+          "descripcion": "Las medidas intrauterinas no ayudan; pensar en anemia fetal, como la vasa previa rota"
+        },
+        {
+          "texto": "No hay evento agudo",
           "siguiente_nodo": "cond_reanimacion"
         }
       ],
@@ -3011,20 +3569,38 @@
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Sinusoidal de más de 30 minutos",
+          "paginas": "594",
+          "texto": "With a sinusoidal pattern lasting more than 30 minutes, there are no resuscitative measures that can provide intrapartum fetal benefit",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Sinusoidal y anemia fetal",
+          "paginas": "20",
+          "texto": "it occurs in association with severe fetal anemia, as is found in anti-D alloimmunization, fetal-maternal hemorrhage, twin-to-twin transfusion syndrome, and ruptured vasa previa.",
+          "fuente": "FIGO 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+          "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
         }
       ]
     },
     "cond_reanimacion": {
       "tipo": "pregunta",
       "titulo": "Aplicar las medidas de reanimación intrauterina",
-      "texto": "- Cambiar a **decúbito lateral** u otra posición y evitar el supino.\n- **Reducir o suspender la oxitocina**.\n- Si hay **hipotensión**, a menudo por la epidural → **bolo de líquidos IV** y, si es necesario, un **vasopresor**.\n- Si hay **variables recurrentes** → valorar la **amnioinfusión**.\n- En el expulsivo, **pujar en contracciones alternas**.",
+      "texto": "- Cambiar a **decúbito lateral** u otra posición y evitar el decúbito supino.\n- Reducir o suspender la **oxitocina**.\n- Si hay **hipotensión** → **bolo de líquidos IV** sin sobrecargar, bajar la epidural, avisar a anestesia y, si es necesario, un **vasopresor**.\n- Si hay **variables recurrentes** → valorar la **amnioinfusión**.",
       "alertas": [
         {
           "titulo": "Sin oxígeno de rutina",
-          "texto": "No dar **oxígeno** a la madre en la categoría II o III si no está **hipoxémica**: no mejora al feto y NICE advierte que **puede dañarlo**."
+          "texto": "No dar **oxígeno** a la madre si no está **hipoxémica**: no mejora al feto y NICE advierte que **puede dañarlo**."
         }
       ],
-      "pie_nodo": "¿Qué categoría estás tratando?",
+      "pie_nodo": "¿Qué trazado estás tratando?",
       "opciones": [
         {
           "texto": "Categoría II",
@@ -3037,6 +3613,12 @@
           "siguiente_nodo": "cond_cat3_respuesta",
           "color": "rojo",
           "descripcion": "Reevaluar de inmediato"
+        },
+        {
+          "texto": "Caída aguda de la FCF",
+          "siguiente_nodo": "cond_bradicardia_9min",
+          "color": "rojo",
+          "descripcion": "Vigilar si se recupera antes de 9 min"
         }
       ],
       "enlaces": [
@@ -3058,7 +3640,7 @@
             {
               "fuente": "NICE NG229",
               "dice": "**No** ofrecerla para la reanimación intrauterina.",
-              "paginas": "28"
+              "paginas": "29"
             }
           ],
           "nota": "Depende del **protocolo** del servicio."
@@ -3074,14 +3656,14 @@
             {
               "fuente": "NICE NG229",
               "dice": "**No** dar líquidos IV por la FCF salvo **hipotensión** o signos de **sepsis**.",
-              "paginas": "27"
+              "paginas": "28"
             }
           ],
           "nota": "FIGO tampoco ve evidencia de que sirvan en la **normotensa**."
         }
       ],
       "evidencia": {
-        "texto": "GRADE: fuerte, calidad moderada",
+        "texto": "GRADE: fuerte, calidad moderada (categoría II)",
         "fuente": "ACOG 2025"
       },
       "referencias": [
@@ -3131,6 +3713,24 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
+          "titulo": "Tabla 2: líquidos con cautela",
+          "paginas": "591",
+          "texto": "With caution to avoid fluid volume overload. Expert opinion or best practice in the absence of quality data.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "1.5.11 Hipotensión por la epidural",
+          "paginas": "28",
+          "texto": "if the woman is hypotensive secondary to an epidural top-up, start intravenous fluids, move her to a left lateral position and call an anaesthetist to review",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "Hipotensión tras la epidural",
           "paginas": "22",
           "texto": "Sudden maternal hypotension can also occur during labor, usually after epidural or spinal analgesia [46], and it is usually reversible by rapid fluid administration and/or an intravenous ephedrine bolus.",
@@ -3156,15 +3756,6 @@
           "anio": "2015",
           "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
           "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
-        },
-        {
-          "titulo": "Tabla 2: desaceleraciones con los pujos",
-          "paginas": "591",
-          "texto": "Modification of cadence of maternal expulsive efforts (eg, pushing every other contraction) Modification of maternal position Evaluation for operative vaginal delivery",
-          "fuente": "ACOG 2025",
-          "anio": "2025",
-          "url": "https://doi.org/10.1097/AOG.0000000000006049",
-          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
           "titulo": "Recomendación: sin oxígeno de rutina",
@@ -3224,10 +3815,20 @@
     },
     "cond_cat2_respuesta": {
       "tipo": "pregunta",
-      "titulo": "Reevaluar la categoría II tras las medidas",
-      "texto": "- Buscar los **rasgos protectores**: **variabilidad moderada** o **aceleraciones**.\n- Tener en cuenta el **progreso del parto** y lo **cerca** que está el nacimiento.\n- No hay un **tiempo fijo** para cada medida: depende del trazado y del cuadro clínico.",
-      "pie_nodo": "¿Cómo responde el trazado a las medidas?",
+      "titulo": "Reevaluar la categoría II y seguir las medidas",
+      "texto": "- Buscar los **rasgos protectores**: **variabilidad moderada** o **aceleraciones**.\n- Si el parto **progresa**, agotar primero las medidas que **no lo frenan**.\n- Valorar si el **progreso del parto** justifica seguir en categoría II; no hay un **tiempo fijo** para cada medida.\n- Si aparecen **progreso lento, sepsis o meconio** → valoración urgente del obstetra.",
+      "pie_nodo": "¿Cómo está el trazado en esta revisión?",
       "opciones": [
+        {
+          "texto": "Persiste la taquisistolia",
+          "siguiente_nodo": "cond_taquisistolia",
+          "descripcion": "Tratarla y volver a esta reevaluación"
+        },
+        {
+          "texto": "Caída aguda de la FCF",
+          "siguiente_nodo": "cond_bradicardia_aguda",
+          "color": "rojo"
+        },
         {
           "texto": "Vuelve a categoría I",
           "siguiente_nodo": "cond_cat1",
@@ -3235,18 +3836,18 @@
         },
         {
           "texto": "Sigue en II con rasgos protectores",
-          "siguiente_nodo": "cond_cat2_vigilar",
-          "descripcion": "Variabilidad moderada o aceleraciones"
+          "siguiente_nodo": "cond_cat2_respuesta",
+          "descripcion": "Seguir las medidas y vigilar"
         },
         {
           "texto": "Sigue en II sin rasgos protectores",
           "siguiente_nodo": "cond_estimulacion",
-          "descripcion": "Sin aceleraciones y con variabilidad mínima o ausente"
+          "descripcion": "Aún sin estimular"
         },
         {
-          "texto": "Persiste la taquisistolia",
-          "siguiente_nodo": "cond_taquisistolia",
-          "descripcion": "Con cambios de la FCF pese a parar la oxitocina"
+          "texto": "Ya estimulada, o persiste el alto riesgo",
+          "siguiente_nodo": "cond_sin_respuesta",
+          "descripcion": "Sin aceleración, o alto riesgo o parto que no progresa"
         },
         {
           "texto": "Pasa a categoría III",
@@ -3254,6 +3855,7 @@
           "color": "rojo"
         }
       ],
+      "nota_adicional": "La **variabilidad moderada** y las **aceleraciones** son marcadores de **bienestar fetal**, pero no bastan solas: hay que integrar todo el cuadro clínico.",
       "referencias": [
         {
           "titulo": "Variabilidad moderada y aceleraciones",
@@ -3283,9 +3885,27 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
+          "titulo": "Primero lo que no frena el parto",
+          "paginas": "594",
+          "texto": "resuscitation interventions that do not stall or halt progress should be exhausted before those interventions that may interfere with labor progress toward a successful delivery",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
           "titulo": "Progreso del parto en la categoría II",
           "paginas": "594",
           "texto": "clinicians must consider labor progress (normal vs protracted or arrested) and proximity to delivery when determining next steps in management of a persistently category II FHR tracing",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "¿Justifica el progreso seguir en categoría II?",
+          "paginas": "594",
+          "texto": "whether the patient is making adequate progress toward vaginal delivery to justify the persistence of the category II tracing despite resuscitative efforts.",
           "fuente": "ACOG 2025",
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
@@ -3301,62 +3921,6 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
-          "titulo": "Recomendación: taquisistolia",
-          "paginas": "594",
-          "texto": "ACOG suggests treating uterine tachysystole that is associated with category III or category II fetal heart rate tracings with high-risk features, and persists despite pausing oxytocin",
-          "fuente": "ACOG 2025",
-          "anio": "2025",
-          "url": "https://doi.org/10.1097/AOG.0000000000006049",
-          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
-        }
-      ]
-    },
-    "cond_cat2_vigilar": {
-      "tipo": "pregunta",
-      "titulo": "Seguir la vigilancia y las medidas",
-      "texto": "- Mantener la **vigilancia** y las **medidas intrauterinas**.\n- Si el parto **progresa**, agotar primero las medidas que **no lo frenan**.\n- Si aparecen **progreso lento, sepsis o meconio** → valoración urgente del obstetra.",
-      "pie_nodo": "¿Cómo está el trazado en la siguiente revisión?",
-      "opciones": [
-        {
-          "texto": "Vuelve a categoría I",
-          "siguiente_nodo": "cond_cat1",
-          "color": "verde"
-        },
-        {
-          "texto": "Sigue igual, con rasgos protectores",
-          "siguiente_nodo": "cond_cat2_vigilar"
-        },
-        {
-          "texto": "Pierde los rasgos protectores",
-          "siguiente_nodo": "cond_estimulacion"
-        },
-        {
-          "texto": "Pasa a categoría III",
-          "siguiente_nodo": "cond_cat3",
-          "color": "rojo"
-        }
-      ],
-      "nota_adicional": "La **variabilidad moderada** y las **aceleraciones** son marcadores de **bienestar fetal**, pero no bastan solas: hay que integrar todo el cuadro clínico.",
-      "referencias": [
-        {
-          "titulo": "Figura 1: con aceleraciones o variabilidad moderada",
-          "paginas": "593",
-          "texto": "FHR accelerations or moderate FHR variability Continue surveillance + intrauterine resuscitative measures",
-          "fuente": "ACOG 2025",
-          "anio": "2025",
-          "url": "https://doi.org/10.1097/AOG.0000000000006049",
-          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
-        },
-        {
-          "titulo": "Primero lo que no frena el parto",
-          "paginas": "594",
-          "texto": "resuscitation interventions that do not stall or halt progress should be exhausted before those interventions that may interfere with labor progress toward a successful delivery",
-          "fuente": "ACOG 2025",
-          "anio": "2025",
-          "url": "https://doi.org/10.1097/AOG.0000000000006049",
-          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
-        },
-        {
           "titulo": "1.5.6 Sospechoso con factores de riesgo",
           "paginas": "26",
           "texto": "If the CTG trace is categorised as suspicious and there are additional intrapartum risk factors such as slow progress, sepsis or meconium",
@@ -3366,9 +3930,9 @@
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         },
         {
-          "titulo": "Variabilidad moderada y aceleraciones",
+          "titulo": "Recomendación: taquisistolia",
           "paginas": "594",
-          "texto": "The presence of moderate variability, fetal accelerations, or both are considered markers of fetal well-being",
+          "texto": "ACOG suggests treating uterine tachysystole that is associated with category III or category II fetal heart rate tracings with high-risk features, and persists despite pausing oxytocin",
           "fuente": "ACOG 2025",
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
@@ -3380,13 +3944,14 @@
       "tipo": "pregunta",
       "titulo": "Estimular la calota fetal",
       "contexto": "Una **aceleración** tras estimular tiene un **alto valor predictivo negativo** para la acidemia fetal.",
-      "texto": "- Estimular la **calota** con el dedo durante el tacto vaginal, o usar la **estimulación vibroacústica**.\n- Hacerlo cuando el trazado no tiene **variabilidad moderada** ni **aceleraciones**.\n- Mantener las **medidas intrauterinas** mientras tanto.",
+      "texto": "- Estimular la **calota** con el dedo durante el tacto vaginal, o usar la estimulación vibroacústica.\n- Mantener las **medidas intrauterinas** mientras tanto.",
       "pie_nodo": "¿Aparece una aceleración tras estimular?",
       "opciones": [
         {
-          "texto": "Sí, acelera",
-          "siguiente_nodo": "cond_cat2_vigilar",
-          "color": "verde"
+          "texto": "Sí, acelera y el trazado mejora",
+          "siguiente_nodo": "cond_cat2_respuesta",
+          "color": "verde",
+          "descripcion": "Seguir vigilando"
         },
         {
           "texto": "No acelera",
@@ -3394,7 +3959,6 @@
           "color": "rojo"
         }
       ],
-      "nota_adicional": "No acelerar tras la estimulación es un **signo preocupante**: puede haber **compromiso fetal** y hacer falta el **parto expedito**.",
       "burbujas": [
         {
           "en_texto": "estimulación vibroacústica",
@@ -3476,9 +4040,9 @@
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
         },
         {
-          "titulo": "1.6.2 Sin aceleración tras estimular",
+          "titulo": "1.6.1 Aceleración y mejoría mantenida",
           "paginas": "29",
-          "texto": "Be aware that the absence of an acceleration in response to fetal scalp stimulation is a worrying sign that fetal compromise may be present, and that expedited birth may be necessary.",
+          "texto": "If this leads to an acceleration in fetal heart rate and a sustained improvement in the CTG trace, continue to monitor the fetal heart rate and clinical picture.",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",
@@ -3489,23 +4053,36 @@
     "cond_sin_respuesta": {
       "estilo": "advertencia",
       "tipo": "pregunta",
-      "titulo": "Decidir el parto si no hay respuesta",
-      "texto": "- Sin aceleración puede haber **compromiso fetal**: pedir **valoración urgente** y considerar el **parto expedito**.\n- Considerar el parto si las medidas **no mejoran** el trazado o pasa a **categoría III**.\n- Donde se haga, la **muestra de sangre de calota** (pH o lactato) da más información.\n- Decidir el **momento y la vía** según la factibilidad y el estado materno-fetal.",
-      "pie_nodo": "¿Se decide el parto?",
+      "titulo": "Valorar el parto expedito",
+      "texto": "- Sin aceleración tras estimular puede haber **compromiso fetal**: pedir **valoración urgente**.\n- Considerar el parto si las medidas **no mejoran** el trazado o pasa a **categoría III**.\n- Donde se haga, la **muestra de sangre de calota** (pH o lactato) da más información.\n- Decidir el **momento y la vía** según la factibilidad y el estado materno-fetal.",
+      "alertas": [
+        {
+          "titulo": "Sin STAN ni oximetría de rutina",
+          "texto": "No usar de rutina el **análisis del ST**, la **oximetría de pulso fetal** ni la lectura **por computador**: no mejoran los resultados."
+        }
+      ],
+      "pie_nodo": "¿Mejora el trazado con las medidas?",
       "opciones": [
         {
-          "texto": "Sí, parto expedito",
-          "siguiente_nodo": "cond_parto_expedito"
+          "texto": "Sí, recupera rasgos protectores",
+          "siguiente_nodo": "cond_cat2_respuesta",
+          "color": "verde"
         },
         {
-          "texto": "Aún no: seguir vigilando",
-          "siguiente_nodo": "cond_cat2_vigilar"
+          "texto": "No mejora o pasa a categoría III",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo"
         }
       ],
       "discrepancias": [
         {
           "asunto": "Muestra de sangre de calota",
           "posturas": [
+            {
+              "fuente": "MinSalud 2013",
+              "dice": "Es lo que **más reduce los falsos positivos** de la monitoría continua.",
+              "paginas": "414"
+            },
             {
               "fuente": "ACOG 2025",
               "dice": "Se usa en muchos países, pero **no** suele hacerse en Estados Unidos.",
@@ -3514,7 +4091,7 @@
             {
               "fuente": "NICE NG229",
               "dice": "No hace **ninguna recomendación** por falta de evidencia.",
-              "paginas": "28"
+              "paginas": "29"
             }
           ],
           "nota": "Si el servicio no la tiene, se decide con la **clínica** y el trazado."
@@ -3538,6 +4115,25 @@
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "1.5.8 Sigue patológico",
+          "paginas": "27",
+          "texto": "still pathological after implementing conservative measures: • obtain a further urgent review by an obstetrician and a senior midwife • evaluate the whole clinical picture and consider expediting birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "Muestra de sangre fetal: menos falsos positivos",
+          "paginas": "414",
+          "texto": "En una revisión sistemática se encontró que el procedimiento que ha mostrado más utilidad en la disminución de los falsos positivos de la monitoría electrónica fetal continua es la MSF",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag414_msf.png"
         },
         {
           "titulo": "Muestra de sangre de calota",
@@ -3565,6 +4161,63 @@
           "anio": "2025",
           "url": "https://doi.org/10.1097/AOG.0000000000006049",
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Recomendación: sin STAN de rutina",
+          "paginas": "585-595",
+          "texto": "ACOG recommends against the routine use of ST-segment analysis (STAN) for interpretation and management of the fetal heart rate in labor.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Recomendación: sin oximetría fetal",
+          "paginas": "585-595",
+          "texto": "ACOG recommends against the routine use of intrapartum fetal pulse oximetry for the assessment of fetal status.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Recomendación: sin depender del computador",
+          "paginas": "585-596",
+          "texto": "ACOG recommends against primary reliance on computerized approaches for the interpretation and management of the fetal heart rate in labor.",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
+        },
+        {
+          "titulo": "Recomendación: sin ST de rutina (grado A)",
+          "paginas": "417",
+          "texto": "No se recomienda la utilización rutinaria del análisis del segmento ST del electrocardiograma (ECG) fetal en el parto normal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag417_st.png"
+        },
+        {
+          "titulo": "Recomendación: ST sólo con CTG anormal (grado B)",
+          "paginas": "417",
+          "texto": "En las instituciones hospitalarias donde el análisis del segmento ST del ECG fetal está disponible, se recomienda su utilización sólo en mujeres con cardiotocografía (CTG) anormal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag417_st_anormal.png"
+        },
+        {
+          "titulo": "Recomendación: sin pulsioximetría fetal (grado A)",
+          "paginas": "417",
+          "texto": "No se recomienda el uso rutinario de la pulsioximetría fetal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://unisalud.unal.edu.co/fileadmin/archivos/10-G.completa.Embarazo.Parto.2013.Julio17.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guía No. 11-15. Bogotá; 2013.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/cardiotocografia/evidencia_cardiotocografia_pag417_pulsioximetria.png"
         }
       ]
     },
@@ -3576,17 +4229,19 @@
       "pie_nodo": "¿Ha mejorado el trazado con las medidas?",
       "opciones": [
         {
-          "texto": "Sí, ya es I o II",
+          "texto": "Persiste la taquisistolia",
+          "siguiente_nodo": "cond_taquisistolia",
+          "descripcion": "Tratarla y volver a esta reevaluación"
+        },
+        {
+          "texto": "Mejora: ya es I o II",
           "siguiente_nodo": "cond_clasificar",
           "descripcion": "Volver a clasificar"
         },
         {
-          "texto": "Persiste la taquisistolia",
-          "siguiente_nodo": "cond_taquisistolia"
-        },
-        {
-          "texto": "No mejora",
-          "siguiente_nodo": "cond_parto_expedito"
+          "texto": "Sigue en categoría III",
+          "siguiente_nodo": "cond_parto_expedito",
+          "color": "rojo"
         }
       ],
       "evidencia": {
@@ -3625,18 +4280,18 @@
     },
     "cond_taquisistolia": {
       "tipo": "pregunta",
-      "titulo": "Dar un tocolítico si la taquisistolia persiste",
+      "titulo": "Dar un tocolítico",
       "contexto": "Espaciar las contracciones mejora la **perfusión placentaria** y devuelve al feto el **tiempo de intercambio** de gases.",
-      "texto": "- Primero, **reducir o suspender la oxitocina** y retirar las **prostaglandinas** si se puede.\n- Si persiste con categoría III o II de **alto riesgo** → dar un **tocolítico de acción rápida**, como la **terbutalina**.\n- Si el nacimiento está **cerca**, puede ser mejor el **parto vaginal expedito**, incluso instrumentado.",
+      "texto": "- Primero, **reducir o suspender la oxitocina**, retirar las **prostaglandinas** si se puede y valorar un bolo de líquidos IV.\n- Si persiste y el trazado es **anormal** (categoría III) o **indeterminado con rasgos de alto riesgo** (categoría II) → **terbutalina** u otro tocolítico de acción rápida.\n- Si el nacimiento está **cerca**, puede ser mejor el parto vaginal expedito, incluso instrumentado.",
       "farmacos": [
         {
           "nombre": "Terbutalina",
           "dosis": "**0,25 mg** SC",
-          "pauta": "Dosis única cuando la **taquisistolia** persiste tras **parar la oxitocina** y hay alteraciones de la FCF.",
-          "paginas": "NICE 28"
+          "pauta": "Esquema sugerido por **NICE** cuando la taquisistolia **persiste** pese a reducir o parar la oxitocina.",
+          "paginas": "NICE 29"
         }
       ],
-      "pie_nodo": "¿Qué categoría estás tratando?",
+      "pie_nodo": "¿Qué trazado estás tratando?",
       "opciones": [
         {
           "texto": "Categoría II",
@@ -3649,6 +4304,12 @@
           "siguiente_nodo": "cond_cat3_respuesta",
           "color": "rojo",
           "descripcion": "Seguir su reevaluación"
+        },
+        {
+          "texto": "Caída aguda de la FCF",
+          "siguiente_nodo": "cond_bradicardia_9min",
+          "color": "rojo",
+          "descripcion": "Vigilar si se recupera antes de 9 min"
         }
       ],
       "nota_adicional": "La **oxitocina** se puede reanudar o subir cuando el trazado vuelve a ser **tranquilizador** y la taquisistolia se ha **resuelto**.",
@@ -3674,6 +4335,15 @@
           "anio": "2015",
           "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
           "cita": "Ayres-de-Campos D, Spong CY, Chandraharan E; FIGO Intrapartum Fetal Monitoring Expert Consensus Panel. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131(1):13-24."
+        },
+        {
+          "titulo": "Tabla 2: taquisistolia, bolo de líquidos",
+          "paginas": "590",
+          "texto": "Reduction or cessation of induction or augmentation agents Maternal IV fluid bolus Short acting uterine relaxation agent (eg, terbutaline)",
+          "fuente": "ACOG 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.1097/AOG.0000000000006049",
+          "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
           "titulo": "Recomendación: taquisistolia",
@@ -3728,7 +4398,7 @@
         "Urgente"
       ],
       "titulo": "Terminar el parto por la vía más rápida y segura",
-      "texto": "- Elegir la vía según la **factibilidad** y el estado materno-fetal: vaginal, **instrumentado** o **cesárea**.\n- Ante una **rotura uterina** con bradicardia, hacer el parto operatorio **tan rápido** como sea seguro.\n- Pedir apoyo de **neonatología**.\n- Anotar la **hora** en que se pidió la valoración urgente y la de la **decisión**.",
+      "texto": "- Elegir la vía según la **factibilidad** y el estado materno-fetal: vaginal, **instrumentado** o **cesárea**.\n- Ante una **rotura uterina** con bradicardia, hacer el parto operatorio **tan rápido** como sea seguro.",
       "checklist": {
         "titulo": "Antes del parto expedito",
         "items": [
@@ -3797,7 +4467,7 @@
     "nodo_especiales": {
       "estilo": "rama",
       "texto": "Situaciones especiales",
-      "pie_nodo": "¿Qué situación especial hay?",
+      "pie_nodo": "¿En qué situación especial estás leyendo la CTG?",
       "opciones": [
         {
           "texto": "Expulsivo",
@@ -3831,8 +4501,8 @@
     "esp_expulsivo": {
       "estilo": "advertencia",
       "titulo": "Vigilar más de cerca en el expulsivo",
-      "contexto": "En el expulsivo la **hipoxia** aparece **más a menudo y más rápido**, y el trazado es **más difícil** de leer.",
-      "texto": "- Diferenciar la **FC materna** de la fetal al menos cada **5 min**.\n- Sospechar **pulso materno** si hay aceleraciones con cada pujo.\n- Una subida de la línea de base de **20 lpm** o más es un **rasgo rojo**.\n- Si hay alteraciones → **parar los pujos** y la **oxitocina**, salvo parto inminente, y fijar un **plazo** para revisar.",
+      "contexto": "En el expulsivo la **hipoxia** aparece **más a menudo y más rápido**.",
+      "texto": "- Diferenciar la **FC materna** de la fetal al menos cada **5 min**: las aceleraciones con cada pujo suelen ser **pulso materno**.\n  - Si no se logra, poner un **electrodo de calota**; si no se puede → **parto expedito**.\n- Una subida de la línea de base de **20 lpm** o más es un **rasgo rojo**.\n- Si el trazado es anormal → valoración obstétrica y **parar los pujos** y la oxitocina, salvo parto inminente.",
       "enlaces": [
         {
           "texto": "Medidas intrauterinas",
@@ -3907,9 +4577,27 @@
           "cita": "American College of Obstetricians and Gynecologists. Intrapartum Fetal Heart Rate Monitoring: Interpretation and Management. Clinical Practice Guideline No. 10. Obstet Gynecol 2025;146(4):583-599."
         },
         {
+          "titulo": "1.4.35 Expulsivo: electrodo o parto",
+          "paginas": "24-25",
+          "texto": "Consider monitoring the baby with a fetal scalp electrode if there is concern about confusing the heart rates, but if this cannot be achieved expedite birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
           "titulo": "1.4.37 Expulsivo: subida de 20 lpm",
           "paginas": "25",
           "texto": "of 20 beats a minute or more from the start of labour or since the last review an hour ago as a red feature in active second stage labour",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour. NICE guideline NG229. Publicada el 14 de diciembre de 2022, actualizada el 25 de marzo de 2026."
+        },
+        {
+          "titulo": "1.4.38 Expulsivo: revisión obstétrica",
+          "paginas": "25",
+          "texto": "If CTG concerns arise in the active second stage of labour: • obtain an obstetric review",
           "fuente": "NICE NG229",
           "anio": "2022",
           "url": "https://www.nice.org.uk/guidance/ng229",

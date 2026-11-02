@@ -8,7 +8,7 @@ const sin = (t) => 145 + 6 * Math.sin(6.283 * 4 * t);
 const f = oscilacion(14, 5), r = azar(9), dientes = []; for (let k = 0; k < 40; k++) dientes.push(8 + r() * 8);
 const sierra = (t) => { const c = t * 4.2, k = Math.floor(c), u = c - k; return (u < 0.7 ? u / 0.7 : 1 - (u - 0.7) / 0.3) * dientes[k % 40] - dientes[k % 40] / 2; };
 const pseudo = (t) => 145 + ((t > 1.4 && t < 3.6) ? sierra(t) : f(t));
-[["Sinusoidal", "onda suave y regular, 3-5 ciclos/min, 5-15 lpm, sin aceleraciones; 20 min o más", sin, ROJO],
+[["Sinusoidal", "3-5 ciclos/min, 20 min o más (ACOG); 5-15 lpm, más de 30 min (FIGO)", sin, ROJO],
  ["Pseudosinusoidal", "dientes de sierra, breve, con trazado normal antes y después", pseudo, AMBAR]].forEach(([rot, nota, fn, c], i) => {
   const y = i * (FH + 46) + 26;
   const p = papel({ x: X0, y, w: PW, h: FH, t0: 0, t1: 5, lmin: 110, lmax: 180, paso: 10 });

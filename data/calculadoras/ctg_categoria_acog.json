@@ -1,10 +1,10 @@
 {
   "titulo": "Categoría de la cardiotocografía (ACOG)",
   "descripcion": "Clasifica un trazado de cardiotocografía intraparto en las tres categorías de la ACOG (taller NICHD de 2008, reafirmado en la guía ACOG de 2025), el sistema que recomienda la guía colombiana. La categoría I predice un estado ácido-base fetal normal, la II es indeterminada y la III se asocia a uno anormal y pide actuar ya.",
-  "instrucciones": "Primero lee el trazado: línea de base y variabilidad en 10 min y desaceleraciones en relación con las contracciones. Recurrentes: con más del 50 % de las contracciones. Las precoces y las aceleraciones no cambian la categoría.",
+  "instrucciones": "Lee antes el trazado: línea de base y variabilidad en 10 min y desaceleraciones frente a las contracciones. Recurrentes: con más del 50 % de las contracciones. Las precoces y las aceleraciones espontáneas no cambian la categoría.",
   "limitaciones": "Describe al feto en ese momento: el trazado cambia y hay que reclasificarlo. Sólo para el trabajo de parto, no para la monitoría anteparto. La categoría II es muy amplia: busca sus rasgos de alto riesgo y los protectores.",
   "tipoCalculo": "formula",
-  "formula": "(1 - (1 - sinusoidal) * (1 - ausente) * (1 - tardias) * (1 - variables) * (1 - bradicardia) * (1 - taquicardia) * (1 - variab_otra) * (1 - otras_desac)) + (1 - (1 - sinusoidal) * (1 - ausente * (1 - (1 - tardias) * (1 - variables) * (1 - bradicardia))))",
+  "formula": "(1 - (1 - (base * (2 - base))) * (1 - (base * (base - 1) / 2)) * (1 - (variab * (11 - 6 * variab + variab * variab) / 6)) * (1 - sinusoidal) * (1 - tardias) * (1 - variables) * (1 - otras_desac) * (1 - sin_acel)) + (1 - (1 - sinusoidal) * (1 - (variab * (variab - 1) * (3 - variab) / 2) * (1 - (1 - tardias) * (1 - variables) * (1 - (base * (2 - base))))))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Resultado",
   "referencias": [
@@ -21,10 +21,22 @@
       "texto": "Category I FHR tracings include all of the following: Baseline rate: 110–160 beats per minute Baseline FHR variability: moderate Late or variable decelerations: absent"
     },
     {
+      "titulo": "American College of Obstetricians and Gynecologists. Clinical Practice Guideline No. 10, 2025: categoría II, sin aceleración tras estimular.",
+      "url": "https://doi.org/10.1097/AOG.0000000000006049",
+      "paginas": "587",
+      "texto": "Accelerations: Absence of induced accelerations after fetal stimulation Periodic or episodic decelerations: Recurrent variable decelerations accompanied by minimal or moderate baseline variability"
+    },
+    {
       "titulo": "Macones GA, Hankins GD, Spong CY, et al. The 2008 National Institute of Child Health and Human Development workshop report on electronic fetal monitoring. Obstet Gynecol 2008;112:661-6.",
       "url": "https://doi.org/10.1097/AOG.0b013e3181841395",
       "paginas": "587 (en ACOG 2025)",
       "texto": "Category II FHR tracings include all FHR tracings not categorized as category I or category III."
+    },
+    {
+      "titulo": "Ayres-de-Campos D, Spong CY, Chandraharan E. FIGO consensus guidelines on intrapartum fetal monitoring: Cardiotocography. Int J Gynaecol Obstet 2015;131:13-24 (desaceleraciones repetitivas y reevaluación).",
+      "url": "https://doi.org/10.1016/j.ijgo.2015.06.020",
+      "paginas": "20, 22",
+      "texto": "Decelerations are repetitive in nature when they are associated with more than 50% of uterine contractions. Due to the changing nature of CTG signals during labor, re-evaluation of the tracing should be carried out at least every 30 minutes."
     },
     {
       "titulo": "Ministerio de Salud y Protección Social. Guía de práctica clínica del embarazo, parto o puerperio (Guía 11-15), 2013.",
@@ -36,6 +48,50 @@
   "secciones": [
     {
       "elementos": [
+        {
+          "id": "base",
+          "tipo": "opciones",
+          "label": "Línea de base",
+          "opciones": [
+            {
+              "label": "110-160 lpm",
+              "puntos": 0
+            },
+            {
+              "label": "Menos de 110 lpm (bradicardia)",
+              "puntos": 1
+            },
+            {
+              "label": "Más de 160 lpm (taquicardia)",
+              "puntos": 2
+            }
+          ],
+          "ayuda": "Media de 10 min redondeada a 5 lpm, sin aceleraciones ni desaceleraciones."
+        },
+        {
+          "id": "variab",
+          "tipo": "opciones",
+          "label": "Variabilidad",
+          "opciones": [
+            {
+              "label": "Moderada (6-25 lpm)",
+              "puntos": 0
+            },
+            {
+              "label": "Mínima (5 lpm o menos)",
+              "puntos": 1
+            },
+            {
+              "label": "Ausente (indetectable)",
+              "puntos": 2
+            },
+            {
+              "label": "Marcada (más de 25 lpm)",
+              "puntos": 3
+            }
+          ],
+          "ayuda": "Amplitud de pico a valle de la línea de base."
+        },
         {
           "id": "sinusoidal",
           "tipo": "opciones",
@@ -51,22 +107,6 @@
             }
           ],
           "ayuda": "Onda suave y regular de 3-5 ciclos/min que dura 20 min o más."
-        },
-        {
-          "id": "ausente",
-          "tipo": "opciones",
-          "label": "Variabilidad ausente",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0
-            },
-            {
-              "label": "Sí",
-              "puntos": 1
-            }
-          ],
-          "ayuda": "Amplitud de pico a valle indetectable."
         },
         {
           "id": "tardias",
@@ -101,52 +141,6 @@
           "ayuda": "Con más del 50 % de las contracciones."
         },
         {
-          "id": "bradicardia",
-          "tipo": "opciones",
-          "label": "Línea de base menor de 110 lpm",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0
-            },
-            {
-              "label": "Sí",
-              "puntos": 1
-            }
-          ]
-        },
-        {
-          "id": "taquicardia",
-          "tipo": "opciones",
-          "label": "Línea de base mayor de 160 lpm",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0
-            },
-            {
-              "label": "Sí",
-              "puntos": 1
-            }
-          ]
-        },
-        {
-          "id": "variab_otra",
-          "tipo": "opciones",
-          "label": "Variabilidad mínima o marcada",
-          "opciones": [
-            {
-              "label": "No",
-              "puntos": 0
-            },
-            {
-              "label": "Sí",
-              "puntos": 1
-            }
-          ],
-          "ayuda": "Mínima: detectable pero de 5 lpm o menos. Marcada: más de 25 lpm."
-        },
-        {
           "id": "otras_desac",
           "tipo": "opciones",
           "label": "Otras tardías, variables o prolongadas",
@@ -160,7 +154,23 @@
               "puntos": 1
             }
           ],
-          "ayuda": "Aunque no sean recurrentes, o una desaceleración prolongada (2 a menos de 10 min)."
+          "ayuda": "Tardías o variables que no son recurrentes, o una prolongada (2 a menos de 10 min)."
+        },
+        {
+          "id": "sin_acel",
+          "tipo": "opciones",
+          "label": "Sin aceleración tras estimular",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Sólo si se estimuló la calota o se hizo estimulación vibroacústica y no hubo aceleración."
         }
       ]
     }
@@ -182,8 +192,8 @@
           {
             "todos": [
               {
-                "id": "ausente",
-                "igual": 1
+                "id": "variab",
+                "igual": 2
               },
               {
                 "alguno": [
@@ -196,7 +206,7 @@
                     "igual": 1
                   },
                   {
-                    "id": "bradicardia",
+                    "id": "base",
                     "igual": 1
                   }
                 ]
@@ -208,7 +218,7 @@
     },
     {
       "min": 1,
-      "max": 1,
+      "max": 1.99,
       "categoria": "Categoría II (indeterminada)",
       "color": "naranja",
       "match_opcion_index": 1,
@@ -216,11 +226,27 @@
       "si": {
         "alguno": [
           {
-            "id": "sinusoidal",
+            "id": "base",
             "igual": 1
           },
           {
-            "id": "ausente",
+            "id": "base",
+            "igual": 2
+          },
+          {
+            "id": "variab",
+            "igual": 1
+          },
+          {
+            "id": "variab",
+            "igual": 2
+          },
+          {
+            "id": "variab",
+            "igual": 3
+          },
+          {
+            "id": "sinusoidal",
             "igual": 1
           },
           {
@@ -232,19 +258,11 @@
             "igual": 1
           },
           {
-            "id": "bradicardia",
-            "igual": 1
-          },
-          {
-            "id": "taquicardia",
-            "igual": 1
-          },
-          {
-            "id": "variab_otra",
-            "igual": 1
-          },
-          {
             "id": "otras_desac",
+            "igual": 1
+          },
+          {
+            "id": "sin_acel",
             "igual": 1
           }
         ]
@@ -252,7 +270,7 @@
     },
     {
       "min": 0,
-      "max": 0,
+      "max": 0.99,
       "categoria": "Categoría I (normal)",
       "color": "verde",
       "match_opcion_index": 0,
