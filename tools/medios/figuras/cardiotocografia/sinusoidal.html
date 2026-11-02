@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Sinusoidal (ACOG 2025, Tabla 1; FIGO 2015, 4.1.5) y pseudosinusoidal (FIGO 2015, 4.1.6).
+const W = 672, PW = 600, X0 = 52, FH = 148;
+let s = "";
+// Sinusoidal: 4 ciclos/min, 12 lpm de pico a valle, sin aceleraciones.
+const sin = (t) => 145 + 6 * Math.sin(6.283 * 4 * t);
+// Pseudosinusoidal: dientes de sierra irregulares entre dos tramos normales.
+const f = oscilacion(14, 5), r = azar(9), dientes = []; for (let k = 0; k < 40; k++) dientes.push(8 + r() * 8);
+const sierra = (t) => { const c = t * 4.2, k = Math.floor(c), u = c - k; return (u < 0.7 ? u / 0.7 : 1 - (u - 0.7) / 0.3) * dientes[k % 40] - dientes[k % 40] / 2; };
+const pseudo = (t) => 145 + ((t > 1.4 && t < 3.6) ? sierra(t) : f(t));
+[["Sinusoidal", "onda suave y regular, 3-5 ciclos/min, 5-15 lpm, sin aceleraciones; 20 min o más", sin, ROJO],
+ ["Pseudosinusoidal", "dientes de sierra, breve, con trazado normal antes y después", pseudo, AMBAR]].forEach(([rot, nota, fn, c], i) => {
+  const y = i * (FH + 46) + 26;
+  const p = papel({ x: X0, y, w: PW, h: FH, t0: 0, t1: 5, lmin: 110, lmax: 180, paso: 10 });
+  s += `<rect x="${X0 - 4}" y="${y - 24}" width="6" height="18" rx="2" fill="${c}"/>` + texto(X0 + 8, y - 9, rot, { c, s: 16 }) + texto(X0 + (i ? 150 : 102), y - 9, nota, { c: "#475569", s: 12, w: 600 });
+  s += p.svg + dentro(X0, y, PW, FH, trazo(fn, p.X, p.Y, 0, 5, { ancho: 1.8, dt: 0.003 }));
+  [0, 1, 2, 3, 4, 5].forEach((t) => { s += texto(p.X(t), y + FH + 13, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+});
+const svg = `<svg width="${W}" height="${2 * FH + 90}" viewBox="0 0 ${W} ${2 * FH + 90}">${s}</svg>`;
+lienzo("Sinusoidal y pseudosinusoidal", "El sinusoidal es categoría III y hace pensar en anemia fetal grave", svg,
+  "Esquema ilustrativo, no es el registro de una paciente. Definiciones: ACOG 2025, Tabla 1; FIGO 2015, secciones 4.1.5 y 4.1.6.");
+</script></body></html>

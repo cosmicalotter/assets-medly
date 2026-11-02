@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Rasgos preocupantes de las variables (NICE NG229, 1.4.22): >60 s, variabilidad reducida dentro,
+// regreso lento y pérdida de los hombros.
+const W = 672, PW = 600, X0 = 52, FH = 140;
+const f = oscilacion(12, 77), g = oscilacion(2, 78);
+const hombro = (t, t0) => 9 * Math.exp(-Math.pow((t - t0) / 0.07, 2));
+const buena = (t) => 140 + f(t) + hombro(t, 1.62) + hombro(t, 2.32) - 50 * caidaV(t, 1.72, 0.18, 0.2, 0.18);
+const mala = (t) => { const d = caidaV(t, 1.55, 0.2, 0.55, 0.75); return 140 + (d > 0.05 ? g(t) : f(t)) - 52 * d; };
+let s = "";
+[["Sin rasgos preocupantes", "en V, con hombros, regreso rápido", buena, VERDE, null],
+ ["Con rasgos preocupantes", "más de 60 s, sin hombros, poca variabilidad dentro y regreso lento", mala, ROJO, 1]].forEach(([rot, nota, fn, c, malo], i) => {
+  const y = i * (FH + 52) + 26;
+  const p = papel({ x: X0, y, w: PW, h: FH, t0: 0, t1: 4.5, lmin: 55, lmax: 165, paso: 10 });
+  s += `<rect x="${X0 - 4}" y="${y - 24}" width="6" height="18" rx="2" fill="${c}"/>` + texto(X0 + 8, y - 9, rot, { c, s: 16 }) + texto(X0 + 214, y - 9, nota, { c: "#475569", s: 12, w: 600 });
+  s += p.svg + dentro(X0, y, PW, FH, trazo(fn, p.X, p.Y, 0, 4.5, { ancho: 1.8, dt: 0.003 }));
+  if (!malo) {
+    s += texto(p.X(1.62), p.Y(158), "hombro", { c: VERDE, s: 11.5, a: "middle", fondo: true }) + texto(p.X(2.34), p.Y(158), "hombro", { c: VERDE, s: 11.5, a: "middle", fondo: true });
+  } else {
+    s += flecha(p.X(1.55), p.Y(76), p.X(3.05), p.Y(76), ROJO, 2) + flecha(p.X(3.05), p.Y(76), p.X(1.55), p.Y(76), ROJO, 2);
+    s += texto(p.X(2.3), p.Y(76) + 16, "más de 60 s (y menos de 2 min)", { c: ROJO, s: 12, a: "middle", fondo: true });
+    s += texto(p.X(2.95), p.Y(122), "regreso lento", { c: ROJO, s: 12, fondo: true });
+    s += texto(p.X(1.6), p.Y(100), "poca variabilidad", { c: ROJO, s: 12, fondo: true });
+  }
+  [0, 1, 2, 3, 4].forEach((t) => { s += texto(p.X(t), y + FH + 13, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+});
+const svg = `<svg width="${W}" height="${2 * FH + 96}" viewBox="0 0 ${W} ${2 * FH + 96}">${s}</svg>`;
+lienzo("Variable sin y con rasgos preocupantes", "Las variables son las más frecuentes; preocupan cuando se alargan y cambian de forma", svg,
+  "Esquema ilustrativo, no es el registro de una paciente. Rasgos preocupantes: NICE NG229, recomendación 1.4.22.");
+</script></body></html>

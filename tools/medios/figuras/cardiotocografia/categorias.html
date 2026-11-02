@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Tres categorías (ACOG 2025, Box 1, p. 587; recomendaciones y Figura 1, p. 593-594).
+const COLS = [
+  ["Categoría I", "Normal", VERDE, ["Línea de base <b>110-160 lpm</b>", "Variabilidad <b>moderada</b>", "<b>Sin</b> tardías ni variables", "Precoces y aceleraciones: <b>con o sin</b>"], "Atención <b>habitual</b> del parto"],
+  ["Categoría II", "Indeterminada", NARANJA, ["Todo lo que <b>no es I ni III</b>", "Taquicardia, bradicardia, variabilidad mínima o marcada", "Tardías o variables con variabilidad mínima o moderada", "Prolongada de <b>2 a menos de 10 min</b>"], "Evaluar, <b>reanimar</b> y reevaluar"],
+  ["Categoría III", "Anormal", ROJO, ["Variabilidad <b>ausente</b> con tardías o variables <b>recurrentes</b>, o con <b>bradicardia</b>", "O patrón <b>sinusoidal</b>"], "<b>Preparar el parto</b> y reanimar ya"],
+];
+let html = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1">`;
+html += COLS.map(([t, sub, c, crit, acc]) => `<div style="display:flex;flex-direction:column;gap:6px">
+  <div style="background:${c};color:#fff;border-radius:10px;padding:8px 10px;text-align:center"><div style="font-weight:700;font-size:17px">${t}</div><div style="font-size:12.5px;opacity:.95">${sub}</div></div>
+  ${crit.map((k) => `<div class="caja" style="background:${tinte(c, 9)};border:1.5px solid ${tinte(c, 32)};font-size:14.5px"><span>${k}</span></div>`).join("")}
+  <div style="flex:1"></div><div style="font-size:12px;font-weight:700;color:#64748B;text-align:center">QUÉ HACER</div>
+  <div class="caja" style="background:${tinte(c, 22)};border:2px solid ${c};font-size:15.5px;text-align:center;padding:10px"><span>${acc}</span></div></div>`).join("");
+html += `</div>`;
+lienzo("Las tres categorías de la ACOG", "La que recomienda la guía colombiana; describe al feto en ese momento y puede cambiar", html,
+  "Esquema. Fuente: ACOG 2025 (Clinical Practice Guideline No. 10), Box 1 y Figura 1; GPC MinSalud 2013.");
+</script></body></html>

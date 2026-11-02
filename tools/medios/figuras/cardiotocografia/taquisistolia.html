@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Contracciones en 10 min: 4 frente a 6 (ACOG 2025, Tabla 1; MinSalud 2013, glosario p. 562).
+const W = 672, PW = 600, X0 = 52, FH = 118;
+const filas = [
+  ["4 en 10 min", "dinámica dentro de lo normal (3-5)", [1.0, 3.6, 6.2, 8.8], VERDE],
+  ["6 en 10 min", "taquisistolia si se mantiene al promediar 30 min", [0.8, 2.4, 4.0, 5.6, 7.2, 8.8], ROJO],
+];
+let s = "";
+filas.forEach(([rot, nota, picos, c], i) => {
+  const y = i * (FH + 48) + 24;
+  const tc = toco((t) => picos.reduce((a, t0) => a + campana(t, t0, 1.05, 0.72), 0), { x: X0, y, w: PW, h: FH, t0: 0, t1: 10 });
+  s += texto(X0, y - 8, rot, { c, s: 16 }) + texto(X0 + 120, y - 8, nota, { c: "#475569", s: 12.5, w: 600 });
+  s += tc.svg;
+  picos.forEach((t0, k) => { s += texto(tc.X(t0), y + 16, k + 1, { c: VIOLETA, s: 12, a: "middle" }); });
+  [0, 2, 4, 6, 8, 10].forEach((t) => { s += texto(tc.X(t), y + FH + 14, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+});
+const svg = `<svg width="${W}" height="${2 * FH + 90}" viewBox="0 0 ${W} ${2 * FH + 90}">${s}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${caja(VERDE, "<b>Normal en fase activa</b>: 3 a 5 contracciones en 10 min, de 30 a 60 s.")}${caja(ROJO, "<b>Taquisistolia</b>: más de 5 en 10 min, promediadas en 30 min.")}</div>`;
+lienzo("Dinámica normal y taquisistolia", "Canal del tocodinamómetro: se cuentan las contracciones en 10 minutos", svg + notas,
+  "Esquema ilustrativo, no es el registro de una paciente. Fuentes: ACOG 2025, Tabla 1; GPC MinSalud 2013, glosario.");
+</script></body></html>

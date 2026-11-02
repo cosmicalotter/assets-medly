@@ -1,0 +1,34 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Precoz, tardía, variable y prolongada (ACOG 2025, Tabla 1, p. 588-589).
+const W = 672, CW = 326, FH = 118, TH = 44, X0 = 30;
+const tipos = [
+  ["Precoz", "gradual, nadir a la vez que el pico", VERDE, 2.0, (t) => -22 * valle(t, 2.0, 0.42)],
+  ["Tardía", "gradual, nadir después del pico", ROJO, 2.0, (t) => -24 * valle(t, 2.55, 0.42)],
+  ["Variable", "abrupta, de 15 s a menos de 2 min", AMBAR, 2.0, (t) => -48 * caidaV(t, 1.75, 0.22, 0.25, 0.2)],
+  ["Prolongada", "de 2 a menos de 10 min", ROJO, 1.0, (t) => -45 * caidaV(t, 0.9, 0.3, 2.6, 0.4)],
+];
+let s = "";
+tipos.forEach(([nom, def, c, pico, caida], i) => {
+  const col = i % 2, fil = Math.floor(i / 2);
+  const x = col * (CW + 16) + X0, y = fil * (FH + TH + 46) + 30, pw = CW - X0 + (col ? -14 : 0);
+  const T1 = 4.5;
+  const f = oscilacion(11, 31 + i);
+  const fcf = (t) => 140 + f(t) * (caida(t) < -8 ? 0.75 : 1) + caida(t);
+  const p = papel({ x, y, w: pw, h: FH, t0: 0, t1: T1, lmin: 80, lmax: 170, paso: 10, etiquetas: col === 0 });
+  const tc = toco((t) => campana(t, pico, 1.1, 0.85), { x, y: y + FH + 4, w: pw, h: TH, t0: 0, t1: T1 });
+  // nadir
+  let tn = 0, vn = 1e9; for (let t = 0; t <= T1; t += 0.005) { const v = 140 + caida(t); if (v < vn) { vn = v; tn = t; } }
+  s += texto(x, y - 18, nom, { c, s: 16 }) + texto(x, y - 4, def, { c: "#475569", s: 11.5, w: 600 });
+  s += p.svg + dentro(x, y, pw, FH, trazo(fcf, p.X, p.Y, 0, T1, { ancho: 1.6, dt: 0.006 })) + tc.svg;
+  if (i < 3) {
+    s += `<line x1="${p.X(pico)}" y1="${y}" x2="${p.X(pico)}" y2="${y + FH + TH + 4}" stroke="${VIOLETA}" stroke-width="2" stroke-dasharray="5 4"/>`;
+    s += `<circle cx="${p.X(tn)}" cy="${p.Y(vn)}" r="5.5" fill="${c}" stroke="#fff" stroke-width="2"/>`;
+  } else {
+    s += flecha(p.X(0.95), p.Y(122), p.X(4.15), p.Y(122), c, 2) + flecha(p.X(4.15), p.Y(122), p.X(0.95), p.Y(122), c, 2);
+    s += texto(p.X(2.55), p.Y(122) - 6, "2 a menos de 10 min", { c, s: 11.5, a: "middle", fondo: true });
+  }
+});
+const svg = `<svg width="${W}" height="${2 * (FH + TH + 46) + 10}" viewBox="0 0 ${W} ${2 * (FH + TH + 46) + 10}">${s}</svg>`;
+lienzo("Los cuatro tipos de desaceleración", "Línea violeta: el pico de la contracción; punto: el nadir de la desaceleración", svg,
+  "Esquema ilustrativo, no es el registro de una paciente. Definiciones: ACOG 2025, Tabla 1 (taller NICHD 2008).");
+</script></body></html>
