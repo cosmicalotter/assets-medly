@@ -164,7 +164,11 @@ Firebase directamente, saltándose `indices/`.
   también en este algoritmo») lleva a un paso al que llega alguna rama**: la
   app lo abre en su flujo, y un paso al que sólo se llega por enlaces no
   tiene sitio y aparece colgado donde no se espera (`norma.py --chequeo` lo
-  denuncia). El nodo-enlace se lee como una rama: la respuesta en el rótulo de
+  denuncia). **Un paso al que se llega desde lejos** (saltos de varias
+  secciones o cadenas, un paso común) se escribe general y explicativo: no
+  da por sabidos grados ni escalas de otros pasos; los nombra en llano con
+  la categoría entre paréntesis («infección **grave** (grado III de
+  Tokio)», no «grado III» a secas). El nodo-enlace se lee como una rama: la respuesta en el rótulo de
   la línea y, en la píldora, el título del paso al que lleva. Si no se
   entiende solo, su opción lleva `contexto`: una o dos viñetas, sólo donde
   hace falta, en lenguaje natural con la fuerza de la guía («Se recomienda…»,

@@ -391,6 +391,18 @@ paso sin ramas («Ir al mantenimiento»): ese enlace es el camino y sí cuelga
 su destino. `tools/norma.py --chequeo` denuncia los saltos laterales a pasos
 sin flujo.
 
+**Un paso al que se llega desde lejos se explica solo.** Si a un paso se
+salta desde varias secciones o cadenas (un salto lateral, un paso común como
+el de los antibióticos), el usuario puede llegar sin haber leído lo que hay
+antes en su flujo. Su `contexto`, su `texto`, su tabla y sus dosis se
+escriben generales y explicativos: no dan por sabidos los grados, escalas o
+categorías que se definen en otro paso. La primera vez que los nombran dicen
+**qué significan y de qué entidad** son, en lenguaje llano y con la
+categoría entre paréntesis: «infección **grave** (grado III de Tokio, con
+disfunción de algún órgano)», no «grado III» a secas. En la tabla y en las
+dosis, la clave es la palabra llana («Leve o moderada (grados I-II)»,
+«Grave (grado III)»). Ejemplo: «Elegir el antibiótico empírico» del biliar.
+
 Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
 título no repite la pill y el texto no vuelve a decir el título.
 

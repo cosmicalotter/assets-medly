@@ -1302,26 +1302,12 @@
           "texto": "Si el hospital no tiene **cirugía de urgencia, radiología intervencionista ni endoscopia**, **trasladar** al paciente a un centro que las tenga."
         }
       ],
-      "enlaces": [
-        {
-          "texto": "Antibiótico y dosis",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "trat_antibioticos"
-        }
-      ],
       "pie_nodo": "¿Cuál es el trastorno que vas a tratar?",
       "opciones": [
         {
-          "texto": "Colecistitis aguda",
-          "siguiente_nodo": "estr_colecistitis_gravedad",
-          "descripcion": "Signo local, signo sistémico e imagen de la vesícula",
-          "color": "azul"
-        },
-        {
-          "texto": "Colangitis aguda",
-          "siguiente_nodo": "estr_colangitis_gravedad",
-          "descripcion": "Fiebre o inflamación, colestasis e imagen de la vía biliar",
-          "color": "morado"
+          "texto": "Colecistitis o colangitis",
+          "siguiente_nodo": "trat_antibioticos",
+          "descripcion": "Infección de la vesícula o de la vía biliar: llevan antibiótico"
         },
         {
           "texto": "Coledocolitiasis sin infección",
@@ -4070,10 +4056,10 @@
       ]
     },
     "trat_antibioticos": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Elegir el antibiótico empírico",
-      "contexto": "En el **grado III** y en la infección del paciente crítico, no cubrir **Pseudomonas** puede **aumentar la mortalidad**.",
-      "texto": "- Elegir según la **gravedad**, el **origen** (comunidad o atención en salud) y el **antibiograma local**.\n- Tener en cuenta los **antibióticos previos**, la función renal y hepática, y las **alergias**.\n- Si hay una **anastomosis bilioentérica** → cubrir **anaerobios**.",
+      "contexto": "En la infección **grave** o del paciente crítico, no cubrir **Pseudomonas** puede **aumentar la mortalidad**.",
+      "texto": "- Elegir según la **gravedad**, el origen (comunidad o atención en salud) y el **antibiograma local**:\n  - **Leve o moderada** (grados I-II de Tokio): sin disfunción de órganos.\n  - **Grave** (grado III): con **disfunción de algún órgano** (choque, conciencia alterada…).\n- Tener en cuenta los **antibióticos previos**, la función renal y hepática, y las **alergias**.\n- Si hay una **anastomosis bilioentérica** → cubrir **anaerobios**.",
       "tabla": {
         "titulo": "Esquemas IV (con función renal normal)",
         "columnas": [
@@ -4082,11 +4068,11 @@
         ],
         "filas": [
           [
-            "Comunidad, grados I-II",
+            "Comunidad, leve o moderada (grados I-II)",
             "Ceftriaxona o cefotaxima + metronidazol"
           ],
           [
-            "Comunidad, grados I-II: alternativa",
+            "Comunidad, leve o moderada: alternativa",
             "Amoxicilina-clavulanato si la resistencia local de enterobacterias es **≤20 %**"
           ],
           [
@@ -4094,12 +4080,12 @@
             "Ertapenem o tigeciclina"
           ],
           [
-            "Grado III o asociada a la atención en salud",
+            "Grave (grado III) o asociada a la atención en salud",
             "Antipseudomónico: piperacilina-tazobactam, cefepima + metronidazol o carbapenémico (meropenem con shock séptico), más vancomicina"
           ],
           [
             "Alergia a betalactámicos",
-            "Grados I-II: ciprofloxacino + metronidazol (en la colecistitis, también amikacina + metronidazol). Grado III: aztreonam + metronidazol"
+            "Leve o moderada: ciprofloxacino + metronidazol (en la colecistitis, también amikacina + metronidazol). Grave: aztreonam + metronidazol"
           ],
           [
             "Riesgo de enterococo (inmunosupresión, antibiótico reciente)",
@@ -4111,13 +4097,13 @@
         {
           "nombre": "Ceftriaxona",
           "dosis": "**2 g** IV cada **24 h**",
-          "pauta": "Con **metronidazol**. Grados **I-II**.",
+          "pauta": "Con **metronidazol**. Infección **leve o moderada** (grados I-II).",
           "paginas": "p. 19"
         },
         {
           "nombre": "Cefotaxima",
           "dosis": "**2 g** IV cada **8 h**",
-          "pauta": "Con **metronidazol**. Grados **I-II**.",
+          "pauta": "Con **metronidazol**. Infección **leve o moderada** (grados I-II).",
           "paginas": "p. 19"
         },
         {
@@ -4147,13 +4133,13 @@
         {
           "nombre": "Piperacilina-tazobactam",
           "dosis": "**6 g/0,75 g** IV de carga, luego **4 g/0,5 g** cada **6 h**",
-          "pauta": "O **16 g/2 g** al día en **infusión continua**. Grado **III**, infección **asociada a la atención en salud** o paciente crítico.",
+          "pauta": "O **16 g/2 g** al día en **infusión continua**. Infección **grave** (grado III), infección **asociada a la atención en salud** o paciente crítico.",
           "paginas": "p. 19"
         },
         {
           "nombre": "Cefepima",
           "dosis": "**2 g** IV cada **8 h**",
-          "pauta": "Con **metronidazol**. Grado **III** o infección **asociada a la atención en salud**.",
+          "pauta": "Con **metronidazol**. Infección **grave** (grado III) o **asociada a la atención en salud**.",
           "paginas": "p. 23"
         },
         {
@@ -4165,7 +4151,7 @@
         {
           "nombre": "Vancomicina (carga)",
           "dosis": "**25-30 mg/kg** IV",
-          "pauta": "Grado **III** o infección **asociada a la atención en salud**. Dosis de la vía de **infección intraabdominal** de la WSES/GAIS.",
+          "pauta": "Infección **grave** (grado III) o **asociada a la atención en salud**. Dosis de la vía de **infección intraabdominal** de la WSES/GAIS.",
           "paginas": "p. 35",
           "por_kg": {
             "desde": 25,
@@ -4441,6 +4427,81 @@
           "url": "https://doi.org/10.1186/s13017-021-00387-8",
           "cita": "Sartelli M, Coccolini F, Kluger Y, et al. WSES/GAIS/SIS-E/WSIS/AAST global clinical pathways for patients with intra-abdominal infections. World J Emerg Surg. 2021;16:49.",
           "imagen_evidencia": "evidencia_patologia_biliar_pag35_dosis_vancomicina_wses_gais.png"
+        },
+        {
+          "titulo": "Tabla 7: grado III, disfunción cardiovascular (Tokio 2018)",
+          "paginas": "49",
+          "texto": "“Grade III” acute cholecystitis is associated with dysfunction of any one of the following organs/systems: 1. Cardiovascular dysfunction: hypotension requiring treatment with dopamine ≥5 μg/kg per min, or any dose of norepinephrine",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.515",
+          "cita": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag49_tabla_7_grado_iii.png"
+        },
+        {
+          "titulo": "Tabla 7: grado III, neurológica y respiratoria (Tokio 2018)",
+          "paginas": "49",
+          "texto": "2. Neurological dysfunction: decreased level of consciousness 3. Respiratory dysfunction: PaO2/FiO2 ratio <300",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.515",
+          "cita": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag49_tabla_7_grado_iii_2.png"
+        },
+        {
+          "titulo": "Tabla 7: grado III, renal, hepática y hematológica (Tokio 2018)",
+          "paginas": "49",
+          "texto": "4. Renal dysfunction: oliguria, creatinine >2.0 mg/dl 5. Hepatic dysfunction: PT-INR >1.5 6. Hematological dysfunction: platelet count <100,000/mm3",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.515",
+          "cita": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag49_tabla_7_grado_iii_3.png"
+        },
+        {
+          "titulo": "Tabla 7: grado I (Tokio 2018)",
+          "paginas": "49",
+          "texto": "It can also be defined as acute cholecystitis in a healthy patient with no organ dysfunction and mild inflammatory changes in the gallbladder",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.515",
+          "cita": "Yokoe M, Hata J, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):41-54.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag49_tabla_7_grado_i.png"
+        },
+        {
+          "titulo": "Tabla 4: grado III (Tokio 2018)",
+          "paginas": "27",
+          "texto": "“Grade III” acute cholangitis is defined as acute cholangitis that is associated with the onset of dysfunction at least in any one of the following organs/systems",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.512",
+          "cita": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):17-30.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag27_tabla_4_grado_iii.png"
+        },
+        {
+          "titulo": "Tabla 4: grado I (Tokio 2018)",
+          "paginas": "27",
+          "texto": "“Grade I” acute cholangitis does not meet the criteria of “Grade III (severe)” or “Grade II (moderate)” acute cholangitis at initial diagnosis.",
+          "fuente": "Tokio 2018",
+          "anio": "2018",
+          "url": "https://doi.org/10.1002/jhbp.512",
+          "cita": "Kiriyama S, Kozaka K, Takada T, et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (with videos). J Hepatobiliary Pancreat Sci. 2018;25(1):17-30.",
+          "imagen_evidencia": "evidencia_patologia_biliar_pag27_tabla_4_grado_i.png"
+        }
+      ],
+      "pie_nodo": "¿Cuál de las dos infecciones estás tratando?",
+      "opciones": [
+        {
+          "texto": "Colecistitis aguda",
+          "siguiente_nodo": "estr_colecistitis_gravedad",
+          "descripcion": "Signo local, signo sistémico e imagen de la vesícula",
+          "color": "azul"
+        },
+        {
+          "texto": "Colangitis aguda",
+          "siguiente_nodo": "estr_colangitis_gravedad",
+          "descripcion": "Fiebre o inflamación, colestasis e imagen de la vía biliar",
+          "color": "morado"
         }
       ]
     },
