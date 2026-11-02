@@ -53,7 +53,8 @@ Escribe `$SCRATCH/plan_<algoritmo>.md` con:
   parten), respetando los ids existentes;
 - **el mapa de ramas**, dibujado como el del modelo (`NORMA.md` §1): qué
   pregunta divide el tratamiento por trastorno y qué cadena sigue cada
-  entidad (con su color), dónde se juntan, todas las respuestas de cada
+  entidad (con su color), qué preguntas dividen también el diagnóstico, la
+  gravedad o la hospitalización donde la guía separa grupos, dónde se juntan, todas las respuestas de cada
   pregunta (ningún «Sí» sin su «No»), el paso de vigilancia de cada cadena
   con su pregunta de ritmo, la pregunta de complicaciones, adónde vuelve
   cada «Aún no» y qué pasos compartidos preguntan «¿Qué crisis estás

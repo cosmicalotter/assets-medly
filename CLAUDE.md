@@ -138,7 +138,13 @@ Firebase directamente, saltándose `indices/`.
   lista. Si la guía trata distinto a cada entidad, el tratamiento empieza
   con «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
   propia cadena**, con su `color` fijo y sus criterios en la `descripcion`
-  de la opción; las cadenas se juntan donde el tratamiento es común. Dentro
+  de la opción; las cadenas se juntan donde el tratamiento es común. **Las
+  separaciones van en cualquier sección**, no sólo en el tratamiento: el
+  diagnóstico, la gravedad o la hospitalización se parten igual donde la
+  guía trata distinto a cada grupo (en el ACV isquémico, el diagnóstico por
+  vaso y déficit, y la hospitalización por la reperfusión recibida). No hay
+  un número fijo de cadenas: las que distinga la guía, repartidas para que
+  el camino sea cómodo y cubra toda la enfermedad. Dentro
   de cada cadena, los pasos en el orden en que se hacen. Cada decisión es
   una pregunta con **todas sus respuestas** (ningún «Sí» sin su «No»;
   opciones sin huecos ni solapes, con los límites de la guía). La
