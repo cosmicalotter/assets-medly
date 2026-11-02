@@ -1,0 +1,394 @@
+{
+  "titulo": "Phoenix: sepsis y choque séptico pediátricos (2024)",
+  "descripcion": "Criterios internacionales de 2024 para sepsis y choque séptico en menores de 18 años. Suma la disfunción respiratoria, cardiovascular, de la coagulación y neurológica; reemplazan los criterios de SIRS de 2005.",
+  "instrucciones": "Sólo con infección sospechada. Marcar lo que se tenga: lo no medido no suma. El S/F (saturación/FiO2) se usa sólo con SpO2 ≤97 %.",
+  "limitaciones": "No aplica en la hospitalización del nacimiento, a menos de 37 semanas de edad posconcepcional ni a los 18 años o más. Detecta disfunción orgánica: no es una escala de alerta temprana para el triaje.",
+  "tipoCalculo": "formula",
+  "formula": "0.5 * (1 + ((rs + (va + la + pm) + 0.5 * ((pq + nr + dd + fb) + 2 - abs((pq + nr + dd + fb) - 2)) + nu) - 1.5) / abs((rs + (va + la + pm) + 0.5 * ((pq + nr + dd + fb) + 2 - abs((pq + nr + dd + fb) - 2)) + nu) - 1.5)) * (1 + 0.5 * (1 + ((va + la + pm) - 0.5) / abs((va + la + pm) - 0.5)))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Phoenix",
+  "extras": [
+    {
+      "etiqueta": "Phoenix Sepsis Score",
+      "formula": "(rs + (va + la + pm) + 0.5 * ((pq + nr + dd + fb) + 2 - abs((pq + nr + dd + fb) - 2)) + nu)",
+      "sufijo": "puntos",
+      "decimales": 0
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Schlapbach LJ, Watson RS, Sorce LR, et al. International Consensus Criteria for Pediatric Sepsis and Septic Shock. JAMA 2024;331(8):665-674 (manuscrito aceptado, repositorio de la Universidad de Liverpool).",
+      "url": "https://livrepository.liverpool.ac.uk/3178319/1/Criteria%20manuscript-R2%20clean%20-FINAL.%20submitted.pdf",
+      "paginas": "29",
+      "texto": "Sepsis: Suspected infection and Phoenix Sepsis Score ≥2 points Septic shock: Sepsis with ≥1 cardiovascular point(s)"
+    },
+    {
+      "titulo": "Schlapbach LJ, Watson RS, Sorce LR, et al. International Consensus Criteria for Pediatric Sepsis and Septic Shock. JAMA 2024;331(8):665-674 (manuscrito aceptado, repositorio de la Universidad de Liverpool).",
+      "url": "https://livrepository.liverpool.ac.uk/3178319/1/Criteria%20manuscript-R2%20clean%20-FINAL.%20submitted.pdf",
+      "paginas": "29",
+      "texto": "Unmeasured variables contribute no points to the score. Ages are not adjusted for prematurity, and the criteria do not apply to birth hospitalizations"
+    },
+    {
+      "titulo": "Schlapbach LJ, Watson RS, Sorce LR, et al. International Consensus Criteria for Pediatric Sepsis and Septic Shock. JAMA 2024;331(8):665-674 (manuscrito aceptado, repositorio de la Universidad de Liverpool).",
+      "url": "https://livrepository.liverpool.ac.uk/3178319/1/Criteria%20manuscript-R2%20clean%20-FINAL.%20submitted.pdf",
+      "paginas": "5",
+      "texto": "Children with a Phoenix Sepsis Score ≥2 points had in-hospital mortality of 7.1% in higher resource settings"
+    }
+  ],
+  "secciones": [
+    {
+      "titulo": "Respiratorio (0-3)",
+      "elementos": [
+        {
+          "id": "resp",
+          "tipo": "opciones",
+          "label": "Oxigenación y soporte",
+          "opciones": [
+            {
+              "label": "P/F ≥400 o S/F ≥292, o sin soporte",
+              "puntos": 0,
+              "valoresVariables": {
+                "rs": 0
+              }
+            },
+            {
+              "label": "P/F <400 o S/F <292 con cualquier soporte respiratorio",
+              "puntos": 1,
+              "valoresVariables": {
+                "rs": 1
+              }
+            },
+            {
+              "label": "Ventilación invasiva con P/F 100-200 o S/F 148-220",
+              "puntos": 2,
+              "valoresVariables": {
+                "rs": 2
+              }
+            },
+            {
+              "label": "Ventilación invasiva con P/F <100 o S/F <148",
+              "puntos": 3,
+              "valoresVariables": {
+                "rs": 3
+              }
+            }
+          ],
+          "ayuda": "Sin ventilación invasiva, P/F <200 y S/F <220 siguen sumando 1. P/F = PaO2/FiO2; S/F = SpO2/FiO2."
+        }
+      ]
+    },
+    {
+      "titulo": "Cardiovascular (0-6)",
+      "elementos": [
+        {
+          "id": "vaso",
+          "tipo": "opciones",
+          "label": "Fármacos vasoactivos",
+          "opciones": [
+            {
+              "label": "Ninguno",
+              "puntos": 0,
+              "valoresVariables": {
+                "va": 0
+              }
+            },
+            {
+              "label": "Uno",
+              "puntos": 1,
+              "valoresVariables": {
+                "va": 1
+              }
+            },
+            {
+              "label": "Dos o más",
+              "puntos": 2,
+              "valoresVariables": {
+                "va": 2
+              }
+            }
+          ],
+          "ayuda": "Cualquier dosis de adrenalina, noradrenalina, dopamina, dobutamina, milrinona o vasopresina."
+        },
+        {
+          "id": "lact",
+          "tipo": "opciones",
+          "label": "Lactato",
+          "opciones": [
+            {
+              "label": "<5 mmol/L o no medido",
+              "puntos": 0,
+              "valoresVariables": {
+                "la": 0
+              }
+            },
+            {
+              "label": "5-10,9 mmol/L",
+              "puntos": 1,
+              "valoresVariables": {
+                "la": 1
+              }
+            },
+            {
+              "label": "≥11 mmol/L",
+              "puntos": 2,
+              "valoresVariables": {
+                "la": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "pam",
+          "tipo": "opciones",
+          "label": "Presión arterial media para la edad",
+          "opciones": [
+            {
+              "label": "Normal",
+              "puntos": 0,
+              "valoresVariables": {
+                "pm": 0
+              }
+            },
+            {
+              "label": "Baja",
+              "puntos": 1,
+              "valoresVariables": {
+                "pm": 1
+              }
+            },
+            {
+              "label": "Muy baja",
+              "puntos": 2,
+              "valoresVariables": {
+                "pm": 2
+              }
+            }
+          ],
+          "ayuda": "PAM en mmHg (normal / baja / muy baja): <1 mes >30 / 17-30 / <17; 1-11 meses >38 / 25-38 / <25; 1 a <2 años >43 / 31-43 / <31; 2 a <5 años >44 / 32-44 / <32; 5 a <12 años >48 / 36-48 / <36; 12-17 años >51 / 38-51 / <38."
+        }
+      ]
+    },
+    {
+      "titulo": "Coagulación (máximo 2)",
+      "elementos": [
+        {
+          "id": "plaq",
+          "tipo": "opciones",
+          "label": "Plaquetas <100.000/µL",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "pq": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "pq": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "inr",
+          "tipo": "opciones",
+          "label": "INR >1,3",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "nr": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "nr": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "ddim",
+          "tipo": "opciones",
+          "label": "Dímero D >2 mg/L FEU",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "dd": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "dd": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "fibr",
+          "tipo": "opciones",
+          "label": "Fibrinógeno <100 mg/dL",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "fb": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "fb": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Neurológico (0-2)",
+      "elementos": [
+        {
+          "id": "neuro",
+          "tipo": "opciones",
+          "label": "Conciencia y pupilas",
+          "opciones": [
+            {
+              "label": "Glasgow >10 y pupilas reactivas",
+              "puntos": 0,
+              "valoresVariables": {
+                "nu": 0
+              }
+            },
+            {
+              "label": "Glasgow ≤10",
+              "puntos": 1,
+              "valoresVariables": {
+                "nu": 1
+              }
+            },
+            {
+              "label": "Pupilas fijas bilaterales",
+              "puntos": 2,
+              "valoresVariables": {
+                "nu": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -0.5,
+      "max": 0.49,
+      "categoria": "No cumple criterios de sepsis",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Phoenix <2: sin disfunción orgánica que defina sepsis. Seguir vigilando; repetir si empeora.",
+      "si": {
+        "ninguno": [
+          {
+            "suma": [
+              "resp",
+              "vaso",
+              "lact",
+              "pam",
+              "plaq",
+              "inr",
+              "ddim",
+              "fibr",
+              "neuro"
+            ],
+            "minimo": 2
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Sepsis",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Infección con disfunción orgánica que amenaza la vida: cultivos, antibiótico precoz y manejo hospitalario.",
+      "si": {
+        "todos": [
+          {
+            "suma": [
+              "resp",
+              "vaso",
+              "lact",
+              "pam",
+              "plaq",
+              "inr",
+              "ddim",
+              "fibr",
+              "neuro"
+            ],
+            "minimo": 2
+          },
+          {
+            "ninguno": [
+              {
+                "suma": [
+                  "vaso",
+                  "lact",
+                  "pam"
+                ],
+                "minimo": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1.5,
+      "max": 2.5,
+      "categoria": "Choque séptico",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Sepsis con disfunción cardiovascular (hipotensión grave para la edad, lactato >5 mmol/L o vasoactivos): reanimación y cuidado intensivo.",
+      "si": {
+        "todos": [
+          {
+            "suma": [
+              "resp",
+              "vaso",
+              "lact",
+              "pam",
+              "plaq",
+              "inr",
+              "ddim",
+              "fibr",
+              "neuro"
+            ],
+            "minimo": 2
+          },
+          {
+            "suma": [
+              "vaso",
+              "lact",
+              "pam"
+            ],
+            "minimo": 1
+          }
+        ]
+      }
+    }
+  ]
+}
