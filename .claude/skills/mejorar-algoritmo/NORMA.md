@@ -86,6 +86,22 @@ cambian, se cambian allí y aquí a la vez.
     euglucémica hace su primer paso propio y sigue por la de la CAD). La
     calculadora diagnóstica con `ramificar` lleva a esas mismas entidades,
     con los mismos colores, más «Ninguno: otra causa» en gris.
+  - **Las separaciones van en cualquier sección, no sólo en el
+    tratamiento.** Donde la guía trata distinto a cada grupo de pacientes,
+    la sección se parte en cadenas con su color, igual que el tratamiento:
+    el diagnóstico, por lo que decide el camino (la hemodinámica del ABCDE,
+    el tipo de entidad que confirma la imagen o la calculadora); la
+    gravedad, por sus grados; la hospitalización o el seguimiento, por lo
+    que cambia la conducta (en el ACV isquémico, la reperfusión que
+    recibió: trombólisis, sólo trombectomía o ninguna, cada una con su meta
+    de PA y su vigilancia). El diagnóstico que clasifica entidades lo hace
+    con los mismos nombres y colores que el tratamiento. Un paso al que
+    llegan varias cadenas de una sección devuelve a cada una a la suya con
+    la pregunta que las separa («¿Qué reperfusión recibió?»).
+  - **No hay un número fijo de cadenas.** Son tantas como grupos distinga
+    la guía (dos, tres o más) y se reparten para que el camino cubra toda
+    la enfermedad y sea cómodo de recorrer. Donde la guía no distingue, no
+    se inventa una división.
   - **Dentro de cada cadena, los pasos van en el orden en que se hacen**
     («líquidos → potasio → insulina → bicarbonato → fosfato →
     complicaciones → vigilancia → dextrosa → ¿resuelta?»). Un paso que sólo
@@ -151,8 +167,10 @@ cambian, se cambian allí y aquí a la vez.
   ```
 
   Antes de escribir los nodos, se dibuja así el mapa del algoritmo que se
-  trabaja: qué pregunta divide por trastorno, todas las respuestas de cada
-  pregunta y adónde vuelve cada «Aún no».
+  trabaja: qué pregunta divide cada sección (por trastorno en el
+  tratamiento, y donde la guía separe en el diagnóstico, la gravedad o el
+  seguimiento), todas las respuestas de cada pregunta y adónde vuelve cada
+  «Aún no».
 - **Color por rama.** La app da a cada rama hermana un tono distinto (azul,
   turquesa, púrpura, rosa, cian) y sus pasos siguientes lo heredan: la
   tarjeta, su título, su pill y su línea. No hace falta escribir nada; un

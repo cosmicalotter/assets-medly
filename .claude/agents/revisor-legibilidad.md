@@ -68,6 +68,11 @@ como lo haría un usuario y revisa:
      una con su color, y se juntan donde el tratamiento es común? Un
      tratamiento que mezcla las entidades en los mismos pasos con viñetas
      «- CAD: … - EHH: …» es un hallazgo (proponer la división);
+   - lo mismo en las demás secciones: si el diagnóstico, la gravedad o la
+     hospitalización tratan distinto a cada grupo (entidad, grado,
+     reperfusión recibida) y lo mezclan en un solo paso o en una tabla en
+     vez de partirse en cadenas con su color, es un hallazgo. El número de
+     cadenas lo pone la guía, no un mínimo;
    - dentro de cada cadena, los pasos en el orden en que se hacen;
    - cada decisión con todas sus respuestas, y la negativa con su propio
      paso cuando la guía dice qué hacer (PAS <90 → choque → refractario);
