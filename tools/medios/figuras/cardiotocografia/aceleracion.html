@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Aceleración: ≥15 lpm y ≥15 s desde las 32 semanas; ≥10 y ≥10 s antes (ACOG 2025, Tabla 1, p. 588).
+const W = 672, PW = 600, X0 = 52, FH = 270, Y0 = 16, T1 = 4;
+const f = oscilacion(9, 61);
+const acel = (t) => { const x = t - 1.5; if (x < 0) return 0; if (x < 0.33) return 24 * Math.sin(x / 0.33 * Math.PI / 2); if (x < 0.75) return 24; if (x < 1.05) return 24 * (1 - (x - 0.75) / 0.3); return 0; };
+const fcf = (t) => 135 + f(t) * (acel(t) > 2 ? 0.4 : 1) + acel(t);
+const p = papel({ x: X0, y: Y0, w: PW, h: FH, t0: 0, t1: T1, lmin: 100, lmax: 180, paso: 10 });
+let s = p.svg + `<rect x="${p.X(1.5)}" y="${Y0}" width="${p.X(2.55) - p.X(1.5)}" height="${FH}" fill="${tinte(VERDE, 14)}"/>`;
+s += dentro(X0, Y0, PW, FH, trazo(fcf, p.X, p.Y, 0, T1, { ancho: 1.8, dt: 0.004 }));
+s += `<line x1="${X0}" y1="${p.Y(135)}" x2="${X0 + PW}" y2="${p.Y(135)}" stroke="${TEAL}" stroke-width="2" stroke-dasharray="7 5"/>`;
+// calibre vertical: amplitud
+const xa = p.X(2.9);
+s += flecha(xa, p.Y(135), xa, p.Y(159), VERDE, 2.2) + flecha(xa, p.Y(159), xa, p.Y(135), VERDE, 2.2);
+s += texto(xa + 8, p.Y(150), "≥15 lpm", { c: VERDE, s: 14, fondo: true });
+// calibre horizontal: duración
+const yd = p.Y(122);
+s += flecha(p.X(1.5), yd, p.X(2.55), yd, VERDE, 2.2) + flecha(p.X(2.55), yd, p.X(1.5), yd, VERDE, 2.2);
+s += texto(p.X(2.02), yd + 20, "≥15 s y menos de 2 min", { c: VERDE, s: 13, a: "middle", fondo: true });
+s += texto(p.X(1.53), p.Y(171), "Sube en menos de 30 s", { c: "#166534", s: 12, fondo: true });
+s += texto(p.X(0.1), p.Y(135) + 18, "Línea de base", { c: TEAL, s: 12, fondo: true });
+[0, 1, 2, 3, 4].forEach((t) => { s += texto(p.X(t), Y0 + FH + 13, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+const svg = `<svg width="${W}" height="${FH + 34}" viewBox="0 0 ${W} ${FH + 34}">${s}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${caja(VERDE, "<b>Desde las 32 semanas</b>: 15 lpm o más durante 15 s o más.")}${caja(AMBAR, "<b>Antes de las 32 semanas</b>: 10 lpm o más durante 10 s o más.")}</div>`;
+lienzo("Aceleración según la edad gestacional", "Subida abrupta sobre la línea de base; si dura 10 min o más, es un cambio de la línea de base", svg + notas,
+  "Esquema ilustrativo, no es el registro de una paciente. Definición: ACOG 2025, Tabla 1.");
+</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Línea de base: media de 10 min redondeada a 5 lpm, sin aceleraciones ni desaceleraciones (ACOG 2025, Tabla 1, p. 588).
+const W = 672, PW = 600, X0 = 52, FH = 262, Y0 = 18;
+const f = oscilacion(12, 41);
+const acel = (t) => 22 * Math.exp(-Math.pow((t - 2.6) / 0.22, 2));
+const desac = (t) => -32 * valle(t, 6.8, 0.45);
+const fcf = (t) => 137 + f(t) + acel(t) + desac(t);
+const p = papel({ x: X0, y: Y0, w: PW, h: FH, t0: 0, t1: 10, lmin: 80, lmax: 180, paso: 10 });
+const zona = (a, b, c) => `<rect x="${p.X(a)}" y="${Y0}" width="${p.X(b) - p.X(a)}" height="${FH}" fill="${tinte(c, 16)}"/>`;
+let s = p.svg + zona(2.15, 3.05, VERDE) + zona(5.9, 7.7, ROJO);
+s += dentro(X0, Y0, PW, FH, trazo(fcf, p.X, p.Y, 0, 10, { ancho: 1.7, dt: 0.006 }));
+s += `<line x1="${X0}" y1="${p.Y(140)}" x2="${X0 + PW}" y2="${p.Y(140)}" stroke="${TEAL}" stroke-width="3" stroke-dasharray="9 6"/>`;
+s += texto(p.X(3.4), p.Y(154), "Línea de base: 140 lpm", { c: TEAL, s: 14, fondo: true });
+s += texto(p.X(2.6), Y0 + 18, "Aceleración", { c: VERDE, s: 12.5, a: "middle", fondo: true });
+s += texto(p.X(6.8), Y0 + FH - 10, "Desaceleración", { c: ROJO, s: 12.5, a: "middle", fondo: true });
+[0, 2, 4, 6, 8, 10].forEach((t) => { s += texto(p.X(t), Y0 + FH + 14, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+const svg = `<svg width="${W}" height="${FH + 40}" viewBox="0 0 ${W} ${FH + 40}">${s}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">${caja(TEAL, "<b>Media de 10 min</b>, redondeada a 5 lpm.")}${caja(ROJO, "<b>No cuentan</b> las aceleraciones, las desaceleraciones ni la variabilidad marcada.")}${caja(AZUL, "Al menos <b>2 min</b> de línea de base; si no, es indeterminada.")}</div>`;
+lienzo("Cómo se estima la línea de base", "Diez minutos de FCF: la media de los tramos estables, sin los cambios periódicos", svg + notas,
+  "Esquema ilustrativo, no es el registro de una paciente. Definición: ACOG 2025, Tabla 1.");
+</script></body></html>
