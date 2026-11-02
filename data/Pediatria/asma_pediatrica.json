@@ -1,9 +1,9 @@
 {
   "titulo": "Asma en niños",
   "descripcion": "En este algoritmo se aborda al niño menor de 12 años con sibilancias recurrentes: diagnóstico según la edad, crisis por gravedad, escalones de mantenimiento y plan de acción. No incluye la bronquiolitis del lactante.",
-  "version": "GINA 2026 · GEMA 5.5",
+  "version": "GINA 2026 · GEMA 5.5 · OMS 2026",
   "especialidad": "Neumología pediátrica",
-  "actualizado": "Octubre 2026",
+  "actualizado": "Noviembre 2026",
   "carpeta_evidencia": "asma_pediatrica",
   "carpeta_imagenes": "asma_pediatrica",
   "autores": [
@@ -24,6 +24,13 @@
       "anio": "2025",
       "url": "https://www.gemasma.com/",
       "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025."
+    },
+    {
+      "titulo": "WHO consolidated guidelines: asthma in children and adolescents and bronchiolitis",
+      "fuente": "OMS",
+      "anio": "2026",
+      "url": "https://iris.who.int/handle/10665/385625",
+      "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026."
     }
   ],
   "nodos": {
@@ -288,7 +295,7 @@
     "diag_menor5": {
       "tipo": "pregunta",
       "titulo": "Asma en ≤5 años: los 3 criterios",
-      "texto": "- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si necesitó corticoide oral.\n- Con 1-2 criterios: «sospecha de asma»; prueba con corticoide inhalado **2-3 meses**.\n- Si falla «sin otro diagnóstico»: buscarlo y remitir.",
+      "texto": "- Respuesta a tiempo: mejora a los **20-60 min** del salbutamol, o a las **3-4 h** si necesitó corticoide oral.\n- Con 1-2 criterios: «sospecha de asma»; corticoide inhalado **2-3 meses** y revalorar.\n- Si falla «sin otro diagnóstico»: buscarlo y remitir.",
       "checklist": {
         "titulo": "Asma en ≤5 años (GINA 2026)",
         "items": [
@@ -339,7 +346,7 @@
           "color": "azul"
         },
         {
-          "texto": "1-2 de 3: sospecha, prueba con corticoide inhalado",
+          "texto": "1-2 de 3: sospecha, tratar y revalorar",
           "siguiente_nodo": "diag_prueba_ics",
           "color": "teal"
         },
@@ -444,17 +451,17 @@
     },
     "diag_prueba_ics": {
       "tipo": "pregunta",
-      "titulo": "Sospecha de asma: prueba con corticoide inhalado",
-      "texto": "- Fluticasona **100-250 mcg/día** (o equivalente) con cámara, **2-3 meses**, y salbutamol a demanda.\n- Valorar si bajan la gravedad o la frecuencia de las crisis y los síntomas entre ellas.\n- En las sibilancias episódicas por virus la respuesta es limitada (GEMA).",
+      "titulo": "Sospecha de asma: tratar y revalorar a los 2-3 meses",
+      "texto": "- Iniciar fluticasona **100-250 mcg/día** (o equivalente) con cámara y salbutamol a demanda.\n- Revalorar a los **2-3 meses**: si bajan las crisis o los síntomas entre ellas, se confirma el asma: bajar a la **dosis baja** de mantenimiento.\n- En las sibilancias episódicas por virus la respuesta es limitada (GEMA).",
       "farmacos": [
         {
-          "nombre": "Fluticasona propionato inhalador con cámara (prueba)",
+          "nombre": "Fluticasona propionato inhalador con cámara",
           "dosis": "**100-250 mcg/día** durante **2-3 meses**",
-          "pauta": "Dosis de prueba diagnóstica, mayor que la dosis baja de mantenimiento.",
+          "pauta": "Tratamiento inicial de 2-3 meses; la respuesta confirma el diagnóstico.",
           "paginas": "196, 202"
         }
       ],
-      "nota_adicional": "La dosis de prueba es mayor que la dosis baja de mantenimiento: no confundirlas.",
+      "nota_adicional": "GINA la llama prueba de **tratamiento diagnóstica**: se empieza el tratamiento y la **respuesta** confirma el diagnóstico. La dosis inicial es mayor que la dosis baja de mantenimiento.",
       "evidencia": {
         "texto": "GINA: evidencia D"
       },
@@ -511,6 +518,16 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Sociedad Española de Neumología y Cirugía Torácica (SEPAR); 2025.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag120_gema_siendo_limitada_respuesta_sibilancias_episodicas.png"
+        },
+        {
+          "titulo": "Bajar la dosis al confirmar el asma",
+          "paginas": "202",
+          "texto": "reduce the dose as soon as a clinical response indicates that the diagnosis of asthma has been confirmed.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag202_gina_reduce_dose_as_soon_as.png"
         }
       ]
     },
@@ -838,6 +855,11 @@
           "texto": "PRAM (GINA)",
           "tipo": "calculadora",
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/pram.json"
+        },
+        {
+          "texto": "Pediatric Asthma Score (2-18 años)",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/pediatric_asthma_score.json"
         },
         {
           "texto": "Hipoxemia por altitud (GPC colombiana, <5 años)",
@@ -1200,7 +1222,7 @@
         {
           "nombre": "Salbutamol nebulizado",
           "dosis": "**0,15 mg/kg** (máx. **5 mg**) cada **20 min**, hasta **3 dosis**",
-          "pauta": "Sólo si necesita oxígeno.",
+          "pauta": "Sólo si necesita oxígeno. Seguir el control de infecciones: dispersa partículas virales.",
           "paginas": "127, 125",
           "por_kg": {
             "cantidad": 0.15,
@@ -1501,6 +1523,26 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag218_gina_note_potential_for_overestimation_oxygen.png"
+        },
+        {
+          "titulo": "La cámara es más eficaz que el nebulizador",
+          "paginas": "225",
+          "texto": "For most children, pMDI plus spacer is favored as it is more efficient than a nebulizer for bronchodilator delivery (Evidence A)",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_for_most_children_pmdi_plus.png"
+        },
+        {
+          "titulo": "Evitar nebulizadores si el riesgo de COVID-19 es moderado o alto",
+          "paginas": "132",
+          "texto": "If local risk of COVID-19 is moderate or high, avoid use of nebulizers where possible due to the risk of transmitting infection",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag132_gina_if_local_risk_covid19_moderate.png"
         }
       ]
     },
@@ -1508,7 +1550,7 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Crisis grave: oxígeno, broncodilatadores y traslado",
-      "texto": "- Oxígeno para SaO2 **94-98 %**.\n- Salbutamol **10 pulsaciones** + ipratropio **2-4 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; o nebulizados.\n- Prednisona **2 mg/kg** oral o IV, máx. **40 mg**.\n- Sin respuesta al tratamiento inicial: sulfato de magnesio IV.\n- Desde el centro de salud: al hospital en ambulancia medicalizada.",
+      "texto": "- Oxígeno para SaO2 **94-98 %**.\n- Salbutamol **10 pulsaciones** + ipratropio **2-4 pulsaciones** con cámara cada **20 min** hasta **3 dosis**; o nebulizados con oxígeno.\n- Prednisona **2 mg/kg** oral o IV, máx. **40 mg**.\n- Sin respuesta: sulfato de magnesio IV en **20 min**, monitorizado y con **tensión arterial** seriada.\n- Desde el centro de salud: al hospital en ambulancia medicalizada.",
       "media": [
         {
           "recurso": "asma_crisis_tratamiento.png",
@@ -1562,15 +1604,10 @@
       ],
       "farmacos": [
         {
-          "nombre": "Salbutamol nebulizado",
-          "dosis": "**0,15 mg/kg** (máx. **5 mg**) cada **20 min** hasta **3 dosis**",
-          "pauta": "Con ipratropio y oxígeno.",
-          "paginas": "127",
-          "por_kg": {
-            "cantidad": 0.15,
-            "unidad": "mg",
-            "tope": 5
-          }
+          "nombre": "Salbutamol inhalador 100 mcg con cámara",
+          "dosis": "**10 pulsaciones** cada **20 min** hasta **3 dosis**",
+          "pauta": "Con ipratropio 2-4 pulsaciones. En la mayoría de los niños es más eficaz que el nebulizador.",
+          "paginas": "127 (GEMA)"
         },
         {
           "nombre": "Bromuro de ipratropio",
@@ -1599,6 +1636,18 @@
             "cantidad": 40,
             "unidad": "mg",
             "tope": 2000
+          },
+          "nota": "Puede dar **hipotensión**: tensión arterial seriada y monitorización continua durante la infusión."
+        },
+        {
+          "nombre": "Salbutamol nebulizado",
+          "dosis": "**0,15 mg/kg** (máx. **5 mg**) cada **20 min** hasta **3 dosis**",
+          "pauta": "Con oxígeno si la saturación es baja. Seguir el control de infecciones: dispersa partículas virales.",
+          "paginas": "127",
+          "por_kg": {
+            "cantidad": 0.15,
+            "unidad": "mg",
+            "tope": 5
           }
         }
       ],
@@ -1631,6 +1680,11 @@
               "fuente": "GEMA 5.5",
               "dice": "40 mg/kg (máx. 2 g) en 20 min si no responde al tratamiento inicial; no evita el ingreso",
               "paginas": "126"
+            },
+            {
+              "fuente": "OMS 2026",
+              "dice": "Segunda línea en toda crisis grave y en la moderada que no responde a SABA, ipratropio y corticoide (fuerte); infusión única en 20 min, lo más usado 50 mg/kg (máx. 2 g); no inhalado",
+              "paginas": "13"
             }
           ],
           "nota": "GINA lo limita a ≥2 años."
@@ -1888,8 +1942,119 @@
           "url": "https://ginasthma.org/reports/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
           "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_administration_high_doses_saba_associated.png"
+        },
+        {
+          "titulo": "OMS 2026: el magnesio IV puede dar hipotensión",
+          "paginas": "35",
+          "texto": "Intravenous infusion of magnesium sulfate relaxes smooth muscle and may result in hypotension, a side-effect commonly seen with the use of IM magnesium sulfate in pregnant women.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag35_oms2026_intravenous_infusion_magnesium_sulfate_relaxes.png"
+        },
+        {
+          "titulo": "OMS 2026: vigilar la tensión arterial",
+          "paginas": "13",
+          "texto": "Regular blood pressure monitoring should be included in the routine observations of children receiving IV magnesium sulfate.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag13_oms2026_regular_blood_pressure_monitoring_should.png"
+        },
+        {
+          "titulo": "OMS 2026: dosis de magnesio",
+          "paginas": "13",
+          "texto": "The most frequent dosing regime was 50 mg/kg of magnesium sulfate diluted in 100 mL normal saline with a maximum dose of 2 g administered over 20–30 minutes",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag13_oms2026_most_frequent_dosing_regime_was.png"
+        },
+        {
+          "titulo": "Monitorización continua durante el magnesio",
+          "paginas": "2",
+          "texto": "All patients must have continuous cardiac monitoring and 15 minute observations during infusion and for at least an hour post infusion.",
+          "fuente": "Birmingham Children's Hospital 2024",
+          "anio": "2024",
+          "url": "https://kids.bwc.nhs.uk/wp-content/uploads/2024/08/Magnesium-infusion-for-asthma-pathway-V2.0.0.pdf",
+          "cita": "Birmingham Children's Hospital Injectable Medicine Guide. Magnesium sulphate for IV infusion for asthma. Version 2.0.0, 2024.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag2_bwc_all_patients_must_have_continuous.png"
+        },
+        {
+          "titulo": "Riesgos de la infusión rápida",
+          "paginas": "2",
+          "texto": "Infusion related risks (associated with higher infusion rates): hypotension, cardiac arrhythmias, respiratory depression.",
+          "fuente": "Birmingham Children's Hospital 2024",
+          "anio": "2024",
+          "url": "https://kids.bwc.nhs.uk/wp-content/uploads/2024/08/Magnesium-infusion-for-asthma-pathway-V2.0.0.pdf",
+          "cita": "Birmingham Children's Hospital Injectable Medicine Guide. Magnesium sulphate for IV infusion for asthma. Version 2.0.0, 2024.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag2_bwc_infusion_related_risks_associated_with.png"
+        },
+        {
+          "titulo": "Los nebulizadores dispersan virus a más de 1 m",
+          "paginas": "132",
+          "texto": "Nebulizers can transmit respiratory viral particles across distances of at least 1 m.",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag132_gina_nebulizers_can_transmit_respiratory_viral.png"
+        },
+        {
+          "titulo": "La cámara es más eficaz que el nebulizador",
+          "paginas": "225",
+          "texto": "For most children, pMDI plus spacer is favored as it is more efficient than a nebulizer for bronchodilator delivery (Evidence A)",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_for_most_children_pmdi_plus.png"
+        },
+        {
+          "titulo": "Evitar nebulizadores si el riesgo de COVID-19 es moderado o alto",
+          "paginas": "132",
+          "texto": "If local risk of COVID-19 is moderate or high, avoid use of nebulizers where possible due to the risk of transmitting infection",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag132_gina_if_local_risk_covid19_moderate.png"
+        },
+        {
+          "titulo": "Nebulizado con oxígeno si la saturación es baja",
+          "paginas": "225",
+          "texto": "or, if oxygen saturation is low, by an oxygen-driven nebulizer (as described above). For most children, pMDI plus spacer is favored",
+          "fuente": "GINA",
+          "anio": "2026",
+          "url": "https://ginasthma.org/reports/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag225_gina_or_if_oxygen_saturation_low.png"
+        },
+        {
+          "titulo": "OMS 2026: magnesio IV de segunda línea",
+          "paginas": "12",
+          "texto": "IV magnesium sulfate (as a single short infusion) should be used as second-line therapy for severe paediatric asthma exacerbations",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag12_oms2026_iv_magnesium_sulfate_as_single.png"
+        },
+        {
+          "titulo": "OMS 2026: infusión única en 20 minutos",
+          "paginas": "13",
+          "texto": "It is advised that magnesium sulfate should be diluted in a compatible solution and administered as a single IV infusion over 20 minutes.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_asma_pediatrica_pag13_oms2026_it_advised_that_magnesium_sulfate.png"
         }
-      ]
+      ],
+      "nota_adicional": "El **sulfato de magnesio** relaja el músculo liso y puede dar **hipotensión**: vigilar la tensión arterial de forma seriada durante la infusión y la hora siguiente, con monitorización continua."
     },
     "crisis_ingreso": {
       "tipo": "resultado",

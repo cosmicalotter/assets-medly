@@ -3,7 +3,7 @@
   "version": "MinSalud Colombia 2014 (GPC 42) · OMS 2024 · NICE NG9 · GINA 2026",
   "descripcion": "En este algoritmo se aborda al menor de 5 años con tos o dificultad para respirar: distinguir bronquiolitis, neumonía y sospecha de asma, la gravedad, el oxígeno según la altitud y el antibiótico.",
   "especialidad": "Neumología pediátrica",
-  "actualizado": "Octubre 2026",
+  "actualizado": "Noviembre 2026",
   "autores": [
     "Equipo Empirica"
   ],
@@ -481,7 +481,7 @@
           ]
         }
       ],
-      "nota_adicional": "Con sibilancias y VRS (virus respiratorio sincitial) en la nariz cuesta saber si es bronquiolitis o un primer episodio de asma; la respuesta al salbutamol ayuda a separarlos.",
+      "nota_adicional": "Un lactante con su **primer episodio** de sibilancias puede tener bronquiolitis o el debut de un asma. Si hay **atopia** o sibilancias previas, la **respuesta al salbutamol** ayuda a separarlos.",
       "pie_nodo": "¿Qué cuadro es?",
       "opciones": [
         {
@@ -1499,7 +1499,7 @@
     "trat_bronq_soporte": {
       "tipo": "pregunta",
       "titulo": "Bronquiolitis en el hospital: soporte",
-      "texto": "- Solución salina al **3 %** nebulizada en el hospitalizado: acorta la estancia.\n- No bebe lo suficiente: líquidos por sonda nasogástrica u orogástrica.\n- Aspirar la nariz sólo si las secreciones dificultan respirar o comer.\n- Fallo respiratorio inminente: considerar CPAP (presión positiva continua).",
+      "texto": "- Solución salina al **3 %** nebulizada como **prueba**: puede dar **broncoespasmo** y no siempre despeja las secreciones; vigilar y suspender si empeora.\n- No bebe lo suficiente: líquidos por sonda nasogástrica u orogástrica.\n- Aspirar la nariz sólo si las secreciones dificultan respirar o comer.\n- Fallo respiratorio inminente: considerar CPAP (presión positiva continua).",
       "media": [
         {
           "recurso": "neumo_soporte_bronquiolitis.png",
@@ -1551,13 +1551,7 @@
           ]
         }
       ],
-      "enlaces": [
-        {
-          "texto": "¿Deshidratación? Escala OMS/AIEPI",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/deshidratacion_oms_aiepi.json"
-        }
-      ],
+      "enlaces": [],
       "alertas": [
         {
           "titulo": "No hacer",
@@ -1575,23 +1569,33 @@
               "paginas": "34"
             },
             {
+              "fuente": "OMS 2026",
+              "dice": "Sugiere una prueba con salina al 3 % en el menor de 2 años que consulta o está hospitalizado (condicional, certeza baja); puede dar broncoespasmo",
+              "paginas": "18"
+            },
+            {
               "fuente": "NICE NG9 (2021)",
               "dice": "No usar salina hipertónica para tratar la bronquiolitis",
               "paginas": "15"
             }
           ],
-          "nota": "La GPC colombiana es la guía local."
+          "nota": "MinSalud no la usa en urgencias para evitar el ingreso; la OMS sí la plantea al consultar. Si se usa, como prueba y vigilando."
         }
       ],
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
-      "pie_nodo": "¿Qué sigue?",
+      "pie_nodo": "¿Cómo evoluciona?",
       "opciones": [
         {
-          "texto": "Alta y signos de alarma",
+          "texto": "Mejora: alta y signos de alarma",
           "siguiente_nodo": "alta_bronquiolitis",
           "color": "verde"
+        },
+        {
+          "texto": "Síntomas u oxígeno a las 4-6 semanas",
+          "siguiente_nodo": "seg_bronq_persistente",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -1664,6 +1668,46 @@
           "url": "https://www.nice.org.uk/guidance/ng9",
           "cita": "National Institute for Health and Care Excellence. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada 2021.",
           "imagen_evidencia": "evidencia_neumoped_pag15_nice_do_not_perform_chest_physiotherapy.png"
+        },
+        {
+          "titulo": "OMS 2026: prueba de salina hipertónica",
+          "paginas": "18",
+          "texto": "In infants and children aged less than 2 years presenting or hospitalized with bronchiolitis, a trial of nebulized hypertonic saline (3%) is suggested rather than no nebulization.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_neumoped_pag18_oms2026_infants_children_aged_less_than.png"
+        },
+        {
+          "titulo": "Puede no despejar las secreciones",
+          "paginas": "18",
+          "texto": "A trial of nebulized hypertonic saline in an individual patient may aid in clearance of secretions, but might not always be effective.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_neumoped_pag18_oms2026_trial_nebulized_hypertonic_saline_an.png"
+        },
+        {
+          "titulo": "Puede causar broncoespasmo",
+          "paginas": "18",
+          "texto": "Health care workers should be aware that hypertonic saline can induce bronchoconstriction and may often require co-administration with bronchodilators.",
+          "fuente": "OMS 2026",
+          "anio": "2026",
+          "url": "https://iris.who.int/handle/10665/385625",
+          "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026.",
+          "imagen_evidencia": "evidencia_neumoped_pag18_oms2026_health_care_workers_should_be.png"
+        },
+        {
+          "titulo": "Curso habitual de la bronquiolitis",
+          "paginas": "6",
+          "texto": "take into account that symptoms usually peak between 3 and 5 days, and that cough resolves in 90% of infants within 3 weeks.",
+          "fuente": "NICE NG9",
+          "anio": "2021",
+          "url": "https://www.nice.org.uk/guidance/ng9",
+          "cita": "National Institute for Health and Care Excellence. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada 2021.",
+          "imagen_evidencia": "evidencia_neumoped_pag6_nice_take_into_account_that_symptoms.png"
         }
       ]
     },
@@ -1703,6 +1747,11 @@
           "texto": "Prevención en casa",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "seg_prevencion"
+        },
+        {
+          "texto": "No mejora: bronquiolitis obliterante",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_bronq_persistente"
         }
       ],
       "media": [
@@ -3130,13 +3179,7 @@
           ]
         }
       ],
-      "enlaces": [
-        {
-          "texto": "¿Deshidratación? Escala OMS/AIEPI",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/deshidratacion_oms_aiepi.json"
-        }
-      ],
+      "enlaces": [],
       "evidencia": {
         "texto": "GRADE: fuerte a favor"
       },
@@ -3472,6 +3515,65 @@
           "imagen_evidencia": "evidencia_neumoped_pag21_padres_nino_enfermo_infeccion_respiratoria_aguda.png"
         }
       ]
+    },
+    "seg_bronq_persistente": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Bronquiolitis que no mejora: pensar en bronquiolitis obliterante",
+      "texto": "- Lo esperado: pico a los **3-5 días**; la tos se va en **3 semanas** en el **90 %**.\n- Sospechar bronquiolitis obliterante postinfecciosa si a las **4-6 semanas** persisten síntomas respiratorios, obstrucción o **hipoxemia**.\n- Más probable tras una infección respiratoria baja **grave**, sobre todo por **adenovirus**.\n- Confirmar con la clínica y una **TC de tórax de alta resolución**; seguimiento por neumología pediátrica.",
+      "nota_adicional": "Pensarla también en el niño que sigue con **oxígeno** más de un mes tras la bronquiolitis.",
+      "referencias": [
+        {
+          "titulo": "Curso habitual de la bronquiolitis",
+          "paginas": "6",
+          "texto": "take into account that symptoms usually peak between 3 and 5 days, and that cough resolves in 90% of infants within 3 weeks.",
+          "fuente": "NICE NG9",
+          "anio": "2021",
+          "url": "https://www.nice.org.uk/guidance/ng9",
+          "cita": "National Institute for Health and Care Excellence. Bronchiolitis in children: diagnosis and management (NG9). 2015, actualizada 2021.",
+          "imagen_evidencia": "evidencia_neumoped_pag6_nice_take_into_account_that_symptoms.png"
+        },
+        {
+          "titulo": "Sospecha de bronquiolitis obliterante",
+          "paginas": "5",
+          "texto": "persistence of respiratory symptoms, obstructive or mixed symptoms, or hypoxemia between 4 and 6 weeks after the acute event.",
+          "fuente": "Universitas Médica 2020",
+          "anio": "2020",
+          "url": "https://doi.org/10.11144/Javeriana.umed61-1.nmar",
+          "cita": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level. Universitas Medica (Pontificia Universidad Javeriana) 2020;61(1).",
+          "imagen_evidencia": "evidencia_neumoped_pag5_umed2020_persistence_respiratory_symptoms_obstructive_or.png"
+        },
+        {
+          "titulo": "Tras una infección respiratoria baja grave",
+          "paginas": "2",
+          "texto": "especially in children who have suffered an episode of severe lower respiratory tract infection (LRTI) at some point in their life, and who subsequently develop a small-airway alteration",
+          "fuente": "Universitas Médica 2020",
+          "anio": "2020",
+          "url": "https://doi.org/10.11144/Javeriana.umed61-1.nmar",
+          "cita": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level. Universitas Medica (Pontificia Universidad Javeriana) 2020;61(1).",
+          "imagen_evidencia": "evidencia_neumoped_pag2_umed2020_especially_children_who_have_suffered.png"
+        },
+        {
+          "titulo": "Adenovirus",
+          "paginas": "5",
+          "texto": "According to the literature, the infectious agent most frequently associated with the development of PIBO is adenovirus",
+          "fuente": "Universitas Médica 2020",
+          "anio": "2020",
+          "url": "https://doi.org/10.11144/Javeriana.umed61-1.nmar",
+          "cita": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level. Universitas Medica (Pontificia Universidad Javeriana) 2020;61(1).",
+          "imagen_evidencia": "evidencia_neumoped_pag5_umed2020_according_literature_infectious_agent_most.png"
+        },
+        {
+          "titulo": "Diagnóstico: clínica y TC de alta resolución",
+          "paginas": "2",
+          "texto": "the diagnosis of PIBO is based on the correlation of characteristic clinical and radiological aspects found in chest high-resolution computed tomography (HRCT)",
+          "fuente": "Universitas Médica 2020",
+          "anio": "2020",
+          "url": "https://doi.org/10.11144/Javeriana.umed61-1.nmar",
+          "cita": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level. Universitas Medica (Pontificia Universidad Javeriana) 2020;61(1).",
+          "imagen_evidencia": "evidencia_neumoped_pag2_umed2020_diagnosis_pibo_based_on_correlation.png"
+        }
+      ]
     }
   },
   "referencias": [
@@ -3516,6 +3618,20 @@
       "anio": "2026",
       "url": "https://ginasthma.org/reports/",
       "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update."
+    },
+    {
+      "titulo": "WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children",
+      "fuente": "OMS",
+      "anio": "2026",
+      "url": "https://iris.who.int/handle/10665/385625",
+      "cita": "World Health Organization. WHO consolidated guidelines for the management of common childhood illness: management of asthma in children and adolescents and bronchiolitis in infants and young children. Geneva: WHO; 2026."
+    },
+    {
+      "titulo": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level",
+      "fuente": "Universitas",
+      "anio": "2020",
+      "url": "https://doi.org/10.11144/Javeriana.umed61-1.nmar",
+      "cita": "Characterization of Pediatric Patients Diagnosed with Post-Infectious Bronchiolitis Obliterans 2600 Meters above Sea Level. Universitas Medica (Pontificia Universidad Javeriana) 2020;61(1)."
     }
   ],
   "carpeta_evidencia": "neumoped",
