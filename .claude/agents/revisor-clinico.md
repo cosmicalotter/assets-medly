@@ -21,7 +21,7 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
 3. **Criterios y listas**: `checklist`, criterios contados («2 de 4») y
    tablas completos y con los mismos elementos que la guía.
 3b. **Recorrido completo** (NORMA §2): que el algoritmo cubra todo lo que se
-   hace con el paciente desde que llega: en una urgencia, el ABCDE y las
+   hace con el paciente desde que llega: en una urgencia que lo amerita, el ABCDE (propio de la patología, no copiado de otro algoritmo) y las
    pruebas de la primera hora como primer paso; después diagnóstico,
    gravedad, tratamiento, monitorización, complicaciones, resolución, alta y
    seguimiento. Un paso que la guía trae y el mapa no es un hallazgo.

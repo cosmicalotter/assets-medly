@@ -131,12 +131,19 @@ Firebase directamente, saltándose `indices/`.
   ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
+- **ABCDE sólo en las urgencias** en que el paciente puede llegar
+  inestable (nunca en VIH ni en algoritmos crónicos o de consulta), y
+  **propio de cada patología**: cada letra con lo que esa enfermedad cambia,
+  sin copiar el de otro algoritmo (`NORMA.md` §2).
 - **El modelo es `data/Adultos/crisishiperglicemica.json`** (noviembre de
   2026): todo algoritmo que se crea o se reforma tiene que parecerse a él en
   estructura, piezas y estilo. Su mapa está en `NORMA.md` §1.
 - **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una
-  lista. Si la guía trata distinto a cada entidad, el tratamiento empieza
-  con «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
+  lista. **Dividir se hace sólo cuando la patología lo amerita** y la
+  pregunta que divide tiene lógica en ese punto del recorrido, en cualquier
+  sección; no es una regla que se aplique a todo tratamiento. Si la guía
+  trata distinto a cada entidad durante varios pasos, el tratamiento empieza
+  con una pregunta como «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
   propia cadena**, con su `color` fijo y sus criterios en la `descripcion`
   de la opción; las cadenas se juntan donde el tratamiento es común. **Las
   separaciones van en cualquier sección**, no sólo en el tratamiento: el

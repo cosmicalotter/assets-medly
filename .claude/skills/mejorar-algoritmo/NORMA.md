@@ -77,9 +77,22 @@ cambian, se cambian allí y aquí a la vez.
   vueltas. El modelo es `data/Adultos/crisishiperglicemica.json` (su mapa,
   en «El modelo», abajo); un algoritmo nuevo o reformado tiene que parecerse
   a él. Las reglas:
-  - **Se divide por trastorno.** Si la guía trata distinto a cada entidad,
-    el tratamiento empieza con la pregunta «¿Cuál es el trastorno que vas a
-    tratar?» y cada respuesta abre **su propia cadena** (CAD, CAD
+  - **Dividir es una herramienta, no un requisito.** Se parte una sección
+    sólo cuando la patología lo amerita: cuando la guía hace cosas
+    distintas a cada grupo durante **varios pasos** y el usuario, en ese
+    punto del recorrido, ya conoce el dato que separa. Si las entidades
+    comparten casi todo el manejo y sólo cambia una dosis o un plazo, no se
+    parte: la diferencia va en la opción, en una tabla o en una viñeta. La
+    pregunta que divide va **donde cae en el orden clínico** (en el
+    diagnóstico, la gravedad, el tratamiento o el seguimiento; no
+    necesariamente al empezar el tratamiento) y se redacta para ese punto:
+    «¿Cuál es el trastorno que vas a tratar?» es la del modelo, no una
+    fórmula que se copia. Antes de partir, preguntarse: ¿un clínico, en este
+    paso, haría de verdad esta pregunta? Si no, no se parte.
+  - **Se divide por trastorno cuando lo amerita.** Si la guía trata distinto
+    a cada entidad a lo largo del tratamiento, este empieza con una
+    pregunta como «¿Cuál es el trastorno que vas a tratar?» y cada
+    respuesta abre **su propia cadena** (CAD, CAD
     euglucémica, EHH), con un `color` fijo en la opción y, en la
     `descripcion` de la opción, los criterios que identifican la entidad.
     Las cadenas se juntan donde el tratamiento vuelve a ser común (la CAD
@@ -137,8 +150,9 @@ cambian, se cambian allí y aquí a la vez.
     de las dos).
   - Una misma pregunta no se repite en varios pasos de una cadena (la de la
     glucosa, una sola vez, en su paso).
-  - El **ABCDE se divide por la hemodinámica** cuando la guía actúa distinto
-    (PAS ≥90 → criterios; PAS <90 → choque).
+  - El **ABCDE** sólo existe en los algoritmos de urgencia (§2) y se divide
+    por la hemodinámica cuando la guía actúa distinto (PAS ≥90 → criterios;
+    PAS <90 → choque).
   - Una **sección menú** (Situaciones especiales) es una `rama` con varias
     opciones y un `pie_nodo` que pregunta («¿Qué situación especial tiene
     el paciente?»).
@@ -207,8 +221,10 @@ monitorización, las complicaciones del tratamiento, el alta).
 Cada algoritmo se recorre contra esta lista. Lo que la guía trae y el mapa no,
 es un hueco; lo que la guía no trae, no se escribe.
 
-- **Llegada y estabilización** (en toda urgencia): el **ABCDE** como primer
-  paso del recorrido, antes de confirmar el diagnóstico (vía aérea,
+- **Llegada y estabilización** (sólo en las urgencias en que el paciente
+  puede llegar inestable: CAD, sepsis, ACV, colangitis…; **nunca** en un
+  algoritmo crónico o de consulta, como VIH, hipertensión o diabetes
+  ambulatoria): el **ABCDE** como primer paso del recorrido, antes de confirmar el diagnóstico (vía aérea,
   respiración, circulación con su acceso y su primer bolo, estado
   neurológico, exposición con temperatura y búsqueda del desencadenante), y
   las pruebas de la primera hora como `checklist`. Cada letra con lo que la
@@ -218,6 +234,13 @@ es un hueco; lo que la guía no trae, no se escribe.
   termina en una pregunta («¿Qué presión arterial sistólica tiene al
   llegar?») y el choque tiene su propio camino (§1). En un algoritmo de
   consulta (no urgente), la primera valoración ordenada ocupa ese lugar.
+  **El ABCDE no es una plantilla.** No se copia el de otro algoritmo: cada
+  letra dice sólo lo que esa patología cambia (qué buscar, qué medir, qué
+  hacer distinto), las letras sin nada propio se juntan o se resumen en una
+  frase, y el título, la pill, el `contexto` y la pregunta final salen de
+  la patología («Buscar el foco biliar y la sepsis al llegar», no
+  «Estabilizar con el ABCDE» en todos). Si dos algoritmos acaban con el
+  mismo ABCDE palabra por palabra, uno de los dos está mal.
 - **Definición y criterios diagnósticos**, contados («2 de 4») y completos.
 - **Criterios de gravedad** con sus umbrales y la escala que usa la guía.
 - **Criterios de ingreso, de UCI y de alta**, cada uno como `checklist`.

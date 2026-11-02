@@ -52,8 +52,9 @@ Escribe `$SCRATCH/plan_<algoritmo>.md` con:
 - la silueta actual y la propuesta (secciones, nodos nuevos, nodos que se
   parten), respetando los ids existentes;
 - **el mapa de ramas**, dibujado como el del modelo (`NORMA.md` §1): qué
-  pregunta divide el tratamiento por trastorno y qué cadena sigue cada
-  entidad (con su color), qué preguntas dividen también el diagnóstico, la
+  pregunta divide el tratamiento por trastorno, si la patología lo amerita,
+  y qué cadena sigue cada entidad (con su color), con el porqué de cada
+  división (o de no dividir), qué preguntas dividen también el diagnóstico, la
   gravedad o la hospitalización donde la guía separa grupos, dónde se juntan, todas las respuestas de cada
   pregunta (ningún «Sí» sin su «No»), el paso de vigilancia de cada cadena
   con su pregunta de ritmo, la pregunta de complicaciones, adónde vuelve
@@ -75,6 +76,7 @@ Orden de trabajo, nodo a nodo:
 1. **Estructura**: secciones, nodos nuevos colgados de los que ya existen,
    `pie_nodo` en cada decisión, rótulos en cada opción, según el mapa de
    ramas del plan y las reglas de `NORMA.md` §1: una cadena por trastorno
+   sólo donde la patología lo amerita (no por defecto en todo tratamiento),
    con su `color` y la `descripcion` de sus criterios en la opción, opciones
    sin huecos ni solapes, la vigilancia y las complicaciones como bucle,
    «Aún no» al paso que se repite, «Ya lleva…» para no repetir un paso
