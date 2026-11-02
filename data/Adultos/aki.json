@@ -143,13 +143,13 @@
         {
           "texto": "Ninguna",
           "siguiente_nodo": "diag_identificacion",
-          "descripcion": "Confirmar y estadificar la LRA"
+          "descripcion": "Sin indicación urgente de TRR"
         },
         {
           "texto": "Uremia, hiperamonemia o tóxico",
           "siguiente_nodo": "nodo_treatment",
           "descripcion": "Indicación urgente de TRR",
-          "contexto": "- Se debe iniciar la **TRR** sin demora, si concuerda con los **deseos del paciente**; en Tratamiento, la **indicación urgente** lleva a decidirla."
+          "contexto": "- Se debe iniciar la **TRR** sin demora, si concuerda con los **deseos del paciente** y sus metas de cuidado."
         },
         {
           "texto": "Potasio, acidosis o líquidos",
@@ -311,8 +311,7 @@
       "opciones": [
         {
           "texto": "Sí, se controla",
-          "siguiente_nodo": "diag_identificacion",
-          "descripcion": "Seguir con el diagnóstico"
+          "siguiente_nodo": "diag_identificacion"
         },
         {
           "texto": "No, es refractaria",
@@ -1908,7 +1907,7 @@
         {
           "texto": "Aún no",
           "siguiente_nodo": "trata_diureticos_escalada",
-          "descripcion": "Subir al siguiente escalón"
+          "descripcion": "Sin llegar a la dosis máxima"
         },
         {
           "texto": "No, con la dosis máxima",
@@ -2065,12 +2064,12 @@
         {
           "texto": "Sobrecarga, sin diurético",
           "siguiente_nodo": "trata_diureticos",
-          "descripcion": "Edema o congestión: empezar el bolo"
+          "descripcion": "Edema o congestión pulmonar"
         },
         {
           "texto": "Sobrecarga, ya con diurético",
           "siguiente_nodo": "trata_diureticos_escalada",
-          "descripcion": "Subir al siguiente escalón"
+          "descripcion": "Sin respuesta suficiente al bolo"
         },
         {
           "texto": "Indicación urgente de TRR",
@@ -2151,7 +2150,7 @@
         {
           "texto": "Aún no",
           "siguiente_nodo": "trata_bicarbonato",
-          "descripcion": "pH de 7,21 a 7,29, o ≤7,20 que sube: seguir y repetir los gases"
+          "descripcion": "pH de 7,21 a 7,29, o ≤7,20 que sube"
         },
         {
           "texto": "No, es refractaria",
@@ -2230,7 +2229,7 @@
     "trata_evolucion": {
       "tipo": "pregunta",
       "titulo": "Reevaluar la LRA cada día",
-      "texto": "- Revisar cada día la **creatinina**, la **diuresis** y las **indicaciones de TRR**.\n- Dar por **resuelta** la LRA cuando la creatinina vuelve a **<1,2 × basal** en **7 días**; si queda entre **1,2 y <1,5 ×**, la resolución es **parcial**.\n- Si no se resuelve en **7 días**, ya es una **ERA**: seguir igual y revisarla a los **3 meses**.\n- No alargar la espera: el **estadio 2-3** que persiste **>48-72 h** pide valorar la TRR.",
+      "texto": "- Revisar cada día la **creatinina**, la **diuresis** y las **indicaciones de TRR**.\n- Dar por **resuelta** la LRA cuando la creatinina vuelve a **<1,2 × basal** en **7 días**; si queda entre **1,2 y <1,5 ×**, la resolución es **parcial**.\n- Si no se resuelve en **7 días**, ya es una **ERA**: seguir igual y revisarla a los **3 meses**.\n- No alargar la espera: la LRA **moderada o grave** (estadio 2-3) que persiste **>48-72 h** pide valorar la TRR.",
       "pie_nodo": "¿Cómo evoluciona la LRA en la reevaluación diaria?",
       "opciones": [
         {
@@ -2325,7 +2324,7 @@
     "trata_trr": {
       "tipo": "pregunta",
       "titulo": "Decidir si empezar la TRR",
-      "texto": "- Seguir la estrategia de **inicio diferido**: empezar con una **indicación urgente** (las de la calculadora), no por una cifra de creatinina.\n- El **estadio 3 persistente** es una indicación **relativa**.\n- Decidir de forma **compartida** con el paciente y su familia, y **planificar** la TRR si es probable.",
+      "texto": "- Seguir la estrategia de **inicio diferido**: empezar con una **indicación urgente** (las de la calculadora), no por una cifra de creatinina.\n- La LRA **grave** que persiste (**estadio 3** de KDIGO) es una indicación **relativa**.\n- Decidir de forma **compartida** con el paciente y su familia, y **planificar** la TRR si es probable.",
       "pie_nodo": "¿Qué indicación de TRR tiene?",
       "opciones": [
         {
@@ -2745,7 +2744,7 @@
         {
           "texto": "No, vuelve una indicación",
           "siguiente_nodo": "trata_prescripcion_trr",
-          "descripcion": "Retomar la TRR y revisar cada día"
+          "contexto": "- Se debe retomar la **TRR**; los periodos sin ella sirven para ver si **persisten las indicaciones**."
         }
       ],
       "referencias": [
