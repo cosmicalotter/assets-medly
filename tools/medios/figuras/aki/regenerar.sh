@@ -28,6 +28,8 @@ jpg sed_leucocitario "$D/aki_cilindro_leucocitario_real.jpg"
 jpg eco_normal "$D/aki_eco_rinon_normal_real.jpg"
 jpg eco_hidronefrosis "$D/aki_eco_hidronefrosis_real.jpg"
 jpg eco_vejiga "$D/aki_eco_vejiga_real.jpg"
+jpg hiperk "$D/aki_ecg_hiperpotasemia_real.jpg"
+jpg pulmon_lineas "$D/aki_eco_pulmon_lineas_real.jpg"
 # Esquemas propios
 png creatinina_basal "$D/aki_creatinina_basal.png"
 png estadio_cub "$D/aki_estadio_cub.png"
