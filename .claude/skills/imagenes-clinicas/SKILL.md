@@ -295,7 +295,9 @@ La app no lee SVG. Se descarga con datos móviles: si pesa más, se reduce.
   una foto, `franja_credito.py --titulo … --subtitulo …`).
 - **Los flujogramas de la guía que repiten el algoritmo no van en `media`**
   (y nunca como GIF): van fijos en las fuentes del paso, como
-  `referencias[].imagen_evidencia` con la URL raw completa.
+  `referencias[].imagen_evidencia` con la URL raw completa. Si la guía es
+  **de pago** o de licencia no comercial (ACOG, Elsevier, Wiley, LWW, CC BY-NC…), ni eso: sólo la cita textual
+  (`mejorar-algoritmo/NORMA.md` §7).
 - En el nodo, siempre `media` con título, `info` (ver «Texto de información») y pie (`descripcion`) **breve (≤18
   palabras)** que diga **qué se ve**. La app nueva acepta también `pie`, pero las versiones ya
   instaladas sólo leen `descripcion`: se usa esa. La app lo dibuja como pie de
@@ -361,7 +363,7 @@ transparente abajo (arriba va otra franja igual con el título y la X).
   exacta de referencias que el algoritmo ya cita (mismo `texto`, `paginas`,
   `fuente`…), con `imagen_evidencia` por **URL raw completa**
   (`…/data/imagenes/evidencia/<carpeta_evidencia>/<archivo>`), porque el
-  visor no conoce la carpeta. La app pone junto a la X del visor un botón con
+  visor no conoce la carpeta (sin `imagen_evidencia` si la guía es de pago). La app pone junto a la X del visor un botón con
   un libro abierto y el número de fuentes, que abre la hoja de referencias
   con ésas. Un `info` que sólo describe lo que se ve no lleva. `norma.py`
   avisa de un `info` con cifras en negrita y sin `referencias`; `--chequeo`,
