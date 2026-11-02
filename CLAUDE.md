@@ -164,8 +164,11 @@ Firebase directamente, saltándose `indices/`.
   también en este algoritmo») lleva a un paso al que llega alguna rama**: la
   app lo abre en su flujo, y un paso al que sólo se llega por enlaces no
   tiene sitio y aparece colgado donde no se espera (`norma.py --chequeo` lo
-  denuncia). Un nodo-enlace que no se entiende solo lleva `contexto` en su
-  opción: una o dos viñetas, sólo donde hace falta (`NORMA.md` §4).
+  denuncia). El nodo-enlace se lee como una rama: la respuesta en el rótulo de
+  la línea y, en la píldora, el título del paso al que lleva. Si no se
+  entiende solo, su opción lleva `contexto`: una o dos viñetas, sólo donde
+  hace falta, en lenguaje natural con la fuerza de la guía («Se recomienda…»,
+  «Se debe…», «Se sugiere…»), no en infinitivo (`NORMA.md` §4).
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
   `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué

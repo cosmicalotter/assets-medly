@@ -514,20 +514,34 @@ título no repite la pill y el texto no vuelve a decir el título.
   adónde vuelve («Seguir la vigilancia de las cetonas»).
 - Una opción que evita repetir un paso ya hecho se nombra por el hecho
   («Ya lleva dextrosa»).
-- **Contexto del nodo-enlace** (`contexto` en la opción). Cuando una rama
-  lleva a un paso que ya está dibujado, la app la enseña como un nodo-enlace:
-  una píldora que sólo dice «Nodo en este algoritmo». Si a esa altura del
+- **Nodo-enlace: la respuesta en el rótulo, el destino en la píldora.**
+  Cuando una rama lleva a un paso que ya está dibujado, la app la enseña como
+  un nodo-enlace y la lee como cualquier rama: la opción (su `texto` y su
+  `descripcion`) va en el **rótulo sobre la línea** («Aún no, o intermedio o
+  alto sin resolver»), y la píldora dice **adónde lleva**, con el `titulo`
+  del paso de destino («Estimar el riesgo de coledocolitiasis») y «Nodo en
+  este algoritmo». Por eso el `titulo` del destino tiene que entenderse solo
+  como destino, y la opción no repite adónde va.
+- **Contexto del nodo-enlace** (`contexto` en la opción). Si a esa altura del
   camino no se entiende qué toca hacer al llegar, o qué va primero, la opción
   lleva `contexto`: **una o dos viñetas cortas** (unas 30 palabras en total)
   que la píldora enseña debajo, en el recuadro de los contextos. Va **sólo
   donde hace falta**: una vuelta atrás o un «Aún no» que se entienden solos
   no lo llevan, y no repite la `descripcion` ni el título del destino. Lo que
   dice sale de la guía, con su cita en las `referencias` del paso de origen.
-  En una rama que se dibuja como tarjeta no se ve. Ejemplo (colecistectomía
-  temprana → «Aún no, o intermedio o alto sin resolver»):
+  En una rama que se dibuja como tarjeta no se ve.
+  - **Se escribe en lenguaje natural**, no en infinitivo como el `texto`, y
+    con la fuerza que da la guía: «Se recomienda…» o «Se debe…» cuando la guía
+    recomienda (*we recommend*), «Se sugiere…» cuando sugiere (*we suggest*),
+    «Suele…» para lo habitual.
+  - Sin «:» al final de la primera frase de una viñeta: la app la pintaría
+    como rótulo de color. Mejor una coma («…, porque de él depende…»).
+
+  Ejemplo (colecistectomía temprana → «Aún no, o intermedio o alto sin
+  resolver» → Estimar el riesgo de coledocolitiasis):
 
   ```json
-  "contexto": "- Estimar antes el **riesgo de coledocolitiasis**: decide el **primer procedimiento**.\n- Si el riesgo es **alto**, buscar y extraer el **cálculo** antes o durante la cirugía (CPRE, colangiografía o ecografía intraoperatoria), según la **experiencia local**."
+  "contexto": "- Se sugiere estimar antes el **riesgo de coledocolitiasis**, porque de él depende el **primer procedimiento**.\n- Si el riesgo es **alto**, se recomienda buscar y extraer el **cálculo** antes o durante la cirugía (CPRE, colangiografía o ecografía intraoperatoria), según la **experiencia local**."
   ```
 
 ### Perlas y alertas
