@@ -3497,7 +3497,7 @@
           "nota": "NICE no pide prueba rápida y permite el antibiótico diferido."
         }
       ],
-      "nota_adicional": "En **<3 años** casi siempre es viral. Si es estreptocócica suele ser una estreptococosis: comienzo lento, moco nasal purulento persistente, fiebre baja y adenopatía dolorosa. En los más pequeños pesan más el **dolor abdominal**, el vómito y la poca aceptación del alimento.",
+      "nota_adicional": "En **<3 años** casi siempre es viral y la fiebre reumática es rara: IDSA no pide pruebas. Si es estreptocócica suele ser una estreptococosis: comienzo lento, moco nasal purulento persistente, fiebre baja y adenopatía dolorosa; en los más pequeños, **dolor abdominal** y vómito.",
       "evidencia": {
         "texto": "ACORL: A, fuerte a favor"
       },
@@ -4068,7 +4068,7 @@
       "evidencia": {
         "texto": "ACORL: C, condicional a favor (antibiótico temprano)"
       },
-      "pie_nodo": "¿Alergia a la penicilina o intolerancia?",
+      "pie_nodo": "¿Alergia a la penicilina?",
       "opciones": [
         {
           "texto": "No: penicilina (o amoxicilina)",
@@ -4076,7 +4076,7 @@
           "color": "azul"
         },
         {
-          "texto": "Alergia o intolerancia: segunda línea",
+          "texto": "Alergia a la penicilina: segunda línea",
           "siguiente_nodo": "trat_antibiotico_segunda_linea",
           "color": "morado"
         }
@@ -4157,7 +4157,7 @@
     "trat_antibiotico_primera_linea": {
       "tipo": "pregunta",
       "titulo": "Faringoamigdalitis: penicilina, 10 días",
-      "texto": "- Primera línea: penicilina; ningún estreptococo del grupo A es resistente. Tratar bien previene la fiebre reumática.\n- Penicilina benzatínica IM, dosis única: también si no se asegura la vía oral.\n- Penicilina V oral **10 días**; la amoxicilina **10 días** es equivalente.\n- Nunca amoxicilina-clavulanato de entrada. Revalorar si no responde en **48-72 h**.",
+      "texto": "- Primera línea: penicilina; ningún estreptococo del grupo A es resistente. Tratar bien previene la fiebre reumática.\n- Penicilina V oral **10 días**; la amoxicilina **10 días** es equivalente.\n- Penicilina benzatínica IM, dosis única: si no se asegura la vía oral o vomita (es dolorosa).\n- Nunca amoxicilina-clavulanato de entrada. Revalorar si no responde en **48-72 h**.",
       "media": [
         {
           "recurso": "ivas_amoxicilina.png",
@@ -4211,20 +4211,15 @@
       ],
       "farmacos": [
         {
-          "nombre": "Penicilina benzatínica IM",
-          "dosis": "<27 kg: **600.000 UI**; ≥27 kg: **1.200.000 UI**",
-          "pauta": "Dosis única, IM profunda.",
-          "paginas": "3 (IDSA 2012); 15 (ACORL)"
-        },
-        {
           "nombre": "Penicilina V oral",
           "dosis": "Niños: **250 mg** cada **12 h** o cada **8 h**, **10 días**",
           "pauta": "Adolescentes: 250 mg cada 6 h o 500 mg cada 12 h.",
-          "paginas": "3 (IDSA 2012)"
+          "paginas": "3 (IDSA 2012)",
+          "nota": "SEIP: 250 mg cada 12 h si <12 años y <27 kg; 500 mg cada 12 h si ≥12 años o ≥27 kg."
         },
         {
           "nombre": "Amoxicilina",
-          "dosis": "**50 mg/kg** cada **24 h** o **25 mg/kg** cada **12 h**, máx. **1000 mg**, **10 días**",
+          "dosis": "**50 mg/kg** cada **24 h** (máx. **1000 mg**) o **25 mg/kg** cada **12 h** (máx. **500 mg**), **10 días**",
           "pauta": "Alternativa equivalente; mejor sabor y absorción.",
           "paginas": "15 (ACORL); 7 (SEIP)",
           "por_kg": {
@@ -4233,6 +4228,12 @@
             "periodo": "dia",
             "tope": 1000
           }
+        },
+        {
+          "nombre": "Penicilina benzatínica IM",
+          "dosis": "<27 kg: **600.000 UI**; ≥27 kg: **1.200.000 UI**",
+          "pauta": "Dosis única, IM profunda. Si no se asegura la vía oral o vomita: es dolorosa.",
+          "paginas": "3 (IDSA 2012); 15 (ACORL)"
         }
       ],
       "discrepancias": [
@@ -4253,6 +4254,11 @@
               "fuente": "NICE NG84",
               "dice": "Fenoximetilpenicilina 5-10 días: 5 pueden bastar para curar los síntomas; 10 aumentan la cura microbiológica",
               "paginas": "10"
+            },
+            {
+              "fuente": "SEIP 2021",
+              "dice": "Penicilina V o amoxicilina 10 días; la benzatínica, dolorosa, sólo si hay mal cumplimiento oral o vómitos",
+              "paginas": "7"
             }
           ],
           "nota": "Todas ponen la penicilina primero; los 10 días buscan erradicar el estreptococo y evitar la fiebre reumática."
@@ -4434,13 +4440,53 @@
           "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
           "cita": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):533-555.",
           "imagen_evidencia": "evidencia_ivas_pag16_faab_dentro_complicaciones_no_supurativas_encuentran.png"
+        },
+        {
+          "titulo": "Tabla 2: amoxicilina",
+          "paginas": "3",
+          "texto": "Amoxicillin, oral 50 mg/kg once daily (max = 1000 mg); alternate: 25 mg/kg (max = 500 mg) twice daily",
+          "fuente": "IDSA 2012",
+          "anio": "2012",
+          "url": "https://academic.oup.com/cid/article/55/10/1279/324779",
+          "cita": "Shulman ST, Bisno AL, Clegg HW, et al. Clinical practice guideline for the diagnosis and management of group A streptococcal pharyngitis: 2012 update by the Infectious Diseases Society of America. Clin Infect Dis 2012;55(10):1279-1282.",
+          "imagen_evidencia": "evidencia_ivas_pag3_idsa2012_amoxicillin_oral_50_mgkg_once.png"
+        },
+        {
+          "titulo": "Penicilina benzatínica: dolorosa",
+          "paginas": "7",
+          "texto": "La administración de penicilina G benzatina por vía intramuscular profunda en dosis única es dolorosa y hoy día no se recomienda.",
+          "fuente": "SEIP 2021",
+          "anio": "2021",
+          "url": "https://www.medigraphic.com/pdfs/infectologia/lip-2021/lip212c.pdf",
+          "cita": "Piñeiro Pérez R, Hijano Bandera F, Álvez González F, et al. Extracto del documento de consenso sobre el diagnóstico y tratamiento de la faringoamigdalitis aguda. Rev Latin Infect Pediatr 2021;34(2):62-72.",
+          "imagen_evidencia": "evidencia_ivas_pag7_seip2021_administracion_penicilina_g_benzatina_via.png"
+        },
+        {
+          "titulo": "Tabla 7: penicilina V y benzatínica",
+          "paginas": "7",
+          "texto": "Menores de 12 años y de 27 kg: 250 mg cada 12 h - Mayores de 12 años o de 27 kg: 500 mg cada 12 h",
+          "fuente": "SEIP 2021",
+          "anio": "2021",
+          "url": "https://www.medigraphic.com/pdfs/infectologia/lip-2021/lip212c.pdf",
+          "cita": "Piñeiro Pérez R, Hijano Bandera F, Álvez González F, et al. Extracto del documento de consenso sobre el diagnóstico y tratamiento de la faringoamigdalitis aguda. Rev Latin Infect Pediatr 2021;34(2):62-72.",
+          "imagen_evidencia": "evidencia_ivas_pag7_seip2021_menores_12_anos_27_kg.png"
+        },
+        {
+          "titulo": "Tabla 7: benzatínica si hay vómitos o mal cumplimiento",
+          "paginas": "7",
+          "texto": "En caso de mal cumplimiento vía oral o vómitos - Penicilina G benzatina, dosis única IM profunda",
+          "fuente": "SEIP 2021",
+          "anio": "2021",
+          "url": "https://www.medigraphic.com/pdfs/infectologia/lip-2021/lip212c.pdf",
+          "cita": "Piñeiro Pérez R, Hijano Bandera F, Álvez González F, et al. Extracto del documento de consenso sobre el diagnóstico y tratamiento de la faringoamigdalitis aguda. Rev Latin Infect Pediatr 2021;34(2):62-72.",
+          "imagen_evidencia": "evidencia_ivas_pag7_seip2021_caso_mal_cumplimiento_via_oral.png"
         }
       ]
     },
     "trat_antibiotico_segunda_linea": {
       "tipo": "pregunta",
       "titulo": "Faringoamigdalitis: alergia o intolerancia",
-      "texto": "- Alergia inmediata (tipo I) a la penicilina: macrólido o clindamicina.\n- Alergia que no es inmediata: cefuroxima.\n- Intolerancia o sin primera línea: amoxicilina-clavulanato.\n- Con mononucleosis no dar macrólidos ni cefalosporinas: alto riesgo de erupción cutánea.",
+      "texto": "- Alergia inmediata (tipo I) a la penicilina: macrólido o clindamicina.\n- Alergia que no es inmediata: cefuroxima.\n- Con mononucleosis no dar macrólidos ni cefalosporinas: alto riesgo de erupción cutánea.",
       "alertas": [
         {
           "titulo": "Alergia inmediata",
@@ -4491,18 +4537,6 @@
             "unidad": "mg",
             "cantidad": 30,
             "periodo": "dia"
-          }
-        },
-        {
-          "nombre": "Amoxicilina-clavulanato",
-          "dosis": "**50 mg/kg** cada **24 h** (máx. **1 g**)",
-          "pauta": "5 días. Sólo intolerancia o falta de primera línea: es una penicilina.",
-          "paginas": "15",
-          "por_kg": {
-            "unidad": "mg",
-            "cantidad": 50,
-            "periodo": "dia",
-            "tope": 1000
           }
         }
       ],
@@ -4621,16 +4655,6 @@
           "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
           "cita": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):533-555.",
           "imagen_evidencia": "evidencia_ivas_pag15_faab_ninos_10_mgkgdosis_vo_cada.png"
-        },
-        {
-          "titulo": "Tabla 6: amoxicilina con ácido clavulánico",
-          "paginas": "15",
-          "texto": "Amoxicilina con ácido clavulánico Niños: 50 mg/kg VO cada 24 horas (máximo 1 gramo)",
-          "fuente": "ACORL (faringoamigdalitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244c.pdf",
-          "cita": "Romero-Moreno LF, García-Torres N, Izquierdo-Velásquez JC, Hernández-Rodríguez DC. Guía para el diagnóstico y tratamiento de faringoamigdalitis aguda bacteriana. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):533-555.",
-          "imagen_evidencia": "evidencia_ivas_pag15_faab_amoxicilina_acido_clavulanico_ninos_50.png"
         },
         {
           "titulo": "NG84 tabla 2: claritromicina 5 días",
