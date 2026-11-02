@@ -160,7 +160,12 @@ Firebase directamente, saltándose `indices/`.
   nunca al principio de la sección; un paso compartido pregunta «¿Qué
   crisis estás tratando?» y devuelve a cada una a la suya. Cada rama
   hermana sale en su propio color, que heredan sus pasos. Las calculadoras,
-  con las mismas unidades que los algoritmos.
+  con las mismas unidades que los algoritmos. **Un salto lateral («Ver
+  también en este algoritmo») lleva a un paso al que llega alguna rama**: la
+  app lo abre en su flujo, y un paso al que sólo se llega por enlaces no
+  tiene sitio y aparece colgado donde no se espera (`norma.py --chequeo` lo
+  denuncia). Un nodo-enlace que no se entiende solo lleva `contexto` en su
+  opción: una o dos viñetas, sólo donde hace falta (`NORMA.md` §4).
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
   `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué

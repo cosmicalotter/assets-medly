@@ -376,6 +376,21 @@ el título se lee solo, como la cabecera del paso, y la pregunta como lo que
 decide el siguiente. Un salto lateral es una salida condicional («Fósforo
 bajo: fosfato»): su texto dice la condición y adónde lleva, corto.
 
+**Un salto lateral lleva a un paso que vive en un flujo.** Al tocarlo, la app
+abre las ramas desde la raíz hasta ese paso y lleva la cámara allí; la
+tarjeta en la que se estaba no cambia y se sigue desde ella sin deshacer
+nada. Por eso su destino tiene que ser un paso **al que llega alguna rama**.
+Un paso al que sólo se llega por enlaces (la tabla de antibióticos que
+comparten varias cadenas, el mantenimiento común) no tiene sitio en el mapa:
+la app lo cuelga de la primera tarjeta que enlaza a él y el usuario lo ve
+aparecer donde no lo esperaba. Antes de enlazarlo se le da un sitio: una
+opción que lleve a él donde cae en el orden clínico (si lo comparten varias
+cadenas, un paso común que pregunta «¿Qué trastorno estás tratando?» y
+devuelve a cada una a la suya, §1). La única excepción es la **salida** de un
+paso sin ramas («Ir al mantenimiento»): ese enlace es el camino y sí cuelga
+su destino. `tools/norma.py --chequeo` denuncia los saltos laterales a pasos
+sin flujo.
+
 Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
 título no repite la pill y el texto no vuelve a decir el título.
 
@@ -499,6 +514,21 @@ título no repite la pill y el texto no vuelve a decir el título.
   adónde vuelve («Seguir la vigilancia de las cetonas»).
 - Una opción que evita repetir un paso ya hecho se nombra por el hecho
   («Ya lleva dextrosa»).
+- **Contexto del nodo-enlace** (`contexto` en la opción). Cuando una rama
+  lleva a un paso que ya está dibujado, la app la enseña como un nodo-enlace:
+  una píldora que sólo dice «Nodo en este algoritmo». Si a esa altura del
+  camino no se entiende qué toca hacer al llegar, o qué va primero, la opción
+  lleva `contexto`: **una o dos viñetas cortas** (unas 30 palabras en total)
+  que la píldora enseña debajo, en el recuadro de los contextos. Va **sólo
+  donde hace falta**: una vuelta atrás o un «Aún no» que se entienden solos
+  no lo llevan, y no repite la `descripcion` ni el título del destino. Lo que
+  dice sale de la guía, con su cita en las `referencias` del paso de origen.
+  En una rama que se dibuja como tarjeta no se ve. Ejemplo (colecistectomía
+  temprana → «Aún no, o intermedio o alto sin resolver»):
+
+  ```json
+  "contexto": "- Estimar antes el **riesgo de coledocolitiasis**: decide el **primer procedimiento**.\n- Si el riesgo es **alto**, buscar y extraer el **cálculo** antes o durante la cirugía (CPRE, colangiografía o ecografía intraoperatoria), según la **experiencia local**."
+  ```
 
 ### Perlas y alertas
 
