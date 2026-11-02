@@ -34,7 +34,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Lesión renal aguda",
-      "texto": "- **Lesión renal aguda (LRA):** alteración renal **funcional o estructural** en **≤7 días**: creatinina ↑ **≥0,3 mg/dL en 48 h** o **≥1,5 × basal**, cistatina C **≥1,5 × basal**, diuresis **<0,5 mL/kg/h ≥6 h** o un **biomarcador de daño** validado.\n- **LRA transitoria o persistente:** se corrige en **≤48 h** o dura **>48 h**.\n- **Enfermedad renal aguda (ERA):** alteración de **≤3 meses**: LRA, TFG **<60** o caída **≥35 mL/min/1,73 m²**, creatinina ↑ **>50 %** o **daño renal** (albuminuria, hematuria, leucocituria). Pasados **3 meses**, es ERC.\n- **Resolución:** **completa** con creatinina **<1,2 × basal** (o TFG **>80 %** en la ERA); **parcial** con **1,2 a <1,5 ×** (a los 7 días en la LRA y a los 3 meses en la ERA).",
+      "texto": "- **Lesión renal aguda (LRA):** alteración renal **funcional o estructural** en **≤7 días**: subida de la creatinina **≥0,3 mg/dL en 48 h** o **≥1,5 × basal**, cistatina C **≥1,5 × basal**, diuresis **<0,5 mL/kg/h ≥6 h** o un **biomarcador de daño** validado.\n- **LRA transitoria o persistente:** se corrige en **≤48 h** o dura **>48 h**.\n- **Enfermedad renal aguda (ERA):** alteración de **≤3 meses**: LRA, TFG **<60** o caída **≥35 mL/min/1,73 m²**, subida de la creatinina **>50 %** o **daño renal** (albuminuria, hematuria, leucocituria). Pasados **3 meses**, es ERC.\n- **Resolución:** **completa** con creatinina **<1,2 × basal** (o TFG **>80 %** en la ERA); **parcial** con **1,2 a <1,5 ×** (a los 7 días en la LRA y a los 3 meses en la ERA).",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -136,20 +136,61 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Buscar las complicaciones que no pueden esperar",
-      "contexto": "Estas complicaciones piden **TRR urgente** si no responden al **tratamiento médico**, así que se buscan **antes de estudiar la causa**.",
-      "texto": "- **Potasio** y ECG: buscar **hiperpotasemia** de **≥6,0 mEq/L**, que sube rápido o con toxicidad cardiaca.\n- **Gases**: buscar **acidemia grave**, con pH **≤7,20** o bicarbonato **≤12 mEq/L**.\n- **Respiración**: buscar **edema pulmonar** con hipoxemia o una **sobrecarga** de líquidos.\n- **Uremia**: buscar sangrado, **pericarditis** o **encefalopatía**.\n- **Tóxicos**: preguntar por un **tóxico dializable** (salicilatos, litio, alcoholes tóxicos, metformina).",
-      "pie_nodo": "¿Tiene alguna de estas complicaciones al llegar?",
+      "contexto": "Estas complicaciones piden **TRR urgente**, así que se buscan **antes de estudiar la causa**.",
+      "texto": "- Buscar con el **potasio**, los **gases** y la exploración las **indicaciones urgentes** de la tabla.\n- Mirar en el ECG si hay toxicidad cardiaca por el **potasio alto**.\n- Con **uremia**, hiperamonemia o un **tóxico dializable**, la indicación de TRR es **urgente** desde el inicio.\n- Con **hiperpotasemia**, acidosis o **sobrecarga**, tratar primero: la TRR urgente es para la **refractaria**.",
+      "pie_nodo": "¿Qué complicación tiene al llegar?",
       "opciones": [
         {
-          "texto": "No, ninguna",
+          "texto": "Ninguna",
           "siguiente_nodo": "diag_identificacion",
           "descripcion": "Confirmar y estadificar la LRA"
         },
         {
-          "texto": "Sí, alguna",
-          "siguiente_nodo": "diag_urgente"
+          "texto": "Uremia, hiperamonemia o tóxico",
+          "siguiente_nodo": "nodo_treatment",
+          "descripcion": "Indicación urgente de TRR"
+        },
+        {
+          "texto": "Potasio, acidosis o líquidos",
+          "siguiente_nodo": "diag_urgente",
+          "descripcion": "Sin uremia, hiperamonemia ni tóxico dializable"
         }
       ],
+      "tabla": {
+        "titulo": "Indicaciones urgentes de TRR",
+        "columnas": [
+          "Complicación",
+          "Criterios"
+        ],
+        "filas": [
+          [
+            "Hiperpotasemia",
+            "- K **≥6,0 mEq/L**\n- O en **ascenso rápido**\n- O con **toxicidad cardiaca**\n- Y **refractaria** al tratamiento médico"
+          ],
+          [
+            "Acidosis metabólica",
+            "- pH **≤7,20**\n- O bicarbonato **≤12 mEq/L**\n- Con pCO₂ **normal o baja**\n- Y **refractaria** al tratamiento médico"
+          ],
+          [
+            "Líquidos",
+            "- **Hipoxemia grave** por edema pulmonar que no responde a **diuréticos**\n- O **acumulación excesiva** de líquidos refractaria"
+          ],
+          [
+            "Uremia",
+            "- **Sangrado**\n- **Pericarditis**\n- **Encefalopatía**"
+          ],
+          [
+            "Hiperamonemia grave",
+            "- **Insuficiencia hepática**\n- Errores innatos del metabolismo"
+          ],
+          [
+            "Tóxico dializable",
+            "- **Salicilatos**\n- **Litio**\n- Alcoholes tóxicos\n- **Metformina**"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
+      },
       "chips": [
         {
           "texto": "Urgente",
@@ -161,7 +202,7 @@
           "recurso": "aki_ecg_hiperpotasemia_real.jpg",
           "titulo": "Hiperpotasemia en el ECG",
           "descripcion": "Ondas T altas y picudas en V2-V3 por hiperpotasemia.",
-          "info": "{#C95A61:Rectángulo rojo}: ondas **T altas y picudas** en V2 y V3, un signo de **toxicidad cardiaca** por el potasio alto. Con potasio de **≥6,0 mEq/L**, que sube rápido o con estos cambios, y **refractario** al tratamiento médico, la **TRR es urgente**.",
+          "info": "{#C95A61:Rectángulo rojo}: ondas **T altas y picudas** en V2, que también se ven en V3: un signo de **toxicidad cardiaca** por el potasio alto. Basta un criterio: K **≥6,0 mEq/L**, en **ascenso rápido** o con estos cambios. Si **no responde** al tratamiento médico, la **TRR es urgente**.",
           "en_texto": "toxicidad cardiaca",
           "referencias": [
             {
@@ -209,24 +250,24 @@
           "imagen_evidencia": "evidencia_aki_pag249_tabla_41_acidemia_grave.png"
         },
         {
-          "titulo": "Tabla 41: edema pulmonar resistente a diuréticos",
+          "titulo": "Tabla 41: edema pulmonar y líquidos refractarios",
           "paginas": "249",
-          "texto": "Severe hypoxemia and perception of volume overload (diuretic-resistant pulmonary edema)",
+          "texto": "Severe hypoxemia and perception of volume overload (diuretic-resistant pulmonary edema) Excessive fluid accumulation refractory to medical intervention",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_edema_pulmonar.png"
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_edema_pulmonar_y_liquidos_refra.png"
         },
         {
-          "titulo": "Tabla 41: complicaciones urémicas",
+          "titulo": "Tabla 41: uremia e hiperamonemia",
           "paginas": "249",
-          "texto": "Uremic complications (bleeding, pericarditis, encephalopathy)",
+          "texto": "Uremic complications (bleeding, pericarditis, encephalopathy) Severe hyperammonemia (inborn errors of metabolisms, liver failure)",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_complicaciones_uremicas.png"
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_uremia_e_hiperamonemia.png"
         },
         {
           "titulo": "Tabla 41: tóxico dializable",
@@ -243,8 +284,8 @@
     "diag_urgente": {
       "tipo": "pregunta",
       "estilo": "peligro",
-      "titulo": "Tratar la complicación y preparar la TRR urgente",
-      "texto": "- Empezar el **tratamiento médico** de la complicación: la TRR urgente se reserva para la que es **refractaria**.\n- Avisar a **nefrología** y **planificar la TRR**: acceso vascular y, si el centro no la tiene, **traslado** a uno que sí.\n- Si la complicación es **refractaria** → iniciar la TRR, si concuerda con los **deseos del paciente**.",
+      "titulo": "Tratar la complicación y preparar la TRR",
+      "texto": "- Empezar el **tratamiento médico** de la hiperpotasemia, la acidosis o la **sobrecarga**.\n- Avisar a **nefrología** y **planificar la TRR**: acceso vascular y, si el centro no la tiene, **traslado** a uno que sí.\n- Si la complicación es **refractaria** → iniciar la TRR, si concuerda con los **deseos del paciente**.",
       "pie_nodo": "¿Responde la complicación al tratamiento médico?",
       "opciones": [
         {
@@ -258,10 +299,10 @@
           "descripcion": "Indicación urgente de TRR"
         }
       ],
-      "nota_adicional": "La **acidemia grave** (pH **<7,20**) sin otra indicación urgente se trata primero con **bicarbonato IV**, porque **reduce el uso de TRR**.",
+      "nota_adicional": "La **acidosis metabólica grave** (pH **<7,20**) sin otra indicación urgente se trata primero con **bicarbonato IV**, porque **reduce el uso de TRR**.",
       "chips": [
         {
-          "texto": "Avisar a nefrología",
+          "texto": "Nefrología",
           "color": "rojo"
         }
       ],
@@ -337,7 +378,7 @@
     "diag_identificacion": {
       "tipo": "pregunta",
       "titulo": "Confirmar la LRA",
-      "texto": "- Aplicar los **criterios** de la calculadora: basta **uno** en los últimos **7 días**.\n- Usar como **creatinina basal** la ambulatoria del último año; si no la hay, la del ingreso o la **más baja** del ingreso.\n- Sin ningún valor previo, estimarla con **CKD-EPI** suponiendo una TFG de **75 mL/min/1,73 m²**.\n- Si la creatinina es **poco fiable** (poca **masa muscular**, hepatopatía) → medir **cistatina C**.",
+      "texto": "- Aplicar los **criterios** de la calculadora: basta **uno** en los últimos **7 días**.\n- Usar como creatinina basal la **ambulatoria** del último año; si no la hay, la del ingreso o la **más baja** del ingreso.\n- Sin ningún valor previo, estimarla con **CKD-EPI** suponiendo una TFG de **75 mL/min/1,73 m²**.\n- Si la creatinina es **poco fiable** (poca **masa muscular**, hepatopatía) → medir **cistatina C**.",
       "pie_nodo": "¿Cumple algún criterio de LRA en los últimos 7 días?",
       "opciones": [
         {
@@ -392,6 +433,16 @@
         }
       ],
       "referencias": [
+        {
+          "titulo": "PP 1.1.2: creatinina basal en toda sospecha",
+          "paginas": "47",
+          "texto": "A baseline SCr value should be ascertained for all patients with suspected or confirmed AKI.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag47_pp_1_1_2_creatinina_basal_en_toda_sospecha.png"
+        },
         {
           "titulo": "Creatinina del ingreso, salvo LRA al ingreso",
           "paginas": "49",
@@ -547,7 +598,7 @@
     "diag_etiologia": {
       "tipo": "pregunta",
       "titulo": "Buscar la causa",
-      "texto": "- Preguntar por:\n  - **Exposiciones**: deshidratación, sepsis, cirugía, shock, fármacos, contraste o tóxicos.\n  - **Susceptibilidad**: edad, ERC, diabetes, cardiopatía o hepatopatía.\n- Si la causa **no está clara**, mirar el sedimento urinario al **microscopio**:\n  - Si hay cilindros granulosos «marrón barroso» o células tubulares → **necrosis tubular aguda**.\n- Si hay riesgo de **obstrucción**, pedir una **ecografía renal y vesical**.",
+      "texto": "- Preguntar por las **exposiciones** y la **susceptibilidad** de la tabla.\n- Si la causa **no está clara**, mirar el sedimento urinario al **microscopio**:\n  - Si hay cilindros granulosos «marrón barroso» o células tubulares → **necrosis tubular aguda**.\n- Si hay riesgo de **obstrucción**, pedir una **ecografía renal y vesical**.",
       "pie_nodo": "¿Qué causa orientan la historia, el sedimento y la ecografía?",
       "opciones": [
         {
@@ -558,7 +609,7 @@
         {
           "texto": "Una causa con tratamiento propio",
           "siguiente_nodo": "nodo_causas",
-          "descripcion": "Obstrucción, glomerular, mieloma, hepatorrenal, lisis, rabdomiólisis o tropical"
+          "descripcion": "Como la obstrucción o una causa glomerular"
         },
         {
           "texto": "Ninguna clara",
@@ -567,6 +618,25 @@
         }
       ],
       "nota_adicional": "La **FeNa y la FeUrea** rinden poco y se reservan para **casos seleccionados**: sus cortes clásicos (**<1 %** y **<35 %**) suponían **oliguria**, sin diuréticos ni ERC.",
+      "tabla": {
+        "titulo": "Qué preguntar",
+        "columnas": [
+          "Grupo",
+          "Datos"
+        ],
+        "filas": [
+          [
+            "Exposiciones",
+            "- **Deshidratación**\n- **Sepsis** o shock\n- Cirugía\n- **Fármacos** o contraste\n- Tóxicos"
+          ],
+          [
+            "Susceptibilidad",
+            "- **Edad** avanzada\n- **ERC**\n- Diabetes\n- Cardiopatía\n- Hepatopatía"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
+      },
       "evidencia": {
         "texto": "GRADE: débil a favor",
         "fuente": "KDIGO 2026, Rec 2.5.1 (2D, sedimento)"
@@ -773,7 +843,7 @@
       "tipo": "pregunta",
       "titulo": "Hacer la prueba de estrés con furosemida",
       "texto": "- Hacerla sólo en LRA **estadio 1-2** con **euvolemia o hipervolemia**, tras descartar **obstrucción** y alergia a la furosemida.\n- Poner **furosemida 1 mg/kg** IV si no tomaba **diurético de asa**, o **1,5 mg/kg** si lo tomaba.\n- Medir la diuresis de las **2 h** siguientes.",
-      "pie_nodo": "¿Es candidato y cuánta orina hace en las 2 h siguientes?",
+      "pie_nodo": "¿Cuánta orina hace en las 2 h tras la furosemida?",
       "opciones": [
         {
           "texto": "Menos de 200 mL",
@@ -903,13 +973,13 @@
       "texto": "- Con **menos de 200 mL**, el riesgo de llegar a **estadio 3** o a **TRR** en **14 días** es alto.\n- Medir la **diuresis y la creatinina** más a menudo, revisar los **nefrotóxicos** y reevaluar la **hemodinamia**.\n- Avisar a **nefrología** y **planificar la TRR** (acceso, traslado) antes de que haga falta.",
       "opciones": [
         {
-          "texto": "Seguir con el tratamiento",
+          "texto": "Nefrología avisada",
           "siguiente_nodo": "nodo_treatment"
         }
       ],
       "chips": [
         {
-          "texto": "Avisar a nefrología",
+          "texto": "Nefrología",
           "color": "rojo"
         }
       ],
@@ -953,7 +1023,7 @@
       "texto": "- Con **200 mL o más**, el riesgo de progresar a **estadio 3** o a **TRR** es menor.\n- Mantener el **paquete de protección renal** y vigilar la **creatinina y la diuresis**.\n- Repetir la valoración si la diuresis baja de **0,5 mL/kg/h** o la creatinina sube **≥0,3 mg/dL**.",
       "opciones": [
         {
-          "texto": "Seguir con el tratamiento",
+          "texto": "Reevaluación programada",
           "siguiente_nodo": "nodo_treatment"
         }
       ],
@@ -983,7 +1053,7 @@
     "diag_era_check": {
       "tipo": "pregunta",
       "titulo": "Buscar una enfermedad renal aguda",
-      "texto": "- Sin LRA, buscar una **ERA**: una alteración renal de **≤3 meses**. Basta **un criterio**:\n  - **Funcional**: TFG **<60 mL/min/1,73 m²**, caída de la TFG **≥35 mL/min/1,73 m²** o creatinina ↑ **>50 %**.\n  - **Estructural**: **albuminuria**, hematuria o leucocituria.",
+      "texto": "- Sin LRA, buscar una **ERA**: una alteración renal de **≤3 meses**.\n- Aplicar los **criterios de ERA** de la calculadora: basta **uno**.\n- Los hay de dos tipos:\n  - **Funcionales**: la TFG y la **creatinina**.\n  - **Estructurales**: los de la **orina**.",
       "pie_nodo": "¿Cumple algún criterio de ERA y cuánto tiempo lleva?",
       "opciones": [
         {
@@ -1132,7 +1202,7 @@
     "diag_sin_lra": {
       "estilo": "exito",
       "titulo": "Vigilar si hay riesgo",
-      "texto": "- Con los datos actuales **no hay LRA ni ERA**.\n- Si hay **riesgo** (sepsis, cirugía mayor, nefrotóxicos, contraste), repetir la **creatinina y la diuresis**.\n- Pedir una **albuminuria basal** si hay riesgo de LRA: añade **valor pronóstico** a la TFG.",
+      "texto": "- Con los datos actuales **no hay LRA ni ERA**.\n- Repetir la **creatinina y la diuresis** si hay **riesgo**:\n  - **Sepsis**.\n  - **Cirugía mayor**.\n  - Nefrotóxicos o **contraste**.\n- Pedir una **albuminuria basal** si hay riesgo de LRA: añade **valor pronóstico** a la TFG.",
       "referencias": [
         {
           "titulo": "Exposiciones que más causan LRA",
@@ -1169,7 +1239,7 @@
     "nodo_treatment": {
       "estilo": "rama",
       "texto": "Tratamiento",
-      "pie_nodo": "¿Tiene una complicación que no responde al tratamiento médico?",
+      "pie_nodo": "¿Tiene una indicación urgente de TRR?",
       "opciones": [
         {
           "texto": "No",
@@ -1177,38 +1247,44 @@
           "descripcion": "Proteger el riñón y valorar la volemia"
         },
         {
-          "texto": "Sí, refractaria",
+          "texto": "Sí",
           "siguiente_nodo": "trata_trr",
-          "descripcion": "Potasio, acidosis o líquidos; uremia; tóxico dializable"
+          "descripcion": "Uremia, hiperamonemia o tóxico; potasio, acidosis o líquidos refractarios"
         }
       ],
       "referencias": [
         {
-          "titulo": "Rec 3.2.3: paquete en el quirúrgico de alto riesgo (1B)",
-          "paginas": "144",
-          "texto": "We recommend the use of a multicomponent kidney-protection strategy in adult surgical patients at high risk for AKI identified by clinical factors and biomarkers",
+          "titulo": "PP 5.1.3: TRR si la complicación es refractaria",
+          "paginas": "252",
+          "texto": "For children and adults with AKI and medically refractory fluid, electrolyte, acid-base, and/or metabolic complications (e.g., uremia), initiate RRT if consistent with patient preferences and goals of care.",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag144_rec_3_2_3_paquete_en_el_quirurgico_de_alto.png"
+          "imagen_evidencia": "evidencia_aki_pag252_pp_5_1_3.png"
+        },
+        {
+          "titulo": "Tabla 41: uremia e hiperamonemia",
+          "paginas": "249",
+          "texto": "Uremic complications (bleeding, pericarditis, encephalopathy) Severe hyperammonemia (inborn errors of metabolisms, liver failure)",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_uremia_e_hiperamonemia.png"
         }
       ]
     },
     "trata_proteccion": {
       "tipo": "pregunta",
       "titulo": "Empezar el paquete de protección renal",
-      "texto": "- Suspender los **nefrotóxicos** siempre que se pueda.\n- Optimizar la **volemia** y la **presión de perfusión**, y vigilar la creatinina y la diuresis.\n- En el **paciente crítico**, mantener la glucemia en **140-180 mg/dL** con **insulina**.\n- Preferir la **nutrición enteral**, sin **restringir proteínas** para retrasar la TRR ni darlas en exceso.",
+      "texto": "- Suspender los nefrotóxicos **siempre que se pueda**.\n- Optimizar la **volemia** y la **presión de perfusión**, y vigilar la creatinina y la diuresis.\n- En el **paciente crítico**, mantener la glucemia en **140-180 mg/dL** con **insulina**.\n- Preferir la **nutrición enteral**, sin **restringir proteínas** para retrasar la TRR ni darlas en exceso.",
       "opciones": [
         {
           "texto": "Paquete en marcha",
           "siguiente_nodo": "trata_stewardship"
         }
       ],
-      "evidencia": {
-        "texto": "GRADE: fuerte a favor",
-        "fuente": "KDIGO 2026, Rec 3.2.3 (1B, quirúrgico de alto riesgo)"
-      },
       "media": [
         {
           "recurso": "aki_proteccion_estadio.png",
@@ -1240,6 +1316,16 @@
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
           "imagen_evidencia": "evidencia_aki_pag144_vigilar_creatinina_y_diuresis.png"
+        },
+        {
+          "titulo": "PP 3.2.4: protección en la LRA establecida",
+          "paginas": "144",
+          "texto": "In children and adults with established AKI or AKD, kidney-protection strategies should be considered.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag144_pp_3_2_4_proteccion_en_la_lra_establecid.png"
         },
         {
           "titulo": "Rec 3.2.3: paquete en el quirúrgico de alto riesgo (1B)",
@@ -1286,7 +1372,7 @@
     "trata_stewardship": {
       "tipo": "pregunta",
       "titulo": "Revisar los fármacos y sus dosis",
-      "texto": "- Pedir a **farmacia** que revise la medicación: **retirar** el nefrotóxico, cambiarlo por otro menos tóxico o **bajar la dosis**.\n- Dosificar por la **tendencia** de la creatinina y la diuresis, o por el **KeGFR**.\n- Medir los **niveles** de los fármacos de margen estrecho (**vancomicina**, aminoglucósidos).",
+      "texto": "- Pedir a **farmacia** que revise la medicación y decida con ella:\n  - **Retirar** el nefrotóxico.\n  - Cambiarlo por otro **menos tóxico**.\n  - **Bajar la dosis**.\n- Dosificar por la **tendencia** de la creatinina y la diuresis, o por el **KeGFR**.\n- Medir los **niveles** de los fármacos de margen estrecho (**vancomicina**, aminoglucósidos).",
       "opciones": [
         {
           "texto": "Fármacos revisados",
@@ -1385,8 +1471,8 @@
     "trata_volemia": {
       "tipo": "pregunta",
       "titulo": "Valorar la volemia",
-      "contexto": "La volemia decide el tratamiento: la **hipovolemia** pide líquidos y la **sobrecarga**, diuréticos, porque el balance positivo se asocia a una **LRA más grave**.",
-      "texto": "- Valorar la volemia con la **exploración**, el **balance de líquidos** y el peso; en muchos pacientes es **difícil** solo con la clínica.\n- En el hospitalizado o el crítico, completar con la **ecografía a pie de cama**:\n  - El **colapso de la VCI** orienta a la **respuesta a líquidos**.\n  - Las líneas B pulmonares orientan a **congestión**.",
+      "contexto": "La **hipovolemia** pide líquidos y la **sobrecarga**, diuréticos. Dar líquidos de más **hace daño**: el **balance positivo** se asocia a una **LRA más grave**.",
+      "texto": "- Valorar la volemia con la **exploración**, el **balance de líquidos** y el peso; en muchos pacientes es **difícil** sólo con la clínica.\n- En el hospitalizado o el crítico, completar con la **ecografía a pie de cama**:\n  - El **colapso de la VCI** orienta a la **respuesta a líquidos**.\n  - Las líneas B pulmonares orientan a **congestión**.",
       "pie_nodo": "¿Cómo está la volemia del paciente?",
       "opciones": [
         {
@@ -1414,7 +1500,7 @@
           "recurso": "aki_eco_pulmon_lineas_real.jpg",
           "titulo": "Ecografía pulmonar: líneas A y B",
           "descripcion": "Pulmón aireado con líneas A frente a pulmón congestivo con líneas B múltiples.",
-          "info": "{#AFCD53:Flechas verdes}: **líneas A**, ecos horizontales de la pleura que se repiten en un **pulmón aireado**. Flechas blancas: **líneas B múltiples**, bandas verticales que salen de la pleura. En la LRA, las **líneas B**, junto con el colapso de la VCI, ayudan a reconocer la **sobrecarga de volumen**.",
+          "info": "{#AFCD53:Flechas verdes}: **líneas A**, ecos horizontales de la pleura que se repiten en un **pulmón aireado**. **Flechas blancas**: **líneas B múltiples**, bandas verticales que salen de la pleura. Las **líneas B múltiples** orientan a **congestión**; con la exploración y la VCI, ayudan a reconocer la **sobrecarga de volumen**.",
           "en_texto": "líneas B pulmonares",
           "referencias": [
             {
@@ -1510,13 +1596,23 @@
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
           "imagen_evidencia": "evidencia_aki_pag113_pocus_depende_operador.png"
+        },
+        {
+          "titulo": "POCUS: protocolo y entrenamiento",
+          "paginas": "113",
+          "texto": "Multiorgan POCUS is most informative when performed using a standardized protocol to assess volume status, venous congestion, and fluid responsiveness, and when supported by structured training",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag113_pocus_protocolo_y_entrenamiento.png"
         }
       ]
     },
     "trata_fluidos": {
       "tipo": "pregunta",
       "titulo": "Expandir con cristaloide balanceado",
-      "texto": "- Expandir con **cristaloides**, no con **coloides** (albúmina, gelatinas, almidones).\n- Preferir un **cristaloide balanceado** a la **solución salina 0,9 %**, salvo en el **TCE**, la lisis tumoral, la rabdomiólisis y la prevención por contraste.\n- Si no se pueden poner **líquidos IV**, ofrecer **rehidratación oral**.",
+      "texto": "- Expandir con **cristaloides**, no con **coloides** (albúmina, gelatinas, almidones).\n- Preferir un **cristaloide balanceado** a la **solución salina 0,9 %**, salvo en:\n  - El **TCE**.\n  - La **lisis tumoral** y la rabdomiólisis.\n  - La prevención por **contraste**.\n- Si no se pueden poner **líquidos IV**, ofrecer **rehidratación oral**.",
       "pie_nodo": "¿Mejoran la presión arterial y la perfusión con los líquidos?",
       "opciones": [
         {
@@ -1695,7 +1791,7 @@
       "alertas": [
         {
           "titulo": "Diuréticos sin reevaluar",
-          "texto": "Los bolos altos causan **ototoxicidad**, y sin reevaluar la volemia, **hipovolemia** e **hipotensión**. No **tratan la LRA** en sí: sólo el volumen."
+          "texto": "Los bolos altos causan **ototoxicidad**; sin reevaluar la volemia, causan **hipovolemia** e **hipotensión**. **Reevaluar la volemia** a menudo: los diuréticos tratan el **volumen**, no la LRA."
         }
       ],
       "farmacos": [
@@ -1780,7 +1876,7 @@
     "trata_diureticos_escalada": {
       "tipo": "pregunta",
       "titulo": "Subir el diurético por escalones",
-      "texto": "- Subir un escalón cada vez que el anterior no logre **>200 mL en 2 h**:\n  1. **Doblar la dosis** del bolo cada **6-12 h**, hasta **200 mg**.\n  2. Añadir una **tiazida** 30-60 min antes del diurético de asa.\n  3. Pasar a **infusión continua** de furosemida.\n- Si fracasa la dosis máxima, o hay **potasio o pH** alterados → valorar la **TRR**.",
+      "texto": "- Subir un escalón cada vez que el anterior no logre **>200 mL en 2 h**:\n  1. Doblar la dosis del **bolo** cada **6-12 h**, hasta **200 mg**.\n  2. Añadir una **tiazida** 30-60 min antes del diurético de asa.\n  3. Pasar a **infusión continua** de furosemida.\n- Si fracasa la dosis máxima, o hay **potasio o pH** alterados → valorar la **TRR**.",
       "pie_nodo": "¿Se logra el balance negativo buscado?",
       "opciones": [
         {
@@ -1940,19 +2036,30 @@
           "siguiente_nodo": "trata_evolucion"
         },
         {
-          "texto": "Acidemia grave",
+          "texto": "Acidosis metabólica grave",
           "siguiente_nodo": "trata_bicarbonato",
           "descripcion": "pH <7,20 sin otra indicación urgente de TRR"
         },
         {
-          "texto": "Sobrecarga de volumen",
+          "texto": "Sobrecarga, sin diurético",
           "siguiente_nodo": "trata_diureticos",
-          "descripcion": "Edema o congestión pulmonar"
+          "descripcion": "Edema o congestión: empezar el bolo"
         },
         {
-          "texto": "Complicación refractaria",
+          "texto": "Sobrecarga, ya con diurético",
+          "siguiente_nodo": "trata_diureticos_escalada",
+          "descripcion": "Subir al siguiente escalón"
+        },
+        {
+          "texto": "Indicación urgente de TRR",
           "siguiente_nodo": "trata_trr",
-          "descripcion": "Potasio, acidosis o líquidos; uremia; tóxico dializable"
+          "descripcion": "Uremia, hiperamonemia o tóxico; potasio, acidosis o líquidos refractarios"
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Hiperpotasemia",
+          "archivo_objetivo": "TODO_LINK_hiperpotasemia.json"
         }
       ],
       "referencias": [
@@ -1987,6 +2094,16 @@
           "imagen_evidencia": "evidencia_aki_pag252_pp_5_1_3.png"
         },
         {
+          "titulo": "Tabla 41: uremia e hiperamonemia",
+          "paginas": "249",
+          "texto": "Uremic complications (bleeding, pericarditis, encephalopathy) Severe hyperammonemia (inborn errors of metabolisms, liver failure)",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_uremia_e_hiperamonemia.png"
+        },
+        {
           "titulo": "Reevaluar con regularidad en la estrategia diferida",
           "paginas": "250",
           "texto": "This observation reinforces the need for regular reassessment of the patients and also the further need for development and validation of clinical risk prediction tools",
@@ -2002,7 +2119,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Dar bicarbonato de sodio IV",
-      "texto": "- Con **acidemia grave** (pH **<7,20**), dar **bicarbonato de sodio IV** antes que TRR, salvo otra **indicación urgente**.\n- En los ensayos se usó al **4,2 %**, buscando un pH **≥7,30**.\n- Vigilar la **sobrecarga de volumen**, la **hipernatremia** y la acidosis intracelular paradójica.",
+      "texto": "- Con **acidosis metabólica grave** (pH **<7,20**), dar **bicarbonato de sodio IV** antes que TRR, salvo otra **indicación urgente**.\n- En los ensayos se usó al **4,2 %**, buscando un pH **≥7,30**.\n- Vigilar sus complicaciones:\n  - **Sobrecarga de volumen**.\n  - **Hipernatremia**.\n  - Acidosis **intracelular** paradójica.",
       "pie_nodo": "¿Ha subido el pH a 7,30 o más?",
       "opciones": [
         {
@@ -2010,14 +2127,14 @@
           "siguiente_nodo": "trata_continuar_soporte"
         },
         {
-          "texto": "Aún no, pero mejora",
+          "texto": "Aún no",
           "siguiente_nodo": "trata_bicarbonato",
-          "descripcion": "Seguir y repetir los gases"
+          "descripcion": "pH de 7,21 a 7,29, o ≤7,20 que sube: seguir y repetir los gases"
         },
         {
           "texto": "No, es refractaria",
           "siguiente_nodo": "trata_trr",
-          "descripcion": "pH ≤7,20 o bicarbonato ≤12 mEq/L pese al tratamiento"
+          "descripcion": "pH ≤7,20 o bicarbonato ≤12 mEq/L, sin mejoría"
         }
       ],
       "nota_adicional": "El bicarbonato **reduce el uso de TRR**, pero **no ha demostrado** bajar la **mortalidad**.",
@@ -2091,8 +2208,7 @@
     "trata_evolucion": {
       "tipo": "pregunta",
       "titulo": "Reevaluar la LRA cada día",
-      "contexto": "El **inicio diferido** espera una indicación, pero **sin demoras largas**: esperar más allá del **estadio 3 persistente** se asoció a más mortalidad.",
-      "texto": "- Revisar cada día la **creatinina**, la **diuresis** y las **indicaciones de TRR**.\n- Dar por **resuelta** la LRA cuando la creatinina vuelve a **<1,2 × basal**; si queda entre **1,2 y <1,5 ×**, la resolución es **parcial**.",
+      "texto": "- Revisar cada día la **creatinina**, la **diuresis** y las **indicaciones de TRR**.\n- Dar por **resuelta** la LRA cuando la creatinina vuelve a **<1,2 × basal** en **7 días**; si queda entre **1,2 y <1,5 ×**, la resolución es **parcial**.\n- Si no se resuelve en **7 días**, ya es una **ERA**: seguir igual y revisarla a los **3 meses**.\n- No alargar la espera: el **estadio 2-3** que persiste **>48-72 h** pide valorar la TRR.",
       "pie_nodo": "¿Cómo evoluciona la LRA en la reevaluación diaria?",
       "opciones": [
         {
@@ -2106,9 +2222,9 @@
           "descripcion": "Estable, sin indicación de TRR"
         },
         {
-          "texto": "Estadio 3 persistente",
+          "texto": "Indicación relativa de TRR",
           "siguiente_nodo": "trata_trr",
-          "descripcion": "Con o sin oligoanuria prolongada"
+          "descripcion": "Estadio 2-3 que persiste >48-72 h u otra de la calculadora"
         }
       ],
       "referencias": [
@@ -2133,14 +2249,14 @@
           "imagen_evidencia": "evidencia_aki_pag250_evitar_demoras_prolongadas.png"
         },
         {
-          "titulo": "AKIKI-2: más mortalidad con demora mayor",
-          "paginas": "250",
-          "texto": "60-day mortality was higher in the more-delayed strategy compared to the delayed-strategy (55% for more-delayed vs. 44% for delayed",
+          "titulo": "Diferido: estadio 2-3 persistente >48-72 h",
+          "paginas": "248",
+          "texto": "Deferred RRT initiation involves waiting until patients have medically refractory complications or persistent Stage 2 or 3 AKI exceeding 48–72 hours.",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag250_akiki_2_mas_mortalidad_con_demora_mayor.png"
+          "imagen_evidencia": "evidencia_aki_pag248_diferido_estadio_2_3_persistente_48_72_h.png"
         },
         {
           "titulo": "Resolución: creatinina <1,2 veces la basal",
@@ -2153,14 +2269,34 @@
           "imagen_evidencia": "evidencia_aki_pag57_resolucion_creatinina_1_2_veces_la_basal.png"
         },
         {
-          "titulo": "Tabla 41: estadio 3 persistente, indicación relativa",
-          "paginas": "249",
-          "texto": "Persistent severe AKI (KDIGO Stage 3 ± prolonged oligoanuria)",
+          "titulo": "Tabla 10: resolución de la LRA en 7 días",
+          "paginas": "57",
+          "texto": "AKI SCr or serum cystatin C <1.2 times higher than baseline within 7 days SCr or serum cystatin C ≥1.2 to <1.5 times higher than baseline within 7 days",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_estadio_3.png"
+          "imagen_evidencia": "evidencia_aki_pag57_tabla_10_resolucion_de_la_lra_en_7_dias.png"
+        },
+        {
+          "titulo": "PP 1.3.1: definición de ERA",
+          "paginas": "55",
+          "texto": "is defined as the presence of any of the following functional or structural criteria in the appropriate clinical context with a duration ≤3 months (Table 9).",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag55_pp_1_3_1_definicion_de_era.png"
+        },
+        {
+          "titulo": "Tabla 41: estadio 3 persistente, indicación relativa",
+          "paginas": "249",
+          "texto": "Relative indications (in the absence of urgent indications of AKI) Persistent severe AKI (KDIGO Stage 3 ± prolonged oligoanuria)",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_estadio_3_persistente_indicacio.png"
         }
       ]
     },
@@ -2173,7 +2309,7 @@
         {
           "texto": "Urgente",
           "siguiente_nodo": "trata_inicio_trr",
-          "descripcion": "Complicación refractaria al tratamiento médico"
+          "descripcion": "Uremia, hiperamonemia o tóxico; o una complicación refractaria"
         },
         {
           "texto": "Relativa o con contraindicación",
@@ -2259,19 +2395,19 @@
         {
           "titulo": "Tabla 41: estadio 3 persistente, indicación relativa",
           "paginas": "249",
-          "texto": "Persistent severe AKI (KDIGO Stage 3 ± prolonged oligoanuria)",
+          "texto": "Relative indications (in the absence of urgent indications of AKI) Persistent severe AKI (KDIGO Stage 3 ± prolonged oligoanuria)",
           "fuente": "KDIGO 2026",
           "anio": "2026",
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
-          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_estadio_3.png"
+          "imagen_evidencia": "evidencia_aki_pag249_tabla_41_estadio_3_persistente_indicacio.png"
         }
       ]
     },
     "trata_trr_decision": {
       "tipo": "pregunta",
       "titulo": "Decidir con el paciente",
-      "texto": "- Valorar el **beneficio y el pronóstico** con los **deseos del paciente**: la decisión puede ser **no iniciar** la TRR.\n- Si el beneficio es **incierto** → hacer una **prueba de TRR** de tiempo limitado.\n- Si hay un **coma** que podría ser urémico o metabólico → también una **prueba limitada**.",
+      "texto": "- Valorar el **beneficio y el pronóstico** con los **deseos del paciente**: la decisión puede ser **no iniciar** la TRR.\n- Si el beneficio es **incierto** → hacer una **prueba de TRR** de tiempo limitado.\n- Si hay un **coma** que podría ser urémico o metabólico → hacer también una **prueba de TRR** limitada.",
       "pie_nodo": "¿Se decide iniciar la TRR?",
       "opciones": [
         {
@@ -2319,7 +2455,7 @@
     "trata_inicio_trr": {
       "tipo": "pregunta",
       "titulo": "Elegir la modalidad de TRR",
-      "texto": "- Si hay **inestabilidad hemodinámica** → TRR **continua** o **diálisis peritoneal** aguda, mejor que la intermitente convencional.\n- Si hay **lesión cerebral** o hipertensión intracraneal → TRR **continua**.\n- Si está **estable** → TRR **intermitente**.\n- Corregir la **inestabilidad** que se pueda al empezar.",
+      "texto": "- Si hay inestabilidad hemodinámica → elegir TRR **continua** o **diálisis peritoneal** aguda, mejor que la intermitente convencional.\n- Si hay **lesión cerebral** o hipertensión intracraneal → elegir TRR **continua**.\n- Si está **estable** → elegir TRR **intermitente**.\n- Corregir la **inestabilidad** que se pueda al empezar.",
       "opciones": [
         {
           "texto": "Modalidad elegida",
@@ -2418,7 +2554,7 @@
     "trata_prescripcion_trr": {
       "tipo": "pregunta",
       "titulo": "Prescribir la dosis y la anticoagulación",
-      "texto": "- Prescribir la **dosis** de la modalidad (en las dosis); con un IMC **≥30**, calcularla por **peso ideal** o ajustado.\n- Anticoagular la TRR continua con **citrato regional**, mejor que con **heparina**, si no está contraindicado.\n- Revisar **cada día** la dosis, los **electrolitos**, el ácido-base y la **ultrafiltración**.",
+      "texto": "- Prescribir la **dosis** de la modalidad; con un IMC **≥30**, calcularla por **peso ideal** o ajustado.\n- Anticoagular la TRR continua con **citrato regional**, mejor que con **heparina**, si no está contraindicado.\n- Revisar **cada día** la dosis, los **electrolitos**, el ácido-base y la **ultrafiltración**.\n- Buscar cada día si el riñón se **recupera**: diuresis, creatinina **entre sesiones** y balance.",
       "pie_nodo": "¿Cumple ya los criterios para retirar la TRR?",
       "opciones": [
         {
@@ -2436,6 +2572,13 @@
           "descripcion": "Alta con diálisis"
         }
       ],
+      "checklist": {
+        "titulo": "Predicen una retirada con éxito",
+        "items": [
+          "Diuresis **>450 mL/24 h** sin diuréticos, o **>2300 mL/24 h** con diuréticos",
+          "Aclaramiento de creatinina en **2 h** de **≥23 mL/min**"
+        ]
+      },
       "alertas": [
         {
           "titulo": "Hemofiltración de alto volumen",
@@ -2543,6 +2686,26 @@
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
           "imagen_evidencia": "evidencia_aki_pag294_pp_5_7_1_tampon_de_bicarbonato.png"
+        },
+        {
+          "titulo": "PP 5.9.2: qué guía la retirada de la TRR",
+          "paginas": "301",
+          "texto": "Clinical and metabolic parameters, interdialytic SCr changes, urine output, fluid balance, other parameters of resolution of AKI, and residual kidney function can be used to guide decision-making for RRT discontinuation.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag301_pp_5_9_2_que_guia_la_retirada_de_la_trr.png"
+        },
+        {
+          "titulo": "PP 5.9.3: diuresis y aclaramiento que predicen éxito",
+          "paginas": "302",
+          "texto": "Urine output >450 ml/24 hours without exposure to diuretics or >2300 ml/24 hours with exposure to diuretics and 2-hour timed creatinine clearance ≥23 ml/min",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag302_pp_5_9_3_diuresis_y_aclaramiento_que_predi.png"
         }
       ]
     },
@@ -2551,19 +2714,18 @@
       "estilo": "exito",
       "titulo": "Retirar la TRR",
       "texto": "- Retirarla cuando el riñón cubra las **demandas metabólicas** y de **volumen**, o si ya no concuerda con los **deseos del paciente**.\n- Usar **diuréticos** alrededor de la retirada para el **balance**: no ayudan a recuperar el riñón.",
+      "pie_nodo": "¿Se mantiene sin TRR en los días siguientes?",
       "opciones": [
         {
-          "texto": "TRR retirada",
+          "texto": "Sí, sigue sin TRR",
           "siguiente_nodo": "nodo_seguimiento"
+        },
+        {
+          "texto": "No, vuelve una indicación",
+          "siguiente_nodo": "trata_prescripcion_trr",
+          "descripcion": "Retomar la TRR y revisar cada día"
         }
       ],
-      "checklist": {
-        "titulo": "Predicen una retirada con éxito",
-        "items": [
-          "Diuresis **>450 mL/24 h** sin diuréticos, o **>2300 mL/24 h** con diuréticos",
-          "Aclaramiento de creatinina en **2 h** de **≥23 mL/min**"
-        ]
-      },
       "referencias": [
         {
           "titulo": "PP 5.9.1: cuándo retirar la TRR",
@@ -2594,6 +2756,16 @@
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
           "imagen_evidencia": "evidencia_aki_pag303_pp_5_9_4_diureticos_alrededor_de_la_retira.png"
+        },
+        {
+          "titulo": "Entre sesiones: ¿persisten las indicaciones?",
+          "paginas": "302",
+          "texto": "Interdialytic periods, whether during an interruption in CRRT or between scheduled IRRT sessions, provide an opportunity to evaluate for persistence of clinical and metabolic indications for RRT",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag302_entre_sesiones_persisten_las_indicacione.png"
         }
       ]
     },
@@ -2646,7 +2818,7 @@
     },
     "esp_obstruccion": {
       "titulo": "Desobstruir sin demora",
-      "texto": "- Sospecharla si hay alguno de estos datos:\n  - **Anuria u oliguria**, o síntomas urinarios bajos.\n  - **Litiasis**, enfermedad de la próstata o **tumor pélvico**.\n  - Vejiga neurógena o **sonda que no drena**.\n- Pedir una ecografía renal y vesical: buscar hidronefrosis u obstrucción a la salida de la vejiga.\n- Hacer la **desobstrucción** urológica o radiológica **sin demora**.",
+      "texto": "- Sospechar una **obstrucción** si hay alguno de estos datos:\n  - **Anuria u oliguria**, o síntomas urinarios bajos.\n  - **Litiasis**, enfermedad de la próstata o **tumor pélvico**.\n  - Vejiga neurógena o **sonda que no drena**.\n- Pedir una ecografía renal y vesical: buscar hidronefrosis u obstrucción a la salida de la vejiga.\n- Hacer la **desobstrucción** urológica o radiológica **sin demora**.",
       "chips": [
         {
           "texto": "Reversible",
@@ -2742,7 +2914,7 @@
     },
     "esp_intrinseca": {
       "titulo": "Estudiar y tratar la causa glomerular o intersticial",
-      "texto": "- Leer el sedimento:\n  - Hematíes dismórficos o cilindros hemáticos → **glomerular**.\n  - Leucocitos o cilindros leucocitarios → **NIA**.\n- Pedir **serologías**, estudio hematológico y **biopsia renal**.\n- En la **GN**, la vasculitis o la **MAT**: esteroides, inmunosupresión, recambio plasmático y retirar el agente causal.\n- En la **NIA**: retirar el **fármaco causal** y valorar **esteroides**.",
+      "texto": "- Leer el sedimento:\n  - Hematíes dismórficos o cilindros hemáticos → **glomerular**.\n  - Leucocitos o cilindros leucocitarios → **NIA**.\n- Pedir **serologías**, estudio hematológico y **biopsia renal**.\n- En la **GN**, la vasculitis o la **MAT**, según la causa:\n  - Dar **esteroides** e inmunosupresión.\n  - Hacer **recambio plasmático**.\n  - Retirar el **agente causal**.\n- En la **NIA**: retirar el **fármaco causal** y valorar **esteroides**.",
       "enlaces": [
         {
           "texto": "Ir al tratamiento",
@@ -2874,7 +3046,7 @@
     },
     "esp_mieloma": {
       "titulo": "Bajar las cadenas ligeras del mieloma",
-      "texto": "- Buscar la **proteína monoclonal** y las **cadenas ligeras libres** en sangre y orina, y hacer **biopsia renal**.\n- Bajar las cadenas ligeras con **hidratación**, **quimioterapia** y, en casos seleccionados, plasmaféresis.\n- La LRA puede **mejorar** al tratar el mieloma.",
+      "texto": "- Buscar la **proteína monoclonal** y las **cadenas ligeras libres** en sangre y orina, y hacer **biopsia renal**.\n- Bajar las cadenas ligeras:\n  - Con **hidratación**.\n  - Con **quimioterapia**.\n  - Con **plasmaféresis**, en casos seleccionados.\n- La LRA puede **mejorar** al tratar el mieloma.",
       "enlaces": [
         {
           "texto": "Ir al tratamiento",
@@ -2935,16 +3107,10 @@
           "paginas": "165"
         },
         {
-          "nombre": "Midodrina",
-          "dosis": "**7,5-15 mg** VO cada 8 h",
-          "pauta": "Con **octreótida**, hasta **revertir el SHR**.",
+          "nombre": "Midodrina con octreótida",
+          "dosis": "Midodrina **7,5-15 mg** VO cada 8 h + octreótida **100-200 mcg** SC cada 8 h",
+          "pauta": "Las dos juntas, hasta **revertir el SHR**.",
           "nota": "Sólo si la **terlipresina** está contraindicada o no se puede ir a **UCI**.",
-          "paginas": "165"
-        },
-        {
-          "nombre": "Octreótida",
-          "dosis": "**100-200 mcg** SC cada 8 h",
-          "pauta": "Junto con la **midodrina**.",
           "paginas": "165"
         }
       ],
@@ -3059,7 +3225,7 @@
     },
     "esp_lisis_tumoral": {
       "titulo": "Prevenir y tratar la lisis tumoral",
-      "texto": "- Expandir con **cristaloide IV**, sin **alcalinizar la orina**; meta de diuresis **≥100 mL/h** en el adulto.\n- Con **riesgo alto** o lisis establecida → **rasburicasa**, mejor que alopurinol o febuxostat.\n- Con **riesgo bajo** o rasburicasa contraindicada → **alopurinol** o **febuxostat**.\n- Vigilar el **potasio** y la **acidosis**: pueden pedir **TRR urgente**.",
+      "texto": "- Expandir con **cristaloide IV**, sin **alcalinizar la orina**; buscar una **diuresis** de **≥100 mL/h** en el adulto.\n- Con **riesgo alto** o lisis establecida → **rasburicasa**, mejor que alopurinol o febuxostat.\n- Con **riesgo bajo** o rasburicasa contraindicada → **alopurinol** o **febuxostat**.\n- Vigilar el **potasio** y la **acidosis**: pueden pedir **TRR urgente**.",
       "alertas": [
         {
           "titulo": "Rasburicasa y déficit de G6PD",
@@ -3207,7 +3373,7 @@
     "esp_tropical": {
       "titulo": "Buscar la causa tropical y tratarla pronto",
       "contexto": "En zonas tropicales, las **infecciones** causan buena parte de las LRA, sobre todo **comunitarias** y en **jóvenes** sanos; su mortalidad es del **12-30 %**.",
-      "texto": "- Buscar las **infecciones** de la zona (malaria, **leptospirosis**, dengue, fiebre amarilla, diarreas) y los **tóxicos**: la tabla.\n- Tratar pronto la causa: **antimaláricos**, **antibióticos** en la leptospirosis, líquidos en el dengue y **antiveneno** en el accidente ofídico.\n- Preguntar por **plaguicidas** y **medicina tradicional**.\n- Si no hay hemodiálisis, la **diálisis peritoneal** es una alternativa.",
+      "texto": "- Buscar las **infecciones** de la zona: la tabla.\n- Tratar pronto la causa:\n  - Malaria → **antimaláricos**.\n  - Leptospirosis → **antibióticos**.\n  - Dengue y diarreas → **líquidos**.\n  - Accidente ofídico → **antiveneno**.\n- Preguntar por **plaguicidas**, medicina tradicional y **exposición prolongada al calor** (golpe de calor).\n- Si no hay hemodiálisis, la **diálisis peritoneal** es una alternativa.",
       "nota_adicional": "Los **plaguicidas** (paraquat, fosfuro de aluminio) están al alcance del **trabajador agrícola**, se usan a menudo con **fines suicidas** y causan LRA.",
       "tabla": {
         "titulo": "Infecciones tropicales y LRA",
@@ -3236,6 +3402,26 @@
             "Fiebre amarilla",
             "- Fiebre e **ictericia**\n- Hemorragia\n- **Falla multiorgánica**",
             "- NTA y NIA\n- **Trombosis vascular**\n- Lesiones hemorrágicas"
+          ],
+          [
+            "Rickettsiosis",
+            "- Fiebre\n- **Exantema**\n- Escara",
+            "- **Vasculitis**\n- Nefritis intersticial"
+          ],
+          [
+            "Fiebre tifoidea",
+            "- Fiebre\n- **Dolor abdominal**\n- Diarrea",
+            "- NTA por **sepsis**\n- Hipovolemia"
+          ],
+          [
+            "Hantavirus",
+            "- Fiebre\n- **Síntomas respiratorios** graves\n- SDRA",
+            "- NTA\n- **Fuga capilar**"
+          ],
+          [
+            "Diarreas agudas",
+            "- Fiebre\n- Diarrea\n- **Deshidratación**",
+            "- LRA prerrenal por **hipovolemia**\n- Sepsis"
           ]
         ],
         "resaltar_primera_columna": true,
@@ -3377,6 +3563,76 @@
           "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
           "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
           "imagen_evidencia": "evidencia_aki_pag180_tabla_24_fiebre_amarilla.png"
+        },
+        {
+          "titulo": "Tabla 24: rickettsiosis",
+          "paginas": "180",
+          "texto": "Rickettsiosis Tropical regions Fever, rash, eschar Vasculitis, interstitial nephritis",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag180_tabla_24_rickettsiosis.png"
+        },
+        {
+          "titulo": "Tabla 24: fiebre tifoidea",
+          "paginas": "180",
+          "texto": "Enteric fever (Typhoid) Tropical regions Fever, abdominal pain, diarrhea Sepsis-induced ATN, volume depletion",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag180_tabla_24_fiebre_tifoidea.png"
+        },
+        {
+          "titulo": "Tabla 24: hantavirus",
+          "paginas": "180",
+          "texto": "Hantavirus Tropical regions Fever, severe respiratory symptoms, ARDS ATN, capillary leak syndrome",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag180_tabla_24_hantavirus.png"
+        },
+        {
+          "titulo": "Tabla 24: diarreas agudas",
+          "paginas": "180",
+          "texto": "Acute diarrheal illnesses Tropical regions Fever, diarrhea, dehydration Prerenal AKI due to volume depletion, sepsis",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag180_tabla_24_diarreas_agudas.png"
+        },
+        {
+          "titulo": "LRA tropical: comunitaria y en jóvenes",
+          "paginas": "179",
+          "texto": "Tropical infection-associated AKI is mostly community-acquired and more frequently affects younger, previously healthy people.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag179_lra_tropical_comunitaria_y_en_jovenes.png"
+        },
+        {
+          "titulo": "PP 3.11.3: golpe de calor",
+          "paginas": "185",
+          "texto": "For children and adults presenting with AKD or AKI following prolonged exposure to high temperatures, consider heat injury as a cause of AKI.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag185_pp_3_11_3_golpe_de_calor.png"
+        },
+        {
+          "titulo": "Trabajadores al aire libre y calor",
+          "paginas": "185",
+          "texto": "Outdoor workers, particularly in tropical regions, are highly vulnerable due to prolonged exposure to high temperatures and intense physical labor.",
+          "fuente": "KDIGO 2026",
+          "anio": "2026",
+          "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+          "cita": "KDIGO AKI/AKD Work Group. KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD). March 2026.",
+          "imagen_evidencia": "evidencia_aki_pag185_trabajadores_al_aire_libre_y_calor.png"
         }
       ]
     },
@@ -3418,7 +3674,7 @@
           "texto": "La **hemodiálisis profiláctica** tras el contraste **puede dañar**: no hacerla."
         }
       ],
-      "nota_adicional": "La **N-acetilcisteína**, el ácido ascórbico, la furosemida, la dopamina o los calcioantagonistas **no han demostrado** un **beneficio constante** para prevenir la LRA por contraste.",
+      "nota_adicional": "Ninguno de los fármacos probados, tampoco la **N-acetilcisteína**, ha demostrado un **beneficio constante** para prevenir la LRA por contraste: no usarlos con ese fin.",
       "evidencia": {
         "texto": "GRADE: fuerte a favor",
         "fuente": "KDIGO 2026, Rec 4.9.2.1 (1B)"
@@ -3535,7 +3791,7 @@
     },
     "esp_cirugia": {
       "titulo": "Proteger el riñón en la cirugía mayor",
-      "texto": "- En la **cirugía abdominal mayor** electiva, dar **líquidos liberales**: balance de **+1-2 kg** a las 24 h, no balance cero.\n- En la **cirugía cardiaca** sin ERC avanzada, dar **aminoácidos IV** profilácticos.\n- No suspender de rutina los **IECA o ARA II** antes de la cirugía mayor electiva.\n- Con **alto riesgo** por la clínica o los biomarcadores → **paquete de protección renal**.",
+      "texto": "- En la **cirugía abdominal mayor** electiva, dar **líquidos liberales**: balance de **+1-2 kg** a las 24 h, no balance cero.\n- En la **cirugía cardiaca** sin ERC avanzada, dar **aminoácidos IV** profilácticos.\n- No suspender de rutina los **IECA o ARA II** antes de la cirugía mayor electiva.\n- Con **alto riesgo** por la clínica o los biomarcadores → empezar el **paquete de protección renal**.",
       "nota_adicional": "En la **cirugía cardiaca** de alto riesgo sin **propofol** se sugiere además el **preacondicionamiento isquémico remoto** (2B).",
       "farmacos": [
         {
@@ -3678,10 +3934,16 @@
     "nodo_seguimiento": {
       "estilo": "rama",
       "texto": "Seguimiento",
+      "pie_nodo": "¿Dónde se hace el seguimiento?",
       "opciones": [
         {
-          "texto": "Preparar el alta",
+          "texto": "Al alta del hospital",
           "siguiente_nodo": "seg_alta"
+        },
+        {
+          "texto": "En consulta",
+          "siguiente_nodo": "seguimiento_post_aki",
+          "descripcion": "ERA sin ingreso o ya dado de alta"
         }
       ],
       "referencias": [
@@ -3777,7 +4039,7 @@
     "seguimiento_post_aki": {
       "estilo": "exito",
       "titulo": "Revisar tras el alta y a los 3 meses",
-      "texto": "- Hacer la **revisión KAMPS** tras el alta.\n- A los **3 meses**, medir creatinina o cistatina C, **orina** y **albuminuria** para ver si se resolvió o hay **ERC**: la tabla.\n- **Reiniciar** o empezar los **IECA o ARA II** si están indicados, y valorar **iSGLT2**, aGLP-1 y **ARM**.",
+      "texto": "- Hacer la revisión KAMPS **tras el alta**.\n- A los **3 meses**, medir creatinina o cistatina C, **orina** y **albuminuria** para ver si se resolvió o hay **ERC**: la tabla.\n- **Reiniciar** o empezar los **IECA o ARA II** si están indicados.\n- Valorar también, si están indicados:\n  - **iSGLT2**.\n  - aGLP-1.\n  - **ARM**.",
       "checklist": {
         "titulo": "Días de enfermedad: suspender hasta resolver o máx. 3 días",
         "items": [
@@ -3943,7 +4205,7 @@
     },
     "seg_trr_ambulatoria": {
       "titulo": "Organizar la diálisis tras el alta",
-      "texto": "- Hacer el plan con la **unidad de diálisis** antes del alta, según la probabilidad de **dejar la diálisis**.\n- Si sigue dependiente al alta, cambiar a un **catéter tunelizado** con manguito.\n- En cada sesión, revisar la **volemia**, los signos de **recuperación renal** y la medicación.\n- Al suspender la diálisis: **nefrólogo** en **≤7 días** y función renal a los **90 días**.",
+      "texto": "- Hacer el plan con la **unidad de diálisis** antes del alta, según la probabilidad de **dejar la diálisis**.\n- Si sigue dependiente al alta, cambiar a un **catéter tunelizado** con manguito.\n- En cada sesión, revisar la **volemia**, los signos de **recuperación renal** y la medicación.\n- Al suspender la diálisis, citar con **nefrología** en **≤7 días** y medir la **función renal** a los **90 días**.",
       "referencias": [
         {
           "titulo": "PP 6.4.1: plan según la probabilidad de liberación",
