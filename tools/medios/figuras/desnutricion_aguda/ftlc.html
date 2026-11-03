@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+ .fila{display:flex;align-items:stretch;gap:8px}
+ .rot{width:118px;flex:none;display:flex;flex-direction:column;justify-content:center;font-size:17px;font-weight:800;color:var(--c)}
+ .rot span{font-size:12.5px;font-weight:500;color:var(--suave)}
+ .tramos{flex:1;display:flex;gap:6px}
+ .t{min-width:78px;border-radius:12px;padding:10px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:4px;border:2px solid var(--c)}
+ .t .d{white-space:nowrap;font-size:12.5px;color:var(--suave);font-weight:600}
+ .t .k{font-size:21px;font-weight:800;color:var(--c)}
+ .t .n{font-size:12px;line-height:1.25;color:var(--tinta)}
+ .nota{border-radius:12px;background:#F8FAFC;padding:10px 12px;font-size:13.5px;line-height:1.35}
+</style></head><body>
+<script>
+// Esquema de las tablas 25 (moderada) y 26 (severa): kcal/kg/día de FTLC por días de tratamiento.
+// El ancho de cada tramo es proporcional a los días; la intensidad del color, a la dosis.
+const t = (c, dias, d, k, n, op) => `<div class="t" style="--c:${c};flex:${dias};background:${tinte(c, op)}"><div class="d">${d}</div><div class="k">${k}</div>${n ? `<div class="n">${n}</div>` : ""}</div>`;
+const fila = (c, nom, sub, tramos) => `<div class="fila" style="--c:${c}"><div class="rot">${nom}<span>${sub}</span></div><div class="tramos">${tramos}</div></div>`;
+lienzo("FTLC en casa: cómo sube la dosis", "kcal/kg/día de FTLC según los días de tratamiento · un sobre da 500 kcal",
+  `<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px">
+   ${fila(NARANJA, "Moderada", "tabla 25", t(NARANJA, 7, "días 1-7", "150", "", 8) + t(NARANJA, 8, "días 8-15", "200", "si queda con <b>hambre</b>", 16) + t(NARANJA, 15, "días 15-30 y egreso", "200", "", 16))}
+   ${fila(ROJO, "Severa", "tabla 26: empieza lento", t(ROJO, 3, "días 1-3", "80", "", 6) + t(ROJO, 4, "días 4-7", "100", "", 10) + t(ROJO, 8, "días 8-15", "135-150", "ajustar al <b>hambre</b>", 15) + t(ROJO, 15, "días 15-30", "150-200", "", 22))}
+   <div class="nota">Con <b>edema</b>, restar el <b>5-10 %</b> del peso para calcular la FTLC de los días 1-7 de la severa. Repartir en <b>5 tomas o más</b> y dar <b>agua potable</b> aparte.</div>
+  </div>`,
+  F_L + " (tablas 25 y 26, p. 71-72).");
+</script></body></html>

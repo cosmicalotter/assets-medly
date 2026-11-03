@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+ .pasos{display:flex;gap:8px}
+ .paso{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
+ .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// Tres pasos: marcar el punto medio con el codo a 90°, dejar caer el brazo y rodear con la cinta, leer sin apretar.
+const PASOS = [["1", "Brazo no dominante: marcar el punto medio", AZUL], ["2", "Brazo colgando: rodear con la cinta", TEAL], ["3", "Leer sin apretar ni soltar", ROJO]];
+const POR = 26, PIEL = "#F3D2B6", BORDE = "#C9A486";
+// Brazo de perfil: hombro arriba, codo en (300,236); el antebrazo gira de 90° (al frente) a 0° (colgando).
+function brazo(ang) {
+  return `<path d="M228 40 Q300 8 372 40 L352 70 Q300 52 248 70Z" fill="${PIEL}" stroke="${BORDE}" stroke-width="3"/>
+    <rect x="272" y="48" width="56" height="196" rx="26" fill="${PIEL}" stroke="${BORDE}" stroke-width="3"/>
+    <g transform="rotate(${-ang} 300 236)"><rect x="276" y="222" width="48" height="150" rx="22" fill="${PIEL}" stroke="${BORDE}" stroke-width="3"/>
+      <ellipse cx="300" cy="384" rx="26" ry="18" fill="${PIEL}" stroke="${BORDE}" stroke-width="3"/></g>`;
+}
+window.cuadro = function (i, n) {
+  const T = POR * 3, t = n > 1 ? Math.round((i / (n - 1)) * (T - 1)) : 0;
+  const paso = Math.min(2, Math.floor(t / POR)), u = (t % POR) / POR;
+  const ang = paso === 0 ? 90 : paso === 1 ? lerp(90, 0, suave(tramo(u, 0, 0.45))) : 0;
+  let extra = "";
+  if (paso === 0) {   // acromion arriba, olécranon en el codo; la línea crece y aparece el punto medio
+    const g = suave(tramo(u, 0.1, 0.6)), m = suave(tramo(u, 0.6, 0.85));
+    extra = `<circle cx="300" cy="50" r="7" fill="${AZUL}"/><text x="196" y="56" text-anchor="end" font-size="15" font-weight="700" fill="${AZUL}">acromion</text>
+      <circle cx="300" cy="246" r="7" fill="${AZUL}"/><text x="196" y="252" text-anchor="end" font-size="15" font-weight="700" fill="${AZUL}">olécranon</text>
+      <path d="M244 50 V${lerp(50, 246, g)}" stroke="${AZUL}" stroke-width="3" stroke-dasharray="6 5"/>
+      <g opacity="${m}"><circle cx="300" cy="148" r="9" fill="#fff" stroke="${AZUL}" stroke-width="4"/>
+      <path d="M244 148 H210" stroke="${AZUL}" stroke-width="3"/><text x="204" y="153" text-anchor="end" font-size="16" font-weight="800" fill="${AZUL}">punto medio</text></g>`;
+  } else {   // la cinta rodea el punto medio
+    const g = paso === 1 ? suave(tramo(u, 0.5, 0.95)) : 1;
+    extra = `<circle cx="300" cy="148" r="6" fill="${AZUL}"/>
+      <path d="M270 140 Q300 ${140 + 22 * g} 330 140" stroke="${TEAL}" stroke-width="10" fill="none" opacity="${g}"/>
+      <path d="M270 156 Q300 ${156 - 18 * g} 330 156" stroke="${tinte(TEAL, 45)}" stroke-width="8" fill="none" opacity="${g}"/>
+      <path d="M330 148 H${lerp(330, 430, g)}" stroke="${TEAL}" stroke-width="10"/>`;
+  }
+  // Lectura de la cinta: el valor aparece en el paso 3.
+  const k = paso === 2 ? suave(tramo(u, 0.05, 0.4)) : 0;
+  const lectura = `<g transform="translate(450,70)" opacity="${paso === 2 ? 1 : 0}">
+      <rect x="0" y="0" width="200" height="150" rx="14" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="2"/>
+      <text x="100" y="32" text-anchor="middle" font-size="15" fill="#475569">6 a 59 meses</text>
+      <text x="100" y="78" text-anchor="middle" font-size="34" font-weight="800" fill="${ROJO}" opacity="${k}">&lt; 11,5 cm</text>
+      <text x="100" y="106" text-anchor="middle" font-size="15" font-weight="700" fill="${ROJO}" opacity="${k}">riesgo de muerte</text>
+      <text x="100" y="132" text-anchor="middle" font-size="13" fill="#475569" opacity="${k}">no reemplaza peso y talla</text></g>`;
+  const svg = `<svg class="esc" viewBox="0 0 680 420">${brazo(ang)}${extra}${lectura}</svg>`;
+  const pasos = PASOS.map(([kk, txt, c], j) => `<div class="paso ${j === paso ? "on" : ""}" style="--c:${c}"><b>${kk}.</b> ${txt}</div>`).join("");
+  lienzo("Perímetro del brazo: técnica", "Cinta flexible e inextensible, con divisiones cada 1 mm",
+    `${svg}<div class="pasos">${pasos}</div>`, F_L + " (p. 32).");
+};
+window.cuadro(0, 1);
+</script></body></html>
