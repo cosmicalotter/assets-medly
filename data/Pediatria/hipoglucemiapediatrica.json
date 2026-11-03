@@ -1,7 +1,7 @@
 {
   "oculto": true,
   "titulo": "Hipoglucemia neonatal y pediátrica",
-  "descripcion": "En este algoritmo se aborda la hipoglucemia del recién nacido, del lactante y del niño, con o sin diabetes: confirmarla, tratarla, buscar la causa y preparar el alta.",
+  "descripcion": "En este algoritmo se aborda la hipoglucemia del recién nacido, del lactante y del niño con o sin diabetes: confirmarla, tratarla, buscar la causa y preparar el alta. No incluye al prematuro.",
   "version": "BAPM 2024 · PES 2015 · Hiperinsulinismo 2023 · ISPAD 2022",
   "especialidad": "Endocrinología pediátrica",
   "actualizado": "Noviembre 2026",
@@ -66,8 +66,8 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Hipoglucemia neonatal y pediátrica",
-      "texto": "- **Hipoglucemia neonatal:** no hay una cifra única; se actúa por umbrales: **<18 mg/dL** en cualquier momento, **<45 mg/dL** con signos o más de **2** glucosas **<36 mg/dL** con riesgo.\n- **Persistente:** más de **2** glucosas **<36 mg/dL** en las primeras **72 h**, o la que sigue o aparece tras las **48-72 h**.\n- **Lactante y niño:** glucosa plasmática **<60 mg/dL** si no comunica síntomas; si los comunica, la tríada de Whipple.\n- **Niño con diabetes:** **<70 mg/dL** es alerta; **<54 mg/dL**, importante; grave si necesita ayuda de otra persona.\n- **Hiperinsulinismo:** hipoglucemia con BOHB **<1,8 mmol/L**, AGL **<1,7 mmol/L**, respuesta al glucagón **≥30 mg/dL** o aporte **>8 mg/kg/min** en el neonato.",
-      "pie_nodo": "¿Qué necesitas?",
+      "texto": "- **Hipoglucemia neonatal (0-72 h):** no hay una cifra única; se actúa por umbrales: **<18 mg/dL** en cualquier momento o **<45 mg/dL** con signos.\n- **Persistente:** más de **2** glucosas **<36 mg/dL** en las primeras **72 h**, o la hipoglucemia que **continúa o aparece** después.\n- **Lactante y niño:** glucosa **<60 mg/dL** si no comunica síntomas; si los comunica, la tríada de Whipple.\n- **Niño con diabetes:** **<70 mg/dL** es alerta y **<54 mg/dL** es importante; grave si necesita **ayuda**.\n- **Hiperinsulinismo:** con glucosa **<50 mg/dL**, **cetonas** y **AGL** bajos, o aporte **>8 mg/kg/min** en el neonato.",
+      "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
           "texto": "Diagnóstico",
@@ -226,6 +226,16 @@
           "url": "https://doi.org/10.1159/000531766",
           "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_hi_increased_glucose_infusion_rate_required.png"
+        },
+        {
+          "titulo": "1.1: diagnóstico en la hipoglucemia",
+          "paginas": "2",
+          "texto": "We Recommend Making a Specific Diagnosis of Hyperinsulinism Based on Measurements, at a Time of Hypoglycemia, of Plasma Levels of Metabolic Fuels",
+          "fuente": "Hiperinsulinismo 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1159/000531766",
+          "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_hi_we_recommend_making_specific_diagnosis.png"
         }
       ]
     },
@@ -265,13 +275,7 @@
     "diag_abcde": {
       "tipo": "informativo",
       "titulo": "ABCDE: medir la glucosa en todo niño grave",
-      "texto": "- **A-B:** la **apnea** y la **cianosis** del recién nacido también pueden ser hipoglucemia.\n- **C:** acceso IV y muestra antes de dar glucosa, sin retrasarla.\n- **D:** medir la **glucosa** en todo niño con **convulsión**, letargia o coma. Si no se puede medir enseguida, **asumir hipoglucemia** y dar glucosa IV.\n- **E:** temperatura: la **hipotermia** y el frío la provocan.",
-      "alertas": [
-        {
-          "titulo": "No esperar al laboratorio",
-          "texto": "Tratar la **sospecha** sin esperar la **confirmación**: la muestra no retrasa la **glucosa**."
-        }
-      ],
+      "texto": "- **A-B:** la **apnea** y la **cianosis** del recién nacido también pueden ser hipoglucemia.\n- **C:** canalizar un **acceso IV** y tomar la **muestra** antes de dar glucosa, sin retrasarla.\n- **D:** medir la **glucosa** en todo niño con convulsión, **letargia** o coma. Si no se puede medir enseguida, **asumir hipoglucemia** y dar glucosa IV.\n- **E:** medir la **temperatura**, porque la **hipotermia** acompaña a la hipoglucemia.",
       "chips": [
         {
           "texto": "Urgencia",
@@ -280,7 +284,7 @@
       ],
       "opciones": [
         {
-          "texto": "Glucosa medida: ¿quién es?",
+          "texto": "Glucosa medida",
           "siguiente_nodo": "diag_edad"
         }
       ],
@@ -379,15 +383,14 @@
     },
     "diag_edad": {
       "tipo": "pregunta",
-      "titulo": "¿Recién nacido, lactante o niño con diabetes?",
-      "texto": "- Las primeras **48-72 h** la glucosa es más baja: es la **transición** metabólica normal.\n- Desde los **2-3 días** de vida, las cifras son las del niño mayor (**70-100 mg/dL** en ayunas).\n- El niño con **diabetes** tratado con insulina sigue las metas de ISPAD.",
-      "contexto": "Las cifras del recién nacido **nunca** se usan después del tercer día: allí una glucosa baja ya sugiere un **trastorno persistente**.",
+      "titulo": "Elegir los umbrales según la edad y la diabetes",
+      "texto": "- Las primeras **72 h** la glucosa es más baja: es la **transición** metabólica normal.\n- Desde el día **3-4**, las cifras son las del niño mayor (**63-99 mg/dL** en ayunas).\n- El niño con **diabetes** tratado con insulina sigue las metas de ISPAD.\n- El **prematuro** y el bebé en **cuidado intensivo** quedan fuera: protocolo de su unidad.",
       "media": [
         {
           "recurso": "hipo_transicion.png",
           "titulo": "La glucosa en las primeras 72 horas",
           "descripcion": "Glucosa del recién nacido sano: nadir a la 1-2 h y subida hasta el día 3-4.",
-          "info": "La glucosa {#4F8CF6:baja tras el parto} hasta un **nadir** a la **1-2 h** y sube desde las **2-3 h**. No llega a los valores del {#2FB36D:niño mayor} (**63-99 mg/dL**) hasta el **día 3-4**: por eso las cifras del recién nacido no sirven después.",
+          "info": "La {#18B9A9:glucosa} baja tras el parto hasta un {#EF5454:nadir} a la **1-2 h** y sube desde las **2-3 h**. No llega a los valores del {#2FB36D:niño mayor} (**63-99 mg/dL**) hasta el **día 3-4**: por eso las **cifras** del recién nacido no sirven después.",
           "en_texto": "transición",
           "referencias": [
             {
@@ -438,13 +441,13 @@
           "texto": "Recién nacido en sus primeras 72 h",
           "siguiente_nodo": "diag_riesgo",
           "color": "teal",
-          "descripcion": "A término; el prematuro tardío sigue los umbrales de AAP."
+          "descripcion": "A término (37 semanas o más), fuera del cuidado intensivo."
         },
         {
           "texto": "Lactante o niño sin diabetes",
           "siguiente_nodo": "diag_ninos_mayores",
           "color": "morado",
-          "descripcion": "Desde el tercer día de vida, sin tratamiento con insulina."
+          "descripcion": "Desde las 72 h de vida, sin tratamiento con insulina."
         },
         {
           "texto": "Niño con diabetes tratado con insulina",
@@ -514,16 +517,6 @@
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag7_bapm_babies_born_preterm_or_who.png"
         },
         {
-          "titulo": "Prematuro tardío y término de riesgo",
-          "paginas": "2",
-          "texto": "This clinical report provides a practical guide for the screening and subsequent management of neonatal hypoglycemia",
-          "fuente": "AAP 2011",
-          "anio": "2011",
-          "url": "https://doi.org/10.1542/peds.2010-3851",
-          "cita": "Adamkin DH; Committee on Fetus and Newborn. Clinical Report—Postnatal Glucose Homeostasis in Late-Preterm and Term Infants. Pediatrics 2011;127(3):575-579.",
-          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_aap_this_clinical_report_provides_practical.png"
-        },
-        {
           "titulo": "Menos de 70 mg/dL: valor de alerta",
           "paginas": "1",
           "texto": "Glucose value <3.9 mmol/L (70 mg/dl) is used as the clinical alert or threshold value for initiating treatment for hypoglycemia",
@@ -537,9 +530,8 @@
     },
     "diag_riesgo": {
       "tipo": "pregunta",
-      "titulo": "Recién nacido: ¿tiene un factor de riesgo?",
-      "texto": "- **Restricción del crecimiento:** peso **<percentil 2** o aspecto emaciado.\n- Hijo de madre con **diabetes**, de cualquier tipo.\n- Madre con **betabloqueadores** en el tercer trimestre o en el parto.\n- El **prematuro** moderado o tardío también tiene riesgo: seguir el protocolo de la unidad.",
-      "nota_adicional": "El **grande para la edad** sin diabetes materna es controvertido: BAPM no lo tamiza salvo rasgos de **Beckwith-Wiedemann**; PES y AAP sí.",
+      "titulo": "Buscar factores de riesgo de hipoglucemia",
+      "texto": "- **Restricción del crecimiento:** peso **<percentil 2** o aspecto emaciado.\n- Hijo de madre con **diabetes**, de cualquier tipo.\n- Madre con **betabloqueadores** en el tercer trimestre o en el parto.\n- El **grande para la edad** sin diabetes materna no entra, salvo rasgos de **Beckwith-Wiedemann** (ver discrepancias).",
       "discrepancias": [
         {
           "asunto": "Recién nacido grande para la edad gestacional, sin diabetes materna",
@@ -563,7 +555,7 @@
           "nota": "Cambia quién entra al **tamizaje**: BAPM lo deja fuera si no hay **diabetes** ni rasgos de **Beckwith-Wiedemann**."
         }
       ],
-      "pie_nodo": "¿Tiene alguno?",
+      "pie_nodo": "¿Tiene algún factor de riesgo de hipoglucemia?",
       "opciones": [
         {
           "texto": "Sí, tiene un factor de riesgo",
@@ -660,14 +652,14 @@
     },
     "diag_poblaciones_especiales": {
       "tipo": "informativo",
-      "titulo": "Con riesgo: calor, toma en la primera hora y glucosa antes de la segunda",
-      "texto": "- Secar, poner **gorro** y dejar **piel con piel** con la madre, en un cuarto sin corrientes.\n- Ofrecer el pecho en los primeros **60 min**; luego, tomas cada **3 h** como máximo.\n- Si no come bien: **extraer calostro** a mano y dárselo; fórmula a **40-60 mL/kg/día** si no hay.\n- Explicar a los padres por qué se mide la glucosa.",
+      "titulo": "Dar calor y una toma en la primera hora",
+      "texto": "- Mantener el **contacto piel con piel** y las tomas cada **3 h** como máximo.\n- Si no come bien:\n  1. Extraer **calostro** a mano y dárselo.\n  2. Si no hay, dar **fórmula** según **la tabla**.\n- Explicar a los **padres** por qué se mide la **glucosa** y qué signos avisar.",
       "media": [
         {
           "recurso": "hipo_calor.png",
           "titulo": "Recién nacido de riesgo: calor y toma temprana",
           "descripcion": "Piel con piel, gorro, manta, pecho en la primera hora y tomas cada 3 horas.",
-          "info": "El {#F07F3C:frío} **gasta glucosa**: se seca al bebé, se le pone {#4F8CF6:gorro} y se deja {#18B9A9:piel con piel}. El pecho va en los primeros **60 min** y las tomas, cada **3 h** como máximo, hasta tener **2 glucosas** seguidas de **36 mg/dL** o más.",
+          "info": "El frío **gasta glucosa**: se seca al bebé, se le pone {#4F8CF6:gorro}, se le tapa con una {#18B9A9:manta} y se deja {#F07F3C:piel con piel}. El pecho va en los primeros **60 min** y las tomas, cada **3 h** como máximo, hasta tener **2 glucosas** seguidas de **36 mg/dL**.",
           "en_texto": "piel con piel",
           "referencias": [
             {
@@ -723,9 +715,10 @@
             "**100-120 mL/kg/día**"
           ]
         ],
-        "resaltar_primera_columna": true
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
       },
-      "nota_adicional": "No dar **gel profiláctico**: no evitó el ingreso a la UCIN. Con fórmula, el bebé hace **menos cetonas** y necesita más volumen.",
+      "nota_adicional": "No dar **gel profiláctico**: no redujo los ingresos a la **UCIN**. Con fórmula, el bebé puede **aprovechar menos** las cetonas.",
       "discrepancias": [
         {
           "asunto": "Cuándo medir la primera glucosa",
@@ -851,20 +844,30 @@
           "url": "https://doi.org/10.1542/peds.2010-3851",
           "cita": "Adamkin DH; Committee on Fetus and Newborn. Clinical Report—Postnatal Glucose Homeostasis in Late-Preterm and Term Infants. Pediatrics 2011;127(3):575-579.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag5_aap_atrisk_infants_should_be_fed.png"
+        },
+        {
+          "titulo": "Con fórmula, menos uso de las cetonas",
+          "paginas": "11",
+          "texto": "It is possible that the baby’s ability to utilize ketone bodies may be limited by the use of infant formula milk.",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag11_bapm_it_possible_that_babys_ability.png"
         }
       ]
     },
     "diag_tamizaje_asintomatico": {
       "tipo": "pregunta",
-      "titulo": "Primera glucosa antes de la segunda toma",
-      "texto": "- Medir antes de la **segunda toma**, a las **2-4 h**; no en las primeras **1-2 h**, el nadir normal.\n- Medir ya si aparece un **signo** de hipoglucemia.\n- Usar el **analizador de gases** si lo hay: muchos glucómetros no son exactos por debajo de **36 mg/dL**.\n- Tomar la muestra de un **talón caliente**.",
+      "titulo": "Medir la primera glucosa antes de la segunda toma",
+      "texto": "- Medirla a las **2-4 h**, no en las primeras **1-2 h**, que son el nadir normal.\n- Medir ya si aparece un **signo** de hipoglucemia.\n- Usar el **analizador de gases** si lo hay: muchos glucómetros fallan por debajo de **36 mg/dL**.\n- Tomar la muestra de un **talón caliente**.",
       "media": [
         {
           "recurso": "hipo_umbrales.png",
           "titulo": "Recién nacido: umbrales para actuar",
           "descripcion": "Escala de glucosa con los tres umbrales de BAPM y lo que se hace en cada tramo.",
           "info": "Con **36 mg/dL** o más y sin **signos**, se sigue con las {#2FB36D:tomas}. Entre **18 y 35** sin signos: {#F2A23A:gel y toma}. Por debajo de **18 mg/dL**, o con signos y menos de **45**: {#EF5454:dextrosa IV}. Más de **2** glucosas bajas es **persistente**.",
-          "en_texto": "segunda toma",
+          "en_texto": "2-4 h",
           "referencias": [
             {
               "titulo": "Menos de 1,0 mmol/L en cualquier momento",
@@ -964,7 +967,7 @@
       "pie_nodo": "¿Cuánto da la glucosa antes de la toma?",
       "opciones": [
         {
-          "texto": "36 mg/dL o más",
+          "texto": "36 mg/dL o más, sin signos",
           "siguiente_nodo": "seg_monitoreo_asintomatico",
           "color": "teal"
         },
@@ -974,9 +977,13 @@
           "color": "teal"
         },
         {
-          "texto": "Menos de 18 mg/dL, o hay signos",
+          "texto": "Menos de 18, o menos de 45 con signos",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "rosa"
+        },
+        {
+          "texto": "45 mg/dL o más, con signos",
+          "siguiente_nodo": "diag_buscar_otras_causas"
         }
       ],
       "referencias": [
@@ -1069,30 +1076,50 @@
           "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
           "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag18_bapm_they_concluded_lower_threshold_was.png"
+        },
+        {
+          "titulo": "Encefalopatía hipóxico-isquémica: umbral 2,5",
+          "paginas": "18",
+          "texto": "The operational threshold should be increased to at least 2.5mmol/L in infants with moderate-severe hypoxic-ischaemic encephalopathy",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag18_bapm_operational_threshold_should_be_increased.png"
         }
-      ]
+      ],
+      "nota_adicional": "En la **encefalopatía hipóxico-isquémica** moderada o grave, el umbral sube a **45 mg/dL**."
     },
     "seg_monitoreo_asintomatico": {
       "tipo": "pregunta",
       "titulo": "Seguir midiendo antes de cada toma",
-      "texto": "- Medir antes de cada toma hasta tener **dos glucosas seguidas de 36 mg/dL o más**.\n- Mantener tomas cada **3 h** como máximo y valorar la eficacia de cada toma.\n- Las tomas muy largas o muy seguidas dan cifras poco fiables: vigilar más tiempo.",
+      "texto": "- Medir antes de cada toma hasta tener **dos glucosas seguidas de 36 mg/dL o más**.\n- Mantener tomas cada **3 h** como máximo y comprobar que cada **toma es eficaz**: se prende, traga y queda tranquilo.\n- Con tomas muy largas o muy seguidas la cifra **antes de la toma** es poco fiable: vigilar más tiempo.",
       "nota_adicional": "La **preocupación de la madre** por cómo come o cómo está el bebé no se descarta: obliga a **valorarlo** y dejarlo escrito.",
       "pie_nodo": "¿Cómo van las glucosas antes de las tomas?",
       "opciones": [
         {
-          "texto": "Dos seguidas de 36 mg/dL o más",
+          "texto": "Dos seguidas de 36 mg/dL o más, sin signos",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "teal"
         },
         {
-          "texto": "Una de 18-35 mg/dL, sin signos",
+          "texto": "Una de 36 o más; falta la segunda",
+          "siguiente_nodo": "seg_monitoreo_asintomatico",
+          "color": "teal"
+        },
+        {
+          "texto": "18-35 mg/dL, sin signos",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "teal"
         },
         {
-          "texto": "Menos de 18 mg/dL, o aparecen signos",
+          "texto": "Menos de 18, o menos de 45 con signos",
           "siguiente_nodo": "nodo_tratamiento",
           "color": "rosa"
+        },
+        {
+          "texto": "45 mg/dL o más, con signos",
+          "siguiente_nodo": "diag_buscar_otras_causas"
         }
       ],
       "referencias": [
@@ -1160,27 +1187,8 @@
     },
     "diag_sintomas": {
       "tipo": "pregunta",
-      "titulo": "Sin riesgo: ¿tiene signos o deja de comer bien?",
-      "texto": "- Medir la glucosa si hay **letargia**, hipotonía, llanto agudo, **convulsiones**, apnea, cianosis o **hipotermia <36,5 °C**.\n- También si **deja de comer** bien después de haber comido bien.\n- Valorar a las **6 h**: el bebé sano que come con pereza necesita un **plan de alimentación**, no una glucosa.",
-      "burbujas": [
-        {
-          "en_texto": "convulsiones",
-          "titulo": "¿Y el temblor?",
-          "texto": "Los **movimientos repetidos** de un miembro, sin estímulo, son frecuentes en el recién nacido: el **temblor solo** no obliga a medir la glucosa.",
-          "referencias": [
-            {
-              "titulo": "El temblor solo no es indicación",
-              "paginas": "10",
-              "texto": "which are unprovoked and not in response to a stimulus, is common and is not by itself an indication to measure BG.",
-              "fuente": "BAPM 2024",
-              "anio": "2024",
-              "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
-              "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/hipoglucemiapediatrica/evidencia_hipoglucemiapediatrica_pag10_bapm_which_are_unprovoked_not_response.png"
-            }
-          ]
-        }
-      ],
+      "titulo": "Sin riesgo: buscar signos y ver cómo come",
+      "texto": "- Medir la glucosa si tiene alguno de **la lista**.\n- El **temblor solo** no obliga a medirla: es frecuente en el recién nacido.\n- Valorar a las **6 h**: el bebé sano que come con **pereza** necesita un **plan de alimentación**, no una glucosa.",
       "pie_nodo": "¿Tiene signos o dejó de comer bien?",
       "opciones": [
         {
@@ -1274,16 +1282,28 @@
           "cita": "Casertano A, Rossi A, Fecarotta S, et al. An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use. Front Endocrinol 2021;12:684011.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag3_casertano_poor_suck_or_poor_feeding.png"
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Medir la glucosa si hay",
+        "items": [
+          "Hipotermia **<36,5 °C** sin causa ambiental",
+          "Acidosis perinatal: pH **<7,1** y déficit de base **≥12 mmol/L**",
+          "Infección neonatal precoz sospechada o confirmada",
+          "Cianosis central o apnea",
+          "Letargia, hipotonía o alteración de la conciencia",
+          "Convulsiones o llanto agudo",
+          "Deja de comer bien después de haber comido bien"
+        ]
+      }
     },
     "diag_medicion_inmediata": {
       "tipo": "pregunta",
       "titulo": "Con signos: medir la glucosa ya",
-      "texto": "- Medir enseguida y pedir **revisión urgente** del pediatra.\n- Confirmar la cifra en el laboratorio, pero **sin esperar** el resultado para tratar.\n- Buscar a la vez **otras causas** de los signos, como la infección.",
+      "texto": "- Medir enseguida y pedir **revisión urgente** del pediatra.\n- Confirmar la cifra en el **laboratorio**, pero **sin esperar** el resultado para tratar.\n- Buscar a la vez **otras causas** de los signos, como la **infección**.",
       "alertas": [
         {
           "titulo": "Signos neurológicos",
-          "texto": "La glucosa **<18 mg/dL** que dura **1-2 h** o se repite, con **disfunción neurológica**, es la de mayor riesgo de **lesión cerebral**."
+          "texto": "La glucosa **<18 mg/dL** que dura **1-2 h** o se repite, con **disfunción neurológica**, es la de más riesgo de **lesión**: **dextrosa IV** sin esperar."
         }
       ],
       "discrepancias": [
@@ -1304,7 +1324,7 @@
           "nota": "Con **signos**, todas tratan de **inmediato**; cambia la **cifra** que dispara el tratamiento."
         }
       ],
-      "pie_nodo": "¿Cuánto da la glucosa?",
+      "pie_nodo": "¿Cuánta glucosa tiene?",
       "opciones": [
         {
           "texto": "Menos de 45 mg/dL",
@@ -1383,21 +1403,11 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Signos con glucosa normal: buscar otra causa",
-      "texto": "- Los signos de hipoglucemia son **inespecíficos**: buscar **sepsis**, asfixia, convulsión o un trastorno metabólico.\n- En el niño que comunica síntomas, sin tríada de Whipple **no se estudia** la hipoglucemia.\n- Repetir la glucosa si los signos vuelven.",
+      "texto": "- Los signos de hipoglucemia son **inespecíficos**.\n- **Recién nacido:** buscar **infección** y otras causas; seguir vigilando con la escala de alerta de la unidad.\n- **Lactante o niño:** sin tríada de Whipple **no se estudia** la hipoglucemia.\n- Repetir la **glucosa** si los signos vuelven.",
       "enlaces": [
         {
           "texto": "Convulsión: epilepsia",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Pediatria/epilepsiapediatrica.json"
-        },
-        {
-          "texto": "PEWS",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/pews_brighton.json"
-        },
-        {
-          "texto": "Phoenix: sepsis",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/phoenix_sepsis_pediatrica.json"
         }
       ],
       "referencias": [
@@ -1447,7 +1457,7 @@
       "tipo": "resultado",
       "estilo": "exito",
       "titulo": "Sin riesgo ni signos: cuidados de rutina",
-      "texto": "- **Sin tamizaje** de glucosa: el recién nacido a término sano no lo necesita.\n- Apoyar la **lactancia** a demanda y el contacto **piel con piel**.\n- Si come con pereza: plan activo de alimentación, revisión cada **2-4 h** y extracción de calostro.\n- Medir la glucosa si **aparecen signos** o deja de comer bien.",
+      "texto": "- **Sin tamizaje** de glucosa: el recién nacido a término sano no lo necesita.\n- Apoyar la **lactancia** a demanda y el contacto **piel con piel**.\n- Si come con pereza:\n  1. Hacer un **plan de alimentación**.\n  2. Revisarlo cada **2-4 h**.\n  3. **Extraer calostro**.\n- Medir la glucosa si **aparecen signos**.",
       "referencias": [
         {
           "titulo": "Sin tamizaje en el término sano",
@@ -1581,7 +1591,7 @@
           "color": "morado"
         },
         {
-          "texto": "No",
+          "texto": "No: sin Whipple y glucosa de 60 o más",
           "siguiente_nodo": "diag_buscar_otras_causas"
         }
       ],
@@ -1671,14 +1681,14 @@
     "diag_muestra_critica": {
       "tipo": "informativo",
       "titulo": "Muestra crítica: durante la hipoglucemia, antes de tratar",
-      "texto": "- Tomarla **durante** la hipoglucemia: con la glucosa normal casi ningún análisis informa.\n- Prioridad: glucosa, **BOHB**, lactato y gases; plasma de reserva para **insulina**, péptido C y **AGL**.\n- Guardar la **primera orina** después del episodio.\n- Si falta sangre, tratar igual y completar después.",
+      "texto": "- Tomarla **durante** la hipoglucemia: con la glucosa normal casi ningún **análisis** informa.\n- Prioridad: lo de **la imagen**, por columnas; si falta sangre, **tratar igual** y completar después.\n- Guardar la **primera orina** después del episodio.",
       "media": [
         {
           "recurso": "hipo_muestra_critica.png",
           "titulo": "Muestra crítica: qué pedir primero",
           "descripcion": "Pruebas de la muestra crítica en orden de prioridad, tomadas durante la hipoglucemia.",
-          "info": "Primero lo que distingue las causas: {#4F8CF6:glucosa}, {#8B5CF6:BOHB}, lactato y gases. En {#F2A23A:plasma de reserva}: insulina, péptido C y **AGL**. Después, hormonas y metabolismo. Con la glucosa normal casi ningún análisis informa.",
-          "en_texto": "Prioridad",
+          "info": "Primero lo que distingue las causas: {#4F8CF6:glucosa, BOHB, lactato y gases}. En {#F2A23A:plasma de reserva}: insulina, péptido C y **AGL**. Después, {#8B5CF6:hormonas y metabolismo}. Con la glucosa normal casi ningún **análisis** informa.",
+          "en_texto": "la imagen",
           "referencias": [
             {
               "titulo": "Muestra crítica antes del tratamiento",
@@ -1723,20 +1733,6 @@
           ]
         }
       ],
-      "checklist": {
-        "titulo": "Muestra crítica",
-        "items": [
-          "Glucosa de laboratorio",
-          "BOHB (o cetonemia capilar)",
-          "Lactato y gases",
-          "Insulina y péptido C",
-          "AGL",
-          "Cortisol y GH",
-          "Perfil de acilcarnitinas y aminoácidos",
-          "Amonio",
-          "Orina: cetonas y ácidos orgánicos"
-        ]
-      },
       "nota_adicional": "En el examen, buscar **micropene** o paladar hendido (hipopituitarismo), **hepatomegalia** (glucogenosis), **hiperpigmentación** (insuficiencia suprarrenal) o macroglosia (Beckwith-Wiedemann).",
       "evidencia": {
         "texto": "PES: fuerte, calidad alta (estudiar la causa)"
@@ -1853,8 +1849,8 @@
     },
     "diag_diabetes": {
       "tipo": "informativo",
-      "titulo": "Niño con diabetes: nivel de la hipoglucemia",
-      "texto": "- **<70 mg/dL**: alerta; se trata ya, porque puede seguir bajando.\n- **<54 mg/dL**: importante; aparecen síntomas y **disfunción cognitiva**.\n- **Grave**: coma, convulsión o necesita que **otra persona** le dé la glucosa.\n- Desencadenantes: **dosis excesiva** de insulina, comida omitida, **ejercicio**, sueño y alcohol.",
+      "titulo": "Niño con diabetes: ver el nivel de la hipoglucemia",
+      "texto": "- **<70 mg/dL** es **alerta** y **<54 mg/dL**, importante: los dos se tratan con glucosa oral.\n- **Grave:** coma, convulsión o necesita que **otra persona** le dé la glucosa.\n- Buscar el desencadenante: **dosis excesiva** de insulina, comida omitida, **ejercicio**, sueño o alcohol.",
       "media": [
         {
           "recurso": "hipo_niveles_diabetes.png",
@@ -1896,32 +1892,6 @@
           ]
         }
       ],
-      "tabla": {
-        "titulo": "Niveles de ISPAD",
-        "columnas": [
-          "Nivel",
-          "Glucosa",
-          "Qué hacer"
-        ],
-        "filas": [
-          [
-            "Alerta",
-            "**<70 mg/dL**",
-            "Tratar con glucosa oral"
-          ],
-          [
-            "Importante",
-            "**<54 mg/dL**",
-            "Tratar con glucosa oral"
-          ],
-          [
-            "Grave",
-            "Sin cifra: coma o convulsión",
-            "Glucagón o dextrosa IV"
-          ]
-        ],
-        "resaltar_primera_columna": true
-      },
       "nota_adicional": "La hipoglucemia del **ejercicio** puede aparecer **horas después**, sobre todo de noche.",
       "opciones": [
         {
@@ -2028,29 +1998,32 @@
     },
     "trat_decision_inicial": {
       "tipo": "pregunta",
-      "titulo": "¿Qué hipoglucemia vas a tratar?",
-      "texto": "- El **recién nacido** sin signos se trata con **gel y toma**; con signos o glucosa **<18 mg/dL**, con **dextrosa IV**.\n- El **lactante o niño** se trata según pueda tragar o no.\n- El niño con **diabetes** sigue el esquema de ISPAD.",
+      "titulo": "Elegir el tratamiento según el paciente",
       "pie_nodo": "¿Qué hipoglucemia vas a tratar?",
       "opciones": [
         {
           "texto": "Recién nacido: 18-35 mg/dL, sin signos",
           "siguiente_nodo": "trat_asintomatico_gel",
-          "color": "teal"
+          "color": "teal",
+          "descripcion": "Primeras 72 h, a término; glucosa antes de una toma."
         },
         {
           "texto": "Recién nacido: <18 mg/dL, o <45 con signos",
           "siguiente_nodo": "trat_sintomatico_severo",
-          "color": "rosa"
+          "color": "rosa",
+          "descripcion": "Primeras 72 h; o hipoglucemia persistente que ya necesita dextrosa IV."
         },
         {
           "texto": "Lactante o niño sin diabetes",
           "siguiente_nodo": "trat_ninos_mayores",
-          "color": "morado"
+          "color": "morado",
+          "descripcion": "Desde las 72 h de vida; Whipple o glucosa <60 mg/dL."
         },
         {
           "texto": "Niño con diabetes",
           "siguiente_nodo": "trat_diabetes",
-          "color": "azul"
+          "color": "azul",
+          "descripcion": "Tratado con insulina; glucosa <70 mg/dL o hipoglucemia grave."
         }
       ],
       "referencias": [
@@ -2104,12 +2077,13 @@
           "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_ispad_this_can_be_accomplished_by.png"
         }
-      ]
+      ],
+      "contexto": "Cada grupo tiene sus **umbrales** y su **primera línea**: el recién nacido sin signos empieza con **gel y toma**, no con dextrosa IV."
     },
     "trat_asintomatico_gel": {
       "tipo": "informativo",
       "titulo": "Gel de glucosa 40 % y toma",
-      "texto": "- Dar **gel de glucosa 40 %** a **200 mg/kg** (**0,5 mL/kg**) en la mucosa de la mejilla, con **masaje**.\n- Ofrecer la **toma** enseguida, mejor leche materna.\n- Mantener el **calor** y el contacto piel con piel.\n- El gel va siempre con un **plan de alimentación**.",
+      "texto": "- Dar **gel de glucosa 40 %** a **200 mg/kg** (**0,5 mL/kg**) en la mucosa de la mejilla, con **masaje**.\n- Ofrecer la **toma** enseguida, mejor leche materna.\n- Mantener el **calor** y el contacto **piel con piel**: el gel va siempre con un **plan de alimentación**.",
       "media": [
         {
           "recurso": "hipo_gel_bucal.gif",
@@ -2322,22 +2296,31 @@
       "tipo": "pregunta",
       "titulo": "Medir antes de la siguiente toma",
       "texto": "- Medir la glucosa antes de la **siguiente toma**; si fue la primera, antes de la tercera, **antes de 8 h** de vida.\n- Mientras tanto: piel con piel, tomas cada **3 h** y extracción de calostro si no come bien.",
-      "pie_nodo": "¿Cuánto da la glucosa?",
+      "pie_nodo": "¿Cuánta glucosa tiene antes de la siguiente toma?",
       "opciones": [
         {
-          "texto": "36 mg/dL o más",
+          "texto": "36 mg/dL o más, sin signos",
           "siguiente_nodo": "trat_prevencion_hipotermia",
           "color": "teal"
         },
         {
-          "texto": "Sigue en 18-35 mg/dL, sin signos",
+          "texto": "18-35, sin signos: es la 2.ª baja",
           "siguiente_nodo": "trat_gel_segunda_dosis",
           "color": "teal"
         },
         {
-          "texto": "Menos de 18 mg/dL, o aparecen signos",
+          "texto": "18-35, sin signos: ya van más de 2",
+          "siguiente_nodo": "trat_falla_gel",
+          "color": "teal"
+        },
+        {
+          "texto": "Menos de 18, o menos de 45 con signos",
           "siguiente_nodo": "trat_sintomatico_severo",
           "color": "rosa"
+        },
+        {
+          "texto": "45 mg/dL o más, con signos",
+          "siguiente_nodo": "trat_otra_causa"
         }
       ],
       "referencias": [
@@ -2386,11 +2369,11 @@
     "trat_gel_segunda_dosis": {
       "tipo": "pregunta",
       "titulo": "Repetir el gel una vez",
-      "texto": "- Repetir **200 mg/kg** con la toma: hasta **2 dosis** por episodio, separadas **30 min**.\n- Máximo **6 dosis** en **48 h**.\n- Avisar al **equipo neonatal** desde la segunda dosis y **examinar** al bebé antes de la tercera.",
+      "texto": "- Repetir el **gel** con la **toma**.\n- **Examinar** al bebé y avisar al **equipo neonatal**.\n- Medir otra vez antes de la siguiente toma.",
       "alertas": [
         {
           "titulo": "El gel no basta",
-          "texto": "El gel no sirve en la hipoglucemia **grave**, **persistente** o con signos: ahí va la **dextrosa IV**."
+          "texto": "En la hipoglucemia grave, **persistente** o con signos, el gel es sólo un **puente**: va la **dextrosa IV**."
         }
       ],
       "farmacos": [
@@ -2410,22 +2393,26 @@
           }
         }
       ],
-      "pie_nodo": "¿Cuánto da antes de la siguiente toma?",
+      "pie_nodo": "¿Cuánta glucosa tiene antes de la siguiente toma?",
       "opciones": [
         {
-          "texto": "36 mg/dL o más",
+          "texto": "36 mg/dL o más, sin signos",
           "siguiente_nodo": "trat_prevencion_hipotermia",
           "color": "teal"
         },
         {
-          "texto": "Sigue en 18-35, sin signos: más de 2 bajas",
+          "texto": "18-35 mg/dL, sin signos",
           "siguiente_nodo": "trat_falla_gel",
           "color": "teal"
         },
         {
-          "texto": "Menos de 18 mg/dL, o aparecen signos",
+          "texto": "Menos de 18, o menos de 45 con signos",
           "siguiente_nodo": "trat_sintomatico_severo",
           "color": "rosa"
+        },
+        {
+          "texto": "45 mg/dL o más, con signos",
+          "siguiente_nodo": "trat_otra_causa"
         }
       ],
       "referencias": [
@@ -2483,16 +2470,16 @@
           "nodo_objetivo": "nodo_causa"
         }
       ],
-      "pie_nodo": "¿Cómo vas a darle la energía?",
+      "pie_nodo": "¿Ya se intentó dar más energía por boca o sonda?",
       "opciones": [
         {
-          "texto": "Tomas más seguidas o por sonda",
+          "texto": "No: tomas más seguidas o por sonda",
           "siguiente_nodo": "trat_prevencion_hipotermia",
           "color": "teal"
         },
         {
-          "texto": "Infusión de dextrosa 10 % IV",
-          "siguiente_nodo": "trat_infusion_iv",
+          "texto": "Sí, y sigue baja: infusión IV",
+          "siguiente_nodo": "trat_infusion_persistente",
           "color": "rosa"
         }
       ],
@@ -2552,28 +2539,37 @@
     "trat_prevencion_hipotermia": {
       "tipo": "pregunta",
       "titulo": "Vigilar: calor, tomas cada 3 h y glucosa antes de cada toma",
-      "texto": "- Mantener **piel con piel**, gorro y cuarto sin corrientes.\n- Tomas cada **3 h** como máximo hasta tener **2 glucosas seguidas de 36 mg/dL o más**.\n- Contar las glucosas bajas: **más de 2** es hipoglucemia persistente.\n- Con fórmula: **40-60 mL/kg/día** el primer día.",
+      "texto": "- Mantener **piel con piel**, gorro y cuarto sin corrientes.\n- Tomas cada **3 h** como máximo hasta tener **2 glucosas seguidas de 36 mg/dL o más**.\n- Contar las glucosas bajas: **más de 2** es hipoglucemia **persistente**.",
       "pie_nodo": "¿Cómo van las glucosas antes de las tomas?",
       "opciones": [
         {
-          "texto": "Dos seguidas de 36 mg/dL o más",
+          "texto": "Dos seguidas de 36 mg/dL o más, sin signos",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "teal"
         },
         {
-          "texto": "Baja otra vez a 18-35: 2 o menos en total",
+          "texto": "Una de 36 o más; falta la segunda",
+          "siguiente_nodo": "trat_prevencion_hipotermia",
+          "color": "teal"
+        },
+        {
+          "texto": "Baja a 18-35, sin signos: 2 o menos en total",
           "siguiente_nodo": "trat_asintomatico_gel",
           "color": "teal"
         },
         {
-          "texto": "Baja otra vez: ya van más de 2",
+          "texto": "Baja a 18-35, sin signos: ya van más de 2",
           "siguiente_nodo": "trat_falla_gel",
           "color": "teal"
         },
         {
-          "texto": "Menos de 18 mg/dL, o aparecen signos",
+          "texto": "Menos de 18, o menos de 45 con signos",
           "siguiente_nodo": "trat_sintomatico_severo",
           "color": "rosa"
+        },
+        {
+          "texto": "45 mg/dL o más, con signos",
+          "siguiente_nodo": "trat_otra_causa"
         }
       ],
       "referencias": [
@@ -2652,38 +2648,7 @@
     "trat_sintomatico_severo": {
       "tipo": "pregunta",
       "titulo": "Grave o con signos: muestra, vía IV y unidad neonatal",
-      "texto": "- Pedir **revisión médica urgente** y canalizar una **vía IV**.\n- Tomar la **muestra crítica** y la glucosa de laboratorio; poner **bolsa de orina**.\n- **Considerar sepsis** e ingresar a la **unidad neonatal**.\n- No suspender la lactancia salvo que esté demasiado enfermo para comer.",
-      "media": [
-        {
-          "recurso": "hipo_muestra_critica.png",
-          "titulo": "Muestra crítica: qué pedir primero",
-          "descripcion": "Pruebas de la muestra crítica en orden de prioridad, tomadas durante la hipoglucemia.",
-          "info": "En el recién nacido, BAPM prioriza {#4F8CF6:glucosa}, {#F2A23A:insulina y péptido C}, **AGL** y {#8B5CF6:BOHB}; si falta sangre, se trata igual y el resto se toma después. La bolsa de orina va desde el principio.",
-          "en_texto": "muestra crítica",
-          "referencias": [
-            {
-              "titulo": "Persistente o grave: estudiar antes de tratar",
-              "paginas": "12",
-              "texto": "Blood samples for the following investigations should be taken before hypoglycaemia is treated. However, do not delay the treatment to complete investigations",
-              "fuente": "BAPM 2024",
-              "anio": "2024",
-              "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
-              "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/hipoglucemiapediatrica/evidencia_hipoglucemiapediatrica_pag12_bapm_blood_samples_for_following_investigations.png"
-            },
-            {
-              "titulo": "Muestra para confirmar y estudiar; bolsa de orina",
-              "paginas": "40",
-              "texto": "Collect blood sample for: laboratory confirmation of blood glucose, hypoglycaemia screening tests and site a urine bag.",
-              "fuente": "BAPM 2024",
-              "anio": "2024",
-              "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
-              "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/hipoglucemiapediatrica/evidencia_hipoglucemiapediatrica_pag40_bapm_collect_blood_sample_for_laboratory.png"
-            }
-          ]
-        }
-      ],
+      "texto": "- Pedir **revisión médica urgente** y canalizar una **vía IV**.\n- Tomar la **muestra crítica** y la glucosa de laboratorio; poner **bolsa de orina**.\n- **Considerar sepsis** e ingresar a la **unidad neonatal**.\n- No suspender la **lactancia** salvo que esté demasiado enfermo para comer.",
       "checklist": {
         "titulo": "Muestra crítica del recién nacido",
         "items": [
@@ -2781,13 +2746,13 @@
     "trat_glucagon_neonatal": {
       "tipo": "informativo",
       "titulo": "Sin vía IV: gel o glucagón IM mientras tanto",
-      "texto": "- Mientras se consigue la vía: **gel de glucosa 40 %** **200 mg/kg** o **glucagón IM** **200 mcg/kg**, máx. **1 mg**.\n- Con glucosa **<18 mg/dL**, el gel es sólo un **puente** hasta la dextrosa IV.\n- Seguir buscando el acceso IV.",
+      "texto": "- Mientras se consigue la vía: **gel de glucosa 40 %** **200 mg/kg** o **glucagón IM**.\n- Con glucosa **<18 mg/dL**, el gel es sólo un **puente** hasta la **dextrosa IV**.\n- Seguir buscando el **acceso IV**.",
       "media": [
         {
           "recurso": "hipo_gel_bucal.gif",
           "titulo": "Gel de glucosa 40 %: técnica",
           "descripcion": "Secar la mucosa, aplicar el gel en la mejilla, masajear y dar la toma.",
-          "info": "Con glucosa **<18 mg/dL** el gel es sólo un {#F2A23A:puente} hasta la **dextrosa**, mientras se consigue la vía IV. Se aplica igual: {#4F8CF6:secar}, {#F2A23A:gel en la mejilla}, {#18B9A9:masaje}; la alternativa es el **glucagón IM**.",
+          "info": "Con glucosa **<18 mg/dL** el gel es sólo un **puente** hasta la **dextrosa**, mientras se consigue la vía IV. Se aplica igual: {#4F8CF6:secar}, {#F2A23A:gel en la mejilla}, {#18B9A9:masaje}; la alternativa es el **glucagón IM**.",
           "en_texto": "gel de glucosa 40 %",
           "referencias": [
             {
@@ -2888,13 +2853,56 @@
           "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
           "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag19_bapm_results_do_not_apply_infants.png"
+        },
+        {
+          "titulo": "Glucagón si no hay vía IV",
+          "paginas": "9",
+          "texto": "pharmacologic doses of glucagon (0.5–1 mg or 20–30 μg/kg) can be used as an alternative acute therapy",
+          "fuente": "Hiperinsulinismo 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1159/000531766",
+          "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag9_hi_pharmacologic_doses_glucagon_051_mg.png"
+        },
+        {
+          "titulo": "Glucagón en el hiperinsulinismo",
+          "paginas": "6",
+          "texto": "Doses of 0.5-1.0 mg (independent of weight), given IV, intramuscularly, or subcutaneously, are usually effective",
+          "fuente": "PES 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.jpeds.2015.03.057",
+          "cita": "Thornton PS, Stanley CA, De Leon DD, et al. Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children. J Pediatr 2015;167(2):238-245.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_pes_doses_0510_mg_independent_weight.png"
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Dosis de glucagón en el recién nacido",
+          "posturas": [
+            {
+              "fuente": "BAPM 2024",
+              "dice": "200 mcg/kg IM, máx. 1 mg",
+              "paginas": "12"
+            },
+            {
+              "fuente": "Hiperinsulinismo 2023",
+              "dice": "20-30 mcg/kg, o 0,5-1 mg, IM o SC",
+              "paginas": "9"
+            },
+            {
+              "fuente": "PES 2015",
+              "dice": "0,5-1 mg sin depender del peso; 0,03 mg/kg puede no servir salvo IV",
+              "paginas": "6"
+            }
+          ],
+          "nota": "La dosis de BAPM es unas **10 veces** mayor por kilo que la de la guía de **hiperinsulinismo**."
         }
       ]
     },
     "trat_infusion_iv": {
       "tipo": "informativo",
       "titulo": "Bolo de dextrosa 10 % e infusión",
-      "texto": "- Bolo de **dextrosa 10 %** **2,5 mL/kg**.\n- Infusión de dextrosa 10 % a **60 mL/kg/día**: un aporte de glucosa de **4,2 mg/kg/min**.\n- Seguir con las tomas si no hay contraindicación.\n- Medir de nuevo a los **30 min**.",
+      "texto": "- Poner un bolo de **dextrosa 10 %** de **2,5 mL/kg**.\n- Empezar la **infusión** a **60 mL/kg/día**, que da un **aporte de glucosa** de **4,2 mg/kg/min**.\n- Seguir con las **tomas** si no hay contraindicación.\n- Medir de nuevo a los **30 min**.",
       "farmacos": [
         {
           "nombre": "Dextrosa 10 % IV (bolo)",
@@ -2977,7 +2985,7 @@
             {
               "fuente": "Hiperinsulinismo 2023",
               "dice": "Bolo 200 mg/kg; infusión que mantenga >70 mg/dL, en general ≥8 mg/kg/min",
-              "paginas": "8"
+              "paginas": "9"
             }
           ],
           "nota": "Cambia el **aporte inicial**: **4,2 mg/kg/min** con BAPM frente a **5-8** con AAP."
@@ -3073,8 +3081,8 @@
     "trat_reval_iv": {
       "tipo": "pregunta",
       "titulo": "Vigilar: glucosa a los 30 min de cada cambio",
-      "texto": "- Medir **30 min** después de empezar o cambiar la infusión.\n- Vigilar los **signos neurológicos** y el balance de líquidos.\n- Seguir con las tomas y la extracción de leche.",
-      "pie_nodo": "¿Cuánto da a los 30 min?",
+      "texto": "- Medir **30 min** después de empezar o cambiar la **infusión**.\n- Con **sospecha de hiperinsulinismo**, la meta sube: **>54 mg/dL** las primeras **48 h** y **>63** después.\n- Vigilar los **signos neurológicos** y el **balance** de líquidos.",
+      "pie_nodo": "¿Cuánta glucosa tiene a los 30 min del cambio?",
       "opciones": [
         {
           "texto": "45 mg/dL o menos, o con signos",
@@ -3082,9 +3090,21 @@
           "color": "rosa"
         },
         {
-          "texto": "Más de 45 mg/dL, sin signos",
+          "texto": "Más de 45, sin sospecha de hiperinsulinismo",
           "siguiente_nodo": "seg_destete",
           "color": "rosa"
+        },
+        {
+          "texto": "Hiperinsulinismo: todavía bajo la meta",
+          "siguiente_nodo": "trat_aumentar_gir",
+          "color": "rosa",
+          "descripcion": "Sin signos, entre 46 y 54 mg/dL las primeras 48 h, o entre 46 y 63 después."
+        },
+        {
+          "texto": "Hiperinsulinismo: sobre la meta",
+          "siguiente_nodo": "seg_destete",
+          "color": "rosa",
+          "descripcion": "Sin signos, más de 54 mg/dL las primeras 48 h, o más de 63 después."
         }
       ],
       "referencias": [
@@ -3127,6 +3147,26 @@
           "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
           "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag13_bapm_infants_with_severe_hypoglycaemia_or.png"
+        },
+        {
+          "titulo": "Hiperinsulinismo: más de 3,0 y luego 3,5 mmol/L",
+          "paginas": "13",
+          "texto": "In cases of suspected or confirmed hyperinsulinism, aim to maintain BG concentration >3.0mmol/L in the first 48 hours and >3.5mmol/L after 48 hours from birth.",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag13_bapm_cases_suspected_or_confirmed_hyperinsulinism.png"
+        },
+        {
+          "titulo": "Más de 8 mg/kg/min: sospechar hiperinsulinismo",
+          "paginas": "40",
+          "texto": "If glucose infusion rate >8mg/kg/min, suspect hyperinsulinism, contact specialist team and increase the glucose threshold to 3.0 mmol/L",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag40_bapm_if_glucose_infusion_rate_8mgkgmin.png"
         }
       ]
     },
@@ -3196,17 +3236,6 @@
             "unidad": "mL",
             "cantidad": 2.5
           }
-        },
-        {
-          "nombre": "Dextrosa 10 % IV (infusión)",
-          "dosis": "**60 mL/kg/día** (**4,2 mg/kg/min**)",
-          "pauta": "**Subir** **2 mg/kg/min** cada vez que siga **baja** a los **30 min**.",
-          "paginas": "40, 29 (BAPM 2024)",
-          "por_kg": {
-            "unidad": "mL",
-            "cantidad": 60,
-            "periodo": "dia"
-          }
         }
       ],
       "tabla": {
@@ -3259,8 +3288,13 @@
           "color": "rosa"
         },
         {
-          "texto": "Más de 8 mg/kg/min",
+          "texto": "Más de 8 mg/kg/min, por primera vez",
           "siguiente_nodo": "trat_hiperinsulinismo",
+          "color": "rosa"
+        },
+        {
+          "texto": "Más de 8: ya avisado, con vía central",
+          "siguiente_nodo": "trat_reval_iv",
           "color": "rosa"
         }
       ],
@@ -3310,7 +3344,7 @@
     "trat_hiperinsulinismo": {
       "tipo": "pregunta",
       "titulo": "Más de 8 mg/kg/min: sospechar hiperinsulinismo",
-      "texto": "- Avisar a **endocrinología**: el aporte normal es de **4-6 mg/kg/min**.\n- Subir la meta: **>54 mg/dL** las primeras **48 h** y **>63** después.\n- Si el consumo es claro, subir el aporte de **4 en 4 mg/kg/min**.\n- Muestra crítica si no se tomó; pedir el cociente **insulina/péptido C**.",
+      "texto": "- Avisar a **endocrinología**: el aporte normal es de **4-6 mg/kg/min**.\n- Subir la meta: **>54 mg/dL** las primeras **48 h** y **>63** después.\n- Si sigue necesitando más glucosa, subir de **4 en 4 mg/kg/min**.\n- **Tomar la muestra crítica** si no se tomó y pedir el cociente **insulina/péptido C**.",
       "contexto": "El **hiperinsulinismo** frena las **cetonas**: el cerebro se queda sin combustible de reserva y la lesión es más probable.",
       "evidencia": {
         "texto": "Hiperinsulinismo 2023: fuerte, calidad moderada (dextrosa IV)"
@@ -3327,7 +3361,7 @@
             {
               "fuente": "Hiperinsulinismo 2023",
               "dice": "70-100 mg/dL",
-              "paginas": "8"
+              "paginas": "9"
             },
             {
               "fuente": "PES 2015",
@@ -3454,18 +3488,19 @@
     "trat_via_central": {
       "tipo": "informativo",
       "titulo": "Dextrosa concentrada: vía central y glucagón IV",
-      "texto": "- Para dar **dextrosa concentrada** sin sobrecargar de volumen: **catéter venoso central**.\n- Si el aporte es tan alto que hay riesgo de **sobrecarga**: añadir **glucagón IV** en infusión, **2,5-20 mcg/kg/h**.\n- No dar **corticoides** inespecíficos: no se recomiendan.",
+      "texto": "- Para dar **dextrosa concentrada** sin sobrecargar de volumen: **catéter venoso central**.\n- Si hay riesgo de **sobrecarga**, añadir **glucagón IV** en infusión.\n- No dar **corticoides**: se desaconsejan en el recién nacido.",
       "farmacos": [
         {
           "nombre": "Glucagón IV en infusión",
           "dosis": "**2,5-20 mcg/kg/h**",
           "pauta": "Cuando el aporte de glucosa es tan alto que hay riesgo de **sobrecarga** de **volumen**.",
-          "paginas": "8 (hiperinsulinismo 2023)",
+          "paginas": "9 (hiperinsulinismo 2023)",
           "nota": "Puede dar **vómito**, exantema y dificultad respiratoria.",
           "por_kg": {
             "unidad": "mcg",
             "desde": 2.5,
-            "hasta": 20
+            "hasta": 20,
+            "periodo": "hora"
           }
         }
       ],
@@ -3474,7 +3509,7 @@
       },
       "opciones": [
         {
-          "texto": "Vía central y glucagón: seguir vigilando",
+          "texto": "Vía central puesta",
           "siguiente_nodo": "trat_reval_iv",
           "color": "rosa"
         }
@@ -3525,7 +3560,7 @@
     "seg_destete": {
       "tipo": "pregunta",
       "titulo": "Glucosa estable: retirar la infusión poco a poco",
-      "texto": "- Retirar **despacio** la dextrosa mientras aumentan las tomas.\n- Seguir midiendo hasta que coma **completo** y mantenga **>45 mg/dL** (**>54** si hay hiperinsulinismo).\n- Desde las **72 h**, la meta es **>63 mg/dL** para todos.\n- Vigilar varios ciclos de toma y ayuno, al menos **24 h**.",
+      "texto": "- Retirar **despacio** la dextrosa mientras aumentan las **tomas**.\n- Seguir midiendo hasta que coma **completo** y mantenga **>45 mg/dL**.\n- Con **hiperinsulinismo**: **>54 mg/dL** las primeras **48 h** y **>63** después; desde las **72 h**, **>63** para todos.\n- Vigilar varios ciclos de **toma y ayuno**, al menos **24 h**.",
       "discrepancias": [
         {
           "asunto": "Glucosa para empezar a retirar la dextrosa IV",
@@ -3544,15 +3579,15 @@
           "nota": "Cambia el **momento** del **retiro**."
         }
       ],
-      "pie_nodo": "¿Cómo va el retiro?",
+      "pie_nodo": "¿Mantiene la meta mientras se retira la dextrosa?",
       "opciones": [
         {
-          "texto": "Mantiene la meta con tomas completas",
+          "texto": "Sí: mantiene la meta con tomas completas",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "rosa"
         },
         {
-          "texto": "Vuelve a bajar",
+          "texto": "No: baja de la meta",
           "siguiente_nodo": "trat_reval_iv",
           "color": "rosa"
         }
@@ -3612,8 +3647,8 @@
     },
     "trat_ninos_mayores": {
       "tipo": "pregunta",
-      "titulo": "Lactante o niño: ¿puede tragar?",
-      "texto": "- Tratar **sin esperar** la confirmación del laboratorio.\n- Si traga bien: **glucosa oral**, la que sube más rápido.\n- Si no traga, convulsiona o está inconsciente: **dextrosa IV**, o glucagón si no hay vía.",
+      "titulo": "Elegir la vía según el estado de conciencia",
+      "texto": "- Si traga bien: **glucosa oral**, la que sube más rápido.\n- Si no traga, **convulsiona** o está inconsciente: **dextrosa IV**, o **glucagón** si no hay vía.",
       "pie_nodo": "¿Está consciente y puede tragar?",
       "opciones": [
         {
@@ -3673,7 +3708,7 @@
     "trat_nino_oral": {
       "tipo": "pregunta",
       "titulo": "Glucosa oral 10-20 g y algo de comer",
-      "texto": "- Dar **10-20 g de glucosa** oral; mejor glucosa que sacarosa.\n- Después, un **refrigerio con almidón** o, en el lactante, una **toma de leche**.\n- Medir de nuevo la glucosa y mirar si ceden los síntomas.",
+      "texto": "- Dar **10-20 g de glucosa** oral; es mejor la **glucosa** que la sacarosa.\n- Después, un **refrigerio con almidón** o, en el lactante, una **toma de leche**.\n- Medir de nuevo la **glucosa** y mirar si ceden los **síntomas**.",
       "alertas": [
         {
           "titulo": "Sin sacarosa",
@@ -3702,7 +3737,7 @@
       "pie_nodo": "¿Sube la glucosa y ceden los síntomas?",
       "opciones": [
         {
-          "texto": "Sí: buscar la causa",
+          "texto": "Sí: sube y ceden los síntomas",
           "siguiente_nodo": "nodo_causa",
           "color": "morado"
         },
@@ -3768,12 +3803,12 @@
     "trat_nino_grave": {
       "tipo": "informativo",
       "titulo": "No traga: dextrosa IV, o glucagón sin vía",
-      "texto": "- Bolo de **dextrosa 10 %** **2 mL/kg** (**200 mg/kg**) y luego infusión de dextrosa 10 % de **mantenimiento**.\n- Sin vía IV: **glucagón** **1 mg** si pesa **≥25 kg** o tiene **>12 años**; **0,5 mg** si es menor.\n- No pasar las **necesidades de líquidos** del peso.",
+      "texto": "- Poner un bolo de **dextrosa 10 %** de **2 mL/kg** y seguir con una **infusión de mantenimiento**.\n- Sin vía IV: **glucagón** IM o SC una vez.\n- No pasar las **necesidades de líquidos** del peso.",
       "media": [
         {
           "recurso": "hipo_glucagon.png",
-          "titulo": "Glucagón según la edad",
-          "descripcion": "Formas de glucagón y su dosis según el peso o la edad.",
+          "titulo": "Glucagón según el peso y la edad",
+          "descripcion": "Glucagón IM o SC por peso; el nasal y el dasiglucagón, sólo en la diabetes.",
           "info": "Sin vía IV, el {#4F8CF6:glucagón IM o SC} va a **1 mg** desde los **25 kg** (o **>12 años**) y a **0,5 mg** si es menor. En el niño sin diabetes {#EF5454:no sirve} en la **glucogenosis I** y puede fallar tras un **ayuno largo**.",
           "en_texto": "glucagón",
           "referencias": [
@@ -3815,14 +3850,14 @@
         {
           "nombre": "Glucagón IM o SC",
           "dosis": "**1 mg** si pesa **≥25 kg** o tiene **>12 años**; **0,5 mg** si es menor",
-          "pauta": "Sin **vía IV**. No en la **glucogenosis I**; puede fallar tras un **ayuno largo**.",
-          "paginas": "4 (Casertano 2021); 6 (PES 2015)"
+          "pauta": "Sin **vía IV**; dosis única: repetirla puede dar **vómito**.",
+          "paginas": "4 (Casertano 2021)"
         }
       ],
       "alertas": [
         {
           "titulo": "Glucagón que falla",
-          "texto": "No sirve en la **glucogenosis I** y puede fallar tras un **ayuno largo**: el hígado ya no tiene **glucógeno**."
+          "texto": "No sirve en la **glucogenosis I** y puede fallar tras un **ayuno largo**: si no responde, **dextrosa IV**."
         }
       ],
       "discrepancias": [
@@ -3935,22 +3970,32 @@
           "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
           "cita": "Organización Mundial de la Salud. Pocket book of hospital care for children: guidelines for the management of common childhood illnesses. 2.ª ed. Ginebra: OMS; 2013.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag163_oms_do_not_exceed_maintenance_fluid.png"
+        },
+        {
+          "titulo": "Glucagón repetido: vómito",
+          "paginas": "4",
+          "texto": "Glucagon should be administered carefully because repeated/excessive doses may induce vomiting and so aggravate HY.",
+          "fuente": "Casertano 2021",
+          "anio": "2021",
+          "url": "https://doi.org/10.3389/fendo.2021.684011",
+          "cita": "Casertano A, Rossi A, Fecarotta S, et al. An Overview of Hypoglycemia in Children Including a Comprehensive Practical Diagnostic Flowchart for Clinical Use. Front Endocrinol 2021;12:684011.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag4_casertano_glucagon_should_be_administered_carefully.png"
         }
       ]
     },
     "trat_nino_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar la glucosa y darle de comer",
-      "texto": "- Medir la glucosa a los **30 min** y luego de forma seriada.\n- Mantener la infusión de dextrosa 10 % hasta que coma.\n- En cuanto despierte y trague: **darle de comer** y retirar la vía IV.\n- Meta en un trastorno persistente: **>70 mg/dL**.",
-      "pie_nodo": "¿Cómo sigue?",
+      "texto": "- Medir la **glucosa** a los **30 min** y luego de forma seriada.\n- En cuanto despierte y trague: **darle de comer** y retirar la **vía IV**.\n- Si no puede comer sin riesgo de **aspiración**: leche o **solución azucarada** por sonda nasogástrica.",
+      "pie_nodo": "¿Mantiene la glucosa y ya come?",
       "opciones": [
         {
-          "texto": "Estable y come: buscar la causa",
+          "texto": "Sí: estable y ya come",
           "siguiente_nodo": "nodo_causa",
           "color": "morado"
         },
         {
-          "texto": "Vuelve a bajar",
+          "texto": "No: vuelve a bajar de 60 mg/dL",
           "siguiente_nodo": "trat_nino_grave",
           "color": "morado"
         }
@@ -3967,16 +4012,6 @@
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag163_oms_give_5_mlkg_10_glucose.png"
         },
         {
-          "titulo": "Prevenir con infusión de dextrosa 10 %",
-          "paginas": "163",
-          "texto": "Prevent further hypoglycaemia in an unconscious child by giving 10% glucose (dextrose) infusion",
-          "fuente": "OMS 2013",
-          "anio": "2013",
-          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
-          "cita": "Organización Mundial de la Salud. Pocket book of hospital care for children: guidelines for the management of common childhood illnesses. 2.ª ed. Ginebra: OMS; 2013.",
-          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag163_oms_prevent_further_hypoglycaemia_an_unconscious.png"
-        },
-        {
           "titulo": "Cuando despierte: alimentar",
           "paginas": "164",
           "texto": "Once the child is conscious, stop IV treatment. Feed the child as soon as it is possible.",
@@ -3987,22 +4022,32 @@
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag164_oms_once_child_conscious_stop_iv.png"
         },
         {
-          "titulo": "3.1: meta mayor de 70 mg/dL",
-          "paginas": "6",
-          "texto": "older infants and children with a confirmed hypoglycemia disorder, we recommend that the goal of treatment be to maintain a PG concentration >70 mg/dL",
+          "titulo": "Sin comer seguro: solución azucarada por sonda",
+          "paginas": "164",
+          "texto": "If not able to feed without risk of aspiration, give sugar solution by nasogastric tube",
+          "fuente": "OMS 2013",
+          "anio": "2013",
+          "url": "https://www.who.int/publications/i/item/978-92-4-154837-3",
+          "cita": "Organización Mundial de la Salud. Pocket book of hospital care for children: guidelines for the management of common childhood illnesses. 2.ª ed. Ginebra: OMS; 2013.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag164_oms_if_not_able_feed_without.png"
+        },
+        {
+          "titulo": "1.2: si no comunica, glucosa menor de 60 mg/dL",
+          "paginas": "2",
+          "texto": "we suggest evaluation and management only of those whose PG concentrations are documented by laboratory quality assays to be below the normal threshold for neurogenic responses (<60 mg/dL [3.3 mmol/L]).",
           "fuente": "PES 2015",
           "anio": "2015",
           "url": "https://doi.org/10.1016/j.jpeds.2015.03.057",
           "cita": "Thornton PS, Stanley CA, De Leon DD, et al. Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children. J Pediatr 2015;167(2):238-245.",
-          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_pes_older_infants_children_with_confirmed.png"
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_pes_we_suggest_evaluation_management_only.png"
         }
       ]
     },
     "trat_diabetes": {
       "tipo": "pregunta",
-      "titulo": "Niño con diabetes: ¿puede tragar?",
+      "titulo": "Tratar según pueda tragar o no",
       "texto": "- Si está consciente y traga: **glucosa oral**.\n- Si está en **coma**, convulsiona o no traga: **glucagón** o **dextrosa IV**.\n- Con **bomba de insulina** convencional y glucosa **<54 mg/dL**: suspenderla hasta **>72 mg/dL**.",
-      "pie_nodo": "¿Puede tragar?",
+      "pie_nodo": "¿Está consciente y puede tragar?",
       "opciones": [
         {
           "texto": "Sí, traga",
@@ -4146,18 +4191,23 @@
         }
       ],
       "evidencia": {
-        "texto": "ISPAD: B (0,3 g/kg); E (medir a los 15 min)"
+        "texto": "ISPAD: B (glucosa oral); C (0,3 g/kg); E (medir a los 15 min)"
       },
       "pie_nodo": "¿A los 15 min llega a 70 mg/dL?",
       "opciones": [
         {
-          "texto": "Sí: comer y vigilar",
+          "texto": "Sí, 70 mg/dL o más",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "azul"
         },
         {
-          "texto": "Aún no: repetir la glucosa",
+          "texto": "Aún no: menos de 70 mg/dL",
           "siguiente_nodo": "trat_diabetes_oral",
+          "color": "azul"
+        },
+        {
+          "texto": "Empeora o ya no traga",
+          "siguiente_nodo": "trat_diabetes_grave",
           "color": "azul"
         }
       ],
@@ -4231,17 +4281,27 @@
           "url": "https://doi.org/10.1111/pedi.13443",
           "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag12_ispad_whole_milk_containing_20_g.png"
+        },
+        {
+          "titulo": "Tratar con glucosa oral",
+          "paginas": "2",
+          "texto": "Hypoglycemia should be treated with oral glucose. An immediate source of glucose must always be available to young people with diabetes.",
+          "fuente": "ISPAD 2022",
+          "anio": "2022",
+          "url": "https://doi.org/10.1111/pedi.13443",
+          "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_ispad_hypoglycemia_should_be_treated_with.png"
         }
       ]
     },
     "trat_diabetes_grave": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Hipoglucemia grave: glucagón o dextrosa IV",
-      "texto": "- Fuera del hospital: **glucagón** IM o SC, **1 mg** si pesa **>25 kg** y **0,5 mg** si pesa menos.\n- Glucagón nasal **3 mg** desde los **4 años**; dasiglucagón **0,6 mg** desde los **6 años**.\n- En el hospital: **dextrosa 10 %** **2 mL/kg** IV, máx. **5 mL/kg**.\n- Cuando despierte y trague: glucosa oral.",
+      "texto": "- Fuera del hospital o sin vía IV: poner **glucagón** según la **edad** y el **peso**.\n- En el hospital: **dextrosa 10 %** IV, **2 mL/kg** en varios minutos, hasta **5 mL/kg**.\n- Cuando **despierte y trague**, pasar a **glucosa oral**.",
       "media": [
         {
           "recurso": "hipo_glucagon.png",
-          "titulo": "Glucagón según la edad",
+          "titulo": "Glucagón según el peso y la edad",
           "descripcion": "Formas de glucagón y su dosis según el peso o la edad.",
           "info": "El {#4F8CF6:glucagón IM o SC} va a **1 mg** desde los **25 kg** y a **0,5 mg** si pesa menos. El {#18B9A9:nasal} (**3 mg**) sirve desde los **4 años** y el {#8B5CF6:dasiglucagón} (**0,6 mg**) desde los **6**: son más **fáciles** de usar en **casa**.",
           "en_texto": "glucagón",
@@ -4274,8 +4334,7 @@
           "nombre": "Glucagón IM o SC",
           "dosis": "**1 mg** si pesa **>25 kg**; **0,5 mg** si pesa **<25 kg**",
           "pauta": "**Fuera del hospital** o sin **vía IV**.",
-          "paginas": "2, 14 (ISPAD 2022)",
-          "nota": "**Glucagón nasal** **3 mg** desde los **4 años**; **dasiglucagón** **0,6 mg** SC desde los **6 años**."
+          "paginas": "2, 14 (ISPAD 2022)"
         },
         {
           "nombre": "Dextrosa 10 % IV",
@@ -4288,39 +4347,18 @@
           }
         }
       ],
-      "tabla": {
-        "titulo": "Glucagón por edad",
-        "columnas": [
-          "Forma",
-          "Dosis",
-          "Edad o peso"
-        ],
-        "filas": [
-          [
-            "Glucagón IM o SC",
-            "**1 mg** / **0,5 mg**",
-            ">25 kg / <25 kg"
-          ],
-          [
-            "Glucagón nasal",
-            "**3 mg**",
-            "Desde los **4 años**"
-          ],
-          [
-            "Dasiglucagón SC",
-            "**0,6 mg**",
-            "Desde los **6 años**"
-          ]
-        ],
-        "resaltar_primera_columna": true
-      },
       "evidencia": {
         "texto": "ISPAD: A (glucagón)"
       },
       "opciones": [
         {
-          "texto": "Despierta: glucosa oral",
+          "texto": "Sí: pasar a glucosa oral",
           "siguiente_nodo": "trat_diabetes_oral",
+          "color": "azul"
+        },
+        {
+          "texto": "Aún no: dextrosa IV hasta 5 mL/kg",
+          "siguiente_nodo": "trat_diabetes_grave",
           "color": "azul"
         }
       ],
@@ -4375,7 +4413,8 @@
           "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag1_ispad_severe_hypoglycemia_defined_as_an.png"
         }
-      ]
+      ],
+      "pie_nodo": "¿Despierta y puede tragar?"
     },
     "nodo_causa": {
       "tipo": "rama",
@@ -4412,14 +4451,14 @@
     },
     "diag_cetonas": {
       "tipo": "pregunta",
-      "titulo": "Leer la muestra crítica: cetonas, ácidos grasos y lactato",
-      "texto": "- **Cetonas bajas** con hipoglucemia: no se queman grasas, por **insulina** de más o por un **defecto de oxidación**.\n- Los **AGL** separan las dos: bajos en el hiperinsulinismo, altos en el defecto de oxidación.\n- **Cetonas altas**: el ayuno funciona; falla el glucógeno o una hormona.\n- **Lactato alto**: glucogenosis I o gluconeogénesis.",
+      "titulo": "Leer la muestra crítica",
+      "texto": "- Comparar las **cetonas** (BOHB), los AGL y el **lactato** de la muestra con **la tabla**.",
       "media": [
         {
           "recurso": "hipo_ayuno.png",
           "titulo": "El ayuno y dónde falla cada causa",
           "descripcion": "Del glucógeno a la gluconeogénesis y las cetonas; dónde falla cada trastorno.",
-          "info": "En el ayuno el hígado usa primero el {#4F8CF6:glucógeno}, luego la {#18B9A9:gluconeogénesis} y quema grasas: suben **AGL** y {#8B5CF6:cetonas}. El {#EF5454:hiperinsulinismo} frena la lipólisis; el {#F2A23A:defecto de oxidación} deja los AGL altos sin cetonas.",
+          "info": "En el ayuno el hígado usa primero el {#4F8CF6:glucógeno}, luego la {#18B9A9:gluconeogénesis} y quema grasas: suben **AGL** y {#8B5CF6:cetonas}. El {#EF5454:hiperinsulinismo} frena la lipólisis; el {#F07F3C:defecto de oxidación} deja los AGL altos sin **cetonas**.",
           "en_texto": "Cetonas bajas",
           "referencias": [
             {
@@ -4465,7 +4504,7 @@
         ],
         "filas": [
           [
-            "Hiperinsulinismo",
+            "Hiperinsulinismo o hipopituitarismo",
             "**Bajo** (<1,8)",
             "**Bajo** (<1,7)",
             "Normal"
@@ -4477,7 +4516,7 @@
             "Normal o alto"
           ],
           [
-            "Cetósica, glucogenosis III, VI, IX, déficit de GH o cortisol",
+            "Cetósica, glucogenosis, déficit hormonal",
             "**Alto**",
             "Alto",
             "Normal"
@@ -4489,31 +4528,35 @@
             "**Alto**"
           ]
         ],
-        "resaltar_primera_columna": true
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
       },
-      "nota_adicional": "Antes de las **48 h**, el recién nacido de riesgo tiene las **cetonas suprimidas**: si se estudió entonces, **repetir** tras las **72 h**.",
+      "nota_adicional": "El recién nacido de riesgo tiene las **cetonas suprimidas** durante la transición: si se estudió antes de las **72 h**, **repetir** el estudio después.",
       "pie_nodo": "¿Qué muestra la muestra crítica?",
       "opciones": [
         {
           "texto": "Cetonas y AGL bajos",
           "siguiente_nodo": "trat_diazoxido",
           "color": "rojo",
-          "descripcion": "BOHB <1,8 mmol/L y AGL <1,7 mmol/L: hiperinsulinismo."
+          "descripcion": "BOHB <1,8 mmol/L y AGL <1,7 mmol/L: hiperinsulinismo o hipopituitarismo neonatal."
         },
         {
           "texto": "Cetonas bajas, AGL altos",
           "siguiente_nodo": "causa_oxidacion",
-          "color": "amarillo"
+          "color": "amarillo",
+          "descripcion": "BOHB bajo con AGL altos; el lactato puede subir algo."
         },
         {
-          "texto": "Cetonas altas, sin acidosis láctica",
+          "texto": "Cetonas altas, lactato normal",
           "siguiente_nodo": "diag_metabolico_tabla",
-          "color": "morado"
+          "color": "indigo",
+          "descripcion": "BOHB alto, sin acidosis láctica."
         },
         {
-          "texto": "Acidosis láctica",
+          "texto": "Lactato alto",
           "siguiente_nodo": "causa_lactato",
-          "color": "cyan"
+          "color": "cyan",
+          "descripcion": "Acidosis láctica, con cetonas o sin ellas."
         },
         {
           "texto": "No hay muestra crítica",
@@ -4591,20 +4634,58 @@
           "url": "https://doi.org/10.1016/j.jpeds.2015.03.057",
           "cita": "Thornton PS, Stanley CA, De Leon DD, et al. Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children. J Pediatr 2015;167(2):238-245.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag7_pes_plasma_ketone_levels_are_suppressed.png"
+        },
+        {
+          "titulo": "Descartar el hipopituitarismo neonatal",
+          "paginas": "2",
+          "texto": "In the absence of multiple pituitary hormone deficiencies in neonates, an inappropriately large glycemic response to glucagon stimulation may be considered diagnostic",
+          "fuente": "Hiperinsulinismo 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1159/000531766",
+          "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_hi_absence_multiple_pituitary_hormone_deficiencies.png"
+        },
+        {
+          "titulo": "Hiperinsulinismo: BOHB y AGL bajos",
+          "paginas": "5",
+          "texto": "plasma BOHB and FFA (both inappropriately low; BOHB <1.5 mmol/L [<15 mg/dL] and FFA <1.0-1.5 mmol/L [<28-42 mg/dL])",
+          "fuente": "PES 2015",
+          "anio": "2015",
+          "url": "https://doi.org/10.1016/j.jpeds.2015.03.057",
+          "cita": "Thornton PS, Stanley CA, De Leon DD, et al. Recommendations from the Pediatric Endocrine Society for Evaluation and Management of Persistent Hypoglycemia in Neonates, Infants, and Children. J Pediatr 2015;167(2):238-245.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag5_pes_plasma_bohb_ffa_both_inappropriately.png"
+        }
+      ],
+      "contexto": "Sin **cetonas** con la glucosa baja, el cuerpo **no quema grasa**: sobra **insulina**, falta una hormona o falla la oxidación.",
+      "discrepancias": [
+        {
+          "asunto": "Corte de BOHB y AGL que sugiere hiperinsulinismo",
+          "posturas": [
+            {
+              "fuente": "Hiperinsulinismo 2023",
+              "dice": "BOHB <1,8 mmol/L y AGL <1,7 mmol/L",
+              "paginas": "1"
+            },
+            {
+              "fuente": "PES 2015",
+              "dice": "BOHB <1,5 mmol/L y AGL <1,0-1,5 mmol/L",
+              "paginas": "5"
+            }
+          ],
+          "nota": "Con BOHB entre **1,5** y **1,8 mmol/L**, la guía de **2023** ya lo considera **suprimido**."
         }
       ]
     },
     "trat_diazoxido": {
       "tipo": "pregunta",
-      "titulo": "Hiperinsulinismo: diazóxido con tiazida",
-      "texto": "- Confirmar: respuesta al **glucagón ≥30 mg/dL**, cociente insulina/péptido C y **estudio genético**.\n- **Diazóxido** **5-15 mg/kg/día** en **2-3 dosis**, con **hidroclorotiazida** desde el primer día.\n- **Ecocardiograma** a la semana; hemograma y ácido úrico cada **6 meses**.\n- Meta: **70-100 mg/dL**.",
+      "titulo": "Confirmar el hiperinsulinismo y empezar diazóxido",
+      "texto": "- Confirmar: respuesta al **glucagón ≥30 mg/dL**, cociente insulina/péptido C y **estudio genético**; descartar el **hipopituitarismo** con **cortisol** y GH.\n- **Diazóxido** con **hidroclorotiazida** desde el primer día.\n- Pedir un **ecocardiograma** a la semana, y **hemograma** y ácido úrico cada **6 meses**.\n- Meta: **70-100 mg/dL**.",
       "farmacos": [
         {
           "nombre": "Diazóxido VO",
           "dosis": "**5-15 mg/kg/día** en **2-3 dosis**",
           "pauta": "**Primera línea** del **hiperinsulinismo** confirmado; dosis más altas no ayudan y dan más **efectos adversos**.",
-          "paginas": "9 (hiperinsulinismo 2023)",
-          "nota": "Retiene líquidos e hipertensión pulmonar (**2,4 %**): **ecocardiograma** a la semana.",
+          "paginas": "10 (hiperinsulinismo 2023)",
           "por_kg": {
             "unidad": "mg",
             "desde": 5,
@@ -4616,7 +4697,7 @@
           "nombre": "Hidroclorotiazida VO",
           "dosis": "**1-2 mg/kg/día**",
           "pauta": "Desde el **primer día** del **diazóxido**; o **clorotiazida** **10 mg/kg/día**.",
-          "paginas": "9 (hiperinsulinismo 2023)",
+          "paginas": "10 (hiperinsulinismo 2023)",
           "por_kg": {
             "unidad": "mg",
             "desde": 1,
@@ -4631,7 +4712,7 @@
           "texto": "El diazóxido **retiene líquidos** y puede dar **hipertensión pulmonar**, sobre todo en el **recién nacido**: tiazida desde el inicio y ecocardiograma."
         }
       ],
-      "nota_adicional": "Después de los **2 años**, un hiperinsulinismo nuevo obliga a buscar un **insulinoma**. Insulina alta con péptido C bajo: **insulina exógena**.",
+      "nota_adicional": "Después de los **2 años**, un hiperinsulinismo nuevo obliga a buscar un **insulinoma**. Si la insulina está alta con el **péptido C bajo**, sospechar **insulina exógena**.",
       "evidencia": {
         "texto": "Hiperinsulinismo 2023: fuerte, calidad moderada"
       },
@@ -4639,13 +4720,11 @@
       "opciones": [
         {
           "texto": "Sí: hace cetonas antes de la hipoglucemia en el ayuno",
-          "siguiente_nodo": "nodo_seguimiento",
-          "color": "rojo"
+          "siguiente_nodo": "nodo_seguimiento"
         },
         {
-          "texto": "No: no baja la dextrosa tras 5 días a 15 mg/kg/día",
-          "siguiente_nodo": "trat_octreotida",
-          "color": "rojo"
+          "texto": "No: sigue necesitando dextrosa tras 5 días a 15 mg/kg/día",
+          "siguiente_nodo": "trat_octreotida"
         }
       ],
       "referencias": [
@@ -4798,6 +4877,16 @@
           "url": "https://doi.org/10.1159/000531766",
           "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag9_hi_we_recommend_that_goal_treatment.png"
+        },
+        {
+          "titulo": "Descartar el hipopituitarismo neonatal",
+          "paginas": "2",
+          "texto": "In the absence of multiple pituitary hormone deficiencies in neonates, an inappropriately large glycemic response to glucagon stimulation may be considered diagnostic",
+          "fuente": "Hiperinsulinismo 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1159/000531766",
+          "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag2_hi_absence_multiple_pituitary_hormone_deficiencies.png"
         }
       ]
     },
@@ -4805,14 +4894,13 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "No responde: genética, PET y octreotida",
-      "texto": "- **Genética rápida** de ABCC8 y KCNJ11: una variante paterna sugiere una lesión **focal**, curable con cirugía.\n- **PET con 18F-DOPA** para localizarla, salvo enfermedad difusa demostrada.\n- **Octreotida** SC de segunda línea mientras tanto.\n- Remitir a un **centro con experiencia**.",
+      "texto": "- **Estudio genético rápido** de los genes del canal de potasio (ABCC8 y KCNJ11): una variante paterna sugiere una lesión **focal**, curable con cirugía.\n- **PET con 18F-DOPA** para localizarla, salvo enfermedad difusa demostrada.\n- **Octreotida** SC de segunda línea mientras tanto.\n- Remitir a un **centro con experiencia**.",
       "farmacos": [
         {
           "nombre": "Octreotida SC",
           "dosis": "**5-10 mcg/kg/día**, hasta **20 mcg/kg/día**",
           "pauta": "En **2-4 dosis** o en **infusión SC** continua.",
-          "paginas": "10 (hiperinsulinismo 2023)",
-          "nota": "Riesgo de **enterocolitis necrosante** en el prematuro, el inestable o el séptico; pierde efecto con el tiempo.",
+          "paginas": "11 (hiperinsulinismo 2023)",
           "por_kg": {
             "unidad": "mcg",
             "desde": 5,
@@ -4823,8 +4911,8 @@
       ],
       "alertas": [
         {
-          "titulo": "Octreotida",
-          "texto": "Riesgo de **enterocolitis necrosante** en el **prematuro**, el inestable o el séptico."
+          "titulo": "Enterocolitis necrosante con octreotida",
+          "texto": "**No usarla** en el **prematuro**, el inestable o el **séptico**."
         }
       ],
       "nota_adicional": "No usar **nifedipino**, sirolimus ni otros fármacos sin eficacia probada fuera de un estudio.",
@@ -4938,7 +5026,7 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Cetonas bajas con AGL altos: defecto de la oxidación",
-      "texto": "- Hipoglucemia **hipocetósica**, a veces con acidosis láctica, **hepatomegalia**, hiperamonemia o encefalopatía.\n- Pedir el **perfil de acilcarnitinas** y confirmar con enzimas o genética.\n- Dieta rica en carbohidratos y **evitar el ayuno** y el estrés metabólico.\n- Remitir a **metabolismo**.",
+      "texto": "- Hipoglucemia **hipocetósica**, a veces con acidosis láctica, **hepatomegalia**, hiperamonemia o encefalopatía.\n- Pedir el **perfil de acilcarnitinas** y confirmar con **enzimas** o genética.\n- Dieta rica en carbohidratos y **evitar el ayuno** y el estrés metabólico.\n- Remitir a **metabolismo**.",
       "referencias": [
         {
           "titulo": "AGL bajos o altos con cetonas bajas",
@@ -4987,7 +5075,7 @@
       "estilo": "normal",
       "titulo": "Cetonas altas: cetósica, glucogenosis o déficit hormonal",
       "texto": "- **Cetósica idiopática**: la más frecuente; de **18 meses a 5 años**, por la mañana tras un ayuno largo y una enfermedad.\n- **Hepatomegalia**: pensar en glucogenosis III, VI o IX.\n- **Déficit de cortisol o GH**: micropene, defectos de línea media, hiperpigmentación.\n- Evitar el **ayuno prolongado**.",
-      "nota_adicional": "Si la cetósica **se repite**, reevaluar glucogenosis 0, VI y IX: no siempre dan hepatomegalia.",
+      "nota_adicional": "Si la cetósica **se repite**, reevaluar las **glucogenosis 0, VI y IX**.",
       "referencias": [
         {
           "titulo": "Cetósica idiopática: 18 meses a 5 años",
@@ -5105,11 +5193,11 @@
       "tipo": "resultado",
       "estilo": "advertencia",
       "titulo": "Acidosis láctica: glucogenosis I o gluconeogénesis",
-      "texto": "- **Glucogenosis I**: hipoglucemia a las **2-4 h** de comer, **hepatomegalia**, cara de muñeca, hiperlipidemia.\n- **Déficit de fructosa-1,6-bisfosfatasa**: crisis de hipoglucemia con acidosis láctica en el ayuno o la enfermedad.\n- **Intolerancia a la fructosa**: síntomas tras fruta, sacarosa o sorbitol.\n- Tomas frecuentes y **almidón crudo**; remitir a metabolismo.",
+      "texto": "- **Glucogenosis I**: hipoglucemia a las **2-4 h** de comer, **hepatomegalia**, cara de muñeca (mejillas redondas), hiperlipidemia.\n- **Déficit de fructosa-1,6-bisfosfatasa**: crisis de hipoglucemia con **acidosis láctica**.\n- **Intolerancia a la fructosa**: síntomas tras fruta, **sacarosa** o sorbitol.\n- Tomas frecuentes y **almidón crudo**; remitir a metabolismo.",
       "alertas": [
         {
           "titulo": "Glucagón inútil",
-          "texto": "En la **glucogenosis I** el glucagón **no sube** la glucosa y empeora el **lactato**."
+          "texto": "En la **glucogenosis I** el glucagón no sube la glucosa y empeora el **lactato**: tratar con **dextrosa IV**."
         }
       ],
       "referencias": [
@@ -5167,22 +5255,20 @@
     },
     "causa_ayuno": {
       "tipo": "pregunta",
-      "titulo": "Sin muestra crítica: prueba de ayuno vigilada",
-      "texto": "- Hacerla en una unidad con experiencia, con **vía IV** y **dextrosa 10 %** lista.\n- Medir glucosa y BOHB cada **2-3 h**, más seguido al bajar.\n- Con **≤50 mg/dL**: tomar la **muestra crítica** y dar **glucagón** para medir la respuesta.\n- Parar antes si hay malestar o BOHB **>2,5 mmol/L**.",
+      "titulo": "Sin muestra crítica: hacer una prueba de ayuno vigilada",
+      "texto": "- Hacerla en una unidad con experiencia, con **vía IV** y **dextrosa 10 %** lista.\n- Medir **glucosa** y BOHB cada **2-3 h**, más seguido al bajar.\n- Con **≤50 mg/dL**: tomar la **muestra crítica** y dar **glucagón** **30 mcg/kg** (o **0,5-1 mg**) para medir la respuesta.\n- Parar antes si hay malestar o BOHB **>2,5 mmol/L**.",
       "evidencia": {
         "texto": "PES: fuerte, calidad alta (estudiar la causa)"
       },
       "pie_nodo": "¿Hizo hipoglucemia durante el ayuno?",
       "opciones": [
         {
-          "texto": "Sí: leer la muestra crítica",
-          "siguiente_nodo": "diag_cetonas",
-          "color": "gris"
+          "texto": "Sí, hizo hipoglucemia",
+          "siguiente_nodo": "diag_cetonas"
         },
         {
           "texto": "No: tolera el ayuno",
-          "siguiente_nodo": "nodo_seguimiento",
-          "color": "gris"
+          "siguiente_nodo": "nodo_seguimiento"
         }
       ],
       "referencias": [
@@ -5255,6 +5341,16 @@
           "url": "https://doi.org/10.1159/000531766",
           "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag13_hi_cure_hi_can_be_demonstrated.png"
+        },
+        {
+          "titulo": "Prueba de glucagón: 30 μg/kg o 0,5-1 mg",
+          "paginas": "13",
+          "texto": "give glucagon 30 μg/kg or 0.5–1 mg by IM or IV push as long as glucose is < 50 mg/dL",
+          "fuente": "Hiperinsulinismo 2023",
+          "anio": "2023",
+          "url": "https://doi.org/10.1159/000531766",
+          "cita": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag13_hi_give_glucagon_30_gkg_or.png"
         }
       ]
     },
@@ -5293,8 +5389,8 @@
     },
     "seg_metas_tempranas": {
       "tipo": "pregunta",
-      "titulo": "Metas y alta: ¿qué paciente es?",
-      "texto": "- Recién nacido de riesgo sin trastorno: meta **>50 mg/dL** hasta las **48 h** y **>60** después (PES).\n- Sospecha de **trastorno congénito** o trastorno confirmado: **>70 mg/dL**.\n- Niño con diabetes: menos del **4 %** del tiempo por debajo de **70 mg/dL**.",
+      "titulo": "Fijar la meta de glucosa según el paciente",
+      "texto": "- Elegir la **meta** de **la tabla** y el paso de seguimiento de cada **paciente**.",
       "tabla": {
         "titulo": "Metas de glucosa",
         "columnas": [
@@ -5304,7 +5400,7 @@
         "filas": [
           [
             "Recién nacido de riesgo, <48 h",
-            "**>50 mg/dL** (PES); **>36** (BAPM)"
+            "**>50 mg/dL** (PES); con dextrosa IV, **>45** (BAPM)"
           ],
           [
             "Recién nacido de riesgo, >48 h",
@@ -5316,10 +5412,11 @@
           ],
           [
             "Diabetes",
-            "Alerta **<70 mg/dL**"
+            "Tratar con **<70 mg/dL**; menos del **4 %** del tiempo por debajo"
           ]
         ],
-        "resaltar_primera_columna": true
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
       },
       "evidencia": {
         "texto": "PES: fuerte, calidad baja (>70); débil, muy baja (>50 y >60)"
@@ -5382,13 +5479,23 @@
           "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
           "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_bapm_more_than_two_measurements_20mmoll.png"
+        },
+        {
+          "titulo": "Vigilar hasta tomas completas y metas",
+          "paginas": "40",
+          "texto": "Continue to monitor blood glucose until infant is on full enteral feeds and blood glucose values are >2.5mmol/l or 3.0mmol/l in cases of hyperinsulinism",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag40_bapm_continue_monitor_blood_glucose_until.png"
         }
       ]
     },
     "seg_criterios_alta": {
       "tipo": "pregunta",
-      "titulo": "Recién nacido: criterios de alta",
-      "texto": "- Al menos **24 h** en el hospital.\n- **Dos glucosas seguidas de 36 mg/dL o más** y tomas eficaces en varios ciclos de toma y ayuno.\n- Antes del alta, descartar un **trastorno persistente** si hubo hipoglucemia grave, dextrosa IV o un síndrome.",
+      "titulo": "Comprobar los criterios de alta del recién nacido",
+      "texto": "- Requisitos: al menos **24 h** en el hospital, **dos glucosas seguidas de 36 mg/dL o más** y tomas eficaces en varios ciclos de **toma y ayuno**.\n- Antes del alta, descartar un **trastorno persistente** si tiene algo de **la lista**.",
       "checklist": {
         "titulo": "Descartar un trastorno persistente si",
         "items": [
@@ -5401,12 +5508,12 @@
       "pie_nodo": "¿Hay que descartar un trastorno persistente?",
       "opciones": [
         {
-          "texto": "No: cumple los criterios",
+          "texto": "No tiene nada de la lista",
           "siguiente_nodo": "seg_complicaciones",
           "color": "teal"
         },
         {
-          "texto": "Sí: tiene alguno de la lista",
+          "texto": "Tiene algo de la lista",
           "siguiente_nodo": "seg_prueba_ayuno",
           "color": "teal"
         }
@@ -5486,7 +5593,7 @@
     },
     "seg_prueba_ayuno": {
       "tipo": "pregunta",
-      "titulo": "Antes del alta: ayuno de seguridad de 6-8 h",
+      "titulo": "Hacer un ayuno de seguridad de 6-8 h",
       "texto": "- Ayuno vigilado de **6-8 h**, como si se saltara una toma.\n- Sin trastorno sospechado: debe mantener **>60 mg/dL**.\n- Con riesgo **genético** o un trastorno sospechado: **>70 mg/dL**, y consultar a endocrinología antes del alta.",
       "pie_nodo": "¿Mantiene la glucosa durante el ayuno?",
       "opciones": [
@@ -5546,27 +5653,8 @@
     },
     "seg_complicaciones": {
       "tipo": "informativo",
-      "titulo": "Signos neurológicos: RM y seguimiento del desarrollo",
-      "texto": "- Si tuvo hipoglucemia grave o **signos neurológicos**: **RM cerebral** y seguimiento del **neurodesarrollo** a largo plazo.\n- La hipoglucemia breve, sin signos, rara vez deja lesión.",
-      "burbujas": [
-        {
-          "en_texto": "rara vez deja lesión",
-          "titulo": "¿Y la hipoglucemia sin signos?",
-          "texto": "En el estudio HypoEXIT, tratar desde **36 mg/dL** en vez de **47** dio el mismo desarrollo a los **18 meses**, con **menos intervenciones**.",
-          "referencias": [
-            {
-              "titulo": "HypoEXIT: el umbral de 2,0 no es inferior",
-              "paginas": "18",
-              "texto": "They concluded the lower threshold was noninferior to the higher threshold in terms of cognitive and motor development at 18 months of age.",
-              "fuente": "BAPM 2024",
-              "anio": "2024",
-              "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
-              "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/hipoglucemiapediatrica/evidencia_hipoglucemiapediatrica_pag18_bapm_they_concluded_lower_threshold_was.png"
-            }
-          ]
-        }
-      ],
+      "titulo": "Si hubo hipoglucemia grave o signos neurológicos: RM",
+      "texto": "- Si tuvo hipoglucemia grave o **signos neurológicos**: **RM cerebral** y seguimiento del **neurodesarrollo** a largo plazo.\n- A los **4,5 años**, la hipoglucemia neonatal se asoció a peor **función ejecutiva** y visomotora en los que tuvieron glucosas más bajas.",
       "opciones": [
         {
           "texto": "Preparar el alta",
@@ -5596,14 +5684,14 @@
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag17_bapm_bg_levels_below_10mmoll_that.png"
         },
         {
-          "titulo": "HypoEXIT: el umbral de 2,0 no es inferior",
+          "titulo": "A los 4,5 años: función ejecutiva y visomotora",
           "paginas": "18",
-          "texto": "They concluded the lower threshold was noninferior to the higher threshold in terms of cognitive and motor development at 18 months of age.",
+          "texto": "among secondary outcomes it was associated with increased risk of poor executive function and visual motor function in children who had experienced lower BG concentrations",
           "fuente": "BAPM 2024",
           "anio": "2024",
           "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
           "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
-          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag18_bapm_they_concluded_lower_threshold_was.png"
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag18_bapm_among_secondary_outcomes_it_was.png"
         }
       ]
     },
@@ -5611,7 +5699,7 @@
       "tipo": "resultado",
       "estilo": "exito",
       "titulo": "Alta: enseñar a los padres",
-      "texto": "- Explicar los **signos de alarma**: somnolencia, no despierta para comer, llanto agudo, hipotonía.\n- Tomas a demanda, al menos **8 al día** tras las primeras **24 h**.\n- Consultar ya si **deja de comer** o les preocupa cómo está.\n- Control con su pediatra; con hiperinsulinismo, con **endocrinología**.",
+      "texto": "- Tomas a demanda, al menos **8 al día** tras las primeras **24 h**.\n- Consultar ya si **deja de comer** o les preocupa cómo está.\n- Control con su **pediatra**; con hiperinsulinismo, con **endocrinología**.",
       "checklist": {
         "titulo": "Antes de irse, los padres saben",
         "items": [
@@ -5779,7 +5867,7 @@
       "estilo": "normal",
       "titulo": "Niño con diabetes: después de la hipoglucemia",
       "texto": "- Buscar la causa: **dosis** de insulina, comida omitida, **ejercicio** o alcohol.\n- **Glucagón** al alcance de la familia y enseñar a usarlo.\n- Valorar si **percibe** las hipoglucemias; si se repiten, subir las metas.\n- Hipoglucemias frecuentes sin causa: descartar **celiaquía** y **Addison**.",
-      "nota_adicional": "En la **gastroenteritis** que no deja comer, la **minidosis de glucagón** SC: **20 mcg** hasta los 2 años y **10 mcg por año** de 3-15 años, máx. **150 mcg**.",
+      "nota_adicional": "En la **gastroenteritis** que no deja comer, la **minidosis de glucagón** SC evita la hipoglucemia.",
       "enlaces": [
         {
           "texto": "Gastroenteritis",
@@ -5849,6 +5937,152 @@
           "url": "https://doi.org/10.1111/pedi.13443",
           "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
           "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag14_ispad_2_units_20_g_for.png"
+        },
+        {
+          "titulo": "Minidosis: repetir con el doble a los 30 min",
+          "paginas": "14",
+          "texto": "If blood glucose fails to rise over the first 30 min, a repeat injection should be given using twice the initial dose.",
+          "fuente": "ISPAD 2022",
+          "anio": "2022",
+          "url": "https://doi.org/10.1111/pedi.13443",
+          "cita": "Abraham MB, Karges B, Dovc K, et al. ISPAD Clinical Practice Consensus Guidelines 2022: Assessment and management of hypoglycemia in children and adolescents with diabetes. Pediatr Diabetes 2022;23(8):1322-1340.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag14_ispad_if_blood_glucose_fails_rise.png"
+        }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Minidosis de glucagón SC",
+          "dosis": "**20 mcg** hasta los **2 años**; **10 mcg** por año de edad de **3-15 años**, máx. **150 mcg**",
+          "pauta": "En la **gastroenteritis** que no deja comer; si no sube en **30 min**, repetir con el **doble**.",
+          "paginas": "14 (ISPAD 2022)"
+        }
+      ]
+    },
+    "trat_infusion_persistente": {
+      "tipo": "informativo",
+      "titulo": "Persistente sin signos: infusión de dextrosa 10 %, sin bolo",
+      "texto": "- Empezar la **infusión** de **dextrosa 10 %** a **60 mL/kg/día**, **sin bolo**.\n- Seguir con las **tomas** si no hay contraindicación.\n- Medir a los **30 min** y vigilar en la **unidad neonatal**.",
+      "farmacos": [
+        {
+          "nombre": "Dextrosa 10 % IV (infusión)",
+          "dosis": "**60 mL/kg/día** (**4,2 mg/kg/min**)",
+          "pauta": "Sin **bolo**: la hipoglucemia **persistente** sin signos sólo necesita la **infusión**.",
+          "paginas": "39-40 (BAPM 2024)",
+          "por_kg": {
+            "unidad": "mL",
+            "cantidad": 60,
+            "periodo": "dia"
+          }
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Aporte de glucosa",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/aporte_glucosa_iv.json"
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Infusión en marcha: medir a los 30 min",
+          "siguiente_nodo": "trat_reval_iv",
+          "color": "rosa"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Más de 2 mediciones bajas: equipo neonatal",
+          "paginas": "39",
+          "texto": "Box 3. If more than 2 measurements 1.0-1.9mmol/l, inform neonatal team. Investigate for causes of hypoglycaemia, consider sepsis.",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag39_bapm_box_3_if_more_than.png"
+        },
+        {
+          "titulo": "Investigar y considerar sonda o dextrosa IV",
+          "paginas": "39",
+          "texto": "Consider increased feed frequency, nasogastric tube insertion or IV infusion of 10% glucose.",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag39_bapm_consider_increased_feed_frequency_nasogastric.png"
+        },
+        {
+          "titulo": "Tabla 3: aporte de glucosa por mL/kg/día",
+          "paginas": "29",
+          "texto": "Table 3 gives the glucose infusion rate (in mg/kg/min) provided by IV glucose infusions at different rates.",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag29_bapm_table_3_gives_glucose_infusion.png"
+        },
+        {
+          "titulo": "Sospechar hiperinsulinismo",
+          "paginas": "13",
+          "texto": "Hyperinsulinism should be considered if BG concentration remains low (<2.0mmol/L on >2 occasions in first 72 hours despite adequate energy provision and a feeding plan)",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag13_bapm_hyperinsulinism_should_be_considered_if.png"
+        }
+      ]
+    },
+    "trat_otra_causa": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Signos con glucosa de 45 o más: buscar otra causa",
+      "texto": "- Los signos no se explican por la **glucosa**: buscar **infección** y otras causas.\n- Pedir **revisión** del pediatra.\n- Seguir el plan de **tomas** y medir antes de cada toma.",
+      "enlaces": [
+        {
+          "texto": "Convulsión: epilepsia",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Pediatria/epilepsiapediatrica.json"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Buscar también otras causas",
+          "paginas": "4",
+          "texto": "It is important to screen for other possible underlying disorders (eg, infection) as well as hypoglycemia.",
+          "fuente": "AAP 2011",
+          "anio": "2011",
+          "url": "https://doi.org/10.1542/peds.2010-3851",
+          "cita": "Adamkin DH; Committee on Fetus and Newborn. Clinical Report—Postnatal Glucose Homeostasis in Late-Preterm and Term Infants. Pediatrics 2011;127(3):575-579.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag4_aap_it_important_screen_for_other.png"
+        },
+        {
+          "titulo": "Signos que obligan a medir la glucosa",
+          "paginas": "9",
+          "texto": "Measurement of BG concentration should be performed for any infant who has one or more of the following diagnoses or clinical signs",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag9_bapm_measurement_bg_concentration_should_be.png"
+        },
+        {
+          "titulo": "Menos de 2,5 mmol/L con signos",
+          "paginas": "6",
+          "texto": "A single value <2.5mmol/L in a neonate with abnormal clinical signs",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag6_bapm_single_value_25mmoll_neonate_with.png"
+        },
+        {
+          "titulo": "Con signos: medir ya y revisión urgente",
+          "paginas": "16",
+          "texto": "If a baby has abnormal clinical signs suggestive of hypoglycaemia, BG should be measured immediately and urgent review by a paediatrician",
+          "fuente": "BAPM 2024",
+          "anio": "2024",
+          "url": "https://hubble-live-assets.s3.eu-west-1.amazonaws.com/bapm/file_asset/file/2700/Identification_and_Management_of_Neonatal_Hypoglycaemia_June24.pdf",
+          "cita": "British Association of Perinatal Medicine. Identification and Management of Neonatal Hypoglycaemia in the Full-Term Infant (Birth – 72 hours). A BAPM Framework for Practice. Enero de 2024.",
+          "imagen_evidencia": "evidencia_hipoglucemiapediatrica_pag16_bapm_if_baby_has_abnormal_clinical.png"
         }
       ]
     }

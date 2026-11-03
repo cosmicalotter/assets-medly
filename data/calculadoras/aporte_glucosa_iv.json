@@ -1,6 +1,6 @@
 {
   "titulo": "Aporte de glucosa IV (mg/kg/min)",
-  "descripcion": "Calcula el aporte de glucosa (en mg/kg/min) que da una infusión de dextrosa según su concentración y su volumen en mL/kg/día, con la velocidad de la bomba y los gramos por kilo al día. Sirve para subir la infusión del recién nacido o del niño con hipoglucemia de 2 en 2 mg/kg/min y para reconocer el aporte que hace sospechar un hiperinsulinismo, según BAPM 2024 y la guía internacional de hiperinsulinismo de 2023.",
+  "descripcion": "Calcula el aporte de glucosa (en mg/kg/min) que da una infusión de dextrosa según su concentración y su volumen en mL/kg/día, con la velocidad de la bomba y los gramos por kilo al día. En el recién nacido con hipoglucemia ayuda a subir la infusión de 2 en 2 mg/kg/min y a reconocer el aporte que hace sospechar un hiperinsulinismo, según BAPM 2024 y la guía internacional de hiperinsulinismo de 2023.",
   "instrucciones": "Escribir la concentración de la dextrosa (10 para la dextrosa 10 %) y el volumen total de esa infusión en mL/kg/día. Si hay dos sueros con glucosa, calcular cada uno y sumar.",
   "limitaciones": "No cuenta la glucosa de las tomas ni de otras infusiones. El aporte normal de 4-6 mg/kg/min es el del recién nacido; en el adulto, más de 3 mg/kg/min ya es alto.",
   "tipoCalculo": "formula",
@@ -28,28 +28,88 @@
       "titulo": "De Leon DD, Arnoux JB, Banerjee I, et al. International Guidelines for the Diagnosis and Management of Hyperinsulinism. Horm Res Paediatr 2024;97(3):279-298.",
       "url": "https://doi.org/10.1159/000531766",
       "texto": "Increased insulin action can be demonstrated by increased glucose requirement (e.g., >8 mg/kg/min in a neonate normal 4–6 mg/kg/mi",
-      "anio": "2023"
+      "anio": "2023",
+      "paginas": "2"
     }
   ],
   "secciones": [
     {
       "elementos": [
-        {"id": "conc", "tipo": "input_numero", "label": "Concentración de la dextrosa", "unidad": "%", "min": 2.5, "max": 50, "ayuda": "10 para la dextrosa 10 %."},
-        {"id": "vol", "tipo": "input_numero", "label": "Volumen de la infusión", "unidad": "mL/kg/día", "min": 10, "max": 250},
-        {"id": "peso", "tipo": "input_numero", "label": "Peso", "unidad": "kg", "min": 0.4, "max": 120, "ayuda": "Sólo para la velocidad de la bomba."}
+        {
+          "id": "conc",
+          "tipo": "input_numero",
+          "label": "Concentración de la dextrosa",
+          "unidad": "%",
+          "min": 2.5,
+          "max": 50,
+          "ayuda": "10 para la dextrosa 10 %."
+        },
+        {
+          "id": "vol",
+          "tipo": "input_numero",
+          "label": "Volumen de la infusión",
+          "unidad": "mL/kg/día",
+          "min": 10,
+          "max": 250
+        },
+        {
+          "id": "peso",
+          "tipo": "input_numero",
+          "label": "Peso",
+          "unidad": "kg",
+          "min": 0.4,
+          "max": 120,
+          "ayuda": "Sólo para la velocidad de la bomba."
+        }
       ]
     }
   ],
   "resultados": [
-    {"min": 0, "max": 3.99, "categoria": "Por debajo del consumo del recién nacido", "color": "amarillo", "match_opcion_index": -1,
-     "approach": "El recién nacido consume 4-6 mg/kg/min: si la glucosa sigue baja, subir el aporte 2 mg/kg/min y medir a los 30 min (BAPM)."},
-    {"min": 4, "max": 8, "categoria": "Aporte habitual (4-8 mg/kg/min)", "color": "verde", "match_opcion_index": -1,
-     "approach": "Si la glucosa sigue baja o hay signos a los 30 min, subir 2 mg/kg/min con más volumen o más concentración (BAPM)."},
-    {"min": 8.01, "max": 100, "categoria": "Más de 8 mg/kg/min: sospechar hiperinsulinismo", "color": "rojo", "match_opcion_index": -1,
-     "approach": "En el neonato, más de 8 mg/kg/min para mantener la glucosa sugiere hiperinsulinismo: avisar a endocrinología, subir la meta y tomar la muestra crítica (BAPM; hiperinsulinismo 2023)."}
+    {
+      "min": 0,
+      "max": 3.9999,
+      "categoria": "Por debajo del consumo del recién nacido",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "El recién nacido consume 4-6 mg/kg/min: si la glucosa sigue baja, subir el aporte 2 mg/kg/min y medir a los 30 min (BAPM)."
+    },
+    {
+      "min": 4,
+      "max": 6,
+      "categoria": "Consumo normal del recién nacido (4-6 mg/kg/min)",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Es el consumo normal del recién nacido. Si la glucosa sigue baja o hay signos a los 30 min, subir 2 mg/kg/min con más volumen o más concentración (BAPM)."
+    },
+    {
+      "min": 6.0001,
+      "max": 8,
+      "categoria": "Sobre lo normal, hasta 8 mg/kg/min",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Más que el consumo normal. Si sigue baja, subir 2 mg/kg/min; al pasar de 8, sospechar hiperinsulinismo (BAPM)."
+    },
+    {
+      "min": 8.0001,
+      "max": 100,
+      "categoria": "Más de 8 mg/kg/min: sospechar hiperinsulinismo",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "En el neonato, más de 8 mg/kg/min para mantener la glucosa sugiere hiperinsulinismo: avisar a endocrinología, subir la meta y tomar la muestra crítica (BAPM; hiperinsulinismo 2023)."
+    }
   ],
   "extras": [
-    {"etiqueta": "Velocidad de la bomba", "formula": "vol * peso / 24", "sufijo": "mL/h", "decimales": 1},
-    {"etiqueta": "Glucosa al día", "formula": "vol * conc / 100", "sufijo": "g/kg/día", "decimales": 1}
+    {
+      "etiqueta": "Velocidad de la bomba",
+      "formula": "vol * peso / 24",
+      "sufijo": "mL/h",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Glucosa al día",
+      "formula": "vol * conc / 100",
+      "sufijo": "g/kg/día",
+      "decimales": 1
+    }
   ]
 }
