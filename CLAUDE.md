@@ -43,12 +43,18 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (octubre de 2026) están visibles sólo ACV isquémico,
-  ACV hemorrágico, patología biliar y epilepsia pediátrica; el resto espera
-  la reforma a la norma nueva.
+  aunque el algoritmo ya esté terminado. Hoy (3 de noviembre de 2026) hay
+  16 visibles. Adultos (10): patología biliar, crisis hiperglucémicas,
+  atención del parto y distocias, cardiotocografía, anemia, lesión renal
+  aguda, asma, ACV isquémico, ACV hemorrágico y cefalea. Pediatría (6):
+  hipoglucemia, enfermedad diarreica aguda, infecciones respiratorias altas
+  (`Amigdalitis_bacteriana_pediatricos.json`), asma, neumonía y bronquiolitis,
+  y epilepsia. El resto espera la reforma a la norma nueva (`diabetesm2.json`
+  sigue oculto y con un salto roto a `nodo_tratamiento`).
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
-  publicaría. `data/*/disponibles.json` es antiguo: la app no lo lee.
+  publicaría. Sin argumentos publica (lo hace el workflow); con cualquier
+  otro argumento se niega. `data/*/disponibles.json` es antiguo: la app no lo lee.
 
 ## Repositorios hermanos
 
