@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+const caja = (x, y, w, h, c, t1, t2) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${tinte(c, 10)}" stroke="${c}" stroke-width="3"/>
+  <text x="${x + w / 2}" y="${y + h / 2 - 4}" text-anchor="middle" font-size="18" font-weight="800" fill="${c}">${t1}</text>
+  <text x="${x + w / 2}" y="${y + h / 2 + 18}" text-anchor="middle" font-size="13.5" fill="${TINTA}">${t2}</text>`;
+const flecha = (x1, y1, x2, y2, c = "#94A3B8") => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${c}" stroke-width="4" marker-end="url(#pf)"/>`;
+const pesos = [[10, "3 g"], [20, "6 g"], [30, "9 g"], [50, "15 g"]];
+const svg = `<svg class="esc" viewBox="0 0 720 360">
+  <defs><marker id="pf" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L14 7 L0 14 Z" fill="#94A3B8"/></marker></defs>
+  ${caja(20, 30, 200, 80, AMBAR, "0,3 g/kg", "de glucosa oral")}
+  ${flecha(222, 70, 268, 70)}
+  ${caja(272, 30, 170, 80, AZUL, "15 min", "medir la glucosa")}
+  ${flecha(444, 70, 490, 70)}
+  ${caja(494, 30, 206, 80, VERDE, "≥70 mg/dL", "carbohidratos y comer")}
+  <path d="M357 112 Q357 190 240 190 Q120 190 120 112" fill="none" stroke="${ROJO}" stroke-width="4" marker-end="url(#pf)"/>
+  <text x="240" y="216" text-anchor="middle" font-size="15" font-weight="800" fill="${ROJO}">&lt;70 mg/dL: repetir</text>
+  <text x="20" y="262" font-size="14" font-weight="700" fill="#475569">Glucosa por peso (0,3 g/kg)</text>
+  ${pesos.map(([kg, g], i) => `<rect x="${20 + i * 172}" y="274" width="160" height="62" rx="12" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="${100 + i * 172}" y="300" text-anchor="middle" font-size="14" fill="#475569">${kg} kg</text>
+    <text x="${100 + i * 172}" y="326" text-anchor="middle" font-size="20" font-weight="800" fill="${AMBAR}">${g}</text>`).join("")}
+</svg>`;
+lienzo("Glucosa oral: 0,3 g/kg y 15 minutos", "Niño con diabetes que puede tragar; con asa cerrada, menos glucosa (5-10 g)",
+  svg, F_ISPAD + ": 9 g a los 30 kg y 15 g desde 50 kg; 10 y 20 kg calculados a 0,3 g/kg.");
+</script></body></html>
