@@ -2,7 +2,7 @@
   "oculto": true,
   "titulo": "Atención del parto y distocias",
   "version": "OMS 2018/2020 · ACOG 2024 · NICE 2023 · RCOG 2026 · MinSalud 2013",
-  "descripcion": "En este algoritmo se aborda el parto a término de inicio espontáneo: la admisión, la vigilancia de cada etapa, las distocias y el alumbramiento. No incluye la inducción, el parto pretérmino ni la cesárea programada.",
+  "descripcion": "En este algoritmo se aborda el parto a término de inicio espontáneo: la admisión, la vigilancia de cada etapa, las distocias y el alumbramiento. No desarrolla la inducción ni el parto pretérmino.",
   "especialidad": "Ginecología y Obstetricia",
   "actualizado": "Noviembre 2026",
   "autores": [
@@ -15,7 +15,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Atención del parto y distocias",
-      "texto": "- **Trabajo de parto:** contracciones **regulares y dolorosas** que borran y dilatan el cuello; fase **latente** hasta los **5 cm** y **activa** desde los **5 cm**, que no suele pasar de **12 h** en el primer parto ni de **10 h** en los siguientes.\n- **Expulsivo:** de la **dilatación completa** al nacimiento; suele durar hasta **3 h** en el primer parto y **2 h** en los siguientes.\n- **Alumbramiento:** del nacimiento a la **salida de la placenta**; prolongado si pasa de **30 min** con manejo activo.\n- **Distocia:** progreso **lento** (protracción) o **detenido** (detención). En la fase activa, sin cambio con **6 cm** o más y membranas rotas pese a **4 h** de buenas contracciones; en el expulsivo, más de **3 h** de pujo en la nulípara o **2 h** en la multípara.\n- **Distocia de hombros:** parto cefálico que necesita **maniobras** para liberar el hombro porque falló la **tracción de rutina**, o **1 min** o más entre la salida de la cabeza y la de los hombros.",
+      "texto": "- **Trabajo de parto:** contracciones **regulares y dolorosas** que borran y dilatan el cuello; la fase **activa** empieza a los **5 cm** y no suele pasar de **12 h** (**10 h** si no es el primer parto).\n- **Expulsivo:** de la **dilatación completa** al nacimiento; suele durar hasta **3 h** en el primer parto y **2 h** en los siguientes.\n- **Alumbramiento:** del nacimiento a la **salida de la placenta**; es prolongado si pasa de **30 min** con manejo activo.\n- **Distocia:** progreso **lento** (protracción) o **detenido** (detención); en la fase activa, sin cambio con **6 cm** o más y membranas rotas pese a **4 h** de buenas contracciones.\n- **Distocia de hombros:** parto cefálico en que la **tracción de rutina** no libera los hombros y hacen falta **maniobras**, o pasa **1 min** o más entre la cabeza y los hombros.",
       "pie_nodo": "¿Qué parte de la atención del parto necesitas?",
       "opciones": [
         {
@@ -197,19 +197,22 @@
     "adm_valoracion": {
       "tipo": "pregunta",
       "titulo": "Valorar a la gestante y al feto al llegar",
-      "contexto": "El **carné prenatal** y la historia sirven para encontrar los **factores de riesgo** y decidir si se atiende aquí o se **remite**.",
       "texto": "- Revisar el **carné prenatal** y completar lo que falte, sobre todo las **pruebas rápidas** de VIH y sífilis.\n- Tomar **PA, pulso y temperatura**.\n- Auscultar la FCF con **Doppler o Pinard**; no hacer **monitoría fetal** de rutina al ingreso.\n- Palpar la **presentación** y preguntar por los **movimientos fetales**.",
       "checklist": {
         "titulo": "Signos que cambian el nivel de atención",
         "items": [
           "Pulso de más de **120/min** dos veces, con **15-30 min** de diferencia",
-          "PA de **160/110** o más una vez, o de **140/90** o más dos veces",
+          "Sistólica de **160** o más, o diastólica de **110** o más, una vez",
+          "Sistólica de **140** o más, o diastólica de **90** o más, dos veces con **15-30 min** de diferencia",
+          "Proteinuria de **2+** con sistólica de **140** o diastólica de **90** o más",
+          "Respiración de menos de **9** o más de **21** por minuto, dos veces con **15-30 min** de diferencia",
           "Temperatura de **38 °C** o más una vez, o de **37,5 °C** o más dos veces con **1 h** de diferencia",
           "**Sangrado rojo** o líquido amniótico con sangre",
           "**Meconio** en el líquido amniótico",
           "Ruptura de membranas de más de **24 h**",
           "**Dolor distinto** al de las contracciones",
-          "Presentación **no cefálica**, o cabeza **alta** (4/5-5/5) en una nulípara",
+          "Presentación **no cefálica**, **cordón** por delante, o cabeza **alta** (4/5-5/5) en una nulípara",
+          "Feto **pequeño** o con **restricción** del crecimiento, u **oligohidramnios** o anhidramnios",
           "FCF anormal o **menos movimientos** fetales en las últimas **24 h**"
         ]
       },
@@ -219,14 +222,15 @@
       "pie_nodo": "¿Tiene algún signo de la lista o un factor de riesgo que pida otro nivel de atención?",
       "opciones": [
         {
-          "texto": "No, es de bajo riesgo",
+          "texto": "Ninguno: bajo riesgo",
           "siguiente_nodo": "adm_fase",
           "descripcion": "Ningún signo de la lista ni factor de riesgo del control prenatal"
         },
         {
-          "texto": "Sí, alguno",
+          "texto": "Alguno de la lista o un factor de riesgo",
           "siguiente_nodo": "adm_alto_riesgo",
-          "descripcion": "Un signo de la lista o un factor de riesgo del control prenatal"
+          "descripcion": "Un signo de la lista o un factor de riesgo del control prenatal",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -301,6 +305,26 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag46_1811_hipertension_dos_tomas_nice.png"
         },
         {
+          "titulo": "1.8.11: proteinuria con PA alta (NICE NG235)",
+          "paginas": "46",
+          "texto": "a reading of 2+ of protein on urinalysis and a single reading of either raised diastolic blood pressure (90 mmHg or more) or raised systolic blood pressure (140 mmHg or more)",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag46_1811_proteinuria_con_alta_nice.png"
+        },
+        {
+          "titulo": "1.8.11: frecuencia respiratoria (NICE NG235)",
+          "paginas": "46",
+          "texto": "respiratory rate of less than 9 or more than 21 breaths per minute on 2 occasions 15 to 30 minutes apart",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag46_1811_frecuencia_respiratoria_nice_ng235.png"
+        },
+        {
           "titulo": "1.8.11: fiebre en la valoración inicial (NICE NG235)",
           "paginas": "46",
           "texto": "temperature of 38°C or above on a single reading, or 37.5°C or above on 2 consecutive readings 1 hour apart",
@@ -331,6 +355,26 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag47_1811_hallazgos_fetales_ingreso_nice.png"
         },
         {
+          "titulo": "1.8.11: presentación del cordón (NICE NG235)",
+          "paginas": "47",
+          "texto": "reduced fetal movements in the last 24 hours reported by the woman － cord presentation.",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag47_1811_presentacion_del_cordon_nice.png"
+        },
+        {
+          "titulo": "1.8.11: feto pequeño, restricción y oligohidramnios (NICE NG235)",
+          "paginas": "47",
+          "texto": "suspected or diagnosed small for gestational age － diagnosed fetal growth restriction － diagnosis of oligohydramnios or anhydramnios on ultrasound",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag47_1811_feto_pequeno_restriccion_oligohidramnios.png"
+        },
+        {
           "titulo": "1.8.11: menos movimientos fetales (NICE NG235)",
           "paginas": "47",
           "texto": "reduced fetal movements in the last 24 hours reported by the woman",
@@ -344,7 +388,7 @@
       "media": [
         {
           "recurso": "parto_auscultacion_real.jpg",
-          "titulo": "Pinard y Doppler",
+          "titulo": "Auscultar la FCF",
           "descripcion": "Los dos sirven para auscultar la FCF al ingreso y durante el parto.",
           "info": "{#FDE047:Óvalo amarillo}: el **estetoscopio de Pinard**, apoyado en el abdomen, y la **sonda** del Doppler de mano. {#22D3EE:Óvalo cian}: la **pantalla**, donde se lee la FCF. La FCF normal va de **110** a **160 lpm**.",
           "en_texto": "Auscultar la FCF",
@@ -376,8 +420,8 @@
     "adm_alto_riesgo": {
       "tipo": "informativo",
       "estilo": "advertencia",
-      "titulo": "Pasar al cuidado obstétrico o remitir",
-      "texto": "- Atender el parto en un nivel **II o superior** si hay un **factor de riesgo** o un signo de alarma.\n- Ante una **emergencia obstétrica** (hemorragia anteparto, **prolapso del cordón**, convulsión o colapso), pedir valoración **inmediata**.\n- Ofrecer **monitoría fetal continua** si aparece un factor de riesgo **intraparto**.\n- Si el parto es **inminente**, valorar si es más seguro atenderlo aquí que **trasladarla**.",
+      "titulo": "Pedir valoración por obstetricia o remitir",
+      "texto": "- Atender el parto en un nivel **II o superior** si hay un **factor de riesgo** o un signo de alarma.\n- Pedir valoración **inmediata** ante una **emergencia obstétrica**:\n  - Hemorragia **anteparto**.\n  - **Prolapso del cordón**.\n  - **Convulsión** o colapso.\n- Ofrecer **monitoría fetal continua** si aparece un factor de riesgo **intraparto**.\n- Si el parto es **inminente**, valorar si es más seguro atenderlo aquí que **trasladarla**.",
       "enlaces": [
         {
           "texto": "Ruptura prematura de membranas",
@@ -390,6 +434,11 @@
         {
           "texto": "Preeclampsia",
           "archivo_objetivo": "TODO_LINK_preeclampsia.json"
+        },
+        {
+          "texto": "Signos de alarma durante el parto",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "dil_alarma"
         }
       ],
       "opciones": [
@@ -475,14 +524,14 @@
           ]
         }
       ],
-      "texto": "- Hacer un **tacto vaginal** con su consentimiento: dilatación, borramiento, estación, posición y **membranas**.\n- **Fase latente:** contracciones dolorosas con **cambios variables** del cuello, hasta **5 cm**.\n- **Fase activa:** contracciones **regulares** y dilatación más rápida desde **5 cm**.\n- La GPC colombiana **admite** con dinámica regular, borramiento de más del **50 %** y **3-4 cm**.",
+      "texto": "- Hacer un **tacto vaginal** con su consentimiento: dilatación, borramiento, estación, posición y **membranas**.\n- Ubicar la fase con la dilatación: **latente** hasta los **5 cm** y **activa** desde los **5 cm**.\n- Hospitalizar desde **3-4 cm** si hay **dinámica regular** y borramiento de más del **50 %** (GPC colombiana).",
       "media": [
         {
           "recurso": "parto_fases.png",
           "titulo": "Fases del trabajo de parto",
           "descripcion": "Dónde empieza cada fase y cuánto suele durar.",
           "info": "{#3BA7E0:Latente}: hasta **5 cm**, sin **duración estándar**. {#4F8CF6:Activa}: de **5 cm** a la dilatación completa, no suele pasar de **12 h** en el primer parto ni de **10 h** después. {#8B5CF6:Expulsivo}: **3 h** o **2 h**. {#2FB36D:Alumbramiento}: **30 min** con **manejo activo**.",
-          "en_texto": "dilatación más rápida",
+          "en_texto": "Ubicar la fase",
           "referencias": [
             {
               "titulo": "Recomendación 5: la fase latente llega hasta los 5 cm (OMS 2018)",
@@ -730,7 +779,7 @@
         {
           "en_texto": "no tiene una duración estándar",
           "titulo": "¿Por qué no hay un límite?",
-          "texto": "Los estudios definen el **inicio** de la fase latente de formas distintas y la **certeza de la evidencia** sobre su duración es baja; por eso la OMS no fija un **límite** para intervenir.",
+          "texto": "Los estudios definen el **inicio** de la fase latente de formas distintas y la **certeza de la evidencia** sobre su duración es **muy baja**; por eso la OMS no fija un **límite** para intervenir.",
           "referencias": [
             {
               "titulo": "Recomendación 6: la fase latente no tiene duración estándar (OMS 2018)",
@@ -743,19 +792,18 @@
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_pag3_recomendacion_fase_latente_tiene_duracion.png"
             },
             {
-              "titulo": "Recomendación 6: certeza de la evidencia sobre la fase latente (OMS 2018)",
+              "titulo": "Recomendación 6: certeza muy baja sobre la fase latente (OMS 2018)",
               "paginas": "39",
-              "texto": "El GDG reconoce que el grado de certidumbre de la evidencia relativa a la duración de la fase latente",
+              "texto": "El GDG reconoce que el grado de certidumbre de la evidencia relativa a la duración de la fase latente del período de dilatación es muy baja",
               "fuente": "OMS 2018",
               "anio": "2018",
               "url": "https://iris.paho.org/handle/10665.2/51552",
               "cita": "Organización Mundial de la Salud. Recomendaciones de la OMS: cuidados durante el parto para una experiencia de parto positiva. Washington, D.C.: Organización Panamericana de la Salud; 2019.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_pag39_recomendacion_certeza_evidencia_sobre_fase.png"
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_pag39_recomendacion_certeza_muy_baja_sobre.png"
             }
           ]
         }
       ],
-      "nota_adicional": "Antes de mandarla a casa, mirar la distancia, el **transporte** y si tiene **acompañante**: si algo de eso no está garantizado, la GPC pide **hospitalizarla**.",
       "pie_nodo": "¿Cómo evoluciona tras la observación?",
       "opciones": [
         {
@@ -765,12 +813,12 @@
           "color": "azul"
         },
         {
-          "texto": "Sigue en latente, menos de 16 h",
+          "texto": "Sigue en latente, 16 h o menos",
           "siguiente_nodo": "adm_alta_latente",
           "descripcion": "Ella y el feto están bien"
         },
         {
-          "texto": "Latente de 16 h o más",
+          "texto": "Latente de más de 16 h",
           "siguiente_nodo": "adm_latente_prolongada",
           "descripcion": "Sin llegar a la fase activa"
         },
@@ -865,7 +913,7 @@
     "adm_alta_latente": {
       "tipo": "informativo",
       "estilo": "exito",
-      "titulo": "Dar la salida con signos de alarma o hospitalizar",
+      "titulo": "Dar salida con signos de alarma o hospitalizar",
       "texto": "- Si vive **cerca**, tiene **transporte** y acompañante, puede esperar la fase activa en **casa**.\n- Si alguna de esas condiciones **falla**, hospitalizarla.\n- Explicarle cuándo **volver**, con los signos de la lista.",
       "checklist": {
         "titulo": "Signos para volver al hospital",
@@ -879,6 +927,13 @@
           "**Cefalea** intensa"
         ]
       },
+      "opciones": [
+        {
+          "texto": "Se queda hospitalizada",
+          "siguiente_nodo": "adm_latente",
+          "descripcion": "Vive lejos, sin transporte o sin acompañante"
+        }
+      ],
       "referencias": [
         {
           "titulo": "Pregunta 3: cuándo admitir (GPC Colombia 2013)",
@@ -943,10 +998,10 @@
               "paginas": "3"
             }
           ],
-          "nota": "Ninguna de las dos apoya la **cesárea** por una fase latente larga con la madre y el feto **bien**."
+          "nota": "Cambia si se acelera con **amniotomía u oxitocina**: el algoritmo sigue a la **OMS** y no la acelera antes de **5 cm**."
         }
       ],
-      "pie_nodo": "¿Qué pasa al seguir esperando?",
+      "pie_nodo": "¿Cómo evoluciona la fase latente mientras se espera?",
       "opciones": [
         {
           "texto": "Entra en fase activa",
@@ -1047,7 +1102,7 @@
     "dil_cuidados": {
       "tipo": "informativo",
       "titulo": "Dar los cuidados de apoyo de la fase activa",
-      "texto": "- Permitir un **acompañante** de su elección y mantener personal de salud **permanente**.\n- Animarla a **moverse** y a elegir una **posición erguida**, también con peridural.\n- Dejar **líquidos claros**; las bebidas **isotónicas** previenen la cetosis.\n- Ofrecer la **peridural** cuando la pida; los **opioides** son una alternativa.\n- No hacer de rutina **rasurado**, enema, **amniotomía** ni líquidos IV.",
+      "texto": "- Permitir un **acompañante** de su elección y mantener personal de salud **permanente**.\n- Animarla a **moverse** y a la posición que prefiera; con peridural, tras comprobar el **bloqueo motor**.\n- Permitir que tome **líquidos claros**; las bebidas **isotónicas** previenen la cetosis.\n- Ofrecer la **peridural** cuando la pida; los **opioides** son una alternativa.\n- No hacer de rutina:\n  - **Rasurado** ni enema.\n  - **Amniotomía** ni líquidos IV.",
       "alertas": [
         {
           "titulo": "Cuándo no poner la peridural",
@@ -1056,7 +1111,7 @@
       ],
       "nota_adicional": "No hace falta esperar la fase activa para la **peridural**: ponerla **temprano**, antes de **3 cm**, no aumenta las **cesáreas**.",
       "evidencia": {
-        "texto": "ACOG: fuerte, calidad moderada"
+        "texto": "OMS 2018: recomendado"
       },
       "opciones": [
         {
@@ -1104,6 +1159,16 @@
           "url": "https://doi.org/10.18597/rcog.90",
           "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
           "imagen_evidencia": "evidencia_parto_distocias_pag403_pregunta_posicion_tambien_con_peridural.png"
+        },
+        {
+          "titulo": "Pregunta 23: moverse con peridural, tras comprobar el bloqueo (GPC Colombia 2013, grado A)",
+          "paginas": "403",
+          "texto": "adoptar cualquier posición que encuentren cómoda a lo largo del periodo de dilatación y a movilizarse si así lo desean, previa comprobación del bloqueo motor y propioceptivo.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag403_pregunta_moverse_con_peridural_tras.png"
         },
         {
           "titulo": "Pregunta 9: líquidos claros e isotónicos (GPC Colombia 2013)",
@@ -1211,7 +1276,7 @@
       "tipo": "pregunta",
       "titulo": "Vigilar el progreso con la guía de cuidados del parto",
       "contexto": "Muchas mujeres dilatan **más despacio de 1 cm/h** y tienen un **parto normal**: por eso la alerta es por **tiempo sin progreso**.",
-      "texto": "- Registrar cada dato al ritmo de **la tabla**.\n- Alertar si la dilatación se queda en el **mismo centímetro** más tiempo del que marca la guía de cuidados.\n- Auscultar la FCF durante la contracción y hasta **30 s** después, al menos **1 min**.\n- No usar la **línea de 1 cm/h** para decidir una intervención.",
+      "texto": "- Registrar cada dato al ritmo de **la tabla**.\n- Alertar si la dilatación se queda en el **mismo centímetro** más tiempo del que marca la guía de cuidados.\n- Auscultar la FCF durante la contracción y hasta **30 s** después, al menos **1 min**.",
       "tabla": {
         "titulo": "Qué vigilar y cada cuánto",
         "columnas": [
@@ -1223,32 +1288,37 @@
           [
             "FCF",
             "Cada **15-30 min**",
-            "- Menos de **110** o **160** lpm o más\n- Desaceleraciones **tardías**"
+            "- Menos de **110 lpm**\n- **160 lpm** o más\n- Desaceleraciones **tardías**"
           ],
           [
             "Contracciones",
             "Cada **30 min**",
-            "- **2** o menos, o más de **5**, en 10 min\n- Duran menos de **20 s** o más de **60 s**"
+            "- **2** o menos en 10 min\n- Más de **5** en 10 min\n- Duran menos de **20 s**\n- Duran más de **60 s**"
           ],
           [
             "Pulso",
             "Cada **hora**",
-            "Menos de **60** o **120** lpm o más"
+            "- Menos de **60 lpm**\n- **120 lpm** o más"
           ],
           [
             "PA",
             "Cada **4 h**",
-            "- Sistólica menor de **80** o de **140** o más\n- Diastólica de **90** mmHg o más"
+            "- Sistólica menor de **80 mmHg**\n- Sistólica de **140 mmHg** o más\n- Diastólica de **90 mmHg** o más"
           ],
           [
             "Temperatura",
             "Cada **4 h**",
-            "Menos de **35,0 °C** o **37,5 °C** o más"
+            "- Menos de **35,0 °C**\n- **37,5 °C** o más"
           ],
           [
             "Tacto vaginal",
             "Cada **4 h**",
-            "- Sin progreso en su **tiempo de alerta**\n- Caput o moldeamiento **+++**"
+            "- Sin progreso en su **tiempo de alerta**\n- Caput o moldeamiento **+++**\n- Posición **occipitoposterior** o transversa"
+          ],
+          [
+            "Líquido amniótico",
+            "En cada **tacto**",
+            "- **Meconio** espeso\n- **Sangre**"
           ],
           [
             "Orina",
@@ -1264,7 +1334,7 @@
           "recurso": "parto_guia_cuidados.png",
           "titulo": "Tiempo de alerta por centímetro",
           "descripcion": "Horas sin progreso en cada centímetro que disparan la alerta, de 5 a 9 cm.",
-          "info": "Cada barra es el tiempo **sin progreso** que se tolera en ese centímetro: **6 h** a los 5 cm, **5 h** a los 6, **3 h** a los 7, **2,5 h** a los 8 y **2 h** a los 9. Al superarlo se avisa al **especialista**.",
+          "info": "{#84AEF9:Barras azules}: horas **sin progreso** que se toleran en cada centímetro: **6 h** a los 5 cm, **5 h** a los 6, **3 h** a los 7, **2,5 h** a los 8 y **2 h** a los 9. {#F2A23A:Marca naranja}: la **alerta**, que se avisa al **especialista**.",
           "en_texto": "guía de cuidados",
           "referencias": [
             {
@@ -1378,7 +1448,12 @@
         {
           "texto": "Supera el tiempo de alerta",
           "siguiente_nodo": "dil_retraso",
-          "descripcion": "Sin progreso en el mismo centímetro"
+          "descripcion": "Sin progreso en el mismo centímetro, aún sin oxitocina"
+        },
+        {
+          "texto": "Supera el tiempo de alerta con oxitocina",
+          "siguiente_nodo": "dil_oxitocina",
+          "descripcion": "La oxitocina ya está en marcha"
         }
       ],
       "referencias": [
@@ -1587,7 +1662,7 @@
     "dil_complicaciones": {
       "tipo": "pregunta",
       "titulo": "Revisar cada hora si aparece un signo de alarma",
-      "texto": "- Valorar cada **hora** el **riesgo** de la madre y del feto.\n- Ante cualquier valor de **alerta**, avisar al **especialista** y registrar lo que se decide.",
+      "texto": "- Repasar los datos de la madre (**PA**, pulso, respiración y temperatura) y del feto (**FCF** y líquido amniótico).\n- Ante cualquier valor de **alerta**, avisar al **especialista** y registrar lo que se decide.",
       "pie_nodo": "¿Aparece algún signo de alarma?",
       "opciones": [
         {
@@ -1597,18 +1672,18 @@
         {
           "texto": "FCF anormal",
           "siguiente_nodo": "dil_fcf",
-          "descripcion": "Menos de 110 o 160 lpm o más, o desaceleraciones tardías",
+          "descripcion": "Menor de 110 o de 160 lpm o más, o desaceleraciones tardías",
           "color": "rojo"
         },
         {
           "texto": "Fiebre",
           "siguiente_nodo": "dil_fiebre",
-          "descripcion": "38 °C o más una vez, o 37,5 °C o más dos veces"
+          "descripcion": "38 °C o más una vez, o 37,5 °C o más dos veces con 1 h de diferencia (GPC: 2 h)"
         },
         {
           "texto": "Otro signo de alarma",
           "siguiente_nodo": "dil_alarma",
-          "descripcion": "Sangrado, meconio, hipertensión, dolor distinto o demasiadas contracciones"
+          "descripcion": "Sangrado, meconio, hipertensión, emergencia obstétrica u otro signo de la tabla"
         }
       ],
       "referencias": [
@@ -1643,14 +1718,24 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag12_alerta_fcf_basal_oms_2020.png"
         },
         {
-          "titulo": "1.8.11: fiebre en la valoración inicial (NICE NG235)",
-          "paginas": "46",
-          "texto": "temperature of 38°C or above on a single reading, or 37.5°C or above on 2 consecutive readings 1 hour apart",
+          "titulo": "1.8.20: fiebre durante el parto y antibióticos intraparto (NICE NG235)",
+          "paginas": "49",
+          "texto": "temperature of 38°C or above on a single reading, or 37.5°C or above on 2 consecutive occasions 1 hour apart; for advice on intrapartum antibiotics",
           "fuente": "NICE NG235",
           "anio": "2023",
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
-          "imagen_evidencia": "evidencia_parto_distocias_pag46_1811_fiebre_valoracion_inicial_nice.png"
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_fiebre_durante_parto_antibioticos.png"
+        },
+        {
+          "titulo": "Pregunta 22: fiebre como criterio de remisión (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Fiebre materna en el trabajo de parto (38,0 °C una vez o 37,5 °C en dos ocasiones con dos horas de diferencia).",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_fiebre_como_criterio_remision.png"
         }
       ]
     },
@@ -1660,6 +1745,12 @@
       "titulo": "Confirmar el retraso de la dilatación",
       "contexto": "El retraso no se diagnostica sólo por el reloj: cuentan la **paridad**, las **contracciones**, el **descenso** y la rotación de la cabeza.",
       "texto": "- Ofrecer **apoyo**, hidratación y **analgesia** eficaz.\n- Buscar signos de obstrucción: **caput o moldeamiento +++**, o contracciones **continuas**.\n- Si las membranas están **íntegras**, hacer la **amniotomía**.\n- Repetir el tacto a las **2 h**: un avance de **menos de 1 cm** confirma el retraso.",
+      "alertas": [
+        {
+          "titulo": "Amniotomía y VIH",
+          "texto": "Si tiene **VIH** o se desconoce su estado, ser **cauto** con la amniotomía y tener antes la **prueba rápida**."
+        }
+      ],
       "nota_adicional": "No pedir **pelvimetría por imagen** para predecir la **desproporción**: aumenta las cesáreas sin mejorar al recién nacido. Si se sospecha, **remitir** pronto a un nivel II o superior.",
       "discrepancias": [
         {
@@ -1667,7 +1758,7 @@
           "posturas": [
             {
               "fuente": "NICE NG235",
-              "dice": "Amniotomía y tacto **2 h** después; oxitocina sólo si no avanza.",
+              "dice": "Tacto a las **2 h** para confirmar el retraso; luego amniotomía, otro tacto a las **2 h** y, si no avanza, el obstetra valora la **oxitocina**.",
               "paginas": "55"
             },
             {
@@ -1681,25 +1772,26 @@
               "paginas": "5"
             }
           ],
-          "nota": "Cambia cuándo empieza la **oxitocina**: a las 2 h de la amniotomía o **junto** con ella."
+          "nota": "Cambia cuándo empieza la **oxitocina**: unas **4 h** tras la sospecha (NICE), **2 h** tras la amniotomía (GPC) o **junto** con ella (OMS). El algoritmo sigue a la **GPC colombiana**."
         }
       ],
-      "pie_nodo": "¿Cuánto avanzó la dilatación 2 h después?",
+      "pie_nodo": "¿Qué muestra el tacto a las 2 h?",
       "opciones": [
         {
-          "texto": "1 cm o más",
+          "texto": "Avanzó 1 cm o más, sin obstrucción",
           "siguiente_nodo": "dil_vigilancia",
-          "descripcion": "Seguir la vigilancia habitual"
+          "descripcion": "El retraso no se confirma"
         },
         {
-          "texto": "Menos de 1 cm",
+          "texto": "Avanzó menos de 1 cm, sin obstrucción",
           "siguiente_nodo": "dil_oxitocina",
           "descripcion": "Retraso confirmado"
         },
         {
-          "texto": "Signos de obstrucción",
+          "texto": "Hay signos de obstrucción",
           "siguiente_nodo": "dil_cesarea",
-          "descripcion": "Caput o moldeamiento +++, o contracciones continuas"
+          "descripcion": "Caput o moldeamiento +++, o contracciones continuas",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -1822,6 +1914,26 @@
           "url": "https://iris.who.int/handle/10665/112825",
           "cita": "World Health Organization. WHO recommendations for augmentation of labour. Geneva: World Health Organization; 2014.",
           "imagen_evidencia": "evidencia_parto_distocias_pag5_recomendacion_amniotomia_oxitocina_ante_retraso.png"
+        },
+        {
+          "titulo": "Amniotomía y VIH (OMS 2014)",
+          "paginas": "42",
+          "texto": "There is a need to exercise caution among women with HIV.",
+          "fuente": "OMS 2014",
+          "anio": "2014",
+          "url": "https://iris.who.int/handle/10665/112825",
+          "cita": "World Health Organization. WHO recommendations for augmentation of labour. Geneva: World Health Organization; 2014.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag42_amniotomia_vih_oms_2014.png"
+        },
+        {
+          "titulo": "Pregunta 4: paraclínicos al ingreso (GPC Colombia 2013)",
+          "paginas": "385",
+          "texto": "realizar o complementar los exámenes prenatales pertinentes que hagan falta, especialmente los del tercer trimestre y las pruebas rápidas para VIH y sífilis",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag385_pregunta_paraclinicos_ingreso_gpc_colombia.png"
         }
       ]
     },
@@ -1835,8 +1947,7 @@
         {
           "nombre": "Oxitocina (conducción)",
           "dosis": "**0,5-2 mU/min** IV en infusión; subir **1-2 mU/min**",
-          "pauta": "Esquema de **dosis bajas** del ACOG, con intervalos de **15-40 min**; NICE pide no subir antes de **30 min**. Meta: **3-4 contracciones** en 10 min.",
-          "nota": "Suspenderla **de inmediato** si la monitoría es **patológica**.",
+          "pauta": "Esquema de **dosis bajas**: subir cada **30 min** o más. Meta: **3-4 contracciones** en 10 min.",
           "paginas": "154"
         }
       ],
@@ -1933,23 +2044,24 @@
       "evidencia": {
         "texto": "ACOG: fuerte, calidad alta"
       },
-      "pie_nodo": "¿Cuánto avanzó la dilatación a las 4 h?",
+      "pie_nodo": "¿Cómo responde a la oxitocina?",
       "opciones": [
-        {
-          "texto": "2 cm o más",
-          "siguiente_nodo": "dil_vigilancia",
-          "descripcion": "Tacto cada 4 h"
-        },
-        {
-          "texto": "Menos de 2 cm",
-          "siguiente_nodo": "dil_detencion",
-          "descripcion": "Valorar si es una detención"
-        },
         {
           "texto": "Demasiadas contracciones o FCF anormal",
           "siguiente_nodo": "dil_fcf",
-          "descripcion": "Más de 4 en 10 min o monitoría patológica",
+          "descripcion": "En cualquier momento: más de 4 en 10 min o monitoría patológica",
           "color": "rojo"
+        },
+        {
+          "texto": "A las 4 h, avanzó 2 cm o más",
+          "siguiente_nodo": "dil_vigilancia",
+          "descripcion": "Progresa con la oxitocina",
+          "contexto": "- Se debe seguir con **monitoría fetal continua**, no con la auscultación intermitente de la tabla."
+        },
+        {
+          "texto": "A las 4 h, avanzó menos de 2 cm",
+          "siguiente_nodo": "dil_detencion",
+          "descripcion": "Retraso pese a la oxitocina"
         }
       ],
       "referencias": [
@@ -2109,7 +2221,7 @@
       "tipo": "pregunta",
       "titulo": "Diagnosticar la detención de la fase activa",
       "contexto": "Una fase activa **lenta pero que avanza**, con algún cambio cada **4 h** y madre y feto bien, **no** es indicación de cesárea.",
-      "texto": "- Aplicar los **criterios de detención**: 6 cm o más, membranas **rotas** y tiempo **sin cambio** pese a la oxitocina.\n- Si no se sabe si las **contracciones son adecuadas**, medirlas con un catéter de presión intrauterina.\n- Con **menos de 2 cm** en 4 h de oxitocina, valorar la cesárea con el **obstetra**.",
+      "texto": "- Aplicar los **criterios de detención** con la calculadora.\n- Contracciones adecuadas: más de **200** unidades Montevideo; si no se sabe, medirlas con un **catéter** de presión intrauterina.\n- Con **menos de 2 cm** en 4 h de oxitocina, valorar la cesárea con el **obstetra**.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/detencion_fase_activa.json",
         "etiqueta": "Aplicar los criterios de detención",
@@ -2117,9 +2229,9 @@
       },
       "burbujas": [
         {
-          "en_texto": "catéter de presión intrauterina",
-          "titulo": "¿Qué son contracciones adecuadas?",
-          "texto": "Más de **200 unidades Montevideo** medidas con el catéter. El umbral sale de un estudio **observacional** de **109** mujeres de **1986**.",
+          "en_texto": "unidades Montevideo",
+          "titulo": "¿De dónde sale el umbral?",
+          "texto": "Las **200 unidades Montevideo** salen de un estudio **observacional** de **109** mujeres de **1986**.",
           "referencias": [
             {
               "titulo": "Contracciones adecuadas: más de 200 unidades Montevideo (ACOG 2024)",
@@ -2144,20 +2256,44 @@
           ]
         }
       ],
+      "discrepancias": [
+        {
+          "asunto": "Cuándo valorar la cesárea con la oxitocina",
+          "posturas": [
+            {
+              "fuente": "ACOG 2024",
+              "dice": "Detención con **6 cm** o más y membranas rotas: sin cambio en **4 h** de buenas contracciones o **6 h** de oxitocina.",
+              "paginas": "145"
+            },
+            {
+              "fuente": "NICE NG235",
+              "dice": "Menos de **2 cm** tras **4 h** de oxitocina: el obstetra valora la **cesárea**.",
+              "paginas": "57"
+            },
+            {
+              "fuente": "MinSalud 2013",
+              "dice": "Menos de **2 cm** a las **4 h**: reevaluar la posibilidad de una **cesárea**.",
+              "paginas": "400"
+            }
+          ],
+          "nota": "El ACOG espera **más** antes de la cesárea. El algoritmo decide con sus **criterios** (la calculadora) tras valorar con el obstetra."
+        }
+      ],
       "evidencia": {
         "texto": "ACOG: condicional, calidad baja"
       },
       "pie_nodo": "¿Cumple los criterios de detención de la fase activa?",
       "opciones": [
         {
-          "texto": "Sí, es una detención",
+          "texto": "Detención confirmada",
           "siguiente_nodo": "dil_cesarea",
-          "descripcion": "Sin cambio 4 h con contracciones adecuadas o 6 h con oxitocina"
+          "descripcion": "6 cm o más, membranas rotas y sin cambio en 4 h de contracciones adecuadas o 6 h de oxitocina",
+          "color": "rojo"
         },
         {
-          "texto": "No, avanza lento",
+          "texto": "No cumple: fase activa lenta",
           "siguiente_nodo": "dil_oxitocina",
-          "descripcion": "Seguir la oxitocina y repetir el tacto"
+          "descripcion": "Menos de 6 cm, membranas íntegras o aún sin el tiempo"
         }
       ],
       "referencias": [
@@ -2415,7 +2551,7 @@
         "Urgente"
       ],
       "titulo": "Reanimar al feto dentro del útero",
-      "texto": "- Pedir la valoración **urgente** del obstetra y pasar a la monitoría **continua**.\n- Descartar **prolapso del cordón**, **desprendimiento** o ruptura uterina.\n- Ponerla de lado izquierdo; si hay **hipotensión** tras la peridural, dar líquidos IV.\n- Con **demasiadas contracciones**, bajar o suspender la **oxitocina** y dar **terbutalina**.\n- Si una **bradicardia** dura **9 min**, terminar el parto.",
+      "texto": "- Pedir la valoración **urgente** del obstetra y pasar a la monitoría **continua**.\n- Si hay **prolapso del cordón**, desprendimiento o **ruptura uterina**, terminar el parto **ya**.\n- Acostarla de lado, sobre el **izquierdo**; si hay **hipotensión** tras la peridural, dar líquidos IV.\n- Con **demasiadas contracciones**, bajar o suspender la **oxitocina** y dar **terbutalina**.\n- Si una **bradicardia** dura **9 min**, o menos con **factores de riesgo**, terminar el parto.",
       "farmacos": [
         {
           "nombre": "Terbutalina",
@@ -2436,7 +2572,7 @@
           "titulo": "Reanimación intrauterina",
           "descripcion": "Cada medida apunta a una causa: la posición, la hipotensión o el exceso de contracciones.",
           "info": "{#4F8CF6:Posición}: de lado y **nunca boca arriba**, para liberar el cordón y el flujo uterino. {#F2A23A:Hipotensión}: líquidos IV sólo si hay hipotensión o **sepsis**. {#EF5454:Exceso de contracciones}: bajar la oxitocina y dar **terbutalina 0,25 mg** SC. El **oxígeno** a la madre no ayuda al feto.",
-          "en_texto": "lado izquierdo",
+          "en_texto": "Acostarla de lado",
           "referencias": [
             {
               "titulo": "1.5.11: posición materna (NICE NG229)",
@@ -2482,7 +2618,7 @@
         },
         {
           "recurso": "parto_monitoria_real.jpg",
-          "titulo": "Monitoría fetal",
+          "titulo": "Cómo se ve una monitoría",
           "descripcion": "Registro real: la FCF arriba, los movimientos en medio y las contracciones abajo.",
           "info": "{#E11D74:Rosa}: la **FCF**, que se lee en la escala de **lpm**. {#A16207:Ocre}: las rayas de los **movimientos fetales**. {#0E7490:Azul}: las **contracciones**; en este registro el útero está en **reposo**. Si la auscultación confirma una **alteración** de la FCF, se pasa a la monitoría **continua**.",
           "en_texto": "pasar a la monitoría",
@@ -2504,9 +2640,16 @@
       "pie_nodo": "¿Se recupera la frecuencia cardiaca fetal con las medidas?",
       "opciones": [
         {
-          "texto": "Sí, se recupera",
+          "texto": "Se recupera, sin oxitocina",
           "siguiente_nodo": "dil_vigilancia",
-          "descripcion": "Seguir con monitoría continua"
+          "descripcion": "FCF de nuevo entre 110 y 160 lpm",
+          "contexto": "- Se debe seguir con **monitoría continua**; si el trazado es **normal** a los **20 min**, se puede volver a la auscultación."
+        },
+        {
+          "texto": "Se recupera, con oxitocina",
+          "siguiente_nodo": "dil_oxitocina",
+          "descripcion": "FCF de nuevo entre 110 y 160 lpm",
+          "contexto": "- Se puede **reiniciar** la oxitocina si el obstetra lo valora y la monitoría ya no es **patológica**."
         },
         {
           "texto": "No se recupera",
@@ -2535,6 +2678,36 @@
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
           "imagen_evidencia": "evidencia_parto_distocias_pag27_157_monitoria_patologica_nice_ng229.png"
+        },
+        {
+          "titulo": "1.5.9: evento agudo, terminar el parto (NICE NG229)",
+          "paginas": "27",
+          "texto": "if there has been an acute event (for example, cord prolapse, suspected placental abruption or suspected uterine rupture), expedite the birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag27_159_evento_agudo_terminar_parto.png"
+        },
+        {
+          "titulo": "1.2.13: volver a la auscultación intermitente (NICE NG229)",
+          "paginas": "9",
+          "texto": "Return to intermittent auscultation if continuous CTG monitoring has been started because of concerns arising from intermittent auscultation but the CTG trace is normal after 20 minutes",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag9_1213_volver_auscultacion_intermitente_nice.png"
+        },
+        {
+          "titulo": "1.8.57: reiniciar la oxitocina (NICE NG235)",
+          "paginas": "57",
+          "texto": "Consider restarting oxytocin in the first stage of labour if: • obstetric review has been carried out and the cardiotocography is no longer pathological",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag57_1857_reiniciar_oxitocina_nice_ng235.png"
         },
         {
           "titulo": "Alerta de la FCF basal (OMS 2020)",
@@ -2652,7 +2825,7 @@
       "tipo": "informativo",
       "estilo": "advertencia",
       "titulo": "Buscar la infección si aparece fiebre",
-      "texto": "- Pasar a **monitoría fetal continua**.\n- Buscar **corioamnionitis** o **sepsis**.\n- Dar los **antibióticos intraparto** del protocolo de infección neonatal.\n- Si se atiende en un nivel básico, **remitir** a un nivel II o superior.",
+      "texto": "- Pasar a **monitoría fetal continua**.\n- Buscar **corioamnionitis** o **sepsis**.\n- Dar los **antibióticos intraparto** del protocolo de infección neonatal.\n- Avisar al **equipo neonatal**: el bebé de una madre con **corioamnionitis** se valora de inmediato.\n- Si se atiende en un nivel básico, **remitir** a un nivel II o superior.",
       "nota_adicional": "La **peridural** se asocia con más **fiebre materna** (RR **3,34**) que los opioides: tenerla en cuenta al buscar la **causa**.",
       "enlaces": [
         {
@@ -2664,7 +2837,8 @@
         {
           "texto": "Fiebre en estudio",
           "siguiente_nodo": "dil_vigilancia",
-          "descripcion": "Seguir con monitoría continua"
+          "descripcion": "Madre y feto estables",
+          "contexto": "- Se debe seguir con **monitoría fetal continua**, no con la auscultación intermitente de la tabla."
         }
       ],
       "referencias": [
@@ -2689,14 +2863,24 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag14_138_corioamnionitis_sepsis_nice_ng229.png"
         },
         {
-          "titulo": "1.8.20: antibióticos intraparto (NICE NG235)",
-          "paginas": "41",
-          "texto": "for advice on intrapartum antibiotics, see the section on intrapartum antibiotics in NICE's guideline on neonatal infection",
+          "titulo": "1.8.20: fiebre durante el parto y antibióticos intraparto (NICE NG235)",
+          "paginas": "49",
+          "texto": "temperature of 38°C or above on a single reading, or 37.5°C or above on 2 consecutive occasions 1 hour apart; for advice on intrapartum antibiotics",
           "fuente": "NICE NG235",
           "anio": "2023",
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
-          "imagen_evidencia": "evidencia_parto_distocias_pag41_1820_antibioticos_intraparto_nice_ng235.png"
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_fiebre_durante_parto_antibioticos.png"
+        },
+        {
+          "titulo": "1.11.36: recién nacido de madre con corioamnionitis (NICE NG235)",
+          "paginas": "88",
+          "texto": "Refer a baby with any symptom of possible sepsis, or born to a woman who has evidence of chorioamnionitis, to a neonatal care specialist immediately.",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag88_11136_recien_nacido_madre_con.png"
         },
         {
           "titulo": "Pregunta 22: fiebre como criterio de remisión (GPC Colombia 2013)",
@@ -2733,24 +2917,36 @@
         ],
         "filas": [
           [
-            "**Sangrado** o líquido con sangre",
-            "- Pensar en **desprendimiento**, placenta previa, vasa previa o **ruptura uterina**\n- Valoración **urgente**"
+            "**Emergencia obstétrica**",
+            "- **Prolapso del cordón**\n- Hemorragia **anteparto**\n- **Convulsión** o colapso\n- Valoración **inmediata**; con prolapso, desprendimiento o **ruptura uterina**, terminar el parto **ya**"
           ],
           [
-            "**Meconio** espeso",
-            "- Vigilancia **estrecha**\n- Preparar una posible **intervención** por compromiso fetal"
+            "**Sangrado** o líquido con sangre",
+            "- Pensar en **desprendimiento** o **ruptura uterina**\n- Pensar en placenta o vasa **previa**\n- Valoración **urgente**"
+          ],
+          [
+            "**Meconio**, de cualquier grado",
+            "- Monitoría **continua**\n- **Remitir** a un nivel II o superior\n- Si es **espeso**, preparar una posible **intervención**"
           ],
           [
             "**Hipertensión**",
-            "- **140/90** o más dos veces con **30 min** de diferencia, o **160/110** o más una vez\n- **Remitir** a un nivel II o superior"
+            "- **140/90** o más dos veces con **15-30 min** de diferencia\n- **160/110** o más una vez\n- **140/90** con proteinuria **2+**\n- **Remitir** a un nivel II o superior"
           ],
           [
             "**Demasiadas contracciones**",
-            "- **6** o más en 10 min durante **30 min**, o que duran más de **2 min**\n- Bajar o suspender la **oxitocina**"
+            "- **5** o más en 10 min\n- Contracciones de más de **2 min**\n- Con oxitocina: más de **4** en 10 min\n- Bajar o suspender la **oxitocina**"
           ],
           [
-            "**Pulso** de **120/min** o más",
-            "Buscar **deshidratación**, dolor, fiebre o **sangrado**"
+            "**Pulso** o respiración",
+            "- Pulso de **120/min** o más\n- Respiración de menos de **9** o más de **21**/min, dos veces\n- Buscar **deshidratación**, dolor, fiebre o **sangrado**"
+          ],
+          [
+            "Presentación **no cefálica** o **cordón** por delante",
+            "- Valoración del **obstetra**\n- **Remitir** a un nivel II o superior"
+          ],
+          [
+            "Dudas sobre la **vitalidad fetal**",
+            "- Valoración **urgente**\n- **Remitir** a un nivel II o superior"
           ],
           [
             "**Dolor distinto** al de las contracciones",
@@ -2771,12 +2967,13 @@
         {
           "texto": "Sí, con monitoría continua",
           "siguiente_nodo": "dil_vigilancia",
-          "descripcion": "Signo controlado o en estudio"
+          "descripcion": "Signo controlado o en estudio",
+          "contexto": "- Se debe seguir con **monitoría fetal continua**, no con la auscultación intermitente de la tabla."
         },
         {
           "texto": "No, hay que terminar el parto",
           "siguiente_nodo": "dil_cesarea",
-          "descripcion": "Desprendimiento, ruptura uterina o compromiso fetal",
+          "descripcion": "Emergencia obstétrica, desprendimiento, ruptura uterina o compromiso fetal",
           "color": "rojo"
         }
       ],
@@ -2802,6 +2999,36 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag4_ante_una_alerta_avisar_especialista.png"
         },
         {
+          "titulo": "1.8.20: emergencia obstétrica durante el parto (NICE NG235)",
+          "paginas": "50",
+          "texto": "obstetric emergency, including antepartum haemorrhage, cord prolapse, maternal seizure or collapse, or a need for advanced neonatal resuscitation",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag50_1820_emergencia_obstetrica_nice_ng235.png"
+        },
+        {
+          "titulo": "Pregunta 22: retención de la placenta como criterio de remisión (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Emergencia obstétrica: hemorragia previa al parto, presentación o prolapso del cordón, hemorragia posparto, colapso materno o la necesidad de reanimación neonatal avanzada. • Retención de la placenta.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_retencion_placenta_como_criterio.png"
+        },
+        {
+          "titulo": "1.5.9: evento agudo, terminar el parto (NICE NG229)",
+          "paginas": "27",
+          "texto": "if there has been an acute event (for example, cord prolapse, suspected placental abruption or suspected uterine rupture), expedite the birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag27_159_evento_agudo_terminar_parto.png"
+        },
+        {
           "titulo": "Líquido con sangre (OMS 2020)",
           "paginas": "12",
           "texto": "Bloody amniotic fluid is common in placental abruption, placenta praevia, vasa praevia or uterine rupture",
@@ -2810,6 +3037,36 @@
           "url": "https://iris.who.int/handle/10665/337693",
           "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
           "imagen_evidencia": "evidencia_parto_distocias_pag12_liquido_con_sangre_oms_2020.png"
+        },
+        {
+          "titulo": "1.8.20: meconio que aparece (NICE NG235)",
+          "paginas": "49",
+          "texto": "the new appearance of meconium (see the section on the presence of meconium) － pain reported by the woman",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_meconio_que_aparece_nice.png"
+        },
+        {
+          "titulo": "1.3.10: el meconio puede indicar compromiso fetal (NICE NG229)",
+          "paginas": "15",
+          "texto": "When assessing risk at any time during labour, be aware that the presence of meconium: • can indicate possible fetal compromise",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag15_1310_meconio_puede_indicar_compromiso.png"
+        },
+        {
+          "titulo": "Pregunta 22: meconio como criterio de remisión (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Prolongación del primer o segundo periodos del parto. • Líquido amniótico teñido con meconio.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_meconio_como_criterio_remision.png"
         },
         {
           "titulo": "Meconio espeso (OMS 2020)",
@@ -2852,6 +3109,16 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_hipertension_como_criterio_remision.png"
         },
         {
+          "titulo": "1.8.20: frecuencia respiratoria y proteinuria durante el parto (NICE NG235)",
+          "paginas": "49",
+          "texto": "raised systolic blood pressure (140 mmHg or more) － respiratory rate of less than 9 or more than 21 breaths per minute on 2 occasions 15 to 30 minutes apart",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_frecuencia_respiratoria_proteinuria_durante.png"
+        },
+        {
           "titulo": "Pregunta 18: taquisistolia (GPC Colombia 2013)",
           "paginas": "397",
           "texto": "Taquisistolia (aumento de la frecuencia): 6 o más contracciones en 10 min observadas durante 30 min.",
@@ -2890,6 +3157,26 @@
           "url": "https://iris.who.int/handle/10665/337693",
           "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
           "imagen_evidencia": "evidencia_parto_distocias_pag15_pulso_que_sube_oms_2020.png"
+        },
+        {
+          "titulo": "1.8.20: presentación no cefálica durante el parto (NICE NG235)",
+          "paginas": "50",
+          "texto": "any non-cephalic presentation, including cord presentation － high (4/5 to 5/5 palpable) or free-floating head in a nulliparous woman",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag50_1820_presentacion_cefalica_durante_parto.png"
+        },
+        {
+          "titulo": "Pregunta 22: dudas sobre la vitalidad fetal (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Incertidumbre sobre la presencia de latidos del corazón fetal o la vitalidad fetal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_dudas_sobre_vitalidad_fetal.png"
         },
         {
           "titulo": "1.3.8: dolor distinto (NICE NG229)",
@@ -3067,7 +3354,7 @@
     "exp_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar el descenso y el tiempo de pujo",
-      "texto": "- Valorar la **rotación** y el descenso de la cabeza, con un tacto cada **hora** en el pujo activo.\n- Revalorar a la **1 h** de pujo en la nulípara y a los **30 min** en la multípara.\n- Esperar el nacimiento en **3 h** de pujo en la nulípara y en **2 h** en la multípara.\n- Contar las **contracciones** cada **15 min** y auscultar la FCF cada **5 min**.",
+      "texto": "- Valorar la **rotación** y el descenso de la cabeza, con un tacto cada **hora** en el pujo activo.\n- Revalorar a la **1 h** de pujo en la nulípara y a los **30 min** en la multípara.\n- Pedir la valoración del **especialista** a las **2 h** de pujo en la **nulípara** (**1 h** en la **multípara**) si el nacimiento no es inminente.\n- Contar las **contracciones** cada **15 min** y auscultar la FCF cada **5 min**.",
       "media": [
         {
           "recurso": "parto_expulsivo_tiempos.png",
@@ -3141,7 +3428,7 @@
         {
           "recurso": "parto_descenso_rm_real.jpg",
           "titulo": "Descenso de la cabeza con el pujo",
-          "descripcion": "Resonancia en el expulsivo: la cabeza baja y pivota sobre el pubis al pujar.",
+          "descripcion": "Resonancia de un estudio de investigación: la cabeza baja y pivota sobre el pubis al pujar.",
           "info": "{#C12924:Línea roja}: la **cabeza fetal**, que baja con el pujo. {#4B8F56:Líneas verdes}: diámetros de la **pelvis**; la discontinua, el estrecho superior. {#47729C:Azul discontinua}: el **pubis**, donde **pivota** la cabeza. Sin **rotación** ni **descenso** pese a buenos pujos, la **detención** se diagnostica antes de tiempo.",
           "referencias": [
             {
@@ -3208,6 +3495,26 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag65_1926_multipara_revalorar_los_min.png"
         },
         {
+          "titulo": "1.9.25: nulípara, 2 h de pujo sin nacimiento inminente (NICE NG235)",
+          "paginas": "64",
+          "texto": "if there is still no progress, diagnose delay and escalate for senior review • if birth is not imminent after 2 hours of pushing, refer the woman for a senior",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag64_1925_nulipara_pujo_sin_nacimiento.png"
+        },
+        {
+          "titulo": "1.9.26: multípara, 1 h de pujo sin nacimiento inminente (NICE NG235)",
+          "paginas": "65",
+          "texto": "if birth is not imminent after 1 hour of pushing, refer the woman for senior review and decision on place and mode of birth",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag65_1926_multipara_pujo_sin_nacimiento.png"
+        },
+        {
           "titulo": "Alerta del expulsivo (OMS 2020)",
           "paginas": "18",
           "texto": "≥3h in nulliparous women; ≥2h in multiparous women (birth is not completed by 3 hours from the start of the active second stage in nulliparous and 2 hours in multiparous women)",
@@ -3271,9 +3578,9 @@
     },
     "exp_complicaciones": {
       "tipo": "pregunta",
-      "titulo": "Revisar las alertas durante el pujo",
+      "titulo": "Revisar si aparece un signo de alarma durante el pujo",
       "contexto": "En el expulsivo la **hipoxia** fetal aparece **más a menudo** y **más rápido** que en la dilatación.",
-      "texto": "- Diferenciar la FCF del **pulso materno** al menos cada **5 min**.\n- Revisar a la madre cada **hora**: **PA**, pulso y **temperatura**, con las alertas de la dilatación.",
+      "texto": "- Diferenciar la FCF del **pulso materno** al menos cada **5 min**.\n- Revisar a la madre cada **hora**: alerta con pulso de **120** o más, sistólica de **140** o más, o temperatura de **37,5 °C** o más.",
       "pie_nodo": "¿Aparece algún signo de alarma?",
       "opciones": [
         {
@@ -3283,13 +3590,13 @@
         {
           "texto": "FCF anormal",
           "siguiente_nodo": "exp_fcf",
-          "descripcion": "Menos de 110 o 160 lpm o más, o desaceleraciones tardías",
+          "descripcion": "Menor de 110 o de 160 lpm o más, o desaceleraciones tardías",
           "color": "rojo"
         },
         {
           "texto": "Fiebre u otro signo",
           "siguiente_nodo": "exp_alarma",
-          "descripcion": "Fiebre, sangrado, meconio, hipertensión o dolor distinto"
+          "descripcion": "Fiebre, sangrado, meconio, hipertensión, emergencia obstétrica u otro signo"
         }
       ],
       "referencias": [
@@ -3322,6 +3629,36 @@
           "url": "https://doi.org/10.18597/rcog.90",
           "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
           "imagen_evidencia": "evidencia_parto_distocias_pag390_pregunta_signos_vitales_expulsivo_gpc.png"
+        },
+        {
+          "titulo": "Alerta del pulso materno (OMS 2020)",
+          "paginas": "15",
+          "texto": "If pulse <60 or ≥120 bpm, alert a senior care provider and follow local guidelines.",
+          "fuente": "OMS 2020",
+          "anio": "2020",
+          "url": "https://iris.who.int/handle/10665/337693",
+          "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag15_alerta_del_pulso_materno_oms.png"
+        },
+        {
+          "titulo": "Alerta de la presión sistólica (OMS 2020)",
+          "paginas": "15",
+          "texto": "If SBP <80 or ≥140 alert a senior provider and follow local guidelines.",
+          "fuente": "OMS 2020",
+          "anio": "2020",
+          "url": "https://iris.who.int/handle/10665/337693",
+          "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag15_alerta_presion_sistolica_oms_2020.png"
+        },
+        {
+          "titulo": "Alerta de la temperatura (OMS 2020)",
+          "paginas": "15",
+          "texto": "If temperature <35.0 or ≥37.5, alert a senior care provider and follow local guidelines.",
+          "fuente": "OMS 2020",
+          "anio": "2020",
+          "url": "https://iris.who.int/handle/10665/337693",
+          "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag15_alerta_temperatura_oms_2020.png"
         }
       ]
     },
@@ -3329,19 +3666,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Valorar el expulsivo prolongado",
-      "texto": "- Ofrecer **apoyo**, cambio de **posición**, vaciar la **vejiga** y analgesia.\n- Sin **rotación ni descenso** pese a buenas contracciones y pujos, diagnosticar la **detención** antes del tiempo.\n- Antes de la **oxitocina**, que el obstetra confirme que **no hay obstrucción** y que las contracciones son escasas.\n- Valorar el parto instrumentado antes que la **cesárea**.",
-      "checklist": {
-        "titulo": "Antes del parto instrumentado",
-        "items": [
-          "Grado de **urgencia** definido",
-          "Examen **abdominal y vaginal** hecho",
-          "**Dificultad** prevista y probabilidad de éxito valoradas",
-          "Instrumento elegido según el caso y la **experiencia** de quien lo aplica",
-          "**Analgesia** aceptable para la mujer",
-          "Mujer **informada** y de acuerdo",
-          "Lugar adecuado y **plan** si el instrumento falla"
-        ]
-      },
+      "texto": "- Ofrecer **apoyo**, cambio de **posición**, vaciar la **vejiga** y analgesia.\n- Sin **rotación ni descenso** pese a buenas contracciones y pujos, diagnosticar la **detención** antes del tiempo.\n- Antes de empezar la **oxitocina**, pedir al obstetra que confirme que **no hay obstrucción** y que las contracciones son **escasas**.\n- Valorar el parto instrumentado antes que la **cesárea**.",
       "burbujas": [
         {
           "en_texto": "Valorar el parto instrumentado",
@@ -3401,27 +3726,25 @@
               "paginas": "386"
             }
           ],
-          "nota": "Cambia cuándo se pide al **especialista**: NICE lo hace mucho antes que el ACOG."
+          "nota": "Cambia cuándo se pide al **especialista**: el algoritmo lo pide como **NICE** y habla de expulsivo prolongado a las **3 h** o **2 h**, como el ACOG."
         }
       ],
       "evidencia": {
         "texto": "ACOG: fuerte, calidad alta"
       },
-      "pie_nodo": "¿Se puede hacer un parto instrumentado con seguridad?",
+      "pie_nodo": "¿Sigue progresando con la madre y el feto bien?",
       "opciones": [
         {
-          "texto": "Sí, cumple la lista",
-          "siguiente_nodo": "exp_instrumentado"
+          "texto": "Sí, aún progresa",
+          "siguiente_nodo": "exp_complicaciones",
+          "descripcion": "Rota o desciende con los pujos",
+          "contexto": "- Se puede **extender** el pujo mientras progrese y la madre y el feto estén **bien**."
         },
         {
-          "texto": "No, falta alguna condición",
-          "siguiente_nodo": "exp_cesarea",
-          "descripcion": "O la mujer no lo acepta"
-        },
-        {
-          "texto": "Aún progresa y todo está bien",
-          "siguiente_nodo": "exp_vigilancia",
-          "descripcion": "Se puede extender el pujo"
+          "texto": "No progresa",
+          "siguiente_nodo": "exp_expeditar",
+          "descripcion": "Sin rotación ni descenso pese a buenos pujos",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -3520,8 +3843,7 @@
     "exp_instrumentado": {
       "tipo": "pregunta",
       "titulo": "Hacer el parto instrumentado",
-      "contexto": "La **ventosa** causa menos **trauma perineal**, pero **falla más** que el fórceps.",
-      "texto": "- Elegir **ventosa o fórceps** según el caso y la **experiencia** de quien lo aplica.\n- Comprobar que la **analgesia** es aceptable para la mujer.\n- Hacer la episiotomía si hace falta, con **analgesia eficaz**.\n- Tras el nacimiento, dar una dosis IV de **amoxicilina-clavulanato** en las **6 h** siguientes al pinzamiento.\n- Estar atento a la **distocia de hombros**.",
+      "texto": "- Preferir la **ventosa** donde haya equipo y **capacitación**; si no, el **fórceps**.\n- Hacer la episiotomía si hace falta, con **analgesia eficaz**.\n- Estar atento a la **distocia de hombros**.\n- Tras el nacimiento, dar una dosis IV de **amoxicilina-clavulanato** en las **6 h** siguientes al pinzamiento.",
       "tabla": {
         "titulo": "Ventosa o fórceps",
         "columnas": [
@@ -3564,8 +3886,8 @@
             },
             {
               "fuente": "MinSalud 2013",
-              "dice": "Datos **insuficientes** para recomendarlo.",
-              "paginas": "411"
+              "dice": "Datos **insuficientes** para darlo a todas; sí según otros **factores de riesgo** de infección puerperal.",
+              "paginas": "410"
             }
           ],
           "nota": "La recomendación de **NICE** es de **2023**, **posterior** a la GPC colombiana."
@@ -3589,6 +3911,16 @@
         }
       ],
       "referencias": [
+        {
+          "titulo": "Pregunta 29: preferir la ventosa donde haya capacitación (GPC Colombia 2013)",
+          "paginas": "411",
+          "texto": "Los beneficios sobre el trauma perineal y lesiones perinatales hacen preferible el uso de vacuum donde esté disponible y exista capacitación sobre su uso.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag411_pregunta_preferir_ventosa_donde_haya.png"
+        },
         {
           "titulo": "Ventosa frente a fórceps: trauma perineal y falla (GPC Colombia 2013)",
           "paginas": "410",
@@ -3688,6 +4020,16 @@
           "url": "https://doi.org/10.18597/rcog.90",
           "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
           "imagen_evidencia": "evidencia_parto_distocias_pag411_antibiotico_tras_instrumentado_datos_insuficient.png"
+        },
+        {
+          "titulo": "Pregunta 29: antibióticos según otros factores de riesgo (GPC Colombia 2013)",
+          "paginas": "410",
+          "texto": "Se recomienda el uso de antibióticos profilácticos según la presencia de otros factores de riesgo ante e intraparto para infección puerperal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag410_pregunta_antibioticos_segun_otros_factores.png"
         },
         {
           "titulo": "El instrumentado aumenta el riesgo de distocia de hombros (GPC Colombia 2013)",
@@ -3819,7 +4161,7 @@
         "Urgente"
       ],
       "titulo": "Reanimar al feto durante el expulsivo",
-      "texto": "- Pedir la valoración **urgente** del obstetra y pasar a la monitoría **continua**.\n- Valorar **suspender el pujo** y la **oxitocina** para que el feto se recupere, salvo nacimiento **inminente**.\n- Ponerla de lado izquierdo y descartar **prolapso del cordón**, desprendimiento o **ruptura uterina**.\n- Con **demasiadas contracciones**, dar **terbutalina**: la tocólisis de emergencia da tiempo para actuar.\n- Si una **bradicardia** dura **9 min**, terminar el parto.",
+      "texto": "- Pedir la valoración **urgente** del obstetra y pasar a la monitoría **continua**.\n- Si hay **prolapso del cordón**, desprendimiento o **ruptura uterina**, terminar el parto **ya**.\n- Valorar **suspender el pujo** y la **oxitocina** para que el feto se recupere, salvo nacimiento **inminente**.\n- Acostarla de lado, sobre el **izquierdo**; con **demasiadas contracciones**, dar **terbutalina**.\n- Si una **bradicardia** dura **9 min**, o menos con **factores de riesgo**, terminar el parto.",
       "farmacos": [
         {
           "nombre": "Terbutalina",
@@ -3840,7 +4182,7 @@
           "titulo": "Reanimación intrauterina",
           "descripcion": "Cada medida apunta a una causa: la posición, la hipotensión o el exceso de contracciones.",
           "info": "En el expulsivo, además, se puede **parar el pujo**. {#4F8CF6:Posición}: de lado y **nunca boca arriba**. {#F2A23A:Hipotensión}: líquidos IV sólo si hay hipotensión o sepsis. {#EF5454:Exceso de contracciones}: bajar la oxitocina y dar **terbutalina 0,25 mg** SC.",
-          "en_texto": "lado izquierdo",
+          "en_texto": "Acostarla de lado",
           "referencias": [
             {
               "titulo": "1.4.38: preocupación en el expulsivo activo (NICE NG229)",
@@ -3886,7 +4228,7 @@
         },
         {
           "recurso": "parto_monitoria_real.jpg",
-          "titulo": "Monitoría fetal",
+          "titulo": "Cómo se ve una monitoría",
           "descripcion": "Registro real: la FCF arriba, los movimientos en medio y las contracciones abajo.",
           "info": "{#E11D74:Rosa}: la **FCF**, que se lee en la escala de **lpm**. {#A16207:Ocre}: las rayas de los **movimientos fetales**. {#0E7490:Azul}: las **contracciones**; en este registro el útero está en **reposo**. Si la auscultación confirma una **alteración** de la FCF, se pasa a la monitoría **continua**.",
           "en_texto": "pasar a la monitoría",
@@ -3909,7 +4251,8 @@
         {
           "texto": "Sí, se recupera",
           "siguiente_nodo": "exp_vigilancia",
-          "descripcion": "Seguir con monitoría continua"
+          "descripcion": "FCF de nuevo entre 110 y 160 lpm",
+          "contexto": "- Se debe seguir con **monitoría continua**; si el trazado es **normal** a los **20 min**, se puede volver a la auscultación."
         },
         {
           "texto": "No se recupera",
@@ -3928,6 +4271,26 @@
           "url": "https://www.nice.org.uk/guidance/ng229",
           "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
           "imagen_evidencia": "evidencia_parto_distocias_pag27_157_monitoria_patologica_nice_ng229.png"
+        },
+        {
+          "titulo": "1.5.9: evento agudo, terminar el parto (NICE NG229)",
+          "paginas": "27",
+          "texto": "if there has been an acute event (for example, cord prolapse, suspected placental abruption or suspected uterine rupture), expedite the birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag27_159_evento_agudo_terminar_parto.png"
+        },
+        {
+          "titulo": "1.2.13: volver a la auscultación intermitente (NICE NG229)",
+          "paginas": "9",
+          "texto": "Return to intermittent auscultation if continuous CTG monitoring has been started because of concerns arising from intermittent auscultation but the CTG trace is normal after 20 minutes",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag9_1213_volver_auscultacion_intermitente_nice.png"
         },
         {
           "titulo": "1.4.38: preocupación en el expulsivo activo (NICE NG229)",
@@ -4018,18 +4381,28 @@
         "Urgente"
       ],
       "titulo": "Terminar el parto por la vía más rápida y segura",
-      "texto": "- Avisar al equipo el **grado de urgencia** y registrar la **hora** de la decisión.\n- Elegir la vía según el **examen abdominal y vaginal**, la **dificultad** prevista y la experiencia de quien atiende.\n- Pedir el apoyo del equipo de **reanimación neonatal**.\n- Explicar a la mujer **por qué** y qué opciones hay.",
-      "pie_nodo": "¿Qué vía permite el examen?",
+      "texto": "- Avisar al equipo el **grado de urgencia** y registrar la **hora** de la decisión.\n- Elegir la vía con la **lista**: el parto instrumentado sólo si se cumplen **todas** las condiciones.\n- Pedir el apoyo del equipo de **reanimación neonatal**.\n- Explicar a la mujer **por qué** y qué opciones hay.",
+      "checklist": {
+        "titulo": "Antes del parto instrumentado",
+        "items": [
+          "Grado de **urgencia** definido",
+          "Examen **abdominal y vaginal** hecho",
+          "**Dificultad** prevista y probabilidad de éxito valoradas",
+          "Instrumento elegido según el caso y la **experiencia** de quien lo aplica",
+          "**Analgesia** aceptable para la mujer",
+          "Mujer **informada** y de acuerdo",
+          "Lugar adecuado y **plan** si el instrumento falla"
+        ]
+      },
+      "pie_nodo": "¿Cumple todas las condiciones para un parto instrumentado seguro?",
       "opciones": [
         {
-          "texto": "Instrumentado",
-          "siguiente_nodo": "exp_instrumentado",
-          "descripcion": "Cumple las condiciones para el instrumento"
+          "texto": "Sí, cumple la lista",
+          "siguiente_nodo": "exp_instrumentado"
         },
         {
-          "texto": "Cesárea",
-          "siguiente_nodo": "exp_cesarea",
-          "descripcion": "Sin condiciones para el instrumento"
+          "texto": "No, falta alguna o no lo acepta",
+          "siguiente_nodo": "exp_cesarea"
         }
       ],
       "referencias": [
@@ -4092,6 +4465,26 @@
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
           "imagen_evidencia": "evidencia_parto_distocias_pag68_1938_cuando_ofrecer_instrumentado_nice.png"
+        },
+        {
+          "titulo": "Valorar el instrumentado antes de la cesárea (ACOG 2024, condicional, calidad baja)",
+          "paginas": "146",
+          "texto": "ACOG suggests assessment for operative vaginal delivery before performing cesarean delivery for secondstage arrest.",
+          "fuente": "ACOG 2024",
+          "anio": "2024",
+          "url": "https://doi.org/10.1097/AOG.0000000000005447",
+          "cita": "American College of Obstetricians and Gynecologists. First and second stage labor management. ACOG Clinical Practice Guideline No. 8. Obstet Gynecol. 2024;143(1):144-162.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag146_valorar_instrumentado_antes_cesarea_acog.png"
+        },
+        {
+          "titulo": "Pregunta 29: manejo del expulsivo prolongado (GPC Colombia 2013)",
+          "paginas": "410",
+          "texto": "Se sugiere manejar el expulsivo prolongado con la instrumentación (aplicación de fórceps, espátulas o vacuum) según las condiciones clínicas de la gestante",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag410_pregunta_manejo_del_expulsivo_prolongado.png"
         }
       ]
     },
@@ -4099,7 +4492,7 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Atender la fiebre o el signo de alarma del expulsivo",
-      "texto": "- Pasar a **monitoría fetal continua** y avisar al **especialista**.\n- Con fiebre, buscar **corioamnionitis** o **sepsis** y dar los **antibióticos intraparto** del protocolo.\n- Ante otro signo, actuar como en **la tabla**.",
+      "texto": "- Pasar a **monitoría fetal continua** y avisar al **especialista**.\n- Con fiebre, buscar **corioamnionitis** o sepsis, dar los **antibióticos intraparto** del protocolo y avisar al **equipo neonatal**.\n- Ante otro signo, actuar como en **la tabla**.",
       "tabla": {
         "titulo": "Signo y conducta",
         "columnas": [
@@ -4108,24 +4501,36 @@
         ],
         "filas": [
           [
-            "**Sangrado** o líquido con sangre",
-            "- Pensar en **desprendimiento**, placenta previa, vasa previa o **ruptura uterina**\n- Valoración **urgente**"
+            "**Emergencia obstétrica**",
+            "- **Prolapso del cordón**\n- Hemorragia **anteparto**\n- **Convulsión** o colapso\n- Valoración **inmediata**; con prolapso, desprendimiento o **ruptura uterina**, terminar el parto **ya**"
           ],
           [
-            "**Meconio** espeso",
-            "- Vigilancia **estrecha**\n- Preparar una posible **intervención** por compromiso fetal"
+            "**Sangrado** o líquido con sangre",
+            "- Pensar en **desprendimiento** o **ruptura uterina**\n- Pensar en placenta o vasa **previa**\n- Valoración **urgente**"
+          ],
+          [
+            "**Meconio**, de cualquier grado",
+            "- Monitoría **continua**\n- **Remitir** a un nivel II o superior\n- Si es **espeso**, preparar una posible **intervención**"
           ],
           [
             "**Hipertensión**",
-            "- **140/90** o más dos veces con **30 min** de diferencia, o **160/110** o más una vez\n- **Remitir** a un nivel II o superior"
+            "- **140/90** o más dos veces con **15-30 min** de diferencia\n- **160/110** o más una vez\n- **140/90** con proteinuria **2+**\n- **Remitir** a un nivel II o superior"
           ],
           [
             "**Demasiadas contracciones**",
-            "- **6** o más en 10 min durante **30 min**, o que duran más de **2 min**\n- Bajar o suspender la **oxitocina**"
+            "- **5** o más en 10 min\n- Contracciones de más de **2 min**\n- Con oxitocina: más de **4** en 10 min\n- Bajar o suspender la **oxitocina**"
           ],
           [
-            "**Pulso** de **120/min** o más",
-            "Buscar **deshidratación**, dolor, fiebre o **sangrado**"
+            "**Pulso** o respiración",
+            "- Pulso de **120/min** o más\n- Respiración de menos de **9** o más de **21**/min, dos veces\n- Buscar **deshidratación**, dolor, fiebre o **sangrado**"
+          ],
+          [
+            "Presentación **no cefálica** o **cordón** por delante",
+            "- Valoración del **obstetra**\n- **Remitir** a un nivel II o superior"
+          ],
+          [
+            "Dudas sobre la **vitalidad fetal**",
+            "- Valoración **urgente**\n- **Remitir** a un nivel II o superior"
           ],
           [
             "**Dolor distinto** al de las contracciones",
@@ -4146,12 +4551,13 @@
         {
           "texto": "Sí, con monitoría continua",
           "siguiente_nodo": "exp_vigilancia",
-          "descripcion": "Signo controlado o en estudio"
+          "descripcion": "Signo controlado o en estudio",
+          "contexto": "- Se debe seguir con **monitoría fetal continua**, no con la auscultación intermitente de la tabla."
         },
         {
           "texto": "No, hay que terminar el parto",
           "siguiente_nodo": "exp_expeditar",
-          "descripcion": "Desprendimiento, ruptura uterina o compromiso fetal",
+          "descripcion": "Emergencia obstétrica, desprendimiento, ruptura uterina o compromiso fetal",
           "color": "rojo"
         }
       ],
@@ -4177,14 +4583,24 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag14_138_corioamnionitis_sepsis_nice_ng229.png"
         },
         {
-          "titulo": "1.8.20: antibióticos intraparto (NICE NG235)",
-          "paginas": "41",
-          "texto": "for advice on intrapartum antibiotics, see the section on intrapartum antibiotics in NICE's guideline on neonatal infection",
+          "titulo": "1.8.20: fiebre durante el parto y antibióticos intraparto (NICE NG235)",
+          "paginas": "49",
+          "texto": "temperature of 38°C or above on a single reading, or 37.5°C or above on 2 consecutive occasions 1 hour apart; for advice on intrapartum antibiotics",
           "fuente": "NICE NG235",
           "anio": "2023",
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
-          "imagen_evidencia": "evidencia_parto_distocias_pag41_1820_antibioticos_intraparto_nice_ng235.png"
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_fiebre_durante_parto_antibioticos.png"
+        },
+        {
+          "titulo": "1.11.36: recién nacido de madre con corioamnionitis (NICE NG235)",
+          "paginas": "88",
+          "texto": "Refer a baby with any symptom of possible sepsis, or born to a woman who has evidence of chorioamnionitis, to a neonatal care specialist immediately.",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag88_11136_recien_nacido_madre_con.png"
         },
         {
           "titulo": "1.3.8: monitoría continua por factores intraparto (NICE NG229)",
@@ -4207,6 +4623,36 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag4_ante_una_alerta_avisar_especialista.png"
         },
         {
+          "titulo": "1.8.20: emergencia obstétrica durante el parto (NICE NG235)",
+          "paginas": "50",
+          "texto": "obstetric emergency, including antepartum haemorrhage, cord prolapse, maternal seizure or collapse, or a need for advanced neonatal resuscitation",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag50_1820_emergencia_obstetrica_nice_ng235.png"
+        },
+        {
+          "titulo": "Pregunta 22: retención de la placenta como criterio de remisión (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Emergencia obstétrica: hemorragia previa al parto, presentación o prolapso del cordón, hemorragia posparto, colapso materno o la necesidad de reanimación neonatal avanzada. • Retención de la placenta.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_retencion_placenta_como_criterio.png"
+        },
+        {
+          "titulo": "1.5.9: evento agudo, terminar el parto (NICE NG229)",
+          "paginas": "27",
+          "texto": "if there has been an acute event (for example, cord prolapse, suspected placental abruption or suspected uterine rupture), expedite the birth",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag27_159_evento_agudo_terminar_parto.png"
+        },
+        {
           "titulo": "Líquido con sangre (OMS 2020)",
           "paginas": "12",
           "texto": "Bloody amniotic fluid is common in placental abruption, placenta praevia, vasa praevia or uterine rupture",
@@ -4215,6 +4661,36 @@
           "url": "https://iris.who.int/handle/10665/337693",
           "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
           "imagen_evidencia": "evidencia_parto_distocias_pag12_liquido_con_sangre_oms_2020.png"
+        },
+        {
+          "titulo": "1.8.20: meconio que aparece (NICE NG235)",
+          "paginas": "49",
+          "texto": "the new appearance of meconium (see the section on the presence of meconium) － pain reported by the woman",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_meconio_que_aparece_nice.png"
+        },
+        {
+          "titulo": "1.3.10: el meconio puede indicar compromiso fetal (NICE NG229)",
+          "paginas": "15",
+          "texto": "When assessing risk at any time during labour, be aware that the presence of meconium: • can indicate possible fetal compromise",
+          "fuente": "NICE NG229",
+          "anio": "2022",
+          "url": "https://www.nice.org.uk/guidance/ng229",
+          "cita": "National Institute for Health and Care Excellence. Fetal monitoring in labour (NG229). London: NICE; 2022.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag15_1310_meconio_puede_indicar_compromiso.png"
+        },
+        {
+          "titulo": "Pregunta 22: meconio como criterio de remisión (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Prolongación del primer o segundo periodos del parto. • Líquido amniótico teñido con meconio.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_meconio_como_criterio_remision.png"
         },
         {
           "titulo": "Meconio espeso (OMS 2020)",
@@ -4257,6 +4733,16 @@
           "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_hipertension_como_criterio_remision.png"
         },
         {
+          "titulo": "1.8.20: frecuencia respiratoria y proteinuria durante el parto (NICE NG235)",
+          "paginas": "49",
+          "texto": "raised systolic blood pressure (140 mmHg or more) － respiratory rate of less than 9 or more than 21 breaths per minute on 2 occasions 15 to 30 minutes apart",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag49_1820_frecuencia_respiratoria_proteinuria_durante.png"
+        },
+        {
           "titulo": "Pregunta 18: taquisistolia (GPC Colombia 2013)",
           "paginas": "397",
           "texto": "Taquisistolia (aumento de la frecuencia): 6 o más contracciones en 10 min observadas durante 30 min.",
@@ -4295,6 +4781,26 @@
           "url": "https://iris.who.int/handle/10665/337693",
           "cita": "World Health Organization. WHO Labour Care Guide: user's manual. Geneva: World Health Organization; 2020.",
           "imagen_evidencia": "evidencia_parto_distocias_pag15_pulso_que_sube_oms_2020.png"
+        },
+        {
+          "titulo": "1.8.20: presentación no cefálica durante el parto (NICE NG235)",
+          "paginas": "50",
+          "texto": "any non-cephalic presentation, including cord presentation － high (4/5 to 5/5 palpable) or free-floating head in a nulliparous woman",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag50_1820_presentacion_cefalica_durante_parto.png"
+        },
+        {
+          "titulo": "Pregunta 22: dudas sobre la vitalidad fetal (GPC Colombia 2013)",
+          "paginas": "402",
+          "texto": "Incertidumbre sobre la presencia de latidos del corazón fetal o la vitalidad fetal.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.90",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la detección temprana de las anomalías durante el trabajo de parto, atención del parto normal y distócico. Rev Colomb Obstet Ginecol. 2013;64(4):379-424.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag402_pregunta_dudas_sobre_vitalidad_fetal.png"
         },
         {
           "titulo": "1.3.8: dolor distinto (NICE NG229)",
@@ -4412,65 +4918,14 @@
         "Emergencia"
       ],
       "titulo": "Pedir ayuda y hacer McRoberts con presión suprapúbica",
-      "texto": "- Pedir **ayuda** (obstetra, reanimación neonatal y anestesiólogo) y decir: «**esto es una distocia de hombros**».\n- Pedirle que **no puje** y suspender la **oxitocina**.\n- Hacer McRoberts: acostada **plana**, con los muslos **hiperflexionados** sobre el abdomen.\n- Añadir presión suprapúbica desde el lado del **dorso fetal**, hacia abajo y **hacia un lado**.\n- Probar con **tracción axial**; si no sale, pasar **ya** a la siguiente maniobra.",
+      "texto": "- Pedir **ayuda** (obstetra, neonatal y anestesia) y anunciar «**esto es una distocia de hombros**».\n- Pedirle que **no puje** y suspender la **oxitocina**.\n- Hacer McRoberts: acostada **plana**, con los muslos **hiperflexionados** sobre el abdomen.\n- Añadir presión suprapúbica desde el lado del **dorso fetal**, hacia abajo y **hacia un lado**.\n- Probar con **tracción axial**; si una maniobra no funciona, pasar **directo** a la siguiente, sin insistir **30 s**.",
       "alertas": [
         {
           "titulo": "Presión en el fondo uterino",
           "texto": "No usarla: aumenta la **lesión del plexo braquial** y puede **romper el útero**."
         }
       ],
-      "media": [
-        {
-          "recurso": "parto_hombros_exito.png",
-          "titulo": "Éxito de cada maniobra",
-          "descripcion": "Distocias que resolvió cada maniobra en una revisión sistemática.",
-          "info": "**McRoberts** con o sin presión suprapúbica resolvió el **56 %**, la **rotación interna** el **62,4 %** y el **brazo posterior** el **86,1 %**. McRoberts va primero: tiene **pocas complicaciones**. El brazo posterior se asocia a **fractura del húmero** (**2-12 %**); no hay ensayos que lo comparen con la rotación.",
-          "en_texto": "Hacer McRoberts",
-          "referencias": [
-            {
-              "titulo": "Éxito de cada maniobra (RCOG 2026)",
-              "paginas": "e171",
-              "texto": "McRoberts' +/− suprapubic pressure was 56% successful, internal rotational methods 62.4% successful, and release of the posterior arm was successful in 86.1%",
-              "fuente": "RCOG 2026",
-              "anio": "2026",
-              "url": "https://doi.org/10.1111/1471-0528.70258",
-              "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_page171_exito_cada_maniobra_rcog_2026.png"
-            },
-            {
-              "titulo": "McRoberts primero (RCOG 2026)",
-              "paginas": "e171",
-              "texto": "McRoberts' manoeuvre has a low rate of complication and is one of the least invasive manoeuvres, and therefore should be employed first.",
-              "fuente": "RCOG 2026",
-              "anio": "2026",
-              "url": "https://doi.org/10.1111/1471-0528.70258",
-              "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_page171_mcroberts_primero_rcog_2026.png"
-            },
-            {
-              "titulo": "Fractura del húmero con el brazo posterior (RCOG 2026)",
-              "paginas": "e172",
-              "texto": "Delivery of the posterior arm has previously been associated with humeral fractures with a reported incidence between 2% and 12%",
-              "fuente": "RCOG 2026",
-              "anio": "2026",
-              "url": "https://doi.org/10.1111/1471-0528.70258",
-              "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_page172_fractura_del_humero_con_brazo.png"
-            },
-            {
-              "titulo": "Brazo posterior o rotación: sin ensayos que los comparen (RCOG 2026)",
-              "paginas": "e172",
-              "texto": "There are no randomised comparative studies available comparing delivery of the posterior arm and internal rotation.",
-              "fuente": "RCOG 2026",
-              "anio": "2026",
-              "url": "https://doi.org/10.1111/1471-0528.70258",
-              "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/parto/evidencia_parto_distocias_page172_brazo_posterior_rotacion_sin_ensayos.png"
-            }
-          ]
-        }
-      ],
-      "nota_adicional": "Registrar la **hora** de salida de la cabeza: con menos de **5 min** hasta el cuerpo, la **lesión hipóxico-isquémica** es muy rara. Por eso no se espera **30 s** en cada maniobra.",
+      "nota_adicional": "Registrar la **hora** de salida de la cabeza. Con menos de **5 min** hasta el cuerpo, la **lesión hipóxico-isquémica** es muy rara.",
       "discrepancias": [
         {
           "asunto": "Episiotomía en la distocia de hombros",
@@ -4654,13 +5109,13 @@
         "Emergencia"
       ],
       "titulo": "Pasar a las maniobras internas",
-      "texto": "- Llevarla al **borde de la cama** y entrar con **toda la mano** por detrás, en el hueco del sacro.\n- Sacar el brazo posterior: tomar la **muñeca** y extraerlo en línea **recta**.\n- O **rotar** los hombros unos **20°** hacia el diámetro **oblicuo**, con presión suprapúbica a la vez.\n- Si está **móvil** y sin peridural, valorar la posición en **cuatro apoyos**.\n- Hacer la **episiotomía** sólo si falta espacio para la mano.",
+      "texto": "- Llevarla al **borde de la cama** y entrar con **toda la mano** por detrás, en el hueco del sacro.\n- Sacar el brazo posterior: tomar la **muñeca** y extraerlo en línea **recta**.\n- O **rotar** los hombros unos **20°** hacia el diámetro **oblicuo**, con presión suprapúbica a la vez.\n- Si está **móvil**, sin peridural y con **poco personal**, valorar la posición en **cuatro apoyos**.\n- Hacer la **episiotomía** sólo si falta espacio para la mano.",
       "media": [
         {
           "recurso": "parto_hombros_exito.png",
           "titulo": "Éxito de cada maniobra",
           "descripcion": "Distocias que resolvió cada maniobra en una revisión sistemática.",
-          "info": "**McRoberts** con o sin presión suprapúbica resolvió el **56 %**, la **rotación interna** el **62,4 %** y el **brazo posterior** el **86,1 %**. McRoberts va primero: tiene **pocas complicaciones**. El brazo posterior se asocia a **fractura del húmero** (**2-12 %**); no hay ensayos que lo comparen con la rotación.",
+          "info": "{#F8B2B2:Barra clara}: **McRoberts** con o sin presión suprapúbica resolvió el **56 %**. {#F37F7F:Barra media}: la **rotación interna**, el **62,4 %**. {#EF5454:Barra roja}: el **brazo posterior**, el **86,1 %**, pero se asocia a **fractura del húmero** (**2-12 %**). McRoberts va primero: tiene **pocas complicaciones**.",
           "en_texto": "Sacar el brazo posterior",
           "referencias": [
             {
@@ -4827,7 +5282,7 @@
         "Emergencia"
       ],
       "titulo": "Valorar las maniobras de tercera línea",
-      "texto": "- Valorar antes la **tracción axilar digital** del brazo posterior.\n- Las de tercera línea son **excepcionales** y las decide el más **experto** presente:\n  - Reintroducir la cabeza y hacer una **cesárea** (Zavanelli).\n  - **Sinfisiotomía**.\n  - **Cleidotomía** fetal.\n- A esta altura muchos fetos ya tienen **hipoxia irreversible**.",
+      "texto": "- Antes de la tercera línea, valorar la **tracción axilar digital** del brazo posterior.\n- Las de tercera línea son **excepcionales** y piden una valoración **cuidadosa** de quien atiende:\n  - Reintroducir la cabeza y hacer una **cesárea** (Zavanelli).\n  - **Rescate abdominal**.\n  - **Sinfisiotomía**.\n  - **Cleidotomía** fetal.\n- A esta altura muchos fetos ya tienen **hipoxia irreversible**.",
       "opciones": [
         {
           "texto": "Bebé nacido",
@@ -4844,6 +5299,26 @@
           "url": "https://doi.org/10.1111/1471-0528.70258",
           "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
           "imagen_evidencia": "evidencia_parto_distocias_page173_traccion_axilar_digital_del_brazo.png"
+        },
+        {
+          "titulo": "Maniobras de tercera línea (RCOG 2026)",
+          "paginas": "e173",
+          "texto": "These include foetal cleidotomy, maternal symphysiotomy (dividing the symphyseal ligament), abdominal rescue [94] and the Zavanelli manoeuvre. It is rare that these are required.",
+          "fuente": "RCOG 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1111/1471-0528.70258",
+          "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
+          "imagen_evidencia": "evidencia_parto_distocias_page173_maniobras_tercera_linea_rcog_2026.png"
+        },
+        {
+          "titulo": "La tercera línea pide una valoración cuidadosa (RCOG 2026)",
+          "paginas": "e172",
+          "texto": "Third-line manoeuvres require careful consideration by the assistant to avoid unnecessary maternal morbidity and mortality.",
+          "fuente": "RCOG 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1111/1471-0528.70258",
+          "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
+          "imagen_evidencia": "evidencia_parto_distocias_page172_tercera_linea_piensa_con_cuidado.png"
         },
         {
           "titulo": "Maniobras de tercera línea (RCOG 2026)",
@@ -4881,7 +5356,7 @@
       "tipo": "informativo",
       "estilo": "advertencia",
       "titulo": "Cuidar a la madre y al bebé tras la distocia",
-      "texto": "- Avisar al **equipo neonatal**: el bebé puede responder **tarde** a la reanimación.\n- Tomar **gases pareados** del cordón, sin tranquilizarse si son normales.\n- Buscar en el bebé **lesión del plexo braquial** y fracturas de **clavícula o húmero**.\n- En la madre, vigilar la **hemorragia posparto** (**11 %**) y los desgarros de **tercer o cuarto grado**.\n- Explicarle a la mujer **lo que pasó**.",
+      "texto": "- Dar la **oxitocina** del alumbramiento en cuanto nace, sin esperar a terminar el registro.\n- Avisar al **equipo neonatal**: el bebé puede responder **tarde** a la reanimación.\n- Tomar **gases pareados** del cordón y advertir que unos gases **normales** no tranquilizan.\n- Buscar **lesión del plexo braquial** y fracturas; con lesión del plexo, remitir a **fisioterapia** antes del alta.\n- En la madre, vigilar la **hemorragia posparto** (**11 %**) y los desgarros de **tercer o cuarto grado**.\n- Explicarle a la mujer **lo que pasó**.",
       "checklist": {
         "titulo": "Qué registrar",
         "items": [
@@ -4896,7 +5371,7 @@
           "**Explicación** a la madre"
         ]
       },
-      "nota_adicional": "La mayoría de las **lesiones del plexo braquial** se recupera: menos del **10 %** sigue después de **12 meses**. Aun así, el bebé debe verlo el **equipo neonatal**.",
+      "nota_adicional": "La mayoría de las **lesiones del plexo braquial** se recupera: siguen a los **12 meses** el **10-18 %** en Estados Unidos y el **19-23 %** fuera de allí.",
       "enlaces": [
         {
           "texto": "Calcular el Apgar",
@@ -5000,6 +5475,36 @@
           "url": "https://doi.org/10.1111/1471-0528.70258",
           "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
           "imagen_evidencia": "evidencia_parto_distocias_page166_pocas_lesiones_del_plexo_braquial.png"
+        },
+        {
+          "titulo": "Lesión permanente del plexo braquial (RCOG 2026)",
+          "paginas": "e166",
+          "texto": "The likelihood of permanent BPI (more than 12 months) was 10%–18% in the US-based reports and 19%–23% in countries outside the US.",
+          "fuente": "RCOG 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1111/1471-0528.70258",
+          "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
+          "imagen_evidencia": "evidencia_parto_distocias_page166_lesion_permanente_del_plexo_braquial.png"
+        },
+        {
+          "titulo": "Lesión del plexo braquial: fisioterapia antes del alta (RCOG 2026)",
+          "paginas": "e174",
+          "texto": "All babies with a diagnosis of BPI should be referred before discharge to the local paediatric physiotherapy and information about the diagnosis shared with the parents.",
+          "fuente": "RCOG 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1111/1471-0528.70258",
+          "cita": "Lattey K, Winter C, Ellis V, et al. Shoulder Dystocia: Green-top Guideline No. 42. BJOG. 2026;133:e165-e186.",
+          "imagen_evidencia": "evidencia_parto_distocias_page174_lesion_del_plexo_braquial_fisioterapia.png"
+        },
+        {
+          "titulo": "1.10.11: oxitocina antes de pinzar el cordón (NICE NG235)",
+          "paginas": "73",
+          "texto": "immediately after the birth of the baby and before the cord is clamped and cut",
+          "fuente": "NICE NG235",
+          "anio": "2023",
+          "url": "https://www.nice.org.uk/guidance/ng235",
+          "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
+          "imagen_evidencia": "evidencia_parto_distocias_pag73_11011_oxitocina_antes_pinzar_cordon.png"
         }
       ]
     },
@@ -5029,7 +5534,7 @@
       "tipo": "informativo",
       "titulo": "Dar la oxitocina y esperar para pinzar el cordón",
       "contexto": "El **manejo activo** baja la hemorragia de más de **500 mL** de **188** a **68** por cada **1.000** mujeres.",
-      "texto": "- Poner **oxitocina 10 UI IM** en cuanto nace el bebé, antes de pinzar el cordón.\n- Dejar al bebé en **contacto piel con piel**, secarlo y cubrirlo con una manta **tibia**.\n- Pinzar el cordón después del primer minuto; la GPC sugiere a los **2-3 min**.",
+      "texto": "- Poner **oxitocina 10 UI IM** en cuanto nace el bebé, antes de pinzar el cordón.\n- Dejar al bebé en **contacto piel con piel**, secarlo y cubrirlo con una manta **tibia**.\n- Pinzar el cordón después del primer minuto; la GPC colombiana sugiere hacerlo a los **2-3 min**.",
       "farmacos": [
         {
           "nombre": "Oxitocina (alumbramiento)",
@@ -5170,7 +5675,13 @@
           ]
         }
       ],
-      "nota_adicional": "No aspirar la **boca ni la nariz** del bebé que nace con **líquido claro** y respira solo. El pinzamiento es **inmediato** con desprendimiento de placenta, placenta previa, ruptura uterina, **desgarro del cordón** o paro materno.",
+      "alertas": [
+        {
+          "titulo": "Pinzamiento inmediato",
+          "texto": "Pinzar **de inmediato** si hay:\n- Desprendimiento de placenta o placenta **previa**\n- Ruptura uterina\n- **Desgarro del cordón**\n- Paro materno"
+        }
+      ],
+      "nota_adicional": "No aspirar la **boca ni la nariz** del bebé que nace con **líquido claro** y respira solo.",
       "discrepancias": [
         {
           "asunto": "Momento del pinzamiento",
@@ -5192,22 +5703,6 @@
             }
           ],
           "nota": "Todas lo retrasan; cambia **cuánto**: la GPC colombiana pide esperar al menos **2 min**."
-        },
-        {
-          "asunto": "Vía del misoprostol si no hay oxitocina",
-          "posturas": [
-            {
-              "fuente": "OMS 2018",
-              "dice": "**600 µg** por vía **oral**.",
-              "paginas": "6"
-            },
-            {
-              "fuente": "MinSalud 2013",
-              "dice": "**600 µg sublingual**; no por vía rectal.",
-              "paginas": "428"
-            }
-          ],
-          "nota": "La dosis es la misma; cambia la **vía**."
         }
       ],
       "evidencia": {
@@ -5431,7 +5926,7 @@
         {
           "texto": "Sangra en exceso",
           "siguiente_nodo": "alu_hemorragia",
-          "descripcion": "Con o sin la placenta afuera",
+          "descripcion": "Pérdida de 500 mL o más, con o sin la placenta afuera",
           "color": "rojo"
         }
       ],
@@ -5512,24 +6007,63 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Manejar la placenta retenida",
-      "texto": "- Canalizar una **vía IV** y explicarle **por qué**.\n- No inyectar fármacos por la **vena umbilical** ni dar oxitocina IV de **rutina**.\n- Si preocupa su estado, hacer un **tacto** con analgesia para valorar la **extracción manual**.\n- Si no está en una **unidad obstétrica**, remitirla.",
-      "alertas": [
+      "texto": "- Canalizar una **vía IV** y explicarle **por qué**.\n- Dar **oxitocina 10 UI** IM o IV con **una sola** tracción controlada.\n- Si no sale:\n  - En un **primer nivel**, iniciar una **infusión** de oxitocina y **remitir**.\n  - En un nivel **II o III**, tras **30 min**, dar **misoprostol** por la vena umbilical o hacer la **extracción manual**.\n- Antes de la extracción manual, dar una dosis de **cefalosporina** de primera generación.",
+      "farmacos": [
         {
-          "titulo": "Extracción manual",
-          "texto": "No explorar el útero ni extraer la placenta **sin anestesia**."
+          "nombre": "Oxitocina (placenta retenida, primer nivel)",
+          "dosis": "**20 UI** en **500 mL** de cristaloides a **60 mL/h**",
+          "pauta": "Son **40 mU/min** mientras se **remite**.",
+          "paginas": "433"
+        },
+        {
+          "nombre": "Misoprostol por la vena umbilical",
+          "dosis": "**800 µg** en **30 mL** de solución salina 0,9 %",
+          "pauta": "Con técnica **aséptica**, como alternativa a la extracción manual en un nivel **II o III**.",
+          "paginas": "433"
         }
       ],
-      "pie_nodo": "¿Qué pasa con la placenta?",
+      "alertas": [
+        {
+          "titulo": "Extracción manual sin anestesia",
+          "texto": "Hacerla siempre con **anestesia**, en un sitio preparado para un posible **acretismo**."
+        }
+      ],
+      "discrepancias": [
+        {
+          "asunto": "Uterotónicos en la placenta retenida",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2013",
+              "dice": "Oxitocina **10 UI** IM o IV con una tracción; en **II y III nivel**, **misoprostol 800 µg** por la vena umbilical.",
+              "paginas": "433"
+            },
+            {
+              "fuente": "NICE NG235",
+              "dice": "No usar fármacos por la **vena umbilical** ni oxitocina IV de **rutina**.",
+              "paginas": "75"
+            }
+          ],
+          "nota": "Cambian el **fármaco** y la **vía**; el algoritmo sigue la **GPC colombiana**."
+        }
+      ],
+      "pie_nodo": "¿Sale la placenta y cómo está el sangrado?",
       "opciones": [
         {
           "texto": "Sale, sola o con extracción manual",
-          "siguiente_nodo": "alu_revision"
+          "siguiente_nodo": "alu_revision",
+          "descripcion": "Sangrado escaso"
+        },
+        {
+          "texto": "Aún no sale, sin sangrado",
+          "siguiente_nodo": "alu_retenida",
+          "descripcion": "Seguir con el paso siguiente de la lista"
         },
         {
           "texto": "Sangra en exceso",
           "siguiente_nodo": "alu_hemorragia",
-          "descripcion": "Dar oxitocina IV y tratar la hemorragia",
-          "color": "rojo"
+          "descripcion": "Pérdida de 500 mL o más",
+          "color": "rojo",
+          "contexto": "- Se recomienda dar **oxitocina IV** si la placenta sigue dentro y sangra."
         }
       ],
       "referencias": [
@@ -5542,6 +6076,66 @@
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
           "imagen_evidencia": "evidencia_parto_distocias_pag75_11021_placenta_retenida_via_nice.png"
+        },
+        {
+          "titulo": "Pregunta 4: placenta retenida a los 30 min (GPC Colombia 2013, grado D)",
+          "paginas": "433",
+          "texto": "se recomienda administrar 10 UI de oxitocina intramuscular o intravenosa, en combinación con la tracción controlada del cordón umbilical.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag433_pregunta_placenta_retenida_los_min.png"
+        },
+        {
+          "titulo": "Pregunta 4: una sola tracción (GPC Colombia 2013)",
+          "paginas": "433",
+          "texto": "Se recomienda una única tracción luego de la administración de esta dosis de oxitocina.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag433_pregunta_una_sola_traccion_gpc.png"
+        },
+        {
+          "titulo": "Pregunta 4: primer nivel, infusión y remisión (GPC Colombia 2013)",
+          "paginas": "433",
+          "texto": "se recomienda iniciar la infusión de 20 UI de oxitocina en 500 mL de cristaloides a 60 mL/ hora (40 miliunidades/min) y remitirla.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag433_pregunta_primer_nivel_infusion_remision.png"
+        },
+        {
+          "titulo": "Pregunta 4: misoprostol por la vena umbilical en II y III nivel (GPC Colombia 2013, grado B)",
+          "paginas": "433",
+          "texto": "se recomienda como alternativa a métodos invasivos la inyección en la vena umbilical con técnica aséptica de 800 mcg de misoprostol disueltos en 30 cc de solución salina.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag433_pregunta_misoprostol_por_vena_umbilical.png"
+        },
+        {
+          "titulo": "Pregunta 4: extracción manual y acretismo (GPC Colombia 2013)",
+          "paginas": "433",
+          "texto": "se recomienda hacer la extracción manual teniendo presente el riesgo potencial de un acretismo.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag433_pregunta_extraccion_manual_acretismo_gpc.png"
+        },
+        {
+          "titulo": "Pregunta 5: cefalosporina antes de la extracción manual (GPC Colombia 2013, grado D)",
+          "paginas": "434",
+          "texto": "Se recomienda administrar dosis única parenteral de cefalosporina de primera generación inmediatamente antes de iniciar la extracción manual de la placenta.",
+          "fuente": "MinSalud 2013",
+          "anio": "2013",
+          "url": "https://doi.org/10.18597/rcog.91",
+          "cita": "Grupo Desarrollador de la Guía, Universidad Nacional de Colombia, Alianza CINETS. Guía de práctica clínica para la prevención y el manejo de la hemorragia posparto y complicaciones del choque hemorrágico. Rev Colomb Obstet Ginecol. 2013;64(4):425-452.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag434_pregunta_cefalosporina_antes_extraccion_manual.png"
         },
         {
           "titulo": "1.10.22-1.10.23: sin fármacos umbilicales ni oxitocina IV de rutina (NICE NG235)",
@@ -5602,6 +6196,16 @@
           "url": "https://www.nice.org.uk/guidance/ng235",
           "cita": "National Institute for Health and Care Excellence. Intrapartum care (NG235). London: NICE; 2023 (actualizada en 2025).",
           "imagen_evidencia": "evidencia_parto_distocias_pag75_11024_oxitocina_sangra_nice_ng235.png"
+        },
+        {
+          "titulo": "Definición de hemorragia posparto (OMS 2018)",
+          "paginas": "1",
+          "texto": "PPH is commonly defined as a blood loss of 500 ml or more within 24 hours after birth",
+          "fuente": "OMS 2018",
+          "anio": "2018",
+          "url": "https://iris.who.int/handle/10665/277276",
+          "cita": "World Health Organization. WHO recommendations: uterotonics for the prevention of postpartum haemorrhage. Geneva: World Health Organization; 2018.",
+          "imagen_evidencia": "evidencia_parto_distocias_pag1_definicion_hemorragia_posparto_oms_2018.png"
         }
       ]
     },
@@ -5655,7 +6259,7 @@
     "alu_revision": {
       "tipo": "informativo",
       "titulo": "Revisar la placenta, el útero y el periné",
-      "texto": "- Revisar la placenta y las **membranas**: si están **incompletas**, pasar al **cuidado obstétrico**.\n- Comprobar que el útero queda **contraído**.\n- Suturar el periné con material **sintético de absorción estándar**, mejor con **sutura continua**.\n- Hacer un **tacto rectal** al terminar, para descartar puntos en la **mucosa rectal**.\n- Remitir el desgarro de **tercer o cuarto grado**.\n- No dar **antibióticos** de rutina tras un parto vaginal sin complicaciones.",
+      "texto": "- Revisar la placenta y las **membranas**: si están **incompletas**, pedir valoración por **obstetricia**.\n- Comprobar que el útero queda **contraído**.\n- Suturar el periné con material **sintético de absorción estándar**, mejor con **sutura continua**.\n- Hacer un **tacto rectal** al terminar, para descartar puntos en la **mucosa rectal**.\n- Remitir el desgarro de **tercer o cuarto grado**.\n- No dar **antibióticos** de rutina tras un parto vaginal sin complicaciones.",
       "opciones": [
         {
           "texto": "Revisión hecha",
@@ -5739,7 +6343,7 @@
           "recurso": "parto_placenta_real.jpg",
           "titulo": "Revisar la placenta",
           "descripcion": "Cara materna y cara fetal de una placenta recién expulsada.",
-          "info": "{#FDE047:Amarillo}: un **cotiledón** de la cara materna y el **cordón** en la fetal. {#22D3EE:Cian}: las **membranas** y los **vasos** de la cara fetal. La placenta tiene que salir **completa**: si falta un cotiledón o parte de las membranas, se pasa al **cuidado obstétrico**.",
+          "info": "{#FDE047:Amarillo}: un **cotiledón** de la cara materna y el **cordón** en la fetal. {#22D3EE:Cian}: las **membranas** y los **vasos** de la cara fetal. La placenta tiene que salir **completa**: si falta un cotiledón o parte de las membranas, se pide valoración por **obstetricia**.",
           "en_texto": "Revisar la placenta",
           "referencias": [
             {
@@ -5759,7 +6363,7 @@
     "alu_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar a la madre y al bebé en el posparto inmediato",
-      "texto": "- No separarlos en la **primera hora** y hasta la **primera toma** del pecho.\n- Vigilar el **sangrado**, el tono uterino, la altura del **fondo**, la temperatura y el pulso.\n- Tomar la **PA** al poco del parto y otra vez antes de **6 h**; documentar la **diuresis** en 6 h.\n- Dar al bebé **vitamina K** después de la primera hora.",
+      "texto": "- No separarlos en la **primera hora** y hasta la **primera toma** del pecho.\n- Vigilar el **sangrado**, el tono uterino, la altura del **fondo**, la temperatura y el pulso.\n- Tomar la **PA** poco después del parto y repetirla antes de **6 h**.\n- Documentar la **diuresis** en las primeras **6 h**.\n- Dar al bebé **vitamina K** después de la primera hora.",
       "farmacos": [
         {
           "nombre": "Vitamina K (recién nacido)",
@@ -5768,17 +6372,17 @@
           "paginas": "6"
         }
       ],
-      "pie_nodo": "¿Sangra en exceso o tiene el útero blando?",
+      "pie_nodo": "¿Queda el útero contraído y el sangrado es normal?",
       "opciones": [
         {
-          "texto": "No",
+          "texto": "Sí",
           "siguiente_nodo": "alu_alta",
-          "descripcion": "Útero contraído y sangrado normal"
+          "descripcion": "Útero firme y sangrado escaso"
         },
         {
-          "texto": "Sí",
+          "texto": "No",
           "siguiente_nodo": "alu_hemorragia",
-          "descripcion": "Sangrado abundante o útero blando",
+          "descripcion": "Útero blando o pérdida de 500 mL o más",
           "color": "rojo"
         }
       ],
@@ -5849,7 +6453,7 @@
       "tipo": "informativo",
       "estilo": "exito",
       "titulo": "Dar el alta con signos de alarma",
-      "texto": "- Mantener a la madre y al bebé **sanos** en el hospital al menos **24 h** tras un parto vaginal.\n- Si salen **antes de 48 h**, revisarlos entre las **24 y 48 h**.\n- Explicar la **lactancia** y los **signos de alarma** de la madre y del bebé.",
+      "texto": "- Si la madre y el bebé están **sanos**, mantenerlos en el hospital al menos **24 h** tras un parto vaginal.\n- Si salen antes de **48 h**, citarlos a **control** entre las **24 y 48 h** después del parto.\n- Explicar la **lactancia** y los **signos de alarma** de la madre y del bebé.",
       "discrepancias": [
         {
           "asunto": "Cuánto vigilar tras el parto",
@@ -5958,11 +6562,18 @@
             },
             {
               "fuente": "RCOG 2026",
-              "dice": "Ofrecer conducta expectante, **inducción** o **cesárea**; la inducción desde la semana **39** es una opción.",
+              "dice": "**Informar** las opciones: conducta expectante, **inducción** o **cesárea**; la inducción desde la semana **39** es una opción.",
               "paginas": "e169"
             }
           ],
-          "nota": "Cambia si se **ofrece** la inducción o la cesárea programada."
+          "nota": "Cambia si se **ofrece** la inducción o la cesárea. El algoritmo **informa** las opciones como el RCOG y **remite** el parto a un nivel II o superior como la GPC."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Distocia de hombros",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "exp_hombros"
         }
       ],
       "referencias": [
@@ -6042,6 +6653,13 @@
       "tipo": "informativo",
       "titulo": "Decidir con ella la vía del parto tras una distocia previa",
       "texto": "- Explicar que la **recurrencia** va del **1 %** al **25 %**, unas **10 veces** la de la población general.\n- Ofrecer tanto la **cesárea programada** como el **parto vaginal**: los dos son adecuados.\n- Decidir **con ella**, con la información de las **ecografías** de crecimiento.\n- Atender el parto en un nivel **II o superior**.",
+      "enlaces": [
+        {
+          "texto": "Distocia de hombros",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "exp_hombros"
+        }
+      ],
       "referencias": [
         {
           "titulo": "Recurrencia entre 1 % y 25 % (RCOG 2026)",
@@ -6099,6 +6717,13 @@
       "tipo": "informativo",
       "titulo": "Atender el parto tras un desgarro perineal grave",
       "texto": "- Explicar que su riesgo de un **nuevo desgarro grave** no es mayor que el de una mujer en su **primer parto**.\n- No hacer **episiotomía de rutina** por ese antecedente.\n- Hablar de la **vía del parto** según:\n  - Sus síntomas de **incontinencia**.\n  - El **grado** del desgarro y el éxito de la **reparación**.\n- Atender el parto en un nivel **II o superior**.",
+      "enlaces": [
+        {
+          "texto": "Distocia de hombros",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "exp_hombros"
+        }
+      ],
       "referencias": [
         {
           "titulo": "1.9.17: riesgo tras un desgarro grave (NICE NG235)",

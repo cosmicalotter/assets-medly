@@ -28,5 +28,5 @@ png hombros_exito "$D/parto_hombros_exito.png"
 # Fotos y figuras reales con licencia libre (fuentes/), traducidas y rotuladas
 jpg foto_auscultacion "$D/parto_auscultacion_real.jpg"
 jpg foto_monitoria "$D/parto_monitoria_real.jpg" 78
-jpg foto_placenta "$D/parto_placenta_real.jpg" 76
+jpg foto_placenta "$D/parto_placenta_real.jpg" 74
 jpg foto_descenso_rm "$D/parto_descenso_rm_real.jpg"

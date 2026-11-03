@@ -3,7 +3,7 @@
 const C = [
   [AZUL, "Posición", "Compresión del cordón o menos flujo uterino", "De lado (izquierdo) y <b>nunca boca arriba</b>"],
   [AMBAR, "Hipotensión", "Sobre todo tras la peridural", "Líquidos IV <b>sólo</b> si hay hipotensión o sepsis; avisar al anestesiólogo"],
-  [ROJO, "Exceso de contracciones", "Más de 4-5 en 10 min o muy largas", "Bajar o suspender la <b>oxitocina</b>; <b>terbutalina 0,25 mg</b> SC"],
+  [ROJO, "Exceso de contracciones", "5 o más en 10 min (con oxitocina, más de 4) o de más de 2 min", "Bajar o suspender la <b>oxitocina</b>; <b>terbutalina 0,25 mg</b> SC"],
   [GRIS, "Oxígeno a la madre", "No mejora al feto", "<b>No</b> darlo como medida para el feto: puede dañarlo"],
 ];
 let html = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">`;
@@ -14,7 +14,7 @@ html += C.map(([c, t, causa, que]) => `<div style="border:2px solid ${tinte(c, 6
 </div>`).join("");
 html += `</div>`;
 html += `<div class="caja" style="background:${tinte(MORADO, 10)};border:1.5px solid ${tinte(MORADO, 45)};font-size:13.5px"><span><b style="color:${MORADO}">En el expulsivo</b>, además, valorar <b>parar el pujo</b> y la oxitocina para que el feto se recupere, salvo nacimiento inminente.</span></div>`;
-html += `<div class="caja" style="background:${tinte(ROJO, 8)};border:1.5px solid ${tinte(ROJO, 40)};font-size:13.5px"><span>Descartar <b>prolapso del cordón</b>, desprendimiento o ruptura uterina. Si una <b>bradicardia</b> dura <b>9 min</b>, terminar el parto.</span></div>`;
+html += `<div class="caja" style="background:${tinte(ROJO, 8)};border:1.5px solid ${tinte(ROJO, 40)};font-size:13.5px"><span>Con <b>prolapso del cordón</b>, desprendimiento o ruptura uterina: terminar el parto <b>ya</b>. Si una <b>bradicardia</b> dura <b>9 min</b>, o menos con <b>factores de riesgo</b>, terminar el parto.</span></div>`;
 lienzo("Reanimación intrauterina", "Cada medida apunta a la causa más probable de la alteración de la FCF", html,
-  "Esquema. Fuente: NICE NG229 (2022), 1.4.38, 1.5.7, 1.5.9, 1.5.11 y 1.5.12; OMS, WHO Labour Care Guide (2020).");
+  "Esquema. Fuente: NICE NG229 (2022), 1.3.8, 1.4.38, 1.5.7, 1.5.9, 1.5.11 y 1.5.12; OMS, WHO Labour Care Guide (2020).");
 </script></body></html>
