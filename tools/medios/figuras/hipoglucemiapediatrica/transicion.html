@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Eje x: horas 0-96 en escala no lineal (las primeras horas más anchas).
+const X0 = 70, X1 = 650, Y0 = 330, Y1 = 30;
+const hx = (h) => X0 + (X1 - X0) * (Math.sqrt(h) / Math.sqrt(96));
+const gy = (g) => Y0 - (Y0 - Y1) * (g / 110);
+// Curva esquemática: ~60 al nacer, nadir ~30 a la 1-2 h, sube y llega a 63-99 el día 3-4.
+const P = [[0, 60], [0.5, 42], [1, 33], [1.5, 31], [2, 33], [3, 40], [6, 50], [12, 55], [24, 56], [36, 57], [48, 58], [60, 60], [72, 63], [96, 72]];
+const d = P.map(([h, g], i) => `${i ? "L" : "M"}${hx(h).toFixed(1)} ${gy(g).toFixed(1)}`).join(" ");
+const ticks = [[0, "0"], [1, "1 h"], [2, "2"], [4, "4"], [12, "12 h"], [24, "24 h"], [48, "48 h"], [72, "72 h"], [96, "día 4"]];
+const svg = `<svg class="esc" viewBox="0 0 720 380">
+  <rect x="${X0}" y="${gy(99)}" width="${X1 - X0}" height="${gy(63) - gy(99)}" fill="${tinte(VERDE, 14)}"/>
+  <text x="${X1 - 6}" y="${gy(99) + 16}" text-anchor="end" font-size="14" font-weight="700" fill="${VERDE}">Niño mayor y adulto: 63-99 mg/dL</text>
+  <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="${X0}" y1="${Y0}" x2="${X0}" y2="${Y1}" stroke="#CBD5E1" stroke-width="2"/>
+  ${[20, 40, 60, 80, 100].map((g) => `<text x="${X0 - 8}" y="${gy(g) + 5}" text-anchor="end" font-size="12" fill="#6B7280">${g}</text><line x1="${X0}" x2="${X1}" y1="${gy(g)}" y2="${gy(g)}" stroke="#F1F5F9"/>`).join("")}
+  <text x="20" y="${gy(55)}" font-size="12" fill="#6B7280" transform="rotate(-90 20 ${gy(55)})" text-anchor="middle">glucosa (mg/dL)</text>
+  ${ticks.map(([h, t]) => `<line x1="${hx(h)}" x2="${hx(h)}" y1="${Y0}" y2="${Y0 + 6}" stroke="#94A3B8"/><text x="${hx(h)}" y="${Y0 + 22}" text-anchor="middle" font-size="12" fill="#6B7280">${t}</text>`).join("")}
+  <rect x="${hx(2)}" y="${Y1}" width="${hx(4) - hx(2)}" height="${Y0 - Y1}" fill="${tinte(AZUL, 10)}"/>
+  <text x="${(hx(2) + hx(4)) / 2}" y="${Y1 + 16}" text-anchor="middle" font-size="12.5" font-weight="700" fill="${AZUL}">primera glucosa</text>
+  <text x="${(hx(2) + hx(4)) / 2}" y="${Y1 + 31}" text-anchor="middle" font-size="12" fill="${AZUL}">2-4 h</text>
+  <path d="${d}" fill="none" stroke="${TEAL}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="${hx(1.5)}" cy="${gy(31)}" r="8" fill="#fff" stroke="${ROJO}" stroke-width="4"/>
+  <text x="${hx(1.5) + 14}" y="${gy(31) + 30}" font-size="14" font-weight="700" fill="${ROJO}">Nadir a la 1-2 h</text>
+  <text x="${hx(30)}" y="${gy(58) + 34}" font-size="13.5" fill="${TINTA}">sube desde las <tspan font-weight="700">2-3 h</tspan></text>
+</svg>`;
+lienzo("La glucosa en las primeras 72 horas", "Recién nacido sano a término: curva esquemática de la transición",
+  svg, "Esquema (curva ilustrativa, no medida). Fuente: BAPM 2024 (p. 17); AAP 2011 (p. 3): hasta 30 mg/dL a la 1-2 h; 3,5-5,5 mmol/L (63-99 mg/dL) al día 3-4.");
+</script></body></html>

@@ -93,7 +93,17 @@ Firebase directamente, saltándose `indices/`.
    comercial**, con su `creditos.json`. Ver la skill `imagenes-clinicas`.
 5. **Los PDF de las guías no entran en este repositorio** (copyright). Se
    leen desde `guias-praxis` o desde el scratchpad.
-6. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
+6. **De una guía de pago, cita textual y sin recorte.** Si el texto completo
+   pide suscripción, membresía o compra (ACOG, revistas de Elsevier, Wiley,
+   Wolters Kluwer, Thieme o Springer sin acceso abierto), sus `referencias`
+   llevan la cita literal (`texto`, `paginas`, `fuente`, `url`) pero **ni
+   `imagen_evidencia` ni `TODO_EVIDENCIA`**: el recorte reproduce la página
+   en una app de pago. Igual con las de licencia **no comercial** (CC BY-NC,
+   como la OMS, la OPS o la Revista Colombiana de Obstetricia) y con NICE, que
+   sólo licencia el uso comercial en el Reino Unido. Sí llevan
+   recorte las CC BY o CC BY-SA, el dominio público (CDC) y las del Gobierno
+   de Colombia (MinSalud). Detalle en `NORMA.md` §7.
+7. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
    es trabajo pendiente, no un error: la app lo oculta. Se resuelve o se deja
    y se lista en el PR; nunca se rellena con algo inventado.
 

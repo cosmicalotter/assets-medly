@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+ .g{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+ .k{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:12px;display:flex;flex-direction:column;gap:8px}
+ .k .o{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--c)}
+ .k h3{font-size:17px;color:var(--c);line-height:1.15}
+ .t{display:flex;align-items:center;gap:8px;font-size:14px;line-height:1.25}
+ .t i{flex:none;width:14px;height:28px;border-radius:3px 3px 7px 7px;border:2px solid var(--c);background:linear-gradient(to bottom,var(--tapa) 0 30%,#fff 30%)}
+ .nota{border-radius:12px;background:#F8FAFC;padding:9px 12px;font-size:13.5px;line-height:1.3}
+</style></head><body>
+<script>
+const tubo = (txt, tapa) => `<div class="t"><i style="--tapa:${tapa}"></i>${txt}</div>`;
+const k = (c, o, t, items) => `<div class="k" style="--c:${c}"><div class="o">${o}</div><h3>${t}</h3>${items.map(([x, tp]) => tubo(x, tp)).join("")}</div>`;
+lienzo("Muestra crítica: qué pedir primero", "Durante la hipoglucemia y antes de tratar, sin retrasar la glucosa",
+  `<div class="g">
+    ${k(AZUL, "1 · YA", "Distingue las causas", [["Glucosa de laboratorio", "#9CA3AF"], ["BOHB (o cetonas capilares)", "#F2A23A"], ["Lactato y gases", "#9CA3AF"]])}
+    ${k(AMBAR, "2 · RESERVA", "Plasma guardado", [["Insulina", "#F2A23A"], ["Péptido C", "#F2A23A"], ["AGL", "#F2A23A"]])}
+    ${k(MORADO, "3 · DESPUÉS", "Hormonas y metabolismo", [["Cortisol y GH", "#F2A23A"], ["Acilcarnitinas", "#2FB36D"], ["Aminoácidos y amonio", "#2FB36D"]])}
+    ${k(TEAL, "4 · ORINA", "Primera orina", [["Cetonas", "#FDE047"], ["Ácidos orgánicos", "#FDE047"]])}
+  </div>
+  <div class="nota">Si falta sangre, <b>se trata igual</b> y lo demás se toma después. Con la glucosa ya normal, casi ningún análisis informa.</div>`,
+  F_PES + " (p. 5); BAPM 2024 (p. 12). Colores de tapa ilustrativos: seguir los tubos del laboratorio local.");
+</script></body></html>

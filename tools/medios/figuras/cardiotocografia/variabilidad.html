@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Variabilidad ausente, mínima, moderada y marcada (ACOG 2025, Tabla 1, p. 588).
+const FILAS = [
+  ["Ausente", "amplitud indetectable", 0.6, ROJO],
+  ["Mínima", "5 lpm o menos", 4.5, NARANJA],
+  ["Moderada", "6-25 lpm: la normal", 15, VERDE],
+  ["Marcada", "más de 25 lpm", 34, NARANJA],
+];
+const W = 672, FH = 92, GAP = 8, X0 = 150, PW = 500;
+let s = "";
+FILAS.forEach(([nombre, def, amp, c], i) => {
+  const y = i * (FH + GAP);
+  const base = 140, lmin = base - 30, lmax = base + 30;
+  const p = papel({ x: X0, y, w: PW, h: FH, t0: 0, t1: 3, lmin, lmax, paso: 10, etiquetas: false, banda: false });
+  const f = oscilacion(amp, 11 + i * 5);
+  const fcf = (t) => base + f(t);
+  // banda azul: amplitud pico-valle en el minuto central
+  let mx = -1e9, mn = 1e9; for (let t = 1; t <= 2; t += 0.005) { mx = Math.max(mx, fcf(t)); mn = Math.min(mn, fcf(t)); }
+  const banda = `<rect x="${p.X(1)}" y="${p.Y(mx)}" width="${p.X(2) - p.X(1)}" height="${Math.max(2, p.Y(mn) - p.Y(mx))}" fill="${tinte(AZUL, 30)}" stroke="${AZUL}" stroke-width="1.5"/>`;
+  s += `<rect x="0" y="${y}" width="${X0 - 12}" height="${FH}" rx="10" fill="${tinte(c, 12)}" stroke="${tinte(c, 50)}"/>`;
+  s += texto(12, y + 34, nombre, { c, s: 17 }) + texto(12, y + 56, def, { c: "#475569", s: 12, w: 600 });
+  s += p.svg + dentro(X0, y, PW, FH, banda + trazo(fcf, p.X, p.Y, 0, 3, { ancho: 1.7 }));
+  if (i > 0) s += texto(p.X(2) + 6, Math.max(y + 13, p.Y(mx) - 3), `${Math.round(mx - mn)} lpm`, { c: AZUL, s: 11.5, fondo: true });
+});
+const svg = `<svg width="${W}" height="${4 * FH + 3 * GAP}" viewBox="0 0 ${W} ${4 * FH + 3 * GAP}">${s}</svg>`;
+lienzo("Los cuatro grados de variabilidad", "Amplitud de pico a valle de la línea de base, medida en tramos de 1 minuto (banda azul)", svg,
+  "Esquema ilustrativo, no es el registro de una paciente. Definiciones: ACOG 2025, Tabla 1 (taller NICHD 2008).");
+</script></body></html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Escala vertical 0-70 mg/dL con los umbrales operativos de BAPM.
+const Y0 = 360, Y1 = 20, gy = (g) => Y0 - (Y0 - Y1) * (g / 70);
+const banda = (a, b, c, t1, t2) => `<rect x="90" y="${gy(b)}" width="70" height="${gy(a) - gy(b)}" fill="${c}"/>
+  <rect x="180" y="${gy(b) + 4}" width="500" height="${gy(a) - gy(b) - 8}" rx="12" fill="${tinte(c, 12)}" stroke="${c}" stroke-width="2"/>
+  <text x="198" y="${(gy(a) + gy(b)) / 2 - 4}" font-size="17" font-weight="800" fill="${c}">${t1}</text>
+  <text x="198" y="${(gy(a) + gy(b)) / 2 + 18}" font-size="14" fill="${TINTA}">${t2}</text>`;
+const svg = `<svg class="esc" viewBox="0 0 720 380">
+  ${banda(36, 70, VERDE, "36 mg/dL o más, sin signos", "Seguir con tomas cada 3 h")}
+  ${banda(18, 36, AMBAR, "18-35 mg/dL, sin signos", "Gel de glucosa 40 % y toma; más de 2 bajas = persistente")}
+  ${banda(0, 18, ROJO, "Menos de 18 mg/dL", "Revisión urgente y dextrosa IV, en cualquier momento")}
+  ${[0, 18, 36, 45, 70].map((g) => `<text x="80" y="${gy(g) + 5}" text-anchor="end" font-size="14" font-weight="700" fill="#475569">${g}</text>`).join("")}
+  <line x1="84" x2="680" y1="${gy(45)}" y2="${gy(45)}" stroke="${ROJO}" stroke-width="3" stroke-dasharray="8 6"/>
+  <rect x="198" y="${gy(45) + 6}" width="250" height="26" rx="8" fill="#fff" stroke="${ROJO}" stroke-width="2"/>
+  <text x="323" y="${gy(45) + 24}" text-anchor="middle" font-size="13.5" font-weight="700" fill="${ROJO}">Con signos: &lt;45 mg/dL → dextrosa IV</text>
+  <text x="125" y="${Y0 + 18}" text-anchor="middle" font-size="12" fill="#6B7280">mg/dL</text>
+</svg>`;
+lienzo("Recién nacido: umbrales para actuar", "Primeras 72 h; medir antes de la toma, no en las primeras 1-2 h",
+  svg, F_BAPM + " (p. 6, 11-12; flujogramas A-C). 1,0 / 2,0 / 2,5 mmol/L = 18 / 36 / 45 mg/dL.");
+</script></body></html>

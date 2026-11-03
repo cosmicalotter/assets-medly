@@ -86,7 +86,9 @@ Orden de trabajo, nodo a nodo:
    sólo va el JSON.
 2. **Contenido**: cada cifra, dosis, umbral o criterio nuevo lleva su
    referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
-   `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`.
+   `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`,
+   salvo en una **guía de pago** o de licencia no comercial (ACOG, Elsevier, Wiley, LWW, CC BY-NC…): ahí la cita
+   textual va sin recorte y sin marcador (`NORMA.md` §7).
 3. **Lenguaje**: reescribe lo confuso según `NORMA.md` §4: cada nodo
    clínico con `contexto` sólo si hace falta un porqué que no es obvio (no
    en todos), título con la acción, pills con
@@ -129,7 +131,9 @@ galgo resolver -a <algoritmo> --pdf <guía.pdf> --gemini nunca --aplicar --salid
 
 El primero conecta recortes que ya están en disco; el segundo ancla las citas
 literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
-`TODO_EVIDENCIA` y va a la lista de pendientes del PR.
+`TODO_EVIDENCIA` y va a la lista de pendientes del PR. **El segundo sólo se
+pasa sobre guías que no son de pago ni de licencia no comercial** (`NORMA.md` §7): de una guía de pago
+se queda la cita textual, sin recorte.
 
 ## 5. Verificar
 

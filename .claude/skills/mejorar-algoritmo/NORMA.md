@@ -639,6 +639,25 @@ título no repite la pill y el texto no vuelve a decir el título.
 
 - **Contenido clínico**: de la guía, con `referencias[].texto` = cita literal
   de 12 a 30 palabras y `paginas`. Nunca de memoria.
+- **Recortes de evidencia (`imagen_evidencia`) sólo de guías que no son de
+  pago** (decidido con el dueño en noviembre de 2026). Una guía es **de pago**
+  si su texto completo pide suscripción, membresía o compra: la ACOG (sólo
+  socios), las revistas de Elsevier, Wiley, Wolters Kluwer (LWW), Thieme o
+  Springer sin acceso abierto, aunque se haya leído con un acceso
+  institucional. De ella el algoritmo da **la cita textual** (`texto`,
+  `paginas`, `fuente`, `anio`, `url`, `cita`) y **ningún recorte**: ni
+  `imagen_evidencia` ni `TODO_EVIDENCIA` (a `galgo` una referencia sin la
+  llave le parece una nota, no un pendiente), y no se pasa `galgo resolver
+  --pdf` sobre su PDF. Tampoco van sus flujogramas como imagen fija en las
+  fuentes. Se tratan igual las de **licencia no comercial** (CC BY-NC,
+  CC BY-NC-ND, CC BY-NC-SA: la OMS, la OPS, la Revista Colombiana de
+  Obstetricia y Ginecología): son gratis de leer, pero no dejan reproducir en
+  una app de pago. Y las que sólo licencian el uso comercial en su país (NICE
+  lo permite en el Reino Unido; fuera, pide licencia). Sí llevan recorte las que permiten el uso comercial:
+  acceso abierto CC BY o CC BY-SA (WSES, BMC), dominio público (CDC) y las
+  del Gobierno de Colombia (MinSalud, INS). Ante la duda, se mira la primera
+  página del PDF: «© … Published by Elsevier», «All rights reserved» sin
+  licencia CC, o una licencia con «NC» → sin recorte.
 - **Imágenes**: ver la skill `imagenes-clinicas`. Primero imágenes reales
   con licencia que permite el uso comercial (figuras de la guía si son CC BY,
   como las de la WSES, y si no, fotos de internet: Commons, PMC CC BY),
