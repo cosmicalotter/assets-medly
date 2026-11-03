@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Tiempos de alerta de la guía de cuidados del parto de la OMS (2020), sección 5, tabla 6.
+const T = [[5, 6, "6 h"], [6, 5, "5 h"], [7, 3, "3 h"], [8, 2.5, "2,5 h"], [9, 2, "2 h"]];
+const W = 668, X0 = 92, ESC = 82, Y0 = 18, H = 46;
+let svg = `<svg width="${W}" height="300" viewBox="0 0 ${W} 300">`;
+for (let h = 0; h <= 6; h++) {
+  const x = X0 + h * ESC;
+  svg += `<line x1="${x}" y1="${Y0 - 6}" x2="${x}" y2="${Y0 + T.length * H}" stroke="#EEF2F7" stroke-width="1.5"/>`;
+  svg += `<text x="${x}" y="${Y0 + T.length * H + 18}" text-anchor="middle" font-size="12.5" fill="${GRIS}">${h} h</text>`;
+}
+T.forEach(([cm, h, rot], i) => {
+  const y = Y0 + i * H;
+  svg += `<text x="${X0 - 16}" y="${y + 27}" text-anchor="end" font-size="17" font-weight="700" fill="${TINTA}">${cm} cm</text>`;
+  svg += `<rect x="${X0}" y="${y + 8}" width="${h * ESC}" height="28" rx="8" fill="${tinte(AZUL, 70)}"/>`;
+  svg += `<rect x="${X0 + h * ESC - 6}" y="${y + 4}" width="12" height="36" rx="4" fill="${AMBAR}"/>`;
+  svg += `<text x="${X0 + h * ESC + 16}" y="${y + 28}" font-size="16" font-weight="700" fill="${TINTA}">${rot}</text>`;
+});
+svg += `<text x="${X0}" y="${Y0 + T.length * H + 40}" font-size="12.5" fill="${GRIS}">Horas en el mismo centímetro, sin progreso</text>`;
+svg += `</svg>`;
+const ley = `<div style="display:flex;gap:10px">
+  <div class="caja" style="flex:1;background:${tinte(AZUL, 10)};border:1.5px solid ${tinte(AZUL, 40)}"><span><b style="color:${AZUL}">■</b> Tiempo que se tolera en ese centímetro</span></div>
+  <div class="caja" style="flex:1;background:${tinte(AMBAR, 12)};border:1.5px solid ${tinte(AMBAR, 50)}"><span><b style="color:${AMBAR}">■</b> Al superarlo sin progreso: <b>alerta</b> y aviso al especialista</span></div>
+</div>
+<div class="caja" style="background:#F8FAFC;border:1px solid var(--linea);font-size:12.5px;color:#475569">Muchas mujeres dilatan <b>más despacio de 1 cm/h</b> y tienen un parto vaginal normal: la línea de 1 cm/h no sirve para decidir.</div>`;
+lienzo("Tiempo de alerta por centímetro", "Guía de cuidados del parto: cuánto puede quedarse la dilatación en cada centímetro", svg + ley,
+  "Esquema. Fuente: OMS, WHO Labour Care Guide: user's manual (2020), sección 5; OMS 2018, recomendación 7.");
+</script></body></html>

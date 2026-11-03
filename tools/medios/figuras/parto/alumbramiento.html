@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Manejo activo del alumbramiento: OMS 2018 (rec. 42, 44, 45, 46 y 52); NICE NG235 1.10.11-1.10.20; GPC Colombia 2013.
+// Secuencia en pasos (no a escala de tiempo).
+const P = [
+  [TEAL, "Al nacer", "Oxitocina 10 UI IM", "Antes de pinzar el cordón, a toda mujer"],
+  [AZUL, "Tras 1 min", "Pinzar el cordón", "No antes de <b>1 min</b>; la GPC sugiere a los <b>2-3 min</b>"],
+  [MORADO, "Al desprenderse", "Tracción controlada", "Sólo después de la oxitocina y con <b>signos de desprendimiento</b>"],
+  [ROJO, "A los 30 min", "¿Sin placenta?", "Es un alumbramiento <b>prolongado</b>: manejar la placenta retenida"],
+];
+const W = 668, COLW = (W - 3 * 10) / 4;
+let linea = `<svg width="${W}" height="54" viewBox="0 0 ${W} 54" style="flex:none">`;
+const cx = (i) => i * (COLW + 10) + COLW / 2;
+for (let i = 0; i < 3; i++) {
+  linea += `<line x1="${cx(i) + 22}" y1="27" x2="${cx(i + 1) - 30}" y2="27" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="${i === 2 ? "6 6" : "0"}"/>`;
+  linea += `<polygon points="${cx(i + 1) - 24},27 ${cx(i + 1) - 33},21 ${cx(i + 1) - 33},33" fill="#CBD5E1"/>`;
+}
+P.forEach(([c], i) => {
+  linea += `<circle cx="${cx(i)}" cy="27" r="20" fill="${c}"/><text x="${cx(i)}" y="34" text-anchor="middle" font-size="19" font-weight="800" fill="#fff">${i + 1}</text>`;
+});
+linea += `</svg>`;
+const cols = `<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">${P.map(([c, cuando, que, como]) => `
+  <div style="display:flex;flex-direction:column;gap:7px;align-items:stretch">
+    <div style="align-self:center;background:${tinte(c, 14)};color:${c};font-weight:800;font-size:13px;padding:4px 10px;border-radius:999px;white-space:nowrap">${cuando}</div>
+    <div class="caja" style="background:#fff;border:2px solid ${tinte(c, 55)};min-height:136px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-weight:800;font-size:15px;color:${TINTA}">${que}</div>
+      <div style="font-size:12.5px;color:#475569;line-height:1.35">${como}</div>
+    </div>
+  </div>`).join("")}</div>`;
+const notas = `<div style="display:flex;gap:10px">
+  <div class="caja" style="flex:1;background:${tinte(TEAL, 10)};border:1.5px solid ${tinte(TEAL, 45)};font-size:13px"><b style="color:${TEAL}">Todo el tiempo</b>: bebé en <b>piel con piel</b>, secarlo y cubrirlo con una manta <b>tibia</b>.</div>
+  <div class="caja" style="flex:1;background:#F8FAFC;border:1.5px solid var(--linea);font-size:13px"><b>Después</b>: palpar el <b>tono uterino</b> para detectar pronto la atonía; sin <b>masaje sostenido</b> si ya recibió oxitocina.</div>
+</div>
+<div class="caja" style="background:${tinte(VERDE, 10)};border:1.5px solid ${tinte(VERDE, 45)};font-size:13px">El <b>manejo activo</b> baja la hemorragia de más de <b>500 mL</b> de <b>188</b> a <b>68</b> por cada <b>1.000</b> mujeres.</div>`;
+lienzo("Manejo activo del alumbramiento", "Del nacimiento a la placenta: qué se hace y en qué orden", linea + cols + notas,
+  "Esquema. Fuente: OMS 2018, recomendaciones 42, 44, 45, 46 y 52; NICE NG235 (2023), 1.10.11-1.10.20; GPC Colombia 2013.");
+</script></body></html>

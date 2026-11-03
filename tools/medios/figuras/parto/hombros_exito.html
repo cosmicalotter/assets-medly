@@ -1,0 +1,32 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Éxito de las maniobras de la distocia de hombros: RCOG Green-top 42 (2026), sección de maniobras
+// 6.3.1 (revisión sistemática [94]); complicaciones de McRoberts y del brazo posterior, misma sección.
+const M = [
+  ["McRoberts", "± presión suprapúbica · primera línea", 56, tinte(ROJO, 45)],
+  ["Rotación interna", "maniobra interna", 62.4, tinte(ROJO, 75)],
+  ["Sacar el brazo posterior", "maniobra interna", 86.1, ROJO],
+];
+const W = 668, X0 = 238, AN = 380, FILA = 66, Y0 = 34;
+const x = (v) => X0 + (v / 100) * AN;
+let s = `<svg width="${W}" height="${Y0 + FILA * M.length + 26}" viewBox="0 0 ${W} ${Y0 + FILA * M.length + 26}">`;
+for (let v = 0; v <= 100; v += 25) {
+  s += `<line x1="${x(v)}" y1="${Y0 - 8}" x2="${x(v)}" y2="${Y0 + FILA * M.length - 8}" stroke="${v ? "#EEF0F3" : "#CBD5E1"}" stroke-width="${v ? 1.5 : 2}"/>`;
+  s += `<text x="${x(v)}" y="${Y0 + FILA * M.length + 12}" text-anchor="middle" font-size="12" fill="${GRIS}">${v} %</text>`;
+}
+s += `<text x="${X0}" y="16" font-size="12.5" font-weight="700" fill="${GRIS}">Partos en que la maniobra resolvió la distocia</text>`;
+M.forEach(([nombre, linea, v, c], i) => {
+  const y = Y0 + i * FILA;
+  s += `<text x="${X0 - 14}" y="${y + 18}" text-anchor="end" font-size="15" font-weight="700" fill="${TINTA}">${nombre}</text>`;
+  s += `<text x="${X0 - 14}" y="${y + 37}" text-anchor="end" font-size="12.5" fill="${GRIS}">${linea}</text>`;
+  s += `<rect x="${x(0)}" y="${y + 2}" width="${x(v) - x(0)}" height="36" rx="8" fill="${c}"/>`;
+  s += `<text x="${x(v) + 10}" y="${y + 27}" font-size="19" font-weight="800" fill="${TINTA}">${String(v).replace(".", ",")} %</text>`;
+});
+s += `</svg>`;
+const cartas = `<div style="display:flex;gap:10px">
+  <div class="caja" style="flex:1;background:${tinte(ROJO, 8)};border:1.5px solid ${tinte(ROJO, 35)};font-size:13.5px"><b style="color:${ROJO}">McRoberts va primero</b><br>tiene <b>pocas complicaciones</b> y es de las maniobras <b>menos invasivas</b>.</div>
+  <div class="caja" style="flex:1;background:#F8FAFC;border:1.5px solid var(--linea);font-size:13.5px"><b>El brazo posterior tiene su precio</b><br>se ha asociado a <b>fractura del húmero</b> en el <b style="white-space:nowrap">2-12 %</b>.</div>
+</div>
+<div class="caja" style="background:#F8FAFC;border:1px solid var(--linea);font-size:12.5px;color:#475569">No hay ensayos que comparen el <b>brazo posterior</b> con la <b>rotación interna</b>: se elige según el <b>entrenamiento</b> y la experiencia de quien atiende.</div>`;
+lienzo("Éxito de cada maniobra", "Distocia de hombros: lo que resolvió cada una en una revisión sistemática",
+  s + cartas, "Datos: revisión sistemática citada por el RCOG, Green-top Guideline n.º 42 (2026), sección 6.3.1.");
+</script></body></html>
