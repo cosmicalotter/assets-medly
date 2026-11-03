@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Precoz frente a tardía: el nadir respecto al pico de la contracción (ACOG 2025, Tabla 1, p. 588; FIGO 2015, 4.1.4).
+const W = 672, PW = 600, X0 = 52, FH = 250, TH = 74, Y0 = 8, T1 = 5, PICO = 2.2;
+const f = oscilacion(10, 55);
+const precoz = (t) => 140 + f(t) - 26 * valle(t, PICO, 0.45);
+const tardia = (t) => 140 + f(t) * 0.8 - 26 * valle(t, PICO + 0.6, 0.45);
+const nadir = (fn) => { let tn = 0, v = 1e9; for (let t = 1; t <= 4; t += 0.005) { const x = fn(t) - f(t) * (fn === tardia ? 0.8 : 1); if (x < v) { v = x; tn = t; } } return [tn, fn(tn)]; };
+const ESCENAS = [
+  { fn: precoz, c: VERDE, nom: "Precoz", txt: "El nadir llega <b>a la vez</b> que el pico de la contracción: compresión de la cabeza, sin hipoxia." },
+  { fn: tardia, c: ROJO, nom: "Tardía", txt: "El nadir llega <b>después</b> del pico y la FCF vuelve cuando la contracción ya acabó: hipoxemia." },
+];
+window.cuadro = function (i, n) {
+  const u = n > 1 ? i / (n - 1) : 1;
+  const e = u < 0.5 ? 0 : 1, v = (u - e * 0.5) / 0.5;          // 0→1 dentro de cada escena
+  const hasta = Math.min(T1, 0.2 + v * 1.9 * T1);               // avance del trazo
+  const S = ESCENAS[e];
+  const p = papel({ x: X0, y: Y0, w: PW, h: FH, t0: 0, t1: T1, lmin: 90, lmax: 170, paso: 10 });
+  const tc = toco((t) => (t <= hasta ? campana(t, PICO, 1.3, 0.8) : 0), { x: X0, y: Y0 + FH + 6, w: PW, h: TH, t0: 0, t1: T1 });
+  let s = p.svg + tc.svg;
+  if (e === 1) s += dentro(X0, Y0, PW, FH, trazo(precoz, p.X, p.Y, 0, T1, { color: VERDE, ancho: 1.4, op: 0.35 }));
+  s += dentro(X0, Y0, PW, FH, trazo(S.fn, p.X, p.Y, 0, hasta, { ancho: 1.9, dt: 0.005 }));
+  s += `<line x1="${p.X(PICO)}" y1="${Y0}" x2="${p.X(PICO)}" y2="${Y0 + FH + TH + 6}" stroke="${VIOLETA}" stroke-width="2.4" stroke-dasharray="6 4"/>`;
+  s += texto(p.X(PICO) + 8, Y0 + 18, "pico de la contracción", { c: VIOLETA, s: 12.5, fondo: true });
+  const [tn, vn] = nadir(S.fn);
+  if (hasta >= tn) {
+    s += `<circle cx="${p.X(tn)}" cy="${p.Y(vn)}" r="7" fill="${S.c}" stroke="#fff" stroke-width="2.5"/>`;
+    s += texto(p.X(tn) + 12, p.Y(vn) + 5, "nadir", { c: S.c, s: 13, fondo: true });
+    if (e === 1) s += flecha(p.X(PICO), p.Y(vn) + 22, p.X(tn), p.Y(vn) + 22, ROJO, 2.2) + texto((p.X(PICO) + p.X(tn)) / 2, p.Y(vn) + 40, "después del pico", { c: ROJO, s: 12, a: "middle", fondo: true });
+  }
+  s += texto(X0 + 10, Y0 + 24, S.nom, { c: S.c, s: 20, fondo: true });
+  const svg = `<svg width="${W}" height="${FH + TH + 20}" viewBox="0 0 ${W} ${FH + TH + 20}">${s}</svg>`;
+  lienzo("Precoz frente a tardía", "Comparar el nadir de la desaceleración con el pico de la contracción", svg + caja(S.c, S.txt),
+    "Esquema ilustrativo, no es el registro de una paciente. Definiciones: ACOG 2025, Tabla 1; FIGO 2015, sección 4.1.4.");
+};
+window.cuadro(39, 40);
+</script></body></html>

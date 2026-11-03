@@ -46,9 +46,17 @@ def main() -> int:
     # La paleta sale de una muestra de todos los cuadros, no sólo del primero; el
     # último entra siempre, porque suele ser el cuadro del resultado.
     elegidos = cuadros[:: max(1, len(cuadros) // 3)][:3] + [cuadros[-1]] if len(cuadros) > 4 else cuadros
-    muestra = Image.new("RGB", (cuadros[0].width, cuadros[0].height * len(elegidos)))
+    # Los tonos del contrato entran siempre en la muestra, en franjas propias: si
+    # ocupan pocos píxeles (un punto rojo, un rótulo), MEDIANCUT los funde con el
+    # gris y el GIF los pierde aunque el `info` los nombre.
+    tonos = ["#18B9A9", "#EF5454", "#F2A23A", "#F07F3C", "#2FB36D", "#4F8CF6", "#7B6CF6", "#1F2A37"]
+    franja = 24
+    alto = cuadros[0].height * len(elegidos)
+    muestra = Image.new("RGB", (cuadros[0].width, alto + franja * len(tonos)), "white")
     for i, img in enumerate(elegidos):
         muestra.paste(img, (0, i * img.height))
+    for k, tono in enumerate(tonos):
+        muestra.paste(Image.new("RGB", (cuadros[0].width, franja), tono), (0, alto + k * franja))
     paleta = muestra.quantize(colors=args.colores, method=Image.Quantize.MEDIANCUT)
     indexados = [img.quantize(palette=paleta, dither=Image.Dither.NONE) for img in cuadros]
 

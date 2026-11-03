@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// Bradicardia aguda o desaceleración prolongada (NICE NG229, 1.5.9; rasgo rojo desde 3 min, 1.4.24).
+const W = 672, PW = 600, X0 = 52, FH = 250, Y0 = 34, T1 = 12;
+const f = oscilacion(12, 91), g = oscilacion(3, 92);
+const caida = (t) => caidaV(t, 1.5, 0.25, 20, 1);
+const fcf = (t) => 140 + (caida(t) > 0.5 ? g(t) : f(t)) - 60 * caida(t);
+const p = papel({ x: X0, y: Y0, w: PW, h: FH, t0: 0, t1: T1, lmin: 60, lmax: 170, paso: 10 });
+let s = p.svg + `<rect x="${p.X(1.5)}" y="${Y0}" width="${p.X(T1) - p.X(1.5)}" height="${FH}" fill="${tinte(ROJO, 9)}"/>`;
+s += dentro(X0, Y0, PW, FH, trazo(fcf, p.X, p.Y, 0, T1, { ancho: 1.8, dt: 0.006 }));
+const hito = (t, c, l1) => `<line x1="${p.X(t)}" y1="${Y0 - 6}" x2="${p.X(t)}" y2="${Y0 + FH}" stroke="${c}" stroke-width="3"/>` + texto(p.X(t), Y0 - 12, l1, { c, s: 13.5, a: "middle" });
+s += hito(1.5, ROJO, "Empieza") + hito(4.5, AMBAR, "3 min") + hito(10.5, TINTA, "9 min");
+s += texto(p.X(1.6), p.Y(150), "Caída aguda de la FCF", { c: ROJO, s: 13, fondo: true });
+[0, 2, 4, 6, 8, 10, 12].forEach((t) => { s += texto(p.X(t), Y0 + FH + 14, t + " min", { c: "#94A3B8", s: 10.5, w: 500, a: "middle" }); });
+const svg = `<svg width="${W}" height="${FH + 54}" viewBox="0 0 ${W} ${FH + 54}">${s}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${caja(AMBAR, "<b>Desde los 3 min</b>: valoración obstétrica urgente, descartar un evento agudo, medidas intrauterinas y preparar el parto con neonatología.")}${caja(TINTA, "<b>A los 9 min</b> sin recuperarse, o antes si hay un evento agudo o factores de riesgo: <b>parto expedito</b>.")}</div>`;
+lienzo("Bradicardia aguda: la regla de los 9 minutos", "Si la FCF se recupera antes, se reconsidera el parto y se vuelve a clasificar el trazado", svg + notas,
+  "Esquema ilustrativo, no es el registro de una paciente. Fuente: NICE NG229, recomendaciones 1.4.24 y 1.5.9.");
+</script></body></html>

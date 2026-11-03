@@ -93,7 +93,17 @@ Firebase directamente, saltándose `indices/`.
    comercial**, con su `creditos.json`. Ver la skill `imagenes-clinicas`.
 5. **Los PDF de las guías no entran en este repositorio** (copyright). Se
    leen desde `guias-praxis` o desde el scratchpad.
-6. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
+6. **De una guía de pago, cita textual y sin recorte.** Si el texto completo
+   pide suscripción, membresía o compra (ACOG, revistas de Elsevier, Wiley,
+   Wolters Kluwer, Thieme o Springer sin acceso abierto), sus `referencias`
+   llevan la cita literal (`texto`, `paginas`, `fuente`, `url`) pero **ni
+   `imagen_evidencia` ni `TODO_EVIDENCIA`**: el recorte reproduce la página
+   en una app de pago. Igual con las de licencia **no comercial** (CC BY-NC,
+   como la OMS, la OPS o la Revista Colombiana de Obstetricia) y con NICE, que
+   sólo licencia el uso comercial en el Reino Unido. Sí llevan
+   recorte las CC BY o CC BY-SA, el dominio público (CDC) y las del Gobierno
+   de Colombia (MinSalud). Detalle en `NORMA.md` §7.
+7. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
    es trabajo pendiente, no un error: la app lo oculta. Se resuelve o se deja
    y se lista en el PR; nunca se rellena con algo inventado.
 
@@ -131,12 +141,27 @@ Firebase directamente, saltándose `indices/`.
   ese texto), que el visor abre con el botón del libro.
 - Revisión antes del PR: subagentes **`revisor-clinico`** (cifra por cifra
   contra la guía) y **`revisor-legibilidad`** (claridad y uso de la app).
+- **ABCDE sólo en las urgencias** en que el paciente puede llegar
+  inestable (nunca en VIH ni en algoritmos crónicos o de consulta), y
+  **propio de cada patología**: cada letra con lo que esa enfermedad cambia,
+  sin copiar el de otro algoritmo (`NORMA.md` §2).
 - **El modelo es `data/Adultos/crisishiperglicemica.json`** (noviembre de
   2026): todo algoritmo que se crea o se reforma tiene que parecerse a él en
-  estructura, piezas y estilo. Su mapa está en `NORMA.md` §1.
+  estructura, piezas y estilo. Su mapa está en `NORMA.md` §1. **El segundo
+  modelo es `data/Adultos/patologia_biliar.json`**: un paso común (el
+  antibiótico) dentro del flujo, saltos laterales a pasos con rama, un paso
+  al que se llega desde lejos escrito para entenderse solo y nodos-enlace con
+  `contexto` (`NORMA.md` §1).
+- **Texto de los enlaces:** a otro algoritmo, sólo el nombre («Sepsis y
+  shock séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
+  («Calcular el índice de Charlson»), que se ve igual que la calculadora
+  principal (`NORMA.md` §3).
 - **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una
-  lista. Si la guía trata distinto a cada entidad, el tratamiento empieza
-  con «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
+  lista. **Dividir se hace sólo cuando la patología lo amerita** y la
+  pregunta que divide tiene lógica en ese punto del recorrido, en cualquier
+  sección; no es una regla que se aplique a todo tratamiento. Si la guía
+  trata distinto a cada entidad durante varios pasos, el tratamiento empieza
+  con una pregunta como «¿Cuál es el trastorno que vas a tratar?» y cada entidad sigue **su
   propia cadena**, con su `color` fijo y sus criterios en la `descripcion`
   de la opción; las cadenas se juntan donde el tratamiento es común. **Las
   separaciones van en cualquier sección**, no sólo en el tratamiento: el
@@ -153,7 +178,19 @@ Firebase directamente, saltándose `indices/`.
   nunca al principio de la sección; un paso compartido pregunta «¿Qué
   crisis estás tratando?» y devuelve a cada una a la suya. Cada rama
   hermana sale en su propio color, que heredan sus pasos. Las calculadoras,
-  con las mismas unidades que los algoritmos.
+  con las mismas unidades que los algoritmos. **Un salto lateral («Ver
+  también en este algoritmo») lleva a un paso al que llega alguna rama**: la
+  app lo abre en su flujo, y un paso al que sólo se llega por enlaces no
+  tiene sitio y aparece colgado donde no se espera (`norma.py --chequeo` lo
+  denuncia). **Un paso al que se llega desde lejos** (saltos de varias
+  secciones o cadenas, un paso común) se escribe general y explicativo: no
+  da por sabidos grados ni escalas de otros pasos; los nombra en llano con
+  la categoría entre paréntesis («infección **grave** (grado III de
+  Tokio)», no «grado III» a secas). El nodo-enlace se lee como una rama: la respuesta en el rótulo de
+  la línea y, en la píldora, el título del paso al que lleva. Si no se
+  entiende solo, su opción lleva `contexto`: una o dos viñetas, sólo donde
+  hace falta, en lenguaje natural con la fuerza de la guía («Se recomienda…»,
+  «Se debe…», «Se sugiere…»), no en infinitivo (`NORMA.md` §4).
 - Estilo de redacción (octubre de 2026): cada nodo se entiende solo, también
   para un estudiante. La pill dice el dato, el `titulo` la acción, el
   `contexto` (1-2 frases, **sólo en los nodos que lo necesitan**: un porqué
@@ -179,7 +216,9 @@ Firebase directamente, saltándose `indices/`.
   unidades de Colombia: glucosa, creatinina, BUN, calcio, fósforo y magnesio
   en **mg/dL** y sodio, potasio, cloro y bicarbonato en **mEq/L** aunque la
   guía dé mmol/L (tabla en `NORMA.md` §4); negritas también en las alertas;
-  criterios por entidad (CAD, EHH…) en `tabla`, y «la tabla» del texto como
+  criterios por entidad (CAD, EHH…) en `tabla`, **cada criterio en su viñeta**
+  (también dentro de las celdas: `- …` separadas por `\n`; nunca una lista
+  encadenada con comas, en ningún sitio del algoritmo), y «la tabla» del texto como
   `tabla.en_texto`, que la abre; `discrepancias` sólo si cambian lo que se
   hace (dosis, destino, momento, umbral de conducta), nunca por redondeos o
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.

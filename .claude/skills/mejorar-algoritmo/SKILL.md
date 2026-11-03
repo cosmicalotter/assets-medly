@@ -52,8 +52,9 @@ Escribe `$SCRATCH/plan_<algoritmo>.md` con:
 - la silueta actual y la propuesta (secciones, nodos nuevos, nodos que se
   parten), respetando los ids existentes;
 - **el mapa de ramas**, dibujado como el del modelo (`NORMA.md` §1): qué
-  pregunta divide el tratamiento por trastorno y qué cadena sigue cada
-  entidad (con su color), qué preguntas dividen también el diagnóstico, la
+  pregunta divide el tratamiento por trastorno, si la patología lo amerita,
+  y qué cadena sigue cada entidad (con su color), con el porqué de cada
+  división (o de no dividir), qué preguntas dividen también el diagnóstico, la
   gravedad o la hospitalización donde la guía separa grupos, dónde se juntan, todas las respuestas de cada
   pregunta (ningún «Sí» sin su «No»), el paso de vigilancia de cada cadena
   con su pregunta de ritmo, la pregunta de complicaciones, adónde vuelve
@@ -75,6 +76,7 @@ Orden de trabajo, nodo a nodo:
 1. **Estructura**: secciones, nodos nuevos colgados de los que ya existen,
    `pie_nodo` en cada decisión, rótulos en cada opción, según el mapa de
    ramas del plan y las reglas de `NORMA.md` §1: una cadena por trastorno
+   sólo donde la patología lo amerita (no por defecto en todo tratamiento),
    con su `color` y la `descripcion` de sus criterios en la opción, opciones
    sin huecos ni solapes, la vigilancia y las complicaciones como bucle,
    «Aún no» al paso que se repite, «Ya lleva…» para no repetir un paso
@@ -84,7 +86,9 @@ Orden de trabajo, nodo a nodo:
    sólo va el JSON.
 2. **Contenido**: cada cifra, dosis, umbral o criterio nuevo lleva su
    referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
-   `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`.
+   `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`,
+   salvo en una **guía de pago** o de licencia no comercial (ACOG, Elsevier, Wiley, LWW, CC BY-NC…): ahí la cita
+   textual va sin recorte y sin marcador (`NORMA.md` §7).
 3. **Lenguaje**: reescribe lo confuso según `NORMA.md` §4: cada nodo
    clínico con `contexto` sólo si hace falta un porqué que no es obvio (no
    en todos), título con la acción, pills con
@@ -127,7 +131,9 @@ galgo resolver -a <algoritmo> --pdf <guía.pdf> --gemini nunca --aplicar --salid
 
 El primero conecta recortes que ya están en disco; el segundo ancla las citas
 literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
-`TODO_EVIDENCIA` y va a la lista de pendientes del PR.
+`TODO_EVIDENCIA` y va a la lista de pendientes del PR. **El segundo sólo se
+pasa sobre guías que no son de pago ni de licencia no comercial** (`NORMA.md` §7): de una guía de pago
+se queda la cita textual, sin recorte.
 
 ## 5. Verificar
 

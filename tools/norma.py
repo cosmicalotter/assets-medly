@@ -473,6 +473,55 @@ def chequear(ruta: Path) -> list[str]:
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
+    problemas.extend(saltos_sin_flujo(alg))
+    return problemas
+
+
+def es_salto_interno(enl: dict) -> bool:
+    return destino_enlace(enl).upper() == "INTERNO" or enl.get("tipo") in ("interno", "nodo")
+
+
+def alcanzables_por_ramas(alg: dict) -> set[str]:
+    """Los pasos a los que se llega desde la portada siguiendo sólo ramas."""
+    nodos = alg.get("nodos") or {}
+    vistos: set[str] = set()
+    pila = [nid for nid in entradas(alg) if nid in nodos]
+    while pila:
+        nid = pila.pop()
+        if nid in vistos:
+            continue
+        vistos.add(nid)
+        nodo = nodos.get(nid)
+        if isinstance(nodo, dict):
+            pila.extend(destino(o) for o in opciones(nodo) if destino(o) in nodos)
+    return vistos
+
+
+def saltos_sin_flujo(alg: dict) -> list[str]:
+    """Saltos de «Ver también en este algoritmo» a un paso sin sitio propio.
+
+    Un salto lateral (un enlace interno que no es la salida de un paso sin
+    ramas) lleva al paso en su flujo. Si a ese paso no llega ninguna rama, no
+    tiene flujo: la app lo cuelga de la primera tarjeta que enlaza a él y el
+    usuario lo ve aparecer «de la nada».
+    """
+    nodos = alg.get("nodos") or {}
+    alcanzables = alcanzables_por_ramas(alg)
+    problemas: list[str] = []
+    for nid, nodo in nodos.items():
+        if not isinstance(nodo, dict):
+            continue
+        internos = [e for e in enlaces(nodo) if es_salto_interno(e)]
+        # La salida de un paso sin ramas sí cuelga su destino: así sigue el
+        # camino. Los demás saltos son laterales.
+        laterales = internos if opciones(nodo) else internos[1:]
+        for enl in laterales:
+            obj = enl.get("nodo_objetivo") or enl.get("nodoObjetivo")
+            if obj in nodos and obj not in alcanzables:
+                problemas.append(
+                    f"{nid}: el salto lateral «{enl.get('texto', '')}» va a «{obj}», al que no llega "
+                    "ninguna rama; dale un sitio en un flujo (una opción que lleve a él)"
+                )
     return problemas
 
 

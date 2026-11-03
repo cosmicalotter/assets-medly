@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="ctg.js"></script></head><body><script>
+// El mismo trazado a 1 y a 3 cm/min (FIGO 2015, sección 3.2, p. 14).
+const W = 672, PW = 600, X0 = 52, FH = 150;
+const f = oscilacion(15, 23), fcf = (t) => 140 + f(t);
+let s = "";
+const filas = [["1 cm/min", 0, 10, "10 min en 10 cm de papel"], ["3 cm/min", 0, 10 / 3, "los primeros 3,3 min en el mismo papel"]];
+filas.forEach(([rot, t0, t1, nota], i) => {
+  const y = i * (FH + 40) + 22;
+  const p = papel({ x: X0, y, w: PW, h: FH, t0, t1, lmin: 100, lmax: 180, paso: 10 });
+  let mx = -1e9, mn = 1e9; for (let t = 1; t <= 2; t += 0.005) { mx = Math.max(mx, fcf(t)); mn = Math.min(mn, fcf(t)); }
+  const banda = `<rect x="${p.X(1)}" y="${p.Y(mx)}" width="${p.X(2) - p.X(1)}" height="${p.Y(mn) - p.Y(mx)}" fill="${tinte(AZUL, 28)}" stroke="${AZUL}" stroke-width="1.5"/>`;
+  s += texto(X0, y - 7, rot, { s: 15 }) + texto(X0 + 78, y - 7, nota, { c: "#64748B", s: 12.5, w: 600 });
+  s += p.svg + dentro(X0, y, PW, FH, banda + trazo(fcf, p.X, p.Y, t0, t1, { ancho: 1.7, dt: 0.004 }));
+  s += texto(p.X(1.5), p.Y(mx) - 6, "1 min", { c: AZUL, s: 11.5, a: "middle", fondo: true });
+});
+const svg = `<svg width="${W}" height="${2 * FH + 70}" viewBox="0 0 ${W} ${2 * FH + 70}">${s}</svg>`;
+lienzo("El mismo trazado a 1 y a 3 cm/min", "La banda azul es el mismo minuto: a 3 cm/min las oscilaciones se estiran", svg,
+  "Esquema ilustrativo, no es el registro de una paciente. Basado en FIGO 2015, sección 3.2.");
+</script></body></html>

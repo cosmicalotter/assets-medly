@@ -77,9 +77,22 @@ cambian, se cambian allí y aquí a la vez.
   vueltas. El modelo es `data/Adultos/crisishiperglicemica.json` (su mapa,
   en «El modelo», abajo); un algoritmo nuevo o reformado tiene que parecerse
   a él. Las reglas:
-  - **Se divide por trastorno.** Si la guía trata distinto a cada entidad,
-    el tratamiento empieza con la pregunta «¿Cuál es el trastorno que vas a
-    tratar?» y cada respuesta abre **su propia cadena** (CAD, CAD
+  - **Dividir es una herramienta, no un requisito.** Se parte una sección
+    sólo cuando la patología lo amerita: cuando la guía hace cosas
+    distintas a cada grupo durante **varios pasos** y el usuario, en ese
+    punto del recorrido, ya conoce el dato que separa. Si las entidades
+    comparten casi todo el manejo y sólo cambia una dosis o un plazo, no se
+    parte: la diferencia va en la opción, en una tabla o en una viñeta. La
+    pregunta que divide va **donde cae en el orden clínico** (en el
+    diagnóstico, la gravedad, el tratamiento o el seguimiento; no
+    necesariamente al empezar el tratamiento) y se redacta para ese punto:
+    «¿Cuál es el trastorno que vas a tratar?» es la del modelo, no una
+    fórmula que se copia. Antes de partir, preguntarse: ¿un clínico, en este
+    paso, haría de verdad esta pregunta? Si no, no se parte.
+  - **Se divide por trastorno cuando lo amerita.** Si la guía trata distinto
+    a cada entidad a lo largo del tratamiento, este empieza con una
+    pregunta como «¿Cuál es el trastorno que vas a tratar?» y cada
+    respuesta abre **su propia cadena** (CAD, CAD
     euglucémica, EHH), con un `color` fijo en la opción y, en la
     `descripcion` de la opción, los criterios que identifican la entidad.
     Las cadenas se juntan donde el tratamiento vuelve a ser común (la CAD
@@ -137,8 +150,9 @@ cambian, se cambian allí y aquí a la vez.
     de las dos).
   - Una misma pregunta no se repite en varios pasos de una cadena (la de la
     glucosa, una sola vez, en su paso).
-  - El **ABCDE se divide por la hemodinámica** cuando la guía actúa distinto
-    (PAS ≥90 → criterios; PAS <90 → choque).
+  - El **ABCDE** sólo existe en los algoritmos de urgencia (§2) y se divide
+    por la hemodinámica cuando la guía actúa distinto (PAS ≥90 → criterios;
+    PAS <90 → choque).
   - Una **sección menú** (Situaciones especiales) es una `rama` con varias
     opciones y un `pie_nodo` que pregunta («¿Qué situación especial tiene
     el paciente?»).
@@ -171,6 +185,25 @@ cambian, se cambian allí y aquí a la vez.
   tratamiento, y donde la guía separe en el diagnóstico, la gravedad o el
   seguimiento), todas las respuestas de cada pregunta y adónde vuelve cada
   «Aún no».
+
+  **El segundo modelo** (Patología biliar aguda,
+  `data/Adultos/patologia_biliar.json`, noviembre de 2026) enseña lo que el
+  de las crisis no tiene:
+  - **Un paso común dentro del flujo**: el antibiótico empírico, que
+    comparten la colecistitis y la colangitis, es una rama («Colecistitis o
+    colangitis») y devuelve a cada una a su cadena («¿Cuál de las dos
+    infecciones estás tratando?»); la coledocolitiasis sin infección no pasa
+    por él. Los «Antibiótico y dosis» de otras secciones son saltos laterales
+    a ese paso.
+  - **Un paso al que se llega desde lejos, escrito para entenderse solo**:
+    explica la gravedad en llano, con los grados de Tokio entre paréntesis
+    (§4, «Las piezas de un nodo»).
+  - **Nodos-enlace con la respuesta en el rótulo** y, donde no se entiende
+    solo, con `contexto` en lenguaje natural («Aún no, o intermedio o alto
+    sin resolver» → Estimar el riesgo de coledocolitiasis; §4, «Preguntas y
+    opciones»).
+  - **Saltos entre secciones** al nodo de sección y **varias calculadoras
+    por paso** (Charlson y ASA) con su texto de acción.
 - **Color por rama.** La app da a cada rama hermana un tono distinto (azul,
   turquesa, púrpura, rosa, cian) y sus pasos siguientes lo heredan: la
   tarjeta, su título, su pill y su línea. No hace falta escribir nada; un
@@ -207,8 +240,10 @@ monitorización, las complicaciones del tratamiento, el alta).
 Cada algoritmo se recorre contra esta lista. Lo que la guía trae y el mapa no,
 es un hueco; lo que la guía no trae, no se escribe.
 
-- **Llegada y estabilización** (en toda urgencia): el **ABCDE** como primer
-  paso del recorrido, antes de confirmar el diagnóstico (vía aérea,
+- **Llegada y estabilización** (sólo en las urgencias en que el paciente
+  puede llegar inestable: CAD, sepsis, ACV, colangitis…; **nunca** en un
+  algoritmo crónico o de consulta, como VIH, hipertensión o diabetes
+  ambulatoria): el **ABCDE** como primer paso del recorrido, antes de confirmar el diagnóstico (vía aérea,
   respiración, circulación con su acceso y su primer bolo, estado
   neurológico, exposición con temperatura y búsqueda del desencadenante), y
   las pruebas de la primera hora como `checklist`. Cada letra con lo que la
@@ -218,6 +253,13 @@ es un hueco; lo que la guía no trae, no se escribe.
   termina en una pregunta («¿Qué presión arterial sistólica tiene al
   llegar?») y el choque tiene su propio camino (§1). En un algoritmo de
   consulta (no urgente), la primera valoración ordenada ocupa ese lugar.
+  **El ABCDE no es una plantilla.** No se copia el de otro algoritmo: cada
+  letra dice sólo lo que esa patología cambia (qué buscar, qué medir, qué
+  hacer distinto), las letras sin nada propio se juntan o se resumen en una
+  frase, y el título, la pill, el `contexto` y la pregunta final salen de
+  la patología («Buscar el foco biliar y la sepsis al llegar», no
+  «Estabilizar con el ABCDE» en todos). Si dos algoritmos acaban con el
+  mismo ABCDE palabra por palabra, uno de los dos está mal.
 - **Definición y criterios diagnósticos**, contados («2 de 4») y completos.
 - **Criterios de gravedad** con sus umbrales y la escala que usa la guía.
 - **Criterios de ingreso, de UCI y de alta**, cada uno como `checklist`.
@@ -248,14 +290,14 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `evidencia` | la clase y el nivel que da la guía para ese paso, simplificados: `{"clase": "IIa", "nivel": "B"}` (sin -R, -NR, -LD, -EO); con GRADE, `{"texto": "GRADE: débil a favor"}` | siempre que la guía los dé; si no, nunca |
 | `farmacos` | todo fármaco nombrado con dosis en la guía | todos |
 | `farmacos[].por_kg` | toda dosis «/kg», con `tope` y `concentracion` si la guía los da | todas (en pediatría es obligatorio) |
-| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios con las cifras en negrita. En la tarjeta es una de las piezas del final (una por fila) (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en media tarjeta («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
+| `tabla` | dosis por peso o edad, metas, estadios, criterios que se consultan de un vistazo, y los **criterios por entidad** (resolución de la CAD y del EHH, grados): una fila por entidad, la clave corta a la izquierda («CAD», «EHH») y en la otra columna sus criterios **en viñetas, uno por línea** (`"- Leucocitos **>18.000/mm³**\n- **Masa dolorosa** en el hipocondrio derecho"`), con las cifras en negrita; nunca encadenados en una frase con comas («hipotensión con…, conciencia alterada, PaO₂/FiO₂…»). La app dibuja las viñetas dentro de la celda. En la tarjeta es una de las piezas del final (una por fila) (con la dosis, la perla, las discrepancias y los enlaces), con su `titulo`: corto, que quepa en media tarjeta («Ritmo de respuesta», «Criterios de resolución»). Si el texto la nombra («al ritmo de **la tabla**», «comprobar en **la tabla**»), esa frase va en `tabla.en_texto` y la abre; el texto no repite lo que está en la tabla | cuando la guía trae la tabla o los criterios se comparan por entidad |
 | `cronometros` | **no usar por ahora**: su uso en la app todavía no está definido | nunca |
 | `calculadora` | el paso que estratifica con una escala | toda escala que la guía use; por URL |
 | `calculadora` + `ramificar` | **criterios que dan un resultado y de él sale la conducta** (diagnóstico de Tokio: definitivo / sospecha / no; gravedad por grados; riesgo alto / intermedio / bajo): la calculadora lleva a la rama que toca, en vez de una `checklist` que el médico interpreta solo. Criterios por grupos con textos largos → formulario Sí/No, no tabla (skill `crear-calculadora`) | siempre que exista o se pueda crear la escala |
 | `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw). **Con dos o más imágenes en un nodo, la app las pone de dos en dos y lado a lado** (la que sobra, a todo el ancho): en media columna la imagen sólo se reconoce y se lee al tocarla, así que el título escrito dentro y el pie corto cuentan aún más, y más de cuatro alargan la tarjeta | 1 de cada 4 nodos clínicos; galería (2-4) donde se comparan hallazgos. Una figura puede repetirse en **cadenas paralelas** (el ECG del potasio bajo en la CAD y en el EHH), con su `en_texto` y su `info` adaptados a cada paso; nunca en dos pasos seguidos del mismo camino |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo | al menos 1 por algoritmo si el tema lo tiene |
-| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone al final de la tarjeta, **una pieza por fila y a todo el ancho** (con la tabla, la dosis, la perla y las discrepancias; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos | al menos 2 hacia fuera |
+| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone al final de la tarjeta, **una pieza por fila y a todo el ancho** (con la tabla, la dosis, la perla y las discrepancias; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos **Texto de cada enlace:** a otro algoritmo, sólo su nombre («Sepsis y shock séptico», no «Ver algoritmo de sepsis»): la app antepone «Algoritmo»; a una calculadora, la acción («Calcular el índice de Charlson», «Clasificación ASA»): la app la dibuja igual que la calculadora principal, a todo el ancho y en naranja, sólo que no elige rama. Un salto interno lateral lleva a un paso con rama propia (§4). | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente **y eso cambia lo que se hace**: la dosis, el destino (planta, intermedios, UCI), el momento de un tratamiento o un umbral que cambia la conducta. Una diferencia de redondeo o de unidades (>198 frente a ≥200 mg/dL, ≤90 frente a ≤90-120 mg/dL/h) **no** se escribe: el algoritmo ya eligió y sólo confunde. La app las enseña como un aviso pequeño en la cabecera de la tarjeta, junto a las fuentes, que abre una hoja | sólo las que cambian la conducta; nunca inventadas (en Crisis hiperglucémicas, 15 en 58 pasos) |
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: un tercio de los nodos clínicos más o menos (en Crisis hiperglucémicas, 14 de 53), con **25 palabras** como mucho |
@@ -353,6 +395,33 @@ el título se lee solo, como la cabecera del paso, y la pregunta como lo que
 decide el siguiente. Un salto lateral es una salida condicional («Fósforo
 bajo: fosfato»): su texto dice la condición y adónde lleva, corto.
 
+**Un salto lateral lleva a un paso que vive en un flujo.** Al tocarlo, la app
+abre las ramas desde la raíz hasta ese paso y lleva la cámara allí; la
+tarjeta en la que se estaba no cambia y se sigue desde ella sin deshacer
+nada. Por eso su destino tiene que ser un paso **al que llega alguna rama**.
+Un paso al que sólo se llega por enlaces (la tabla de antibióticos que
+comparten varias cadenas, el mantenimiento común) no tiene sitio en el mapa:
+la app lo cuelga de la primera tarjeta que enlaza a él y el usuario lo ve
+aparecer donde no lo esperaba. Antes de enlazarlo se le da un sitio: una
+opción que lleve a él donde cae en el orden clínico (si lo comparten varias
+cadenas, un paso común que pregunta «¿Qué trastorno estás tratando?» y
+devuelve a cada una a la suya, §1). La única excepción es la **salida** de un
+paso sin ramas («Ir al mantenimiento»): ese enlace es el camino y sí cuelga
+su destino. `tools/norma.py --chequeo` denuncia los saltos laterales a pasos
+sin flujo.
+
+**Un paso al que se llega desde lejos se explica solo.** Si a un paso se
+salta desde varias secciones o cadenas (un salto lateral, un paso común como
+el de los antibióticos), el usuario puede llegar sin haber leído lo que hay
+antes en su flujo. Su `contexto`, su `texto`, su tabla y sus dosis se
+escriben generales y explicativos: no dan por sabidos los grados, escalas o
+categorías que se definen en otro paso. La primera vez que los nombran dicen
+**qué significan y de qué entidad** son, en lenguaje llano y con la
+categoría entre paréntesis: «infección **grave** (grado III de Tokio, con
+disfunción de algún órgano)», no «grado III» a secas. En la tabla y en las
+dosis, la clave es la palabra llana («Leve o moderada (grados I-II)»,
+«Grave (grado III)»). Ejemplo: «Elegir el antibiótico empírico» del biliar.
+
 Ninguna pieza repite a otra: la pill no adelanta la acción del título, el
 título no repite la pill y el texto no vuelve a decir el título.
 
@@ -395,6 +464,7 @@ título no repite la pill y el texto no vuelve a decir el título.
   si todo lo resaltado llevara color, el ojo no sabría adónde ir.
   `tools/norma.py` avisa de las frases con más de tres y de las piezas sin
   ninguna.
+- **Criterios y listas, siempre en viñetas** (decidido con el dueño en noviembre de 2026). Dos o más criterios, signos, causas u opciones no se encadenan en una frase con comas o «o»: van uno por línea, en cualquier sitio del algoritmo (el `texto`, las celdas de una `tabla`, una perla). Es más fácil de leer y de marcar con el paciente delante. En una celda, cada viñeta es `- …` separada por `\n`; si un criterio es «uno de» o «2 o más de», la primera línea lo dice («**2 o más** de:») y debajo van las viñetas.
 - **Subviñetas.** Una viñeta que junta varios pasos (simultáneos o
   seguidos), o una condición con datos que dependen de ella, se parte en
   subviñetas con dos espacios delante. Pasos en orden → numeradas (`  1.`,
@@ -476,6 +546,35 @@ título no repite la pill y el texto no vuelve a decir el título.
   adónde vuelve («Seguir la vigilancia de las cetonas»).
 - Una opción que evita repetir un paso ya hecho se nombra por el hecho
   («Ya lleva dextrosa»).
+- **Nodo-enlace: la respuesta en el rótulo, el destino en la píldora.**
+  Cuando una rama lleva a un paso que ya está dibujado, la app la enseña como
+  un nodo-enlace y la lee como cualquier rama: la opción (su `texto` y su
+  `descripcion`) va en el **rótulo sobre la línea** («Aún no, o intermedio o
+  alto sin resolver»), y la píldora dice **adónde lleva**, con el `titulo`
+  del paso de destino («Estimar el riesgo de coledocolitiasis») y «Nodo en
+  este algoritmo». Por eso el `titulo` del destino tiene que entenderse solo
+  como destino, y la opción no repite adónde va.
+- **Contexto del nodo-enlace** (`contexto` en la opción). Si a esa altura del
+  camino no se entiende qué toca hacer al llegar, o qué va primero, la opción
+  lleva `contexto`: **una o dos viñetas cortas** (unas 30 palabras en total)
+  que la píldora enseña debajo, en el recuadro de los contextos. Va **sólo
+  donde hace falta**: una vuelta atrás o un «Aún no» que se entienden solos
+  no lo llevan, y no repite la `descripcion` ni el título del destino. Lo que
+  dice sale de la guía, con su cita en las `referencias` del paso de origen.
+  En una rama que se dibuja como tarjeta no se ve.
+  - **Se escribe en lenguaje natural**, no en infinitivo como el `texto`, y
+    con la fuerza que da la guía: «Se recomienda…» o «Se debe…» cuando la guía
+    recomienda (*we recommend*), «Se sugiere…» cuando sugiere (*we suggest*),
+    «Suele…» para lo habitual.
+  - Sin «:» al final de la primera frase de una viñeta: la app la pintaría
+    como rótulo de color. Mejor una coma («…, porque de él depende…»).
+
+  Ejemplo (colecistectomía temprana → «Aún no, o intermedio o alto sin
+  resolver» → Estimar el riesgo de coledocolitiasis):
+
+  ```json
+  "contexto": "- Se sugiere estimar antes el **riesgo de coledocolitiasis**, porque de él depende el **primer procedimiento**.\n- Si el riesgo es **alto**, se recomienda buscar y extraer el **cálculo** antes o durante la cirugía (CPRE, colangiografía o ecografía intraoperatoria), según la **experiencia local**."
+  ```
 
 ### Perlas y alertas
 
@@ -540,6 +639,25 @@ título no repite la pill y el texto no vuelve a decir el título.
 
 - **Contenido clínico**: de la guía, con `referencias[].texto` = cita literal
   de 12 a 30 palabras y `paginas`. Nunca de memoria.
+- **Recortes de evidencia (`imagen_evidencia`) sólo de guías que no son de
+  pago** (decidido con el dueño en noviembre de 2026). Una guía es **de pago**
+  si su texto completo pide suscripción, membresía o compra: la ACOG (sólo
+  socios), las revistas de Elsevier, Wiley, Wolters Kluwer (LWW), Thieme o
+  Springer sin acceso abierto, aunque se haya leído con un acceso
+  institucional. De ella el algoritmo da **la cita textual** (`texto`,
+  `paginas`, `fuente`, `anio`, `url`, `cita`) y **ningún recorte**: ni
+  `imagen_evidencia` ni `TODO_EVIDENCIA` (a `galgo` una referencia sin la
+  llave le parece una nota, no un pendiente), y no se pasa `galgo resolver
+  --pdf` sobre su PDF. Tampoco van sus flujogramas como imagen fija en las
+  fuentes. Se tratan igual las de **licencia no comercial** (CC BY-NC,
+  CC BY-NC-ND, CC BY-NC-SA: la OMS, la OPS, la Revista Colombiana de
+  Obstetricia y Ginecología): son gratis de leer, pero no dejan reproducir en
+  una app de pago. Y las que sólo licencian el uso comercial en su país (NICE
+  lo permite en el Reino Unido; fuera, pide licencia). Sí llevan recorte las que permiten el uso comercial:
+  acceso abierto CC BY o CC BY-SA (WSES, BMC), dominio público (CDC) y las
+  del Gobierno de Colombia (MinSalud, INS). Ante la duda, se mira la primera
+  página del PDF: «© … Published by Elsevier», «All rights reserved» sin
+  licencia CC, o una licencia con «NC» → sin recorte.
 - **Imágenes**: ver la skill `imagenes-clinicas`. Primero imágenes reales
   con licencia que permite el uso comercial (figuras de la guía si son CC BY,
   como las de la WSES, y si no, fotos de internet: Commons, PMC CC BY),

@@ -73,6 +73,12 @@ como lo haría un usuario y revisa:
      reperfusión recibida) y lo mezclan en un solo paso o en una tabla en
      vez de partirse en cadenas con su color, es un hallazgo. El número de
      cadenas lo pone la guía, no un mínimo;
+   - al revés, también es hallazgo **dividir sin que haga falta**: cadenas
+     que repiten casi los mismos pasos, o una pregunta divisoria que un
+     clínico no haría en ese punto del recorrido (proponer juntarlas);
+   - un ABCDE en un algoritmo que no es de urgencia (VIH, crónicos,
+     consulta), o un ABCDE genérico, igual al de otros algoritmos, que no
+     dice nada propio de la patología;
    - dentro de cada cadena, los pasos en el orden en que se hacen;
    - cada decisión con todas sus respuestas, y la negativa con su propio
      paso cuando la guía dice qué hacer (PAS <90 → choque → refractario);
