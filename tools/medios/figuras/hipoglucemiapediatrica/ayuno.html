@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Vías del ayuno: glucógeno y gluconeogénesis dan glucosa; la grasa da AGL y cetonas; el cerebro usa glucosa y cetonas.
+const nodo = (x, y, w, c, t) => `<rect x="${x}" y="${y}" width="${w}" height="44" rx="12" fill="${tinte(c, 12)}" stroke="${c}" stroke-width="3"/>
+  <text x="${x + w / 2}" y="${y + 28}" text-anchor="middle" font-size="16" font-weight="800" fill="${c}">${t}</text>`;
+const fl = (d) => `<path d="${d}" stroke="#94A3B8" stroke-width="4" fill="none" marker-end="url(#pf)"/>`;
+const corte = (x, y, c) => `<circle cx="${x}" cy="${y}" r="13" fill="#fff" stroke="${c}" stroke-width="4"/>
+  <path d="M${x - 6} ${y - 6} L${x + 6} ${y + 6} M${x + 6} ${y - 6} L${x - 6} ${y + 6}" stroke="${c}" stroke-width="4"/>`;
+const rot = (x, y, c, t, a = "start") => `<text x="${x}" y="${y}" text-anchor="${a}" font-size="14" font-weight="700" fill="${c}">${t}</text>`;
+const svg = `<svg class="esc" viewBox="0 0 720 380">
+  <defs><marker id="pf" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L14 7 L0 14 Z" fill="#94A3B8"/></marker></defs>
+  ${nodo(30, 30, 170, AZUL, "Glucógeno")}
+  ${nodo(30, 230, 210, TEAL, "Gluconeogénesis")}
+  ${nodo(280, 140, 160, VERDE, "Glucosa")}
+  ${nodo(510, 30, 170, "#64748B", "Grasa")}
+  ${nodo(510, 140, 170, AMBAR, "AGL")}
+  ${nodo(510, 250, 170, MORADO, "Cetonas (BOHB)")}
+  ${nodo(280, 300, 160, TINTA, "Cerebro")}
+  ${fl("M200 56 Q262 70 312 136")}
+  ${fl("M240 250 Q275 230 312 188")}
+  ${fl("M595 76 L595 134")}
+  ${fl("M595 186 L595 244")}
+  ${fl("M360 186 L360 294")}
+  ${fl("M508 280 Q470 320 444 322")}
+  ${corte(262, 82, ROJO)}${rot(30, 100, ROJO, "Glucogenosis")}
+  ${corte(276, 222, ROJO)}${rot(30, 300, ROJO, "Glucogenosis I y")}${rot(30, 318, ROJO, "gluconeogénesis: lactato alto")}
+  ${corte(595, 104, ROJO)}${rot(574, 100, ROJO, "Hiperinsulinismo:", "end")}${rot(574, 117, ROJO, "frena la lipólisis", "end")}
+  ${corte(595, 214, NARANJA)}${rot(574, 219, NARANJA, "Defecto de oxidación", "end")}
+  <text x="460" y="372" text-anchor="middle" font-size="12.5" fill="#475569">las cetonas son el combustible de reserva del cerebro</text>
+</svg>`;
+lienzo("El ayuno y dónde falla cada causa", "Lo que mide la muestra crítica: glucosa, AGL, cetonas y lactato",
+  svg, "Esquema. Fuente: Pediatric Endocrine Society 2015 (p. 2-3 y figura); Casertano 2021, Front Endocrinol (p. 6-10).");
+</script></body></html>

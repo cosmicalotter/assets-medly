@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+// Escalones del aporte: 4,2 (60 mL/kg/día) → 6,2 → 8,2 → más de 8: sospechar hiperinsulinismo.
+const ESC = [[4.2, "60", AZUL, "inicio"], [6.2, "≈90", AZUL, "+2"], [8.2, "≈118", ROJO, "+2"]];
+const X0 = 90, Y0 = 300, gy = (v) => Y0 - v * 26;
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1, vis = t * 3.6;
+  let barras = "";
+  ESC.forEach(([v, ml, c, et], k) => {
+    const a = suave(tramo(vis, k, k + 0.7));
+    if (a <= 0) return;
+    const x = X0 + k * 150, h = (Y0 - gy(v)) * a;
+    barras += `<rect x="${x}" y="${Y0 - h}" width="110" height="${h}" rx="10" fill="${tinte(c, 25)}" stroke="${c}" stroke-width="3"/>
+      <text x="${x + 55}" y="${Y0 - h - 32}" text-anchor="middle" font-size="22" font-weight="800" fill="${c}" opacity="${a}">${String(v).replace(".", ",")}</text>
+      <text x="${x + 55}" y="${Y0 - h - 12}" text-anchor="middle" font-size="12.5" fill="#475569" opacity="${a}">mg/kg/min</text>
+      <text x="${x + 55}" y="${Y0 + 22}" text-anchor="middle" font-size="13.5" fill="#475569">${ml} mL/kg/día</text>
+      <text x="${x + 55}" y="${Y0 + 42}" text-anchor="middle" font-size="13" font-weight="700" fill="${c}">${et}</text>`;
+    if (k < 2 && vis > k + 0.8) barras += `<text x="${x + 128}" y="${gy(v + 1.6) - 8}" text-anchor="middle" font-size="12.5" fill="#64748B">30 min</text>
+      <path d="M${x + 114} ${gy(v) + 18} L${x + 146} ${gy(v + 1.6)}" stroke="#94A3B8" stroke-width="3"/>`;
+  });
+  const hi = suave(tramo(vis, 3, 3.5));
+  const svg = `<svg class="esc" viewBox="0 0 720 360">
+    <line x1="${X0 - 10}" x2="680" y1="${gy(8)}" y2="${gy(8)}" stroke="${ROJO}" stroke-width="3" stroke-dasharray="8 6"/>
+    <text x="680" y="${gy(8) - 8}" text-anchor="end" font-size="14" font-weight="800" fill="${ROJO}">8 mg/kg/min</text>
+    <line x1="${X0 - 10}" x2="680" y1="${Y0}" y2="${Y0}" stroke="#CBD5E1" stroke-width="2"/>
+    ${barras}
+    <g opacity="${hi}"><rect x="540" y="${gy(8) + 14}" width="150" height="96" rx="12" fill="${tinte(ROJO, 10)}" stroke="${ROJO}" stroke-width="3"/>
+      <text x="615" y="${gy(8) + 44}" text-anchor="middle" font-size="15" font-weight="800" fill="${ROJO}">Más de 8:</text>
+      <text x="615" y="${gy(8) + 66}" text-anchor="middle" font-size="14" fill="${TINTA}">sospechar</text>
+      <text x="615" y="${gy(8) + 86}" text-anchor="middle" font-size="14" fill="${TINTA}">hiperinsulinismo</text></g>
+  </svg>`;
+  lienzo("Subir el aporte de glucosa", "Dextrosa 10 %: si sigue baja a los 30 min, +2 mg/kg/min con más volumen o más concentración",
+    svg, F_BAPM + " (flujograma C, p. 40; tabla 3, p. 29). Volúmenes con dextrosa 10 %: aporte = mL/kg/día ÷ 144 × 10.");
+};
+window.cuadro(1, 1);
+</script></body></html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+ .pasos{display:flex;gap:8px}
+ .paso{flex:1;border-radius:10px;padding:7px 9px;font-size:13.5px;line-height:1.25;border:2px solid #E5E7EB;color:#9CA3AF;text-align:center}
+ .paso.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white);color:var(--tinta)}
+</style></head><body>
+<script>
+// Cuatro pasos: secar la mucosa con gasa, gel en la cara interna de la mejilla, masajear, ofrecer la toma.
+const PASOS = [["1", "Secar la mucosa con gasa", AZUL], ["2", "Gel en la cara interna de la mejilla", AMBAR], ["3", "Masajear con guante", TEAL], ["4", "Ofrecer la toma enseguida", VERDE]];
+const POR = 24;
+// Cabeza de recién nacido de perfil, boca abierta; mejilla resaltada.
+function cabeza(boca) {
+  return `<ellipse cx="335" cy="150" rx="118" ry="108" fill="#F7D6BD" stroke="#E8B48F" stroke-width="3"/>
+    <path d="M226 118 Q246 40 335 40 Q424 42 452 120 Q404 92 335 92 Q266 94 226 118Z" fill="${tinte(AZUL, 70)}"/>
+    <path d="M222 150 Q196 160 206 176 Q214 182 224 178" fill="#F7D6BD" stroke="#E8B48F" stroke-width="3"/>
+    <path d="M276 134 Q290 142 304 134" stroke="#7C4A2D" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="392" cy="160" rx="20" ry="28" fill="#F3C9A8" stroke="#E8B48F" stroke-width="3"/>
+    <ellipse cx="258" cy="196" rx="32" ry="20" fill="#F4B7A4" opacity=".55"/>
+    <path d="M218 ${204 - boca * 6} Q232 ${210 + boca * 5} 248 ${204 - boca * 6}" stroke="#B4533C" stroke-width="5" fill="#8C2F22"/>`;
+}
+window.cuadro = function (i, n) {
+  const T = POR * 4, t = n > 1 ? Math.round((i / (n - 1)) * (T - 1)) : 0;
+  const paso = Math.min(3, Math.floor(t / POR)), u = (t % POR) / POR;
+  let extra = "";
+  if (paso === 0) {   // gasa que pasa por la mucosa
+    const x = lerp(236, 256, Math.sin(u * Math.PI * 3) * 0.5 + 0.5);
+    extra = `<rect x="${x - 22}" y="178" width="44" height="30" rx="5" fill="#fff" stroke="${AZUL}" stroke-width="3"/>
+      <path d="M${x - 16} 186 H${x + 16} M${x - 16} 194 H${x + 16} M${x - 16} 202 H${x + 16}" stroke="${tinte(AZUL, 50)}" stroke-width="2"/>`;
+  } else if (paso === 1) {   // jeringa sin aguja que deja el gel en la mejilla
+    const g = suave(tramo(u, 0.15, 0.85));
+    extra = `<g transform="translate(${lerp(120, 150, g)},0)"><rect x="20" y="186" width="80" height="18" rx="4" fill="#fff" stroke="${AMBAR}" stroke-width="3"/>
+      <rect x="${26 + 30 * g}" y="189" width="${50 - 30 * g}" height="12" fill="${tinte(AMBAR, 55)}"/><path d="M100 195 H114" stroke="${AMBAR}" stroke-width="4"/></g>
+      <ellipse cx="252" cy="198" rx="${20 * g}" ry="${12 * g}" fill="${AMBAR}" opacity=".85"/>`;
+  } else if (paso === 2) {   // dedo con guante en círculos
+    const a = u * Math.PI * 4, x = 252 + 12 * Math.cos(a), y = 198 + 8 * Math.sin(a);
+    extra = `<ellipse cx="252" cy="198" rx="20" ry="12" fill="${AMBAR}" opacity=".55"/>
+      <path d="M${x - 90} ${y + 40} Q${x - 40} ${y + 10} ${x} ${y}" stroke="${TEAL}" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <circle cx="${x}" cy="${y}" r="11" fill="${tinte(TEAL, 40)}" stroke="${TEAL}" stroke-width="3"/>`;
+  } else {   // pecho: toma
+    const k = suave(tramo(u, 0, 0.5)), x = lerp(-60, 0, k);
+    extra = `<circle cx="${x + 70}" cy="200" r="130" fill="#EBC3A3" stroke="#C98E6B" stroke-width="3"/>
+      <ellipse cx="${x + 196}" cy="206" rx="20" ry="24" fill="#C98E6B"/>
+      <text x="660" y="300" text-anchor="end" font-size="17" font-weight="800" fill="${VERDE}" opacity="${k}">toma: pecho o leche materna</text>`;
+  }
+  const svg = `<svg class="esc" viewBox="0 0 680 320">${paso === 3 ? extra : ""}${cabeza(paso === 3 ? 1 : 0.4)}${paso === 3 ? "" : extra}
+    <g transform="translate(500,190)"><rect x="0" y="0" width="160" height="74" rx="12" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="2"/>
+      <text x="80" y="30" text-anchor="middle" font-size="22" font-weight="800" fill="${AMBAR}">0,5 mL/kg</text>
+      <text x="80" y="56" text-anchor="middle" font-size="14" fill="#475569">200 mg/kg · gel 40 %</text></g></svg>`;
+  const pasos = PASOS.map(([k, txt, c], j) => `<div class="paso ${j === paso ? "on" : ""}" style="--c:${c}"><b>${k}.</b> ${txt}</div>`).join("");
+  lienzo("Gel de glucosa 40 %: técnica", "Recién nacido: siempre con un plan de alimentación",
+    `${svg}<div class="pasos">${pasos}</div>`, F_BAPM + " (apéndice 3, p. 28).");
+};
+window.cuadro(0, 1);
+</script></body></html>
