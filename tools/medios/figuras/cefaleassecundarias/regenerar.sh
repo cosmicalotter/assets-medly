@@ -23,3 +23,8 @@ jpg arteritis "$D/cefalea_arteritis_temporal_real.jpg"
 jpg tvc "$D/cefalea_trombosis_venosa_real.jpg"
 # Ilustración real animada en 3 pasos
 gif bloqueo "$D/cefalea_bloqueo_occipital_pasos.gif" 3 2600 3500 192
+# Esquemas propios (PNG)
+png() { node tools/medios/capturar.js "$H/$1.html" "$2" >/dev/null; echo "$2"; }
+png cuatro "$D/cefalea_cuatro_tratamientos.png"
+png preventivo "$D/cefalea_juzgar_preventivo.png"
+png racimos_brote "$D/cefalea_brote_racimos.png"
