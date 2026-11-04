@@ -72,6 +72,9 @@ def faltan(ruta, conocidas):
     for nid, n in d["nodos"].items():
         for t in textos(n):
             limpio = re.sub(r"\{#[0-9A-Fa-f]{6}:", "", t or "")
+            # Las siglas compuestas del glosario («CKD-EPI», «HIF-PHI») cuentan enteras.
+            for compuesta in (k for k in conocidas if "-" in k):
+                limpio = re.sub(rf"(?<![\w]){re.escape(compuesta)}(?![\w])", " ", limpio)
             for s in SIGLA.findall(limpio):
                 s = s.strip()
                 if s not in conocidas and not NO_SIGLA.match(s) and s not in vistas:
