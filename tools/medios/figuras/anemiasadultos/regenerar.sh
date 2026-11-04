@@ -23,8 +23,17 @@ jpg frotis_ferropenia "$D/anemiasadultos_frotis_ferropenia_real.jpg"
 jpg neutrofilos "$D/anemiasadultos_neutrofilos_hipersegmentados_real.jpg"
 jpg glositis "$D/anemiasadultos_glositis_atrofica_real.jpg"
 jpg esquistocitos "$D/anemiasadultos_esquistocitos_real.jpg"
+# Fotos reales (Wikimedia Commons, CC BY / CC BY-SA) rotuladas
+jpg talasemia "$D/anemiasadultos_talasemia_frotis_real.jpg"
+jpg sideroblastos "$D/anemiasadultos_sideroblastos_anillo_real.jpg"
+jpg punteado "$D/anemiasadultos_punteado_basofilo_real.jpg"
+jpg esferocitos "$D/anemiasadultos_esferocitos_real.jpg"
+jpg reticulocitos "$D/anemiasadultos_reticulocitos_real.jpg"
 # Esquemas propios
 png altitud "$D/anemiasadultos_altitud_tabaco.png"
 png ferritina "$D/anemiasadultos_ferritina_cortes.png"
+png embarazo_hb "$D/anemiasadultos_embarazo_cortes.png"
+png hierro_iv "$D/anemiasadultos_hierro_iv_fosfato.png"
+png aee_ajuste "$D/anemiasadultos_aee_ajuste.png"
 gif respuesta_hierro "$D/anemiasadultos_respuesta_hierro.gif" 48 200 3500 128
 gif pauta_b12 "$D/anemiasadultos_pauta_b12.gif" 12 900 3500 128

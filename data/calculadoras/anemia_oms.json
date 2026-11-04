@@ -61,27 +61,27 @@
             {
               "label": "Mujer no embarazada",
               "puntos": 1,
-              "detalle": "15-65 años; anemia si Hb <120 g/L"
+              "detalle": "15-65 años; anemia si Hb <12 g/dL"
             },
             {
               "label": "Hombre",
               "puntos": 2,
-              "detalle": "15-65 años; anemia si Hb <130 g/L"
+              "detalle": "15-65 años; anemia si Hb <13 g/dL"
             },
             {
               "label": "Embarazo, 1.er trimestre",
               "puntos": 3,
-              "detalle": "Anemia si Hb <110 g/L"
+              "detalle": "Anemia si Hb <11 g/dL"
             },
             {
               "label": "Embarazo, 2.º trimestre",
               "puntos": 4,
-              "detalle": "Anemia si Hb <105 g/L"
+              "detalle": "Anemia si Hb <10,5 g/dL"
             },
             {
               "label": "Embarazo, 3.er trimestre",
               "puntos": 5,
-              "detalle": "Anemia si Hb <110 g/L"
+              "detalle": "Anemia si Hb <11 g/dL"
             }
           ]
         },
@@ -89,13 +89,13 @@
           "id": "hb",
           "tipo": "input_numero",
           "label": "Hemoglobina medida",
-          "unidad": "g/L",
-          "min": 20,
-          "max": 250,
+          "unidad": "g/dL",
+          "min": 2,
+          "max": 25,
           "unidades": [
             {
-              "unidad": "g/dL",
-              "factor": 10
+              "unidad": "g/L",
+              "factor": 0.1
             }
           ]
         },
@@ -110,39 +110,39 @@
           "intervalos": [
             {
               "min": 4500,
-              "puntos": -33
+              "puntos": -3.3
             },
             {
               "min": 4000,
-              "puntos": -29
+              "puntos": -2.9
             },
             {
               "min": 3500,
-              "puntos": -25
+              "puntos": -2.5
             },
             {
               "min": 3000,
-              "puntos": -21
+              "puntos": -2.1
             },
             {
               "min": 2500,
-              "puntos": -18
+              "puntos": -1.8
             },
             {
               "min": 2000,
-              "puntos": -14
+              "puntos": -1.4
             },
             {
               "min": 1500,
-              "puntos": -11
+              "puntos": -1.1
             },
             {
               "min": 1000,
-              "puntos": -8
+              "puntos": -0.8
             },
             {
               "min": 500,
-              "puntos": -4
+              "puntos": -0.4
             },
             {
               "min": 0,
@@ -161,19 +161,19 @@
             },
             {
               "label": "Fuma, cantidad desconocida",
-              "puntos": -3
+              "puntos": -0.3
             },
             {
               "label": "Menos de 10 cigarrillos/día",
-              "puntos": -3
+              "puntos": -0.3
             },
             {
               "label": "10-19 cigarrillos/día",
-              "puntos": -5
+              "puntos": -0.5
             },
             {
               "label": "20 o más cigarrillos/día",
-              "puntos": -6,
+              "puntos": -0.6,
               "detalle": "«Más de 20» en la tabla de la OMS"
             }
           ]
@@ -182,286 +182,6 @@
     }
   ],
   "resultados": [
-    {
-      "categoria": "Anemia grave",
-      "color": "rojo",
-      "match_opcion_index": -1,
-      "approach": "Hb ajustada <80 g/L (<70 en el embarazo). Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
-      "si": {
-        "alguno": [
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 1
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "maximo": 79.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 2
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "maximo": 79.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 3
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "maximo": 69.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 4
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "maximo": 69.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 5
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "maximo": 69.99
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "categoria": "Anemia moderada",
-      "color": "naranja",
-      "match_opcion_index": -1,
-      "approach": "Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
-      "si": {
-        "alguno": [
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 1
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 80,
-                "maximo": 109.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 2
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 80,
-                "maximo": 109.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 3
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 70,
-                "maximo": 99.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 4
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 70,
-                "maximo": 94.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 5
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 70,
-                "maximo": 99.99
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "categoria": "Anemia leve",
-      "color": "amarillo",
-      "match_opcion_index": -1,
-      "approach": "Buscar la causa: VCM, reticulocitos, bioquímica con hemólisis y perfil férrico.",
-      "si": {
-        "alguno": [
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 1
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 110,
-                "maximo": 119.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 2
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 110,
-                "maximo": 129.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 3
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 100,
-                "maximo": 109.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 4
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 95,
-                "maximo": 104.99
-              }
-            ]
-          },
-          {
-            "todos": [
-              {
-                "id": "poblacion",
-                "igual": 5
-              },
-              {
-                "suma": [
-                  "hb",
-                  "altitud_puntos",
-                  "tabaco"
-                ],
-                "minimo": 100,
-                "maximo": 109.99
-              }
-            ]
-          }
-        ]
-      }
-    },
     {
       "categoria": "Sin anemia",
       "color": "verde",
@@ -481,7 +201,7 @@
                   "altitud_puntos",
                   "tabaco"
                 ],
-                "minimo": 120
+                "minimo": 11.9999
               }
             ]
           },
@@ -497,7 +217,7 @@
                   "altitud_puntos",
                   "tabaco"
                 ],
-                "minimo": 130
+                "minimo": 12.9999
               }
             ]
           },
@@ -513,7 +233,7 @@
                   "altitud_puntos",
                   "tabaco"
                 ],
-                "minimo": 110
+                "minimo": 10.9999
               }
             ]
           },
@@ -529,7 +249,7 @@
                   "altitud_puntos",
                   "tabaco"
                 ],
-                "minimo": 105
+                "minimo": 10.4999
               }
             ]
           },
@@ -545,7 +265,237 @@
                   "altitud_puntos",
                   "tabaco"
                 ],
-                "minimo": 110
+                "minimo": 10.9999
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Anemia leve",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Buscar la causa: VCM, reticulocitos, química sanguínea con parámetros de hemólisis y perfil férrico.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 10.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 10.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 9.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 9.4999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 9.9999
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Anemia moderada",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Hb ajustada de 8 a 10,9 g/dL (de 7 a 9,9 en el embarazo; de 7 a 9,4 en el 2.º trimestre). Buscar la causa: VCM, reticulocitos, química sanguínea con parámetros de hemólisis y perfil férrico.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 7.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 7.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 6.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 6.9999
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
+              },
+              {
+                "suma": [
+                  "hb",
+                  "altitud_puntos",
+                  "tabaco"
+                ],
+                "minimo": 6.9999
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "categoria": "Anemia grave",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Hb ajustada <8 g/dL (<7 en el embarazo). Buscar la causa: VCM, reticulocitos, química sanguínea con parámetros de hemólisis y perfil férrico.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 2
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 3
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 4
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "poblacion",
+                "igual": 5
               }
             ]
           }
