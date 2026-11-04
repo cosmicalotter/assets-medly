@@ -27,7 +27,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Asma",
-      "texto": "- **Asma:** enfermedad heterogénea con **inflamación crónica** de la vía aérea; los síntomas (sibilancias, disnea, opresión torácica, tos) y el **flujo espiratorio** varían en el tiempo y en intensidad. Se confirma si el FEV1 sube **≥12 % y ≥200 mL** con el broncodilatador u otra prueba muestra **flujo variable**.\n- **Crisis:** aumento **progresivo** de los síntomas y caída de la función pulmonar respecto a lo habitual, que obliga a **cambiar el tratamiento**.\n- **Asma de difícil control:** no controlada pese a ICS-LABA a dosis **media o alta**.\n- **Asma grave:** no controlada pese a una buena **adherencia** a ICS-LABA a dosis **alta** optimizada, o que empeora al bajarla.",
+      "texto": "- **Asma:** enfermedad con **inflamación crónica** de la vía aérea, síntomas respiratorios y **flujo espiratorio** que varían en el tiempo y en intensidad. Se confirma si el FEV1 sube **≥12 % y ≥200 mL** con el broncodilatador (en 12-17 años, ≥12 % del teórico) o si otra prueba muestra **flujo variable**.\n- **Crisis:** aumento **progresivo** de los síntomas y caída de la función pulmonar respecto a lo habitual, que obliga a **cambiar el tratamiento**.\n- **Asma de difícil control:** no controlada pese a ICS-LABA a dosis **media o alta**, o que necesita dosis **alta** para mantener el control.\n- **Asma grave:** no controlada pese a la **adherencia** a ICS-LABA a dosis **alta** optimizada y al tratamiento de los **factores que contribuyen**, o que empeora al bajarla.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -95,7 +95,7 @@
         {
           "titulo": "Asma de difícil control",
           "paginas": "149",
-          "texto": "Difficult-to-treat asthma is asthma that is uncontrolled despite prescribing of medium- or high-dose treatment with the combination of inhaled corticosteroid (ICS) and long-acting beta2-agonist (LABA)",
+          "texto": "uncontrolled despite prescribing of medium- or high-dose treatment with the combination of inhaled corticosteroid (ICS) and long-acting beta2-agonist (LABA), or that requires high-dose ICS-LABA treatment to maintain good symptom control",
           "fuente": "GINA 2026",
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
@@ -131,6 +131,24 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag28_box_1_2_prueba_con_ics_4_semanas.png"
+        },
+        {
+          "titulo": "Box 1-2: adultos ≥18 años y niños de 6-17",
+          "paginas": "28",
+          "texto": "Box 1-2. Criteria for initial diagnosis of asthma in adults (≥18 years) and children (6–17 years)",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: broncodilatador en 6-17 años",
+          "paginas": "28",
+          "texto": "Children: increase from baseline in FEV1 of ≥12% predicted (or in PEF of ≥15%)",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -147,24 +165,25 @@
     "diag_paso_1": {
       "tipo": "pregunta",
       "titulo": "Buscar los síntomas típicos del asma",
-      "contexto": "Se confirma **antes de empezar el ICS**, porque cuando el asma ya está controlada cuesta más demostrar el **flujo variable**.",
+      "contexto": "El diagnóstico se confirma **antes de empezar el ICS**, porque cuando el asma ya está controlada cuesta más demostrar el **flujo variable**.",
       "texto": "- A favor:\n  - Sibilancias, disnea, opresión o tos que **varían** en el tiempo y en intensidad.\n  - Peores **de noche** o al despertar.\n  - Desencadenadas por ejercicio, risa, alérgenos, aire frío o **virus**.\n- En contra:\n  - Expectoración crónica.\n  - Mareo o parestesias con la disnea.\n  - Dolor torácico.\n  - Estridor inspiratorio con el ejercicio.",
       "nota_adicional": "Que los síntomas empeoren **al terminar** el ejercicio es casi **patognomónico** del asma: la disnea por otras causas mejora al descansar.",
-      "pie_nodo": "¿Son típicos los síntomas, y ya toma un ICS?",
+      "pie_nodo": "¿Cuál de estas situaciones describe al paciente?",
       "opciones": [
         {
-          "texto": "Típicos, sin ICS",
+          "texto": "Síntomas típicos, sin ICS",
           "siguiente_nodo": "diag_espiro",
-          "descripcion": "Medir la función pulmonar"
+          "descripcion": "Aún no ha empezado el ICS"
         },
         {
-          "texto": "Típicos, ya con ICS",
-          "siguiente_nodo": "diag_con_ics"
+          "texto": "Ya recibe ICS",
+          "siguiente_nodo": "diag_con_ics",
+          "descripcion": "Con síntomas típicos o atípicos"
         },
         {
-          "texto": "Atípicos",
+          "texto": "Síntomas atípicos, sin ICS",
           "siguiente_nodo": "diag_diferencial",
-          "descripcion": "Buscar otra causa"
+          "descripcion": "Rasgos en contra del asma"
         }
       ],
       "referencias": [
@@ -232,7 +251,7 @@
     "diag_espiro": {
       "tipo": "pregunta",
       "titulo": "Hacer la espirometría con broncodilatador",
-      "texto": "- Retirar antes el SABA **≥4 h** y los broncodilatadores de acción larga **24-48 h**.\n- Medir FEV1 y FVC antes y **10-15 min** después de **200-400 mcg** de salbutamol.\n- Es positiva si el FEV1 o la FVC suben **≥12 % y ≥200 mL**; más segura con **≥15 % y ≥400 mL**.\n- Sin espirometría, el PEF debe subir **≥20 %**: anotar el mejor de **3** soplidos, siempre con el **mismo medidor**.",
+      "texto": "- Retirar antes el **SABA** **≥4 h** y los broncodilatadores de acción larga **24-48 h**.\n- Medir el FEV1 y la FVC antes y **10-15 min** después de **200-400 mcg** de **salbutamol**.\n- Adulto: es **positiva** si el FEV1 o la FVC suben **≥12 % y ≥200 mL** (más segura con **≥15 % y ≥400 mL**), o el PEF **≥20 %**.\n- 12-17 años: es **positiva** si el FEV1 sube **≥12 % del teórico** o el PEF **≥15 %**.\n- Para el PEF, anotar el mejor de **3 intentos**, siempre con el **mismo medidor**.",
       "farmacos": [
         {
           "nombre": "Salbutamol (prueba broncodilatadora)",
@@ -247,8 +266,8 @@
           "recurso": "asma_flujo_volumen_real.jpg",
           "titulo": "Respuesta al broncodilatador",
           "descripcion": "Curva flujo-volumen antes y después del broncodilatador en un paciente con respuesta positiva.",
-          "info": "{#40408C:Curva azul}: antes del broncodilatador, con la rama espiratoria **cóncava** de la obstrucción. {#A83232:Curva roja}: después; suben el **flujo máximo** y el volumen espirado. Es positiva si el FEV1 o la FVC suben **≥12 % y ≥200 mL**.",
-          "en_texto": "Medir FEV1",
+          "info": "{#40408C:Curva azul}: antes del broncodilatador, con la rama espiratoria **cóncava** de la obstrucción. {#A83232:Curva roja}: después; suben el **flujo máximo** y el volumen espirado. Es positiva si el FEV1 o la FVC suben **≥12 % y ≥200 mL** (en 12-17 años, **≥12 % del teórico**).",
+          "en_texto": "Medir el FEV1",
           "referencias": [
             {
               "titulo": "Box 1-2: respuesta broncodilatadora en adultos",
@@ -268,12 +287,12 @@
         {
           "texto": "Sí",
           "siguiente_nodo": "diag_confirmado",
-          "descripcion": "FEV1 o FVC ↑ ≥12 % y ≥200 mL, o PEF ↑ ≥20 %"
+          "descripcion": "Adulto: FEV1 o FVC ↑ ≥12 % y ≥200 mL; 12-17 años: FEV1 ↑ ≥12 % del teórico"
         },
         {
           "texto": "No",
           "siguiente_nodo": "diag_espiro_negativo",
-          "descripcion": "Buscar la variabilidad con otras pruebas"
+          "descripcion": "No llega a esos cortes"
         }
       ],
       "referencias": [
@@ -346,45 +365,73 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag25_sin_espirometria_pef.png"
+        },
+        {
+          "titulo": "Box 1-2: adultos ≥18 años y niños de 6-17",
+          "paginas": "28",
+          "texto": "Box 1-2. Criteria for initial diagnosis of asthma in adults (≥18 years) and children (6–17 years)",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: broncodilatador en 6-17 años",
+          "paginas": "28",
+          "texto": "Children: increase from baseline in FEV1 of ≥12% predicted (or in PEF of ≥15%)",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "diag_espiro_negativo": {
       "tipo": "pregunta",
       "titulo": "Buscar la variabilidad del flujo con otras pruebas",
-      "texto": "- Repetir la espirometría **con síntomas** o por la mañana, tras retirar los broncodilatadores.\n- Cualquier prueba de la tabla confirma el **flujo variable**, también la variabilidad del PEF.\n- Un FeNO **>50 ppb** o **eosinófilos** altos apoyan el asma tipo 2, pero valores bajos **no la descartan**.",
+      "texto": "- Repetir la espirometría **con síntomas** o por la mañana, tras retirar los broncodilatadores.\n- Cualquier prueba de la tabla, también la variabilidad del PEF, confirma el **flujo variable**; los cortes cambian en **12-17 años**.\n- Un FeNO **>50 ppb** o **eosinófilos** altos apoyan el asma tipo 2, pero valores bajos **no la descartan**.\n- Con **urgencia clínica**, se puede empezar el ICS y hacer las pruebas en las **semanas siguientes**.",
       "tabla": {
-        "titulo": "Otras pruebas positivas en el adulto",
+        "titulo": "Otras pruebas positivas",
         "columnas": [
           "Prueba",
-          "Positiva si"
+          "Adulto",
+          "12-17 años"
         ],
         "filas": [
           [
-            "PEF 2 veces al día, 2 semanas",
-            "Variabilidad diaria media **>10 %**"
+            "**PEF** 2 veces al día, 2 semanas",
+            "Variabilidad diaria media **>10 %**",
+            "Variabilidad diaria media **>13 %**"
           ],
           [
-            "ICS diario 4 semanas",
-            "FEV1 **↑ ≥12 % y ≥200 mL** (o PEF **↑ ≥20 %**)"
+            "**ICS diario** 4 semanas",
+            "FEV1 **↑ ≥12 % y ≥200 mL** (o PEF **↑ ≥20 %**)",
+            "FEV1 **↑ ≥12 % del teórico** (o PEF **↑ ≥15 %**)"
           ],
           [
-            "Metacolina",
+            "**Metacolina**",
+            "FEV1 **↓ ≥20 %**",
             "FEV1 **↓ ≥20 %**"
           ],
           [
-            "Manitol, solución salina hipertónica o hiperventilación",
-            "FEV1 **↓ ≥15 %**"
+            "- **Manitol**\n- Solución salina hipertónica\n- Hiperventilación",
+            "FEV1 **↓ ≥15 %**",
+            "Sin corte en la guía"
           ],
           [
-            "Entre visitas",
-            "FEV1 **±12 % y 200 mL** (o PEF **20 %**)"
+            "**Ejercicio**",
+            "FEV1 **↓ >10 % y >200 mL**",
+            "FEV1 **↓ >12 % del teórico** (o PEF **↓ >15 %**)"
+          ],
+          [
+            "**Entre visitas**",
+            "FEV1 **±12 % y ≥200 mL** (o PEF **±20 %**)",
+            "FEV1 **±12 %** (o PEF **±15 %**)"
           ]
         ],
         "en_texto": "la tabla",
         "resaltar_primera_columna": true
       },
-      "nota_adicional": "Con **urgencia clínica** se puede empezar el ICS y hacer las pruebas en las **semanas siguientes**, tras descartar lo que imita al asma.",
       "discrepancias": [
         {
           "asunto": "Variabilidad del PEF",
@@ -400,23 +447,7 @@
               "paginas": "42"
             }
           ],
-          "nota": "Con una variabilidad del **10-20 %**, es **asma** para la **GINA** y no para la **GEMA**; el algoritmo sigue a la GINA."
-        },
-        {
-          "asunto": "Corte de FeNO",
-          "posturas": [
-            {
-              "fuente": "GINA 2026",
-              "dice": "**>50 ppb** en adultos y adolescentes apoya el asma tipo 2.",
-              "paginas": "28"
-            },
-            {
-              "fuente": "GEMA 5.5",
-              "dice": "**>40 ppb** sin corticoide previo, sobre todo con FEV1 reducido.",
-              "paginas": "58"
-            }
-          ],
-          "nota": "Un FeNO de **41 a 50 ppb** apoya el asma para la **GEMA** y no para la **GINA**."
+          "nota": "La **GINA** mide la variabilidad **media** de 2 semanas y la **GEMA** pide **≥20 %** en ≥3 días por semana: un mismo registro puede confirmar el asma con una y **no con la otra**."
         }
       ],
       "media": [
@@ -424,7 +455,7 @@
           "recurso": "asma_variabilidad_pef.png",
           "titulo": "Variabilidad del PEF",
           "descripcion": "PEF de mañana y tarde durante 2 semanas, y cómo se calcula la variabilidad.",
-          "info": "Las barras grises unen el PEF {#4F8CF6:más bajo} y el {#F07F3C:más alto} de cada día. La **variabilidad diaria** es su diferencia dividida por su media, promediada **14 días**; más del **10 %** apoya el asma en el adulto. Los datos son un **ejemplo**.",
+          "info": "Las barras grises unen el PEF {#4F8CF6:más bajo} y el {#F07F3C:más alto} de cada día. La **variabilidad diaria** es su diferencia dividida por su media, promediada **14 días**; más del **10 %** apoya el asma en el adulto (**13 %** en 12-17 años). Los datos son un **ejemplo**.",
           "en_texto": "variabilidad del PEF",
           "referencias": [
             {
@@ -446,8 +477,24 @@
               "url": "https://ginasthma.org/2026-gina-strategy-report/",
               "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
               "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/asmaadultos/evidencia_asmaadultos_pag29_como_se_calcula_la_variabilidad.png"
+            },
+            {
+              "titulo": "Box 1-2: variabilidad del PEF por edad",
+              "paginas": "28",
+              "texto": "Adults: average daily diurnal PEF variability >10% Children: average daily diurnal PEF variability >13%",
+              "fuente": "GINA 2026",
+              "anio": "2026",
+              "url": "https://ginasthma.org/2026-gina-strategy-report/",
+              "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
             }
           ]
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Empezar el tratamiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_tratamiento"
         }
       ],
       "pie_nodo": "¿Alguna prueba demuestra flujo variable?",
@@ -460,7 +507,7 @@
         {
           "texto": "No",
           "siguiente_nodo": "diag_diferencial",
-          "descripcion": "Buscar otro diagnóstico"
+          "descripcion": "Ninguna prueba es positiva"
         }
       ],
       "referencias": [
@@ -553,6 +600,51 @@
           "url": "https://www.gemasma.com/",
           "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Luzán 5; 2025. Disponible en: www.gemasma.com",
           "imagen_evidencia": "evidencia_asmaadultos_pag58_feno_40_ppb_r2.png"
+        },
+        {
+          "titulo": "Box 1-2: adultos ≥18 años y niños de 6-17",
+          "paginas": "28",
+          "texto": "Box 1-2. Criteria for initial diagnosis of asthma in adults (≥18 years) and children (6–17 years)",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: variabilidad del PEF por edad",
+          "paginas": "28",
+          "texto": "Adults: average daily diurnal PEF variability >10% Children: average daily diurnal PEF variability >13%",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: provocación en el adulto",
+          "paginas": "28",
+          "texto": "or ≥15% with standardized hyperventilation, hypertonic saline or mannitol challenge, or >10% and >200 mL with standardized exercise challenge",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: provocación en 6-17 años",
+          "paginas": "28",
+          "texto": "Children: fall from baseline in FEV1 of ≥20% with standard doses of methacholine, or >12% predicted (or fall in PEF >15%) with standardized exercise challenge",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-2: variación entre visitas por edad",
+          "paginas": "28",
+          "texto": "Adults: variation in FEV1 of ≥12% and ≥200 mL (or in PEF of ≥20%) between visits Children: variation of ≥12% in FEV1 (or ≥15% in PEF) between visits",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -603,18 +695,25 @@
       "tipo": "pregunta",
       "titulo": "Repetir las pruebas y ajustar el ICS para aclarar el diagnóstico",
       "texto": "- Repetir la espirometría tras retirar los broncodilatadores o **con síntomas**, y comparar el FEV1 **entre visitas**.\n- Si sigue sin flujo variable:\n  - FEV1 **>70 %**: bajar el ICS, reevaluar en **2-4 semanas** y valorar una **provocación bronquial**.\n  - FEV1 **<70 %**: subir el ICS **1-2 meses** y reevaluar los síntomas y la función.\n- Con pocos síntomas y función normal, bajar el ICS: si reaparecen los síntomas y **cae la función**, es asma.",
+      "enlaces": [
+        {
+          "texto": "Asma y EPOC",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "esp_epoc"
+        }
+      ],
       "pie_nodo": "¿Aparece el flujo espiratorio variable?",
       "opciones": [
         {
           "texto": "Sí",
           "siguiente_nodo": "diag_confirmado",
-          "descripcion": "Asma confirmada"
+          "descripcion": "Asma confirmada: volver a la dosis eficaz previa"
         },
         {
           "texto": "No",
           "siguiente_nodo": "diag_diferencial",
-          "descripcion": "Volver a la dosis previa y remitir",
-          "contexto": "- Se recomienda volver a la **dosis previa** de ICS y **remitir** para estudiar el diagnóstico."
+          "descripcion": "Sigue sin flujo variable tras ajustar el ICS",
+          "contexto": "- Si se subió el ICS sin respuesta, se recomienda volver a la **dosis previa** y **remitir**, o tratarlo como **asma con EPOC** si la obstrucción es persistente.\n- Si se bajó sin cambios, se puede **suspender** el mantenimiento o pasar a ICS-formoterol **sólo a demanda**, vigilando **≥12 meses**."
         }
       ],
       "referencias": [
@@ -684,6 +783,24 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-4: sin cambios a la dosis mínima",
+          "paginas": "33",
+          "texto": "consider ceasing maintenance ICS-containing treatment, or switching to as-needed-only ICS-formoterol, and monitor patient closely for at least 12 months",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-4: obstrucción persistente sin respuesta",
+          "paginas": "33",
+          "texto": "If no response, resume previous ICS dose and refer patient for further investigation and management, or manage as for patients with features of both asthma and COPD",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -700,7 +817,7 @@
         "filas": [
           [
             "- Tos o disnea con humo, olores o comida\n- Estridor",
-            "- Hipersensibilidad tusígena\n- ERGE (reflujo gastroesofágico)\n- Obstrucción laríngea inducible"
+            "- Hipersensibilidad tusígena\n- ERGE\n- Obstrucción laríngea inducible"
           ],
           [
             "- Mareo\n- Parestesias\n- Suspiros",
@@ -709,6 +826,18 @@
           [
             "- Tos productiva\n- Infecciones de repetición",
             "- Bronquiectasias\n- Bronquitis bacteriana prolongada"
+          ],
+          [
+            "12-39 años:\n- Estornudos\n- Picor o congestión nasal\n- Carraspeo",
+            "Síndrome de tos de la vía aérea superior"
+          ],
+          [
+            "12-39 años:\n- Tos y moco excesivos",
+            "Fibrosis quística"
+          ],
+          [
+            "12-39 años:\n- Soplos cardiacos",
+            "Cardiopatía"
           ],
           [
             "12-39 años:\n- Disnea\n- Familia con enfisema precoz",
@@ -720,18 +849,18 @@
           ],
           [
             "≥40 años:\n- Tos\n- Esputo\n- Disnea\n- Tabaco",
-            "EPOC (enfermedad pulmonar obstructiva crónica)"
+            "EPOC"
           ],
           [
             "≥40 años:\n- Disnea de esfuerzo o nocturna\n- Edemas",
             "Insuficiencia cardiaca"
           ],
           [
-            "Toma IECA (inhibidor de la enzima convertidora)",
+            "Toma un IECA",
             "Tos por fármacos"
           ],
           [
-            "- Disnea de esfuerzo\n- Tos seca\n- Acropaquias",
+            "- Disnea de esfuerzo\n- Tos seca\n- Hipocratismo digital",
             "Enfermedad pulmonar parenquimatosa"
           ],
           [
@@ -743,7 +872,7 @@
             "Obstrucción de la vía aérea central"
           ],
           [
-            "- Tos crónica\n- Hemoptisis\n- Fiebre\n- Sudor nocturno\n- Pérdida de peso",
+            "- Tos crónica\n- Hemoptisis\n- Fiebre\n- Sudoración nocturna\n- Pérdida de peso",
             "Tuberculosis"
           ],
           [
@@ -808,13 +937,31 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag72_box_3_8_diagnostico_dudoso.png"
+        },
+        {
+          "titulo": "Box 1-3: tos de la vía aérea superior",
+          "paginas": "30",
+          "texto": "12–39 years Sneezing, itching, blocked nose, throat-clearing Chronic upper airway cough syndrome Cough or dyspnea triggered by smoke or strong smells, or food",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 1-3: fibrosis quística y cardiopatía",
+          "paginas": "30",
+          "texto": "Excessive cough and mucus production Cystic fibrosis Cardiac murmurs Heart disease Shortness of breath, family history of early emphysema Alpha1-antitrypsin deficiency",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "diag_confirmado": {
       "tipo": "pregunta",
       "titulo": "Valorar el control y el riesgo de crisis",
-      "texto": "- Medir el **control de síntomas** de las últimas **4 semanas** con la calculadora.\n- Buscar los **factores de riesgo** de crisis de la lista: existen aunque haya pocos síntomas.\n- Medir el FEV1 al empezar, a los **3-6 meses** del ICS (mejor personal) y luego cada **1-2 años**.\n- En cada visita, animar a dejar el **tabaco y el vapeo**; vacunar de la gripe cada año si el asma es moderada o grave.",
+      "texto": "- Medir el **control de síntomas** de las últimas **4 semanas** con la calculadora.\n- Buscar los **factores de riesgo** de crisis de la lista: existen aunque haya pocos síntomas.\n- Medir el FEV1 al empezar, a los **3-6 meses** del ICS (mejor personal) y luego cada **1-2 años**.\n- Animar en cada visita a dejar el **tabaco y el vapeo**.\n- Vacunar contra la **influenza** cada año si el asma es **moderada o grave**.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/gina_control_asma.json",
         "etiqueta": "Calcular el control de síntomas (GINA)",
@@ -830,7 +977,7 @@
           "Tabaco, cigarrillo electrónico, alérgenos o contaminación",
           "Problemas **psicológicos** o socioeconómicos graves",
           "FEV1 bajo (sobre todo **<60 %**) o respuesta broncodilatadora alta",
-          "Eosinófilos o FeNO altos",
+          "**Eosinófilos** o FeNO altos",
           "Intubación o UCI por asma, o **≥1 crisis grave** en el último año"
         ]
       },
@@ -929,7 +1076,7 @@
       "texto": "Mantenimiento",
       "opciones": [
         {
-          "texto": "Elegir la vía",
+          "texto": "Asma confirmada",
           "siguiente_nodo": "trat_cronico"
         }
       ]
@@ -937,15 +1084,14 @@
     "trat_cronico": {
       "tipo": "pregunta",
       "titulo": "Elegir la vía de tratamiento",
-      "contexto": "El **ICS** reduce las **crisis graves** en todo adulto o adolescente con asma, incluso **leve**.",
-      "texto": "- Vía 1 (preferida): rescate con **ICS-formoterol** a dosis baja; en los pasos 3-5, también de mantenimiento (MART).\n- Vía 2: rescate con ICS-SABA o SABA; sólo si se espera **buena adherencia** al mantenimiento diario.\n- Subir y bajar con el **mismo rescate**; se puede **cambiar de vía**.",
+      "texto": "- Vía 1 (preferida): usar **ICS-formoterol** a dosis baja como **rescate**; desde el paso 3, también como **mantenimiento** (MART).\n- Vía 2: usar ICS-SABA o SABA como rescate, sólo si se espera **buena adherencia** al mantenimiento diario.\n- Subir y bajar de paso con el **mismo rescate**; si hace falta, se puede **cambiar de vía**.",
       "alertas": [
         {
-          "titulo": "Nunca sin ICS",
-          "texto": "Ni SABA regular, ni LABA o LAMA sin ICS: **aumentan las crisis graves**."
+          "titulo": "SABA, LABA o LAMA sin ICS",
+          "texto": "El **SABA regular** y el LABA o LAMA **sin ICS** aumentan las **crisis graves**."
         },
         {
-          "titulo": "Montelukast",
+          "titulo": "Efectos neuropsiquiátricos del montelukast",
           "texto": "Es **menos eficaz** que el ICS; avisar de sus **efectos neuropsiquiátricos**."
         }
       ],
@@ -954,24 +1100,6 @@
         "fuente": "GINA 2026"
       },
       "nota_adicional": "La vía 1 reduce las **crisis graves** frente al rescate con SABA, con el mismo **control de síntomas**, y usa **un solo inhalador**.",
-      "discrepancias": [
-        {
-          "asunto": "Número de escalones",
-          "posturas": [
-            {
-              "fuente": "GINA 2026",
-              "dice": "**5 pasos**, en dos vías según el rescate.",
-              "paginas": "80, 83"
-            },
-            {
-              "fuente": "GEMA 5.5",
-              "dice": "**6 escalones** terapéuticos.",
-              "paginas": "67"
-            }
-          ],
-          "nota": "Las **dosis** por escalón coinciden en lo esencial; el algoritmo sigue la **numeración de la GINA**."
-        }
-      ],
       "media": [
         {
           "recurso": "asma_via1_escalones.gif",
@@ -1143,13 +1271,12 @@
     },
     "trat_track1": {
       "tipo": "pregunta",
-      "titulo": "Elegir el escalón inicial de la vía 1",
-      "contexto": "Con ICS-formoterol, cada inhalación de **rescate** lleva también **antiinflamatorio**: por eso bajan las crisis graves.",
-      "texto": "- Antes de empezar, anotar el diagnóstico, el **control**, los factores de riesgo y el **FEV1**.\n- Elegir el inhalador y **enseñar la técnica**.\n- Revisar a los **2-3 meses**.",
-      "nota_adicional": "Empezar en el paso 3 aunque haya pocos síntomas si:\n- Percibe mal la **obstrucción** (FEV1 bajo con pocos síntomas).\n- Tuvo una **crisis grave** reciente o con riesgo vital.\n- Está expuesto a un **alérgeno** estacional.",
+      "titulo": "Elegir el escalón de la vía 1",
+      "contexto": "Con ICS-formoterol, cada **rescate** lleva también **antiinflamatorio**, y por eso bajan las crisis graves.",
+      "texto": "- Antes de empezar, anotar el **control**, el riesgo de crisis y el **FEV1**.\n- Elegir el inhalador, **enseñar la técnica** y revisar a los **2-3 meses**.\n- Empezar en el **paso 3** aunque haya pocos síntomas si:\n  - Percibe mal la **obstrucción**.\n  - Tuvo una **crisis grave** reciente o con riesgo vital.\n  - Tiene **hiperrespuesta bronquial** grave.\n  - Está expuesto a un **alérgeno** estacional.\n- Si ya recibe tratamiento y sigue sin control tras corregir la técnica y la **adherencia**, **subir un paso**.",
       "burbujas": [
         {
-          "en_texto": "lleva también",
+          "en_texto": "bajan las crisis graves",
           "titulo": "¿Por qué el formoterol sirve de rescate?",
           "texto": "El formoterol es un LABA de **inicio rápido**, tan eficaz como el SABA para aliviar los síntomas; otros LABA, como el **salmeterol**, actúan más despacio y **no sirven** de rescate.",
           "referencias": [
@@ -1174,7 +1301,7 @@
           ]
         }
       ],
-      "pie_nodo": "¿Con qué frecuencia tiene síntomas o despertares, y cómo está su función pulmonar?",
+      "pie_nodo": "¿Cuál es el cuadro más grave que cumple, por sus síntomas, despertares y función pulmonar?",
       "opciones": [
         {
           "texto": "Menos de 3-5 días por semana",
@@ -1183,19 +1310,22 @@
           "color": "azul"
         },
         {
-          "texto": "La mayoría de los días (≥4 por semana)",
+          "texto": "La mayoría de los días (p. ej., ≥4 por semana)",
           "siguiente_nodo": "trat_t1_step3",
-          "descripcion": "O despierta ≥1 vez por semana, o función baja"
+          "descripcion": "O despierta ≥1 vez por semana, o función baja",
+          "color": "azul"
         },
         {
-          "texto": "A diario, con función baja o crisis reciente",
+          "texto": "A diario, o despierta ≥1 vez por semana",
           "siguiente_nodo": "trat_t1_step4",
-          "descripcion": "O despierta ≥1 vez por semana, con función baja o crisis reciente"
+          "descripcion": "Y con función baja o crisis reciente",
+          "color": "azul"
         },
         {
           "texto": "Debuta con una crisis",
           "siguiente_nodo": "trat_t1_step4",
           "descripcion": "Tratar antes la crisis",
+          "color": "azul",
           "contexto": "- Se debe tratar la crisis (con corticoide oral si es grave) y empezar **MART a dosis media**."
         }
       ],
@@ -1269,13 +1399,42 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag80_via_1_menos_crisis_graves.png"
+        },
+        {
+          "titulo": "Paso 3 de entrada: hiperrespuesta grave",
+          "paginas": "87",
+          "texto": "a recent severe exacerbation or a history of a life-threatening asthma exacerbation, have severe airway hyperresponsiveness, or are currently exposed to a seasonal allergic trigger",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Antes de subir de escalón",
+          "paginas": "80",
+          "texto": "Before stepping up, check for common problems such as incorrect inhaler technique, poor adherence, and environmental exposures, and confirm that the symptoms are due to asthma",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+          "imagen_evidencia": "evidencia_asmaadultos_pag80_antes_de_subir_de_escalon.png"
+        },
+        {
+          "titulo": "Cambiar de vía",
+          "paginas": "80",
+          "texto": "Treatment can be stepped up or down along one track, using the same reliever at each step, or it can be switched between tracks",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+          "imagen_evidencia": "evidencia_asmaadultos_pag80_cambiar_de_via.png"
         }
       ]
     },
     "trat_t1_step1_2": {
       "tipo": "informativo",
       "titulo": "Dar ICS-formoterol sólo a demanda",
-      "texto": "- Usar budesonida-formoterol **1 inhalación** cuando haya síntomas, sin mantenimiento fijo.\n- Usarlo también antes del **ejercicio** o de un alérgeno conocido.\n- Tope: **12 inhalaciones** en 24 h; si necesita más, **consultar**.",
+      "texto": "- Usar **budesonida-formoterol** **1 inhalación** cuando haya síntomas, sin mantenimiento fijo.\n- Usarlo también antes del **ejercicio** o de un alérgeno conocido.\n- Tope: **12 inhalaciones** en 24 h; si necesita más, **consultar**.",
       "farmacos": [
         {
           "nombre": "Budesonida-formoterol 200/6 mcg (160/4,5 liberados)",
@@ -1295,7 +1454,7 @@
         "texto": "Evidencia A",
         "fuente": "GINA 2026"
       },
-      "nota_adicional": "Frente a sólo SABA, reduce un **55 %** las **crisis graves** y un **65 %** las visitas a urgencias u hospitalizaciones.",
+      "nota_adicional": "Frente al SABA solo, el **ICS-formoterol a demanda** reduce un **55 %** las **crisis graves** y un **65 %** las visitas a urgencias u hospitalizaciones.",
       "enlaces": [
         {
           "texto": "Ir al seguimiento",
@@ -1374,7 +1533,7 @@
     "trat_t1_step3": {
       "tipo": "informativo",
       "titulo": "Empezar MART a dosis baja",
-      "texto": "- Dar budesonida-formoterol **1 inhalación cada 12 h** (o 1 al día) **+ 1** a demanda.\n- La beclometasona-formoterol **100/6** es alternativa desde los **18 años**.\n- Tope: **12 inhalaciones** en 24 h entre mantenimiento y rescate.\n- No hace falta **enjuagarse** tras las dosis a demanda.",
+      "texto": "- Dar **budesonida-formoterol** **1 inhalación cada 12 h** (o 1 al día) **+ 1** a demanda.\n- La beclometasona-formoterol **100/6** es alternativa desde los **18 años**.\n- Tope: **12 inhalaciones** en 24 h entre mantenimiento y rescate.\n- No hace falta **enjuagarse** tras las dosis a demanda.",
       "farmacos": [
         {
           "nombre": "Budesonida-formoterol 200/6 mcg (160/4,5 liberados)",
@@ -1476,8 +1635,8 @@
     },
     "trat_t1_step4": {
       "tipo": "pregunta",
-      "titulo": "Subir a MART a dosis media",
-      "texto": "- Dar budesonida-formoterol **2 inhalaciones cada 12 h + 1** a demanda.\n- Antes de subir, revisar la **técnica**, la adherencia y las exposiciones, y confirmar que los síntomas son por asma.\n- En la vía 1 no se usa ICS-formoterol a **dosis alta**.",
+      "titulo": "Dar MART a dosis media (paso 4)",
+      "texto": "- Dar **budesonida-formoterol** **2 inhalaciones cada 12 h + 1** a demanda.\n- Antes de subir, revisar la **técnica**, la adherencia y las exposiciones, y confirmar que los síntomas son por asma.\n- En el **paso 4** no se usa ICS-formoterol a **dosis alta**; sólo como prueba de **3-6 meses** en el paso 5.",
       "farmacos": [
         {
           "nombre": "Budesonida-formoterol 200/6 mcg (160/4,5 liberados)",
@@ -1491,17 +1650,19 @@
         "texto": "Evidencia A",
         "fuente": "GINA 2026"
       },
-      "pie_nodo": "¿Sigue sin control o con crisis pese a una buena técnica y adherencia?",
+      "pie_nodo": "En la revisión a los 2-3 meses, ¿sigue sin control o con crisis pese a buena técnica y adherencia?",
       "opciones": [
         {
-          "texto": "Sí, sigue sin control",
+          "texto": "Sí, pese a buena técnica y adherencia",
           "siguiente_nodo": "trat_t1_step5",
-          "descripcion": "Paso 5"
+          "descripcion": "Paso 5",
+          "color": "azul"
         },
         {
-          "texto": "No, está controlada",
+          "texto": "No, o falla la técnica o la adherencia",
           "siguiente_nodo": "nodo_seguimiento",
-          "descripcion": "Revisar en 2-3 meses"
+          "descripcion": "Medir el control y corregir lo que falla",
+          "color": "azul"
         }
       ],
       "referencias": [
@@ -1534,6 +1695,16 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag89_sin_dosis_alta_en_el_paso_4.png"
+        },
+        {
+          "titulo": "Dosis alta sólo 3-6 meses",
+          "paginas": "98",
+          "texto": "A high dose is recommended only on a trial basis for 3–6 months when good asthma control cannot be achieved with medium-dose maintenance-and-reliever therapy",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+          "imagen_evidencia": "evidencia_asmaadultos_pag98_dosis_alta_solo_3_6_meses.png"
         }
       ]
     },
@@ -1543,11 +1714,11 @@
         "Remitir"
       ],
       "titulo": "Remitir y añadir el tratamiento del asma grave",
-      "texto": "- Remitir pronto a un **experto en asma grave**.\n- Añadir un LAMA sólo con ICS-LABA al menos a **dosis media**: tiotropio aparte o inhalador triple.\n- Fenotipar y valorar los **biológicos**:\n  - Anti-IgE.\n  - Anti-IL5 o anti-IL5R.\n  - Anti-IL4Rα.\n  - Anti-TSLP.\n- Usar la azitromicina sólo tras el **especialista**, **3 veces por semana** ≥6 meses.\n- Probar la dosis alta de ICS-LABA sólo **3-6 meses**.",
+      "texto": "- Remitir pronto a un **experto en asma grave**.\n- Añadir un **LAMA** (aparte o en **inhalador triple**) sólo con ICS-LABA al menos a **dosis media**.\n- Definir el **fenotipo** y valorar los **biológicos**:\n  - Anti-IgE.\n  - Anti-IL5 o anti-IL5R.\n  - Anti-IL4Rα.\n  - Anti-TSLP.\n- Usar la **azitromicina** (3 veces por semana, **≥6 meses**) sólo si la indica el especialista, tras descartar **micobacterias** en el esputo y un **QTc** largo.\n- Probar la dosis alta de ICS-LABA sólo **3-6 meses**.",
       "alertas": [
         {
           "titulo": "Corticoide oral de mantenimiento",
-          "texto": "Es el **último recurso**: **≤7,5 mg/día** de prednisona, vigilando la **suprarrenal** y el hueso."
+          "texto": "Sólo como **último recurso**: **≤7,5 mg/día** de prednisona, vigilando la **suprarrenal** y el hueso."
         }
       ],
       "evidencia": {
@@ -1555,6 +1726,13 @@
         "fuente": "GINA 2026"
       },
       "nota_adicional": "Quien está en **MART** y empieza un biológico sigue con MART: pasarlo a ICS-LABA con SABA **aumenta las crisis**.",
+      "enlaces": [
+        {
+          "texto": "Ir al seguimiento",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nodo_seguimiento"
+        }
+      ],
       "referencias": [
         {
           "titulo": "Paso 5: remitir",
@@ -1680,9 +1858,9 @@
     },
     "trat_track2": {
       "tipo": "pregunta",
-      "titulo": "Elegir el escalón inicial de la vía 2",
+      "titulo": "Elegir el escalón de la vía 2",
       "contexto": "La vía 2 depende de que tome el **ICS a diario**, y la **adherencia** real al mantenimiento suele ser **muy baja**.",
-      "texto": "- Rescatar con **ICS-SABA** combinado o, si no hay, con SABA; desde el paso 2, el ICS se toma **a diario**.\n- Elegir la dosis del ICS en la tabla.\n- Revisar a los **2-3 meses**.",
+      "texto": "- Rescatar con **ICS-SABA** combinado o, si no hay, con SABA; desde el paso 2, el ICS se toma **a diario**.\n- Elegir la dosis del ICS en la tabla y revisar a los **2-3 meses**.\n- Si ya recibe tratamiento y sigue sin control tras corregir la técnica y la **adherencia**, **subir un paso**.",
       "tabla": {
         "titulo": "Dosis diaria de ICS en ≥12 años (mcg)",
         "columnas": [
@@ -1738,7 +1916,25 @@
         "en_texto": "la tabla",
         "resaltar_primera_columna": true
       },
-      "pie_nodo": "¿Con qué frecuencia tiene síntomas o despertares, y cómo está su función pulmonar?",
+      "discrepancias": [
+        {
+          "asunto": "SABA solo a demanda",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "El SABA solo **no se recomienda** en ningún paso.",
+              "paginas": "93"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "SABA **sólo a demanda** con síntomas diurnos leves **≤2 veces al mes** y sin síntomas nocturnos.",
+              "paginas": "69"
+            }
+          ],
+          "nota": "Con síntomas muy **infrecuentes**, la **GEMA** acepta el SABA solo; la **GINA** pide siempre **ICS** con el rescate."
+        }
+      ],
+      "pie_nodo": "¿Cuál es el cuadro más grave que cumple, por sus síntomas, despertares y función pulmonar?",
       "opciones": [
         {
           "texto": "2 días por semana o menos",
@@ -1749,22 +1945,26 @@
         {
           "texto": "Más de 2 días, pero menos de 3-5 por semana",
           "siguiente_nodo": "trat_t2_step2",
-          "descripcion": "Función normal o poco reducida"
+          "descripcion": "Función normal o poco reducida",
+          "color": "morado"
         },
         {
-          "texto": "La mayoría de los días (≥4 por semana)",
+          "texto": "La mayoría de los días (p. ej., ≥4 por semana)",
           "siguiente_nodo": "trat_t2_step3",
-          "descripcion": "O despierta ≥1 vez por semana, o función baja"
+          "descripcion": "O despierta ≥1 vez por semana, o función baja",
+          "color": "morado"
         },
         {
-          "texto": "A diario, con función baja o crisis reciente",
+          "texto": "A diario, o despierta ≥1 vez por semana",
           "siguiente_nodo": "trat_t2_step4",
-          "descripcion": "O despierta ≥1 vez por semana, con función baja o crisis reciente"
+          "descripcion": "Y con función baja o crisis reciente",
+          "color": "morado"
         },
         {
           "texto": "Debuta con una crisis",
           "siguiente_nodo": "trat_t2_step4",
           "descripcion": "Tratar antes la crisis",
+          "color": "morado",
           "contexto": "- Se debe tratar la crisis (con corticoide oral si es grave) y empezar **ICS-LABA a dosis media** con SABA a demanda."
         }
       ],
@@ -1842,18 +2042,56 @@
         {
           "titulo": "Box 4-4: síntomas infrecuentes",
           "paginas": "81",
-          "texto": "Infrequent asthma symptoms, e.g., 2 days/week or less",
+          "texto": "Infrequent asthma symptoms, e.g., 2 days/week or less As-needed low-dose ICS-formoterol (Evidence A) As-needed low-dose ICS+SABA in combination or separate inhalers (Evidence B).",
           "fuente": "GINA 2026",
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "SABA solo: no recomendado",
+          "paginas": "93",
+          "texto": "SABA-only treatment is not recommended by GINA for adults, adolescents or children 6–11 years with asthma.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "SABA sólo a demanda con síntomas ocasionales",
+          "paginas": "69",
+          "texto": "Se pueden utilizar SABA inhalados (salbutamol o terbutalina), exclusivamente a demanda, en aquellos pacientes con síntomas diurnos ocasionales y leves (un máximo de 2 veces al mes)",
+          "fuente": "GEMA 5.5",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Luzán 5; 2025. Disponible en: www.gemasma.com"
+        },
+        {
+          "titulo": "Antes de subir de escalón",
+          "paginas": "80",
+          "texto": "Before stepping up, check for common problems such as incorrect inhaler technique, poor adherence, and environmental exposures, and confirm that the symptoms are due to asthma",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+          "imagen_evidencia": "evidencia_asmaadultos_pag80_antes_de_subir_de_escalon.png"
+        },
+        {
+          "titulo": "Cambiar de vía",
+          "paginas": "80",
+          "texto": "Treatment can be stepped up or down along one track, using the same reliever at each step, or it can be switched between tracks",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+          "imagen_evidencia": "evidencia_asmaadultos_pag80_cambiar_de_via.png"
         }
       ]
     },
     "trat_t2_step1": {
       "tipo": "informativo",
       "titulo": "Dar ICS-SABA a demanda",
-      "texto": "- Usar budesonida-salbutamol 80/90 mcg **2 inhalaciones** a demanda.\n- Si no hay la combinación, tomar un **ICS a dosis baja** justo después de cada SABA (por ejemplo, beclometasona **40 mcg** por cada inhalación de SABA).\n- Tope: **6 dosis (12 inhalaciones)** en 24 h; si necesita más, **consultar** ese día.",
+      "texto": "- Usar **budesonida-salbutamol** 80/90 mcg **2 inhalaciones** a demanda.\n- Si no hay la combinación, tomar un **ICS a dosis baja** justo después de cada SABA (por ejemplo, beclometasona **40 mcg** por cada inhalación de SABA).\n- Tope: **6 dosis (12 inhalaciones)** en 24 h; si necesita más, **consultar** ese día.",
       "farmacos": [
         {
           "nombre": "Budesonida-salbutamol 80/90 mcg (100/100 medidos)",
@@ -1926,7 +2164,7 @@
     "trat_t2_step2": {
       "tipo": "informativo",
       "titulo": "Dar ICS diario a dosis baja",
-      "texto": "- Dar un **ICS a dosis baja** a diario, con ICS-SABA o SABA a demanda.\n- Comprobar la **adherencia** en cada visita: en la comunidad es **muy baja**.\n- Usar **≥3 envases** de SABA al año aumenta el riesgo de crisis.",
+      "texto": "- Dar un **ICS a dosis baja** a diario, con ICS-SABA o SABA a demanda.\n- Comprobar la **adherencia** en cada visita.\n- Si usa **≥3 envases** de SABA al año, el **riesgo de crisis** es mayor.",
       "evidencia": {
         "texto": "ICS diario frente a SABA solo: Evidencia A",
         "fuente": "GINA 2026"
@@ -1989,7 +2227,7 @@
     "trat_t2_step3": {
       "tipo": "informativo",
       "titulo": "Dar ICS-LABA diario a dosis baja",
-      "texto": "- Dar ICS-LABA a **dosis baja** a diario, con ICS-SABA (o SABA) a demanda.\n- Subir el ICS a **dosis media** con SABA es una alternativa **menos eficaz**.\n- Antes de subir, revisar la técnica, la **adherencia** y las exposiciones, y confirmar que es asma.",
+      "texto": "- Dar **ICS-LABA** a **dosis baja** a diario, con ICS-SABA (o SABA) a demanda.\n- Subir el ICS a **dosis media** con SABA es una alternativa **menos eficaz**.\n- Antes de subir, revisar la técnica, la **adherencia** y las exposiciones, y confirmar que es asma.",
       "alertas": [
         {
           "titulo": "Rescate según el LABA",
@@ -2001,6 +2239,11 @@
           "texto": "Ir al seguimiento",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "nodo_seguimiento"
+        },
+        {
+          "texto": "Dosis de ICS",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_track2"
         }
       ],
       "referencias": [
@@ -2068,18 +2311,32 @@
     "trat_t2_step4": {
       "tipo": "pregunta",
       "titulo": "Dar ICS-LABA diario a dosis media",
-      "texto": "- Dar ICS-LABA a **dosis media** a diario, con ICS-SABA (o SABA) a demanda.\n- Usar la dosis alta sólo **excepcionalmente** y, si se puede, **3-6 meses**.\n- Valorar pasar a la **vía 1**: MART reduce las crisis frente al rescate con SABA.",
-      "pie_nodo": "¿Sigue sin control o con crisis pese a una buena técnica y adherencia?",
-      "opciones": [
+      "texto": "- Dar **ICS-LABA** a **dosis media** a diario, con ICS-SABA (o SABA) a demanda.\n- Usar la dosis alta sólo **excepcionalmente** y, si se puede, **3-6 meses**.\n- Valorar pasar a la **vía 1**: MART reduce las crisis frente al rescate con SABA.",
+      "enlaces": [
         {
-          "texto": "Sí, sigue sin control",
-          "siguiente_nodo": "trat_t1_step5",
-          "descripcion": "Paso 5"
+          "texto": "Dosis de ICS",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_track2"
         },
         {
-          "texto": "No, está controlada",
+          "texto": "Pasar a la vía 1",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_t1_step4"
+        }
+      ],
+      "pie_nodo": "En la revisión a los 2-3 meses, ¿sigue sin control o con crisis pese a buena técnica y adherencia?",
+      "opciones": [
+        {
+          "texto": "Sí, pese a buena técnica y adherencia",
+          "siguiente_nodo": "trat_t1_step5",
+          "descripcion": "Paso 5",
+          "color": "morado"
+        },
+        {
+          "texto": "No, o falla la técnica o la adherencia",
           "siguiente_nodo": "nodo_seguimiento",
-          "descripcion": "Revisar en 2-3 meses"
+          "descripcion": "Medir el control y corregir lo que falla",
+          "color": "morado"
         }
       ],
       "referencias": [
@@ -2152,7 +2409,7 @@
         "Urgente"
       ],
       "titulo": "Buscar el riesgo vital al llegar con la crisis",
-      "texto": "- A y B: ver si **habla con frases**, la FR, el **tiraje** y si hay tórax silente; medir la saturación **antes del oxígeno**.\n- C: pulso y presión arterial.\n- D: buscar **somnolencia o confusión**.\n- E: temperatura y signos de **anafilaxia** o de complicaciones (neumotórax, neumomediastino, neumonía).\n- Medir el **PEF o el FEV1** antes de tratar, sin retrasar el tratamiento.\n- Preguntar qué tratamiento lleva y qué tomó para **esta crisis**.",
+      "texto": "- A y B:\n  - Ver si **habla con frases**, la FR, el **tiraje** y si hay **cianosis** o tórax silente.\n  - Medir la saturación antes del oxígeno **si la urgencia lo permite**.\n- C: medir el **pulso** y la presión arterial; la **bradicardia** o la hipotensión son de crisis vital.\n- D: buscar **somnolencia o confusión**.\n- E: medir la temperatura y buscar signos de **anafilaxia**.\n- Medir el **PEF o el FEV1** antes de tratar y empezar el tratamiento **a la vez** que la historia.\n- Preguntar qué tratamiento lleva y qué tomó para **esta crisis**.",
       "checklist": {
         "titulo": "Riesgo de muerte por asma",
         "items": [
@@ -2163,16 +2420,13 @@
           "Más de **1 envase** de salbutamol al mes o SABA nebulizado",
           "Enfermedad **psiquiátrica** o problemas psicosociales",
           "Alergia alimentaria o **anafilaxia** previa",
-          "Neumonía, diabetes o arritmias"
+          "**Comorbilidades**: neumonía, diabetes o arritmias",
+          "Percibe mal la **obstrucción**",
+          "**Hiperrespuesta bronquial** grave"
         ]
       },
-      "nota_adicional": "Antes de atribuirlo al asma, pensar en otra causa:\n- **Neumotórax**.\n- Obstrucción laríngea inducible.\n- Neumonía.\n- Insuficiencia cardiaca o **embolia pulmonar**.\n- Cetoacidosis diabética.",
+      "nota_adicional": "Antes de atribuirlo todo al asma, buscar una **complicación** u otra causa de la disnea:\n- **Neumotórax** o neumomediastino.\n- Neumonía.\n- Obstrucción laríngea inducible.\n- Insuficiencia cardiaca o **embolia pulmonar**.\n- Cetoacidosis diabética.",
       "enlaces": [
-        {
-          "texto": "Calcular la gravedad de la crisis (GINA)",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/gina_crisis_adulto.json"
-        },
         {
           "texto": "Neumonía",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/neumonia.json"
@@ -2190,14 +2444,15 @@
       "pie_nodo": "¿Tiene somnolencia, confusión, cianosis o tórax silente?",
       "opciones": [
         {
-          "texto": "No",
+          "texto": "Ninguno de esos signos",
           "siguiente_nodo": "trat_exac_triage",
           "descripcion": "Graduar la crisis"
         },
         {
-          "texto": "Sí",
+          "texto": "Alguno de esos signos",
           "siguiente_nodo": "trat_exac_vital",
-          "descripcion": "Riesgo vital"
+          "descripcion": "Crisis con riesgo vital",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -2334,19 +2589,37 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag184_complicaciones_a_explorar.png"
+        },
+        {
+          "titulo": "Tabla 4.2: pulso y presión arterial",
+          "paginas": "101",
+          "texto": "Frecuencia cardiaca (x’) < 100 > 100 > 120 Bradicardia, parada cardiaca Presión arterial Normal Normal Normal Hipotensión",
+          "fuente": "GEMA 5.5",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Luzán 5; 2025. Disponible en: www.gemasma.com"
+        },
+        {
+          "titulo": "Box 9-1: percepción y hiperrespuesta",
+          "paginas": "172",
+          "texto": "Food allergy or history of anaphylaxis in a patient with asthma • Poor perception of airflow limitation or of bronchoconstriction • Severe airway hyperresponsiveness",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "trat_exac_triage": {
       "tipo": "pregunta",
       "titulo": "Graduar la gravedad de la crisis",
-      "texto": "- Graduarla con la calculadora o el esquema; basta **un criterio** de grave.\n- Leve, si cumple todo:\n  - Habla con **frases completas** y puede tumbarse.\n  - FR normal o algo alta, sin tiraje marcado.\n  - Saturación **≥94 %** y PEF o FEV1 **>70 %**.\n- Grave, con cualquiera:\n  - No puede **hablar**, beber ni tumbarse.\n  - FR **>30** o **tórax silente**.\n  - Saturación **<92 %** o PEF o FEV1 **<50 %**.",
+      "texto": "- Graduarla con la calculadora o el esquema; basta **un criterio** de grave.\n- Leve, si cumple todo:\n  - Habla con **frases completas** y puede acostarse.\n  - FR normal o algo alta, sin tiraje marcado.\n  - Saturación **≥94 %** y PEF o FEV1 **>70 %**.\n- Grave, con cualquiera:\n  - No puede **hablar**, beber ni acostarse.\n  - FR **>30** o **tiraje marcado**.\n  - Saturación **<92 %** o PEF o FEV1 **<50 %**.\n- En **menores de 18 años**, usar una escala validada (**PRAM**): la calculadora es para ≥18.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/gina_crisis_adulto.json",
         "etiqueta": "Calcular la gravedad de la crisis (GINA)",
         "ramificar": true
       },
-      "nota_adicional": "El pulsioxímetro puede **sobrestimar** la saturación en la **piel oscura**, y en la **altitud** la saturación normal es más baja: ajustar las metas.",
+      "nota_adicional": "El pulsioxímetro puede **sobrestimar** la saturación en la **piel oscura**, y por encima de **1500-2000 m** la saturación normal es **más baja**: ajustar las metas a la altitud.",
       "discrepancias": [
         {
           "asunto": "Criterios de crisis grave",
@@ -2362,7 +2635,7 @@
               "paginas": "101"
             }
           ],
-          "nota": "Con FR de **26 a 30** o FC **>120**, la crisis es **grave** para la **GEMA** y no siempre para la GINA: ante la duda, tratarla como **grave**."
+          "nota": "Con FR de **26 a 30** o FC **>120**, la crisis es **grave** para la **GEMA** y no para la **GINA**; con saturación de **90-91 %**, al revés."
         }
       ],
       "media": [
@@ -2401,17 +2674,20 @@
         {
           "texto": "Leve o moderada",
           "siguiente_nodo": "trat_exac_leve_mod",
-          "descripcion": "Saturación ≥92 % y PEF ≥50 %"
+          "descripcion": "Ningún criterio de grave ni de riesgo vital",
+          "color": "naranja"
         },
         {
           "texto": "Grave",
           "siguiente_nodo": "trat_exac_severa",
-          "descripcion": "Saturación <92 %, PEF <50 % o FR >30"
+          "descripcion": "No habla, FR >30, tiraje marcado, saturación <92 % o PEF <50 %",
+          "color": "rojo"
         },
         {
           "texto": "Riesgo vital",
           "siguiente_nodo": "trat_exac_vital",
-          "descripcion": "Somnolencia, confusión, cianosis o tórax silente"
+          "descripcion": "Somnolencia, confusión, cianosis o tórax silente",
+          "color": "#7F1D1D"
         }
       ],
       "referencias": [
@@ -2493,23 +2769,32 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 9-6: saturación y altitud",
+          "paginas": "186",
+          "texto": "Oxygen saturation by pulse oximetry may be overestimated in people with dark skin color. At altitude (e.g. >1500–2000m), oxygen saturation is normally lower than at sea level.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "trat_exac_leve_mod": {
       "tipo": "pregunta",
       "titulo": "Tratar la crisis leve o moderada",
-      "texto": "- Leve: salbutamol **4 inhalaciones** con cámara, o budesonida-formoterol **2 inhalaciones**; repetir una vez a los **30-60 min** si hace falta.\n- Moderada:\n  - Salbutamol **4-6 inhalaciones** e ipratropio **4** con cámara (o **2,5 mg + 0,25 mg** nebulizados), hasta **3 veces** cada **20-30 min**.\n  - Prednisona **1 mg/kg** (máx. **50 mg**) VO en la **primera hora**.\n- Dar oxígeno si la saturación es **<92 %**, con meta de **92-95 %**.",
+      "texto": "- Leve: dar **salbutamol** **4 inhalaciones** con cámara, o **budesonida-formoterol** **2 inhalaciones**.\n  - Repetir una vez a los **30-60 min** si hace falta.\n- Moderada:\n  1. Dar **salbutamol** **4-6 inhalaciones** e **ipratropio** **4** con cámara (o nebulizar **2,5 mg** y **0,25 mg**), hasta **3 veces** cada **20-30 min**.\n  2. Dar **prednisona** **1 mg/kg** (máximo **50 mg**) VO en la **primera hora**.\n- Dar **oxígeno** si la saturación es **<92 %**, con una meta de **92-95 %**.",
       "farmacos": [
         {
           "nombre": "Salbutamol pMDI 100 mcg con cámara",
-          "dosis": "Leve: **4 pulsaciones**; moderada: **4-6 pulsaciones**",
+          "dosis": "Leve: **4 inhalaciones**; moderada: **4-6 inhalaciones**",
           "pauta": "**Leve**: repetir una vez a los **30-60 min** si hace falta. **Moderada**: hasta **3 veces** cada **20-30 min**.",
           "paginas": "186"
         },
         {
           "nombre": "Ipratropio pMDI 20 mcg",
-          "dosis": "**4 pulsaciones**",
+          "dosis": "**4 inhalaciones**",
           "pauta": "Con el salbutamol en la crisis **moderada**.",
           "paginas": "186"
         },
@@ -2546,7 +2831,7 @@
         {
           "recurso": "asma_inhalador_camara.gif",
           "titulo": "Inhalador con cámara en la crisis",
-          "descripcion": "Cómo dar el salbutamol con cámara: agitar, una pulsación, inspirar y aguantar.",
+          "descripcion": "Cómo dar el salbutamol con cámara: agitar, una inhalación, inspirar y aguantar.",
           "info": "Cada {#18B9A9:inhalación} va sola a la cámara: **agitar** antes de cada una, disparar e **inspirar hondo** aguantando la respiración ({#2FB36D:círculo verde}). Si está muy disneico, **respiraciones normales**. Salbutamol **100 mcg** e ipratropio **20 mcg** por inhalación.",
           "en_texto": "con cámara",
           "referencias": [
@@ -2647,17 +2932,17 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Tratar la crisis grave sin esperar",
-      "texto": "- Si hay **anafilaxia**, poner primero adrenalina IM o intranasal.\n- Dar **salbutamol** e **ipratropio** (dosis abajo) hasta **3 veces** cada **20-30 min**.\n- Dar oxígeno controlado: meta **93-95 %**, sin pasar de **96 %**.\n- Dar el **corticoide** en la **primera hora**: VO, o IV si no puede tragar.\n- Si no responde y sigue hipoxémico, sulfato de magnesio **2 g IV** en **20 min**.",
+      "texto": "- Si hay **anafilaxia**, poner primero **adrenalina IM** o intranasal.\n- Dar **salbutamol** e **ipratropio** hasta **3 veces** cada **20-30 min**.\n- Dar **oxígeno controlado**: meta **93-95 %**, sin pasar de **96 %** de saturación.\n- Dar el **corticoide sistémico** en la **primera hora** (IV si no puede tragar).\n- Si no responde y sigue **hipoxémico**: sulfato de magnesio **2 g IV** en **20 min**.",
       "farmacos": [
         {
           "nombre": "Salbutamol pMDI 100 mcg con cámara",
-          "dosis": "**6-10 pulsaciones**",
+          "dosis": "**6-10 inhalaciones**",
           "pauta": "**Repetir** hasta 3 veces cada **20-30 min**.",
           "paginas": "186"
         },
         {
           "nombre": "Ipratropio pMDI 20 mcg",
-          "dosis": "**4 pulsaciones**",
+          "dosis": "**4 inhalaciones**",
           "pauta": "Con el **salbutamol**; sin **beneficio** pasadas las primeras **1-2 h**.",
           "paginas": "186, 191"
         },
@@ -2688,12 +2973,12 @@
       ],
       "alertas": [
         {
-          "titulo": "Nunca sedantes",
-          "texto": "**Deprimen la respiración** y se asocian a **muertes evitables** por asma."
+          "titulo": "Sedantes en la crisis",
+          "texto": "**Deprimen la respiración** y se asocian a **muertes evitables**: **no darlos**."
         },
         {
-          "titulo": "No usar",
-          "texto": "Ni **aminofilina**, ni β2 IV de rutina, ni magnesio nebulizado, ni **antibióticos** sin infección."
+          "titulo": "Tratamientos sin beneficio",
+          "texto": "Ni **aminofilina**, ni β2 IV, ni magnesio nebulizado, ni **antibióticos** sin infección."
         }
       ],
       "evidencia": {
@@ -2753,7 +3038,7 @@
       ],
       "burbujas": [
         {
-          "en_texto": "sin pasar de",
+          "en_texto": "de saturación",
           "titulo": "¿Por qué no más oxígeno?",
           "texto": "En la crisis grave del adulto, el oxígeno **al 100 %** da peores resultados fisiológicos que el **controlado**; por eso la saturación **no debe pasar de 96 %**.",
           "referencias": [
@@ -2976,12 +3261,12 @@
         "UCI"
       ],
       "titulo": "Tratar ya la crisis con riesgo vital",
-      "texto": "- Pedir ayuda a **UCI o anestesia**; vía IV y oxígeno al **100 %** con máscara con reservorio hasta estabilizar.\n- Dar sin esperar:\n  - Salbutamol e ipratropio **nebulizados**.\n  - Corticoide sistémico.\n  - **Magnesio IV**.\n- Si hay **anafilaxia**, poner primero adrenalina IM.\n- Pedir gases y radiografía de tórax, y **monitorizar** de forma continua.",
+      "texto": "- Pedir ayuda a **UCI o anestesia**.\n- Canalizar una **vía IV** y dar **oxígeno al 100 %** con máscara con reservorio.\n- Dar sin esperar:\n  - **Salbutamol** e **ipratropio** nebulizados.\n  - Corticoide sistémico.\n  - **Magnesio IV**.\n- Si hay **anafilaxia**, poner primero adrenalina IM.\n- Pedir gases y radiografía de tórax, y **monitorizar** de forma continua.",
       "farmacos": [
         {
           "nombre": "Salbutamol + ipratropio nebulizados",
           "dosis": "**5 mg + 0,25 mg**",
-          "pauta": "**Alternativa** a la cámara; hasta **3 veces** cada **20-30 min**.",
+          "pauta": "**De elección** en el riesgo vital; repetir según la **respuesta**, vigilando la **toxicidad**.",
           "paginas": "186"
         },
         {
@@ -2997,12 +3282,11 @@
           "paginas": "188"
         }
       ],
-      "nota_adicional": "La **somnolencia** y el **cansancio** sugieren que sube la PaCO₂: puede necesitar **intubación**.",
       "burbujas": [
         {
           "en_texto": "Pedir gases",
           "titulo": "¿Por qué preocupa una PaCO₂ normal?",
-          "texto": "En la crisis, la PaCO₂ suele estar **baja** porque el paciente hiperventila. Si sube a lo **normal** o más, con somnolencia, está **agotándose**.",
+          "texto": "En la crisis, la PaCO₂ suele estar **baja**. Si sube a lo **normal** o más, con somnolencia, el paciente se está **agotando** y puede necesitar **intubación**.",
           "referencias": [
             {
               "titulo": "La PaCO2 suele estar baja en la crisis",
@@ -3012,6 +3296,16 @@
               "anio": "2026",
               "url": "https://ginasthma.org/2026-gina-strategy-report/",
               "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+            },
+            {
+              "titulo": "Somnolencia: PaCO2 que sube",
+              "paginas": "185",
+              "texto": "Fatigue and somnolence suggest that pCO2 may be increasing and airway intervention may be needed.",
+              "fuente": "GINA 2026",
+              "anio": "2026",
+              "url": "https://ginasthma.org/2026-gina-strategy-report/",
+              "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
+              "imagen_evidencia": "evidencia_asmaadultos_pag185_somnolencia_paco2_que_sube.png"
             }
           ]
         }
@@ -3041,7 +3335,7 @@
         {
           "texto": "Tratamiento en marcha",
           "siguiente_nodo": "trat_exac_uci",
-          "descripcion": "Pasar a UCI"
+          "descripcion": "Trasladar a la UCI sin esperar"
         }
       ],
       "referencias": [
@@ -3122,13 +3416,31 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Nebulizado en el riesgo vital",
+          "paginas": "185",
+          "texto": "leads to a similar improvement in lung function as delivery via nebulizer (Evidence A); however, patients with life-threatening asthma were not included in these studies",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "UCI sin esperar: somnolencia, confusión, tórax silente",
+          "paginas": "170",
+          "texto": "Arrange immediate transfer to an acute care facility if there are signs of severe exacerbation, or to intensive care if the patient is drowsy, confused, or has a silent chest.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "trat_exac_respuesta": {
       "tipo": "pregunta",
       "titulo": "Revisar la respuesta a la hora",
-      "contexto": "El estado **a la hora** del tratamiento predice mejor la **hospitalización** que el de llegada.",
+      "contexto": "El estado **a la hora** del tratamiento predice mejor si necesitará **hospitalización** que el de llegada.",
       "texto": "- Repetir a la hora, o antes:\n  - Saturación y FR.\n  - **Tiraje** y entrada de aire.\n  - **PEF o FEV1**.\n- Comprobar la lista de alta **1-2 h** después del último salbutamol.",
       "checklist": {
         "titulo": "Criterios de alta",
@@ -3142,18 +3454,20 @@
       "pie_nodo": "¿Cómo está a la hora del tratamiento?",
       "opciones": [
         {
-          "texto": "Mejoría marcada y cumple el alta",
+          "texto": "Cumple los criterios de alta",
           "siguiente_nodo": "trat_exac_alta",
-          "descripcion": "No necesita más salbutamol"
+          "descripcion": "Mejoría marcada, sin necesitar más salbutamol",
+          "color": "verde"
         },
         {
-          "texto": "Mejora sólo en parte",
-          "siguiente_nodo": "trat_exac_parcial"
+          "texto": "Mejora en parte o sigue igual",
+          "siguiente_nodo": "trat_exac_parcial",
+          "color": "naranja"
         },
         {
           "texto": "Empeora",
           "siguiente_nodo": "trat_exac_uci",
-          "descripcion": "Valorar la UCI"
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -3203,19 +3517,19 @@
       "tipo": "pregunta",
       "estilo": "advertencia",
       "titulo": "Seguir el tratamiento y revisar cada hora",
-      "texto": "- Dar más salbutamol si hace falta, vigilando la **toxicidad**:\n  - Taquicardia y palpitaciones.\n  - **Hipopotasemia** o arritmias.\n  - Acidosis láctica.\n- Valorar más **ipratropio**, y dar el corticoide sistémico si aún no se dio.\n- Revisar al menos **cada hora** la saturación, la FR, el tiraje y el PEF.",
+      "texto": "- Dar más **salbutamol** si hace falta y vigilar su toxicidad:\n  - Taquicardia y palpitaciones.\n  - **Hipopotasemia** o arritmias.\n  - Acidosis láctica.\n- Valorar más **ipratropio**, y dar el corticoide sistémico si aún no se dio.\n- Revisar al menos **cada hora** la saturación, la FR, el tiraje y el PEF.",
       "checklist": {
         "titulo": "Criterios de hospitalización",
         "items": [
           "Saturación **<92 %** con aire ambiente",
           "Necesita SABA **más que cada 1-2 h**",
           "Disnea que persiste **4-6 h** tras el corticoide sistémico",
-          "Mala adherencia, seguimiento difícil o **factores de riesgo** de muerte por asma"
+          "**Factores de riesgo** de muerte por asma, mala adherencia o seguimiento difícil"
         ]
       },
       "burbujas": [
         {
-          "en_texto": "vigilando la",
+          "en_texto": "vigilar su toxicidad",
           "titulo": "¿Por qué vigilar la toxicidad?",
           "texto": "La taquicardia, la ansiedad y la hiperventilación del exceso de SABA **parecen un empeoramiento** del asma, y llevan a dar **aún más** salbutamol.",
           "referencias": [
@@ -3231,17 +3545,24 @@
           ]
         }
       ],
-      "pie_nodo": "¿Cumple algún criterio de hospitalización?",
+      "pie_nodo": "¿Cómo evoluciona en la revisión de cada hora?",
       "opciones": [
         {
-          "texto": "No, sigue mejorando",
+          "texto": "Sigue mejorando, sin criterio de hospitalización",
           "siguiente_nodo": "trat_exac_respuesta",
-          "descripcion": "Revisar de nuevo en 1 h"
+          "descripcion": "Revisar de nuevo en 1 h",
+          "color": "verde"
         },
         {
-          "texto": "Sí, alguno",
+          "texto": "No mejora, o cumple algún criterio",
           "siguiente_nodo": "trat_exac_ingreso",
-          "descripcion": "Hospitalizar"
+          "color": "naranja"
+        },
+        {
+          "texto": "Empeora o hay una complicación",
+          "siguiente_nodo": "trat_exac_uci",
+          "descripcion": "Toxicidad por SABA o neumotórax",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -3310,21 +3631,25 @@
         "Hospitalización"
       ],
       "titulo": "Hospitalizar y seguir el tratamiento de la crisis",
-      "texto": "- Mantener el broncodilatador, el **corticoide sistémico** y el oxígeno según la saturación.\n- Mantener o empezar el **ICS** durante la hospitalización.\n- Reevaluar con frecuencia: si **empeora** pese al tratamiento, valorar la UCI.",
+      "texto": "- Mantener el broncodilatador, el **corticoide sistémico** y el oxígeno según la saturación.\n- Mantener o empezar el **ICS** durante la hospitalización.\n- Reevaluar con **frecuencia** la saturación, la FR, el tiraje y el PEF.",
       "pie_nodo": "¿Cómo evoluciona en la hospitalización?",
       "opciones": [
         {
           "texto": "Cumple los criterios de alta",
-          "siguiente_nodo": "trat_exac_alta"
+          "siguiente_nodo": "trat_exac_alta",
+          "descripcion": "Criterios de leve 1-2 h tras el último salbutamol",
+          "color": "verde"
         },
         {
           "texto": "Aún no: mejora poco a poco",
           "siguiente_nodo": "trat_exac_ingreso",
-          "descripcion": "Seguir el tratamiento y reevaluar"
+          "descripcion": "Seguir el tratamiento y reevaluar",
+          "color": "naranja"
         },
         {
           "texto": "Empeora pese al tratamiento",
-          "siguiente_nodo": "trat_exac_uci"
+          "siguiente_nodo": "trat_exac_uci",
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -3370,27 +3695,44 @@
       ]
     },
     "trat_exac_uci": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "estilo": "peligro",
       "chips": [
         "UCI"
       ],
-      "titulo": "Pasar a UCI la crisis que empeora",
-      "texto": "- Buscar **otras causas** o complicaciones del empeoramiento.\n- Dar más salbutamol e ipratropio vigilando la **toxicidad**, el corticoide si falta y **magnesio IV**.\n- Pasar a la UCI si cumple algún criterio de la lista; su manejo allí queda **fuera de la guía**.",
+      "titulo": "Valorar la UCI en la crisis que empeora o con riesgo vital",
+      "texto": "- Buscar **otras causas** o **complicaciones** del empeoramiento.\n- Intensificar el tratamiento:\n  - Dar más **salbutamol** e **ipratropio**, vigilando la toxicidad.\n  - Dar el **corticoide sistémico** si aún no lo recibió.\n  - Dar **sulfato de magnesio IV**.\n- Con **somnolencia**, confusión o **tórax silente**, trasladar a la UCI **sin esperar**.",
       "checklist": {
         "titulo": "Criterios de UCI",
         "items": [
-          "Parada respiratoria",
+          "**Paro respiratorio**",
           "Disminución del **nivel de conciencia**",
-          "Deterioro pese al tratamiento",
+          "**Deterioro progresivo** pese al tratamiento",
           "Saturación **<90 %** con oxígeno",
-          "PaCO₂ **>45 mmHg**"
+          "PaCO₂ **>45 mmHg**",
+          "Necesita **soporte ventilatorio**, o hay **neumotórax**"
         ]
       },
       "alertas": [
         {
           "titulo": "VMNI con cautela",
-          "texto": "No tiene una **recomendación firme**: nunca en el paciente **agitado** ni sedándolo para tolerarla."
+          "texto": "La **VMNI** no tiene una **recomendación firme** en el asma: no usarla en el paciente **agitado** ni sedarlo para que la tolere."
+        }
+      ],
+      "pie_nodo": "¿Cumple algún criterio de UCI?",
+      "opciones": [
+        {
+          "texto": "Sí, alguno",
+          "siguiente_nodo": "trat_exac_alta",
+          "descripcion": "Trasladar a la UCI; preparar el alta al mejorar",
+          "color": "rojo",
+          "contexto": "- Se debe trasladar a la **UCI**; su manejo allí queda **fuera de la guía** y, al mejorar, el alta se prepara como en **toda crisis**."
+        },
+        {
+          "texto": "No, ninguno",
+          "siguiente_nodo": "trat_exac_ingreso",
+          "descripcion": "Hospitalizar y revisar cada hora",
+          "color": "naranja"
         }
       ],
       "referencias": [
@@ -3437,7 +3779,7 @@
         {
           "titulo": "Tabla 4.4: parada y conciencia",
           "paginas": "109",
-          "texto": "Parada respiratoria Precisan O2 para mantener SatO2 > 92 % Disminución del nivel de conciencia",
+          "texto": "Parada respiratoria Disminución del nivel de conciencia Deterioro funcional progresivo a pesar del tratamiento",
           "fuente": "GEMA 5.5",
           "anio": "2025",
           "url": "https://www.gemasma.com/",
@@ -3471,6 +3813,24 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Tabla 4.4: UCI, hipercapnia y neumotórax",
+          "paginas": "109",
+          "texto": "SatO2 < 90 % a pesar de O2 suplementario PaCO2 > 45 mm Hg = signo de alarma de agotamiento muscular Hipercapnia, necesidad de soporte ventilatorio o neumotórax",
+          "fuente": "GEMA 5.5",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Luzán 5; 2025. Disponible en: www.gemasma.com"
+        },
+        {
+          "titulo": "UCI sin esperar: somnolencia, confusión, tórax silente",
+          "paginas": "170",
+          "texto": "Arrange immediate transfer to an acute care facility if there are signs of severe exacerbation, or to intensive care if the patient is drowsy, confused, or has a silent chest.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -3479,12 +3839,12 @@
       "estilo": "exito",
       "titulo": "Preparar el alta tras la crisis",
       "contexto": "Una crisis grave **predice otra**, y el ICS reduce la **hospitalización** y la **muerte** por asma.",
-      "texto": "- Dejar el tratamiento de fondo:\n  - De elección, **MART** con ICS-formoterol (paso 4).\n  - Con ICS y SABA, subir el ICS **2-4 semanas**.\n- Quien usaba ICS-formoterol de rescate **vuelve a él**.\n- Dar prednisona **40-50 mg/día** VO **5-7 días**.\n- Revisar técnica, adherencia y **plan de acción**; dar cita en **2-7 días**.",
+      "texto": "- Formular el **mantenimiento**:\n  - De elección, **MART** con ICS-formoterol (paso 4).\n  - Si sigue con ICS y SABA, subir el ICS **2-4 semanas**.\n- Pasar el rescate a **demanda**, no regular.\n- Dar **prednisona** **40-50 mg/día** VO **5-7 días**.\n- Buscar el **desencadenante**, revisar la técnica y el **plan de acción**, y dar cita en **2-7 días**.",
       "checklist": {
-        "titulo": "Remitir al alta",
+        "titulo": "Remitir al especialista tras el alta",
         "items": [
           "Ha necesitado **UCI**",
-          "**≥1 crisis** con corticoide oral o atención urgente en los últimos 12 meses"
+          "**Ya había tenido**, antes de esta, ≥1 crisis con corticoide oral o atención urgente en los últimos 12 meses"
         ]
       },
       "farmacos": [
@@ -3653,6 +4013,33 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 9-7: remitir si ya había tenido crisis",
+          "paginas": "191",
+          "texto": "Refer for expert advice if the patient already had one or more exacerbations requiring OCS or urgent health care in the last 12 months",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 9-7: rescate a demanda, no regular",
+          "paginas": "191",
+          "texto": "Reliever medication: Switch patients to as-needed rather than regular reliever use, as regular SABA use for even 1–2 weeks can worsen asthma or mask deterioration",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 9-7: buscar el desencadenante",
+          "paginas": "191",
+          "texto": "Identify factors that may have contributed to the exacerbation, and implement strategies to reduce modifiable risk factors.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -3661,7 +4048,7 @@
       "texto": "Seguimiento",
       "opciones": [
         {
-          "texto": "Revisión en cada visita",
+          "texto": "Visita de control",
           "siguiente_nodo": "seg_control"
         }
       ]
@@ -3724,9 +4111,8 @@
     "trat_mantenimiento_estable": {
       "tipo": "pregunta",
       "estilo": "exito",
-      "titulo": "Bajar de escalón con el asma controlada",
-      "contexto": "Se busca la **dosis mínima eficaz**, la que mantiene el **control** y evita las crisis.",
-      "texto": "- Esperar a un **buen control** con función estable **≥3 meses** y a un buen momento (sin infección, viaje ni embarazo).\n- Bajar el ICS un **25-50 %** cada **3 meses**, con plan de acción y medicación para **volver atrás**.\n- Ver en la tabla cómo bajar según el escalón.",
+      "titulo": "Valorar si se puede bajar de escalón",
+      "texto": "- Bajar el ICS un **25-50 %** cada **3 meses**, en un buen momento (sin infección, viaje ni embarazo).\n- Dejar un **plan de acción** con la medicación para **volver al escalón previo** si empeora.\n- Con crisis el último año u **obstrucción persistente**, bajar sólo con **vigilancia estrecha**.\n- Ver en la tabla cómo bajar según el escalón.",
       "tabla": {
         "titulo": "Cómo bajar según el escalón",
         "columnas": [
@@ -3735,24 +4121,28 @@
         ],
         "filas": [
           [
-            "MART a dosis media",
-            "MART a dosis baja"
+            "MART a dosis media (paso 4)",
+            "MART a dosis **baja**"
           ],
           [
             "MART a dosis baja (paso 3)",
-            "Mantenimiento 1 vez al día o sólo ICS-formoterol a demanda"
+            "- Mantenimiento **1 vez al día**\n- Sólo ICS-formoterol a demanda"
           ],
           [
             "ICS-LABA a dosis media o alta",
-            "Mismo ICS-LABA con **50 %** menos de ICS, o MART"
+            "- Mismo ICS-LABA con **50 %** menos de ICS\n- MART"
+          ],
+          [
+            "ICS a dosis media o alta",
+            "ICS con **50 %** menos"
           ],
           [
             "ICS-LABA a dosis baja",
-            "ICS-LABA 1 vez al día"
+            "ICS-LABA **1 vez al día**"
           ],
           [
             "ICS diario a dosis baja (paso 2)",
-            "ICS-formoterol sólo a demanda, o ICS cada vez que use el SABA"
+            "- Mismo ICS **1 vez al día**\n- ICS-formoterol sólo a demanda\n- ICS cada vez que use el SABA"
           ]
         ],
         "en_texto": "la tabla",
@@ -3762,16 +4152,13 @@
         {
           "titulo": "No suspender el ICS",
           "texto": "Dejarlo **aumenta mucho** el riesgo de **crisis**."
-        },
-        {
-          "titulo": "Cuidado al quitar el LABA",
-          "texto": "Retirar el LABA puede **empeorar el asma**: es mejor **reducir el ICS**."
         }
       ],
       "evidencia": {
         "texto": "Bajar 25-50 % cada 3 meses: Evidencia A",
         "fuente": "GINA 2026"
       },
+      "nota_adicional": "Retirar el **LABA** puede **empeorar el asma**: es mejor **reducir el ICS**.",
       "media": [
         {
           "recurso": "asma_bajar_escalon.png",
@@ -3813,11 +4200,17 @@
           ]
         }
       ],
+      "pie_nodo": "¿Lleva ≥3 meses con buen control y la función estable?",
       "opciones": [
         {
-          "texto": "Escalón bajado",
+          "texto": "Sí",
           "siguiente_nodo": "seg_plan_accion",
-          "descripcion": "Repasar el plan de acción"
+          "descripcion": "Bajar un escalón y repasar el plan"
+        },
+        {
+          "texto": "Aún no",
+          "siguiente_nodo": "seg_control",
+          "descripcion": "Mantener el escalón y medir el control en la próxima visita"
         }
       ],
       "referencias": [
@@ -3929,13 +4322,22 @@
           "anio": "2026",
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 4-13: ICS a dosis media o alta y paso 2",
+          "paginas": "112",
+          "texto": "Medium- or high-dose ICS Reduce ICS dose by 50% A Adding LABA may allow ICS dose to be stepped down B Step 2 Low-dose maintenance ICS Once-daily dosing",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "seg_plan_accion": {
       "tipo": "informativo",
       "titulo": "Dar y repasar el plan de acción escrito",
-      "texto": "- Dar a todo paciente un plan escrito: cómo cambiar el rescate y el mantenimiento, **cuándo tomar corticoide oral** y cuándo pedir ayuda.\n- Con SABA de rescate, **2 inhalaciones cada 4-6 h**; consultar si necesita **más de 12** al día.\n- Dar corticoide oral si no mejora en **2-3 días** o el PEF o FEV1 cae **<60 %**: prednisona **40-50 mg/día** **5-7 días**.\n- Ver en el esquema el cambio según el **inhalador de rescate**.",
+      "texto": "- Dar a todo paciente un **plan de acción escrito** que diga:\n  - Cómo aumentar el **rescate** y el mantenimiento.\n  - Cuándo tomar el **corticoide oral**.\n  - Cuándo **pedir ayuda**.\n- Con SABA de rescate, **2 inhalaciones** cada **4-6 h**; consultar si necesita **más de 12** al día.\n- Consultar si no mejora en **2-3 días**; valorar **prednisona** **40-50 mg/día** **5-7 días**, por ejemplo con PEF o FEV1 **<60 %**.\n- Ver en el esquema qué cambiar según el **inhalador de rescate**.",
       "farmacos": [
         {
           "nombre": "Prednisona o prednisolona",
@@ -3950,7 +4352,7 @@
           "titulo": "Plan de acción: si empeora",
           "descripcion": "Qué cambiar según el inhalador de rescate y cuándo consultar.",
           "info": "Según el rescate: con {#4F8CF6:ICS-formoterol}, **más inhalaciones** sin dejar el mantenimiento; con {#18B9A9:ICS-SABA}, **2 inhalaciones** por dosis; con {#F07F3C:SABA}, valorar **cuadruplicar el ICS** 1-2 semanas. {#7F1D1D:Granate}: corticoide oral si no mejora o PEF **<60 %**.",
-          "en_texto": "plan escrito",
+          "en_texto": "Ver en el esquema",
           "referencias": [
             {
               "titulo": "Box 9-2: MART",
@@ -4065,6 +4467,15 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag174_box_9_2_dosis_de_corticoide_oral.png"
+        },
+        {
+          "titulo": "Box 9-2: corticoide oral en el plan de acción",
+          "paginas": "174",
+          "texto": "Prompt patient to contact clinician if not responding to above treatment over 2–3 days. Consider adding short-course of OCS, e.g., if PEF or FEV1 <60% personal best or predicted.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -4074,14 +4485,14 @@
       "titulo": "Corregir lo que falla antes de subir de escalón",
       "texto": "- Ver cómo usa el inhalador: la **mala técnica** llega al **80 %**.\n- Preguntar por la **adherencia** y confirmar que los síntomas son por asma.\n- Buscar exposiciones (tabaco, alérgenos, trabajo) y comorbilidades:\n  - Rinosinusitis y ERGE.\n  - **Obesidad** y apnea del sueño.\n  - Ansiedad o depresión.\n- Si todo está bien, subir de escalón o cambiar de vía y revisar a los **2-3 meses**.",
       "checklist": {
-        "titulo": "Remitir si",
+        "titulo": "Criterios para remitir",
         "items": [
           "**Diagnóstico dudoso** o sospecha de asma ocupacional",
-          "Sin control, crisis o FEV1 **<60 %** en el paso 4 con buena técnica y adherencia",
+          "Sin control, crisis o **función pulmonar baja** en el paso 4 con buena técnica y adherencia",
           "Uso frecuente de **urgencias**",
-          "Crisis casi mortal (UCI o ventilación) o **anafilaxia** previa",
+          "Crisis casi mortal (UCI o ventilación), **anafilaxia** o **alergia alimentaria**",
           "Corticoide oral prolongado o **≥2 ciclos** al año, o efectos adversos",
-          "EREA o aspergilosis broncopulmonar alérgica"
+          "**EREA** o aspergilosis broncopulmonar alérgica"
         ]
       },
       "pie_nodo": "¿Cumple algún criterio de la lista para remitir?",
@@ -4093,7 +4504,7 @@
         {
           "texto": "No, ninguno",
           "siguiente_nodo": "nodo_tratamiento",
-          "descripcion": "Subir de escalón o cambiar de vía"
+          "descripcion": "Subir un paso o cambiar de vía"
         }
       ],
       "referencias": [
@@ -4206,6 +4617,24 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag40_box_2_1_comorbilidades.png"
+        },
+        {
+          "titulo": "Box 3-8: crisis casi mortal, anafilaxia o alergia alimentaria",
+          "paginas": "72",
+          "texto": "Near-fatal asthma attack (ICU admission, or mechanical ventilation for asthma) at any time in the past • Suspected or confirmed anaphylaxis or food allergy in a patient with asthma",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Box 3-8: función baja en el paso 4",
+          "paginas": "72",
+          "texto": "Symptoms remain uncontrolled, or patient has ongoing exacerbations or low lung function despite correct inhaler technique and good adherence on Step 4 treatment",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
@@ -4217,6 +4646,11 @@
       "titulo": "Remitir al especialista en asma",
       "texto": "- Si el diagnóstico es **dudoso**, remitir para las pruebas que faltan.\n- Si se sospecha **asma ocupacional**, remitir para confirmarla, identificar el agente y **retirar la exposición**.\n- Si sigue sin control en el paso 4, el **paso 5** (fenotipo y biológicos) se decide con el especialista.\n- Mientras tanto, mantener el tratamiento y el **plan de acción**.",
       "enlaces": [
+        {
+          "texto": "Repasar el plan de acción",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_plan_accion"
+        },
         {
           "texto": "Paso 5: asma grave",
           "archivo_objetivo": "INTERNO",
@@ -4276,8 +4710,9 @@
           "siguiente_nodo": "esp_ejercicio"
         },
         {
-          "texto": "EREA (asma por AINE)",
-          "siguiente_nodo": "esp_erea"
+          "texto": "EREA",
+          "siguiente_nodo": "esp_erea",
+          "descripcion": "Crisis tras tomar AAS o AINE"
         },
         {
           "texto": "Cirugía",
@@ -4304,6 +4739,24 @@
         "texto": "Tratar en el embarazo: Evidencia A",
         "fuente": "GINA 2026"
       },
+      "discrepancias": [
+        {
+          "asunto": "Meta de oxígeno en la crisis",
+          "posturas": [
+            {
+              "fuente": "GINA 2026",
+              "dice": "Tratar la crisis **de forma agresiva** con SABA, oxígeno y corticoide precoz; sin meta propia del embarazo (la general, **93-95 %**).",
+              "paginas": "136, 185"
+            },
+            {
+              "fuente": "GEMA 5.5",
+              "dice": "Saturación **>95 %** en la embarazada (>90 % en el resto).",
+              "paginas": "105"
+            }
+          ],
+          "nota": "La **GEMA** da a la embarazada una meta de oxígeno **más alta** que la general de la **GINA**."
+        }
+      ],
       "enlaces": [
         {
           "texto": "Tratar la crisis",
@@ -4371,13 +4824,31 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag136_glucemia_del_recien_nacido.png"
+        },
+        {
+          "titulo": "Crisis en el embarazo: tratar de forma agresiva",
+          "paginas": "136",
+          "texto": "To avoid fetal hypoxia, it is important to manage acute asthma exacerbations during pregnancy aggressively with SABA, oxygen, and early administration of systemic corticosteroids.",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
+        },
+        {
+          "titulo": "Saturación >95 % en la embarazada",
+          "paginas": "105",
+          "texto": "con el objetivo de alcanzar una saturación superior al 90 % (o mayor del 95 % en las embarazadas o en los pacientes con patología cardiaca concomitante)",
+          "fuente": "GEMA 5.5",
+          "anio": "2025",
+          "url": "https://www.gemasma.com/",
+          "cita": "GEMA 5.5. Guía Española para el Manejo del Asma. Madrid: Luzán 5; 2025. Disponible en: www.gemasma.com"
         }
       ]
     },
     "esp_ejercicio": {
       "tipo": "informativo",
       "titulo": "Prevenir la broncoconstricción por el ejercicio",
-      "texto": "- Distinguirla de la **falta de forma**, la obesidad o la obstrucción laríngea inducible.\n- Con ICS-formoterol de rescate, usar la misma inhalación **antes del ejercicio**; no necesita SABA.\n- Recomendar **calentamiento**: junto con el ICS diario, reduce la broncoconstricción.\n- Si da síntomas pese al tratamiento, suele ser **mal control**: subir el ICS tras revisar la técnica y la adherencia.",
+      "texto": "- Distinguirla de la **mala condición física**, la obesidad o la obstrucción laríngea inducible.\n- Con ICS-formoterol de rescate, usar la misma inhalación **antes del ejercicio**; no necesita SABA.\n- Con SABA de rescate, tomarlo antes del ejercicio; su uso **regular** (más de 1 vez al día) crea **tolerancia**.\n- Recomendar **calentamiento**: junto con el ICS diario, reduce la broncoconstricción.\n- Si da síntomas pese al tratamiento, suele ser **mal control**: subir el ICS tras revisar la técnica.",
       "evidencia": {
         "texto": "ICS: Evidencia A; ICS-formoterol antes del ejercicio: Evidencia B",
         "fuente": "GINA 2026"
@@ -4422,17 +4893,26 @@
           "url": "https://ginasthma.org/2026-gina-strategy-report/",
           "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org",
           "imagen_evidencia": "evidencia_asmaadultos_pag84_antes_del_ejercicio.png"
+        },
+        {
+          "titulo": "SABA antes del ejercicio y tolerancia",
+          "paginas": "134",
+          "texto": "Taking SABAs, LABAs or chromones prior to exercise prevents EIB (Evidence A), but tolerance to the protective effects of SABAs and LABAs against EIB develops with regular",
+          "fuente": "GINA 2026",
+          "anio": "2026",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/",
+          "cita": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2026 update. Updated May 2026. Available from: www.ginasthma.org"
         }
       ]
     },
     "esp_erea": {
       "tipo": "informativo",
       "titulo": "Evitar los AINE en la EREA",
-      "texto": "- Sospecharla con:\n  - Congestión nasal y **anosmia**.\n  - Pólipos nasales que **recidivan**.\n  - Crisis de asma tras AAS o AINE.\n- La crisis llega en minutos a **1-2 h** y puede ser **grave**.\n- Evitar AAS y los AINE que inhiben la COX-1; como analgésico, acetaminofén o un **inhibidor de la COX-2**, vigilando **≥2 h**.\n- Mantener el **ICS** y remitir para valorar la desensibilización.",
+      "texto": "- Sospecharla con:\n  - Congestión nasal y **anosmia**.\n  - Pólipos nasales que **recidivan**.\n  - Crisis de asma tras AAS o AINE.\n- La crisis aparece entre unos **minutos** y **1-2 h** después de la toma, y puede ser **grave**.\n- Evitar el **AAS** y los AINE que inhiben la COX-1.\n- Para el dolor, usar **acetaminofén** o un **inhibidor de la COX-2**, vigilando **≥2 h** tras la toma.\n- Mantener el **ICS** y remitir para valorar la desensibilización.",
       "alertas": [
         {
           "titulo": "Provocación con aspirina",
-          "texto": "La oral sólo en un **centro especializado** con **reanimación**."
+          "texto": "La **provocación oral** puede desencadenar una **crisis grave**: hacerla sólo en un **centro especializado** con reanimación."
         }
       ],
       "evidencia": {
@@ -4506,11 +4986,11 @@
     "esp_cirugia": {
       "tipo": "informativo",
       "titulo": "Preparar al paciente con asma para la cirugía",
-      "texto": "- En la cirugía programada, conseguir antes un **buen control**, sobre todo con:\n  - Asma grave.\n  - Síntomas no controlados.\n  - Crisis previas u **obstrucción persistente**.\n- En la urgente, sopesar el riesgo de **operar sin control** frente al de esperar.\n- Dar **hidrocortisona perioperatoria** si toma ICS a dosis alta de larga duración o tomó corticoide oral **>2 semanas** en los últimos **6 meses**.\n- Mantener el ICS durante todo el periodo.",
+      "texto": "- En la cirugía programada, conseguir antes un **buen control**, sobre todo con:\n  - Asma grave.\n  - Síntomas no controlados.\n  - Crisis previas u **obstrucción persistente**.\n- En la urgente, sopesar el riesgo de **operar sin control** frente al de esperar.\n- Mantener el **ICS** durante todo el periodo.",
       "alertas": [
         {
           "titulo": "Crisis suprarrenal",
-          "texto": "Tras dosis altas de corticoide, operar **sin hidrocortisona** perioperatoria expone a una **crisis suprarrenal**."
+          "texto": "Si toma **ICS a dosis alta** de larga duración o tomó corticoide oral **>2 semanas** en los últimos 6 meses, dar **hidrocortisona perioperatoria**: sin ella hay riesgo de **crisis suprarrenal**."
         }
       ],
       "evidencia": {
@@ -4553,7 +5033,7 @@
     "esp_epoc": {
       "tipo": "informativo",
       "titulo": "Tratar el asma con EPOC siempre con ICS",
-      "texto": "- Hablar de **asma con EPOC** cuando hay obstrucción persistente con rasgos de las **dos enfermedades**.\n- Si hay rasgos de asma, tratarla **como asma**: siempre con ICS.\n- Remitir si hay **dudas** sobre qué tratar primero.",
+      "texto": "- Hablar de **asma con EPOC** cuando hay obstrucción persistente con rasgos de las **dos enfermedades**.\n- Si hay rasgos de asma, tratarla **como asma**, con ICS.\n- Remitir si hay **dudas** sobre qué tratar primero.",
       "alertas": [
         {
           "titulo": "Nunca LABA o LAMA sin ICS",
@@ -4564,7 +5044,7 @@
         {
           "recurso": "asma_hiperinsuflacion_real.jpg",
           "titulo": "Hiperinsuflación en asma y EPOC",
-          "descripcion": "Radiografía con pulmones hiperinsuflados y diafragmas aplanados en asma + EPOC.",
+          "descripcion": "Radiografía con pulmones hiperinsuflados y diafragmas aplanados en asma y EPOC.",
           "info": "{#FDE047:Elipses amarillas}: **diafragmas aplanados** por los pulmones hiperinsuflados, en un paciente con asma desde la infancia, exfumador y con **enfisema**. Es compatible con asma con EPOC; la radiografía sola **no diagnostica** la superposición.",
           "en_texto": "obstrucción persistente",
           "referencias": [
