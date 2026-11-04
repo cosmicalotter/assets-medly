@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cortes de hemoglobina en el embarazo (OMS 2024, tablas 2 y 3).
+const ROJO = "#EF5454", AMBAR = "#F2A23A", VERDE = "#2FB36D";
+const HMIN = 6, HMAX = 13, X0 = 150, X1 = 650;
+const x = (h) => X0 + (X1 - X0) * (h - HMIN) / (HMAX - HMIN);
+const fila = (rot, corte, yy) => `
+  <text x="${X0 - 12}" y="${yy + 26}" font-size="15" font-weight="700" text-anchor="end" fill="#1F2A37">${rot}</text>
+  <rect x="${x(HMIN)}" y="${yy}" width="${x(7) - x(HMIN)}" height="40" rx="6" fill="${ROJO}"/>
+  <rect x="${x(7)}" y="${yy}" width="${x(corte) - x(7)}" height="40" fill="${AMBAR}"/>
+  <rect x="${x(corte)}" y="${yy}" width="${x(HMAX) - x(corte)}" height="40" rx="6" fill="${VERDE}"/>
+  <text x="${(x(HMIN) + x(7)) / 2}" y="${yy + 25}" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">grave</text>
+  <text x="${(x(7) + x(corte)) / 2}" y="${yy + 25}" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">anemia</text>
+  <text x="${(x(corte) + x(HMAX)) / 2}" y="${yy + 25}" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">sin anemia</text>
+  <line x1="${x(corte)}" y1="${yy - 6}" x2="${x(corte)}" y2="${yy + 46}" stroke="#1F2A37" stroke-width="2"/>
+  <text x="${x(corte)}" y="${yy - 10}" font-size="13" font-weight="800" text-anchor="middle" fill="#1F2A37">${String(corte).replace(".", ",")}</text>`;
+const eje = [6, 7, 8, 9, 10, 11, 12, 13].map((h) => `<line x1="${x(h)}" y1="262" x2="${x(h)}" y2="268" stroke="#9CA3AF"/><text x="${x(h)}" y="282" font-size="12" text-anchor="middle" fill="#6B7280">${h}</text>`).join("");
+const svg = `<svg width="668" height="300" viewBox="0 0 668 300">
+  ${fila("1.er trimestre", 11, 30)}${fila("2.º trimestre", 10.5, 112)}${fila("3.er trimestre", 11, 194)}
+  <line x1="${x(7)}" y1="20" x2="${x(7)}" y2="258" stroke="#1F2A37" stroke-dasharray="4 4"/>
+  ${eje}<text x="${X1}" y="298" font-size="12" text-anchor="end" fill="#6B7280">hemoglobina, g/dL</text></svg>`;
+const notas = `<div class="tarjeta"><div class="item"><span>Anemia por debajo de <b>11 g/dL</b> en el 1.er y 3.er trimestre y de <b>10,5 g/dL</b> en el 2.º; <b>grave</b> por debajo de <b>7 g/dL</b> en todo el embarazo.</span></div></div>`;
+lienzo("Anemia en el embarazo: cortes de hemoglobina", "La OMS da un corte propio para el 2.º trimestre.", svg + notas,
+  "Esquema propio. Fuente: OMS 2024, Guideline on haemoglobin cutoffs to define anaemia, tablas 2 y 3.");
+</script></body></html>
