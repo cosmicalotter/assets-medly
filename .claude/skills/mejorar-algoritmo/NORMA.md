@@ -662,7 +662,9 @@ título no repite la pill y el texto no vuelve a decir el título.
   con licencia que permite el uso comercial (figuras de la guía si son CC BY,
   como las de la WSES, y si no, fotos de internet: Commons, PMC CC BY),
   editadas y, cuando hay un recorrido que contar, animadas en GIF; después,
-  ilustraciones propias (`tools/medios`). Las de © editorial no entran sin
+  ilustraciones propias (`tools/medios`), sólo de datos y de flujo: **nunca
+  personas ni partes del cuerpo dibujadas** ni modelos 3D (si no hay foto
+  real, el nodo va sin imagen). Las de © editorial no entran sin
   permiso. Crédito en `creditos.json`.
 - **Calculadoras**: de su publicación original, con referencia. Ver la skill
   `crear-calculadora`.
