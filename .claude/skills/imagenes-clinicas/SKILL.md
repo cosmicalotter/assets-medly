@@ -1,6 +1,6 @@
 ---
 name: imagenes-clinicas
-description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), y si no hay, ilustraciones propias hechas con tools/medios — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
+description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), buscadas con tools/medios/commons_buscar.py, y si no hay, gráficos propios de datos y de flujo hechos con tools/medios (nunca personas ni partes del cuerpo dibujadas, ni modelos 3D) — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
 argument-hint: "<algoritmo> [nodo]"
 ---
 
@@ -22,7 +22,10 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   (título escrito dentro, señaladores gruesos) y se lee al tocarla. Más de
   cuatro alargan la tarjeta.
 - **GIF** cuando algo se mueve: la técnica, la maniobra, el signo dinámico
-  (tiraje, llenado capilar), la cuenta atrás de un protocolo.
+  (tiraje, llenado capilar), la cuenta atrás de un protocolo. Si lo que se
+  mueve es una persona (una maniobra, una postura), el GIF sale de una foto o
+  un vídeo **real** con licencia libre; nunca de un dibujo propio (ver
+  «Nunca personas dibujadas»).
 - Meta: 1 de cada 4 nodos clínicos con imagen y al menos 1 GIF si el tema
   lo tiene (`python3 tools/norma.py <algoritmo>` lo mide y lista los nodos
   que hablan de algo visible y no lo enseñan).
@@ -47,8 +50,8 @@ el dibujo propio desde cero va después.
      línea de crédito de un tercero ("reproduced with permission from",
      "modified from", "adapted from"): la licencia la excluye.
    - Si la figura buena tiene © y no hay permiso: se busca una real libre
-     (punto 2) o se dibuja una propia basada en ella (punto 3, "Basado en …,
-     Fig. N" en el pie), y se anota en el PR qué figura y de qué editorial
+     (punto 2) o, si no muestra personas, se dibuja una propia basada en ella
+     (punto 3, "Basado en …, Fig. N" en el pie), y se anota en el PR qué figura y de qué editorial
      pedir permiso (p. ej. RightsLink).
    - Una tabla de puro texto no se pega como imagen: se pasa a `tabla`.
 2. **Imágenes de internet con licencia comercial**: dominio público, CC0,
@@ -58,8 +61,36 @@ el dibujo propio desde cero va después.
    DermNet, materiales OMS/OPS con licencia NC, ni capturas de Google
    Imágenes.
 3. **Propias**, dibujadas en HTML/SVG con `tools/medios`, cuando no hay
-   imagen real que sirva: esquemas, técnicas, secuencias, clasificaciones.
+   imagen real que sirva, y **sólo de datos y de flujo**: gráficas de
+   tiempos, dosis, umbrales o porcentajes, líneas de tiempo, pasos
+   numerados, cuadrículas que comparan entidades, papel de monitoría o de
+   ECG. Nada con personas (ver abajo).
 4. Nunca una imagen generada por IA presentada como foto clínica real.
+
+### Nunca personas dibujadas (decidido con el dueño, noviembre de 2026)
+
+No se dibujan **personas ni partes del cuerpo** con las herramientas propias
+(SVG, `base.js`, plantillas): ni siluetas, ni cortes anatómicos esquemáticos,
+ni manos, ni la gestante y el bebé de una maniobra, ni GIF de una técnica
+hecha con figuras geométricas. Quedan simples y no se ven bien. Tampoco
+**modelos 3D ni renders** de terceros (simulaciones por computador, maniquíes
+virtuales), aunque sean CC BY.
+
+Lo que se hace en su lugar, por orden:
+
+1. **Foto real** con licencia libre de la persona, el instrumento o el
+   hallazgo (Commons o PMC, ver «Buscar fotos libres»), recortada y rotulada
+   en español: el estetoscopio de Pinard en uso, un Doppler de mano, un
+   registro de monitoría, una placenta por sus dos caras
+   (`tools/medios/figuras/parto/foto_*.html`).
+2. **Imagen diagnóstica real** CC BY (resonancia, ecografía, Rx) que enseñe
+   lo mismo: el descenso de la cabeza con el pujo en una resonancia en lugar
+   de un dibujo del canal del parto (`foto_descenso_rm.html`).
+3. **Gráfico de datos** sobre esa técnica, sin personas: el éxito de cada
+   maniobra de distocia de hombros en barras (`hombros_exito.html`), los
+   tiempos de cada paso, el orden en que se hacen.
+4. Si no hay nada de lo anterior, **el nodo se queda sin imagen** y se anota
+   en el PR qué foto haría falta. Es mejor sin imagen que con un dibujo pobre.
 
 **Las imágenes de los puntos 1 y 2 no se pegan tal cual: se editan**, y si
 hay un recorrido que contar, se animan en GIF (ver "Editar y animar una
@@ -78,6 +109,46 @@ Licencias ya comprobadas (octubre de 2026):
 
 Si la red de la sesión no deja descargar de la fuente, no se sustituye por
 otra cosa: se anota en el PR la URL exacta y el nodo, para descargarla a mano.
+
+## Buscar fotos libres: la técnica
+
+Desde la nube, la API de Commons y `upload.wikimedia.org` suelen dar 429,
+pero las páginas HTML de Commons y `thumb.php` responden si se va despacio.
+`tools/medios/commons_buscar.py` hace todo eso:
+
+```bash
+# 1. Buscar: varias consultas en inglés, concretas (objeto + contexto clínico)
+python3 tools/medios/commons_buscar.py buscar "Pinard horn" "fetal doppler" "placenta" "cardiotocography"
+#    cada resultado sale con «SÍ»/«no» (licencia libre), tamaño, licencia y autor
+
+# 2. Confirmar la ficha del elegido (autor, descripción, licencia exacta)
+python3 tools/medios/commons_buscar.py ficha "File:Placenta_001.jpg"
+
+# 3. Descargar el original a fuentes/ (1280 px de ancho basta)
+python3 tools/medios/commons_buscar.py bajar "Placenta_001.jpg" \
+    tools/medios/figuras/<carpeta>/fuentes/commons_Placenta_001.jpg --ancho 1280
+```
+
+- **Qué buscar:** el objeto real que el nodo nombra (instrumento, dispositivo,
+  pieza, trazado, hallazgo) o la técnica hecha por personas reales
+  («Pinard horn nurse»). Varias consultas por nodo; se miran las candidatas
+  en una hoja de contacto (pegarlas con PIL y abrirla con `Read`) antes de
+  elegir.
+- **Licencia:** sólo CC0, dominio público, CC BY y CC BY-SA; la ficha manda.
+  Con CC BY-SA la imagen editada se comparte igual. Se descartan NC, ND y
+  las que traen datos del paciente o una marca tapada a mano.
+- **Ritmo:** una petición cada 3 s; si llega un 429, el script espera y
+  reintenta. No se lanzan dos búsquedas a la vez.
+- **User-Agent genérico:** nunca el correo ni otro dato del usuario, aunque
+  el sitio lo pida.
+- **PubMed Central** para fotos clínicas e imagen diagnóstica: Europe PMC
+  busca por DOI (`www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"`),
+  `…/rest/<PMCID>/fullTextXML` da el pie de cada figura (para saber qué
+  señala cada símbolo) y la figura se baja de `cdn.ncbi.nlm.nih.gov/pmc/blobs/…`
+  (sale en el HTML del artículo en `pmc.ncbi.nlm.nih.gov`). Sólo artículos
+  CC BY; ojo con Baishideng y otras CC BY-NC.
+- Después, la foto se **edita** con `foto.js` (formato de la casa, abajo) y
+  se anota en `creditos.json`: autor, URL de la ficha, licencia y cambios.
 
 ## Editar y animar una imagen real
 
@@ -126,7 +197,8 @@ la vez.
 
 Para una imagen fija real (TC, ECG, foto clínica, figura CC BY) el formato es
 el lienzo de Empirica de `foto.js` + `base.js` (copiarlos de
-`tools/medios/figuras/crisishiperglicemica/`), con la función
+`tools/medios/figuras/parto/`, cuyo `foto.js` admite también rótulos de
+color sobre caja blanca: `tapar` + `textos` con `c` y `peso`), con la función
 `fotos({ titulo, sub, paneles, notas, fuente })`:
 
 - **Título y subtítulo dentro de la imagen**: qué es y qué se ve, en una línea
@@ -254,7 +326,14 @@ hiperglucémicas son el modelo (plantillas en
 | **línea de tiempo litro a litro** | un esquema de líquidos o de dosis por horas (cada tramo con su volumen y su tiempo) | `liquidos.html` |
 | **gráfica de ritmo con banda meta** | el ritmo al que debe bajar un valor (osmolalidad, glucosa): banda verde de la meta y zonas de «demasiado lento» y «demasiado rápido» | `osmolalidad.html` |
 | **línea de tiempo de la transición** | el paso de un tratamiento a otro (infusión IV → basal-bolo SC, con el solape) | `basalbolo.html` |
+| **regla a escala con cortes por guía** | dónde empieza cada fase y qué umbral usa cada guía (OMS, NICE, ACOG) | `parto/fases.html` |
+| **pasos numerados** | una secuencia corta en orden, con el momento de cada paso | `parto/alumbramiento.html` |
+| **barras de porcentaje** | comparar el resultado de varias opciones (éxito de cada maniobra) | `parto/hombros_exito.html` |
+| **GIF sobre papel de monitoría** | cuándo hacer algo respecto de una señal (auscultar durante la contracción y 30 s después) | `parto/auscultacion.html` |
 
+- **Sin personas ni partes del cuerpo** (ver «Nunca personas dibujadas»):
+  si el nodo es una maniobra, la figura es una foto real o un gráfico de
+  datos sobre ella, no un dibujo.
 - La figura dice **exactamente lo que dice su nodo**: las mismas cifras,
   umbrales, tiempos y nombres (si el texto dice «lactato de Ringer», la
   figura también). Si el nodo cambia, se rehace la figura.

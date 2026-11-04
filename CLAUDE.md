@@ -97,6 +97,10 @@ Firebase directamente, saltándose `indices/`.
    los usuarios se guardan por id.
 4. **Imágenes sólo propias, de la guía, o con licencia que permita uso
    comercial**, con su `creditos.json`. Ver la skill `imagenes-clinicas`.
+   Primero **fotos reales libres** (Commons, PMC CC BY) editadas en español
+   (`tools/medios/commons_buscar.py` las busca y descarga). Lo propio, sólo
+   gráficos de datos y de flujo: **nunca personas ni partes del cuerpo
+   dibujadas**, ni modelos 3D; si no hay foto, el nodo va sin imagen.
 5. **Los PDF de las guías no entran en este repositorio** (copyright). Se
    leen desde `guias-praxis` o desde el scratchpad.
 6. **De una guía de pago, cita textual y sin recorte.** Si el texto completo
