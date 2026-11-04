@@ -8,7 +8,7 @@ const ejeX = [0, 2, 4, 6, 8, 10, 12].map((s) => `<line x1="${x(s)}" y1="${Y0}" x
 const ejeY = [8, 9, 10, 11, 12].map((h) => `<text x="${X0 - 6}" y="${y(h) + 4}" font-size="11" text-anchor="end" fill="#6B7280">${h}</text>`).join("");
 const meta = `<rect x="${X0}" y="${y(HMAX)}" width="${X1 - X0}" height="${y(11.5) - y(HMAX)}" fill="#F3F4F6"/>
   <line x1="${X0}" y1="${y(11.5)}" x2="${X1}" y2="${y(11.5)}" stroke="#334155" stroke-dasharray="5 4"/>
-  <text x="${x(0.2)}" y="${y(11.5) - 6}" font-size="11.5" font-weight="700" fill="#334155">Meta: Hb por debajo de 11,5 g/dL</text>`;
+  <text x="${x(0.2)}" y="${y(11.5) - 6}" font-size="11.5" font-weight="700" fill="#334155">Tope: no pasar de 11,5 g/dL</text>`;
 const ventanas = [4, 8].map((s) => `<line x1="${x(s)}" y1="${Y1 + 20}" x2="${x(s)}" y2="${Y0}" stroke="#CBD5E1" stroke-dasharray="3 4"/>`).join("");
 const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${meta}${ventanas}
   <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>
@@ -20,9 +20,9 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${meta}${ve
   <text x="${x(8.3)}" y="${y(9.8) + 4}" font-size="12.5" font-weight="700" fill="#B45309">+0,4 en 4 semanas</text></svg>`;
 const caja = (c, f, t) => `<div class="tarjeta" style="flex:1;background:${f};border:1.5px solid ${c}">${t}</div>`;
 const notas = `<div style="display:flex;gap:8px">
-  ${caja(AMBAR, "#FFF7ED", "<span><b>Menos de 1 g/dL en 4 semanas</b>: subir la epoetina <b>25 U/kg</b> por dosis en diálisis y buscar la <b>hiporrespuesta</b>.</span>")}
-  ${caja(TEAL, "#ECFDF9", "<span><b>Unos 1 g/dL cada 4 semanas</b>: mantener la dosis hasta la meta.</span>")}
-  ${caja(ROJO, "#FEF2F2", "<span><b>Más de 1 g/dL en 2-4 semanas</b>: bajar la dosis un <b>25-50 %</b>.</span>")}</div>`;
+  ${caja(AMBAR, "#FFF7ED", "<span><b>Menos de 1 g/dL en 4 semanas</b>: subir la epoetina <b>25 UI/kg</b> por dosis en diálisis y buscar la <b>hiporrespuesta</b>.</span>")}
+  ${caja(TEAL, "#ECFDF9", "<span><b>Unos 1 g/dL cada 4 semanas</b>: mantener la dosis hasta su meta, sin pasar de <b>11,5</b>.</span>")}
+  ${caja(ROJO, "#FEF2F2", "<span><b>Más de 1 g/dL en 2-4 semanas</b> o pasa de <b>11,5 g/dL</b>: bajar la dosis.</span>")}</div>`;
 lienzo("AEE: ajustar la dosis cada 4 semanas", "Medir la Hb cada 2-4 semanas y comparar cuánto ha subido.", svg + notas,
   "Esquema ilustrativo, no datos de un paciente. Fuente: KDIGO 2026, anemia en la ERC: tabla 7, PP 3.4.1.2, PP 3.4.3.2 y rec 3.3.1.");
 </script></body></html>
