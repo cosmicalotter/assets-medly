@@ -1,0 +1,120 @@
+{
+  "titulo": "FTLC: sobres al día",
+  "descripcion": "Calcula cuántos sobres de fórmula terapéutica lista para el consumo (FTLC, 500 kcal por sobre de 92 g) necesita al día el niño de 6 a 59 meses con desnutrición aguda, según el peso y la energía que toca por el día de tratamiento, con los esquemas de la Resolución 2350 de 2020 (MinSalud).",
+  "instrucciones": "Usar el peso del día; con edema, restar el 5 o el 10 % del peso, como dice el esquema de la severa. Repartir los sobres en al menos 5 tomas.",
+  "limitaciones": "Sólo de 6 a 59 meses y con 4 kg o más. No incluye la leche materna ni la alimentación familiar, que se suman aparte. Ajustar en cada control según el apetito y el peso.",
+  "tipoCalculo": "formula",
+  "formula": "peso * (1 - descuento / 100) * kcal / 500",
+  "mostrarPuntaje": false,
+  "decimales": 1,
+  "prefijoResultado": "FTLC",
+  "sufijoResultado": "sobres/día",
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021.",
+      "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+      "paginas": "25",
+      "texto": "Un sobre de 92 g de FTLC aporta 500 kcal y contiene los macronutrientes y micronutrientes necesarios para la recuperación nutricional.",
+      "anio": "2020"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021. Tabla 25.",
+      "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+      "paginas": "71",
+      "texto": "1 a 7 150 kcal/kg /día 100 a 150 ml/kg/día",
+      "anio": "2020"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021. Tabla 26.",
+      "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+      "paginas": "72",
+      "texto": "1 a 3 80 kcal/kg /día (Restar 5 % o 10 % del peso en caso de edema).",
+      "anio": "2020"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021.",
+      "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+      "paginas": "72",
+      "texto": "Es recomendable administrar la FTLC al menos 5 veces al día.",
+      "anio": "2020"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "peso",
+          "tipo": "input_numero",
+          "label": "Peso",
+          "unidad": "kg",
+          "min": 4,
+          "max": 25
+        },
+        {
+          "id": "descuento",
+          "tipo": "opciones",
+          "label": "Descuento por edema",
+          "opciones": [
+            {
+              "label": "Sin edema",
+              "puntos": 0
+            },
+            {
+              "label": "Edema: restar 5 %",
+              "puntos": 5
+            },
+            {
+              "label": "Edema: restar 10 %",
+              "puntos": 10
+            }
+          ]
+        },
+        {
+          "id": "kcal",
+          "tipo": "opciones",
+          "label": "Energía del esquema (kcal/kg/día)",
+          "opciones": [
+            {
+              "label": "80: severa, días 1-3",
+              "puntos": 80
+            },
+            {
+              "label": "100: severa, días 4-7",
+              "puntos": 100
+            },
+            {
+              "label": "135: transición, moderada",
+              "puntos": 135
+            },
+            {
+              "label": "150: moderada días 1-7; severa días 8-15",
+              "puntos": 150
+            },
+            {
+              "label": "200: moderada desde el día 8; severa desde el día 15",
+              "puntos": 200
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 100,
+      "categoria": "Sobres de FTLC al día",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Repartir en al menos 5 tomas; dar la leche materna después de la FTLC y agua segura en vaso después de cada toma."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "Energía al día",
+      "formula": "peso * (1 - descuento / 100) * kcal",
+      "sufijo": "kcal/día",
+      "decimales": 0
+    }
+  ]
+}

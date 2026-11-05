@@ -44,13 +44,13 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (5 de noviembre de 2026) hay
-  20 visibles. Adultos (14): patología biliar, crisis hiperglucémicas,
+  21 visibles. Adultos (14): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica y EPOC.
-  Pediatría (6): hipoglucemia, enfermedad diarreica aguda, infecciones
+  Pediatría (7): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
-  neumonía y bronquiolitis, y epilepsia. El resto espera la reforma a la
+  neumonía y bronquiolitis, epilepsia y desnutrición aguda. El resto espera la reforma a la
   norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se

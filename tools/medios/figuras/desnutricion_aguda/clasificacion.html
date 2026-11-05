@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body>
+<script>
+const X0 = 60, X1 = 660, zx = (z) => X0 + (X1 - X0) * ((z + 4) / 6);
+const banda = (a, b, c, t1, t2) => `<rect x="${zx(a)}" y="70" width="${zx(b) - zx(a)}" height="70" fill="${c}"/>
+  <text x="${(zx(a) + zx(b)) / 2}" y="100" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">${t1}</text>
+  <text x="${(zx(a) + zx(b)) / 2}" y="122" text-anchor="middle" font-size="13" fill="#fff">${t2}</text>`;
+const svg = `<svg class="esc" viewBox="0 0 720 330">
+  ${banda(-4, -3, ROJO, "Severa", "< -3 DE")}${banda(-3, -2, NARANJA, "Moderada", "-3 a < -2")}${banda(-2, -1, AMBAR, "Riesgo", "-2 a < -1")}${banda(-1, 2, VERDE, "Adecuado", "≥ -1 DE")}
+  ${[-4, -3, -2, -1, 0, 1, 2].map((z) => `<line x1="${zx(z)}" x2="${zx(z)}" y1="140" y2="152" stroke="#94A3B8" stroke-width="2"/><text x="${zx(z)}" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">${z}</text>`).join("")}
+  <text x="${zx(-1)}" y="56" text-anchor="middle" font-size="13" fill="#475569">puntaje Z de peso para la talla o longitud</text>
+  <rect x="60" y="205" width="290" height="96" rx="14" fill="${tinte(ROJO, 10)}" stroke="${ROJO}" stroke-width="2"/>
+  <text x="205" y="236" text-anchor="middle" font-size="16" font-weight="800" fill="${ROJO}">Edema nutricional</text>
+  <text x="205" y="260" text-anchor="middle" font-size="13.5" fill="${TINTA}">la hace severa (kwashiorkor),</text>
+  <text x="205" y="280" text-anchor="middle" font-size="13.5" fill="${TINTA}">sea cual sea el puntaje</text>
+  <rect x="370" y="205" width="290" height="96" rx="14" fill="${tinte(NARANJA, 10)}" stroke="${NARANJA}" stroke-width="2"/>
+  <text x="515" y="236" text-anchor="middle" font-size="16" font-weight="800" fill="${NARANJA}">Perímetro del brazo &lt;11,5 cm</text>
+  <text x="515" y="260" text-anchor="middle" font-size="13.5" fill="${TINTA}">de 6 a 59 meses: desnutrición</text>
+  <text x="515" y="280" text-anchor="middle" font-size="13.5" fill="${TINTA}">aguda que se trata</text>
+</svg>`;
+lienzo("Peso para la talla: dónde cae el niño", "Clasificación de la desnutrición aguda de 0 a 59 meses",
+  svg, F_L + " (tabla 5, p. 29; tabla 6, p. 31; p. 32); " + "Resolución 115 de 2026 (riesgo, art. 3).");
+</script></body></html>

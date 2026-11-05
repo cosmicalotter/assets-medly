@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>
+ .esc3{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
+ .barra{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+ .k{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 7%,white);padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+ .k h3{font-size:20px;color:var(--c)}
+ .k .z{font-size:13px;color:var(--suave);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+ .k ul{font-size:14.5px;line-height:1.4;padding-left:18px}
+ .k .d{margin-top:auto;font-size:13.5px;font-weight:700;color:var(--c)}
+ .flecha{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--ambar),var(--naranja),var(--rojo))}
+ .tec{border-radius:12px;background:#F8FAFC;padding:10px 12px;font-size:14px;line-height:1.35}
+</style></head><body>
+<script>
+// Gráfico de flujo sin personas: cada grado suma zonas del cuerpo, nombradas en texto.
+const k = (c, t, zonas, d) => `<div class="k" style="--c:${c}"><h3>${t}</h3><div class="z">Zonas con edema</div><ul>${zonas.map((x) => `<li>${x}</li>`).join("")}</ul><div class="d">${d}</div></div>`;
+lienzo("Edema nutricional: tres grados", "Cada grado suma zonas a las del anterior",
+  `<div class="esc3"><div class="flecha"></div><div class="barra">
+    ${k(AMBAR, "Leve (+)", ["<b>Pies</b>"], "Puede tratarse en casa")}
+    ${k(NARANJA, "Moderado (++)", ["Pies", "<b>Manos</b>", "Piernas", "Antebrazos"], "Puede tratarse en casa")}
+    ${k(ROJO, "Severo (+++)", ["Todo lo anterior", "<b>Cara</b>", "Generalizado"], "Siempre al hospital")}</div>
+   <div class="tec"><b>Cómo buscarlo:</b> presionar con los pulgares el <b>dorso de ambos pies</b> durante <b>3 segundos</b>; si la marca queda, hay edema.</div></div>`,
+  F_L + " (p. 31, ilustración 3; p. 34 y 38).");
+</script></body></html>
