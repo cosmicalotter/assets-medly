@@ -43,14 +43,14 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (3 de noviembre de 2026) hay
-  16 visibles. Adultos (10): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (5 de noviembre de 2026) hay
+  17 visibles. Adultos (11): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
-  aguda, asma, ACV isquémico, ACV hemorrágico y cefalea. Pediatría (6):
-  hipoglucemia, enfermedad diarreica aguda, infecciones respiratorias altas
-  (`Amigdalitis_bacteriana_pediatricos.json`), asma, neumonía y bronquiolitis,
-  y epilepsia. El resto espera la reforma a la norma nueva (`diabetesm2.json`
-  sigue oculto y con un salto roto a `nodo_tratamiento`).
+  aguda, asma, ACV isquémico, ACV hemorrágico, cefalea y diabetes tipo 2.
+  Pediatría (6): hipoglucemia, enfermedad diarreica aguda, infecciones
+  respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
+  neumonía y bronquiolitis, y epilepsia. El resto espera la reforma a la
+  norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
   publicaría. Sin argumentos publica (lo hace el workflow); con cualquier

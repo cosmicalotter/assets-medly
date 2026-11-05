@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.esc{flex:1;border:1px solid var(--linea);border-radius:16px;display:grid;place-items:center}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ps{border-radius:12px;background:#F3F4F6;color:var(--suave);padding:8px 10px;font-size:13px;line-height:1.3;min-height:58px}
+.ps b{color:var(--tinta)} .ps .n{font-weight:800;font-size:12px;letter-spacing:.06em}
+.ps.on{background:color-mix(in srgb,var(--teal) 14%,white);color:var(--tinta);outline:2px solid var(--teal)}</style></head><body><script>
+// Titulación de la insulina basal: ACE 2025, figura 2 (p. 464); ADA 2026, figura 9.5 (S198).
+// Caso ilustrativo: 70 kg, inicio con 0,2 U/kg/día = 14 U.
+const ROJO="#EF5454", AMBAR="#F2A23A", VERDE="#2FB36D", TEAL="#18B9A9";
+const DIAS=[0,3,6,9,12,15], GLU=[230,205,182,160,142,118], DOSIS=[14,18,22,26,28,30];
+const X=(d)=>70+d/18*500, Y=(g)=>255-(g-50)/220*225;
+const P=[["MÁS DE 180","Subir <b>4 U</b> cada 3 días"],["131-180","Subir <b>2 U</b> cada 3 días"],["70-130: META","<b>Mantener</b> la dosis"],["MENOS DE 70","Bajar <b>10-20 %</b>"]];
+const banda=(g)=>g>180?0:g>130?1:g>=70?2:3;
+window.cuadro=function(i,total){const t=total>1?i/(total-1):1;
+ const k=Math.min(5,Math.floor(t*6.2)); const paso=banda(GLU[k]);
+ const pts=DIAS.slice(0,k+1).map((d,j)=>`<circle cx="${X(d)}" cy="${Y(GLU[j])}" r="7" fill="${[ROJO,AMBAR,VERDE,ROJO][banda(GLU[j])]}" stroke="#fff" stroke-width="2"/>
+   <text x="${X(d)}" y="${Y(GLU[j])-14}" text-anchor="middle" font-size="13" font-weight="800" fill="#1F2A37">${GLU[j]}</text>
+   <text x="${X(d)}" y="278" text-anchor="middle" font-size="13" font-weight="800" fill="${TEAL}">${DOSIS[j]} U</text>`).join("");
+ const esc=`<svg width="620" height="296" viewBox="0 0 620 296">
+  <rect x="70" y="${Y(270)}" width="500" height="${Y(180)-Y(270)}" fill="${ROJO}" opacity=".08"/>
+  <rect x="70" y="${Y(180)}" width="500" height="${Y(130)-Y(180)}" fill="${AMBAR}" opacity=".10"/>
+  <rect x="70" y="${Y(130)}" width="500" height="${Y(70)-Y(130)}" fill="${VERDE}" opacity=".14"/>
+  <rect x="70" y="${Y(70)}" width="500" height="${Y(50)-Y(70)}" fill="${ROJO}" opacity=".12"/>
+  <text x="78" y="${Y(85)}" font-size="13" font-weight="800" fill="${VERDE}">meta 70-130</text>
+  ${[70,130,180].map(g=>`<line x1="70" x2="570" y1="${Y(g)}" y2="${Y(g)}" stroke="#9CA3AF" stroke-dasharray="4 4"/><text x="62" y="${Y(g)+4}" text-anchor="end" font-size="12" fill="#6B7280">${g}</text>`).join("")}
+  <text x="62" y="22" text-anchor="end" font-size="12" fill="#6B7280">mg/dL</text>
+  ${DIAS.map(d=>`<text x="${X(d)}" y="294" text-anchor="middle" font-size="11" fill="#6B7280">día ${d}</text>`).join("")}
+  <polyline points="${DIAS.slice(0,k+1).map((d,j)=>X(d)+","+Y(GLU[j])).join(" ")}" fill="none" stroke="#1F2A37" stroke-width="2"/>
+  ${pts}
+ </svg>`;
+ lienzo("Titulación de la insulina basal","Glucemia en ayunas cada 3 días y el cambio de dosis.",
+  `<div class="esc">${esc}</div><div class="pasos">${P.map(([n,s],j)=>`<div class="ps ${j===paso?"on":""}"><div class="n">${n}</div>${s}</div>`).join("")}</div>`,
+  "Esquema propio (caso ilustrativo de 70 kg). Fuente: ACE 2025, figura 2 (p. 464); ADA 2026, figura 9.5 (S198).");};
+window.cuadro(39,40);
+</script></body></html>

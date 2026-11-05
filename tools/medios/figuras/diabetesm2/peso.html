@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.tier{display:grid;grid-template-columns:210px 1fr;gap:10px;align-items:stretch}
+.et{border-radius:12px;color:#fff;padding:10px 12px;font-size:14px;line-height:1.25;font-weight:700;display:flex;align-items:center}
+.fa{border-radius:12px;background:#F7F8FA;padding:10px 12px;font-size:14px;line-height:1.35;display:flex;align-items:center}
+.lista{display:flex;flex-direction:column;gap:8px}</style></head><body><script>
+// ACE 2025, tabla 6 (p. 472): eficacia de los fármacos para reducir el peso en la DM2.
+const T=[["#7C3AED","Pierden <b>≥15 %</b> más de 1 de cada 3","<span><b>Tirzepatida 15 mg</b> semanal</span>"],
+ ["#8B5CF6","Pierden <b>≥10 %</b> más de la mitad","<span><b>Tirzepatida 10-15 mg</b> semanal · semaglutida 2,4 mg semanal*</span>"],
+ ["#A78BFA","Pierden <b>≥5 %</b> más de la mitad","<span>Tirzepatida 5 mg · <b>semaglutida 1 mg</b> semanal · semaglutida 2,4 mg* · liraglutida 3 mg*</span>"],
+ ["#9CA3AF","Pérdida <b>&lt;5 %</b> en la mayoría","<span>Liraglutida <b>1,8 mg</b> · dulaglutida · <b>iSGLT2</b> · metformina</span>"]];
+lienzo("Cuánto peso se pierde con cada fármaco","En personas con DM2 y sobrepeso u obesidad.",
+ `<div class="lista">${T.map(([c,e,f])=>`<div class="tier"><div class="et" style="background:${c}"><span>${e}</span></div><div class="fa">${f}</div></div>`).join("")}</div>
+  <div class="tarjeta"><div class="item"><span>Meta: perder <b>≥10 %</b> del peso en <b>6-12 meses</b>. *Dosis aprobadas para la obesidad, no para la diabetes.</span></div></div>`,
+ "Esquema propio. Fuente: ACE 2025, tabla 6 (p. 472) y recomendación 6.1 (p. 471).");
+</script></body></html>

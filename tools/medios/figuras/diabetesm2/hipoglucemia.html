@@ -1,0 +1,30 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.esc{flex:1;border:1px solid var(--linea);border-radius:16px;display:grid;place-items:center}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ps{border-radius:12px;background:#F3F4F6;color:var(--suave);padding:8px 10px;font-size:13px;line-height:1.3;min-height:58px}
+.ps b{color:var(--tinta)} .ps .n{font-weight:800;font-size:12px;letter-spacing:.06em}
+.ps.on{background:color-mix(in srgb,#EF5454 12%,white);color:var(--tinta);outline:2px solid #EF5454} .ps.hecho{background:#FDF2F2;color:var(--tinta)}</style></head><body><script>
+// Tratamiento de la hipoglucemia en la persona consciente: ADA 2026, rec. 6.15 y S141.
+const ROJO="#EF5454", VERDE="#2FB36D", TEAL="#18B9A9";
+const P=[["1 · DETECTAR","Glucosa <b>&lt;70 mg/dL</b>, consciente"],["2 · TRATAR","<b>15 g de glucosa</b> VO, sin grasa ni proteína"],["3 · MEDIR","A los <b>15 min</b>; si sigue &lt;70, repetir"],["4 · REVISAR","Buscar la causa y <b>ajustar</b> el tratamiento"]];
+const X=(m)=>70+m/40*500, Y=(g)=>250-(g-40)/80*220;
+const T=[0,15,30], G=[58,66,92];
+window.cuadro=function(i,total){const t=total>1?i/(total-1):1;
+ const paso=t<0.2?0:t<0.45?1:t<0.75?2:3; const k=paso<2?0:paso<3?1:2;
+ const pts=T.slice(0,k+1).map((m,j)=>`<circle cx="${X(m)}" cy="${Y(G[j])}" r="8" fill="${G[j]<70?ROJO:VERDE}" stroke="#fff" stroke-width="2"/><text x="${X(m)+12}" y="${Y(G[j])+5}" font-size="14" font-weight="800" fill="#1F2A37">${G[j]}</text>`).join("");
+ const dosis=T.slice(0,Math.min(k+1,2)).filter((m,j)=>G[j]<70&&(paso>=1)).map(m=>`<rect x="${X(m)-26}" y="22" width="52" height="24" rx="12" fill="${TEAL}"/><text x="${X(m)}" y="39" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">15 g</text><line x1="${X(m)}" x2="${X(m)}" y1="46" y2="${Y(G[0])-12}" stroke="${TEAL}" stroke-width="2" stroke-dasharray="3 3"/>`).join("");
+ const esc=`<svg width="620" height="290" viewBox="0 0 620 290">
+  <rect x="70" y="${Y(70)}" width="500" height="${Y(40)-Y(70)}" fill="${ROJO}" opacity=".10"/>
+  <line x1="70" x2="570" y1="${Y(70)}" y2="${Y(70)}" stroke="${ROJO}" stroke-dasharray="6 4"/><text x="566" y="${Y(70)-6}" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">70 mg/dL</text>
+  <line x1="70" y1="250" x2="570" y2="250" stroke="#9CA3AF"/>
+  ${[0,15,30].map(m=>`<text x="${X(m)}" y="272" text-anchor="middle" font-size="12" fill="#6B7280">${m} min</text>`).join("")}
+  <text x="62" y="${Y(100)+4}" text-anchor="end" font-size="12" fill="#6B7280">100</text>
+  <text x="62" y="22" text-anchor="end" font-size="12" fill="#6B7280">mg/dL</text>
+  <polyline points="${T.slice(0,k+1).map((m,j)=>X(m)+","+Y(G[j])).join(" ")}" fill="none" stroke="#1F2A37" stroke-width="2"/>
+  ${dosis}${pts}
+ </svg>`;
+ lienzo("Hipoglucemia en el paciente consciente","15 g de glucosa y volver a medir a los 15 minutos.",
+  `<div class="esc">${esc}</div><div class="pasos">${P.map(([n,s],j)=>`<div class="ps ${j===paso?"on":j<paso?"hecho":""}"><div class="n">${n}</div>${s}</div>`).join("")}</div>`,
+  "Esquema propio (valores ilustrativos). Fuente: ADA, Standards of Care in Diabetes 2026, rec. 6.15, 6.19 y p. S141.");};
+window.cuadro(39,40);
+</script></body></html>
