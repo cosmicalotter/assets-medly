@@ -1,0 +1,40 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Ejemplo de titulación de los cuatro fármacos de base en la ICFEr: empezar los cuatro a dosis bajas y
+// doblar cada 2 semanas hasta la dosis objetivo (ESC 2026, tabla 11 y p. 5382; supl. tablas S4-S9).
+const FARM = [
+  ["Sacubitril-valsartán", AZUL, ["49/51 mg c/12 h", "97/103 mg c/12 h", "97/103 mg c/12 h", "97/103 mg c/12 h"], [50, 100, 100, 100]],
+  ["Bisoprolol", MORADO, ["1,25 mg/día", "2,5 mg/día", "5 mg/día", "10 mg/día"], [12.5, 25, 50, 100]],
+  ["Espironolactona", TEAL, ["25 mg/día", "50 mg/día", "50 mg/día", "50 mg/día"], [50, 100, 100, 100]],
+  ["Dapagliflozina", VERDE, ["10 mg/día", "10 mg/día", "10 mg/día", "10 mg/día"], [100, 100, 100, 100]],
+];
+const SEM = ["Semana 0: empezar", "Semana 2: doblar", "Semana 4: doblar", "Semana 6: dosis objetivo"];
+function dibujar(paso, u) {
+  const ant = Math.max(0, paso - 1);
+  const linea = SEM.map((t, i) => `<div style="flex:1;text-align:center;padding:6px 4px;border-radius:8px;font-size:12.5px;font-weight:700;
+     background:${i === paso ? TEAL : i < paso ? tinte(TEAL, 25) : "#F1F5F9"};color:${i === paso ? "#fff" : "#334155"}">${t}</div>`).join("");
+  const barras = FARM.map(([n, c, dosis, pct]) => {
+    const v = pct[ant] + (pct[paso] - pct[ant]) * suave(u);
+    const sube = pct[paso] > pct[ant] && paso > 0;
+    return `<div style="display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center">
+      <div style="font-weight:700;font-size:14px;color:${c}">${n}</div>
+      <div style="position:relative;height:46px;background:#F1F5F9;border-radius:8px;overflow:hidden">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:${v}%;background:${tinte(c, sube ? 75 : 45)};border-right:3px solid ${c}"></div>
+        <div style="position:absolute;left:12px;top:12px;font-size:15px;font-weight:800;color:#1F2A37">${dosis[paso]}${pct[paso] >= 100 ? " · objetivo" : ""}</div>
+      </div></div>`;
+  }).join("");
+  lienzo("Subir la dosis cada 2 semanas", "Ejemplo en la ICFEr: se empiezan los cuatro a la vez y se doblan hasta la dosis objetivo.",
+    `<div style="display:flex;gap:6px">${linea}</div>
+     <div style="display:flex;flex-direction:column;gap:20px;margin-top:14px">${barras}</div>
+     <div style="display:flex;gap:8px;margin-top:auto">
+       <div class="item" style="flex:1;background:#F7F8FA">Antes de cada subida: <b>PA</b>, <b>FC</b>, síntomas y, 1-2 semanas tras cada cambio, <b>creatinina y potasio</b>.</div>
+       <div class="item" style="flex:1;background:#F7F8FA">Si no tolera la objetivo, la <b>dosis más alta tolerada</b>: algo es mejor que nada.</div>
+     </div>`,
+    "Esquema. Fuente: Guía ESC 2026 de insuficiencia cardíaca, tabla 11 y material suplementario (tablas S4-S9). La barra es el % de la dosis objetivo.");
+}
+window.cuadro = function (i, total) {
+  if (total <= 1) return dibujar(3, 1);
+  const porPaso = total / 4, paso = Math.min(3, Math.floor(i / porPaso));
+  dibujar(paso, tramo(i - paso * porPaso, 0, porPaso * 0.5));
+};
+window.cuadro(0, 1);
+</script></body></html>
