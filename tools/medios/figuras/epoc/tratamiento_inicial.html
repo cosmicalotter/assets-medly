@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Tratamiento farmacológico inicial por grupo ABE (GOLD 2026, guía de bolsillo, fig. 3.8; informe, p. 64).
+const COL = [
+  ["A", VERDE, "Pocos síntomas, sin exacerbaciones", [["Un broncodilatador", "de corta o larga acción; mejor de <b>larga</b> si está disponible"]]],
+  ["B", AZUL, "Más síntomas, sin exacerbaciones", [["LABA+LAMA", "doble broncodilatador desde el inicio"]]],
+  ["E", NARANJA, "1 o más exacerbaciones moderadas o graves", [["LABA+LAMA", "si los eosinófilos son <b>&lt;300/µL</b>"], ["LABA+LAMA+ICS", "valorar la <b>triple</b> si son <b>≥300/µL</b>"]]],
+];
+const html = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px">${COL.map(([g, c, q, tr]) => `
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="background:${c};color:#fff;border-radius:12px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:800">Grupo ${g}</div><div style="font-size:12.5px;margin-top:2px">${q}</div></div>
+    ${tr.map(([t, s]) => `<div class="caja" style="background:${tinte(c, 12)};border:2px solid ${tinte(c, 55)};text-align:center;padding:14px 8px;min-height:${tr.length > 1 ? 96 : 200}px;display:flex;flex-direction:column;justify-content:center">
+      <div style="font-size:19px;font-weight:800">${t}</div><div style="font-size:13px;margin-top:5px">${s}</div></div>`).join("")}
+  </div>`).join("")}</div>
+  <div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1;margin-top:4px">Mejor en un <b>solo inhalador</b>: es más cómodo y mejora la <b>adherencia</b>. No usar <b>LABA+ICS</b>: si hay indicación de ICS, la triple es mejor.</div>`;
+lienzo("Tratamiento inicial por grupo", "Con qué inhalador empieza cada grupo ABE", html,
+  "Esquema. Fuente: GOLD 2026, guía de bolsillo (fig. 3.8) e informe (p. 64).");
+</script></body></html>

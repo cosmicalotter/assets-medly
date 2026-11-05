@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Grados GOLD por el VEF1 y grupos ABE (GOLD 2026, guía de bolsillo, fig. 2.10 y 2.13).
+// Colores de las cadenas del algoritmo: A verde, B azul, E naranja.
+const GR = [["GOLD 1", "Leve", "VEF1 <b>≥80 %</b>", 18], ["GOLD 2", "Moderada", "VEF1 <b>50-79 %</b>", 38], ["GOLD 3", "Grave", "VEF1 <b>30-49 %</b>", 62], ["GOLD 4", "Muy grave", "VEF1 <b>&lt;30 %</b>", 86]];
+const izq = `<div style="display:flex;flex-direction:column;gap:7px">
+  <div style="font-size:14px;font-weight:700;color:#475569">Obstrucción: grado por el VEF1</div>
+  <div style="font-size:12.5px;color:#64748B;margin-top:-4px">Con VEF1/CVF <b>&lt;0,7</b> posbroncodilatador</div>
+  ${GR.map(([g, n, v, p]) => `<div class="caja" style="display:flex;align-items:center;gap:10px;background:${tinte("#475569", p / 6)};border:1.5px solid ${tinte("#475569", p / 2.2)};padding:11px 12px">
+     <b style="font-size:16px;min-width:64px">${g}</b><span style="flex:1">${n}</span><span>${v}</span></div>`).join("")}
+  <div style="font-size:12.5px;color:#64748B">VEF1 en porcentaje del predicho</div></div>`;
+const caja = (letra, c, txt) => `<div style="border-radius:12px;background:${tinte(c, 14)};border:2px solid ${c};padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center">
+  <div style="width:44px;height:44px;border-radius:50%;background:${c};color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center">${letra}</div>
+  <div style="font-size:13.5px;line-height:1.3">${txt}</div></div>`;
+const der = `<div style="display:flex;flex-direction:column;gap:7px">
+  <div style="font-size:14px;font-weight:700;color:#475569">Grupo: exacerbaciones y síntomas</div>
+  <div style="display:grid;grid-template-columns:96px 1fr 1fr;grid-template-rows:auto 112px 112px;gap:7px">
+    <div></div><div style="font-size:12.5px;font-weight:700;color:#64748B;text-align:center;align-self:end">Pocos síntomas</div><div style="font-size:12.5px;font-weight:700;color:#64748B;text-align:center;align-self:end">Más síntomas</div>
+    <div style="font-size:12.5px;color:#475569;display:flex;align-items:center"><span><b>≥1</b> moderada o grave en el último año</span></div>
+    <div style="grid-column:2 / span 2">${caja("E", NARANJA, "Con exacerbaciones,<br>sean cuales sean los síntomas")}</div>
+    <div style="font-size:12.5px;color:#475569;display:flex;align-items:center"><span><b>Ninguna</b> moderada ni grave</span></div>
+    ${caja("A", VERDE, "mMRC <b>0-1</b><br>y CAT <b>&lt;10</b>")}
+    ${caja("B", AZUL, "mMRC <b>≥2</b><br>o CAT <b>≥10</b>")}
+  </div></div>`;
+lienzo("Gravedad y grupos ABE", "El grado mide la obstrucción; el grupo decide el tratamiento inicial",
+  `<div style="display:grid;grid-template-columns:1fr 1.25fr;gap:22px;margin-top:4px">${izq}${der}</div>
+   <div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1;margin-top:6px">En GOLD 2026, <b>una sola</b> exacerbación <b>moderada</b> en el último año ya basta para el grupo E.</div>`,
+  "Esquema. Fuente: GOLD 2026, guía de bolsillo (fig. 2.10 y 2.13) e informe (p. 43).");
+</script></body></html>

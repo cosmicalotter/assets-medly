@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Eosinófilos en sangre y beneficio del ICS (GOLD 2026, informe, p. 64 y 66; guía de bolsillo, fig. 3.8 y 3.9).
+const GRIS = "#94A3B8";
+const tramos = [["&lt;100/µL", "El ICS aporta <b>poco</b>", GRIS, 26], ["100-299/µL", "Puede <b>ayudar</b>; el beneficio crece con la cifra", "#F5A66E", 34], ["≥300/µL", "Beneficio <b>mayor</b>", NARANJA, 40]];
+const barra = `<div style="position:relative;margin-top:6px">
+  <div style="display:flex;height:64px;border-radius:12px;overflow:hidden">${tramos.map(([r, , c, w]) => `<div style="width:${w}%;background:${c};color:#fff;font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center">${r}</div>`).join("")}</div>
+  ${[[26, AZUL, "100"], [60, "#C2410C", "300"]].map(([x, c, t]) => `<div style="position:absolute;left:${x}%;top:-8px;height:80px;border-left:4px solid ${c};transform:translateX(-2px)"></div>
+     <div style="position:absolute;left:${x}%;top:76px;transform:translateX(-50%);background:${c};color:#fff;font-weight:800;font-size:13px;padding:2px 8px;border-radius:6px">corte ${t}</div>`).join("")}
+</div>
+<div style="display:flex;margin-top:34px">${tramos.map(([, t, , w]) => `<div style="width:${w}%;text-align:center;font-size:13.5px;padding:0 6px">${t}</div>`).join("")}</div>`;
+const caja = (c, tit, txt) => `<div class="caja" style="flex:1;background:${tinte(c, 10)};border:2px solid ${c};padding:12px 13px;font-size:13.5px"><div style="font-weight:800;color:${c};font-size:14.5px;margin-bottom:4px">${tit}</div>${txt}</div>`;
+const html = `${barra}
+  <div style="display:flex;gap:12px;margin-top:10px">
+    ${caja(AZUL, "Corte 100: seguimiento", "Con <b>LABA+LAMA</b> y exacerbaciones: con <b>≥100/µL</b>, pasar a la triple; con menos, roflumilast o azitromicina.")}
+    ${caja("#C2410C", "Corte 300: inicio", "En el grupo <b>E</b> sin tratamiento previo: con <b>≥300/µL</b>, valorar la triple desde el principio.")}
+  </div>
+  <div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">Con eosinófilos <b>≥300/µL</b>, retirar el ICS aumenta el riesgo de <b>exacerbaciones</b>: sopesarlo antes de quitarlo.</div>`;
+lienzo("Eosinófilos y corticoide inhalado", "Cuánto aporta el ICS según los eosinófilos en sangre", html,
+  "Esquema. Fuente: GOLD 2026, informe (p. 64 y 66) y guía de bolsillo (fig. 3.8 y 3.9).");
+</script></body></html>

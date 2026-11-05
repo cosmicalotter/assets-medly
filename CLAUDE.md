@@ -44,10 +44,10 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (5 de noviembre de 2026) hay
-  19 visibles. Adultos (13): patología biliar, crisis hiperglucémicas,
+  20 visibles. Adultos (14): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
-  dengue y enfermedad renal crónica.
+  dengue, enfermedad renal crónica y EPOC.
   Pediatría (6): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, y epilepsia. El resto espera la reforma a la
