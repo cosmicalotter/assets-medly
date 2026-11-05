@@ -12,7 +12,7 @@ const PASOS = [
   "Si mejora, bajar el ritmo",
   "Seguir bajando mientras siga estable",
   "Mantener lo mínimo y vigilar la fase crítica",
-  "Si empeora o no mejora, subir el aporte",
+  "Si no mejora o empeora, subir el aporte",
 ];
 const caja = (t, s, estado) => {
   const fondo = estado === "ahora" ? C : estado === "hecho" ? tinte(C, 22) : "#F8FAFC";
@@ -30,10 +30,10 @@ window.cuadro = function (i, n) {
       <div style="display:flex;align-items:stretch">${cajas.map(([t, s], k) => (k ? flecha(k <= col) : "") +
         caja(t, s, paso === 4 ? "hecho" : k < col ? "hecho" : k === col ? "ahora" : "despues")).join("")}</div></div>`).join("");
   const peor = paso === 4 ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">Empeora o sube rápido el hematocrito: <b style="white-space:nowrap">5-10 mL/kg/h</b> durante <b>1-2 h</b>.</div>
-      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">Comorbilidad: otra carga de <b>5 mL/kg</b>, hasta <b>3</b>. Sin mejoría, <b>grupo C</b>.</div></div>`
+      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">No mejora: otra carga de <b>10 mL/kg</b> (comorbilidad: <b>5 mL/kg</b>), hasta <b>3</b>. Luego, <b style="white-space:nowrap">grupo C</b>.</div>
+      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">Empeora al bajar o sube rápido el hematocrito: <b style="white-space:nowrap">5-10 mL/kg/h</b> durante <b>1-2 h</b>.</div></div>`
     : `<div style="height:58px"></div>`;
-  const meta = `<div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">Meta: la cantidad <b>mínima</b> que mantenga la perfusión y una diuresis <b>&gt;0,5 mL/kg/h</b>. Hematocrito cada <b style="white-space:nowrap">12-24 h</b>.</div>`;
+  const meta = `<div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">Meta: la cantidad <b>mínima</b> que mantenga la perfusión y una diuresis <b>&gt;0,5 mL/kg/h</b>. Hematocrito antes, tras la carga y cada <b style="white-space:nowrap">6-12 h</b>.</div>`;
   const ley = `<div style="display:flex;font-size:12.5px;color:#64748B"><span>Lactato de Ringer o solución salina 0,9 %</span><span style="margin-left:auto">Paso ${paso + 1} de 5</span></div>`;
   lienzo("Líquidos IV con signos de alarma", PASOS[paso], ley + carriles + peor + meta,
     "Esquema. Fuente: MinSalud 2010, p. 27 y anexo 1 (p. 41); OPS 2020, Algoritmos para el manejo clínico de los casos de dengue <span style='white-space:nowrap'>(p. 12-13)</span>.");
