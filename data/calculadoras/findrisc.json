@@ -1,0 +1,240 @@
+{
+  "titulo": "FINDRISC (riesgo de diabetes tipo 2)",
+  "descripcion": "Cuestionario de ocho preguntas que estima la probabilidad de tener diabetes tipo 2 sin diagnosticar u otra alteración de la glucosa, de 0 a 26 puntos. Se derivó en Finlandia en adultos de 35 a 64 años; esta es la versión que adopta MinSalud para el tamizaje de adultos en Colombia, con los cortes de cintura de la región. Con 12 puntos o más se pide una glucemia en ayunas.",
+  "instrucciones": "Marca una opción por pregunta. Mide la cintura entre el reborde costal y la cresta ilíaca, en espiración, y usa la fila de tu sexo. El IMC puede escribirse.",
+  "limitaciones": "Es una prueba de tamizaje, no de diagnóstico: un puntaje alto obliga a medir la glucosa y uno bajo no descarta la diabetes si hay síntomas. No se usa en embarazadas, en menores de 18 años ni en quien ya tiene diabetes.",
+  "referencias": [
+    {
+      "titulo": "Lindström J, Tuomilehto J. The diabetes risk score: a practical tool to predict type 2 diabetes risk. Diabetes Care 2003;26(3):725-31.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12610029/",
+      "texto": "Age, BMI, waist circumference, history of antihypertensive drug treatment and high blood glucose, physical activity, and daily consumption of fruits, berries, or vegetables were selected as categorical variables."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Bogotá; 2016.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+      "paginas": "30",
+      "texto": "Se recomienda el uso del FINDRISC (estableciendo el punto de corte en 12), como método de tamización de DMT2 en adultos en Colombia."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Bogotá; 2016.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+      "paginas": "32",
+      "texto": "Se debe realizar una prueba diagnóstico de la diabetes mellitus tipo 2 a todas las personas que tengan un puntaje ≥ 12 en el FINDRISC."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Bogotá; 2016.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+      "paginas": "32",
+      "texto": "A las personas con puntaje menor a 12 en el FINDRISC, se les debe instruir sobre la importancia de estilos de vida saludable y realizar nueva tamización a los 3 años."
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "naranja"
+    },
+    {
+      "puntos": 4,
+      "titulo": "4",
+      "color": "naranja"
+    },
+    {
+      "puntos": 5,
+      "titulo": "5",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Edad",
+      "descripciones": [
+        "Menos de 45 años",
+        "-",
+        "45-54 años",
+        "55-64 años",
+        "Más de 64 años",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Índice de masa corporal",
+      "descripciones": [
+        "Menos de 25",
+        "25-30",
+        "-",
+        "Más de 30",
+        "-",
+        "-"
+      ],
+      "ayuda": "Peso en kilos dividido por la talla en metros al cuadrado (kg/m²).",
+      "entrada": {
+        "unidad": "kg/m²",
+        "min": 10,
+        "max": 80,
+        "tramos": [
+          {
+            "puntos": 0,
+            "max": 24.99
+          },
+          {
+            "puntos": 1,
+            "min": 25,
+            "max": 30
+          },
+          {
+            "puntos": 3,
+            "min": 30.01
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Cintura (hombre)",
+      "grupo": "cintura",
+      "descripciones": [
+        "Menos de 94 cm",
+        "-",
+        "-",
+        "-",
+        "94 cm o más",
+        "-"
+      ],
+      "ayuda": "Entre el reborde costal y la cresta ilíaca, horizontal, al final de la espiración.",
+      "entrada": {
+        "unidad": "cm",
+        "min": 40,
+        "max": 250,
+        "tramos": [
+          {
+            "puntos": 0,
+            "max": 93.99
+          },
+          {
+            "puntos": 4,
+            "min": 94
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Cintura (mujer)",
+      "grupo": "cintura",
+      "descripciones": [
+        "Menos de 90 cm",
+        "-",
+        "-",
+        "-",
+        "90 cm o más",
+        "-"
+      ],
+      "ayuda": "Entre el reborde costal y la cresta ilíaca, horizontal, al final de la espiración.",
+      "entrada": {
+        "unidad": "cm",
+        "min": 40,
+        "max": 250,
+        "tramos": [
+          {
+            "puntos": 0,
+            "max": 89.99
+          },
+          {
+            "puntos": 4,
+            "min": 90
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Actividad física diaria de 30 minutos o más",
+      "descripciones": [
+        "Sí",
+        "-",
+        "No",
+        "-",
+        "-",
+        "-"
+      ],
+      "ayuda": "En el trabajo o en el tiempo libre, todos los días."
+    },
+    {
+      "nombre": "Come verduras o frutas",
+      "descripciones": [
+        "Todos los días",
+        "No todos los días",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Toma medicamentos para la hipertensión",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Glucosa alta alguna vez",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "-",
+        "-",
+        "Sí"
+      ],
+      "ayuda": "En un control médico, durante una enfermedad o en el embarazo."
+    },
+    {
+      "nombre": "Familiares con diabetes",
+      "descripciones": [
+        "Ninguno u otros parientes",
+        "-",
+        "-",
+        "Abuelos, tíos o primos hermanos",
+        "-",
+        "Padres, hermanos o hijos"
+      ],
+      "ayuda": "Tipo 1 o tipo 2; la diabetes «por la edad» también cuenta."
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 11,
+      "categoria": "Riesgo bajo (menos de 12)",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "Educar en hábitos saludables según los factores de riesgo que marcó y repetir el FINDRISC a los 3 años. Con síntomas de hiperglucemia, medir la glucosa igualmente."
+    },
+    {
+      "min": 12,
+      "max": 26,
+      "categoria": "Alta probabilidad (12 o más)",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Pedir una glucemia plasmática en ayunas (la prueba diagnóstica de elección en Colombia). Si no llega a diabetes, buscar prediabetes para incluirlo en un programa de prevención."
+    }
+  ]
+}
