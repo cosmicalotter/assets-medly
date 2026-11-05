@@ -1,0 +1,30 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Escalamiento por exacerbaciones en el seguimiento (GOLD 2026, guía de bolsillo, fig. 3.9; informe, p. 66).
+// LABA+LAMA en azul, triple en naranja y biológicos en morado, como en el info del nodo.
+const GRIS = "#64748B", CL = "#CBD5E1";
+const FILAS = [
+  ["Recibe LABA o LAMA", [["Eosinófilos <b>&lt;300/µL</b>", "LABA+LAMA", AZUL], ["Eosinófilos <b>≥300/µL</b>", "LABA+LAMA+ICS", NARANJA]]],
+  ["Recibe LABA+LAMA", [["Eosinófilos <b>≥100/µL</b>", "LABA+LAMA+ICS", NARANJA], ["Eosinófilos <b>&lt;100/µL</b>", "Roflumilast o azitromicina", GRIS]]],
+  ["Recibe LABA+LAMA+ICS", [["VEF1 <b>&lt;50 %</b> y bronquitis crónica", "Añadir roflumilast", GRIS], ["No fuma", "Añadir azitromicina", GRIS], ["Eosinófilos <b>≥300/µL</b> y 2 moderadas o 1 grave", "Biológico: dupilumab o mepolizumab", MORADO]]],
+];
+const PASOS = ["Con un broncodilatador: escalar según los eosinófilos", "Con LABA+LAMA: el corte es 100/µL", "Con la triple: añadir según el perfil", "Escalamiento completo"];
+window.cuadro = function (i, n) {
+  const paso = n > 1 ? Math.min(3, Math.floor((i / n) * 4)) : 3;
+  const filas = FILAS.map(([desde, ops], k) => {
+    const on = paso === 3 || k === paso, vis = paso === 3 || k <= paso;
+    const op = (c) => on ? 1 : vis ? 0.45 : 0.12;
+    return `<div style="display:flex;align-items:stretch;gap:8px;opacity:${on ? 1 : vis ? 0.5 : 0.15}">
+      <div style="flex:none;width:150px;border-radius:12px;background:${on ? "#1F2A37" : "#E2E8F0"};color:${on ? "#fff" : "#475569"};font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px">${desde}</div>
+      <div style="flex:none;width:18px;display:flex;align-items:center;font-size:22px;font-weight:800;color:${on ? "#1F2A37" : CL}">›</div>
+      <div style="flex:1;display:grid;grid-template-columns:repeat(${ops.length},1fr);gap:7px">${ops.map(([si, t, c]) => `
+        <div style="border-radius:12px;border:2px solid ${c};background:${tinte(c, 12)};padding:7px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:12px;color:#475569">${si}</div><div style="font-size:15px;font-weight:800;color:${c === GRIS ? "#1F2A37" : c};margin-top:3px">${t}</div></div>`).join("")}</div>
+    </div>`;
+  }).join("");
+  const ley = `<div style="display:flex;font-size:12.5px;color:#64748B"><span>Antes de escalar: revisar <b>adherencia</b>, técnica y comorbilidades</span><span style="margin-left:auto">Paso ${paso + 1} de 4</span></div>`;
+  lienzo("Escalamiento por exacerbaciones", PASOS[paso],
+    ley + `<div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">${filas}</div>`,
+    "Esquema. Fuente: GOLD 2026, guía de bolsillo (fig. 3.9) e informe (p. 65-66).");
+};
+window.cuadro(3, 4);
+</script></body></html>

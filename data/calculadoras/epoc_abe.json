@@ -1,0 +1,192 @@
+{
+  "titulo": "Grupo ABE de la EPOC (GOLD 2026)",
+  "descripcion": "Clasifica al adulto con EPOC confirmada por espirometría en el grupo A, B o E de GOLD 2026 según las exacerbaciones del último año y los síntomas (mMRC o CAT). El grupo decide el tratamiento inhalado con que se empieza.",
+  "instrucciones": "Responde en orden: con una exacerbación moderada o grave en el último año ya es grupo E. Para los síntomas basta una de las dos escalas; si no mediste el CAT, marca «No se midió» y decide el mMRC.",
+  "limitaciones": "Sólo para adultos con EPOC confirmada (VEF1/CVF <0,7 posbroncodilatador). Sirve para elegir el tratamiento inicial; en los controles, el ajuste depende del tratamiento que ya recibe y de los eosinófilos, no del grupo.",
+  "tipoCalculo": "formula",
+  "formula": "2 * previas + (1 - previas) * 0.5 * (0.5 * (1 + (mmrc - 1.5) / abs(mmrc - 1.5)) + cat + abs(0.5 * (1 + (mmrc - 1.5) / abs(mmrc - 1.5)) - cat))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "19",
+      "texto": "One or more (≥ 1) moderate or severe exacerbations in the previous year E Zero (0) moderate or severe exacerbations in the previous year A B mMRC 0-1 CAAT < 10 mMRC ≥ 2 CAAT ≥ 10",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "17",
+      "texto": "mMRC Grade 0 I only get breathless with strenuous exercise mMRC Grade 1 I get short of breath when hurrying on the level or walking up a slight hill",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "17",
+      "texto": "mMRC Grade 2 I walk slower than people of the same age on the level because of breathlessness, or I have to stop for breath when walking on my own pace on the level",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "17",
+      "texto": "mMRC Grade 3 I stop for breath after walking about 100 meters or after a few minutes on the level mMRC Grade 4 I am too breathless to leave the house or I am breathless when dressing or undressing",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "40",
+      "texto": "The equivalent cut-point for the CAAT™ is 10.(438) An equivalent mMRC score cannot be calculated because a simple breathlessness cut-point cannot equate to a comprehensive symptom score cut-point.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "27",
+      "texto": "GROUP A A bronchodilator GROUP B LABA + LAMA* GROUP E LABA + LAMA* consider LABA+LAMA+ICS* if blood eos ≥ 300",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "64",
+      "texto": "If available and affordable a long-acting bronchodilator is the preferred choice except in patients with very occasional breathlessness. This should be continued if benefit is documented.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "64",
+      "texto": "Therefore, providing there are no issues regarding availability, cost and side-effects LABA+LAMA is the recommended initial pharmacological choice.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "64",
+      "texto": "Use of LABA+ICS in COPD is not encouraged. If there is an indication for an ICS, then LABA+LAMA+ICS has been shown to be superior to LABA+ICS",
+      "anio": "2026"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "previas",
+          "tipo": "opciones",
+          "label": "E · Exacerbaciones: 1 o más moderadas o graves en el último año",
+          "ayuda": "Cuenta las del último año que fueron moderadas o graves; las leves no cuentan.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "mmrc",
+          "tipo": "opciones",
+          "label": "mMRC: disnea en un día habitual",
+          "ayuda": "Elige la frase que mejor describe la disnea del paciente.",
+          "opciones": [
+            {
+              "label": "Grado 0",
+              "puntos": 0,
+              "detalle": "Sólo le falta el aire con el ejercicio intenso."
+            },
+            {
+              "label": "Grado 1",
+              "puntos": 1,
+              "detalle": "Le falta el aire al caminar rápido en plano o al subir una pendiente leve."
+            },
+            {
+              "label": "Grado 2",
+              "puntos": 2,
+              "detalle": "Camina más despacio que las personas de su edad por la disnea, o tiene que parar a respirar al caminar en plano a su paso."
+            },
+            {
+              "label": "Grado 3",
+              "puntos": 3,
+              "detalle": "Para a respirar tras caminar unos 100 metros o unos pocos minutos en plano."
+            },
+            {
+              "label": "Grado 4",
+              "puntos": 4,
+              "detalle": "La disnea le impide salir de casa, o se ahoga al vestirse o desvestirse."
+            }
+          ]
+        },
+        {
+          "id": "cat",
+          "tipo": "opciones",
+          "label": "CAT: puntaje total de 0 a 40",
+          "ayuda": "Ocho preguntas de 0 a 5 sobre tos, flema, opresión, disnea, actividades, confianza, sueño y energía.",
+          "opciones": [
+            {
+              "label": "Menos de 10",
+              "puntos": 0
+            },
+            {
+              "label": "10 o más",
+              "puntos": 1
+            },
+            {
+              "label": "No se midió",
+              "puntos": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 2,
+      "max": 2,
+      "si": {
+        "id": "previas",
+        "igual": 1
+      },
+      "categoria": "Grupo E: con exacerbaciones",
+      "color": "naranja",
+      "match_opcion_index": 2,
+      "approach": "Iniciar LABA+LAMA, mejor en un solo inhalador; valorar la triple (LABA+LAMA+ICS) si los eosinófilos son ≥300/µL. No usar LABA+ICS."
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "si": {
+        "alguno": [
+          {
+            "id": "mmrc",
+            "mayorIgual": 2
+          },
+          {
+            "id": "cat",
+            "igual": 1
+          }
+        ]
+      },
+      "categoria": "Grupo B: más síntomas",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Iniciar LABA+LAMA, mejor en un solo inhalador. Si la combinación no es apropiada, un LABA o un LAMA."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Grupo A: pocos síntomas",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Dar un broncodilatador, de acción corta o larga; mejor de larga acción si está disponible, salvo si la disnea es muy ocasional. Seguir con él si hay beneficio."
+    }
+  ]
+}
