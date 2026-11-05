@@ -1,0 +1,48 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Curso del dengue en el adulto (MinSalud 2010, figura 1, p. 17, adaptada de Yip 1980; texto de p. 17-18):
+// fiebre de 2 a 7 días; la fase crítica empieza al caer la fiebre, entre el día 4 y el 6 en el adulto;
+// el hematocrito sube y las plaquetas caen hasta el día del choque; el primer día sin fiebre es el de mayor riesgo.
+// Curvas cualitativas: el eje vertical no tiene escala.
+const X0 = 70, X1 = 650, DIAS = 10, Y0 = 34, Y1 = 300;
+const x = (d) => X0 + (X1 - X0) * (d - 0.5) / DIAS;
+const fases = [[0.5, 3.5, "Fase febril", AMBAR], [3.5, 6.5, "Fase crítica", ROJO], [6.5, 10.5, "Fase de recuperación", VERDE]];
+let svg = fases.map(([a, b, t, c]) => `<rect x="${x(a)}" y="${Y0}" width="${x(b) - x(a)}" height="${Y1 - Y0}" fill="${tinte(c, 9)}"/>
+  <rect x="${x(a)}" y="${Y0 - 26}" width="${x(b) - x(a) - 3}" height="22" rx="6" fill="${c}"/>
+  <text x="${(x(a) + x(b)) / 2}" y="${Y0 - 10}" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">${t}</text>`).join("");
+// curvas (valores relativos 0-1 por día)
+const curva = (vals, color, ancho = 4, guion = "") => {
+  const y = (v) => Y1 - 18 - v * (Y1 - Y0 - 60);
+  const pts = vals.map((v, i) => [x(i + 1), y(v)]);
+  // Catmull-Rom: curva suave que pasa por cada día
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0]},${c1[1]} ${c2[0]},${c2[1]} ${p2[0]},${p2[1]}`;
+  }
+  return { svg: `<path d="${d}" fill="none" stroke="${color}" stroke-width="${ancho}" stroke-linecap="round" ${guion}/>`, y, pts };
+};
+const fiebre = curva([0.94, 1, 0.95, 0.24, 0.1, 0.07, 0.06, 0.06, 0.06, 0.06], ROJO);
+const hto = curva([0.30, 0.30, 0.33, 0.52, 0.80, 0.64, 0.42, 0.33, 0.30, 0.30], AZUL);
+const plaq = curva([0.80, 0.71, 0.60, 0.42, 0.14, 0.22, 0.44, 0.62, 0.73, 0.78], MORADO, 4, `stroke-dasharray="9 6"`);
+svg += fiebre.svg + hto.svg + plaq.svg;
+// rótulos de las curvas, fuera de ellas
+const rot = (tx, ty, t, c) => `<text x="${tx}" y="${ty}" font-size="13" font-weight="700" fill="${c}">${t}</text>`;
+svg += rot(x(1) - 14, fiebre.pts[0][1] - 10, "Fiebre", ROJO);
+svg += rot(x(8.2), hto.pts[8][1] - 26, "Hematocrito", AZUL);
+svg += rot(x(8.2), plaq.pts[8][1] - 16, "Plaquetas", MORADO);
+// primer día sin fiebre
+const xa = x(4);
+svg += `<line x1="${xa}" y1="${Y0 + 4}" x2="${xa}" y2="${Y1}" stroke="#1F2A37" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="${xa}" cy="${fiebre.pts[3][1]}" r="7" fill="#fff" stroke="#1F2A37" stroke-width="3"/>`;
+// eje de días
+svg += `<line x1="${X0}" y1="${Y1}" x2="${X1}" y2="${Y1}" stroke="#94A3B8" stroke-width="1.5"/>` +
+  Array.from({ length: DIAS }, (_, i) => `<text x="${x(i + 1)}" y="${Y1 + 17}" font-size="12" fill="#64748B" text-anchor="middle">${i + 1}</text>`).join("") +
+  `<text x="${(X0 + X1) / 2}" y="${Y1 + 34}" font-size="12" fill="#64748B" text-anchor="middle">Días de enfermedad</text>`;
+const fig = `<svg width="668" height="340" viewBox="20 0 668 340">${svg}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1.15fr 1fr;gap:8px">
+  <div class="caja" style="background:#F1F5F9;border:1.5px solid #1F2A37"><b>Primer día sin fiebre</b> (línea discontinua): el de <b>mayor riesgo</b>. En el adulto, la fiebre cae entre el <b>día 4 y el 6</b>.</div>
+  <div class="caja" style="background:${tinte(ROJO, 10)};border:1.5px solid ${tinte(ROJO, 45)}">Fase crítica: <b>signos de alarma</b>, hematocrito en lo más alto y plaquetas en lo más bajo el día del <b>choque</b>.</div></div>`;
+lienzo("El curso del dengue día a día", "Las tres fases del adulto, con la fiebre, el hematocrito y las plaquetas (sin escala)", fig + notas,
+  "Esquema adaptado de MinSalud 2010, Guía para la atención clínica integral del paciente con dengue, figura 1 y p. 17-18.");
+</script></body></html>

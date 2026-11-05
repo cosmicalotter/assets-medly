@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Los cuatro grupos de tratamiento del dengue (MinSalud 2010 p. 25-28; OPS 2020 p. 8-14; MinSalud 2026 rec. 4-5 y UCI 1-2).
+// Los colores son los de cada cadena del algoritmo.
+const COLS = [
+  ["Grupo A", VERDE, ["<b>Sin</b> signos de alarma ni condición de riesgo; <b>tolera</b> la vía oral y orina cada 6 h", "<b>Casa</b>, con control diario", "Oral: hasta <b>3.000 mL/día</b>"]],
+  ["Grupo B1", AZUL, ["Sin signos de alarma, con <b>comorbilidad</b>, embarazo, ≥65 años o <b>riesgo social</b>", "Hospital o <b>unidad de dengue</b>", "Oral; si no bebe, IV a <b>2-4 mL/kg/h</b>"]],
+  ["Grupo B2", NARANJA, ["<b>Con</b> signos de alarma", "<b>Hospital</b>", "IV: <b>10 mL/kg/h</b> y bajar (comorbilidad: <b>5 mL/kg</b>)"]],
+  ["Grupo C", ROJO, ["<b>Choque</b>, sangrado grave o daño grave de órganos", "<b>UCI</b>", "Bolo de <b>5-10</b> o <b>20 mL/kg</b> de cristaloide"]],
+];
+const FILAS = ["Quién", "Dónde", "Líquidos"];
+let html = `<div style="display:grid;grid-template-columns:70px repeat(4,1fr);gap:7px 7px;align-items:stretch">`;
+html += `<div></div>` + COLS.map(([t, c]) => `<div style="background:${c};color:#fff;border-radius:10px;padding:9px 6px;font-weight:700;font-size:15.5px;text-align:center">${t}</div>`).join("");
+FILAS.forEach((f, i) => {
+  html += `<div style="font-size:13px;font-weight:700;color:#475569;display:flex;align-items:center">${f}</div>`;
+  html += COLS.map(([, c, v]) => `<div class="caja" style="background:${tinte(c, i === 0 ? 14 : 8)};border:1.5px solid ${tinte(c, i === 0 ? 50 : 30)};font-size:13.2px;display:flex;align-items:center;min-height:${i === 0 ? 112 : 70}px"><span>${v[i]}</span></div>`).join("");
+});
+html += `</div>
+<div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1;margin-top:4px">El dengue es <b>dinámico</b>: el paciente puede pasar de un grupo a otro en horas, así que se <b>reclasifica</b> en cada valoración.</div>`;
+lienzo("Cuatro grupos de tratamiento", "Dónde se trata cada adulto con dengue y con qué líquidos empieza", html,
+  "Esquema. Fuente: MinSalud 2010 (p. 25-28); OPS 2020, Algoritmos para el manejo clínico de los casos de dengue (p. 8-14); MinSalud 2026.");
+</script></body></html>
