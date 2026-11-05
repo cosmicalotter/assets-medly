@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// KDIGO 2024, PP 2.2.1-2.2.3 (S156): umbrales de la KFRE.
+const VERDE = "#2FB36D", AMARILLO = "#F2C94C", NARANJA = "#F2994A", ROJO = "#EB5757";
+function barra(y, rot, sub, max, tramos, marcas) {
+  const X0 = 150, X1 = 640, x = (v) => X0 + (X1 - X0) * v / max;
+  let s = `<text x="${X0 - 12}" y="${y + 20}" text-anchor="end" font-size="16" font-weight="800" fill="#1F2A37">${rot}</text>
+    <text x="${X0 - 12}" y="${y + 37}" text-anchor="end" font-size="12" fill="#6B7280">${sub}</text>`;
+  tramos.forEach(([a, b, c]) => { s += `<rect x="${x(a)}" y="${y}" width="${x(b) - x(a)}" height="40" fill="${c}"/>`; });
+  marcas.forEach(([v, t]) => { s += `<line x1="${x(v)}" x2="${x(v)}" y1="${y - 6}" y2="${y + 46}" stroke="#1F2A37" stroke-width="2"/>
+    <text x="${x(v)}" y="${y - 10}" text-anchor="middle" font-size="14" font-weight="800" fill="#1F2A37">${t}</text>`; });
+  s += `<text x="${X0}" y="${y + 60}" font-size="12" fill="#6B7280">0 %</text><text x="${X1}" y="${y + 60}" text-anchor="end" font-size="12" fill="#6B7280">${max} %</text>`;
+  return s;
+}
+const svg = `<svg width="668" height="230" viewBox="0 0 668 230">
+  ${barra(34, "A 5 años", "riesgo de falla renal", 10, [[0, 3, "#E5E7EB"], [3, 10, AMARILLO]], [[3, "3 %"], [5, "5 %"]])}
+  ${barra(144, "A 2 años", "riesgo de falla renal", 60, [[0, 10, "#E5E7EB"], [10, 40, NARANJA], [40, 60, ROJO]], [[10, "10 %"], [40, "40 %"]])}
+</svg>`;
+const notas = `<div style="display:flex;gap:8px">${[[AMARILLO, "<b>3-5 %</b> a 5 años: <b>remitir</b> a nefrología"], [NARANJA, "<b>>10 %</b> a 2 años: atención <b>multidisciplinaria</b>"], [ROJO, "<b>>40 %</b> a 2 años: preparar la <b>diálisis</b> o el trasplante"]]
+  .map(([c, t]) => `<div class="item" style="background:#F7F8FA;flex:1;font-size:13px"><b style="color:${c}">■</b> ${t}</div>`).join("")}</div>`;
+lienzo("Qué hacer según el riesgo de la KFRE", "Riesgo de falla renal en la ERC G3-G5, a 5 y a 2 años.", svg + notas,
+  FUENTE("KDIGO 2024, puntos de práctica 2.2.1-2.2.3 (S156)"));
+</script></body></html>

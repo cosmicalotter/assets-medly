@@ -1,0 +1,127 @@
+{
+  "titulo": "Riesgo de falla renal (KFRE)",
+  "descripcion": "Estima el riesgo de llegar a falla renal tratada con diálisis o trasplante a los 5 y a los 2 años en adultos con ERC G3-G5, con la edad, el sexo, la TFGe y la RACU (relación albúmina/creatinina en orina) (ecuación KFRE de 4 variables). Se derivó en Canadá y se validó en 721 357 personas de 31 cohortes; aquí va con la calibración para fuera de Norteamérica. Orienta la remisión a nefrología y la preparación de la diálisis o el trasplante.",
+  "instrucciones": "Usar la TFGe por CKD-EPI y la RACU de una muestra de la mañana, estables y fuera de una lesión renal aguda. El resultado principal es a 5 años; el riesgo a 2 años sale debajo.",
+  "limitaciones": "Sólo para ERC G3-G5 (TFGe <60) sin diálisis ni trasplante: no es válida en G1-G2 ni durante una lesión renal aguda. En la nefropatía por IgA y la poliquistosis renal se usan ecuaciones propias.",
+  "referencias": [
+    {
+      "titulo": "Tangri N, Grams ME, Levey AS, et al. Multinational assessment of accuracy of equations for predicting risk of kidney failure: a meta-analysis. JAMA 2016;315(2):164-174.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26757465/",
+      "texto": "Addition of a calibration factor that lowered the baseline risk by 32.9% at 2 years and 16.5% at 5 years improved the calibration in 12/15 and 10/13 non-North American cohorts"
+    },
+    {
+      "titulo": "Major RW, Shepherd D, Medcalf JF, et al. The Kidney Failure Risk Equation for prediction of end stage renal disease in UK primary care: an external validation and clinical impact projection cohort study. PLoS Med 2019;16(11):e1002955. S1 Text.",
+      "url": "https://doi.org/10.1371/journal.pmed.1002955",
+      "texto": "The risk of ESRD using the KFRE 4-variable equation calibrated to a non-North American population is calculated as: For five year risk: 1 - 0.9365exp(sum)"
+    },
+    {
+      "titulo": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314. Recomendación 2.2.1 y puntos de práctica 2.2.1-2.2.3.",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "paginas": "S156",
+      "texto": "A 5-year kidney failure risk of 3%–5% can be used to determine need for nephrology referral in addition to criteria based on eGFR or urine ACR"
+    },
+    {
+      "titulo": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314. Punto de práctica 2.2.3.",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "paginas": "S156",
+      "texto": "A 2-year kidney failure risk threshold of >40% can be used to determine the modality education, timing of preparation for kidney replacement therapy (KRT) including vascular access planning"
+    }
+  ],
+  "tipoCalculo": "formula",
+  "formula": "100 * (1 - 0.9365 ^ exp(-0.2201 * (anios / 10 - 7.036) + 0.2467 * (hombre - 0.5642) - 0.5567 * (tfg / 5 - 7.222) + 0.4510 * (ln(acr) - 5.137)))",
+  "prefijoResultado": "A 5 años",
+  "sufijoResultado": "%",
+  "decimales": 1,
+  "secciones": [
+    {
+      "nombre": "Datos del paciente",
+      "elementos": [
+        {
+          "id": "anios",
+          "tipo": "input_numero",
+          "label": "Edad",
+          "unidad": "años",
+          "min": 18,
+          "max": 110
+        },
+        {
+          "id": "sexo",
+          "tipo": "opciones",
+          "label": "Sexo",
+          "opciones": [
+            {
+              "label": "Femenino",
+              "valoresVariables": {
+                "hombre": 0
+              }
+            },
+            {
+              "label": "Masculino",
+              "valoresVariables": {
+                "hombre": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "tfg",
+          "tipo": "input_numero",
+          "label": "TFGe",
+          "unidad": "mL/min/1,73 m²",
+          "min": 1,
+          "max": 59.9,
+          "ayuda": "Por CKD-EPI. La ecuación sólo vale con TFGe <60 (G3-G5)."
+        },
+        {
+          "id": "acr",
+          "tipo": "input_numero",
+          "label": "RACU (albúmina/creatinina en orina)",
+          "unidad": "mg/g",
+          "min": 1,
+          "max": 20000,
+          "unidades": [
+            {
+              "unidad": "mg/mmol",
+              "factor": 8.84
+            }
+          ],
+          "ayuda": "De la primera orina de la mañana, confirmada."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 2.99,
+      "categoria": "Riesgo bajo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Riesgo a 5 años **<3 %**: por sí solo no obliga a remitir. Seguir los controles de la TFGe y la RACU y revisar los demás criterios de remisión."
+    },
+    {
+      "min": 3,
+      "max": 4.99,
+      "categoria": "Umbral de remisión",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "KDIGO usa un riesgo a 5 años de **3-5 %** para **remitir a nefrología**, según los recursos locales y junto con la TFGe, la RACU y la clínica."
+    },
+    {
+      "min": 5,
+      "max": 100,
+      "categoria": "Riesgo alto",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Remitir a nefrología. Con riesgo a 2 años **>10 %**, atención multidisciplinaria; con **>40 %**, educar en las modalidades y preparar la diálisis o el trasplante."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "Riesgo a 2 años",
+      "formula": "100 * (1 - 0.9832 ^ exp(-0.2201 * (anios / 10 - 7.036) + 0.2467 * (hombre - 0.5642) - 0.5567 * (tfg / 5 - 7.222) + 0.4510 * (ln(acr) - 5.137)))",
+      "sufijo": "%",
+      "decimales": 1
+    }
+  ]
+}

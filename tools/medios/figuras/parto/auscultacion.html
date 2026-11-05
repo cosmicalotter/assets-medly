@@ -1,0 +1,91 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Auscultación intermitente: OMS 2018 (protocolo de la recomendación 18) y NICE NG229 1.2.9-1.2.10.
+const W = 668, X0 = 52, AN = 600;
+const T = 140;                       // segundos que se dibujan
+const x = (t) => X0 + (t / T) * AN;
+const C0 = 15, C1 = 75;              // contracción de 60 s
+const A0 = 45, A1 = C1 + 30;         // auscultación: desde la contracción hasta 30 s después (60 s)
+const curva = (t) => (t < C0 || t > C1) ? 0 : Math.sin(Math.PI * (t - C0) / (C1 - C0)) ** 2;
+const PASOS = [
+  ["1.", "Palpar la <b>contracción</b>"],
+  ["2.", "Auscultar <b>durante</b> ella"],
+  ["3.", "Seguir hasta <b>30 s</b> después: <b>1 min</b> como mínimo"],
+];
+// Variabilidad de la FCF fija (semilla) para que todos los cuadros dibujen el mismo trazo.
+let semilla = 7;
+const azar = () => ((semilla = (semilla * 16807) % 2147483647) / 2147483647);
+const FCF = Array.from({ length: T + 1 }, (_, k) => 138 + 5 * Math.sin(k / 4.1) + 3 * Math.sin(k / 1.7 + 1) + (azar() - 0.5) * 4);
+const AL_F = 112, Y_F = 8, Y_U = 140, AL_U = 62;              // canales: FCF arriba, contracciones abajo
+const yF = (l) => Y_F + AL_F - ((l - 80) / 120) * AL_F;        // 80-200 lpm
+const yU = (v) => Y_U + AL_U - v * (AL_U - 8);
+function papel() {
+  let s = "";
+  for (const [y0, al] of [[Y_F, AL_F], [Y_U, AL_U]]) {
+    s += `<rect x="${X0}" y="${y0}" width="${AN}" height="${al}" fill="#FFF7F7" stroke="#F5C2C2" stroke-width="1.2"/>`;
+    for (let k = 0; k <= T; k += 10) s += `<line x1="${x(k)}" y1="${y0}" x2="${x(k)}" y2="${y0 + al}" stroke="${k % 30 ? "#FBE3E3" : "#F5C2C2"}" stroke-width="${k % 30 ? 0.8 : 1.2}"/>`;
+  }
+  for (let l = 80; l <= 200; l += 20) {
+    s += `<line x1="${X0}" y1="${yF(l)}" x2="${X0 + AN}" y2="${yF(l)}" stroke="${l % 40 ? "#FBE3E3" : "#F5C2C2"}" stroke-width="${l % 40 ? 0.8 : 1.2}"/>`;
+    if (l % 40 === 0) s += `<text x="${X0 - 6}" y="${yF(l) + 4}" text-anchor="end" font-size="10.5" fill="${GRIS}">${l}</text>`;
+  }
+  // franja normal 110-160
+  s += `<rect x="${X0}" y="${yF(160)}" width="${AN}" height="${yF(110) - yF(160)}" fill="${tinte(VERDE, 12)}" opacity=".8"/>`;
+  s += `<text x="${X0 + AN - 6}" y="${yF(160) + 13}" text-anchor="end" font-size="11" font-weight="700" fill="${VERDE}">110-160 lpm</text>`;
+  s += `<text x="${X0 - 34}" y="${Y_F + AL_F / 2}" font-size="11" font-weight="700" fill="${ROJO}" transform="rotate(-90 ${X0 - 30} ${Y_F + AL_F / 2})" text-anchor="middle">FCF</text>`;
+  s += `<text x="${X0 - 8}" y="${Y_U + AL_U / 2 + 4}" font-size="10.5" font-weight="700" fill="${AZUL}" text-anchor="end">Útero</text>`;
+  return s;
+}
+function dibujo(t) {
+  let s = `<svg width="${W}" height="${Y_U + AL_U + 24}" viewBox="0 0 ${W} ${Y_U + AL_U + 24}" style="flex:none">`;
+  s += papel();
+  // ventana de auscultación sobre los dos canales
+  const fin = Math.min(Math.max(t, A0), A1);
+  s += `<rect x="${x(A0)}" y="${Y_F - 4}" width="${x(A1) - x(A0)}" height="${Y_U + AL_U - Y_F + 8}" rx="8" fill="none" stroke="${TEAL}" stroke-width="2" stroke-dasharray="6 5"/>`;
+  if (t > A0) s += `<rect x="${x(A0)}" y="${Y_F - 4}" width="${x(fin) - x(A0)}" height="${Y_U + AL_U - Y_F + 8}" rx="8" fill="${TEAL}" opacity=".16"/>`;
+  s += `<rect x="${(x(A0) + x(A1)) / 2 - 78}" y="${Y_F + AL_F + 4}" width="156" height="22" rx="11" fill="${TEAL}"/>`;
+  s += `<text x="${(x(A0) + x(A1)) / 2}" y="${Y_F + AL_F + 19.5}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff">Auscultar ≥1 min</text>`;
+  // trazos hasta el cabezal
+  const hasta = Math.floor(Math.min(t, T));
+  let dF = "", dU = "";
+  for (let k = 0; k <= hasta; k++) {
+    dF += `${k ? "L" : "M"}${x(k).toFixed(1)} ${yF(FCF[k]).toFixed(1)} `;
+    dU += `${k ? "L" : "M"}${x(k).toFixed(1)} ${yU(curva(k)).toFixed(1)} `;
+  }
+  // lo que se oye (dentro de la ventana) en oscuro; el resto, tenue: con Pinard o Doppler no hay registro continuo
+  let dO = "";
+  for (let k = A0; k <= Math.min(hasta, A1); k++) dO += `${k > A0 ? "L" : "M"}${x(k).toFixed(1)} ${yF(FCF[k]).toFixed(1)} `;
+  s += `<path d="${dF}" fill="none" stroke="#CBD5E1" stroke-width="1.6" stroke-linejoin="round"/>`;
+  if (dO) s += `<path d="${dO}" fill="none" stroke="#1F2937" stroke-width="2.2" stroke-linejoin="round"/>`;
+  s += `<path d="${dU}" fill="none" stroke="${AZUL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  if (t > C0 + 10) s += `<text x="${x(31)}" y="${yU(0.82)}" text-anchor="end" font-size="12" font-weight="700" fill="${AZUL}">Contracción</text>`;
+  // +30 s
+  s += `<line x1="${x(C1)}" y1="${Y_U + AL_U + 10}" x2="${x(A1)}" y2="${Y_U + AL_U + 10}" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<line x1="${x(C1)}" y1="${Y_U + AL_U + 5}" x2="${x(C1)}" y2="${Y_U + AL_U + 15}" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<line x1="${x(A1)}" y1="${Y_U + AL_U + 5}" x2="${x(A1)}" y2="${Y_U + AL_U + 15}" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<text x="${x(A1) + 6}" y="${Y_U + AL_U + 14}" font-size="12" font-weight="700" fill="${GRIS}">+30 s</text>`;
+  // cabezal
+  s += `<line x1="${x(t)}" y1="${Y_F - 6}" x2="${x(t)}" y2="${Y_U + AL_U + 2}" stroke="${TINTA}" stroke-width="2"/>`;
+  s += `<circle cx="${x(t)}" cy="${yF(FCF[Math.min(hasta, T)])}" r="5" fill="${ROJO}" stroke="#fff" stroke-width="2"/>`;
+  s += `<circle cx="${x(t)}" cy="${yU(curva(t))}" r="6" fill="${AZUL}" stroke="#fff" stroke-width="2"/>`;
+  s += `</svg>`;
+  return s;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? (i / (n - 1)) * (A1 + 12) : A1 + 12;
+  const oyendo = t >= A0 && t <= A1;
+  const paso = t < A0 ? 0 : t <= C1 ? 1 : 2;
+  const segundos = Math.max(0, Math.min(t, A1) - A0);
+  const latido = oyendo && (i % 2 === 0);
+  const fcf = `<div style="display:flex;align-items:center;gap:12px">
+    <div class="caja" style="flex:1;background:${oyendo ? tinte(TEAL, 14) : "#F8FAFC"};border:1.5px solid ${oyendo ? TEAL : "var(--linea)"};font-size:15px;display:flex;align-items:center;gap:10px">
+      <span style="font-size:26px;color:${ROJO};transform:scale(${latido ? 1.18 : 1});display:inline-block">♥</span>
+      <span>${oyendo ? `Auscultando: <b>${Math.round(segundos)} s</b>` : t > A1 ? `Registrar la <b>FCF basal</b> y si hubo <b>desaceleraciones</b>` : "Esperar a palpar la contracción"}</span>
+    </div>
+    <div class="caja" style="flex:none;width:210px;background:#F8FAFC;border:1px solid var(--linea);font-size:13px"><span>Normal: <b>110-160 lpm</b>. Si sale de ahí, prolongar hasta <b>3 contracciones</b>.</span></div>
+  </div>`;
+  const pasos = `<div style="display:flex;gap:8px">${PASOS.map(([nu, tx], k) => `<div class="caja" style="flex:1;font-size:13.5px;background:${k === paso ? tinte(TEAL, 16) : "#F3F4F6"};outline:${k === paso ? `2px solid ${TEAL}` : "none"};color:${k === paso ? TINTA : GRIS}"><span><b>${nu}</b> ${tx}</span></div>`).join("")}</div>`;
+  lienzo("Cuándo auscultar", "En la fase activa, cada 15-30 min; en el expulsivo, cada 5 min", dibujo(Math.min(t, T)) + fcf + pasos,
+    "Esquema. Fuente: OMS 2018, protocolo de auscultación intermitente (recomendación 18); NICE NG229 (2022), 1.2.9-1.2.10.");
+};
+window.cuadro(0, 1);
+</script></body></html>

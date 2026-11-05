@@ -1,0 +1,42 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Líquidos IV con signos de alarma (grupo B2). Sin comorbilidad: MinSalud 2010 p. 27 (10 mL/kg/h) y anexo 1 p. 41
+// (5-7, 3-5, 2-3 mL/kg/h; si empeora, 5-10 mL/kg/h 1-2 h). Comorbilidad o adulto mayor: OPS 2020 p. 13
+// (5 mL/kg en 1 h; 4, 3 y 2 mL/kg/h 2-4 h cada uno; hasta 3 cargas de 5 mL/kg y, sin mejoría, grupo C).
+const C = NARANJA, GRIS = "#CBD5E1";
+const CARRILES = [
+  ["Sin comorbilidad", [["10 mL/kg/h", "1.ª hora"], ["5-7 mL/kg/h", "1-2 h"], ["3-5 mL/kg/h", "2-4 h"], ["2-3 mL/kg/h", "o menos"]]],
+  ["Comorbilidad o adulto mayor", [["5 mL/kg", "en 1 h"], ["4 mL/kg/h", "2-4 h"], ["3 mL/kg/h", "2-4 h"], ["2 mL/kg/h", "2-4 h"]]],
+];
+const PASOS = [
+  "Primera hora: carga de cristaloide",
+  "Si mejora, bajar el ritmo",
+  "Seguir bajando mientras siga estable",
+  "Mantener lo mínimo y vigilar la fase crítica",
+  "Si no mejora o empeora, subir el aporte",
+];
+const caja = (t, s, estado) => {
+  const fondo = estado === "ahora" ? C : estado === "hecho" ? tinte(C, 22) : "#F8FAFC";
+  const borde = estado === "despues" ? GRIS : C;
+  const tinta = estado === "ahora" ? "#fff" : estado === "despues" ? "#94A3B8" : "#1F2A37";
+  return `<div style="flex:1;border-radius:12px;background:${fondo};border:2px solid ${borde};padding:16px 6px;text-align:center;color:${tinta}">
+    <div style="font-size:18px;font-weight:800">${t}</div><div style="font-size:12.5px;margin-top:2px">${s}</div></div>`;
+};
+const flecha = (on) => `<div style="flex:none;width:18px;text-align:center;font-size:20px;font-weight:700;color:${on ? C : GRIS}">›</div>`;
+window.cuadro = function (i, n) {
+  const paso = n > 1 ? Math.min(4, Math.floor((i / n) * 5)) : 4;
+  const col = Math.min(paso, 3);
+  const carriles = CARRILES.map(([nombre, cajas]) => `<div>
+      <div style="font-size:13.5px;font-weight:700;color:#475569;margin:6px 0 6px 2px">${nombre}</div>
+      <div style="display:flex;align-items:stretch">${cajas.map(([t, s], k) => (k ? flecha(k <= col) : "") +
+        caja(t, s, paso === 4 ? "hecho" : k < col ? "hecho" : k === col ? "ahora" : "despues")).join("")}</div></div>`).join("");
+  const peor = paso === 4 ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">No mejora: otra carga de <b>10 mL/kg</b> (comorbilidad: <b>5 mL/kg</b>), hasta <b>3</b>. Luego, <b style="white-space:nowrap">grupo C</b>.</div>
+      <div class="caja" style="background:${tinte(ROJO, 10)};border:2px solid ${ROJO}">Empeora al bajar o sube rápido el hematocrito: <b style="white-space:nowrap">5-10 mL/kg/h</b> durante <b>1-2 h</b>.</div></div>`
+    : `<div style="height:58px"></div>`;
+  const meta = `<div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">Meta: la cantidad <b>mínima</b> que mantenga la perfusión y una diuresis <b>&gt;0,5 mL/kg/h</b>. Hematocrito antes, tras la carga y cada <b style="white-space:nowrap">6-12 h</b>.</div>`;
+  const ley = `<div style="display:flex;font-size:12.5px;color:#64748B"><span>Lactato de Ringer o solución salina 0,9 %</span><span style="margin-left:auto">Paso ${paso + 1} de 5</span></div>`;
+  lienzo("Líquidos IV con signos de alarma", PASOS[paso], ley + carriles + peor + meta,
+    "Esquema. Fuente: MinSalud 2010, p. 27 y anexo 1 (p. 41); OPS 2020, Algoritmos para el manejo clínico de los casos de dengue <span style='white-space:nowrap'>(p. 12-13)</span>.");
+};
+window.cuadro(4, 5);
+</script></body></html>

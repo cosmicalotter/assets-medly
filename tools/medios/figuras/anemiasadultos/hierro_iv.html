@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Hierro IV: dosis por infusión e hipofosfatemia por preparado (BSG 2021, tabla 4 y p. 2043-2044).
+const AZUL = "#4F8CF6";
+const P = [["Carboximaltosa férrica", "<b>20 mg/kg</b>, máx. <b>1000 mg</b> por dosis", "1 o 2 infusiones", 58],
+           ["Derisomaltosa férrica", "<b>20 mg/kg</b> por dosis", "1 o 2 infusiones", 4],
+           ["Hierro sacarosa", "<b>200 mg</b> por dosis", "varias infusiones", 1]];
+const fila = ([n, d, v, f]) => `<div class="tarjeta" style="display:grid;grid-template-columns:210px 1fr;gap:12px;align-items:center">
+  <div><div style="font-weight:800;font-size:16px">${n}</div><div style="font-size:13.5px;margin-top:3px"><span>${d}</span></div><div style="font-size:13px;color:#6B7280">${v}</div></div>
+  <div><div style="display:flex;align-items:center;gap:10px"><div style="height:26px;width:${Math.max(6, f * 6.2)}px;background:${AZUL};border-radius:6px"></div><b style="font-size:20px;color:#1D4ED8">${f} %</b></div>
+  <div style="font-size:12px;color:#6B7280;margin-top:3px">con hipofosfatemia</div></div></div>`;
+lienzo("Hierro IV: dosis e hipofosfatemia", "Cuánto hierro admite cada infusión y cuántos pacientes bajan el fosfato.",
+  `<div style="display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center">${P.map(fila).join("")}</div>
+   <div class="tarjeta" style="background:#EEF4FF"><div class="item" style="background:transparent"><span>Medir el <b>fosfato</b> si hay factores de riesgo o se repiten dosis altas de <b>carboximaltosa</b>.</span></div></div>`,
+  "Esquema propio. Fuente: BSG 2021 (Snook et al., Gut 2021), tabla 4 y p. 2043-2044.");
+</script></body></html>

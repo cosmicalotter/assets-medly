@@ -1,0 +1,40 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Oxitocina a dosis bajas: ACOG CPG n.º 8 (2024), tabla 3; NICE NG235 1.8.54-1.8.56.
+const W = 668, X0 = 64, Y0 = 16, AN = 400, AL = 250;
+const x = (min) => X0 + (min / 180) * AN, y = (mu) => Y0 + AL - (mu / 12) * AL;
+let svg = `<svg width="${W}" height="${AL + 58}" viewBox="0 0 ${W} ${AL + 58}" style="flex:none">`;
+for (let mu = 0; mu <= 12; mu += 2) {
+  svg += `<line x1="${X0}" y1="${y(mu)}" x2="${X0 + AN}" y2="${y(mu)}" stroke="#EEF2F7"/>`;
+  svg += `<text x="${X0 - 8}" y="${y(mu) + 4}" text-anchor="end" font-size="12" fill="${GRIS}">${mu}</text>`;
+}
+for (let m = 0; m <= 180; m += 30) svg += `<text x="${x(m)}" y="${Y0 + AL + 16}" text-anchor="middle" font-size="12" fill="${GRIS}">${m}</text>`;
+svg += `<text x="${X0 + AN / 2}" y="${Y0 + AL + 36}" text-anchor="middle" font-size="12.5" fill="${GRIS}">minutos desde el inicio</text>`;
+svg += `<text x="16" y="${Y0 + AL / 2}" font-size="12.5" fill="${GRIS}" transform="rotate(-90 16 ${Y0 + AL / 2})" text-anchor="middle">mU/min</text>`;
+// escalones: inicio 2, +2 cada 30 min
+const pasos = [[0, 2], [30, 4], [60, 6], [90, 8], [120, 10], [150, 10]];
+let d = `M${x(0)} ${y(2)}`;
+pasos.forEach(([m, mu], i) => { const sig = i + 1 < pasos.length ? pasos[i + 1][0] : 180; d += ` L${x(m)} ${y(mu)} L${x(sig)} ${y(mu)}`; });
+svg += `<path d="${d} L${x(180)} ${y(0)} L${x(0)} ${y(0)} Z" fill="${tinte(AZUL, 12)}"/>`;
+svg += `<path d="${d}" fill="none" stroke="${AZUL}" stroke-width="5" stroke-linejoin="round"/>`;
+svg += `<text x="${x(30) + 10}" y="${y(3) + 5}" font-size="12.5" font-weight="700" fill="${AZUL}">+1-2 mU/min</text>`;
+svg += `<text x="${x(0) + 4}" y="${y(2) + 20}" font-size="12.5" font-weight="700" fill="${AZUL}">Inicio 0,5-2</text>`;
+svg += `<line x1="${x(90)}" y1="${y(8) + 12}" x2="${x(120)}" y2="${y(8) + 12}" stroke="${GRIS}" stroke-width="1.5"/><line x1="${x(90)}" y1="${y(8) + 7}" x2="${x(90)}" y2="${y(8) + 17}" stroke="${GRIS}" stroke-width="1.5"/><line x1="${x(120)}" y1="${y(8) + 7}" x2="${x(120)}" y2="${y(8) + 17}" stroke="${GRIS}" stroke-width="1.5"/>`;
+svg += `<text x="${x(105)}" y="${y(8) + 32}" text-anchor="middle" font-size="12" fill="${GRIS}">≥30 min</text>`;
+// panel de contracciones
+const PX = X0 + AN + 40, PW = 150;
+svg += `<text x="${PX + PW / 2}" y="${Y0 + 4}" text-anchor="middle" font-size="12.5" font-weight="700" fill="${TINTA}">Contracciones en 10 min</text>`;
+const cy = (n) => Y0 + 44 + (6 - n) * 36;
+svg += `<rect x="${PX}" y="${cy(4) - 17}" width="${PW}" height="${36 * 2}" rx="8" fill="${tinte(VERDE, 22)}" stroke="${VERDE}" stroke-width="2"/>`;
+svg += `<rect x="${PX}" y="${cy(6) - 17}" width="${PW}" height="${36 * 2 - 2}" rx="8" fill="${tinte(ROJO, 12)}"/>`;
+for (let n = 1; n <= 6; n++) svg += `<text x="${PX + 22}" y="${cy(n) + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="${TINTA}">${n}${n === 6 ? "+" : ""}</text>`;
+svg += `<text x="${PX + 46}" y="${cy(3.5) + 5}" font-size="13" font-weight="700" fill="${VERDE}">Meta: 3-4</text>`;
+svg += `<text x="${PX + 46}" y="${cy(5.5) + 5}" font-size="13" font-weight="700" fill="${ROJO}">Más de 4: bajar</text>`;
+svg += `<text x="${PX + 46}" y="${cy(5.5) + 21}" font-size="13" font-weight="700" fill="${ROJO}">o suspender</text>`;
+svg += `</svg>`;
+const nota = `<div style="display:flex;gap:10px">
+  <div class="caja" style="flex:1;background:${tinte(ROJO, 8)};border:1.5px solid ${tinte(ROJO, 40)}"><b style="color:${ROJO}">Monitoría patológica</b><br>suspender la oxitocina <b>de inmediato</b> y pedir valoración <b>urgente</b>.</div>
+  <div class="caja" style="flex:1;background:${tinte(AZUL, 8)};border:1.5px solid ${tinte(AZUL, 40)}"><b style="color:${AZUL}">A las 4 h de oxitocina</b><br>si avanzó <b>menos de 2 cm</b>, el obstetra valora si hace falta una <b>cesárea</b>.</div>
+</div>`;
+lienzo("Oxitocina a dosis bajas", "Subir por escalones, sin acortar el intervalo, hasta 3-4 contracciones en 10 minutos", svg + nota,
+  "Esquema con un ejemplo de escalones de 2 mU/min. Fuente: ACOG CPG n.º 8 (2024), tabla 3; NICE NG235 (2023), 1.8.54-1.8.58.");
+</script></body></html>

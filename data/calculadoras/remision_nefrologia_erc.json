@@ -1,0 +1,256 @@
+{
+  "titulo": "Criterios de remisión a nefrología (ERC)",
+  "descripcion": "Reúne los criterios de KDIGO 2024 y de la guía colombiana de ERC (MinSalud 2016) para remitir a nefrología a un adulto con enfermedad renal crónica: función renal y riesgo de falla renal, albuminuria y hematuria, progresión, causa, hipertensión resistente, potasio y complicaciones. Basta un criterio para remitir.",
+  "instrucciones": "Responder con datos confirmados, no con un valor aislado. Basta un «Sí» para remitir; para descartar la remisión hay que responder todos.",
+  "limitaciones": "Es para adultos: en niños y adolescentes los criterios son otros. No sustituye el juicio clínico ni la remisión por otros motivos.",
+  "referencias": [
+    {
+      "titulo": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314. Punto de práctica 5.1.1, figura 48.",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "paginas": "S166",
+      "texto": "A >3%–5% 5-year risk of requiring KRT measured using a validated risk equation • eGFR <30 ml/min per 1.73 m2 • A sustained fall in GFR of >20%"
+    },
+    {
+      "titulo": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117-S314. Figura 48.",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "paginas": "S166",
+      "texto": "CKD and hypertension refractory to treatment ≥4 antihypertensive agents • Persistent abnormalities of serum potassium • Acidosis • Anemia • Bone disease • Malnutrition"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, IETS. Guía de práctica clínica para el diagnóstico y tratamiento de la enfermedad renal crónica (adopción). GPC-2016-59. Bogotá; 2016. Recomendación 72.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-enfermedad-renal-adopcion.pdf",
+      "paginas": "66",
+      "texto": "lesión renal aguda o caída abrupta sostenida en la tasa de filtración glomerular; tasa de filtración glomerular inferior a 30ml/min/1,73 m2 (categorías TFG: G4 a G5)*;"
+    }
+  ],
+  "tipoCalculo": "formula",
+  "formula": "1 - (1 - g4) * (1 - kfre) * (1 - caida) * (1 - alb) * (1 - alb2) * (1 - hem) * (1 - hta) * (1 - k) * (1 - causa) * (1 - compl)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "g4",
+          "tipo": "opciones",
+          "label": "TFGe baja: menos de 30 mL/min/1,73 m²",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Categorías G4 y G5."
+        },
+        {
+          "id": "kfre",
+          "tipo": "opciones",
+          "label": "Riesgo KFRE: 3-5 % o más a 5 años",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Umbral de KDIGO según los recursos locales; calcularlo antes con la KFRE de 4 variables."
+        },
+        {
+          "id": "caida",
+          "tipo": "opciones",
+          "label": "Caída de la TFGe: sostenida, de más de 20 %",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "O de más de 30 % tras empezar IECA, ARA II o iSGLT2. MinSalud remite también por progresión (caída de categoría con descenso ≥25 % o >5 mL/min/1,73 m² al año) y por la lesión renal aguda."
+        },
+        {
+          "id": "alb",
+          "tipo": "opciones",
+          "label": "Albuminuria grave: RACU ≥300 mg/g persistente",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "KDIGO remite si además hay hematuria o si la RACU pasa de 700 mg/g; MinSalud remite con RACU ≥300 mg/g sola."
+        },
+        {
+          "id": "alb2",
+          "tipo": "opciones",
+          "label": "Albuminuria que se duplica",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "En quien ya tiene albuminuria significativa y está en seguimiento."
+        },
+        {
+          "id": "hem",
+          "tipo": "opciones",
+          "label": "Hematuria: cilindros eritrocitarios o >20 hematíes",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Por campo de alto poder, sostenida y sin una causa evidente."
+        },
+        {
+          "id": "hta",
+          "tipo": "opciones",
+          "label": "HTA resistente: 4 o más antihipertensivos",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "k",
+          "tipo": "opciones",
+          "label": "Potasio: alterado de forma persistente",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "causa",
+          "tipo": "opciones",
+          "label": "Causa: incierta, hereditaria o litiasis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Litiasis recurrente o extensa."
+        },
+        {
+          "id": "compl",
+          "tipo": "opciones",
+          "label": "Complicaciones: acidosis, anemia, hueso o nutrición",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Para su manejo especializado: acidosis, anemia, enfermedad ósea o desnutrición."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Remitir a nefrología",
+      "color": "naranja",
+      "match_opcion_index": 0,
+      "si": {
+        "alguno": [
+          {
+            "id": "g4",
+            "igual": 1
+          },
+          {
+            "id": "kfre",
+            "igual": 1
+          },
+          {
+            "id": "caida",
+            "igual": 1
+          },
+          {
+            "id": "alb",
+            "igual": 1
+          },
+          {
+            "id": "alb2",
+            "igual": 1
+          },
+          {
+            "id": "hem",
+            "igual": 1
+          },
+          {
+            "id": "hta",
+            "igual": 1
+          },
+          {
+            "id": "k",
+            "igual": 1
+          },
+          {
+            "id": "causa",
+            "igual": 1
+          },
+          {
+            "id": "compl",
+            "igual": 1
+          }
+        ]
+      },
+      "approach": "Remitir a nefrología y seguir el tratamiento mientras tanto. Con riesgo de falla renal a 2 años **>10 %**, sumar la atención multidisciplinaria."
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Sin criterios de remisión",
+      "color": "verde",
+      "match_opcion_index": 1,
+      "approach": "Seguir en atención primaria con la TFGe y la RACU según el riesgo; revisar los criterios en cada control."
+    }
+  ]
+}

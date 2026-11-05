@@ -224,6 +224,13 @@ function anterior(ruta) {
 }
 
 async function main() {
+  // Sólo se publica sin argumentos (el workflow). Un argumento que no se
+  // conoce (`--help`, un error de dedo) no debe acabar publicando.
+  const desconocidos = process.argv.slice(2).filter((a) => !['--validar', '--mostrar'].includes(a));
+  if (desconocidos.length) {
+    console.error(`Argumento desconocido: ${desconocidos.join(' ')}. Uso: node update_firebase_date.js [--validar | --mostrar]`);
+    process.exit(2);
+  }
   const indices = archivos().map((a) => {
     const texto = fs.readFileSync(path.join(__dirname, a.ruta), 'utf8');
     return { ...a, texto, datos: lee(texto) };

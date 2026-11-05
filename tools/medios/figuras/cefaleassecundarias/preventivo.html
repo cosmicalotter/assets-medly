@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cuándo juzgar el preventivo de la migraña (AAN/AHS 2026 rec. 14A, 14B, 14C y 14H; SEN 2020 p. 92, Tabla VIII).
+const W = 668, X0 = 30, X1 = 640, S1 = 26;
+const x = (s) => X0 + (X1 - X0) * s / S1;
+const y0 = 160;
+const eje = `<line x1="${X0}" y1="${y0}" x2="${X1}" y2="${y0}" stroke="#94A3B8" stroke-width="2"/>` +
+  [0, 4, 12, 16, 20].map((s) => `<line x1="${x(s)}" y1="${y0 - 5}" x2="${x(s)}" y2="${y0 + 5}" stroke="#94A3B8"/><text x="${x(s)}" y="${y0 + 22}" font-size="12" text-anchor="middle" fill="#64748B">${s}</text>`).join("") +
+  `<text x="${X0}" y="${y0 + 112}" font-size="12" fill="#64748B">Semanas desde el inicio del preventivo</text>`;
+const banda = (a, b, yy, h, c, t1, t2) => `<rect x="${x(a)}" y="${yy}" width="${x(b) - x(a)}" height="${h}" rx="7" fill="${tinte(c, 22)}" stroke="${c}"/>
+  <text x="${(x(a) + x(b)) / 2}" y="${yy + h / 2 - 2}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1F2A37">${t1}</text>
+  <text x="${(x(a) + x(b)) / 2}" y="${yy + h / 2 + 14}" font-size="11.5" text-anchor="middle" fill="#334155">${t2}</text>`;
+const marca = (s, c, t1, t2) => `<circle cx="${x(s)}" cy="${y0}" r="6" fill="${c}"/>
+  <line x1="${x(s)}" y1="${y0 + 8}" x2="${x(s)}" y2="${y0 + 30}" stroke="${c}" stroke-width="2"/>
+  <text x="${x(s)}" y="${y0 + 48}" font-size="12.5" font-weight="700" text-anchor="middle" fill="${c}">${t1}</text>
+  <text x="${x(s)}" y="${y0 + 64}" font-size="11.5" text-anchor="middle" fill="#334155">${t2}</text>`;
+const juzgar = `<rect x="${x(8)}" y="${y0 - 58}" width="${x(12) - x(8)}" height="40" rx="7" fill="${tinte(TEAL, 28)}" stroke="${TEAL}"/>
+  <text x="${x(12) + 10}" y="${y0 - 40}" font-size="12.5" font-weight="700" fill="#0F766E">Juzgar la eficacia</text>
+  <text x="${x(12) + 10}" y="${y0 - 24}" font-size="11.5" fill="#334155">entre las 8 y las 12 semanas</text>`;
+const svg = `<svg width="${W}" height="${y0 + 120}" viewBox="0 0 ${W} ${y0 + 120}">
+  ${banda(0, 8, y0 - 128, 44, AZUL, "Subir la dosis poco a poco", "un solo fármaco")}
+  ${banda(12, 24, y0 - 128, 44, AMBAR, "Sin respuesta con la dosis máxima", "cambiar de preventivo")}
+  ${juzgar}${eje}
+  ${marca(8, AZUL, "8 semanas", "si no basta, a la dosis máxima")}
+  ${marca(24, MORADO, "24 semanas", "toxina botulínica")}
+</svg>`;
+const meta = `<div class="caja" style="background:${tinte(VERDE, 12)};border:1.5px solid ${tinte(VERDE, 45)};font-size:13.5px"><b>Meta realista</b>: reducir las crisis <b>a la mitad</b>. Antes de darlo por ineficaz, revisar el <b>cumplimiento</b>.</div>`;
+lienzo("Cuándo juzgar el preventivo", "Migraña: semanas desde que se empieza el preventivo", svg + meta,
+  "Esquema. Fuente: AAN/AHS 2026 (Neurology 2026;107:e214881), rec. 14A-14H; SEN 2020 (Manual de Práctica Clínica en Cefaleas), p. 92.");
+</script></body></html>

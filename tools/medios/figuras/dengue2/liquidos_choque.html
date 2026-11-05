@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Líquidos en el choque por dengue (grupo C). Primer bolo, descenso, segundo bolo y hemorragia: MinSalud 2010,
+// anexo 1 (p. 41) y p. 28-29. Cristaloides y no coloides, estrategia restrictiva y norepinefrina: MinSalud 2026
+// (UCI rec. 1, 2 y 4, p. 50-51).
+const C = ROJO;
+const caja = (html, color, fuerte = false, extra = "") => `<div class="caja" style="background:${tinte(color, fuerte ? 16 : 8)};border:2px solid ${tinte(color, fuerte ? 90 : 45)};font-size:14.2px;line-height:1.33;padding:11px 13px;${extra}"><span>${html}</span></div>`;
+const flecha = (t = "") => `<div style="text-align:center;font-size:13.5px;margin:3px 0;font-weight:700;color:#475569;line-height:1.1">▼ ${t}</div>`;
+const html = `
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  ${caja("<b>Choque compensado</b><br>Cristaloide <b>5-10 mL/kg</b> en <b>1 h</b>", C, true)}
+  ${caja("<b>Choque hipotensivo</b><br>Cristaloide <b>20 mL/kg</b> en <b>15 min</b>", C, true)}
+</div>
+${flecha("¿Sale del choque?")}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  ${caja(`<b style="color:#166534">Sí:</b> bajar por escalones a <b>5-7</b>, <b>3-5</b> y <b>2-3 mL/kg/h</b>; tras el hipotensivo, antes <b>10 mL/kg/h</b> durante 1 h. Líquidos IV <b>24-48 h</b>.`, VERDE)}
+  ${caja(`<b style="color:#991B1B">No:</b> mirar el hematocrito.<br>· <b>Alto</b> (&gt;50 %): 2.º bolo de <b>10-20 mL/kg</b> en 1 h.<br>· <b>Cae</b>: sangrado; transfundir <b>glóbulos rojos</b>.`, C)}
+</div>
+${flecha("Sigue en choque pese a los líquidos")}
+${caja("<b>Norepinefrina</b> como primer vasoactivo, guiada por el lactato, el llenado capilar y POCUS.", MORADO)}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  ${caja("<b>Adulto</b> (guía colombiana): <b>500-1.000 mL</b> la primera hora hasta una PAM de <b>70-80 mmHg</b>.", "#64748B")}
+  ${caja("<b>Embarazo, anciano frágil</b>, falla cardiaca, cirrosis o ERC: estrategia <b>restrictiva</b>.", AMBAR)}
+</div>`;
+lienzo("Líquidos en el choque por dengue", "Cristaloides, mejor lactato de Ringer, en lugar de coloides", html,
+  "Esquema. Fuente: MinSalud 2010, anexo 1 (p. 41) y p. 28-29; MinSalud 2026, recomendaciones de UCI 1, 2 y 4 (p. 50-51).");
+</script></body></html>

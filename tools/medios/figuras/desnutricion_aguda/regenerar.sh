@@ -15,9 +15,6 @@ png() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1.png" >/dev/null
 gif() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1" --cuadros "$3" >/dev/null
         "$PY" tools/medios/armar_gif.py "$TMP/$1" "$2" --ms "$4" --pausa "$5" --colores 128 | tail -1; }
 
-# Animaciones.
-gif pb "$D/dnt_perimetro_brazo.gif" 39 110 1800
-gif tss "$D/dnt_tss.gif" 48 110 1800
 # Fichas fijas.
 png edema "$D/dnt_edema_grados.png"
 png clasificacion "$D/dnt_clasificacion.png"

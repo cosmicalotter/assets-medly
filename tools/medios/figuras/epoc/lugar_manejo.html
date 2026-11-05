@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Dónde tratar la exacerbación (GOLD 2026, guía de bolsillo, fig. 4.4). Colores de las opciones del algoritmo.
+const COL = [
+  ["Casa", VERDE, ["Exacerbación <b>leve</b>", "Poca <b>comorbilidad</b>", "Paciente que colabora", "Buen <b>apoyo</b> en casa"]],
+  ["Hospital", NARANJA, ["Signos de <b>falla respiratoria</b>: taquipnea, músculos accesorios, más hipoxemia o hipercapnia, confusión", "No responde al manejo <b>inicial</b>", "Comorbilidad <b>grave</b>: falla cardiaca, arritmias", "Poco apoyo en casa"]],
+  ["UCI", ROJO, ["Hipoxemia o hipercapnia que <b>empeora</b> pese al soporte ventilatorio", "Más <b>confusión</b>, letargo o coma", "Necesita <b>intubación</b>", "Inestabilidad <b>hemodinámica</b>: vasopresores o arritmias"]],
+];
+const html = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px">${COL.map(([t, c, items]) => `
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <div style="background:${c};color:#fff;border-radius:12px;padding:10px;text-align:center;font-size:21px;font-weight:800">${t}</div>
+    ${items.map((x) => `<div class="caja" style="background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 45)};font-size:13.2px;flex:1;display:flex;align-items:center"><span>${x}</span></div>`).join("")}
+  </div>`).join("")}</div>`;
+lienzo("Dónde se trata la exacerbación", "Indicaciones de cada lugar de manejo", html,
+  "Esquema. Fuente: GOLD 2026, guía de bolsillo (fig. 4.4).");
+</script></body></html>

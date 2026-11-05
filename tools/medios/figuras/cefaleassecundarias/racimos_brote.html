@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// El brote de racimos y su tratamiento (EAN 2023 p. 2955 y 2971; SEN 2020 p. 171-174).
+const W = 668, X0 = 140, X1 = 650, D1 = 40;
+const x = (d) => X0 + (X1 - X0) * d / D1;
+const fila = (yy, t, c) => `<text x="0" y="${yy + 21}" font-size="13" font-weight="700" fill="${c}">${t}</text>`;
+const yA = 18, yT = 76, yV = 134;
+const ataques = [1, 2, 3, 5, 6, 8, 9, 11, 13, 16, 19, 23].map((d) => `<path d="M${x(d)},${yA + 6} l5,10 h-4 l4,10 l-9,-13 h4 z" fill="${MORADO}"/>`).join("");
+const svg = `<svg width="${W}" height="280" viewBox="0 0 ${W} 280">
+  <defs><linearGradient id="bajar"><stop offset="0" stop-color="#CBD5E1"/><stop offset=".45" stop-color="#E2E8F0"/><stop offset="1" stop-color="#fff"/></linearGradient>
+  <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${VERDE}"/></marker></defs>
+  ${fila(yA, "Cada ataque", MORADO)}${ataques}
+  <text x="${x(25)}" y="${yA + 21}" font-size="12" fill="#334155">oxígeno o sumatriptán SC</text>
+  ${fila(yT, "Transición", "#64748B")}
+  <rect x="${x(0)}" y="${yT}" width="${x(13) - x(0)}" height="32" rx="7" fill="url(#bajar)" stroke="#94A3B8"/>
+  <text x="${x(0) + 8}" y="${yT + 21}" font-size="11.5" font-weight="700" fill="#1F2A37">Corticoide 5 días y bajar</text>
+  <text x="${x(14)}" y="${yT + 21}" font-size="12" fill="#334155">o bloqueo del nervio occipital mayor</text>
+  ${fila(yV, "Verapamilo", "#6D28D9")}
+  <rect x="${x(0)}" y="${yV}" width="${x(37) - x(0)}" height="32" rx="7" fill="${tinte("#6D28D9", 14)}" stroke="#6D28D9"/>
+  <text x="${x(0) + 8}" y="${yV + 21}" font-size="12" font-weight="700" fill="#1F2A37">240 mg/día y subir, con ECG antes de cada subida</text>
+  <line x1="${x(14)}" y1="${yV + 34}" x2="${x(14)}" y2="${yV + 48}" stroke="#6D28D9" stroke-width="2"/>
+  <text x="${x(14)}" y="${yV + 64}" font-size="12" font-weight="700" text-anchor="middle" fill="#5B21B6">actúa a las 2 semanas o más</text>
+  <line x1="${x(23)}" y1="${yV + 34}" x2="${x(23)}" y2="${yV + 98}" stroke="#94A3B8" stroke-dasharray="3 3"/>
+  <text x="${x(23)}" y="${yV + 84}" font-size="12" text-anchor="end" dx="-6" fill="#475569">último ataque</text>
+  <path d="M${x(23)},${yV + 98} H${x(37)}" stroke="${VERDE}" stroke-width="2.5" marker-end="url(#fl)"/>
+  <text x="${x(30)}" y="${yV + 118}" font-size="12" font-weight="700" text-anchor="middle" fill="#15803D">2 semanas sin ataques: retirar</text>
+</svg>`;
+lienzo("El brote de racimos y su tratamiento", "Forma episódica: el preventivo y la transición empiezan a la vez, el día 1", svg,
+  "Esquema ilustrativo. Fuente: EAN 2023 (Eur J Neurol 2023;30:2955-79); SEN 2020 (Manual de Práctica Clínica en Cefaleas), p. 171-174.");
+</script></body></html>

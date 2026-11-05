@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Qué se da en la crisis y qué preventivo lleva cada cefalea primaria (SEN 2020 p. 84-86, 155-156, 173-174, 304-306;
+// AAN/AHS 2026 rec. 1B y 3A; EAN 2023 p. 2955 y 2971). Los colores son los de cada cadena del algoritmo.
+const COLS = [
+  ["Migraña", AZUL, ["Leve o moderada: <b>AINE</b> o acetaminofén. Moderada o grave: <b>triptán</b>", "Atogepant, anti-CGRP, propranolol, topiramato…", "Frecuente o <b>incapacitante</b> (ver criterios)"]],
+  ["Tipo tensión", TEAL, ["Un <b>AINE</b> o acetaminofén, en una dosis", "<b>Amitriptilina</b> por la noche, <b>6 meses</b>", "Frecuente o crónica, o la crisis no responde"]],
+  ["Racimos", MORADO, ["<b>Oxígeno al 100 %</b> a 12 L/min o más, o <b>sumatriptán 6&nbsp;mg&nbsp;SC</b>", "<b>Verapamilo 240&nbsp;mg/día</b> más una transición", "Desde el inicio del brote"]],
+  ["Uso excesivo", NARANJA, ["Un rescate <b>distinto</b> del fármaco que usaba", "El de la <b>cefalea de base</b>", "Al <b>retirar</b> el fármaco de uso excesivo"]],
+];
+const FILAS = ["Crisis", "Preventivo", "Cuándo empezar el preventivo"];
+let html = `<div style="display:grid;grid-template-columns:92px repeat(4,1fr);gap:6px 7px;align-items:stretch">`;
+html += `<div></div>` + COLS.map(([t, c]) => `<div style="background:${c};color:#fff;border-radius:10px;padding:8px 6px;font-weight:700;font-size:14.5px;text-align:center">${t}</div>`).join("");
+FILAS.forEach((f, i) => {
+  html += `<div style="font-size:12.5px;font-weight:700;color:#475569;display:flex;align-items:center">${f}</div>`;
+  html += COLS.map(([, c, v]) => `<div class="caja" style="background:${tinte(c, i === 0 ? 14 : 8)};border:1.5px solid ${tinte(c, i === 0 ? 50 : 30)};font-size:12.6px;display:flex;align-items:center"><span>${v[i]}</span></div>`).join("");
+});
+html += `</div>`;
+lienzo("Cuatro cefaleas, cuatro tratamientos", "La crisis y el preventivo de cada cefalea primaria", html,
+  "Esquema. Fuente: SEN 2020 (Manual de Práctica Clínica en Cefaleas); AAN/AHS 2026 (Neurology 2026;107:e214881); EAN 2023 (Eur J Neurol 2023;30:2955-79).");
+</script></body></html>

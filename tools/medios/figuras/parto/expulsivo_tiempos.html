@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Tiempos del pujo activo: NICE NG235 1.9.25-1.9.28; OMS 2020 (alerta del expulsivo); ACOG 2024.
+const W = 668, X0 = 120, AN = 500;
+const x = (h) => X0 + (h / 3.2) * AN;
+function fila(y, nombre, color, marcas, fin) {
+  let s = `<text x="${X0 - 14}" y="${y + 6}" text-anchor="end" font-size="17" font-weight="700" fill="${color}">${nombre}</text>`;
+  s += `<rect x="${X0}" y="${y - 10}" width="${x(fin) - X0}" height="20" rx="10" fill="${tinte(color, 30)}"/>`;
+  s += `<rect x="${x(fin)}" y="${y - 10}" width="${x(3.2) - x(fin)}" height="20" rx="10" fill="${tinte(ROJO, 25)}"/>`;
+  marcas.forEach(([h, rot, sub, ancla = "middle"], i) => {
+    const dx = ancla === "end" ? 12 : ancla === "start" ? -12 : 0;
+    const c = i === marcas.length - 1 ? ROJO : color;
+    s += `<circle cx="${x(h)}" cy="${y}" r="11" fill="#fff" stroke="${c}" stroke-width="4"/>`;
+    s += `<text x="${x(h)}" y="${y - 22}" text-anchor="middle" font-size="14" font-weight="700" fill="${c}">${rot}</text>`;
+    s += `<text x="${x(h) + dx}" y="${y + 34}" text-anchor="${ancla}" font-size="12" fill="${TINTA}">${sub[0]}</text>`;
+    if (sub[1]) s += `<text x="${x(h) + dx}" y="${y + 49}" text-anchor="${ancla}" font-size="12" fill="${TINTA}">${sub[1]}</text>`;
+  });
+  return s;
+}
+let svg = `<svg width="${W}" height="292" viewBox="0 0 ${W} 292" style="flex:none">`;
+for (let h = 0; h <= 3; h += 0.5) {
+  svg += `<line x1="${x(h)}" y1="14" x2="${x(h)}" y2="246" stroke="${h % 1 ? "#F3F4F6" : "#E5E7EB"}" stroke-width="${h % 1 ? 1 : 1.5}"/>`;
+  svg += `<text x="${x(h)}" y="264" text-anchor="middle" font-size="12" ${h % 1 ? `fill="${GRIS}"` : `font-weight="700" fill="${TINTA}"`}>${h === 0 ? "0" : h % 1 ? (h > 1 ? Math.floor(h) + " h 30" : "30 min") : h + " h"}</text>`;
+}
+svg += fila(52, "Nulípara", MORADO, [[1, "1 h", ["Revalorar:", "¿rota y baja?"]], [2, "2 h", ["Especialista si", "no es inminente"]], [3, "3 h", ["Alerta: se pasa", "del tiempo"]]], 3);
+svg += fila(170, "Multípara", TEAL, [[0.5, "30 min", ["Revalorar:", "¿rota y baja?"], "end"], [1, "1 h", ["Especialista si", "no es inminente"], "start"], [2, "2 h", ["Alerta: se pasa", "del tiempo"], "start"]], 2);
+svg += `<text x="${X0}" y="286" font-size="12.5" fill="${GRIS}">Tiempo desde que empieza el pujo activo</text>`;
+svg += `</svg>`;
+const nota = `<div class="caja" style="background:#F8FAFC;border:1px solid var(--linea);font-size:12.8px;color:#475569"><span>Sin <b>rotación ni descenso</b> pese a buenas contracciones y pujos, la <b>detención</b> se diagnostica antes de estos tiempos.</span></div>`;
+lienzo("Tiempos del pujo activo", "Cuándo revalorar, cuándo pedir al especialista y cuándo se pasa del tiempo", svg + nota,
+  "Esquema. Fuente: NICE NG235 (2023), 1.9.25-1.9.28; OMS, WHO Labour Care Guide (2020); ACOG CPG n.º 8 (2024).");
+</script></body></html>
