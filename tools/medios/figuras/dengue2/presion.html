@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Choque compensado: la presión de pulso se estrecha antes de que caiga la sistólica (MinSalud 2010 p. 19 y cuadro 2, p. 23).
+// Barras esquemáticas, sin escala: sólo los umbrales de la guía llevan cifra.
+const Y0 = 14, Y1 = 262, X = [150, 360, 570];
+const ESTADOS = [
+  ["Sin choque", VERDE, 0.9, 0.46, "Presión de pulso amplia"],
+  ["Choque compensado", NARANJA, 0.86, 0.72, "Presión de pulso <b>≤20 mmHg</b>"],
+  ["Choque hipotensivo", ROJO, 0.5, 0.36, "<b>Hipotensión</b> o PAM <b>&lt;70 mmHg</b>"],
+];
+const y = (v) => Y1 - v * (Y1 - Y0);
+let svg = `<line x1="60" y1="${Y1}" x2="690" y2="${Y1}" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="60" y1="${Y1}" x2="60" y2="${Y0}" stroke="#94A3B8" stroke-width="1.5"/><path d="M53 ${Y0 + 10} L60 ${Y0} L67 ${Y0 + 10}" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="48" y="${(Y0 + Y1) / 2}" font-size="12.5" fill="#64748B" text-anchor="middle" transform="rotate(-90 48 ${(Y0 + Y1) / 2})">Presión arterial</text>`;
+ESTADOS.forEach(([t, c, sis, dia], i) => {
+  const x = X[i], ys = y(sis), yd = y(dia);
+  svg += `<rect x="${x - 40}" y="${ys}" width="80" height="${yd - ys}" rx="8" fill="${tinte(c, 30)}" stroke="${c}" stroke-width="2.5"/>
+    <line x1="${x - 56}" y1="${ys}" x2="${x + 56}" y2="${ys}" stroke="#1F2A37" stroke-width="3"/>
+    <line x1="${x - 56}" y1="${yd}" x2="${x + 56}" y2="${yd}" stroke="#1F2A37" stroke-width="3" stroke-dasharray="7 5"/>
+    <text x="${x + 62}" y="${ys + 5}" font-size="12.5" fill="#334155">Sistólica</text>
+    <text x="${x + 62}" y="${yd + 5}" font-size="12.5" fill="#334155">Diastólica</text>
+    <text x="${x}" y="${Y1 + 24}" font-size="14.5" font-weight="700" text-anchor="middle" fill="${c}">${t}</text>`;
+});
+const fig = `<svg width="668" height="290" viewBox="20 0 700 300">${svg}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+  ${ESTADOS.map(([, c, , , n]) => `<div class="caja" style="background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 45)};text-align:center"><span>${n}</span></div>`).join("")}</div>
+  <div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">No hay que <b>esperar la hipotensión</b>: con la sistólica aún normal, una presión de pulso de <b>20 mmHg</b> o menos, la <b>frialdad</b> y el llenado capilar <b>&gt;2 s</b> ya son choque.</div>`;
+lienzo("La presión de pulso se estrecha primero", "La franja de color es la presión de pulso: sistólica menos diastólica (sin escala)", fig + notas,
+  "Esquema. Fuente: MinSalud 2010, Guía para la atención clínica integral del paciente con dengue, p. 19 y cuadro 2 (p. 23).");
+</script></body></html>
