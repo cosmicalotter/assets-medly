@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ps{border-radius:12px;background:#F3F4F6;color:#9CA3AF;padding:10px 8px;font-size:14px;line-height:1.25;min-height:96px;text-align:center;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.ps .n{font-weight:800;font-size:22px} .ps.on{background:color-mix(in srgb,var(--teal) 14%,white);color:var(--tinta);outline:2px solid var(--teal)}
+.ps.hecho{color:var(--tinta)}
+.lista{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.f{border-radius:10px;padding:8px 10px;font-size:14px;background:#F3F4F6;color:#9CA3AF}
+.f.on{background:#FDECEC;color:#1F2A37;outline:2px solid #EB5757} .f.ok{background:#E8F7EF;color:#1F2A37;outline:2px solid #2FB36D}</style></head><body><script>
+// KDIGO 2024, S251 (figura 47 y reglas de los días de enfermedad) y tabla 32 (S252).
+const PASOS = ["Se <b>enferma</b>", "Reconoce que la enfermedad <b>deshidrata</b>", "Recuerda la <b>lista</b> de fármacos", "<b>Suspende</b> esos fármacos", "Se recupera y los <b>reinicia</b>"];
+const F = ["Sulfonilureas", "IECA", "Diuréticos", "Metformina", "ARA II", "AINE", "iSGLT2"];
+window.cuadro = function (i, total) {
+  const t = total > 1 ? i / (total - 1) : 1;
+  const p = Math.min(4, Math.floor(t * 5.6));
+  const est = p < 2 ? "" : p < 4 ? "on" : "ok";
+  lienzo("Regla de los días de enfermedad", "Qué hacer con los fármacos durante una enfermedad que deshidrata.",
+    `<div class="pasos">${PASOS.map((s, j) => `<div class="ps ${j === p ? "on" : j < p ? "hecho" : ""}"><div class="n">${j + 1}</div><div>${s}</div></div>`).join("")}</div>
+     <div class="tarjeta"><div class="item"><b>Suspender</b> por unos días ${p >= 4 ? "y <b>reiniciar</b> al recuperarse" : ""}:</div>
+       <div class="lista">${F.map((f) => `<div class="f ${est}">${f}</div>`).join("")}</div></div>
+     <div class="item" style="background:#FFF7E6"><b>El error más frecuente</b> es no reiniciarlos: dejar el plan <b>por escrito</b>.</div>`,
+    FUENTE("KDIGO 2024, figura 47 y reglas de los días de enfermedad (S251)"));
+};
+window.cuadro(29, 30);
+</script></body></html>
