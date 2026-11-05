@@ -1,5 +1,4 @@
 {
-  "oculto": true,
   "titulo": "Diabetes mellitus tipo 2",
   "version": "ADA 2026 · ACE 2025 · MinSalud 2016",
   "descripcion": "En este algoritmo se aborda la diabetes tipo 2 del adulto en consulta: tamizaje y diagnóstico, tratamiento según el riesgo cardiorrenal, intensificación hasta la insulina y seguimiento de las complicaciones. No incluye la diabetes gestacional ni la tipo 1.",
@@ -32,7 +31,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Diabetes mellitus tipo 2",
-      "texto": "- **Diabetes tipo 2:** pérdida **progresiva y no autoinmune** de la secreción de insulina, casi siempre sobre **resistencia a la insulina**. Se diagnostica con glucemia en ayunas **≥126 mg/dL**, PTOG **≥200 mg/dL** o HbA1c **≥6,5 %**, confirmadas con una segunda prueba, o con glucosa al azar **≥200 mg/dL** y síntomas.\n- **Prediabetes:** glucemia en ayunas **100-125 mg/dL**, PTOG **140-199 mg/dL** o HbA1c **5,7-6,4 %**.\n- **Hipoglucemia:** nivel 1, glucosa **<70 mg/dL**; nivel 2, **<54 mg/dL**; nivel 3, cualquier glucosa con **alteración mental o física** que obliga a recibir ayuda.",
+      "texto": "- **Diabetes tipo 2:** pérdida **progresiva y no autoinmune** de la secreción de insulina, casi siempre con **resistencia a la insulina**; glucemia en ayunas **≥126 mg/dL**, PTOG **≥200 mg/dL** o HbA1c **≥6,5 %** en dos pruebas, o glucosa al azar **≥200 mg/dL** con síntomas.\n- **Prediabetes:** glucemia en ayunas **100-125 mg/dL**, PTOG **140-199 mg/dL** o HbA1c **5,7-6,4 %**.\n- **Hipoglucemia:** nivel 1, glucosa **54-69 mg/dL**; nivel 2, **<54 mg/dL**; nivel 3, cualquier glucosa con **alteración mental o física** que obliga a recibir ayuda.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -110,7 +109,7 @@
         {
           "titulo": "Tabla 2.2: prediabetes",
           "paginas": "S28",
-          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL (11.0 mmol/L) (IGT)",
+          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) OR FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) OR 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL",
           "fuente": "ADA 2026",
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
@@ -150,13 +149,13 @@
       "tipo": "pregunta",
       "titulo": "Buscar los síntomas de la hiperglucemia",
       "contexto": "Con síntomas o con una crisis basta **una glucosa al azar** para diagnosticar; sin ellos, hacen falta **dos pruebas** alteradas.",
-      "texto": "- Preguntar por los **síntomas clásicos**:\n  - Poliuria y polidipsia.\n  - **Pérdida de peso** sin explicación.\n- Buscar signos de **crisis hiperglucémica**: deshidratación, somnolencia, respiración rápida o vómito.\n- Sin síntomas, el camino es el **tamizaje**.",
-      "pie_nodo": "¿Tiene síntomas de hiperglucemia o signos de crisis?",
+      "texto": "- Preguntar por los **síntomas clásicos**:\n  - Poliuria y polidipsia.\n  - **Pérdida de peso** sin explicación.\n- Buscar signos de **crisis**: deshidratación, **cetosis**, pérdida aguda de peso o glucemias muy altas.",
+      "pie_nodo": "¿Tiene signos de crisis, síntomas clásicos de hiperglucemia o ninguno de los dos?",
       "opciones": [
         {
           "texto": "Signos de crisis hiperglucémica",
           "siguiente_nodo": "diag_crisis",
-          "descripcion": "Deshidratación, somnolencia o cetosis",
+          "descripcion": "Deshidratación, cetosis o pérdida aguda de peso",
           "color": "rojo"
         },
         {
@@ -165,7 +164,7 @@
           "descripcion": "Poliuria, polidipsia o pérdida de peso"
         },
         {
-          "texto": "Sin síntomas",
+          "texto": "Ninguno de los dos",
           "siguiente_nodo": "diag_findrisc",
           "descripcion": "Tamizaje"
         }
@@ -198,27 +197,39 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag29_criterios_diagnosticos_colombia.png"
+        },
+        {
+          "titulo": "Inestable y catabólico: insulina",
+          "paginas": "35",
+          "texto": "Cuando el paciente se encuentra muy sintomático y clínicamente inestable, con pérdida aguda de peso, signos de deshidratación, evidencia de cetosis y glucemias muy elevadas, se recomienda iniciar insulina",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag35_inestable_catabolico_insulina.png"
         }
       ]
     },
     "diag_crisis": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "estilo": "peligro",
       "chips": [
         "Urgencia"
       ],
       "titulo": "Tratar primero la crisis hiperglucémica",
       "texto": "- Seguir el algoritmo de **crisis hiperglucémicas**: cetoacidosis o **estado hiperosmolar**.\n- La crisis es una **hiperglucemia inequívoca**: no hace falta otra prueba para diagnosticar la diabetes.\n- Resuelta la crisis, clasificar la diabetes y empezar el **tratamiento crónico**.",
-      "nota_adicional": "Una persona con DM2 que tuvo una **crisis** debe recibir **educación estructurada** para reconocerla y prevenirla, y preguntar por ella **en cada consulta**.",
+      "nota_adicional": "Una persona con DM2 que tuvo una **crisis** debe recibir **educación estructurada** para reconocerla y prevenirla; en cada consulta se le debe preguntar por **nuevas crisis**.",
       "enlaces": [
         {
           "texto": "Crisis hiperglucémicas",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/crisishiperglicemica.json"
-        },
+        }
+      ],
+      "opciones": [
         {
-          "texto": "Clasificar la diabetes",
-          "archivo_objetivo": "INTERNO",
-          "nodo_objetivo": "diag_dm2_confirmada"
+          "texto": "Crisis resuelta",
+          "siguiente_nodo": "diag_dm2_confirmada",
+          "descripcion": "Clasificar la diabetes"
         }
       ],
       "referencias": [
@@ -254,30 +265,26 @@
     "diag_findrisc": {
       "tipo": "pregunta",
       "titulo": "Decidir a quién medir la glucosa",
-      "texto": "- Aplicar el **FINDRISC** a todo adulto sin diabetes conocida; con **12 puntos o más**, medir la glucosa.\n- La ADA mide la glucosa además a:\n  - Todo adulto con **sobrepeso** (IMC ≥25) y **un factor de riesgo**.\n  - Todo adulto desde los **35 años**.\n  - Quien tuvo **diabetes gestacional** o tiene prediabetes.",
+      "texto": "- Aplicar el **FINDRISC** a todo adulto sin diabetes conocida; con **12 puntos o más**, medir la glucosa.\n- Medir también la glucosa si cumple algún **criterio de la ADA** de la lista.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/findrisc.json",
         "etiqueta": "Calcular el FINDRISC",
         "ramificar": true
       },
       "checklist": {
-        "titulo": "Factores de riesgo (ADA)",
+        "titulo": "Criterios de la ADA",
         "items": [
-          "Familiar de **primer grado** con diabetes",
-          "Etnia de **riesgo alto**: latinoamericano, afrodescendiente o indígena",
-          "**Enfermedad cardiovascular** previa",
-          "**Hipertensión** (≥130/80 mmHg o con tratamiento)",
-          "HDL **<35 mg/dL** o triglicéridos **>250 mg/dL**",
-          "Síndrome de **ovario poliquístico**",
-          "**Inactividad física**",
-          "Signos de **resistencia a la insulina**: obesidad grave, acantosis nigricans o hígado graso"
+          "**35 años** o más",
+          "**Sobrepeso** (IMC **≥25 kg/m²**) con un factor de riesgo",
+          "**Diabetes gestacional** previa",
+          "**Prediabetes** conocida"
         ]
       },
       "evidencia": {
         "texto": "FINDRISC ≥12: fuerte a favor, certeza moderada",
         "fuente": "MinSalud 2016"
       },
-      "nota_adicional": "Para la ADA, ser **latinoamericano** ya es un factor de riesgo: en Colombia, todo adulto con **sobrepeso** cumple el criterio de tamizaje.",
+      "nota_adicional": "Para la ADA, ser **latinoamericano**, afrodescendiente o indígena ya es un **factor de riesgo**: en Colombia casi todo adulto con **sobrepeso** cumple el criterio sin buscar los demás.",
       "discrepancias": [
         {
           "asunto": "A quién tamizar",
@@ -307,7 +314,7 @@
         {
           "texto": "FINDRISC <12 y sin criterios de la ADA",
           "siguiente_nodo": "diag_normal",
-          "descripcion": "Repetir el tamizaje",
+          "descripcion": "Menos de 35 años, sin sobrepeso ni antecedentes",
           "color": "verde"
         }
       ],
@@ -378,12 +385,12 @@
       "pie_nodo": "¿Es la glucosa al azar de 200 mg/dL o más?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí, 200 mg/dL o más",
           "siguiente_nodo": "diag_dm2_confirmada",
           "descripcion": "Diabetes diagnosticada"
         },
         {
-          "texto": "No",
+          "texto": "No, menos de 200 mg/dL",
           "siguiente_nodo": "diag_tamizaje_directo",
           "descripcion": "Hacer una prueba diagnóstica"
         }
@@ -422,7 +429,7 @@
     "diag_tamizaje_directo": {
       "tipo": "pregunta",
       "titulo": "Pedir la prueba diagnóstica",
-      "texto": "- Pedir de preferencia una **glucemia plasmática en ayunas** (al menos **8 h** sin comer).\n- Son válidas también la **HbA1c** (método certificado) o la **PTOG** con **75 g**, tras 3 días con **≥150 g/día** de carbohidratos.\n- Usar sólo glucosa si la HbA1c no es fiable: **anemia**, hemoglobinopatía, embarazo o VIH.\n- Ver en qué rango cae el resultado.",
+      "texto": "- Pedir de preferencia una **glucemia plasmática en ayunas** (al menos **8 h** sin comer).\n- Son válidas también la **HbA1c** (método certificado) o la **PTOG** con **75 g**, tras 3 días con **≥150 g/día** de carbohidratos.\n- Usar sólo la glucosa si la **HbA1c** no es fiable:\n  - **Anemia** o hemoglobinopatía.\n  - **Embarazo**.\n  - VIH.\n- Ver en qué rango cae el resultado.",
       "evidencia": {
         "texto": "Glucemia en ayunas como prueba de elección: punto de buena práctica",
         "fuente": "MinSalud 2016"
@@ -447,7 +454,7 @@
             {
               "titulo": "Tabla 2.2: prediabetes",
               "paginas": "S28",
-              "texto": "A1C 5.7–6.4% (39–47 mmol/mol) FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL (11.0 mmol/L) (IGT)",
+              "texto": "A1C 5.7–6.4% (39–47 mmol/mol) OR FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) OR 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL",
               "fuente": "ADA 2026",
               "anio": "2026",
               "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
@@ -476,7 +483,7 @@
         {
           "texto": "En rango de diabetes",
           "siguiente_nodo": "diag_confirmar_prueba",
-          "descripcion": "Ayunas ≥126, PTOG ≥200 o HbA1c ≥6,5 %",
+          "descripcion": "Ayunas ≥126 mg/dL, PTOG ≥200 mg/dL o HbA1c ≥6,5 %",
           "color": "rojo"
         },
         {
@@ -539,7 +546,7 @@
         {
           "titulo": "Tabla 2.2: prediabetes",
           "paginas": "S28",
-          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL (11.0 mmol/L) (IGT)",
+          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) OR FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) OR 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL",
           "fuente": "ADA 2026",
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
@@ -573,19 +580,26 @@
       "pie_nodo": "¿Confirma la segunda prueba el rango de diabetes?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí, las dos en rango de diabetes",
           "siguiente_nodo": "diag_dm2_confirmada",
-          "descripcion": "Dos resultados en rango de diabetes"
+          "descripcion": "Diabetes confirmada"
         },
         {
-          "texto": "Discrepan: repetir la alterada",
+          "texto": "Una en rango de diabetes y otra no",
           "siguiente_nodo": "diag_confirmar_prueba",
-          "descripcion": "Una en rango de diabetes y otra no"
+          "descripcion": "Repetir la que salió alterada"
         },
         {
-          "texto": "No, quedan por debajo",
-          "siguiente_nodo": "diag_eval_prediabetes",
-          "descripcion": "Buscar prediabetes"
+          "texto": "No, en rango de prediabetes",
+          "siguiente_nodo": "diag_prediabetes",
+          "descripcion": "Ayunas 100-125 mg/dL, PTOG 140-199 mg/dL o HbA1c 5,7-6,4 %",
+          "color": "naranja"
+        },
+        {
+          "texto": "No, normal",
+          "siguiente_nodo": "diag_normal",
+          "descripcion": "Ayunas <100 mg/dL, PTOG <140 mg/dL o HbA1c <5,7 %",
+          "color": "verde"
         }
       ],
       "referencias": [
@@ -628,7 +642,7 @@
       },
       "discrepancias": [
         {
-          "asunto": "¿Basta una HbA1c ≥6,5 % tras una ayunas de 100-125?",
+          "asunto": "¿Basta una HbA1c ≥6,5 % tras una glucemia en ayunas de 100-125 mg/dL?",
           "posturas": [
             {
               "fuente": "MinSalud 2016",
@@ -642,6 +656,24 @@
             }
           ],
           "nota": "Con la **ADA** se repite la prueba alterada antes de diagnosticar; con **MinSalud**, no."
+        }
+      ],
+      "burbujas": [
+        {
+          "en_texto": "diagnostica más casos",
+          "titulo": "¿Por qué la PTOG?",
+          "texto": "Frente a la glucemia en ayunas y la HbA1c, la **PTOG** a las 2 h detecta más personas con **prediabetes y diabetes**.",
+          "referencias": [
+            {
+              "titulo": "La PTOG diagnostica más casos",
+              "paginas": "S28",
+              "texto": "Compared with FPG and A1C cut points, the 2-h PG value diag noses more people with prediabetes and diabetes",
+              "fuente": "ADA 2026",
+              "anio": "2026",
+              "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+              "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+            }
+          ]
         }
       ],
       "pie_nodo": "¿Qué muestra la HbA1c o la PTOG?",
@@ -765,13 +797,7 @@
         "Remitir"
       ],
       "titulo": "Estudiar la diabetes que no parece tipo 2",
-      "texto": "- Pedir **autoanticuerpos** de los islotes: anti-GAD, anti-insulina, anti-IA-2 y anti-ZnT8.\n- Si sugiere **MODY**, remitir a un centro con **estudio genético**.\n- Mientras se aclara, tratar con **insulina** a quien tiene cetosis o pérdida de peso.\n- Remitir a **endocrinología**.",
-      "alertas": [
-        {
-          "titulo": "Tipo 1 en el adulto",
-          "texto": "Tratarla como **tipo 2** sin insulina lleva a la **cetoacidosis**: ante la duda, insulina y remisión."
-        }
-      ],
+      "texto": "- Pedir **autoanticuerpos** de los islotes: anti-GAD, anti-insulina, anti-IA-2 y anti-ZnT8.\n- Con cetosis o pérdida aguda de peso, empezar la **insulina** mientras se aclara.\n- Si sugiere **MODY**, consultar con un centro de **genética** de la diabetes.",
       "enlaces": [
         {
           "texto": "Crisis hiperglucémicas",
@@ -805,6 +831,16 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Inestable y catabólico: insulina",
+          "paginas": "35",
+          "texto": "Cuando el paciente se encuentra muy sintomático y clínicamente inestable, con pérdida aguda de peso, signos de deshidratación, evidencia de cetosis y glucemias muy elevadas, se recomienda iniciar insulina",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag35_inestable_catabolico_insulina.png"
         }
       ]
     },
@@ -812,7 +848,7 @@
       "tipo": "pregunta",
       "titulo": "Hacer la valoración inicial",
       "contexto": "La DM2 empieza en silencio: al diagnóstico ya puede haber **retinopatía**, **albuminuria** o **neuropatía**.",
-      "texto": "- Medir la **HbA1c** de base para elegir el tratamiento y seguir su efecto.\n- Pedir las pruebas de la lista y estimar la **TFGe** con CKD-EPI.\n- Medir la presión arterial, el **IMC** y la cintura, y buscar signos de resistencia a la insulina.\n- Revisar el **tabaco**, la enfermedad cardiovascular y la insuficiencia cardiaca.",
+      "texto": "- Medir la **HbA1c** de base para elegir el tratamiento y seguir su efecto.\n- Pedir las pruebas de la lista y estimar la **TFGe** con CKD-EPI.\n- Medir la presión arterial, el **IMC** y la cintura, y buscar signos de resistencia a la insulina.\n- Preguntar por el **tabaco** y buscar **enfermedad cardiovascular** e insuficiencia cardiaca: deciden el fármaco.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ckdepi.json",
         "etiqueta": "Calcular la TFGe (CKD-EPI)",
@@ -839,7 +875,7 @@
           "recurso": "diabetesm2_acantosis_real.jpg",
           "titulo": "Acantosis nigricans",
           "descripcion": "Piel oscura y aterciopelada en la axila: signo de resistencia a la insulina.",
-          "info": "{#22D3EE:Círculo cian}: placa **oscura y aterciopelada** con pliegues marcados en la axila. Es un signo de **resistencia a la insulina**, que la ADA cuenta entre las condiciones que obligan a medir la glucosa.",
+          "info": "{#22D3EE:Círculo cian}: placa **oscura y aterciopelada** con pliegues marcados en la axila. Es un signo de **resistencia a la insulina**, una de las condiciones que la ADA asocia al riesgo de diabetes tipo 2.",
           "en_texto": "signos de resistencia a la insulina",
           "referencias": [
             {
@@ -941,7 +977,7 @@
       "tipo": "informativo",
       "estilo": "advertencia",
       "titulo": "Prevenir la diabetes en la prediabetes",
-      "texto": "- Incluirlo en un **programa de prevención**:\n  - Perder al menos **5-7 %** del peso.\n  - Hacer **≥150 min/semana** de actividad física moderada.\n- Valorar **metformina** si tiene IMC **≥35**, ayunas **≥110 mg/dL**, HbA1c **≥6,0 %** o diabetes gestacional previa.\n- Tratar los **factores de riesgo** cardiovascular y repetir la glucemia **cada año**.",
+      "texto": "- Incluirlo en un **programa de prevención**:\n  - Perder al menos **5-7 %** del peso.\n  - Hacer **≥150 min/semana** de actividad física moderada.\n- Valorar **metformina** en la prediabetes de **alto riesgo**, sobre todo:\n  - Entre **25 y 59 años** con IMC **≥35**, ayunas **≥110 mg/dL** y HbA1c **≥6,0 %**.\n  - Con **diabetes gestacional** previa.\n- Tratar los **factores de riesgo** cardiovascular y repetir la glucemia **cada año**.",
       "evidencia": {
         "texto": "Programa de prevención y metformina: Evidencia A",
         "fuente": "ADA 2026"
@@ -997,7 +1033,7 @@
         {
           "titulo": "Tabla 2.2: prediabetes",
           "paginas": "S28",
-          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL (11.0 mmol/L) (IGT)",
+          "texto": "A1C 5.7–6.4% (39–47 mmol/mol) OR FPG 100 mg/dL (5.6 mmol/L) to 125 mg/dL (6.9 mmol/L) (IFG) OR 2-h PG during 75-g OGTT 140 mg/dL (7.8 mmol/L) to 199 mg/dL",
           "fuente": "ADA 2026",
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
@@ -1009,7 +1045,7 @@
       "tipo": "informativo",
       "estilo": "exito",
       "titulo": "Educar y repetir el tamizaje",
-      "texto": "- Educar en **hábitos saludables**, sobre los factores de riesgo que marcó el FINDRISC.\n- Repetir el tamizaje a los **3 años**, o antes si aparecen **síntomas** o sube el peso.",
+      "texto": "- Educar en **hábitos saludables**, centrados en los **factores de riesgo** que tenga.\n- Repetir el tamizaje a los **3 años**, o antes si aparecen **síntomas** o sube el peso.\n- Tras una **diabetes gestacional**, repetirlo cada **1-3 años**.",
       "enlaces": [
         {
           "texto": "Calcular el FINDRISC",
@@ -1046,26 +1082,41 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag34_diabetes_educacion.png"
+        },
+        {
+          "titulo": "Diabetes gestacional: cada 1-3 años",
+          "paginas": "S35",
+          "texto": "People who were diagnosed with GDM should have testing at least every 1–3 years. 4. For all other people, testing should begin at age 35 years.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "nodo_tratamiento": {
       "estilo": "rama",
       "texto": "Tratamiento",
+      "pie_nodo": "¿Empieza ahora el tratamiento o ya lo recibe?",
       "opciones": [
         {
-          "texto": "Diabetes tipo 2 confirmada",
+          "texto": "Diagnóstico reciente, sin tratamiento",
           "siguiente_nodo": "trat_inicio"
+        },
+        {
+          "texto": "Ya recibe tratamiento",
+          "siguiente_nodo": "trat_reevaluar",
+          "descripcion": "Control de la HbA1c, ajuste o hipoglucemia"
         }
       ]
     },
     "trat_inicio": {
       "tipo": "pregunta",
       "titulo": "Empezar con hábitos, educación y metformina",
-      "texto": "- Dar **metformina** desde el diagnóstico, aunque la HbA1c esté cerca de la meta.\n- Indicar dieta **mediterránea** y **≥150 min/semana** de ejercicio aeróbico.\n- Incluirlo en un programa de **educación** en diabetes.\n- Fijar la **meta de HbA1c**: **<7 %** en la mayoría; ajustarla con la tabla.",
+      "texto": "- Dar **metformina** desde el diagnóstico, aunque la HbA1c esté cerca de la meta.\n- Indicar dieta **mediterránea** y **≥150 min/semana** de ejercicio aeróbico.\n- Incluirlo en un programa de **educación** en diabetes.\n- Fijar la **meta** de HbA1c según la tabla: **<7 %** en la mayoría.",
       "tabla": {
         "titulo": "Meta de HbA1c",
-        "en_texto": "meta de HbA1c",
+        "en_texto": "según la tabla",
         "columnas": [
           "Paciente",
           "Meta"
@@ -1090,22 +1141,22 @@
         {
           "nombre": "Metformina",
           "dosis": "**500 mg/día** VO",
-          "pauta": "Subir **poco a poco** hasta **1000 mg cada 12 h**, con las comidas.",
+          "pauta": "**Subir** poco a poco hasta 1000 mg cada 12 h.",
           "nota": "Con TFGe **30-45**, **máximo 1000 mg/día**; **suspender** con TFGe <30.",
           "paginas": "38; 458"
         }
       ],
       "alertas": [
         {
-          "titulo": "Metformina y riñón",
-          "texto": "No **iniciarla** con TFGe **<45** y **suspenderla** con <30: riesgo de **acidosis láctica**."
+          "titulo": "Cuándo no dar metformina",
+          "texto": "No **iniciarla** con TFGe **<45** y suspenderla con **<30**; tampoco con **hipoxemia grave**, falla hepática o **alcoholismo**: riesgo de acidosis láctica."
         }
       ],
       "evidencia": {
         "texto": "Metformina desde el inicio: fuerte a favor, certeza moderada",
         "fuente": "MinSalud 2016"
       },
-      "nota_adicional": "Con metformina **a largo plazo**, medir la **vitamina B12** de vez en cuando, sobre todo si hay **anemia** o neuropatía.",
+      "nota_adicional": "Si la metformina no se **tolera** o está contraindicada, empezar con **otro antidiabético** oral aprobado en monoterapia. Con uso largo, medir la **vitamina B12**.",
       "discrepancias": [
         {
           "asunto": "Metformina y función renal",
@@ -1121,7 +1172,7 @@
               "paginas": "458"
             }
           ],
-          "nota": "Con TFG de **45 a 50**, MinSalud ya baja la dosis y la ACE y la **ADA** no."
+          "nota": "Con TFG de **45 a 50**, **MinSalud** ya baja la dosis y la **ACE** no."
         }
       ],
       "enlaces": [
@@ -1130,17 +1181,9 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/anemiasadultos.json"
         }
       ],
-      "pie_nodo": "¿Tiene hiperglucemia grave o signos de insulinopenia?",
       "opciones": [
         {
-          "texto": "Sí",
-          "siguiente_nodo": "trat_insulina_basal",
-          "descripcion": "HbA1c >10 %, glucosa ≥300 mg/dL o pérdida de peso con cetosis",
-          "color": "rojo",
-          "contexto": "- Se debe empezar la **insulina** desde ya, aunque lleve otros fármacos; luego puede **retirarse** poco a poco."
-        },
-        {
-          "texto": "No",
+          "texto": "Metformina en marcha",
           "siguiente_nodo": "trat_comorbilidad",
           "descripcion": "Elegir el fármaco según la comorbilidad"
         }
@@ -1297,6 +1340,54 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag35_inestable_catabolico_insulina.png"
+        },
+        {
+          "titulo": "Metformina: hipoxemia",
+          "paginas": "459",
+          "texto": "Contraindicaciones No usar si la TFG <30 ml/min/1,73 m2, no en casos de hipoxemia (EPOC O2 dependiente, ICC EC IV NYHA).",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Metformina: acidosis láctica",
+          "paginas": "38",
+          "texto": "Está contraindicada también cuando hay un riesgo alto de acidosis láctica, como en estados de hipoxemia severa, falla hepática y alcoholismo.",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag38_metformina_acidosis_lactica.png"
+        },
+        {
+          "titulo": "Si no se tolera la metformina",
+          "paginas": "38",
+          "texto": "Cuando la metformina está contraindicada o no se tolera, se puede reemplazar como tratamiento inicial por cualquiera de los otros antidiabéticos orales que esté aprobado para monoterapia.",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag38_no_tolera_metformina.png"
+        },
+        {
+          "titulo": "Rec. 13.7b: salud intermedia o compleja: <8 %",
+          "paginas": "S282",
+          "texto": "Selection of glycemic goals should be individualized and should prioritize avoidance of hypo glycemia, with less stringent goals (such as A1C <8.0% [<64 mmol/mol]",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 27: frágil o con demencia: 7-8 %",
+          "paginas": "49",
+          "texto": "En los pacientes con DMT2 mayores de 65 años que presenten fragilidad*o demencia**, o en quienes se anticipe riesgo aumentado de hipoglucemia***, se sugiere un manejo menos intensivo",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag49_rec_27_fragil_demencia.png"
         }
       ]
     },
@@ -1304,7 +1395,7 @@
       "tipo": "pregunta",
       "titulo": "Elegir el fármaco según el riesgo cardiorrenal",
       "contexto": "El **beneficio cardiorrenal** de los iSGLT2 y los aGLP-1 no depende de la HbA1c: se dan aunque esté **en la meta**.",
-      "texto": "- Elegir por la **comorbilidad**, no por la HbA1c, y sin esperar a la metformina.\n- Si tiene varias, empezar por la **de más arriba** y sumar después lo de las demás.\n- Comprobar en la tabla si cumple criterios de **alto RCV**.",
+      "texto": "- Elegir el fármaco por la **comorbilidad**, sin esperar al efecto de la **metformina**.\n- Si tiene varias, tratar una y sumar las **demás** al terminar el plan de **presión y lípidos**.\n- Comprobar en la tabla si cumple criterios de **alto RCV**.",
       "tabla": {
         "titulo": "Alto RCV (ACE)",
         "en_texto": "alto RCV",
@@ -1324,7 +1415,26 @@
         "texto": "iSGLT2 o aGLP-1 con ECV: Evidencia A",
         "fuente": "ADA 2026"
       },
-      "pie_nodo": "¿Qué condición tiene, empezando por la de más arriba?",
+      "nota_adicional": "Con **hígado graso** y riesgo alto de fibrosis (FIB-4 alto), preferir un **aGLP-1**: mejora la esteatohepatitis.",
+      "discrepancias": [
+        {
+          "asunto": "Quién tiene alto riesgo cardiovascular",
+          "posturas": [
+            {
+              "fuente": "ACE 2025",
+              "dice": "Hombre **>55** o mujer **>60** años con **un** criterio de la tabla.",
+              "paginas": "478"
+            },
+            {
+              "fuente": "ADA 2026",
+              "dice": "**≥55 años** con **dos o más** factores de riesgo.",
+              "paginas": "S191"
+            }
+          ],
+          "nota": "Una mujer de 58 años con un solo factor recibe iSGLT2 o aGLP-1 por **RCV** con la **ADA** y no con la **ACE**."
+        }
+      ],
+      "pie_nodo": "¿Qué condición vas a tratar ahora?",
       "opciones": [
         {
           "texto": "Insuficiencia cardiaca",
@@ -1335,7 +1445,7 @@
         {
           "texto": "Enfermedad renal crónica",
           "siguiente_nodo": "trat_erc",
-          "descripcion": "TFGe <60 o RACU ≥30 mg/g, confirmadas",
+          "descripcion": "TFGe <60 mL/min/1,73 m² o RACU ≥30 mg/g, confirmadas",
           "color": "turquesa"
         },
         {
@@ -1402,6 +1512,24 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Figura 9.4: alto riesgo CV",
+          "paginas": "S191",
+          "texto": "Indicators of high risk: While definitions vary, most comprise ≥55 years of age with two or more additional risk factors (including obesity, hypertension, smoking, dyslipidemia, or albuminuria).",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 4.27a: MASH: aGLP-1",
+          "paginas": "S78",
+          "texto": "In adults with type 2 diabetes and biopsy-proven MASH or those at high risk for liver fibrosis (based on noninvasive tests), a GLP-1 RA is preferred for glycemic management",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
@@ -1413,14 +1541,15 @@
         {
           "nombre": "Empagliflozina",
           "dosis": "**10-25 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
           "paginas": "457; 456"
         },
         {
           "nombre": "Dapagliflozina",
           "dosis": "**5-10 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
-          "paginas": "457; 456"
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
+          "paginas": "457; 456",
+          "nota": "La **ACE** usa la dapagliflozina hasta una TFG de 25 y la **empagliflozina** hasta 20."
         }
       ],
       "alertas": [
@@ -1502,6 +1631,42 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag43_rec_20_no_tiazolidinedionas.png"
+        },
+        {
+          "titulo": "iSGLT2: cetoacidosis previa",
+          "paginas": "459",
+          "texto": "Evitar si hay cetoacidosis diabética previa. Suspender 24 horas antes de cirugía o ejercicio intenso.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: hasta qué TFG",
+          "paginas": "458",
+          "texto": "Uso de empagliflozina hasta que la TFG sea de 20 ml/min/1,73 m2 y la dapagliflozina llegue hasta una TFG de 25 ml/ min/1,73 m2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Metformina y TFG (ACE)",
+          "paginas": "458",
+          "texto": "Ajustar dosis a 1000 mg/día si la TFG está entre 30-45 ml/ min/1,73 m2. Consideraciones según TFG Suspender si TFG cae a <30 ml/min.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
@@ -1518,26 +1683,22 @@
         {
           "nombre": "Empagliflozina",
           "dosis": "**10-25 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
           "paginas": "457; 456"
         },
         {
           "nombre": "Dapagliflozina",
           "dosis": "**5-10 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
-          "paginas": "457; 456"
-        }
-      ],
-      "alertas": [
-        {
-          "titulo": "La TFGe baja al empezar",
-          "texto": "Una caída de hasta **30 %** al iniciar el iSGLT2 es **esperable**: no suspenderlo; si es mayor, buscar **hipovolemia**."
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
+          "paginas": "457; 456",
+          "nota": "La **ACE** usa la dapagliflozina hasta una TFG de 25 y la **empagliflozina** hasta 20."
         }
       ],
       "evidencia": {
         "texto": "iSGLT2 y aGLP-1 en la ERC: Evidencia A",
         "fuente": "ADA 2026"
       },
+      "nota_adicional": "Al iniciar el **iSGLT2**, una caída de la TFGe de hasta **30 %** es **esperable** y no obliga a suspenderlo; si cae más, buscar **hipovolemia**.",
       "burbujas": [
         {
           "en_texto": "con beneficio renal",
@@ -1565,12 +1726,12 @@
       "pie_nodo": "¿Persiste la albuminuria (RACU ≥30 mg/g) con IECA o ARA II a dosis máxima?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí, RACU ≥30 mg/g con dosis máxima",
           "siguiente_nodo": "trat_finerenona",
           "descripcion": "Valorar finerenona"
         },
         {
-          "texto": "No",
+          "texto": "No, o aún ajustando el IECA o ARA II",
           "siguiente_nodo": "trat_riesgo_cv",
           "descripcion": "Seguir con el plan cardiovascular"
         }
@@ -1647,19 +1808,52 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: cetoacidosis previa",
+          "paginas": "459",
+          "texto": "Evitar si hay cetoacidosis diabética previa. Suspender 24 horas antes de cirugía o ejercicio intenso.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: hasta qué TFG",
+          "paginas": "458",
+          "texto": "Uso de empagliflozina hasta que la TFG sea de 20 ml/min/1,73 m2 y la dapagliflozina llegue hasta una TFG de 25 ml/ min/1,73 m2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
     "trat_finerenona": {
       "tipo": "pregunta",
-      "titulo": "Añadir finerenona a la albuminuria que persiste",
-      "texto": "- Iniciarla si el potasio es **≤5,0 mEq/L** y la TFGe **≥25**:\n  - TFGe **>60**: **20 mg/día**.\n  - TFGe **25-59**: **10 mg/día**.\n- Medir potasio y TFGe a las **4 semanas** y luego cada 3 meses:\n  - K **<4,8**: subir a 20 mg.\n  - K **4,8-5,0**: mantener 10 mg.\n  - K **>5,5**: suspender y repetir a las **72 h**; reiniciar con 10 mg si baja de 5,0.",
+      "titulo": "Añadir finerenona si persiste la albuminuria",
+      "texto": "- Iniciar la **finerenona** si el potasio es **≤5,0 mEq/L** y la TFGe **≥25**:\n  - TFGe **≥60**: **20 mg/día**.\n  - TFGe **25-59**: **10 mg/día**.\n- Medir el **potasio** y la TFGe a las **4 semanas** y luego cada **3 meses**:\n  - Potasio **≤4,8 mEq/L** y TFGe estable: subir a **20 mg**.\n  - Potasio **>4,8 mEq/L**: no subir la dosis.\n  - Potasio **>5,5 mEq/L**: **suspender** y repetir a las **72 h**; reiniciar con 10 mg si baja de 5,0.",
       "farmacos": [
         {
           "nombre": "Finerenona",
           "dosis": "**10-20 mg** VO al día",
           "pauta": "Según la **TFGe**; meta de **20 mg/día**.",
           "paginas": "481"
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Potasio y embarazo",
+          "texto": "Puede subir el **potasio**; como todo ARM, evitarla **sin anticoncepción** fiable."
         }
       ],
       "evidencia": {
@@ -1719,13 +1913,40 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "FIDELIO: dosis según TFGe",
+          "paginas": "S255",
+          "texto": "received an initial dose at baseline of 10 mg once daily, and if eGFR at screening was ≥60 mL/min/1.73 m2, the initial dose was 20 mg once daily.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "FIDELIO: subir con K ≤4,8",
+          "paginas": "S255",
+          "texto": "An increase in the dose from 10 to 20 mg once daily was encouraged after 1 month, provided the serum potassium level was ≤4.8 mmol/L and eGFR was stable.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 15.25a: IECA, ARA II y ARM antes de concebir",
+          "paginas": "S331",
+          "texto": "Potentially harmful medications in pregnancy (e.g., ACE inhibitors, angiotensin receptor blockers, mineralocorticoid receptor antagonists) should be stopped prior to conception",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "trat_ecv": {
       "tipo": "pregunta",
       "titulo": "Reducir los eventos cardiovasculares con aGLP-1 o iSGLT2",
-      "texto": "- Dar un **aGLP-1** (liraglutida, semaglutida o dulaglutida) o un **iSGLT2** con beneficio CV probado.\n- Darlos aunque la HbA1c esté en la meta y **sin depender** de la metformina.\n- Valorar los **dos juntos** para sumar beneficio cardiovascular y renal.\n- Con **obesidad**, preferir el aGLP-1.",
+      "texto": "- Dar un **aGLP-1** (liraglutida, semaglutida o dulaglutida) o un **iSGLT2** con beneficio CV probado.\n- Valorar los **dos juntos** para sumar beneficio cardiovascular y renal.\n- Con **obesidad**, preferir el aGLP-1.",
       "farmacos": [
         {
           "nombre": "Semaglutida SC",
@@ -1748,24 +1969,25 @@
         {
           "nombre": "Empagliflozina",
           "dosis": "**10-25 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
           "paginas": "457; 456"
         },
         {
           "nombre": "Dapagliflozina",
           "dosis": "**5-10 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
-          "paginas": "457; 456"
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
+          "paginas": "457; 456",
+          "nota": "La **ACE** usa la dapagliflozina hasta una TFG de 25 y la **empagliflozina** hasta 20."
         }
       ],
       "alertas": [
         {
-          "titulo": "aGLP-1: cuándo no",
-          "texto": "Contraindicado con antecedente personal o familiar de **carcinoma medular de tiroides** o MEN 2; suspenderlo si se sospecha **pancreatitis**."
+          "titulo": "aGLP-1 y tirzepatida: cuándo no",
+          "texto": "No usarlos con antecedente personal o familiar de **carcinoma medular de tiroides** o MEN 2; **suspenderlos** si se sospecha pancreatitis."
         }
       ],
       "evidencia": {
-        "texto": "aGLP-1 con ECV o alto RCV: fuerte a favor, certeza alta",
+        "texto": "aGLP-1 con ECV o alto RCV: fuerte a favor, certeza moderada a alta",
         "fuente": "ACE 2025"
       },
       "burbujas": [
@@ -1856,13 +2078,58 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: cetoacidosis previa",
+          "paginas": "459",
+          "texto": "Evitar si hay cetoacidosis diabética previa. Suspender 24 horas antes de cirugía o ejercicio intenso.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: hasta qué TFG",
+          "paginas": "458",
+          "texto": "Uso de empagliflozina hasta que la TFG sea de 20 ml/min/1,73 m2 y la dapagliflozina llegue hasta una TFG de 25 ml/ min/1,73 m2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "aGLP-1: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "Evitar en individuos con gastroparesia. Está contraindicado si en la historia personal o familiar hay CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Tirzepatida: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "No administrar en casos de pancreatitis aguda o hipersensibilidad a alguno de los componentes, no usar en historia personal o familiar de CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
     "trat_obesidad": {
       "tipo": "pregunta",
       "titulo": "Tratar el peso con aGLP-1 o tirzepatida",
-      "texto": "- Con IMC **≥30**, dar **tirzepatida** o **semaglutida**, los de mayor pérdida de peso; con IMC **27-29,9**, sugerirlas.\n- Buscar perder **≥10 %** del peso en **6-12 meses**.\n- Subir la dosis **poco a poco** para tolerar las náuseas.\n- Un **iSGLT2** ayuda algo; la **metformina** no sirve para bajar de peso.",
+      "texto": "- Dar **tirzepatida** o **semaglutida**, los de mayor pérdida de peso:\n  - IMC **≥30 kg/m²**: recomendarlas.\n  - IMC **27-29,9 kg/m²**: sugerirlas.\n- Buscar perder **≥10 %** del peso en **6-12 meses**.\n- Subir la dosis **poco a poco** para tolerar las náuseas.\n- Con un **iSGLT2** o con **metformina**, la mayoría pierde menos del **5 %** del peso.",
       "farmacos": [
         {
           "nombre": "Tirzepatida SC",
@@ -1877,6 +2144,12 @@
           "paginas": "473"
         }
       ],
+      "alertas": [
+        {
+          "titulo": "aGLP-1 y tirzepatida: cuándo no",
+          "texto": "No usarlos con antecedente personal o familiar de **carcinoma medular de tiroides** o MEN 2; **suspenderlos** si se sospecha pancreatitis."
+        }
+      ],
       "evidencia": {
         "texto": "aGLP-1 o tirzepatida con IMC ≥30: fuerte a favor, certeza alta",
         "fuente": "ACE 2025"
@@ -1887,7 +2160,7 @@
           "recurso": "diabetesm2_peso_farmacos.png",
           "titulo": "Pérdida de peso por fármaco",
           "descripcion": "Fármacos agrupados según cuánto peso hacen perder en la DM2.",
-          "info": "Cada franja agrupa los fármacos por el peso que hacen perder: con **tirzepatida 15 mg**, más de 1 de cada 3 pacientes pierde **≥15 %**; con dulaglutida, iSGLT2 o **metformina**, la mayoría pierde **menos del 5 %**.",
+          "info": "Cada franja agrupa los fármacos por el peso que hacen perder: con **tirzepatida 15 mg**, más de 1 de cada 3 pacientes pierde **≥15 %**; con liraglutida 1,8 mg, dulaglutida, iSGLT2 o **metformina**, la mayoría pierde **menos del 5 %**.",
           "en_texto": "los de mayor pérdida de peso",
           "referencias": [
             {
@@ -1900,9 +2173,18 @@
               "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
             },
             {
+              "titulo": "Tabla 6: ≥10 % y ≥5 % del peso",
+              "paginas": "472",
+              "texto": "Semaglutida de 2,4 mg SC*, una vez por semana. Tirzepatida de 10 mg SC, una vez por semana. Tirzepatida de 15 mg SC, una vez por semana.",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            },
+            {
               "titulo": "Tabla 6: pérdida <5 %",
               "paginas": "472",
-              "texto": "Pérdida clínicamente no significativa (menos del 5,0 % del peso) en la mayoría de los pacientes. Dulaglutida de 0,75 mg, dulaglutida de 1,5 mg SC",
+              "texto": "Pérdida clínicamente no significativa (menos del 5,0 % del peso) en la mayoría de los pacientes. Liraglutida de 1,8 mg SC, una vez al día.",
               "fuente": "ACE 2025",
               "anio": "2025",
               "url": "https://doi.org/10.53853/encr.12.3.907",
@@ -1914,12 +2196,12 @@
       "pie_nodo": "¿Tiene IMC ≥35, o 30-34,9 sin control pese al mejor tratamiento médico?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí, IMC ≥35, o 27-34,9 sin control",
           "siguiente_nodo": "trat_cirugia",
           "descripcion": "Valorar cirugía metabólica"
         },
         {
-          "texto": "No",
+          "texto": "No, o aún sin probar el tratamiento médico",
           "siguiente_nodo": "trat_riesgo_cv",
           "descripcion": "Seguir con el plan cardiovascular"
         }
@@ -1978,6 +2260,24 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "aGLP-1: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "Evitar en individuos con gastroparesia. Está contraindicado si en la historia personal o familiar hay CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Tirzepatida: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "No administrar en casos de pancreatitis aguda o hipersensibilidad a alguno de los componentes, no usar en historia personal o familiar de CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
@@ -1987,24 +2287,24 @@
         "Remitir"
       ],
       "titulo": "Remitir a cirugía metabólica",
-      "texto": "- Recomendar la cirugía con IMC **≥35** y sugerirla con IMC **30-34,9** si no hay control con el **mejor tratamiento médico**.\n- Remitir a un **centro acreditado** con equipo multidisciplinario.\n- Tras la cirugía, vigilar **hierro**, vitamina B12, vitamina D y calcio.",
+      "texto": "- Recomendar la cirugía con IMC **≥35**; sugerirla con IMC **30-34,9**, o incluso **27-29,9**, si no hay control con el **mejor tratamiento médico**.\n- Remitir a un **centro acreditado** con equipo multidisciplinario.\n- Tras la cirugía, vigilar **hierro**, vitamina B12, vitamina D y calcio.",
       "checklist": {
         "titulo": "Antes de remitir",
         "items": [
           "DM2 **confirmada**",
+          "IMC entre **27 y 39,9 kg/m²**",
           "Hiperglucemia que **persiste** pese al manejo médico óptimo",
-          "Fracaso documentado de los **cambios de hábitos** y de los fármacos",
-          "Riesgo quirúrgico valorado: **cardiovascular**, respiratorio y nutricional"
+          "Riesgo-beneficio valorado con un **equipo multidisciplinario**"
         ]
       },
       "evidencia": {
         "texto": "IMC ≥35: fuerte a favor, certeza alta",
         "fuente": "ACE 2025"
       },
-      "nota_adicional": "La cirugía **no cura**: facilita perder peso, y la diabetes vuelve si no cambian los **hábitos**.",
+      "nota_adicional": "La cirugía **no es curativa**: facilita perder peso y **no recuperarlo** sólo si cambian los **hábitos**.",
       "burbujas": [
         {
-          "en_texto": "IMC **≥35**",
+          "en_texto": "Recomendar la cirugía",
           "titulo": "¿Cuánto consigue?",
           "texto": "Con IMC ≥35, la cirugía logra la **remisión** de la DM2 en el **60-80 %** de los pacientes.",
           "referencias": [
@@ -2072,6 +2372,42 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Rec. 7.3: cirugía con IMC <30",
+          "paginas": "475",
+          "texto": "Se sugiere la cirugía bariátrica en sobrepeso (IMC <30 kg/m2) para facilitar la pérdida de peso y optimizar el control glucémico. B2 (⨁⨁⨁◯).",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Criterios para remitir a cirugía",
+          "paginas": "475",
+          "texto": "o Diagnóstico confirmado de DM2. o IMC entre 27 y 39,9 kg/m². o Persistencia de hiperglucemia y control metabólico inadecuado pese a un manejo médico óptimo.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Riesgo-beneficio con el equipo",
+          "paginas": "475",
+          "texto": "pese a un manejo médico óptimo. o Evaluación de riesgo-beneficio individualizada en colaboración con un equipo multidisciplinario.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "La cirugía no es curativa",
+          "paginas": "475",
+          "texto": "Se debe recordar que la cirugía bariátrica no es un procedimiento curativo. Solamente facilita la reducción del peso y ayuda a evitar la reganancia del mismo",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
@@ -2104,12 +2440,12 @@
       "pie_nodo": "¿Está la HbA1c 1 % o más por encima de su meta?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí, 1 % o más por encima",
           "siguiente_nodo": "trat_combinada",
           "descripcion": "Metformina con iSGLT2 o iDPP-4"
         },
         {
-          "texto": "No",
+          "texto": "No, menos de 1 % por encima",
           "siguiente_nodo": "trat_riesgo_cv",
           "descripcion": "Metformina sola"
         }
@@ -2153,14 +2489,15 @@
         {
           "nombre": "Empagliflozina",
           "dosis": "**10-25 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
           "paginas": "457; 456"
         },
         {
           "nombre": "Dapagliflozina",
           "dosis": "**5-10 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
-          "paginas": "457; 456"
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
+          "paginas": "457; 456",
+          "nota": "La **ACE** usa la dapagliflozina hasta una TFG de 25 y la **empagliflozina** hasta 20."
         },
         {
           "nombre": "Sitagliptina",
@@ -2178,13 +2515,31 @@
       "alertas": [
         {
           "titulo": "iSGLT2 y cetoacidosis",
-          "texto": "Riesgo de **cetoacidosis euglucémica** con cirugía mayor, infección grave, ayuno o **alcohol**: suspenderlo en esas situaciones."
+          "texto": "El **iSGLT2** puede causar **cetoacidosis euglucémica** con cirugía mayor, infección grave, ayuno o alcohol: **suspenderlo** en esas situaciones."
         }
       ],
       "evidencia": {
         "texto": "Metformina + iSGLT2: condicional a favor, certeza moderada",
         "fuente": "ACE 2025"
       },
+      "burbujas": [
+        {
+          "en_texto": "mejoran la adherencia",
+          "titulo": "¿Qué gana la combinación temprana?",
+          "texto": "En el estudio **VERIFY**, empezar con metformina y **vildagliptina** retrasó el **fallo** del tratamiento frente a la metformina sola.",
+          "referencias": [
+            {
+              "titulo": "VERIFY: combinación inicial",
+              "paginas": "460",
+              "texto": "el estudio VERIFY demostró que la terapia combinada inicial con un iDPP-IV, en este caso metformina y vildagliptina, fue superior a monoterapia para prolongar el tiempo hasta la falla terapéutica",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            }
+          ]
+        }
+      ],
       "opciones": [
         {
           "texto": "Combinación en marcha",
@@ -2247,6 +2602,33 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: cetoacidosis previa",
+          "paginas": "459",
+          "texto": "Evitar si hay cetoacidosis diabética previa. Suspender 24 horas antes de cirugía o ejercicio intenso.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: hasta qué TFG",
+          "paginas": "458",
+          "texto": "Uso de empagliflozina hasta que la TFG sea de 20 ml/min/1,73 m2 y la dapagliflozina llegue hasta una TFG de 25 ml/ min/1,73 m2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
@@ -2264,16 +2646,16 @@
         ],
         "filas": [
           [
-            "40-75 años **sin** ECV",
+            "40-75 años, **sin** ECV ni otro factor de riesgo",
             "Intensidad **moderada**"
           ],
           [
-            "40-75 años con **otro factor** de riesgo",
+            "40-75 años **sin** ECV, con **otro factor** de riesgo",
             "Intensidad **alta**; LDL **<70 mg/dL**"
           ],
           [
             "Con **ECV** aterosclerótica, a cualquier edad",
-            "Intensidad **alta**; LDL **<55 mg/dL**"
+            "Intensidad **alta**; LDL **<55 mg/dL**; si no llega, sumar **ezetimiba** o un inhibidor de PCSK9"
           ]
         ],
         "resaltar_primera_columna": true
@@ -2318,7 +2700,7 @@
               "paginas": "54"
             }
           ],
-          "nota": "Con PAS de **130-139**, la ADA intensifica el tratamiento y **MinSalud** no."
+          "nota": "Con PAS de **130-139**, la ADA intensifica el tratamiento y **MinSalud** no; MinSalud da esa meta en la **nefropatía**."
         }
       ],
       "enlaces": [
@@ -2327,11 +2709,17 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/hipertension_arterial.json"
         }
       ],
+      "pie_nodo": "¿Tiene otra condición de la lista que aún no recibe su fármaco?",
       "opciones": [
         {
-          "texto": "Plan cardiovascular en marcha",
-          "siguiente_nodo": "trat_reevaluar",
-          "descripcion": "Reevaluar a los 3-6 meses"
+          "texto": "Sí, otra de la lista",
+          "siguiente_nodo": "trat_comorbilidad",
+          "descripcion": "Sumar su fármaco"
+        },
+        {
+          "texto": "No, ninguna más",
+          "siguiente_nodo": "trat_hiperglucemia_grave",
+          "descripcion": "Decidir si empezar la insulina"
         }
       ],
       "referencias": [
@@ -2426,6 +2814,15 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag52_rec_30_tamizaje_coronario.png"
+        },
+        {
+          "titulo": "Rec. 10.27: ezetimiba o iPCSK9",
+          "paginas": "S223",
+          "texto": "Addition of ezetimibe or a PCSK9 inhibitor with proven benefit in this population is recommended if this goal is not achieved on maximum tolerated statin therapy.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
@@ -2433,30 +2830,48 @@
       "tipo": "pregunta",
       "titulo": "Reevaluar el tratamiento a los 3-6 meses",
       "contexto": "Retrasar el ajuste (la **inercia terapéutica**) deja meses de hiperglucemia que no se recuperan.",
-      "texto": "- Medir la **HbA1c** cada **3 meses** mientras no esté en la meta y tras cada cambio.\n- Revisar la **adherencia**, la técnica de inyección y los **hábitos** antes de subir.\n- Preguntar por **hipoglucemias** y efectos adversos.\n- Ajustar **sin demora** si no está en la meta.",
+      "texto": "- Medir la **HbA1c** cada **3 meses** mientras no esté en la meta y tras cada cambio.\n- Preguntar por **hipoglucemias** y efectos adversos.\n- Ajustar **sin demora** si no está en la meta.",
       "evidencia": {
         "texto": "No retrasar la intensificación: Evidencia A",
         "fuente": "ADA 2026"
       },
-      "pie_nodo": "¿Cómo está a los 3-6 meses?",
+      "burbujas": [
+        {
+          "en_texto": "si no está en la meta",
+          "titulo": "¿Cuántos llegan a la meta en Colombia?",
+          "texto": "En **2021**, sólo el **53,2 %** de las personas con DM2 en Colombia tenía la HbA1c **<7 %**: la **inercia** es frecuente.",
+          "referencias": [
+            {
+              "titulo": "Control en Colombia: 53,2 %",
+              "paginas": "465",
+              "texto": "El porcentaje de cumplimiento de esta meta en Colombia fue solo del 53,2 % en el año 2021",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            }
+          ]
+        }
+      ],
+      "pie_nodo": "¿Qué muestra la reevaluación a los 3-6 meses?",
       "opciones": [
         {
-          "texto": "En su meta, sin hipoglucemia",
+          "texto": "Hipoglucemia",
+          "siguiente_nodo": "trat_hipoglucemia",
+          "descripcion": "Con cualquier HbA1c",
+          "color": "rojo"
+        },
+        {
+          "texto": "HbA1c en su meta, sin hipoglucemia",
           "siguiente_nodo": "nodo_seguimiento",
           "descripcion": "Seguimiento",
           "color": "verde"
         },
         {
-          "texto": "Por encima de su meta",
+          "texto": "HbA1c por encima de su meta, sin hipoglucemia",
           "siguiente_nodo": "trat_intensificar",
           "descripcion": "Intensificar",
           "color": "naranja"
-        },
-        {
-          "texto": "Con hipoglucemia",
-          "siguiente_nodo": "trat_hipoglucemia",
-          "descripcion": "Tratar y ajustar",
-          "color": "rojo"
         }
       ],
       "referencias": [
@@ -2526,27 +2941,38 @@
         {
           "texto": "Metformina sola",
           "siguiente_nodo": "trat_segundo",
-          "descripcion": "Añadir el segundo fármaco"
+          "descripcion": "Añadir el segundo fármaco",
+          "color": "azul"
         },
         {
-          "texto": "Dos o más orales",
+          "texto": "Dos o más orales, sin inyectables",
           "siguiente_nodo": "trat_inyectable",
-          "descripcion": "Pasar a un aGLP-1"
+          "descripcion": "Pasar a un aGLP-1",
+          "color": "azul"
         },
         {
-          "texto": "aGLP-1 o tirzepatida",
+          "texto": "aGLP-1 o tirzepatida, sin iSGLT2",
+          "siguiente_nodo": "trat_segundo",
+          "descripcion": "Sumar un iSGLT2",
+          "color": "azul"
+        },
+        {
+          "texto": "aGLP-1 e iSGLT2, sin insulina",
           "siguiente_nodo": "trat_insulina_basal",
-          "descripcion": "Añadir insulina basal"
+          "descripcion": "Añadir insulina basal",
+          "color": "azul"
         },
         {
-          "texto": "Insulina basal",
+          "texto": "Insulina basal, sin aGLP-1",
           "siguiente_nodo": "trat_basal_mas",
-          "descripcion": "Sumar un aGLP-1"
+          "descripcion": "Sumar un aGLP-1",
+          "color": "azul"
         },
         {
-          "texto": "Insulina basal y aGLP-1",
+          "texto": "Insulina basal y aGLP-1, con o sin prandial",
           "siguiente_nodo": "trat_prandial",
-          "descripcion": "Añadir insulina prandial"
+          "descripcion": "Añadir o subir la insulina prandial",
+          "color": "azul"
         }
       ],
       "referencias": [
@@ -2581,20 +3007,21 @@
     },
     "trat_segundo": {
       "tipo": "pregunta",
-      "titulo": "Añadir el segundo fármaco a la metformina",
-      "texto": "- Sumar de primera opción un **iSGLT2**.\n- Con **exceso de peso** o si hace falta bajar más la HbA1c, preferir un **aGLP-1**.\n- Usar un **iDPP-4** si los otros dos no convienen.\n- Si con dos no basta, sumar un tercero: **iSGLT2 + iDPP-4** o un **aGLP-1**.",
+      "titulo": "Añadir un segundo o tercer fármaco",
+      "texto": "- Sumar de primera opción un **iSGLT2**; si ya lleva un **aGLP-1**, también.\n- Con **exceso de peso** o si hace falta bajar más la HbA1c, preferir un **aGLP-1** o **tirzepatida**.\n- Usar un **iDPP-4** si los otros no convienen, nunca junto a un aGLP-1.",
       "farmacos": [
         {
           "nombre": "Empagliflozina",
           "dosis": "**10-25 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
           "paginas": "457; 456"
         },
         {
           "nombre": "Dapagliflozina",
           "dosis": "**5-10 mg** VO",
-          "pauta": "Una vez al día; **suspender** 24 h antes de **cirugía mayor**.",
-          "paginas": "457; 456"
+          "pauta": "Una vez al día. **Evitar** si hubo cetoacidosis; suspender **3-4 días** antes de cirugía programada.",
+          "paginas": "457; 456",
+          "nota": "La **ACE** usa la dapagliflozina hasta una TFG de 25 y la **empagliflozina** hasta 20."
         },
         {
           "nombre": "Sitagliptina",
@@ -2607,12 +3034,6 @@
           "dosis": "**5 mg** VO al día",
           "pauta": "No requiere ajuste **renal**.",
           "paginas": "457-458"
-        }
-      ],
-      "alertas": [
-        {
-          "titulo": "No juntar iDPP-4 y aGLP-1",
-          "texto": "El iDPP-4 **no baja más** la glucosa si ya lleva un aGLP-1: **retirarlo** al empezar el aGLP-1."
         }
       ],
       "evidencia": {
@@ -2699,13 +3120,49 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: cetoacidosis previa",
+          "paginas": "459",
+          "texto": "Evitar si hay cetoacidosis diabética previa. Suspender 24 horas antes de cirugía o ejercicio intenso.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: hasta qué TFG",
+          "paginas": "458",
+          "texto": "Uso de empagliflozina hasta que la TFG sea de 20 ml/min/1,73 m2 y la dapagliflozina llegue hasta una TFG de 25 ml/ min/1,73 m2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Figura 9.4: aGLP-1 más iSGLT2",
+          "paginas": "S191",
+          "texto": "If glycemia is above goal • For individuals on a GLP-1 RA, consider adding SGLT2i with proven CVD benefit or vice versa",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "trat_inyectable": {
       "tipo": "pregunta",
       "titulo": "Pasar a un aGLP-1 antes que a la insulina",
-      "texto": "- Sumar un **aGLP-1** o **tirzepatida** cuando fallan varios orales, sobre todo con IMC **≥27**.\n- Preferir los **semanales** (semaglutida, dulaglutida) si cuesta la adherencia.\n- Con IMC **<27** y signos de **insulinopenia**, empezar mejor por la **insulina basal**.",
+      "texto": "- Sumar un **aGLP-1** o **tirzepatida** cuando fallan varios orales, sobre todo con IMC **≥27**.\n- Preferir los **semanales** (semaglutida, dulaglutida) si cuesta la adherencia.\n- Si tomaba un **iDPP-4**, retirarlo: con el aGLP-1 **no baja más** la glucosa.\n- Con IMC **<27** y signos de **insulinopenia**, empezar mejor por la **insulina basal**.",
       "farmacos": [
         {
           "nombre": "Semaglutida SC",
@@ -2728,17 +3185,18 @@
       ],
       "alertas": [
         {
-          "titulo": "Náuseas al empezar",
-          "texto": "Los efectos **gastrointestinales** son **transitorios**: subir la dosis poco a poco y avisar al paciente antes."
+          "titulo": "aGLP-1 y tirzepatida: cuándo no",
+          "texto": "No usarlos con antecedente personal o familiar de **carcinoma medular de tiroides** o MEN 2; **suspenderlos** si se sospecha pancreatitis."
         }
       ],
       "evidencia": {
         "texto": "aGLP-1 tras varios orales: fuerte a favor, certeza alta",
         "fuente": "ACE 2025"
       },
+      "nota_adicional": "Antes de bajar **rápido** la HbA1c con un aGLP-1, revisar el **fondo de ojo**: la retinopatía puede **empeorar** al principio.",
       "enlaces": [
         {
-          "texto": "Empezar insulina basal",
+          "texto": "IMC <27 e insulinopenia: basal",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "trat_insulina_basal"
         }
@@ -2786,13 +3244,49 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Rec. 9.18: no juntar iDPP-4 y aGLP-1",
+          "paginas": "S192",
+          "texto": "Concurrent use of dipeptidyl peptidase 4 (DPP-4) inhibitors with a GLP-1 RA or a dual GIP and GLP-1 RA is not recommended",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "aGLP-1: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "Evitar en individuos con gastroparesia. Está contraindicado si en la historia personal o familiar hay CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Tirzepatida: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "No administrar en casos de pancreatitis aguda o hipersensibilidad a alguno de los componentes, no usar en historia personal o familiar de CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Retina al intensificar con aGLP-1",
+          "paginas": "S262",
+          "texto": "since rapid reductions in A1C have been shown to be associated with a risk of initial worsening of retinopathy",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "trat_insulina_basal": {
       "tipo": "pregunta",
       "titulo": "Iniciar la insulina basal",
-      "texto": "- Empezar con **10 U/día** o **0,1-0,2 U/kg/día**, a la misma hora.\n- La **NPH** va al acostarse; los **análogos** (glargina, degludec) dan menos hipoglucemia.\n- Mantener la metformina y los fármacos **cardiorrenales**.\n- Enseñar la técnica con agujas de **4 mm** y formular **glucagón**.",
+      "texto": "- Empezar con **10 U/día** o **0,1-0,2 U/kg/día**, a la misma hora.\n- La **NPH** va al acostarse; los **análogos** (glargina, degludec) dan menos hipoglucemia.\n- Mantener la **metformina** y los fármacos **cardiorrenales**.\n- Enseñar la técnica con agujas de **4 mm** y formular **glucagón**.",
       "farmacos": [
         {
           "nombre": "Insulina basal (glargina, degludec o NPH)",
@@ -2803,7 +3297,7 @@
             "unidad": "UI"
           },
           "pauta": "Una vez al día; la NPH, **al acostarse**. O **10 U/día** fijas.",
-          "paginas": "S198; 464"
+          "paginas": "S200; 464"
         }
       ],
       "alertas": [
@@ -2816,24 +3310,6 @@
         "texto": "Seguir los otros fármacos con la insulina: Evidencia A",
         "fuente": "ADA 2026"
       },
-      "discrepancias": [
-        {
-          "asunto": "Dosis inicial de insulina basal",
-          "posturas": [
-            {
-              "fuente": "ADA 2026",
-              "dice": "**10 U/día** o **0,1-0,2 U/kg/día**.",
-              "paginas": "S198"
-            },
-            {
-              "fuente": "ACE 2025",
-              "dice": "**0,2 U/kg/día**.",
-              "paginas": "464"
-            }
-          ],
-          "nota": "En un paciente de 70 kg, la **ACE** empieza con 14 U y la **ADA** puede empezar con 7-10 U."
-        }
-      ],
       "opciones": [
         {
           "texto": "Insulina basal iniciada",
@@ -2842,15 +3318,6 @@
         }
       ],
       "referencias": [
-        {
-          "titulo": "Figura 9.5: inicio de la insulina basal",
-          "paginas": "S198",
-          "texto": "lower dose by 10–20% INITIATION Start 10 units per day or 0.1–0.2 units/ kg per day Considerations for adding basal insulin",
-          "fuente": "ADA 2026",
-          "anio": "2026",
-          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
-          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
-        },
         {
           "titulo": "Figura 2: dosis inicial de insulina basal",
           "paginas": "464",
@@ -2924,24 +3391,33 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Dosis inicial por peso",
+          "paginas": "S200",
+          "texto": "For individuals with type 2 diabetes, starting doses can be estimated based on body weight (0.1–0.2 units/kg/day) and the degree of hyperglycemia",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "trat_titulacion": {
       "tipo": "pregunta",
       "titulo": "Titular la insulina basal con la glucemia en ayunas",
-      "texto": "- Medir la glucemia capilar **en ayunas** cada día; meta **70-130 mg/dL**.\n- Ajustar la dosis cada **3 días** según el promedio de las ayunas.\n- Buscar **sobrebasalización**: gran diferencia entre la noche y la mañana, **hipoglucemias** o mucha variabilidad.",
+      "texto": "- Medir la glucemia capilar **en ayunas**; la meta es **70-130 mg/dL**.\n- Ajustar la dosis cada **3 días** según el promedio de las ayunas:\n  - Más de **180 mg/dL**: subir **4 U**.\n  - Entre **131 y 180 mg/dL**: subir **2 U**.\n  - Menos de **70 mg/dL**: bajar un **10-20 %**.\n- Si hay **sobrebasalización**, no subir más la basal: sumar un **aGLP-1**.",
       "evidencia": {
-        "texto": "Titulación de la basal: Evidencia E",
+        "texto": "Vigilar la sobrebasalización: Evidencia E",
         "fuente": "ADA 2026"
       },
-      "nota_adicional": "Si las ayunas están en la meta pero la **HbA1c** no, o hay signos de **sobrebasalización**, no subir más la basal: pasar a **terapia inyectable combinada**.",
+      "nota_adicional": "La **sobrebasalización** se sospecha con una diferencia grande entre la glucosa al acostarse y la de la mañana, con **hipoglucemias** o mucha **variabilidad**, o si las ayunas están en la meta y la **HbA1c** no.",
       "media": [
         {
           "recurso": "diabetesm2_titulacion_basal.gif",
           "titulo": "Titulación de la insulina basal",
           "descripcion": "Glucemia en ayunas cada 3 días y la dosis que corresponde a cada tramo.",
-          "info": "Caso de **70 kg** que empieza con **14 U** (0,2 U/kg). {#EF5454:Rojo}: ayunas >180, se suben **4 U**; {#F2A23A:ámbar}: 131-180, se suben **2 U**; {#2FB36D:verde}: meta de 70-130, se **mantiene la dosis**.",
+          "info": "Caso de **70 kg** que empieza con **14 U** (0,2 U/kg). {#EF5454:Rojo} arriba: más de **180 mg/dL**, se suben **4 U**; {#F2A23A:ámbar}: 131-180, se suben **2 U**; {#2FB36D:verde}: meta de 70-130, se **mantiene la dosis**. Rojo abajo: menos de **70**, se baja un **10-20 %**.",
           "en_texto": "Ajustar la dosis",
           "referencias": [
             {
@@ -2956,7 +3432,16 @@
             {
               "titulo": "Figura 2: titulación",
               "paginas": "464",
-              "texto": "Glucometría >180 mg/dl Aumente 2 UI cada 3 días hasta lograr la meta Aumente 4 UI cada 3 días hasta llegar a 180 mg/dl",
+              "texto": "Glucometría >180 mg/dl Aumente 4 UI cada 3 días hasta llegar a 180 mg/dl y luego 2 UI cada día hasta lograr la meta",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            },
+            {
+              "titulo": "Figura 2: glucometría 130-180",
+              "paginas": "464",
+              "texto": "Glucometría 130 mg/dl a 180 mg/dl Aumente 2 UI cada 3 días hasta lograr la meta Continúe igual",
               "fuente": "ACE 2025",
               "anio": "2025",
               "url": "https://doi.org/10.53853/encr.12.3.907",
@@ -2965,7 +3450,7 @@
             {
               "titulo": "Figura 2: glucometría <70",
               "paginas": "464",
-              "texto": "Glucometría en metas Continúe igual Glucometría 130 mg/dl a 180 mg/dl Si glucometría <70 mg/dl Reduzca dosis 1020,0 %",
+              "texto": "Glucometrías en ayunas. Metas: 70 mg/dl - 130 mg/dl* Si glucometría <70 mg/dl Reduzca dosis 10-20,0 %",
               "fuente": "ACE 2025",
               "anio": "2025",
               "url": "https://doi.org/10.53853/encr.12.3.907",
@@ -2974,7 +3459,14 @@
           ]
         }
       ],
-      "pie_nodo": "¿Qué glucemia en ayunas tiene en los últimos 3 días?",
+      "enlaces": [
+        {
+          "texto": "Sobrebasalización: sumar aGLP-1",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_basal_mas"
+        }
+      ],
+      "pie_nodo": "¿Cuál es el promedio de la glucemia en ayunas de los últimos 3 días?",
       "opciones": [
         {
           "texto": "Menos de 70 mg/dL",
@@ -2991,7 +3483,7 @@
         {
           "texto": "Más de 130 mg/dL",
           "siguiente_nodo": "trat_titulacion",
-          "descripcion": "Subir 2 U (131-180) o 4 U (>180) y repetir",
+          "descripcion": "Aún no: subir la dosis y medir en 3 días",
           "color": "naranja"
         }
       ],
@@ -3008,7 +3500,7 @@
         {
           "titulo": "Figura 2: titulación",
           "paginas": "464",
-          "texto": "Glucometría >180 mg/dl Aumente 2 UI cada 3 días hasta lograr la meta Aumente 4 UI cada 3 días hasta llegar a 180 mg/dl",
+          "texto": "Glucometría >180 mg/dl Aumente 4 UI cada 3 días hasta llegar a 180 mg/dl y luego 2 UI cada día hasta lograr la meta",
           "fuente": "ACE 2025",
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
@@ -3017,7 +3509,7 @@
         {
           "titulo": "Figura 2: glucometría <70",
           "paginas": "464",
-          "texto": "Glucometría en metas Continúe igual Glucometría 130 mg/dl a 180 mg/dl Si glucometría <70 mg/dl Reduzca dosis 1020,0 %",
+          "texto": "Glucometrías en ayunas. Metas: 70 mg/dl - 130 mg/dl* Si glucometría <70 mg/dl Reduzca dosis 10-20,0 %",
           "fuente": "ACE 2025",
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
@@ -3060,13 +3552,23 @@
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         },
         {
-          "titulo": "Tabla 6.3: glucemia capilar",
-          "paginas": "S135",
-          "texto": "A1C <7.0% (<53 mmol/mol)*† Preprandial capillary plasma glucose 80–130 mg/dL* (4.4–7.2 mmol/L) Peak postprandial capillary plasma glucose‡ <180 mg/dL* (<10.0 mmol/L)",
-          "fuente": "ADA 2026",
-          "anio": "2026",
-          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
-          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+          "titulo": "Figura 2: glucometría 130-180",
+          "paginas": "464",
+          "texto": "Glucometría 130 mg/dl a 180 mg/dl Aumente 2 UI cada 3 días hasta lograr la meta Continúe igual",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Titular con el promedio de 2-3 días",
+          "paginas": "46",
+          "texto": "si la glucemia en ayunas está por encima del valor prefijado por dos a tres días seguidos o en el promedio de ese mismo intervalo",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag46_titular_promedio_2_3.png"
         }
       ]
     },
@@ -3088,10 +3590,34 @@
           "paginas": "457; 467"
         }
       ],
+      "alertas": [
+        {
+          "titulo": "aGLP-1 y tirzepatida: cuándo no",
+          "texto": "No usarlos con antecedente personal o familiar de **carcinoma medular de tiroides** o MEN 2; **suspenderlos** si se sospecha pancreatitis."
+        }
+      ],
       "evidencia": {
         "texto": "aGLP-1 antes que basal-bolo: fuerte a favor, certeza baja",
         "fuente": "ACE 2025"
       },
+      "burbujas": [
+        {
+          "en_texto": "de una inyección al día",
+          "titulo": "¿Cuánto aporta el aGLP-1 a la basal?",
+          "texto": "Sumado a la insulina basal, el aGLP-1 baja la HbA1c **0,5-1 %** más, **sin más hipoglucemias** y con **2-5 kg** menos de peso.",
+          "referencias": [
+            {
+              "titulo": "aGLP-1 + basal frente a insulina sola",
+              "paginas": "467",
+              "texto": "reduciendo HbA1c hasta en un 0,5-1,0 % más, sin aumentar hipoglucemia y con pérdida de peso de 2-5 kg en promedio, según revisiones sistemáticas",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            }
+          ]
+        }
+      ],
       "opciones": [
         {
           "texto": "aGLP-1 añadido",
@@ -3126,13 +3652,31 @@
           "anio": "2025",
           "url": "https://doi.org/10.53853/encr.12.3.907",
           "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "aGLP-1: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "Evitar en individuos con gastroparesia. Está contraindicado si en la historia personal o familiar hay CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+        },
+        {
+          "titulo": "Tirzepatida: carcinoma medular o MEN 2",
+          "paginas": "459",
+          "texto": "No administrar en casos de pancreatitis aguda o hipersensibilidad a alguno de los componentes, no usar en historia personal o familiar de CMT o MEN 2.",
+          "fuente": "ACE 2025",
+          "anio": "2025",
+          "url": "https://doi.org/10.53853/encr.12.3.907",
+          "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
         }
       ]
     },
     "trat_prandial": {
       "tipo": "pregunta",
       "titulo": "Añadir insulina prandial en la comida principal",
-      "texto": "- Poner **4 U** o el **10 %** de la basal antes de la comida con **más glucosa** después.\n- Si la HbA1c es **<8 %**, bajar la basal en la misma cantidad.\n- Subir **1-2 U** o 10-15 % **dos veces por semana**.\n- Si no basta, sumar otra dosis en otra comida hasta el **basal-bolo**.",
+      "texto": "- Poner **4 U** o el **10 %** de la basal antes de la comida con **más glucosa** después.\n- Si la **HbA1c** es **<8 %**, bajar la **basal** en la misma cantidad.\n- Subir **1-2 U** o 10-15 % **dos veces por semana**.\n- Si no basta, sumar otra dosis en otra comida hasta el **basal-bolo**.",
       "farmacos": [
         {
           "nombre": "Insulina prandial (rápida o ultrarrápida)",
@@ -3205,7 +3749,7 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Tratar la hipoglucemia y ajustar el tratamiento",
-      "texto": "- Consciente con glucosa **<70 mg/dL**: dar **15 g de glucosa** VO y medir a los **15 min**; repetir si sigue baja.\n- Evitar alimentos con **grasa o proteína** para tratarla.\n- Inconsciente o sin poder tragar: **glucagón**.\n- Tras un nivel 2 o 3, **desintensificar** o cambiar el fármaco.",
+      "texto": "- Si está **consciente** y la glucosa es **<70 mg/dL**:\n  1. Dar **15 g de glucosa** VO, sin **grasa ni proteína**.\n  2. Medir a los **15 min** y repetir si sigue baja.\n  3. Recuperado, **comer** algo: con insulina o sulfonilurea **recurre**.\n- Si no está alerta o no puede tragar: **glucagón** y llamar a **emergencias**.\n- Tras un **nivel 2** (<54 mg/dL) o **nivel 3**, desintensificar o cambiar el fármaco.",
       "farmacos": [
         {
           "nombre": "Glucosa oral",
@@ -3216,7 +3760,7 @@
       ],
       "alertas": [
         {
-          "titulo": "Sulfonilurea e insulina",
+          "titulo": "Hipoglucemia con sulfonilurea",
           "texto": "Si hay hipoglucemias con **sulfonilurea**, cambiarla por un fármaco que **no** las cause."
         }
       ],
@@ -3268,7 +3812,7 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/hipoglucemiaad.json"
         }
       ],
-      "pie_nodo": "¿En qué momento apareció la hipoglucemia?",
+      "pie_nodo": "¿Qué tratamiento recibía cuando apareció la hipoglucemia?",
       "opciones": [
         {
           "texto": "Titulando la insulina basal",
@@ -3381,6 +3925,33 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Comer tras recuperarse",
+          "paginas": "S141",
+          "texto": "Ongoing insulin activity or insulin secretagogues may lead to recurrent hypoglycemia unless more food is ingested after recovery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Llamar a emergencias",
+          "paginas": "S141",
+          "texto": "Emergency medical services should be called for people who are unalert or unable to administer carbohydrates.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Glucagón si no puede comer",
+          "paginas": "S141",
+          "texto": "The use of glucagon is indicated for the treatment of hypoglycemia in people unable or unwilling to consume carbohydrates by mouth.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
@@ -3397,14 +3968,14 @@
     "seg_control": {
       "tipo": "pregunta",
       "titulo": "Revisar al paciente cada 3-6 meses",
-      "texto": "- Medir la **HbA1c** dos veces al año si está en la meta, o cada **3 meses** si no.\n- Medir la **presión arterial** y el peso en cada visita.\n- Preguntar por **hipoglucemias** y por la adherencia.\n- Con metformina larga, medir la **vitamina B12**.",
+      "texto": "- Medir la **HbA1c** dos veces al año si está en la meta, o cada **3 meses** si no.\n- Medir la **presión arterial** en cada visita.\n- Preguntar por **hipoglucemias** y por la adherencia.\n- Si toma **metformina** desde hace años, medir la **vitamina B12**.",
       "evidencia": {
         "texto": "HbA1c al menos dos veces al año: Evidencia E",
         "fuente": "ADA 2026"
       },
       "enlaces": [
         {
-          "texto": "Intensificar el tratamiento",
+          "texto": "Fuera de meta: intensificar",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "trat_intensificar"
         },
@@ -3427,7 +3998,7 @@
           "siguiente_nodo": "nodo_tratamiento",
           "descripcion": "Ajustar el tratamiento",
           "color": "naranja",
-          "contexto": "- Se debe **intensificar sin demora** o desintensificar si hay hipoglucemias: en Tratamiento, el paso **«Intensificar»** o el de **«Hipoglucemia»**."
+          "contexto": "- Se debe **intensificar sin demora** si está fuera de la meta, o **desintensificar** si hay hipoglucemias: en Tratamiento, elegir «Ya recibe tratamiento»."
         }
       ],
       "referencias": [
@@ -3472,7 +4043,7 @@
     "seg_anual": {
       "tipo": "pregunta",
       "titulo": "Buscar las complicaciones cada año",
-      "texto": "- Hacer cada año las pruebas de la lista, con el pie explorado con monofilamento.\n- Sin retinopatía y con buen control, el **fondo de ojo** puede pasar a cada **1-2 años**.\n- Con pérdida de sensibilidad o úlcera previa, revisar los pies **en cada visita**.",
+      "texto": "- Hacer cada año las pruebas de la **lista**; en el **pie**, la exploración con monofilamento.\n- Sin retinopatía y con buen control, el **fondo de ojo** puede pasar a cada **1-2 años**.\n- Con pérdida de sensibilidad o úlcera previa, revisar los pies **en cada visita**.",
       "checklist": {
         "titulo": "Cada año",
         "items": [
@@ -3493,7 +4064,7 @@
           "titulo": "Prueba con el monofilamento de 10 g",
           "descripcion": "Monofilamento apoyado en la cara plantar hasta que se dobla.",
           "info": "{#22D3EE:Círculo cian}: el monofilamento de **10 g** doblado contra la cara plantar. Si el paciente no lo siente, ha perdido la **sensibilidad protectora**: el pie está en riesgo de úlcera y **amputación**.",
-          "en_texto": "explorado con monofilamento",
+          "en_texto": "la exploración con monofilamento",
           "referencias": [
             {
               "titulo": "Rec. 12.18: monofilamento cada año",
@@ -3507,10 +4078,16 @@
           ]
         }
       ],
-      "pie_nodo": "¿Qué encuentra el tamizaje?",
+      "pie_nodo": "¿Qué encuentra el tamizaje de este año?",
       "opciones": [
         {
-          "texto": "Nada nuevo",
+          "texto": "Aún no toca este año",
+          "siguiente_nodo": "seg_control",
+          "descripcion": "Volver en 3-6 meses",
+          "color": "gris"
+        },
+        {
+          "texto": "Nada nuevo, o ya tratado",
           "siguiente_nodo": "seg_control",
           "descripcion": "Seguir con las visitas",
           "color": "verde"
@@ -3523,7 +4100,7 @@
         {
           "texto": "Albuminuria o TFGe <60",
           "siguiente_nodo": "seg_rinon",
-          "descripcion": "RACU ≥30 mg/g"
+          "descripcion": "RACU ≥30 mg/g o TFGe <60 mL/min/1,73 m²"
         },
         {
           "texto": "Pie en riesgo o neuropatía",
@@ -3601,7 +4178,7 @@
     "seg_retinopatia": {
       "tipo": "pregunta",
       "titulo": "Remitir la retinopatía al oftalmólogo",
-      "texto": "- Remitir **pronto** al oftalmólogo si hay **edema macular**, retinopatía no proliferativa **moderada** o peor, o proliferativa.\n- Con cualquier grado de retinopatía, repetir el fondo de ojo **al menos cada año**.\n- Mejorar la glucosa, la **presión arterial** y los lípidos: frenan su avance.",
+      "texto": "- Remitir **pronto** al oftalmólogo si tiene:\n  - **Edema macular**.\n  - Retinopatía no proliferativa **moderada** o peor.\n  - Retinopatía **proliferativa**.\n- Con cualquier grado de retinopatía, repetir el fondo de ojo **al menos cada año**.\n- Mejorar la glucosa, la **presión arterial** y los lípidos: frenan su avance.",
       "nota_adicional": "La retinopatía **no contraindica la aspirina**: no aumenta el riesgo de **hemorragia retiniana**.",
       "media": [
         {
@@ -3609,7 +4186,7 @@
           "titulo": "Retinopatía diabética en el fondo de ojo",
           "descripcion": "Exudados duros amarillos cerca de la mácula.",
           "info": "{#22D3EE:Círculo cian}: **exudados duros**, depósitos amarillos cerca de la mácula. {#FDE047:Círculo amarillo}: la papila óptica, como referencia. Con edema macular o retinopatía **moderada** o peor, se remite **pronto** al oftalmólogo.",
-          "en_texto": "retinopatía no proliferativa",
+          "en_texto": "Retinopatía no proliferativa",
           "referencias": [
             {
               "titulo": "Rec. 12.9: remitir pronto al oftalmólogo",
@@ -3626,8 +4203,8 @@
       "opciones": [
         {
           "texto": "Remitido al oftalmólogo",
-          "siguiente_nodo": "seg_control",
-          "descripcion": "Seguir con las visitas"
+          "siguiente_nodo": "seg_anual",
+          "descripcion": "Revisar los demás hallazgos"
         }
       ],
       "referencias": [
@@ -3663,13 +4240,31 @@
     "seg_rinon": {
       "tipo": "pregunta",
       "titulo": "Confirmar la enfermedad renal y ajustar el tratamiento",
-      "texto": "- Confirmar la albuminuria en **2 de 3 muestras** separadas **4-6 semanas**.\n- Dar **IECA o ARA II** a dosis máxima y un **iSGLT2** o **aGLP-1** con beneficio renal.\n- Vigilar RACU y TFGe **1-4 veces al año** según el estadio.\n- Remitir a **nefrología** con TFGe **<30** o si cae rápido.",
+      "texto": "- Confirmar la albuminuria en **2 de 3 muestras** separadas **4-6 semanas**.\n- Dar **IECA o ARA II** a dosis máxima y un **iSGLT2** o **aGLP-1** con beneficio renal.\n- Vigilar la **RACU** y la **TFGe** **1-4 veces al año** según el estadio.\n- Remitir a **nefrología** con TFGe **<30 mL/min/1,73 m²**, o si la albuminuria **sube** o la TFGe **baja** rápido.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ckdepi.json",
         "etiqueta": "Calcular la TFGe (CKD-EPI)",
         "ramificar": false
       },
       "nota_adicional": "Con ERC desde el estadio G3, la proteína de la dieta es la de todos: **0,8 g/kg/día**, sin **restringirla** más.",
+      "burbujas": [
+        {
+          "en_texto": "Confirmar la albuminuria",
+          "titulo": "¿Qué tan frecuente es la ERC?",
+          "texto": "En Colombia, la ERC afecta al **34,9 %** de las personas con DM2, y el **42 %** de quienes están en diálisis llegan por **nefropatía diabética**.",
+          "referencias": [
+            {
+              "titulo": "ERC en la DM2 en Colombia",
+              "paginas": "481",
+              "texto": "En Colombia, la ERC afecta al 34,9 % de las personas con DM2, con un 42,0 % de los casos en terapia de reemplazo renal atribuibles a nefropatía diabética",
+              "fuente": "ACE 2025",
+              "anio": "2025",
+              "url": "https://doi.org/10.53853/encr.12.3.907",
+              "cita": "Feriz-Bonelo K, Ramírez Rincón A, et al. Guía de práctica clínica para el tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población colombiana mayor de 18 años: Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, 2025. Rev Colomb Endocrinol Diabet Metab 2025;12(3)."
+            }
+          ]
+        }
+      ],
       "enlaces": [
         {
           "texto": "Fármacos para la ERC",
@@ -3680,8 +4275,8 @@
       "opciones": [
         {
           "texto": "Tratamiento renal ajustado",
-          "siguiente_nodo": "seg_control",
-          "descripcion": "Seguir con las visitas"
+          "siguiente_nodo": "seg_anual",
+          "descripcion": "Revisar los demás hallazgos"
         }
       ],
       "referencias": [
@@ -3745,7 +4340,7 @@
     "seg_pie": {
       "tipo": "pregunta",
       "titulo": "Proteger el pie en riesgo",
-      "texto": "- Revisar los pies **en cada visita** si hay pérdida de sensibilidad, úlcera o amputación previa.\n- Indicar **calzado terapéutico** y enseñar a revisarse los pies cada día.\n- Con claudicación o pulsos débiles, pedir **índice tobillo-brazo**.\n- Tratar el **dolor neuropático** con gabapentinoides, IRSN o tricíclicos.",
+      "texto": "- Revisar los pies **en cada visita** si hay pérdida de sensibilidad, úlcera o amputación previa.\n- Con **úlcera** activa o pie de alto riesgo, tratarlo en **equipo** con podólogo.\n- Indicar **calzado terapéutico** y enseñar a revisarse los pies cada día.\n- Con claudicación o pulsos débiles, pedir **índice tobillo-brazo**.\n- Tratar el **dolor neuropático** con gabapentinoides, IRSN, tricíclicos o bloqueadores de los **canales de sodio**.",
       "alertas": [
         {
           "titulo": "Sin opioides",
@@ -3753,7 +4348,7 @@
         }
       ],
       "evidencia": {
-        "texto": "Examen anual del pie: Evidencia A",
+        "texto": "Examen del pie cada año: Evidencia A",
         "fuente": "ADA 2026"
       },
       "media": [
@@ -3761,7 +4356,7 @@
           "recurso": "diabetesm2_ulcera_pie_real.jpg",
           "titulo": "Úlcera del pie diabético",
           "descripcion": "Úlcera plantar profunda con callo alrededor, en una zona de apoyo.",
-          "info": "{#22D3EE:Círculo cian}: úlcera plantar profunda rodeada de **callo**, en un punto de apoyo. Con úlcera previa, los pies se revisan **en cada visita** y se indica **calzado terapéutico**.",
+          "info": "{#22D3EE:Círculo cian}: úlcera plantar **profunda** rodeada de **callo**, en un punto de apoyo. Quien ya tuvo una úlcera se revisa los pies **en cada visita** y recibe **calzado terapéutico**.",
           "en_texto": "úlcera o amputación previa",
           "referencias": [
             {
@@ -3788,8 +4383,8 @@
       "opciones": [
         {
           "texto": "Cuidados del pie en marcha",
-          "siguiente_nodo": "seg_control",
-          "descripcion": "Seguir con las visitas"
+          "siguiente_nodo": "seg_anual",
+          "descripcion": "Revisar los demás hallazgos"
         }
       ],
       "referencias": [
@@ -3855,6 +4450,33 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 12.23: pie cada año",
+          "paginas": "S268",
+          "texto": "Perform a comprehensive foot evaluation at least annually to identify risk factors for ulcers and amputations.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 12.28: úlcera con equipo y podólogo",
+          "paginas": "S268",
+          "texto": "An interprofessional approach facilitated by a podiatrist in conjunction with other appropriate team members is recommended for individuals with foot ulcers and high-risk feet",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 12.29: especialista en pie",
+          "paginas": "S268",
+          "texto": "Refer individuals who smoke and have a history of prior lower-extremity complications, loss of protective sensation (LOPS), structural abnormalities, or PAD to foot care specialists",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
@@ -3865,14 +4487,15 @@
       "opciones": [
         {
           "texto": "Adulto mayor",
-          "siguiente_nodo": "esp_adulto_mayor"
+          "siguiente_nodo": "esp_adulto_mayor",
+          "descripcion": "65 años o más"
         },
         {
           "texto": "Enfermedad aguda o cirugía",
           "siguiente_nodo": "esp_enfermedad_aguda"
         },
         {
-          "texto": "Embarazo o deseo de embarazo",
+          "texto": "Deseo de embarazo o edad fértil",
           "siguiente_nodo": "esp_embarazo"
         },
         {
@@ -3884,7 +4507,7 @@
     "esp_adulto_mayor": {
       "tipo": "informativo",
       "titulo": "Ajustar las metas en el adulto mayor",
-      "texto": "- Hacer una **valoración funcional** y buscar cada año deterioro cognitivo, caídas y **polifarmacia**.\n- Fijar la meta con la tabla y no buscar una HbA1c **<6,5 %**.\n- Preferir fármacos **sin hipoglucemia** y simplificar la insulina.\n- Con mala salud, aceptar una PA **<140/90 mmHg**.",
+      "texto": "- Hacer una **valoración funcional** y buscar cada año deterioro cognitivo, caídas y **polifarmacia**.\n- Fijar la **meta** con la tabla y no buscar una HbA1c **<6,5 %**.\n- Preferir fármacos **sin hipoglucemia** y simplificar la insulina.\n- Con salud **muy compleja**, aceptar una PA **<140/90 mmHg**.",
       "tabla": {
         "titulo": "Meta de HbA1c en el mayor",
         "en_texto": "con la tabla",
@@ -3910,7 +4533,7 @@
       },
       "alertas": [
         {
-          "titulo": "Hipoglucemia en el mayor",
+          "titulo": "Hipoglucemia en el adulto mayor",
           "texto": "Desintensificar la **insulina** y las **sulfonilureas** si hay riesgo: una hipoglucemia lleva a **caídas** y fracturas."
         }
       ],
@@ -4005,7 +4628,7 @@
       "tipo": "informativo",
       "estilo": "advertencia",
       "titulo": "Ajustar los fármacos en la enfermedad aguda o la cirugía",
-      "texto": "- Suspender la **metformina** y el **iSGLT2** si no puede comer ni beber o hay riesgo de **lesión renal**.\n- Suspender el iSGLT2 **24 h** antes de cirugía mayor (ertugliflozina, **4 días**).\n- Suspender la metformina **24 h** antes de cirugía o de **contraste**.\n- Decidir con **anestesia** si se retira el aGLP-1.",
+      "texto": "- Suspender la **metformina** y el **iSGLT2** si no puede comer ni beber o hay riesgo de **lesión renal**.\n- Antes de una cirugía programada:\n  - Suspender el iSGLT2 **3-4 días** antes.\n  - Suspender la metformina el **día** de la cirugía.\n  - La noche antes, bajar la **basal**: NPH a la **mitad**; análogos al **75-80 %**.\n- Decidir con **anestesia** si se retira el aGLP-1.",
       "alertas": [
         {
           "titulo": "Cetoacidosis euglucémica",
@@ -4013,6 +4636,40 @@
         }
       ],
       "nota_adicional": "El aGLP-1 retrasa el **vaciamiento gástrico**: hay riesgo de **broncoaspiración** en la anestesia.",
+      "discrepancias": [
+        {
+          "asunto": "Suspender el iSGLT2 antes de la cirugía",
+          "posturas": [
+            {
+              "fuente": "ADA 2026",
+              "dice": "**3-4 días** antes de la cirugía programada.",
+              "paginas": "S346"
+            },
+            {
+              "fuente": "ACE 2025",
+              "dice": "**24 h** antes (ertugliflozina, 4 días).",
+              "paginas": "456"
+            }
+          ],
+          "nota": "Con 24 h, el riesgo de **cetoacidosis euglucémica** perioperatoria es mayor: el algoritmo sigue a la **ADA**."
+        },
+        {
+          "asunto": "Suspender la metformina antes de la cirugía",
+          "posturas": [
+            {
+              "fuente": "ADA 2026",
+              "dice": "El **día** de la cirugía o del procedimiento.",
+              "paginas": "S346"
+            },
+            {
+              "fuente": "ACE 2025",
+              "dice": "**24 h** antes de la cirugía o del contraste.",
+              "paginas": "459"
+            }
+          ],
+          "nota": "Con la **ACE** se retira la víspera; con la **ADA**, la misma mañana."
+        }
+      ],
       "enlaces": [
         {
           "texto": "Crisis hiperglucémicas",
@@ -4073,21 +4730,65 @@
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "iSGLT2: suspender 3-4 días antes",
+          "paginas": "S346",
+          "texto": "SGLT2 Inhibitors in the Perioperative Period SGLT2 inhibitors should be held for 3–4 days before elective surgery.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Metformina: suspender el día de la cirugía",
+          "paginas": "S346",
+          "texto": "Metformin and other oral glucoselowering agents should be held on the day of surgery or procedure.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Basal la noche antes: 25 % menos",
+          "paginas": "S346",
+          "texto": "a reduction of 25% of basal insulin dose given the evening before surgery is more likely to achieve perioperative blood glucose goals with a lower risk for hypoglycemia",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "NPH a la mitad; análogos al 75-80 %",
+          "paginas": "S346",
+          "texto": "Insulin dose reductions also include NPH insulin to one-half of the dose or long-acting basal insulin analogs to 75–80% of the dose",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         }
       ]
     },
     "esp_embarazo": {
       "tipo": "informativo",
       "titulo": "Planear el embarazo en la mujer con DM2",
-      "texto": "- Hablar de **anticoncepción** a toda mujer en edad fértil.\n- Antes del embarazo, buscar la meta glucémica y planear cuándo **suspender** los fármacos no insulínicos.\n- Hacer **fondo de ojo** antes del embarazo y en el primer trimestre.",
+      "texto": "- Hablar de **anticoncepción** a toda mujer en edad fértil.\n- Antes de concebir, buscar una HbA1c **<6,5 %** y planear cuándo **suspender** los fármacos no insulínicos.\n- Dar **ácido fólico** 400-800 µg/día desde antes de la concepción.\n- Hacer **fondo de ojo** antes del embarazo y en el primer trimestre.",
+      "farmacos": [
+        {
+          "nombre": "Ácido fólico",
+          "dosis": "**400-800 µg/día** VO",
+          "pauta": "Desde **antes** de la concepción, con las **vitaminas** prenatales.",
+          "paginas": "S323"
+        }
+      ],
       "alertas": [
         {
-          "titulo": "Fármacos prohibidos",
-          "texto": "Sin anticoncepción fiable, evitar **IECA**, ARA II y **estatinas**: son dañinos en el embarazo."
+          "titulo": "Fármacos que se suspenden",
+          "texto": "Sin anticoncepción fiable, evitar **IECA**, ARA II y **finerenona** (y todo ARM), y suspender las **estatinas** antes de concebir."
         }
       ],
       "evidencia": {
-        "texto": "Anticoncepción y planear el embarazo: Evidencia A",
+        "texto": "HbA1c preconcepcional <6,5 %: Evidencia A",
         "fuente": "ADA 2026"
       },
       "referencias": [
@@ -4119,9 +4820,36 @@
           "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
         },
         {
-          "titulo": "Rec. 10.12: IECA, ARA II y embarazo",
-          "paginas": "S221",
-          "texto": "In sexually active individuals of childbearing potential who are not using reliable contraception, avoid ACE inhibitors, ARBs, MRAs, direct renin inhibitors, and neprilysin inhibitors, as they are contraindicated in pregnancy.",
+          "titulo": "HbA1c preconcepcional <6,5 %",
+          "paginas": "S321",
+          "texto": "ideally A1C <6.5% (<48 mmol/mol), to reduce the risk of congenital anomalies, preeclampsia, macrosomia, preterm birth, and other complications.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Ácido fólico antes de concebir",
+          "paginas": "S323",
+          "texto": "Prescription of prenatal vitamins with at least 400–800 μg of folic acid (28) and 150 μg of potassium iodide (29) is recommended prior to conception.",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 15.25a: IECA, ARA II y ARM antes de concebir",
+          "paginas": "S331",
+          "texto": "Potentially harmful medications in pregnancy (e.g., ACE inhibitors, angiotensin receptor blockers, mineralocorticoid receptor antagonists) should be stopped prior to conception",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Rec. 10.25: estatinas y concepción",
+          "paginas": "S223",
+          "texto": "In most circumstances, lipidlowering agents should be stopped prior to conception and avoided in sexually active individuals of child bearing potential who are not using reliable contraception.",
           "fuente": "ADA 2026",
           "anio": "2026",
           "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
@@ -4132,11 +4860,11 @@
     "esp_costo": {
       "tipo": "informativo",
       "titulo": "Elegir fármacos de menor costo cuando hace falta",
-      "texto": "- Preguntar siempre por las **barreras económicas** para el tratamiento.\n- Si no hay acceso a iSGLT2 ni iDPP-4, usar una **sulfonilurea de bajo riesgo** (glimepirida o gliclazida).\n- La **insulina NPH** al acostarse es una basal válida y barata.",
+      "texto": "- Preguntar siempre por las **barreras económicas** para el tratamiento.\n- Si no hay acceso a iSGLT2 ni iDPP-4, usar una **sulfonilurea de bajo riesgo** (glimepirida o gliclazida).\n- Usar la **insulina NPH** al acostarse si hace falta una basal: es válida y más **barata**.",
       "alertas": [
         {
           "titulo": "Glibenclamida y tiazolidinedionas",
-          "texto": "No usar **glibenclamida** (hipoglucemia) ni **tiazolidinedionas** (edema, insuficiencia cardiaca y **fracturas**)."
+          "texto": "No usar **glibenclamida** (hipoglucemia); evitar las **tiazolidinedionas** con insuficiencia cardiaca (edema y **fracturas**)."
         }
       ],
       "discrepancias": [
@@ -4154,7 +4882,23 @@
               "paginas": "S202"
             }
           ],
-          "nota": "Sin acceso a iSGLT2 ni iDPP-4, la **ADA** y MinSalud aceptan una sulfonilurea de **bajo riesgo**; la ACE no."
+          "nota": "Sin acceso a iSGLT2 ni iDPP-4, la **ADA** acepta una sulfonilurea de **bajo riesgo**; la **ACE** no la recomienda."
+        },
+        {
+          "asunto": "Tiazolidinedionas",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2016",
+              "dice": "**No** añadirlas: edema, insuficiencia cardiaca y fracturas.",
+              "paginas": "43"
+            },
+            {
+              "fuente": "ADA 2026",
+              "dice": "Opción de **menor costo** si hay barreras económicas.",
+              "paginas": "S202"
+            }
+          ],
+          "nota": "Con barreras de costo, la **ADA** acepta la pioglitazona y **MinSalud** no; las dos la evitan en la **insuficiencia cardiaca**."
         }
       ],
       "referencias": [
@@ -4224,6 +4968,50 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
           "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag46_nph_acostarse.png"
+        }
+      ]
+    },
+    "trat_hiperglucemia_grave": {
+      "tipo": "pregunta",
+      "titulo": "Decidir si empezar ya la insulina",
+      "contexto": "Con **hiperglucemia muy alta** o signos de **catabolismo**, los orales no bastan: la insulina se empieza en esta misma visita.",
+      "texto": "- Buscar los signos de **insulinopenia**:\n  - HbA1c **>10 %** o glucosa **≥300 mg/dL**.\n  - **Síntomas** de hiperglucemia.\n  - **Pérdida de peso** aguda, deshidratación o **cetosis**.\n- La insulina se suma a los demás fármacos: luego puede **retirarse** poco a poco.",
+      "evidencia": {
+        "texto": "Insulina con hiperglucemia grave: Evidencia E",
+        "fuente": "ADA 2026"
+      },
+      "pie_nodo": "¿Tiene hiperglucemia grave o signos de insulinopenia?",
+      "opciones": [
+        {
+          "texto": "Sí, alguno",
+          "siguiente_nodo": "trat_insulina_basal",
+          "descripcion": "Iniciar la insulina basal"
+        },
+        {
+          "texto": "No, ninguno",
+          "siguiente_nodo": "trat_reevaluar",
+          "descripcion": "Reevaluar a los 3-6 meses"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Rec. 9.20: cuándo empezar la insulina",
+          "paginas": "S192",
+          "texto": "initiation of insulin should be considered regardless of background glucose-lowering therapy or disease duration if symptoms of hyperglycemia are present or when A1C or blood glucose levels are very high",
+          "fuente": "ADA 2026",
+          "anio": "2026",
+          "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+          "cita": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1)."
+        },
+        {
+          "titulo": "Inestable y catabólico: insulina",
+          "paginas": "35",
+          "texto": "Cuando el paciente se encuentra muy sintomático y clínicamente inestable, con pérdida aguda de peso, signos de deshidratación, evidencia de cetosis y glucemias muy elevadas, se recomienda iniciar insulina",
+          "fuente": "MinSalud 2016",
+          "anio": "2016",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para el diagnóstico, tratamiento y seguimiento de la diabetes mellitus tipo 2 en la población mayor de 18 años. Guía n.º GPC-2015-51. Bogotá; 2016.",
+          "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/diabetesm2/evidencia_diabetesm2_pag35_inestable_catabolico_insulina.png"
         }
       ]
     }
