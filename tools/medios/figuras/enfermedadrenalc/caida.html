@@ -1,0 +1,39 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.esc{flex:1;border:1px solid var(--linea);border-radius:16px;display:grid;place-items:center}
+.pasos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ps{border-radius:12px;background:#F3F4F6;color:var(--suave);padding:8px 10px;font-size:13.5px;line-height:1.3;min-height:56px}
+.ps b{color:var(--tinta)} .ps.on{color:var(--tinta)}</style></head><body><script>
+// KDIGO 2024: PP 2.1.4 (S155), texto de S197 y figura 21 (S214). Caso ilustrativo: TFGe basal de 40.
+const VERDE = "#2FB36D", ROJO = "#EB5757";
+const SEM = [-4, -2, 0, 2, 4, 6, 8, 10, 12];
+const BIEN = [40, 40, 40, 35, 35, 35, 36, 36, 36], MAL = [40, 40, 40, 31, 27, 26, 26, 26, 26];
+const X = (s) => 80 + (s + 4) / 16 * 500, Y = (v) => 250 - (v - 15) / 30 * 210;
+window.cuadro = function (i, total) {
+  const t = total > 1 ? i / (total - 1) : 1;
+  const k = Math.min(SEM.length - 1, Math.floor(t * 1.25 * (SEM.length - 1)));
+  const tramo = (V, c, a) => `<polyline points="${SEM.slice(a, k + 1).map((s, j) => X(s) + "," + Y(V[j + a])).join(" ")}" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/>` +
+    SEM.slice(a, k + 1).map((s, j) => `<circle cx="${X(s)}" cy="${Y(V[j + a])}" r="5" fill="${c}"/>`).join("");
+  const linea = (V, c) => (k >= 2 ? tramo(V, c, 2) : "");
+  const basal = tramo(BIEN.map((v, j) => (j <= 2 ? v : NaN)), "#9CA3AF", 0).replace(/ ?[0-9.]+,NaN/g, "").replace(/<circle[^>]*cy="NaN"[^>]*\/>/g, "");
+  const fin = k === SEM.length - 1;
+  const esc = `<svg width="620" height="290" viewBox="0 0 620 290">
+    <line x1="${X(0)}" x2="${X(0)}" y1="30" y2="252" stroke="#1F2A37" stroke-dasharray="5 4"/>
+    <text x="${X(0) + 6}" y="44" font-size="13" font-weight="800" fill="#1F2A37">empieza el fármaco</text>
+    <line x1="80" x2="580" y1="${Y(28)}" y2="${Y(28)}" stroke="${ROJO}" stroke-dasharray="4 4"/>
+    <text x="578" y="${Y(28) - 6}" text-anchor="end" font-size="12.5" font-weight="700" fill="${ROJO}">−30 % (28)</text>
+    ${[20, 30, 40].map((v) => `<text x="72" y="${Y(v) + 4}" text-anchor="end" font-size="12" fill="#6B7280">${v}</text>`).join("")}
+    <text x="72" y="22" text-anchor="end" font-size="12" fill="#6B7280">TFGe</text>
+    ${SEM.map((s) => `<text x="${X(s)}" y="272" text-anchor="middle" font-size="11.5" fill="#6B7280">${s === 0 ? "0" : s}</text>`).join("")}
+    <text x="580" y="288" text-anchor="end" font-size="11.5" fill="#6B7280">semanas</text>
+    ${linea(MAL, ROJO)}${linea(BIEN, VERDE)}${basal}
+    ${fin ? `<text x="${X(12) - 4}" y="${Y(36) - 12}" text-anchor="end" font-size="13" font-weight="800" fill="${VERDE}">−10 %: seguir</text>
+             <text x="${X(12) - 4}" y="${Y(26) + 22}" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">−35 %: estudiar</text>` : ""}
+  </svg>`;
+  lienzo("Caída de la TFGe al empezar el IECA o el iSGLT2", "Caída esperable o que obliga a estudiar tras empezar el fármaco.",
+    `<div class="esc">${esc}</div><div class="pasos">
+      <div class="ps ${k >= 4 ? "on" : ""}"><b style="color:${VERDE}">● Menos de 30 %</b>: caída <b>hemodinámica</b>; seguir con el fármaco.</div>
+      <div class="ps ${k >= 4 ? "on" : ""}"><b style="color:${ROJO}">● 30 % o más</b>: buscar <b>LRA</b>, depleción de volumen, nefrotóxicos o estenosis renal.</div></div>`,
+    FUENTE("KDIGO 2024, PP 2.1.4 (S155), S197 y figura 21 (S214); caso ilustrativo"));
+};
+window.cuadro(29, 30);
+</script></body></html>

@@ -1,0 +1,13 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.col{flex:1;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.col h3{font-size:20px;font-weight:800;color:#fff;margin:0;padding:8px 10px;border-radius:10px;text-align:center}
+.col .item{font-size:14px}</style></head><body><script>
+// KDIGO 2024, figura 26 (S160): potasio y finerenona.
+const VERDE = "#2FB36D", AMARILLO = "#F2C94C", ROJO = "#EB5757";
+const C = [[VERDE, "≤4,8 mEq/L", ["<b>Empezar</b>: 10 mg con TFGe 25-59; 20 mg con TFGe ≥60", "Potasio al <b>mes</b> y luego cada 4 meses", "<b>Subir</b> a 20 mg si toma 10 mg", "<b>Reiniciar</b> 10 mg si se suspendió y ya está ≤5,0"]],
+           [AMARILLO, "4,9-5,5 mEq/L", ["<b>Mantener</b> 10 o 20 mg", "Potasio cada <b>4 meses</b>"]],
+           [ROJO, ">5,5 mEq/L", ["<b>Suspender</b> la finerenona", "Ajustar la <b>dieta</b> y los fármacos", "<b>Repetir</b> el potasio", "Reiniciar cuando esté <b>≤5,0</b>"]]];
+lienzo("Finerenona según el potasio", "Qué hacer en cada control del potasio.",
+  `<div style="display:flex;gap:10px;flex:1">${C.map(([c, t, it]) => `<div class="col" style="background:color-mix(in srgb,${c} 12%,white)"><h3 style="background:${c}">${t}</h3>${it.map((x) => `<div class="item">${x}</div>`).join("")}</div>`).join("")}</div>`,
+  FUENTE("KDIGO 2024, figura 26 (S160), adaptada de KDIGO 2022 de diabetes y ERC"));
+</script></body></html>
