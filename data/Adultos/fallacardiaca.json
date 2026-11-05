@@ -28,7 +28,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Insuficiencia cardíaca",
-      "texto": "- **Insuficiencia cardíaca (IC):** síndrome clínico con **síntomas o signos** causados por una alteración **estructural o funcional** del corazón que eleva las presiones intracardíacas o reduce el gasto cardíaco, en reposo o en ejercicio.\n- **IC con FE reducida (ICFEr):** síntomas o signos de IC con FEVI **<50 %**; la ESC 2026 suprime la **FE ligeramente reducida**.\n- **IC con FE preservada (ICFEp):** síntomas o signos con FEVI **≥50 %**, nunca menor antes, y **disfunción diastólica** o presiones de llenado altas, apoyadas por un **péptido natriurético** elevado.\n- **FEVI mejorada:** subida de **≥10 puntos** hasta más de **40 %** en quien tenía la FE reducida.\n- **IC descompensada:** síntomas o signos de inicio **agudo o gradual**, lo bastante graves para pedir **atención urgente** e iniciar o intensificar el tratamiento.",
+      "texto": "- **Insuficiencia cardíaca (IC):** síndrome con **síntomas o signos** por una alteración **estructural o funcional** del corazón que eleva las presiones intracardíacas o reduce el gasto, en reposo o en ejercicio.\n- **IC con FE reducida (ICFEr):** síntomas o signos de IC con FEVI **<50 %**; incluye la antigua **FE ligeramente reducida** (41-49 %).\n- **IC con FE preservada (ICFEp):** síntomas o signos con FEVI **≥50 %** que nunca ha sido menor, y **disfunción diastólica** o presiones de llenado altas, apoyadas por un **péptido natriurético** elevado.\n- **FEVI mejorada:** subida de **≥10 puntos** hasta más de **40 %** en quien tenía la FE reducida.\n- **IC descompensada:** síntomas o signos de inicio **agudo o gradual**, lo bastante graves para pedir **atención urgente** e iniciar o intensificar el tratamiento.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -141,7 +141,7 @@
     },
     "diag_eval_inicial": {
       "tipo": "pregunta",
-      "titulo": "Sospechar la IC y medir el péptido natriurético",
+      "titulo": "Valorar la clínica y medir el péptido natriurético",
       "texto": "- Buscar los **síntomas típicos**, como el edema de tobillos, y los **signos más específicos** de la tabla.\n- Tomar un **ECG de 12 derivaciones** y una radiografía de tórax.\n- Pedir los **laboratorios** de la lista para buscar **comorbilidades**.\n- Medir el **NT-proBNP** y leerlo según la **edad**:\n  - Menor de **50 años**: elevado si es **≥125 pg/mL**.\n  - De **50 a 74 años**: **≥250 pg/mL**.\n  - De **75 años** o más: **≥500 pg/mL**.\n  - Si se mide el **BNP**: **≥35 pg/mL** a cualquier edad.",
       "pie_nodo": "¿Tiene el péptido natriurético elevado para su edad?",
       "opciones": [
@@ -541,32 +541,32 @@
     "diag_ecocardiograma": {
       "tipo": "pregunta",
       "titulo": "Confirmar con el ecocardiograma y medir la FEVI",
-      "texto": "- Pedir un ecocardiograma transtorácico para **confirmar la IC** y definir el **fenotipo**.\n- Hacerlo en menos de **2 semanas** si el NT-proBNP pasa de **2000 pg/mL**.\n- Revisar si hubo una **FEVI previa** baja: cambia el fenotipo.\n- Leer la FEVI como **guía**, no como corte exacto: varía con el **método** y el observador.",
+      "texto": "- Pedir un ecocardiograma transtorácico para **confirmar la IC** y definir el **fenotipo**.\n- Hacerlo en menos de **2 semanas** si el NT-proBNP pasa de **2000 pg/mL**.\n- Revisar si hubo una **FEVI previa** baja, porque cambia el fenotipo.\n- Leer la FEVI como **guía**, no como corte exacto: varía con el **método** y el observador.",
       "pie_nodo": "¿Qué muestra el ecocardiograma?",
       "opciones": [
         {
-          "texto": "FEVI menor de 50 %",
+          "texto": "Eco normal y sospecha baja",
+          "siguiente_nodo": "diag_descartar_ic",
+          "descripcion": "FEVI ≥50 % sin alteración estructural ni funcional",
+          "color": "gris"
+        },
+        {
+          "texto": "Mejoró ≥10 puntos hasta más de 40 %",
+          "siguiente_nodo": "diag_hfmref",
+          "descripcion": "FEVI mejorada: tenía la FE reducida",
+          "color": "turquesa"
+        },
+        {
+          "texto": "FEVI menor de 50 %, ahora o antes",
           "siguiente_nodo": "diag_hfref",
-          "descripcion": "IC con FE reducida",
+          "descripcion": "IC con FE reducida, sin esa mejoría",
           "color": "azul"
         },
         {
           "texto": "FEVI de 50 % o más, nunca menor",
           "siguiente_nodo": "diag_hfpef",
-          "descripcion": "Posible IC con FE preservada",
+          "descripcion": "Con alteración en el eco o sospecha alta: confirmar la ICFEp",
           "color": "morado"
-        },
-        {
-          "texto": "FEVI de 50 % o más tras haber sido menor",
-          "siguiente_nodo": "diag_hfmref",
-          "descripcion": "FEVI mejorada",
-          "color": "turquesa"
-        },
-        {
-          "texto": "Sin alteraciones",
-          "siguiente_nodo": "diag_descartar_ic",
-          "descripcion": "IC descartada",
-          "color": "gris"
         }
       ],
       "nota_adicional": "La **insuficiencia mitral** puede dar una FEVI **falsamente alta**. La ecografía en el punto de atención ayuda, pero **no sustituye** al ecocardiograma formal.",
@@ -656,6 +656,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "FEVI mejorada",
+          "paginas": "5361",
+          "texto": "The current definition of improved LVEF requires an increase of at least 10% in LVEF (absolute) and must be at least above 40% (often normal).",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "media": [
@@ -692,12 +701,12 @@
       "tipo": "pregunta",
       "titulo": "Buscar la causa de la IC con FE reducida",
       "contexto": "Cerca de la **mitad** de las ICFEr es **isquémica**, y algunas causas tienen **tratamiento propio** o son reversibles.",
-      "texto": "- Buscar **enfermedad coronaria** según la probabilidad previa:\n  - Baja o intermedia: **TC coronaria**.\n  - Alta y candidato a revascularizar: **angiografía coronaria**.\n- Pedir **RM cardíaca** si la causa no está clara o se sospecha una **miocardiopatía**.\n- Buscar **FA**, otras arritmias y un QRS ≥130 ms.\n- Revisar cuánto estimula un **marcapasos** el ventrículo derecho.",
+      "texto": "- Buscar **enfermedad coronaria** según la probabilidad previa:\n  - Baja o intermedia: **TC coronaria**.\n  - Alta y candidato a revascularizar: **angiografía coronaria**.\n- Pedir **RM cardíaca** si la causa no está clara o se sospecha una **miocardiopatía**.\n- Buscar **FA**, otras arritmias y un QRS ≥130 ms.\n- Si tiene **marcapasos**, revisar qué porcentaje de latidos estimula el **ventrículo derecho**.",
       "opciones": [
         {
-          "texto": "Causa estudiada",
+          "texto": "Estudio de la causa pedido",
           "siguiente_nodo": "nodo_tratamiento",
-          "descripcion": "Empezar el tratamiento de base"
+          "descripcion": "Empezar el tratamiento sin esperar los resultados"
         }
       ],
       "evidencia": {
@@ -820,7 +829,7 @@
       "tipo": "pregunta",
       "titulo": "Confirmar la IC con FE preservada",
       "contexto": "La ICFEp es más difícil de confirmar: se parte de la **probabilidad previa** (edad, HTA, obesidad, FA) y se busca la **prueba objetiva**.",
-      "texto": "- Exigir los **tres criterios**:\n  1. Síntomas o signos de **IC**.\n  2. FEVI **≥50 %** que nunca fue menor.\n  3. **Alteración estructural o funcional** en el eco (la tabla), apoyada por un **péptido elevado**.\n- Contar cuántos criterios del eco cumple: **cuantos más**, más probable.",
+      "texto": "- Comprobar los **tres criterios** de la lista; la alteración del eco se lee en la tabla.\n- Cuantos más criterios del eco cumple, **más probable** es la ICFEp.",
       "pie_nodo": "¿Cumple los tres criterios de ICFEp?",
       "opciones": [
         {
@@ -833,7 +842,7 @@
           "descripcion": "Clínica sugestiva con eco o péptido no concluyentes"
         },
         {
-          "texto": "No",
+          "texto": "No, y la sospecha clínica es baja",
           "siguiente_nodo": "diag_descartar_ic"
         }
       ],
@@ -938,12 +947,20 @@
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Criterios de ICFEp (los tres)",
+        "items": [
+          "Síntomas o signos de **IC**",
+          "FEVI **≥50 %** que nunca ha sido menor",
+          "**Alteración estructural o funcional** en el eco, apoyada por un **péptido elevado**"
+        ]
+      }
     },
     "diag_hfpef_dudoso": {
       "tipo": "pregunta",
       "titulo": "Aclarar la duda con pruebas de esfuerzo o invasivas",
-      "texto": "- Valorar, según la disponibilidad:\n  - **Ergoespirometría**: confirma la baja capacidad de ejercicio y orienta la causa de la disnea.\n  - **Eco de esfuerzo** (diastólico).\n  - **Cateterismo** con ejercicio, la prueba de referencia.\n- Confirmar la ICFEp si la **presión capilar pulmonar** es **≥15 mmHg** en reposo o **≥25 mmHg** en ejercicio, o la **telediastólica del VI ≥16 mmHg**.",
+      "texto": "- Valorar, según la disponibilidad:\n  - **Ergoespirometría**, que confirma la baja capacidad de ejercicio.\n  - **Eco de esfuerzo** diastólico.\n  - **Cateterismo** con ejercicio, la prueba de referencia.\n- Confirmar la ICFEp si en el cateterismo:\n  - La **presión capilar pulmonar** es **≥15 mmHg** en reposo o **≥25 mmHg** en ejercicio.\n  - O la **presión telediastólica** del VI es **≥16 mmHg**.",
       "pie_nodo": "¿Confirman las pruebas la ICFEp?",
       "opciones": [
         {
@@ -953,6 +970,11 @@
         {
           "texto": "No, la descartan",
           "siguiente_nodo": "diag_descartar_ic"
+        },
+        {
+          "texto": "Pruebas no disponibles",
+          "siguiente_nodo": "diag_hfpef_causa",
+          "descripcion": "Decidir con la clínica y el eco; remitir si la duda persiste"
         }
       ],
       "referencias": [
@@ -973,6 +995,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "ICFEp: basta la clínica y el eco",
+          "paginas": "5370",
+          "texto": "In most patients, the diagnosis of HFpEF can be made based on clinical history and echocardiographic signs",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ]
     },
@@ -983,9 +1014,9 @@
       "texto": "- Sospechar **amiloidosis** si hay pared del VI **gruesa** con banderas rojas (la tabla), sobre todo después de los **65 años**.\n- Si se sospecha, pedir:\n  - **Inmunofijación** en suero y orina.\n  - **Cadenas ligeras** libres en suero.\n  - **Gammagrafía ósea** (DPD, PYP o HMDP).\n- Pedir **RM cardíaca** si se sospecha otra **miocardiopatía**.",
       "opciones": [
         {
-          "texto": "Causa estudiada",
+          "texto": "Estudio de la causa pedido",
           "siguiente_nodo": "nodo_tratamiento",
-          "descripcion": "Empezar el tratamiento de base"
+          "descripcion": "Empezar el tratamiento sin esperar los resultados"
         }
       ],
       "tabla": {
@@ -1066,13 +1097,19 @@
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "Tratar la amiloidosis",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "esp_amiloidosis"
+        }
       ]
     },
     "diag_hfmref": {
       "tipo": "pregunta",
       "titulo": "Mantener el tratamiento en la FEVI mejorada",
-      "contexto": "La mejoría con el tratamiento suele ser una **remisión**, no una curación: al retirarlo, la IC **recae**.",
-      "texto": "- Confirmar la mejoría: subida de **≥10 puntos** hasta más de **40 %**.\n- Seguir tratándola como **ICFEr**, con la terapia de base a las **dosis más altas toleradas**.\n- Retirarla poco a poco **sólo** si está asintomático, con el **VI y el péptido normales** y una causa **reversible** ya tratada.",
+      "texto": "- Confirmar que la FEVI subió **≥10 puntos** hasta más de **40 %**.\n- Seguir tratándola como **ICFEr**, con la terapia de base a las **dosis más altas toleradas**.\n- Retirarla poco a poco **sólo** si está asintomático, con el **VI y el péptido normales** y una causa **reversible** ya tratada.",
       "opciones": [
         {
           "texto": "Tratamiento revisado",
@@ -1082,7 +1119,7 @@
       ],
       "alertas": [
         {
-          "titulo": "Suspender el tratamiento al mejorar",
+          "titulo": "Retirada de la terapia al mejorar la FEVI",
           "texto": "Al retirar la terapia de base, el **40 %** recayó en **6 meses** en un ensayo: **no suspenderla** por una FEVI que mejoró."
         }
       ],
@@ -1162,8 +1199,8 @@
     },
     "trat_agudo_vs_cronico": {
       "tipo": "pregunta",
-      "titulo": "Elegir el camino según cómo llega",
-      "texto": "- Buscar **congestión** (disnea, ortopnea, edema, crepitantes) e **hipoperfusión** (extremidades frías, oliguria, confusión).\n- Si los síntomas exigen **atención urgente** o cambiar el tratamiento ya, es una **descompensación**.\n- Si está **estable**, empezar o ajustar el tratamiento de base, que busca **vivir más**, **ingresar menos** y estar mejor.",
+      "titulo": "Comprobar si está estable o descompensado",
+      "texto": "- Buscar **congestión** (disnea, ortopnea, edema, crepitantes) e **hipoperfusión** (extremidades frías, oliguria, confusión).\n- Si los síntomas exigen **atención urgente** o cambiar el tratamiento ya, es una **descompensación**.\n- Si está **estable**, empezar o ajustar el tratamiento de base, que busca **vivir más**, **hospitalizarse menos** y estar mejor.",
       "pie_nodo": "¿Está estable o llega descompensado?",
       "opciones": [
         {
@@ -1174,8 +1211,7 @@
         {
           "texto": "Descompensado",
           "siguiente_nodo": "nodo_descompensacion",
-          "descripcion": "Congestión o hipoperfusión que piden atención urgente",
-          "color": "rojo"
+          "descripcion": "Congestión o hipoperfusión que piden atención urgente"
         }
       ],
       "referencias": [
@@ -1210,8 +1246,8 @@
     },
     "trat_cronico_fevi": {
       "tipo": "pregunta",
-      "titulo": "Empezar lo que reciben todos y elegir el fenotipo",
-      "texto": "- Dar a **todo paciente sintomático**, sea cual sea la FEVI:\n  - Un **iSGLT2**.\n  - Un **ARM**.\n- Añadir un **diurético de asa** si hay **congestión**, a la **dosis mínima** que mantenga la euvolemia.\n- Evitar las **tiazidas** de forma crónica.\n- Seguir la cadena del **fenotipo** para el resto.",
+      "titulo": "Empezar el iSGLT2 y el ARM en todos",
+      "texto": "- Dar a **todo paciente sintomático**, sea cual sea la FEVI:\n  - Un **iSGLT2**.\n  - Un **ARM**.\n- Añadir un **diurético de asa** si hay **congestión**, a la **dosis mínima** que mantenga la euvolemia.\n- Evitar las **tiazidas** de forma crónica.",
       "pie_nodo": "¿Qué fenotipo tiene?",
       "opciones": [
         {
@@ -1241,6 +1277,13 @@
           "pauta": "Misma dosis de **inicio y objetivo**.",
           "nota": "No empezarla con **TFG** **<20 mL/min/1,73 m²** ni en la diabetes tipo 1.",
           "paginas": "supl. 19"
+        },
+        {
+          "nombre": "Espironolactona",
+          "dosis": "**12,5-25 mg** VO al día",
+          "pauta": "Objetivo **50 mg** al día; **12,5 mg** si preocupa el **potasio**.",
+          "nota": "Con **precaución** y consulta si el **potasio** es **>5,0 mEq/L** o la TFG **<30 mL/min/1,73 m²**.",
+          "paginas": "supl. 18"
         },
         {
           "nombre": "Furosemida",
@@ -1360,14 +1403,40 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: ARM esteroideos",
+          "paginas": "supl. 18",
+          "texto": "Eplerenone: starting dose 25 mg o.d., target dose 50 mg o.d. Spironolactone: starting dose 12.5–25 mg o.d., target dose 50 mg o.d.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "ARM: con cautela",
+          "paginas": "5377",
+          "texto": "Caution should be exercised when MRAs are started in patients with impaired kidney function (MRAs have not been tested in patients with eGFR <25 mL/min/1.73 m2)",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "ARM y potasio",
+          "paginas": "5377",
+          "texto": "and in those with potassium levels ≥5.0 mmol/L. In patients taking MRAs whose serum potassium is >5.5 mEq/L, there might be an indication for dose reduction",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ]
     },
     "trat_cronico_hfref": {
       "tipo": "pregunta",
-      "titulo": "Empezar los cuatro fármacos de base juntos",
-      "contexto": "Los cuatro **reducen la mortalidad** y las hospitalizaciones; ninguna secuencia es mejor, así que se empiezan **a la vez**.",
-      "texto": "- Empezar a **dosis bajas**, en cuanto se confirme la ICFEr:\n  1. **ARNI**, o IECA si no hay ARNI; ARA II si no tolera ninguno.\n  2. **Betabloqueador**, con el paciente **euvolémico**.\n  3. **ARM**.\n  4. **iSGLT2**.\n- Medir **creatinina y potasio** antes de empezar; dosis en la tabla.",
+      "titulo": "Añadir el ARNI y el betabloqueador a la vez",
+      "texto": "- Añadir a la vez, a **dosis bajas** y en cuanto se confirme la ICFEr:\n  - **ARNI**, o IECA si no hay ARNI; ARA II si no tolera ninguno.\n  - **Betabloqueador**, con el paciente **euvolémico**.\n- Comprobar que ya recibe el **iSGLT2** y el **ARM**: con ellos son los **cuatro fármacos** de base.\n- Revisar la **lista** antes de empezar; las dosis están en la tabla.",
       "opciones": [
         {
           "texto": "Los cuatro iniciados",
@@ -1384,7 +1453,7 @@
         "filas": [
           [
             "Sacubitril-valsartán",
-            "**49/51 mg** c/12 h (**24/26 mg** si PAS baja, TFG 30-60 o sin IECA previo)",
+            "**49/51 mg** c/12 h (**24/26 mg** si PAS 100-110, TFG 30-60 o sin IECA ni ARA II previo)",
             "**97/103 mg** c/12 h"
           ],
           [
@@ -1393,9 +1462,24 @@
             "**10-20 mg** c/12 h"
           ],
           [
+            "Lisinopril",
+            "**2,5-5 mg** al día",
+            "**20-35 mg** al día"
+          ],
+          [
             "Ramipril",
             "**1,25-2,5 mg** c/12 h",
             "**5 mg** c/12 h"
+          ],
+          [
+            "Captopril",
+            "**6,25 mg** c/8 h",
+            "**50 mg** c/8 h"
+          ],
+          [
+            "Candesartán",
+            "**4 mg** al día",
+            "**32 mg** al día"
           ],
           [
             "Losartán",
@@ -1423,6 +1507,11 @@
             "**200 mg** al día"
           ],
           [
+            "Nebivolol",
+            "**1,25 mg** al día",
+            "**10 mg** al día"
+          ],
+          [
             "Espironolactona",
             "**12,5-25 mg** al día",
             "**50 mg** al día"
@@ -1445,54 +1534,15 @@
         {
           "nombre": "Sacubitril-valsartán",
           "dosis": "**49/51 mg** VO c/12 h",
-          "pauta": "Objetivo **97/103 mg** c/12 h. Empezar con **24/26 mg** si hay **hipotensión** previa, TFG **30-60** o no tomaba IECA ni ARA II.",
-          "nota": "Esperar **36 h** sin **IECA** antes de la primera dosis.",
+          "pauta": "Objetivo **97/103 mg** c/12 h. Empezar con **24/26 mg** si la PAS es **100-110**, la TFG **30-60** o no tomaba **IECA ni ARA II**.",
+          "nota": "**No darlo** con PAS **<90 mmHg**, angioedema previo, estenosis renal bilateral, **embarazo** o lactancia; esperar **36 h** sin IECA.",
           "paginas": "5382; supl. 13"
-        },
-        {
-          "nombre": "Enalapril",
-          "dosis": "**2,5 mg** VO c/12 h",
-          "pauta": "Objetivo **10-20 mg** c/12 h, **doblando** la dosis cada **2 semanas**.",
-          "nota": "Con **cautela** si PAS **<100 mmHg**, TFG **<30** o **potasio** **>5,2 mEq/L**.",
-          "paginas": "supl. 11"
         },
         {
           "nombre": "Bisoprolol",
           "dosis": "**1,25 mg** VO al día",
           "pauta": "**Doblar** cada **2 semanas** hasta **10 mg** al día.",
           "paginas": "supl. 14"
-        },
-        {
-          "nombre": "Carvedilol",
-          "dosis": "**3,125 mg** VO c/12 h",
-          "pauta": "Objetivo **25 mg** c/12 h (**50 mg** si **pesa** más de **85 kg**).",
-          "paginas": "supl. 14"
-        },
-        {
-          "nombre": "Metoprolol succinato",
-          "dosis": "**12,5-25 mg** VO al día",
-          "pauta": "Objetivo **200 mg** al día, con **liberación prolongada**.",
-          "paginas": "supl. 14"
-        },
-        {
-          "nombre": "Espironolactona",
-          "dosis": "**12,5-25 mg** VO al día",
-          "pauta": "Objetivo **50 mg** al día; **12,5 mg** si preocupa el **potasio**.",
-          "nota": "No empezar si el **potasio** es **>5,0 mEq/L** o la TFG **<30**.",
-          "paginas": "supl. 18"
-        },
-        {
-          "nombre": "Eplerenona",
-          "dosis": "**25 mg** VO al día",
-          "pauta": "Objetivo **50 mg** al día; causa menos **ginecomastia**.",
-          "nota": "Evitar con **inhibidores potentes** del CYP3A4.",
-          "paginas": "supl. 18; 5377"
-        },
-        {
-          "nombre": "Dapagliflozina o empagliflozina",
-          "dosis": "**10 mg** VO al día",
-          "pauta": "Misma dosis de **inicio y objetivo**.",
-          "paginas": "supl. 19"
         }
       ],
       "alertas": [
@@ -1501,7 +1551,7 @@
           "texto": "Dar el ARNI antes de **36 h** sin IECA aumenta el riesgo de **angioedema**: suspender el IECA y **esperar 36 h**."
         }
       ],
-      "nota_adicional": "Si no puede recibir un ARNI, el **IECA** sigue siendo de primera línea; nunca combinar **IECA, ARA II y ARM** a la vez por el riesgo de **hiperpotasemia**.",
+      "nota_adicional": "Nunca combinar **IECA, ARA II y ARM** a la vez: el riesgo de **hiperpotasemia** es alto.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -1750,6 +1800,60 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S5: contraindicaciones del ARNI",
+          "paginas": "supl. 12",
+          "texto": "Contraindications: (1) History of angio-oedema. (2) (3) Known bilateral renal artery stenosis. Pregnancy/risk of pregnancy and breastfeeding period.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S5: dosis reducida",
+          "paginas": "supl. 13",
+          "texto": "one may consider a reduced starting dose (24/26 mg b.i.d.), namely in those with systolic blood pressure 100–110 mmHg, ACE-I/ARB naïve patients, and in those with CKD.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S5: PAS <90",
+          "paginas": "supl. 12",
+          "texto": "Symptoms of hypotension or a systolic blood pressure <90 mmHg (PARADIGM-HF enrolled patients with a systolic blood pressure >95 mmHg at randomization).",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S6: contraindicaciones",
+          "paginas": "supl. 14",
+          "texto": "Second- or third-degree AV block (in the absence of a permanent pacemaker). (2) Critical limb ischaemia.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: ARM en el embarazo y la lactancia",
+          "paginas": "supl. 18",
+          "texto": "Known allergic reaction/other adverse reaction (drug-specific). Pregnancy/risk of pregnancy and breastfeeding period.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: IECA, ARA II y ARM juntos",
+          "paginas": "supl. 19",
+          "texto": "triple combination of an ACE-I, ARB, and MRA is NOT recommended",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
       ],
       "burbujas": [
@@ -1769,12 +1873,23 @@
             }
           ]
         }
-      ]
+      ],
+      "checklist": {
+        "titulo": "Antes de empezar",
+        "items": [
+          "PAS **≥90 mmHg** sin síntomas de hipotensión (ARNI)",
+          "Sin angioedema previo ni estenosis renal bilateral (IECA, ARA II o ARNI)",
+          "Sin embarazo ni lactancia (IECA, ARA II, ARNI, ARM e iSGLT2)",
+          "Sin bloqueo AV de 2.º o 3.er grado sin marcapasos ni isquemia crítica de una pierna (betabloqueador)",
+          "Potasio **≤5,0 mEq/L** y TFG **≥30** para el ARM; si no, precaución y especialista",
+          "Creatinina y potasio basales"
+        ]
+      }
     },
     "trat_hfref_titular": {
       "tipo": "pregunta",
       "titulo": "Subir las dosis cada 1-2 semanas",
-      "texto": "- Subir una dosis cada **1-2 semanas**, guiándose por los **síntomas**, la **PA**, la **FC** y los laboratorios.\n- Medir **creatinina y potasio** 1-2 semanas tras cada cambio.\n- Aceptar sin cambiar nada:\n  - Caída de la **TFG <30 %** (creatinina **<50 %** sobre la basal).\n  - Potasio hasta **5,5 mEq/L**.\n- No bajar dosis por una **infección** sin compromiso hemodinámico.",
+      "texto": "- Subir cada fármaco, doblando su dosis, cada **1-2 semanas**, según los **síntomas**, la **PA**, la **FC** y los laboratorios.\n- Medir **creatinina y potasio** 1-2 semanas tras cada cambio.\n- Aceptar sin cambiar nada:\n  - Caída de la **TFG <30 %** (creatinina **<50 %** sobre la basal).\n  - Potasio hasta **5,5 mEq/L**.\n- No bajar dosis por una **infección** sin compromiso hemodinámico.",
       "pie_nodo": "¿Cómo tolera la subida de dosis?",
       "opciones": [
         {
@@ -1880,7 +1995,7 @@
           "titulo": "Subir la dosis cada 2 semanas",
           "descripcion": "Ejemplo: los cuatro fármacos de base suben hasta la dosis objetivo.",
           "info": "Ejemplo: los cuatro fármacos empiezan juntos a dosis bajas y se **doblan cada 2 semanas** hasta la dosis objetivo; el {#8B5CF6:bisoprolol} tarda más, de **1,25** a **10 mg**. Antes de cada subida, revisar PA, FC, **creatinina y potasio**.",
-          "en_texto": "Subir una dosis cada",
+          "en_texto": "doblando su dosis",
           "referencias": [
             {
               "titulo": "Subir cada 1-2 semanas (I-C)",
@@ -1916,9 +2031,9 @@
     "trat_k_renal": {
       "estilo": "advertencia",
       "tipo": "pregunta",
-      "titulo": "Ajustar por potasio o creatinina altos",
-      "texto": "- Retirar primero lo que sube el potasio: **AINE**, suplementos, ahorradores de potasio y **sustitutos de la sal**.\n- **ARM**:\n  - Potasio **>5,5 mEq/L** o caída de la TFG **>30 %** → bajar a la **mitad**.\n  - Potasio **>6,0 mEq/L** → **suspender** y consultar.\n- **IECA, ARA II o ARNI**: suspender si el potasio pasa de **5,5**, la creatinina **sube >100 %** o la TFG cae a **<20**.\n- Mantener el **iSGLT2**.",
-      "pie_nodo": "¿Ya están el potasio y la TFG en un rango seguro?",
+      "titulo": "Retirar lo que sube el potasio y ajustar las dosis",
+      "texto": "- Retirar primero lo que sube el potasio:\n  - **AINE** y suplementos de potasio.\n  - Diuréticos **ahorradores de potasio**.\n  - **Sustitutos de la sal**.\n- **ARM**:\n  - Potasio **>5,5 mEq/L** o caída de la TFG **>30 %** → bajar a la **mitad**.\n  - Potasio **>6,0 mEq/L** o TFG **<20 mL/min/1,73 m²** → **suspender** y consultar.\n- **IECA, ARA II o ARNI**: suspender si sigue el potasio **>5,5 mEq/L**, la creatinina **sube >100 %** o la TFG cae a **<20 mL/min/1,73 m²**.\n- Mantener el **iSGLT2**.",
+      "pie_nodo": "¿Ha bajado el potasio a 5,5 mEq/L o menos y se ha estabilizado la TFG?",
       "opciones": [
         {
           "texto": "Aún no",
@@ -1938,7 +2053,7 @@
           "color": "morado"
         }
       ],
-      "nota_adicional": "Si se suspendió **menos de 14 días**, se puede **reiniciar** a la dosis previa cuando se corrija: retirarlo para siempre quita su **beneficio pronóstico**.",
+      "nota_adicional": "Si el **fármaco** se suspendió hace menos de **14 días**, se puede **reiniciar** a la dosis previa cuando se corrija; retirarlo para siempre quita su **beneficio pronóstico**.",
       "enlaces": [
         {
           "texto": "Calcular la TFG (CKD-EPI)",
@@ -2031,6 +2146,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S7: ARM con TFG <20",
+          "paginas": "supl. 17",
+          "texto": "Withhold an MRA (if eGFR drops below 20 mL/min/1.73 m2). • If using concomitant loop and thiazide diuretic, stop thiazide diuretic.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
       ],
       "burbujas": [
@@ -2054,8 +2178,8 @@
     },
     "trat_hfref_hipotension": {
       "tipo": "pregunta",
-      "titulo": "Resolver la hipotensión, la bradicardia o la congestión",
-      "texto": "- **PA baja asintomática**: no cambiar nada.\n- **Hipotensión sintomática**:\n  1. Retirar **otros vasodilatadores** (nitratos, calcioantagonistas).\n  2. Bajar el **diurético** si no hay congestión.\n- **FC <50 lpm** con síntomas: bajar el **betabloqueador**, revisar otros frenadores y tomar un **ECG**.\n- **Más congestión**: subir el diurético y, si no basta, la **mitad del betabloqueador**.",
+      "titulo": "Ajustar los fármacos sin frenar la titulación",
+      "texto": "- **PA baja asintomática**: no cambiar nada.\n- **Hipotensión sintomática**:\n  1. Retirar **otros vasodilatadores** (nitratos, calcioantagonistas).\n  2. Bajar el **diurético** si no hay congestión.\n- **FC <50 lpm** con síntomas:\n  1. Bajar el **betabloqueador**.\n  2. Revisar otros fármacos que **bajan la FC**.\n  3. Tomar un **ECG** para descartar un bloqueo.\n- **Más congestión**: subir el diurético y, si no basta, bajar el **betabloqueador** a la mitad.",
       "opciones": [
         {
           "texto": "Ajuste hecho",
@@ -2065,7 +2189,7 @@
       ],
       "alertas": [
         {
-          "titulo": "Suspender el betabloqueador de golpe",
+          "titulo": "Retirada brusca del betabloqueador",
           "texto": "Retirarlo bruscamente puede causar **isquemia**, infarto o **arritmias** por rebote: bajarlo **a la mitad** antes que suspenderlo."
         }
       ],
@@ -2129,7 +2253,7 @@
     "trat_hfref_adicional": {
       "tipo": "pregunta",
       "titulo": "Añadir la terapia adicional según el perfil",
-      "texto": "- Buscar en la tabla el **perfil** del paciente y añadir lo que le corresponda:\n  - **Ferropenia**: hierro IV.\n  - **Ritmo sinusal** con FC **>70 lpm** y FEVI **≤35 %**: ivabradina.\n  - Síntomas con FEVI **≤40 %**: digoxina o digitoxina.\n  - Descompensación reciente con FEVI **<45 %**: vericiguat.\n- Revisar los **dispositivos** tras **3 meses** de dosis óptimas.",
+      "texto": "- Añadir lo que corresponda a su **perfil** según la tabla, sobre la **terapia de base** ya optimizada.",
       "opciones": [
         {
           "texto": "Terapia adicional valorada",
@@ -2140,39 +2264,40 @@
         "titulo": "Terapia adicional en la ICFEr",
         "columnas": [
           "Perfil",
-          "Fármaco",
-          "Dosis de inicio y objetivo"
+          "Añadir (clase)"
         ],
         "filas": [
           [
             "Ferropenia (TSAT **<20 %**)",
-            "**Hierro IV**: carboximaltosa o derisomaltosa férrica",
-            "La guía **no fija** un esquema"
+            "**Hierro IV**, carboximaltosa o derisomaltosa férrica (I para síntomas)"
           ],
           [
             "- Sinusal y FC **>70 lpm**\n- FEVI **≤35 %**",
-            "**Ivabradina** (IIa)",
-            "**5 mg** → **7,5 mg** c/12 h"
+            "**Ivabradina** (IIa)"
+          ],
+          [
+            "- No tolera el **betabloqueador**\n- Sinusal y FEVI **≤35 %**",
+            "**Ivabradina** (IIa)"
           ],
           [
             "Sintomático con FEVI **≤40 %**",
-            "**Digoxina** o digitoxina (IIa)",
-            "- Digoxina **62,5** → **250 µg**/día\n- Nivel **<1,2 ng/mL**"
+            "**Digoxina** o digitoxina (IIa), con nivel de digoxina **<1,2 ng/mL**"
           ],
           [
-            "FEVI **<45 %** y empeoramiento",
-            "**Vericiguat** (IIb)",
-            "**2,5 mg** → **10 mg** al día"
+            "FEVI **<45 %** con síntomas pese a la terapia óptima",
+            "**Vericiguat** (IIb)"
+          ],
+          [
+            "- FEVI **45-49 %**\n- IMC **≥30 kg/m²**",
+            "**Semaglutida o tirzepatida** (IIa)"
           ],
           [
             "Ascendencia africana, FEVI **≤40 %**",
-            "**Hidralazina + dinitrato** (IIa)",
-            "**37,5/20 mg** → **75/40 mg** c/8 h"
+            "**Hidralazina + dinitrato** (IIa)"
           ],
           [
             "No tolera IECA, ARA II ni ARNI",
-            "**Hidralazina + dinitrato** (IIb)",
-            "Igual"
+            "**Hidralazina + dinitrato** (IIb)"
           ]
         ],
         "resaltar_primera_columna": true,
@@ -2336,6 +2461,24 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Ivabradina sin betabloqueador (IIa-C)",
+          "paginas": "5383",
+          "texto": "Ivabradine should be considered in patients with symptomatic HFrEF, LVEF ≤35%, in sinus rhythm, who are unable to tolerate a beta-blocker, on the highest tolerated ACE-I/ARNI and MRA",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Semaglutida o tirzepatida (IIa-B)",
+          "paginas": "5357",
+          "texto": "Semaglutide or tirzepatide should be considered for patients with symptomatic HF, LVEF ≥45%, and BMI ≥30 kg/m2, regardless of diabetes status, to reduce body weight",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ]
     },
@@ -2343,8 +2486,8 @@
       "tipo": "pregunta",
       "titulo": "Revalorar la FEVI para decidir el DAI y la TRC",
       "contexto": "Muchos pacientes **recuperan FEVI** con la terapia de base; por eso los dispositivos se deciden tras **3 meses** de dosis óptimas.",
-      "texto": "- Repetir el ecocardiograma tras **3 meses** de dosis óptimas.\n- Tomar un **ECG** para medir el **QRS** y ver si hay **bloqueo de rama izquierda**.\n- Comprobar que espera vivir **más de 1 año** con buena **capacidad funcional**.",
-      "pie_nodo": "¿Qué FEVI tiene tras 3 meses de tratamiento óptimo?",
+      "texto": "- Repetir el ecocardiograma tras **3 meses** de dosis óptimas.\n- Tomar un **ECG** para medir el **QRS** y ver si hay **bloqueo de rama izquierda**.\n- Comprobar que espera vivir **más de 1 año** con buena **capacidad funcional**.\n- Sea cual sea la FEVI: **TRC** si necesita marcapasos por **bloqueo AV**, y **DAI** tras una arritmia ventricular con inestabilidad.",
+      "pie_nodo": "¿Qué FEVI tiene tras el tratamiento óptimo?",
       "opciones": [
         {
           "texto": "35 % o menos",
@@ -2353,7 +2496,7 @@
         {
           "texto": "Más de 35 %",
           "siguiente_nodo": "nodo_seguimiento",
-          "descripcion": "Sin indicación de DAI ni TRC por la FEVI"
+          "descripcion": "Sin DAI ni TRC por la FEVI, salvo bloqueo AV o prevención secundaria"
         }
       ],
       "referencias": [
@@ -2392,8 +2535,36 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "TRC si necesita marcapasos (IIa-B)",
+          "paginas": "5386",
+          "texto": "CRT, rather than RV pacing, should be considered in patients with HFrEF regardless of NYHA class or QRS width who have an indication for ventricular pacing for high-degree AV block",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "DAI de prevención secundaria (I-A)",
+          "paginas": "5384",
+          "texto": "An ICD is recommended in patients who have recovered from a ventricular arrhythmia causing haemodynamic instability (secondary prevention), and who are expected to survive for >1 year with good functional status",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Planificar la TRC desde el inicio (IIb-C)",
+          "paginas": "5386",
+          "texto": "Initiation of FMT and planning for CRT implantation may be considered simultaneously in patients with symptomatic HFrEF, an LBBB with QRS ≥150 ms, and LVEF ≤35%",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
+      "nota_adicional": "Con bloqueo de rama izquierda, QRS **≥150 ms** y FEVI **≤35 %** se puede **planificar la TRC** a la vez que se empieza la terapia de base, **reevaluando la FEVI** antes de implantarla.",
       "media": [
         {
           "recurso": "fallacardiaca_eco_dilatada_real.jpg",
@@ -2431,12 +2602,19 @@
             }
           ]
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "Clase NYHA",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "seg_control"
+        }
       ]
     },
     "trat_hfref_dai_trc": {
       "tipo": "pregunta",
       "titulo": "Indicar el DAI o la TRC según la causa y el QRS",
-      "texto": "- **DAI** si tiene NYHA **II-III**:\n  - Causa **isquémica**: indicado (no antes de **40 días** de un infarto).\n  - **No isquémica**: valorarlo.\n- **TRC** en ritmo sinusal según la tabla: indicada con bloqueo de rama izquierda y QRS **≥150 ms**.\n- No poner TRC con QRS **<130 ms** salvo que necesite **marcapasos**.\n- Decidir **con el paciente**.",
+      "texto": "- **DAI** si tiene NYHA **II-III**:\n  - Causa **isquémica**: indicado.\n  - **No isquémica**: valorarlo.\n- Indicar la **TRC** según el **QRS** y la forma del bloqueo, en la tabla.\n- Decidir **con el paciente**.",
       "opciones": [
         {
           "texto": "Indicación decidida",
@@ -2444,7 +2622,7 @@
         }
       ],
       "tabla": {
-        "titulo": "Cuándo poner TRC (FEVI ≤35 %)",
+        "titulo": "Cuándo poner TRC",
         "columnas": [
           "QRS",
           "Recomendación"
@@ -2471,6 +2649,10 @@
             "**No** indicada (III), salvo bloqueo AV de alto grado"
           ],
           [
+            "Marcapasos o DAI con mucha estimulación del VD y FEVI **≤35 %**",
+            "**Pasar a TRC** (IIa)"
+          ],
+          [
             "Necesita estimulación por **bloqueo AV**",
             "TRC mejor que estimular el VD (IIa)"
           ]
@@ -2482,6 +2664,10 @@
         {
           "titulo": "DAI en NYHA IV",
           "texto": "No poner un DAI con síntomas graves **refractarios** (NYHA IV) salvo que sea candidato a **TRC**, asistencia ventricular o **trasplante**."
+        },
+        {
+          "titulo": "DAI en los 40 días tras un infarto",
+          "texto": "Implantarlo como prevención primaria en los **40 días** siguientes a un infarto **no mejora el pronóstico**: esperar."
         }
       ],
       "evidencia": {
@@ -2579,6 +2765,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Pasar a TRC (IIa-B)",
+          "paginas": "5386",
+          "texto": "An upgrade to CRT should be considered in patients with an LVEF ≤35% who have received optimal FMT and who have a significant proportion of RV pacing",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "media": [
@@ -2586,7 +2781,7 @@
           "recurso": "fallacardiaca_ecg_bri_real.jpg",
           "titulo": "Bloqueo de rama izquierda en el ECG",
           "descripcion": "QRS ancho con la forma típica del bloqueo de rama izquierda.",
-          "info": "{#B93739:Óvalos rojos}: la forma del QRS en el bloqueo de rama izquierda, con R ancha en I y QS profundo en V1. {#B93739:Trazo rojo}: la duración del QRS. Con FEVI **≤35 %**, ritmo sinusal y QRS **≥150 ms**, la **TRC** está indicada.",
+          "info": "{#B93739:Óvalos rojos}: la forma del QRS en el bloqueo de rama izquierda, con R ancha en I, QRS negativo en aVF y QS profundo en V1. {#B93739:Trazo rojo}: la duración del QRS. Con FEVI **≤35 %**, ritmo sinusal y QRS **≥150 ms**, la **TRC** está indicada.",
           "en_texto": "bloqueo de rama izquierda",
           "referencias": [
             {
@@ -2604,8 +2799,8 @@
     },
     "trat_cronico_hfpef": {
       "tipo": "pregunta",
-      "titulo": "Dar iSGLT2 y ARM en la IC con FE preservada",
-      "texto": "- Dar un **iSGLT2**: dapagliflozina o empagliflozina **10 mg** al día.\n- Dar un **ARM**: espironolactona o **finerenona**, con la dosis según la TFG.\n- Usar el **diurético de asa** sólo para la **congestión**.\n- Medir **creatinina y potasio** 1-2 semanas tras empezar el ARM.\n- Valorar **IECA, ARA II o ARNI** para reducir hospitalizaciones.",
+      "titulo": "Elegir el ARM y valorar IECA, ARA II o ARNI",
+      "texto": "- Mantener el **iSGLT2** del paso anterior.\n- Elegir el **ARM**, espironolactona o **finerenona**, con la dosis según la TFG.\n- Medir **creatinina y potasio** 1-2 semanas tras empezar el ARM.\n- Valorar **IECA, ARA II o ARNI** para reducir hospitalizaciones.",
       "pie_nodo": "¿Tiene obesidad con IMC de 30 kg/m² o más?",
       "opciones": [
         {
@@ -2619,24 +2814,11 @@
       ],
       "farmacos": [
         {
-          "nombre": "Espironolactona",
-          "dosis": "**12,5-25 mg** VO al día",
-          "pauta": "Objetivo **50 mg** al día; **12,5 mg** si preocupa el **potasio**.",
-          "nota": "No empezar si el **potasio** es **>5,0 mEq/L** o la TFG **<30**.",
-          "paginas": "supl. 18"
-        },
-        {
           "nombre": "Finerenona",
           "dosis": "**10 mg** VO al día si TFG **≤60**; **20 mg** si TFG **>60**",
           "pauta": "Objetivo **20 mg** (TFG ≤60) o **40 mg** (TFG >60) al día; menos **hiperpotasemia**.",
-          "nota": "No empezar con **TFG** **<25 mL/min/1,73 m²**.",
+          "nota": "Con **precaución** y consulta si la **TFG** es **<25 mL/min/1,73 m²**.",
           "paginas": "supl. 18"
-        },
-        {
-          "nombre": "Dapagliflozina o empagliflozina",
-          "dosis": "**10 mg** VO al día",
-          "pauta": "Misma dosis de **inicio y objetivo**.",
-          "paginas": "supl. 19"
         }
       ],
       "enlaces": [
@@ -2784,7 +2966,7 @@
       "tipo": "pregunta",
       "titulo": "Bajar de peso con semaglutida o tirzepatida",
       "contexto": "En la ICFEp con **obesidad** el exceso de peso **sube las presiones** de llenado; bajar de peso **mejora los síntomas** y el ejercicio.",
-      "texto": "- Indicar **dieta, ejercicio** y educación en todos.\n- Valorar semaglutida o tirzepatida si la FEVI es **≥45 %** y el IMC **≥30 kg/m²**, con o sin diabetes.\n- Valorar la **cirugía bariátrica** si el IMC es **≥35 kg/m²** y no baja de peso con lo anterior.",
+      "texto": "- Indicar **dieta, ejercicio** y educación en todos.\n- Valorar semaglutida o tirzepatida, con o sin **diabetes**.\n- Valorar la **cirugía bariátrica** si el IMC es **≥35 kg/m²** y no baja de peso con lo anterior.",
       "opciones": [
         {
           "texto": "Plan de peso indicado",
@@ -2874,7 +3056,7 @@
     "trat_hfpef_comorbilidades": {
       "tipo": "pregunta",
       "titulo": "Tratar las comorbilidades que empeoran la ICFEp",
-      "texto": "- **HTA**: priorizar el **ARM**; se pueden usar IECA, ARA II o **calcioantagonistas**.\n- **FA**: anticoagular y controlar la frecuencia.\n- **Enfermedad coronaria**: tratarla como en quien no tiene IC.\n- **Diabetes**: iSGLT2 y, con obesidad, **semaglutida o tirzepatida**.\n- Descartar lo que **imita** la ICFEp: amiloidosis, miocardiopatía hipertrófica.",
+      "texto": "- **HTA**: priorizar el **ARM**; se pueden usar IECA, ARA II o **calcioantagonistas**.\n- **FA**: anticoagular y controlar la frecuencia.\n- **Enfermedad coronaria**: tratarla como en quien no tiene IC.\n- **Diabetes**: dar el iSGLT2 y revisar el resto en su situación especial.",
       "opciones": [
         {
           "texto": "Comorbilidades tratadas",
@@ -2979,25 +3161,24 @@
         "Urgente"
       ],
       "titulo": "Buscar la congestión y la hipoperfusión al llegar",
-      "texto": "- **A y B, respiración:** medir la **FR** y la SpO2; oxígeno si es **<90 %** y **VMNI** si la FR pasa de **25**.\n- **C, circulación:** PA, FC y ritmo en **monitor**; buscar **hipoperfusión** y medir el **lactato** si está inestable.\n- **D, neurológico:** la **confusión** sugiere hipoperfusión.\n- **E, exposición:** peso, **edemas**, temperatura y la **causa aguda** de la tabla.",
+      "texto": "- **A y B, respiración:** medir la **FR** y la SpO2.\n  - Si la SpO2 es **<90 %** → dar **oxígeno**.\n  - Si la FR pasa de **25** → poner **VMNI**.\n- **C, circulación:** tomar la PA y la FC, poner **monitor** de ritmo y buscar **hipoperfusión**; medir el **lactato** si está inestable.\n- **D, neurológico:** la **confusión** sugiere hipoperfusión.\n- **E, exposición:** pesar, buscar **edemas**, tomar la temperatura y buscar la **causa aguda** de la tabla.",
       "pie_nodo": "¿Tiene choque cardiogénico o edema pulmonar agudo?",
       "opciones": [
         {
           "texto": "Choque cardiogénico",
           "siguiente_nodo": "trat_agudo_shock",
-          "descripcion": "Hipoperfusión: lactato >2 mmol/L, oliguria, frialdad",
+          "descripcion": "Hipoperfusión: lactato >2 mmol/L, oliguria, frialdad. Si también hay edema pulmonar, empezar por aquí",
           "color": "rojo"
         },
         {
           "texto": "Edema pulmonar agudo",
           "siguiente_nodo": "desc_edema_pulmonar",
-          "descripcion": "Dificultad respiratoria de instauración rápida",
-          "color": "naranja"
+          "descripcion": "Dificultad respiratoria de instauración rápida"
         },
         {
           "texto": "Ninguno de los dos",
           "siguiente_nodo": "trat_agudo_eval",
-          "descripcion": "Confirmar la descompensación y su lado"
+          "descripcion": "Sin choque ni edema pulmonar agudo"
         }
       ],
       "tabla": {
@@ -3179,8 +3360,7 @@
         "UCI"
       ],
       "titulo": "Tratar el choque cardiogénico",
-      "contexto": "Es la **hipoperfusión crítica** de origen cardíaco; no tiene umbral de PA y puede ser **normotenso**.",
-      "texto": "- Llamar al **equipo de choque** y clasificar la gravedad con la tabla.\n- Buscar y tratar la **causa aguda**: síndrome coronario, arritmia o **causa mecánica**.\n- Dar **norepinefrina** si hay hipotensión.\n- Añadir un **inotrópico** si la PAS es **<90 mmHg** con hipoperfusión pese a una **carga de líquidos**.\n- Suspender el **betabloqueador** y el IECA, ARA II o ARNI.",
+      "texto": "- Llamar al **equipo de choque** y clasificar la gravedad con la tabla.\n- Buscar y tratar la **causa aguda**:\n  - **Síndrome coronario**: seguir su algoritmo.\n  - **FA rápida** con inestabilidad: **cardioversión** urgente.\n  - **Complicación mecánica**: soporte como puente a la **cirugía**.\n- Dar **norepinefrina** si hay hipotensión.\n- Añadir un **inotrópico** si la PAS es **<90 mmHg** con hipoperfusión pese a una **carga de líquidos**.\n- Suspender el **betabloqueador** y el IECA, ARA II o ARNI.",
       "pie_nodo": "¿Mejora la perfusión con el tratamiento?",
       "opciones": [
         {
@@ -3189,9 +3369,15 @@
           "descripcion": "Descongestionar si hace falta"
         },
         {
+          "texto": "Sí, y ya llevaba diurético IV",
+          "siguiente_nodo": "desc_vigilancia",
+          "descripcion": "Seguir la vigilancia sin repetir la primera dosis"
+        },
+        {
           "texto": "No, sigue la hipoperfusión",
           "siguiente_nodo": "desc_choque_refractario",
-          "descripcion": "Choque refractario: estadios D o E"
+          "descripcion": "Choque refractario: estadios D o E",
+          "color": "rojo"
         }
       ],
       "tabla": {
@@ -3230,7 +3416,7 @@
           "nombre": "Norepinefrina",
           "dosis": "**0,2-1,0 µg/kg/min** en infusión IV",
           "pauta": "Vasopresor de **elección** en el **choque**.",
-          "nota": "Por **vía central** en cuanto se pueda.",
+          "nota": "La meta de **PAM** no está definida en el choque: ajustarla a la **perfusión**.",
           "paginas": "supl. 27",
           "por_kg": {
             "desde": 12,
@@ -3286,6 +3472,10 @@
       ],
       "nota_adicional": "Descartar un **choque mixto**: la **sepsis** y la hipovolemia también dan hipotensión e hipoperfusión, y a menudo coexisten con el cardiogénico.",
       "enlaces": [
+        {
+          "texto": "Síndrome coronario agudo",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sindromecoronario.json"
+        },
         {
           "texto": "Sepsis y choque séptico",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
@@ -3485,6 +3675,33 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Meta de PAM en el choque",
+          "paginas": "5395",
+          "texto": "The target mean blood pressure is not well defined in CS.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Cardioversión urgente (I-C)",
+          "paginas": "5405",
+          "texto": "Urgent cardioversion is recommended in the setting of DHF in patients presenting with rapid ventricular rates and haemodynamic instability to restore sinus rhythm.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Complicación mecánica del IAM (IIa-C)",
+          "paginas": "5357",
+          "texto": "Temporary MCS should be considered in patients with mechanical complications related to MI as a bridge to definitive treatment.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "burbujas": [
@@ -3513,12 +3730,17 @@
         "UCI"
       ],
       "titulo": "Valorar el soporte mecánico con el equipo de choque",
-      "texto": "- Decidir el **dispositivo** con el equipo de choque en un centro con experiencia.\n- **Infarto con elevación del ST** y disfunción del VI, sin riesgo de **daño cerebral hipóxico**: valorar una **bomba microaxial**.\n- **Complicación mecánica** del infarto: soporte como **puente** a la cirugía.\n- Otras causas: soporte como puente a **recuperación, decisión o trasplante**.",
+      "texto": "- Decidir el **dispositivo** con el equipo de choque en un centro con experiencia.\n- **Infarto con elevación del ST** y disfunción del VI, sin riesgo de **daño cerebral hipóxico**: valorar una bomba microaxial.\n- Con una **complicación mecánica** del infarto, usar el soporte como **puente** a la cirugía.\n- En otras causas, usarlo como puente a la recuperación, a la decisión o al **trasplante**.",
       "opciones": [
         {
-          "texto": "Soporte decidido",
+          "texto": "Sí, soporte decidido",
           "siguiente_nodo": "desc_diureticos",
           "descripcion": "Seguir con la descongestión cuando se estabilice"
+        },
+        {
+          "texto": "No es candidato",
+          "siguiente_nodo": "desc_diureticos",
+          "descripcion": "Seguir el tratamiento médico y hablar de los objetivos del cuidado"
         }
       ],
       "alertas": [
@@ -3613,13 +3835,31 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Soporte en la CIV y la rotura de pared",
+          "paginas": "5397",
+          "texto": "In case of large ventricular septal defect, temporary MCS should be used with caution due to the potential increase of left-to-right interventricular shunt",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Rotura de la pared libre",
+          "paginas": "5397",
+          "texto": "In case of ventricular free-wall rupture, temporary MCS should be avoided; however, VA-ECLS can be considered to allow emergent cardiac surgery",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "burbujas": [
         {
           "en_texto": "bomba microaxial",
           "titulo": "El ensayo DanGer Shock",
-          "texto": "En **360** pacientes muy seleccionados con choque por infarto con elevación del ST, la bomba microaxial **redujo la muerte** a 180 días, a costa de más **sangrado** e isquemia de la pierna.",
+          "texto": "En **360** pacientes muy seleccionados con choque por infarto con elevación del ST, la bomba microaxial **redujo la muerte** a 180 días. A cambio hubo más **sangrado** e isquemia de la pierna.",
           "referencias": [
             {
               "titulo": "DanGer Shock",
@@ -3641,14 +3881,16 @@
             }
           ]
         }
-      ]
+      ],
+      "nota_adicional": "En la **comunicación interventricular** grande, usar el soporte con cautela; en la **rotura de la pared libre**, evitarlo, salvo la oxigenación extracorpórea como puente a la **cirugía** urgente.",
+      "pie_nodo": "¿Es candidato a soporte circulatorio mecánico?"
     },
     "desc_edema_pulmonar": {
       "estilo": "advertencia",
       "tipo": "pregunta",
       "titulo": "Aliviar el edema pulmonar con ventilación y vasodilatador",
       "contexto": "El líquido se **redistribuye** al pulmón sin gran sobrecarga total: suele bastar **poco diurético** y ayuda el **vasodilatador**.",
-      "texto": "- Poner **VMNI** cuanto antes si la FR es **>25** o la SpO2 **<90 %**.\n- Si la PAS es **>110 mmHg**, dar **nitroglicerina** IV y vigilar la **PA**.\n- Dar **furosemida** IV a dosis habitual.\n- Tratar la **causa** (la emergencia hipertensiva, la isquemia).",
+      "texto": "- Poner **VMNI** cuanto antes si la FR es **>25** o la SpO2 **<90 %**.\n- Si la PAS es **>110 mmHg**, dar **nitroglicerina** IV y vigilar la **PA**.\n- Dar el **primer bolo de furosemida IV**: **40 mg**, o el doble de su dosis oral si ya la tomaba.\n- Tratar la **causa** (la emergencia hipertensiva, la isquemia).",
       "pie_nodo": "¿Mejora la dificultad respiratoria con el tratamiento?",
       "opciones": [
         {
@@ -3657,8 +3899,7 @@
         },
         {
           "texto": "No, progresa la falla respiratoria",
-          "siguiente_nodo": "desc_intubacion",
-          "color": "rojo"
+          "siguiente_nodo": "desc_intubacion"
         }
       ],
       "farmacos": [
@@ -3681,12 +3922,18 @@
             "unidad": "mcg",
             "periodo": "hora"
           }
+        },
+        {
+          "nombre": "Furosemida IV",
+          "dosis": "**40 mg** IV si no tomaba diurético",
+          "pauta": "Si ya lo tomaba, **el doble** de su dosis oral diaria.",
+          "paginas": "5393"
         }
       ],
       "alertas": [
         {
           "titulo": "Opioides de rutina",
-          "texto": "La morfina **deprime la respiración** y empeora el pronóstico: no darla salvo **dolor o ansiedad** intratables."
+          "texto": "La morfina puede causar **falla respiratoria**: no darla salvo **dolor o ansiedad** intratables."
         }
       ],
       "nota_adicional": "Los vasodilatadores **no reducen la mortalidad**, pero sí la **intubación**: valen sobre todo en el edema pulmonar con **PA alta**.",
@@ -3794,6 +4041,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Furosemida 40 mg o el doble de la dosis oral",
+          "paginas": "5393",
+          "texto": "Patients naïve to diuretics usually respond well to 40 mg of i.v. furosemide or equivalent, whereas i.v. doses of two times the patient’s usual oral diuretic dose should be considered",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ]
     },
@@ -3803,11 +4059,11 @@
       "chips": [
         "UCI"
       ],
-      "titulo": "Intubar si la falla respiratoria progresa",
-      "texto": "- Intubar si cumple alguno de los **criterios** de la lista pese al oxígeno o la **VMNI**.\n- Mantener el **vasodilatador** y el diurético si la PA lo permite.\n- Vigilar la **PA** al empezar la ventilación: la presión positiva **reduce la precarga**.",
+      "titulo": "Intubar e iniciar la ventilación mecánica",
+      "texto": "- Intubar si cumple alguno de los **criterios** de la lista pese al oxígeno o la **VMNI**.\n- Mantener el **vasodilatador** y el diurético si la PA lo permite.\n- Vigilar la **PA** al empezar la ventilación, porque la presión positiva **reduce la precarga**.",
       "opciones": [
         {
-          "texto": "Vía aérea asegurada",
+          "texto": "Vía aérea asegurada o VMNI mantenida",
           "siguiente_nodo": "desc_diureticos"
         }
       ],
@@ -3869,7 +4125,7 @@
     "trat_agudo_eval": {
       "tipo": "pregunta",
       "titulo": "Confirmar la descompensación y ver qué lado predomina",
-      "texto": "- Medir el **NT-proBNP**:\n  - **<300 pg/mL** (BNP **<100 pg/mL**): descompensación poco probable.\n  - Probable por edad: **>450** antes de 50 años, **>900** de 50 a 74, **>1800** después.\n  - **>5000 pg/mL**: riesgo muy alto; **hospitalizar**.\n- Pedir **ecocardiograma** y, si se sabe hacer, **ecografía pulmonar**.",
+      "texto": "- Medir el **NT-proBNP**; con **<300 pg/mL** (BNP **<100 pg/mL**), la descompensación es poco probable.\n- Leerlo según la edad; es probable si pasa de:\n  - **450 pg/mL** antes de los 50 años.\n  - **900 pg/mL** de 50 a 74 años.\n  - **1800 pg/mL** desde los 75 años.\n- Con **>5000 pg/mL** el riesgo es muy alto: en general, **hospitalizar**.\n- Pedir **ecocardiograma** y, si se sabe hacer, **ecografía pulmonar**.",
       "pie_nodo": "¿Qué congestión predomina?",
       "opciones": [
         {
@@ -3961,8 +4217,8 @@
           "recurso": "fallacardiaca_ntprobnp_edad.png",
           "titulo": "NT-proBNP según la edad",
           "descripcion": "Umbrales de NT-proBNP por edad en consulta y en urgencias.",
-          "info": "En {#2FB36D:verde} la IC es poco probable; en {#F07F3C:naranja}, probable en consulta; en {#EF5454:rojo}, descompensación probable. En urgencias, **<300 pg/mL** la hace poco probable y **>5000 pg/mL** obliga a **hospitalizar**.",
-          "en_texto": "Probable por edad",
+          "info": "En {#2FB36D:verde} la IC es poco probable; en {#CBD5E1:gris}, deciden la clínica y el eco; en {#F07F3C:naranja}, probable en consulta; en {#EF5454:rojo}, descompensación probable. Con **>5000 pg/mL** el riesgo es muy alto: en general, **hospitalizar**.",
+          "en_texto": "Leerlo según la edad",
           "referencias": [
             {
               "titulo": "Péptido: descartar descompensación",
@@ -4016,14 +4272,14 @@
     "trat_agudo_congestion": {
       "tipo": "pregunta",
       "titulo": "Aliviar la congestión pulmonar y mantener la terapia de base",
-      "texto": "- Dar oxígeno **sólo** si la SpO2 es **<90 %** o la PaO2 **<60 mmHg**.\n- Valorar un **vasodilatador** IV si la PAS es **>110 mmHg**.\n- **No suspender** la terapia de base si no hay **hipoperfusión**.\n- Empezar la **descongestión** con diurético IV.",
+      "texto": "- Dar oxígeno **sólo** si la SpO2 es **<90 %** o la PaO2 **<60 mmHg**.\n- Valorar **nitroglicerina IV** si la PAS es **>110 mmHg**.\n- **No suspender** la terapia de base si no hay **hipoperfusión**.\n- Empezar la **descongestión** con diurético IV.",
       "opciones": [
         {
           "texto": "Oxígeno y vasodilatador valorados",
           "siguiente_nodo": "desc_diureticos"
         }
       ],
-      "nota_adicional": "El **oxígeno sin hipoxemia** puede hacer daño: titularlo para mantener la SpO2 en **90 %** o más, no más alto de lo necesario.",
+      "nota_adicional": "Dar oxígeno sin **hipoxemia** no ayuda y puede hacer **daño**, según los ensayos.",
       "evidencia": {
         "clase": "I",
         "nivel": "C",
@@ -4101,6 +4357,33 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S14: nitroglicerina",
+          "paginas": "supl. 25",
+          "texto": "Start with 10–20 µg/min, increase up to 200 µg/min (consider starting with 1–2 mg boluses in severely hypertensive patients with acute pulmonary oedema)",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl.: vasodilatador y estenosis aórtica",
+          "paginas": "supl. 25",
+          "texto": "they should be used with extreme caution in patients with left ventricular hypertrophy and/or severe aortic stenosis.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        }
+      ],
+      "farmacos": [
+        {
+          "nombre": "Nitroglicerina",
+          "dosis": "**10-20 µg/min** en infusión IV",
+          "pauta": "Subir hasta **200 µg/min** según la **PA**.",
+          "nota": "Vigilar la **PA**; cautela en la **estenosis aórtica**.",
+          "paginas": "supl. 25"
         }
       ]
     },
@@ -4108,7 +4391,7 @@
       "tipo": "pregunta",
       "titulo": "Buscar la causa de la IC derecha y ajustar el volumen",
       "contexto": "El **ventrículo derecho** depende de la precarga: tanto el exceso como la falta de **volumen** lo descompensan.",
-      "texto": "- Confirmar la **congestión sistémica**: ingurgitación yugular, edema y hepatomegalia.\n- Descartar un **TEP** y un **infarto del VD**, que tienen tratamiento propio.\n- Ajustar el **volumen** con cuidado y descongestionar con **diurético**.\n- Usar la **VMNI** con cautela: baja la **precarga** y la PA.\n- Vigilar la **función renal y hepática**.",
+      "texto": "- Confirmar la **congestión sistémica** por la ingurgitación yugular, el edema y la hepatomegalia.\n- Descartar un **TEP** y un **infarto del VD**, que tienen tratamiento propio.\n- Ajustar el **volumen** con cuidado y descongestionar con **diurético**.\n- Usar la **VMNI** con cautela, porque baja la **precarga** y la PA.",
       "opciones": [
         {
           "texto": "Causa buscada",
@@ -4209,6 +4492,14 @@
       "texto": "- Pensar en las causas que **imitan** la descompensación:\n  - **Neumonía** o sepsis.\n  - **EPOC** o asma exacerbadas.\n  - **TEP**.\n  - **Anemia** grave.\n  - **Lesión renal** con sobrecarga.",
       "enlaces": [
         {
+          "texto": "Neumonía",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/neumonia.json"
+        },
+        {
+          "texto": "Sepsis y choque séptico",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
+        },
+        {
           "texto": "EPOC",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/epoc.json"
         },
@@ -4217,20 +4508,16 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/asma_gina2025.json"
         },
         {
-          "texto": "Lesión renal aguda",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/aki.json"
+          "texto": "Tromboembolismo pulmonar",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/tep.json"
         },
         {
           "texto": "Anemia en el adulto",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/anemiasadultos.json"
         },
         {
-          "texto": "Neumonía",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/neumonia.json"
-        },
-        {
-          "texto": "Sepsis y choque séptico",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
+          "texto": "Lesión renal aguda",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/aki.json"
         }
       ],
       "referencias": [
@@ -4275,7 +4562,7 @@
     "desc_diureticos": {
       "tipo": "pregunta",
       "titulo": "Descongestionar con diurético de asa IV",
-      "texto": "- Dar **furosemida IV**:\n  - **40 mg** si no tomaba diurético.\n  - El **doble** de su dosis oral diaria si ya lo tomaba; más en la **ERC**.\n- Medir el **sodio urinario** a las **2 h** y la **diuresis** en las primeras **6 h**.\n- Medir creatinina y electrolitos al menos **cada 24 h**.",
+      "texto": "- Dar **furosemida IV**, si no la recibió ya:\n  - **40 mg** si no tomaba diurético.\n  - El **doble** de su dosis oral diaria si ya lo tomaba; más en la **ERC**.\n- Medir el **sodio urinario** a las **2 h** y la **diuresis** en las primeras **6 h**.",
       "pie_nodo": "¿Hay buena respuesta diurética?",
       "opciones": [
         {
@@ -4390,17 +4677,17 @@
     "desc_diuretico_escalar": {
       "tipo": "pregunta",
       "titulo": "Duplicar el diurético o añadir acetazolamida",
-      "texto": "- **Duplicar** la dosis de diurético de asa IV.\n- O añadir, si ya tomaba diurético de asa:\n  - **Acetazolamida IV**, preferible en la **ERC avanzada**.\n  - O **hidroclorotiazida** oral, con la dosis según la **TFG**.\n- Repetir el **sodio urinario** a las 2-6 h y la diuresis a las 6 h.",
+      "texto": "- Elegir **una** opción:\n  - **Duplicar** la dosis del diurético de asa IV.\n  - Añadir **acetazolamida IV**, de elección con **alcalosis** (bicarbonato **≥27 mEq/L**) o ERC avanzada.\n  - Añadir **hidroclorotiazida** oral según la **TFG**, salvo con potasio o sodio bajos.\n- Las dos últimas, en quien ya tomaba **diurético de asa** antes.\n- Repetir el **sodio urinario** a las 2-6 h y la diuresis a las 6 h.",
       "pie_nodo": "¿Mejora la respuesta diurética con el ajuste?",
       "opciones": [
         {
           "texto": "Sí, mejora",
-          "siguiente_nodo": "desc_fmt"
+          "siguiente_nodo": "desc_fmt",
+          "descripcion": "Sodio urinario ≥70 mEq/L o diuresis ≥100 mL/h"
         },
         {
-          "texto": "Aún no",
-          "siguiente_nodo": "desc_resistencia",
-          "descripcion": "Escalar hasta la dosis máxima"
+          "texto": "No, sigue la respuesta insuficiente",
+          "siguiente_nodo": "desc_resistencia"
         }
       ],
       "farmacos": [
@@ -4469,6 +4756,24 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S13: acetazolamida en alcalosis",
+          "paginas": "supl. 24",
+          "texto": "Studies suggest that acetazolamide is the medication of choice to combine with loop diuretics in patients with metabolic alkalosis (bicarbonate levels ≥27 mmol/L)",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S13: tiazidas",
+          "paginas": "supl. 24",
+          "texto": "More frequently associated with worsened renal function and hypokalaemia. Avoid if hypokalaemia and hyponatraemia",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
       ]
     },
@@ -4476,7 +4781,7 @@
       "estilo": "advertencia",
       "tipo": "pregunta",
       "titulo": "Escalar el diurético hasta la dosis máxima",
-      "texto": "- Subir el diurético de asa **progresivamente** hasta **600 mg/día** de furosemida (hasta **1000 mg** en ERC grave).\n- Añadir **otros diuréticos** de distinto mecanismo.\n- Si en **24 h** la diuresis es **<3 L** y persiste la congestión, escalar más el **segundo día**.\n- Valorar la **ultrafiltración** si fracasa todo lo anterior.",
+      "texto": "- Subir el diurético de asa **progresivamente** hasta **600 mg/día** de furosemida (hasta **1000 mg** en ERC grave).\n- Añadir **metolazona** u otro diurético de distinto mecanismo.\n- Si en **24 h** la diuresis es **<3 L** y persiste la congestión, escalar más el **segundo día**.\n- Valorar la **ultrafiltración** si fracasa todo lo anterior.",
       "pie_nodo": "¿Responde a la escalada máxima?",
       "opciones": [
         {
@@ -4486,11 +4791,10 @@
         {
           "texto": "No, congestión refractaria",
           "siguiente_nodo": "nodo_seguimiento",
-          "descripcion": "Valorar IC avanzada y remitir",
-          "color": "rojo"
+          "descripcion": "Valorar IC avanzada y remitir"
         }
       ],
-      "nota_adicional": "La **resistencia al diurético** es uno de los criterios de **IC avanzada** («regla de tres»): valorar remitir a un **centro de IC avanzada**.",
+      "nota_adicional": "La **resistencia al diurético** es un signo de **IC avanzada**: valorar remitir a un **centro de IC avanzada**.",
       "referencias": [
         {
           "titulo": "Dosis máxima de furosemida",
@@ -4565,9 +4869,8 @@
     },
     "desc_fmt": {
       "tipo": "pregunta",
-      "titulo": "Empezar la terapia de base durante el ingreso",
-      "contexto": "Empezarla en el ingreso es **seguro**, ayuda a **descongestionar** y evita que quede sin iniciar al alta.",
-      "texto": "- **Mantener** o reintroducir cuanto antes la que ya tomaba.\n- Empezar el **iSGLT2** tras la estabilización inicial.\n- Añadir el **ARM** y el **ARNI**, mejor **a la vez**.\n- Empezar el **betabloqueador** ya **estable y euvolémico**.\n- Ir más despacio con TFG baja, **hipotensión** o hiperpotasemia previa.",
+      "titulo": "Empezar la terapia de base durante la hospitalización",
+      "texto": "- **Mantener** o reintroducir cuanto antes la que ya tomaba.\n- Empezar el **iSGLT2** tras la estabilización inicial.\n- Añadir el **ARM** y, en la **ICFEr**, el ARNI, mejor a la vez.\n- En la ICFEr, empezar el **betabloqueador** ya **estable y euvolémico**.\n- Ir más despacio con TFG baja, **hipotensión** o hiperpotasemia previa.",
       "opciones": [
         {
           "texto": "Terapia de base en marcha",
@@ -4584,7 +4887,7 @@
         {
           "nombre": "Empagliflozina",
           "dosis": "**10 mg** VO al día",
-          "pauta": "Empezar en el **ingreso**, tras la **estabilización** inicial.",
+          "pauta": "Empezar en la **hospitalización**, tras la **estabilización** inicial.",
           "paginas": "5395"
         }
       ],
@@ -4675,12 +4978,19 @@
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
+      ],
+      "enlaces": [
+        {
+          "texto": "Dosis de inicio y objetivo",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_cronico_hfref"
+        }
       ]
     },
     "desc_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar la descongestión cada día",
-      "texto": "- Registrar **cada día** el peso, el **balance de líquidos**, la diuresis y los signos de congestión.\n- Medir **creatinina y electrolitos** al menos cada **24 h**.\n- Repetir el diurético IV **cada 12 h** hasta descongestionar.\n- Mantener la ingesta de líquidos **menor que la diuresis**.\n- Dar **tromboprofilaxis** si está inmovilizado o tiene otros factores de riesgo.",
+      "texto": "- Registrar **cada día** lo de la lista.\n- Repetir el **diurético IV** cada **12 h** hasta descongestionar.\n- Mantener la **ingesta de líquidos** por debajo de la diuresis.",
       "pie_nodo": "¿Tiene alguna complicación del tratamiento?",
       "opciones": [
         {
@@ -4689,16 +4999,23 @@
         },
         {
           "texto": "La creatinina sube",
-          "siguiente_nodo": "desc_funcion_renal"
+          "siguiente_nodo": "desc_funcion_renal",
+          "descripcion": "Más de lo esperable o sin descongestión"
         },
         {
-          "texto": "Potasio o sodio bajos",
-          "siguiente_nodo": "desc_electrolitos"
+          "texto": "Potasio o sodio alterados",
+          "siguiente_nodo": "desc_electrolitos",
+          "descripcion": "Potasio ≤3,5 o >5,5 mEq/L; sodio <135 mEq/L"
         },
         {
-          "texto": "Hipotensión o hipoperfusión",
+          "texto": "Hipotensión sin hipoperfusión",
+          "siguiente_nodo": "desc_hipotension",
+          "descripcion": "PA baja con buena perfusión"
+        },
+        {
+          "texto": "Hipoperfusión",
           "siguiente_nodo": "trat_agudo_shock",
-          "descripcion": "Revisar la perfusión y el lactato",
+          "descripcion": "Extremidades frías, oliguria, confusión o lactato alto",
           "color": "rojo"
         }
       ],
@@ -4774,7 +5091,7 @@
     "desc_funcion_renal": {
       "tipo": "pregunta",
       "titulo": "Interpretar la subida de la creatinina",
-      "texto": "- Mirar la **respuesta diurética** antes de la creatinina:\n  - Si **descongestiona**, una subida pequeña y transitoria es **aceptable**: seguir.\n  - Si **no descongestiona**, buscar **hipoperfusión** o un exceso de diurético.\n- No suspender por ello el **iSGLT2**, el ARM ni el ARNI.\n- Suspenderlos sólo con **lesión renal aguda** y TFG **<15**.",
+      "texto": "- Mirar la **respuesta diurética** antes que la creatinina:\n  - Si **descongestiona**, una subida pequeña y transitoria es **aceptable**.\n  - Si **no descongestiona**, buscar **hipoperfusión** o exceso de diurético.\n- Ajustar la terapia de base con las reglas del paso de **potasio o creatinina altos**.\n- Con **lesión renal aguda** y TFG **<15**, puede hacer falta suspenderla un tiempo.",
       "opciones": [
         {
           "texto": "Causa revisada",
@@ -4782,6 +5099,11 @@
         }
       ],
       "enlaces": [
+        {
+          "texto": "Potasio o creatinina altos",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_k_renal"
+        },
         {
           "texto": "Lesión renal aguda",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/aki.json"
@@ -4832,6 +5154,33 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S7: ARM con TFG <20",
+          "paginas": "supl. 17",
+          "texto": "Withhold an MRA (if eGFR drops below 20 mL/min/1.73 m2). • If using concomitant loop and thiazide diuretic, stop thiazide diuretic.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: TFG cae >30 %",
+          "paginas": "supl. 18",
+          "texto": "If eGFR decreases to >30%, halve the dose, monitor blood chemistry closely, and consider seeking specialist advice.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S4: suspender",
+          "paginas": "supl. 12",
+          "texto": "If potassium rises to >5.5 mmol/L or creatinine increases by >100% or to eGFR <20 mL/min/1.73 m2, the ACE-I (or ARB) should be stopped and specialist advice sought.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
       ],
       "burbujas": [
@@ -4855,12 +5204,17 @@
     },
     "desc_electrolitos": {
       "tipo": "pregunta",
-      "titulo": "Corregir el potasio o el sodio bajos",
-      "texto": "- **Potasio bajo**: añadir o subir el **ARM** y dar **suplementos** de potasio y magnesio.\n- **Sodio bajo** con **sobrecarga** de volumen:\n  1. **Restringir** los líquidos.\n  2. Subir el diurético de asa o añadir **acetazolamida** o hidroclorotiazida.\n- **Sodio bajo** con **poco volumen**: suspender la tiazida y bajar el diurético de asa.",
+      "titulo": "Corregir el potasio y el sodio",
+      "texto": "- **Potasio ≤3,5 mEq/L**: añadir o subir el **ARM** y dar potasio y magnesio.\n- **Potasio >5,5 mEq/L**: bajar el **ARM** a la mitad; con **>6,0**, suspenderlo.\n- **Sodio <135 mEq/L** con **sobrecarga**:\n  1. **Restringir** los líquidos.\n  2. Subir el diurético de asa o añadir **acetazolamida** o hidroclorotiazida.\n  3. Si persiste: tolvaptán, inotrópico IV o **ultrafiltración**.\n- **Sodio bajo** con poco volumen: suspender la **tiazida** y bajar el diurético de asa.",
       "opciones": [
         {
-          "texto": "Electrolitos corregidos",
+          "texto": "Sí",
           "siguiente_nodo": "desc_vigilancia"
+        },
+        {
+          "texto": "Aún no",
+          "siguiente_nodo": "desc_electrolitos",
+          "descripcion": "Seguir corrigiendo y medir cada 24 h"
         }
       ],
       "referencias": [
@@ -4908,14 +5262,51 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Supl. tabla S7: hiponatremia refractaria",
+          "paginas": "supl. 17",
+          "texto": "Consider AVP antagonist (e.g. tolvaptan if available). ⚬ Intravenous inotropic support. ⚬ Consider ultrafiltration.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: ARM y potasio",
+          "paginas": "supl. 18",
+          "texto": "If K+ rises above 5.5 mmol/L, halve a dose and monitor blood chemistry closely. • If K+ rises to >6.0 mmol/L, interrupt MRA immediately and seek specialist advice.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S7: hiponatremia",
+          "paginas": "supl. 17",
+          "texto": "Hyponatraemia (<135 mmol/L): • Volume depleted: ⚬ Stop thiazide or switch to loop diuretic, if possible.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S7: hipopotasemia",
+          "paginas": "supl. 16",
+          "texto": "Significant hypokalaemia (K+ ≤3.5 mmol/L)—may be made worse by diuretic.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
-      ]
+      ],
+      "pie_nodo": "¿Se han corregido el potasio y el sodio?"
     },
     "desc_descongestion": {
       "tipo": "pregunta",
       "titulo": "Comprobar la descongestión completa",
       "contexto": "La **congestión residual** al alta es la principal causa de **reingreso** precoz.",
-      "texto": "- Comprobar las metas de la tabla antes de planear el alta.\n- Pasar a **diurético oral** cuando esté descongestionado, a la dosis que mantenga el volumen.\n- Revisar **creatinina, potasio** y péptido antes del alta.",
+      "texto": "- Comprobar las **metas de descongestión** de la tabla antes de planear el alta.\n- Revisar **creatinina, potasio** y péptido antes del alta.",
       "pie_nodo": "¿Ha logrado la descongestión completa?",
       "opciones": [
         {
@@ -4923,9 +5314,14 @@
           "siguiente_nodo": "desc_alta"
         },
         {
-          "texto": "Aún no",
+          "texto": "Aún no, pero sigue perdiendo peso",
           "siguiente_nodo": "desc_vigilancia",
           "descripcion": "Seguir el diurético IV cada 12 h"
+        },
+        {
+          "texto": "No, la respuesta diurética se frenó",
+          "siguiente_nodo": "desc_diuretico_escalar",
+          "descripcion": "Sodio urinario <70 mEq/L, diuresis <100 mL/h o <3 L en 24 h con congestión"
         }
       ],
       "tabla": {
@@ -5018,6 +5414,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Diuresis <3 L en 24 h",
+          "paginas": "5394",
+          "texto": "If diuresis remains <3 l and congestion persists, further diuretic escalation should be considered during the second day of treatment.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ]
     },
@@ -5025,7 +5430,7 @@
       "tipo": "pregunta",
       "estilo": "exito",
       "titulo": "Preparar el alta con la terapia de base en marcha",
-      "texto": "- Iniciar y **subir rápido** la terapia de base antes del alta.\n- Programar **controles frecuentes** en las primeras **6 semanas**.\n- Corregir la **ferropenia** con hierro IV antes del alta.\n- Inscribirlo en un programa de **rehabilitación** y de manejo de la IC.",
+      "texto": "- Pasar a **diurético oral** a la dosis que mantenga el volumen.\n- Iniciar y **subir rápido** la terapia de base antes del alta, con **controles frecuentes** en las primeras **6 semanas**.\n- En la ICFEr, corregir la **ferropenia** con hierro IV antes del alta.\n- Inscribirlo en un programa de **rehabilitación** y de manejo de la IC.",
       "opciones": [
         {
           "texto": "Alta planeada",
@@ -5037,13 +5442,11 @@
         "titulo": "Antes del alta",
         "items": [
           "Sin signos de congestión",
-          "Diurético oral a dosis estable",
           "Los cuatro fármacos de base iniciados (ICFEr)",
           "Creatinina y potasio estables",
           "Ferritina y TSAT medidas",
           "Desencadenante tratado",
-          "Educación en peso diario y signos de alarma",
-          "Control en 1-2 semanas"
+          "Educación en peso diario y signos de alarma"
         ]
       },
       "nota_adicional": "Entre el **35 %** y el **44 %** reingresa en el primer año: la **titulación rápida** con controles cercanos **reduce** los reingresos y la muerte.",
@@ -5133,8 +5536,7 @@
         },
         {
           "texto": "Sospecha de IC avanzada",
-          "siguiente_nodo": "seg_ic_avanzada",
-          "color": "rojo"
+          "siguiente_nodo": "seg_ic_avanzada"
         }
       ],
       "referencias": [
@@ -5152,7 +5554,7 @@
     "seg_post_alta": {
       "tipo": "pregunta",
       "titulo": "Ver pronto al paciente y seguir titulando",
-      "texto": "- Revisar al paciente con **frecuencia** durante las primeras **6 semanas**.\n- Subir las dosis en cada visita guiándose por la **PA**, la **FC**, la creatinina, el **potasio** y el NT-proBNP.\n- Buscar **congestión residual**: peso, edemas, ortopnea.\n- Comprobar que entiende el **plan del diurético**.",
+      "texto": "- Revisar al paciente con **frecuencia** durante las primeras **6 semanas**.\n- Subir las dosis en cada visita guiándose por la **PA**, la **FC**, la creatinina, el **potasio** y el NT-proBNP.\n- Buscar **congestión residual** con el peso, los edemas y la ortopnea.\n- Comprobar que entiende el **plan del diurético**.",
       "opciones": [
         {
           "texto": "Titulación en marcha",
@@ -5214,7 +5616,7 @@
     "seg_control": {
       "tipo": "pregunta",
       "titulo": "Revisar cada 6-12 meses en el paciente estable",
-      "texto": "- Revisar los **síntomas**, la **adherencia** y los signos de congestión.\n- Tomar un **ECG** para ver el **QRS** y las arritmias.\n- Pedir hemograma, **electrolitos**, ferritina, TSAT, función renal, hepática y tiroidea.\n- Repetir el **ecocardiograma** sólo si empeora o cambia la conducta.\n- Reforzar el **autocuidado** de la lista.",
+      "texto": "- Revisar los **síntomas** con la clase NYHA, la **adherencia** y los signos de congestión.\n- Tomar un **ECG** para ver el **QRS** y las arritmias.\n- Pedir los **laboratorios**:\n  - Hemograma, ferritina y TSAT.\n  - **Electrolitos** y función renal.\n  - Función hepática y tiroidea.\n- Repetir el **ecocardiograma** sólo si empeora o cambia la conducta.",
       "pie_nodo": "¿Qué encuentras en el control?",
       "opciones": [
         {
@@ -5224,13 +5626,11 @@
         },
         {
           "texto": "Signos de IC avanzada",
-          "siguiente_nodo": "seg_ic_avanzada",
-          "color": "rojo"
+          "siguiente_nodo": "seg_ic_avanzada"
         },
         {
           "texto": "Descompensación",
-          "siguiente_nodo": "nodo_descompensacion",
-          "color": "rojo"
+          "siguiente_nodo": "nodo_descompensacion"
         }
       ],
       "checklist": {
@@ -5239,7 +5639,6 @@
           "Pesarse cada día y saber cuándo subir el diurético",
           "Ejercicio o rehabilitación cardíaca",
           "Vacunas contra la influenza y el neumococo",
-          "Evitar los AINE",
           "Sin restricción de líquidos de rutina",
           "Dejar de fumar y moderar el alcohol",
           "Programa multidisciplinario de IC"
@@ -5382,6 +5781,76 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Tabla 8: clases I y II",
+          "paginas": "5367",
+          "texto": "Class I No limitation of physical activity. Ordinary physical activity does not cause undue breathlessness, fatigue, or palpitations.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Tabla 8: clase NYHA",
+          "paginas": "5367",
+          "texto": "Class II Slight limitation of physical activity. Comfortable at rest, but ordinary physical activity results in undue breathlessness, fatigue, or palpitations.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Tabla 8: clases III y IV",
+          "paginas": "5367",
+          "texto": "Marked limitation of physical activity. Comfortable at rest, but less than ordinary activity results in undue breathlessness, fatigue, or palpitations.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Tabla 8: clase IV",
+          "paginas": "5367",
+          "texto": "Unable to carry on any physical activity without discomfort. Symptoms at rest can be present. If any physical activity is undertaken, discomfort is increased.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        }
+      ],
+      "tabla": {
+        "titulo": "Clase funcional NYHA",
+        "columnas": [
+          "Clase",
+          "Síntomas con la actividad"
+        ],
+        "filas": [
+          [
+            "I",
+            "Sin limitación: la actividad **ordinaria** no causa disnea, fatiga ni palpitaciones"
+          ],
+          [
+            "II",
+            "Limitación **leve**: cómodo en reposo; la actividad ordinaria da síntomas"
+          ],
+          [
+            "III",
+            "Limitación **marcada**: cómodo en reposo; una actividad **menor que la ordinaria** da síntomas"
+          ],
+          [
+            "IV",
+            "No puede hacer **ninguna actividad** sin molestias; puede tener síntomas **en reposo**"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la clase NYHA"
+      },
+      "enlaces": [
+        {
+          "texto": "DAI y TRC",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "trat_hfref_dispositivos"
         }
       ]
     },
@@ -5390,18 +5859,22 @@
       "tipo": "pregunta",
       "titulo": "Reconocer la IC avanzada",
       "contexto": "La IC avanzada (estadio D) tiene una mortalidad **mayor de 40 %** al año con tratamiento médico: **remitir a tiempo** cambia el pronóstico.",
-      "texto": "- Sospecharla con **1 criterio** de la lista de alerta o de la **regla de tres**.\n- Confirmarla con los **cuatro criterios** de la tabla, pese al tratamiento óptimo.\n- Valorar bajar el **betabloqueador** si hay hipoperfusión.",
-      "pie_nodo": "¿Tiene una expectativa de vida muy limitada o contraindicaciones para trasplante o asistencia ventricular?",
+      "texto": "- Remitir **pronto** si tiene IC avanzada o está **en riesgo**: basta **1 criterio** de la lista de alerta o de la **regla de tres**.\n- Confirmar la IC avanzada con los **cuatro criterios** de la tabla, pese al tratamiento óptimo.\n- Valorar bajar el **betabloqueador** si hay hipoperfusión.",
+      "pie_nodo": "¿Cumple los criterios de IC avanzada y puede ser candidato a trasplante o asistencia ventricular?",
       "opciones": [
         {
-          "texto": "No",
-          "siguiente_nodo": "seg_remitir",
-          "descripcion": "Candidato a valorar terapias avanzadas"
+          "texto": "No cumple los cuatro criterios",
+          "siguiente_nodo": "seg_control",
+          "descripcion": "Optimizar el tratamiento y seguir los controles; remitir si está en riesgo"
         },
         {
-          "texto": "Sí",
+          "texto": "Los cumple y es candidato",
+          "siguiente_nodo": "seg_remitir"
+        },
+        {
+          "texto": "Los cumple, con contraindicaciones o vida muy limitada",
           "siguiente_nodo": "seg_paliativos",
-          "descripcion": "Cáncer, demencia, fallo orgánico irreversible o fragilidad grave"
+          "descripcion": "Cáncer, demencia, falla orgánica irreversible o fragilidad grave"
         }
       ],
       "checklist": {
@@ -5439,15 +5912,15 @@
           ],
           [
             "4. Ejercicio",
-            "- No puede hacer ejercicio\n- O camina **<300 m** en 6 minutos\n- O consumo pico de oxígeno **<12-14 mL/kg/min**"
+            "- No puede hacer ejercicio\n- O camina **<300 m** en 6 minutos\n- O consumo pico de oxígeno **<12-14 mL/kg/min** (**12** con betabloqueador) o **<50 %** del predicho"
           ]
         ],
         "resaltar_primera_columna": true,
         "en_texto": "la tabla"
       },
       "evidencia": {
-        "clase": "IIa",
-        "nivel": "C",
+        "clase": "I",
+        "nivel": "A",
         "fuente": "ESC 2026"
       },
       "referencias": [
@@ -5549,13 +6022,58 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Remitir a un centro de IC avanzada (I-A)",
+          "paginas": "5398",
+          "texto": "Early consultation with an advanced HF centre is recommended in patients with advanced HF or at risk of advanced HF, who are motivated and do not have absolute contraindications",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Tabla 14: consumo de oxígeno",
+          "paginas": "5397",
+          "texto": "or pVO2 <12–14 mL/kg/min, or <50% predicted value, estimated to be of cardiac origin. … The cut-off 12 mL/kg/min refers to patients on beta-blocker.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Fig. 16: NYHA II de alto riesgo",
+          "paginas": "5398",
+          "texto": "NYHA class II High-risk according to ‘Rule of three’ or ‘I NEED HELP’ criteria Yes Refer to or discuss with advanced HF centre",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        }
+      ],
+      "burbujas": [
+        {
+          "en_texto": "regla de tres",
+          "titulo": "¿Qué es la regla de tres?",
+          "texto": "Basta **1 de 3**: **≥2** hospitalizaciones por IC (o **1** con inotrópicos) en el último año, **resistencia al diurético** o intolerancia a la terapia de base con **síndrome cardiorrenal**.",
+          "referencias": [
+            {
+              "titulo": "Tabla 15: regla de tres",
+              "paginas": "5398",
+              "texto": "Rule of three criteria (at least 1): • HFH (≥2 or ≥1 requiring inotropes within the last year) • Diuretic resistance • Intolerance to neurohormonal drugs with onset of cardiorenal syndrome",
+              "fuente": "ESC 2026",
+              "anio": "2026",
+              "url": "https://doi.org/10.1093/eurheartj/ehag100",
+              "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+            }
+          ]
         }
       ]
     },
     "seg_remitir": {
       "tipo": "pregunta",
       "titulo": "Remitir pronto a un centro de IC avanzada",
-      "texto": "- Consultar **pronto** con un centro que haga **trasplante** o asistencia ventricular.\n- Pedir una **ergoespirometría** y un **cateterismo derecho** para valorar la candidatura.\n- Mientras tanto, valorar **inotrópicos continuos** como puente si hay **bajo gasto**.\n- Ofrecer **ultrafiltración** o terapia de reemplazo renal si hay **sobrecarga refractaria**.",
+      "texto": "- Consultar **pronto** con un centro que haga **trasplante** o asistencia ventricular.\n- Pedir una **ergoespirometría** y un **cateterismo derecho** para valorar la candidatura.\n- Mientras tanto, valorar **inotrópicos continuos** como puente si hay **bajo gasto**.\n- Con **sobrecarga refractaria**, valorar la **ultrafiltración**; si además hay enfermedad renal terminal, la terapia de reemplazo renal.",
       "opciones": [
         {
           "texto": "Remitido",
@@ -5619,7 +6137,6 @@
     },
     "seg_paliativos": {
       "tipo": "pregunta",
-      "estilo": "exito",
       "titulo": "Integrar los cuidados paliativos",
       "texto": "- Hablar de la **trayectoria** de la enfermedad, los **objetivos** del cuidado y la planificación anticipada.\n- Dar acceso a un **equipo de paliativos** de IC.\n- Tratar la **disnea**, el dolor, la **ansiedad** y la depresión.\n- Decidir con el paciente si **desactivar el DAI**.\n- Seguir cada **3-6 meses**.",
       "opciones": [
@@ -5701,6 +6218,14 @@
           "siguiente_nodo": "esp_fa"
         },
         {
+          "texto": "Valvulopatía o enfermedad coronaria",
+          "siguiente_nodo": "esp_valvulas"
+        },
+        {
+          "texto": "Amiloidosis cardíaca",
+          "siguiente_nodo": "esp_amiloidosis"
+        },
+        {
           "texto": "Ferropenia o anemia",
           "siguiente_nodo": "esp_ferropenia"
         },
@@ -5736,7 +6261,7 @@
     "esp_fa": {
       "tipo": "pregunta",
       "titulo": "Anticoagular y controlar la frecuencia en la FA",
-      "texto": "- Anticoagular según la **CHA₂DS₂-VA**: con **≥2** puntos, indicada; con **1**, considerarla.\n- Preferir un **ACOD** al AVK, salvo **estenosis mitral** moderada o grave o válvula mecánica.\n- Controlar la FC con **betabloqueador**; añadir **digoxina** si no basta. Meta inicial **<110 lpm**.\n- Si llega **inestable**, hacer **cardioversión** urgente.",
+      "texto": "- Anticoagular con **≥2** puntos de la **CHA₂DS₂-VA** y valorarlo con **1**; con **amiloidosis** o miocardiopatía hipertrófica, siempre.\n- Preferir un **ACOD** al AVK, salvo **estenosis mitral** moderada o grave o válvula mecánica.\n- Controlar la FC con **betabloqueador**; añadir **digoxina** si no basta. Meta inicial **<110 lpm**.\n- Si llega **inestable**, hacer **cardioversión** urgente.",
       "opciones": [
         {
           "texto": "FA tratada",
@@ -5754,7 +6279,7 @@
           "texto": "**Flecainida**, propafenona, dronedarona, verapamilo y diltiazem **empeoran** la ICFEr: usar **amiodarona** si hace falta cardiovertir con fármacos."
         }
       ],
-      "nota_adicional": "Valorar la **ablación** si la FA es de carga alta, persistente de **menos de 1 año** y claramente **causa** la IC; con FA permanente y mal control, **ablación del nodo AV** con TRC.",
+      "nota_adicional": "Valorar la **ablación** si la FA es de carga alta, persistente de **menos de 1 año** y claramente **causa** la IC. Con FA permanente **muy sintomática**, mal control y **≥1** hospitalización por IC, **ablación del nodo AV** con TRC.",
       "evidencia": {
         "clase": "I",
         "nivel": "A",
@@ -5904,6 +6429,15 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis y FA",
+          "paginas": "5422",
+          "texto": "In patients with CA and AF, anticoagulation is indicated regardless of CHA2DS2-VA score, due to high thromboembolic risk.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "media": [
@@ -5948,15 +6482,15 @@
     "esp_ferropenia": {
       "tipo": "pregunta",
       "titulo": "Corregir la ferropenia con hierro IV",
-      "contexto": "La ferropenia empeora los **síntomas** y el pronóstico aunque no haya **anemia**; el hierro oral no la corrige bien.",
-      "texto": "- Medir **ferritina y saturación de transferrina** al diagnóstico y en los controles.\n- Diagnosticar ferropenia con **TSAT <20 %** (antes: ferritina **<100 ng/mL**, o **100-299** con TSAT **<20 %**).\n- En la ICFEr sintomática, dar **hierro IV**: carboximaltosa o **derisomaltosa** férrica.\n- No usar **eritropoyetina** para la anemia de la IC.",
+      "contexto": "La ferropenia empeora los **síntomas**, la calidad de vida y el **pronóstico**, haya o no **anemia**.",
+      "texto": "- Medir **ferritina y saturación de transferrina** al diagnóstico y en los controles.\n- Diagnosticar la ferropenia con **TSAT <20 %**.\n- En la ICFEr sintomática, dar **hierro IV**: carboximaltosa o **derisomaltosa** férrica.\n- No usar **eritropoyetina** para la anemia de la IC.",
       "opciones": [
         {
           "texto": "Hierro indicado",
           "siguiente_nodo": "nodo_seguimiento"
         }
       ],
-      "nota_adicional": "En la **ICFEp** hay **pocos datos** sobre el hierro IV: la recomendación es para la **ICFEr** sintomática.",
+      "nota_adicional": "La definición anterior (ferritina **<100 ng/mL**, o **100-299** con TSAT **<20 %**) incluía pacientes **sin ferropenia** real. En la **ICFEp** hay pocos datos sobre el hierro IV.",
       "enlaces": [
         {
           "texto": "Anemia en el adulto",
@@ -6049,6 +6583,24 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Ferropenia y pronóstico",
+          "paginas": "5411",
+          "texto": "Iron deficiency and anaemia are common in patients with HF and are associated with reduced functional capacity, and worse QoL and prognosis independently of each other.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "La definición anterior de ferropenia",
+          "paginas": "5412",
+          "texto": "The current definition of ID may include patients with TSATs (≥20%) and serum ferritin levels (20–100 mg/L) in the normal range, who are probably not iron deficient",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
         }
       ],
       "burbujas": [
@@ -6074,7 +6626,7 @@
       "tipo": "pregunta",
       "titulo": "Mantener la terapia de base en la ERC",
       "contexto": "Con ERC el riesgo es **mayor**, así que la terapia de base da un **beneficio absoluto** aún mayor.",
-      "texto": "- Empezar los **cuatro fármacos** también en la ERC, con controles más **frecuentes**.\n- Aceptar una subida de creatinina **<50 %** si la TFG sigue **>15**.\n- Respetar los límites: **iSGLT2** no empezar con TFG **<20**; ARM esteroideo con cautela si **<30**.\n- Para la hiperpotasemia, seguir el paso de **ajuste por potasio**.",
+      "texto": "- Empezar los **cuatro fármacos** también en la ERC, con controles más **frecuentes**.\n- Aceptar una subida de creatinina **<50 %** si la TFG sigue **>15 mL/min/1,73 m²**.\n- No empezar el **iSGLT2** con TFG **<20 mL/min/1,73 m²**.\n- Usar con cautela el **ARM esteroideo** si la TFG es **<30 mL/min/1,73 m²**.\n- Para la hiperpotasemia, seguir el paso de **ajuste por potasio**.",
       "opciones": [
         {
           "texto": "Plan ajustado",
@@ -6175,7 +6727,7 @@
     "esp_diabetes": {
       "tipo": "pregunta",
       "titulo": "Elegir los antidiabéticos que protegen el corazón",
-      "texto": "- Dar un **iSGLT2** a todos, sea cual sea la HbA1c.\n- En la **ICFEp** con diabetes, sobre todo con obesidad, añadir **semaglutida o tirzepatida**.\n- No usar **saxagliptina** ni **glitazonas**.\n- Si necesita **insulina**, vigilar si empeora la IC.\n- No dar metformina con TFG **<30**.",
+      "texto": "- Dar un **iSGLT2** a todos, sea cual sea la HbA1c.\n- En la **ICFEp** con diabetes, sobre todo con obesidad, añadir **semaglutida o tirzepatida**.\n- Si necesita **insulina**, vigilar si empeora la IC.\n- No dar **metformina** con TFG **<30 mL/min/1,73 m²**.",
       "opciones": [
         {
           "texto": "Tratamiento ajustado",
@@ -6188,7 +6740,7 @@
           "texto": "Aumentan cerca de un **30 %** las hospitalizaciones por IC: están **contraindicadas**."
         }
       ],
-      "nota_adicional": "El iSGLT2 puede causar **cetoacidosis euglucémica** (glucosa **<300 mg/dL**) de inicio insidioso; no está indicado en la **diabetes tipo 1**.",
+      "nota_adicional": "El iSGLT2 puede causar **cetoacidosis euglucémica**, de inicio **insidioso**; no está indicado en la **diabetes tipo 1**.",
       "enlaces": [
         {
           "texto": "Diabetes mellitus tipo 2",
@@ -6199,11 +6751,6 @@
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/crisishiperglicemica.json"
         }
       ],
-      "evidencia": {
-        "clase": "I",
-        "nivel": "A",
-        "fuente": "ESC 2026"
-      },
       "referencias": [
         {
           "titulo": "iSGLT2 en IC y diabetes",
@@ -6274,7 +6821,7 @@
       "estilo": "advertencia",
       "tipo": "pregunta",
       "titulo": "Ajustar el tratamiento antes y durante el embarazo",
-      "texto": "- Dar **consejo preconcepcional** a toda mujer con IC: tratamiento, anticoncepción y riesgos.\n- Durante el embarazo, **suspender** los fármacos de la alerta.\n- Cambiar el betabloqueador no selectivo por uno **β1 selectivo** (metoprolol, bisoprolol).\n- Coordinar el **parto** con un equipo de cardiología y obstetricia.",
+      "texto": "- Dar **consejo preconcepcional** sobre el tratamiento, la anticoncepción y los riesgos.\n- En el embarazo, suspender los fármacos de la alerta y tratar con **diuréticos**, betabloqueador **β1 selectivo** (metoprolol, bisoprolol), hidralazina y nitratos orales.\n- Si se **descompensa**, hospitalizar y decidir con el equipo de **cardiología y obstetricia**.\n- Anticoagular si la FEVI es **<35 %** al final del embarazo o en el posparto.",
       "opciones": [
         {
           "texto": "Plan acordado",
@@ -6284,10 +6831,10 @@
       "alertas": [
         {
           "titulo": "Fármacos teratógenos",
-          "texto": "**IECA, ARA II, ARNI, ARM**, ivabradina e iSGLT2 son **fetotóxicos o teratógenos**: no usarlos en el embarazo."
+          "texto": "**IECA, ARA II, ARNI, ARM**, ivabradina e iSGLT2 son **fetotóxicos o teratógenos**: no usarlos en el embarazo; salvo la ivabradina, tampoco en la **lactancia**."
         }
       ],
-      "nota_adicional": "La **miocardiopatía periparto** es la causa más frecuente de IC en el embarazo: suele aparecer en el **tercer trimestre** o tras el parto, a veces **mucho después**.",
+      "nota_adicional": "La **miocardiopatía periparto** suele aparecer al final del embarazo o tras el parto; la **bromocriptina** puede mejorar la función, pero obliga a **anticoagular**.",
       "enlaces": [
         {
           "texto": "Atención del parto",
@@ -6344,13 +6891,67 @@
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
           "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Embarazo: tratamiento de la IC",
+          "paginas": "supl. 43",
+          "texto": "hospital admission and assessment by a multidisciplinary Pregnancy Heart Team. Consideration of the most appropriate location for treatment and, eventually, delivery is based on the expertise available",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Embarazo: fármacos posibles",
+          "paginas": "supl. 43",
+          "texto": "Milder cases can be treated with diuretics, betablockers, hydralazine, and oral nitrates. Severe cases, such as those presenting with HF and cardiogenic shock, may need transfer to advanced HF centres",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Bromocriptina en la miocardiopatía periparto",
+          "paginas": "supl. 43",
+          "texto": "Bromocriptine, a prolactin inhibitor, may be considered for PPCM to improve heart function, although it increases deep vein thrombosis risk, necessitating concurrent anticoagulation.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Anticoagular con FEVI <35 %",
+          "paginas": "supl. 43",
+          "texto": "anticoagulation should be considered for those with LVEF <35% during late pregnancy and post-partum.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S5: contraindicaciones del ARNI",
+          "paginas": "supl. 12",
+          "texto": "Contraindications: (1) History of angio-oedema. (2) (3) Known bilateral renal artery stenosis. Pregnancy/risk of pregnancy and breastfeeding period.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S8: ARM en el embarazo y la lactancia",
+          "paginas": "supl. 18",
+          "texto": "Known allergic reaction/other adverse reaction (drug-specific). Pregnancy/risk of pregnancy and breastfeeding period.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
         }
       ]
     },
     "esp_otras": {
       "tipo": "pregunta",
       "titulo": "Manejar las otras comorbilidades",
-      "texto": "- **EPOC**: preferir un betabloqueador **cardioselectivo** (bisoprolol, metoprolol, nebivolol).\n- **HTA** en la ICFEr: añadir **amlodipino** si hace falta; nunca verapamilo, diltiazem ni **moxonidina**.\n- **Gota**: alopurinol para prevenir y **colchicina** para la crisis, sin AINE.\n- **Tiroides**: medirla al diagnóstico y en el seguimiento.\n- Buscar **ansiedad, depresión** y fragilidad.",
+      "texto": "- **EPOC**: preferir un betabloqueador **cardioselectivo** (bisoprolol, metoprolol, nebivolol).\n- **HTA** en la ICFEr: añadir **amlodipino** si hace falta; nunca verapamilo, diltiazem ni **moxonidina**.\n- **Gota**: alopurinol para prevenir y **colchicina** para la crisis, sin AINE.\n- Medir la **función tiroidea** al diagnóstico y en el seguimiento.\n- Buscar **ansiedad, depresión** y fragilidad.",
       "opciones": [
         {
           "texto": "Comorbilidades revisadas",
@@ -6431,6 +7032,231 @@
           "titulo": "Disfunción eréctil",
           "paginas": "5414",
           "texto": "phosphodiesterase-V inhibitors are generally safe and can be considered in patients who are compensated, avoiding their concomitant use with nitrates.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Servoventilación en apnea central (III-A)",
+          "paginas": "5413",
+          "texto": "The use of adaptive servo-ventilation (ASV) in patients with HFrEF and predominantly CSA is not recommended, based on the results of the SERVE-HF trial",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Antidepresivos tricíclicos",
+          "paginas": "5413",
+          "texto": "Tricyclic antidepressants should be avoided for the treatment of depression in HF as they may cause hypotension, WHF, and arrhythmias.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Alfabloqueadores",
+          "paginas": "5409",
+          "texto": "Alpha-blockers may be continued for the treatment of prostatic hyperplasia in the absence of hypotension but are not recommended for the treatment of hypertension in HFrEF.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Servoventilación, tricíclicos y alfabloqueadores",
+          "texto": "La **servoventilación** en la ICFEr con apnea **central** aumenta la mortalidad. Los **tricíclicos** causan hipotensión y arritmias, y los alfabloqueadores no se usan para la **HTA** en la ICFEr."
+        }
+      ]
+    },
+    "desc_hipotension": {
+      "tipo": "pregunta",
+      "titulo": "Revisar el volumen y el diurético ante la PA baja",
+      "texto": "- Valorar el **volumen**: durante la diuresis, la PA baja suele ser **exceso de diurético**.\n- Si ya no hay **congestión**, bajar el diurético.\n- Retirar **otros vasodilatadores**, como los nitratos.\n- Si es **asintomática**, no retirar la terapia de base.",
+      "opciones": [
+        {
+          "texto": "Ajuste hecho",
+          "siguiente_nodo": "desc_vigilancia",
+          "descripcion": "Seguir la vigilancia diaria"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Supl. tabla S7: hipovolemia",
+          "paginas": "supl. 17",
+          "texto": "Hypovolaemia/dehydration: • Assess volume status; consider a diuretic dosage reduction.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Supl. tabla S5: hipotensión sintomática",
+          "paginas": "supl. 13",
+          "texto": "Reconsider need for any other vasodilators and reduce dose/stop, if possible. • If no signs or symptoms of congestion, consider reducing diuretic dose.",
+          "fuente": "ESC 2026 (suplemento)",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457. Supplementary data."
+        },
+        {
+          "titulo": "Hipotensión asintomática",
+          "paginas": "5380",
+          "texto": "Asymptomatic or tolerable hypotension should not lead to downtitration or discontinuation of FMT but may require re-evaluation of diuretic use.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Fig. 15: control cada 24 h",
+          "paginas": "5394",
+          "texto": "Check frequently for hypotension/hypoperfusion. Check serum creatinine and electrolytes at least every 24 h",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        }
+      ]
+    },
+    "esp_valvulas": {
+      "tipo": "pregunta",
+      "titulo": "Corregir la valvulopatía y la isquemia que empeoran la IC",
+      "texto": "- **Estenosis aórtica grave** de alto gradiente: intervenir, con TAVI o cirugía, sea cual sea la FEVI, si espera vivir **más de 1 año**.\n- **Insuficiencia mitral secundaria grave** que persiste pese a la terapia óptima en la ICFEr: **reparación percutánea** borde a borde si cumple los criterios.\n- **Angina persistente** pese a los antianginosos: revascularizar.\n- FEVI **≤35 %** con enfermedad de **varios vasos**: preferir la **cirugía** de revascularización.",
+      "opciones": [
+        {
+          "texto": "Plan decidido con el equipo",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ],
+      "evidencia": {
+        "clase": "I",
+        "nivel": "B",
+        "fuente": "ESC 2026"
+      },
+      "referencias": [
+        {
+          "titulo": "Estenosis aórtica (I-B)",
+          "paginas": "5409",
+          "texto": "Aortic valve intervention, SAVR or TAVI, is recommended in patients with severe aortic stenosis and HF to improve symptoms and reduce the risk of death.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Estenosis aórtica: sea cual sea la FEVI",
+          "paginas": "5407",
+          "texto": "Aortic valve intervention is recommended in all patients with HF and a life expectancy >1 year with high-gradient severe aortic stenosis, irrespective of LVEF",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Insuficiencia mitral secundaria (I-B)",
+          "paginas": "5409",
+          "texto": "Mitral transcatheter edge-to-edge repair is recommended in haemodynamically stable, symptomatic patients with HFrEF and persistent severe secondary mitral regurgitation despite optimized FMT and CRT if indicated",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Revascularizar la angina (I-C)",
+          "paginas": "5407",
+          "texto": "Coronary revascularization is recommended in patients with HF, obstructive CAD, and persistent angina, despite FMT for HF and antianginal drugs, to relieve symptoms.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Cirugía de revascularización",
+          "paginas": "5407",
+          "texto": "CABG should be considered as the preferred revascularization strategy, in patients with LVEF ≤35% and multivessel CAD",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        }
+      ]
+    },
+    "esp_amiloidosis": {
+      "tipo": "pregunta",
+      "titulo": "Tratar la amiloidosis cardíaca según su tipo",
+      "texto": "- **TTR** (transtiretina) con NYHA **I-III**: dar **vutrisirán**, tafamidis o acoramidis.\n- **AL** (cadenas ligeras): tratarla con **hematología**, con quimioterapia o trasplante de progenitores.\n- Usar el betabloqueador y el IECA, ARA II o ARNI con **cautela**; el iSGLT2 es seguro.\n- Con **FA**, anticoagular **siempre**, sea cual sea la CHA₂DS₂-VA.",
+      "opciones": [
+        {
+          "texto": "Tratamiento indicado",
+          "siguiente_nodo": "nodo_seguimiento"
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Digoxina en la amiloidosis",
+          "texto": "Tiene un **riesgo alto de toxicidad**: evitarla para controlar la **frecuencia**."
+        }
+      ],
+      "nota_adicional": "Subir el **diurético** una y otra vez es señal de **progresión**: el margen entre congestión y hipovolemia es **estrecho** en la amiloidosis.",
+      "evidencia": {
+        "clase": "I",
+        "nivel": "A",
+        "fuente": "ESC 2026"
+      },
+      "referencias": [
+        {
+          "titulo": "Amiloidosis TTR: tratamiento (I-A)",
+          "paginas": "5360",
+          "texto": "Treatment with a TTR silencer (vutrisiran) or stabilizer (tafamidis or acoramidis) for patients with variant or wild-type transthyretin cardiac amyloidosis and NYHA class I–III is recommended",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis AL",
+          "paginas": "5420",
+          "texto": "Treatment of AL-CA includes chemotherapy or autologous stem cell transplantation with careful monitoring of haematological response, cardiac and organ function.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis: betabloqueador e IECA",
+          "paginas": "5422",
+          "texto": "Beta-blockers and ACE-I/ARNI/ARB use requires caution, individualized decisions, and close monitoring.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis: diuréticos e iSGLT2",
+          "paginas": "5420",
+          "texto": "Increasing diuretic dose is a signal of disease progression with worse outcomes. Evidence supports the safety and benefit of SGLT2-Is.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis y FA",
+          "paginas": "5422",
+          "texto": "In patients with CA and AF, anticoagulation is indicated regardless of CHA2DS2-VA score, due to high thromboembolic risk.",
+          "fuente": "ESC 2026",
+          "anio": "2026",
+          "url": "https://doi.org/10.1093/eurheartj/ehag100",
+          "cita": "Køber L, Adamo M, Ruwald AC, Tomasoni D, et al. 2026 ESC Guidelines for the management of heart failure. Eur Heart J 2026;47(38):5346-5457."
+        },
+        {
+          "titulo": "Amiloidosis: digoxina",
+          "paginas": "5422",
+          "texto": "The use of digoxin is generally discouraged due to high risk of toxicity. Few patients with CA and advanced symptoms may be eligible for heart transplantation",
           "fuente": "ESC 2026",
           "anio": "2026",
           "url": "https://doi.org/10.1093/eurheartj/ehag100",
