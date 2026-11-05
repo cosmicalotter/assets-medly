@@ -1,5 +1,4 @@
 {
-  "oculto": true,
   "titulo": "Desnutrición aguda en menores de 5 años",
   "descripcion": "En este algoritmo se aborda al niño de 0 a 59 meses con riesgo de desnutrición aguda o con desnutrición moderada o severa: clasificarlo, estabilizarlo en el hospital y recuperarlo en casa.",
   "version": "MinSalud Resolución 2350 de 2020 · Resolución 115 de 2026",
@@ -31,7 +30,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Desnutrición aguda en menores de 5 años",
-      "texto": "- **Riesgo de desnutrición aguda:** puntaje Z de peso para la talla o la longitud entre **>-2** y **<-1 DE**.\n- **Desnutrición aguda moderada:** peso para la talla **<-2** y **≥-3 DE**.\n- **Desnutrición aguda severa:** peso para la talla **<-3 DE**; el **kwashiorkor** lleva siempre **edema nutricional**.\n- **Recuperación nutricional:** peso para la talla **≥-1 DE**, sin enfermedades asociadas.",
+      "texto": "- **Riesgo de desnutrición aguda:** puntaje Z de peso para la talla o la longitud de **-2** a menos de **-1 DE**.\n- **Desnutrición aguda moderada:** peso para la talla **<-2** y **≥-3 DE**.\n- **Desnutrición aguda severa:** peso para la talla **<-3 DE**, o **edema nutricional** (el **kwashiorkor** lo lleva siempre).\n- **Recuperación nutricional:** peso para la talla **≥-1 DE**, sin enfermedades asociadas.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -43,7 +42,7 @@
           "siguiente_nodo": "nodo_hospital"
         },
         {
-          "texto": "Seguimiento",
+          "texto": "Ambulatorio",
           "siguiente_nodo": "nodo_seguimiento"
         }
       ],
@@ -139,9 +138,9 @@
       ]
     },
     "diag_abcde": {
-      "tipo": "informativo",
+      "tipo": "pregunta",
       "titulo": "Al captarlo: buscar el choque, la hipoglicemia y el frío",
-      "texto": "- **A-B:** medir la **saturación**; oxígeno si es **<90 %**.\n- **C:** buscar **choque** y deshidratación; el **pliegue** y las lágrimas no son confiables.\n- **D:** si está **letárgico** o convulsiona, **glucometría**: hipoglicemia con **<54 mg/dL**.\n- **E:** temperatura **<35,5 °C** es **hipotermia**; mirar la **piel**.\n- Empezar a estabilizar **donde esté**, mientras se remite.",
+      "texto": "- **A-B:** medir la **saturación**; si es menor de **90 %**, dar **oxígeno**.\n- **C:** buscar **choque** y deshidratación; el **pliegue** y las lágrimas no son confiables.\n- **D:** si está **letárgico** o convulsiona, hacer una **glucometría**: hay hipoglicemia si es menor de **54 mg/dL**.\n- **E:** medir la temperatura (menos de **35,5 °C** es **hipotermia**) y revisar la **piel**.",
       "contexto": "La desnutrición aguda moderada o severa es **urgencia**: se atiende **sin autorización** y de inmediato.",
       "chips": [
         {
@@ -149,9 +148,16 @@
           "color": "rojo"
         }
       ],
+      "pie_nodo": "¿Tiene choque, hipoglicemia, hipotermia o alteración de la conciencia?",
       "opciones": [
         {
-          "texto": "Estable: medir y clasificar",
+          "texto": "Sí, alguno",
+          "siguiente_nodo": "nodo_hospital",
+          "color": "rojo",
+          "contexto": "- Se debe empezar a **estabilizar** donde esté, siguiendo el **ABCDARIO**, mientras se **remite**."
+        },
+        {
+          "texto": "No, ninguno",
           "siguiente_nodo": "diag_antropometria"
         }
       ],
@@ -234,7 +240,7 @@
     "diag_antropometria": {
       "tipo": "pregunta",
       "titulo": "Medir peso, talla, perímetro del brazo y edema",
-      "texto": "- Calcular el puntaje Z de **peso para la talla**; en el prematuro, con la **edad corregida**.\n- **Edema:** presionar el **dorso del pie** **3 segundos**; si queda la marca, hay edema.\n- **Perímetro del brazo** de **6 a 59 meses**: **<11,5 cm** predice **muerte**.\n- Clasificar con la **calculadora**.",
+      "texto": "- Calcular el puntaje Z de **peso para la talla**; en el prematuro, con la **edad corregida**.\n- **Edema:** presionar el **dorso del pie** **3 segundos**; si queda la marca, hay edema.\n- Medir el **perímetro del brazo** de **6 a 59 meses**: si es menor de **11,5 cm**, el riesgo de **muerte** es alto.\n- Reconocer la forma: **marasmo** o **kwashiorkor**.\n- Clasificar con la **calculadora**.",
       "media": [
         {
           "recurso": "dnt_edema_grados.png",
@@ -316,6 +322,42 @@
               "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
             }
           ]
+        },
+        {
+          "recurso": "dnt_marasmo_kwashiorkor.png",
+          "titulo": "Marasmo y kwashiorkor",
+          "descripcion": "Las dos formas de la desnutrición aguda severa, lado a lado.",
+          "info": "El {#4F8CF6:marasmo} es pérdida **marcada** de peso, sin grasa y con músculo atrofiado, **sin edema**. El {#F07F3C:kwashiorkor} lleva **siempre edema**, cara de luna, piel con **dermatosis** y pelo despigmentado: el peso **engaña**.",
+          "en_texto": "Reconocer la forma",
+          "referencias": [
+            {
+              "titulo": "Kwashiorkor: siempre con edema",
+              "paginas": "31",
+              "texto": "Siempre hay presencia de edema nutricional, sea leve, moderado o severo.",
+              "fuente": "MinSalud 2020 (Res. 2350)",
+              "anio": "2020",
+              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+            },
+            {
+              "titulo": "Marasmo: pérdida de peso marcada, sin edema",
+              "paginas": "31",
+              "texto": "Pérdida de Peso y Marcada. y Peso no confiable por presencia de edema.",
+              "fuente": "MinSalud 2020 (Res. 2350)",
+              "anio": "2020",
+              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+            },
+            {
+              "titulo": "Marasmo y kwashiorkor en la desnutrición severa",
+              "paginas": "31",
+              "texto": "la definición de los fenotipos de marasmo y kwashiorkor, cuando se trata de desnutrición aguda severa, como se describen en la Tabla 6.",
+              "fuente": "MinSalud 2020 (Res. 2350)",
+              "anio": "2020",
+              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+            }
+          ]
         }
       ],
       "nota_adicional": "Descartar el edema que **no es nutricional**: síndrome **nefrótico**, hepatopatía o **enteropatía** perdedora de proteínas.",
@@ -330,13 +372,13 @@
           "texto": "Desnutrición aguda moderada o severa",
           "siguiente_nodo": "diag_complicaciones",
           "color": "rojo",
-          "descripcion": "Peso para la talla <-2 DE, edema nutricional o perímetro del brazo <11,5 cm."
+          "descripcion": "Peso para la talla <-2 DE, edema nutricional o perímetro del brazo <11,5 cm (de 6 a 59 meses)."
         },
         {
           "texto": "Riesgo de desnutrición aguda",
           "siguiente_nodo": "diag_riesgo",
           "color": "amarillo",
-          "descripcion": "Peso para la talla entre >-2 y <-1 DE, sin edema."
+          "descripcion": "Peso para la talla de -2 a menos de -1 DE, sin edema."
         },
         {
           "texto": "Sin desnutrición aguda",
@@ -487,27 +529,60 @@
     },
     "diag_riesgo": {
       "tipo": "pregunta",
-      "titulo": "Riesgo de desnutrición aguda: buscar factores",
-      "texto": "- **Factores** de **6 a 59 meses**: anemia, **perímetro braquial <12,5 cm**, IRA o EDA en el último mes, **alimentación inadecuada**, cuidador sin red, pobreza extrema.\n- **Menor de 6 meses**: además, **ganancia** de peso **<25 g/día** (0-3 meses) o **<12 g/día** (3-6 meses) y lactancia **ineficaz**.\n- Prioridad en **La Guajira**, Chocó y Vichada.",
-      "pie_nodo": "¿Qué situación tiene?",
+      "titulo": "Riesgo de desnutrición aguda: buscar enfermedad aguda y factores",
+      "texto": "- Buscar primero una **enfermedad aguda** o un **signo de peligro** de AIEPI.\n- Buscar los **factores de riesgo** de **la tabla**: basta **uno** para tratarlo.\n- En el menor de **6 meses**, la **ganancia** de peso: menos de **25 g/día** (0-3 meses) o de **12 g/día** (3-6 meses) es un factor.",
+      "tabla": {
+        "titulo": "Factores de riesgo",
+        "columnas": [
+          "Tipo",
+          "Factores"
+        ],
+        "en_texto": "la tabla",
+        "resaltar_primera_columna": true,
+        "filas": [
+          [
+            "Clínicos y de alimentación",
+            "- **Anemia**: Hb **<11 g/dL** (6-59 meses) o bajo la referencia para la edad (<6 meses)\n- Desnutrición **recuperada** que vuelve a bajar\n- **IRA** o **EDA** en el último mes\n- Infecciones **recurrentes**\n- Alimentación **inadecuada** (6-59 meses)\n- Perímetro braquial **<12,5 cm** (6-59 meses)\n- Lactancia **ineficaz** o no exclusiva (<6 meses)\n- Baja **transferencia** de leche (<6 meses)"
+          ],
+          [
+            "Solo en el menor de 6 meses",
+            "- Ganancia de peso **insuficiente**\n- Curva de **longitud** plana o en descenso\n- No recupera el **peso al nacer** a la **3.ª semana**"
+          ],
+          [
+            "Familia y cuidador",
+            "- **Ausencia** de la madre o del cuidador\n- Cuidador con enfermedad **física** o **mental**\n- Madre **adolescente** sin red de apoyo"
+          ],
+          [
+            "Entorno",
+            "- Vulnerabilidad **socioeconómica** severa\n- **Acceso** difícil a los servicios de salud\n- Hogar con **2 o más** menores de 5 años sin seguridad alimentaria\n- Zona de **recuperación nutricional** (Resolución 1226 de 2025)"
+          ],
+          [
+            "Nacimiento (hasta los 2 años)",
+            "- **Prematuro** con curva de talla plana\n- **Bajo peso** al nacer con crecimiento lento\n- **Pequeño** para la edad gestacional que se estanca"
+          ]
+        ]
+      },
+      "nota_adicional": "La Resolución 115 aplica este manejo del riesgo de forma **prioritaria** en **La Guajira**, Chocó y Vichada.",
+      "pie_nodo": "¿Tiene una enfermedad aguda o algún factor de riesgo, y qué edad tiene?",
       "opciones": [
         {
           "texto": "Enfermedad aguda o signo de peligro",
           "siguiente_nodo": "diag_riesgo_aiepi",
-          "color": "rojo"
+          "color": "rojo",
+          "descripcion": "Convulsiones, letargia, infección, fiebre, diarrea, síntomas respiratorios o edema nutricional."
         },
         {
-          "texto": "Menor de 6 meses con algún factor",
+          "texto": "Sin enfermedad aguda; menor de 6 meses con algún factor",
           "siguiente_nodo": "diag_riesgo_menor6",
           "color": "rosa"
         },
         {
-          "texto": "6-59 meses con algún factor",
+          "texto": "Sin enfermedad aguda; 6-59 meses con algún factor",
           "siguiente_nodo": "diag_riesgo_6_59",
           "color": "azul"
         },
         {
-          "texto": "Sin ningún factor",
+          "texto": "Sin enfermedad aguda ni factores",
           "siguiente_nodo": "diag_riesgo_sin",
           "color": "verde"
         }
@@ -564,6 +639,116 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_inadecuadas_como_introduccion_tardia_alimentacion.png"
         },
         {
+          "titulo": "Factor: desnutrición recuperada que vuelve a bajar",
+          "paginas": "24",
+          "texto": "Antecedente de desnutrición aguda recuperada, con nuevo descenso de peso en ausencia de enfermedad aguda.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_antecedente_desnutricion_aguda_recuperada_nuevo.png"
+        },
+        {
+          "titulo": "Factor: infecciones recurrentes",
+          "paginas": "24",
+          "texto": "Infecciones recurrentes o persistentes que condicionen riesgo de recaída nutricional.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_infecciones_recurrentes_persistentes_condicionen_riesgo.png"
+        },
+        {
+          "titulo": "Factor: ausencia del cuidador",
+          "paginas": "24",
+          "texto": "Ausencia permanente de madre, padre o cuidador principal por muerte, abandono o separación prolongada.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_ausencia_permanente_madre_padre_cuidador.png"
+        },
+        {
+          "titulo": "Factor: cuidador con enfermedad física o mental",
+          "paginas": "24",
+          "texto": "Madre, padre o cuidador principal con problemas de salud física o mental (depresión, ansiedad, déficit cognitivo, patologías que limiten el cuidado adecuado).",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_madre_padre_cuidador_principal_problemas.png"
+        },
+        {
+          "titulo": "Factor: madre adolescente sin red de apoyo",
+          "paginas": "24",
+          "texto": "Madre adolescente sin red de apoyo o en condiciones de dependencia extrema.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag24_r115_madre_adolescente_sin_red_apoyo.png"
+        },
+        {
+          "titulo": "Factor: vulnerabilidad socioeconómica",
+          "paginas": "25",
+          "texto": "Vulnerabilidad socioeconómica severa (hacinamiento, inseguridad alimentaria, limitaciones en acceso a agua potable, saneamiento y condiciones de higiene)",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_vulnerabilidad_socioeconomica_severa_hacinamiento_inseguridad.png"
+        },
+        {
+          "titulo": "Factor: acceso difícil a los servicios",
+          "paginas": "25",
+          "texto": "Dificultad de acceso a servicios de salud: distancia geográfica, falta de transporte, ausencia de servicios continuos.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_dificultad_acceso_servicios_salud_distancia.png"
+        },
+        {
+          "titulo": "Factor: hogar con varios niños sin seguridad alimentaria",
+          "paginas": "25",
+          "texto": "Hogares con dos o más niños menores de cinco (5) años en situación de inseguridad alimentaria.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_hogares_dos_mas_ninos_menores.png"
+        },
+        {
+          "titulo": "Factor: zona de recuperación nutricional",
+          "paginas": "25",
+          "texto": "Residencia en zonas de recuperación nutricional definidas en la Resolución 1226 de 2025 del MSPS",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_residencia_zonas_recuperacion_nutricional_definidas.png"
+        },
+        {
+          "titulo": "Factor hasta los 2 años: prematuro, bajo peso o PEG",
+          "paginas": "25",
+          "texto": "Bajo peso al nacer (<2500 g) con trayectoria de crecimiento subóptima.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_bajo_peso_al_nacer_2500.png"
+        },
+        {
+          "titulo": "Factor hasta los 2 años: pequeño para la edad gestacional",
+          "paginas": "25",
+          "texto": "Pequeño para la edad gestacional (PEG) (peso al nacer < p10 por sexo) con estancamiento posterior.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_pequeno_edad_gestacional_peg_peso.png"
+        },
+        {
           "titulo": "Riesgo menor de 6 meses: con un factor o más",
           "paginas": "23",
           "texto": "Se consideran en riesgo de desnutrición cuando presentan puntaje Z del indicador peso/longitud (P/L) entre > -2 y < -1 DE, y además cumplen UNO O MÁS",
@@ -584,6 +769,56 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag23_r115_0_3_meses_ganancia_25.png"
         },
         {
+          "titulo": "Factor menor de 6 meses: curva de longitud plana",
+          "paginas": "23",
+          "texto": "Aplanamiento o descenso de la curva de crecimiento en el indicador longitud/edad aun si no cumple criterios completos de retraso.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag23_r115_aplanamiento_descenso_curva_crecimiento_indicador.png"
+        },
+        {
+          "titulo": "Factor menor de 6 meses: sin recuperar el peso al nacer",
+          "paginas": "23",
+          "texto": "No recuperación del peso al nacer en la tercera semana de vida.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag23_r115_no_recuperacion_peso_al_nacer.png"
+        },
+        {
+          "titulo": "Factor menor de 6 meses: anemia",
+          "paginas": "23",
+          "texto": "o hemoglobina (Hb) menor a los valores de referencia para la edad.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag23_r115_hemoglobina_hb_menor_valores_referencia.png"
+        },
+        {
+          "titulo": "Factor menor de 6 meses: baja transferencia de leche",
+          "paginas": "23",
+          "texto": "Baja transferencia de leche por problemas fisiológicos maternos.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag23_r115_baja_transferencia_leche_problemas_fisiologicos.png"
+        },
+        {
+          "titulo": "Riesgo con enfermedad aguda: AIEPI",
+          "paginas": "25",
+          "texto": "debe ser manejado conforme a los lineamientos de dicha estrategia. Una vez controlada la causa de la hospitalización, se deberá realizar nuevamente la clasificación nutricional",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag25_r115_debe_ser_manejado_conforme_lineamientos.png"
+        },
+        {
           "titulo": "Prioridad: La Guajira, Chocó y Vichada",
           "paginas": "27",
           "texto": "tendrá aplicación prioritaria en los departamentos de La Guajira. Chocó y Vichada, en razón de su alta tasa de mortalidad por desnutrición aguda",
@@ -598,7 +833,7 @@
     "diag_riesgo_aiepi": {
       "tipo": "resultado",
       "estilo": "advertencia",
-      "titulo": "Riesgo con enfermedad aguda: tratarla primero",
+      "titulo": "Tratar primero la enfermedad aguda según AIEPI",
       "texto": "- Manejar la **enfermedad** según **AIEPI**:\n  - convulsiones o letargia\n  - infección o fiebre\n  - diarrea\n  - edema nutricional\n- Controlada la causa, **volver a clasificar** el estado nutricional.",
       "enlaces": [
         {
@@ -626,9 +861,9 @@
     "diag_riesgo_menor6": {
       "tipo": "resultado",
       "estilo": "normal",
-      "titulo": "Menor de 6 meses en riesgo: lactancia y control a los 7-10 días",
-      "texto": "- Tratar la **comorbilidad** si la tiene y dar **consejería** en **lactancia materna**.\n- Control con **pediatría** o nutrición a los **7-10 días**.\n- Si gana **>25 g/día** (<3 meses) o **>12 g/día** (3-6 meses): control **cada 15 días** hasta recuperarse.\n- Si no gana pese a cumplir: manejo por **pediatría**.",
-      "nota_adicional": "El recién nacido a término que pierde **>10 %** del peso en la **primera semana** es una **urgencia**, aunque se maneje fuera de esta norma.",
+      "titulo": "Dar consejería en lactancia y controlar a los 7-10 días",
+      "texto": "- Tratar la **comorbilidad** si la tiene y dar **consejería** en **lactancia materna**.\n- Hacer un control con **pediatría** o nutrición a los **7-10 días**.\n- Si gana **>25 g/día** (<3 meses) o **>12 g/día** (3-6 meses), controlar **cada 15 días** hasta que se recupere.\n- Si no gana peso pese a la **consejería**, remitir a **pediatría**.",
+      "nota_adicional": "El recién nacido a término que pierde **>10 %** del peso en la **primera semana** es una **urgencia** neonatal: remitirlo, aunque se maneje fuera de esta norma.",
       "referencias": [
         {
           "titulo": "Riesgo menor de 6 meses: control a los 7-10 días",
@@ -665,15 +900,15 @@
     "diag_riesgo_6_59": {
       "tipo": "resultado",
       "estilo": "normal",
-      "titulo": "6-59 meses en riesgo: FTLC 240-270 kcal/día",
-      "texto": "- Dar **FTLC** en casa a **240-270 kcal/día** (medio sobre) hasta peso para la talla **>-1 DE**.\n- Control **cada 15 días** con medicina o nutrición.\n- Sin **recuperación** entre el **3.º** y el **4.º** control: **pediatría** y estudio integral.",
+      "titulo": "Dar FTLC a 240-270 kcal/día y controlar cada 15 días",
+      "texto": "- Dar **FTLC** en casa a **240-270 kcal/día** (medio sobre) hasta peso para la talla **>-1 DE**.\n- Controlar **cada 15 días** con medicina o nutrición.\n- Si no se recupera entre el **3.º** y el **4.º** control, remitir a **pediatría** para un **estudio integral**.",
       "media": [
         {
           "recurso": "dnt_clasificacion.png",
           "titulo": "Peso para la talla: dónde cae el niño",
           "descripcion": "Bandas del puntaje Z: adecuado, riesgo, desnutrición moderada y severa.",
           "info": "Con **≥-1 DE** el peso es {#2FB36D:adecuado}; entre **-1** y **-2**, {#F2A23A:riesgo}; entre **-2** y **-3**, {#F07F3C:desnutrición moderada}; bajo **-3**, {#EF5454:severa}. El **edema** nutricional la hace severa sin importar el **puntaje**.",
-          "en_texto": "240-270 kcal/día",
+          "en_texto": "hasta peso para la talla",
           "referencias": [
             {
               "titulo": "Tabla 5: clasificación por peso para la talla",
@@ -713,13 +948,6 @@
               "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
             }
           ]
-        }
-      ],
-      "enlaces": [
-        {
-          "texto": "Calcular los sobres de FTLC",
-          "tipo": "calculadora",
-          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ftlc_sobres.json"
         }
       ],
       "referencias": [
@@ -767,8 +995,8 @@
     "diag_riesgo_sin": {
       "tipo": "resultado",
       "estilo": "exito",
-      "titulo": "Riesgo sin factores: ruta de la Resolución 3280",
-      "texto": "- **Consejería** en lactancia en menores de **2 años**.\n- Tamizaje de **hemoglobina**, micronutrientes y **alimentación saludable**.\n- Control **cada 15 días** hasta la **recuperación**.",
+      "titulo": "Seguir la ruta de la Resolución 3280",
+      "texto": "- Dar **consejería** en lactancia a los menores de **2 años**.\n- Hacer **tamizaje** de hemoglobina y dar micronutrientes y un plan de **alimentación saludable**.\n- Controlar **cada 15 días** hasta la **recuperación**.",
       "referencias": [
         {
           "titulo": "Riesgo sin factores: intervenciones de la Resolución 3280",
@@ -795,67 +1023,45 @@
     "diag_complicaciones": {
       "tipo": "pregunta",
       "titulo": "Buscar las complicaciones y elegir según la edad",
-      "texto": "- Cada complicación de **la lista** es **urgencia vital**: tratarla desde la **captación**.\n- El **menor de 6 meses** y el mayor de 6 meses con **<4 kg** se **hospitalizan** siempre.\n- El prematuro, con la **edad corregida**.",
+      "texto": "- Cada signo de **la lista** es **urgencia vital**: tratarlo desde la captación y **hospitalizar**.\n- El **menor de 6 meses** y el de 6 meses o más con **<4 kg** se **hospitalizan** siempre.\n- La **respiración rápida** depende de la edad:\n  - **≥60/min** antes de 2 meses\n  - **≥50/min** de 2 a 11 meses\n  - **≥40/min** de 1 a 5 años\n- En el **prematuro**, usar la **edad corregida**.",
       "checklist": {
-        "titulo": "Urgencia vital si hay",
+        "titulo": "Hospitalizar si hay",
         "items": [
           "Choque",
+          "Inconsciente, letárgico, hipoactivo o convulsiona",
+          "Hipoglicemia",
+          "Hipofosfatemia o hipocalcemia",
+          "Edema severo (+++)",
           "Diarrea aguda o persistente",
-          "Infección respiratoria, sepsis, neuroinfección o infección urinaria",
-          "Lesiones de piel",
-          "Anemia severa",
-          "Hipoglicemia, hipofosfatemia o hipocalcemia",
-          "Vomita todo o no come nada",
-          "Letargia, inconsciencia o convulsiones"
+          "Vómito persistente",
+          "Rechazo de la vía oral o no puede beber",
+          "Infección respiratoria",
+          "Sepsis",
+          "Neuroinfección",
+          "Infección urinaria",
+          "Respiración rápida para la edad",
+          "Temperatura **<35,5 °C** o **>38 °C**",
+          "Lesiones de piel en **>30 %**",
+          "Hb **<4 g/dL**",
+          "Hb **<6 g/dL** con esfuerzo respiratorio o **taquicardia**",
+          "Condición médica o social que requiera intervención"
         ]
       },
-      "media": [
-        {
-          "recurso": "dnt_marasmo_kwashiorkor.png",
-          "titulo": "Marasmo y kwashiorkor",
-          "descripcion": "Las dos formas de la desnutrición aguda severa, lado a lado.",
-          "info": "El {#4F8CF6:marasmo} es pérdida **marcada** de peso, sin grasa y con músculo atrofiado, **sin edema**. El {#F07F3C:kwashiorkor} lleva **siempre edema**, cara de luna, piel con **dermatosis** y pelo despigmentado: el peso **engaña**.",
-          "en_texto": "la lista",
-          "referencias": [
-            {
-              "titulo": "Kwashiorkor: siempre con edema",
-              "paginas": "31",
-              "texto": "Siempre hay presencia de edema nutricional, sea leve, moderado o severo.",
-              "fuente": "MinSalud 2020 (Res. 2350)",
-              "anio": "2020",
-              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-            },
-            {
-              "titulo": "Marasmo: pérdida de peso marcada, sin edema",
-              "paginas": "31",
-              "texto": "Pérdida de Peso y Marcada. y Peso no confiable por presencia de edema.",
-              "fuente": "MinSalud 2020 (Res. 2350)",
-              "anio": "2020",
-              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-            },
-            {
-              "titulo": "Marasmo y kwashiorkor en la desnutrición severa",
-              "paginas": "31",
-              "texto": "la definición de los fenotipos de marasmo y kwashiorkor, cuando se trata de desnutrición aguda severa, como se describen en la Tabla 6.",
-              "fuente": "MinSalud 2020 (Res. 2350)",
-              "anio": "2020",
-              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-            }
-          ]
-        }
-      ],
-      "pie_nodo": "¿Qué edad y qué peso tiene?",
+      "pie_nodo": "¿Qué edad y qué peso tiene, y tiene algo de la lista?",
       "opciones": [
         {
-          "texto": "Menor de 6 meses, o más de 6 meses con <4 kg",
+          "texto": "Menor de 6 meses, o 6 meses o más con menos de 4 kg",
           "siguiente_nodo": "diag_menor6",
           "color": "rosa"
         },
         {
-          "texto": "6-59 meses con 4 kg o más",
+          "texto": "6-59 meses y 4 kg o más, con algo de la lista",
+          "siguiente_nodo": "nodo_hospital",
+          "color": "rojo",
+          "contexto": "- Se debe **hospitalizar**: el manejo en casa exige que esté **activo** y **sin complicaciones** médicas."
+        },
+        {
+          "texto": "6-59 meses y 4 kg o más, sin nada de la lista",
           "siguiente_nodo": "diag_apetito",
           "color": "azul"
         }
@@ -898,6 +1104,60 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Hospitalario: edema severo, diarrea y respiración",
+          "paginas": "35",
+          "texto": "Edema nutncional severo(+++) y Diarrea, vómito persistente rechazo de la vía oral con riesgo de deshidratación. y Aumento de la frecuencia respiratoria para la edad.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Frecuencia respiratoria por edad",
+          "paginas": "35",
+          "texto": "Niño menor de 2 meses: 60 respiraciones por minuto - Niño de 2 a 11 meses: 50 respiraciones por minuto - Niño de 12 meses a 5 años: 40 respiraciones por minuto",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Hospitalario: temperatura y piel",
+          "paginas": "35",
+          "texto": "Temperatura axilar menor 35.5°C o mayor 38°C y Lesiones ulcerativas y liquenoides en más del 30 % de la superficie cutánea",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Hospitalario: hemoglobina",
+          "paginas": "35",
+          "texto": "Hemoglobina menos de 4 g/dl y Hemoglobina menos de 6 g/dl con signos de esfuerzo respiratorio o aumento en la frecuencia cardíaca",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Hospitalario: apetito y condición social",
+          "paginas": "35",
+          "texto": "Prueba de apetito negativa o no puede beber o tomar el pecho y Condición médica o social del niño o la familia que requiera evaluación e intervención",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Criterios de manejo ambulatorio",
+          "paginas": "34",
+          "texto": "Y además presenta TODOS los siguientes: y Activo, reactivo, consciente y Sin complicaciones médicas o comorbilidad aguda y Prueba de apetito positiva",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Prematuro: edad corregida",
           "paginas": "35",
           "texto": "se hace con base en el cálculo de la edad corregida: si resulta edad menor de seis meses, debe hospitalizarse",
@@ -924,43 +1184,16 @@
           "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag21_r115_nino_esta_condicion_tiene_mayor.png"
-        },
-        {
-          "titulo": "Marasmo y kwashiorkor en la desnutrición severa",
-          "paginas": "31",
-          "texto": "la definición de los fenotipos de marasmo y kwashiorkor, cuando se trata de desnutrición aguda severa, como se describen en la Tabla 6.",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Marasmo: pérdida de peso marcada, sin edema",
-          "paginas": "31",
-          "texto": "Pérdida de Peso y Marcada. y Peso no confiable por presencia de edema.",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Kwashiorkor: siempre con edema",
-          "paginas": "31",
-          "texto": "Siempre hay presencia de edema nutricional, sea leve, moderado o severo.",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "diag_menor6": {
       "tipo": "informativo",
-      "titulo": "Menor de 6 meses o menos de 4 kg: hospitalizar",
+      "titulo": "Hospitalizar siempre y apoyar la lactancia",
       "texto": "- Es **urgencia vital**: hospitalizar siempre, con o sin **complicaciones**.\n- La **lactancia materna** es el pilar: apoyar a la **madre** desde el ingreso.\n- Valorar la **tendencia** del peso, no sólo el peso para la talla, en el primer mes.",
       "opciones": [
         {
-          "texto": "Hospitalizar",
+          "texto": "Hospitalización indicada",
           "siguiente_nodo": "nodo_hospital",
           "color": "rosa"
         }
@@ -998,15 +1231,15 @@
     },
     "diag_apetito": {
       "tipo": "pregunta",
-      "titulo": "6-59 meses: prueba de apetito con FTLC",
-      "texto": "- Ofrecer **FTLC** con cuchara en un sitio **tranquilo**, con el niño en las piernas del cuidador.\n- Observar **15 min**; es **positiva** si come la cantidad mínima de **la tabla**.\n- Si rechaza: repetir en **otro ambiente**, o a las **2 h** si comió hace poco.\n- Hospitalizar si tiene algo de **la lista**.",
+      "titulo": "Hacer la prueba de apetito con FTLC",
+      "texto": "- Ofrecer **FTLC** con cuchara en un sitio **tranquilo**, con el niño en las piernas del cuidador.\n- Observar **15 min**: es **positiva** si come la cantidad mínima para su peso.\n- Si la rechaza, repetirla en **otro ambiente**, o a las **2 h** si comió hace poco.\n- Si sigue sin comer, es **negativa**.",
       "media": [
         {
           "recurso": "dnt_prueba_apetito.png",
           "titulo": "Prueba de apetito: cuánto debe comer",
           "descripcion": "Cantidad mínima de FTLC por peso y pasos de la prueba.",
           "info": "En **15 min** debe comer al menos {#4F8CF6:¼ de sobre} con **4-6,9 kg**, {#18B9A9:⅓} con 7-9,9 kg o {#8B5CF6:½} con 10-14,9 kg. Si **no** come, se repite en otro ambiente; si sigue sin comer, es **negativa**: hospital.",
-          "en_texto": "la cantidad mínima",
+          "en_texto": "la cantidad mínima para su peso",
           "referencias": [
             {
               "titulo": "Tabla 7: consumo mínimo de FTLC por peso",
@@ -1038,46 +1271,9 @@
           ]
         }
       ],
-      "tabla": {
-        "titulo": "Consumo mínimo de FTLC",
-        "columnas": [
-          "Peso",
-          "Mínimo"
-        ],
-        "filas": [
-          [
-            "4-6,9 kg",
-            "**¼** de sobre"
-          ],
-          [
-            "7-9,9 kg",
-            "**⅓** de sobre"
-          ],
-          [
-            "10-14,9 kg",
-            "**½** sobre"
-          ]
-        ],
-        "resaltar_primera_columna": true,
-        "en_texto": "la tabla"
-      },
-      "checklist": {
-        "titulo": "Hospitalizar si hay",
-        "items": [
-          "Inconsciente, letárgico, hipoactivo o convulsiona",
-          "Edema severo (+++)",
-          "Diarrea, vómito persistente o rechazo de la vía oral",
-          "Respiración rápida: **≥50/min** (2-11 meses); **≥40/min** (1-5 años)",
-          "Temperatura **<35,5 °C** o **>38 °C**",
-          "Lesiones de piel en **>30 %**",
-          "Hb **<4 g/dL**, o **<6 g/dL** con dificultad respiratoria",
-          "Prueba de apetito negativa o no puede beber",
-          "Condición social de riesgo"
-        ]
-      },
       "burbujas": [
         {
-          "en_texto": "otro ambiente",
+          "en_texto": "es positiva",
           "titulo": "¿Por qué el apetito?",
           "texto": "La **pérdida del apetito** puede ser el **único signo** de una infección o un problema metabólico: por eso la prueba decide el escenario.",
           "referencias": [
@@ -1103,18 +1299,20 @@
         }
       ],
       "nota_adicional": "Es una prueba **diagnóstica**, no de **tolerancia** a la vía oral, y se hace sólo con **FTLC**.",
-      "pie_nodo": "¿Dónde se trata?",
+      "pie_nodo": "¿Cuál es el resultado de la prueba de apetito?",
       "opciones": [
         {
-          "texto": "Hospital: algo de la lista o prueba negativa",
-          "siguiente_nodo": "nodo_hospital",
-          "color": "rojo"
-        },
-        {
-          "texto": "Casa: activo, sin complicaciones y prueba positiva",
+          "texto": "Positiva",
           "siguiente_nodo": "nodo_seguimiento",
           "color": "azul",
-          "descripcion": "Con edema leve o moderado (+ o ++) también puede ir a casa."
+          "descripcion": "Activo y sin complicaciones; con edema leve o moderado (+ o ++) también va a casa.",
+          "contexto": "- Se debe seguir el tratamiento en **casa** con **FTLC** y controles **semanales**."
+        },
+        {
+          "texto": "Negativa",
+          "siguiente_nodo": "nodo_hospital",
+          "color": "rojo",
+          "contexto": "- Se debe **hospitalizar**: la falta de apetito puede ser el único signo de una **infección**."
         }
       ],
       "referencias": [
@@ -1200,60 +1398,6 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
-          "titulo": "Hospitalario: menor de 6 meses o menos de 4 kg",
-          "paginas": "35",
-          "texto": "Niño menor de 6 meses de edad y Niño mayor de 6 meses de edad y que pese menos de 4 kilos. y Está inconsciente, letárgico, hipoactivo o convulsiona",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Hospitalario: edema severo, diarrea y respiración",
-          "paginas": "35",
-          "texto": "Edema nutncional severo(+++) y Diarrea, vómito persistente rechazo de la vía oral con riesgo de deshidratación. y Aumento de la frecuencia respiratoria para la edad.",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Frecuencia respiratoria por edad",
-          "paginas": "35",
-          "texto": "Niño menor de 2 meses: 60 respiraciones por minuto - Niño de 2 a 11 meses: 50 respiraciones por minuto - Niño de 12 meses a 5 años: 40 respiraciones por minuto",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Hospitalario: temperatura y piel",
-          "paginas": "35",
-          "texto": "Temperatura axilar menor 35.5°C o mayor 38°C y Lesiones ulcerativas y liquenoides en más del 30 % de la superficie cutánea",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Hospitalario: hemoglobina",
-          "paginas": "35",
-          "texto": "Hemoglobina menos de 4 g/dl y Hemoglobina menos de 6 g/dl con signos de esfuerzo respiratorio o aumento en la frecuencia cardíaca",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Hospitalario: apetito y condición social",
-          "paginas": "35",
-          "texto": "Prueba de apetito negativa o no puede beber o tomar el pecho y Condición médica o social del niño o la familia que requiera evaluación e intervención",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
           "titulo": "El 80 % se trata en casa",
           "paginas": "38",
           "texto": "En el caso de los niños entre 6 y 59 meses de edad, requieren tratamiento ambulatorio en el 80 % de los casos.",
@@ -1298,14 +1442,85 @@
     "hos_abcdario": {
       "tipo": "informativo",
       "titulo": "Estabilizar con el ABCDARIO",
-      "texto": "- Seguir el **orden** del ABCDARIO:\n  1. oxígeno y **glucosa**\n  2. **hidratación** y diuresis\n  3. anemia y calor\n  4. **antibiótico** y nutrición\n- **Aislamiento protector**: habitación individual, **guantes**, tapabocas y bata.\n- La **estabilización** dura **24-48 h**; la transición, **3-7 días**.",
+      "texto": "- Seguir el **orden** del ABCDARIO de **la tabla**: primero lo que **mata**.\n- Hacer **aislamiento protector**:\n  - habitación individual\n  - **guantes**, tapabocas y bata\n- La **estabilización** dura **24-72 h** (unas **48 h** de 6 a 59 meses); la transición, **3 a 7-14 días**.",
+      "tabla": {
+        "titulo": "Qué es cada letra",
+        "columnas": [
+          "Letra",
+          "Qué se hace"
+        ],
+        "en_texto": "la tabla",
+        "resaltar_primera_columna": true,
+        "filas": [
+          [
+            "A",
+            "Corregir la **hipoxemia**"
+          ],
+          [
+            "B",
+            "Corregir la **hipoglicemia** e hidratar con cautela"
+          ],
+          [
+            "C",
+            "Detectar el **choque**"
+          ],
+          [
+            "D",
+            "Vigilar la **diuresis**"
+          ],
+          [
+            "F",
+            "Proteger la **función intestinal** con SRO-75"
+          ],
+          [
+            "G",
+            "Corregir la **anemia grave**"
+          ],
+          [
+            "H",
+            "Tratar la **hipotermia**"
+          ],
+          [
+            "I",
+            "Empezar el **antibiótico**"
+          ],
+          [
+            "L",
+            "Apoyar la **lactancia materna**"
+          ],
+          [
+            "M",
+            "Reponer **micronutrientes**"
+          ],
+          [
+            "N",
+            "Definir la **nutrición**"
+          ],
+          [
+            "P",
+            "Cuidar la **piel**"
+          ],
+          [
+            "R",
+            "Vigilar la **realimentación**"
+          ],
+          [
+            "S",
+            "**Estimular** el desarrollo"
+          ],
+          [
+            "V",
+            "Poner las **vacunas**"
+          ]
+        ]
+      },
       "media": [
         {
           "recurso": "dnt_fases.png",
           "titulo": "Las tres fases del tratamiento",
           "descripcion": "Estabilización, transición y rehabilitación, con su duración y su fórmula.",
           "info": "La {#EF5454:estabilización} (**24-72 h**) corrige lo que mata, con **F-75**. La {#F2A23A:transición} (**3 a 7-14 días**) pasa a FTLC o leche materna. La {#2FB36D:rehabilitación} (hasta **60 días**) sigue en **casa**.",
-          "en_texto": "24-48 h",
+          "en_texto": "24-72 h",
           "referencias": [
             {
               "titulo": "Fases: estabilización, transición y rehabilitación",
@@ -1326,9 +1541,18 @@
               "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
             },
             {
+              "titulo": "Estabilización de 6-59 meses: 48 horas en promedio",
+              "paginas": "92",
+              "texto": "Esta fase dura en promedio 48 horas, si no se comporta así, se deben contemplar otras patologías subyacentes y obrar en consecuencia.",
+              "fuente": "MinSalud 2020 (Res. 2350)",
+              "anio": "2020",
+              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+            },
+            {
               "titulo": "Transición 6-59 meses: 3 a 7 días",
               "paginas": "96",
-              "texto": "La fase de transición consiste en el paso gradual de F-75 a FTLC y leche materna, si el niño está siendo amamantado.",
+              "texto": "Tiene una duración promedio de 3 a 7 días, dependiendo de las condiciones clínicas del niño.",
               "fuente": "MinSalud 2020 (Res. 2350)",
               "anio": "2020",
               "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -1355,6 +1579,24 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Tabla 8: ABCDARIO terapéutico",
+          "paginas": "41",
+          "texto": "Este ABCDARIO permite y facilita un plan terapéutico organizado y planeado en un tiempo esperado para el logro de cada objetivo",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tabla 8: R de realimentación",
+          "paginas": "42",
+          "texto": "Anticipe el riesgo, detecte, monitoree, trate. Mida P, K, Ca y Mg si le es posible.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Aislamiento protector",
           "paginas": "38",
           "texto": "los niños con desnutrición aguda moderada o severa hospitalizados requieren medidas de aislamiento protector.",
@@ -1373,6 +1615,15 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Estabilización de 6-59 meses: 48 horas en promedio",
+          "paginas": "92",
+          "texto": "Esta fase dura en promedio 48 horas, si no se comporta así, se deben contemplar otras patologías subyacentes y obrar en consecuencia.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Fases: estabilización, transición y rehabilitación",
           "paginas": "37",
           "texto": "Si cumple con criterios de manejo hospitalario se inicia con la fase de estabilización, en caso de cumplir con criterios de manejo ambulatorio, se inicia a partir de la fase de rehabilitación",
@@ -1382,9 +1633,18 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Ilustración 4: fases y su duración",
+          "paginas": "37",
+          "texto": "Si cumple con criterios de manejo hospitalario se inicia con la fase de estabilización, en caso de cumplir con criterios de manejo ambulatorio",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Transición 6-59 meses: 3 a 7 días",
           "paginas": "96",
-          "texto": "La fase de transición consiste en el paso gradual de F-75 a FTLC y leche materna, si el niño está siendo amamantado.",
+          "texto": "Tiene una duración promedio de 3 a 7 días, dependiendo de las condiciones clínicas del niño.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -1394,9 +1654,9 @@
     },
     "hos_oxigeno_glucosa": {
       "tipo": "pregunta",
-      "titulo": "A-B: oxígeno y glucometría",
-      "texto": "- Oxígeno si la **saturación** es **<90 %**.\n- **Glucometría** a todos: hipoglicemia con **<54 mg/dL**.\n- Prevenirla con **leche materna** o F-75 **cada 2 h**, de día y de noche.",
-      "pie_nodo": "¿Tiene hipoglicemia?",
+      "titulo": "A-B: dar oxígeno y medir la glucosa",
+      "texto": "- Dar **oxígeno** si la **saturación** es menor de **90 %**.\n- Hacer una **glucometría** a todos: hay hipoglicemia si es menor de **54 mg/dL**.\n- Prevenirla dando **leche materna** o F-75 **cada 2 h**, de día y de noche.",
+      "pie_nodo": "¿Tiene la glucosa por debajo de 54 mg/dL?",
       "opciones": [
         {
           "texto": "No",
@@ -1460,11 +1720,11 @@
     },
     "hos_hipo_consciente": {
       "tipo": "pregunta",
-      "titulo": "Hipoglicemia, consciente: DAD 10 % por boca o sonda",
-      "texto": "- Dar **DAD 10 %** **5 mL/kg** por boca o **sonda**.\n- **Glucometría** a los **30 min**; repetir el bolo si sigue baja.\n- Si mejora: **F-75** **3 mL/kg** cada **30 min** durante **2 h**.",
+      "titulo": "Dar dextrosa al 10 % por boca o por sonda",
+      "texto": "- Dar **DAD 10 %** a **5 mL/kg** por boca o **sonda**.\n- Hacer una **glucometría** a los **30 min** y repetir el bolo si sigue baja.\n- Si sube, dar **F-75** a **3 mL/kg** cada **30 min** durante **2 h**.",
       "farmacos": [
         {
-          "nombre": "Dextrosa 10 % (DAD 10 %) VO o SNG",
+          "nombre": "Dextrosa al 10 % por boca o sonda",
           "dosis": "**5 mL/kg**",
           "pauta": "**Glucometría** a los **30 min**; repetir el **bolo** si sigue baja.",
           "paginas": "85 (Res. 2350)",
@@ -1484,14 +1744,14 @@
           }
         }
       ],
-      "pie_nodo": "¿Sube la glucosa a los 30 min?",
+      "pie_nodo": "¿Sube la glucosa a 54 mg/dL o más a los 30 min?",
       "opciones": [
         {
           "texto": "Sí: 54 mg/dL o más",
           "siguiente_nodo": "hos_hidratacion"
         },
         {
-          "texto": "Aún no: repetir el bolo",
+          "texto": "Aún no: sigue por debajo de 54 mg/dL",
           "siguiente_nodo": "hos_hipo_consciente"
         }
       ],
@@ -1518,11 +1778,11 @@
     },
     "hos_hipo_grave": {
       "tipo": "pregunta",
-      "titulo": "Hipoglicemia con letargia: DAD 10 % IV o por sonda",
-      "texto": "- Dar **DAD 10 %** **5 mL/kg** IV en **5 min**, o por **sonda**.\n- **Glucometría** a los **15 min** (IV) o **30 min** (sonda); repetir si sigue baja.\n- Si mejora: **F-75** por sonda cada **30 min** durante **2 h** y glucometría **cada hora**.",
+      "titulo": "Dar dextrosa al 10 % IV o por sonda y vigilar cada hora",
+      "texto": "- Dar **DAD 10 %** a **5 mL/kg** IV en **5 min**, o por **sonda**.\n- Hacer una **glucometría** a los **15 min** si fue IV o a los **30 min** si fue por sonda; repetir el bolo si sigue baja.\n- Si sube, dar **F-75** por sonda cada **30 min** durante **2 h** y medir la glucosa **cada hora**.",
       "farmacos": [
         {
-          "nombre": "Dextrosa 10 % (DAD 10 %) IV o SNG",
+          "nombre": "Dextrosa al 10 % IV o por sonda",
           "dosis": "**5 mL/kg** en **5 min**",
           "pauta": "**Glucometría** a los **15 min** si fue IV, a los **30** si fue por sonda.",
           "paginas": "85 (Res. 2350)",
@@ -1544,18 +1804,18 @@
       ],
       "alertas": [
         {
-          "titulo": "No sube o empeora",
-          "texto": "Si persiste la **hipoglicemia** o aparece hipotermia, buscar **sepsis**, enterocolitis necrosante, neumonía o realimentación."
+          "titulo": "Hipoglicemia que no cede",
+          "texto": "Si la **hipoglicemia** persiste o aparece hipotermia, buscar:\n- **sepsis**\n- enterocolitis necrosante\n- neumonía\n- síndrome de **realimentación**"
         }
       ],
-      "pie_nodo": "¿Sube la glucosa?",
+      "pie_nodo": "¿Sube la glucosa a 54 mg/dL o más en el control?",
       "opciones": [
         {
           "texto": "Sí: 54 mg/dL o más",
           "siguiente_nodo": "hos_hidratacion"
         },
         {
-          "texto": "Aún no: repetir el bolo",
+          "texto": "Aún no: sigue por debajo de 54 mg/dL",
           "siguiente_nodo": "hos_hipo_grave"
         }
       ],
@@ -1592,14 +1852,14 @@
     "hos_hidratacion": {
       "tipo": "pregunta",
       "titulo": "C: buscar deshidratación y choque",
-      "texto": "- Con una **comorbilidad**, asumir **5 %** de deshidratación.\n- Medir el grado con la escala **DHAKA**.\n- Corregir en **6-12 h**, mejor por **boca** o sonda.\n- **Deshidratado sin diarrea**: tratarlo como **choque séptico**.",
+      "texto": "- Si hay una **comorbilidad**, asumir **5 %** de deshidratación.\n- Medir el grado con la escala **DHAKA**.\n- Corregir en **6-12 h**, mejor por boca o sonda.\n- Si parece deshidratado pero **no tiene diarrea**, tratarlo como **choque séptico**.",
       "media": [
         {
           "recurso": "dnt_hidratacion.png",
           "titulo": "Hidratar en la desnutrición: dos caminos",
           "descripcion": "Consciente con SRO-75; letárgico o en choque con lactato de Ringer.",
-          "info": "{#18B9A9:Consciente}: **SRO-75** por boca o sonda, lento. {#EF5454:Letárgico o en choque}: **lactato de Ringer 15 mL/kg** en 1 h y revalorar; si mejora, de vuelta a la **SRO-75**. Sin **albúmina** ni diuréticos.",
-          "en_texto": "DHAKA",
+          "info": "{#18B9A9:Consciente}: **SRO-75** por boca o sonda, lento. {#EF5454:Letárgico o en choque}: **lactato de Ringer 15 mL/kg** en 1 h y revalorar; si mejora, **SRO-75 con potasio** a **100 mL/kg/día**. Sin **albúmina** ni diuréticos.",
+          "en_texto": "mejor por boca o sonda",
           "referencias": [
             {
               "titulo": "Moderada: SRO-75 75 mL/kg en 4-6 horas",
@@ -1638,6 +1898,15 @@
               "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
             },
             {
+              "titulo": "Tras el choque: 100 mL/kg/día, máximo 12 horas",
+              "paginas": "87",
+              "texto": "Administre a razón de 100 ml/kg/día durante máximo 12 horas siguientes.",
+              "fuente": "MinSalud 2020 (Res. 2350)",
+              "anio": "2020",
+              "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+              "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+            },
+            {
               "titulo": "Contraindicados albúmina, diuréticos y sodio alto",
               "paginas": "44",
               "texto": "Por ello, se contraindica la administración de albúmina, diuréticos y líquidas con alta carga de sodio.",
@@ -1661,14 +1930,20 @@
         "ramificar": false
       },
       "nota_adicional": "Al **corregir** la deshidratación, volver a **medir y clasificar**: la antropometría inicial es **inexacta**.",
-      "pie_nodo": "¿Cómo está?",
+      "enlaces": [
+        {
+          "texto": "Enfermedad diarreica aguda",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Pediatria/gastroenteritis_aguda_aiepi.json"
+        }
+      ],
+      "pie_nodo": "¿Qué grado de deshidratación tiene en la escala DHAKA y está consciente?",
       "opciones": [
         {
           "texto": "Sin deshidratación: DHAKA 0-1",
           "siguiente_nodo": "hos_diuresis"
         },
         {
-          "texto": "Deshidratado y consciente",
+          "texto": "Deshidratado (DHAKA de 2 o más) y consciente",
           "siguiente_nodo": "hos_sro",
           "color": "naranja"
         },
@@ -1755,8 +2030,8 @@
     },
     "hos_sro": {
       "tipo": "pregunta",
-      "titulo": "Deshidratado y consciente: SRO-75",
-      "texto": "- **Moderada**: SRO-75 **75 mL/kg** en **4-6 h**.\n- **Severa**: SRO-75 con **potasio** a **10 mL/kg/h**, máx. **12 h**.\n- Vigilar **cada 15 min** las primeras **2 h**: diuresis, conciencia, FC y FR.\n- Reponer **50-100 mL** por deposición.",
+      "titulo": "Rehidratar despacio con SRO-75",
+      "texto": "- Si la deshidratación es **moderada**, dar SRO-75 a **75 mL/kg** en **4-6 h**.\n- Si es **severa**, dar SRO-75 con **potasio** a **10 mL/kg/h**, durante **12 h** como mucho.\n- Vigilar **cada 15 min** las primeras **2 h**: diuresis, conciencia, FC y FR.\n- Reponer **50-100 mL** por cada deposición.",
       "farmacos": [
         {
           "nombre": "SRO-75 (moderada)",
@@ -1770,7 +2045,7 @@
         },
         {
           "nombre": "SRO-75 con potasio (severa)",
-          "dosis": "**10 mL/kg/h**, máx. **12 h**",
+          "dosis": "**10 mL/kg/h**, **12 h** como mucho",
           "pauta": "Un litro de **SRO-75** más **10 mL** de **cloruro de potasio** (**20 mEq**).",
           "paginas": "45 (Res. 2350)",
           "por_kg": {
@@ -1780,7 +2055,7 @@
           }
         }
       ],
-      "pie_nodo": "¿Cómo responde?",
+      "pie_nodo": "¿Cómo responde a la SRO-75 en los controles cada 15 minutos?",
       "opciones": [
         {
           "texto": "Hidratado",
@@ -1791,9 +2066,10 @@
           "siguiente_nodo": "hos_sro"
         },
         {
-          "texto": "Sobrehidratación: sube FC y FR, ronquido o hepatomegalia",
+          "texto": "Sobrehidratación: sube la FC y la FR, ronquido o hepatomegalia",
           "siguiente_nodo": "hos_realimentacion",
-          "color": "rojo"
+          "color": "rojo",
+          "contexto": "- Se debe sospechar **síndrome de realimentación** ante los signos de **sobrehidratación**."
         }
       ],
       "referencias": [
@@ -1846,8 +2122,8 @@
     },
     "hos_choque": {
       "tipo": "pregunta",
-      "titulo": "Letárgico o en choque: lactato de Ringer 15 mL/kg",
-      "texto": "- Asegurar **acceso venoso**; si no, **sonda**. Suponer **hipoglicemia**.\n- **Lactato de Ringer** **15 mL/kg** en **1 h**.\n- Vigilar **cada 10 min**: FC, FR y conciencia.\n- **Mejoría**: orina, bajan FC y FR, despierta.",
+      "titulo": "Pasar lactato de Ringer 15 mL/kg en 1 hora",
+      "texto": "- Canalizar una vena; si no se logra, pasar los líquidos por **sonda**.\n- Hacer una **glucometría**: en esta situación se supone **hipoglicemia** y se trata.\n- Pasar **lactato de Ringer** a **15 mL/kg** en **1 h**.\n- Vigilar **cada 10 min** la FC, la FR y la **conciencia**.",
       "farmacos": [
         {
           "nombre": "Lactato de Ringer",
@@ -1870,8 +2146,8 @@
       "pie_nodo": "¿Mejora en la primera hora?",
       "opciones": [
         {
-          "texto": "Sí: pasar a SRO-75 y tapar la vía",
-          "siguiente_nodo": "hos_sro",
+          "texto": "Sí: orina, bajan la FC y la FR, y está más despierto",
+          "siguiente_nodo": "hos_postchoque",
           "color": "naranja"
         },
         {
@@ -1885,6 +2161,15 @@
           "titulo": "El deshidratado responde a líquidos; el séptico no",
           "paginas": "47",
           "texto": "deshidratados responden al tratamiento con líquidos IV, pero no sucede lo mismo cuando es un choque séptico sin deshidratación.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "En el choque se supone hipoglicemia",
+          "paginas": "45",
+          "texto": "En esta condición siempre se supone hipoglicemia, tome Glucometría y proceda como se detalla en la letra H del ABCDARIO.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -1916,7 +2201,40 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
+        }
+      ]
+    },
+    "hos_postchoque": {
+      "tipo": "informativo",
+      "titulo": "Seguir con SRO-75 con potasio a 100 mL/kg/día",
+      "texto": "- Seguir la rehidratación por **boca** o **sonda** y dejar la **vía venosa** cerrada con un tapón, sin líquidos IV.\n- Dar **SRO-75 con potasio** a **100 mL/kg/día**, durante **12 h** como mucho.\n- Seguir vigilando la **conciencia**, la FC, la FR, la **diuresis** y las deposiciones.",
+      "farmacos": [
+        {
+          "nombre": "SRO-75 con potasio (tras el choque)",
+          "dosis": "**100 mL/kg/día**, **12 h** como mucho",
+          "pauta": "Un litro de **SRO-75** más **10 mL** de **cloruro de potasio** (**20 mEq**), por boca o **sonda**.",
+          "paginas": "45, 87 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mL",
+            "cantidad": 100,
+            "periodo": "dia"
+          }
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "No es el ritmo de la deshidratación",
+          "texto": "Tras el choque, la SRO-75 va a **100 mL/kg/día**, no a **10 mL/kg/h**: más volumen **sobrecarga** el corazón."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "Rehidratación en marcha",
+          "siguiente_nodo": "hos_diuresis",
+          "color": "naranja"
+        }
+      ],
+      "referencias": [
         {
           "titulo": "Con mejoría: SRO-75 100 mL/kg/día",
           "paginas": "45",
@@ -1934,13 +2252,49 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tras el choque: SRO-75 con potasio",
+          "paginas": "87",
+          "texto": "Prepare un litro de Sales de Rehidratación Oral de baja osmolaridad (SRO-75), mas 10 ml de cloruro de potasio (20 mEq de potasio).",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tras el choque: 100 mL/kg/día, máximo 12 horas",
+          "paginas": "87",
+          "texto": "Administre a razón de 100 ml/kg/día durante máximo 12 horas siguientes.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tras el choque: seguir vigilando",
+          "paginas": "87",
+          "texto": "Continúe la vigilancia del estado de consciencia, frecuencia cardíaca, frecuencia respiratoria, gasto urinario y número de deposiciones.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Contraindicados albúmina, diuréticos y sodio alto",
+          "paginas": "44",
+          "texto": "Por ello, se contraindica la administración de albúmina, diuréticos y líquidas con alta carga de sodio.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_choque_refractario": {
-      "tipo": "informativo",
-      "titulo": "Sin mejoría: segundo bolo, hemoglobina y mantenimiento",
-      "texto": "- **Repetir** el Ringer **15 mL/kg** en la hora siguiente y medir la **hemoglobina**.\n- Anemia grave: **glóbulos rojos** (paso G).\n- Seguir con **líquidos IV** de mantenimiento a **100 mL/kg/día**.\n- Si persiste: pensar en **choque séptico**, realimentación, daño renal o peritonitis.",
+      "tipo": "pregunta",
+      "titulo": "Repetir el bolo, medir la hemoglobina y pasar a mantenimiento",
+      "texto": "- Repetir el **lactato de Ringer** a **15 mL/kg** en la hora siguiente y medir la **hemoglobina**.\n- Si hay **anemia grave**, transfundir **glóbulos rojos**.\n- Seguir con **líquidos IV** de mantenimiento a **100 mL/kg/día**.",
       "farmacos": [
         {
           "nombre": "Lactato de Ringer",
@@ -1951,18 +2305,36 @@
             "unidad": "mL",
             "cantidad": 15
           }
-        }
-      ],
-      "chips": [
+        },
         {
-          "texto": "UCI",
-          "color": "rojo"
+          "nombre": "Líquidos IV de mantenimiento",
+          "dosis": "**100 mL/kg/día**",
+          "pauta": "Mezcla de **500 mL** de **dextrosa** al 5 % con **15 mL** de cloruro de sodio y **7,5 mL** de **cloruro de potasio**.",
+          "paginas": "46, 87 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mL",
+            "cantidad": 100,
+            "periodo": "dia"
+          }
         }
       ],
+      "enlaces": [
+        {
+          "texto": "Anemia grave: transfundir",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "hos_transfusion"
+        }
+      ],
+      "pie_nodo": "¿Sale del choque tras el segundo bolo?",
       "opciones": [
         {
-          "texto": "Estable: vigilar la diuresis",
+          "texto": "Sí: orina, bajan la FC y la FR",
           "siguiente_nodo": "hos_diuresis",
+          "color": "naranja"
+        },
+        {
+          "texto": "No, sigue en choque",
+          "siguiente_nodo": "hos_choque_persiste",
           "color": "rojo"
         }
       ],
@@ -1986,6 +2358,32 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Mezcla de mantenimiento: DAD 5 % con sodio y potasio",
+          "paginas": "46",
+          "texto": "dextrosa en agua destilada -DAD- al 5 % más 15 ml de cloruro de sodio y 7,5 ml de cloruro de potasio",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Anemia grave",
+          "paginas": "48",
+          "texto": "La anemia grave se define como hemoglobina menor a 4 g/dl o menor a 6 g/dl, con signos de dificultad respiratoria y/o hematocrito menor a 12 %.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        }
+      ]
+    },
+    "hos_choque_persiste": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Buscar otra causa del choque y tratarla de forma individualizada",
+      "texto": "- Si el choque **persiste**, pensar en:\n  - **choque séptico**\n  - síndrome de **realimentación**\n  - **daño renal**\n  - **peritonitis**\n- Darle un **manejo individualizado**.",
+      "referencias": [
+        {
           "titulo": "Choque que persiste: séptico, realimentación, renal",
           "paginas": "46",
           "texto": "Si persiste estado de choque considere que se trata de choque séptico, síndrome de realimentación, daño renal, o peritonitis, trate con manejo individualizado.",
@@ -1997,19 +2395,14 @@
       ]
     },
     "hos_diuresis": {
-      "tipo": "pregunta",
-      "titulo": "D-E: confirmar la diuresis y cuidar el intestino",
-      "texto": "- Medir el **gasto urinario** desde el ingreso.\n- Mantener el intestino con **SRO-75** en pequeñas cantidades.\n- Empezar la **F-75** cuando haya **diuresis**, **ruidos** intestinales y no haya distensión.",
-      "nota_adicional": "La **diarrea persistente** (**3 o más** deposiciones líquidas al día por **>14 días**) retrasa la recuperación: tratarla según el antibiótico de cada foco.",
-      "pie_nodo": "¿Orina, con ruidos y sin distensión?",
+      "tipo": "informativo",
+      "titulo": "D-F: medir la diuresis y proteger el intestino",
+      "texto": "- Medir el **gasto urinario** desde el ingreso.\n- Mantener el intestino con **SRO-75** por boca o sonda, en pequeñas cantidades.\n- La **F-75** empieza cuando haya **diuresis**: mientras tanto, seguir con la anemia y el **antibiótico**.",
+      "nota_adicional": "La **diarrea persistente** (**3 o más** deposiciones líquidas al día por **más de 14 días**) retrasa la recuperación: tratar la causa con el **antibiótico** de su foco.",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Diuresis en registro",
           "siguiente_nodo": "hos_anemia"
-        },
-        {
-          "texto": "Aún no: seguir con SRO-75",
-          "siguiente_nodo": "hos_diuresis"
         }
       ],
       "referencias": [
@@ -2048,13 +2441,22 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tabla 8: ABCDARIO terapéutico",
+          "paginas": "41",
+          "texto": "Este ABCDARIO permite y facilita un plan terapéutico organizado y planeado en un tiempo esperado para el logro de cada objetivo",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_anemia": {
       "tipo": "pregunta",
-      "titulo": "G-H: anemia grave e hipotermia",
-      "texto": "- **Anemia grave**: Hb **<4 g/dL**, o **<6 g/dL** con dificultad respiratoria o **hematocrito <12 %**.\n- **Hipotermia** (**<35,5 °C**): vestirlo con gorro, **manta** y **piel a piel**; temperatura **cada 2 h**.\n- La Hb que **baja** en la estabilización por los líquidos **no** se transfunde.",
+      "titulo": "G-H: buscar anemia grave y calentar al niño",
+      "texto": "- Hay **anemia grave** si la Hb es menor de **4 g/dL**, o menor de **6 g/dL** con dificultad respiratoria o **hematocrito <12 %**.\n- Si hay **hipotermia** (menos de **35,5 °C**), vestirlo con gorro y **manta**, ponerlo **piel a piel** y medir la temperatura **cada 2 h**.\n- La Hb que **baja** en la estabilización por los líquidos **no** se transfunde.",
       "alertas": [
         {
           "titulo": "Sin botellas calientes",
@@ -2064,7 +2466,7 @@
       "pie_nodo": "¿Tiene anemia grave?",
       "opciones": [
         {
-          "texto": "Sí",
+          "texto": "Sí: Hb <4 g/dL, o <6 g/dL con dificultad respiratoria",
           "siguiente_nodo": "hos_transfusion",
           "color": "rojo"
         },
@@ -2123,8 +2525,8 @@
     },
     "hos_transfusion": {
       "tipo": "informativo",
-      "titulo": "Transfundir 10 mL/kg en 3 horas",
-      "texto": "- **Glóbulos rojos** **10 mL/kg** en **3 h**, con **furosemida** **1 mg/kg** antes y después.\n- Suspender si la FR sube **≥5/min** o la FC **≥25/min**, o hay fiebre, exantema u **orina oscura**.\n- **No repetir** antes de **4 días**.",
+      "titulo": "Transfundir glóbulos rojos 10 mL/kg en 3 horas",
+      "texto": "- Transfundir **glóbulos rojos** a **10 mL/kg** en **3 h** y dar **furosemida** **1 mg/kg** antes y después.\n- Suspender la transfusión si aparece alguno de estos signos:\n  - la FR sube **5/min** o más\n  - la FC sube **25/min** o más\n  - **fiebre**\n  - exantema\n  - **orina oscura**\n- **No repetir** antes de **4 días**.",
       "farmacos": [
         {
           "nombre": "Glóbulos rojos empaquetados",
@@ -2149,7 +2551,7 @@
       ],
       "opciones": [
         {
-          "texto": "Transfundido: antibiótico",
+          "texto": "Transfusión hecha",
           "siguiente_nodo": "hos_antibiotico"
         }
       ],
@@ -2195,7 +2597,8 @@
     "hos_antibiotico": {
       "tipo": "pregunta",
       "titulo": "I: antibiótico empírico a todos",
-      "texto": "- Considerar **infectados** a todos: la **fiebre** y la inflamación aparecen **tarde** o no aparecen.\n- Empezar en la **primera hora**; con un **foco**, el antibiótico de **la tabla**.",
+      "contexto": "Se considera **infectados a todos**: la **fiebre** y la inflamación aparecen **tarde** o no aparecen.",
+      "texto": "- Empezar el antibiótico en la **primera hora**, sin esperar la **diuresis**.\n- Si hay un **foco**, usar el antibiótico de **la tabla**.",
       "tabla": {
         "titulo": "Antibiótico por foco",
         "columnas": [
@@ -2203,22 +2606,114 @@
           "Antibiótico"
         ],
         "en_texto": "la tabla",
+        "resaltar_primera_columna": true,
         "filas": [
           [
             "Neumonía",
-            "- **Penicilina cristalina** 200.000 UI/kg/día IV cada 4 h\n- o **ampicilina** 200 mg/kg/día cada 6 h, **7 días**"
+            "- **Penicilina cristalina** **200.000 UI/kg/día** IV cada **4 h**\n- o **ampicilina** **200 mg/kg/día** cada **6 h**, **7 días**\n- Sin vacuna completa contra Hib: **ampicilina/sulbactam**"
+          ],
+          [
+            "Infección urinaria",
+            "- **Gentamicina** **5 mg/kg/día** IV cada **24 h**, **7 días**"
+          ],
+          [
+            "Piel",
+            "- **Clindamicina** **30 mg/kg/día** IV cada **8 h**, **7 días**\n- más **gentamicina** si se sospecha **Gram negativo**"
           ],
           [
             "Meningitis",
-            "- **Ceftriaxona** 100 mg/kg/día IV cada 8 h\n- más **vancomicina** 60 mg/kg/día cada 6 h, **7-10 días**"
+            "- **Ceftriaxona** **100 mg/kg/día** IV cada **8 h**\n- más **vancomicina** **60 mg/kg/día** cada **6 h**, **7-10 días**"
+          ],
+          [
+            "Sepsis sin foco",
+            "- **Ampicilina** **200 mg/kg/día** IV cada **6 h**\n- más **gentamicina** **5 mg/kg/día** cada **24 h**"
+          ],
+          [
+            "Diarrea aguda",
+            "- **Ampicilina** **200 mg/kg/día** IV cada **6 h**\n- más **gentamicina** **5 mg/kg/día**, **5 días**"
           ],
           [
             "Diarrea con sangre",
-            "- **Ceftriaxona** 100 mg/kg/día cada 8 h, **5 días**\n- o **ciprofloxacino** 30 mg/kg/día VO, 5 días"
+            "- **Ceftriaxona** **100 mg/kg/día** cada **8 h**, **5 días**\n- o **ciprofloxacino** **30 mg/kg/día** VO cada **12 h**"
+          ],
+          [
+            "Asociada al cuidado de la salud",
+            "- **Piperacilina/tazobactam** **400 mg/kg/día** IV cada **6 h**\n- con o sin **vancomicina**"
+          ],
+          [
+            "Tuberculosis, malaria o VIH",
+            "- Según el **protocolo nacional** vigente"
           ]
-        ],
-        "resaltar_primera_columna": true
+        ]
       },
+      "farmacos": [
+        {
+          "nombre": "Penicilina cristalina (neumonía)",
+          "dosis": "**200.000 UI/kg/día** cada **4 h**, **7 días**",
+          "pauta": "IV; o **ampicilina** 200 mg/kg/día cada 6 h.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "UI",
+            "cantidad": 200000,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Ampicilina/sulbactam (neumonía sin vacuna contra Hib)",
+          "dosis": "**200 mg/kg/día** cada **6 h**, **7 días**",
+          "pauta": "IV, si no tiene **completa** la vacuna contra **Haemophilus influenzae** tipo b.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 200,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Vancomicina (meningitis)",
+          "dosis": "**60 mg/kg/día** cada **6 h**, **7-10 días**",
+          "pauta": "IV, **más ceftriaxona** 100 mg/kg/día cada 8 h.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 60,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Clindamicina (piel)",
+          "dosis": "**30 mg/kg/día** cada **8 h**, **7 días**",
+          "pauta": "IV; más **gentamicina** 3-5 días si se sospecha **Gram negativo** (periné).",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 30,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Ciprofloxacino (diarrea con sangre)",
+          "dosis": "**30 mg/kg/día** cada **12 h**, **5 días**",
+          "pauta": "Por **boca**; o **ceftriaxona** 100 mg/kg/día cada 8 h.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 30,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Piperacilina/tazobactam (infección asociada al cuidado)",
+          "dosis": "**400 mg/kg/día** cada **6 h**",
+          "pauta": "IV, con o sin **vancomicina** 60 mg/kg/día.",
+          "paginas": "51 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 400,
+            "periodo": "dia"
+          }
+        }
+      ],
       "pie_nodo": "¿Qué edad tiene?",
       "opciones": [
         {
@@ -2227,7 +2722,7 @@
           "color": "rosa"
         },
         {
-          "texto": "6-59 meses",
+          "texto": "6 meses o más (también con menos de 4 kg)",
           "siguiente_nodo": "hos_ab_6_59",
           "color": "azul"
         }
@@ -2270,9 +2765,63 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Neumonía sin vacuna completa contra Hib",
+          "paginas": "50",
+          "texto": "En caso de que el niño no tenga vacunación completa contra Haemophilus influenza tipo b: Ampicilina/sulbactam 200 mg/Kg/día IV cada 6 horas por 7 días.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Infección urinaria: gentamicina",
+          "paginas": "50",
+          "texto": "Gentamicina 5 mg/kg/día IV cada 24 horas por 7 días",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Infección de piel: clindamicina",
+          "paginas": "50",
+          "texto": "Clindamicina 30 mg/Kg/día IV cada 8 horas por 7 días MÁS",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Piel: gentamicina si se sospecha Gram negativo",
+          "paginas": "50",
+          "texto": "Esta última se adicionará si se sospecha infección por Gram (-). Ejemplo: piel del periné.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Meningitis",
           "paginas": "50",
           "texto": "Ceftriaxona 100 mg/kg/día IV cada 8 h MÁS Vancomicina 60 mg/kg/día IV cada 6 horas por 7 a 10 días",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Sepsis sin foco: ampicilina y gentamicina",
+          "paginas": "50",
+          "texto": "Ampicilina 200 mg/kg/día IV cada 6 horas MÁS Gentamicina 5 mg/kg/día IV cada 24 horas",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Diarrea aguda: ampicilina y gentamicina 5 días",
+          "paginas": "50",
+          "texto": "Ampicilina 200 mg/kg/día IV cada 6 horas por 5 días MÁS Gentamicina 5 mg/kg/día IV cada 24 horas por 5 días.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -2286,13 +2835,40 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Infección asociada al cuidado de la salud",
+          "paginas": "51",
+          "texto": "Piperacilina/tazobactam 400 mg/Kg/día IV cada 6 horas con o sin Vancomicina 60 mg/Kg/día IV cada 6 horas.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tuberculosis, malaria y VIH: protocolo nacional",
+          "paginas": "51",
+          "texto": "Según protocolo del Ministerio de Salud y Protección Social Nacional vigente.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Mayor de 6 meses: en la primera hora",
+          "paginas": "91",
+          "texto": "Amoxicilina 90 mg/kg/día repartida en dosis cada 12 horas VO o SNG MÁS Gentamicina 5 mg/kg/ día cada 24 horas IM.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_ab_menor6": {
       "tipo": "informativo",
-      "titulo": "Menor de 6 meses: ampicilina o amoxicilina, más gentamicina",
-      "texto": "- **<2 meses**: **ampicilina** **50 mg/kg/dosis** cada **8 h** más **gentamicina** **4 mg/kg/día**, **7 días**.\n- **2-6 meses**: **amoxicilina** **90 mg/kg/día** VO (o ampicilina IV) más **gentamicina** **5 mg/kg/día**, **7 días**.\n- Ajustar al **foco** cuando aparezca.",
+      "titulo": "Dar ampicilina o amoxicilina, más gentamicina",
+      "texto": "- Si tiene **menos de 2 meses**, dar **ampicilina** **50 mg/kg/dosis** cada **8 h** más **gentamicina** **4 mg/kg/día**, **7 días**.\n- Si tiene **2-6 meses**, dar **amoxicilina** **90 mg/kg/día** por boca (o **ampicilina** IV) más **gentamicina** **5 mg/kg/día**, **7 días**.\n- Ajustar al **foco** cuando aparezca.",
       "farmacos": [
         {
           "nombre": "Ampicilina (<2 meses)",
@@ -2318,19 +2894,41 @@
         {
           "nombre": "Amoxicilina (2-6 meses)",
           "dosis": "**90 mg/kg/día** cada **12 h**, **7 días**",
-          "pauta": "VO; o **ampicilina** 200 mg/kg/día cada 6 h IV, **más gentamicina** 5 mg/kg/día.",
+          "pauta": "Por boca, **más gentamicina**.",
           "paginas": "50 (Res. 2350)",
           "por_kg": {
             "unidad": "mg",
             "cantidad": 90,
             "periodo": "dia"
           }
+        },
+        {
+          "nombre": "Ampicilina IV (2-6 meses)",
+          "dosis": "**200 mg/kg/día** cada **6 h**, **7 días**",
+          "pauta": "IM o IV si no puede tomar la **amoxicilina**, **más gentamicina**.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 200,
+            "periodo": "dia"
+          }
+        },
+        {
+          "nombre": "Gentamicina (2-6 meses)",
+          "dosis": "**5 mg/kg/día** cada **24 h**, **7 días**",
+          "pauta": "**IV lento** o **IM**.",
+          "paginas": "50 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mg",
+            "cantidad": 5,
+            "periodo": "dia"
+          }
         }
       ],
       "opciones": [
         {
-          "texto": "Antibiótico en marcha: lactancia y F-75",
-          "siguiente_nodo": "hos_nutricion_menor6",
+          "texto": "Antibiótico en marcha",
+          "siguiente_nodo": "hos_listo_f75",
           "color": "rosa"
         }
       ],
@@ -2366,8 +2964,8 @@
     },
     "hos_ab_6_59": {
       "tipo": "informativo",
-      "titulo": "6-59 meses: amoxicilina o ampicilina, más gentamicina",
-      "texto": "- En la **primera hora**: **amoxicilina** **90 mg/kg/día** cada **12 h** más **gentamicina** **5 mg/kg/día**.\n- Con **complicaciones** (choque, hipoglicemia, hipotermia, letargia): **ampicilina** IV **2 días** y gentamicina **7 días**, luego **amoxicilina** 5 días.\n- Sin mejoría en **48 h**: **ceftriaxona**.",
+      "titulo": "Dar amoxicilina o ampicilina, más gentamicina",
+      "texto": "- En la **primera hora**, dar **amoxicilina** **90 mg/kg/día** cada **12 h** más **gentamicina** **5 mg/kg/día**.\n- Si hay **complicaciones** (choque, hipoglicemia, hipotermia, letargia o infección respiratoria o urinaria):\n  1. Dar **ampicilina** IV **2 días**.\n  2. Seguir con **amoxicilina** cada **8 h** **5 días** más.\n  3. Mantener la **gentamicina** **7 días**.\n- Si no mejora en **48 h**, cambiar a **ceftriaxona**.",
       "farmacos": [
         {
           "nombre": "Amoxicilina",
@@ -2394,7 +2992,7 @@
         {
           "nombre": "Ampicilina",
           "dosis": "**200 mg/kg/día** cada **6 h**",
-          "pauta": "IV o IM; con **complicaciones**, **2 días** y luego **amoxicilina** 5 días.",
+          "pauta": "IV o IM; con **complicaciones**, **2 días** y luego **amoxicilina** cada **8 h** 5 días.",
           "paginas": "91 (Res. 2350)",
           "por_kg": {
             "unidad": "mg",
@@ -2404,8 +3002,8 @@
         },
         {
           "nombre": "Ceftriaxona",
-          "dosis": "**100 mg/kg/día** IV cada **8 h** o IM cada **24 h**",
-          "pauta": "Si **no mejora** en **48 h**; **7-10 días**. Sólo en el **hospital**.",
+          "dosis": "**100 mg/kg/día** IV cada **8 h** (preferida) o IM cada **24 h**",
+          "pauta": "Si **no mejora** en **48 h**; **7-10 días**. Sólo en el **hospital**; cada **8 h** por la **hipoproteinemia**.",
           "paginas": "91 (Res. 2350)",
           "por_kg": {
             "unidad": "mg",
@@ -2414,11 +3012,11 @@
           }
         }
       ],
-      "nota_adicional": "La **ceftriaxona** va **cada 8 h** IV, no una vez al día, por la **hipoproteinemia** de la desnutrición.",
+      "nota_adicional": "La guía prefiere la **ceftriaxona** IV **cada 8 h**, no una vez al día, por la **hipoproteinemia** de la desnutrición; la vía IM cada 24 h queda para quien no tiene **acceso venoso**.",
       "opciones": [
         {
-          "texto": "Antibiótico en marcha: F-75",
-          "siguiente_nodo": "hos_nutricion_6_59",
+          "texto": "Antibiótico en marcha",
+          "siguiente_nodo": "hos_listo_f75",
           "color": "azul"
         }
       ],
@@ -2470,10 +3068,67 @@
         }
       ]
     },
+    "hos_listo_f75": {
+      "tipo": "pregunta",
+      "titulo": "Esperar la diuresis para empezar la F-75",
+      "texto": "- Empezar la **F-75** cuando **orine**, tenga **ruidos** intestinales y el abdomen **no** esté distendido.\n- Mientras tanto, seguir con la **SRO-75** en pequeñas cantidades y la **lactancia materna**.",
+      "pie_nodo": "¿Ya orina, tiene ruidos intestinales y el abdomen no está distendido?",
+      "opciones": [
+        {
+          "texto": "Sí, y es menor de 6 meses",
+          "siguiente_nodo": "hos_nutricion_menor6",
+          "color": "rosa"
+        },
+        {
+          "texto": "Sí, y tiene 6 meses o más con menos de 4 kg",
+          "siguiente_nodo": "hos_nutricion_4kg",
+          "color": "morado"
+        },
+        {
+          "texto": "Sí, y tiene 6-59 meses con 4 kg o más",
+          "siguiente_nodo": "hos_nutricion_6_59",
+          "color": "azul"
+        },
+        {
+          "texto": "Aún no",
+          "siguiente_nodo": "hos_listo_f75"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Diuresis, ruidos y sin distensión: iniciar F-75",
+          "paginas": "47",
+          "texto": "la presencia de diuresis, ruidos intestinales y ausencia de distensión abdominal indican el inicio de F-75 por vía oral o SNG.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "SRO-75 en pequeñas cantidades",
+          "paginas": "48",
+          "texto": "Administre SRO-75 en pequeñas cantidades y reponga el volumen después de cada deposición.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Mayor de 6 meses con menos de 4 kg: hospitalizar siempre",
+          "paginas": "21",
+          "texto": "Un niño en esta condición tiene mayor riesgo de mortalidad y requiere hospitalización en todos los casos.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag21_r115_nino_esta_condicion_tiene_mayor.png"
+        }
+      ]
+    },
     "hos_nutricion_menor6": {
       "tipo": "informativo",
-      "titulo": "Menor de 6 meses: lactancia con TSS y F-75",
-      "texto": "- **Técnica de suplementación por succión**: la F-75 llega por una **sonda** pegada al pecho mientras mama.\n- Dosis de F-75 cada **3 h** según **la tabla**, subiendo durante **5 días**.\n- Si no succiona: **taza**, cuchara o **sonda**. Nunca **biberón**.\n- Sin lactancia posible: F-75 y después **fórmula de inicio**.",
+      "titulo": "Dar lactancia con TSS y F-75",
+      "texto": "- Usar la **técnica de suplementación por succión**: la F-75 llega por una **sonda** pegada al pecho mientras mama.\n- Dar la F-75 cada **3 h** según **la tabla**, subiendo durante **5 días**.\n- Si no succiona, darla con **taza**, cuchara o **sonda**; nunca con **biberón**.\n- Si no es posible la lactancia, dar F-75 y después **fórmula de inicio**.",
       "media": [
         {
           "recurso": "dnt_tss.gif",
@@ -2566,7 +3221,7 @@
       "nota_adicional": "No dar **hierro** en la **estabilización** ni en la **transición**: la F-75 no lo trae a propósito.",
       "opciones": [
         {
-          "texto": "Nutrición en marcha: vigilar",
+          "texto": "F-75 en marcha",
           "siguiente_nodo": "hos_vigilancia",
           "color": "rosa"
         }
@@ -2675,10 +3330,150 @@
         }
       ]
     },
+    "hos_nutricion_4kg": {
+      "tipo": "informativo",
+      "titulo": "Dar F-75 durante 5 días según la tabla",
+      "texto": "- Dar **F-75** cada **3 h** según **la tabla**, durante **5 días**, con **TSS** si mama.\n- Si a los 5 días llega a **4,2-4,4 kg**, pasar a **FTLC** como en la transición de **6 a 59 meses**.\n- Si no llega, pasar a **F-100**, subiendo **10 mL/kg/día** cada día.\n- Si no evoluciona con la F-100 o rechaza la FTLC, buscar una **causa secundaria** con pediatría.",
+      "tabla": {
+        "titulo": "F-75 en mL/kg por toma (6 meses o más, <4 kg)",
+        "columnas": [
+          "Día",
+          "Sin edema",
+          "Con edema"
+        ],
+        "en_texto": "la tabla",
+        "filas": [
+          [
+            "1",
+            "**7**",
+            "**4**"
+          ],
+          [
+            "2",
+            "**10**",
+            "**7**"
+          ],
+          [
+            "3",
+            "**13**",
+            "**10**"
+          ],
+          [
+            "4",
+            "**16**",
+            "**13**"
+          ],
+          [
+            "5",
+            "**19**",
+            "**17**"
+          ]
+        ],
+        "resaltar_primera_columna": true
+      },
+      "discrepancias": [
+        {
+          "asunto": "Tope de volumen de la F-100",
+          "posturas": [
+            {
+              "fuente": "Res. 115 de 2026 (texto)",
+              "dice": "Subir **10 mL/kg/día** sin superar **200 mL/kg/día**.",
+              "paginas": "22"
+            },
+            {
+              "fuente": "Res. 115 de 2026 (tablas 39.1 y 39.2)",
+              "dice": "Subir **10 mL/kg/día** sin superar **100 mL/kg/día**.",
+              "paginas": "22"
+            }
+          ],
+          "nota": "La misma página da **dos topes**: no pasar de **100 mL/kg/día** sin consultar a **pediatría**."
+        }
+      ],
+      "opciones": [
+        {
+          "texto": "F-75 en marcha",
+          "siguiente_nodo": "hos_vigilancia",
+          "color": "morado"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Mayor de 6 meses con menos de 4 kg: hospitalizar siempre",
+          "paginas": "21",
+          "texto": "Un niño en esta condición tiene mayor riesgo de mortalidad y requiere hospitalización en todos los casos.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag21_r115_nino_esta_condicion_tiene_mayor.png"
+        },
+        {
+          "titulo": "Tabla 39: F-75 en mayores de 6 meses con menos de 4 kg",
+          "paginas": "22",
+          "texto": "Tabla 39. Cantidad diaria de F-75 indicada en el manejo inicial de los niños mayores de 6 meses y peso inferior a 4kg",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_tabla_39_cantidad_diaria_f75.png"
+        },
+        {
+          "titulo": "Con 4,2-4,4 kg: transición a FTLC",
+          "paginas": "22",
+          "texto": "se logra llegara! peso de 4.2-.4.4Kg, se debe realizarla transición a FTLC siguiendo lo planteado en la Fase de transición",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_logra_llegara_peso_4244kg_debe.png"
+        },
+        {
+          "titulo": "Si no llega a 4,2-4,4 kg en 5 días: F-100",
+          "paginas": "22",
+          "texto": "en este periodo de tiempo no se logra llegar al peso de 4.2-.4.4Kg, se debe realizarla transición a F-100",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_este_periodo_tiempo_no_logra.png"
+        },
+        {
+          "titulo": "F-100: subir 10 mL/kg/día cada día",
+          "paginas": "22",
+          "texto": "incrementando en cada día del tratamiento 10ml/Kg/día sin superar los 200mL/Kg/día.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_incrementando_cada_dia_tratamiento_10mlkgdia.png"
+        },
+        {
+          "titulo": "Tablas 39.1 y 39.2: tope de 100 mL/kg/día",
+          "paginas": "22",
+          "texto": "Incrementar en cada día de tratamiento 10mL/Kg/dla sin superarlos 100 mL/Kg/día",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_incrementar_cada_dia_tratamiento_10mlkgdla.png"
+        },
+        {
+          "titulo": "Sin evolución: buscar una causa secundaria",
+          "paginas": "22",
+          "texto": "se deberá sospechar de que se trata de una causa secundaria y, por ende, será necesario iniciar o continuar con un plan de diagnóstico integral",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_debera_sospechar_trata_causa_secundaria.png"
+        }
+      ]
+    },
     "hos_nutricion_6_59": {
       "tipo": "informativo",
-      "titulo": "6-59 meses: F-75 cada 3 horas",
-      "texto": "- Dar **F-75** cada **3 h** según **la tabla**, con taza, cuchara o **sonda**.\n- Ofrecer la **leche materna** después de la F-75.\n- Vigilar a diario: lo **ofrecido y rechazado**, vómito, **deposiciones** y peso.\n- **>6 meses** con **<4 kg**: F-75 con **TSS**; sin **4,2-4,4 kg** en **5 días**, pasar a **F-100**.",
+      "titulo": "Dar F-75 cada 3 horas",
+      "contexto": "La **F-75** trae poca **proteína**, grasa y **sodio**: el niño desnutrido no tolera aún la leche habitual.",
+      "texto": "- Dar **F-75** cada **3 h** según **la tabla**, con taza, cuchara o **sonda**.\n- Ofrecer la **leche materna** después de la F-75.\n- Vigilar a diario lo **ofrecido y rechazado**, el vómito, las **deposiciones** y el peso.",
       "tabla": {
         "titulo": "F-75 en mL/kg por toma",
         "columnas": [
@@ -2706,7 +3501,7 @@
       },
       "opciones": [
         {
-          "texto": "Nutrición en marcha: vigilar",
+          "texto": "F-75 en marcha",
           "siguiente_nodo": "hos_vigilancia",
           "color": "azul"
         }
@@ -2740,31 +3535,20 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
-          "titulo": "Mayor de 6 meses con menos de 4 kg: hospitalizar siempre",
-          "paginas": "21",
-          "texto": "Un niño en esta condición tiene mayor riesgo de mortalidad y requiere hospitalización en todos los casos.",
-          "fuente": "MinSalud 2026 (Res. 115)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
-          "imagen_evidencia": "evidencia_desnutricion_aguda_pag21_r115_nino_esta_condicion_tiene_mayor.png"
-        },
-        {
-          "titulo": "Si no llega a 4,2-4,4 kg en 5 días: F-100",
-          "paginas": "22",
-          "texto": "en este periodo de tiempo no se logra llegar al peso de 4.2-.4.4Kg, se debe realizarla transición a F-100",
-          "fuente": "MinSalud 2026 (Res. 115)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
-          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_este_periodo_tiempo_no_logra.png"
+          "titulo": "Estabilización de 6-59 meses: 48 horas en promedio",
+          "paginas": "92",
+          "texto": "Esta fase dura en promedio 48 horas, si no se comporta así, se deben contemplar otras patologías subyacentes y obrar en consecuencia.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar a diario: peso, piel y realimentación",
-      "texto": "- Pesar a **diario** y anotar la **ingesta**.\n- **Piel**: medir el compromiso con la escala SCORDoK; crema de **zinc** o vaselina, sin pañales.\n- **Realimentación**: sube la FC **10/min** o la FR **5/min**.\n- **Vacunas** al día: se pueden poner **juntas**.",
+      "texto": "- Pesar a **diario** y anotar la **ingesta**.\n- Cuidar la **piel**:\n  - medir el compromiso con la escala **SCORDoK**\n  - aplicar crema de **zinc** o vaselina y dejarlo **sin pañal**\n- Sospechar **realimentación** si la FC sube **10/min** o la FR **5/min**.\n- Poner las **vacunas** al día: se pueden aplicar **juntas**.",
       "media": [
         {
           "recurso": "dnt_realimentacion.png",
@@ -2813,12 +3597,23 @@
         }
       ],
       "nota_adicional": "Las lesiones **liquenoides**, las **ampollas** y las úlceras alrededor de los orificios **aumentan** el riesgo de morir.",
-      "pie_nodo": "¿Tiene algún signo de complicación?",
+      "pie_nodo": "¿Tiene alguna complicación o ya está estable para la transición?",
       "opciones": [
         {
           "texto": "Signos de realimentación",
           "siguiente_nodo": "hos_realimentacion",
           "color": "rojo"
+        },
+        {
+          "texto": "Hipoglicemia",
+          "siguiente_nodo": "hos_oxigeno_glucosa",
+          "color": "rojo",
+          "contexto": "- Se debe medir la **glucosa** y tratarla según el **estado de conciencia**."
+        },
+        {
+          "texto": "Diarrea con deshidratación",
+          "siguiente_nodo": "hos_rehidratar",
+          "color": "naranja"
         },
         {
           "texto": "Aún no está estable (antes de 72 h)",
@@ -2830,7 +3625,7 @@
           "color": "rojo"
         },
         {
-          "texto": "No: estable, con apetito y menos edema",
+          "texto": "Estable, con apetito y menos edema",
           "siguiente_nodo": "hos_transicion"
         }
       ],
@@ -2897,13 +3692,135 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Si persiste: descartar sepsis y realimentación",
+          "paginas": "85",
+          "texto": "descarte patologías infecciosas como sepsis, enterocolitis necrosante, neumonía o síndrome de realimentación.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        }
+      ]
+    },
+    "hos_rehidratar": {
+      "tipo": "pregunta",
+      "titulo": "Rehidratar con SRO-75 sin volver a empezar",
+      "texto": "- Si la deshidratación es **moderada**, dar SRO-75 a **75 mL/kg** en **4-6 h**.\n- Si es **severa**, dar SRO-75 con **potasio** a **10 mL/kg/h**, durante **12 h** como mucho.\n- Reponer **50-100 mL** por cada deposición y vigilar **cada 15 min** las primeras **2 h**.\n- **No** se repiten el antibiótico ni el **inicio** de la F-75.",
+      "farmacos": [
+        {
+          "nombre": "SRO-75 (moderada)",
+          "dosis": "**75 mL/kg** en **4-6 h**",
+          "pauta": "Por **boca** o **sonda**; reponer **50-100 mL** por deposición.",
+          "paginas": "45 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mL",
+            "cantidad": 75
+          }
+        },
+        {
+          "nombre": "SRO-75 con potasio (severa)",
+          "dosis": "**10 mL/kg/h**, **12 h** como mucho",
+          "pauta": "Un litro de **SRO-75** más **10 mL** de **cloruro de potasio** (**20 mEq**).",
+          "paginas": "45 (Res. 2350)",
+          "por_kg": {
+            "unidad": "mL",
+            "cantidad": 10,
+            "periodo": "hora"
+          }
+        }
+      ],
+      "alertas": [
+        {
+          "titulo": "Si está letárgico o en choque",
+          "texto": "La **SRO-75** no basta: pasar **lactato de Ringer** a **15 mL/kg** en **1 h** como en el paso del **choque**."
+        }
+      ],
+      "enlaces": [
+        {
+          "texto": "Choque: lactato de Ringer",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "hos_choque"
+        }
+      ],
+      "pie_nodo": "¿Ya está hidratado y en qué fase está?",
+      "opciones": [
+        {
+          "texto": "Hidratado, en la estabilización",
+          "siguiente_nodo": "hos_vigilancia"
+        },
+        {
+          "texto": "Hidratado, en la transición",
+          "siguiente_nodo": "hos_trans_vigilancia"
+        },
+        {
+          "texto": "Aún deshidratado",
+          "siguiente_nodo": "hos_rehidratar"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Moderada: SRO-75 75 mL/kg en 4-6 horas",
+          "paginas": "45",
+          "texto": "Si presenta desnutrición aguda moderada: durante el periodo entre 4 y 6 horas siguientes administre 75 ml/kg de SRO-75.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Severa: SRO-75 con potasio a 10 mL/kg/h",
+          "paginas": "45",
+          "texto": "prepare un litro de SRO-75 más 10 ml de cloruro de potasio (20 mEq de potasio) y administre 10 ml/kg/hora, en un máximo de 12 horas.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Reponer 50-100 mL por deposición",
+          "paginas": "45",
+          "texto": "a razón de 50 a 100 ml después de cada deposición.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Vigilar cada 15 minutos",
+          "paginas": "45",
+          "texto": "Vigile diuresis, estado de consciencia, frecuencia cardíaca y frecuencia respiratoria cada 15 minutos durante las primeras dos horas y luego cada hora.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Diarrea por sobrecarga de solutos",
+          "paginas": "98",
+          "texto": "La primera por aumento en número y volumen de las deposiciones por sobrecarga de solutos que supera la capacidad digestiva y absortiva del intestino, ocasionando diarrea",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Letárgico: lactato de Ringer 15 mL/kg en 1 hora",
+          "paginas": "45",
+          "texto": "De inmediato administre un bolo de lactato de Ringer a razón de 15 ml/kg en una hora por la SNG o por venoclisis.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_realimentacion": {
       "tipo": "pregunta",
-      "titulo": "R: síndrome de realimentación",
-      "texto": "- Reducir a la **mitad** la fórmula **24 h** y subir despacio en **24-48 h**.\n- **Balance** estricto; sospechar si el peso sube **>10 %** en un día.\n- Medir **K, P y Mg** si se puede y reponer el **déficit** IV.\n- Dar **tiamina**.",
+      "titulo": "R: tratar el síndrome de realimentación",
+      "contexto": "Al volver a comer, el **potasio**, el **fósforo** y el magnesio entran en las células y **caen** en sangre.",
+      "texto": "- Reducir a la **mitad** la fórmula durante **24 h** y subir despacio en **24-48 h**.\n- Llevar un **balance** estricto: sospecharlo si el peso sube **>10 %** en un día.\n- Medir **K, P y Mg** si se puede y reponer el **déficit** IV.\n- Dar **tiamina**.",
       "farmacos": [
         {
           "nombre": "Potasio IV (realimentación)",
@@ -2948,17 +3865,21 @@
       "alertas": [
         {
           "titulo": "Puede matar en 24 horas",
-          "texto": "Arritmia, **falla cardíaca** y alteración de la glucosa: no dar cargas rápidas de **glucosa IV**; preferir la vía enteral."
+          "texto": "Puede causar **arritmias**, **falla cardíaca** y alteraciones de la glucosa: no dar cargas rápidas de glucosa IV y preferir la **vía enteral**."
         }
       ],
-      "pie_nodo": "¿En qué fase estaba?",
+      "pie_nodo": "¿En qué fase del tratamiento apareció?",
       "opciones": [
         {
-          "texto": "Estabilización",
+          "texto": "Durante la hidratación, sin F-75 aún",
+          "siguiente_nodo": "hos_diuresis"
+        },
+        {
+          "texto": "En la estabilización, con F-75",
           "siguiente_nodo": "hos_vigilancia"
         },
         {
-          "texto": "Transición",
+          "texto": "En la transición",
           "siguiente_nodo": "hos_trans_vigilancia"
         }
       ],
@@ -3052,14 +3973,23 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Tabla 8: R de realimentación",
+          "paginas": "42",
+          "texto": "Anticipe el riesgo, detecte, monitoree, trate. Mida P, K, Ca y Mg si le es posible.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         }
       ]
     },
     "hos_no_estable": {
       "tipo": "resultado",
       "estilo": "advertencia",
-      "titulo": "Más de 72 horas sin estabilizarse: buscar otra enfermedad",
-      "texto": "- Pensar en una **patología concurrente** no diagnosticada: **sepsis**, tuberculosis, VIH o **malaria**.\n- Plan de **diagnóstico integral** y manejo individualizado con pediatría.",
+      "titulo": "Buscar otra enfermedad que impida estabilizarlo",
+      "texto": "- Si a las **72 h** no se ha estabilizado, pensar en una **patología concurrente** no diagnosticada.\n- De 6 a 59 meses la estabilización dura unas **48 h**: si se alarga, buscar otra **causa**.\n- Hacer un plan de **diagnóstico integral** con pediatría y darle **manejo individualizado**.",
       "referencias": [
         {
           "titulo": "Sin estabilizarse a las 72 horas: patología no diagnosticada",
@@ -3071,20 +4001,30 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
-          "titulo": "Preguntar por tuberculosis, malaria y VIH",
-          "paginas": "76",
-          "texto": "Se recomienda desde la primera consulta interrogar si hay contacto con una persona con tuberculosis o hay síntomas sugestivos de tuberculosis",
+          "titulo": "Estabilización de 6-59 meses: 48 horas en promedio",
+          "paginas": "92",
+          "texto": "Esta fase dura en promedio 48 horas, si no se comporta así, se deben contemplar otras patologías subyacentes y obrar en consecuencia.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Sin evolución: buscar una causa secundaria",
+          "paginas": "22",
+          "texto": "se deberá sospechar de que se trata de una causa secundaria y, por ende, será necesario iniciar o continuar con un plan de diagnóstico integral",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_debera_sospechar_trata_causa_secundaria.png"
         }
       ]
     },
     "hos_transicion": {
       "tipo": "pregunta",
       "titulo": "Transición: elegir según la edad",
-      "texto": "- Empieza cuando vuelve el **apetito**, se controlan la **infección** y los electrolitos, y baja el **edema**.\n- Dura **2-5 días** en el menor de 6 meses y **3-7** en el mayor.",
+      "texto": "- Empieza cuando vuelve el **apetito**, se controlan la **infección** y los electrolitos, y baja el **edema**.\n- Dura **2-5 días** en el menor de 6 meses y **3-7 días** de 6 a 59 meses.",
       "pie_nodo": "¿Qué edad tiene?",
       "opciones": [
         {
@@ -3093,7 +4033,7 @@
           "color": "rosa"
         },
         {
-          "texto": "6-59 meses",
+          "texto": "6 meses o más",
           "siguiente_nodo": "hos_trans_6_59",
           "color": "azul"
         }
@@ -3109,7 +4049,7 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
-          "titulo": "Transición menor de 6 meses: 2 a 5 días",
+          "titulo": "Transición menor de 6 meses: cuándo empieza",
           "paginas": "10",
           "texto": "Se realiza la transición entre F-75 y la alimentación definitiva una vez se resuelvan los problemas agudos, de acuerdo con el esquema ABCDARIO propuesto",
           "fuente": "MinSalud 2026 (Res. 115)",
@@ -3119,9 +4059,28 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag10_r115_realiza_transicion_entre_f75_alimentacion.png"
         },
         {
-          "titulo": "Transición 6-59 meses: 3 a 7 días",
+          "titulo": "Transición menor de 6 meses: 2 a 5 días",
+          "paginas": "10",
+          "texto": "salud mental de la madre y condiciones familiares (140). La duración de esta fase puede ser entre 2 a 5 dias.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag10_r115_salud_mental_madre_condiciones_familiares.png"
+        },
+        {
+          "titulo": "Transición 6-59 meses: de la F-75 a la FTLC",
           "paginas": "96",
           "texto": "La fase de transición consiste en el paso gradual de F-75 a FTLC y leche materna, si el niño está siendo amamantado.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Transición 6-59 meses: 3 a 7 días",
+          "paginas": "96",
+          "texto": "Tiene una duración promedio de 3 a 7 días, dependiendo de las condiciones clínicas del niño.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -3131,11 +4090,12 @@
     },
     "hos_trans_menor6": {
       "tipo": "informativo",
-      "titulo": "Menor de 6 meses: bajar la F-75 y dejar la leche materna",
-      "texto": "- Si gana **25-30 g/día** (<3 meses) o **12-16 g/día** (3-6 meses) dos días: bajar la F-75 a la **mitad**.\n- Si mantiene **10 g/día** dos días: **suspenderla** y dejar **lactancia exclusiva**.\n- Si toma toda la F-75 y **no gana** en **5 días**: **F-100**; si tampoco, **fórmula de inicio**.",
+      "titulo": "Bajar la F-75 y dejar la leche materna",
+      "texto": "- Pesar a diario y seguir estos pasos:\n  1. Si gana **25-30 g/día** (<3 meses) o **12-16 g/día** (3-6 meses) durante **dos días** seguidos, bajar la F-75 a la **mitad**.\n  2. Si mantiene **10 g/día** durante **dos días**, **suspenderla** y dejar **lactancia exclusiva**.\n  3. Con lactancia exclusiva, observarlo **2-3 días** más en el hospital.\n- Pasar a **F-100** si toma toda la F-75 y **no gana** en **5 días**, o si la severa sigue con **edema** a los 5 días.",
+      "nota_adicional": "La **F-100** se mantiene hasta **3 días** seguidos de ganancia; luego va a la **mitad** un día y se suspende. Si con la F-100 no gana, pasar a **fórmula de inicio**, dando prioridad a la **leche humana donada** pasteurizada si la hay; si tampoco gana, remitir a **pediatría**.",
       "opciones": [
         {
-          "texto": "Transición en marcha: vigilar",
+          "texto": "Cambio de fórmula en marcha",
           "siguiente_nodo": "hos_trans_vigilancia",
           "color": "rosa"
         }
@@ -3162,6 +4122,16 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag10_r115_si_ganancia_peso_mantiene_10.png"
         },
         {
+          "titulo": "Con lactancia exclusiva: observar 2-3 días",
+          "paginas": "10",
+          "texto": "Si ya se alimenta exclusivamente con lactancia materna, continúe la observación intrahospitalaria por 2 a 3 días para asegurar que el niño continúa ganando peso",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag10_r115_si_ya_alimenta_exclusivamente_lactancia.png"
+        },
+        {
           "titulo": "F-100 si no gana peso en 5 días",
           "paginas": "10",
           "texto": "toma todo el volumen de F-75 establecido en las Tabla 15 y 16 y no gana el peso esperado durante los primeros 5 días.",
@@ -3172,6 +4142,36 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag10_r115_toma_todo_volumen_f75_establecido.png"
         },
         {
+          "titulo": "F-100 si sigue con edema a los 5 días",
+          "paginas": "11",
+          "texto": "Niños y niñas con desnutrición aguda severa que continúan con edema tras 5 días de tratamiento en la fase de estabilización.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag11_r115_ninos_ninas_desnutricion_aguda_severa.png"
+        },
+        {
+          "titulo": "F-100 hasta 3 días seguidos de ganancia",
+          "paginas": "11",
+          "texto": "Esta transición deberá mantenerse hasta evidenciar, durante tres (3) días consecutivos, un incremento progresivo del peso corporal.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag11_r115_esta_transicion_debera_mantenerse_hasta.png"
+        },
+        {
+          "titulo": "F-100: a la mitad un día y suspender",
+          "paginas": "11",
+          "texto": "se deberá reducir la cantidad de F-100 a la mitad durante el primer día, y suspenderla completamente al día siguiente",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag11_r115_debera_reducir_cantidad_f100_mitad.png"
+        },
+        {
           "titulo": "Sin ganancia tras la F-100: fórmula de inicio",
           "paginas": "11",
           "texto": "se considerará como un caso sin ganancia de peso efectiva con lactancia materna y debe transitara la fórmula láctea de iniciación",
@@ -3180,13 +4180,66 @@
           "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag11_r115_considerara_como_caso_sin_ganancia.png"
+        },
+        {
+          "titulo": "Antes de la fórmula de inicio: leche humana donada",
+          "paginas": "11",
+          "texto": "se deberá priorizar el uso de la Leche Humana Donada Pasteurizada antes de iniciar la administración de fórmulas lácteas de iniciación",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag11_r115_debera_priorizar_uso_leche_humana.png"
         }
       ]
     },
     "hos_trans_6_59": {
       "tipo": "informativo",
-      "titulo": "6-59 meses: pasar de la F-75 a la FTLC",
-      "texto": "- Subir la F-75 hasta **135 kcal/kg/día** (moderada) o **100** (severa) y cambiarla por **FTLC**.\n- **Opción 1**: lo que no coma de FTLC, completarlo con **F-75**.\n- **Opción 2**: si come **menos de la mitad** en **12 h**, volver a F-75 y reintentar en 1-2 días.\n- Agua **130-150 mL/kg/día** y **ácido fólico**.",
+      "titulo": "Pasar de la F-75 a la FTLC",
+      "texto": "- Subir la F-75 según **la tabla** hasta **135 kcal/kg/día** (moderada) o **100** (severa) y cambiarla por **FTLC**.\n- **Opción 1 (completar)**: lo que no coma de FTLC, completarlo con **F-75** y subir la FTLC en **2-3 días**.\n- **Opción 2 (volver atrás)**: si come **menos de la mitad** en **12 h**, volver a la F-75 y reintentar en 1-2 días.\n- Ofrecer agua a **130-150 mL/kg/día** y empezar el **ácido fólico**.",
+      "tabla": {
+        "titulo": "F-75 en la transición, mL/kg por toma cada 3 h",
+        "columnas": [
+          "Día",
+          "Moderada",
+          "Severa sin edema",
+          "Severa con edema"
+        ],
+        "en_texto": "la tabla",
+        "filas": [
+          [
+            "3",
+            "**20**",
+            "**13**",
+            "**10**"
+          ],
+          [
+            "4",
+            "**25**",
+            "**16**",
+            "**13**"
+          ],
+          [
+            "5",
+            "FTLC",
+            "**19**",
+            "**16**"
+          ],
+          [
+            "6",
+            "FTLC",
+            "FTLC",
+            "**19**"
+          ],
+          [
+            "7",
+            "FTLC",
+            "FTLC",
+            "FTLC"
+          ]
+        ],
+        "resaltar_primera_columna": true
+      },
       "farmacos": [
         {
           "nombre": "Ácido fólico",
@@ -3205,7 +4258,7 @@
       ],
       "opciones": [
         {
-          "texto": "Transición en marcha: vigilar",
+          "texto": "Cambio de fórmula en marcha",
           "siguiente_nodo": "hos_trans_vigilancia",
           "color": "azul"
         }
@@ -3221,9 +4274,36 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Tablas 41 y 42: F-75 en la transición",
+          "paginas": "96",
+          "texto": "El esquema de administración de la F-75 en la fase de la transición se describe en detalle en la Tabla 41 y Tabla 42.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Al final de la transición, todo con FTLC",
+          "paginas": "97",
+          "texto": "se espera que la FTLC cubra la totalidad del aporte calórico descrito en la Tabla 42.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Opción 1: completar con F-75",
           "paginas": "97",
           "texto": "Si no consume la cantidad prescrita de la FTLC por dosis, complete el requerimiento calórico faltante con F-75.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Subir la FTLC en 2 a 3 días",
+          "paginas": "97",
+          "texto": "Aumente la cantidad de FTLC en los siguientes 2 a 3 días, hasta que reciba lo que le corresponde por edad y peso",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -3273,14 +4353,38 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Con 4,2-4,4 kg: transición a FTLC",
+          "paginas": "22",
+          "texto": "se logra llegara! peso de 4.2-.4.4Kg, se debe realizarla transición a FTLC siguiendo lo planteado en la Fase de transición",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag22_r115_logra_llegara_peso_4244kg_debe.png"
         }
       ]
     },
     "hos_trans_vigilancia": {
       "tipo": "pregunta",
       "titulo": "Vigilar la transición: diarrea y realimentación",
-      "texto": "- La **diarrea** de la transición viene de la **sobrecarga** de solutos: vigilar la **deshidratación**.\n- Desde el **día 5-7** de alimentación ya no hay riesgo de **realimentación**.\n- Seguir el **peso** diario.",
-      "pie_nodo": "¿Cómo va?",
+      "contexto": "La **diarrea** de la transición viene de la **sobrecarga** de solutos: por eso se vigila la **deshidratación**.",
+      "texto": "- Pesar a **diario** y vigilar la **deshidratación**.\n- Desde el **día 5-7** de alimentación ya no hay riesgo de **realimentación**.\n- Comprobar cada día los **criterios de egreso**.",
+      "checklist": {
+        "titulo": "Criterios de egreso",
+        "items": [
+          "Clínicamente bien, sin complicaciones",
+          "Infección resuelta o controlada",
+          "Edema en reducción",
+          "6-59 meses: come **≥75 %** de la FTLC",
+          "6-59 meses: gana **12-16 g/día** dos días seguidos",
+          "6-59 meses: prueba de apetito positiva",
+          "Menor de 6 meses: lactancia eficaz",
+          "Menor de 6 meses: gana peso **3 días** seguidos"
+        ]
+      },
+      "pie_nodo": "¿Tiene alguna complicación o ya cumple los criterios de egreso?",
       "opciones": [
         {
           "texto": "Signos de realimentación",
@@ -3289,11 +4393,11 @@
         },
         {
           "texto": "Diarrea con deshidratación",
-          "siguiente_nodo": "hos_hidratacion",
+          "siguiente_nodo": "hos_rehidratar",
           "color": "naranja"
         },
         {
-          "texto": "Aún no cumple el egreso",
+          "texto": "Aún no cumple los criterios",
           "siguiente_nodo": "hos_trans_vigilancia"
         },
         {
@@ -3320,31 +4424,7 @@
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        }
-      ]
-    },
-    "hos_egreso": {
-      "tipo": "informativo",
-      "titulo": "Comprobar los criterios de egreso hospitalario",
-      "texto": "- Clínicamente bien, **sin complicaciones** y con la infección **controlada**.\n- **6-59 meses**: come **≥75 %** de la FTLC, gana **12-16 g/día** dos días y **prueba de apetito** positiva.\n- **Menor de 6 meses**: **lactancia** eficaz y gana peso **3 días** seguidos.\n- Control a la **semana** (3-5 días en <6 meses).",
-      "checklist": {
-        "titulo": "Antes de irse",
-        "items": [
-          "Vacunas al día",
-          "Albendazol si tiene 12 meses o más",
-          "FTLC hasta el próximo control",
-          "Familia comprometida con el tratamiento",
-          "Notificación al SIVIGILA"
-        ]
-      },
-      "opciones": [
-        {
-          "texto": "Cumple: seguir en casa",
-          "siguiente_nodo": "nodo_seguimiento",
-          "color": "verde"
-        }
-      ],
-      "referencias": [
+        },
         {
           "titulo": "Egreso: consume 75 % de la FTLC",
           "paginas": "100",
@@ -3373,9 +4453,9 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
-          "titulo": "Egreso: albendazol y FTLC hasta el control",
+          "titulo": "Egreso: el edema se reduce",
           "paginas": "100",
-          "texto": "Entrega de FTLC suficiente hasta el próximo control, programado en el curso de la siguiente semana.",
+          "texto": "Hay reducción del edema si este se encontraba presente.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -3385,15 +4465,6 @@
           "titulo": "Egreso menor de 6 meses: ganancia 3 días",
           "paginas": "68",
           "texto": "La ganancia de peso del niño es satisfactoria por mínimo tres días consecutivos, tanto para quienes son alimentados con lactancia materna exclusiva",
-          "fuente": "MinSalud 2020 (Res. 2350)",
-          "anio": "2020",
-          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
-          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
-        },
-        {
-          "titulo": "Egreso menor de 6 meses: control a los 3-5 días",
-          "paginas": "68",
-          "texto": "Se garantiza seguimiento ambulatorio entre los 3 a 5 días posteriores al egreso y de forma semanal hasta que se recupere.",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -3410,10 +4481,71 @@
         }
       ]
     },
+    "hos_egreso": {
+      "tipo": "informativo",
+      "titulo": "Preparar el egreso y el primer control",
+      "texto": "- Programar el primer control a la **semana** (a los **3-5 días** en el menor de 6 meses).\n- Comprobar con la familia todo lo de **la lista** antes de irse.",
+      "checklist": {
+        "titulo": "Antes de irse",
+        "items": [
+          "Vacunas al día",
+          "Albendazol: **200 mg** (12-24 meses) o **400 mg** (mayor de 2 años)",
+          "FTLC hasta el próximo control",
+          "Familia comprometida con el tratamiento",
+          "Historia clínica y contrarreferencia",
+          "Notificación al SIVIGILA"
+        ]
+      },
+      "opciones": [
+        {
+          "texto": "Egreso preparado",
+          "siguiente_nodo": "nodo_seguimiento",
+          "color": "verde"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Egreso: albendazol y FTLC hasta el control",
+          "paginas": "100",
+          "texto": "Entrega de FTLC suficiente hasta el próximo control, programado en el curso de la siguiente semana.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Egreso: albendazol 200 o 400 mg",
+          "paginas": "100",
+          "texto": "Dosis única de 200 mg si tiene entre 12 y 24 meses de edad o de 400 mg si es mayor de 2 años de edad.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Egreso menor de 6 meses: control a los 3-5 días",
+          "paginas": "68",
+          "texto": "Se garantiza seguimiento ambulatorio entre los 3 a 5 días posteriores al egreso y de forma semanal hasta que se recupere.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Vacunas: no hay contraindicación de aplicarlas juntas",
+          "paginas": "80",
+          "texto": "La aplicación simultánea de varias vacunas no está contraindicada en el manejo de los niños con desnutrición aguda",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        }
+      ]
+    },
     "nodo_seguimiento": {
       "tipo": "rama",
       "estilo": "rama",
-      "texto": "Seguimiento",
+      "texto": "Ambulatorio",
       "opciones": [
         {
           "texto": "Elegir según la edad",
@@ -3482,9 +4614,21 @@
     },
     "seg_menor6": {
       "tipo": "pregunta",
-      "titulo": "Menor de 6 meses en casa: control a los 3-5 días y semanal",
-      "texto": "- Primer control con **pediatría** a los **3-5 días** del alta; luego **semanal**.\n- **Lactancia** exclusiva hasta los 6 meses; si no mama, **fórmula de inicio** bien preparada.\n- Remitir si **no gana** peso, rechaza la vía oral, tiene diarrea, **edema** o dificultad respiratoria.",
-      "pie_nodo": "¿Cómo evoluciona?",
+      "titulo": "Controlar a los 3-5 días y después cada semana",
+      "texto": "- Hacer el primer control con **pediatría** a los **3-5 días** del alta y luego uno **semanal**.\n- Mantener la **lactancia** exclusiva hasta los 6 meses; si no mama, dar **fórmula de inicio** bien preparada.\n- Remitir al hospital si aparece algo de **la lista**.",
+      "checklist": {
+        "titulo": "Remitir al hospital si hay",
+        "items": [
+          "No gana peso",
+          "Alteración de la conciencia o convulsiones",
+          "Rechazo de la vía oral",
+          "Diarrea",
+          "Edema nuevo o que aumenta",
+          "Dificultad respiratoria",
+          "Condición médica o social de riesgo"
+        ]
+      },
+      "pie_nodo": "¿Cómo va el peso en este control y tiene algún signo de alarma?",
       "opciones": [
         {
           "texto": "Signo de alarma, o no gana peso",
@@ -3492,7 +4636,7 @@
           "color": "rojo"
         },
         {
-          "texto": "Gana peso, aún bajo la meta",
+          "texto": "Aún no: gana peso, pero sigue por debajo de -1 DE",
           "siguiente_nodo": "seg_menor6",
           "color": "rosa"
         },
@@ -3513,6 +4657,15 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Egreso menor de 6 meses: control a los 3-5 días",
+          "paginas": "68",
+          "texto": "Se garantiza seguimiento ambulatorio entre los 3 a 5 días posteriores al egreso y de forma semanal hasta que se recupere.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Egreso ambulatorio menor de 6 meses: P/L ≥ -1",
           "paginas": "18",
           "texto": "La puntuación Z del indicador Peso/Longitud es igual o superior a -1 DE, peso adecuado para la longitud.",
@@ -3521,13 +4674,43 @@
           "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag18_r115_puntuacion_z_indicador_pesolongitud_es.png"
+        },
+        {
+          "titulo": "Remitir al hospital si hay deterioro",
+          "paginas": "19",
+          "texto": "Si el niño que se encuentra en seguimiento ambulatorio presenta deterioro clínico o nutricional, requiere manejo hospitalario.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag19_r115_si_nino_encuentra_seguimiento_ambulatorio.png"
+        },
+        {
+          "titulo": "Criterios de remisión",
+          "paginas": "19",
+          "texto": "Alteración del estado de conciencia, hipoactividad o convulsiones. • Diarrea • Vómito persistente, rechazo de la vía oral, con riesgo de deshidratación.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag19_r115_alteracion_estado_conciencia_hipoactividad_convulsiones.png"
+        },
+        {
+          "titulo": "Remitir: edema nuevo o que aumenta",
+          "paginas": "19",
+          "texto": "Presencia de Edema si no lo presentaba o aumento del edema.",
+          "fuente": "MinSalud 2026 (Res. 115)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resolucion%20No%20115%20de%202026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Resolución 115 de 2026, por la cual se modifica parcialmente la Resolución 2350 de 2020 y su anexo técnico. Bogotá; 27 de enero de 2026.",
+          "imagen_evidencia": "evidencia_desnutricion_aguda_pag19_r115_presencia_edema_si_no_lo.png"
         }
       ]
     },
     "seg_ftlc": {
       "tipo": "informativo",
-      "titulo": "FTLC en casa según la severidad",
-      "texto": "- Calcular los **sobres** con **la tabla** (un sobre da **500 kcal**); repartir en **5 tomas** o más.\n- Dar la **leche materna** y **agua segura** en vaso.\n- Las heces más blandas sin fiebre, vómito ni **inapetencia** son **falsa diarrea**.",
+      "titulo": "Dar FTLC en casa según la severidad",
+      "texto": "- Calcular los **sobres** según los días de tratamiento (un sobre da **500 kcal**) y repartirlos en **5 tomas** o más.\n- En la **severa**, empezar otros alimentos desde el **día 8**, en pequeñas cantidades.\n- Dar la **leche materna** y **agua segura** en vaso.\n- Las heces más blandas sin fiebre, vómito ni **inapetencia** son **falsa diarrea**.",
       "media": [
         {
           "recurso": "dnt_ftlc_esquema.png",
@@ -3575,38 +4758,6 @@
           ]
         }
       ],
-      "tabla": {
-        "titulo": "FTLC por día de tratamiento",
-        "columnas": [
-          "Días",
-          "Moderada",
-          "Severa"
-        ],
-        "en_texto": "la tabla",
-        "filas": [
-          [
-            "1-3",
-            "**150** kcal/kg/día",
-            "**80** kcal/kg/día; con edema, restar **5-10 %** del peso"
-          ],
-          [
-            "4-7",
-            "**150** kcal/kg/día",
-            "**100** kcal/kg/día"
-          ],
-          [
-            "8-15",
-            "**200** si queda con hambre",
-            "**135-150**; empezar otros alimentos"
-          ],
-          [
-            "15-30",
-            "**200** kcal/kg/día",
-            "**150-200** kcal/kg/día"
-          ]
-        ],
-        "resaltar_primera_columna": true
-      },
       "alertas": [
         {
           "titulo": "Diarrea verdadera",
@@ -3640,7 +4791,7 @@
       ],
       "opciones": [
         {
-          "texto": "FTLC indicada: medicamentos",
+          "texto": "FTLC indicada",
           "siguiente_nodo": "seg_medicamentos",
           "color": "azul"
         }
@@ -3758,8 +4909,8 @@
     },
     "seg_medicamentos": {
       "tipo": "informativo",
-      "titulo": "Medicamentos y micronutrientes en casa",
-      "texto": "- **Amoxicilina** **7 días** sólo en la **severa**.\n- **Albendazol** a los **15 días** desde los **12 meses**.\n- **Ácido fólico**: **5 mg** el primer día y **1 mg/día**.\n- **Vitamina A** sólo con **sarampión** o xeroftalmía. **Hierro** al terminar la FTLC.\n- Preguntar por **tuberculosis**, malaria y VIH.",
+      "titulo": "Dar medicamentos y micronutrientes en casa",
+      "texto": "- Dar **amoxicilina** **7 días** sólo en la **severa**.\n- Dar **albendazol** a los **15 días**, desde los **12 meses**.\n- Dar **ácido fólico**: **5 mg** el primer día y luego **1 mg/día**.\n- Dar **vitamina A** sólo con **sarampión** o xeroftalmía.\n- Dar **hierro** al terminar la FTLC, cuando la Hb llegue a **11 g/dL**.\n- Preguntar por **tuberculosis**, malaria y VIH.",
       "farmacos": [
         {
           "nombre": "Amoxicilina (ambulatoria)",
@@ -3787,7 +4938,7 @@
         {
           "nombre": "Hierro elemental",
           "dosis": "**3-6 mg/kg/día**",
-          "pauta": "Al **terminar** la FTLC, tanto tiempo como tardó en **normalizarse** la Hb.",
+          "pauta": "Al **terminar** la FTLC y con Hb **≥11 g/dL**, tanto tiempo como tardó en **normalizarse**.",
           "paginas": "78 (Res. 2350)",
           "por_kg": {
             "unidad": "mg",
@@ -3797,10 +4948,10 @@
           }
         }
       ],
-      "nota_adicional": "Con Hb **≤6 g/dL** sin dificultad respiratoria se puede tratar en casa: **FTLC** y **Hb mensual**. La FTLC ya trae **hierro**, **zinc** y vitamina A.",
+      "nota_adicional": "Con Hb **entre 4 y 6 g/dL** y sin dificultad respiratoria se puede tratar en **casa**: **FTLC** y **Hb mensual**. Si al terminar sigue **<11 g/dL**, remitir a **pediatría**.",
       "opciones": [
         {
-          "texto": "Medicamentos indicados: controles",
+          "texto": "Medicamentos indicados",
           "siguiente_nodo": "seg_control",
           "color": "azul"
         }
@@ -3861,6 +5012,15 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Hierro cuando la Hb llega a 11 g/dL",
+          "paginas": "78",
+          "texto": "Una vez termine el tratamiento con FTLC y cuando el valor de hemoglobina sea mayor o igual a 11 g/dl, continúe suministrando hierro elemental",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Hierro al terminar la FTLC",
           "paginas": "78",
           "texto": "continúe suministrando hierro elemental a dosis terapéuticas de 3 a 6 mg/ kg/día, por un periodo igual al empleado en adecuar los niveles de hemoglobina",
@@ -3870,9 +5030,27 @@
           "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
         },
         {
+          "titulo": "Hb que sigue bajo 11 g/dL: pediatría",
+          "paginas": "78",
+          "texto": "Si persiste el valor de hemoglobina por debajo de 11 g/dl, solicite una valoración por pediatria para el análisis individual del caso.",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Hb ≤6 sin dificultad respiratoria: FTLC y control mensual",
           "paginas": "78",
           "texto": "Si el valor de la hemoglobina es menor o igual a 6 g/dl y el niño no presenta signos de dificultad respiratoria, inicie la FTLC como se indica",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Hospitalario: hemoglobina",
+          "paginas": "35",
+          "texto": "Hemoglobina menos de 4 g/dl y Hemoglobina menos de 6 g/dl con signos de esfuerzo respiratorio o aumento en la frecuencia cardíaca",
           "fuente": "MinSalud 2020 (Res. 2350)",
           "anio": "2020",
           "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
@@ -3892,40 +5070,42 @@
     "seg_control": {
       "tipo": "pregunta",
       "titulo": "Control semanal: peso, apetito y signos de alarma",
-      "texto": "- Controles **semanales** hasta el egreso, en la IPS o en **casa**.\n- En cada uno: **peso**, talla, perímetro del brazo, **prueba de apetito** y examen.\n- Ajustar la **FTLC** al nuevo peso o si queda con **hambre**.",
+      "texto": "- Hacer controles **semanales** hasta el egreso, en la IPS o en **casa**.\n- En cada uno, medir **peso**, talla y perímetro del brazo, y hacer la **prueba de apetito** y el examen.\n- Ajustar la **FTLC** al nuevo peso o si queda con **hambre**.",
       "checklist": {
         "titulo": "Remitir al hospital si hay",
         "items": [
           "Alteración de la conciencia, hipoactividad o convulsiones",
-          "Diarrea, vómito persistente o rechazo de la vía oral",
-          "Respiración rápida para la edad",
+          "Diarrea",
+          "Vómito persistente o rechazo de la vía oral",
+          "Respiración rápida: **≥50/min** (2-11 meses) o **≥40/min** (1-5 años)",
           "Temperatura **<35,5 °C** o **>38 °C**",
           "Lesiones de piel en **>30 %**",
-          "Hb **<4 g/dL**, o **<6 g/dL** con dificultad respiratoria",
+          "Hb **<4 g/dL**",
+          "Hb **<6 g/dL** con dificultad respiratoria",
           "Edema nuevo o que aumenta",
           "Condición social de riesgo"
         ]
       },
-      "nota_adicional": "Más **controles** si **no gana** o pierde peso en las dos últimas visitas, si viene del hospital o si la madre necesita **apoyo**.",
-      "pie_nodo": "¿Cómo evoluciona?",
+      "nota_adicional": "Hacer más **controles** si **no gana** o pierde peso en las dos últimas visitas, si viene del hospital o si la madre necesita **apoyo**.",
+      "pie_nodo": "¿Cómo va el peso en este control y tiene algún signo de alarma?",
       "opciones": [
         {
-          "texto": "Signo de alarma o pierde peso",
+          "texto": "Signo de alarma, o pierde o no gana peso en dos controles",
           "siguiente_nodo": "nodo_hospital",
           "color": "rojo"
         },
         {
-          "texto": "Mejora, aún <-2 DE",
+          "texto": "Aún por debajo de -2 DE, sin alarma",
           "siguiente_nodo": "seg_control",
           "color": "azul"
         },
         {
-          "texto": "Pasa a riesgo: entre -2 y -1 DE",
+          "texto": "De -2 a menos de -1 DE",
           "siguiente_nodo": "seg_riesgo",
           "color": "amarillo"
         },
         {
-          "texto": "Peso para la talla ≥-1 DE",
+          "texto": "-1 DE o más",
           "siguiente_nodo": "seg_egreso",
           "color": "verde"
         }
@@ -3982,6 +5162,24 @@
           "imagen_evidencia": "evidencia_desnutricion_aguda_pag19_r115_presencia_edema_si_no_lo.png"
         },
         {
+          "titulo": "Frecuencia respiratoria por edad",
+          "paginas": "35",
+          "texto": "Niño menor de 2 meses: 60 respiraciones por minuto - Niño de 2 a 11 meses: 50 respiraciones por minuto - Niño de 12 meses a 5 años: 40 respiraciones por minuto",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
+          "titulo": "Hospitalario: hemoglobina",
+          "paginas": "35",
+          "texto": "Hemoglobina menos de 4 g/dl y Hemoglobina menos de 6 g/dl con signos de esfuerzo respiratorio o aumento en la frecuencia cardíaca",
+          "fuente": "MinSalud 2020 (Res. 2350)",
+          "anio": "2020",
+          "url": "https://minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/lineamiento-manejo-desnutricion-resolucion-2350.pdf",
+          "cita": "Ministerio de Salud y Protección Social, UNICEF. Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad. Anexo técnico de la Resolución 2350 de 2020. 2.ª ed. Bogotá; 2021."
+        },
+        {
           "titulo": "Más seguimiento si no gana peso",
           "paginas": "82",
           "texto": "Consideree condiciones particulares que requieran mayor seguimiento, a saber: » Pérdida o no ganancia de peso en las últimas dos visitas",
@@ -3994,15 +5192,15 @@
     },
     "seg_riesgo": {
       "tipo": "pregunta",
-      "titulo": "En riesgo tras la desnutrición: controles cada 15 días",
-      "texto": "- **1.er control**: misma dosis de **FTLC**.\n- **2.º**: si ganó **>10 g/día**, FTLC a **100 kcal/kg/día**.\n- **3.º**: si sigue en riesgo, **240-270 kcal/día** por **15 días** y **pediatría**.\n- Si no gana lo esperado: **pediatría** y estudio.",
+      "titulo": "Controlar cada 15 días mientras sigue en riesgo",
+      "texto": "- En el **1.er control**, mantener la misma dosis de **FTLC**.\n- En el **2.º**, si ganó **más de 10 g/día**, bajar la FTLC a **100 kcal/kg/día**.\n- En el **3.º**, si sigue en riesgo, dar **240-270 kcal/día** por **15 días** y remitir a **pediatría**.\n- Si no gana lo esperado, remitir a **pediatría** para un estudio.",
       "media": [
         {
           "recurso": "dnt_clasificacion.png",
           "titulo": "Peso para la talla: dónde cae el niño",
           "descripcion": "Bandas del puntaje Z: adecuado, riesgo, desnutrición moderada y severa.",
           "info": "En la recuperación, el niño sube de banda: de {#F07F3C:moderada} pasa a {#F2A23A:riesgo} y sigue en controles **cada 15 días**. El **egreso** llega con **≥-1 DE**, peso {#2FB36D:adecuado}.",
-          "en_texto": "misma dosis",
+          "en_texto": "sigue en riesgo",
           "referencias": [
             {
               "titulo": "En riesgo: controles quincenales",
@@ -4030,7 +5228,7 @@
       "pie_nodo": "¿Llegó a peso adecuado para la talla?",
       "opciones": [
         {
-          "texto": "Sí: ≥-1 DE",
+          "texto": "Sí: -1 DE o más",
           "siguiente_nodo": "seg_egreso",
           "color": "verde"
         },
@@ -4101,8 +5299,8 @@
     "seg_pediatria": {
       "tipo": "resultado",
       "estilo": "advertencia",
-      "titulo": "Sin ganancia esperada: pediatría y estudio integral",
-      "texto": "- Control con **pediatría** en **15 días**, con la misma dosis de **FTLC**.\n- Plan de **diagnóstico integral** y valoración por otras áreas: **manejo individualizado**.",
+      "titulo": "Remitir a pediatría para un estudio integral",
+      "texto": "- Hacer el control con **pediatría** en **15 días**, con la misma dosis de **FTLC**.\n- Hacer un plan de **diagnóstico integral** y valoración por otras áreas, con **manejo individualizado**.",
       "referencias": [
         {
           "titulo": "En riesgo: controles quincenales",
@@ -4139,8 +5337,17 @@
     "seg_egreso": {
       "tipo": "resultado",
       "estilo": "exito",
-      "titulo": "Recuperado: egreso del manejo ambulatorio",
-      "texto": "- Peso para la talla **≥-1 DE**, sin **edema** dos controles seguidos y **clínicamente bien**.\n- Vacunas al día, tratar la **anemia** si la hay y vincular a **programas** de alimentación si hace falta.\n- Seguir en la **ruta** de la Resolución **3280**.",
+      "titulo": "Dar el egreso del manejo ambulatorio",
+      "texto": "- Comprobar los **criterios** de la lista.\n- Tratar la **anemia** si la hay y vincular a **programas** de alimentación si hace falta.\n- Seguir en la **ruta** de la Resolución **3280**.",
+      "checklist": {
+        "titulo": "Criterios de egreso",
+        "items": [
+          "Peso para la talla **≥-1 DE**",
+          "Sin edema dos controles seguidos",
+          "Clínicamente bien",
+          "Vacunas al día"
+        ]
+      },
       "referencias": [
         {
           "titulo": "Egreso ambulatorio: P/T-L ≥ -1 DE",

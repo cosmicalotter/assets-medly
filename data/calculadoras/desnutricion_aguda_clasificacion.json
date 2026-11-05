@@ -4,7 +4,7 @@
   "instrucciones": "Calcular el puntaje Z con los patrones de la OMS (Resolución 2465 de 2016); en el prematuro, con la edad corregida. El edema se busca presionando el dorso del pie 3 segundos.",
   "limitaciones": "No reemplaza la valoración clínica. El perímetro del brazo sólo se usa de 6 a 59 meses y no reemplaza el peso y la talla. Con edema, el peso no es confiable. Descartar el edema que no es nutricional (síndrome nefrótico, hepatopatía).",
   "tipoCalculo": "formula",
-  "formula": "3 * (0.5 * (1 + ((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5) / abs((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5))) + (1 - (0.5 * (1 + ((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5) / abs((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5)))) * (2 * (0.5 * (1 + ((0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001))) + pb - 0.5) / abs((0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001))) + pb - 0.5))) + (1 - (0.5 * (1 + ((0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001))) + pb - 0.5) / abs((0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001))) + pb - 0.5)))) * (0.5 * (1 + (-1 - z - 0.000001) / abs(-1 - z - 0.000001))))",
+  "formula": "3 * (0.5 * (1 + ((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5) / abs((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5))) + (1 - (0.5 * (1 + ((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5) / abs((0.5 * (1 + (grado - 0.5) / abs(grado - 0.5))) + (0.5 * (1 + (-3 - z - 0.000001) / abs(-3 - z - 0.000001))) - 0.5)))) * (2 * (0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001))) + (1 - (0.5 * (1 + (-2 - z - 0.000001) / abs(-2 - z - 0.000001)))) * (1.8 * pb + (1 - pb) * (0.5 * (1 + (-1 - z - 0.000001) / abs(-1 - z - 0.000001)))))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Clasificación",
   "referencias": [
@@ -116,27 +116,31 @@
       "categoria": "Desnutrición aguda severa",
       "color": "rojo",
       "match_opcion_index": 0,
-      "approach": "Buscar complicaciones (urgencia vital) y decidir el escenario: hospital o casa según la edad, los criterios y la prueba de apetito. Con edema severo (+++), siempre hospital."
+      "approach": "Con puntaje Z menor de -3 o con edema nutricional (el kwashiorkor siempre lo lleva, Tabla 6). Buscar complicaciones (urgencia vital) y decidir el escenario: hospital o casa según la edad, los criterios y la prueba de apetito. Con edema severo (+++), siempre hospital."
     },
     {
-      "min": 1.5,
+      "min": 1.9,
       "max": 2.49,
       "si": {
-        "alguno": [
-          {
-            "id": "z",
-            "menor": -2
-          },
-          {
-            "id": "pb",
-            "igual": 1
-          }
-        ]
+        "id": "z",
+        "menor": -2
       },
       "categoria": "Desnutrición aguda moderada",
       "color": "naranja",
       "match_opcion_index": 0,
       "approach": "Buscar complicaciones y decidir el escenario: el menor de 6 meses se hospitaliza; de 6 a 59 meses, según los criterios y la prueba de apetito."
+    },
+    {
+      "min": 1.5,
+      "max": 1.89,
+      "si": {
+        "id": "pb",
+        "igual": 1
+      },
+      "categoria": "Desnutrición aguda (perímetro del brazo <11,5 cm)",
+      "color": "naranja",
+      "match_opcion_index": 0,
+      "approach": "El perímetro del brazo menor de 11,5 cm predice muerte y se trata como desnutrición aguda aunque el puntaje Z no llegue a -2: buscar complicaciones y decidir el escenario. No es un grado; el esquema de FTLC lo define el puntaje Z y el edema."
     },
     {
       "min": 0.5,
