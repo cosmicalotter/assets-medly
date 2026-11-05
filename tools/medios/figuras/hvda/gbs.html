@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.escala{position:relative;height:64px;margin:6px 4px 0}
+.tramo{position:absolute;top:18px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px}
+.ticks{position:relative;height:18px;margin:0 4px}.tk{position:absolute;transform:translateX(-50%);font-size:12.5px;color:var(--suave);font-weight:700}
+.dos{display:grid;grid-template-columns:1fr 2.2fr;gap:10px}.caja{border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.35}
+.caja h3{font-size:16px}</style></head><body><script>
+// ESGE 2026, p. 909 y 903; HUN 2025, p. 46 y 49.
+const W = 660, pos = (v) => (v / 23) * W;
+lienzo("Glasgow-Blatchford: quién se va a casa", "Puntaje de 0 a 23, con los datos de la llegada y antes de la endoscopia.",
+  `<div class="escala">
+     <div class="tramo" style="left:0;width:${pos(2)}px;background:var(--verde)">0-1</div>
+     <div class="tramo" style="left:${pos(2) + 4}px;width:${W - pos(2) - 4}px;background:var(--naranja)">2 puntos o más</div>
+   </div>
+   <div class="ticks">${[0, 2, 5, 10, 15, 20, 23].map((v) => `<span class="tk" style="left:${pos(v)}px">${v}</span>`).join("")}</div>
+   <div class="dos">
+     <div class="caja" style="background:#E8F7EF;outline:2px solid var(--verde)"><h3 style="color:var(--verde)">Riesgo muy bajo</h3>
+       <div>Bajo riesgo de <b>resangrado</b>, de muerte a 30 días o de intervención.</div><div><b>Alta</b> con endoscopia <b>ambulatoria</b>.</div></div>
+     <div class="caja" style="background:#FDF0E8;outline:2px solid var(--naranja)"><h3 style="color:var(--naranja)">Hospitalizar</h3>
+       <div>Valoración de <b>gastroenterología</b>.</div>
+       <div>Endoscopia <b>temprana</b>: en las primeras <b>24 h</b>, tras la reanimación.</div>
+       <div>Antes de <b>12 h</b> sólo si sigue <b>inestable</b> o se sospechan <b>várices</b>.</div></div>
+   </div>`,
+  FUENTE("ESGE 2026, p. 903, 909 y 912; ESGE 2022, p. 1095; HUN 2025, p. 46 y 49"));
+</script></body></html>
