@@ -34,7 +34,7 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "EPOC",
-      "texto": "- **EPOC:** enfermedad pulmonar con síntomas respiratorios **crónicos** (disnea, tos, expectoración o exacerbaciones) y obstrucción **persistente** al flujo aéreo: VEF1/CVF **<0,7** tras el broncodilatador.\n- **Grados GOLD** de la obstrucción, por el VEF1 del predicho: **1** ≥80 %, **2** 50-79 %, **3** 30-49 % y **4** <30 %.\n- **Grupos ABE:** **E** con 1 o más exacerbaciones moderadas o graves en el último año; sin ellas, **A** con mMRC 0-1 y CAT <10, y **B** con mMRC ≥2 o CAT ≥10.\n- **Exacerbación:** empeoramiento **agudo** de la disnea, la tos o el esputo en **14 días** o menos.",
+      "texto": "- **EPOC:** enfermedad pulmonar con síntomas respiratorios **crónicos** (disnea, tos, expectoración o exacerbaciones) y obstrucción **persistente** al flujo aéreo: VEF1/CVF **<0,7** tras el broncodilatador.\n- **Grados GOLD:** gravedad de la obstrucción por el VEF1 posbroncodilatador, de **GOLD 1** (≥80 % del predicho) a **GOLD 4** (<30 %).\n- **Grupos ABE:** **E** con 1 o más exacerbaciones moderadas o graves en el último año; sin ellas, **A** con mMRC 0-1 y CAT <10, y **B** con mMRC ≥2 o CAT ≥10.\n- **Exacerbación:** empeoramiento **agudo** de la disnea, la tos o el esputo en **14 días** o menos.",
       "pie_nodo": "¿Qué parte del manejo necesitas?",
       "opciones": [
         {
@@ -163,18 +163,95 @@
     "diag_sospecha": {
       "tipo": "pregunta",
       "titulo": "Sospechar la EPOC por los síntomas y la exposición",
-      "texto": "- Pensar en la EPOC si hay **disnea**, tos crónica, expectoración o infecciones respiratorias bajas a repetición.\n- Buscarla aunque no haya síntomas si hay **exposición**:\n  - Tabaco: índice de Brinkman **≥400** o **≥20** paquetes-año.\n  - **Biomasa** durante más de **10 años**.\n  - Polvos, gases o humos en el **trabajo**.\n  - Tuberculosis pulmonar previa.",
+      "texto": "- Pensar en la EPOC si hay:\n  - **Disnea**.\n  - Tos crónica o **expectoración**.\n  - Infecciones respiratorias bajas a **repetición**.\n- Buscarla aunque no haya síntomas si hay **exposición**:\n  - Tabaco: índice de Brinkman **≥400** o **≥20** paquetes-año.\n  - Humo de tabaco de **segunda mano**.\n  - **Biomasa** durante más de **10 años**.\n  - Polvos, gases o humos en el **trabajo**.\n  - Tuberculosis pulmonar previa.",
+      "formulas": [
+        {
+          "en_texto": "índice de Brinkman",
+          "titulo": "Índice de Brinkman",
+          "tex": "\\text{índice de Brinkman} = \\text{cigarrillos al día} \\times \\text{años fumando}",
+          "variables": [
+            [
+              "cigarrillos al día",
+              "promedio de cigarrillos que fuma o fumaba al día"
+            ],
+            [
+              "años fumando",
+              "total de años de consumo"
+            ]
+          ],
+          "nota": "Con **400** o más aumenta el riesgo de EPOC: buscarla con **espirometría**.",
+          "referencias": [
+            {
+              "titulo": "Índice de Brinkman",
+              "paginas": "96",
+              "texto": "índice de Brinkman (multiplicación del número de cigarrillos al día, por el total de año por los que ha fumado)",
+              "fuente": "MinSalud 2014",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+              "imagen_evidencia": "evidencia_epoc_pag96_minsalud_2014_p_96.png"
+            },
+            {
+              "titulo": "R4: tabaquismo",
+              "paginas": "67",
+              "texto": "Se recomienda la búsqueda activa de la EPOC en todos los sujetos con antecedente de tabaquismo medido por Índice de Brikman ≥400 o ≥20 paquetes/año aunque no tenga síntomas.",
+              "fuente": "MinSalud 2014",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+              "imagen_evidencia": "evidencia_epoc_pag67_minsalud_2014_p_67.png"
+            }
+          ]
+        },
+        {
+          "en_texto": "paquetes-año",
+          "titulo": "Paquetes-año",
+          "tex": "\\text{paquetes-año} = \\dfrac{\\text{cigarrillos al día} \\times \\text{años fumando}}{20}",
+          "variables": [
+            [
+              "cigarrillos al día",
+              "promedio de cigarrillos que fuma o fumaba al día"
+            ],
+            [
+              "20",
+              "cigarrillos que trae un paquete"
+            ]
+          ],
+          "nota": "Con **20** o más aumenta el riesgo de EPOC: buscarla con **espirometría**.",
+          "referencias": [
+            {
+              "titulo": "Índice paquetes-año",
+              "paginas": "96",
+              "texto": "el índice paquetes/año (número de cigarrillos fumados al día multiplicado por el número de años de consumo)/20;",
+              "fuente": "MinSalud 2014",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+              "imagen_evidencia": "evidencia_epoc_pag96_minsalud_2014_p_96.png"
+            },
+            {
+              "titulo": "R4: tabaquismo",
+              "paginas": "67",
+              "texto": "Se recomienda la búsqueda activa de la EPOC en todos los sujetos con antecedente de tabaquismo medido por Índice de Brikman ≥400 o ≥20 paquetes/año aunque no tenga síntomas.",
+              "fuente": "MinSalud 2014",
+              "anio": "2014",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+              "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+              "imagen_evidencia": "evidencia_epoc_pag67_minsalud_2014_p_67.png"
+            }
+          ]
+        }
+      ],
       "nota_adicional": "Además del tabaco, el **humo de leña** y de otros combustibles de **biomasa** es una causa importante de EPOC: preguntar siempre cómo se **cocina** en casa.",
-      "pie_nodo": "¿Tiene síntomas o una exposición que hagan sospechar la EPOC?",
+      "pie_nodo": "¿Los síntomas o la exposición hacen sospechar la EPOC?",
       "opciones": [
         {
           "texto": "Sí",
           "siguiente_nodo": "diag_espirometria"
         },
         {
-          "texto": "No",
-          "siguiente_nodo": "diag_diferenciales_inicio",
-          "descripcion": "Buscar otra causa"
+          "texto": "No: otro cuadro respiratorio",
+          "siguiente_nodo": "diag_diferenciales_inicio"
         }
       ],
       "referencias": [
@@ -207,6 +284,36 @@
           "imagen_evidencia": "evidencia_epoc_pag67_minsalud_2014_p_67.png"
         },
         {
+          "titulo": "Índice de Brinkman",
+          "paginas": "96",
+          "texto": "índice de Brinkman (multiplicación del número de cigarrillos al día, por el total de año por los que ha fumado)",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag96_minsalud_2014_p_96.png"
+        },
+        {
+          "titulo": "Índice paquetes-año",
+          "paginas": "96",
+          "texto": "el índice paquetes/año (número de cigarrillos fumados al día multiplicado por el número de años de consumo)/20;",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag96_minsalud_2014_p_96.png"
+        },
+        {
+          "titulo": "R6: tabaquismo de segunda mano",
+          "paginas": "68",
+          "texto": "Se recomienda realizar búsqueda activa de la EPOC en adultos expuestos a tabaquismo de segunda mano (exposición frecuente a persona que fume en el hogar o en el sitio de trabajo)",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag68_minsalud_2014_p_68_2.png"
+        },
+        {
           "titulo": "R2: biomasa",
           "paginas": "67",
           "texto": "En sujetos adultos con exposición a biomasa por más de 10 años se recomienda realizar búsqueda activa con espirometria para la EPOC.",
@@ -226,7 +333,7 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         },
         {
-          "titulo": "R6 y R8: tabaquismo pasivo y exposición laboral",
+          "titulo": "R8: exposición laboral",
           "paginas": "68",
           "texto": "En los sujetos expuestos en su trabajo a polvos, gases y/o humos se recomienda la búsqueda activa de la EPOC",
           "fuente": "MinSalud 2014",
@@ -250,13 +357,13 @@
     "diag_diferenciales_inicio": {
       "tipo": "informativo",
       "titulo": "Buscar otra causa de los síntomas respiratorios",
-      "texto": "- Pedir una **radiografía de tórax**, oximetría de pulso y, si se puede, gases arteriales.\n- Pensar en:\n  - **Asma**, que puede convivir con la EPOC.\n  - **Falla cardiaca**.\n  - Bronquiectasias o **tuberculosis**.\n  - Bronquiolitis obliterante.",
+      "texto": "- Pedir una radiografía de tórax, **oximetría** de pulso y, si se puede, **gases arteriales**.\n- Pensar en:\n  - **Asma**, que puede convivir con la EPOC.\n  - **Falla cardiaca**.\n  - **Tuberculosis** o sus secuelas, bronquiectasias o neumoconiosis.\n  - Bronquiolitis constrictiva u **obstrucción** de la vía aérea alta.",
       "media": [
         {
           "recurso": "epoc_rx_lateral_real.jpg",
           "titulo": "Radiografía lateral en el enfisema",
           "descripcion": "Tórax en tonel y diafragma aplanado en la radiografía lateral de un paciente con enfisema.",
-          "info": "La {#FDE047:línea amarilla} marca el **diafragma aplanado** y el {#22D3EE:óvalo celeste}, el espacio **retroesternal** agrandado: signos de **hiperinsuflación**. La radiografía no confirma la EPOC, pero ayuda a buscar **otras causas**.",
+          "info": "La {#FDE047:línea amarilla} marca el **diafragma aplanado** y el {#22D3EE:óvalo celeste}, el espacio **retroesternal** agrandado: signos de **hiperinsuflación**. Orientan pero no diagnostican la EPOC: sin obstrucción en la espirometría, la radiografía sirve para buscar **otra causa**.",
           "en_texto": "radiografía de tórax",
           "referencias": [
             {
@@ -314,14 +421,60 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Otras causas de obstrucción crónica",
+          "paginas": "130",
+          "texto": "otras enfermedades se manifiestan con síntomas semejantes y con limitación crónica al flujo aéreo, como asma, tuberculosis o sus secuelas, neumoconiosis, bronquiectasias, bronquiolitis constrictiva y obstrucción de la vía aérea alta.",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag130_minsalud_2014_p_130.png"
+        },
+        {
+          "titulo": "Figura 2.3: falla cardiaca",
+          "paginas": "10",
+          "texto": "Congestive heart failure Chest X-ray shows dilated heart, pulmonary edema Pulmonary function tests indicate volume restriction, not airflow obstruction",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         }
       ]
     },
     "diag_espirometria": {
       "tipo": "pregunta",
       "titulo": "Confirmar la obstrucción con la espirometría",
-      "texto": "- Hacer una espirometría **antes y después** del broncodilatador.\n- Confirma la EPOC un VEF1/CVF **<0,7** posbroncodilatador.\n- La espirometría **prebroncodilatador** normal ya descarta la EPOC.\n- No hace falta suspender los **inhaladores** para hacerla.",
-      "nota_adicional": "La guía colombiana prefiere la **relación fija** <0,70 al límite inferior de lo normal: los que excluye el LIN también tienen **síntomas** y usan **recursos**.",
+      "texto": "- Hacer una espirometría antes y después del **broncodilatador**.\n- Confirmar la EPOC si el VEF1/CVF posbroncodilatador es **<0,7**.\n- Si da entre **0,6 y 0,8**, repetirla otro día: la relación puede **variar**.\n- Una espirometría **prebroncodilatador** normal ya descarta la EPOC.\n- No hace falta suspender los **inhaladores** para hacerla.",
+      "nota_adicional": "La guía colombiana prefiere la **relación fija** <0,70 al límite inferior de lo normal: los pacientes que el LIN deja fuera también tienen **síntomas** y usan **recursos**.",
+      "burbujas": [
+        {
+          "en_texto": "repetirla otro día",
+          "titulo": "¿Por qué repetirla?",
+          "texto": "Entre **0,6 y 0,8** la relación puede cambiar por **variación biológica**; si la primera es **<0,6**, es muy raro que suba por encima de **0,7**.",
+          "referencias": [
+            {
+              "titulo": "Repetir la espirometría entre 0,6 y 0,8",
+              "paginas": "30",
+              "texto": "should be confirmed by repeat spirometry on a separate occasion if the value is between 0.6 and 0.8,",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+            },
+            {
+              "titulo": "Por debajo de 0,6 no cambia",
+              "paginas": "30",
+              "texto": "If the initial post-bronchodilator FEV1/FVC ratio is less than 0.6 it is very unlikely to rise spontaneously above 0.7.",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+            }
+          ]
+        }
+      ],
       "media": [
         {
           "recurso": "epoc_espirometria_real.jpg",
@@ -360,8 +513,7 @@
         },
         {
           "texto": "No",
-          "siguiente_nodo": "diag_diferenciales_inicio",
-          "descripcion": "Buscar otra causa"
+          "siguiente_nodo": "diag_diferenciales_inicio"
         }
       ],
       "referencias": [
@@ -411,39 +563,22 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Repetir la espirometría entre 0,6 y 0,8",
+          "paginas": "30",
+          "texto": "should be confirmed by repeat spirometry on a separate occasion if the value is between 0.6 and 0.8,",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
     "diag_clasificacion_gold": {
       "tipo": "pregunta",
       "titulo": "Clasificar la gravedad y el grupo ABE",
-      "texto": "- Graduar la **obstrucción** (GOLD 1 a 4) por el VEF1, con la tabla.\n- Medir los **síntomas** con el mMRC o el CAT.\n- Contar las **exacerbaciones** moderadas o graves del último año.\n- Pedir los **eosinófilos** en sangre y buscar comorbilidades.",
-      "tabla": {
-        "titulo": "Grados GOLD (VEF1 posbroncodilatador)",
-        "columnas": [
-          "Grado",
-          "VEF1 del predicho"
-        ],
-        "en_texto": "con la tabla",
-        "filas": [
-          [
-            "**GOLD 1**: leve",
-            "**≥80 %**"
-          ],
-          [
-            "**GOLD 2**: moderada",
-            "**50-79 %**"
-          ],
-          [
-            "**GOLD 3**: grave",
-            "**30-49 %**"
-          ],
-          [
-            "**GOLD 4**: muy grave",
-            "**<30 %**"
-          ]
-        ]
-      },
+      "texto": "- Graduar la **obstrucción** de GOLD 1 a 4 por el VEF1, con la imagen.\n- Medir los **síntomas** con el mMRC o el CAT.\n- Contar las **exacerbaciones** moderadas o graves del último año.\n- Pedir los **eosinófilos** en sangre y buscar **comorbilidades**.",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/epoc_abe.json",
         "etiqueta": "Calcular el grupo ABE",
@@ -492,29 +627,38 @@
               "anio": "2026",
               "url": "https://goldcopd.org/2026-gold-report/",
               "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+            },
+            {
+              "titulo": "Grupo E con una exacerbación moderada",
+              "paginas": "43",
+              "texto": "Consequently, Group E has been modified to include individuals with one moderate exacerbation in the previous year.",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
             }
           ]
         }
       ],
-      "pie_nodo": "¿En qué grupo ABE está?",
+      "pie_nodo": "¿En qué grupo ABE queda por sus exacerbaciones y sus síntomas?",
       "opciones": [
         {
           "texto": "Grupo A",
           "siguiente_nodo": "diag_grupo_a",
           "color": "verde",
-          "descripcion": "Sin exacerbaciones, mMRC 0-1 y CAT <10"
+          "descripcion": "Ninguna exacerbación moderada o grave; mMRC 0-1 y CAT <10"
         },
         {
           "texto": "Grupo B",
           "siguiente_nodo": "diag_grupo_b",
           "color": "azul",
-          "descripcion": "Sin exacerbaciones, mMRC ≥2 o CAT ≥10"
+          "descripcion": "Ninguna exacerbación moderada o grave; mMRC ≥2 o CAT ≥10"
         },
         {
           "texto": "Grupo E",
           "siguiente_nodo": "diag_grupo_e",
           "color": "naranja",
-          "descripcion": "1 o más exacerbaciones moderadas o graves"
+          "descripcion": "1 o más exacerbaciones moderadas o graves en el último año"
         }
       ],
       "referencias": [
@@ -595,11 +739,11 @@
     },
     "diag_grupo_a": {
       "tipo": "pregunta",
-      "titulo": "Grupo A: pocos síntomas y sin exacerbaciones",
-      "texto": "- Ninguna exacerbación moderada o grave en el último año.\n- Pocos **síntomas**: mMRC **0-1** y CAT **<10**.\n- Empieza con **un broncodilatador**.",
+      "titulo": "Revisar el grupo en cada control",
+      "texto": "- Volver a medir los **síntomas** y a contar las **exacerbaciones** en cada control.\n- El ajuste posterior depende de la **disnea** y las exacerbaciones, no del grupo inicial.",
       "opciones": [
         {
-          "texto": "Tratamiento inicial",
+          "texto": "Grupo A asignado",
           "siguiente_nodo": "nodo_tratamiento"
         }
       ],
@@ -614,18 +758,18 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         },
         {
-          "titulo": "Figura 3.8: grupos A y B",
-          "paginas": "27",
-          "texto": "GROUP A A bronchodilator GROUP B LABA + LAMA* mMRC 0-1, CAAT < 10 mMRC ≥ 2, CAAT ≥ 10",
+          "titulo": "Revisión en cada control",
+          "paginas": "63",
+          "texto": "Inhaler technique, adherence to prescribed therapy (both pharmacological and non-pharmacological), smoking status and continued exposure to risk factors should be regularly checked.",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
-          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         },
         {
-          "titulo": "Grupo A: un broncodilatador",
-          "paginas": "64",
-          "texto": "All patients in group A should be offered bronchodilator treatment based on its effect on breathlessness. This can be either a short- or a long-acting bronchodilator.",
+          "titulo": "Seguimiento sin importar el grupo inicial",
+          "paginas": "65",
+          "texto": "This follow-up pharmacological treatment algorithm (Figure 3.9) can be applied to any patient who is already taking maintenance treatment(s) irrespective of the GOLD group allocated at treatment initiation.",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -635,11 +779,11 @@
     },
     "diag_grupo_b": {
       "tipo": "pregunta",
-      "titulo": "Grupo B: más síntomas y sin exacerbaciones",
-      "texto": "- Ninguna exacerbación moderada o grave en el último año.\n- Más **síntomas**: mMRC **≥2** o CAT **≥10**.\n- Empieza con **LABA+LAMA** y conviene buscar **comorbilidades**.",
+      "titulo": "Buscar comorbilidades que suman síntomas",
+      "texto": "- Buscar y tratar las **comorbilidades**: suman síntomas y empeoran el **pronóstico**.\n- Revisar si el paciente sabe usar el **inhalador** que se le va a formular.",
       "opciones": [
         {
-          "texto": "Tratamiento inicial",
+          "texto": "Grupo B asignado",
           "siguiente_nodo": "nodo_tratamiento"
         }
       ],
@@ -654,27 +798,18 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         },
         {
-          "titulo": "Figura 3.8: grupos A y B",
-          "paginas": "27",
-          "texto": "GROUP A A bronchodilator GROUP B LABA + LAMA* mMRC 0-1, CAAT < 10 mMRC ≥ 2, CAAT ≥ 10",
-          "fuente": "GOLD 2026",
-          "anio": "2026",
-          "url": "https://goldcopd.org/2026-gold-report/",
-          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
-        },
-        {
-          "titulo": "Grupo B: LABA+LAMA",
+          "titulo": "Grupo B: buscar comorbilidades",
           "paginas": "64",
-          "texto": "Therefore, providing there are no issues regarding availability, cost and side-effects LABA+LAMA is the recommended initial pharmacological choice.",
+          "texto": "Patients in group B are likely to have comorbidities that may add to their symptomatology and impact their prognosis,",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         },
         {
-          "titulo": "Grupo B: buscar comorbilidades",
-          "paginas": "64",
-          "texto": "Patients in group B are likely to have comorbidities that may add to their symptomatology and impact their prognosis,",
+          "titulo": "Inicio individualizado",
+          "paginas": "50",
+          "texto": "Initial pharmacological treatment of COPD should be individualized and guided by the severity of symptoms, risk of exacerbations, side-effects, comorbidities, drug availability and cost, and the patient's preference,",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -684,12 +819,11 @@
     },
     "diag_grupo_e": {
       "tipo": "pregunta",
-      "titulo": "Grupo E: con exacerbaciones",
-      "texto": "- **Una o más** exacerbaciones moderadas o graves en el último año, sean cuales sean los síntomas.\n- Empieza con **LABA+LAMA**; los **eosinófilos** deciden si se añade ICS.",
-      "contexto": "Una sola exacerbación **moderada** ya aumenta el **riesgo** de las siguientes: por eso basta para estar en el grupo E.",
+      "titulo": "Pedir los eosinófilos antes de tratar",
+      "texto": "- Pedir un **hemograma** con eosinófilos si no hay uno reciente: deciden si se añade el **ICS**.\n- Preguntar por **asma**: si la tiene, el ICS es obligatorio.",
       "opciones": [
         {
-          "texto": "Tratamiento inicial",
+          "texto": "Grupo E asignado",
           "siguiente_nodo": "nodo_tratamiento"
         }
       ],
@@ -713,9 +847,18 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         },
         {
-          "titulo": "Grupo E con una exacerbación moderada",
-          "paginas": "43",
-          "texto": "Consequently, Group E has been modified to include individuals with one moderate exacerbation in the previous year.",
+          "titulo": "Grupo E: triple con eosinófilos ≥300",
+          "paginas": "64",
+          "texto": "Consider LABA+LAMA+ICS as initial therapy in group E if eosinophil counts are ≥ 300 cells/µL (practical recommendation).",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Asma concomitante",
+          "paginas": "65",
+          "texto": "If patients with COPD have concomitant asthma they should be treated like patients with asthma. Under these circumstances the use of an ICS is mandatory.",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -729,16 +872,16 @@
       "texto": "Tratamiento",
       "opciones": [
         {
-          "texto": "Elegir el escenario",
+          "texto": "EPOC confirmada",
           "siguiente_nodo": "trat_escenario_clinico"
         }
       ]
     },
     "trat_escenario_clinico": {
       "tipo": "pregunta",
-      "titulo": "Ubicar al paciente en su escenario",
-      "texto": "- Si nunca ha recibido tratamiento de **mantenimiento**, se inicia según el grupo ABE.\n- Si ya lo recibe, se ajusta según la **disnea** y las exacerbaciones, sea cual sea su grupo inicial.\n- A todos se les formula un broncodilatador de **rescate** de acción corta.",
-      "pie_nodo": "¿En qué situación está?",
+      "titulo": "Elegir el camino según el tratamiento que ya recibe",
+      "texto": "- Si nunca ha recibido tratamiento de **mantenimiento** → iniciarlo según el **grupo ABE**.\n- Si ya lo recibe → ajustarlo según la **disnea** y las **exacerbaciones**, sea cual sea su grupo inicial.\n- Formular a todos un **broncodilatador de rescate** de acción corta.",
+      "pie_nodo": "¿Ya recibe un tratamiento inhalado de mantenimiento o llega con una exacerbación?",
       "opciones": [
         {
           "texto": "Sin tratamiento de mantenimiento",
@@ -788,13 +931,13 @@
     "trat_inicio_rutas": {
       "tipo": "pregunta",
       "titulo": "Elegir el tratamiento inicial por el grupo ABE",
-      "texto": "- Elegir el inhalador según el grupo, con el cuadro de los grupos.\n- Mejor en **un solo inhalador**: es más cómodo y mejora la **adherencia**.\n- Tener en cuenta la **disponibilidad**, el costo, los efectos adversos y si el paciente sabe usar el dispositivo.",
+      "texto": "- Comprobar en el cuadro de los grupos con qué empieza cada uno.\n- Es mejor dar los fármacos en **un solo inhalador**, porque es más cómodo y mejora la **adherencia**.\n- Elegir el **dispositivo** según:\n  - La **disponibilidad** y el costo.\n  - Los efectos adversos.\n  - Si el paciente sabe usarlo.",
       "media": [
         {
           "recurso": "epoc_tratamiento_inicial.png",
           "titulo": "Tratamiento inicial por grupo",
           "descripcion": "Con qué empieza cada grupo ABE y cuándo se añade el corticoide inhalado.",
-          "info": "El {#2FB36D:grupo A} empieza con **un broncodilatador**; el {#4F8CF6:B} y el {#F07F3C:E}, con **LABA+LAMA**. Sólo en el E, con eosinófilos **≥300**, se valora la **triple** (LABA+LAMA+ICS).",
+          "info": "El {#2FB36D:grupo A} empieza con **un broncodilatador**; el {#4F8CF6:B} y el {#F07F3C:E}, con **LABA+LAMA**. Sólo en el E, con eosinófilos **≥300/µL**, se valora la **triple** (LABA+LAMA+ICS).",
           "en_texto": "cuadro de los grupos",
           "referencias": [
             {
@@ -832,25 +975,25 @@
         "etiqueta": "Calcular el grupo ABE",
         "ramificar": true
       },
-      "pie_nodo": "¿En qué grupo ABE está?",
+      "pie_nodo": "¿En qué grupo ABE queda por sus exacerbaciones y sus síntomas?",
       "opciones": [
         {
           "texto": "Grupo A",
           "siguiente_nodo": "trat_inicio_grupo_a",
           "color": "verde",
-          "descripcion": "Sin exacerbaciones, pocos síntomas"
+          "descripcion": "Ninguna exacerbación moderada o grave; mMRC 0-1 y CAT <10"
         },
         {
           "texto": "Grupo B",
           "siguiente_nodo": "trat_inicio_grupo_b",
           "color": "azul",
-          "descripcion": "Sin exacerbaciones, más síntomas"
+          "descripcion": "Ninguna exacerbación moderada o grave; mMRC ≥2 o CAT ≥10"
         },
         {
           "texto": "Grupo E",
           "siguiente_nodo": "trat_inicio_grupo_e",
           "color": "naranja",
-          "descripcion": "1 o más exacerbaciones moderadas o graves"
+          "descripcion": "1 o más exacerbaciones moderadas o graves en el último año"
         }
       ],
       "referencias": [
@@ -894,7 +1037,7 @@
     },
     "trat_inicio_grupo_a": {
       "tipo": "pregunta",
-      "titulo": "Grupo A: empezar con un broncodilatador",
+      "titulo": "Empezar con un broncodilatador",
       "texto": "- Dar **un broncodilatador**, de acción corta o larga.\n- Si está disponible, es mejor uno de **larga acción** (LABA o LAMA), salvo si la disnea es muy ocasional.\n- Seguir con él si hay **beneficio**.",
       "discrepancias": [
         {
@@ -907,7 +1050,7 @@
             },
             {
               "fuente": "MinSalud 2014",
-              "dice": "Uno de **corta acción**, de preferencia **ipratropio** sobre salbutamol.",
+              "dice": "EPOC leve (mMRC 0-1, BODE o BODEx 0): uno de **corta acción**, de preferencia **ipratropio** sobre salbutamol.",
               "paginas": "75"
             }
           ],
@@ -953,8 +1096,8 @@
     },
     "trat_inicio_grupo_b": {
       "tipo": "pregunta",
-      "titulo": "Grupo B: empezar con LABA+LAMA",
-      "texto": "- Iniciar **LABA+LAMA**.\n- Si la doble no es apropiada, dar LABA o LAMA según el **alivio** que perciba el paciente.\n- Buscar y tratar las **comorbilidades**, que suman síntomas.",
+      "titulo": "Empezar con LABA+LAMA",
+      "texto": "- Iniciar **LABA+LAMA**.\n- Si la **doble broncodilatación** no es apropiada, dar un **LABA o un LAMA**, según el alivio que perciba el paciente.\n- Buscar y tratar las **comorbilidades**, que suman síntomas.",
       "discrepancias": [
         {
           "asunto": "Con qué empezar con más síntomas",
@@ -966,14 +1109,14 @@
             },
             {
               "fuente": "MinSalud 2014",
-              "dice": "Un **LAMA** (tiotropio) de preferencia sobre un LABA, en monoterapia.",
+              "dice": "EPOC moderada (mMRC 1-2 y menos de 2 exacerbaciones al año): un **LAMA** (tiotropio) de preferencia sobre un LABA, en monoterapia.",
               "paginas": "75"
             }
           ],
           "nota": "GOLD empieza con **doble** broncodilatador; la guía colombiana, con **uno**."
         }
       ],
-      "nota_adicional": "Es mejor dar las dos moléculas en un **solo inhalador**: puede ser más **cómodo** y más eficaz que usar varios.",
+      "nota_adicional": "Con CAT **≥10** y como mucho una exacerbación **moderada**, **LABA+LAMA** fue mejor que un LAMA solo en varios desenlaces de un ensayo clínico.",
       "opciones": [
         {
           "texto": "Broncodilatadores indicados",
@@ -1009,6 +1152,15 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         },
         {
+          "titulo": "LABA+LAMA mejor que LAMA en el grupo B",
+          "paginas": "64",
+          "texto": "in patients with ≤ 1 moderate exacerbation in the year before the study and a CAAT™ ≥ 10 LABA+LAMA is superior to a LAMA with regard to several endpoints.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
           "titulo": "Figura 3.8: un solo inhalador",
           "paginas": "27",
           "texto": "*Single inhaler therapy may be more convenient and effective than multiple inhalers; single inhalers improve adherence to treatment",
@@ -1031,14 +1183,20 @@
     },
     "trat_inicio_grupo_e": {
       "tipo": "pregunta",
-      "titulo": "Grupo E: decidir el ICS por los eosinófilos",
-      "texto": "- La base es **LABA+LAMA**.\n- Con eosinófilos **≥300/µL**, valorar añadir el **ICS** (triple).\n- Si además tiene **asma**, el ICS es obligatorio y se trata como asma.",
+      "titulo": "Elegir entre la doble y la triple por los eosinófilos",
+      "texto": "- La base es **LABA+LAMA**.\n- Con eosinófilos **≥300/µL**, valorar añadir el **ICS** (triple).\n- Si además tiene **asma**, el ICS es obligatorio.",
+      "alertas": [
+        {
+          "titulo": "LABA+ICS en la EPOC",
+          "texto": "No usar **LABA+ICS** en la EPOC: si hay indicación de **ICS**, es mejor la **triple** (LABA+LAMA+ICS)."
+        }
+      ],
       "media": [
         {
           "recurso": "epoc_eosinofilos.png",
           "titulo": "Eosinófilos y corticoide inhalado",
           "descripcion": "Cuánto aporta el ICS según los eosinófilos en sangre.",
-          "info": "Por debajo de **100/µL** el ICS aporta poco; desde **100** puede ayudar y desde **300** el beneficio es mayor. Para **iniciar** la triple en el grupo E se usa el corte de **300**.",
+          "info": "La barra divide los **eosinófilos en sangre** en tres tramos. Para **iniciar** la triple en el grupo E se usa el {#C2410C:corte 300}; el {#4F8CF6:corte 100} es el del **seguimiento**.",
           "en_texto": "eosinófilos",
           "referencias": [
             {
@@ -1080,12 +1238,6 @@
           ]
         }
       ],
-      "alertas": [
-        {
-          "titulo": "Sin LABA+ICS",
-          "texto": "No usar **LABA+ICS** en la EPOC: si hay indicación de **ICS**, es mejor la **triple** (LABA+LAMA+ICS)."
-        }
-      ],
       "enlaces": [
         {
           "texto": "Asma del adulto",
@@ -1103,21 +1255,26 @@
             },
             {
               "fuente": "MinSalud 2014",
-              "dice": "EPOC grave: un **LAMA**; muy grave: **BALA+EI+ACLA** (triple).",
+              "dice": "EPOC grave (mMRC 3-4 y más de 2 exacerbaciones moderadas al año): un **LAMA**; muy grave (exacerbaciones con hospitalización): **LABA+LAMA+ICS**.",
               "paginas": "76-77"
             }
           ],
           "nota": "La guía colombiana no usaba los **eosinófilos**; el algoritmo sigue a **GOLD**."
         }
       ],
-      "pie_nodo": "¿Tiene 300 eosinófilos/µL o más?",
+      "pie_nodo": "¿Tiene asma o 300 eosinófilos/µL o más?",
       "opciones": [
         {
-          "texto": "Sí, ≥300/µL",
+          "texto": "Tiene también asma",
+          "siguiente_nodo": "trat_inicio_grupo_e_ics",
+          "descripcion": "El ICS es obligatorio"
+        },
+        {
+          "texto": "Sin asma, ≥300/µL",
           "siguiente_nodo": "trat_inicio_grupo_e_ics"
         },
         {
-          "texto": "No, <300/µL",
+          "texto": "Sin asma, <300/µL",
           "siguiente_nodo": "trat_inicio_grupo_e_dual"
         }
       ],
@@ -1173,7 +1330,7 @@
     "trat_inicio_grupo_e_dual": {
       "tipo": "pregunta",
       "titulo": "Iniciar LABA+LAMA",
-      "texto": "- Iniciar **LABA+LAMA**, mejor en un solo inhalador.\n- Reevaluar las **exacerbaciones** y los eosinófilos en el control.",
+      "texto": "- Dar los dos broncodilatadores en **un solo inhalador** si es posible.\n- En el control, revisar las **exacerbaciones** y repetir los **eosinófilos**, que fluctúan.",
       "opciones": [
         {
           "texto": "LABA+LAMA indicado",
@@ -1198,17 +1355,26 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 3.10: eosinófilos como continuo",
+          "paginas": "29",
+          "texto": "*note that blood eosinophils should be seen as a continuum; quoted values represent approximate cut-points; eosinophil counts are likely to fluctuate.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         }
       ]
     },
     "trat_inicio_grupo_e_ics": {
       "tipo": "pregunta",
       "titulo": "Valorar iniciar la triple: LABA+LAMA+ICS",
-      "texto": "- Valorar iniciar **LABA+LAMA+ICS**, mejor en un solo inhalador.\n- Revisar en cada control las **exacerbaciones** y los efectos adversos.",
+      "texto": "- Darla en **un solo inhalador** si es posible.\n- Revisar en cada control las **exacerbaciones** y los efectos adversos del ICS.",
       "alertas": [
         {
-          "titulo": "Neumonía con el ICS",
-          "texto": "El ICS aumenta la **neumonía**, sobre todo en fumadores, mayores de **55 años**, con IMC **<25** o neumonía previa: si aparece, valorar **retirarlo**."
+          "titulo": "Cuándo no conviene el ICS",
+          "texto": "Pesan **en contra** del ICS las **neumonías** repetidas, la infección por **micobacterias** y los eosinófilos <100/µL. La neumonía es más probable en **fumadores**, con **55 años** o más, IMC <25 o neumonía previa."
         }
       ],
       "opciones": [
@@ -1237,6 +1403,15 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         },
         {
+          "titulo": "Figura 3.10: en contra del ICS",
+          "paginas": "29",
+          "texto": "AGAINST USE Repeated pneumonia events Blood eosinophils < 100 cells/µL History of mycobacterial infection",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
           "titulo": "ICS y neumonía",
           "paginas": "150",
           "texto": "is associated with higher prevalence of oral candidiasis, hoarse voice, skin bruising and pneumonia.",
@@ -1249,6 +1424,15 @@
           "titulo": "Quién tiene más riesgo de neumonía",
           "paginas": "150",
           "texto": "Patients at higher risk of pneumonia include those who currently smoke, are aged ≥ 55 years, have a history of prior exacerbations or pneumonia, a BMI < 25 kg/m 2,",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "ICS y tuberculosis",
+          "paginas": "151",
+          "texto": "An increased risk of tuberculosis has been found in both observational studies and a meta-analysis of RCTs.",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -1268,16 +1452,19 @@
     "trat_no_farmacologico": {
       "tipo": "pregunta",
       "titulo": "Añadir las medidas no farmacológicas",
-      "contexto": "Son **complementarias** del inhalador y forman parte del manejo de todos los grupos.",
-      "texto": "- Apoyar a todo fumador para que **deje de fumar**.\n- Vacunar contra **influenza**, neumococo, COVID-19 y VSR; Tdap y zóster según el esquema.\n- Enviar a **rehabilitación pulmonar**: al menos 4 semanas, mejor 6-12.\n- Revisar la **técnica** del inhalador y dar un plan escrito para las exacerbaciones.",
+      "texto": "- Apoyar a todo fumador para que **deje de fumar**.\n- Aplicar las **vacunas**:\n  - Influenza, neumococo, COVID-19 y VSR.\n  - Tdap y zóster, según el esquema.\n- **Remitir** a **rehabilitación pulmonar** durante al menos **4 semanas**; es mejor de **6 a 12**.\n- Revisar la técnica del inhalador y dar un **plan escrito** para las exacerbaciones.",
       "nota_adicional": "Evaluar el **estado nutricional** (IMC) y buscar **depresión** y ansiedad, que empeoran la calidad de vida.",
+      "evidencia": {
+        "texto": "Rehabilitación pulmonar: recomendación fuerte",
+        "fuente": "MinSalud 2014"
+      },
       "media": [
         {
           "recurso": "epoc_espaciador_real.jpg",
           "titulo": "Inhalador con espaciador",
           "descripcion": "Inhalador de dosis medida y la cámara espaciadora que se le acopla.",
           "info": "El {#FDE047:inhalador} de dosis medida se acopla a la {#22D3EE:cámara espaciadora} y el paciente inhala por el otro extremo. La **técnica** del inhalador y la adherencia se revisan en **cada control**.",
-          "en_texto": "técnica",
+          "en_texto": "inhalador",
           "referencias": [
             {
               "titulo": "Revisar metas y barreras",
@@ -1300,10 +1487,6 @@
           ]
         }
       ],
-      "evidencia": {
-        "texto": "Rehabilitación pulmonar: recomendación fuerte",
-        "fuente": "MinSalud 2014"
-      },
       "opciones": [
         {
           "texto": "Medidas indicadas",
@@ -1426,28 +1609,48 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
           "imagen_evidencia": "evidencia_epoc_pag73_minsalud_2014_p_73_3.png"
+        },
+        {
+          "titulo": "Vacuna contra COVID-19",
+          "paginas": "50",
+          "texto": "COVID-19 vaccines are highly effective against SARS-CoV-2 infection and people with COPD should have the COVID-19 vaccination in line with national recommendations.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "R28: neumococo en menores de 65 años",
+          "paginas": "74",
+          "texto": "Se recomienda la vacunación contra neumococo en los pacientes con la EPOC estable en menores de 65 años, especialmente en aquellos con VEF1 < 40%,",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag74_minsalud_2014_p_74_3.png"
         }
       ]
     },
     "trat_oxigeno": {
       "tipo": "pregunta",
       "titulo": "Valorar el oxígeno domiciliario",
-      "texto": "- Confirmar la hipoxemia con **gases arteriales** en reposo.\n- Indicar oxígeno **15 h/día** o más si hay criterios, con la tabla.\n- No darlo de rutina con desaturación **moderada**, en reposo o al ejercicio.",
+      "contexto": "El oxígeno prolonga la **supervivencia** en la hipoxemia grave, y **15 h** al día son tan útiles como 24.",
+      "texto": "- Confirmar la hipoxemia con **gases arteriales** en reposo, **2 veces** en 3 semanas.\n- Indicar oxígeno **15 h/día** si cumple un criterio de la tabla.\n- Reevaluar a los **60-90 días** con gases o saturación al aire ambiente.\n- No darlo de rutina con desaturación **moderada**.",
       "tabla": {
         "titulo": "Oxígeno domiciliario",
         "columnas": [
-          "Situación",
-          "PaO2 en reposo"
+          "En reposo",
+          "Indicación"
         ],
-        "en_texto": "con la tabla",
+        "en_texto": "criterio de la tabla",
         "filas": [
           [
-            "Hipoxemia **crónica** grave",
-            "**≤55 mmHg**"
+            "PaO2 **≤55 mmHg** o SaO2 **≤88 %**",
+            "Basta la **hipoxemia**, con o sin hipercapnia"
           ],
           [
-            "Con **cor pulmonale** o policitemia",
-            "**<60 mmHg**"
+            "PaO2 **55-60 mmHg** o SaO2 **88 %**",
+            "- Hipertensión **pulmonar**\n- **Edema** periférico por falla cardiaca\n- Policitemia: hematocrito **>55 %**"
           ]
         ]
       },
@@ -1489,7 +1692,7 @@
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
-          "imagen_evidencia": "evidencia_epoc_pag74_minsalud_2014_p_74_3.png"
+          "imagen_evidencia": "evidencia_epoc_pag74_minsalud_2014_p_74_4.png"
         },
         {
           "titulo": "R31: cor pulmonale o policitemia",
@@ -1499,7 +1702,7 @@
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
-          "imagen_evidencia": "evidencia_epoc_pag74_minsalud_2014_p_74_4.png"
+          "imagen_evidencia": "evidencia_epoc_pag74_minsalud_2014_p_74_5.png"
         },
         {
           "titulo": "Hipoxemia confirmada con gases",
@@ -1510,6 +1713,42 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
           "imagen_evidencia": "evidencia_epoc_pag75_minsalud_2014_p_75_3.png"
+        },
+        {
+          "titulo": "Oxígeno: PaO2 ≤55 mmHg o SaO2 ≤88 %",
+          "paginas": "76",
+          "texto": "PaO2 at or below 55 mmHg (7.3 kPa) or SaO 2 at or below 88%, with or without hypercapnia confirmed twice over a three-week period;",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Oxígeno: PaO2 55-60 mmHg con daño de órgano",
+          "paginas": "76",
+          "texto": "PaO2 between 55 mmHg (7.3 kPa) and 60 mmHg (8.0 kPa), or SaO2 of 88%, if there is evidence of pulmonary hypertension, peripheral edema suggesting congestive cardiac failure, or polycythemia (hematocrit > 55%).",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Quince horas al día bastan",
+          "paginas": "76",
+          "texto": "LTOT used for 24 hours per day did not result in a lower risk of hospitalization or death within one year compared to therapy for 15 hours per day.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Reevaluar el oxígeno a los 60-90 días",
+          "paginas": "77",
+          "texto": "Once placed on LTOT the patient should be re-evaluated after 60 to 90 days with repeat ABG or oxygen saturation measurements while inspiring room air",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
@@ -1531,17 +1770,19 @@
         "Urgente"
       ],
       "titulo": "Buscar la falla respiratoria al llegar",
-      "texto": "- **A y B, vía aérea y respiración:** frecuencia respiratoria, **músculos accesorios** y saturación.\n- **C, circulación:** frecuencia cardiaca, presión y signos de **falla cardiaca** o arritmia.\n- **D, neurológico:** buscar **somnolencia** o confusión por hipercapnia.\n- **E, exposición:** fiebre y esputo **purulento**.\n- Descartar lo que imita la exacerbación: **neumonía**, embolia pulmonar, falla cardiaca o neumotórax.",
+      "texto": "- **A y B, vía aérea y respiración:** medir la frecuencia respiratoria y la saturación y buscar el uso de **músculos accesorios**.\n- **C, circulación:** tomar el pulso y la presión y buscar **falla cardiaca** o arritmias.\n- **D, neurológico:** buscar **somnolencia** o confusión, que sugieren **hipercapnia**.\n- **E, exposición:** tomar la temperatura y mirar si el esputo es **purulento**.",
       "checklist": {
         "titulo": "Pruebas de llegada",
         "items": [
           "**Gases arteriales**",
           "**Radiografía** de tórax",
-          "Hemograma y **PCR**",
-          "**ECG**",
-          "Troponina y péptido natriurético si se sospecha **falla cardiaca**"
+          "Hemograma con **eosinófilos** y PCR",
+          "Estudios **virales** y bacterianos",
+          "**ECG**, troponina y péptido natriurético",
+          "**Dímero D** o angio-TAC si se sospecha embolia pulmonar"
         ]
       },
+      "nota_adicional": "Descartar lo que imita o empeora la exacerbación:\n- **Neumonía**.\n- **Embolia** pulmonar.\n- Falla cardiaca.\n- Neumotórax.",
       "alertas": [
         {
           "titulo": "Oxígeno controlado",
@@ -1649,13 +1890,40 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Figura 4.1: estudios de la exacerbación",
+          "paginas": "42",
+          "texto": "Perform additional investigations, if needed and available, to evaluate severity such as pulse oximetry, laboratory assessments such as blood eosinophils, CRP, viral and bacterial studies, and arterial blood gases.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.3: embolia pulmonar",
+          "paginas": "44",
+          "texto": "Pulmonary embolism Clinical probability assessment (hemoptysis, deep vein thrombosis, history of cancer, surgery, bone fracture) D-dimer CT angiography for pulmonary embolism",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.3: falla cardiaca e infarto",
+          "paginas": "44",
+          "texto": "Heart failure Chest X-ray or chest CT scan NT pro-brain natriuretic peptide (NT proBNP) and BNP Cardiac ultrasound Myocardial infarction and/or cardiac arrhythmias (atrial flutter/fibrillation) Electrocardiography Troponin",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         }
       ]
     },
     "trat_exac_leve_mod": {
       "tipo": "pregunta",
       "titulo": "Clasificar la gravedad y el lugar de manejo",
-      "texto": "- Clasificar la exacerbación como **leve**, moderada o grave con los criterios de Roma.\n- Decidir el lugar según la gravedad, la **conciencia**, la estabilidad, las comorbilidades y el **apoyo en casa**.\n- Si no hay signos de dificultad respiratoria ni indicación de hospitalizar, se maneja en **casa**.",
+      "texto": "- Clasificar la **gravedad** con los criterios de Roma (síntomas, signos vitales, saturación y PCR).\n- Decidir el lugar según:\n  - La gravedad y la **conciencia**.\n  - La estabilidad y las **comorbilidades**.\n  - El **apoyo** en casa.\n- Si no hay signos de dificultad respiratoria ni indicación de hospitalizar, manejarla en **casa**.",
       "tabla": {
         "titulo": "Gravedad de la exacerbación (Roma)",
         "columnas": [
@@ -1666,15 +1934,15 @@
         "filas": [
           [
             "**Leve**",
-            "- Disnea EVA **<5**\n- FR **<24**/min\n- FC **<95**/min\n- SatO2 **≥92 %**\n- PCR **<10 mg/L**"
+            "**Todos** estos:\n- Disnea EVA **<5**\n- FR **<24**/min\n- FC **<95**/min\n- SatO2 **≥92 %** y caída **≤3 %**\n- PCR **<10 mg/L**"
           ],
           [
             "**Moderada**",
-            "- 3 de 5: disnea EVA **≥5**\n- FR **≥24**/min\n- FC **≥95**/min\n- SatO2 **<92 %** o caída **>3 %**\n- PCR **≥10 mg/L**"
+            "**3 o más** de estos:\n- Disnea EVA **≥5**\n- FR **≥24**/min\n- FC **≥95**/min\n- SatO2 **<92 %** o caída **>3 %**\n- PCR **≥10 mg/L**"
           ],
           [
             "**Grave**",
-            "- Lo de la moderada\n- PaO2 **≤60 mmHg** o hipercapnia\n- PaCO2 **>45 mmHg** y pH **<7,35**"
+            "Criterios de la **moderada** y, en los gases:\n- PaO2 **≤60 mmHg**\n- O hipercapnia con **acidosis**: PaCO2 **>45 mmHg** y pH **<7,35**"
           ]
         ]
       },
@@ -1740,7 +2008,7 @@
           "texto": "En casa",
           "siguiente_nodo": "trat_exac_ambulatorio",
           "color": "verde",
-          "descripcion": "Leve, poca comorbilidad, buen apoyo"
+          "descripcion": "Leve o moderada, sin criterios de hospitalización"
         },
         {
           "texto": "En el hospital",
@@ -1759,7 +2027,16 @@
         {
           "titulo": "Roma: leve",
           "paginas": "94",
-          "texto": "Mild • • • • Dyspnea VAS < 5 Respiratory rate < 24 breaths/min Heart rate < 95 bpm",
+          "texto": "Mild Dyspnea VAS < 5 Respiratory rate < 24 breaths/min Heart rate < 95 bpm",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Roma: leve, saturación y PCR",
+          "paginas": "94",
+          "texto": "Resting SaO2 ≥ 92% breathing ambient air (or patient's usual oxygen prescription) AND change ≤ 3% (when known) CRP < 10 mg/L (if available)",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -1768,7 +2045,7 @@
         {
           "titulo": "Roma: moderada (3 de 5)",
           "paginas": "94",
-          "texto": "Moderate (meets at least three of five*) • Dyspnea VAS ≥ 5 • Respiratory rate ≥ 24 breaths/min • Heart rate ≥ 95 bpm",
+          "texto": "Moderate (meets at least three of five*) Dyspnea VAS ≥ 5 Respiratory rate ≥ 24 breaths/min Heart rate ≥ 95 bpm",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -1777,7 +2054,16 @@
         {
           "titulo": "Roma: moderada, saturación y PCR",
           "paginas": "94",
-          "texto": "• Resting SaO2 < 92% breathing ambient air (or patient's usual oxygen prescription) AND/OR change > 3% (when known) • CRP ≥ 10 mg/L (if available)",
+          "texto": "Resting SaO2 < 92% breathing ambient air (or patient's usual oxygen prescription) AND/OR change > 3% (when known) CRP ≥ 10 mg/L (if available)",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Roma: grave",
+          "paginas": "94",
+          "texto": "Severe Dyspnea, respiratory rate, heart rate, SaO2 and CRP same as moderate",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -1842,10 +2128,10 @@
     "trat_exac_ambulatorio": {
       "tipo": "pregunta",
       "titulo": "Tratar en casa con seguimiento cercano",
-      "texto": "- Seguir de cerca al paciente hasta que **mejore**.\n- Explicar que vuelva **de inmediato** si empeora.\n- Usar el **plan escrito** de exacerbaciones y revisar la técnica del inhalador.",
+      "texto": "- Revisar la técnica del inhalador y entregar el **plan escrito** de exacerbaciones.\n- Explicar que consulte **de inmediato** si aparece:\n  - Respiración más **rápida** o uso de músculos accesorios.\n  - **Somnolencia** o confusión.\n  - Falta de mejoría con el tratamiento inicial.",
       "opciones": [
         {
-          "texto": "Medicamentos de la exacerbación",
+          "texto": "Plan en casa explicado",
           "siguiente_nodo": "trat_exac_farmacologico"
         }
       ],
@@ -1886,13 +2172,41 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
           "imagen_evidencia": "evidencia_epoc_pag72_minsalud_2014_p_72_3.png"
+        },
+        {
+          "titulo": "Figura 4.4: indicaciones de hospitalización",
+          "paginas": "45",
+          "texto": "Symptoms and signs of respiratory failure such as increased respiratory rate, use of accessory respiratory muscles, worsening hypoxemia and/or hypercarbia, mental status changes",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.4: más indicaciones de hospitalización",
+          "paginas": "45",
+          "texto": "Failure of the exacerbation to respond to initial medical management Presence of serious concomitant comorbidities (e.g., heart failure, cardiac arrhythmias, etc.) Insufficient home support",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "R21: educación",
+          "paginas": "72",
+          "texto": "Las intervenciones en educación deben incluir por lo menos una sesión presencial con personal de la salud, refuerzo telefónico mensual y entrega de plan escrito para manejo de exacerbaciones, uso de inhaladores.",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag72_minsalud_2014_p_72_3.png"
         }
       ]
     },
     "trat_exac_hospitalizar": {
       "tipo": "pregunta",
       "titulo": "Hospitalizar y vigilar la respiración",
-      "texto": "- Dar oxígeno controlado y medir **gases** de forma seriada.\n- Si no hay gases, mantener la saturación **alrededor del 88 %** y vigilar la **conciencia**.\n- Vigilar el **balance de líquidos** y dar profilaxis de **trombosis** con heparina.\n- Tratar la falla cardiaca, las arritmias o la embolia asociadas.",
+      "texto": "- Dar oxígeno controlado (FiO2 **24-28 %**) y medir los **gases** de forma seriada.\n- Si no se pueden medir los gases, mantener la saturación **alrededor del 88 %** y vigilar la **conciencia**.\n- Medir la **vitamina D** y suplementarla si es **<10 ng/mL**.",
       "nota_adicional": "La **fisioterapia respiratoria** con técnicas de limpieza de la vía aérea reduce la falla del tratamiento y los **días** de hospitalización.",
       "evidencia": {
         "texto": "Fisioterapia respiratoria: recomendación débil",
@@ -1900,7 +2214,7 @@
       },
       "opciones": [
         {
-          "texto": "Medicamentos de la exacerbación",
+          "texto": "Ingresado con oxígeno controlado",
           "siguiente_nodo": "trat_exac_farmacologico"
         }
       ],
@@ -1933,22 +2247,14 @@
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         },
         {
-          "titulo": "Figura 4.5: en todo momento",
-          "paginas": "46",
-          "texto": "At all times: Monitor fluid balance Consider subcutaneous heparin or low molecular weight heparin for thromboembolism prophylaxis",
-          "fuente": "GOLD 2026",
-          "anio": "2026",
-          "url": "https://goldcopd.org/2026-gold-report/",
-          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
-        },
-        {
-          "titulo": "Figura 4.5: condiciones asociadas",
-          "paginas": "46",
-          "texto": "Identify and treat associated conditions (e.g., heart failure, arrhythmias, pulmonary embolism etc.)",
-          "fuente": "GOLD 2026",
-          "anio": "2026",
-          "url": "https://goldcopd.org/2026-gold-report/",
-          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+          "titulo": "R45: FiO2 de 24-28 %",
+          "paginas": "79",
+          "texto": "se sugiere iniciar oxigeno con FiO2 entre 24-28%, dado el riesgo de empeorar la hipercapnia con la administración de oxígeno Recomendación débil a favor de la intervención. ⊕⊝⊝⊝ Consenso de expertos.",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag79_minsalud_2014_p_79.png"
         },
         {
           "titulo": "R46: saturación alrededor de 88 %",
@@ -1961,6 +2267,15 @@
           "imagen_evidencia": "evidencia_epoc_pag79_minsalud_2014_p_79_2.png"
         },
         {
+          "titulo": "Vitamina D en los hospitalizados",
+          "paginas": "100",
+          "texto": "it is recommended that all patients hospitalized for exacerbations should be assessed and investigated for severe deficiency (< 10 ng/ml or < 25 nM) followed by supplementation if required.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
           "titulo": "R47: fisioterapia respiratoria",
           "paginas": "79",
           "texto": "Se sugiere la fisioterapia respiratoria (técnicas de limpieza de la vía aérea) en todos los pacientes con una exacerbación de la EPOC para disminuir la falla en el tratamiento y los días de hospitalización.",
@@ -1968,7 +2283,7 @@
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
-          "imagen_evidencia": "evidencia_epoc_pag79_minsalud_2014_p_79_4.png"
+          "imagen_evidencia": "evidencia_epoc_pag79_minsalud_2014_p_79_5.png"
         }
       ]
     },
@@ -1981,7 +2296,7 @@
       ],
       "titulo": "Dar soporte ventilatorio a la falla respiratoria",
       "contexto": "El alto flujo y la **VMNI** mejoran el intercambio de gases, reducen el **trabajo respiratorio** y evitan intubaciones.",
-      "texto": "- Indicar **VMNI** si hay acidosis respiratoria, fatiga muscular o hipoxemia persistente, con la tabla.\n- Usar **alto flujo** si la hipoxemia persiste o no tolera la VMNI.\n- Intubar si fracasan, hay paro, deterioro de la **conciencia** o inestabilidad grave.",
+      "texto": "- Elegir el soporte con la tabla:\n  - Falla **hipoxémica**: empezar con **alto flujo**.\n  - Hipercapnia con **acidosis**, o sin respuesta al alto flujo: pasar a la VMNI.\n- Intubar si el soporte no invasivo fracasa, hay paro o se deteriora la **conciencia**.",
       "tabla": {
         "titulo": "Soporte ventilatorio",
         "columnas": [
@@ -1991,16 +2306,16 @@
         "en_texto": "con la tabla",
         "filas": [
           [
-            "**VMNI**",
-            "- Acidosis respiratoria: PaCO2 **≥45 mmHg** y pH **≤7,35**\n- Disnea grave con **fatiga** muscular\n- Hipoxemia persistente con oxígeno"
+            "**Alto flujo**",
+            "- Falla **hipoxémica** aguda: primera elección\n- Hipoxemia persistente con oxígeno convencional\n- No tolera la VMNI o la tiene **contraindicada**"
           ],
           [
-            "**Alto flujo**",
-            "- Hipoxemia persistente\n- No tolera la VMNI o la tiene **contraindicada**"
+            "**VMNI**",
+            "- Acidosis respiratoria: PaCO2 **≥45 mmHg** y pH **≤7,35**\n- Disnea grave con **fatiga** muscular\n- Hipoxemia persistente pese al oxígeno"
           ],
           [
             "**Intubación**",
-            "- Hipoxemia grave pese a alto flujo o VMNI\n- Paro respiratorio o cardiaco\n- Conciencia **disminuida** o agitación\n- Inestabilidad grave o arritmias graves"
+            "- Hipoxemia grave pese a alto flujo o VMNI\n- No tolera el alto flujo ni la VMNI\n- Paro respiratorio o cardiaco\n- Conciencia **disminuida** o agitación\n- Aspiración masiva o vómito persistente\n- No logra eliminar las **secreciones**\n- Inestabilidad grave o arritmias graves"
           ]
         ]
       },
@@ -2033,10 +2348,15 @@
           ]
         }
       ],
+      "pie_nodo": "¿Ya recibe los broncodilatadores, el corticoide y, si toca, el antibiótico?",
       "opciones": [
         {
-          "texto": "Medicamentos de la exacerbación",
+          "texto": "Todavía no",
           "siguiente_nodo": "trat_exac_farmacologico"
+        },
+        {
+          "texto": "Ya los recibe",
+          "siguiente_nodo": "trat_exac_vigilancia_hosp"
         }
       ],
       "referencias": [
@@ -2129,13 +2449,31 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.6: alto flujo primero",
+          "paginas": "46",
+          "texto": "High flow oxygen (HFNT) is the first mode of ventilation used in COPD patients with acute hypoxemic respiratory failure.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.6: VMNI en la falla hipercápnica",
+          "paginas": "46",
+          "texto": "For patients with hypercarbic respiratory failure or those who do not respond to HFNT, use non-invasive mechanical ventilation (NIV) unless absolutely contraindicated.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         }
       ]
     },
     "trat_exac_farmacologico": {
       "tipo": "pregunta",
       "titulo": "Tratar la exacerbación con broncodilatadores y corticoide",
-      "texto": "- Dar **SABA**, con o sin SAMA, y subir la dosis o la frecuencia; con espaciador o nebulizador si hace falta.\n- En la exacerbación moderada o grave, dar **prednisona** 40 mg al día durante 5 días.\n- Dar **antibiótico** 5 días si se cumplen los criterios de la lista.\n- No usar **metilxantinas**.",
+      "texto": "- Dar **SABA** (salbutamol), con o sin **SAMA** (ipratropio), según el esquema.\n- Si es **moderada o grave**, dar prednisona **40 mg** al día por **5 días**.\n- Dar **antibiótico** si cumple **un** criterio de la lista: **5-7 días**, o **5** o menos en casa.\n- No usar **metilxantinas**.",
       "checklist": {
         "titulo": "Cuándo dar antibiótico",
         "items": [
@@ -2144,8 +2482,14 @@
           "Necesita **ventilación** mecánica, invasiva o no"
         ]
       },
-      "nota_adicional": "Elegir el antibiótico según la **resistencia** local: aminopenicilina con **clavulanato**, macrólido, tetraciclina o, en casos escogidos, quinolona.",
+      "nota_adicional": "Elegir el antibiótico según la **resistencia** local:\n- Aminopenicilina con **clavulanato**.\n- Macrólido.\n- Tetraciclina.\n- Quinolona, en casos escogidos.\n\nCon exacerbaciones frecuentes, obstrucción **grave** o ventilación mecánica, pedir **cultivo** de esputo: puede haber gérmenes resistentes.",
       "farmacos": [
+        {
+          "nombre": "Salbutamol, con o sin ipratropio",
+          "dosis": "**1** nebulización o **1-2** inhalaciones",
+          "pauta": "Cada **hora** por **2-3** dosis y luego cada **2-4 h** según la respuesta; sin dosis altas.",
+          "paginas": "GOLD 2026: 103"
+        },
         {
           "nombre": "Prednisona",
           "dosis": "**40 mg** VO al día",
@@ -2155,8 +2499,12 @@
       ],
       "alertas": [
         {
-          "titulo": "Glucemia con el corticoide",
-          "texto": "Vigilar de forma **estricta** la **glucemia** de todo paciente que recibe corticoide sistémico."
+          "titulo": "Nebulizar con aire",
+          "texto": "Si se nebuliza, hacerlo con **aire** y no con oxígeno: el oxígeno a alto flujo puede subir la **PaCO2**."
+        },
+        {
+          "titulo": "Hiperglucemia por el corticoide",
+          "texto": "El **corticoide sistémico** sube la **glucemia**: medirla de forma **estricta** mientras lo reciba."
         }
       ],
       "evidencia": {
@@ -2165,20 +2513,20 @@
       },
       "discrepancias": [
         {
-          "asunto": "Dosis y duración del corticoide y del antibiótico",
+          "asunto": "Dosis y duración del corticoide",
           "posturas": [
             {
               "fuente": "GOLD 2026",
-              "dice": "Prednisona **40 mg** durante **5 días**; antibiótico **5 días**.",
+              "dice": "Prednisona **40 mg** durante **5 días**.",
               "paginas": "92; 103"
             },
             {
               "fuente": "MinSalud 2014",
-              "dice": "Prednisona **30-40 mg** durante **5-7 días**; antibiótico **5-7 días** con esputo purulento.",
+              "dice": "Prednisona **30-40 mg** durante **5-7 días**.",
               "paginas": "80"
             }
           ],
-          "nota": "El algoritmo sigue a **GOLD**: los mismos **5 días** bastan y cursos más largos se asocian a más neumonía."
+          "nota": "El algoritmo sigue a **GOLD**: **5 días** bastan y los cursos más largos se asocian a más **neumonía** y mortalidad."
         }
       ],
       "pie_nodo": "¿Dónde se está tratando?",
@@ -2353,6 +2701,70 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Nebulizar con aire",
+          "paginas": "103",
+          "texto": "air-driven bronchodilator nebulization is preferable to oxygen-driven in acute exacerbations of COPD to avoid the potential risk of increasing the PaCO2",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Sin dosis altas de SABA",
+          "paginas": "103",
+          "texto": "It is recommended that patients do not receive high doses of SABA due to possible side effects.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Pauta del SABA: primeras dosis",
+          "paginas": "103",
+          "texto": "Patients can receive one dose of nebulized medication every hour for 2-3 doses or use a pMDI one or two puffs every one hour for",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Pauta del SABA: después",
+          "paginas": "103",
+          "texto": "for two or three doses and then every 2-4 hours based on the patient's response.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Duración del antibiótico",
+          "paginas": "105",
+          "texto": "The recommended length of antibiotic therapy is 5-7 days.(1060) We recommend a duration of ≤ 5 days of antibiotic treatment for outpatient treatment of COPD exacerbations.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Cultivo de esputo",
+          "paginas": "105",
+          "texto": "with frequent exacerbations, severe airflow obstruction, (1056,1057) and/or exacerbations requiring mechanical ventilation,(1058) cultures from sputum or other materials from the lung should be performed,",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "R33: EPOC leve, ipratropio",
+          "paginas": "75",
+          "texto": "Se recomienda comenzar preferiblemente con un broncodilatador muscarínico de corta acción (bromuro de ipratropio) sobre un agonista β-adrenérgico (salbutamol),",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag75_minsalud_2014_p_75.png"
         }
       ]
     },
@@ -2360,7 +2772,7 @@
       "tipo": "pregunta",
       "titulo": "Controlar la exacerbación tratada en casa",
       "texto": "- Revisar que **mejore** en los días siguientes.\n- La recuperación puede tardar **4-6 semanas**.\n- Empezar o ajustar el broncodilatador de **larga acción** en cuanto esté estable.",
-      "pie_nodo": "¿Cómo evoluciona?",
+      "pie_nodo": "¿Cómo evoluciona en los días siguientes con el tratamiento en casa?",
       "opciones": [
         {
           "texto": "Mejora",
@@ -2368,14 +2780,14 @@
           "descripcion": "Control tras la exacerbación"
         },
         {
-          "texto": "Aún no, sin empeorar",
+          "texto": "Mejora poco a poco, sin signos de alarma",
           "siguiente_nodo": "trat_exac_control_amb"
         },
         {
-          "texto": "Empeora o no responde",
-          "siguiente_nodo": "trat_exac_hospitalizar",
-          "color": "naranja",
-          "descripcion": "Hospitalizar"
+          "texto": "Empeora o no responde al tratamiento inicial",
+          "siguiente_nodo": "nodo_exacerbacion",
+          "color": "rojo",
+          "descripcion": "Valorar de nuevo al llegar"
         }
       ],
       "referencias": [
@@ -2420,24 +2832,33 @@
     "trat_exac_vigilancia_hosp": {
       "tipo": "pregunta",
       "titulo": "Vigilar la respuesta y preparar el alta",
-      "texto": "- Repetir los **gases** y revisar la respuesta al tratamiento.\n- Empezar el broncodilatador de **larga acción** cuanto antes.\n- Al alta, con eosinófilos **altos**, dejar LABA+LAMA+ICS.\n- Revisar la técnica, el retiro del corticoide y del antibiótico y si sigue necesitando **oxígeno**.",
-      "nota_adicional": "Entre el **30 y el 50 %** reingresa en los **30 días** siguientes al alta, con más mortalidad: por eso el control temprano y el ajuste del **mantenimiento**.",
-      "pie_nodo": "¿Cómo evoluciona?",
+      "texto": "- Repetir los **gases** y revisar la respuesta al tratamiento.\n- Vigilar el **balance de líquidos** y dar profilaxis de **trombosis** con heparina.\n- Tratar la falla cardiaca, las **arritmias** o la embolia asociadas.\n- Empezar el broncodilatador de **larga acción** cuanto antes.",
+      "checklist": {
+        "titulo": "Antes del alta",
+        "items": [
+          "Mantenimiento revisado: LABA+LAMA+ICS con eosinófilos **≥300/µL**, o **≥100/µL** si ya recibía LABA+LAMA",
+          "Técnica del **inhalador** revisada",
+          "Entiende cómo **retirar** el corticoide y el antibiótico",
+          "Necesidad de **oxígeno** en casa valorada",
+          "Control **antes de 4 semanas** y otro hacia las **12 semanas**"
+        ]
+      },
+      "nota_adicional": "Entre el **30 y el 50 %** reingresa en los **30 días** siguientes al alta, con más mortalidad: por eso se hace un **control temprano** y se ajusta el **mantenimiento**.",
+      "pie_nodo": "¿Cómo responde la falla respiratoria al tratamiento?",
       "opciones": [
         {
-          "texto": "Estable, lista para el alta",
+          "texto": "Estable y cumple la lista del alta",
           "siguiente_nodo": "nodo_seguimiento",
           "descripcion": "Control antes de 4 semanas"
         },
         {
-          "texto": "Aún no, mejorando",
+          "texto": "Mejora, pero aún no cumple la lista",
           "siguiente_nodo": "trat_exac_vigilancia_hosp"
         },
         {
           "texto": "Empeora la falla respiratoria",
           "siguiente_nodo": "trat_exac_severa",
-          "color": "rojo",
-          "descripcion": "Soporte ventilatorio"
+          "color": "rojo"
         }
       ],
       "referencias": [
@@ -2503,6 +2924,42 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Figura 4.5: en todo momento",
+          "paginas": "46",
+          "texto": "At all times: Monitor fluid balance Consider subcutaneous heparin or low molecular weight heparin for thromboembolism prophylaxis",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 4.5: condiciones asociadas",
+          "paginas": "46",
+          "texto": "Identify and treat associated conditions (e.g., heart failure, arrhythmias, pulmonary embolism etc.)",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 3.9: exacerbaciones",
+          "paginas": "28",
+          "texto": "IF ONE OR MORE MODERATE OR SEVERE EXACERBATION LABA or LAMA if blood eos < 300 LABA + LAMA if blood eos ≥ 300 LABA + LAMA + ICS",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Exacerbación con LABA+LAMA",
+          "paginas": "66",
+          "texto": "In patients who have a moderate or severe exacerbation on LABA+LAMA therapy we suggest escalation to LABA+LAMA+ICS",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
@@ -2526,12 +2983,18 @@
       "tipo": "pregunta",
       "titulo": "Revisar al paciente tras la exacerbación",
       "contexto": "Una sola exacerbación **moderada** ya basta para **escalar** el tratamiento de mantenimiento.",
-      "texto": "- Ver al paciente antes de **4 semanas** y de nuevo hacia las **12 semanas**.\n- Revisar la técnica del inhalador, los **síntomas** (CAT o mMRC) y si sigue necesitando oxígeno.\n- Valorar la **rehabilitación pulmonar** y las comorbilidades.\n- A las 12 semanas, repetir la **espirometría**.",
+      "texto": "- Ver al paciente antes de **4 semanas** y de nuevo hacia las **12 semanas**.\n- Revisar:\n  - La técnica del **inhalador**.\n  - Los síntomas (CAT o mMRC).\n  - Si sigue necesitando **oxígeno**.\n- Valorar la **rehabilitación pulmonar** y las comorbilidades.\n- Si sigue con PaCO2 **>53 mmHg** a las **2-4 semanas**, valorar **VMNI domiciliaria**.\n- A las **12 semanas**, repetir la **espirometría**.",
       "nota_adicional": "Empezar la **rehabilitación pulmonar** durante la hospitalización o en las **4 semanas** siguientes al alta reduce la **mortalidad** y los reingresos.",
+      "pie_nodo": "¿La exacerbación fue moderada o grave?",
       "opciones": [
         {
-          "texto": "Ajustar el mantenimiento",
+          "texto": "Sí: moderada o grave",
           "siguiente_nodo": "trat_seg_exacerbaciones"
+        },
+        {
+          "texto": "No: leve",
+          "siguiente_nodo": "trat_seguimiento",
+          "descripcion": "Mantener el tratamiento"
         }
       ],
       "referencias": [
@@ -2588,30 +3051,58 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "VMNI domiciliaria: hipercapnia persistente",
+          "paginas": "78",
+          "texto": "A multicenter prospective RCT of patients with COPD who had persistent hypercapnia (PaCO2 > 53 mmHg) 2-4 weeks after hospital discharge",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "VMNI domiciliaria: menos reingresos",
+          "paginas": "78",
+          "texto": "Adding home NIV to oxygen therapy significantly prolonged the time to readmission or death within 12 months.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Figura 3.9: exacerbaciones",
+          "paginas": "28",
+          "texto": "IF ONE OR MORE MODERATE OR SEVERE EXACERBATION LABA or LAMA if blood eos < 300 LABA + LAMA if blood eos ≥ 300 LABA + LAMA + ICS",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
         }
       ]
     },
     "trat_seguimiento": {
       "tipo": "pregunta",
       "titulo": "Revisar en cada control y ajustar",
-      "texto": "- Medir los **síntomas** con el CAT o el mMRC y contar las exacerbaciones.\n- Revisar la técnica del inhalador, la **adherencia** y si sigue fumando.\n- Repetir la **espirometría** al menos una vez al año, sin suspender los broncodilatadores.\n- Calcular el BODE (o el BODEx) una o dos veces al año.",
+      "texto": "- Medir los **síntomas** con el CAT o el mMRC y contar las exacerbaciones.\n- Revisar:\n  - La técnica del inhalador.\n  - La **adherencia**.\n  - Si sigue fumando.\n- Repetir la **espirometría** al menos una vez al año, sin suspender los broncodilatadores.\n- Calcular el **índice BODE** (o el BODEx) una o dos veces al año para estimar la **gravedad**.",
       "pie_nodo": "¿Qué encuentras en el control?",
       "opciones": [
         {
-          "texto": "Estable, sin disnea ni exacerbaciones",
+          "texto": "Estable: síntomas controlados y sin exacerbaciones",
           "siguiente_nodo": "trat_seguimiento",
           "descripcion": "Mantener el tratamiento"
         },
         {
-          "texto": "Disnea persistente",
+          "texto": "Disnea persistente, sin exacerbaciones",
           "siguiente_nodo": "trat_seg_disnea"
         },
         {
-          "texto": "1 o más exacerbaciones moderadas o graves",
-          "siguiente_nodo": "trat_seg_exacerbaciones"
+          "texto": "1 o más exacerbaciones moderadas o graves desde el último control",
+          "siguiente_nodo": "trat_seg_exacerbaciones",
+          "descripcion": "Con o sin disnea"
         },
         {
-          "texto": "Neumonía o efectos adversos del ICS",
+          "texto": "ICS sin indicación, sin respuesta o con neumonía",
           "siguiente_nodo": "trat_seg_desescalar"
         },
         {
@@ -2656,12 +3147,21 @@
           "anio": "2014",
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
-          "imagen_evidencia": "evidencia_epoc_pag72_minsalud_2014_p_72_5.png"
+          "imagen_evidencia": "evidencia_epoc_pag72_minsalud_2014_p_72_6.png"
         },
         {
           "titulo": "Mantener si la respuesta es buena",
           "paginas": "65",
           "texto": "irrespective of the GOLD group allocated at treatment initiation. If response to initial treatment is appropriate, maintain it.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Ruta de exacerbaciones si hay ambas",
+          "paginas": "65",
+          "texto": "Use the exacerbation pathway if both exacerbations and dyspnea need to be targeted.",
           "fuente": "GOLD 2026",
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
@@ -2672,8 +3172,8 @@
     "trat_seg_disnea": {
       "tipo": "pregunta",
       "titulo": "Ajustar el tratamiento de la disnea persistente",
-      "texto": "- Con **LABA o LAMA** solo, pasar a **LABA+LAMA**.\n- Si ya recibe LABA+LAMA:\n  - Cambiar el **dispositivo** o la molécula.\n  - Iniciar o reforzar la **rehabilitación**.\n  - Valorar la ensifentrina si está disponible.\n- Buscar y tratar **otras causas** de disnea.",
-      "nota_adicional": "La mala **técnica** del inhalador y la falta de **adherencia** explican muchas respuestas pobres: revisarlas antes de **cambiar** el tratamiento.",
+      "texto": "- Revisar primero la **técnica** del inhalador y la **adherencia**: explican muchas respuestas pobres.\n- Con **LABA o LAMA** solo, pasar a **LABA+LAMA**.\n- Si ya recibe LABA+LAMA:\n  - Cambiar el **dispositivo** o la molécula.\n  - Iniciar o reforzar la **rehabilitación**.\n  - Valorar la ensifentrina si está disponible.\n- Con **LABA+ICS**, pasar a la triple si el ICS ayudó, o a LABA+LAMA si no.\n- Buscar y tratar **otras causas** de disnea.",
+      "nota_adicional": "La **ensifentrina** inhibe las **fosfodiesterasas 3 y 4**: es broncodilatadora y antiinflamatoria. Hoy sólo está disponible en **Estados Unidos**.",
       "opciones": [
         {
           "texto": "Ajuste hecho",
@@ -2726,19 +3226,55 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "LABA+ICS con muchos síntomas",
+          "paginas": "69",
+          "texto": "Major symptoms: change to LABA+LAMA or LABA+LAMA+ICS depending on previous treatment response to ICS",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Figura 3.12: sin exacerbaciones",
+          "paginas": "31",
+          "texto": "No current exacerbations Previous positive treatment response* Low symptom load Continue treatment High symptom load Consider escalating to LABA+LAMA+ICS",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Ensifentrina",
+          "paginas": "152",
+          "texto": "Ensifentrine is a novel, first-in-class, inhaled dual inhibitor of PDE3 and PDE4 with both anti-inflammatory activity and bronchodilator effects.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Ensifentrina: sólo en Estados Unidos",
+          "paginas": "152",
+          "texto": "Studies did not find safety or tolerability issues. (1606) Ensifentrine is currently only available in the US.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
     "trat_seg_exacerbaciones": {
       "tipo": "pregunta",
       "titulo": "Escalar según el tratamiento actual y los eosinófilos",
-      "texto": "- Revisar primero la **adherencia**, la técnica y las comorbilidades.\n- Seguir la ruta de las exacerbaciones aunque también haya **disnea**.\n- Escalar según lo que ya recibe y los eosinófilos, con el esquema de escalamiento.",
+      "texto": "- Revisar primero la **adherencia**, la técnica y las **comorbilidades**.\n- Escalar según lo que ya recibe y los **eosinófilos**, con el esquema de escalamiento.",
       "media": [
         {
           "recurso": "epoc_escalamiento.gif",
           "titulo": "Escalamiento por exacerbaciones",
           "descripcion": "Del broncodilatador solo a la triple y las opciones añadidas, según los eosinófilos.",
-          "info": "Desde **LABA o LAMA** se pasa a {#4F8CF6:LABA+LAMA} o, con eosinófilos **≥300**, a la {#F07F3C:triple}. Si siguen las exacerbaciones, se añade roflumilast, **azitromicina** o un {#8B5CF6:biológico}, según los criterios de cada uno.",
+          "info": "Cada fila parte de lo que **recibe** y da el paso siguiente según los **eosinófilos**: de LABA o LAMA a {#4F8CF6:LABA+LAMA} o, con **≥300/µL**, a la {#F07F3C:triple}; de LABA+LAMA o LABA+ICS, a la triple con **≥100/µL**; de la triple, a otra opción o un {#8B5CF6:biológico}.",
           "en_texto": "esquema de escalamiento",
           "referencias": [
             {
@@ -2776,6 +3312,15 @@
               "anio": "2026",
               "url": "https://goldcopd.org/2026-gold-report/",
               "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+            },
+            {
+              "titulo": "Figura 3.12: con exacerbaciones",
+              "paginas": "31",
+              "texto": "Current exacerbations Blood eosinophils < 100/µL Consider changing to LABA+LAMA Blood eosinophils ≥ 100/µL Consider escalating to LABA+LAMA+ICS",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
             }
           ]
         }
@@ -2797,6 +3342,11 @@
         {
           "texto": "LABA+ICS",
           "siguiente_nodo": "trat_seg_exac_laba_ics"
+        },
+        {
+          "texto": "Sólo broncodilatador de rescate",
+          "siguiente_nodo": "nodo_tratamiento",
+          "descripcion": "Sin mantenimiento: iniciar como grupo E"
         }
       ],
       "referencias": [
@@ -2868,7 +3418,7 @@
     "trat_seg_exac_escalar_dual": {
       "tipo": "pregunta",
       "titulo": "Escalar a LABA+LAMA",
-      "texto": "- Pasar a **LABA+LAMA**, mejor en un solo inhalador.\n- Revisar las **exacerbaciones** en el siguiente control.",
+      "texto": "- Darla en **un solo inhalador** si es posible.\n- Revisar las **exacerbaciones** en el siguiente control.",
       "opciones": [
         {
           "texto": "LABA+LAMA indicado",
@@ -2909,12 +3459,39 @@
       "tipo": "pregunta",
       "titulo": "Decidir el ICS por los eosinófilos",
       "texto": "- Con eosinófilos **≥100/µL**, añadir el **ICS** (triple): el beneficio crece con la cifra.\n- Con menos de **100/µL**, el ICS aporta poco: valorar azitromicina o roflumilast.",
+      "burbujas": [
+        {
+          "en_texto": "el beneficio crece con la cifra",
+          "titulo": "¿Por qué no hay un corte exacto?",
+          "texto": "Los eosinófilos en sangre son un **continuo** y **fluctúan**: los cortes de 100 y 300/µL son **aproximados**.",
+          "referencias": [
+            {
+              "titulo": "Figura 3.10: eosinófilos como continuo",
+              "paginas": "29",
+              "texto": "*note that blood eosinophils should be seen as a continuum; quoted values represent approximate cut-points; eosinophil counts are likely to fluctuate.",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+            },
+            {
+              "titulo": "ICS con eosinófilos ≥100",
+              "paginas": "66",
+              "texto": "A beneficial response after the addition of ICS may be observed at blood eosinophil counts ≥ 100 cells/µL, with a greater magnitude of response more likely with higher eosinophil counts.",
+              "fuente": "GOLD 2026",
+              "anio": "2026",
+              "url": "https://goldcopd.org/2026-gold-report/",
+              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+            }
+          ]
+        }
+      ],
       "media": [
         {
           "recurso": "epoc_eosinofilos.png",
           "titulo": "Eosinófilos y corticoide inhalado",
           "descripcion": "Cuánto aporta el ICS según los eosinófilos en sangre.",
-          "info": "Con LABA+LAMA y exacerbaciones, el corte para añadir el **ICS** es **100/µL**: por debajo aporta poco y, desde ahí, el beneficio **crece** con la cifra.",
+          "info": "Con LABA+LAMA y exacerbaciones manda el {#4F8CF6:corte 100}: por debajo el **ICS** aporta poco y se piensa en **azitromicina o roflumilast**; desde ahí el beneficio **crece**.",
           "en_texto": "eosinófilos",
           "referencias": [
             {
@@ -2991,7 +3568,13 @@
     "trat_seg_exac_escalar_triple": {
       "tipo": "pregunta",
       "titulo": "Escalar a la triple: LABA+LAMA+ICS",
-      "texto": "- Pasar a **LABA+LAMA+ICS**, mejor en un solo inhalador.\n- Vigilar la **neumonía** y los efectos adversos del ICS.",
+      "texto": "- Darla en **un solo inhalador** si es posible.\n- Revisar en cada control las **exacerbaciones** y los efectos adversos del ICS.",
+      "alertas": [
+        {
+          "titulo": "Cuándo no conviene el ICS",
+          "texto": "Pesan **en contra** del ICS las **neumonías** repetidas, la infección por **micobacterias** y los eosinófilos <100/µL. La neumonía es más probable en **fumadores**, con **55 años** o más, IMC <25 o neumonía previa."
+        }
+      ],
       "opciones": [
         {
           "texto": "Triple indicada",
@@ -3025,13 +3608,58 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 3.8: un solo inhalador",
+          "paginas": "27",
+          "texto": "*Single inhaler therapy may be more convenient and effective than multiple inhalers; single inhalers improve adherence to treatment",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "Figura 3.10: en contra del ICS",
+          "paginas": "29",
+          "texto": "AGAINST USE Repeated pneumonia events Blood eosinophils < 100 cells/µL History of mycobacterial infection",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
+        },
+        {
+          "titulo": "ICS y neumonía",
+          "paginas": "150",
+          "texto": "is associated with higher prevalence of oral candidiasis, hoarse voice, skin bruising and pneumonia.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Quién tiene más riesgo de neumonía",
+          "paginas": "150",
+          "texto": "Patients at higher risk of pneumonia include those who currently smoke, are aged ≥ 55 years, have a history of prior exacerbations or pneumonia, a BMI < 25 kg/m 2,",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "ICS y tuberculosis",
+          "paginas": "151",
+          "texto": "An increased risk of tuberculosis has been found in both observational studies and a meta-analysis of RCTs.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
     "trat_seg_exac_opciones_adicionales": {
       "tipo": "pregunta",
       "titulo": "Añadir otra opción si siguen las exacerbaciones",
-      "texto": "- Elegir según el perfil del paciente, con la tabla.\n- **Azitromicina** de preferencia en quien no fuma.\n- Los **biológicos** exigen eosinófilos ≥300/µL y seguir con exacerbaciones en la triple.",
+      "texto": "- Elegir según el perfil del paciente, con la tabla.\n- Revisar en cada control si las **exacerbaciones** disminuyen y si hay **efectos adversos**.",
       "tabla": {
         "titulo": "Opciones añadidas",
         "columnas": [
@@ -3050,52 +3678,36 @@
           ],
           [
             "**Dupilumab**",
-            "- Eosinófilos **≥300/µL**\n- Bronquitis crónica"
+            "- Eosinófilos **≥300/µL**\n- Bronquitis crónica\n- **2** moderadas o **1** grave en el último año, con la triple"
           ],
           [
             "**Mepolizumab**",
-            "- Eosinófilos **≥300/µL**"
+            "- Eosinófilos **≥300/µL**\n- **2** moderadas o **1** grave en el último año, con la triple"
           ]
         ]
       },
-      "media": [
+      "farmacos": [
         {
-          "recurso": "epoc_escalamiento.gif",
-          "titulo": "Escalamiento por exacerbaciones",
-          "descripcion": "Del broncodilatador solo a la triple y las opciones añadidas, según los eosinófilos.",
-          "info": "El último cuadro reúne las **opciones añadidas**: roflumilast, **azitromicina** y los {#8B5CF6:biológicos}, que piden eosinófilos **≥300** y dos exacerbaciones moderadas o una grave.",
-          "en_texto": "perfil del paciente",
-          "referencias": [
-            {
-              "titulo": "Figura 3.9: roflumilast y azitromicina",
-              "paginas": "28",
-              "texto": "Roflumilast if FEV1 < 50% & chronic bronchitis Azithromycin preferentially in former smokers",
-              "fuente": "GOLD 2026",
-              "anio": "2026",
-              "url": "https://goldcopd.org/2026-gold-report/",
-              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
-            },
-            {
-              "titulo": "Figura 3.9: biológicos",
-              "paginas": "28",
-              "texto": "if two moderate or one severe exacerbation AND if blood eos ≥ 300 Biologic Therapy: Dupilumab (if chronic bronchitis) Mepolizumab",
-              "fuente": "GOLD 2026",
-              "anio": "2026",
-              "url": "https://goldcopd.org/2026-gold-report/",
-              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition."
-            },
-            {
-              "titulo": "Biológicos con eosinófilos ≥300",
-              "paginas": "66",
-              "texto": "Among patients with blood eosinophils ≥ 300 cells/µL, consider adding dupilumab (if chronic bronchitis) or mepolizumab (with and without chronic bronchitis)",
-              "fuente": "GOLD 2026",
-              "anio": "2026",
-              "url": "https://goldcopd.org/2026-gold-report/",
-              "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
-            }
-          ]
+          "nombre": "Azitromicina",
+          "dosis": "**250 mg** VO al día o **500 mg** 3 veces por semana",
+          "pauta": "Durante **1 año**; no hay datos de **eficacia** ni seguridad más allá.",
+          "paginas": "GOLD 2026: 152"
         }
       ],
+      "alertas": [
+        {
+          "titulo": "Riesgos de la azitromicina",
+          "texto": "La **azitromicina** crónica aumenta la resistencia bacteriana, alarga el **QTc** y altera la **audiometría**: sopesarlo antes de indicarla."
+        },
+        {
+          "titulo": "Precauciones del roflumilast",
+          "texto": "Vigilar el **peso** durante el tratamiento y evitarlo con **bajo peso**; usarlo con cautela si hay **depresión**."
+        }
+      ],
+      "evidencia": {
+        "texto": "Roflumilast sobre la triple (MinSalud): recomendación fuerte",
+        "fuente": "MinSalud 2014"
+      },
       "discrepancias": [
         {
           "asunto": "Roflumilast y macrólidos",
@@ -3114,16 +3726,6 @@
           "nota": "GOLD los permite ya con **LABA+LAMA** y eosinófilos **<100**; la guía colombiana, sólo sobre la triple."
         }
       ],
-      "alertas": [
-        {
-          "titulo": "Riesgos de la azitromicina",
-          "texto": "La **azitromicina** crónica aumenta la resistencia bacteriana, alarga el **QTc** y altera las pruebas de **audición**: sopesarlo antes de indicarla."
-        }
-      ],
-      "evidencia": {
-        "texto": "Roflumilast sobre la triple: recomendación fuerte",
-        "fuente": "MinSalud 2014"
-      },
       "opciones": [
         {
           "texto": "Opción elegida",
@@ -3223,6 +3825,33 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
           "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
           "imagen_evidencia": "evidencia_epoc_pag78_minsalud_2014_p_78_2.png"
+        },
+        {
+          "titulo": "Roflumilast: peso y depresión",
+          "paginas": "151",
+          "texto": "weight monitoring during treatment is advised, in addition to avoiding roflumilast treatment in underweight patients. Roflumilast should also be used with caution in patients with depression.",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Azitromicina: dosis y duración",
+          "paginas": "152",
+          "texto": "Azithromycin (250 mg/day or 500 mg three times per week) or erythromycin (250 mg two times per day) for one year",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "Azitromicina: sin datos más allá de un año",
+          "paginas": "152",
+          "texto": "There are no data showing the efficacy or safety of chronic azithromycin treatment to prevent COPD exacerbations beyond one-year",
+          "fuente": "GOLD 2026",
+          "anio": "2026",
+          "url": "https://goldcopd.org/2026-gold-report/",
+          "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
         }
       ]
     },
@@ -3230,6 +3859,24 @@
       "tipo": "pregunta",
       "titulo": "Ajustar a quien recibe LABA+ICS",
       "texto": "- Con exacerbaciones y eosinófilos **≥100/µL**, escalar a la **triple**.\n- Con exacerbaciones y menos de **100/µL**, cambiar a **LABA+LAMA**.",
+      "discrepancias": [
+        {
+          "asunto": "LABA+ICS en la EPOC",
+          "posturas": [
+            {
+              "fuente": "GOLD 2026",
+              "dice": "No se aconseja **LABA+ICS**: si hay indicación de ICS, la **triple** es mejor.",
+              "paginas": "64"
+            },
+            {
+              "fuente": "MinSalud 2014",
+              "dice": "En la EPOC grave sin respuesta al tiotropio, se sugiere cambiarlo por **LABA+ICS**.",
+              "paginas": "76"
+            }
+          ],
+          "nota": "El algoritmo sigue a **GOLD**, más reciente: con indicación de ICS se prefiere la **triple**."
+        }
+      ],
       "pie_nodo": "¿Tiene 100 eosinófilos/µL o más?",
       "opciones": [
         {
@@ -3268,13 +3915,23 @@
           "anio": "2026",
           "url": "https://goldcopd.org/2026-gold-report/",
           "cita": "Global Initiative for Chronic Obstructive Lung Disease. Global strategy for the diagnosis, management, and prevention of chronic obstructive pulmonary disease: 2026 report."
+        },
+        {
+          "titulo": "R38: cambiar el tiotropio por LABA+ICS",
+          "paginas": "76",
+          "texto": "remplazar este tratamiento por un tratamiento combinado de B-agonista de larga acción y corticosteroide inhalado (fluticanosa/salmeterol, budesonida/formoterol, beclometasona/formoterol), dado el mejor perfil sobre la calidad de vida.",
+          "fuente": "MinSalud 2014",
+          "anio": "2014",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/GPC-EPOC-completa.pdf",
+          "cita": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica basada en la evidencia para la prevención, diagnóstico, tratamiento y seguimiento de la enfermedad pulmonar obstructiva crónica (EPOC) en población adulta. Guía N.º 28. Bogotá; 2014.",
+          "imagen_evidencia": "evidencia_epoc_pag76_minsalud_2014_p_76.png"
         }
       ]
     },
     "trat_seg_desescalar": {
       "tipo": "pregunta",
       "titulo": "Valorar retirar el ICS",
-      "texto": "- Retirar el ICS si se inició sin indicación, no hubo **respuesta** o hay neumonía grave o recurrente u otros efectos adversos.\n- Con eosinófilos **≥300/µL**, retirarlo aumenta el riesgo de **exacerbaciones**: sopesarlo.\n- Hacerlo bajo **supervisión** cercana.",
+      "texto": "- Retirar el ICS si:\n  - Se inició **sin indicación**.\n  - No hubo **respuesta**.\n  - Hay neumonía grave o recurrente u otros efectos adversos.\n- Con eosinófilos **≥300/µL**, retirarlo aumenta el riesgo de **exacerbaciones**: sopesarlo.\n- Retirarlo bajo **supervisión** cercana y seguir con **LABA+LAMA**.",
       "opciones": [
         {
           "texto": "Decisión tomada",

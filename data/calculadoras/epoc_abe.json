@@ -1,7 +1,7 @@
 {
   "titulo": "Grupo ABE de la EPOC (GOLD 2026)",
   "descripcion": "Clasifica al adulto con EPOC confirmada por espirometría en el grupo A, B o E de GOLD 2026 según las exacerbaciones del último año y los síntomas (mMRC o CAT). El grupo decide el tratamiento inhalado con que se empieza.",
-  "instrucciones": "Responde en orden: con una exacerbación moderada o grave en el último año ya es grupo E. Para los síntomas basta una de las dos escalas; si no mediste el CAT, marca «No se midió» y decide el mMRC.",
+  "instrucciones": "Responde en orden: con una exacerbación moderada o grave en el último año ya es grupo E. El mMRC se marca siempre; el CAT, si se midió. Si no se midió, marca «No se midió» y el grupo lo decide el mMRC.",
   "limitaciones": "Sólo para adultos con EPOC confirmada (VEF1/CVF <0,7 posbroncodilatador). Sirve para elegir el tratamiento inicial; en los controles, el ajuste depende del tratamiento que ya recibe y de los eosinófilos, no del grupo.",
   "tipoCalculo": "formula",
   "formula": "2 * previas + (1 - previas) * 0.5 * (0.5 * (1 + (mmrc - 1.5) / abs(mmrc - 1.5)) + cat + abs(0.5 * (1 + (mmrc - 1.5) / abs(mmrc - 1.5)) - cat))",
@@ -47,7 +47,28 @@
       "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
       "url": "https://goldcopd.org/2026-gold-report/",
       "paginas": "27",
-      "texto": "GROUP A A bronchodilator GROUP B LABA + LAMA* GROUP E LABA + LAMA* consider LABA+LAMA+ICS* if blood eos ≥ 300",
+      "texto": "GROUP A A bronchodilator GROUP B LABA + LAMA* mMRC 0-1, CAAT < 10 mMRC ≥ 2, CAAT ≥ 10",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "27",
+      "texto": "One or more (≥ 1) moderate or severe exacerbations in the previous year GROUP E LABA + LAMA* consider LABA+LAMA+ICS* if blood eos ≥ 300",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "18",
+      "texto": "CAT™ has been renamed as the Chronic Airways Assessment Test CAAT™; CAT™ and CAAT™ are equivalent and the scores are interchangeable.",
+      "anio": "2026"
+    },
+    {
+      "titulo": "Global Initiative for Chronic Obstructive Lung Disease. Pocket guide to COPD diagnosis, management, and prevention: 2026 edition.",
+      "url": "https://goldcopd.org/2026-gold-report/",
+      "paginas": "18",
+      "texto": "I never cough I have no phlegm (mucus) in my chest at all My chest does not feel tight at all When I walk up a hill or one flight of stairs I am not breathless",
       "anio": "2026"
     },
     {
@@ -78,15 +99,15 @@
         {
           "id": "previas",
           "tipo": "opciones",
-          "label": "E · Exacerbaciones: 1 o más moderadas o graves en el último año",
+          "label": "Exacerbaciones moderadas o graves en el último año",
           "ayuda": "Cuenta las del último año que fueron moderadas o graves; las leves no cuentan.",
           "opciones": [
             {
-              "label": "No",
+              "label": "Ninguna",
               "puntos": 0
             },
             {
-              "label": "Sí",
+              "label": "1 o más",
               "puntos": 1
             }
           ]
@@ -115,7 +136,7 @@
             {
               "label": "Grado 3",
               "puntos": 3,
-              "detalle": "Para a respirar tras caminar unos 100 metros o unos pocos minutos en plano."
+              "detalle": "Tiene que parar a respirar tras caminar unos 100 metros o unos pocos minutos en plano."
             },
             {
               "label": "Grado 4",
@@ -127,7 +148,7 @@
         {
           "id": "cat",
           "tipo": "opciones",
-          "label": "CAT: puntaje total de 0 a 40",
+          "label": "CAT (o CAAT): puntaje total de 0 a 40",
           "ayuda": "Ocho preguntas de 0 a 5 sobre tos, flema, opresión, disnea, actividades, confianza, sueño y energía.",
           "opciones": [
             {
@@ -178,7 +199,7 @@
       "categoria": "Grupo B: más síntomas",
       "color": "amarillo",
       "match_opcion_index": 1,
-      "approach": "Iniciar LABA+LAMA, mejor en un solo inhalador. Si la combinación no es apropiada, un LABA o un LAMA."
+      "approach": "Iniciar LABA+LAMA, mejor en un solo inhalador. Si la combinación no es apropiada, dar un LABA o un LAMA."
     },
     {
       "min": 0,

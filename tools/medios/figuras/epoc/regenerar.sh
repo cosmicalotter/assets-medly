@@ -22,7 +22,7 @@ jpg espirometria "$D/epoc_espirometria_real.jpg"
 jpg espaciador "$D/epoc_espaciador_real.jpg"
 jpg vmni "$D/epoc_vmni_real.jpg"
 # Animación propia: el escalamiento por exacerbaciones, fila por fila
-gif escalamiento "$D/epoc_escalamiento.gif" 4 2600 4000 128
+gif escalamiento "$D/epoc_escalamiento.gif" 5 2600 4000 128
 # Esquemas propios (PNG)
 png grados_abe "$D/epoc_grados_abe.png"
 png tratamiento_inicial "$D/epoc_tratamiento_inicial.png"
