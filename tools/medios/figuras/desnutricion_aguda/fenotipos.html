@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.g{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}.k{border-radius:14px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 6%,white);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.k h3{font-size:22px;color:var(--c)}.k .e{font-size:13.5px;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.04em}.k ul{font-size:18px;line-height:1.55;padding-left:20px}</style></head><body>
+<script>
+// Comparación en texto, sin siluetas.
+const k = (c, t, e, items) => `<div class="k" style="--c:${c}"><h3>${t}</h3><div class="e">${e}</div><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
+lienzo("Marasmo y kwashiorkor", "Las dos formas de la desnutrición aguda severa",
+  `<div class="g">
+    ${k(AZUL, "Marasmo", "Sin edema", ["Pérdida de peso <b>marcada</b>", "Sin grasa, músculo <b>atrofiado</b>", "Piel plegadiza (le sobra piel)", "Irritable, llora mucho"])}
+    ${k(NARANJA, "Kwashiorkor", "Siempre con edema", ["<b>Edema</b> nutricional bilateral", "Cara de luna", "Piel con <b>dermatosis</b>, hiper o hipopigmentada", "Pelo fino, seco, despigmentado", "Apatía; el peso <b>engaña</b>"])}
+  </div>`, F_L + " (tabla 6, p. 30-31).");
+</script></body></html>
