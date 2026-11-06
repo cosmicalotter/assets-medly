@@ -21,7 +21,8 @@ gif prednisolona "$D/nefro_prednisolona_semanas.gif" 26 380 3500 128
 python3 tools/medios/franja_credito.py "$H/fuentes/commons_Purpura_Schonlein_Henoch.JPG" "$D/nefro_purpura_iga.jpg" \
   "Imagen: Mnokel, Wikimedia Commons, dominio público. Editada por Empirica." \
   --titulo "Púrpura de la vasculitis IgA" --subtitulo "Petequias y púrpura en las piernas y los tobillos de un niño"
-python3 tools/medios/franja_credito.py "$H/fuentes/commons_Comp.Urine.Test.Strip_recorte.jpg" "$D/nefro_tira_reactiva.jpg" \
-  "Imagen: J3D3, Wikimedia Commons, CC BY-SA 3.0. Recortada por Empirica." \
-  --titulo "Tira reactiva de orina" --subtitulo "Casilla 4, proteína: verde en la izquierda, pálida en la derecha"
+python3 "$H/marcar_tira.py"
+python3 tools/medios/franja_credito.py "$H/fuentes/commons_Comp.Urine.Test.Strip_marcado.jpg" "$D/nefro_tira_reactiva.jpg" \
+  "Imagen: J3D3, Wikimedia Commons, CC BY-SA 3.0. Recortada y señalada por Empirica." \
+  --titulo "Tira reactiva de orina" --subtitulo "Recuadros: la casilla de proteína, positiva a la izquierda y negativa a la derecha"
 png nefritico "$D/nefro_tres_nefriticos.png"
