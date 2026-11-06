@@ -2,7 +2,7 @@
 // Ejemplo de titulación de los cuatro fármacos de base en la ICFEr: empezar los cuatro a dosis bajas y
 // doblar cada 2 semanas hasta la dosis objetivo (ESC 2026, tabla 11 y p. 5382; supl. tablas S4-S9).
 const FARM = [
-  ["Sacubitril-valsartán", AZUL, ["49/51 mg c/12 h", "97/103 mg c/12 h", "97/103 mg c/12 h", "97/103 mg c/12 h"], [50, 100, 100, 100]],
+  ["Sacubitril-valsartán", AZUL, ["24/26 mg c/12 h", "49/51 mg c/12 h", "97/103 mg c/12 h", "97/103 mg c/12 h"], [25, 50, 100, 100]],
   ["Bisoprolol", MORADO, ["1,25 mg/día", "2,5 mg/día", "5 mg/día", "10 mg/día"], [12.5, 25, 50, 100]],
   ["Espironolactona", TEAL, ["25 mg/día", "50 mg/día", "50 mg/día", "50 mg/día"], [50, 100, 100, 100]],
   ["Dapagliflozina", VERDE, ["10 mg/día", "10 mg/día", "10 mg/día", "10 mg/día"], [100, 100, 100, 100]],
@@ -22,7 +22,7 @@ function dibujar(paso, u) {
         <div style="position:absolute;left:12px;top:12px;font-size:15px;font-weight:800;color:#1F2A37">${dosis[paso]}${pct[paso] >= 100 ? " · objetivo" : ""}</div>
       </div></div>`;
   }).join("");
-  lienzo("Subir la dosis cada 2 semanas", "Ejemplo en la ICFEr: se empiezan los cuatro a la vez y se doblan hasta la dosis objetivo.",
+  lienzo("Subir la dosis cada 1-2 semanas", "Ejemplo en la ICFEr, con subidas cada 2 semanas: se empiezan los cuatro a la vez y se doblan hasta la dosis objetivo.",
     `<div style="display:flex;gap:6px">${linea}</div>
      <div style="display:flex;flex-direction:column;gap:20px;margin-top:14px">${barras}</div>
      <div style="display:flex;gap:8px;margin-top:auto">
