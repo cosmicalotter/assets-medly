@@ -1,5 +1,5 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
-<style>.eje{position:relative;height:150px;margin:8px 10px 0}
+<style>.eje{position:relative;height:150px;margin:26px 10px 0}
 .zona{position:absolute;top:30px;height:70px;border-radius:10px;padding:6px 10px;font-size:14px;line-height:1.25;font-weight:600}
 .cur{position:absolute;top:18px;width:4px;height:94px;background:var(--tinta);border-radius:2px}
 .cur b{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:14px;white-space:nowrap}
@@ -16,11 +16,10 @@ window.cuadro = function (i, total) {
   const col = ["var(--rojo)", "var(--ambar)", "#9CA3AF"][z];
   lienzo("El reloj de la endoscopia", "Horas desde que el paciente llega, una vez reanimado.",
     `<div class="eje">
-       <div class="zona" style="left:0;width:${x(12) - 3}px;background:#FDECEC;outline:${z === 0 ? "2px solid var(--rojo)" : "none"}"><span style="color:var(--rojo)">Urgente</span><br>12 h o menos</div>
-       <div class="zona" style="left:${x(12)}px;width:${x(12) - 3}px;background:#FEF5E7;outline:${z === 1 ? "2px solid var(--ambar)" : "none"}"><span style="color:#B7791F">Temprana</span><br>24 h o menos</div>
-       <div class="zona" style="left:${x(24)}px;width:${x(6)}px;background:#F3F4F6;outline:${z === 2 ? "2px solid #9CA3AF" : "none"}"><span style="color:var(--suave)">Diferida</span><br>&gt;24 h</div>
-       <div class="cur" style="left:${x(h) - 2}px;background:${col}"><b style="color:${col}">${Math.round(h)} h</b></div>
-       ${[0, 6, 12, 18, 24, 30].map((v) => `<span class="tk" style="left:${x(v)}px">${v} h</span>`).join("")}
+       <div class="zona" style="top:6px;height:46px;left:0;width:${x(12)}px;background:#FDECEC;outline:${z === 0 ? "2px solid var(--rojo)" : "none"}"><span style="color:var(--rojo)">Urgente</span>: 12 h o menos</div>
+       <div class="zona" style="top:58px;height:46px;left:0;width:${x(24)}px;background:#FEF5E7;outline:${z <= 1 ? "2px solid var(--ambar)" : "none"}"><span style="color:#B7791F">Temprana</span>: 24 h o menos</div>
+       <div class="cur" style="top:0;height:112px;left:${x(h) - 2}px;background:${col}"><b style="color:${col}">${Math.round(h)} h</b></div>
+       ${[0, 6, 12, 18, 24, 30].map((v) => `<span class="tk" style="left:${x(v)}px;top:114px">${v} h</span>`).join("")}
      </div>
      <div class="fila">
        <div class="c ${z === 0 || todo ? "on" : ""}" style="${z === 0 || todo ? "outline:2px solid var(--rojo);background:#fff" : ""}"><b>12 h o menos</b>: sospecha de <b>várices</b>, o sigue <b>inestable</b> pese a la reanimación.</div>
