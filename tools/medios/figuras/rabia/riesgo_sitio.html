@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Probabilidad media de rabia sin profilaxis tras la mordedura de un animal rabioso, según el sitio (OMS 2018, WER 93(16), p. 2).
+const DATOS = [["Cabeza", 55, ROJO], ["Miembro superior", 22, NARANJA], ["Miembro inferior", 12, AMBAR], ["Tronco", 9, "#94A3B8"]];
+const W = 668, X0 = 170, XM = 600, BH = 46, GAP = 22, Y0 = 18, X = (v) => X0 + (XM - X0) * v / 60;
+let s = "";
+for (const v of [0, 20, 40, 60]) s += `<line x1="${X(v)}" y1="${Y0 - 6}" x2="${X(v)}" y2="${Y0 + DATOS.length * (BH + GAP)}" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="${X(v)}" y="${Y0 + DATOS.length * (BH + GAP) + 18}" text-anchor="middle" font-size="12.5" fill="#64748B">${v} %</text>`;
+DATOS.forEach(([n, v, c], i) => {
+  const y = Y0 + i * (BH + GAP);
+  s += `<text x="${X0 - 12}" y="${y + BH / 2 + 5}" text-anchor="end" font-size="15" font-weight="700" fill="#1F2A37">${n}</text>`;
+  s += `<rect x="${X0}" y="${y}" width="${X(v) - X0}" height="${BH}" rx="8" fill="${c}"/>`;
+  s += `<text x="${X(v) + 10}" y="${y + BH / 2 + 7}" font-size="20" font-weight="800" fill="${c}">${v} %</text>`;
+});
+const svg = `<svg width="${W}" height="${Y0 + DATOS.length * (BH + GAP) + 26}">${s}</svg>`;
+const ley = `<div class="item" style="background:#F7F8FA"><b style="color:${ROJO}">●</b> Las zonas <b>muy inervadas</b> (cabeza, cara, cuello, manos, pies, genitales) son <b>exposición grave</b>: inmunoglobulina y vacuna.</div>`;
+lienzo("Riesgo de rabia según el sitio", "Probabilidad media, sin profilaxis, tras la mordedura de un animal rabioso", svg + ley,
+  "Gráfico. Datos: OMS 2018, documento de posición sobre las vacunas antirrábicas. Clasificación: MinSalud 2022, Tabla 2.");
+</script></body></html>

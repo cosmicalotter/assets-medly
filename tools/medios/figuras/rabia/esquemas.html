@@ -1,0 +1,34 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquemas posexposición (MinSalud 2022, p. 14-18): 0-3-7-14; inmunoglobulina el día 0 o hasta el día 7;
+// inmunocomprometido 5 dosis (0, 3, 7, 14 y 21-28); re-exposición días 0 y 3.
+const W = 668, X0 = 190, X1 = 640, DMAX = 28, X = (d) => X0 + (X1 - X0) * d / DMAX;
+const FILAS = [
+  ["Exposición leve", NARANJA, [0, 3, 7, 14], false, null],
+  ["Exposición grave", ROJO, [0, 3, 7, 14], true, null],
+  ["Inmunocomprometido", MORADO, [0, 3, 7, 14], true, [21, 28]],
+  ["Re-exposición", AZUL, [0, 3], false, null],
+];
+const FH = 76, Y0 = 34;
+let s = "";
+for (const d of [0, 3, 7, 14, 21, 28]) {
+  s += `<line x1="${X(d)}" y1="${Y0 - 8}" x2="${X(d)}" y2="${Y0 + FH * FILAS.length}" stroke="#E5E7EB" stroke-width="1.5"/>`;
+  s += `<text x="${X(d)}" y="${Y0 - 14}" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">día ${d}</text>`;
+}
+FILAS.forEach(([n, c, dosis, ig, ventana], i) => {
+  const y = Y0 + FH * i + FH / 2;
+  s += `<rect x="6" y="${y - 22}" width="${W - 12}" height="44" rx="10" fill="${tinte(c, 7)}"/>`;
+  s += `<text x="16" y="${y + 5}" font-size="14" font-weight="700" fill="${c}">${n}</text>`;
+  s += `<line x1="${X(0)}" y1="${y}" x2="${X(ventana ? 28 : dosis[dosis.length - 1])}" y2="${y}" stroke="${tinte(c, 45)}" stroke-width="3"/>`;
+  if (ventana) s += `<rect x="${X(ventana[0])}" y="${y - 11}" width="${X(ventana[1]) - X(ventana[0])}" height="22" rx="11" fill="${tinte(c, 30)}" stroke="${c}" stroke-width="2"/>
+     <circle cx="${(X(ventana[0]) + X(ventana[1])) / 2}" cy="${y}" r="9" fill="${c}" stroke="#fff" stroke-width="2.5"/>`;
+  for (const d of dosis) s += `<circle cx="${X(d)}" cy="${y}" r="9" fill="${c}" stroke="#fff" stroke-width="2.5"/>`;
+  if (ig) s += `<rect x="${X(0) - 8}" y="${y - 31}" width="16" height="16" transform="rotate(45 ${X(0)} ${y - 23})" fill="#fff" stroke="${c}" stroke-width="2.5"/>
+     <text x="${X(0) + 14}" y="${y - 17}" font-size="11.5" font-weight="700" fill="${c}">IG</text>`;
+});
+const svg = `<svg width="${W}" height="${Y0 + FH * FILAS.length + 6}">${s}</svg>`;
+const ley = `<div style="display:flex;gap:8px">
+  <div class="item" style="background:#F7F8FA;flex:1"><b style="color:${GRIS}">●</b> Cada punto, <b>1 vial IM</b>: vasto externo antes de los 2 años; deltoides después.</div>
+  <div class="item" style="background:#F7F8FA;flex:1"><b style="color:${ROJO}">◆</b> <b>IG</b>: inmunoglobulina el día 0, o como tarde el <b>día 7</b>.</div></div>`;
+lienzo("Esquemas de vacunación posexposición", "El día 0 es el día de la consulta; si se retrasa una dosis, no se reinicia", svg + ley,
+  "Esquema. Fuente: MinSalud 2022, Lineamiento de atención clínica integral para exposición rábica y rabia, inmunoprofilaxis antirrábica.");
+</script></body></html>

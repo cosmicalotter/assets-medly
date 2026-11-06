@@ -1,0 +1,47 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Observación del perro o gato durante 10 días (MinSalud 2022, Tabla 2, escenarios I.1 y III.6; INS 2022, Tabla 4;
+// transmisibilidad del perro desde 3-5 días antes de los signos y curso de hasta 10 días: MinSalud 2022, p. 9).
+const W = 668, X0 = 40, X1 = 628, YL = 120, X = (d) => X0 + (X1 - X0) * d / 10;
+const ESC = [
+  { hasta: 10, fin: null, c: VERDE, tit: "Sigue sano el día 10",
+    txt: "El riesgo es muy bajo: <b>no se vacuna</b>, o se <b>suspende</b> el esquema si ya había empezado." },
+  { hasta: 6, fin: "Enferma, muere o se pierde", c: ROJO, tit: "Enfermó el día 6",
+    txt: "Pudo transmitir el virus: la exposición pasa a <b>grave</b>. <b>Inmunoglobulina y vacuna</b> de inmediato." },
+];
+window.cuadro = function (i, n) {
+  const u = n > 1 ? i / (n - 1) : 1;
+  const e = u < 0.5 ? 0 : 1, v = Math.min(1, ((u - e * 0.5) / 0.5) * 1.35);   // avanza y luego se queda quieto
+  const S = ESC[e];
+  const dia = Math.min(S.hasta, v * S.hasta);
+  const llego = dia >= S.hasta - 1e-6;
+  let s = `<rect x="${X0}" y="${YL - 6}" width="${X1 - X0}" height="12" rx="6" fill="#E5E7EB"/>`;
+  s += `<rect x="${X0}" y="${YL - 6}" width="${X(dia) - X0}" height="12" rx="6" fill="${e === 1 && llego ? ROJO : VERDE}"/>`;
+  for (let d = 0; d <= 10; d++) {
+    s += `<line x1="${X(d)}" y1="${YL + 12}" x2="${X(d)}" y2="${YL + 20}" stroke="#94A3B8" stroke-width="2"/>
+      <text x="${X(d)}" y="${YL + 38}" text-anchor="middle" font-size="${d === 0 || d === 10 ? 15 : 13}" font-weight="${d === 0 || d === 10 ? 800 : 600}" fill="#475569">${d}</text>`;
+  }
+  s += `<text x="${(X0 + X1) / 2}" y="${YL + 62}" text-anchor="middle" font-size="13" fill="#64748B">días desde la agresión</text>`;
+  // día 0
+  s += `<rect x="${X0 - 18}" y="10" width="230" height="58" rx="10" fill="${tinte(TEAL, 12)}" stroke="${TEAL}" stroke-width="2"/>
+    <text x="${X0 - 6}" y="33" font-size="14" font-weight="800" fill="${TEAL}">Día 0</text>
+    <text x="${X0 - 6}" y="54" font-size="13" fill="#1F2A37">Lavar, notificar la ficha 300</text>`;
+  s += `<line x1="${X(0)}" y1="68" x2="${X(0)}" y2="${YL - 8}" stroke="${TEAL}" stroke-width="2" stroke-dasharray="4 3"/>`;
+  // marcador
+  const c = e === 1 && llego ? ROJO : VERDE;
+  s += `<circle cx="${X(dia)}" cy="${YL}" r="13" fill="#fff" stroke="${c}" stroke-width="4"/>`;
+  if (e === 1 && llego) {
+    s += `<rect x="${X(6) - 110}" y="12" width="220" height="44" rx="10" fill="${tinte(ROJO, 14)}" stroke="${ROJO}" stroke-width="2"/>
+      <text x="${X(6)}" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="${ROJO}">${S.fin}</text>
+      <line x1="${X(6)}" y1="56" x2="${X(6)}" y2="${YL - 16}" stroke="${ROJO}" stroke-width="2.5"/>`;
+  }
+  if (e === 0 && llego) s += `<text x="${X(10)}" y="${YL - 24}" text-anchor="end" font-size="14" font-weight="800" fill="${VERDE}">sano</text>`;
+  const svg = `<svg width="${W}" height="${YL + 72}">${s}</svg>`;
+  const tarjeta = llego
+    ? `<div class="caja" style="background:${tinte(S.c, 14)};border:2px solid ${S.c};font-size:15px"><b style="color:${S.c};font-size:16px">${S.tit}</b><br><span>${S.txt}</span></div>`
+    : `<div class="caja" style="background:#F7F8FA;border:2px solid #E5E7EB;font-size:15px"><b style="color:${GRIS};font-size:16px">Día ${Math.floor(dia)}: en observación</b><br><span>Salud ambiental observa al perro o gato; el paciente <b>no se vacuna</b> mientras tanto.</span></div>`;
+  const pie = `<div class="item" style="background:#F7F8FA"><b style="color:${GRIS}">●</b> El perro contagia desde <b>3-5 días antes</b> de enfermar y muere en <b>10 días</b> como mucho: por eso se observa 10 días.</div>`;
+  lienzo("Los 10 días de observación", e === 0 ? "Si el perro o gato sigue sano" : "Si el perro o gato enferma, muere o se pierde", svg + tarjeta + pie,
+    "Esquema. Fuente: MinSalud 2022, Tabla 2 y transmisión; INS 2022, observación de perros y gatos.");
+};
+window.cuadro(23, 48);
+</script></body></html>
