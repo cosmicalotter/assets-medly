@@ -1,0 +1,32 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.eje{position:relative;height:150px;margin:26px 10px 0}
+.zona{position:absolute;top:30px;height:70px;border-radius:10px;padding:6px 10px;font-size:14px;line-height:1.25;font-weight:600}
+.cur{position:absolute;top:18px;width:4px;height:94px;background:var(--tinta);border-radius:2px}
+.cur b{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:14px;white-space:nowrap}
+.tk{position:absolute;top:108px;transform:translateX(-50%);font-size:13px;font-weight:700;color:var(--suave);white-space:nowrap}
+.fila{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.c{border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.3;background:#F3F4F6;color:#9CA3AF}
+.c.on{color:var(--tinta)}</style></head><body><script>
+// ESGE 2026, p. 912 (definiciones y momento); ESGE 2022, p. 1095 (várices en 12 h).
+const W = 610, H = 30, x = (h) => (h / H) * W;
+window.cuadro = function (i, total) {
+  const t = total > 1 ? i / (total - 1) : 1;
+  const h = Math.min(30, t * 34);
+  const z = h <= 12 ? 0 : h <= 24 ? 1 : 2;
+  const todo = t > 0.92;
+  const col = ["var(--rojo)", "var(--ambar)", "#9CA3AF"][z];
+  lienzo("El reloj de la endoscopia", "Horas desde que el paciente llega, una vez reanimado.",
+    `<div class="eje">
+       <div class="zona" style="top:6px;height:46px;left:0;width:${x(12)}px;background:#FDECEC;outline:${z === 0 ? "2px solid var(--rojo)" : "none"}"><span style="color:var(--rojo)">Urgente</span>: 12 h o menos</div>
+       <div class="zona" style="top:58px;height:46px;left:0;width:${x(24)}px;background:#FEF5E7;outline:${z <= 1 ? "2px solid var(--ambar)" : "none"}"><span style="color:#B7791F">Temprana</span>: 24 h o menos</div>
+       <div class="cur" style="top:0;height:112px;left:${x(h) - 2}px;background:${col}"><b style="color:${col}">${Math.round(h)} h</b></div>
+       ${[0, 6, 12, 18, 24, 30].map((v) => `<span class="tk" style="left:${x(v)}px;top:114px">${v} h</span>`).join("")}
+     </div>
+     <div class="fila">
+       <div class="c ${z === 0 || todo ? "on" : ""}" style="${z === 0 || todo ? "outline:2px solid var(--rojo);background:#fff" : ""}"><b>12 h o menos</b>: sospecha de <b>várices</b>, o sigue <b>inestable</b> pese a la reanimación.</div>
+       <div class="c ${z === 1 || todo ? "on" : ""}" style="${z === 1 || todo ? "outline:2px solid var(--ambar);background:#fff" : ""}"><b>24 h o menos</b>: el resto de los hospitalizados (Glasgow-Blatchford de <b>2 o más</b>).</div>
+       <div class="c ${z === 2 || todo ? "on" : ""}" style="${z === 2 || todo ? "outline:2px solid #9CA3AF;background:#fff" : ""}"><b>Más de 24 h</b>, ambulatoria: Glasgow-Blatchford de <b>0-1</b>, sin hospitalizar.</div>
+     </div>`,
+    FUENTE("ESGE 2026, p. 909 y 912; ESGE 2022, p. 1095"));
+};
+window.cuadro(29, 30);
+</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script>
+<style>.g{position:relative;margin:4px 0 0 150px;width:500px}
+.r{position:relative;height:44px;border-bottom:1px solid var(--linea)}
+.lab{position:absolute;left:-150px;width:142px;top:0;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;font-size:14px;font-weight:700;line-height:1.15}
+.b{position:absolute;top:9px;height:26px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap}
+.tk{position:absolute;top:2px;transform:translateX(-50%);font-size:12.5px;font-weight:700;color:var(--suave);white-space:nowrap}
+.vl{position:absolute;top:0;bottom:0;border-left:1px dashed var(--linea)}</style></head><body><script>
+// ESGE 2022, p. 1095 y 1107; HUN 2025, p. 58.
+const D = 7, W = 500, x = (d) => (d / D) * W;
+const bar = (a, b, c, t, op = 1) => `<div class="b" style="left:${x(a)}px;width:${x(b) - x(a)}px;background:${c};opacity:${op}">${t}</div>`;
+lienzo("La primera semana del sangrado por várices", "Qué se da y cuándo, desde la llegada (día 0).",
+  `<div class="g">
+     <div class="r" style="height:24px">${[0, 1, 2, 3, 4, 5, 6, 7].map((d) => `<span class="tk" style="left:${x(d)}px">día ${d}</span>`).join("")}</div>
+     <div class="r"><div class="lab">Vasoactivo</div>${bar(0, 2, "var(--violeta)", "Desde la sospecha")}${bar(2, 5, "var(--violeta)", "Hasta 5 días", .55)}</div>
+     <div class="r"><div class="lab">Ceftriaxona 1 g/día</div>${bar(0, 7, "var(--teal)", "7 días como máximo")}</div>
+     <div class="r"><div class="lab">Endoscopia</div>${bar(0, 0.5, "var(--rojo)", "")}<span style="position:absolute;left:${x(0.5) + 8}px;top:12px;font-size:13px;font-weight:700;color:var(--rojo)">en 12 h o menos</span></div>
+     <div class="r"><div class="lab"><span>TIPS preventivo</span><span style="font-weight:500;color:var(--suave);font-size:12px">sólo si hay riesgo alto</span></div>${bar(0, 1, "var(--naranja)", "Ideal: 24 h")}${bar(1, 3, "var(--naranja)", "Hasta 72 h", .55)}</div>
+   </div>
+   <div class="item" style="background:#F7F8FA">Tras una hemostasia exitosa, el vasoactivo puede suspenderse a las <b>24-48 h</b> en casos seleccionados.</div>`,
+  FUENTE("ESGE 2022, p. 1095 y 1107; HUN 2025, p. 58"));
+</script></body></html>
