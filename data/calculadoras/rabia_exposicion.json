@@ -1,0 +1,346 @@
+{
+  "titulo": "Clasificación de la exposición rábica (MinSalud 2022)",
+  "descripcion": "Clasifica la agresión o el contacto con un animal potencialmente transmisor de rabia en no exposición, exposición leve, exposición grave o grave por inmunocompromiso, con los escenarios de la Tabla 2 del lineamiento colombiano de 2022 (adaptación de la clasificación de la OMS). De la categoría depende la profilaxis: observar al animal, vacuna sola, vacuna con inmunoglobulina o cinco dosis con inmunoglobulina.",
+  "instrucciones": "Examina antes la lesión: superficial si sólo atraviesa la piel, profunda si atraviesa el tejido subcutáneo. Sin responsable identificado, el perro o gato es no observable. Todo contacto directo con un murciélago cuenta como grave (OMS).",
+  "limitaciones": "No sustituye la observación del perro o gato: si enferma, muere o se pierde en los 10 días, se reclasifica como grave. Quien ya tiene 2 dosis o más de vacuna documentadas sigue el esquema de reexposición, sin inmunoglobulina.",
+  "tipoCalculo": "formula",
+  "formula": "(1 - (1 - (1 - (((animal - 0) * (animal - 1) * (animal - 2) * (animal - 4)) / (-6))) * (1 - (((contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 4) * (contacto - 5)) / (-120)) * (1 - (((animal - 0) * (animal - 2) * (animal - 3) * (animal - 4)) / (-6)))) * (1 - (((animal - 1) * (animal - 2) * (animal - 3) * (animal - 4)) / (24)) * (((observ - 1) * (observ - 2)) / (2)) * (1 - inmuno)))) * ((1 - inmuno) * ((1 - (1 - (1 - (((animal - 0) * (animal - 2) * (animal - 3) * (animal - 4)) / (-6))) * (1 - (((animal - 0) * (animal - 1) * (animal - 3) * (animal - 4)) / (4))) * (1 - (((animal - 0) * (animal - 1) * (animal - 2) * (animal - 3)) / (24))) * (1 - (((observ - 0) * (observ - 1)) / (2))) * (1 - (((contacto - 0) * (contacto - 1) * (contacto - 3) * (contacto - 4) * (contacto - 5)) / (-12) + ((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 5)) / (-24) + ((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 4)) / (120))) * (1 - (((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 4) * (contacto - 5)) / (12)) * (1 - (1 - multiples) * (1 - zona))))) + 2 * (1 - (1 - (((animal - 0) * (animal - 2) * (animal - 3) * (animal - 4)) / (-6))) * (1 - (((animal - 0) * (animal - 1) * (animal - 3) * (animal - 4)) / (4))) * (1 - (((animal - 0) * (animal - 1) * (animal - 2) * (animal - 3)) / (24))) * (1 - (((observ - 0) * (observ - 1)) / (2))) * (1 - (((contacto - 0) * (contacto - 1) * (contacto - 3) * (contacto - 4) * (contacto - 5)) / (-12) + ((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 5)) / (-24) + ((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 4)) / (120))) * (1 - (((contacto - 0) * (contacto - 1) * (contacto - 2) * (contacto - 4) * (contacto - 5)) / (12)) * (1 - (1 - multiples) * (1 - zona))))) + 3 * inmuno)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (Tabla 2: no exposición).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "11",
+      "texto": "que sean ocasionados por perro o gato Indistintamente de su estado de vacunación, OBSERVABLE, VIVO y sin signos compatibles con rabia al momento de la agresión."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (Tabla 2: exposición leve).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "11",
+      "texto": "Mordedura superficial única en la región del tronco (tórax o abdomen), en miembros inferiores (muslo o pierna) o miembros superiores (hombro, brazo o antebrazo)"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (Tabla 2: exposición grave).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "12",
+      "texto": "Mordedura independiente de su extensión o profundidad en áreas altamente inervadas o cercanas a sistema nervioso central (cabeza, cara, cuello, dedos, manos, pies o genitales)"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (Tabla 2: inmunocomprometido).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "12",
+      "texto": "En paciente inmunocomprometido que presente mordedura, arañazo o abrasión independiente de su extensión o profundidad, lamedura de mucosa o contacto con un animal potencialmente transmisor"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (definición de la profundidad de la herida).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "12",
+      "texto": "Superficial: Cuando solo atraviesa la piel. Profunda: Cuando la herida atraviesa el tejido subcutáneo."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (animales distintos de perro o gato).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "13-25",
+      "texto": "Recuerde que las agresiones por animales potencialmente transmisores de la rabia diferentes a perros o gatos no se consideran observables y se clasifican como exposición grave"
+    },
+    {
+      "titulo": "Instituto Nacional de Salud. Protocolo de vigilancia en salud pública: vigilancia integrada de la rabia. Bogotá; 2022 (Tabla 4).",
+      "url": "https://www.ins.gov.co/buscador-eventos/Lineamientos/Pro_Vigilancia%20Integrada%20Rabia.pdf",
+      "paginas": "13",
+      "texto": "Todo perro o gato agresor identificado deberá ser puesto en observación durante 10 días contados a partir de la fecha de la agresión, SIN EXCEPCIÓN"
+    },
+    {
+      "titulo": "Organización Mundial de la Salud. Vacunas antirrábicas: documento de posición de la OMS. Wkly Epidemiol Rec 2018;93(16):201-220 (categorías de exposición).",
+      "url": "https://iris.who.int/handle/10665/272371",
+      "paginas": "2-3",
+      "texto": "una o varias mordeduras o arañazos que rompen la integridad de la piel, contaminación de las mucosas o de la piel lesionada por lameduras de animales"
+    },
+    {
+      "titulo": "Organización Mundial de la Salud. Documento de posición de la OMS, 2018 (contacto directo con murciélagos).",
+      "url": "https://iris.who.int/handle/10665/272371",
+      "paginas": "2-3",
+      "texto": "contaminación de las mucosas o de la piel lesionada por lameduras de animales o exposiciones por contacto directo con murciélagos (exposición intensa)."
+    },
+    {
+      "titulo": "Instituto Nacional de Salud. Protocolo de vigilancia integrada de la rabia, 2022 (exposición grave por el oficio).",
+      "url": "https://www.ins.gov.co/buscador-eventos/Lineamientos/Pro_Vigilancia%20Integrada%20Rabia.pdf",
+      "paginas": "13",
+      "texto": "Contacto directo de piel lesionada de una persona, por razones de su oficio, con tejido proveniente de un espécimen con alta sospecha de infección por virus de la rabia"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (contacto con un animal o humano infectado).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "11",
+      "texto": "o contacto de piel lesionada o de mucosa con saliva o tejido de un animal o humano infectado, o presuntamente infectado"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social. Lineamiento de atención clínica integral para exposición rábica y rabia en Colombia. Bogotá; 2022 (reexposición antes de 3 meses).",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/lineamiento-atencion-clinica-integral-rabia-2022-msps.pdf",
+      "paginas": "16",
+      "texto": "se recomienda solo el lavado de la herida si han pasado menos de 3 meses de terminado el esquema de vacunación post exposición (4 dosis)"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "animal",
+          "tipo": "opciones",
+          "label": "Fuente de la exposición",
+          "opciones": [
+            {
+              "label": "Perro o gato",
+              "puntos": 0
+            },
+            {
+              "label": "Murciélago",
+              "puntos": 1,
+              "detalle": "Todo contacto directo: su mordedura puede pasar inadvertida"
+            },
+            {
+              "label": "Otro mamífero",
+              "puntos": 2,
+              "detalle": "Mico, zorro, chigüiro u otro silvestre, o animal de producción (vaca, caballo, cerdo)"
+            },
+            {
+              "label": "Rata, ratón o ardilla",
+              "puntos": 3,
+              "detalle": "Se infectan, pero no transmiten la rabia"
+            },
+            {
+              "label": "Humano con rabia o material de laboratorio",
+              "puntos": 4,
+              "detalle": "Caso probable o confirmado, necropsia, muestras o aerosoles con el virus"
+            }
+          ]
+        },
+        {
+          "id": "observ",
+          "tipo": "opciones",
+          "label": "Estado del perro o gato",
+          "ayuda": "Si fue otra fuente, cualquier respuesta: no cambia el resultado.",
+          "opciones": [
+            {
+              "label": "Observable, vivo y sano",
+              "puntos": 0,
+              "detalle": "Con dueño o responsable identificado, o vivo y sano cuando se consulta a los 10 días o más"
+            },
+            {
+              "label": "No observable",
+              "puntos": 1,
+              "detalle": "Perdido, desconocido o callejero"
+            },
+            {
+              "label": "Muerto o con signos de rabia",
+              "puntos": 2,
+              "detalle": "Murió, tenía signos de rabia al agredir, o enfermó o se perdió durante los 10 días de observación"
+            }
+          ]
+        },
+        {
+          "id": "contacto",
+          "tipo": "opciones",
+          "label": "Lesión o contacto",
+          "opciones": [
+            {
+              "label": "Saliva sobre piel intacta",
+              "puntos": 0
+            },
+            {
+              "label": "Arañazo, abrasión o lamedura sin sangrado",
+              "puntos": 1,
+              "detalle": "La lamedura, sobre piel lesionada"
+            },
+            {
+              "label": "Arañazo, abrasión o lamedura con sangrado",
+              "puntos": 2,
+              "detalle": "La lamedura, sobre piel lesionada"
+            },
+            {
+              "label": "Mordedura superficial",
+              "puntos": 3,
+              "detalle": "Sólo atraviesa la piel"
+            },
+            {
+              "label": "Mordedura profunda",
+              "puntos": 4,
+              "detalle": "Atraviesa el tejido subcutáneo"
+            },
+            {
+              "label": "Lamedura o contacto en mucosas",
+              "puntos": 5,
+              "detalle": "Ojo, nariz, boca, ano o genitales; también salpicaduras o aerosoles"
+            }
+          ]
+        },
+        {
+          "id": "multiples",
+          "tipo": "opciones",
+          "label": "Mordeduras múltiples",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Sólo cuenta en las mordeduras."
+        },
+        {
+          "id": "zona",
+          "tipo": "opciones",
+          "label": "Zona muy inervada: cabeza, cara, cuello, dedos, manos, pies o genitales",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Sólo cuenta en las mordeduras."
+        },
+        {
+          "id": "inmuno",
+          "tipo": "opciones",
+          "label": "Paciente inmunocomprometido",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "SIDA, cáncer, diabetes, desnutrición, inmunodeficiencia genética, quimioterapia o radioterapia, trasplante, corticoides sistémicos, inmunomoduladores o biológicos."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 0.99,
+      "categoria": "No exposición",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Lavar la herida y valorar el antibiótico y la vacuna antitetánica. Si fue perro o gato, notificar con la ficha 300 y observarlo 10 días sin vacunar; si enferma, muere o se pierde, reclasificar.",
+      "si": {
+        "alguno": [
+          {
+            "id": "animal",
+            "igual": 3
+          },
+          {
+            "todos": [
+              {
+                "id": "contacto",
+                "igual": 0
+              },
+              {
+                "id": "animal",
+                "distinto": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "animal",
+                "igual": 0
+              },
+              {
+                "id": "observ",
+                "igual": 0
+              },
+              {
+                "id": "inmuno",
+                "igual": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Grave: inmunocomprometido",
+      "color": "rojo",
+      "match_opcion_index": 3,
+      "approach": "Inmunoglobulina antirrábica y 5 dosis de vacuna IM (días 0, 3, 7, 14 y 21-28). Remitir a infectología, que define si se miden los anticuerpos a las 2-4 semanas.",
+      "si": {
+        "id": "inmuno",
+        "igual": 1
+      }
+    },
+    {
+      "min": 2,
+      "max": 2.99,
+      "categoria": "Exposición grave",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "Notificar de inmediato, infiltrar inmunoglobulina y vacunar los días 0, 3, 7 y 14. Con 2 dosis previas o más, sin inmunoglobulina: 2 dosis (días 0 y 3), o sólo lavado si terminó la posexposición hace menos de 3 meses.",
+      "si": {
+        "alguno": [
+          {
+            "id": "animal",
+            "en": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "id": "observ",
+            "igual": 2
+          },
+          {
+            "id": "contacto",
+            "en": [
+              2,
+              4,
+              5
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "contacto",
+                "igual": 3
+              },
+              {
+                "alguno": [
+                  {
+                    "id": "multiples",
+                    "igual": 1
+                  },
+                  {
+                    "id": "zona",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 1.99,
+      "categoria": "Exposición leve",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Notificar con la ficha 300 y vacunar los días 0, 3, 7 y 14, sin inmunoglobulina. Con 2 dosis previas o más: 2 dosis (días 0 y 3), o sólo lavado si terminó la posexposición hace menos de 3 meses."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Curso clínico de la rabia: incubación (MinSalud 2022, p. 9), síntomas iniciales y progresión (p. 20), formas (Tabla 5, p. 20-21),
+// muerte en 7-10 días desde el primer signo (OMS 2018, p. 4).
+const FASES = [
+  ["Incubación", "#94A3B8", "<b>2-3 meses</b> en general; de 5 días a más de 1 año", "Sin síntomas: el virus sube por los nervios. Aún se puede <b>prevenir</b>."],
+  ["Pródromo", AMBAR, "Al comienzo", "Fiebre, malestar, cefalea y <b>dolor o parestesias</b> en la mordedura, aunque ya haya cicatrizado."],
+  ["Fase neurológica", ROJO, "Furiosa <b>70 %</b> · paralítica <b>30 %</b>", "Ansiedad, agitación, <b>hidrofobia</b>; o parálisis flácida ascendente."],
+  ["Coma y muerte", "#1F2A37", "<b>7-10 días</b> desde el primer signo", "Sin tratamiento curativo: cuidados <b>paliativos</b> y aislamiento."],
+];
+let html = `<div style="display:flex;gap:6px;align-items:stretch;flex:1">`;
+html += FASES.map(([t, c, cuando, que], i) => `<div style="flex:${i === 0 ? 1.25 : 1};display:flex;flex-direction:column;gap:6px">
+  <div style="background:${c};color:#fff;border-radius:10px;padding:9px 8px;text-align:center;font-weight:700;font-size:15px;clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%${i ? ", 12px 50%" : ""})">${t}</div>
+  <div class="caja" style="background:${tinte(c, 12)};border:1.5px solid ${tinte(c, 40)};font-size:14px;text-align:center"><span>${cuando}</span></div>
+  <div class="caja" style="background:#F7F8FA;font-size:15px;line-height:1.4;flex:1"><span>${que}</span></div></div>`).join("");
+html += `</div>`;
+html += `<div class="item" style="background:${tinte(ROJO, 8)}"><b style="color:${ROJO}">●</b> Ante una <b>encefalitis aguda</b> de evolución rápida, preguntar siempre por mordeduras o contacto con <b>murciélagos</b>.</div>`;
+lienzo("Curso clínico de la rabia", "De la exposición al coma: la profilaxis sólo sirve antes de los síntomas", html,
+  "Esquema. Fuentes: MinSalud 2022 (incubación, síntomas, Tabla 5); OMS 2018 (evolución al coma y la muerte).");
+</script></body></html>
