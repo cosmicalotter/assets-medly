@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Tres cuadros nefríticos del niño y lo que cambia en cada uno (KDIGO 2021: figuras 56-57 y práctica 2.8.1.1).
+const col = (c, titulo, filas) => `<div style="flex:1;display:flex;flex-direction:column;border:2px solid ${c};border-radius:14px;overflow:hidden">
+  <div style="background:${c};color:#fff;font-weight:700;font-size:15px;padding:8px 10px;text-align:center">${titulo}</div>
+  ${filas.map(([r, t]) => `<div style="padding:8px 10px;border-top:1px solid ${tinte(c, 35)};background:${tinte(c, 7)}">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.06em;color:${c};text-transform:uppercase">${r}</div>
+    <div style="font-size:13px;line-height:1.3;margin-top:2px"><span>${t}</span></div></div>`).join("")}</div>`;
+const cuerpo = `<div style="display:flex;gap:10px;flex:1;min-height:0">
+  ${col(TEAL, "Postinfecciosa", [
+    ["Pista", "<b>Faringitis</b> 1-2 semanas antes o <b>impétigo</b> 4-6 semanas antes"],
+    ["Laboratorio", "<b>C3 bajo</b>; antiestreptolisina O y anti-DNAsa B"],
+    ["Conducta", "Antibiótico si la infección sigue <b>activa</b>; tratar edema e hipertensión"],
+    ["Vigilar", "C3 a las <b>12 semanas</b>: si sigue bajo, biopsia"]])}
+  ${col(MORADO, "Vasculitis IgA", [
+    ["Pista", "<b>Exantema vasculítico</b> con hematuria o proteinuria"],
+    ["Laboratorio", "Uroanálisis, <b>proteinuria</b> y creatinina"],
+    ["Conducta", "<b>Sin corticoides</b> para prevenir la nefritis"],
+    ["Vigilar", "Orina <b>6 a 12 meses</b>; casi toda nefritis sale en <b>3 meses</b>"]])}
+  ${col(ROJO, "Rápidamente progresiva", [
+    ["Pista", "La función renal <b>cae en días</b> o semanas"],
+    ["Laboratorio", "<b>Biopsia renal</b> urgente"],
+    ["Conducta", "En la vasculitis IgA, <b>pulsos de metilprednisolona</b> y ciclofosfamida"],
+    ["Vigilar", "Remitir <b>de urgencia</b> a nefrología pediátrica"]])}</div>`;
+lienzo("Síndrome nefrítico: tres cuadros", "Qué lo sugiere, qué pedir y qué cambia en la conducta", cuerpo,
+  "Esquema. Fuente: KDIGO 2021 (Kidney Int 2021;100:S49 y S172-4).");
+</script></body></html>
