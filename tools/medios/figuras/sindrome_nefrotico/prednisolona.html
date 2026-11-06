@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Prednisolona del primer episodio: 4 + 4 o 6 + 6 semanas (IPNA 2022; KDIGO 2021, rec. 4.3.1.1).
+const W = 668, X0 = 120, X1 = 650, S = 12;
+const x = (s) => X0 + (X1 - X0) * s / S;
+const DIARIA = TEAL, ALTERNA = AZUL;
+function dibujar(sem) {               // sem: semana hasta la que se ve el esquema (0-12)
+  const fila = (y, txt) => `<text x="0" y="${y + 24}" font-size="14" font-weight="700" fill="#1F2A37">${txt}</text>`;
+  const barra = (y, a, b, c, rayas) => {
+    const fin = Math.min(b, sem); if (fin <= a) return "";
+    return `<rect x="${x(a)}" y="${y}" width="${x(fin) - x(a)}" height="38" rx="7" fill="${rayas ? "url(#rayas)" : tinte(c, 30)}" stroke="${c}" stroke-width="2"/>`;
+  };
+  const rot = (y, a, b, txt, c) => x(Math.min(b, sem)) - x(a) >= txt.length * 8 + 16 ? `<text x="${(x(a) + x(Math.min(b, sem))) / 2}" y="${y + 24}" font-size="13" font-weight="700" text-anchor="middle" fill="${c}">${txt}</text>` : "";
+  const y8 = 18, y12 = 100;
+  const marca4 = sem >= 4 ? `<line x1="${x(4)}" y1="6" x2="${x(4)}" y2="170" stroke="${ROJO}" stroke-width="2.5" stroke-dasharray="6 5"/>
+    <text x="${x(4) + 6}" y="182" font-size="12.5" font-weight="700" fill="#B91C1C">Semana 4: ¿remisión completa?</text>` : "";
+  const cursor = sem < S ? `<line x1="${x(sem)}" y1="6" x2="${x(sem)}" y2="170" stroke="#1F2A37" stroke-width="2"/>
+    <rect x="${x(sem) - 40}" y="-8" width="80" height="20" rx="10" fill="#1F2A37"/><text x="${x(sem)}" y="7" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">Semana ${Math.floor(sem)}</text>` : "";
+  const eje = [0, 2, 4, 6, 8, 10, 12].map((s) => `<line x1="${x(s)}" y1="196" x2="${x(s)}" y2="202" stroke="#94A3B8"/><text x="${x(s)}" y="216" font-size="12" text-anchor="middle" fill="#64748B">${s}</text>`).join("");
+  const svg = `<svg width="${W}" height="250" viewBox="0 -10 ${W} 255">
+    <defs><pattern id="rayas" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="${tinte(ALTERNA, 18)}"/><rect width="5" height="10" fill="${tinte(ALTERNA, 42)}"/></pattern></defs>
+    ${fila(y8, "8 semanas")}${fila(y12, "12 semanas")}
+    ${barra(y8, 0, 4, DIARIA)}${barra(y8, 4, 8, ALTERNA, true)}${barra(y12, 0, 6, DIARIA)}${barra(y12, 6, 12, ALTERNA, true)}
+    ${rot(y8, 0, 4, "Diaria", "#0F766E")}${rot(y8, 4, 8, "Días alternos", "#1E3A8A")}${rot(y12, 0, 6, "Diaria", "#0F766E")}${rot(y12, 6, 12, "Días alternos", "#1E3A8A")}
+    ${marca4}<line x1="${X0}" y1="196" x2="${X1}" y2="196" stroke="#94A3B8"/>${eje}
+    <text x="${(X0 + X1) / 2}" y="232" font-size="12" text-anchor="middle" fill="#64748B">semanas desde el inicio</text>${cursor}</svg>`;
+  const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="caja" style="background:${tinte(DIARIA, 12)};border:1px solid ${tinte(DIARIA, 45)}"><span><b>Diaria</b>: <b>60 mg/m²</b> o <b>2 mg/kg</b>, máx. <b>60 mg</b>, una toma por la mañana.</span></div>
+    <div class="caja" style="background:${tinte(ALTERNA, 12)};border:1px solid ${tinte(ALTERNA, 45)}"><span><b>Días alternos</b>: <b>40 mg/m²</b> o <b>1,5 mg/kg</b>, máx. <b>40 mg</b>, sin reducción gradual.</span></div>
+    <div class="caja" style="background:#F8FAFC;border:1px solid #E2E8F0;grid-column:span 2"><span>Con el <b>peso seco</b> estimado. <b>8 semanas</b> si remite en menos de <b>7 días</b> o tiene comorbilidades.</span></div></div>`;
+  lienzo("Prednisolona en el primer episodio", "Dosis plena diaria y después la misma cantidad de semanas en días alternos", svg + notas,
+    "Esquema. Fuente: IPNA 2022 (Pediatr Nephrol 2023;38:877-919) y KDIGO 2021 (Kidney Int 2021;100:S142-3).");
+}
+dibujar(12);
+window.cuadro = (i, n) => dibujar(n > 1 ? Math.min(12, 12.6 * i / (n - 1)) : 12);
+</script></body></html>

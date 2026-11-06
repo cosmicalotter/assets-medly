@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Edema grave: albúmina al 20-25 % en 4-6 h y furosemida a la mitad o al final (IPNA 2022, edema grave).
+const W = 668, X0 = 130, X1 = 640, H = 7;
+const x = (h) => X0 + (X1 - X0) * h / H;
+const fila = (y, txt, c) => `<text x="0" y="${y}" font-size="14" font-weight="700" fill="${c}">${txt}</text>`;
+const yA = 30, yF = 120, yV = 190;
+const alb = `<rect x="${x(0)}" y="${yA}" width="${x(4) - x(0)}" height="40" rx="7" fill="${tinte(AZUL, 30)}" stroke="${AZUL}" stroke-width="2"/>
+  <rect x="${x(4)}" y="${yA}" width="${x(6) - x(4)}" height="40" rx="7" fill="${tinte(AZUL, 14)}" stroke="${AZUL}" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="${x(2)}" y="${yA + 26}" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1E3A8A">Albúmina 20-25 %: 0,5-1 g/kg</text>
+  <text x="${x(5)}" y="${yA + 26}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1E3A8A">hasta 6 h</text>`;
+const dosis = (h, t) => `<line x1="${x(h)}" y1="${yA + 44}" x2="${x(h)}" y2="${yF - 6}" stroke="${NARANJA}" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M${x(h)} ${yF} l-13 22 h26 Z" fill="${NARANJA}"/><text x="${x(h)}" y="${yF + 40}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#9A3412">${t}</text>`;
+const furo = dosis(2.5, "a la mitad") + dosis(5, "o al final (4-6 h)");
+const vig = `<rect x="${x(0)}" y="${yV}" width="${x(7) - x(0)}" height="26" rx="6" fill="${tinte(ROJO, 12)}" stroke="${tinte(ROJO, 60)}"/>
+  <text x="${x(3.5)}" y="${yV + 18}" font-size="12.5" font-weight="700" text-anchor="middle" fill="#991B1B">Signos vitales durante y después de la infusión</text>`;
+const eje = [0, 1, 2, 3, 4, 5, 6, 7].map((h) => `<line x1="${x(h)}" y1="232" x2="${x(h)}" y2="238" stroke="#94A3B8"/><text x="${x(h)}" y="252" font-size="12" text-anchor="middle" fill="#64748B">${h} h</text>`).join("");
+const svg = `<svg width="${W}" height="262" viewBox="0 0 ${W} 262">
+  ${fila(yA + 26, "Albúmina", AZUL)}${fila(yF + 26, "Furosemida", NARANJA)}${fila(yV + 18, "Vigilar", ROJO)}
+  ${alb}${furo}${vig}<line x1="${X0}" y1="232" x2="${X1}" y2="232" stroke="#94A3B8"/>${eje}</svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="caja" style="background:${tinte(NARANJA, 10)};border:1px solid ${tinte(NARANJA, 45)}"><span><b>Furosemida 1-2 mg/kg IV</b> en <b>5-30 min</b>, sólo sin <b>contracción de volumen</b> ni hiponatremia.</span></div>
+  <div class="caja" style="background:${tinte(ROJO, 8)};border:1px solid ${tinte(ROJO, 40)}"><span><b>Cuidado</b> si es <b>hipertenso u oligúrico</b>: la albúmina puede dar <b>edema pulmonar</b>.</span></div></div>`;
+lienzo("Edema grave: albúmina y furosemida", "Infusión de albúmina en 4-6 h; la furosemida entra a la mitad o al final", svg + notas,
+  "Esquema. Fuente: IPNA 2022 (Pediatr Nephrol 2023;38:877-919), manejo del edema grave.");
+</script></body></html>
