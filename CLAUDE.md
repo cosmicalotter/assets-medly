@@ -43,11 +43,12 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (5 de noviembre de 2026) hay
-  22 visibles. Adultos (15): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (6 de noviembre de 2026) hay
+  23 visibles. Adultos (16): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
-  dengue, enfermedad renal crónica, EPOC e insuficiencia cardíaca.
+  dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca y
+  hemorragia digestiva alta.
   Pediatría (7): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia y desnutrición aguda. El resto espera la reforma a la
