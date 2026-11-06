@@ -10,7 +10,7 @@ const ESC = [
 ];
 window.cuadro = function (i, n) {
   const u = n > 1 ? i / (n - 1) : 1;
-  const e = u < 0.5 ? 0 : 1, v = Math.min(1, ((u - e * 0.5) / 0.5) * 1.35);   // avanza y luego se queda quieto
+  const e = u < 0.5 ? 0 : 1, v = Math.min(1, ((u - e * 0.5) / 0.5) * 2);   // avanza la mitad de la escena y luego se queda quieto
   const S = ESC[e];
   const dia = Math.min(S.hasta, v * S.hasta);
   const llego = dia >= S.hasta - 1e-6;
@@ -38,10 +38,10 @@ window.cuadro = function (i, n) {
   const svg = `<svg width="${W}" height="${YL + 72}">${s}</svg>`;
   const tarjeta = llego
     ? `<div class="caja" style="background:${tinte(S.c, 14)};border:2px solid ${S.c};font-size:15px"><b style="color:${S.c};font-size:16px">${S.tit}</b><br><span>${S.txt}</span></div>`
-    : `<div class="caja" style="background:#F7F8FA;border:2px solid #E5E7EB;font-size:15px"><b style="color:${GRIS};font-size:16px">Día ${Math.floor(dia)}: en observación</b><br><span>Salud ambiental observa al perro o gato; el paciente <b>no se vacuna</b> mientras tanto.</span></div>`;
+    : `<div class="caja" style="background:#F7F8FA;border:2px solid #E5E7EB;font-size:15px"><b style="color:${GRIS};font-size:16px">Día ${Math.round(dia)}: en observación</b><br><span>La secretaría de salud observa al perro o gato; el paciente <b>no se vacuna</b> mientras tanto.</span></div>`;
   const pie = `<div class="item" style="background:#F7F8FA"><b style="color:${GRIS}">●</b> El perro contagia desde <b>3-5 días antes</b> de enfermar y muere en <b>10 días</b> como mucho: por eso se observa 10 días.</div>`;
   lienzo("Los 10 días de observación", e === 0 ? "Si el perro o gato sigue sano" : "Si el perro o gato enferma, muere o se pierde", svg + tarjeta + pie,
     "Esquema. Fuente: MinSalud 2022, Tabla 2 y transmisión; INS 2022, observación de perros y gatos.");
 };
-window.cuadro(23, 48);
+window.cuadro(29, 60);
 </script></body></html>

@@ -20,7 +20,7 @@ png riesgo_sitio "$D/rabia_riesgo_sitio.png"
 png curso "$D/rabia_curso.png"
 png preexposicion "$D/rabia_preexposicion.png"
 # Animación propia: los 10 días de observación
-node tools/medios/capturar.js "$H/observacion.html" "$TMP/observacion" --cuadros 48 >/dev/null
+node tools/medios/capturar.js "$H/observacion.html" "$TMP/observacion" --cuadros 60 >/dev/null
 "$PY" tools/medios/armar_gif.py "$TMP/observacion" "$D/rabia_observacion.gif" --ms 200 --pausa 3500 --colores 128 | tail -1
 # Fotos reales con licencia libre (fuentes/), recortadas y rotuladas
 jpg foto_murcielago "$D/rabia_murcielago_real.jpg"
