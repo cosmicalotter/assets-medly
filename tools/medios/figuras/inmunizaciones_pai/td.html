@@ -1,0 +1,14 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Td en mujeres en edad fértil (memoficha PAI 2026).
+const W = 668, puntos = [["Td1", "Día 0", 60], ["Td2", "Al mes", 170], ["Td3", "A los 6 meses de Td2", 290], ["Td4", "Al año de Td3", 420], ["Td5", "Al año de Td4", 540]];
+let s = `<svg width="${W}" height="230" viewBox="0 0 ${W} 230"><line x1="40" y1="90" x2="640" y2="90" stroke="#CBD5E1" stroke-width="4"/>`;
+puntos.forEach(([d, t, x], i) => {
+  s += `<circle cx="${x}" cy="90" r="26" fill="${tinte(ROSA, 30)}" stroke="${ROSA}" stroke-width="3"/><text x="${x}" y="96" font-size="15" font-weight="700" text-anchor="middle" fill="#1F2A37">${d}</text>
+  <text x="${x}" y="${i % 2 ? 150 : 40}" font-size="12.5" text-anchor="middle" fill="#334155">${t}</text>`;
+});
+s += `<rect x="560" y="170" width="100" height="34" rx="8" fill="${tinte(TEAL, 20)}" stroke="${TEAL}" stroke-width="2"/><text x="610" y="192" font-size="12.5" font-weight="700" text-anchor="middle" fill="#0F766E">Cada 10 años</text>
+  <path d="M600 118 L605 166" stroke="${TEAL}" stroke-width="2"/></svg>`;
+const notas = `<div class="caja" style="background:${tinte(ROSA, 10)};border:1px solid ${tinte(ROSA, 45)}"><span>Se continúa desde la dosis que ya tenga: <b>no se reinicia</b>. Protege contra la difteria, el <b>tétanos accidental</b> y el <b>tétanos neonatal</b>.</span></div>`;
+lienzo("Td en la mujer de 10 a 49 años", "Cinco dosis y después un refuerzo cada 10 años", s + notas,
+  "Esquema. Fuente: MinSalud, memoficha del esquema de vacunación de Colombia, actualización julio 2026.");
+</script></body></html>
