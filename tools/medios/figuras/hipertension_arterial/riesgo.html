@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Riesgo cardiovascular total simplificado: basado en ISH 2026, figura 4 y tabla 8 (ejemplo de un hombre de 60 años).
+const B = VERDE, M = AMBAR, A = ROJO;
+const cols = [["PA elevada (ISH)", "130-139/80-89"], ["Grado 1", "140-159/90-99"], ["Grado 2", "≥160/100"]];
+const filas = [
+  ["Sin otros factores, daño de órgano ni ECV", [B, B, "MA"]],
+  ["1-2 factores de riesgo", [B, M, A]],
+  ["3 o más factores, o ERC G3a", [M, A, A]],
+  ["Daño de órgano, ERC G3b-G5, diabetes o ECV", [A, A, A]],
+];
+const etq = { [B]: "Bajo", [M]: "Moderado", [A]: "Alto", MA: "Moderado a alto" };
+const celda = (c) => c === "MA"
+  ? `<div style="border-radius:10px;background:linear-gradient(90deg, ${M}, ${A});color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;text-align:center">Moderado a alto</div>`
+  : `<div style="border-radius:10px;background:${c};color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center">${etq[c]}</div>`;
+const grid = `<div style="display:grid;grid-template-columns:206px repeat(3,1fr);grid-auto-rows:62px;gap:7px">
+  <div></div>${cols.map(([t, v]) => `<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;background:#F1F5F9;border-radius:10px"><b style="font-size:14px">${t}</b><span style="font-size:12.5px;color:${GRIS}">${v} mmHg</span></div>`).join("")}
+  ${filas.map(([t, cs]) => `<div style="display:flex;align-items:center;background:#F8FAFC;border-radius:10px;padding:0 10px;font-size:13px;font-weight:700;line-height:1.25">${t}</div>${cs.map(celda).join("")}`).join("")}
+</div>`;
+const nota = `<div class="caja" style="background:#F8FAFC;border:1.5px solid var(--linea);font-size:12.5px"><span>Ejemplo para un <b>hombre de 60 años</b>: el riesgo cambia con la edad y el sexo. En Colombia, la escala principal es <b>SCORE2-PURE</b>.</span></div>`;
+lienzo("Riesgo cardiovascular en la HTA", "Estimación simplificada según la presión y lo que la acompaña", grid + nota,
+  "Esquema basado en ISH 2026, figura 4 y tabla 8; GPC Colombia 2025, recomendación 40.");
+</script></body></html>
