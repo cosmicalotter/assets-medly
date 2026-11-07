@@ -1,12 +1,13 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // Metas por método: ISH 2026, figura 7 y sección 7.2 (atención óptima <130/80; esencial <140/90).
-const F = [
+const F0 = [
   [TEAL, "Consultorio", "<130/80", "Donde no haya AMPA ni MAPA: al menos <b>&lt;140/90</b>"],
   [AZUL, "AMPA", "<130/80", ""],
   [MORADO, "MAPA de 24 h", "<125/75", ""],
   [MORADO, "MAPA diurno", "<130/80", ""],
   [MORADO, "MAPA nocturno", "<110/65", ""],
 ];
+const F = F0.map(([c, ...r]) => [VERDE, ...r]);
 const filas = F.map(([c, m, u, n]) => `<div style="display:flex;align-items:center;gap:12px;background:${tinte(c, 8)};border:1.5px solid ${tinte(c, 40)};border-radius:12px;padding:8px 12px">
   <div style="width:132px;font-weight:800;font-size:15.5px;color:${c}">${m}</div>
   <div style="min-width:118px;text-align:center;background:${c};color:#fff;font-weight:800;font-size:19px;border-radius:999px;padding:5px 12px">${u.replace("<", "&lt;")}</div>
@@ -16,6 +17,6 @@ const notas = `<div style="display:flex;gap:10px">
   <div class="caja" style="flex:1;background:${tinte(VERDE, 10)};border:1.5px solid ${tinte(VERDE, 45)}"><span><b style="color:${VERDE}">En 3 meses</b>: revisar <b>cada mes</b> y subir un escalón mientras siga por encima.</span></div>
   <div class="caja" style="flex:1;background:${tinte(MORADO, 9)};border:1.5px solid ${tinte(MORADO, 40)}"><span><b style="color:${MORADO}">Individualizar</b> en mayores de <b>85 años</b>, con fragilidad, hipotensión ortostática o expectativa de vida limitada.</span></div>
 </div>`;
-lienzo("Metas de presión arterial", "Cifras a las que hay que llegar con el tratamiento, en mmHg", `<div style="display:flex;flex-direction:column;gap:8px">${filas}</div>` + notas,
+lienzo("Meta del tratamiento", "Cifras a las que hay que llegar con los fármacos, en mmHg", `<div style="display:flex;flex-direction:column;gap:8px">${filas}</div>` + notas,
   "Esquema. Fuente: ISH 2026, sección 7.2 y figura 7.");
 </script></body></html>

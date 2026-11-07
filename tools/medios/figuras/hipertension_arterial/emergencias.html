@@ -8,7 +8,7 @@ const F = [
   [ROSA, "Preeclampsia grave", "Ya", "&lt;160/105", "Labetalol o nicardipino + magnesio"],
   [AZUL, "Encefalopatía", "Ya", "PAM −20-25 %", "Labetalol o nicardipino"],
   [TEAL, "HTA maligna", "Horas", "PAM −20-25 %", "Labetalol o nicardipino"],
-  [CELESTE, "ACV isquémico", "1 h", "PAM −15 % si &gt;220/120", "&lt;185/110 si va a trombólisis"],
+  [CELESTE, "ACV isquémico", "1 h", "PAM −15 % si &gt;220/120", "Antes de la trombólisis, &lt;185/110"],
 ];
 const cab = `<div style="display:grid;grid-template-columns:186px 64px 150px 1fr;gap:8px;font-size:11.5px;font-weight:800;color:${GRIS};letter-spacing:.04em;padding:0 10px">
   <div>DAÑO AGUDO</div><div>PLAZO</div><div>META</div><div>PRIMERA LÍNEA O NOTA</div></div>`;
@@ -19,5 +19,5 @@ const filas = F.map(([c, d, p, m, f]) => `<div style="display:grid;grid-template
   <div style="font-size:12.5px;color:#475569"><span>${f}</span></div>
 </div>`).join("");
 lienzo("Meta según el órgano dañado", "Cuánto y en cuánto tiempo bajar la presión en la emergencia hipertensiva", `<div style="display:flex;flex-direction:column;gap:6px">${cab}${filas}</div>`,
-  "Esquema. Fuente: ISH 2026, sección 9.6 y tabla 15.");
+  "Esquema. Fuente: ISH 2026, sección 9.6 y tabla 15; AHA/ACC 2025 (trombólisis).");
 </script></body></html>

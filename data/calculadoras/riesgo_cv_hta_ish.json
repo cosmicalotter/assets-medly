@@ -1,8 +1,8 @@
 {
   "titulo": "Riesgo cardiovascular en la HTA (ISH 2026)",
   "descripcion": "Clasifica de forma simplificada el riesgo cardiovascular total del adulto con presión arterial de 130/80 mmHg o más, según el nivel de presión y los factores de riesgo, el daño de órgano mediado por la HTA, la diabetes, la ERC y la enfermedad cardiovascular. Es la tabla de la guía global de la ISH 2026 y ayuda a decidir cuándo empezar los fármacos.",
-  "instrucciones": "Usar el promedio de la presión en el consultorio, medida con técnica estandarizada en al menos 2 visitas. Elegir la fila más alta que cumpla: con diabetes o enfermedad cardiovascular ya es la última.",
-  "limitaciones": "La tabla es un ejemplo para un hombre de 60 años: el riesgo cambia con la edad y el sexo. En Colombia, la guía de 2025 recomienda SCORE2-PURE como escala principal; esta tabla no la sustituye.",
+  "instrucciones": "Usar el promedio de la PA en consultorio de al menos 2 visitas. Elegir la fila más alta que cumpla. La tabla es para un hombre de 60 años: no contar la edad ni el sexo como factores.",
+  "limitaciones": "Es un ejemplo para un hombre de 60 años: el riesgo cambia con la edad y el sexo. No decide en el paciente frágil o mayor de 85 años. En Colombia, la escala principal es SCORE2-PURE.",
   "tipoCalculo": "formula",
   "formula": "pa + perfil + 0.5 * pa * (pa - 1) / 2 * (1 - perfil) * (2 - perfil) * (3 - perfil) / 6",
   "mostrarPuntaje": false,
@@ -15,7 +15,7 @@
           "id": "perfil",
           "tipo": "opciones",
           "label": "Perfil: factores, daño y enfermedad",
-          "ayuda": "Factores de riesgo: hombre de 55 años o más o mujer de 65 o más, antecedente familiar de ECV precoz, IMC de 30 o más, dislipidemia, tabaquismo, enfermedad inflamatoria crónica, factores psicosociales, apnea del sueño, FC en reposo de más de 80 lpm, menopausia precoz, trastorno hipertensivo del embarazo y mala adherencia.",
+          "ayuda": "Factores de riesgo (sin contar la edad ni el sexo, que la tabla ya incluye): antecedente familiar de ECV precoz, IMC de 30 o más, dislipidemia, tabaquismo, enfermedad inflamatoria crónica, factores psicosociales, apnea del sueño, FC en reposo de más de 80 lpm, menopausia precoz, trastorno hipertensivo del embarazo y mala adherencia.",
           "opciones": [
             {
               "label": "Ninguno",
@@ -33,7 +33,7 @@
             {
               "label": "Daño de órgano, ERC G3b-G5, diabetes o ECV",
               "puntos": 3,
-              "detalle": "Daño de órgano: HVI, TFGe <60 o RAC ≥30 mg/g, deterioro cognitivo, placa carotídea. ECV: coronaria, falla cardiaca, FA, ACV, AIT o enfermedad arterial periférica"
+              "detalle": "Daño de órgano: HVI, RACU ≥30 mg/g, deterioro cognitivo, placa carotídea. ECV: coronaria, falla cardiaca, FA, ACV, AIT o enfermedad arterial periférica"
             }
           ]
         },
@@ -165,7 +165,7 @@
       "categoria": "Riesgo bajo",
       "color": "verde",
       "match_opcion_index": 0,
-      "approach": "Cambios de estilo de vida durante **3 meses**. Si sigue en **130/80 mmHg** o más, decidir los fármacos de forma individual (guía colombiana) o iniciarlos (ISH, atención óptima)."
+      "approach": "Cambios de estilo de vida durante **3 meses**. Si sigue en **130/80 mmHg** o más, decidir los fármacos de forma individual (guía colombiana) o iniciarlos (ISH y AHA)."
     }
   ],
   "referencias": [
@@ -173,7 +173,7 @@
       "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
       "url": "https://doi.org/10.1097/HJH.0000000000004451",
       "texto": "Simplified estimation of total cardiovascular disease risk considering risk factors, hypertension-mediated organ damage and established cardiovascular disease or chronic kidney disease as in Table 8.",
-      "paginas": "Sección 4, tabla 8"
+      "paginas": "Sección 4, figura 4"
     },
     {
       "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
@@ -204,6 +204,18 @@
       "url": "https://doi.org/10.1097/HJH.0000000000004451",
       "texto": "Low CVD risk and BP 130-159/80-99 mmHg: Start treatment after 3 months of lifestyle changes",
       "paginas": "Figura 6"
+    },
+    {
+      "titulo": "Jones DW, Ferdinand KC, Taler SJ, et al. 2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults. Hypertension. 2025;82:e212-e316.",
+      "url": "https://doi.org/10.1161/HYP.0000000000000249",
+      "texto": "initiation of medication therapy to lower blood pressure is recommended if average blood pressure remains ≥130/80 mm Hg after an initial 3- to 6-month trial of lifestyle modification.",
+      "paginas": "e214"
+    },
+    {
+      "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
+      "url": "https://doi.org/10.1097/HJH.0000000000004451",
+      "texto": "Individualise treatment initiation and BP targets, particularly in people aged >85 years, or younger ones with frailty, symptomatic orthostatic hypotension or limited life expectancy.",
+      "paginas": "Sección 7.2"
     },
     {
       "titulo": "Ministerio de Salud y Protección Social, Instituto de Evaluación Tecnológica en Salud. Guía de práctica clínica para el manejo de la hipertensión arterial (HTA) primaria. Actualización parcial. Guía No. 18. Guía para profesionales de la salud. Bogotá: MinSalud; 2025.",
