@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Vacunas de la gestante por semanas (memoficha PAI 2026; lineamiento VSR materna).
+const W = 668, X0 = 120, X1 = 650, S0 = 8, S1 = 42;
+const x = (s) => X0 + (X1 - X0) * (s - S0) / (S1 - S0);
+const fila = (y, txt, c) => `<text x="0" y="${y + 21}" font-size="14" font-weight="700" fill="${c}">${txt}</text>`;
+const barra = (y, a, b, c, txt, cerrada) => `<rect x="${x(a)}" y="${y}" width="${x(b) - x(a)}" height="32" rx="7" fill="${tinte(c, 25)}" stroke="${c}" stroke-width="2" ${cerrada ? "" : 'stroke-dasharray="6 4"'}/>
+  <text x="${x(a) + 10}" y="${y + 21}" font-size="12.5" font-weight="700" fill="#1F2A37">${txt}</text>`;
+const filas = [
+  ["COVID-19", MORADO, 12, 40, "Desde la semana 12", false],
+  ["Influenza", AZUL, 14, 40, "Desde la semana 14", false],
+  ["Tdap", NARANJA, 20, 40, "Desde la semana 20", false],
+  ["VSR", TEAL, 28, 36, "Semanas 28 a 36", true],
+];
+let s = `<svg width="${W}" height="250" viewBox="0 0 ${W} 250">`;
+filas.forEach(([n, c, a, b, t, cerr], i) => { const y = 8 + i * 48; s += fila(y, n, c) + barra(y, a, b, c, t, cerr); });
+s += `<line x1="${x(36)}" y1="0" x2="${x(36)}" y2="200" stroke="${ROJO}" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="${x(36) - 6}" y="214" font-size="11.5" font-weight="700" text-anchor="end" fill="#B91C1C">fin del tramo del VSR</text>`;
+s += [8, 12, 16, 20, 24, 28, 32, 36, 40].map((w) => `<line x1="${x(w)}" y1="222" x2="${x(w)}" y2="228" stroke="#94A3B8"/><text x="${x(w)}" y="242" font-size="12" text-anchor="middle" fill="#64748B">${w}</text>`).join("");
+s += `<line x1="${X0}" y1="222" x2="${X1}" y2="222" stroke="#94A3B8"/></svg>`;
+const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="caja" style="background:${tinte(TEAL, 10)};border:1px solid ${tinte(TEAL, 45)}"><span><b>Una dosis</b> de cada una por embarazo; la influenza, una al año.</span></div>
+  <div class="caja" style="background:#F8FAFC;border:1px solid #E2E8F0"><span>Se pueden poner <b>el mismo día</b>, en sitios anatómicos distintos.</span></div></div>`;
+lienzo("Vacunas del embarazo", "Desde qué semana de gestación va cada una", s + `<div style="font-size:12px;color:#64748B;margin-top:-6px">semanas de gestación</div>` + notas,
+  "Esquema. Fuente: MinSalud, memoficha PAI (julio 2026) y lineamiento de la vacuna materna contra el VSR (2025).");
+</script></body></html>
