@@ -151,7 +151,11 @@ Firebase directamente, saltándose `indices/`.
   entidades con sus criterios. **Breve: una o dos frases, unas 25-35
   palabras** (ejemplo en `NORMA.md` §1). Detalle en `NORMA.md` §1.
 
-- Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
+- Sólo sobre el algoritmo que se pide. **Primero se reforman los que ya
+  existen**: si el tema pedido ya tiene algoritmo (aunque esté oculto o con
+  otro nombre), se mejora ese, sin crear otro. **Si el dueño pide uno que no
+  existe, se crea**, con la misma norma, su entrada en `indices/` y
+  `"oculto": true` hasta que él decida mostrarlo.
 - La marca es **Empirica** (Praxis es el nombre antiguo).
 
 - Mejorar un algoritmo existente: skill **`mejorar-algoritmo`**. Su
