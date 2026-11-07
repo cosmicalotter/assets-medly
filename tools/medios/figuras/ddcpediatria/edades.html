@@ -7,8 +7,8 @@ const x = (m) => { for (let i = 1; i < M.length; i++) if (m <= M[i][0]) { const 
 const FILAS = [
   { t: "Ortolani y Barlow", a: 0, b: 3, c: AZUL, txt: "Hasta los 3 meses" },
   { t: "Abducción", a: 3, b: 12, c: MORADO, txt: "Limitada desde las 4 semanas → remitir", desde: 1 },
-  { t: "Ecografía", a: 1.5, b: 4, c: TEAL, txt: "Desde 6 semanas" },
-  { t: "Radiografía AP", a: 4, b: 6, c: AMBAR, txt: "De 4 a 6 meses" },
+  { t: "Ecografía", a: 1.5, b: 6, c: TEAL, txt: "De 6 semanas a 6 meses" },
+  { t: "Radiografía AP", a: 4, b: 12, c: AMBAR, txt: "Desde los 4 meses" },
   { t: "Cada control", a: 0, b: 12, c: VERDE, txt: "Examen hasta que camine" },
 ];
 function dibujar(m) {
@@ -27,8 +27,8 @@ function dibujar(m) {
   const svg = `<svg width="${W}" height="300" viewBox="0 0 ${W} 300">${filas}
     <line x1="${X0}" y1="262" x2="${X1}" y2="262" stroke="#94A3B8"/>${eje}${cursor}</svg>`;
   const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-    <div class="caja" style="background:${tinte(AZUL, 12)};border:1px solid ${tinte(AZUL, 45)}"><span><b>Ortolani positivo</b>: remitir a ortopedia en <b>pocas semanas</b>; no es una urgencia.</span></div>
-    <div class="caja" style="background:${tinte(TEAL, 12)};border:1px solid ${tinte(TEAL, 45)}"><span><b>Imagen</b> sólo con <b>factor de riesgo</b> o examen dudoso, antes de los <b>6 meses</b>.</span></div></div>`;
+    <div class="caja" style="background:${tinte(AZUL, 12)};border:1px solid ${tinte(AZUL, 45)}"><span><b>Ortolani positivo</b>: remitir a ortopedia en <b>varias semanas</b>; no es una urgencia.</span></div>
+    <div class="caja" style="background:${tinte(TEAL, 12)};border:1px solid ${tinte(TEAL, 45)}"><span><b>Imagen</b> con <b>factor de riesgo</b> o examen dudoso o anormal, antes de los <b>6 meses</b>.</span></div></div>`;
   lienzo("Qué examinar y qué pedir según la edad", "Maniobras, abducción e imagen desde el nacimiento hasta que camina", svg + notas,
     "Esquema. Fuente: AAP 2016 (Pediatrics 2016;138:e20163107) y AAOS 2022.");
 }
