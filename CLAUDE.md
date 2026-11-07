@@ -124,6 +124,18 @@ Firebase directamente, saltándose `indices/`.
 
 ## Cómo se trabaja
 
+- **Las guías que no se pueden descargar se piden al empezar.** Antes del
+  plan, Claude comprueba que puede leer cada guía principal del tema (las
+  más recientes, internacionales y colombianas). Si alguna no se puede
+  descargar (de pago, con bloqueo anti-bots o Cloudflare, sin copia libre en
+  PMC o Europe PMC), **se la pide al usuario de entrada**, en la primera
+  pregunta y antes de diseñar nada: que la adjunte al chat o la suba a
+  `guias-praxis/<carpeta>/`, diciéndole cuál es y qué aportaría. Con la guía
+  en mano, el algoritmo se construye a partir de ella, con todo lo que trae
+  (definiciones, metas, dosis, tablas, discrepancias). No se sustituye por
+  fuentes secundarias sin que el usuario lo decida, ni se intenta saltar el
+  bloqueo. Lo mismo con la publicación original de una calculadora (o el
+  suplemento con sus coeficientes).
 - **La portada define.** En el nodo raíz, `titulo` es el nombre del tema y
   `texto` es la lista de definiciones explícitas y técnicas que da la guía de
   cada entidad del algoritmo (`- **Colangitis aguda:** …`): dos a cinco
