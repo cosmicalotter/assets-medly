@@ -1,0 +1,215 @@
+{
+  "titulo": "Riesgo cardiovascular en la HTA (ISH 2026)",
+  "descripcion": "Clasifica de forma simplificada el riesgo cardiovascular total del adulto con presión arterial de 130/80 mmHg o más, según el nivel de presión y los factores de riesgo, el daño de órgano mediado por la HTA, la diabetes, la ERC y la enfermedad cardiovascular. Es la tabla de la guía global de la ISH 2026 y ayuda a decidir cuándo empezar los fármacos.",
+  "instrucciones": "Usar el promedio de la presión en el consultorio, medida con técnica estandarizada en al menos 2 visitas. Elegir la fila más alta que cumpla: con diabetes o enfermedad cardiovascular ya es la última.",
+  "limitaciones": "La tabla es un ejemplo para un hombre de 60 años: el riesgo cambia con la edad y el sexo. En Colombia, la guía de 2025 recomienda SCORE2-PURE como escala principal; esta tabla no la sustituye.",
+  "tipoCalculo": "formula",
+  "formula": "pa + perfil + 0.5 * pa * (pa - 1) / 2 * (1 - perfil) * (2 - perfil) * (3 - perfil) / 6",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Riesgo",
+  "secciones": [
+    {
+      "nombre": "Perfil y presión",
+      "elementos": [
+        {
+          "id": "perfil",
+          "tipo": "opciones",
+          "label": "Perfil: factores, daño y enfermedad",
+          "ayuda": "Factores de riesgo: hombre de 55 años o más o mujer de 65 o más, antecedente familiar de ECV precoz, IMC de 30 o más, dislipidemia, tabaquismo, enfermedad inflamatoria crónica, factores psicosociales, apnea del sueño, FC en reposo de más de 80 lpm, menopausia precoz, trastorno hipertensivo del embarazo y mala adherencia.",
+          "opciones": [
+            {
+              "label": "Ninguno",
+              "puntos": 0,
+              "detalle": "Sin otros factores de riesgo, daño de órgano ni ECV"
+            },
+            {
+              "label": "1-2 factores de riesgo",
+              "puntos": 1
+            },
+            {
+              "label": "3 o más factores, o ERC G3a",
+              "puntos": 2
+            },
+            {
+              "label": "Daño de órgano, ERC G3b-G5, diabetes o ECV",
+              "puntos": 3,
+              "detalle": "Daño de órgano: HVI, TFGe <60 o RAC ≥30 mg/g, deterioro cognitivo, placa carotídea. ECV: coronaria, falla cardiaca, FA, ACV, AIT o enfermedad arterial periférica"
+            }
+          ]
+        },
+        {
+          "id": "pa",
+          "tipo": "opciones",
+          "label": "Presión arterial en el consultorio",
+          "opciones": [
+            {
+              "label": "130-139/80-89 mmHg",
+              "puntos": 0,
+              "detalle": "PA elevada para la ISH; HTA para la guía colombiana"
+            },
+            {
+              "label": "140-159/90-99 mmHg",
+              "puntos": 1,
+              "detalle": "HTA grado 1"
+            },
+            {
+              "label": "160/100 mmHg o más",
+              "puntos": 2,
+              "detalle": "HTA grado 2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 3,
+      "max": 5,
+      "categoria": "Riesgo alto",
+      "color": "rojo",
+      "match_opcion_index": 1,
+      "si": {
+        "alguno": [
+          {
+            "id": "perfil",
+            "igual": 3
+          },
+          {
+            "todos": [
+              {
+                "id": "perfil",
+                "igual": 2
+              },
+              {
+                "id": "pa",
+                "mayorIgual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "perfil",
+                "igual": 1
+              },
+              {
+                "id": "pa",
+                "igual": 2
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Iniciar los **fármacos** junto con el estilo de vida en cuanto se confirme el diagnóstico. Con ECV o daño de órgano no hace falta otra escala: el riesgo ya es alto."
+    },
+    {
+      "min": 2.5,
+      "max": 2.99,
+      "categoria": "Riesgo moderado a alto",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "si": {
+        "todos": [
+          {
+            "id": "perfil",
+            "igual": 0
+          },
+          {
+            "id": "pa",
+            "igual": 2
+          }
+        ]
+      },
+      "approach": "Con PA de **160/100 mmHg** o más, iniciar los **fármacos** junto con el estilo de vida en cuanto se confirme el diagnóstico."
+    },
+    {
+      "min": 2,
+      "max": 2.49,
+      "categoria": "Riesgo moderado",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "perfil",
+                "igual": 1
+              },
+              {
+                "id": "pa",
+                "igual": 1
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "perfil",
+                "igual": 2
+              },
+              {
+                "id": "pa",
+                "igual": 0
+              }
+            ]
+          }
+        ]
+      },
+      "approach": "Iniciar los **fármacos** además de los cambios de estilo de vida, en cuanto se confirme el diagnóstico."
+    },
+    {
+      "min": 0,
+      "max": 1.99,
+      "categoria": "Riesgo bajo",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Cambios de estilo de vida durante **3 meses**. Si sigue en **130/80 mmHg** o más, decidir los fármacos de forma individual (guía colombiana) o iniciarlos (ISH, atención óptima)."
+    }
+  ],
+  "referencias": [
+    {
+      "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
+      "url": "https://doi.org/10.1097/HJH.0000000000004451",
+      "texto": "Simplified estimation of total cardiovascular disease risk considering risk factors, hypertension-mediated organ damage and established cardiovascular disease or chronic kidney disease as in Table 8.",
+      "paginas": "Sección 4, tabla 8"
+    },
+    {
+      "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
+      "url": "https://doi.org/10.1097/HJH.0000000000004451",
+      "texto": "a Example for a 60-year-old male. Risk categories will vary according to age and sex.",
+      "paginas": "Figura 4"
+    },
+    {
+      "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
+      "url": "https://doi.org/10.1097/HJH.0000000000004451",
+      "texto": "CVD, CKD, DM, HMOD, BP ≥160/100 mmHg, or moderate-high CVD risk: Start immediate treatment after diagnosis confirmation",
+      "paginas": "Figura 6"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Instituto de Evaluación Tecnológica en Salud. Guía de práctica clínica para el manejo de la hipertensión arterial (HTA) primaria. Actualización parcial. Guía No. 18. Guía para profesionales de la salud. Bogotá: MinSalud; 2025.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-actualizacion-parcial-hta-primaria-vps.pdf",
+      "texto": "En personas con presión arterial ≥130/≥80 mmHg y riesgo cardiovascular moderado o alto, se recomienda iniciar tratamiento farmacológico, además de las intervenciones no farmacológicas.",
+      "paginas": "41"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Instituto de Evaluación Tecnológica en Salud. Guía de práctica clínica para el manejo de la hipertensión arterial (HTA) primaria. Actualización parcial. Guía No. 18. Guía para profesionales de la salud. Bogotá: MinSalud; 2025.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-actualizacion-parcial-hta-primaria-vps.pdf",
+      "texto": "En personas con presión arterial ≥130/≥80 mmHg y bajo riesgo cardiovascular, no se recomienda iniciar tratamiento farmacológico.",
+      "paginas": "41"
+    },
+    {
+      "titulo": "Stergiou GS, Kario K, Aristizabal D, et al. 2026 International Society of Hypertension Global Hypertension Practice Guidelines. J Hypertens. 2026;44(12):2157-2188.",
+      "url": "https://doi.org/10.1097/HJH.0000000000004451",
+      "texto": "Low CVD risk and BP 130-159/80-99 mmHg: Start treatment after 3 months of lifestyle changes",
+      "paginas": "Figura 6"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Instituto de Evaluación Tecnológica en Salud. Guía de práctica clínica para el manejo de la hipertensión arterial (HTA) primaria. Actualización parcial. Guía No. 18. Guía para profesionales de la salud. Bogotá: MinSalud; 2025.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-actualizacion-parcial-hta-primaria-vps.pdf",
+      "texto": "Se recomienda utilizar SCORE2 recalibrado para Colombia (SCORE2-PURE) como la herramienta principal para la estimación del riesgo cardiovascular en adultos con hipertensión arterial primaria en Colombia.",
+      "paginas": "61"
+    }
+  ]
+}
