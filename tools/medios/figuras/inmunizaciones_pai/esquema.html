@@ -1,0 +1,44 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquema infantil del PAI 2026 (memoficha MinSalud, actualización julio 2026).
+const EDADES = ["RN", "2 m", "4 m", "6 m", "7 m", "9 m", "12 m", "18 m", "5 a"];
+const NOMBRE = ["Recién nacido", "2 meses", "4 meses", "6 meses", "7 meses", "9 meses", "12 meses", "18 meses", "5 años"];
+const FILAS = [  // vacuna, color, {columna: rótulo}
+  ["BCG", TEAL, {0: "Única"}],
+  ["Hepatitis B", TEAL, {0: "RN"}],
+  ["Pentavalente", AZUL, {1: "1.ª", 2: "2.ª", 3: "3.ª", 7: "R1"}],
+  ["VIP (polio)", AZUL, {1: "1.ª", 2: "2.ª", 3: "3.ª", 7: "R1", 8: "R2"}],
+  ["Rotavirus", NARANJA, {1: "1.ª", 2: "2.ª"}],
+  ["Neumococo", NARANJA, {1: "1.ª", 2: "2.ª", 6: "R"}],
+  ["Influenza", MORADO, {3: "1.ª", 4: "2.ª", 6: "Anual"}],
+  ["Fiebre amarilla", AMBAR, {5: "Única"}],
+  ["Triple viral", ROJO, {6: "1.ª", 7: "2.ª"}],
+  ["Varicela", ROJO, {6: "1.ª", 8: "R"}],
+  ["Hepatitis A", ROJO, {6: "Única"}],
+  ["DPT", AZUL, {8: "R2"}],
+];
+function dibujar(col) {  // col: edad resaltada (-1 = ninguna)
+  const X0 = 128, CW = 62, Y0 = 30, RH = 27, W = X0 + CW * EDADES.length;
+  let s = `<svg width="${W}" height="${Y0 + RH * FILAS.length + 4}" viewBox="0 0 ${W} ${Y0 + RH * FILAS.length + 4}">`;
+  if (col >= 0) s += `<rect x="${X0 + col * CW + 1}" y="0" width="${CW - 2}" height="${Y0 + RH * FILAS.length + 2}" rx="8" fill="${tinte(TEAL, 16)}" stroke="${TEAL}" stroke-width="2"/>`;
+  EDADES.forEach((e, i) => s += `<text x="${X0 + i * CW + CW / 2}" y="20" font-size="13" font-weight="700" text-anchor="middle" fill="${i === col ? "#0F766E" : "#1F2A37"}">${e}</text>`);
+  FILAS.forEach(([v, c, d], r) => {
+    const y = Y0 + r * RH;
+    s += `<line x1="0" y1="${y + RH}" x2="${W}" y2="${y + RH}" stroke="#EEF2F7"/>`;
+    s += `<text x="0" y="${y + 18}" font-size="13" font-weight="700" fill="#1F2A37">${v}</text>`;
+    Object.entries(d).forEach(([k, t]) => {
+      const x = X0 + k * CW, on = col < 0 || +k === col;
+      s += `<rect x="${x + 5}" y="${y + 4}" width="${CW - 10}" height="${RH - 8}" rx="6" fill="${on ? tinte(c, 30) : tinte(c, 10)}" stroke="${on ? c : tinte(c, 40)}" stroke-width="${on ? 2 : 1}"/>
+        <text x="${x + CW / 2}" y="${y + 18}" font-size="12" font-weight="700" text-anchor="middle" fill="${on ? "#1F2A37" : "#94A3B8"}">${t}</text>`;
+    });
+  });
+  s += `</svg>`;
+  const lista = col < 0 ? "" : FILAS.filter(f => f[2][col]).map(f => `<b>${f[0]}</b> ${f[2][col]}`).join(" · ");
+  const pie = `<div class="caja" style="background:${tinte(TEAL, 10)};border:1px solid ${tinte(TEAL, 45)};min-height:40px"><span>${col < 0
+    ? "<b>R1, R2, R</b>: refuerzos. <b>Rotavirus</b>: primera dosis hasta los <b>3 meses y 21 días</b>. Con menos de <b>1.500 g</b>, hexavalente en vez de pentavalente."
+    : `<b>A los ${NOMBRE[col]}</b>: ${lista}`}</span></div>`;
+  lienzo("Esquema del PAI 2026 de 0 a 5 años", "Qué vacuna toca en cada edad y qué dosis es", s + pie,
+    "Esquema. Fuente: MinSalud, memoficha del esquema de vacunación de Colombia, actualización julio 2026.");
+}
+dibujar(-1);
+window.cuadro = (i, n) => dibujar(n > 1 ? Math.min(EDADES.length - 1, Math.floor(i / 3)) : -1);
+</script></body></html>
