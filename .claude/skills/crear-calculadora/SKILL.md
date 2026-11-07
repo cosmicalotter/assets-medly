@@ -46,6 +46,12 @@ respalde lo que la escala afirma. Si la guía del algoritmo usa una variante
 (CHA₂DS₂-VA en vez de CHA₂DS₂-VASc), se crea esa variante. Sin fuente a
 mano, no se añade contenido clínico.
 
+Si la publicación original o la guía (o el suplemento con los coeficientes)
+no se puede descargar (de pago, bloqueo anti-bots, sin copia libre), **se le
+pide al usuario al empezar**, antes de construir la escala: que la adjunte
+al chat o la suba a `guias-praxis/`. No se reconstruye desde otra fuente ni
+de memoria, ni se intenta saltar el bloqueo.
+
 ## 3. Elegir el modelo (NORMA §1)
 
 | la escala… | modelo | ejemplo para copiar |

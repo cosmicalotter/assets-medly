@@ -36,12 +36,22 @@ referencias.
 2. Comprueba si hay una versión más nueva de esa guía o de la sociedad de
    referencia (búsqueda web). Si la hay, **para y pregunta** si se actualiza a
    la nueva: cambia la base de todo lo demás.
-3. Consigue el PDF, por este orden: lo que diga `--guia`; la carpeta
-   `guias-praxis/<carpeta_evidencia>/` si ese repositorio está en la sesión;
-   descargar el PDF oficial al scratchpad. Si no hay forma de leer la guía,
-   **no se escribe contenido clínico nuevo**: sólo se hace lo que no lo
-   necesita (lenguaje, enlaces, calculadoras que ya existen, estructura) y
-   se dice en el PR.
+3. Consigue el PDF de **cada guía principal** (la más reciente de cada
+   sociedad de referencia y la colombiana), por este orden: lo que diga
+   `--guia`; la carpeta `guias-praxis/<carpeta_evidencia>/` si ese
+   repositorio está en la sesión; descargar el PDF oficial al scratchpad.
+   **Si alguna no se puede descargar** (de pago, bloqueo anti-bots o
+   Cloudflare, sin copia libre), **para y pídesela al usuario en ese
+   momento**, antes del plan y aunque se use `--sin-pausas`: en la primera
+   pregunta (`AskUserQuestion`), di cuál es, por qué hace falta y qué
+   cambiaría en el algoritmo, y pide que la adjunte al chat o la suba a
+   `guias-praxis/<carpeta_evidencia>/`. Con la guía en mano, el algoritmo se
+   construye a partir de ella, con todo lo que trae. No la sustituyas por
+   fuentes secundarias sin que el usuario lo decida, y no intentes saltar el
+   bloqueo. Sólo si el usuario no puede conseguirla: **no se escribe
+   contenido clínico nuevo** de esa guía; se hace lo que no la necesita
+   (lenguaje, enlaces, calculadoras que ya existen, estructura) y se dice
+   en el PR.
 4. Léela con `Read` (parámetro `pages`) por las secciones que tocan al
    algoritmo. Los PDF no se copian nunca dentro de `assets-medly`.
 
