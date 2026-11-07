@@ -1,0 +1,39 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Índice de choque = FC / PAS. Cortes: FIGO 2022, sección 5 (0,7-0,9 normal obstétrico; >0,9 alerta;
+// ≥0,9 más mortalidad; >1 más transfusión) y OMS 2025, recomendación 22 (>1 es signo anormal).
+const W = 668, X0 = 26, AN = 616, V0 = 0.4, V1 = 1.4;
+const x = (v) => X0 + (v - V0) / (V1 - V0) * AN;
+const B = [
+  [0.5, 0.7, "#CBD5E1", "Fuera del embarazo", "0,5-0,7", 0],
+  [0.7, 0.9, VERDE, "Embarazo y posparto", "0,7-0,9", 1],
+  [0.9, 1.0, AMBAR, "Alerta (FIGO)", ">0,9", 0],
+  [1.0, 1.4, ROJO, "Signo anormal (OMS)", ">1", 1],
+];
+let s = `<svg width="${W}" height="236" viewBox="0 0 ${W} 236">`;
+B.forEach(([a, b, c, t, r, fila]) => {
+  s += `<rect x="${x(a)}" y="100" width="${x(b) - x(a)}" height="40" fill="${c}" ${c === "#CBD5E1" ? "" : `fill-opacity="0.9"`}/>`;
+  const mx = (x(a) + x(b)) / 2, ty = fila ? 84 : 58;
+  s += `<line x1="${mx}" y1="${ty + 5}" x2="${mx}" y2="100" stroke="${c === "#CBD5E1" ? "#94A3B8" : c}" stroke-width="2"/>`;
+  s += `<text x="${mx}" y="${ty}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${c === "#CBD5E1" ? GRIS : c}">${t}</text>`;
+  s += `<text x="${mx}" y="126" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${r}</text>`;
+});
+for (let v = 0.4; v <= 1.41; v += 0.2) {
+  const vv = Math.round(v * 10) / 10;
+  s += `<line x1="${x(vv)}" y1="140" x2="${x(vv)}" y2="148" stroke="${GRIS}" stroke-width="2"/>`;
+  s += `<text x="${x(vv)}" y="164" text-anchor="middle" font-size="12.5" fill="${GRIS}">${String(vv.toFixed(1)).replace(".", ",")}</text>`;
+}
+// dos ejemplos
+const ej = [[90 / 110, "FC 90 / PAS 110 = 0,82", VERDE, "end"], [110 / 100, "FC 110 / PAS 100 = 1,10", ROJO, "start"]];
+ej.forEach(([v, t, c, an]) => {
+  s += `<polygon points="${x(v)},176 ${x(v) - 8},190 ${x(v) + 8},190" fill="${c}"/>`;
+  s += `<text x="${x(v) + (an === "end" ? 12 : -12)}" y="212" text-anchor="${an}" font-size="13.5" font-weight="700" fill="${TINTA}">${t}</text>`;
+});
+s += `<text x="${X0}" y="20" font-size="15" font-weight="800" fill="${TINTA}">Índice de choque = frecuencia cardiaca ÷ presión arterial sistólica</text>`;
+s += `</svg>`;
+const cartas = `<div style="display:flex;gap:10px">
+  <div class="caja" style="flex:1;background:${tinte(AMBAR, 10)};border:1.5px solid ${tinte(AMBAR, 50)};font-size:13px"><b style="color:#B7791F">0,9 o más</b>: se asocia a <b>más mortalidad</b>; alerta de <b>inestabilidad</b> antes de que caiga la presión.</div>
+  <div class="caja" style="flex:1;background:${tinte(ROJO, 8)};border:1.5px solid ${tinte(ROJO, 40)};font-size:13px"><b style="color:${ROJO}">Más de 1</b>: más probabilidad de <b>transfusión</b>; con <b>300 mL</b> o más medidos, ya es <b>hemorragia posparto</b>.</div>
+</div>`;
+lienzo("Índice de choque obstétrico", "En el embarazo lo normal es más alto que fuera de él", s + cartas,
+  "Esquema. Fuente: FIGO 2022, sección 5 y recuadro 2; OMS/FIGO/ICM 2025, recomendación 22.");
+</script></body></html>

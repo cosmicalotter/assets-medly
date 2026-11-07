@@ -1,0 +1,10 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="codigo_rojo.js"></script></head><body><script>
+// GIF: las cuatro fases del código rojo se encienden una tras otra; el último cuadro las muestra todas.
+window.cuadro = (i, n) => {
+  const t = i / (n - 1) * 5;          // 0-5: cuatro fases y el cierre
+  if (t >= 4.2) return dibujar(-1, 1);
+  const fase = Math.min(3, Math.floor(t));
+  dibujar(fase, suave(tramo(t - fase, 0, 0.55)));
+};
+window.cuadro(0, 2);
+</script></body></html>

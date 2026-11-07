@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Las 4 T: frecuencia de cada causa (Código Rojo, NACER-UdeA 2009) y qué buscar (OMS 2025, rec. 29;
+// GPC MinSalud 2013, pregunta 9; MinSalud 2000). Colores de las ramas del algoritmo.
+const T = [
+  ["Tono", "Atonía uterina", 70, AZUL, "Útero <b>blando y grande</b> al palparlo"],
+  ["Trauma", "Lesión del canal", 20, NARANJA, "<b>Desgarros</b> con valvas y luz; ruptura o inversión"],
+  ["Tejido", "Placenta o restos", 10, MORADO, "Placenta o membranas <b>incompletas</b>"],
+  ["Trombina", "Coagulopatía", 1, ROJO, "Sangre que <b>no coagula</b>; sangrado por punciones"],
+];
+const W = 668, X0 = 150, AN = 300, FILA = 74, Y0 = 30;
+const x = (v) => X0 + (v / 100) * AN;
+let s = `<svg width="${W}" height="${Y0 + FILA * T.length}" viewBox="0 0 ${W} ${Y0 + FILA * T.length}">`;
+s += `<text x="${X0}" y="16" font-size="12.5" font-weight="700" fill="${GRIS}">Hemorragias posparto debidas a cada causa</text>`;
+T.forEach(([t, sub, v, c], i) => {
+  const y = Y0 + i * FILA;
+  s += `<text x="${X0 - 14}" y="${y + 22}" text-anchor="end" font-size="18" font-weight="800" fill="${c}">${t}</text>`;
+  s += `<text x="${X0 - 14}" y="${y + 41}" text-anchor="end" font-size="12.5" fill="${GRIS}">${sub}</text>`;
+  s += `<rect x="${x(0)}" y="${y + 6}" width="${Math.max(6, x(v) - x(0))}" height="34" rx="8" fill="${c}"/>`;
+  s += `<text x="${Math.max(x(v), x(0) + 6) + 10}" y="${y + 30}" font-size="19" font-weight="800" fill="${TINTA}">${v} %</text>`;
+});
+s += `</svg>`;
+const busca = `<div style="position:absolute;left:${26 + 520}px;top:0"></div>`;
+const lista = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${T.map(([t, , , c, q]) =>
+  `<div class="item" style="background:${tinte(c, 9)};border:1.5px solid ${tinte(c, 45)}"><b style="color:${c}">${t}</b>: <span>${q}</span></div>`).join("")}</div>`;
+const nota = `<div class="caja" style="background:#F8FAFC;border:1px solid var(--linea);font-size:13px">Puede haber <b>más de una causa</b> a la vez: se tratan todas las que se encuentren.</div>`;
+lienzo("Las 4 T de la hemorragia posparto", "La causa decide el camino del tratamiento", s + lista + nota,
+  "Esquema. Frecuencias: Código Rojo, NACER-Universidad de Antioquia (2009). Qué buscar: OMS/FIGO/ICM 2025; GPC MinSalud 2013, pregunta 9.");
+</script></body></html>
