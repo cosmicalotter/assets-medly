@@ -1,0 +1,40 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Plazos de cada profilaxis: MinSalud 2026 (momento 8, tabla 6), protocolo PEP MinSalud 2017 (5.1, 5.6) y Medicina Legal 2025 (tabla 3).
+// Eje no lineal: cada tramo ocupa el mismo ancho.
+const MARCAS = [["0", 0], ["2 h", 1], ["24 h", 2], ["72 h", 3], ["120 h", 4], ["7 d", 5], ["14 d", 6]];
+const X0 = 170, X1 = 650, paso = (X1 - X0) / 6;
+const x = (i) => X0 + paso * i;
+// [color, rótulo, tramos: [desde, hasta, intensidad, texto]]
+const FILAS = [
+  [TEAL, "Atención", [[0, 1, 1, "≤2 h"]]],
+  [ROJO, "PEP contra el VIH", [[0, 2, 1, "ideal"], [2, 3, 0.45, "hasta 72 h"]]],
+  [NARANJA, "Profilaxis de ITS", [[0, 3, 1, "dosis únicas"]]],
+  [MORADO, "Muestras forenses", [[0, 2, 1, "prepúber"], [2, 3, 0.6, "adolescente"], [3, 5, 0.25, "5-7 d"]]],
+  [AZUL, "Anticoncepción", [[0, 3, 1, "levonorgestrel"], [3, 4, 0.55, "+ DIU"]]],
+  [VERDE, "Refuerzo de VHB", [[0, 2, 1, "ideal"], [2, 5, 0.45, "hasta 7 d"]]],
+  [CELESTE, "Gammaglobulina", [[0, 2, 1, "ideal"], [2, 6, 0.4, "hasta 14 días"]]],
+];
+function dibujar(k) {
+  const H = 46, Y0 = 34;
+  let svg = `<svg width="668" height="${Y0 + H * FILAS.length + 30}" style="overflow:visible">`;
+  MARCAS.forEach(([t, i]) => {
+    svg += `<line x1="${x(i)}" y1="${Y0 - 6}" x2="${x(i)}" y2="${Y0 + H * FILAS.length}" stroke="#E5E7EB" stroke-width="1.5"/>`;
+    svg += `<text x="${x(i)}" y="${Y0 - 14}" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">${t}</text>`;
+  });
+  FILAS.forEach(([c, rot, tramos], f) => {
+    const y = Y0 + H * f + 8, vis = f < k;
+    svg += `<text x="0" y="${y + 20}" font-size="14.5" font-weight="800" fill="${vis ? c : "#CBD5E1"}">${rot}</text>`;
+    if (!vis) return;
+    tramos.forEach(([a, b, p, t]) => {
+      const fondo = p === 1 ? c : tinte(c, Math.round(p * 100)), letra = p >= 0.55 ? "#fff" : c;
+      svg += `<rect x="${x(a) + 2}" y="${y}" width="${x(b) - x(a) - 4}" height="30" rx="8" fill="${fondo}"/>`;
+      svg += `<text x="${(x(a) + x(b)) / 2}" y="${y + 20}" text-anchor="middle" font-size="12.5" font-weight="700" fill="${letra}">${t}</text>`;
+    });
+  });
+  svg += `</svg>`;
+  lienzo("Plazos de cada profilaxis", "Desde la agresión; el color fuerte es el plazo ideal y el claro, el máximo", svg,
+    "Esquema; eje sin escala. Fuente: MinSalud 2026 (momento 8 y tabla 6), protocolo PEP MinSalud 2017 y Medicina Legal 2025.");
+}
+window.cuadro = (i, n) => dibujar(Math.min(FILAS.length, Math.floor((i / n) * (FILAS.length + 1)) + 1));
+dibujar(FILAS.length);
+</script></body></html>
