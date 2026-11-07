@@ -52,20 +52,23 @@
     "nodo_raiz": {
       "tipo": "pregunta",
       "titulo": "Vacunación según el PAI 2026",
-      "texto": "- **Esquema nacional de vacunación:** las vacunas del PAI por **curso de vida**, para toda persona que habite o transite el país, sin barreras y sin importar su **estatus migratorio**.\n- **Esquema atrasado:** el que no tiene las dosis de su edad; **no se reinicia**: se revisa el antecedente vacunal y se completa.\n- **Primovacunación contra la influenza:** **2 dosis** de la misma cepa; entre los **6 y 35 meses** sin ella, 2 dosis con **4 semanas** de intervalo.\n- **Dosis cero de sarampión:** SR o SRP entre los **6 y 11 meses** en zonas priorizadas, que no reemplaza la triple viral de los **12 y 18 meses**.",
-      "pie_nodo": "¿Qué parte de la vacunación necesitas?",
+      "texto": "- **Esquema nacional de vacunación:** las vacunas del PAI por **curso de vida**, para toda persona que habite o transite el país, sin importar su estatus migratorio.\n- **Esquema atrasado:** el de quien no tiene todas las dosis que corresponden a su **edad**.\n- **Primovacunación contra la influenza:** **2 dosis** de la misma cepa.\n- **Dosis cero de sarampión:** SR o SRP entre los **6 y 11 meses** en zonas priorizadas; **no cuenta** en el esquema.",
+      "pie_nodo": "¿A quién vas a vacunar?",
       "opciones": [
         {
           "texto": "Niños",
-          "siguiente_nodo": "nodo_ninos"
+          "siguiente_nodo": "nodo_ninos",
+          "descripcion": "De 0 a 5 años, con el esquema al día"
         },
         {
           "texto": "Atrasados",
-          "siguiente_nodo": "nodo_atrasados"
+          "siguiente_nodo": "nodo_atrasados",
+          "descripcion": "Le faltan dosis de su edad"
         },
         {
           "texto": "Adolescentes y adultos",
-          "siguiente_nodo": "nodo_adultos"
+          "siguiente_nodo": "nodo_adultos",
+          "descripcion": "Desde los 9 años"
         },
         {
           "texto": "Gestantes",
@@ -175,54 +178,62 @@
     "nin_revisar": {
       "tipo": "pregunta",
       "titulo": "Revisar el antecedente vacunal antes de vacunar",
-      "texto": "- Revisar el **carné** y el antecedente vacunal: un esquema atrasado **no se reinicia**.\n- Vacunar **sin barreras**, sin importar el estatus migratorio.\n- Posponer la vacuna sólo con **enfermedad febril grave**; una **infección menor** no la contraindica.\n- Ubicar la **edad** en el esquema y aplicar todo lo que le toca.",
+      "texto": "- Revisar el **carné** y el antecedente vacunal: un esquema atrasado **no se reinicia**.\n- Posponer la vacuna con **enfermedad febril grave aguda**; una **infección menor** no la contraindica.\n- Ubicar al niño en la última edad del esquema que cumplió y aplicar todo lo que le toca.",
       "checklist": {
         "titulo": "Antes de vacunar",
         "items": [
-          "**Edad** exacta en meses",
           "**Carné** o registro con las dosis previas",
-          "Sin **fiebre alta** ni enfermedad grave hoy",
-          "Vacuna, **dosis** y vía correctas",
-          "Fecha de **vencimiento** del frasco"
+          "Sin **enfermedad febril grave** hoy",
+          "Sin **anafilaxia** previa a un componente de la vacuna",
+          "Vacuna, **dosis** y vía correctas"
         ]
       },
-      "pie_nodo": "¿Qué edad tiene el niño?",
+      "pie_nodo": "¿Cuál es la última edad del esquema que ya cumplió?",
       "opciones": [
         {
           "texto": "Recién nacido",
-          "siguiente_nodo": "nin_rn"
+          "siguiente_nodo": "nin_rn",
+          "descripcion": "Menos de 2 meses"
         },
         {
           "texto": "2 meses",
-          "siguiente_nodo": "nin_2m"
+          "siguiente_nodo": "nin_2m",
+          "descripcion": "De 2 a 3 meses"
         },
         {
           "texto": "4 meses",
-          "siguiente_nodo": "nin_4m"
+          "siguiente_nodo": "nin_4m",
+          "descripcion": "De 4 a 5 meses"
         },
         {
           "texto": "6 meses",
-          "siguiente_nodo": "nin_6m"
+          "siguiente_nodo": "nin_6m",
+          "descripcion": "6 meses"
         },
         {
           "texto": "7 meses",
-          "siguiente_nodo": "nin_7m"
+          "siguiente_nodo": "nin_7m",
+          "descripcion": "De 7 a 8 meses"
         },
         {
           "texto": "9 meses",
-          "siguiente_nodo": "nin_9m"
+          "siguiente_nodo": "nin_9m",
+          "descripcion": "De 9 a 11 meses"
         },
         {
           "texto": "12 meses",
-          "siguiente_nodo": "nin_12m"
+          "siguiente_nodo": "nin_12m",
+          "descripcion": "De 12 a 17 meses"
         },
         {
           "texto": "18 meses",
-          "siguiente_nodo": "nin_18m"
+          "siguiente_nodo": "nin_18m",
+          "descripcion": "De 18 meses a 4 años"
         },
         {
           "texto": "5 años",
-          "siguiente_nodo": "nin_5a"
+          "siguiente_nodo": "nin_5a",
+          "descripcion": "De 5 a 8 años"
         }
       ],
       "referencias": [
@@ -235,16 +246,6 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_no_esta_indicado_reiniciar_esquemas.png"
-        },
-        {
-          "titulo": "Vacunar sin barreras",
-          "paginas": "2",
-          "texto": "Se debe vacunar sin barreras a la población en el territorio colombiano sin importar su estatus migratorio.",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_se_debe_vacunar_sin_barreras.png"
         },
         {
           "titulo": "Posponer con enfermedad febril grave",
@@ -267,6 +268,16 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_sin_embargo_la_presencia_de.png"
         },
         {
+          "titulo": "Contraindicada con anafilaxia a un componente",
+          "paginas": "23",
+          "texto": "La vacuna RSVpreF (ABRYSVO®) no debe administrarse a personas con antecedente de reacción alérgica grave (como anafilaxia) a cualquier componente de la vacuna",
+          "fuente": "MinSalud 2025 (VSR materna)",
+          "anio": "2025",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tecnico-operativo-vacuna-materna-vsr-pai-gestantes-28-36.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamiento técnico y operativo para la introducción de la vacuna materna contra el virus sincitial respiratorio en gestantes de 28 a 36 semanas. Bogotá; 2025.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_la_vacuna_rsvpref_abrysvo_no.png"
+        },
+        {
           "titulo": "Qué verificar antes de aplicarla",
           "paginas": "23",
           "texto": "Antes de aplicar la vacuna tenga en cuenta las siguientes recomendaciones y verifique: • Edad gestacional • Vacuna correcta • Dosis correcta • Vía de administración",
@@ -282,7 +293,7 @@
           "recurso": "pai_esquema_edades.gif",
           "titulo": "Esquema del PAI 2026, edad por edad",
           "descripcion": "Recorre las edades de 0 a 5 años y enciende las vacunas de cada una.",
-          "info": "La {#18B9A9:columna turquesa} avanza por las **edades** del esquema y la franja de abajo dice qué toca en cada una. Por colores: {#4F8CF6:azul} la pentavalente, la VIP y la DPT; {#F07F3C:naranja} el **rotavirus** y el neumococo; {#EF5454:rojo} las de los **12 meses**.",
+          "info": "La {#18B9A9:columna turquesa} avanza por las **edades** del esquema y la franja de abajo dice qué toca en cada una. Por colores: {#4F8CF6:azul} la pentavalente, la VIP y la DPT; {#F07F3C:naranja} el **rotavirus** y el neumococo; {#8B5CF6:morado} la influenza; {#EF5454:rojo} la **triple viral**, la varicela y la hepatitis A.",
           "en_texto": "aplicar todo lo que le toca",
           "referencias": [
             {
@@ -322,19 +333,17 @@
     "nin_rn": {
       "tipo": "pregunta",
       "titulo": "Aplicar BCG y hepatitis B al recién nacido",
-      "texto": "- Aplicar la **BCG**, dosis única, contra la meningitis tuberculosa.\n- Aplicar la **hepatitis B** del recién nacido, mejor en las primeras **12 horas**.",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "texto": "- Aplicar la **BCG**, dosis única, contra la meningitis tuberculosa.\n- Aplicar la **hepatitis B** del recién nacido, idealmente en las primeras **12 horas**.",
+      "pie_nodo": "¿Recibió la BCG y la hepatitis B al nacer?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 2 meses",
-          "siguiente_nodo": "nin_2m",
-          "color": "verde"
+          "siguiente_nodo": "nin_2m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
+          "texto": "No las recibió",
           "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "contexto": "- Se debe entrar por **Menor de 12 meses**, que dice cómo ponerlo al día."
         }
       ],
       "referencias": [
@@ -363,7 +372,7 @@
     "nin_2m": {
       "tipo": "pregunta",
       "titulo": "Iniciar las vacunas de los 2 meses",
-      "texto": "- Aplicar la primera dosis de:\n  - **pentavalente** (DPT, Hib y hepatitis B)\n  - **VIP** contra la poliomielitis\n  - **rotavirus**, por boca\n  - **neumococo**\n- En el nacido con **menos de 1.500 gramos**, la **hexavalente** reemplaza la pentavalente.",
+      "texto": "- Aplicar la primera dosis de:\n  - **pentavalente** (DPT, Hib y hepatitis B)\n  - **VIP** contra la poliomielitis\n  - **rotavirus**, por boca\n  - **neumococo**\n- Con peso al nacer de **menos de 1.500 gramos**, la **hexavalente** reemplaza la pentavalente y la VIP.",
       "alertas": [
         {
           "titulo": "Rotavirus: edad máxima",
@@ -377,18 +386,15 @@
           "nodo_objetivo": "esp_hexa"
         }
       ],
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 4 meses",
-          "siguiente_nodo": "nin_4m",
-          "color": "verde"
+          "siguiente_nodo": "nin_4m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -437,19 +443,16 @@
     "nin_4m": {
       "tipo": "pregunta",
       "titulo": "Aplicar las segundas dosis de los 4 meses",
-      "texto": "- Aplicar la segunda dosis de:\n  - **pentavalente** (o hexavalente)\n  - **VIP**\n  - **rotavirus**, hasta los **11 meses y 29 días**\n  - **neumococo**",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "texto": "- Aplicar la segunda dosis de:\n  - **pentavalente**, o la **hexavalente**, que ya lleva la VIP\n  - **VIP**, si recibe pentavalente\n  - **rotavirus**, sólo hasta los **11 meses y 29 días**\n  - **neumococo**",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 6 meses",
-          "siguiente_nodo": "nin_6m",
-          "color": "verde"
+          "siguiente_nodo": "nin_6m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -472,13 +475,23 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_rotavirus_primera_dosis_entre_2.png"
+        },
+        {
+          "titulo": "Hexavalente en vez de pentavalente",
+          "paginas": "2",
+          "texto": "Hexavalente (DPT - Hib b - Hep B-VIP): Reemplaza pentavalente según lineamientos de MinSalud.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_hexavalente_dpt_hib_b_hep.png"
         }
       ]
     },
     "nin_6m": {
       "tipo": "pregunta",
       "titulo": "Aplicar las terceras dosis y la primera de influenza",
-      "texto": "- Aplicar la tercera dosis de **pentavalente** (o hexavalente) y de **VIP**.\n- Aplicar la primera dosis de **influenza estacional**; la segunda va a las **4 semanas**.\n- En las **zonas priorizadas**, dar la **dosis cero** de SR o SRP entre los **6 y 11 meses**.",
+      "texto": "- Aplicar la tercera dosis de **pentavalente** y de **VIP**, o de **hexavalente**, que ya lleva la VIP.\n- Aplicar la primera dosis de **influenza estacional**; la segunda va a las **4 semanas**.\n- En las **zonas priorizadas**, aplicar la **dosis cero** de SR o SRP entre los **6 y 11 meses**.",
       "farmacos": [
         {
           "nombre": "Influenza estacional (6 a 11 meses)",
@@ -494,18 +507,15 @@
           "nodo_objetivo": "esp_sarampion"
         }
       ],
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 7 meses",
-          "siguiente_nodo": "nin_7m",
-          "color": "verde"
+          "siguiente_nodo": "nin_7m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -518,6 +528,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_tercera_poliomielitis_influenza_estacional_3.png"
+        },
+        {
+          "titulo": "Hexavalente en vez de pentavalente",
+          "paginas": "2",
+          "texto": "Hexavalente (DPT - Hib b - Hep B-VIP): Reemplaza pentavalente según lineamientos de MinSalud.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_hexavalente_dpt_hib_b_hep.png"
         },
         {
           "titulo": "Influenza: primovacunación",
@@ -564,20 +584,17 @@
     "nin_7m": {
       "tipo": "pregunta",
       "titulo": "Completar la primovacunación contra la influenza",
-      "texto": "- Aplicar la segunda dosis de **influenza estacional**, **4 semanas** después de la primera.\n- Con las dos dosis queda **primovacunado**: desde entonces, una dosis **al año** hasta los **5 años**.",
+      "texto": "- Aplicar la segunda dosis de **influenza estacional**, **4 semanas** después de la primera.\n- Con las dos dosis, el niño queda **primovacunado**.",
       "nota_adicional": "La **primovacunación** son **2 dosis de la misma cepa**: si la segunda llega con otra cepa, no completa la primovacunación.",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 9 meses",
-          "siguiente_nodo": "nin_9m",
-          "color": "verde"
+          "siguiente_nodo": "nin_9m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -590,16 +607,6 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_se_considera_primovacunacion_a_la.png"
-        },
-        {
-          "titulo": "Influenza: una dosis anual hasta los 5 años",
-          "paginas": "2",
-          "texto": "Con antecedente primovacunación aplicar 1 dosis anual hasta los 5 años.",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_con_antecedente_primovacunacion_aplicar_1.png"
         },
         {
           "titulo": "Influenza de 6 a 11 meses",
@@ -615,8 +622,8 @@
     },
     "nin_9m": {
       "tipo": "pregunta",
-      "titulo": "Aplicar la fiebre amarilla a los 9 meses",
-      "texto": "- Aplicar la **fiebre amarilla**, dosis única, en todo el país desde los **9 meses**.\n- Va por la **emergencia sanitaria** de fiebre amarilla vigente.",
+      "titulo": "Aplicar la vacuna contra la fiebre amarilla",
+      "texto": "- Aplicar la **fiebre amarilla**, dosis única, desde los **9 meses**.\n- Se aplica en todo el país por la **emergencia sanitaria** de fiebre amarilla.",
       "enlaces": [
         {
           "texto": "Zonas de riesgo y refuerzo",
@@ -624,18 +631,15 @@
           "nodo_objetivo": "esp_fa"
         }
       ],
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 12 meses",
-          "siguiente_nodo": "nin_12m",
-          "color": "verde"
+          "siguiente_nodo": "nin_12m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -673,21 +677,18 @@
     },
     "nin_12m": {
       "tipo": "pregunta",
-      "titulo": "Aplicar las vacunas del año",
-      "texto": "- Aplicar:\n  - **triple viral** (SRP), primera dosis\n  - **varicela**, primera dosis\n  - **neumococo**, refuerzo\n  - **hepatitis A**, dosis única\n- Si ya está primovacunado, la **influenza** es una dosis **al año** hasta los 5 años.",
+      "titulo": "Aplicar las vacunas de los 12 meses",
+      "texto": "- Aplicar:\n  - **triple viral** (SRP), primera dosis\n  - **varicela**, primera dosis\n  - **neumococo**, refuerzo\n  - **hepatitis A**, dosis única\n- Si ya está primovacunado, aplicar la **influenza** una vez **al año** hasta los 5 años.",
       "nota_adicional": "Si recibió la **dosis cero** de SR o SRP antes del año, igual le toca la **triple viral** a los **12 y 18 meses**: la dosis cero no cuenta en el esquema.",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 18 meses",
-          "siguiente_nodo": "nin_18m",
-          "color": "verde"
+          "siguiente_nodo": "nin_18m"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -728,18 +729,15 @@
       "titulo": "Aplicar los primeros refuerzos de los 18 meses",
       "texto": "- Aplicar:\n  - **pentavalente**, primer refuerzo\n  - **VIP**, primer refuerzo\n  - **triple viral**, segunda dosis",
       "nota_adicional": "Si pasó de los **18 meses** sin la triple viral, se pone en el **primer contacto** y la segunda **4 semanas** después.",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: próxima cita a los 5 años",
-          "siguiente_nodo": "nin_5a",
-          "color": "verde"
+          "siguiente_nodo": "nin_5a"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -788,19 +786,16 @@
     "nin_5a": {
       "tipo": "pregunta",
       "titulo": "Aplicar los segundos refuerzos de los 5 años",
-      "texto": "- Aplicar:\n  - **DPT**, segundo refuerzo\n  - **VIP**, segundo refuerzo\n  - **varicela**, refuerzo\n- Con esto termina el esquema infantil; lo siguiente es a los **9 años**.",
-      "pie_nodo": "¿Recibió hoy estas vacunas y trae al día las anteriores?",
+      "texto": "- Aplicar:\n  - **DPT**, segundo refuerzo\n  - **VIP**, segundo refuerzo\n  - **varicela**, refuerzo\n- Con esto termina el **esquema infantil**; lo siguiente es a los **9 años**.",
+      "pie_nodo": "¿Tiene al día las dosis de las edades anteriores?",
       "opciones": [
         {
           "texto": "Sí: siguen las de los 9 años",
-          "siguiente_nodo": "nodo_adultos",
-          "color": "verde"
+          "siguiente_nodo": "nodo_adultos"
         },
         {
-          "texto": "Le faltan dosis anteriores",
-          "siguiente_nodo": "nodo_atrasados",
-          "color": "naranja",
-          "contexto": "- Se debe completar lo que falta **sin reiniciar** el esquema."
+          "texto": "No, le faltan dosis",
+          "siguiente_nodo": "nodo_atrasados"
         }
       ],
       "referencias": [
@@ -813,37 +808,6 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_dpt_2_refuerzo_difteria_tosferina.png"
-        }
-      ],
-      "media": [
-        {
-          "recurso": "pai_esquema_infantil.png",
-          "titulo": "Esquema del PAI 2026 de 0 a 5 años",
-          "descripcion": "Todas las vacunas del niño de 0 a 5 años, con su dosis en cada edad.",
-          "info": "Cada fila es una vacuna y cada columna una edad; **R1, R2 y R** son los **refuerzos**. El {#F07F3C:rotavirus} tiene **edad máxima**: la primera dosis sólo hasta los **3 meses y 21 días**. Con menos de **1.500** gramos al nacer, la **hexavalente** reemplaza la pentavalente.",
-          "en_texto": "esquema infantil",
-          "referencias": [
-            {
-              "titulo": "Rotavirus: edades máximas",
-              "paginas": "2",
-              "texto": "Rotavirus: Primera dosis entre 2 meses y máximo hasta 3 meses 21 dias y segunda dosis hasta 11 meses 29 dias. Sin primera no hay segunda dosis.",
-              "fuente": "MinSalud 2026 (memoficha PAI)",
-              "anio": "2026",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-              "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/inmunizaciones_pai/evidencia_inmunizaciones_pai_pag2_rotavirus_primera_dosis_entre_2.png"
-            },
-            {
-              "titulo": "Hexavalente en menores de 1.500 g",
-              "paginas": "14",
-              "texto": "Inclusión de la vacuna hexavalente acelular en población infantil con peso al nacer menor de 1.500 gramos, prematuros o a término, nacidos a partir del 1 de abril de 2025.",
-              "fuente": "MinSalud 2026 (lineamientos PAI)",
-              "anio": "2026",
-              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
-              "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/inmunizaciones_pai/evidencia_inmunizaciones_pai_pag14_inclusion_de_la_vacuna_hexavalente.png"
-            }
-          ]
         }
       ]
     },
@@ -873,35 +837,30 @@
     "atr_principios": {
       "tipo": "pregunta",
       "titulo": "Completar el esquema sin reiniciarlo",
-      "contexto": "Las dosis aplicadas **siguen contando** aunque se haya pasado el intervalo: por eso el esquema se **completa**, no se empieza de nuevo.",
-      "texto": "- Revisar el **antecedente vacunal** y contar las dosis que ya tiene.\n- Aplicar en el primer contacto todas las dosis que le **faltan** para su edad.\n- Respetar el **intervalo mínimo** de cada vacuna antes de la siguiente dosis.\n- Todo niño de **1 a 10 años** debe tener **2 dosis** de triple viral.",
+      "texto": "- Revisar el **antecedente vacunal** y contar las dosis que ya tiene.\n- Aplicar en el primer contacto todas las dosis que le **faltan** para su edad.\n- Respetar el **intervalo mínimo** de cada vacuna antes de la siguiente dosis.\n- Comprobar que todo niño de **1 a 10 años** tenga **2 dosis** de triple viral.",
       "pie_nodo": "¿Qué edad tiene la persona con el esquema atrasado?",
       "opciones": [
         {
           "texto": "Menor de 12 meses",
-          "siguiente_nodo": "atr_lactante",
-          "color": "azul"
+          "siguiente_nodo": "atr_lactante"
         },
         {
           "texto": "12 a 23 meses",
-          "siguiente_nodo": "atr_12",
-          "color": "teal"
+          "siguiente_nodo": "atr_12"
         },
         {
           "texto": "24 meses a 4 años",
           "siguiente_nodo": "atr_24",
-          "color": "morado"
+          "descripcion": "Hasta los 4 años, 11 meses y 29 días"
         },
         {
           "texto": "5 años",
           "siguiente_nodo": "atr_5",
-          "color": "rosa",
           "descripcion": "Hasta los 5 años, 11 meses y 29 días"
         },
         {
           "texto": "6 años o más",
-          "siguiente_nodo": "atr_6",
-          "color": "naranja"
+          "siguiente_nodo": "atr_6"
         }
       ],
       "referencias": [
@@ -948,21 +907,31 @@
       ],
       "media": [
         {
-          "recurso": "pai_revision_antecedente.jpg",
-          "titulo": "Revisar el antecedente vacunal",
-          "descripcion": "Un equipo de salud revisa en casa las vacunas de un niño.",
-          "info": "Antes de vacunar a quien trae el esquema atrasado se revisa el **carné** y lo que se puede comprobar del **antecedente vacunal**. Lo que ya recibió **cuenta**: el esquema no se reinicia, se completa.",
-          "en_texto": "antecedente vacunal",
+          "recurso": "pai_esquema_infantil.png",
+          "titulo": "Esquema del PAI 2026 de 0 a 5 años",
+          "descripcion": "Todas las vacunas de 0 a 5 años, para comparar con el carné.",
+          "info": "Cada fila es una vacuna y cada columna una edad; **R1, R2 y R** son los **refuerzos**. El {#F07F3C:rotavirus} tiene **edad máxima**: la primera dosis sólo hasta los **3 meses y 21 días**. Con menos de **1.500** gramos al nacer, la **hexavalente** reemplaza la pentavalente.",
+          "en_texto": "contar las dosis que ya tiene",
           "referencias": [
             {
-              "titulo": "No reiniciar esquemas",
+              "titulo": "Rotavirus: edades máximas",
               "paginas": "2",
-              "texto": "No está indicado reiniciar esquemas de vacunación, se debe revisar el antecedente vacunal.",
+              "texto": "Rotavirus: Primera dosis entre 2 meses y máximo hasta 3 meses 21 dias y segunda dosis hasta 11 meses 29 dias. Sin primera no hay segunda dosis.",
               "fuente": "MinSalud 2026 (memoficha PAI)",
               "anio": "2026",
               "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
               "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/inmunizaciones_pai/evidencia_inmunizaciones_pai_pag2_no_esta_indicado_reiniciar_esquemas.png"
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/inmunizaciones_pai/evidencia_inmunizaciones_pai_pag2_rotavirus_primera_dosis_entre_2.png"
+            },
+            {
+              "titulo": "Hexavalente en menores de 1.500 g",
+              "paginas": "14",
+              "texto": "Inclusión de la vacuna hexavalente acelular en población infantil con peso al nacer menor de 1.500 gramos, prematuros o a término, nacidos a partir del 1 de abril de 2025.",
+              "fuente": "MinSalud 2026 (lineamientos PAI)",
+              "anio": "2026",
+              "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
+              "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
+              "imagen_evidencia": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/imagenes/evidencia/inmunizaciones_pai/evidencia_inmunizaciones_pai_pag14_inclusion_de_la_vacuna_hexavalente.png"
             }
           ]
         }
@@ -970,13 +939,14 @@
     },
     "atr_lactante": {
       "titulo": "Poner al día al menor de 12 meses",
-      "texto": "- Aplicar las dosis de **pentavalente**, VIP y **neumococo** que le falten para su edad.\n- **Rotavirus**: la primera sólo hasta los **3 meses y 21 días**, y la segunda hasta los **11 meses y 29 días**.\n- **Influenza** desde los 6 meses: **2 dosis** con **4 semanas** de intervalo si no está primovacunado.\n- La pentavalente son **3 dosis** y un refuerzo antes de los **24 meses**.",
+      "texto": "- Aplicar las dosis de **pentavalente**, VIP y **neumococo** que le falten para su edad.\n- Aplicar la segunda dosis de **rotavirus** sólo hasta los **11 meses y 29 días**.\n- Desde los **6 meses**, si no está primovacunado, aplicar **2 dosis** de influenza con **4 semanas** de intervalo.\n- Desde los **9 meses**, aplicar la **fiebre amarilla**; en zonas priorizadas, la **dosis cero** de SR o SRP.",
       "alertas": [
         {
           "titulo": "Rotavirus fuera de edad",
           "texto": "Pasados los **3 meses y 21 días** sin la primera dosis, **no se aplica** la vacuna contra el rotavirus."
         }
       ],
+      "nota_adicional": "La **BCG** que no se puso al nacer, desde los **12 meses** sólo se aplica a la población **indígena o rural dispersa**.",
       "enlaces": [
         {
           "texto": "Ir al esquema por edad",
@@ -1026,20 +996,40 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag21_poblacion_infantil_de_6_a.png"
         },
         {
-          "titulo": "Pentavalente: 3 dosis y refuerzo antes de 24 meses",
-          "paginas": "22",
-          "texto": "El esquema de vacunación de pentavalente cuenta con 3 dosis más 1 refuerzo en menores de 24 meses",
-          "fuente": "MinSalud 2025 (tercera jornada)",
-          "anio": "2025",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tercera-jornada-vacunacion-2025.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Lineamiento tercera jornada nacional de vacunación 2025. Bogotá; 2025.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag22_el_esquema_de_vacunacion_de.png"
+          "titulo": "Fiebre amarilla desde los 9 meses",
+          "paginas": "2",
+          "texto": "Fiebre amarilla: a partir de los 9 meses en todo el país. En mayores de 60 años y gestantes que residan o transiten por municipios de alto o muy alto riesgo, según lineamientos de MinSalud.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_fiebre_amarilla_a_partir_de.png"
+        },
+        {
+          "titulo": "Dosis cero en zonas definidas",
+          "paginas": "11",
+          "texto": "la dosis cero con vacuna SR o SRP para niños y niñas de 6 a 11 meses de edad en zonas definidas por la autoridad sanitaria",
+          "fuente": "MinSalud 2026 (tercera jornada)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/lineamientos-tercera-jornada-vacunacion-intensificacion-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamientos tercera jornada nacional de vacunación e intensificación 2026. Bogotá; 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag11_la_dosis_cero_con_vacuna.png"
+        },
+        {
+          "titulo": "Sin antecedente: BCG",
+          "paginas": "2",
+          "texto": "1 dosis de BCG si pertenece a población indígena o rural dispersa.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_1_dosis_de_bcg_si.png"
         }
       ]
     },
     "atr_12": {
       "titulo": "Completar el esquema de 12 a 23 meses",
-      "texto": "- Aplicar en la primera cita las vacunas de **la tabla** que no tenga.\n- Programar las dosis siguientes con su **intervalo**.\n- La **BCG** sólo si es de población **indígena o rural dispersa**.",
+      "texto": "- Aplicar en la primera cita las vacunas de **la tabla** que no tenga.\n- Programar las dosis siguientes con su **intervalo**.\n- Aplicar la **BCG** sólo si es de población **indígena o rural dispersa**.",
       "tabla": {
         "titulo": "Sin antecedente, de 12 a 23 meses",
         "columnas": [
@@ -1065,7 +1055,7 @@
           ],
           [
             "Influenza",
-            "- **2 dosis** con intervalo de **4 semanas**"
+            "- **2 dosis** con intervalo de **4 semanas**, si no está primovacunado"
           ],
           [
             "Fiebre amarilla",
@@ -1169,7 +1159,7 @@
     },
     "atr_24": {
       "titulo": "Completar el esquema de 24 meses a 4 años",
-      "texto": "- Dar **una dosis** de pentavalente y completar la protección con **DPT** y **hepatitis B** monovalentes.\n- Aplicar las demás vacunas de **la tabla** que no tenga.\n- La **BCG** sólo si es de población **indígena o rural dispersa**.",
+      "texto": "- Aplicar **una dosis** de pentavalente y completar con **DPT** y **hepatitis B** monovalentes.\n- Aplicar las demás vacunas de **la tabla** que no tenga.\n- Aplicar la **BCG** sólo si es de población **indígena o rural dispersa**.",
       "tabla": {
         "titulo": "Sin antecedente, de 24 meses a 4 años",
         "columnas": [
@@ -1183,7 +1173,7 @@
           ],
           [
             "DPT",
-            "- **2 dosis** con intervalo de **4 semanas**\n- **Refuerzo** a los **6 meses** de la tercera"
+            "- **2 dosis** con intervalo de **4 semanas**\n- **Refuerzo** a los **6 meses** de la tercera dosis, contando la pentavalente"
           ],
           [
             "Hepatitis B",
@@ -1196,6 +1186,10 @@
           [
             "Triple viral",
             "- **1 dosis** y refuerzo a las **4 semanas**"
+          ],
+          [
+            "Influenza",
+            "- Hasta los **35 meses** sin primovacunación: **2 dosis** con **4 semanas** de intervalo"
           ],
           [
             "Fiebre amarilla",
@@ -1287,6 +1281,16 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_1_dosis_de_triple_viral_2.png"
         },
         {
+          "titulo": "Influenza: primovacunación",
+          "paginas": "2",
+          "texto": "Se considera primovacunación a la aplicación de 2 dosis de la misma cepa. Sin antecedente de primovacunación, entre los 6 a 35 meses se deben garantizar 2 dosis en intervalo de 4 semanas.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_se_considera_primovacunacion_a_la.png"
+        },
+        {
           "titulo": "24 meses-4 años: las demás",
           "paginas": "2",
           "texto": "1 dosis de vacuna contra la hepatitis A . * 1 dosis de neumococo * 1 dosis de varicela",
@@ -1310,7 +1314,7 @@
     },
     "atr_5": {
       "titulo": "Completar el esquema a los 5 años",
-      "texto": "- Dar **una dosis** de pentavalente y completar con **DPT** y **hepatitis B** monovalentes.\n- Aplicar las demás vacunas de **la tabla** que no tenga.\n- Si cumple **6 años**, pasar a la DPT acelular pediátrica o al **Td** desde los 7.",
+      "texto": "- Aplicar **una dosis** de pentavalente y completar con **DPT** y **hepatitis B** monovalentes.\n- Aplicar las demás vacunas de **la tabla** que no tenga.\n- Si ya cumplió **6 años**, seguir el paso de los 6 años o más.",
       "tabla": {
         "titulo": "Sin antecedente, a los 5 años",
         "columnas": [
@@ -1343,8 +1347,16 @@
             "- **1 dosis** y refuerzo con intervalo mínimo de **3 meses**"
           ],
           [
-            "Fiebre amarilla, hepatitis A, neumococo",
-            "- **1 dosis** de cada una"
+            "Fiebre amarilla",
+            "- **1 dosis**"
+          ],
+          [
+            "Hepatitis A",
+            "- **1 dosis**"
+          ],
+          [
+            "Neumococo",
+            "- **1 dosis**"
           ],
           [
             "BCG",
@@ -1356,7 +1368,12 @@
       },
       "enlaces": [
         {
-          "texto": "Ir a los 6 años o más",
+          "texto": "Ir al esquema por edad",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "nin_revisar"
+        },
+        {
+          "texto": "Si ya cumplió 6 años",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "atr_6"
         }
@@ -1446,7 +1463,7 @@
     },
     "atr_6": {
       "titulo": "Completar el esquema desde los 6 años",
-      "texto": "- **Triple viral**: 2 dosis hasta los **10 años, 11 meses y 29 días**, con **4 semanas** entre ellas.\n- **DPT**: a los 6 años, DPT **acelular pediátrica**; desde los **7 años**, esquema con **Td** del adulto.\n- **VIP** por encima de los 6 años, sólo con autorización del **MSPS**.\n- **Fiebre amarilla** a los susceptibles hasta los **19 años** en municipios de bajo riesgo.",
+      "texto": "- Aplicar **2 dosis** de **triple viral**, con **4 semanas** entre ellas, hasta los **10 años, 11 meses y 29 días**.\n- A los **6 años**, completar con **DPT acelular pediátrica**; desde los **7 años**, con el Td del adulto.\n- No aplicar la **VIP** después de los **6 años** sin autorización del MinSalud.\n- En municipios de **bajo riesgo**, aplicar la **fiebre amarilla** a quien no la tenga hasta los **59 años**.",
       "enlaces": [
         {
           "texto": "Ir a adolescentes y adultos",
@@ -1496,14 +1513,14 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_3_dosis_de_vip_con_3.png"
         },
         {
-          "titulo": "Fiebre amarilla en municipios de bajo riesgo",
-          "paginas": "22",
-          "texto": "y en el resto del país (municipios de Bajo Riesgo) de 9 meses a 19 años.",
-          "fuente": "MinSalud 2025 (tercera jornada)",
-          "anio": "2025",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tercera-jornada-vacunacion-2025.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Lineamiento tercera jornada nacional de vacunación 2025. Bogotá; 2025.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag22_y_en_el_resto_del.png"
+          "titulo": "Fiebre amarilla de 9 meses a 59 años en bajo riesgo",
+          "paginas": "14",
+          "texto": "2025; y vacunación de población de 9 meses a 59 años en municipios de bajo riesgo.",
+          "fuente": "MinSalud 2026 (lineamientos PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag14_2025_y_vacunacion_de_poblacion.png"
         }
       ]
     },
@@ -1538,24 +1555,24 @@
       "opciones": [
         {
           "texto": "9 a 17 años",
-          "siguiente_nodo": "ad_vph",
-          "color": "morado"
+          "siguiente_nodo": "ad_vph"
         },
         {
           "texto": "Mujer de 10 a 49 años",
           "siguiente_nodo": "ad_td",
-          "color": "rosa",
           "descripcion": "Sin embarazo; si está embarazada, ir a Gestantes"
         },
         {
+          "texto": "Otro adulto de 18 a 59 años",
+          "siguiente_nodo": "ad_general"
+        },
+        {
           "texto": "60 años o más",
-          "siguiente_nodo": "ad_60",
-          "color": "azul"
+          "siguiente_nodo": "ad_60"
         },
         {
           "texto": "Comorbilidad o inmunosupresión",
-          "siguiente_nodo": "ad_riesgo",
-          "color": "naranja"
+          "siguiente_nodo": "ad_riesgo"
         }
       ],
       "referencias": [
@@ -1582,9 +1599,21 @@
       ]
     },
     "ad_vph": {
-      "titulo": "Aplicar el VPH y el dengue a niñas, niños y adolescentes",
-      "texto": "- **VPH**: **dosis única** a niñas y niños de **9 a 17 años**.\n- En el **inmunocomprometido**, el VPH son **2 dosis**, a los **0 y 6 meses**.\n- **Dengue**: a los **9 años**, sólo en los **municipios priorizados**.\n- **Triple viral**: comprobar las **2 dosis** hasta los **10 años, 11 meses y 29 días**.",
+      "titulo": "Aplicar las vacunas contra el VPH y el dengue",
+      "texto": "- Aplicar **una dosis** de vacuna contra el **VPH** a niñas y niños de **9 a 17 años**.\n- Aplicar **2 dosis** contra el **dengue** a los **9 años** o en cuarto grado, sólo en los municipios priorizados.\n- Comprobar las **2 dosis** de triple viral hasta los **10 años, 11 meses y 29 días**.",
       "nota_adicional": "El consentimiento para el **VPH** se hace, pero **no por escrito**: se trata como cualquier vacuna del PAI y se registra en el **PAIWEB**.",
+      "enlaces": [
+        {
+          "texto": "Niña de 10 años o más: Td",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "ad_td"
+        },
+        {
+          "texto": "VPH en el inmunocomprometido",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "esp_inmuno"
+        }
+      ],
       "referencias": [
         {
           "titulo": "VPH en niñas y niños, dosis única",
@@ -1605,16 +1634,6 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_unica_cancer_causado_por_virus.png"
-        },
-        {
-          "titulo": "VPH en inmunocomprometidos",
-          "paginas": "2",
-          "texto": "VPH: Personas Inmunocomprometidas deben recibir 2 dosis a los 0 y 6 meses.",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_vph_personas_inmunocomprometidas_deben_recibir.png"
         },
         {
           "titulo": "9 años: dengue en municipios priorizados",
@@ -1660,42 +1679,7 @@
     },
     "ad_td": {
       "titulo": "Completar el Td en la mujer de 10 a 49 años",
-      "texto": "- Aplicar el **Td** según las dosis que ya tenga, con los intervalos de **la tabla**.\n- Con las **5 dosis**, un **refuerzo** cada **10 años**.\n- Protege contra la difteria, el **tétanos accidental** y el **tétanos neonatal**.",
-      "tabla": {
-        "titulo": "Td en mujeres en edad fértil",
-        "columnas": [
-          "Dosis",
-          "Cuándo"
-        ],
-        "filas": [
-          [
-            "Td1",
-            "- **Día 0**"
-          ],
-          [
-            "Td2",
-            "- Al **mes** de la primera"
-          ],
-          [
-            "Td3",
-            "- A los **6 meses** de la segunda"
-          ],
-          [
-            "Td4",
-            "- Al **año** de la tercera"
-          ],
-          [
-            "Td5",
-            "- Al **año** de la cuarta"
-          ],
-          [
-            "Refuerzo",
-            "- Cada **10 años**"
-          ]
-        ],
-        "resaltar_primera_columna": true,
-        "en_texto": "la tabla"
-      },
+      "texto": "- Aplicar el **Td** según las dosis que ya tenga, sin reiniciar el esquema.\n- Con las **5 dosis**, aplicar un **refuerzo** cada **10 años**.\n- Protege contra la difteria, el **tétanos accidental** y el **tétanos neonatal**.",
       "enlaces": [
         {
           "texto": "Si está embarazada",
@@ -1723,6 +1707,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_difteria_tetanos_accidental_tetanos_neonatal.png"
+        },
+        {
+          "titulo": "No reiniciar esquemas",
+          "paginas": "2",
+          "texto": "No está indicado reiniciar esquemas de vacunación, se debe revisar el antecedente vacunal.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_no_esta_indicado_reiniciar_esquemas.png"
         }
       ],
       "media": [
@@ -1757,9 +1751,56 @@
         }
       ]
     },
+    "ad_general": {
+      "titulo": "Revisar la fiebre amarilla en el adulto de 18 a 59 años",
+      "texto": "- Aplicar la **fiebre amarilla**, dosis única, si no la tiene.\n- En municipios de **bajo riesgo**, aplicarla hasta los **59 años**.\n- En zonas con **brotes activos**, aplicar un **refuerzo** a los **10 años** de la última dosis.",
+      "enlaces": [
+        {
+          "texto": "Zonas de riesgo y refuerzo",
+          "archivo_objetivo": "INTERNO",
+          "nodo_objetivo": "esp_fa"
+        },
+        {
+          "texto": "Exposición rábica y rabia",
+          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/rabia.json"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Fiebre amarilla desde los 9 meses",
+          "paginas": "2",
+          "texto": "Fiebre amarilla: a partir de los 9 meses en todo el país. En mayores de 60 años y gestantes que residan o transiten por municipios de alto o muy alto riesgo, según lineamientos de MinSalud.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_fiebre_amarilla_a_partir_de.png"
+        },
+        {
+          "titulo": "Fiebre amarilla de 9 meses a 59 años en bajo riesgo",
+          "paginas": "14",
+          "texto": "2025; y vacunación de población de 9 meses a 59 años en municipios de bajo riesgo.",
+          "fuente": "MinSalud 2026 (lineamientos PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag14_2025_y_vacunacion_de_poblacion.png"
+        },
+        {
+          "titulo": "Fiebre amarilla: refuerzo en zonas con brotes",
+          "paginas": "2",
+          "texto": "frente al riesgo actual, aplicar dosis de refuerzo 10 años después de la última dosis a quienes transiten y residan en zonas con brotes activos.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_frente_al_riesgo_actual_aplicar.png"
+        }
+      ]
+    },
     "ad_60": {
       "titulo": "Vacunar al adulto de 60 años o más",
-      "texto": "- Aplicar la **influenza estacional** cada año.\n- Aplicar la **fiebre amarilla** si vive o transita por municipios de **alto o muy alto riesgo**.\n- La **COVID-19**, según los lineamientos vigentes del MinSalud.",
+      "texto": "- Aplicar la **influenza estacional** cada año.\n- Aplicar la **fiebre amarilla** si vive o transita por municipios de **alto o muy alto riesgo**.\n- Aplicar la **COVID-19**: los mayores de **60 años** están priorizados (lineamiento 2025).",
       "enlaces": [
         {
           "texto": "Fiebre amarilla: zonas y refuerzo",
@@ -1797,12 +1838,22 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag14_ampliacion_de_la_vacunacion_contra.png"
+        },
+        {
+          "titulo": "COVID-19 en mayores de 60 años (2025)",
+          "paginas": "23",
+          "texto": "Mayores de 60 años (Pfizer o Moderna Comirnaty JN.1)",
+          "fuente": "MinSalud 2025 (tercera jornada)",
+          "anio": "2025",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tercera-jornada-vacunacion-2025.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamiento tercera jornada nacional de vacunación 2025. Bogotá; 2025.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_mayores_de_60_anos_pfizer.png"
         }
       ]
     },
     "ad_riesgo": {
       "titulo": "Vacunar contra la influenza a quien tiene riesgo",
-      "texto": "- Aplicar **influenza estacional** desde los **36 meses** a quien tiene:\n  - enfermedad respiratoria o cardiovascular\n  - **diabetes** u obesidad\n  - **inmunocompromiso** (VIH, cáncer o inmunosupresores)\n- En el inmunocomprometido, el **VPH** son **2 dosis**.",
+      "texto": "- Aplicar **influenza estacional** desde los **36 meses** a quien tiene:\n  - enfermedad respiratoria o cardiovascular\n  - **diabetes** o sobrepeso\n  - VIH o cáncer\n  - uso prolongado de **inmunosupresores**\n- Aplicar la **COVID-19** a los mayores de **12 años** con comorbilidades (lineamiento 2025).",
       "enlaces": [
         {
           "texto": "Inmunocompromiso",
@@ -1832,14 +1883,14 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag21_poblacion_con_diagnostico_de_riesgo.png"
         },
         {
-          "titulo": "VPH en inmunocomprometidos",
-          "paginas": "2",
-          "texto": "VPH: Personas Inmunocomprometidas deben recibir 2 dosis a los 0 y 6 meses.",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_vph_personas_inmunocomprometidas_deben_recibir.png"
+          "titulo": "COVID-19 en mayores de 12 años con comorbilidades (2025)",
+          "paginas": "23",
+          "texto": "Población mayor de 12 años con comorbilidades (JN.1 Pfizer o Moderna Comirnaty JN.1)",
+          "fuente": "MinSalud 2025 (tercera jornada)",
+          "anio": "2025",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tercera-jornada-vacunacion-2025.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamiento tercera jornada nacional de vacunación 2025. Bogotá; 2025.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_poblacion_mayor_de_12_anos.png"
         }
       ]
     },
@@ -1868,36 +1919,9 @@
     },
     "ges_esquema": {
       "tipo": "pregunta",
-      "titulo": "Revisar las vacunas que tocan en el embarazo",
+      "titulo": "Aplicar las vacunas del embarazo según la semana",
       "contexto": "Las vacunas del embarazo protegen al **recién nacido** con los anticuerpos de la madre, en los meses en que todavía **no puede vacunarse**.",
-      "texto": "- Aplicar cada vacuna desde su semana, como en **la tabla**.\n- Se pueden poner **el mismo día**, en sitios anatómicos diferentes.\n- Completar el **Td** si no tiene sus dosis de mujer en edad fértil.",
-      "tabla": {
-        "titulo": "Vacunas del embarazo",
-        "columnas": [
-          "Vacuna",
-          "Cuándo"
-        ],
-        "filas": [
-          [
-            "COVID-19",
-            "- **Única** por embarazo\n- Desde la semana **12**"
-          ],
-          [
-            "Influenza",
-            "- **Única** anual\n- Desde la semana **14**"
-          ],
-          [
-            "Tdap",
-            "- **Única** por embarazo\n- Desde la semana **20**"
-          ],
-          [
-            "VSR",
-            "- **Única** por embarazo\n- Entre las semanas **28 y 36**"
-          ]
-        ],
-        "resaltar_primera_columna": true,
-        "en_texto": "la tabla"
-      },
+      "texto": "- Aplicar cada vacuna desde su semana, una dosis por **embarazo**.\n- La **vacuna del VSR** se puede poner el mismo día que las otras, en otro sitio.\n- Completar el **Td** si no tiene sus dosis de mujer en edad fértil.",
       "discrepancias": [
         {
           "asunto": "Desde qué semana se aplica la Tdap",
@@ -1910,7 +1934,7 @@
             {
               "fuente": "MinSalud 2025 (tercera jornada)",
               "dice": "Desde la semana **26**, y desde la **20** en población dispersa o indígena; mejor antes de la **36**.",
-              "paginas": "21"
+              "paginas": "22"
             }
           ],
           "nota": "El algoritmo usa la **memoficha 2026**, la **fuente más reciente**."
@@ -1920,18 +1944,15 @@
       "opciones": [
         {
           "texto": "Menos de 28 semanas",
-          "siguiente_nodo": "ges_antes28",
-          "color": "azul"
+          "siguiente_nodo": "ges_antes28"
         },
         {
           "texto": "De 28 a 36 semanas",
-          "siguiente_nodo": "ges_vsr",
-          "color": "teal"
+          "siguiente_nodo": "ges_vsr"
         },
         {
           "texto": "Más de 36 semanas",
-          "siguiente_nodo": "ges_tarde",
-          "color": "naranja"
+          "siguiente_nodo": "ges_tarde"
         }
       ],
       "referencias": [
@@ -2014,6 +2035,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_enfermedades_respiratorias_causadas_por_el.png"
+        },
+        {
+          "titulo": "Mujeres de 10 a 49 años: Td",
+          "paginas": "1",
+          "texto": "Td1: Dia 0 Toxoide tetánico y diftérico del adulto (Td) Td2: al mes de d1. Td3: a los 6 meses de Td2. Td4: Al año de Td3.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_td1_dia_0_toxoide_tetanico.png"
         }
       ],
       "media": [
@@ -2080,11 +2111,11 @@
     },
     "ges_antes28": {
       "titulo": "Vacunar antes de la semana 28",
-      "texto": "- Desde la semana **12**: **COVID-19**.\n- Desde la semana **14**: **influenza estacional**.\n- Desde la semana **20**: **Tdap**.\n- Citarla para la **vacuna del VSR** entre las semanas **28 y 36**.",
+      "texto": "- Desde la semana **12**, aplicar la vacuna contra la **COVID-19**.\n- Desde la semana **14**, aplicar la **influenza estacional**.\n- Desde la semana **20**, aplicar la **Tdap**.\n- Citarla para la **vacuna del VSR** entre las semanas **28 y 36**.",
       "nota_adicional": "La **fiebre amarilla** se pone a la gestante sólo si vive o transita por municipios de **alto o muy alto riesgo**.",
       "enlaces": [
         {
-          "texto": "Ir a la vacuna del VSR",
+          "texto": "Semana 28: vacuna del VSR",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "ges_vsr"
         },
@@ -2148,10 +2179,31 @@
       ]
     },
     "ges_vsr": {
-      "estilo": "exito",
       "titulo": "Aplicar la vacuna materna contra el VSR",
       "contexto": "Los anticuerpos pasan por la **placenta** y protegen al bebé del VSR **desde que nace hasta los 6 meses**.",
-      "texto": "- Aplicar **una dosis** por embarazo entre las semanas **28 y 36**, en el **deltoides**.\n- Ponerla junto a la Tdap, la influenza o la COVID-19 si le faltan, en **otro sitio**.\n- Protege a partir de los **14 días** de aplicada.",
+      "texto": "- Aplicar **una dosis** en el **deltoides**.\n- Ponerla junto a la Tdap, la influenza o la COVID-19 si le faltan, en **otro sitio**.\n- Protege a partir de los **14 días** de aplicada.",
+      "farmacos": [
+        {
+          "nombre": "Vacuna materna contra el VSR (RSVpreF)",
+          "dosis": "**0,5 mL** IM en el deltoides, **única** por embarazo",
+          "pauta": "Entre las semanas **28 y 36** de gestación, en el **deltoides**.",
+          "paginas": "20"
+        }
+      ],
+      "checklist": {
+        "titulo": "Antes de aplicarla",
+        "items": [
+          "Vacuna correcta y **fecha de vencimiento**",
+          "Sin **anafilaxia** previa a un componente",
+          "Sin **enfermedad febril grave** hoy"
+        ]
+      },
+      "alertas": [
+        {
+          "titulo": "Fuera de las semanas 28 a 36",
+          "texto": "No aplicarla antes de la semana **28** ni después de la **36**: se limita a ese tramo por precaución frente al **parto prematuro**."
+        }
+      ],
       "nota_adicional": "La vacuna del VSR **no se mezcla** en la misma jeringa con otra vacuna ni con ningún **medicamento**.",
       "burbujas": [
         {
@@ -2170,30 +2222,6 @@
               "imagen_evidencia": "evidencia_inmunizaciones_pai_pag21_se_requieren_al_menos_14.png"
             }
           ]
-        }
-      ],
-      "farmacos": [
-        {
-          "nombre": "Vacuna materna contra el VSR (RSVpreF)",
-          "dosis": "**0,5 mL** IM en el deltoides, **única** por embarazo",
-          "pauta": "Entre las semanas **28 y 36** de gestación, en el **deltoides**.",
-          "paginas": "19"
-        }
-      ],
-      "checklist": {
-        "titulo": "Antes de aplicarla",
-        "items": [
-          "**Edad gestacional** entre 28 y 36 semanas",
-          "Vacuna y **dosis** correctas",
-          "Vía **intramuscular** en el deltoides",
-          "Fecha de **vencimiento**",
-          "Sin **anafilaxia** previa a un componente"
-        ]
-      },
-      "alertas": [
-        {
-          "titulo": "Fuera de las semanas 28 a 36",
-          "texto": "No aplicarla antes de la semana **28** ni después de la **36**: se limita a ese tramo por precaución frente al **parto prematuro**."
         }
       ],
       "enlaces": [
@@ -2284,6 +2312,16 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_la_vacuna_rsvpref_abrysvo_no.png"
         },
         {
+          "titulo": "Posponer con enfermedad febril grave",
+          "paginas": "23",
+          "texto": "Al igual que con otras vacunas, la administración de RSVpreF (ABRYSVO®) debe posponerse en personas que padezcan enfermedad febril grave aguda.",
+          "fuente": "MinSalud 2025 (VSR materna)",
+          "anio": "2025",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamiento-tecnico-operativo-vacuna-materna-vsr-pai-gestantes-28-36.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamiento técnico y operativo para la introducción de la vacuna materna contra el virus sincitial respiratorio en gestantes de 28 a 36 semanas. Bogotá; 2025.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag23_al_igual_que_con_otras.png"
+        },
+        {
           "titulo": "Sólo entre las semanas 28 y 36",
           "paginas": "23",
           "texto": "Para evitar el riesgo potencial de nacimiento prematuro se indica la vacunación únicamente entre las semanas ≥28 y 36 de gestación.",
@@ -2307,7 +2345,7 @@
     },
     "ges_tarde": {
       "titulo": "Vacunar después de la semana 36",
-      "texto": "- Ya no aplicar la **vacuna del VSR**: su tramo termina en la semana **36**.\n- Aplicar la **influenza** y la **COVID-19** si no las recibió.\n- La **Tdap** va mejor antes de la semana **36**; si falta, revisarla con el equipo.",
+      "texto": "- Ya no aplicar la **vacuna del VSR**: su tramo termina en la semana **36**.\n- Aplicar la **influenza** y la **COVID-19** si no las recibió.\n- Aplicar la **Tdap** si no la recibió; lo ideal es antes de la semana **36**.",
       "referencias": [
         {
           "titulo": "Sólo entre las semanas 28 y 36",
@@ -2340,6 +2378,16 @@
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_covid19_unica_por_cada_embarazo.png"
         },
         {
+          "titulo": "Gestantes: Tdap desde la semana 20",
+          "paginas": "1",
+          "texto": "TdaP (Tétanos, Difteria Tosferina acelular) Única por cada embarazo Desde semana 20",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag1_tdap_tetanos_difteria_tosferina_acelular.png"
+        },
+        {
           "titulo": "Tdap desde la semana 26, o 20 en población dispersa",
           "paginas": "22",
           "texto": "En Colombia se indica aplicar la vacuna de Tdap en las gestantes a partir de la semana 26 y de la semana 20 en población dispersa o indígena y preferiblemente antes de la semana 36 de gestación",
@@ -2358,29 +2406,21 @@
       "pie_nodo": "¿Qué situación especial tiene la persona?",
       "opciones": [
         {
-          "texto": "Prematuro de menos de 1.500 g",
+          "texto": "Peso al nacer menor de 1.500 g",
           "siguiente_nodo": "esp_hexa",
-          "color": "azul"
+          "descripcion": "Prematuro o a término"
         },
         {
           "texto": "Inmunocompromiso",
-          "siguiente_nodo": "esp_inmuno",
-          "color": "naranja"
+          "siguiente_nodo": "esp_inmuno"
         },
         {
           "texto": "Riesgo de fiebre amarilla",
-          "siguiente_nodo": "esp_fa",
-          "color": "amarillo"
+          "siguiente_nodo": "esp_fa"
         },
         {
           "texto": "Riesgo de sarampión",
-          "siguiente_nodo": "esp_sarampion",
-          "color": "rojo"
-        },
-        {
-          "texto": "Brote de meningococo o Mpox",
-          "siguiente_nodo": "esp_brotes",
-          "color": "morado"
+          "siguiente_nodo": "esp_sarampion"
         }
       ],
       "referencias": [
@@ -2393,13 +2433,22 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_segun_el_contexto_epidemiologico_el.png"
+        },
+        {
+          "titulo": "Vacunas para brotes",
+          "paginas": "2",
+          "texto": "Existen vacunas para el abordaje de brotes de meningococo y Mpox.",
+          "fuente": "MinSalud 2026 (memoficha PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_existen_vacunas_para_el_abordaje.png"
         }
       ]
     },
     "esp_hexa": {
       "titulo": "Usar la hexavalente en el nacido con menos de 1.500 g",
-      "texto": "- Aplicar la **hexavalente acelular** (DPT, Hib, hepatitis B y VIP) en vez de la pentavalente.\n- Para nacidos con peso **menor de 1.500 g**, **prematuros o a término**, desde el **1 de abril de 2025**.\n- Seguir las mismas **edades** del esquema: 2, 4, 6 y 18 meses.",
-      "nota_adicional": "La hexavalente ya lleva la **VIP** (DPT, Hib, hepatitis B y VIP): reemplaza a la **pentavalente** según los lineamientos del MinSalud.",
+      "texto": "- Aplicar la **hexavalente acelular** (DPT, Hib, hepatitis B y VIP) en vez de la pentavalente.\n- Usarla en todo nacido con **menos de 1.500 gramos**, **prematuro o a término**, desde el **1 de abril de 2025**.\n- No poner la **VIP** aparte: la hexavalente ya la lleva.",
       "enlaces": [
         {
           "texto": "Ir a los 2 meses",
@@ -2432,8 +2481,7 @@
     },
     "esp_inmuno": {
       "titulo": "Ajustar el esquema del inmunocomprometido",
-      "texto": "- **VPH**: **2 dosis**, a los **0 y 6 meses**, en vez de la dosis única.\n- **Influenza estacional** cada año desde los **36 meses**.\n- Para las demás vacunas, seguir los **lineamientos** del MinSalud.",
-      "nota_adicional": "En el inmunocomprometido el VPH necesita una **segunda dosis** a los **6 meses**: la dosis única no le basta.",
+      "texto": "- Aplicar **2 dosis** contra el **VPH**, a los **0 y 6 meses**, en vez de la dosis única.\n- Aplicar la **influenza estacional** cada año desde los **36 meses**.\n- Para las demás vacunas, seguir los **lineamientos** del MinSalud.",
       "referencias": [
         {
           "titulo": "VPH en inmunocomprometidos",
@@ -2470,15 +2518,50 @@
     "esp_fa": {
       "estilo": "advertencia",
       "titulo": "Vacunar contra la fiebre amarilla según el riesgo",
-      "texto": "- Aplicar la **dosis única** desde los **9 meses** en todo el país.\n- En municipios de **alto o muy alto riesgo**, incluir a los mayores de **60 años** y a las **gestantes** que vivan o transiten por ellos.\n- En municipios de **bajo riesgo**, a los susceptibles hasta los **19 años**.\n- En zonas con **brotes activos**, refuerzo a los **10 años** de la última dosis.",
+      "texto": "- Aplicar la **dosis única** desde los **9 meses**, según el riesgo del municipio, como en **la tabla**.\n- En zonas con **brotes activos**, aplicar un **refuerzo** a los **10 años** de la última dosis.",
+      "tabla": {
+        "titulo": "Por riesgo del municipio",
+        "columnas": [
+          "Municipio",
+          "A quién"
+        ],
+        "filas": [
+          [
+            "Alto o muy alto riesgo",
+            "- Desde los **9 meses**\n- Incluidos los **60 años o más**\n- Incluidas las **gestantes** que vivan o transiten por él"
+          ],
+          [
+            "Bajo riesgo",
+            "- De los **9 meses** a los **59 años**"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
+      },
       "discrepancias": [
+        {
+          "asunto": "Edad tope en municipios de bajo riesgo",
+          "posturas": [
+            {
+              "fuente": "MinSalud 2026 (lineamientos PAI)",
+              "dice": "De **9 meses a 59 años**.",
+              "paginas": "14"
+            },
+            {
+              "fuente": "MinSalud 2025 (tercera jornada)",
+              "dice": "De **9 meses a 19 años**.",
+              "paginas": "22"
+            }
+          ],
+          "nota": "El algoritmo usa los **lineamientos 2026**, que **ampliaron** las edades."
+        },
         {
           "asunto": "Refuerzo de la fiebre amarilla",
           "posturas": [
             {
               "fuente": "MinSalud 2025 (tercera jornada)",
               "dice": "**Dosis única de por vida**.",
-              "paginas": "21"
+              "paginas": "22"
             },
             {
               "fuente": "MinSalud 2026 (memoficha PAI)",
@@ -2509,6 +2592,16 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag14_ampliacion_de_la_vacunacion_contra.png"
+        },
+        {
+          "titulo": "Fiebre amarilla de 9 meses a 59 años en bajo riesgo",
+          "paginas": "14",
+          "texto": "2025; y vacunación de población de 9 meses a 59 años en municipios de bajo riesgo.",
+          "fuente": "MinSalud 2026 (lineamientos PAI)",
+          "anio": "2026",
+          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/PAI/lineamientos-gestion-administracion-pai-2026.pdf",
+          "cita": "Ministerio de Salud y Protección Social. Lineamientos para la gestión y administración del Programa Ampliado de Inmunizaciones (PAI) 2026. Bogotá; 2026.",
+          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag14_2025_y_vacunacion_de_poblacion.png"
         },
         {
           "titulo": "Fiebre amarilla: dosis única de por vida",
@@ -2546,7 +2639,7 @@
       "estilo": "advertencia",
       "titulo": "Proteger contra el sarampión y la rubéola",
       "contexto": "Hay un **aumento de casos** de sarampión en las Américas y riesgo de **importación**: por eso se adelanta y se refuerza la vacunación.",
-      "texto": "- **Dosis cero** de SR o SRP entre los **6 y 11 meses**, en zonas priorizadas.\n- Después, la **triple viral** a los **12 y 18 meses**, como en el esquema.\n- **Dosis adicional** de SR a los susceptibles nacidos entre **2010 y 2019**.\n- Comprobar **2 dosis** de triple viral hasta los **10 años**.",
+      "texto": "- Aplicar la **dosis cero** de SR o SRP entre los **6 y 11 meses** en las zonas priorizadas.\n- Aplicar después la **triple viral** a los **12 y 18 meses**, como en el esquema.\n- Aplicar una **dosis adicional** de SR a quien nació entre **2010 y 2019** y no la tiene (lineamiento 2025).\n- Comprobar **2 dosis** de triple viral hasta los **10 años**.",
       "referencias": [
         {
           "titulo": "Dosis cero de SR o SRP de 6 a 11 meses",
@@ -2597,38 +2690,6 @@
           "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
           "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
           "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_triple_viral_se_deben_aplicar.png"
-        }
-      ]
-    },
-    "esp_brotes": {
-      "titulo": "Vacunar en un brote de meningococo o Mpox",
-      "texto": "- El PAI tiene **vacunas para brotes** de meningococo y de **Mpox**.\n- Se aplican según los **lineamientos** del MinSalud para cada brote.\n- En una **mordedura** o exposición a la rabia, seguir su propio algoritmo.",
-      "enlaces": [
-        {
-          "texto": "Exposición rábica y rabia",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/rabia.json"
-        }
-      ],
-      "referencias": [
-        {
-          "titulo": "Vacunas para brotes",
-          "paginas": "2",
-          "texto": "Existen vacunas para el abordaje de brotes de meningococo y Mpox.",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_existen_vacunas_para_el_abordaje.png"
-        },
-        {
-          "titulo": "El esquema puede cambiar",
-          "paginas": "2",
-          "texto": "Según el contexto epidemiológico, el MinSalud podrá actualizar el esquema de vacunación (acortamiento de intervalos, inclusión de biológicos, etc)",
-          "fuente": "MinSalud 2026 (memoficha PAI)",
-          "anio": "2026",
-          "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/afiche-esquema-vacunacion-col-2026.pdf",
-          "cita": "Ministerio de Salud y Protección Social. Esquema de vacunación de Colombia. Memoficha del Programa Ampliado de Inmunizaciones (PAI). Actualización julio de 2026.",
-          "imagen_evidencia": "evidencia_inmunizaciones_pai_pag2_segun_el_contexto_epidemiologico_el.png"
         }
       ]
     }

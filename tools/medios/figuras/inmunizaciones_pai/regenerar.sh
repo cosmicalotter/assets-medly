@@ -16,8 +16,3 @@ png esquema "$D/pai_esquema_infantil.png"
 gif esquema "$D/pai_esquema_edades.gif" 27 900 2500 128
 png gestantes "$D/pai_gestantes_semanas.png"
 png td "$D/pai_td_mef.png"
-# Foto de Commons recortada, con título y crédito (CC BY 2.0)
-"$PY" -c "from PIL import Image; Image.open('$H/fuentes/commons_bcg_cicatriz.jpg').crop((200,300,840,960)).save('$H/fuentes/commons_bcg_cicatriz_recorte.jpg', quality=92, subsampling=0)"
-python3 tools/medios/franja_credito.py "$H/fuentes/commons_bcg_cicatriz_recorte.jpg" "$D/pai_revision_antecedente.jpg" \
-  "Imagen: CDC Global, Wikimedia Commons, CC BY 2.0. Recortada por Empirica." \
-  --titulo "Revisar el antecedente vacunal" --subtitulo "Un equipo de salud revisa en casa las cicatrices de vacunas de un niño"
