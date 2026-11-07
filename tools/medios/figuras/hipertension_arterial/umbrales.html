@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Equivalencias de 130/80 mmHg en consultorio: GPC Colombia 2025, recomendación 13 (tabla tomada de la AHA 2025).
+// Protocolos del AMPA y del MAPA: ISH 2026, figura 1. Visitas: ISH 2026, sección 3.2.
+const F = [
+  [TEAL, "Consultorio", "2 tomas promediadas, en <b>2-3 visitas</b>", "≥130/80"],
+  [AZUL, "AMPA", "<b>7 días</b> (al menos 3), con <b>12 lecturas</b>", "≥130/80"],
+  [MORADO, "MAPA diurno", "Despierto: al menos <b>20 lecturas</b>", "≥130/80"],
+  [MORADO, "MAPA de 24 h", "Promedio de <b>todo el registro</b>", "≥125/75"],
+  [MORADO, "MAPA nocturno", "Dormido: al menos <b>7 lecturas</b>", "≥110/65"],
+];
+const filas = F.map(([c, m, p, u]) => `<div style="display:flex;align-items:center;gap:12px;background:${tinte(c, 8)};border:1.5px solid ${tinte(c, 40)};border-radius:12px;padding:8px 12px">
+  <div style="width:132px;font-weight:800;font-size:15.5px;color:${c}">${m}</div>
+  <div style="flex:1;font-size:13.5px;color:#475569"><span>${p}</span></div>
+  <div style="min-width:118px;text-align:center;background:${c};color:#fff;font-weight:800;font-size:19px;border-radius:999px;padding:5px 12px">${u}</div>
+</div>`).join("");
+const nota = `<div class="caja" style="background:#F8FAFC;border:1.5px solid var(--linea);font-size:13px"><span>Si el umbral en consultorio es <b>140/90</b> (ISH), el equivalente es <b>135/85</b> en el AMPA y <b>130/80</b> en el MAPA de 24 h.</span></div>`;
+lienzo("Umbral de HTA según el método", "Valores que equivalen a 130/80 mmHg en el consultorio, en mmHg", `<div style="display:flex;flex-direction:column;gap:8px">${filas}</div>` + nota,
+  "Esquema. Fuente: GPC Colombia 2025, recomendación 13 (equivalencias tomadas de la AHA 2025); ISH 2026, sección 3 y figura 1.");
+</script></body></html>
