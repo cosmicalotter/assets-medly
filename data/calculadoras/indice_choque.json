@@ -1,0 +1,96 @@
+{
+ "titulo": "Índice de choque obstétrico",
+ "descripcion": "Cociente entre la frecuencia cardiaca y la presión arterial sistólica. En la mujer con hemorragia posparto avisa del deterioro hemodinámico antes de que caiga la presión. La OMS 2025 lo usa como signo anormal (mayor de 1) en sus criterios de hemorragia posparto, y la FIGO 2022 lo recomienda como marcador de gravedad (mayor de 0,9).",
+ "instrucciones": "Tomar el pulso y la presión arterial sistólica al mismo tiempo, y repetirlo en cada revaloración.",
+ "limitaciones": "Es un apoyo, no un diagnóstico: con 300 mL o más medidos, cualquier signo anormal ya define la hemorragia. En la cesárea la anestesia puede cambiar el pulso y la presión.",
+ "tipoCalculo": "formula",
+ "formula": "fc / pas",
+ "decimales": 2,
+ "prefijoResultado": "Índice de choque",
+ "secciones": [
+  {
+   "nombre": "Signos vitales",
+   "elementos": [
+    {
+     "id": "fc",
+     "tipo": "input_numero",
+     "label": "Frecuencia cardiaca",
+     "unidad": "lpm",
+     "min": 20,
+     "max": 250
+    },
+    {
+     "id": "pas",
+     "tipo": "input_numero",
+     "label": "Presión arterial sistólica",
+     "unidad": "mmHg",
+     "min": 20,
+     "max": 250
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 0,
+   "max": 0.9,
+   "categoria": "Esperado en el embarazo",
+   "color": "verde",
+   "match_opcion_index": -1,
+   "approach": "En el embarazo y el posparto lo normal es **0,7-0,9**. Seguir midiendo el sangrado y los signos vitales cada **15 min**."
+  },
+  {
+   "min": 0.9001,
+   "max": 1.0,
+   "categoria": "Alerta (FIGO >0,9)",
+   "color": "amarillo",
+   "match_opcion_index": -1,
+   "approach": "Por encima de **0,9** alerta de **inestabilidad hemodinámica** y se asocia a más mortalidad: buscar la causa y preparar la escalada."
+  },
+  {
+   "min": 1.0001,
+   "max": 99,
+   "categoria": "Signo anormal (OMS >1)",
+   "color": "rojo",
+   "match_opcion_index": -1,
+   "approach": "Con **300 mL** o más medidos, es **hemorragia posparto**: iniciar el paquete de primera respuesta. Más de **1** aumenta la probabilidad de **transfusión**."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "World Health Organization, International Federation of Gynecology and Obstetrics, International Confederation of Midwives. Consolidated guidelines for the prevention, diagnosis and treatment of postpartum haemorrhage. Geneva: World Health Organization; 2025.",
+   "url": "https://www.who.int/publications/i/item/9789240115637",
+   "paginas": "40",
+   "texto": "or shock index >1 (calculated as pulse rate divided by systolic BP, which is >1 when pulse rate is higher than the systolic BP).",
+   "anio": "2025"
+  },
+  {
+   "titulo": "World Health Organization, International Federation of Gynecology and Obstetrics, International Confederation of Midwives. Consolidated guidelines for the prevention, diagnosis and treatment of postpartum haemorrhage. Geneva: World Health Organization; 2025.",
+   "url": "https://www.who.int/publications/i/item/9789240115637",
+   "paginas": "39",
+   "texto": "objectively measured blood loss threshold of ≥300 mL with any abnormal haemodynamic sign (pulse >100 bpm, shock index >1, systolic blood pressure <100 mmHg, or diastolic blood pressure <60 mmHg)",
+   "anio": "2025"
+  },
+  {
+   "titulo": "Escobar MF, Nassar AH, Theron G, et al. FIGO recommendations on the management of postpartum hemorrhage 2022. Int J Gynecol Obstet. 2022;157(Suppl 1):3-50.",
+   "url": "https://doi.org/10.1002/ijgo.14116",
+   "paginas": "15",
+   "texto": "FIGO considers that the shock index can be a marker of the severity of PPH and can alert teams to hemodynamic instability when its value is greater than 0.9.",
+   "anio": "2022"
+  },
+  {
+   "titulo": "Escobar MF, Nassar AH, Theron G, et al. FIGO recommendations on the management of postpartum hemorrhage 2022. Int J Gynecol Obstet. 2022;157(Suppl 1):3-50.",
+   "url": "https://doi.org/10.1002/ijgo.14116",
+   "paginas": "15",
+   "texto": "standard obstetric SI has been defined as 0.7–0.9 compared with 0.5–0.7 for the nonpregnant population,",
+   "anio": "2022"
+  },
+  {
+   "titulo": "Escobar MF, Nassar AH, Theron G, et al. FIGO recommendations on the management of postpartum hemorrhage 2022. Int J Gynecol Obstet. 2022;157(Suppl 1):3-50.",
+   "url": "https://doi.org/10.1002/ijgo.14116",
+   "paginas": "15",
+   "texto": "an SI ≥0.9 is associated with increased mortality and an SI>1 increases the likelihood of blood transfusion.",
+   "anio": "2022"
+  }
+ ]
+}

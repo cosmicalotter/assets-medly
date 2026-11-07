@@ -1,0 +1,288 @@
+{
+ "titulo": "Grado de choque hemorrágico obstétrico (Código Rojo)",
+ "descripcion": "Clasifica el choque de la mujer con hemorragia obstétrica en compensado, leve, moderado o grave según el peor de cuatro parámetros clínicos: sensorio, perfusión, pulso y presión arterial sistólica. Es la modificación de la clasificación de Baskett que usa el Código Rojo de NACER (Universidad de Antioquia) y adopta la guía colombiana de 2013; decide si se activa el código rojo y estima la pérdida.",
+ "instrucciones": "Evaluar en este orden: sensorio, perfusión, pulso y presión arterial sistólica. Manda el peor parámetro. Reevaluar tras cada bolo de líquidos.",
+ "limitaciones": "En la embarazada el pulso y la presión cambian tarde: valores normales no descartan una pérdida importante. Los volúmenes estimados son para una mujer de 50-70 kg. No sustituye la medición objetiva del sangrado.",
+ "tipoCalculo": "formula",
+ "formula": "10 * 0.5 * (0.5 * (sensorio + perfusion + abs(sensorio - perfusion)) + 0.5 * (fc_puntos + pas_puntos + abs(fc_puntos - pas_puntos)) + abs(0.5 * (sensorio + perfusion + abs(sensorio - perfusion)) - 0.5 * (fc_puntos + pas_puntos + abs(fc_puntos - pas_puntos)))) + perdida",
+ "mostrarPuntaje": false,
+ "prefijoResultado": "Choque",
+ "secciones": [
+  {
+   "nombre": "El peor parámetro manda",
+   "elementos": [
+    {
+     "id": "sensorio",
+     "tipo": "opciones",
+     "label": "Sensorio: estado de conciencia",
+     "ayuda": "Es lo primero que se evalúa: cambia antes que el pulso y la presión.",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 0
+      },
+      {
+       "label": "Agitada",
+       "puntos": 1,
+       "detalle": "Puede verse desde el choque leve; en el moderado es la regla"
+      },
+      {
+       "label": "Letárgica o inconsciente",
+       "puntos": 3
+      }
+     ]
+    },
+    {
+     "id": "perfusion",
+     "tipo": "opciones",
+     "label": "Perfusión: piel y llenado",
+     "ayuda": "Color y temperatura de la piel, sudoración y llenado capilar.",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 0
+      },
+      {
+       "label": "Palidez y frialdad",
+       "puntos": 1
+      },
+      {
+       "label": "Palidez, frialdad y sudoración",
+       "puntos": 2
+      },
+      {
+       "label": "Además, llenado capilar >3 s",
+       "puntos": 3
+      }
+     ]
+    },
+    {
+     "id": "fc",
+     "tipo": "input_numero",
+     "label": "Pulso",
+     "unidad": "lpm",
+     "min": 20,
+     "max": 250,
+     "intervalos": [
+      {
+       "max": 90.99,
+       "puntos": 0
+      },
+      {
+       "min": 91,
+       "max": 100.99,
+       "puntos": 1
+      },
+      {
+       "min": 101,
+       "max": 120.99,
+       "puntos": 2
+      },
+      {
+       "min": 121,
+       "puntos": 3
+      }
+     ]
+    },
+    {
+     "id": "pas",
+     "tipo": "input_numero",
+     "label": "Presión arterial sistólica",
+     "unidad": "mmHg",
+     "min": 20,
+     "max": 250,
+     "ayuda": "Normal: más de 90 mmHg. Leve: 80-90. Moderado: 70-79. Grave: menos de 70.",
+     "intervalos": [
+      {
+       "max": 69.99,
+       "puntos": 3
+      },
+      {
+       "min": 70,
+       "max": 79.99,
+       "puntos": 2
+      },
+      {
+       "min": 80,
+       "max": 90.99,
+       "puntos": 1
+      },
+      {
+       "min": 91,
+       "puntos": 0
+      }
+     ]
+    },
+    {
+     "id": "perdida",
+     "tipo": "opciones",
+     "label": "Pérdida medida: 1.000 mL o más",
+     "ayuda": "Con 1.000 mL o más se activa el código rojo aunque los signos sean normales.",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 30,
+   "max": 31,
+   "categoria": "Choque grave",
+   "color": "rojo",
+   "match_opcion_index": 2,
+   "si": {
+    "alguno": [
+     {
+      "id": "sensorio",
+      "igual": 3
+     },
+     {
+      "id": "perfusion",
+      "igual": 3
+     },
+     {
+      "id": "fc_puntos",
+      "igual": 3
+     },
+     {
+      "id": "pas_puntos",
+      "igual": 3
+     }
+    ]
+   },
+   "approach": "Pérdida estimada **>35 %** (**2.000-3.000 mL**). Activar el código rojo, iniciar **glóbulos rojos O negativo** en **15 min** y aplicar el **protocolo de transfusión masiva**."
+  },
+  {
+   "min": 20,
+   "max": 21,
+   "categoria": "Choque moderado",
+   "color": "naranja",
+   "match_opcion_index": 1,
+   "si": {
+    "alguno": [
+     {
+      "id": "perfusion",
+      "igual": 2
+     },
+     {
+      "id": "fc_puntos",
+      "igual": 2
+     },
+     {
+      "id": "pas_puntos",
+      "igual": 2
+     }
+    ]
+   },
+   "approach": "Pérdida estimada **26-35 %** (**1.500-2.000 mL**). Activar el código rojo y pasar bolos de **500 mL** de cristaloides tibios, revalorando cada **5 min**."
+  },
+  {
+   "min": 10,
+   "max": 11,
+   "categoria": "Choque leve",
+   "color": "amarillo",
+   "match_opcion_index": 1,
+   "si": {
+    "alguno": [
+     {
+      "id": "sensorio",
+      "igual": 1
+     },
+     {
+      "id": "perfusion",
+      "igual": 1
+     },
+     {
+      "id": "fc_puntos",
+      "igual": 1
+     },
+     {
+      "id": "pas_puntos",
+      "igual": 1
+     }
+    ]
+   },
+   "approach": "Pérdida estimada **16-25 %** (**1.000-1.500 mL**). Activar el código rojo y pasar bolos de **500 mL** de cristaloides tibios, revalorando cada **5 min**."
+  },
+  {
+   "min": 1,
+   "max": 1,
+   "categoria": "Compensado, con ≥1.000 mL",
+   "color": "amarillo",
+   "match_opcion_index": 1,
+   "si": {
+    "id": "perdida",
+    "igual": 1
+   },
+   "approach": "Sin signos de choque, pero con **1.000 mL** o más medidos: **activar el código rojo**."
+  },
+  {
+   "min": 0,
+   "max": 0,
+   "categoria": "Compensado",
+   "color": "verde",
+   "match_opcion_index": 0,
+   "approach": "Sin signos de choque (pérdida estimada **10-15 %**, **500-1.000 mL**). Aplicar el paquete de primera respuesta y revalorar cada **15 min**: activar el código rojo si aparece un signo."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Vélez-Álvarez GA, Agudelo-Jaramillo B, Gómez-Dávila JG, Zuleta-Tobón JJ. Código rojo: guía para el manejo de la hemorragia obstétrica. Rev Colomb Obstet Ginecol. 2009;60(1):34-48.",
+   "url": "https://doi.org/10.18597/rcog.352",
+   "paginas": "38",
+   "texto": "El grado de choque lo establece el peor parámetro encontrado. Ante signos de choque y/o un cálculo de sangrado superior a 1000 mL se debe activar el \"Código Rojo\"",
+   "anio": "2009"
+  },
+  {
+   "titulo": "Vélez-Álvarez GA, Agudelo-Jaramillo B, Gómez-Dávila JG, Zuleta-Tobón JJ. Código rojo: guía para el manejo de la hemorragia obstétrica. Rev Colomb Obstet Ginecol. 2009;60(1):34-48.",
+   "url": "https://doi.org/10.18597/rcog.352",
+   "paginas": "36",
+   "texto": "en primer lugar, el estado de conciencia y la perfusión, pues las alteraciones en el pulso y la presión arterial son tardíos en la mujer embarazada.",
+   "anio": "2009"
+  },
+  {
+   "titulo": "Vélez-Álvarez GA, Agudelo-Jaramillo B, Gómez-Dávila JG, Zuleta-Tobón JJ. Código rojo: guía para el manejo de la hemorragia obstétrica. Rev Colomb Obstet Ginecol. 2009;60(1):34-48.",
+   "url": "https://doi.org/10.18597/rcog.352",
+   "paginas": "36",
+   "texto": "Debido al aumento del volumen plasmático que ocurre en la mujer durante el embarazo, un porcentaje de pérdida dado representa para ella un volumen mayor",
+   "anio": "2009"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15, sección 6: complicaciones hemorrágicas. Bogotá: MinSalud; 2013.",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+   "paginas": "65",
+   "texto": "Se recomienda clasificar el grado del choque e iniciar el manejo con el peor parámetro clínico encontrado.",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15, sección 6: complicaciones hemorrágicas. Bogotá: MinSalud; 2013.",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+   "paginas": "65",
+   "texto": "cuando se diagnostique hemorragia posparto con cualquier grado de choque, se active el protocolo de código rojo obstétrico",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Vélez-Álvarez GA, Agudelo-Jaramillo B, Gómez-Dávila JG, Zuleta-Tobón JJ. Código rojo: guía para el manejo de la hemorragia obstétrica. Rev Colomb Obstet Ginecol. 2009;60(1):34-48.",
+   "url": "https://doi.org/10.18597/rcog.352",
+   "paginas": "38",
+   "texto": "En caso de que la paciente presente un choque severo la primera unidad de glóbulos rojos se debe iniciar en un lapso de 15 minutos",
+   "anio": "2009"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15, sección 6: complicaciones hemorrágicas. Bogotá: MinSalud; 2013.",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+   "paginas": "66",
+   "texto": "presión arterial sistólica mayor de 90 mmHg y llenado capilar < 5 seg con bolos de 500 mL si alguno de los parámetros se encuentra alterado.",
+   "anio": "2013"
+  }
+ ]
+}
