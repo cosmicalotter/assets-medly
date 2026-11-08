@@ -28,5 +28,5 @@ gif fosfomicina "$D/itu_fosfomicina.gif" 25 560 3000 128
 # Fotos reales con licencia libre (fuentes/), recortadas y rotuladas
 jpg foto_tira "$D/itu_tira_real.jpg"
 jpg foto_urocultivo "$D/itu_urocultivo_real.jpg"
-jpg foto_sonda "$D/itu_sonda_real.jpg"
+jpg foto_sonda "$D/itu_sonda_real.jpg" 72
 jpg foto_hidronefrosis "$D/itu_hidronefrosis_real.jpg" 80
