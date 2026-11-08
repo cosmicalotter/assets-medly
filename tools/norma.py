@@ -46,7 +46,7 @@ GALERIAS = ("media", "imagenes")
 #: Las metas de la norma. Se ajustan aquí y en NORMA.md a la vez.
 METAS = {
     "perlas": 0.25,          # nodos clínicos con nota_adicional
-    "imagenes": 0.25,        # nodos clínicos con al menos una imagen que se ve
+    "imagenes": 0.33,        # nodos clínicos con al menos una imagen que se ve (1 de cada 3, noviembre de 2026)
     "nodos_por_checklist": 12,
     "nodos_por_alerta": 10,
     "nodos_por_evidencia": 8,
