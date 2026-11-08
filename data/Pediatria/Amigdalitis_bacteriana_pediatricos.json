@@ -3267,8 +3267,8 @@
       "texto": "Rinosinusitis aguda",
       "opciones": [
         {
-          "texto": "¿Viral o bacteriana?",
-          "siguiente_nodo": "rs_diagnostico"
+          "texto": "Confirmar el diagnóstico",
+          "siguiente_nodo": "rs_clinica"
         }
       ],
       "referencias": [
@@ -3284,16 +3284,356 @@
         }
       ]
     },
+    "rs_clinica": {
+      "tipo": "pregunta",
+      "titulo": "Confirmar la rinosinusitis y descartar lo que la imita",
+      "texto": "- Comprobar los criterios de la lista y hacer la historia **médica y familiar**.\n- Rinoscopia anterior: meatos, cornetes, **mucosa** y rinorrea; puede mostrar pólipos o anomalías.\n- Tomar la **temperatura**: más de **38 °C** indica una enfermedad más grave.\n- Mirar la boca: puede verse el **escurrimiento** posterior.\n- No pedir laboratorios, cultivo nasal ni **radiografía** de senos.\n- Descartar con la tabla los cuadros que la imitan.",
+      "checklist": {
+        "titulo": "Criterios de rinosinusitis aguda",
+        "items": [
+          "Obstrucción nasal o **rinorrea** anterior o posterior",
+          "Además, **dolor** o presión facial, o **tos**",
+          "Inicio repentino, menos de **12 semanas**"
+        ]
+      },
+      "tabla": {
+        "titulo": "Lo que imita la rinosinusitis",
+        "en_texto": "la tabla",
+        "columnas": [
+          "Cuadro",
+          "Cómo se distingue"
+        ],
+        "filas": [
+          [
+            "Rinitis alérgica",
+            "- Antecedente de **alergia**\n- Síntomas al exponerse al **alérgeno**\n- Estornudos y rinorrea acuosa\n- Picazón en la nariz y los ojos\n- Rara vez rinorrea **purulenta**, dolor o anosmia"
+          ],
+          [
+            "Enfermedad dental",
+            "- Dolor facial **mal definido**, con o sin fiebre\n- Dolor dental\n- Sin rinorrea ni alteración del **olfato**"
+          ],
+          [
+            "Rinosinusitis fúngica invasiva",
+            "- **Inmunosuprimido** o diabético descompensado\n- Más grave\n- Progresión **rápida**"
+          ],
+          [
+            "Fuga de LCR",
+            "- Rinorrea **acuosa** de un solo lado"
+          ]
+        ]
+      },
+      "alertas": [
+        {
+          "titulo": "Complicación",
+          "texto": "Pedir **imagen** y remitir al **hospital** si hay:\n- Edema palpebral.\n- Proptosis.\n- Dolor o limitación ocular.\n- Cefalea intensa.\n- Alteración neurológica."
+        }
+      ],
+      "nota_adicional": "Casi siempre sigue a un **resfriado** viral y se cura sola; la bacteriana se **sobrediagnostica**, con abuso de antibióticos e imágenes.",
+      "burbujas": [
+        {
+          "en_texto": "No pedir laboratorios",
+          "titulo": "¿Y una tomografía?",
+          "texto": "La TC sale **anormal** en niños sanos: tras un resfriado, hasta el **87 %** de los asintomáticos tiene la mucosa engrosada. Se pide sólo ante una **complicación** o si se planea cirugía.",
+          "referencias": [
+            {
+              "titulo": "TC anormal en niños sanos",
+              "paginas": "10",
+              "texto": "principalmente después de un resfriado común en el que se puede encontrar un leve engrosamiento de la mucosa sinusal hasta en un 87% de niños asintomáticos",
+              "fuente": "ACORL (rinosinusitis)",
+              "anio": "2024",
+              "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+              "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+              "imagen_evidencia": "evidencia_ivas_pag10_rs_principalmente_despues_de_un_resfriado.png"
+            },
+            {
+              "titulo": "Cuándo se pide imagen",
+              "paginas": "10",
+              "texto": "Las imágenes diagnósticas en la rinosinusitis aguda en niños están indicadas ante la sospecha de complicaciones orbitarias o intracraneales, o si se planea cualquier tipo de manejo quirúrgico.",
+              "fuente": "ACORL (rinosinusitis)",
+              "anio": "2024",
+              "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+              "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+              "imagen_evidencia": "evidencia_ivas_pag10_rs_las_imagenes_diagnosticas_en_la.png"
+            }
+          ]
+        }
+      ],
+      "evidencia": {
+        "texto": "ACORL: A, fuerte a favor (diagnóstico clínico)"
+      },
+      "pie_nodo": "¿Cumple los criterios y qué encuentras al examinarlo?",
+      "opciones": [
+        {
+          "texto": "Rinosinusitis aguda, sin signos de alarma",
+          "siguiente_nodo": "rs_diagnostico",
+          "color": "azul",
+          "descripcion": "Cumple los tres criterios"
+        },
+        {
+          "texto": "Signos orbitarios o neurológicos",
+          "siguiente_nodo": "rs_complicada",
+          "color": "rojo",
+          "descripcion": "Edema palpebral, proptosis, dolor ocular, cefalea intensa o alteración neurológica"
+        },
+        {
+          "texto": "Otro cuadro o más de 12 semanas",
+          "siguiente_nodo": "rs_otro",
+          "color": "gris"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Rinosinusitis en niños: definición",
+          "paginas": "2",
+          "texto": "Se define clínicamente como la presencia de dos o más síntomas, uno de los cuales debe ser obstrucción nasal o rinorrea (anterior o posterior) más dolor o presión facial o tos",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag2_rs_define_clinicamente_como_presencia_dos.png"
+        },
+        {
+          "titulo": "Rinosinusitis aguda: menos de 12 semanas",
+          "paginas": "3",
+          "texto": "Se define como la aparición repentina y persistente de los síntomas durante menos de 12 semanas",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag3_rs_define_como_aparicion_repentina_persistente.png"
+        },
+        {
+          "titulo": "Suele seguir a un resfriado y curarse sola",
+          "paginas": "2",
+          "texto": "La rinosinusitis aguda suele ser consecuencia de un resfriado común viral y ser una enfermedad autolimitada",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag2_rs_la_rinosinusitis_aguda_suele_ser.png"
+        },
+        {
+          "titulo": "Sobrediagnóstico de la bacteriana",
+          "paginas": "8",
+          "texto": "Es importante saber que la rinosinusitis aguda bacteriana tiene un sobrediagnóstico y, por consiguiente, un abuso en el uso de antibióticos y de ayudas diagnósticas",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_es_importante_saber_que_la.png"
+        },
+        {
+          "titulo": "Historia y examen completos",
+          "paginas": "8",
+          "texto": "Se debe realizar un examen físico completo luego de registrar una historia médica y familiar cuidadosa",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_se_debe_realizar_un_examen.png"
+        },
+        {
+          "titulo": "Rinoscopia anterior",
+          "paginas": "8",
+          "texto": "Rinoscopia anterior: se deben valorar los meatos, cornetes, el aspecto de la mucosa y presencia o ausencia de rinorrea.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_rinoscopia_anterior_deben_valorar_meatos.png"
+        },
+        {
+          "titulo": "Fiebre >38 °C: más grave",
+          "paginas": "8",
+          "texto": "la fiebre >38 °C indica la presencia de una enfermedad más grave y se asocia significativamente con la presencia de un cultivo bacteriológico positivo",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_fiebre_38_c_indica_presencia.png"
+        },
+        {
+          "titulo": "Rinoscopia: pólipos o anomalías",
+          "paginas": "8",
+          "texto": "presencia o ausencia de rinorrea. En ocasiones puede revelar hallazgos como pólipos o anomalías anatómicas.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_presencia_o_ausencia_de_rinorrea.png"
+        },
+        {
+          "titulo": "Escurrimiento posterior",
+          "paginas": "8",
+          "texto": "obtenido mediante aspiración o lavado sinusal (3). Cavidad oral: se puede evidenciar escurrimiento posterior.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_obtenido_mediante_aspiracion_o_lavado.png"
+        },
+        {
+          "titulo": "Recomendación: diagnóstico clínico",
+          "paginas": "8",
+          "texto": "El diagnóstico de la rinosinusitis aguda en niños debe ser realizado basado en la clínica y el examen físico del paciente.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_diagnostico_rinosinusitis_aguda_ninos_debe.png"
+        },
+        {
+          "titulo": "Sin laboratorio de rutina",
+          "paginas": "10",
+          "texto": "No se recomienda la realización sistemática de análisis de laboratorio para el diagnóstico de la rinosinusitis aguda no complicada en pediatría",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_no_recomienda_realizacion_sistematica_analisis.png"
+        },
+        {
+          "titulo": "Sin cultivo nasal ni faríngeo",
+          "paginas": "10",
+          "texto": "Los cultivos de secreción nasal o exudado faríngeo no tienen correlación con el cultivo de exudado sinusal, por lo que no debe realizarse",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_cultivos_secrecion_nasal_exudado_faringeo.png"
+        },
+        {
+          "titulo": "Sin radiografía de senos",
+          "paginas": "10",
+          "texto": "La radiografía de senos paranasales en la rinosinusitis aguda en pediatría tiene baja sensibilidad y especificidad para evaluar, por lo que no se recomienda su uso",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_radiografia_senos_paranasales_rinosinusitis_aguda.png"
+        },
+        {
+          "titulo": "Rinitis alérgica: antecedente y exposición",
+          "paginas": "9",
+          "texto": "La diferenciación entre rinitis alérgica y rinosinusitis aguda se realiza principalmente sobre la base de antecedentes de alergia, y la aparición de síntomas ante la exposición a un alérgeno",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_la_diferenciacion_entre_rinitis_alergica.png"
+        },
+        {
+          "titulo": "Rinitis alérgica: síntomas",
+          "paginas": "9",
+          "texto": "al que el paciente está sensibilizado (es decir, estornudos, rinorrea acuosa, picazón nasal, picazón en los ojos y ojos llorosos).",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_al_que_el_paciente_esta.png"
+        },
+        {
+          "titulo": "Rinitis alérgica: lo poco frecuente",
+          "paginas": "9",
+          "texto": "La rinorrea mucopurulenta, el dolor, la obstrucción nasal sin otros síntomas y la anosmia son poco frecuentes en la rinitis alérgica",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_la_rinorrea_mucopurulenta_el_dolor.png"
+        },
+        {
+          "titulo": "Enfermedad orodental: dolor mal definido",
+          "paginas": "9",
+          "texto": "los pacientes con alteraciones orodentales pueden acudir con dolor facial mal definido, con o sin fiebre y dolor dental.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_los_pacientes_con_alteraciones_orodentales.png"
+        },
+        {
+          "titulo": "Enfermedad orodental: sin rinorrea",
+          "paginas": "9",
+          "texto": "La ausencia de otros síntomas como rinorrea, secreción nasal y alteraciones del olfato harán decantar por esta entidad.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_la_ausencia_de_otros_sintomas.png"
+        },
+        {
+          "titulo": "Fúngica: inmunodeprimidos y diabéticos",
+          "paginas": "9",
+          "texto": "Rinosinusitis fúngica invasiva aguda: en pacientes inmunodeprimidos y en diabéticos (principalmente en los no controlados)",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_rinosinusitis_fungica_invasiva_aguda_en.png"
+        },
+        {
+          "titulo": "Rinosinusitis fúngica invasiva",
+          "paginas": "9",
+          "texto": "la rinosinusitis fúngica invasiva aguda puede presentarse de manera similar a la rinosinusitis aguda. Los síntomas, en general, son más graves y rápidamente progresivos.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_la_rinosinusitis_fungica_invasiva_aguda.png"
+        },
+        {
+          "titulo": "Rinorrea acuosa unilateral",
+          "paginas": "9",
+          "texto": "la rinorrea acuosa unilateral es rara y debería hacer sospechar de fuga de líquido cefalorraquídeo.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_rinorrea_acuosa_unilateral_es_rara.png"
+        },
+        {
+          "titulo": "Complicaciones intracraneales",
+          "paginas": "12",
+          "texto": "si bien se deben sospechar ante cefalea intensa o progresiva incluso sin otros síntomas neurológicos, el examen físico del paciente puede presentarse sin ningún déficit neurológico",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag12_rs_si_bien_deben_sospechar_ante.png"
+        },
+        {
+          "titulo": "NG79 1.1.9: complicaciones orbitarias",
+          "paginas": "8",
+          "texto": "intraorbital or periorbital complications, including periorbital oedema or cellulitis, a displaced eyeball, double vision, ophthalmoplegia, or newly reduced visual acuity",
+          "fuente": "NICE NG79",
+          "anio": "2017",
+          "url": "https://www.nice.org.uk/guidance/ng79",
+          "cita": "National Institute for Health and Care Excellence. Sinusitis (acute): antimicrobial prescribing. NICE guideline NG79; 2017.",
+          "imagen_evidencia": "evidencia_ivas_pag8_ng79_intraorbital_or_periorbital_complications_including.png"
+        },
+        {
+          "titulo": "NG79 1.1.9: complicaciones intracraneales",
+          "paginas": "8",
+          "texto": "intracranial complications, including swelling over the frontal bone, symptoms or signs of meningitis, severe frontal headache, or focal neurological signs.",
+          "fuente": "NICE NG79",
+          "anio": "2017",
+          "url": "https://www.nice.org.uk/guidance/ng79",
+          "cita": "National Institute for Health and Care Excellence. Sinusitis (acute): antimicrobial prescribing. NICE guideline NG79; 2017.",
+          "imagen_evidencia": "evidencia_ivas_pag8_ng79_intracranial_complications_including_swelling_over.png"
+        }
+      ]
+    },
     "rs_diagnostico": {
       "tipo": "pregunta",
-      "titulo": "Rinosinusitis: ¿viral o bacteriana?",
-      "texto": "- Diagnóstico clínico: rinoscopia anterior, temperatura y orofaringe.\n- Sin laboratorio, cultivo nasal o faríngeo ni radiografía de senos.\n- Antibiótico si hay:\n  - Persistencia **≥10 días** sin mejoría.\n  - Inicio grave.\n  - Una doble enfermedad (empeora tras mejorar).\n- Diferenciales:\n  - Rinitis alérgica.\n  - Causa dental.\n  - Sinusitis fúngica invasiva.\n  - Fístula de líquido cefalorraquídeo (rinorrea acuosa unilateral).",
+      "titulo": "Decidir si es viral o bacteriana",
+      "texto": "- Dar antibiótico si hay alguno de estos **patrones**:\n  - Persistencia **≥10 días** sin mejoría.\n  - Inicio **grave**: fiebre **≥39 °C** con rinorrea purulenta o dolor facial **3-4 días** seguidos.\n  - Una doble enfermedad: empeora tras mejorar, con fiebre, cefalea o más secreción.\n- Apoyan la causa **bacteriana** 3 o más datos de la lista.",
       "media": [
         {
           "recurso": "ivas_rinosinusitis_patrones.png",
           "titulo": "Rinosinusitis: los patrones que piden antibiótico",
           "descripcion": "Curso de los síntomas en la viral y en los tres patrones de la bacteriana.",
-          "info": "La {#2FB36D:viral} mejora antes de **10 días**. Piden antibiótico: la {#F2A23A:persistente}, **≥10 días** sin mejoría; el {#EF5454:inicio grave}, fiebre **≥39 °C** con rinorrea purulenta o dolor **3-4 días**; y la {#8B5CF6:doble enfermedad}, que empeora tras mejorar.",
+          "info": "La {#2FB36D:viral} **mejora** antes de **10 días**. Piden antibiótico: la {#F2A23A:persistente}, **≥10 días** sin mejoría; el {#EF5454:inicio grave}, fiebre **≥39 °C** con rinorrea purulenta o dolor **3-4 días**; y la {#8B5CF6:doble enfermedad}, que **empeora** tras mejorar.",
           "en_texto": "doble enfermedad",
           "referencias": [
             {
@@ -3344,12 +3684,6 @@
         "etiqueta": "¿Necesita antibiótico?",
         "ramificar": true
       },
-      "alertas": [
-        {
-          "titulo": "Complicación",
-          "texto": "Imagen y hospital si hay:\n- Edema palpebral.\n- Proptosis.\n- Dolor o limitación ocular.\n- Cefalea intensa.\n- Alteración neurológica."
-        }
-      ],
       "discrepancias": [
         {
           "asunto": "Síntomas 10 días o más sin mejoría",
@@ -3365,14 +3699,11 @@
               "paginas": "6-7"
             }
           ],
-          "nota": "NICE da antibiótico inmediato sólo si está muy enfermo o con alto riesgo de complicaciones."
+          "nota": "NICE da antibiótico **inmediato** sólo si está **muy enfermo** o con alto riesgo de complicaciones."
         }
       ],
-      "nota_adicional": "Sólo el **0,5-2 %** de las infecciones virales altas se sobreinfecta; la bacteriana se sobrediagnostica.",
-      "evidencia": {
-        "texto": "ACORL: A, fuerte a favor (diagnóstico clínico)"
-      },
-      "pie_nodo": "¿Signos de complicación o algún patrón bacteriano?",
+      "nota_adicional": "Sólo el **0,5-2 %** de las infecciones virales altas se **sobreinfecta**: la mayoría de las rinosinusitis son **virales** y no llevan antibiótico.",
+      "pie_nodo": "¿Tiene algún patrón bacteriano o signos de complicación?",
       "opciones": [
         {
           "texto": "Ninguno: viral o posviral, sin antibiótico",
@@ -3392,36 +3723,6 @@
       ],
       "referencias": [
         {
-          "titulo": "Recomendación: diagnóstico clínico",
-          "paginas": "8",
-          "texto": "El diagnóstico de la rinosinusitis aguda en niños debe ser realizado basado en la clínica y el examen físico del paciente.",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag8_rs_diagnostico_rinosinusitis_aguda_ninos_debe.png"
-        },
-        {
-          "titulo": "Diagnóstico clínico, sin estudios",
-          "paginas": "8",
-          "texto": "El diagnóstico de la rinosinusitis aguda en niños se realiza según criterios clínicos y no se requieren estudios complementarios en casos no complicados",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag8_rs_diagnostico_rinosinusitis_aguda_ninos_realiza.png"
-        },
-        {
-          "titulo": "Rinoscopia anterior",
-          "paginas": "8",
-          "texto": "Rinoscopia anterior: se deben valorar los meatos, cornetes, el aspecto de la mucosa y presencia o ausencia de rinorrea.",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag8_rs_rinoscopia_anterior_deben_valorar_meatos.png"
-        },
-        {
           "titulo": "Fiebre >38 °C: más grave",
           "paginas": "8",
           "texto": "la fiebre >38 °C indica la presencia de una enfermedad más grave y se asocia significativamente con la presencia de un cultivo bacteriológico positivo",
@@ -3430,36 +3731,6 @@
           "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
           "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
           "imagen_evidencia": "evidencia_ivas_pag8_rs_fiebre_38_c_indica_presencia.png"
-        },
-        {
-          "titulo": "Sin laboratorio de rutina",
-          "paginas": "10",
-          "texto": "No se recomienda la realización sistemática de análisis de laboratorio para el diagnóstico de la rinosinusitis aguda no complicada en pediatría",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag10_rs_no_recomienda_realizacion_sistematica_analisis.png"
-        },
-        {
-          "titulo": "Sin cultivo nasal ni faríngeo",
-          "paginas": "10",
-          "texto": "Los cultivos de secreción nasal o exudado faríngeo no tienen correlación con el cultivo de exudado sinusal, por lo que no debe realizarse",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag10_rs_cultivos_secrecion_nasal_exudado_faringeo.png"
-        },
-        {
-          "titulo": "Sin radiografía de senos",
-          "paginas": "10",
-          "texto": "La radiografía de senos paranasales en la rinosinusitis aguda en pediatría tiene baja sensibilidad y especificidad para evaluar, por lo que no se recomienda su uso",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag10_rs_radiografia_senos_paranasales_rinosinusitis_aguda.png"
         },
         {
           "titulo": "Antibiótico: persistente 10 días o más",
@@ -3490,26 +3761,6 @@
           "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
           "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
           "imagen_evidencia": "evidencia_ivas_pag14_rs_pacientes_sintomas_empeoramiento_caracterizados_nueva.png"
-        },
-        {
-          "titulo": "Recomendación: diagnósticos diferenciales",
-          "paginas": "9",
-          "texto": "Se deben considerar los diagnósticos diferenciales en el niño con rinosinusitis aguda como: rinitis alérgica, enfermedad orodental, rinosinusitis fúngica invasiva aguda y fuga de líquido cefalorraquídeo.",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag9_rs_deben_considerar_diagnosticos_diferenciales_nino.png"
-        },
-        {
-          "titulo": "Rinorrea acuosa unilateral",
-          "paginas": "9",
-          "texto": "la rinorrea acuosa unilateral es rara y debería hacer sospechar de fuga de líquido cefalorraquídeo.",
-          "fuente": "ACORL (rinosinusitis)",
-          "anio": "2024",
-          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
-          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
-          "imagen_evidencia": "evidencia_ivas_pag9_rs_rinorrea_acuosa_unilateral_es_rara.png"
         },
         {
           "titulo": "Sobreinfección bacteriana: 0,5-2 %",
@@ -3580,6 +3831,163 @@
           "url": "https://www.nice.org.uk/guidance/ng79",
           "cita": "National Institute for Health and Care Excellence. Sinusitis (acute): antimicrobial prescribing. NICE guideline NG79; 2017.",
           "imagen_evidencia": "evidencia_ivas_pag13_ng79_bacterial_cause_may_be_more.png"
+        },
+        {
+          "titulo": "Bacteriana: 3 o más de 5 (1)",
+          "paginas": "8",
+          "texto": "Se define por al menos tres de los siguientes signos y síntomas: Rinorrea purulenta Fiebre >38°C (tener en cuenta que esta usualmente se presenta a partir del 3-5 día)",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_se_define_por_al_menos.png"
+        },
+        {
+          "titulo": "Bacteriana: 3 o más de 5 (2)",
+          "paginas": "8",
+          "texto": "Dolor local severo (el cual es a menudo unilateral) Enfermedad con doble pico o aquel niño que empeora tras una mejoría inicial",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_dolor_local_severo_el_cual.png"
+        },
+        {
+          "titulo": "Bacteriana: 3 o más de 5 (3)",
+          "paginas": "8",
+          "texto": "Elevación de la velocidad de sedimentación globular (VSG) o la proteína C-reactiva (PCR) (1).",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag8_rs_elevacion_de_la_velocidad_de.png"
+        },
+        {
+          "titulo": "Antibiótico sólo en persistente, complicada o grave",
+          "paginas": "14",
+          "texto": "por lo que van a estar indicados solo para los casos persistentes, complicados o que inician con síntomas graves (2).",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag14_rs_por_lo_que_van_a.png"
+        },
+        {
+          "titulo": "Biomarcadores: no para diagnosticar",
+          "paginas": "10",
+          "texto": "Los biomarcadores hematológicos como el hemoleucograma (HLG), la PCR y la velocidad de sedimentación globular (VSG) no se recomiendan como herramientas para diagnosticar la rinosinusitis aguda en pediatría.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_los_biomarcadores_hematologicos_como_el.png"
+        },
+        {
+          "titulo": "Biomarcadores altos: tratamiento más agresivo",
+          "paginas": "10",
+          "texto": "Si estos biomarcadores están elevados, pueden indicar la necesidad de emplear un enfoque terapéutico más agresivo con el uso de antibióticos",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_si_estos_biomarcadores_estan_elevados.png"
+        }
+      ],
+      "checklist": {
+        "titulo": "Rinosinusitis bacteriana: 3 o más",
+        "items": [
+          "Rinorrea **purulenta**",
+          "Fiebre **>38 °C**, que suele aparecer desde el día **3-5**",
+          "Dolor local **intenso**, a menudo de un lado",
+          "Doble pico: **empeora** tras una mejoría inicial",
+          "VSG o **PCR** elevadas, si ya se pidieron"
+        ]
+      },
+      "burbujas": [
+        {
+          "en_texto": "datos de la lista",
+          "titulo": "¿Y si la PCR sale alta?",
+          "texto": "Los paraclínicos **no** se piden para diagnosticar. Si ya están y salen **altos**, pueden indicar un tratamiento antibiótico **más agresivo**.",
+          "referencias": [
+            {
+              "titulo": "Biomarcadores: no para diagnosticar",
+              "paginas": "10",
+              "texto": "Los biomarcadores hematológicos como el hemoleucograma (HLG), la PCR y la velocidad de sedimentación globular (VSG) no se recomiendan como herramientas para diagnosticar la rinosinusitis aguda en pediatría.",
+              "fuente": "ACORL (rinosinusitis)",
+              "anio": "2024",
+              "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+              "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+              "imagen_evidencia": "evidencia_ivas_pag10_rs_los_biomarcadores_hematologicos_como_el.png"
+            },
+            {
+              "titulo": "Biomarcadores altos: tratamiento más agresivo",
+              "paginas": "10",
+              "texto": "Si estos biomarcadores están elevados, pueden indicar la necesidad de emplear un enfoque terapéutico más agresivo con el uso de antibióticos",
+              "fuente": "ACORL (rinosinusitis)",
+              "anio": "2024",
+              "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+              "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+              "imagen_evidencia": "evidencia_ivas_pag10_rs_si_estos_biomarcadores_estan_elevados.png"
+            }
+          ]
+        }
+      ]
+    },
+    "rs_otro": {
+      "tipo": "resultado",
+      "estilo": "advertencia",
+      "titulo": "Orientar el otro diagnóstico",
+      "texto": "- Rinitis alérgica: se orienta por el antecedente de **alergia** y los síntomas ante el alérgeno.\n- Sospecha de rinosinusitis **fúngica** o de tumor: pedir **RM** de senos.\n- Síntomas de más de **12 semanas**: rinosinusitis **crónica**; remitir a ORL.\n- Sospecha de anomalía **estructural**: remitir a ORL.\n- Rinorrea acuosa de un solo lado: sospechar una fuga de **LCR**.",
+      "referencias": [
+        {
+          "titulo": "Rinitis alérgica: antecedente y exposición",
+          "paginas": "9",
+          "texto": "La diferenciación entre rinitis alérgica y rinosinusitis aguda se realiza principalmente sobre la base de antecedentes de alergia, y la aparición de síntomas ante la exposición a un alérgeno",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_la_diferenciacion_entre_rinitis_alergica.png"
+        },
+        {
+          "titulo": "RM: fúngica o tumor",
+          "paginas": "10",
+          "texto": "está indicada solo en la evaluación de complicaciones intracraneales y ante la sospecha de rinosinusitis fúngica o sospecha de tumores.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag10_rs_esta_indicada_solo_en_la.png"
+        },
+        {
+          "titulo": "Rinosinusitis crónica: más de 12 semanas",
+          "paginas": "3",
+          "texto": "Rinosinusitis crónica (con o sin pólipos nasales) en niños Se define como la presencia de síntomas durante más de 12 semanas (1).",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag3_rs_rinosinusitis_cronica_con_o_sin.png"
+        },
+        {
+          "titulo": "Cuándo remitir a ORL",
+          "paginas": "16",
+          "texto": "Se recomienda remitir al otorrinolaringólogo a todo niño con rinosinusitis aguda recurrente, con sospecha de anomalía estructural, sospecha de rinosinusitis complicada o rinosinusitis crónica.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag16_rs_se_recomienda_remitir_al_otorrinolaringologo.png"
+        },
+        {
+          "titulo": "Rinorrea acuosa unilateral",
+          "paginas": "9",
+          "texto": "la rinorrea acuosa unilateral es rara y debería hacer sospechar de fuga de líquido cefalorraquídeo.",
+          "fuente": "ACORL (rinosinusitis)",
+          "anio": "2024",
+          "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+          "cita": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, Restrepo-Peláez M, Escobar-Howard M, Osorio OJ. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636.",
+          "imagen_evidencia": "evidencia_ivas_pag9_rs_rinorrea_acuosa_unilateral_es_rara.png"
         }
       ]
     },
