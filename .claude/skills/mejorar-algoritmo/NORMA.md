@@ -302,7 +302,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: un tercio de los nodos clínicos más o menos (en Crisis hiperglucémicas, 14 de 53), con **25 palabras** como mucho |
 | `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app la marca como la frase de una imagen, pero en naranja (subrayada, texto teñido y un Σ pequeño arriba a la derecha) y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos), con las fuentes en el botón del libro. Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mEq/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
-| `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo; **1 de cada 4-5 nodos clínicos** (5-6 en un algoritmo de 25 nodos) |
+| `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la frase (`en_texto`) y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo, y 2-3 en un nodo de viñetas muy resumidas (§4, uso inteligente); **1 de cada 3-4 nodos clínicos** |
 
 ## 4. Cómo se escribe
 
@@ -614,6 +614,19 @@ título no repite la pill y el texto no vuelve a decir el título.
   mecanismo, que la app pinta en el color del nodo («La urea **atraviesa
   libremente las membranas**…»). Si el dato cambia la conducta, no va en un
   dato extra: va en el `texto`, la perla o la alerta.
+- **Uso inteligente de las bombillas (noviembre de 2026).** Cuando una
+  viñeta **resume demasiado** algo que tiene contenido propio —una dieta
+  («dieta DASH»), una meta («peso normal», «actividad física regular»), un
+  esquema o una escala que sólo se nombra—, la bombilla explica **en qué
+  consiste**, con las cifras de la guía y su cita: «¿En qué consiste la dieta
+  DASH?», «¿Cuánto peso perder?», «¿Cuánto ejercicio?». La viñeta sigue
+  corta y quien quiere el detalle lo abre. Ejemplo: `diag_paso_2_normal` de
+  `hipertension_arterial.json` (tres bombillas en las subviñetas del estilo
+  de vida). **Sin exagerar**: no en cada viñeta ni para repetir lo que ya
+  dice una tabla del mismo nodo; sólo donde la viñeta queda corta y la guía
+  da el detalle. Un nodo así puede llevar 2-3 bombillas; en el resto, 0-1.
+  El `en_texto` va fuera de las negritas («actividad física», no
+  «**regular**»).
 
 ### Texto del visor de imágenes (`info`)
 
