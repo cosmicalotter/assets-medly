@@ -29,3 +29,5 @@ png centor "$D/ivas_centor_mcisaac.png"
 # Foto de Commons rotulada (CC BY-SA 3.0)
 node tools/medios/capturar.js "$H/foto_mastoiditis.html" "$TMP/foto_mastoiditis.png" >/dev/null
 "$PY" -c "from PIL import Image; Image.open('$TMP/foto_mastoiditis.png').convert('RGB').save('$D/ivas_mastoiditis.jpg', quality=86, subsampling=0, optimize=True)"; echo "$D/ivas_mastoiditis.jpg"
+node tools/medios/capturar.js "$H/foto_crup.html" "$TMP/foto_crup.png" >/dev/null
+"$PY" -c "from PIL import Image; Image.open('$TMP/foto_crup.png').convert('RGB').save('$D/ivas_crup_rx.jpg', quality=86, subsampling=0, optimize=True)"; echo "$D/ivas_crup_rx.jpg"
