@@ -302,7 +302,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: un tercio de los nodos clínicos más o menos (en Crisis hiperglucémicas, 14 de 53), con **25 palabras** como mucho |
 | `formulas` | **toda fórmula** que el texto nombra (osmolalidad efectiva, sodio corregido, anion gap, déficit de agua…): en el texto va **el nombre** («calcular la osmolalidad efectiva»), nunca la notación plana («2 × Na + glucosa / 18»). La app la marca como la frase de una imagen, pero en naranja (subrayada, texto teñido y un Σ pequeño arriba a la derecha) y al tocarla abre la fórmula dibujada (fracciones, subíndices, símbolos), con las fuentes en el botón del libro. Cada entrada: `en_texto` (la frase exacta), `titulo`, `tex` (LaTeX), `variables` (`[["[Na⁺]", "sodio sérico (mEq/L)"], …]`), `nota` breve si hace falta (unidades, corte) y `referencias` con la cita de la guía | toda fórmula que la guía da |
-| `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app pone una bombilla gris de contorno al final de la viñeta que contiene la frase de `en_texto` y al tocarlo abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo, y 2-3 en un nodo de viñetas muy resumidas (§4, uso inteligente); **1 de cada 3-4 nodos clínicos** |
+| `burbujas` | **el dato extra** que no cabe en la viñeta pero vale la pena: el mecanismo que explica una conducta («por qué la urea no es un osmol eficaz»), un matiz fisiopatológico, un dato histórico o de la evidencia que ayuda a recordar. La app subraya con puntos en ámbar la frase de `en_texto` y le pone una bombilla pequeña arriba a la derecha, como a las frases que abren una imagen o una fórmula; al tocarla abre `titulo` + `texto` (1-3 frases), con sus `referencias` en el botón del libro. Buenos candidatos: la cifra que engaña (potasio «normal» en la CAD), el porqué de una prohibición (bicarbonato de rutina), el ritmo que no se debe pasar (osmolalidad), la elección entre dos opciones (salino o balanceado). **Con mesura**: sólo si es clínicamente importante o de verdad interesante; lo que cambia la conducta va en el texto, una perla o una alerta, y el globito no repite una perla | 0-1 por nodo, y 2-3 en un nodo de viñetas muy resumidas (§4, uso inteligente); **1 de cada 3-4 nodos clínicos** |
 
 ## 4. Cómo se escribe
 
@@ -607,7 +607,7 @@ título no repite la pill y el texto no vuelve a decir el título.
   (`2\,[\mathrm{Na^+}] + \dfrac{\text{glucosa}}{18}`), sus `variables` con
   unidades y la cita. La calculadora, si existe, sigue en `calculadora`: la
   fórmula enseña de dónde sale el número; la calculadora lo hace.
-- `burbujas` (globito al final de la viñeta de su frase): para el **porqué** que un
+- `burbujas` (frase subrayada con una bombilla pequeña): para el **porqué** que un
   residente curioso preguntaría y el texto no puede contestar sin alargarse.
   Título como pregunta o como dato («¿Por qué la urea no cuenta?»), 1-3
   frases, con fuente, y con **negritas** en las palabras clave del
@@ -625,8 +625,8 @@ título no repite la pill y el texto no vuelve a decir el título.
   de vida). **Sin exagerar**: no en cada viñeta ni para repetir lo que ya
   dice una tabla del mismo nodo; sólo donde la viñeta queda corta y la guía
   da el detalle. Un nodo así puede llevar 2-3 bombillas; en el resto, 0-1.
-  El `en_texto` va fuera de las negritas («actividad física», no
-  «**regular**»).
+  El `en_texto` es la frase que nombra lo que se explica («dieta DASH»,
+  «actividad física»), fuera de las negritas: la app la subraya.
 
 ### Texto del visor de imágenes (`info`)
 
