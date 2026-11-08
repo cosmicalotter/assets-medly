@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// Absceso pulmonar: Rx con cavidad y nivel hidroaéreo (Cerevisae, Wikimedia Commons, CC BY-SA 4.0; rótulos y líneas
+// originales borrados con tools/medios/borrar_rotulos.py y rotulada por Empirica) y TC de un absceso
+// (J. Heilman, MD, Wikimedia Commons, CC BY-SA 4.0), con su flecha roja original.
+fotos({
+  titulo: "Absceso pulmonar: cavidad con nivel hidroaéreo",
+  sub: "Rx de tórax y TC de dos pacientes",
+  alto: 330,
+  paneles: [
+    { src: "fuentes/limpia_rx_absceso.jpg", tam: [1000, 820], recorte: [40, 60, 760, 720], rotulo: "Rx",
+      lineas: [{ x1: 150, y1: 484, x2: 560, y2: 484, c: CIAN }],
+      marcas: [
+        { solo: true, t: "aire", tx: 330, ty: 300, c: "#F8FAFC" },
+        { solo: true, t: "líquido", tx: 330, ty: 560, c: "#F8FAFC" },
+        { solo: true, t: "nivel hidroaéreo", tx: 560, ty: 455, ancla: "end", c: CIAN },
+      ] },
+    { src: "fuentes/commons_rx_absceso_heilman.png", tam: [949, 745], recorte: [50, 80, 520, 520], rotulo: "TC",
+      marcas: [{ solo: true, t: "absceso", tx: 330, ty: 300, ancla: "start", c: "#EB1C24" }] },
+  ],
+  notas: [[CIAN, "<b>Línea cian</b>: el nivel entre el aire y el pus, recto por la gravedad."],
+          ["#EB1C24", "<b>Flecha roja</b>: el absceso, con aire dentro, en la TC."],
+          [GRIS, "Absceso o empiema: <b>cobertura anaerobia</b>; en la aspiración sin ellos, no."]],
+  fuente: "Imágenes: Cerevisae (Rx) y J. Heilman, MD (TC), Wikimedia Commons, CC BY-SA 4.0. Rx sin sus rótulos en inglés y rotulada por Empirica. Uso: GPC colombiana de NAC 2026.",
+});
+</script></body></html>

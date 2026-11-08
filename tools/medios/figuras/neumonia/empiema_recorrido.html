@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Del derrame paraneumónico al empiema, en imágenes reales editadas por Empirica:
+//  - Rx de neumonía del lóbulo inferior izquierdo con derrame pequeño (J. Heilman, MD, Wikimedia Commons, CC BY 3.0),
+//    con su círculo negro original; rótulos de la consola borrados (tools/medios/borrar_rotulos.py).
+//  - TC con contraste de un empiema con pulmón consolidado y gas al lado (Hellerhoff, Wikimedia Commons, CC BY-SA 4.0).
+const AMAR = "#FDE047", TURQ = "#2DD4BF", ROSA_C = "#F9A8D4", BLANCO = "#F8FAFC";
+recorrido({
+  titulo: "Del derrame paraneumónico al empiema",
+  subtitulo: "Rx de un paciente y TC de otro, paso a paso",
+  credito: "Imágenes: J. Heilman, MD (Rx, CC BY 3.0) y Hellerhoff (TC, CC BY-SA 4.0), Wikimedia Commons, editadas por Empirica. Fuente: GPC colombiana de NAC (Infectio 2026).",
+  escenas: [
+    {
+      img: "fuentes/limpia_rx_derrame.jpg", w: 1600, h: 1200, vista: [200, 0, 1300, 1200],
+      pasos: [
+        { texto: "Neumonía basal izquierda: el <b>ángulo costofrénico</b> se borra (círculo negro)", vista: [640, 260, 960, 940],
+          dibujo: (u, e) => D.rotulo(1390, 830, "derrame", BLANCO, e, { ancla: "middle", op: u, tam: 16 }) },
+      ],
+    },
+    {
+      img: "fuentes/commons_tc_empiema.jpg", w: 1499, h: 1311, vista: [150, 100, 1200, 1160],
+      pasos: [
+        { texto: "TC: colección de líquido <b>en forma de lente</b> detrás del pulmón izquierdo",
+          dibujo: (u, e) => `<path d="M885 945 C980 925 1120 885 1262 842 C1300 920 1300 1040 1250 1120 C1170 1175 1020 1182 945 1135 C892 1085 872 1010 885 945 Z"
+              fill="${AMAR}" fill-opacity="${0.12 * u}" stroke="${AMAR}" stroke-width="${3 * e}" stroke-dasharray="${10 * e} ${7 * e}" opacity="${u}"/>` +
+            D.rotulo(1080, 1040, "empiema", AMAR, e, { ancla: "middle", op: u, tam: 16 }) },
+        { texto: "<b>Pleura</b> engrosada y realzada que rodea el líquido", vista: [800, 700, 560, 560],
+          dibujo: (u, e) => D.flecha(1010, 1250, 1060, 1168, ROSA_C, e, 1, u) + D.flecha(1340, 780, 1268, 818, ROSA_C, e, 1, u) +
+            D.rotulo(1340, 760, "pleura", ROSA_C, e, { ancla: "end", op: u }) },
+        { texto: "Pulmón <b>consolidado</b> al lado, con <b>burbujas de gas</b>", vista: [800, 650, 560, 560],
+          dibujo: (u, e) => D.flecha(900, 770, 1010, 872, TURQ, e, 1, u) + D.rotulo(870, 752, "gas", TURQ, e, { op: u }) },
+      ],
+    },
+  ],
+  final: `Derrame de <b style="color:#FDE047">10 mm o más</b>: puncionar. Pus, pH ≤7,20, Gram o cultivo positivo, glucosa baja, LDH alta o tabiques: <b style="color:#5EEAD4">drenar</b> y cubrir anaerobios.`,
+});
+</script></body></html>
