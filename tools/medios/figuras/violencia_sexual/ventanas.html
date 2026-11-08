@@ -6,7 +6,6 @@ const X0 = 170, X1 = 650, paso = (X1 - X0) / 6;
 const x = (i) => X0 + paso * i;
 // [color, rótulo, tramos: [desde, hasta, intensidad, texto]]
 const FILAS = [
-  [TEAL, "Atención", [[0, 1, 1, "≤2 h"]]],
   [ROJO, "PEP contra el VIH", [[0, 2, 1, "ideal"], [2, 3, 0.45, "hasta 72 h"]]],
   [NARANJA, "Profilaxis de ITS", [[0, 3, 1, "dosis únicas"]]],
   [MORADO, "Muestras forenses", [[0, 2, 1, "prepúber"], [2, 3, 0.6, "adolescente"], [3, 5, 0.25, "5-7 d"]]],
@@ -32,7 +31,7 @@ function dibujar(k) {
     });
   });
   svg += `</svg>`;
-  lienzo("Plazos de cada profilaxis", "Desde la agresión; el color fuerte es el plazo ideal y el claro, el máximo", svg,
+  lienzo("Plazos de cada medida", "Desde la agresión; el color fuerte es el plazo ideal y el claro, el máximo", svg,
     "Esquema; eje sin escala. Fuente: MinSalud 2026 (momento 8 y tabla 6), protocolo PEP MinSalud 2017 y Medicina Legal 2025.");
 }
 window.cuadro = (i, n) => dibujar(Math.min(FILAS.length, Math.floor((i / n) * (FILAS.length + 1)) + 1));
