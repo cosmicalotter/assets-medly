@@ -1,10 +1,10 @@
 {
   "titulo": "Rinosinusitis aguda en niños: ¿antibiótico? (ACORL)",
-  "descripcion": "Separa la rinosinusitis viral o posviral, que no lleva antibiótico, de la bacteriana por los tres patrones de la guía ACORL 2024 (persistente, inicio grave y doble enfermedad), y detecta los signos de complicación.",
-  "instrucciones": "Niños de 1 a 17 años con dos o más síntomas nasosinusales, uno de ellos obstrucción o rinorrea. Marcar cada dato; los signos de complicación mandan sobre todo lo demás.",
-  "limitaciones": "Criterios clínicos de consenso. La guía excluye las anomalías anatómicas, la fibrosis quística y las inmunodeficiencias. El antibiótico reciente, otra infección bacteriana o una enfermedad de base no bastan solos: pesan al elegir el antibiótico. NICE NG79 es más restrictiva: con 10 días o más sin mejoría ofrece no dar antibiótico o darlo diferido.",
+  "descripcion": "Decide si la rinosinusitis aguda del niño lleva antibiótico con las indicaciones de la guía ACORL 2024: los tres patrones (persistente, inicio grave y doble enfermedad) o, con 3 o más datos de bacteriana, la gravedad, el antibiótico reciente, otra infección bacteriana o una condición de base; y detecta los signos de complicación.",
+  "instrucciones": "Niños de 1 a 17 años con dos o más síntomas nasosinusales, uno de ellos obstrucción nasal o rinorrea. Marcar cada dato; los signos de complicación mandan sobre todo lo demás.",
+  "limitaciones": "Criterios clínicos de consenso. La guía mezcla dos enfoques: los tres patrones de la página 14 bastan solos, y el flujograma pide antes 3 o más datos de bacteriana para valorar el antibiótico; la escala acepta los dos. La guía excluye de su población las anomalías anatómicas, la fibrosis quística y las inmunodeficiencias, aunque las nombra como indicación de antibiótico. NICE NG79 es más restrictiva: con 10 días o más sin mejoría ofrece no dar antibiótico o darlo diferido.",
   "tipoCalculo": "formula",
-  "formula": "2 * x + (1 - x) * 0.5 * (1 + ((p + g + d) - 0.5) / abs((p + g + d) - 0.5))",
+  "formula": "2 * x + (1 - x) * 0.5 * (1 + ((p + g + d + b * (s + a + i + c)) - 0.5) / abs((p + g + d + b * (s + a + i + c)) - 0.5))",
   "mostrarPuntaje": false,
   "prefijoResultado": "Rinosinusitis",
   "referencias": [
@@ -49,6 +49,36 @@
       "url": "https://www.nice.org.uk/guidance/ng79",
       "paginas": "7",
       "texto": "Consider no antibiotic prescription or a back-up antibiotic prescription (see the recommendations on choice of antibiotic), taking account of"
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Definición de bacteriana: 3 o más datos.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "8",
+      "texto": "Se define por al menos tres de los siguientes signos y síntomas: Rinorrea purulenta Fiebre >38°C (tener en cuenta que esta usualmente se presenta a partir del 3-5 día)"
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicación: síntomas graves o empeoramiento.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "En los casos que se presentan con síntomas graves o que están empeorando."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicación: antibiótico reciente.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "En el paciente que ha recibido antibiótico en las últimas 4 semanas."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicación: infección bacteriana concurrente.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "En quien presente infección bacteriana concurrente (neumonía, otitis media aguda, amigdalitis por estreptococo del grupo A, adenitis cervical supurativa)."
+    },
+    {
+      "titulo": "Bedoya-Gutiérrez JD, Vanegas G, Herrera-Noreña P, et al. Guía para el diagnóstico y tratamiento de rinosinusitis en niños. Acta Otorrinolaringol Cir Cabeza Cuello. 2024;52(4):611-636. Indicación: condiciones de base.",
+      "url": "https://www.medigraphic.com/pdfs/actaotorrino/aoc-2024/aoc244g.pdf",
+      "paginas": "14",
+      "texto": "En aquellos pacientes que presenten condiciones de base como fibrosis quística, asma, inmunodeficiencia, cirugía previa de los senos paranasales o alteración anatómica del tracto respiratorio superior (1)."
     }
   ],
   "secciones": [
@@ -118,9 +148,119 @@
           ]
         },
         {
+          "id": "bacteriana3",
+          "tipo": "opciones",
+          "label": "3 o más datos de rinosinusitis bacteriana",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "b": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "b": 1
+              }
+            }
+          ],
+          "ayuda": "Fiebre > 38 °C, rinorrea purulenta, dolor local intenso (a menudo de un lado), doble pico (empeora tras mejorar) o PCR o VSG elevadas."
+        },
+        {
+          "id": "grave_empeora",
+          "tipo": "opciones",
+          "label": "Síntomas graves o empeoramiento del estado general",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "s": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "s": 1
+              }
+            }
+          ],
+          "ayuda": "Cuenta sólo con 3 o más datos de bacteriana."
+        },
+        {
+          "id": "antibiotico4",
+          "tipo": "opciones",
+          "label": "Recibió antibiótico en las últimas 4 semanas",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "a": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "a": 1
+              }
+            }
+          ],
+          "ayuda": "Cuenta sólo con 3 o más datos de bacteriana."
+        },
+        {
+          "id": "infeccion",
+          "tipo": "opciones",
+          "label": "Otra infección bacteriana a la vez",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "i": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "i": 1
+              }
+            }
+          ],
+          "ayuda": "Neumonía, otitis media aguda, faringoamigdalitis por estreptococo del grupo A o adenitis cervical supurada. Cuenta sólo con 3 o más datos de bacteriana."
+        },
+        {
+          "id": "base",
+          "tipo": "opciones",
+          "label": "Condición de base",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0,
+              "valoresVariables": {
+                "c": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "puntos": 1,
+              "valoresVariables": {
+                "c": 1
+              }
+            }
+          ],
+          "ayuda": "Fibrosis quística, asma, inmunodeficiencia, cirugía previa de senos paranasales o alteración anatómica de la vía aérea superior. Cuenta sólo con 3 o más datos de bacteriana."
+        },
+        {
           "id": "complicacion",
           "tipo": "opciones",
-          "label": "Signos de complicación: edema palpebral, proptosis, dolor o limitación ocular, cefalea intensa, alteración neurológica o tumefacción frontal",
+          "label": "Signos de complicación",
           "opciones": [
             {
               "label": "No",
@@ -137,7 +277,7 @@
               }
             }
           ],
-          "ayuda": "Orbitaria, intracraneal u ósea (tumor de Pott)."
+          "ayuda": "Edema de párpados, ojo rojo (inyección conjuntival), proptosis, dolor o limitación de los movimientos oculares, baja de la agudeza visual, cefalea intensa o progresiva, cambios de comportamiento, déficit neurológico o masa en la frente (tumor de Pott)."
         }
       ]
     }
@@ -146,27 +286,59 @@
     {
       "min": -0.5,
       "max": 0.49,
-      "categoria": "Viral o posviral: sin antibiótico",
+      "categoria": "Sin indicación de antibiótico: observar",
       "color": "verde",
       "match_opcion_index": 0,
-      "approach": "Lavados con solución salina 60-100 mL al día; sin antibiótico, corticoide nasal u oral ni antigripales combinados. Volver si dura 10 días o más o empeora tras mejorar (ACORL).",
+      "approach": "Observar 48-72 h con manejo sintomático: lavados con solución salina 60-100 mL al día; sin antibiótico, corticoide nasal u oral ni antigripales combinados. Volver si dura 10 días o más o empeora tras mejorar (ACORL).",
       "si": {
-        "ninguno": [
+        "todos": [
           {
-            "id": "persistente",
-            "igual": 1
+            "ninguno": [
+              {
+                "id": "persistente",
+                "igual": 1
+              },
+              {
+                "id": "grave",
+                "igual": 1
+              },
+              {
+                "id": "doble",
+                "igual": 1
+              },
+              {
+                "id": "complicacion",
+                "igual": 1
+              }
+            ]
           },
           {
-            "id": "grave",
-            "igual": 1
-          },
-          {
-            "id": "doble",
-            "igual": 1
-          },
-          {
-            "id": "complicacion",
-            "igual": 1
+            "alguno": [
+              {
+                "id": "bacteriana3",
+                "igual": 0
+              },
+              {
+                "ninguno": [
+                  {
+                    "id": "grave_empeora",
+                    "igual": 1
+                  },
+                  {
+                    "id": "antibiotico4",
+                    "igual": 1
+                  },
+                  {
+                    "id": "infeccion",
+                    "igual": 1
+                  },
+                  {
+                    "id": "base",
+                    "igual": 1
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -197,6 +369,34 @@
               {
                 "id": "doble",
                 "igual": 1
+              },
+              {
+                "todos": [
+                  {
+                    "id": "bacteriana3",
+                    "igual": 1
+                  },
+                  {
+                    "alguno": [
+                      {
+                        "id": "grave_empeora",
+                        "igual": 1
+                      },
+                      {
+                        "id": "antibiotico4",
+                        "igual": 1
+                      },
+                      {
+                        "id": "infeccion",
+                        "igual": 1
+                      },
+                      {
+                        "id": "base",
+                        "igual": 1
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
