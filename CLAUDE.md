@@ -43,18 +43,19 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (7 de noviembre de 2026) hay
-  29 visibles. Adultos (20): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (8 de noviembre de 2026) hay
+  31 visibles. Adultos (21): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
   hemorragia digestiva alta, exposición rábica y rabia, vacunación según
-  el PAI 2026, hemorragia posparto e hipertensión arterial.
-  Pediatría (9): hipoglucemia, enfermedad diarreica aguda, infecciones
+  el PAI 2026, hemorragia posparto, hipertensión arterial y violencia
+  sexual (`violencia_sexual.json`, todas las edades).
+  Pediatría (10): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
-  nefrótico y nefrítico y vacunación según el PAI 2026 (el mismo archivo
-  que en Adultos). El resto espera la reforma a la
+  nefrótico y nefrítico, vacunación según el PAI 2026 y violencia sexual
+  (los dos, el mismo archivo que en Adultos). El resto espera la reforma a la
   norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
@@ -255,7 +256,7 @@ Firebase directamente, saltándose `indices/`.
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
-  `burbujas` (bombilla al final de la frase). **Uso inteligente de las
+  `burbujas` (bombilla al final de la viñeta). **Uso inteligente de las
   bombillas:** si una viñeta resume demasiado algo con contenido propio (una
   dieta, una meta de peso o de ejercicio, un esquema que sólo se nombra), una
   bombilla explica en qué consiste, con la cifra y la cita de la guía («¿En
