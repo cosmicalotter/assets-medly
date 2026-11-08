@@ -44,18 +44,19 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (8 de noviembre de 2026) hay
-  31 visibles. Adultos (21): patología biliar, crisis hiperglucémicas,
+  32 visibles. Adultos (21): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
   hemorragia digestiva alta, exposición rábica y rabia, vacunación según
   el PAI 2026, hemorragia posparto, hipertensión arterial y violencia
   sexual (`violencia_sexual.json`, todas las edades).
-  Pediatría (10): hipoglucemia, enfermedad diarreica aguda, infecciones
+  Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
-  nefrótico y nefrítico, vacunación según el PAI 2026 y violencia sexual
-  (los dos, el mismo archivo que en Adultos). El resto espera la reforma a la
+  nefrótico y nefrítico, displasia del desarrollo de la cadera, vacunación
+  según el PAI 2026 y violencia sexual (los dos, el mismo archivo que en
+  Adultos). El resto espera la reforma a la
   norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
