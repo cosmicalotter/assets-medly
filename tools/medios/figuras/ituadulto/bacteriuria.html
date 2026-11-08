@@ -1,0 +1,14 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="comun.js"></script></head><body><script>
+// A quién se le busca y trata la bacteriuria asintomática: IDSA 2019; Infectio 2013 (semana 12-16).
+const si = [ "**Embarazo**: urocultivo a las **12-16 semanas**; tratar **4-7 días**",
+             "Antes de un **procedimiento urológico** que lesiona la mucosa: **1 o 2 dosis**" ];
+const no = [ "Mujeres **sanas**", "**Diabetes**", "**Ancianos** en casa u hogares", "**Sonda** vesical", "**Lesión medular**",
+             "**Trasplante renal** de más de **1 mes**", "Cirugía **no urológica**" ];
+const caja = (c, tit, items, ancho) => `<div style="flex:${ancho};display:flex;flex-direction:column;gap:7px">
+  <div style="background:${c};color:#fff;border-radius:12px;padding:9px 12px;font-size:17px;font-weight:800">${tit}</div>
+  ${items.map((x) => pastilla(c, x)).join("")}</div>`;
+const pie = `<div class="caja" style="background:#F7F8FA;border:1.5px solid #E5E7EB"><b>Anciano con delirium o una caída</b>, sin síntomas urinarios ni fiebre: buscar <b>otra causa</b> y observar, sin antibiótico.</div>`;
+lienzo("Bacteriuria sin síntomas", "Sólo se busca y se trata en dos situaciones",
+  `<div style="display:flex;gap:14px;align-items:flex-start">${caja(VERDE, "Sí: buscar y tratar", si, 1)}${caja(BAC, "No: ni buscar ni tratar", no, 1)}</div>` + pie,
+  "Esquema. Fuente: IDSA 2019 (bacteriuria asintomática); Infectio 2013.");
+</script></body></html>

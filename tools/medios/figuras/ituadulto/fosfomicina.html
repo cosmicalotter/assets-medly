@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="comun.js"></script></head><body><script>
+// Cómo tomar la fosfomicina trometamol 3 g: ACIN 2023, p. 63.
+const PASOS = [
+  ["Vaciar la vejiga", "Antes de tomarla", "gota"],
+  ["Estómago vacío", "**2 h** lejos de las comidas", "reloj"],
+  ["Diluir el sobre", "**3 g** en **medio vaso** de agua", "vaso"],
+  ["Tomarla enseguida", "Al **acostarse**", "luna"],
+];
+const icono = (k, c) => ({
+  gota: `<path d="M40 12 C52 30 62 42 62 54 a22 22 0 0 1 -44 0 C18 42 28 30 40 12Z" fill="${c}"/>`,
+  reloj: `<circle cx="40" cy="44" r="26" fill="none" stroke="${c}" stroke-width="7"/><path d="M40 28 V44 L52 52" stroke="${c}" stroke-width="7" fill="none" stroke-linecap="round"/>`,
+  vaso: `<path d="M20 18 H60 L54 74 H26 Z" fill="none" stroke="${c}" stroke-width="6" stroke-linejoin="round"/><path d="M23.5 46 H56.5 L54 74 H26 Z" fill="${c}" opacity=".55"/>`,
+  luna: `<path d="M50 14 a30 30 0 1 0 18 46 a24 24 0 1 1 -18 -46Z" fill="${c}"/>`,
+}[k]);
+function dibujar(activo) {
+  const tarjetas = PASOS.map(([t, s, ic], i) => {
+    const on = i <= activo, c = on ? CIS : "#CBD5E1";
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;border-radius:14px;
+      background:${on ? tinte(CIS, i === activo ? 16 : 7) : "#F8FAFC"};border:2px solid ${i === activo ? CIS : on ? tinte(CIS, 40) : "#E2E8F0"}">
+      <div style="width:32px;height:32px;border-radius:50%;background:${c};color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">${i + 1}</div>
+      <svg width="80" height="84" viewBox="0 0 80 84">${icono(ic, c)}</svg>
+      <div style="font-size:15px;font-weight:800;text-align:center;color:${on ? TINTA : "#94A3B8"}">${t}</div>
+      <div style="font-size:12.5px;text-align:center;color:${on ? TINTA : "#94A3B8"}"><span>${b(s)}</span></div></div>`;
+  }).join("");
+  const fin = activo >= PASOS.length
+    ? `<div class="caja" style="background:${tinte(CIS, 12)};border:1.5px solid ${CIS}"><b style="color:${CIS}">Una sola dosis</b>: no se repite. Revalorar a las <b>48 h</b> si no mejora.</div>`
+    : `<div class="caja" style="background:#F7F8FA;border:1.5px solid #E5E7EB;color:#6B7280">Paso <b>${activo + 1}</b> de 4</div>`;
+  lienzo("Cómo tomar la fosfomicina", "Fosfomicina trometamol 3 g VO, dosis única",
+    `<div style="display:flex;gap:10px">${tarjetas}</div>` + fin, "Esquema. Fuente: ACIN 2023, p. 63.");
+}
+window.cuadro = (i, n) => dibujar(Math.min(PASOS.length, Math.floor((i / n) * (PASOS.length + 1))));
+dibujar(PASOS.length);
+</script></body></html>
