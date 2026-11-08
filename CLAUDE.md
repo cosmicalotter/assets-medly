@@ -257,7 +257,7 @@ Firebase directamente, saltándose `indices/`.
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
-  `burbujas` (bombilla al final de la viñeta). **Uso inteligente de las
+  `burbujas` (la frase va subrayada con una bombilla pequeña). **Uso inteligente de las
   bombillas:** si una viñeta resume demasiado algo con contenido propio (una
   dieta, una meta de peso o de ejercicio, un esquema que sólo se nombra), una
   bombilla explica en qué consiste, con la cifra y la cita de la guía («¿En
