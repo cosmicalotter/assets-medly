@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Línea de tiempo del tratamiento: antibiótico en <4 h (NICE), revalorar a las 48 h (Colombia 2026),
+// estabilidad a las 48-72 h, paso a la vía oral y 5 días en la no grave (Colombia 2026, NICE).
+const X0 = 78, W = 540, MAXD = 7;
+const x = (d) => X0 + (d / MAXD) * W;
+const hito = (d, c, arriba, t1, t2) => {
+  const yb = arriba ? 96 : 236;
+  return `<line x1="${x(d)}" y1="${arriba ? 106 : 186}" x2="${x(d)}" y2="${arriba ? 130 : 210}" stroke="${c}" stroke-width="3"/>
+    <circle cx="${x(d)}" cy="144" r="11" fill="${c}"/>
+    <text x="${x(d)}" y="${yb - (arriba ? 34 : 0)}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${c}">${t1}</text>
+    <text x="${x(d)}" y="${yb - (arriba ? 14 : -20)}" text-anchor="middle" font-size="12.5" fill="${TINTA}">${t2}</text>`;
+};
+const dias = [0, 1, 2, 3, 4, 5, 6, 7].map((d) => `<text x="${x(d)}" y="174" text-anchor="middle" font-size="12" font-weight="700" fill="#6B7280">día ${d}</text>`).join("");
+const franja = `<rect x="${x(2)}" y="132" width="${x(3) - x(2)}" height="24" rx="12" fill="${tinte(VERDE, 30)}"/>`;
+lienzo("El tratamiento en el tiempo", "NAC no grave que mejora; en la grave, la duración la decide la evolución",
+  `<svg width="668" height="300" viewBox="0 0 668 300">
+    <line x1="${x(0)}" y1="144" x2="${x(7)}" y2="144" stroke="#D1D5DB" stroke-width="6" stroke-linecap="round"/>${franja}${dias}
+    ${hito(0, ROJO, true, "Antibiótico", "en menos de 4 h")}
+    ${hito(2, AZUL, false, "Revalorar", "pasar de IV a oral")}
+    ${hito(2.5, VERDE, true, "Estabilidad", "la mayoría, a las 48-72 h")}
+    ${hito(5, TEAL, false, "Suspender", "48 h afebril y estable")}
+  </svg>
+  <div style="display:flex;gap:8px">
+    <div class="caja" style="flex:1;background:${tinte(VERDE, 10)};border:1.5px solid ${tinte(VERDE, 45)}"><b style="color:#1E8A50">Alta</b> el mismo día del paso a la <b>vía oral</b>.</div>
+    <div class="caja" style="flex:1;background:${tinte(AMBAR, 10)};border:1.5px solid ${tinte(AMBAR, 45)}"><b style="color:#B4690E">Sin estabilidad</b> al día 5: buscar gérmenes resistentes o complicaciones.</div>
+  </div>`,
+  "Gráfico. Fuente: GPC colombiana de NAC, Infectio 2026 (revaloración, vía oral, 5 días); NICE NG250, 2025 (antibiótico en 4 h, suspender a los 5 días).");
+</script></body></html>

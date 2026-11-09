@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Lo que el adulto puede esperar después de empezar el tratamiento de la NAC (NICE NG250, 1.10.1).
+const H = [
+  ["1 semana", "Cede la fiebre", ROJO],
+  ["4 semanas", "Bajan mucho el dolor torácico y la expectoración", NARANJA],
+  ["6 semanas", "Bajan mucho la tos y la disnea", AMBAR],
+  ["3 meses", "Casi todo se resolvió; puede quedar cansancio", AZUL],
+  ["6 meses", "Se siente como antes", VERDE],
+];
+const filas = H.map(([t, d, c], i) => `<div style="display:flex;align-items:center;gap:12px">
+   <div style="width:118px;flex:none;text-align:right;font-size:17px;font-weight:800;color:${c}">${t}</div>
+   <div style="width:18px;height:18px;border-radius:50%;background:${c};flex:none;box-shadow:0 0 0 5px ${tinte(c, 22)}"></div>
+   <div class="caja" style="flex:1;background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 40)};font-size:14.5px">${d}</div></div>`).join(
+  `<div style="margin-left:139px;width:4px;height:14px;background:#E5E7EB;border-radius:2px"></div>`);
+lienzo("Cómo se recupera el adulto", "Lo esperable después de empezar el tratamiento",
+  `<div style="display:flex;flex-direction:column;gap:2px;margin-top:6px">${filas}</div>
+   <div class="caja" style="background:#F3F4F6;margin-top:8px"><b>Volver a consultar</b> si empeora rápido, si no mejora en <b>3 días</b> o si se siente muy enfermo.</div>`,
+  "Gráfico. Fuente: NICE NG250, 2025, recomendaciones 1.10.1 y 1.10.3. La mejoría es más lenta cuanto más grave fue la neumonía.");
+</script></body></html>
