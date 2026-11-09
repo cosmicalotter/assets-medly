@@ -44,14 +44,14 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (9 de noviembre de 2026) hay
-  35 visibles. Adultos (24): patología biliar, crisis hiperglucémicas,
+  36 visibles. Adultos (25): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
   hemorragia digestiva alta, exposición rábica y rabia, vacunación según
   el PAI 2026, hemorragia posparto, hipertensión arterial, infección de vías urinarias, neumonía adquirida
-  en la comunidad, parto pretérmino y violencia
-  sexual (`violencia_sexual.json`, todas las edades).
+  en la comunidad, parto pretérmino, ruptura prematura de membranas y
+  violencia sexual (`violencia_sexual.json`, todas las edades).
   Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
