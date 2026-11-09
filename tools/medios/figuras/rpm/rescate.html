@@ -11,10 +11,12 @@ s += `<text x="${dx(0)}" y="52" font-size="13.5" font-weight="800" fill="${AZ}">
 s += `<rect x="${dx(1.4)}" y="74" width="${dx(7.5) - dx(1.4)}" height="22" rx="11" fill="#E5E7EB"/>`;
 s += `<text x="${(dx(1.4) + dx(7.5)) / 2}" y="90" text-anchor="middle" font-size="12.5" font-weight="700" fill="${GRIS}">primeros 7 días: no se repite</text>`;
 // ventana del rescate desde el día 8
-s += `<rect x="${dx(7.7)}" y="64" width="${dx(D1) - dx(7.7)}" height="42" rx="8" fill="${tinte(AM, 35)}" stroke="${AM}" stroke-width="2"/>`;
+// la ventana queda abierta a la derecha: el rescate cabe mientras tenga menos de 34 semanas
+s += `<rect x="${dx(7.7)}" y="64" width="${dx(D1) - dx(7.7) + 60}" height="42" rx="8" fill="${tinte(AM, 35)}" stroke="${AM}" stroke-width="2"/>`;
+s += `<path d="M ${dx(D1) - 10} 76 l 12 9 l -12 9" fill="none" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
 s += `<text x="${dx(7.9)}" y="52" font-size="13.5" font-weight="800" fill="#B45309">desde el día 8: cabe una dosis única de rescate</text>`;
 s += `<text x="${(dx(7.7) + dx(D1)) / 2}" y="91" text-anchor="middle" font-size="13" font-weight="800" fill="#92400E">si tiene menos de 34 semanas</text>`;
-for (let d = 0; d <= D1; d += 7) {
+for (let d = 0; d < D1; d += 7) {
   s += `<line x1="${dx(d)}" y1="112" x2="${dx(d)}" y2="122" stroke="${GRIS}" stroke-width="1.5"/>`;
   s += `<text x="${dx(d)}" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="${GRIS}">día ${d}</text>`;
 }
@@ -22,6 +24,6 @@ s += `</svg>`;
 const cajas = `<div style="display:flex;gap:8px">
   <div class="caja" style="flex:1;background:${tinte(AM, 12)};border:1.5px solid ${tinte(AM, 50)}">MinSalud: <b>dosis única de rescate</b> si el ciclo fue hace <b>más de una semana</b> y tiene <b>menos de 34 semanas</b>.</div>
   <div class="caja" style="flex:1;background:${tinte(ROJO, 10)};border:1.5px solid ${tinte(ROJO, 45)}">No dar <b>más de 2 ciclos</b> en todo el embarazo.</div></div>`;
-lienzo("Cuándo cabe el ciclo de rescate", "Días desde el primer ciclo completo de corticoide en la RPM", s + cajas,
+lienzo("Cuándo cabe la dosis de rescate", "Días desde el primer ciclo completo de corticoide en la RPM", s + cajas,
   "Esquema de Empirica. Fuentes: MinSalud 2013 (pregunta 8); NICE NG25 (2015, actualizada en 2022), 1.9.5.");
 </script></body></html>
