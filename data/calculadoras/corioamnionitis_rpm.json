@@ -1,0 +1,249 @@
+{
+  "titulo": "Corioamnionitis clínica en la RPM (MinSalud 2013)",
+  "descripcion": "Aplica los criterios clínicos de corioamnionitis de la guía colombiana de 2013 a la gestante con ruptura prematura de membranas, al confirmarla y durante el manejo expectante. Distingue la corioamnionitis clínica, que obliga a iniciar el antibiótico y terminar el embarazo, de los hallazgos aislados, con los que se sigue observando y se repiten las pruebas, como recomienda NICE.",
+  "instrucciones": "Escribe la temperatura más alta del momento. La guía no da umbrales para la taquicardia ni la leucocitosis: se juzgan con los valores de referencia del servicio.",
+  "limitaciones": "Ninguna prueba sola confirma ni descarta la infección. Si los hallazgos no concuerdan, se repite la valoración; la amniocentesis sirve para confirmar una infección subclínica, pero no es de rutina.",
+  "tipoCalculo": "formula",
+  "formula": "temp_puntos * 2 + 1 - (1 - tqm) * (1 - tqf) * (1 - dol) * (1 - liq) * (1 - leu)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Bogotá: MinSalud; 2013.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+      "paginas": "45",
+      "texto": "fiebre (temperatura mayor de 37,8°C) y al menos uno de los siguientes criterios: taquicardia materna o fetal, dolor uterino, líquido amniótico purulento o leucocitosis"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Bogotá: MinSalud; 2013.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+      "paginas": "47",
+      "texto": "se recomienda iniciar el tratamiento antibiótico inmediatamente con clindamicina 600 mg IV cada 6 horas + gentamicina 240 mg IV cada 24 horas y desembarazar"
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Preterm labour and birth. NICE guideline NG25. Londres: NICE; 2015 (actualizada en junio de 2022).",
+      "url": "https://www.nice.org.uk/guidance/ng25",
+      "paginas": "11",
+      "texto": "Do not use any one of the following in isolation to confirm or exclude intrauterine infection in women with P-PROM: • a single test of C-reactive protein"
+    },
+    {
+      "titulo": "National Institute for Health and Care Excellence. Preterm labour and birth. NICE guideline NG25. Londres: NICE; 2015 (actualizada en junio de 2022).",
+      "url": "https://www.nice.org.uk/guidance/ng25",
+      "paginas": "11",
+      "texto": "If the results of the clinical assessment or any of the tests are not consistent with each other, continue to observe the woman and consider repeating the tests."
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Bogotá: MinSalud; 2013.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+      "paginas": "46",
+      "texto": "No se recomienda el uso rutinario de la amniocentesis en pacientes con RPM. La amniocentesis podría ser usada para confirmar la sospecha de infección intra-amniótica subclínica"
+    },
+    {
+      "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guía de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Bogotá: MinSalud; 2013.",
+      "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/Gu%C3%ADa.completa.Embarazo.Parto.2013.pdf",
+      "paginas": "45-46",
+      "texto": "Se recomienda el uso de la cardiotocografía ya que permite documentar taquicardia fetal o la disminución de la variabilidad fetal"
+    }
+  ],
+  "secciones": [
+    {
+      "nombre": "Fiebre",
+      "elementos": [
+        {
+          "id": "temp",
+          "tipo": "input_numero",
+          "label": "Temperatura",
+          "unidad": "°C",
+          "unidades": [
+            {
+              "unidad": "°F",
+              "factor": 0.5556,
+              "suma": -17.778
+            }
+          ],
+          "min": 30,
+          "max": 45,
+          "ayuda": "Cuenta como fiebre si es mayor de 37,8 °C.",
+          "intervalos": [
+            {
+              "max": 37.8,
+              "puntos": 0
+            },
+            {
+              "min": 37.81,
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Otros criterios: al menos uno",
+      "elementos": [
+        {
+          "id": "tqm",
+          "tipo": "opciones",
+          "label": "Taquicardia materna",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "tqf",
+          "tipo": "opciones",
+          "label": "Taquicardia fetal",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "En la auscultación o en la cardiotocografía."
+        },
+        {
+          "id": "dol",
+          "tipo": "opciones",
+          "label": "Dolor uterino",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "liq",
+          "tipo": "opciones",
+          "label": "Líquido amniótico purulento",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "leu",
+          "tipo": "opciones",
+          "label": "Leucocitosis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "En el hemograma, si se pidió."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Corioamnionitis clínica",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Iniciar de inmediato clindamicina 600 mg IV cada 6 h más gentamicina 240 mg IV cada 24 h, y desembarazar.",
+      "si": {
+        "todos": [
+          {
+            "id": "temp_puntos",
+            "igual": 1
+          },
+          {
+            "alguno": [
+              {
+                "id": "tqm",
+                "igual": 1
+              },
+              {
+                "id": "tqf",
+                "igual": 1
+              },
+              {
+                "id": "dol",
+                "igual": 1
+              },
+              {
+                "id": "liq",
+                "igual": 1
+              },
+              {
+                "id": "leu",
+                "igual": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 2,
+      "categoria": "Hallazgos aislados",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Seguir observando y considerar repetir las pruebas. Si la sospecha persiste, la amniocentesis puede confirmar una infección subclínica.",
+      "si": {
+        "alguno": [
+          {
+            "id": "temp_puntos",
+            "igual": 1
+          },
+          {
+            "id": "tqm",
+            "igual": 1
+          },
+          {
+            "id": "tqf",
+            "igual": 1
+          },
+          {
+            "id": "dol",
+            "igual": 1
+          },
+          {
+            "id": "liq",
+            "igual": 1
+          },
+          {
+            "id": "leu",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Sin signos de infección",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Seguir vigilando los signos de corioamnionitis y el bienestar fetal con la cardiotocografía."
+    }
+  ]
+}
