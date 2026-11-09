@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Ciclo de rescate en la RPM: dosis única de rescate si el ciclo completo fue hace más de una semana y la edad
+// gestacional es menor de 34 semanas (MinSalud 2013, pregunta 8); no más de 2 ciclos (NICE NG25 1.9.5).
+const AZ = "#3B82F6", AM = "#F2A23A";
+const X0 = 40, X1 = 640, D1 = 21, dx = (d) => X0 + (d / D1) * (X1 - X0);
+let s = `<svg width="668" height="230" viewBox="20 30 640 125">`;
+// primer ciclo (días 0-1)
+s += `<rect x="${dx(0)}" y="64" width="${dx(1.2) - dx(0)}" height="42" rx="8" fill="${AZ}"/>`;
+s += `<text x="${dx(0)}" y="52" font-size="13.5" font-weight="800" fill="${AZ}">primer ciclo completo</text>`;
+// días 1-7: no repetir
+s += `<rect x="${dx(1.4)}" y="74" width="${dx(7.5) - dx(1.4)}" height="22" rx="11" fill="#E5E7EB"/>`;
+s += `<text x="${(dx(1.4) + dx(7.5)) / 2}" y="90" text-anchor="middle" font-size="12.5" font-weight="700" fill="${GRIS}">primeros 7 días: no se repite</text>`;
+// ventana del rescate desde el día 8
+s += `<rect x="${dx(7.7)}" y="64" width="${dx(D1) - dx(7.7)}" height="42" rx="8" fill="${tinte(AM, 35)}" stroke="${AM}" stroke-width="2"/>`;
+s += `<text x="${dx(7.9)}" y="52" font-size="13.5" font-weight="800" fill="#B45309">desde el día 8: cabe una dosis única de rescate</text>`;
+s += `<text x="${(dx(7.7) + dx(D1)) / 2}" y="91" text-anchor="middle" font-size="13" font-weight="800" fill="#92400E">si tiene menos de 34 semanas</text>`;
+for (let d = 0; d <= D1; d += 7) {
+  s += `<line x1="${dx(d)}" y1="112" x2="${dx(d)}" y2="122" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<text x="${dx(d)}" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="${GRIS}">día ${d}</text>`;
+}
+s += `</svg>`;
+const cajas = `<div style="display:flex;gap:8px">
+  <div class="caja" style="flex:1;background:${tinte(AM, 12)};border:1.5px solid ${tinte(AM, 50)}">MinSalud: <b>dosis única de rescate</b> si el ciclo fue hace <b>más de una semana</b> y tiene <b>menos de 34 semanas</b>.</div>
+  <div class="caja" style="flex:1;background:${tinte(ROJO, 10)};border:1.5px solid ${tinte(ROJO, 45)}">No dar <b>más de 2 ciclos</b> en todo el embarazo.</div></div>`;
+lienzo("Cuándo cabe el ciclo de rescate", "Días desde el primer ciclo completo de corticoide en la RPM", s + cajas,
+  "Esquema de Empirica. Fuentes: MinSalud 2013 (pregunta 8); NICE NG25 (2015, actualizada en 2022), 1.9.5.");
+</script></body></html>

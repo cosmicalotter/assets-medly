@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Prueba de cristalización positiva (Paul_012, Wikimedia Commons, CC BY-SA 2.0). Prueba complementaria cuando persiste
+// la sospecha de RPM (MinSalud 2013, pregunta 3); falsos positivos del 6 % por moco cervical (MinSalud 2013, p. 326).
+const VE = "#86EFAC", AM = "#FDE047", RO = "#FCA5A5";
+recorrido({
+  titulo: "Leer la cristalización en helecho",
+  subtitulo: "Flujo vaginal secado en un portaobjetos y visto al microscopio",
+  credito: "Imagen: Paul_012, Wikimedia Commons, CC BY-SA 2.0, editada por Empirica. Fuente: MinSalud 2013.",
+  escenas: [
+    {
+      img: "fuentes/commons_Positive_Fern_Test.jpg", w: 1248, h: 1200, vista: [24, 0, 1200, 1200],
+      pasos: [
+        { texto: "Una gota del <b>flujo</b> del fondo de saco, <b>secada</b> al aire en el portaobjetos" },
+        { texto: "Cada cristal tiene un <b>eje central</b>…", vista: [680, 320, 330, 330],
+          dibujo: (u, e) => D.flecha(842, 566, 826, 418, AM, e, 1, u) + D.rotulo(856, 500, "eje", AM, e, { op: u }) },
+        { texto: "…con <b>ramas finas</b> a los lados: la forma de una <b>hoja de helecho</b>",
+          dibujo: (u, e) => D.elipse(792, 470, 34, 18, -35, VE, e, u) + D.elipse(880, 488, 34, 18, 35, VE, e, u) + D.rotulo(912, 448, "ramas", VE, e, { op: u }) },
+        { texto: "Hay helechos en <b>todo el campo</b>: la prueba es <b>positiva</b>", vista: [24, 0, 1200, 1200],
+          dibujo: (u, e) => D.anillo(430, 160, 90, VE, e, u) + D.anillo(840, 480, 110, VE, e, u) + D.anillo(960, 250, 90, VE, e, u) + D.anillo(640, 820, 110, VE, e, u) },
+        { texto: "El <b>moco cervical</b> también cristaliza: da <b>6 %</b> de falsos positivos",
+          dibujo: (u, e) => D.rotulo(624, 1130, "¿moco cervical?", RO, e, { ancla: "middle", op: u, tam: 16 }) },
+      ],
+    },
+  ],
+  final: `Prueba <b style="color:#86EFAC">complementaria</b>: se hace si la especuloscopia <b>no muestra líquido</b> y la sospecha sigue.`,
+});
+</script></body></html>
