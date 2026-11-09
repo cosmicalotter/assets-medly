@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Nifedipino de liberación inmediata para la tocólisis: 20 mg VO de carga y 10 mg cada 6 h (OMS 2022,
+// tocólisis, observaciones), durante 48 h y sin mantenimiento (WAPM 2023, recomendación 3; ACOG PB 171).
+// Máximo 180 mg/día (WAPM 2023).
+const X0 = 40, X1 = 640, H = 48, hx = (h) => X0 + (h / H) * (X1 - X0);
+let s = `<svg width="668" height="247" viewBox="0 0 668 190">`;
+s += `<rect x="${hx(0)}" y="88" width="${hx(48) - hx(0)}" height="14" rx="7" fill="${tinte(AZUL, 30)}"/>`;
+for (let h = 0; h <= 48; h += 6) {
+  s += `<line x1="${hx(h)}" y1="108" x2="${hx(h)}" y2="116" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<text x="${hx(h)}" y="134" text-anchor="middle" font-size="12.5" ${h % 24 === 0 ? `font-weight="800" fill="${TINTA}"` : `fill="${GRIS}"`}>${h} h</text>`;
+}
+// dosis
+const dosis = [[0, 20]].concat([6, 12, 18, 24, 30, 36, 42].map((h) => [h, 10]));
+dosis.forEach(([h, mg]) => {
+  const r = mg === 20 ? 15 : 11;
+  s += `<circle cx="${hx(h)}" cy="95" r="${r}" fill="${mg === 20 ? AZUL : "#fff"}" stroke="${AZUL}" stroke-width="3"/>`;
+  s += `<text x="${hx(h)}" y="${95 - r - 8}" text-anchor="middle" font-size="${mg === 20 ? 14 : 12.5}" font-weight="800" fill="${AZUL}">${mg} mg</text>`;
+});
+s += `<text x="${hx(0)}" y="30" font-size="13" font-weight="800" fill="${AZUL}">Carga</text>`;
+s += `<text x="${hx(6)}" y="30" font-size="13" font-weight="700" fill="${GRIS}">luego 10 mg cada 6 horas</text>`;
+// fin
+s += `<line x1="${hx(48)}" y1="70" x2="${hx(48)}" y2="118" stroke="${ROJO}" stroke-width="3"/>`;
+s += `<text x="${hx(48)}" y="160" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">48 h: suspender, sin mantenimiento</text>`;
+s += `</svg>`;
+const cajas = `<div style="display:flex;gap:8px">
+  <div class="caja" style="font-size:14.5px;padding:11px 13px;flex:1;background:${tinte(AZUL, 10)};border:1.5px solid ${tinte(AZUL, 45)}"><span>Vía <b>oral</b>, de <b>liberación inmediata</b>. Máximo <b>180 mg</b> al día.</span></div>
+  <div class="caja" style="font-size:14.5px;padding:11px 13px;flex:1;background:${tinte(AMBAR, 12)};border:1.5px solid ${tinte(AMBAR, 50)}"><span>Vigilar la <b>presión arterial</b>: causa mareo, rubor e <b>hipotensión</b>.</span></div>
+  <div class="caja" style="font-size:14.5px;padding:11px 13px;flex:1;background:${tinte(ROJO, 10)};border:1.5px solid ${tinte(ROJO, 45)}"><span>Con <b>sulfato de magnesio</b>, vigilar de cerca: los dos deprimen el corazón.</span></div></div>`;
+lienzo("Nifedipino para frenar el parto", "Las 48 horas que dan tiempo al corticoide y al traslado", s + cajas,
+  "Esquema de Empirica. Fuente: OMS 2022 (tocólisis); WAPM 2023; ACOG Practice Bulletin 171 (2016).");
+</script></body></html>

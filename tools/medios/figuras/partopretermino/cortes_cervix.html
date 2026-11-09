@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cortes de la longitud cervical en la gestante con síntomas, membranas íntegras y menos de 3 cm,
+// de las 22+0 a las 33+6 semanas: ISUOG 2022 (≥30 mm alta; <15-20 mm tratar) y WAPM 2023 (alta con >30 mm,
+// o 15-30 mm con biomarcador negativo). Regla a escala de 0 a 40 mm.
+const X0 = 30, X1 = 640, MAX = 40, mm = (v) => X0 + (v / MAX) * (X1 - X0);
+const Z = [
+  [0, 15, ROJO, "Menos de 15 mm", "Parto pretérmino <b>diagnosticado</b>: tratar"],
+  [15, 30, AMBAR, "15 a 30 mm", "Riesgo <b>intermedio</b>: fibronectina u observación"],
+  [30, 40, VERDE, "Más de 30 mm", "Parto en 7 días <b>poco probable</b>: alta"],
+];
+let s = `<svg width="668" height="180" viewBox="0 0 668 128">`;
+Z.forEach(([a, b, c, t]) => {
+  s += `<rect x="${mm(a)}" y="40" width="${mm(b) - mm(a)}" height="34" fill="${tinte(c, 45)}" stroke="${c}" stroke-width="2"/>`;
+  s += `<text x="${(mm(a) + mm(b)) / 2}" y="62" text-anchor="middle" font-size="14.5" font-weight="800" fill="${TINTA}">${t}</text>`;
+});
+s += `<path d="M ${mm(40) - 2} 36 l 16 21 l -16 21" fill="none" stroke="${VERDE}" stroke-width="2.5"/>`;
+for (let v = 0; v <= MAX; v += 5) {
+  s += `<line x1="${mm(v)}" y1="78" x2="${mm(v)}" y2="${v % 15 === 0 || v === 30 ? 90 : 85}" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<text x="${mm(v)}" y="106" text-anchor="middle" font-size="12.5" ${[15, 30].includes(v) ? `font-weight="800" fill="${TINTA}"` : `fill="${GRIS}"`}>${v}${v === MAX ? " mm" : ""}</text>`;
+}
+s += `<text x="${mm(0)}" y="26" font-size="12.5" font-weight="700" fill="${GRIS}">LONGITUD CERVICAL POR ECOGRAFÍA TRANSVAGINAL</text></svg>`;
+const tarjetas = `<div style="display:flex;gap:8px">${Z.map(([, , c, t, d]) => `<div class="caja" style="flex:1;font-size:15px;padding:12px 13px;background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 50)}"><div style="font-weight:800;color:${c === AMBAR ? "#B45309" : c === VERDE ? "#15803D" : "#B91C1C"};margin-bottom:3px">${t}</div><span>${d}</span></div>`).join("")}</div>`;
+const nota = `<div class="caja" style="background:#F8FAFC;border:1px solid var(--linea);color:#475569;font-size:14.5px;padding:11px 13px"><span>Antes, el <b>tacto</b>: con <b>3 cm o más</b> y contracciones regulares es un parto <b>establecido</b> y no hace falta medir. Sin ecógrafo, <b>observar 2 horas</b>.</span></div>`;
+lienzo("Qué hacer según la longitud cervical", "Con síntomas, membranas íntegras y menos de 3 cm (22+0 a 33+6 semanas)", s + tarjetas + nota,
+  "Esquema de Empirica. Fuente: ISUOG 2022 (Ultrasound Obstet Gynecol 60:435-56); WAPM 2023 (Eur J Obstet Gynecol Reprod Biol 291:196-205).");
+</script></body></html>
