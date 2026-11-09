@@ -171,7 +171,7 @@ Firebase directamente, saltándose `indices/`.
 - Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. **Meta (noviembre
   de 2026): 1 de cada 3 nodos clínicos con imagen, la mayoría fotos o
   imágenes diagnósticas reales libres editadas en español, y al menos un
-  GIF sobre una imagen real** (ejemplo: `neumonia.json`). Toda imagen lleva título, pie (`descripcion`) e
+  GIF sobre una imagen real** (ejemplo: `neumonia.json`). **Se prioriza la cantidad**: el nivel de neumonía (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF) es la referencia de todo algoritmo que se crea o se reforma. Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
   con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o
   conducta, la imagen lleva sus propias `referencias` (sólo las que respaldan

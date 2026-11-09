@@ -34,7 +34,7 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   gráficos propios de datos completan, no sustituyen: si hay foto libre que
   enseñe lo mismo, va la foto. `python3 tools/norma.py <algoritmo>` mide la
   proporción y lista los nodos que hablan de algo visible y no lo enseñan;
-  `data/Adultos/neumonia.json` es el ejemplo (13 de 34 nodos, 2 GIF reales).
+  `data/Adultos/neumonia.json` es el ejemplo y la referencia (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF reales): **se prioriza la cantidad**, y 1 de cada 3 es el mínimo, no la meta.
 
 ## De dónde salen, por orden de preferencia
 
