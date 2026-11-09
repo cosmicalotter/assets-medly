@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Sulfato de magnesio para neuroprotección fetal: 4 g IV en 15 min y 1 g/h hasta el nacimiento o 24 h;
+// vigilar al menos cada 4 h pulso, presión arterial, frecuencia respiratoria y reflejos rotulianos (NICE NG25 1.10.4-1.10.5).
+const X0 = 40, X1 = 640, H = 24, hx = (h) => X0 + (h / H) * (X1 - X0);
+let s = `<svg width="668" height="254" viewBox="0 0 668 196">`;
+// bolo (15 min = 0,25 h, ensanchado para que se vea)
+s += `<rect x="${hx(0)}" y="60" width="26" height="40" rx="6" fill="${MORADO}"/>`;
+s += `<text x="${hx(0)}" y="46" font-size="14" font-weight="800" fill="${MORADO}">4 g IV en 15 min</text>`;
+// infusión
+s += `<rect x="${hx(0) + 30}" y="70" width="${hx(24) - hx(0) - 30}" height="20" rx="10" fill="#BFA5FA"/>`;
+s += `<text x="${(hx(0) + hx(24)) / 2 + 20}" y="85" text-anchor="middle" font-size="13.5" font-weight="800" fill="${TINTA}">1 g/h en infusión IV, hasta el nacimiento</text>`;
+s += `<line x1="${hx(24)}" y1="52" x2="${hx(24)}" y2="104" stroke="${ROJO}" stroke-width="3"/>`;
+s += `<text x="${hx(24)}" y="46" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">24 h como máximo</text>`;
+for (let h = 0; h <= 24; h += 4) {
+  s += `<line x1="${hx(h)}" y1="108" x2="${hx(h)}" y2="116" stroke="${GRIS}" stroke-width="1.5"/>`;
+  s += `<text x="${hx(h)}" y="132" text-anchor="middle" font-size="12.5" font-weight="${h ? 600 : 800}" fill="${h ? GRIS : TINTA}">${h} h</text>`;
+  if (h) s += `<circle cx="${hx(h)}" cy="154" r="10" fill="${tinte(AMBAR, 30)}" stroke="${AMBAR}" stroke-width="2.5"/><text x="${hx(h)}" y="159" text-anchor="middle" font-size="12" font-weight="800" fill="#B45309">✓</text>`;
+}
+s += `<text x="${hx(0)}" y="159" font-size="12.5" font-weight="700" fill="#B45309">control</text></svg>`;
+const cajas = `<div style="display:flex;gap:8px">
+  <div class="caja" style="font-size:14.5px;padding:11px 13px;flex:1.3;background:${tinte(AMBAR, 12)};border:1.5px solid ${tinte(AMBAR, 50)}"><span>Cada <b>4 horas</b> como mínimo: <b>pulso</b>, presión arterial, <b>frecuencia respiratoria</b> y <b>reflejos rotulianos</b>.</span></div>
+  <div class="caja" style="font-size:14.5px;padding:11px 13px;flex:1;background:${tinte(ROJO, 10)};border:1.5px solid ${tinte(ROJO, 45)}"><span>Con <b>oliguria</b> o falla renal: vigilar más seguido y <b>bajar o suspender</b>.</span></div></div>`;
+lienzo("Sulfato de magnesio para la neuroprotección", "Parto establecido o nacimiento programado en 24 horas, antes de las 32 semanas", s + cajas,
+  "Esquema de Empirica. Fuente: NICE NG25 (2015, actualizada en 2022), 1.10.4 y 1.10.5.");
+</script></body></html>

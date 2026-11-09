@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Cervicometría transvaginal real a las 22 semanas (M. Häggström, Wikimedia Commons, CC0).
+// El original mide el canal en dos tramos (25,1 + 18,2 mm) con presión del transductor: la propia
+// ficha lo da como medición mejorable. Técnica y corte: ISUOG 2022 (tabla 1 y recomendaciones).
+// Escala del original: unos 7,4 px por mm (185 px del tramo 1 = 25,1 mm).
+const CAL = "#CBD967", ROJO_C = "#FCA5A5", TURQ = "#5EEAD4";
+recorrido({
+  titulo: "Medir el cérvix por ecografía transvaginal",
+  subtitulo: "Gestante de 22 semanas: dónde poner los cálipers y cómo leer la cifra",
+  credito: "Imagen: M. Häggström, Wikimedia Commons, CC0, editada por Empirica. Fuente: ISUOG 2022.",
+  escenas: [
+    {
+      img: "fuentes/commons_Cervix_length_measurement.jpg", w: 666, h: 529, vista: [125, 0, 529, 529],
+      tapas: ["530,462 642,462 642,510 530,510|#000"],
+      encima: (e) => D.rotulo(536, 480, "1: 25,1 mm", CAL, e, { tam: 12 }) + D.rotulo(536, 500, "2: 18,2 mm", CAL, e, { tam: 12 }),
+      pasos: [
+        { texto: "Corte sagital por vía <b>transvaginal</b>: el transductor queda abajo",
+          dibujo: (u, e) => D.rotulo(315, 518, "transductor", TURQ, e, { ancla: "middle", op: u }) + D.flecha(315, 500, 315, 478, TURQ, e, u, u) },
+        { texto: "<b>Orificio externo</b>: el cáliper de abajo, junto al transductor", vista: [120, 250, 260, 260],
+          dibujo: (u, e) => D.rotulo(262, 412, "orificio externo", CAL, e, { op: u }) },
+        { texto: "<b>Orificio interno</b>: el cáliper de arriba, hacia el útero", vista: [270, 60, 260, 260],
+          dibujo: (u, e) => D.rotulo(408, 178, "orificio interno", CAL, e, { op: u }) },
+        { texto: "El canal es curvo y se midió en <b>dos tramos</b>: 25,1 + 18,2 = <b>43,3 mm</b>", vista: [125, 0, 529, 529],
+          dibujo: (u, e) => D.rotulo(420, 300, "43,3 mm", CAL, e, { op: u, tam: 18 }) },
+        { texto: "El corte de <b>25 mm</b> llega sólo al cáliper 1: este cérvix es <b>largo</b>",
+          dibujo: (u, e) => D.calibre(216, 400, 245, 217, ROJO_C, e, u) + D.rotulo(205, 300, "25 mm", ROJO_C, e, { ancla: "end", op: u, tam: 16 }) },
+        { texto: "Medir <b>sin presionar</b> y anotar la <b>más corta</b> de <b>3</b> mediciones en línea recta",
+          dibujo: (u, e) => D.anillo(315, 470, 34, TURQ, e, u) },
+      ],
+    },
+  ],
+  final: `<b style="color:#FCA5A5">25 mm o menos</b> entre las 16 y 24 semanas: <b style="color:#5EEAD4">progesterona vaginal</b>. Un cérvix corto siempre se ve <b>recto</b>.`,
+});
+</script></body></html>
