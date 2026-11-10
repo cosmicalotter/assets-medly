@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Metotrexato en dosis única: hCG los días 4 y 7 y caída de al menos 15 % (ACOG PB 193, e96-e97; NICE NG126, 1.10.9, p. 40).
+// Ejemplo ilustrativo: 1.000 el día 1, 1.200 el día 4.
+const W = 668, H = 292, X0 = 70, X1 = 420, Y0 = 250, Y1 = 18, HMAX = 1400;
+const x = (d) => X0 + (X1 - X0) * (d - 1) / 6;
+const y = (v) => Y0 - (Y0 - Y1) * v / HMAX;
+const p = (d, v, c, t, dy = -12) => `<circle cx="${x(d)}" cy="${y(v)}" r="8" fill="${c}" stroke="#fff" stroke-width="2"/>
+  <text x="${x(d)}" y="${y(v) + dy}" font-size="12" text-anchor="middle" font-weight="800" fill="${c}">${t}</text>`;
+const ejeX = [1, 4, 7].map((d) => `<line x1="${x(d)}" y1="${Y1}" x2="${x(d)}" y2="${Y0}" stroke="#E5E7EB"/><text x="${x(d)}" y="${Y0 + 20}" font-size="12" text-anchor="middle" font-weight="700" fill="#374151">Día ${d}</text>`).join("");
+const ejeY = [0, 500].map((v) => `<text x="${X0 - 8}" y="${y(v) + 4}" font-size="11.5" text-anchor="end" fill="#6B7280">${v.toLocaleString("es-CO")}</text>`).join("");
+const umbral = `<line x1="${x(4)}" y1="${y(1020)}" x2="${X1 + 12}" y2="${y(1020)}" stroke="${MORADO}" stroke-dasharray="5 4"/>
+  <text x="${x(4) + 6}" y="${y(1020) + 16}" font-size="11.5" font-weight="700" fill="${MORADO}">−15 %: 1.020</text>`;
+const caja = (yy, c, tit, txt) => `<foreignObject x="${X1 + 30}" y="${yy}" width="${W - X1 - 32}" height="96"><div xmlns="http://www.w3.org/1999/xhtml" class="caja" style="background:${tinte(c, 13)};border:1px solid ${tinte(c, 55)}"><span><b style="color:${c}">${tit}</b><br>${txt}</span></div></foreignObject>`;
+const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+  ${ejeX}${ejeY}
+  <line x1="${X0}" y1="${Y0}" x2="${X1 + 12}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>
+  <text x="16" y="${(Y0 + Y1) / 2}" font-size="11" fill="#6B7280" transform="rotate(-90 16 ${(Y0 + Y1) / 2})" text-anchor="middle">hCG sérica (mUI/mL)</text>
+  <polyline points="${x(1)},${y(1000)} ${x(4)},${y(1200)}" fill="none" stroke="${GRIS}" stroke-width="4" stroke-linecap="round"/>
+  <polyline points="${x(4)},${y(1200)} ${x(7)},${y(850)}" fill="none" stroke="${VERDE}" stroke-width="4" stroke-linecap="round"/>
+  <polyline points="${x(4)},${y(1200)} ${x(7)},${y(1150)}" fill="none" stroke="${ROJO}" stroke-width="4" stroke-linecap="round" stroke-dasharray="3 8"/>
+  ${umbral}${p(1, 1000, GRIS, "1.000")}${p(4, 1200, TINTA, "1.200")}${p(7, 850, VERDE, "850", 22)}${p(7, 1150, ROJO, "1.150")}
+  <text x="${x(2.5)}" y="${y(1100) - 14}" font-size="11.5" text-anchor="middle" fill="${GRIS}" font-weight="700">puede subir</text>
+  ${caja(y(1350), ROJO, "Cae menos de 15 %", "Repetir el <b>metotrexato</b> y medir otra vez la hCG.")}
+  ${caja(y(800), VERDE, "Cae 15 % o más", "hCG <b>cada semana</b> hasta que sea negativa.")}
+</svg>`;
+lienzo("Metotrexato: la caída del día 4 al 7", "Ejemplo con dosis única: hCG de 1.000 el día 1 y de 1.200 el día 4", svg +
+  `<div class="caja" style="background:#F7F8FA">Si no baja tras <b>dos dosis</b>, considerar la <b>cirugía</b>.</div>`,
+  "Esquema ilustrativo, no datos de una paciente. Fuente: ACOG Practice Bulletin 193 (2018), e96-e97; NICE NG126 (2026), p. 40.");
+</script></body></html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Signo del «blob» de un ectópico tubárico (Mikael Häggström, Wikimedia Commons, CC0): rótulos en inglés y líneas
+// guía borrados con tools/medios/borrar_rotulos.py (fuentes/limpia_eco_blob.png). Caso de la ficha: DIU hormonal,
+// sin saco intrauterino, hCG de 1.254 UI/L. Signos: NICE NG126, 1.7.2-1.7.3 (p. 19).
+const AM = "#FDE047", VE = "#86EFAC", RO = "#FCA5A5", AZ = "#93C5FD";
+recorrido({
+  titulo: "Ectópico: la masa anexial o «blob»",
+  subtitulo: "Ecografía transvaginal de una mujer con un DIU hormonal",
+  credito: "Imagen: Mikael Häggström, Wikimedia Commons, CC0. Sin rótulos en inglés y rotulada por Empirica. Fuente: NICE NG126.",
+  escenas: [
+    {
+      img: "fuentes/limpia_eco_blob.png", w: 1280, h: 552, vista: [10, -230, 1040, 1040],
+      tapas: ["960,0 1280,0 1280,552 545,552 1040,285 1048,60|#000"],
+      pasos: [
+        { texto: "Corte transvaginal de la <b>pelvis</b>: a la derecha, el útero; a la izquierda, el anexo" },
+        { texto: "El <b>útero</b> no tiene saco: sólo el <b>DIU</b> en la cavidad", vista: [480, 150, 480, 480],
+          dibujo: (u, e) => D.anillo(705, 278, 26, AM, e, u) + D.rotulo(705, 238, "DIU", AM, e, { ancla: "middle", op: u }) + D.rotulo(850, 450, "útero", AZ, e, { ancla: "middle", op: u, tam: 16 }) },
+        { texto: "Junto al útero, el <b>ovario</b>, con un <b>folículo</b>", vista: [200, 190, 330, 330],
+          dibujo: (u, e) => D.anillo(371, 310, 20, VE, e, u) + D.rotulo(371, 270, "ovario", VE, e, { ancla: "middle", op: u }) },
+        { texto: "Aparte del ovario, una <b>masa redonda</b>: el «blob»", vista: [0, 190, 390, 390],
+          dibujo: (u, e) => D.elipse(148, 410, 98, 116, 0, RO, e, u) + D.rotulo(148, 300, "masa", RO, e, { ancla: "middle", op: u, tam: 16 }) },
+        { texto: "Encima de la masa, <b>sangre</b> en la pelvis", vista: [0, 175, 430, 430],
+          dibujo: (u, e) => D.flecha(330, 215, 228, 252, AZ, e, 1, u) + D.rotulo(336, 212, "sangre", AZ, e, { op: u }) },
+        { texto: "Útero vacío con una hCG de <b>1.254 UI/L</b>", vista: [10, -230, 1040, 1040] },
+      ],
+    },
+  ],
+  final: `Masa anexial <b style="color:#FCA5A5">compleja</b>, aparte del ovario, y útero vacío: <b>alta probabilidad</b> de ectópico tubárico.`,
+});
+</script></body></html>

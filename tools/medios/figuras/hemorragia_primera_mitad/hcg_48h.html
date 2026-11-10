@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Localización desconocida: qué hacer según el cambio de la hCG en 48 horas (NICE NG126, 1.8.5-1.8.9, pp. 21-22).
+// Ejemplo ilustrativo con una primera hCG de 1.000 mUI/mL.
+const W = 668, H = 292, X0 = 70, X1 = 340, Y0 = 258, Y1 = 16, HMAX = 2000;
+const y = (v) => Y0 - (Y0 - Y1) * v / HMAX;
+const zona = (a, b, c) => `<rect x="${X1 - 2}" y="${y(b)}" width="18" height="${y(a) - y(b)}" rx="5" fill="${c}"/>`;
+const linea48 = (v, c) => `<line x1="${X0 + 6}" y1="${y(1000)}" x2="${X1 - 8}" y2="${y(v)}" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+  <circle cx="${X1 + 7}" cy="${y(v)}" r="7" fill="${c}" stroke="#fff" stroke-width="2"/>`;
+const caja = (yy, c, tit, txt) => `<foreignObject x="${X1 + 34}" y="${yy}" width="${W - X1 - 36}" height="78"><div xmlns="http://www.w3.org/1999/xhtml" class="caja" style="background:${tinte(c, 13)};border:1px solid ${tinte(c, 55)}"><span><b style="color:${c}">${tit}</b><br>${txt}</span></div></foreignObject>`;
+const ejeY = [0, 500, 1630, 2000].map((v) => `<text x="${X0 - 8}" y="${y(v) + 4}" font-size="11.5" text-anchor="end" fill="#6B7280" font-weight="${v === 500 || v === 1630 ? 800 : 400}">${v.toLocaleString("es-CO")}</text>`).join("");
+const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+  ${zona(1630, 2000, tinte(VERDE, 70))}${zona(500, 1630, tinte(AMBAR, 70))}${zona(0, 500, tinte(AZUL, 70))}
+  <line x1="${X0}" y1="${y(1630)}" x2="${X1}" y2="${y(1630)}" stroke="${VERDE}" stroke-dasharray="5 4"/>
+  <line x1="${X0}" y1="${y(500)}" x2="${X1}" y2="${y(500)}" stroke="${AZUL}" stroke-dasharray="5 4"/>
+  <line x1="${X0}" y1="${Y0}" x2="${X1 + 20}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>
+  ${ejeY}<text x="16" y="${(Y0 + Y1) / 2}" font-size="11" fill="#6B7280" transform="rotate(-90 16 ${(Y0 + Y1) / 2})" text-anchor="middle">hCG sérica (mUI/mL)</text>
+  <text x="${X0}" y="${Y0 + 20}" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">0 h</text>
+  <text x="${X1 + 7}" y="${Y0 + 20}" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">48 h</text>
+  ${linea48(1850, VERDE)}${linea48(1150, AMBAR)}${linea48(300, AZUL)}
+  <circle cx="${X0}" cy="${y(1000)}" r="8" fill="${TINTA}" stroke="#fff" stroke-width="2"/>
+  <text x="${X0 + 12}" y="${y(1000) - 12}" font-size="12" font-weight="700" fill="${TINTA}">1.000</text>
+  ${caja(y(2000) - 4, VERDE, "Sube más del 63 %", "Probable intrauterino: ecografía en <b>7-14 días</b>.")}
+  ${caja(y(1150) - 12, AMBAR, "Cambio intermedio", "Revisión con especialista en <b>24 horas</b>.")}
+  ${caja(y(450) - 6, AZUL, "Baja más del 50 %", "Probable pérdida: prueba en orina a los <b>14 días</b>.")}
+</svg>`;
+lienzo("hCG a las 48 horas: tres caminos", "Ejemplo con una primera hCG de 1.000 mUI/mL", svg +
+  `<div class="caja" style="background:#F7F8FA"><b>Síntomas nuevos</b> (dolor, mareo, más sangrado): revalorar <b>de inmediato</b>, sea cual sea la hCG.</div>`,
+  "Esquema ilustrativo, no datos de una paciente. Fuente: NICE NG126 (2026), recomendaciones 1.8.5-1.8.9, pp. 21-22.");
+</script></body></html>
