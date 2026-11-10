@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Saco gestacional, vesícula vitelina y embrión de 3 mm a las 5 semanas (Mikael Häggström a partir de
+// X. Compagnion, Wikimedia Commons, CC BY 2.5), con sus colores; líneas guía en inglés borradas
+// (fuentes/limpia_eco_embrion_5s.png). Cortes: NICE NG126, 1.6.2-1.6.6 (pp. 16-17).
+const AM = "#FDE047", VE = "#86EFAC", RO = "#FCA5A5", AZ = "#93C5FD";
+recorrido({
+  titulo: "Qué medir antes de diagnosticar la pérdida",
+  subtitulo: "Ecografía transvaginal de un embarazo de 5 semanas",
+  credito: "Imagen: X. Compagnion y Mikael Häggström, Wikimedia Commons, CC BY 2.5. Rotulada por Empirica. Fuente: NICE NG126.",
+  escenas: [
+    {
+      img: "fuentes/limpia_eco_embrion_5s.png", w: 1280, h: 640, vista: [100, -170, 980, 980],
+      pasos: [
+        { texto: "En <b>azul</b>, el <b>saco gestacional</b>, dentro del útero",
+          dibujo: (u, e) => D.rotulo(420, 260, "saco gestacional", AZ, e, { ancla: "middle", op: u, tam: 16 }) },
+        { texto: "En <b>rojo</b>, la <b>vesícula vitelina</b>", vista: [480, 170, 460, 460],
+          dibujo: (u, e) => D.rotulo(752, 285, "vesícula vitelina", RO, e, { ancla: "middle", op: u }) },
+        { texto: "En <b>verde</b>, el <b>embrión</b>: aquí mide <b>3 mm</b>",
+          dibujo: (u, e) => D.calibre(728, 520, 884, 482, AM, e, u) + D.rotulo(810, 580, "embrión: 3 mm", VE, e, { ancla: "middle", op: u }) },
+        { texto: "Primero, buscar el <b>latido</b> del embrión" },
+        { texto: "Sin latido: medir la <b>longitud cráneo-caudal</b>; con <b>menos de 7 mm</b>, repetir en <b>7 días</b>" },
+        { texto: "Sólo si <b>no se ve embrión</b>, se mide el <b>diámetro medio del saco</b> (así); con <b>menos de 25 mm</b>, repetir en <b>7 días</b>", vista: [100, -170, 980, 980],
+          dibujo: (u, e) => D.calibre(170, 370, 1080, 370, AM, e, u) + D.calibre(640, 130, 640, 600, AM, e, u) },
+      ],
+    },
+  ],
+  final: `Sin latido y con <b>7 mm</b> o <b>25 mm</b> o más: <b style="color:#FDE047">segunda opinión</b> o repetir a los <b>7 días</b>.`,
+});
+</script></body></html>
