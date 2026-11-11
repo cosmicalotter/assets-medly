@@ -476,11 +476,63 @@ def chequear(ruta: Path) -> list[str]:
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
+        ev = nodo.get("evidencia") or nodo.get("recomendacion")
+        if isinstance(ev, dict):
+            fuerza = (ev.get("fuerza") or "").strip().lower()
+            certeza = (ev.get("certeza") or "").strip()
+            if fuerza and fuerza not in FUERZAS:
+                problemas.append(f"{nid}: «evidencia.fuerza» «{ev.get('fuerza')}» no es de la lista; la etiqueta la enseña tal cual")
+            if certeza and not certeza_valida(certeza):
+                problemas.append(f"{nid}: «evidencia.certeza» «{certeza}» no se convierte en letra; la etiqueta no la enseña")
     from fuentes import revisar as revisar_fuentes  # aquí: fuentes.py importa este módulo
 
     problemas.extend(f for f in revisar_fuentes(alg)[0] if "no es «#page=N»" in f)
     problemas.extend(saltos_sin_flujo(alg))
     return problemas
+
+
+FUERZAS = {"fuerte", "condicional", "débil", "fuerte en contra", "condicional en contra",
+           "débil en contra", "consenso", "buena práctica",
+           # OMS: recomendado, no recomendado, según el contexto.
+           "recomendado", "no recomendado", "según el contexto",
+           # Sistemas de cuatro fuerzas (AAOS, AUA): fuerte, moderada, limitada.
+           "moderada", "limitada"}
+CERTEZAS = {"alta", "moderada", "baja", "muy baja"}
+
+
+def certeza_valida(certeza: str) -> bool:
+    """«moderada», «muy baja a moderada» o la letra (A-D)."""
+    t = certeza.strip().lower()
+    if re.fullmatch(r"[a-d](\s*-\s*[a-d])?", t):
+        return True
+    return all(parte.strip() in CERTEZAS for parte in t.split(" a "))
+
+
+def falta_grado(ev) -> str | None:
+    """La etiqueta de evidencia (NORMA §3): GRADE con `fuerza` + `certeza`,
+    AHA/ESC con `clase` + `nivel`. Un texto suelto se lee, pero la app
+    adivina la etiqueta y a veces la corta («Retirar o dejar…»)."""
+    if not ev:
+        return None
+    if isinstance(ev, str):
+        if re.fullmatch(r"(?i)(clase\s*)?(III|IIb|IIa|II|I)\s*[-·,/ ]?\s*(nivel\s*)?([ABC](-(R|NR|EO|LD))?)?", ev.strip()):
+            return None
+        return "«evidencia» en texto suelto: separar «fuerza» y «certeza» (o «clase» y «nivel»)"
+    if not isinstance(ev, dict):
+        return "«evidencia» no es texto ni objeto"
+    if ev.get("clase") or ev.get("nivel"):
+        return None
+    fuerza = (ev.get("fuerza") or "").strip().lower()
+    certeza = (ev.get("certeza") or "").strip()
+    if not fuerza and not certeza:
+        return "«evidencia» sin «fuerza» ni «certeza»: la etiqueta se adivina del texto"
+    if fuerza and fuerza not in FUERZAS:
+        return f"«fuerza» «{ev.get('fuerza')}» no es de la lista (NORMA §3: fuerte, condicional, débil, … en contra, consenso, buena práctica, recomendado…)"
+    if certeza and not certeza_valida(certeza):
+        return f"«certeza» «{certeza}» no es alta, moderada, baja ni muy baja"
+    if fuerza in {"fuerte", "condicional", "débil"} and not certeza:
+        return "«evidencia» con «fuerza» pero sin «certeza» (si la guía la da)"
+    return None
 
 
 def es_salto_interno(enl: dict) -> bool:
@@ -586,6 +638,10 @@ def medir(ruta: Path) -> Informe:
     n_perla = sum(1 for n in clinicos.values() if n.get("nota_adicional") or n.get("notaAdicional"))
     n_grado = sum(1 for n in clinicos.values() if n.get("evidencia") or n.get("recomendacion"))
     n_crono = sum(1 for n in clinicos.values() if n.get("cronometros"))
+    for nid, n in clinicos.items():
+        falta = falta_grado(n.get("evidencia") or n.get("recomendacion"))
+        if falta:
+            inf.faltas.append(f"{nid}: {falta}")
     for nid, n in clinicos.items():
         if n.get("cronometros"):
             inf.faltas.append(f"{nid}: lleva cronómetros; no se usan por ahora")
