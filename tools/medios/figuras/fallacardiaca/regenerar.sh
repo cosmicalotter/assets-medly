@@ -25,10 +25,20 @@ jpg ecg_bri "$D/fallacardiaca_ecg_bri_real.jpg" 80
 jpg ecg_fa "$D/fallacardiaca_ecg_fa_real.jpg"
 # Esquemas propios
 png peptidos "$D/fallacardiaca_ntprobnp_edad.png"
-gif titulacion "$D/fallacardiaca_titulacion.gif" 24 120 2600 128
+gif titulacion "$D/fallacardiaca_titulacion.gif" 4 2600 4000 128
 # Ampliación de noviembre de 2026: dos imágenes de Commons y tres esquemas propios
 jpg edema_pulmonar "$D/fallacardiaca_edema_pulmonar_real.jpg"
 jpg amiloidosis "$D/fallacardiaca_amiloidosis_real.jpg"
 png terapia_base "$D/fallacardiaca_terapia_base.png"
 png congestion "$D/fallacardiaca_congestion.png"
 gif descongestion "$D/fallacardiaca_descongestion.gif" 7 2600 4000 128
+
+# Segunda vuelta (AHA 2022 y MinSalud 2016): fotos y RM de Commons rotuladas, estadios y recorrido por la Rx
+jpg foto_lvad "$D/fallacardiaca_lvad_real.jpg"
+jpg foto_coronaria "$D/fallacardiaca_coronaria_real.jpg"
+jpg foto_rm_causa "$D/fallacardiaca_rm_realce_real.jpg"
+jpg foto_miocardiopatia "$D/fallacardiaca_miocardiopatia_real.jpg"
+jpg foto_insuf_mitral "$D/fallacardiaca_insuf_mitral_real.jpg"
+jpg foto_ecmo "$D/fallacardiaca_ecmo_real.jpg"
+png estadios "$D/fallacardiaca_estadios.png"
+gif rx_recorrido "$D/fallacardiaca_rx_recorrido.gif" 60 330 2600 256
