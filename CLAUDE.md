@@ -269,7 +269,12 @@ Firebase directamente, saltándose `indices/`.
   criterios por entidad (CAD, EHH…) en `tabla`, **cada criterio en su viñeta**
   (también dentro de las celdas: `- …` separadas por `\n`; nunca una lista
   encadenada con comas, en ningún sitio del algoritmo), y «la tabla» del texto como
-  `tabla.en_texto`, que la abre; `discrepancias` sólo si cambian lo que se
+  `tabla.en_texto`, que la abre; **grado de evidencia** con campos, no con
+  texto libre: GRADE como `{"fuerza": "fuerte", "certeza": "moderada",
+  "texto": "…"}` (la app enseña «Fuerte · B»: A alta, B moderada, C baja,
+  D muy baja) y AHA/ESC como `{"clase": "I", "nivel": "A"}` («I · A»); el
+  detalle de la guía va en `texto` y se lee al pasar el ratón (`NORMA.md`
+  §3); `discrepancias` sólo si cambian lo que se
   hace (dosis, destino, momento, umbral de conducta), nunca por redondeos o
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
