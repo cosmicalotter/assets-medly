@@ -95,7 +95,9 @@ Orden de trabajo, nodo a nodo:
    sitio) que genere el JSON y regenerarlo tras cada cambio; al repositorio
    sólo va el JSON.
 2. **Contenido**: cada cifra, dosis, umbral o criterio nuevo lleva su
-   referencia con cita literal (`texto`, 12-30 palabras) y `paginas`. Si
+   referencia con cita literal (`texto`, 12-30 palabras) y `paginas`, y su
+   `url` es el PDF original de la guía en la página física de la cita
+   (`…/guia.pdf#page=N`; `NORMA.md` §7; se ancla en el paso 4). Si
    `imagen_evidencia` todavía no existe, `TODO_EVIDENCIA: <qué recortar>`,
    salvo en una **guía de pago** o de licencia no comercial (ACOG, Elsevier, Wiley, LWW, CC BY-NC…): ahí la cita
    textual va sin recorte y sin marcador (`NORMA.md` §7).
@@ -145,6 +147,17 @@ literales en el PDF y recorta, sin modelo. Lo que no ancle se queda como
 pasa sobre guías que no son de pago ni de licencia no comercial** (`NORMA.md` §7): de una guía de pago
 se queda la cita textual, sin recorte.
 
+Después, cada guía con PDF libre se ancla para que «Abrir fuente» abra la
+página de la cita (`NORMA.md` §7), tenga o no recorte:
+
+```bash
+python3 tools/fuentes.py <algoritmo> --url <pdf-oficial> [--de <url-vieja>] --aplicar
+```
+
+Lo que no ancle se mira en el PDF y se pone a mano (`#page=N`, página
+física). Al final, `python3 tools/fuentes.py <algoritmo>` sin ningún «PDF sin
+`#page=N`».
+
 ## 5. Verificar
 
 1. `python3 tools/glosario.py --faltan <algoritmo>`: ninguna sigla fuera del
@@ -156,6 +169,8 @@ se queda la cita textual, sin recorte.
    (también las frases con más de tres palabras clave en negrita, las
    piezas sin ninguna y el
    vocabulario de España).
+2a. `python3 tools/fuentes.py <algoritmo>`: ningún PDF sin `#page=N`; cada
+   aviso de «no es un PDF» es una guía sin PDF libre (dilo en el PR).
 2b. `python3 tools/norma.py --vocabulario <algoritmo>`: sin cambios
    automáticos pendientes; cada «revisar» decidido (el suero sanguíneo o el
    «suero casero» de AIEPI se quedan).

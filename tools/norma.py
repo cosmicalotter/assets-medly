@@ -24,6 +24,9 @@ Uso:
   python3 tools/norma.py --hook                lo mismo, leyendo el evento de
                                                Claude Code por stdin
 
+Las fuentes («Abrir fuente» al PDF en su página) se revisan y se anclan con
+tools/fuentes.py; aquí sólo se cuentan entre las faltas.
+
 Sin dependencias: sólo la biblioteca estándar.
 """
 
@@ -473,6 +476,9 @@ def chequear(ruta: Path) -> list[str]:
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
+    from fuentes import revisar as revisar_fuentes  # aquí: fuentes.py importa este módulo
+
+    problemas.extend(f for f in revisar_fuentes(alg)[0] if "no es «#page=N»" in f)
     problemas.extend(saltos_sin_flujo(alg))
     return problemas
 
@@ -702,6 +708,18 @@ def medir(ruta: Path) -> Informe:
             inf.faltas.append(f"{nid}: «{textos[0][:40]}» es la única respuesta; falta la negativa (el «No» o el «Aún no» también lleva a algún sitio)")
         elif (n.get("pie_nodo") or "").strip().endswith("?") and len(ops) < 2:
             inf.faltas.append(f"{nid}: pregunta «{n['pie_nodo'][:50]}» con una sola respuesta; añadir las demás o quitar la pregunta (un paso que sólo sigue adelante no pregunta)")
+
+    # «Abrir fuente» (NORMA §7): el PDF original, en la página de la cita.
+    from fuentes import revisar as revisar_fuentes  # aquí: fuentes.py importa este módulo
+
+    sin_pagina, web = revisar_fuentes(alg)
+    if sin_pagina:
+        inf.faltas.append(
+            f"fuentes: {len(sin_pagina)} cita(s) a un PDF sin «#page=N» (página física); "
+            f"`python3 tools/fuentes.py {ruta.stem}` las lista y `--url <pdf>` las ancla"
+        )
+    if web:
+        inf.faltas.append(f"fuentes: {len(web)} guía(s) con citas que abren una página web, no el PDF original (si hay PDF oficial y libre, usarlo)")
 
     # Español de Colombia: cada término una vez, con cuántas veces sale.
     vistos: dict[tuple[str, str | None], int] = {}

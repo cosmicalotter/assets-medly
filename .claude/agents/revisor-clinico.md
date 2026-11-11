@@ -18,6 +18,9 @@ guiándote por `referencias[].paginas` y `referencias[].texto`):
    `dosis` (cantidad, rango, tope, concentración, periodo).
 2. **Citas**: `referencias[].texto` tiene que aparecer literal en la página
    que dice `paginas`. Una cita que no está es un hallazgo.
+   Si la `url` es un PDF, termina en `#page=N` y N es la página física del
+   PDF donde está la cita (`tools/fuentes.py` lo ancla); un PDF sin página o
+   en otra página es un hallazgo.
 3. **Criterios y listas**: `checklist`, criterios contados («2 de 4») y
    tablas completos y con los mismos elementos que la guía.
 3b. **Recorrido completo** (NORMA §2): que el algoritmo cubra todo lo que se
