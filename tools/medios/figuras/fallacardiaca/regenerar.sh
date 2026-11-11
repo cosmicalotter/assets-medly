@@ -26,3 +26,9 @@ jpg ecg_fa "$D/fallacardiaca_ecg_fa_real.jpg"
 # Esquemas propios
 png peptidos "$D/fallacardiaca_ntprobnp_edad.png"
 gif titulacion "$D/fallacardiaca_titulacion.gif" 24 120 2600 128
+# Ampliación de noviembre de 2026: dos imágenes de Commons y tres esquemas propios
+jpg edema_pulmonar "$D/fallacardiaca_edema_pulmonar_real.jpg"
+jpg amiloidosis "$D/fallacardiaca_amiloidosis_real.jpg"
+png terapia_base "$D/fallacardiaca_terapia_base.png"
+png congestion "$D/fallacardiaca_congestion.png"
+gif descongestion "$D/fallacardiaca_descongestion.gif" 7 2600 4000 128
