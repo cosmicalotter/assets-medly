@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="comun.js"></script></head><body><script>
+// Escalera de prevención de la IVU recurrente: AUA 2025 (agua, estrógeno, metenamina, arándano, profilaxis, autotratamiento); ACIN 2015 (esquemas).
+const P = [
+  [CIS, "1. Sin antibiótico", ["**Agua** si toma menos de **1,5 L** al día", "**Estrógeno vaginal** en la peri y la posmenopausia", "**Metenamina** hipurato", "**Arándano** o D-manosa"]],
+  [PRO, "2. Profilaxis antibiótica", ["**Poscoital**: 3 episodios al año ligados a las relaciones", "**Continua** con **2 o más** al año, por **6 meses** o más", "**¼ a ½** de la dosis de tratamiento"]],
+];
+const pasos = P.map(([c, t, items], i) => `<div style="flex:1;display:flex;flex-direction:column;gap:7px;margin-top:${(1 - i) * 40}px">
+  <div style="background:${c};color:#fff;border-radius:12px;padding:9px 12px;font-size:16px;font-weight:800">${t}</div>
+  ${items.map((x) => pastilla(c, x)).join("")}</div>`).join("");
+const alt = `<div style="flex:0.85;display:flex;flex-direction:column;gap:7px;border:2px dashed ${tinte(PIE, 55)};border-radius:14px;padding:8px">
+  <div style="color:${PIE};font-size:15px;font-weight:800">Alternativa: autotratamiento</div>
+  ${["En pacientes **seleccionadas**", "Con **urocultivo** antes de empezar"].map((x) => pastilla(PIE, x)).join("")}</div>`;
+const pie = `<div class="caja" style="background:#F7F8FA;border:1.5px solid #E5E7EB">Cada episodio, con <b>urocultivo</b> y el ciclo <b>más corto</b> posible. Las quinolonas y la fosfomicina se <b>reservan</b> para tratar.</div>`;
+lienzo("Prevenir la IVU recurrente", "Se sube un peldaño si las recurrencias siguen",
+  `<div style="display:flex;gap:12px;align-items:flex-start">${pasos}${alt}</div>` + pie,
+  "Esquema. Fuente: AUA/CUA/SUFU 2025; ACIN 2015 (esquemas de profilaxis).");
+</script></body></html>

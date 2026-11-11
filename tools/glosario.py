@@ -20,7 +20,7 @@ GLOSARIO = RAIZ / "data" / "glosario.json"
 
 # Mayúsculas que no son siglas clínicas: números romanos, segmentos y grados,
 # nombres de ensayos.
-NO_SIGLA = re.compile(r"^(?:[IVX]+[ab]?|[A-Z]\d|[UGBM]\d+|DE|UP|HAS|BLED|VASc|CAST|IST|WAKE|TRACE|EXTEND|DIAGRAM|CHANCE|ELAN|THALES|"
+NO_SIGLA = re.compile(r"^(?:[IVX]+[abc]?|[A-Z]\d|[UGBM]\d+|DE|UP|HAS|BLED|VASc|CAST|IST|WAKE|TRACE|EXTEND|DIAGRAM|CHANCE|ELAN|THALES|"
                       r"INSPIRES|POINT|PROTECTION|AKIKI|HELLP|KAMPS|FOSF|GAIS|ASGE|BSG|ACORL|RCUK|BNFc|AIR|COI|R4U|PFAPA|NIH|CKD|EPI|aGLP|GLP)$")
 SIGLA = re.compile(r"(?<![\w])(?:[a-z]{0,2}[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ0-9]+[a-z]?(?: II)?)(?![\w])")
 

@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Escalones del tratamiento farmacológico: ISH 2026, figura 8 y sección 9.1; combinación inicial: GPC Colombia 2025, rec. 42.
+const P = [
+  [TEAL, "Escalón 1", "Dos fármacos a dosis baja en una tableta", "ARA II + calcioantagonista o tiazida; o IECA + tiazida"],
+  [AZUL, "Escalón 2", "Los dos a dosis plena, o tres a dosis baja", "IECA o ARA II + calcioantagonista + tiazida"],
+  [MORADO, "Escalón 3", "Los tres a dosis plena", "Mejor sumar un fármaco que subir la dosis de uno"],
+  [NARANJA, "Escalón 4", "+ espironolactona (HTA resistente)", "Si el potasio es &lt;4,5 mEq/L y la TFGe ≥30"],
+  [ROJO, "Escalón 5", "Centro experto", "Otra clase de fármaco; valorar la denervación renal"],
+];
+function dibujar(paso) {
+  const filas = P.map(([c, e, q, n], i) => {
+    const on = i < paso, actual = i === paso - 1;
+    return `<div style="display:flex;align-items:center;gap:12px;margin-left:${i * 22}px;opacity:${on ? 1 : 0.25};transition:none">
+      <div style="width:104px;flex:none;text-align:center;background:${on ? c : "#CBD5E1"};color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:6px 8px">${e}</div>
+      <div class="caja" style="flex:1;background:${on ? tinte(c, actual ? 16 : 8) : "#F8FAFC"};border:${actual ? 2.5 : 1.5}px solid ${on ? tinte(c, actual ? 80 : 40) : "#E2E8F0"}">
+        <div style="font-weight:800;font-size:14.5px">${q}</div><div style="font-size:12.5px;color:#475569"><span>${n}</span></div></div></div>`;
+  }).join("");
+  const pie = `<div class="caja" style="background:${tinte(VERDE, 10)};border:1.5px solid ${tinte(VERDE, 45)};opacity:${paso >= 5 ? 1 : 0.35}"><span><b style="color:${VERDE}">En cada escalón</b>: revisar <b>cada mes</b>, confirmar la adherencia y subir sólo si sigue por encima de la meta.</span></div>`;
+  lienzo("Escalones del tratamiento", "Se sube un escalón cada mes mientras la presión siga por encima de la meta",
+    `<div style="display:flex;flex-direction:column;gap:8px">${filas}</div>` + pie,
+    "Esquema. Fuente: ISH 2026, figura 8 y sección 9.1; GPC Colombia 2025, recomendación 42.");
+}
+window.cuadro = (i, n) => dibujar(Math.min(5, Math.floor((i / n) * 6) + 1));
+dibujar(5);
+</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Calendario de seguimiento: MinSalud 2026, tabla 11 (y tabla 6 para la HBsAg a los 6 meses).
+const C = [
+  [TEAL, "Alta", ["Citas **asignadas**", "Médico **responsable**"]],
+  [AZUL, "2 semanas", ["**βhCG**", "Resultados de **ITS**", "**IVE** inmediata si la elige", "Paraclínicos si hubo **PEP**"]],
+  [AZUL, "4 semanas", ["Ruta y **diagnósticos**", "Salud **mental**", "Paraclínicos si hubo **PEP**"]],
+  [MORADO, "3 meses", ["Prueba de **VIH**", "**Hepatitis C**"]],
+  [MORADO, "6 meses", ["Prueba de **VIH**", "**HBsAg**", "**Hepatitis C**"]],
+  [MORADO, "12 meses", ["Prueba de **VIH**", "**Cierre** del caso"]],
+];
+const b = (s) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const cols = C.map(([c, t, items], i) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px">
+  <div style="width:46px;height:46px;border-radius:50%;background:${c};color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center">${i + 1}</div>
+  <div style="font-weight:800;font-size:15px;color:${c};text-align:center">${t}</div>
+  <div style="display:flex;flex-direction:column;gap:6px;width:100%">${items.map((x) => `<div class="item" style="background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 40)};text-align:center">${b(x)}</div>`).join("")}</div>
+</div>`).join("");
+const linea = `<div style="position:relative;height:0"><div style="position:absolute;left:48px;right:48px;top:23px;height:4px;background:#E5E7EB;border-radius:2px"></div></div>`;
+const pie = `<div class="caja" style="background:${tinte(VERDE, 10)};border:1.5px solid ${tinte(VERDE, 45)}"><b style="color:${VERDE}">En cada control</b>: evolución <b>mental, social y familiar</b> y si necesita tratamiento <b>especializado</b>. Buscar a quien <b>no asista</b>.</div>`;
+lienzo("Controles después de la violencia sexual", "Qué se revisa en cada cita", linea + `<div style="display:flex;gap:8px;position:relative">${cols}</div>` + pie,
+  "Esquema. Fuente: MinSalud 2026, tablas 6 y 11; protocolo PEP MinSalud 2017, tabla 11; Res. 459/2012, paso 15.");
+</script></body></html>

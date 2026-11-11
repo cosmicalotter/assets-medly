@@ -1,0 +1,42 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Hasta qué semana dar sulfato de magnesio para la neuroprotección, según cada guía:
+// MinSalud 2013 (<32), ACOG PB 171 (<32), WAPM 2023 (hasta 31+6; 33+6 si el feto es pequeño, <p5),
+// NICE NG25 (ofrecer 24+0-29+6, considerar 30+0-33+6, hablarlo 23+0-23+6). Regla de 22 a 37 semanas.
+// MinSalud, ACOG y WAPM no dan límite inferior: su barra empieza en degradado ("g").
+const X0 = 132, X1 = 520, S0 = 22, S1 = 37, sx = (s) => X0 + ((s - S0) / (S1 - S0)) * (X1 - X0);
+const filas = [
+  ["MinSalud 2013", [[22, 26, "g"], [26, 32, "s"]], "antes de las 32"],
+  ["ACOG 2016", [[22, 26, "g"], [26, 32, "s"]], "antes de las 32"],
+  ["WAPM 2023", [[22, 26, "g"], [26, 32, "s"], [32, 34, "d"]], "33+6 si feto pequeño"],
+  ["NICE 2022", [[23, 24, "d"], [24, 30, "s"], [30, 34, "d"]], "ofrecer · considerar"],
+];
+let s = `<svg width="668" height="290" viewBox="0 0 668 280"><defs><linearGradient id="sinLimite" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="${MORADO}" stop-opacity="0"/><stop offset="1" stop-color="${MORADO}" stop-opacity="1"/></linearGradient></defs>`;
+const Y0 = 38, DY = 50;
+filas.forEach(([g, tramos, nota], i) => {
+  const y = Y0 + i * DY;
+  s += `<text x="${X0 - 12}" y="${y + 16}" text-anchor="end" font-size="14" font-weight="800" fill="${TINTA}">${g}</text>`;
+  s += `<rect x="${sx(S0)}" y="${y + 3}" width="${sx(S1) - sx(S0)}" height="18" rx="9" fill="#F3F4F6"/>`;
+  tramos.forEach(([a, b, t]) => {
+    if (t === "g") { s += `<rect x="${sx(a)}" y="${y + 3}" width="${sx(b) - sx(a) + 10}" height="18" rx="9" fill="url(#sinLimite)"/>`; return; }
+    s += t === "s"
+      ? `<rect x="${sx(a)}" y="${y + 3}" width="${sx(b) - sx(a)}" height="18" rx="9" fill="${MORADO}"/>`
+      : `<rect x="${sx(a) + 1}" y="${y + 4}" width="${sx(b) - sx(a) - 2}" height="16" rx="8" fill="${tinte(MORADO, 18)}" stroke="${MORADO}" stroke-width="2" stroke-dasharray="5 4"/>`;
+  });
+  const fin = Math.max(...tramos.map((t) => t[1]));
+  s += `<text x="${X1 + 12}" y="${y + 17}" font-size="12.5" font-weight="700" fill="${GRIS}">${nota}</text>`;
+});
+const yR = Y0 + filas.length * DY + 4;
+for (let w = S0; w <= S1; w++) {
+  s += `<line x1="${sx(w)}" y1="${yR}" x2="${sx(w)}" y2="${yR + (w % 2 ? 5 : 9)}" stroke="${GRIS}" stroke-width="1.5"/>`;
+  if (w % 2 === 0 || w === 37) s += `<text x="${sx(w)}" y="${yR + 24}" text-anchor="middle" font-size="12.5" ${[24, 32].includes(w) ? `font-weight="800" fill="${TINTA}"` : `fill="${GRIS}"`}>${w}</text>`;
+}
+s += `<text x="${sx(S1)}" y="${yR + 40}" text-anchor="end" font-size="12" fill="${GRIS}">semanas</text>`;
+s += `<line x1="${sx(32)}" y1="${Y0 - 14}" x2="${sx(32)}" y2="${yR}" stroke="${ROJO}" stroke-width="2.5"/>`;
+s += `<text x="${sx(32)}" y="${Y0 - 20}" text-anchor="middle" font-size="12.5" font-weight="800" fill="${ROJO}">32+0: corte del algoritmo</text></svg>`;
+const ley = `<div style="display:flex;gap:8px">
+  <div class="caja" style="font-size:14px;padding:10px 13px;flex:1;background:${tinte(MORADO, 10)};border:1.5px solid ${tinte(MORADO, 45)}"><span><b style="color:${MORADO}">■</b> Lleno: se <b>recomienda</b> u <b>ofrece</b>.</span></div>
+  <div class="caja" style="font-size:14px;padding:10px 13px;flex:1;background:${tinte(MORADO, 6)};border:1.5px dashed ${MORADO}"><span>Punteado: se <b>considera</b> o se decide con la mujer.</span></div>
+  <div class="caja" style="font-size:14px;padding:10px 13px;flex:1;background:linear-gradient(90deg, white, ${tinte(MORADO, 14)});border:1.5px solid ${tinte(MORADO, 45)}"><span>Degradado: la guía <b>no da</b> límite inferior.</span></div></div>`;
+lienzo("Hasta qué semana dar sulfato de magnesio", "Neuroprotección fetal según cada guía, con parto establecido o nacimiento en 24 horas", s + ley,
+  "Esquema de Empirica. Fuente: MinSalud 2013 (GPC del embarazo); ACOG Practice Bulletin 171 (2016); WAPM 2023; NICE NG25 (2022).");
+</script></body></html>

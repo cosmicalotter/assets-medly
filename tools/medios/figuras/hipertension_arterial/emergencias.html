@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Meta, plazo y fármaco por emergencia: ISH 2026, sección 9.6 y tabla 15.
+const ROSA = "#E11D74";
+const F = [
+  [ROJO, "Disección aórtica", "Ya", "PAS &lt;120 y FC &lt;60", "Esmolol + vasodilatador"],
+  [NARANJA, "SCA o edema pulmonar", "Ya", "PAS &lt;140", "Nitroglicerina; en el edema, + diurético de asa"],
+  [MORADO, "Hemorragia intracerebral", "Ya", "PAS 130-180", "Labetalol o nicardipino"],
+  [ROSA, "Preeclampsia grave", "Ya", "&lt;160/105", "Labetalol o nicardipino + magnesio"],
+  [AZUL, "Encefalopatía", "Ya", "PAM −20-25 %", "Labetalol o nicardipino"],
+  [TEAL, "HTA maligna", "Horas", "PAM −20-25 %", "Labetalol o nicardipino"],
+  [CELESTE, "ACV isquémico", "1 h", "PAM −15 % si &gt;220/120", "Antes de la trombólisis, &lt;185/110"],
+];
+const cab = `<div style="display:grid;grid-template-columns:186px 64px 150px 1fr;gap:8px;font-size:11.5px;font-weight:800;color:${GRIS};letter-spacing:.04em;padding:0 10px">
+  <div>DAÑO AGUDO</div><div>PLAZO</div><div>META</div><div>PRIMERA LÍNEA O NOTA</div></div>`;
+const filas = F.map(([c, d, p, m, f]) => `<div style="display:grid;grid-template-columns:186px 64px 150px 1fr;gap:8px;align-items:center;background:${tinte(c, 8)};border:1.5px solid ${tinte(c, 40)};border-radius:10px;padding:5px 10px">
+  <div style="font-weight:800;font-size:14px;color:${c}">${d}</div>
+  <div style="text-align:center;background:${c};color:#fff;font-weight:800;font-size:13px;border-radius:999px;padding:3px 6px">${p}</div>
+  <div style="font-weight:800;font-size:14px;color:${TINTA}">${m}</div>
+  <div style="font-size:12.5px;color:#475569"><span>${f}</span></div>
+</div>`).join("");
+lienzo("Meta según el órgano dañado", "Cuánto y en cuánto tiempo bajar la presión en la emergencia hipertensiva", `<div style="display:flex;flex-direction:column;gap:6px">${cab}${filas}</div>`,
+  "Esquema. Fuente: ISH 2026, sección 9.6 y tabla 15; AHA/ACC 2025 (trombólisis).");
+</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Seguimiento de la hCG tras evacuar una mola (FIGO 2025, p. 81): cada 1-2 semanas hasta normalizarse; parcial, una hCG
+// de confirmación al mes; completa, mensual 6 meses. Meseta o ascenso: buscar una neoplasia (FIGO 2025, p. 80).
+const ROSA = "#E11D74";
+const fila = (c, tit, tramos) => `<div style="display:flex;align-items:center;gap:10px">
+  <div style="width:112px;flex:none;font-size:13.5px;font-weight:800;color:${c}">${tit}</div>
+  <div style="flex:1;display:flex;gap:6px">${tramos.map(([w, bg, txt, color]) => `<div class="caja" style="flex:${w};background:${bg};color:${color || TINTA};text-align:center;padding:10px 6px"><span>${txt}</span></div>`).join("")}</div></div>`;
+const comun = [3, tinte(ROSA, 14), "hCG cada <b>1-2 semanas</b> hasta que se <b>normalice</b>"];
+const cuerpo = `<div style="display:flex;flex-direction:column;gap:12px;margin-top:6px">
+  <div style="display:flex;gap:10px;align-items:center"><div style="width:112px"></div>
+    <div style="flex:3;font-size:12px;color:#6B7280;text-align:center">Desde la evacuación</div>
+    <div style="flex:4;font-size:12px;color:#6B7280;text-align:center">Desde que la hCG es normal</div></div>
+  ${fila(ROSA, "Mola parcial", [comun, [1.3, tinte(VERDE, 16), "<b>1</b> hCG al <b>mes</b>"], [2.7, "#F7F8FA", "Alta del seguimiento", "#6B7280"]])}
+  ${fila(ROSA, "Mola completa", [comun, [4, tinte(MORADO, 14), "hCG <b>mensual</b> por <b>6 meses</b>"]])}
+  <div class="caja" style="background:${tinte(ROJO, 10)};border:1px solid ${tinte(ROJO, 40)}"><b style="color:${ROJO}">En cualquier momento</b>: si la hCG queda en <b>meseta</b> o <b>sube</b>, buscar una <b>neoplasia trofoblástica</b> con los criterios de FIGO.</div>
+  <div class="caja" style="background:#F7F8FA">Si se mide cada <b>2 semanas</b> y aparece meseta o ascenso, la siguiente hCG va a la <b>semana</b>.</div>
+  <div class="caja" style="background:#F7F8FA">No embarazarse hasta <b>terminar</b> el seguimiento; la anticoncepción <b>hormonal</b> es segura.</div>
+</div>`;
+lienzo("Seguimiento de la hCG después de una mola", "Cuánto dura según el tipo de mola", cuerpo,
+  "Fuente: FIGO Cancer Report 2025 (Ngan et al., Int J Gynecol Obstet), pp. 80-81; RCOG Green-top Guideline 38 (2020), p. 20.");
+</script></body></html>

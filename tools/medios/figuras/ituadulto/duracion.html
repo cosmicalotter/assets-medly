@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="comun.js"></script></head><body><script>
+// Duración en la IVU sistémica: IDSA 2025 (7 días; 5-7 con quinolona), EAU 2026 (sonda 7/14 días; prostatitis 2-4 semanas), ACIN 2023 (alargar).
+const MAX = 28, X0 = 205, W = 425;
+const x = (d) => X0 + (d / MAX) * W;
+const F = [
+  ["Pielonefritis o IVU febril", PIE, [[0, 7, "7 días"]], "5-7 días si es con quinolona; contar desde el primer día eficaz"],
+  ["Asociada a sonda", SON, [[0, 7, "7 días"], [7, 14, "14", true]], "7 días si mejora pronto; 14 si responde lento"],
+  ["Prostatitis aguda", PRO, [[0, 14, "2 semanas"], [14, 28, "hasta 4", true]], "Oral tras normalizarse la infección"],
+];
+const filas = F.map(([n, c, seg, nota], i) => {
+  const y = 44 + i * 84;
+  return `<text x="${X0 - 12}" y="${y + 6}" text-anchor="end" font-size="15" font-weight="800" fill="${TINTA}">${n}</text>` +
+    seg.map(([a, z, t, claro]) => `<rect x="${x(a)}" y="${y - 15}" width="${x(z) - x(a) - 2}" height="30" rx="8" fill="${claro ? tinte(c, 35) : c}"/>
+      <text x="${(x(a) + x(z)) / 2}" y="${y + 5}" text-anchor="middle" font-size="13" font-weight="800" fill="${claro ? c : "#fff"}">${t}</text>`).join("") +
+    `<text x="${X0}" y="${y + 34}" font-size="12.5" fill="#6B7280">${nota}</text>`;
+}).join("");
+const ejes = [0, 7, 14, 21, 28].map((d) => `<line x1="${x(d)}" y1="16" x2="${x(d)}" y2="270" stroke="#E5E7EB"/>
+  <text x="${x(d)}" y="288" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6B7280">${d} d</text>`).join("");
+const pie = `<div class="caja" style="background:${tinte(AMBAR, 10)};border:1.5px solid ${tinte(AMBAR, 45)}"><b style="color:#B4690E">Alargar</b> con inmunosupresión, colecciones sin drenar o dispositivos urinarios.</div>`;
+lienzo("Cuánto dura el antibiótico", "IVU sistémica que mejora con un antibiótico eficaz",
+  `<svg width="668" height="296" viewBox="0 0 668 296">${ejes}${filas}</svg>` + pie,
+  "Gráfico. Fuente: IDSA 2025 (duración); EAU 2026 (sonda y prostatitis); ACIN 2023 (cuándo alargar).");
+</script></body></html>

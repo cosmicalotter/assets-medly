@@ -26,9 +26,15 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   mueve es una persona (una maniobra, una postura), el GIF sale de una foto o
   un vídeo **real** con licencia libre; nunca de un dibujo propio (ver
   «Nunca personas dibujadas»).
-- Meta: 1 de cada 4 nodos clínicos con imagen y al menos 1 GIF si el tema
-  lo tiene (`python3 tools/norma.py <algoritmo>` lo mide y lista los nodos
-  que hablan de algo visible y no lo enseñan).
+- Meta (subida con el dueño, noviembre de 2026): **1 de cada 3 nodos
+  clínicos con imagen**, la **mayoría reales** (foto, Rx, ecografía, TC,
+  microscopía, dispositivo) y **editadas** (recortadas, rotuladas en español,
+  señaladas o trazadas), y **al menos 1 GIF hecho sobre una imagen real**
+  cuando el tema tiene imagen diagnóstica, técnica o dispositivo. Los
+  gráficos propios de datos completan, no sustituyen: si hay foto libre que
+  enseñe lo mismo, va la foto. `python3 tools/norma.py <algoritmo>` mide la
+  proporción y lista los nodos que hablan de algo visible y no lo enseñan;
+  `data/Adultos/neumonia.json` es el ejemplo y la referencia (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF reales): **se prioriza la cantidad**, y 1 de cada 3 es el mínimo, no la meta.
 
 ## De dónde salen, por orden de preferencia
 

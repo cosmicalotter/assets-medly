@@ -1,0 +1,37 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Qué examen y qué imagen según la edad (AAP 2016, e4-e8; AAOS 2022, 14 y 27).
+const W = 668, X0 = 150, X1 = 650;
+// escala por tramos: 0-6 meses ocupa casi todo; "camina" al final
+const M = [[0, 0], [6, 0.86], [12, 1]];
+const x = (m) => { for (let i = 1; i < M.length; i++) if (m <= M[i][0]) { const [a, pa] = M[i - 1], [b, pb] = M[i]; return X0 + (X1 - X0) * (pa + (pb - pa) * (m - a) / (b - a)); } return X1; };
+const FILAS = [
+  { t: "Ortolani y Barlow", a: 0, b: 3, c: AZUL, txt: "Hasta los 3 meses" },
+  { t: "Abducción", a: 3, b: 12, c: MORADO, txt: "Limitada desde las 4 semanas → remitir", desde: 1 },
+  { t: "Ecografía", a: 1.5, b: 6, c: TEAL, txt: "De 6 semanas a 6 meses" },
+  { t: "Radiografía AP", a: 4, b: 12, c: AMBAR, txt: "Desde los 4 meses" },
+  { t: "Cada control", a: 0, b: 12, c: VERDE, txt: "Examen hasta que camine" },
+];
+function dibujar(m) {
+  const filas = FILAS.map((f, i) => {
+    const y = 14 + i * 50, fin = Math.min(f.b, m);
+    const ini = f.desde !== undefined ? f.desde : f.a;
+    let s = `<text x="0" y="${y + 24}" font-size="13.5" font-weight="700" fill="#1F2A37">${f.t}</text>`;
+    if (f.desde !== undefined && m > f.desde) s += `<rect x="${x(f.desde)}" y="${y + 4}" width="${x(Math.min(f.a, m)) - x(f.desde)}" height="30" rx="6" fill="${tinte(f.c, 14)}" stroke="${tinte(f.c, 55)}" stroke-dasharray="4 3"/>`;
+    if (fin > f.a) s += `<rect x="${x(f.a)}" y="${y}" width="${x(fin) - x(f.a)}" height="38" rx="7" fill="${tinte(f.c, 30)}" stroke="${f.c}" stroke-width="2"/>`;
+    if (m >= f.b || (m - ini) > 2.4) s += `<text x="${Math.max(x(ini) + 6, x(ini) + 6)}" y="${y + 24}" font-size="12.5" font-weight="700" fill="#1F2A37">${f.txt}</text>`;
+    return s;
+  }).join("");
+  const eje = [[0, "0"], [1.5, "6 sem"], [3, "3 m"], [4, "4 m"], [6, "6 m"], [12, "camina"]].map(([v, t]) =>
+    `<line x1="${x(v)}" y1="262" x2="${x(v)}" y2="268" stroke="#94A3B8"/><text x="${x(v)}" y="282" font-size="12" text-anchor="${v === 12 ? "end" : "middle"}" fill="#64748B">${t}</text>`).join("");
+  const cursor = m < 12 ? `<line x1="${x(m)}" y1="6" x2="${x(m)}" y2="258" stroke="#1F2A37" stroke-width="2"/>` : "";
+  const svg = `<svg width="${W}" height="300" viewBox="0 0 ${W} 300">${filas}
+    <line x1="${X0}" y1="262" x2="${X1}" y2="262" stroke="#94A3B8"/>${eje}${cursor}</svg>`;
+  const notas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="caja" style="background:${tinte(AZUL, 12)};border:1px solid ${tinte(AZUL, 45)}"><span><b>Ortolani positivo</b>: remitir a ortopedia en <b>varias semanas</b>; no es una urgencia.</span></div>
+    <div class="caja" style="background:${tinte(TEAL, 12)};border:1px solid ${tinte(TEAL, 45)}"><span><b>Imagen</b> con <b>factor de riesgo</b> o examen dudoso o anormal, antes de los <b>6 meses</b>.</span></div></div>`;
+  lienzo("Qué examinar y qué pedir según la edad", "Maniobras, abducción e imagen desde el nacimiento hasta que camina", svg + notas,
+    "Esquema. Fuente: AAP 2016 (Pediatrics 2016;138:e20163107) y AAOS 2022.");
+}
+dibujar(12);
+window.cuadro = (i, n) => dibujar(n > 1 ? Math.min(12, 12.5 * i / (n - 1)) : 12);
+</script></body></html>

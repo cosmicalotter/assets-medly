@@ -1,0 +1,32 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Manejo de la RPM según las semanas de gestación (esquema de Empirica). Tramos: MinSalud 2013, pregunta 13
+// (24-26 individualizado, 26-32 expectante, 32-34 expectante activo y nacimiento electivo, desde 34 considerar la
+// inducción); antes de 24+0, SMFM 2024; a término, NICE NG207 1.2.13 (inducir o esperar hasta 24 horas).
+const G = "#9CA3AF", MO = "#8B5CF6", AZ = "#3B82F6", IN = "#6366F1", TU = "#14B8A6", VE = "#22C55E";
+const X0 = 30, X1 = 640, S0 = 20, S1 = 41, sx = (s) => X0 + (s - S0) / (S1 - S0) * (X1 - X0);
+const tramos = [
+  [20, 24, G, "Antes de 24+0", "Asesoría: terminar o esperar"],
+  [24, 26, MO, "24+0 a 25+6", "Decidir con la familia"],
+  [26, 32, AZ, "26+0 a 31+6", "Manejo expectante: corticoide y antibiótico"],
+  [32, 34, IN, "32+0 a 33+6", "Madurar y nacimiento electivo"],
+  [34, 37, TU, "34+0 a 36+6", "Considerar la inducción"],
+  [37, 41, VE, "37+0 o más", "Inducir o esperar 24 h"],
+];
+let s = `<svg width="668" height="230" viewBox="0 20 668 150">`;
+tramos.forEach(([a, b, c]) => {
+  s += `<rect x="${sx(a) + 1.5}" y="70" width="${sx(b) - sx(a) - 3}" height="46" rx="10" fill="${c}"/>`;
+});
+for (let w = 20; w <= 41; w++) {
+  const big = [24, 26, 32, 34, 37].includes(w);
+  s += `<line x1="${sx(w)}" y1="122" x2="${sx(w)}" y2="${big ? 138 : 130}" stroke="${big ? TINTA : GRIS}" stroke-width="${big ? 2.2 : 1.2}"/>`;
+  if (big || w === 20 || w === 41) s += `<text x="${sx(w)}" y="156" text-anchor="middle" font-size="13" font-weight="${big ? 800 : 600}" fill="${big ? TINTA : GRIS}">${w}</text>`;
+}
+s += `<text x="${X1 + 14}" y="156" font-size="12" fill="${GRIS}" text-anchor="end"></text>`;
+s += `<text x="${X0}" y="40" font-size="12.5" font-weight="700" fill="${GRIS}">semanas de gestación</text>`;
+s += `</svg>`;
+const cajas = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${tramos.map(([a, b, c, et, txt]) =>
+  `<div class="caja" style="background:${tinte(c, 12)};border:1.5px solid ${tinte(c, 55)};display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;border-radius:4px;background:${c};flex:none"></span><span><b>${et}:</b> ${txt}</span></div>`).join("")}
+  <div class="caja" style="grid-column:1 / -1;background:#F7F8FA;border:1.5px solid #E5E7EB"><b>Todas:</b> buscar la <b>corioamnionitis</b> y el bienestar fetal.</div></div>`;
+lienzo("Manejo de la RPM según las semanas", "Cada tramo de semanas tiene su manejo; las cifras marcan dónde empieza cada uno", s + cajas,
+  "Esquema de Empirica. Fuentes: MinSalud 2013 (pregunta 13); SMFM 2024; NICE NG207 (2021).");
+</script></body></html>

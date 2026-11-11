@@ -24,6 +24,9 @@ Uso:
   python3 tools/norma.py --hook                lo mismo, leyendo el evento de
                                                Claude Code por stdin
 
+Las fuentes («Abrir fuente» al PDF en su página) se revisan y se anclan con
+tools/fuentes.py; aquí sólo se cuentan entre las faltas.
+
 Sin dependencias: sólo la biblioteca estándar.
 """
 
@@ -46,7 +49,7 @@ GALERIAS = ("media", "imagenes")
 #: Las metas de la norma. Se ajustan aquí y en NORMA.md a la vez.
 METAS = {
     "perlas": 0.25,          # nodos clínicos con nota_adicional
-    "imagenes": 0.25,        # nodos clínicos con al menos una imagen que se ve
+    "imagenes": 0.33,        # nodos clínicos con al menos una imagen que se ve (1 de cada 3, noviembre de 2026)
     "nodos_por_checklist": 12,
     "nodos_por_alerta": 10,
     "nodos_por_evidencia": 8,
@@ -473,8 +476,63 @@ def chequear(ruta: Path) -> list[str]:
         for d in nodo.get("discrepancias") or []:
             if isinstance(d, dict) and len(d.get("posturas") or []) < 2:
                 problemas.append(f"{nid}: discrepancia «{d.get('asunto', '')}» con menos de dos posturas (la app la descarta)")
+        ev = nodo.get("evidencia") or nodo.get("recomendacion")
+        if isinstance(ev, dict):
+            fuerza = (ev.get("fuerza") or "").strip().lower()
+            certeza = (ev.get("certeza") or "").strip()
+            if fuerza and fuerza not in FUERZAS:
+                problemas.append(f"{nid}: «evidencia.fuerza» «{ev.get('fuerza')}» no es de la lista; la etiqueta la enseña tal cual")
+            if certeza and not certeza_valida(certeza):
+                problemas.append(f"{nid}: «evidencia.certeza» «{certeza}» no se convierte en letra; la etiqueta no la enseña")
+    from fuentes import revisar as revisar_fuentes  # aquí: fuentes.py importa este módulo
+
+    problemas.extend(f for f in revisar_fuentes(alg)[0] if "no es «#page=N»" in f)
     problemas.extend(saltos_sin_flujo(alg))
     return problemas
+
+
+FUERZAS = {"fuerte", "condicional", "débil", "fuerte en contra", "condicional en contra",
+           "débil en contra", "consenso", "buena práctica",
+           # OMS: recomendado, no recomendado, según el contexto.
+           "recomendado", "no recomendado", "según el contexto",
+           # Sistemas de cuatro fuerzas (AAOS, AUA): fuerte, moderada, limitada.
+           "moderada", "limitada"}
+CERTEZAS = {"alta", "moderada", "baja", "muy baja"}
+
+
+def certeza_valida(certeza: str) -> bool:
+    """«moderada», «muy baja a moderada» o la letra (A-D)."""
+    t = certeza.strip().lower()
+    if re.fullmatch(r"[a-d](\s*-\s*[a-d])?", t):
+        return True
+    return all(parte.strip() in CERTEZAS for parte in t.split(" a "))
+
+
+def falta_grado(ev) -> str | None:
+    """La etiqueta de evidencia (NORMA §3): GRADE con `fuerza` + `certeza`,
+    AHA/ESC con `clase` + `nivel`. Un texto suelto se lee, pero la app
+    adivina la etiqueta y a veces la corta («Retirar o dejar…»)."""
+    if not ev:
+        return None
+    if isinstance(ev, str):
+        if re.fullmatch(r"(?i)(clase\s*)?(III|IIb|IIa|II|I)\s*[-·,/ ]?\s*(nivel\s*)?([ABC](-(R|NR|EO|LD))?)?", ev.strip()):
+            return None
+        return "«evidencia» en texto suelto: separar «fuerza» y «certeza» (o «clase» y «nivel»)"
+    if not isinstance(ev, dict):
+        return "«evidencia» no es texto ni objeto"
+    if ev.get("clase") or ev.get("nivel"):
+        return None
+    fuerza = (ev.get("fuerza") or "").strip().lower()
+    certeza = (ev.get("certeza") or "").strip()
+    if not fuerza and not certeza:
+        return "«evidencia» sin «fuerza» ni «certeza»: la etiqueta se adivina del texto"
+    if fuerza and fuerza not in FUERZAS:
+        return f"«fuerza» «{ev.get('fuerza')}» no es de la lista (NORMA §3: fuerte, condicional, débil, … en contra, consenso, buena práctica, recomendado…)"
+    if certeza and not certeza_valida(certeza):
+        return f"«certeza» «{certeza}» no es alta, moderada, baja ni muy baja"
+    if fuerza in {"fuerte", "condicional", "débil"} and not certeza:
+        return "«evidencia» con «fuerza» pero sin «certeza» (si la guía la da)"
+    return None
 
 
 def es_salto_interno(enl: dict) -> bool:
@@ -580,6 +638,10 @@ def medir(ruta: Path) -> Informe:
     n_perla = sum(1 for n in clinicos.values() if n.get("nota_adicional") or n.get("notaAdicional"))
     n_grado = sum(1 for n in clinicos.values() if n.get("evidencia") or n.get("recomendacion"))
     n_crono = sum(1 for n in clinicos.values() if n.get("cronometros"))
+    for nid, n in clinicos.items():
+        falta = falta_grado(n.get("evidencia") or n.get("recomendacion"))
+        if falta:
+            inf.faltas.append(f"{nid}: {falta}")
     for nid, n in clinicos.items():
         if n.get("cronometros"):
             inf.faltas.append(f"{nid}: lleva cronómetros; no se usan por ahora")
@@ -702,6 +764,18 @@ def medir(ruta: Path) -> Informe:
             inf.faltas.append(f"{nid}: «{textos[0][:40]}» es la única respuesta; falta la negativa (el «No» o el «Aún no» también lleva a algún sitio)")
         elif (n.get("pie_nodo") or "").strip().endswith("?") and len(ops) < 2:
             inf.faltas.append(f"{nid}: pregunta «{n['pie_nodo'][:50]}» con una sola respuesta; añadir las demás o quitar la pregunta (un paso que sólo sigue adelante no pregunta)")
+
+    # «Abrir fuente» (NORMA §7): el PDF original, en la página de la cita.
+    from fuentes import revisar as revisar_fuentes  # aquí: fuentes.py importa este módulo
+
+    sin_pagina, web = revisar_fuentes(alg)
+    if sin_pagina:
+        inf.faltas.append(
+            f"fuentes: {len(sin_pagina)} cita(s) a un PDF sin «#page=N» (página física); "
+            f"`python3 tools/fuentes.py {ruta.stem}` las lista y `--url <pdf>` las ancla"
+        )
+    if web:
+        inf.faltas.append(f"fuentes: {len(web)} guía(s) con citas que abren una página web, no el PDF original (si hay PDF oficial y libre, usarlo)")
 
     # Español de Colombia: cada término una vez, con cuántas veces sale.
     vistos: dict[tuple[str, str | None], int] = {}

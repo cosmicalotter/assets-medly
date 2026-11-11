@@ -43,14 +43,22 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (5 de noviembre de 2026) hay
-  22 visibles. Adultos (15): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (10 de noviembre de 2026) hay
+  37 visibles. Adultos (26): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
-  dengue, enfermedad renal crónica, EPOC e insuficiencia cardíaca.
-  Pediatría (7): hipoglucemia, enfermedad diarreica aguda, infecciones
+  dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
+  hemorragia digestiva alta, exposición rábica y rabia, vacunación según
+  el PAI 2026, hemorragia posparto, hemorragias de la primera mitad del
+  embarazo, hipertensión arterial, infección de vías urinarias, neumonía adquirida
+  en la comunidad, parto pretérmino, ruptura prematura de membranas y
+  violencia sexual (`violencia_sexual.json`, todas las edades).
+  Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
-  neumonía y bronquiolitis, epilepsia y desnutrición aguda. El resto espera la reforma a la
+  neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
+  nefrótico y nefrítico, displasia del desarrollo de la cadera, vacunación
+  según el PAI 2026 y violencia sexual (los dos, el mismo archivo que en
+  Adultos). El resto espera la reforma a la
   norma nueva.
 - `node update_firebase_date.js --validar` comprueba los índices sin tocar
   Firebase (y dice cuántos quedan visibles); `--mostrar` imprime lo que se
@@ -78,6 +86,8 @@ python3 tools/norma.py [<algoritmo>]         # ¿usa todo lo que la app dibuja? 
 python3 tools/norma.py --chequeo <algoritmo> # lo que la app no denuncia y se rompe
 python3 tools/norma.py --vocabulario [<alg>] # español de España que se cuela (--corregir)
 python3 tools/calculadoras.py [<escala>]     # calculadoras: errores y nota 0-100
+python3 tools/fuentes.py [<alg>]             # «Abrir fuente»: PDF sin #page, fuentes que no son PDF
+python3 tools/fuentes.py <alg> --url <pdf> --aplicar  # ancla cada cita en su página física
 node tools/medios/capturar.js …              # HTML → PNG o cuadros de GIF
 python3 tools/medios/armar_gif.py …          # cuadros → GIF
 ```
@@ -117,9 +127,31 @@ Firebase directamente, saltándose `indices/`.
 7. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
    es trabajo pendiente, no un error: la app lo oculta. Se resuelve o se deja
    y se lista en el PR; nunca se rellena con algo inventado.
+8. **«Abrir fuente» abre el PDF original en la página de la cita.** La `url`
+   de cada referencia es, siempre que exista, el **PDF oficial de la guía**
+   (el del ministerio, la sociedad o la revista, el mismo que se leyó), no la
+   página de aterrizaje ni el DOI. Y **todo enlace a un PDF, sin excepción,
+   termina en `#page=N`**, con N la **página física** del archivo donde está
+   la cita (la 1 es la primera hoja), no el número impreso: romanos de la
+   OMS, «e350» de las revistas, portadas sin numerar. N no se copia de
+   `paginas`: `python3 tools/fuentes.py <alg> --url <pdf> --aplicar` busca
+   cada cita en ese PDF y la ancla. Sólo si no hay PDF libre (guía de pago,
+   captcha, sesión) va el DOI o la página oficial. Detalle en `NORMA.md` §7.
 
 ## Cómo se trabaja
 
+- **Las guías que no se pueden descargar se piden al empezar.** Antes del
+  plan, Claude comprueba que puede leer cada guía principal del tema (las
+  más recientes, internacionales y colombianas). Si alguna no se puede
+  descargar (de pago, con bloqueo anti-bots o Cloudflare, sin copia libre en
+  PMC o Europe PMC), **se la pide al usuario de entrada**, en la primera
+  pregunta y antes de diseñar nada: que la adjunte al chat o la suba a
+  `guias-praxis/<carpeta>/`, diciéndole cuál es y qué aportaría. Con la guía
+  en mano, el algoritmo se construye a partir de ella, con todo lo que trae
+  (definiciones, metas, dosis, tablas, discrepancias). No se sustituye por
+  fuentes secundarias sin que el usuario lo decida, ni se intenta saltar el
+  bloqueo. Lo mismo con la publicación original de una calculadora (o el
+  suplemento con sus coeficientes).
 - **La portada define.** En el nodo raíz, `titulo` es el nombre del tema y
   `texto` es la lista de definiciones explícitas y técnicas que da la guía de
   cada entidad del algoritmo (`- **Colangitis aguda:** …`): dos a cinco
@@ -135,7 +167,11 @@ Firebase directamente, saltándose `indices/`.
   entidades con sus criterios. **Breve: una o dos frases, unas 25-35
   palabras** (ejemplo en `NORMA.md` §1). Detalle en `NORMA.md` §1.
 
-- Sólo sobre el algoritmo que se pide: **no se crean algoritmos JSON nuevos**.
+- Sólo sobre el algoritmo que se pide. **Primero se reforman los que ya
+  existen**: si el tema pedido ya tiene algoritmo (aunque esté oculto o con
+  otro nombre), se mejora ese, sin crear otro. **Si el dueño pide uno que no
+  existe, se crea**, con la misma norma, su entrada en `indices/` y
+  `"oculto": true` hasta que él decida mostrarlo.
 - La marca es **Empirica** (Praxis es el nombre antiguo).
 
 - Mejorar un algoritmo existente: skill **`mejorar-algoritmo`**. Su
@@ -145,7 +181,10 @@ Firebase directamente, saltándose `indices/`.
   calculadora (modelos tabla / fórmula / reglas, conducta con fuente en cada
   resultado); el formato está en `praxis/docs/calculadoras_json.md`. «Se usa
   en» lo calcula el workflow; no se escribe a mano.
-- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. Toda imagen lleva título, pie (`descripcion`) e
+- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. **Meta (noviembre
+  de 2026): 1 de cada 3 nodos clínicos con imagen, la mayoría fotos o
+  imágenes diagnósticas reales libres editadas en español, y al menos un
+  GIF sobre una imagen real** (ejemplo: `neumonia.json`). **Se prioriza la cantidad**: el nivel de neumonía (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF) es la referencia de todo algoritmo que se crea o se reforma. Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
   con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o
   conducta, la imagen lleva sus propias `referencias` (sólo las que respaldan
@@ -230,11 +269,21 @@ Firebase directamente, saltándose `indices/`.
   criterios por entidad (CAD, EHH…) en `tabla`, **cada criterio en su viñeta**
   (también dentro de las celdas: `- …` separadas por `\n`; nunca una lista
   encadenada con comas, en ningún sitio del algoritmo), y «la tabla» del texto como
-  `tabla.en_texto`, que la abre; `discrepancias` sólo si cambian lo que se
+  `tabla.en_texto`, que la abre; **grado de evidencia** con campos, no con
+  texto libre: GRADE como `{"fuerza": "fuerte", "certeza": "moderada",
+  "texto": "…"}` (la app enseña «Fuerte · B»: A alta, B moderada, C baja,
+  D muy baja) y AHA/ESC como `{"clase": "I", "nivel": "A"}` («I · A»); el
+  detalle de la guía va en `texto` y se lee al pasar el ratón (`NORMA.md`
+  §3); `discrepancias` sólo si cambian lo que se
   hace (dosis, destino, momento, umbral de conducta), nunca por redondeos o
   unidades: la app las enseña como un aviso en la cabecera de la tarjeta.
   Las fórmulas no se escriben en notación plana: se nombran y se declaran en
   `formulas` (la app las dibuja); el dato extra interesante va, con mesura, en
-  `burbujas` (bombilla al final de la frase). Detalle y ejemplos en `NORMA.md` §3-§4.
+  `burbujas` (la frase va subrayada con una bombilla pequeña). **Uso inteligente de las
+  bombillas:** si una viñeta resume demasiado algo con contenido propio (una
+  dieta, una meta de peso o de ejercicio, un esquema que sólo se nombra), una
+  bombilla explica en qué consiste, con la cifra y la cita de la guía («¿En
+  qué consiste la dieta DASH?»); sin exagerar, sólo donde hace falta. Detalle
+  y ejemplos en `NORMA.md` §3-§4.
 - Todo en español, con tildes. Ids, nombres de archivo y carpetas en ASCII
   minúscula con guion bajo.

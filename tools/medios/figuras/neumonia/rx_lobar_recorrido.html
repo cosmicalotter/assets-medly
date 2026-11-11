@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Rx y TC reales del mismo paciente, de 67 años, con neumonía del lóbulo medio
+// (M. Häggström, Wikimedia Commons, CC0), editadas por Empirica: opacidad, signo de la silueta,
+// consolidación y broncograma aéreo en la TC.
+const AMAR = "#FDE047", TURQ = "#2DD4BF", ROSA_C = "#FCA5A5";
+recorrido({
+  titulo: "Leer la neumonía en la Rx y la TC",
+  subtitulo: "Neumonía del lóbulo medio: el mismo paciente en las dos imágenes",
+  credito: "Imágenes: M. Häggström, Wikimedia Commons, CC0, editadas por Empirica. Fuente: GPC colombiana de NAC (Infectio 2026); NICE NG250 (2025).",
+  escenas: [
+    {
+      img: "fuentes/commons_rx_lobar.jpg", w: 1600, h: 1272, vista: [150, 0, 1300, 1272],
+      pasos: [
+        { texto: "Comparar los dos lados: abajo a la derecha, el pulmón está más <b>blanco</b>", vista: [60, 380, 900, 900],
+          dibujo: (u, e) => D.zona("125,655 250,632 420,690 520,705 560,885 420,905 250,895 140,850", AMAR, e, u) +
+            D.rotulo(300, 670, "opacidad nueva", AMAR, e, { op: u, tam: 16 }) },
+        { texto: "Borde derecho del <b>corazón</b> borrado: <b>signo de la silueta</b>", vista: [260, 560, 560, 560],
+          dibujo: (u, e) => `<line x1="592" y1="700" x2="578" y2="905" stroke="#F87171" stroke-width="${5 * e}" stroke-dasharray="${9 * e} ${7 * e}" opacity="${u}"/>` +
+            D.flecha(760, 1010, 600, 860, ROSA_C, e, 1, u) + D.rotulo(640, 1050, "borde borrado", ROSA_C, e, { op: u, tam: 16 }) },
+      ],
+    },
+    {
+      img: "fuentes/commons_tc_lobar.jpg", w: 775, h: 755, vista: [196, 0, 405, 405],
+      pasos: [
+        { texto: "TC del mismo paciente: <b>consolidación</b> del lóbulo medio",
+          dibujo: (u, e) => D.elipse(258, 172, 58, 66, -15, AMAR, e, u, true) + D.rotulo(212, 122, "consolidación", AMAR, e, { op: u }) },
+        { texto: "<b>Broncograma aéreo</b>: bronquios con aire dentro de la consolidación", vista: [190, 100, 150, 150],
+          dibujo: (u, e) => D.flecha(322, 236, 284, 197, TURQ, e, 1, u) + D.rotulo(232, 246, "broncograma", TURQ, e, { op: u }) },
+      ],
+    },
+    {
+      img: "fuentes/commons_tc_lobar.jpg", w: 775, h: 755, vista: [462, 410, 313, 345],
+      pasos: [
+        { texto: "Corte sagital: la consolidación queda entre las <b>cisuras</b>",
+          dibujo: (u, e) => D.elipse(585, 560, 70, 38, -8, AMAR, e, u, true) + D.rotulo(520, 505, "lóbulo medio", AMAR, e, { op: u }) },
+      ],
+    },
+  ],
+  final: `<b style="color:#FDE047">Opacidad nueva</b> con síntomas respiratorios agudos: es NAC. Con Rx normal o dudosa y sospecha alta, la <b style="color:#5EEAD4">TC</b>.`,
+});
+</script></body></html>

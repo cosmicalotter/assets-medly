@@ -1,0 +1,14 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="comun.js"></script></head><body><script>
+// Localizada frente a sistémica: EAU 2026, figura 1 y tabla 1; ACIN 2023 (síntomas bajos); IDSA 2025 (más allá de la vejiga).
+const col = (c, tit, sub, items) => `<div style="flex:1;display:flex;flex-direction:column;gap:7px">
+  <div style="background:${c};color:#fff;border-radius:12px;padding:9px 12px"><div style="font-size:17px;font-weight:800">${tit}</div><div style="font-size:12.5px;opacity:.92">${sub}</div></div>
+  ${items.map((x) => pastilla(c, x)).join("")}</div>`;
+const izq = col(CIS, "IVU localizada: cistitis", "Sin signos sistémicos, en hombres o mujeres",
+  ["**Disuria**", "**Polaquiuria** y urgencia", "Dolor **suprapúbico**", "**Hematuria**"]);
+const der = col(PIE, "IVU sistémica", "La infección pasó de la vejiga",
+  ["**Fiebre** o hipotermia", "**Escalofríos**", "**Delirium**", "**Hipotensión** o taquicardia", "Dolor **costovertebral**"]);
+const pie = `<div class="caja" style="background:${tinte(AMBAR, 10)};border:1.5px solid ${tinte(AMBAR, 45)}"><b style="color:#B4690E">Factores de riesgo</b> (sonda, obstrucción, cálculos, inmunosupresión): pueden acompañar a las dos; cambian el <b>manejo</b>, no el nombre.</div>`;
+lienzo("¿Localizada o sistémica?", "Lo que separa la cistitis de la IVU que pasó de la vejiga",
+  `<div style="display:flex;gap:14px;align-items:flex-start">${izq}${der}</div>` + pie,
+  "Esquema. Fuente: EAU 2026, figura 1 y tablas 1 y 2; ACIN 2023; IDSA 2025.");
+</script></body></html>

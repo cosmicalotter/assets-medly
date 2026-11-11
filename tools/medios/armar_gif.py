@@ -30,6 +30,8 @@ def main() -> int:
     ap.add_argument("--pausa", type=int, default=1500, help="cuánto se sostiene el último cuadro (1500)")
     ap.add_argument("--ancho", type=int, default=720, help="ancho final en píxeles (720)")
     ap.add_argument("--colores", type=int, default=128, help="tamaño de la paleta (128)")
+    ap.add_argument("--tonos", default="", help="tonos propios que deben salir exactos, separados por comas "
+                    "(p. ej. los rótulos pastel sobre una ecografía: #86EFAC,#FDE047)")
     args = ap.parse_args()
 
     rutas = sorted(args.cuadros.glob("cuadro_*.png"))
@@ -50,6 +52,7 @@ def main() -> int:
     # ocupan pocos píxeles (un punto rojo, un rótulo), MEDIANCUT los funde con el
     # gris y el GIF los pierde aunque el `info` los nombre.
     tonos = ["#18B9A9", "#EF5454", "#F2A23A", "#F07F3C", "#2FB36D", "#4F8CF6", "#7B6CF6", "#1F2A37"]
+    tonos += [t.strip() for t in args.tonos.split(",") if t.strip()]
     franja = 24
     alto = cuadros[0].height * len(elegidos)
     muestra = Image.new("RGB", (cuadros[0].width, alto + franja * len(tonos)), "white")

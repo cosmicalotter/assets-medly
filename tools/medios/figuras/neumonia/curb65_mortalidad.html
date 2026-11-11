@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Mortalidad a 30 días en los tres grupos de CURB-65 (Lim 2003, figura 2; la misma que la tarjeta 1 de la
+// GPC colombiana 2026) y sitio de atención (NICE NG250; GPC colombiana 2026).
+const D = [["0-1", 1.5, TEAL, "Riesgo bajo", "Casa"], ["2", 9.2, AZUL, "Intermedio", "Hospital"], ["3-5", 22, ROJO, "Alto", "Hospital como NAC grave"]];
+const X0 = 80, W = 540, Y0 = 290, H = 230, MAX = 25, paso = W / 3, bw = 120;
+const y = (v) => Y0 - (v / MAX) * H;
+const barras = D.map(([p, m, c, g, sitio], i) => {
+  const x = X0 + i * paso + (paso - bw) / 2;
+  return `<rect x="${x}" y="${y(m)}" width="${bw}" height="${Y0 - y(m)}" rx="10" fill="${c}"/>
+    <text x="${x + bw / 2}" y="${y(m) - 10}" text-anchor="middle" font-size="22" font-weight="800" fill="${c}">${String(m).replace(".", ",")} %</text>
+    <text x="${x + bw / 2}" y="${Y0 + 26}" text-anchor="middle" font-size="17" font-weight="800" fill="${TINTA}">${p} puntos</text>
+    <rect x="${X0 + i * paso + 8}" y="${Y0 + 40}" width="${paso - 16}" height="50" rx="10" fill="${tinte(c, 14)}" stroke="${tinte(c, 55)}"/>
+    <text x="${X0 + (i + 0.5) * paso}" y="${Y0 + 60}" text-anchor="middle" font-size="14" font-weight="800" fill="${c}">${g}</text>
+    <text x="${X0 + (i + 0.5) * paso}" y="${Y0 + 79}" text-anchor="middle" font-size="13" font-weight="600" fill="${TINTA}">${sitio}</text>`;
+}).join("");
+const ejes = [0, 5, 10, 15, 20, 25].map((v) => `<line x1="${X0 - 6}" y1="${y(v)}" x2="${X0 + W}" y2="${y(v)}" stroke="#E5E7EB"/>
+  <text x="${X0 - 12}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#6B7280">${v} %</text>`).join("");
+lienzo("Mortalidad según el CURB-65", "Muerte a 30 días en cada grupo de riesgo",
+  `<svg width="668" height="392" viewBox="0 0 668 392">${ejes}${barras}</svg>
+   <div class="caja" style="background:#F3F4F6">En <b>todo hospitalizado</b>, buscar además los criterios de la IDSA/ATS: deciden la <b>UCI</b>.</div>`,
+  "Gráfico. Fuente: Lim et al., Thorax 2003 (figura 2, mortalidad por grupo); NICE NG250, 2025, y GPC colombiana de NAC 2026 (sitio de atención).");
+</script></body></html>
