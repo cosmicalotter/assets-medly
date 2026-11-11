@@ -72,7 +72,9 @@ Reglas para decidir:
 - **`referencias`**: la **publicación original** y, si existe, la **guía
   que la adopta** y de la que sale la conducta. Cada una con:
   - `titulo`: la cita (Autor A, et al. Título. Revista Año;vol:págs.);
-  - `url`: PubMed o DOI;
+  - `url`: el PDF original si es libre (la guía, el artículo en abierto),
+    con `#page=N` en la página física de la cita (NORMA de algoritmos §7,
+    `tools/fuentes.py`); si no hay PDF libre, PubMed o DOI;
   - `texto`: **cita literal de 12-30 palabras** que respalda los puntos de
     corte o la conducta (la app la enseña en cursiva bajo el título);
   - `paginas` si la fuente es una guía larga.

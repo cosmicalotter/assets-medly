@@ -671,6 +671,38 @@ título no repite la pill y el texto no vuelve a decir el título.
   del Gobierno de Colombia (MinSalud, INS). Ante la duda, se mira la primera
   página del PDF: «© … Published by Elsevier», «All rights reserved» sin
   licencia CC, o una licencia con «NC» → sin recorte.
+- **«Abrir fuente»: el PDF original, en la página exacta** (decidido con el
+  dueño en noviembre de 2026). La app abre la `url` de cada referencia tal
+  cual en el navegador, así que:
+  - La `url` es, **siempre que se pueda, el PDF original de la guía**: el
+    archivo oficial del ministerio, la sociedad o la revista, **el mismo
+    PDF que se leyó** (si es otra edición o una reimpresión, las páginas no
+    coinciden). No la página de aterrizaje, ni el DOI, ni el resumen de
+    PubMed, ni una copia en un repositorio ajeno a la guía. Antes de
+    ponerla se comprueba que la URL sirve el PDF (empieza por `%PDF`), no
+    una página de bloqueo.
+  - **Todo enlace a un PDF, sin excepción, termina en `#page=N`**, y N es
+    la **página física** del archivo donde está la cita (la primera hoja
+    del PDF es la 1), no la que lleva impresa: en la OMS el resumen va en
+    romanos (la página 10 del PDF es la «viii»), las revistas numeran por
+    volumen («1257», «e350») y las GPC de MinSalud tienen portadas sin
+    número (la impresa 66 es la física 68). `paginas` se queda con el número
+    impreso, como lo cita la guía. Si la cita empieza al pie de una página
+    y sigue en la siguiente, N es la página donde empieza.
+  - N no se calcula a ojo: `python3 tools/fuentes.py <algoritmo> --url
+    <pdf> [--de <url vieja>] --aplicar` descarga el PDF, busca cada cita
+    literal (`texto`) y le pone su `#page=N`; las que no encuentra las
+    lista con una página sugerida para mirarla a mano. `--de` cambia a la
+    vez las referencias que aún apuntan a la página de aterrizaje o al DOI
+    de esa guía. `python3 tools/fuentes.py <algoritmo>` (y la lista «qué le
+    falta» de `norma.py`) dice qué PDF quedan sin página.
+  - **Excepciones a la primera regla, nunca a la segunda**: si la guía no
+    tiene PDF libre (de pago, con captcha o con sesión, como el PDF de PMC),
+    la `url` es el DOI o su página oficial, sin fragmento. Nunca un PDF
+    pirata. Una referencia de la bibliografía general (sin `texto` ni
+    `paginas`) abre el PDF en su portada, sin fragmento.
+  - Vale igual para las `referencias` de las imágenes, fórmulas y burbujas,
+    y para las de las calculadoras.
 - **Imágenes**: ver la skill `imagenes-clinicas`. Primero imágenes reales
   con licencia que permite el uso comercial (figuras de la guía si son CC BY,
   como las de la WSES, y si no, fotos de internet: Commons, PMC CC BY),

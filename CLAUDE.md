@@ -86,6 +86,8 @@ python3 tools/norma.py [<algoritmo>]         # ¿usa todo lo que la app dibuja? 
 python3 tools/norma.py --chequeo <algoritmo> # lo que la app no denuncia y se rompe
 python3 tools/norma.py --vocabulario [<alg>] # español de España que se cuela (--corregir)
 python3 tools/calculadoras.py [<escala>]     # calculadoras: errores y nota 0-100
+python3 tools/fuentes.py [<alg>]             # «Abrir fuente»: PDF sin #page, fuentes que no son PDF
+python3 tools/fuentes.py <alg> --url <pdf> --aplicar  # ancla cada cita en su página física
 node tools/medios/capturar.js …              # HTML → PNG o cuadros de GIF
 python3 tools/medios/armar_gif.py …          # cuadros → GIF
 ```
@@ -125,6 +127,16 @@ Firebase directamente, saltándose `indices/`.
 7. Un marcador `TODO_EVIDENCIA:` / `TODO_IMG:` / `TODO_CALC_` / `TODO_LINK_`
    es trabajo pendiente, no un error: la app lo oculta. Se resuelve o se deja
    y se lista en el PR; nunca se rellena con algo inventado.
+8. **«Abrir fuente» abre el PDF original en la página de la cita.** La `url`
+   de cada referencia es, siempre que exista, el **PDF oficial de la guía**
+   (el del ministerio, la sociedad o la revista, el mismo que se leyó), no la
+   página de aterrizaje ni el DOI. Y **todo enlace a un PDF, sin excepción,
+   termina en `#page=N`**, con N la **página física** del archivo donde está
+   la cita (la 1 es la primera hoja), no el número impreso: romanos de la
+   OMS, «e350» de las revistas, portadas sin numerar. N no se copia de
+   `paginas`: `python3 tools/fuentes.py <alg> --url <pdf> --aplicar` busca
+   cada cita en ese PDF y la ancla. Sólo si no hay PDF libre (guía de pago,
+   captcha, sesión) va el DOI o la página oficial. Detalle en `NORMA.md` §7.
 
 ## Cómo se trabaja
 
