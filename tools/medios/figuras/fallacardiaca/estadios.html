@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Estadios de la IC (ESC 2026, p. 5422) y lo que se hace en cada uno (p. 5364, 5366, 5382 y 5398).
+const col = (c, letra, nombre, def, hacer) => `<div style="display:flex;flex-direction:column;gap:6px">
+  <div style="background:${c};color:#fff;border-radius:12px;padding:8px 6px;text-align:center">
+    <div style="font-size:26px;font-weight:900;line-height:1">${letra}</div><div style="font-size:13px;font-weight:800">${nombre}</div></div>
+  <div class="caja" style="background:${tinte(c, 12)};border:2px solid ${c};font-size:12.5px;min-height:74px">${def}</div>
+  <div class="caja" style="background:#F8FAFC;border:1.5px solid #CBD5E1;font-size:12.5px;flex:1">${hacer}</div></div>`;
+const html = `
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+    ${col(VERDE, "A", "En riesgo", "Factores de riesgo, <b>sin</b> alteración cardíaca ni síntomas", "Presión sistólica <b>&lt;130 mmHg</b>; iSGLT2 y finerenona en la <b>diabetes</b> con riesgo o ERC")}
+    ${col(AMBAR, "B", "Pre-IC", "Alteración <b>cardíaca</b> sin síntomas ni signos", "Lo del A, más <b>IECA</b> con FEVI ≤40 % y <b>betabloqueador</b> con FEVI &lt;50 %")}
+    ${col(AZUL, "C", "IC sintomática", "Alteración cardíaca con síntomas o signos <b>actuales o previos</b>", "<b>Terapia de base</b> según la FEVI y subirla hasta la dosis objetivo")}
+    ${col(ROJO, "D", "IC avanzada", "Síntomas <b>graves</b> pese al tratamiento óptimo", "Consultar pronto con un <b>centro de IC avanzada</b> o integrar los paliativos")}
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#475569"><div style="flex:1;height:4px;border-radius:2px;background:linear-gradient(90deg,${VERDE},${AMBAR},${AZUL},${ROJO})"></div><span>la enfermedad avanza</span></div>
+  <div class="caja" style="background:#F1F5F9;border:1.5px solid #CBD5E1">En los estadios <b>A y B</b> todavía no hay IC: el objetivo es que <b>no aparezca</b>.</div>`;
+lienzo("Estadios de la insuficiencia cardíaca", "Qué es cada estadio y qué se hace en él", html,
+  "Esquema. Fuente: Guía ESC 2026 de insuficiencia cardíaca (Eur Heart J 2026;47:5346-5457), p. 5364, 5366, 5382, 5398 y 5422.");
+</script></body></html>

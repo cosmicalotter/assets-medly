@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body><script>
+// Recorrido por una radiografía de tórax real con congestión (M. Häggström, Wikimedia Commons, CC0):
+// derrame, cefalización, líneas B de Kerley y cardiomegalia, uno a uno, con zoom.
+const AMA = "#FDE047", VER = "#22C55E", FUC = "#E040FB", ROJ = "#EF4444", AZU = "#60A5FA";
+recorrido({
+  titulo: "Leer la congestión en la radiografía",
+  subtitulo: "Cuatro signos en la misma placa, uno a uno",
+  credito: "Radiografía: M. Häggström, Wikimedia Commons, CC0, rotulada por Empirica. Fuente: Guía ESC 2026 de IC, tabla 12 y p. 5366.",
+  escenas: [{
+    img: "fuentes/commons_rx_ic.jpg", w: 1222, h: 1097, vista: [62, 0, 1097, 1097],
+    pasos: [
+      { texto: "<b>Derrame pleural</b>: líquido en la cisura y la base derecha", vista: [40, 330, 560, 560],
+        dibujo: (u, e) => D.flecha(212, 470, 245, 590, AMA, e, 1, u) + D.rotulo(120, 455, "derrame", AMA, e, { op: u, tam: 16 }) },
+      { texto: "<b>Cefalización</b>: los vasos de los vértices se ven más gruesos", vista: [250, 170, 720, 720],
+        dibujo: (u, e) => D.flecha(555, 440, 440, 362, VER, e, 1, u) + D.flecha(695, 440, 818, 362, VER, e, 1, u) + D.rotulo(625, 485, "cefalización", VER, e, { op: u, tam: 16, ancla: "middle" }) },
+      { texto: "<b>Líneas B de Kerley</b>: edema de los tabiques del pulmón", vista: [640, 430, 560, 560],
+        dibujo: (u, e) => D.flecha(872, 606, 1055, 567, FUC, e, 1, u) + D.flecha(872, 606, 1058, 636, FUC, e, 1, u) + D.flecha(872, 606, 1068, 748, FUC, e, 1, u) + D.rotulo(860, 590, "Kerley B", FUC, e, { op: u, tam: 16, ancla: "end" }) },
+      { texto: "<b>Cardiomegalia</b>: el corazón ocupa más de la mitad del tórax", vista: [20, 0, 1180, 1097],
+        dibujo: (u, e) => D.calibre(412, 760, 1022, 760, ROJ, e, u) + D.calibre(40, 860, 1150, 860, AZU, e, u) +
+          D.rotulo(717, 742, "corazón", ROJ, e, { op: u, tam: 16, ancla: "middle" }) + D.rotulo(595, 905, "tórax", AZU, e, { op: u, tam: 16, ancla: "middle" }) },
+    ],
+  }],
+  final: `Ningún signo basta solo: una placa <b style="color:#FDE047">normal no descarta</b> la IC; se confirma con el <b style="color:#5EEAD4">péptido</b> y el eco.`,
+});
+</script></body></html>
