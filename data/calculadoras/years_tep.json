@@ -1,0 +1,136 @@
+{
+  "titulo": "YEARS con dímero D",
+  "descripcion": "Decide si hace falta la angio-TC en la sospecha de tromboembolismo pulmonar con tres criterios clínicos y el dímero D: sin criterios, el umbral es de 1.000 µg/L; con uno o más, de 500 µg/L. Por debajo del umbral se descarta el TEP sin imagen. La guía AHA/ACC 2026 la considera útil (clase 2a).",
+  "instrucciones": "Marca los tres criterios y escribe el dímero D en unidades equivalentes de fibrinógeno (µg/L, igual a ng/mL).",
+  "limitaciones": "No se usa en el paciente inestable ni con probabilidad clínica alta por otra escala: ahí se hace la angio-TC. En la gestante se usa la versión adaptada al embarazo.",
+  "tipoCalculo": "formula",
+  "formula": "dimero - (500 + 500 * (1 - (0.5 * ((tvp + hemoptisis + probable) + 1 - abs((tvp + hemoptisis + probable) - 1)))))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Dímero D",
+  "referencias": [
+    {
+      "titulo": "van der Hulle T, Cheung WY, Kooij S, et al. Simplified diagnostic management of suspected pulmonary embolism (the YEARS study): a prospective, multicentre, cohort study. Lancet 2017;390:289-297.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Simplified%20diagnostic%20management%20of%20suspected%20pulmonary%20embolism%20%28the%20YEARS%20study%29%3A%20a%20prospective%2C%20multicentre%2C%20cohort%20study"
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. YEARS (2a).",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=7",
+      "paginas": "e983",
+      "texto": "the YEARS algorithm* can be useful to identify which patients do not need imaging to rule out a PE."
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Umbral de 500 µg/L.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=7",
+      "paginas": "e983",
+      "texto": "A D-dimer threshold of 500 μg/L in patients who have ≥1 of the following: 1) clinical signs of DVT; 2) hemoptysis; and/or 3) PE as the most likely diagnosis."
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Umbral de 1.000 µg/L.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=9",
+      "paginas": "e985",
+      "texto": "A D-dimer threshold of 1000 μg/L was used for patients with no YEARS criteria."
+    }
+  ],
+  "secciones": [
+    {
+      "nombre": "Criterios YEARS",
+      "elementos": [
+        {
+          "id": "tvp",
+          "tipo": "opciones",
+          "label": "Signos clínicos de TVP",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "hemoptisis",
+          "tipo": "opciones",
+          "label": "Hemoptisis",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "probable",
+          "tipo": "opciones",
+          "label": "TEP como el diagnóstico más probable",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Dímero D",
+      "elementos": [
+        {
+          "id": "dimero",
+          "tipo": "input_numero",
+          "label": "Dímero D",
+          "unidad": "µg/L",
+          "min": 0,
+          "max": 100000,
+          "unidades": [
+            {
+              "unidad": "mg/L",
+              "factor": 1000
+            },
+            {
+              "unidad": "ng/mL",
+              "factor": 1
+            }
+          ],
+          "ayuda": "En unidades equivalentes de fibrinógeno (FEU)."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -100000,
+      "max": -0.01,
+      "categoria": "Por debajo del umbral",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Se **descarta** el TEP sin imagen: buscar **otro diagnóstico**."
+    },
+    {
+      "min": 0,
+      "max": 100000,
+      "categoria": "En el umbral o por encima",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "No se descarta el TEP: hacer la **angio-TC**."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "Umbral aplicado",
+      "formula": "500 + 500 * (1 - (0.5 * ((tvp + hemoptisis + probable) + 1 - abs((tvp + hemoptisis + probable) - 1))))",
+      "sufijo": "µg/L",
+      "decimales": 0
+    }
+  ]
+}
