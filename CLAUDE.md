@@ -43,16 +43,17 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (10 de noviembre de 2026) hay
-  37 visibles. Adultos (26): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (12 de noviembre de 2026) hay
+  38 visibles. Adultos (27): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
   hemorragia digestiva alta, exposición rábica y rabia, vacunación según
   el PAI 2026, hemorragia posparto, hemorragias de la primera mitad del
   embarazo, hipertensión arterial, infección de vías urinarias, neumonía adquirida
-  en la comunidad, parto pretérmino, ruptura prematura de membranas y
-  violencia sexual (`violencia_sexual.json`, todas las edades).
+  en la comunidad, parto pretérmino, ruptura prematura de membranas,
+  síndrome coronario agudo y violencia sexual (`violencia_sexual.json`,
+  todas las edades).
   Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
