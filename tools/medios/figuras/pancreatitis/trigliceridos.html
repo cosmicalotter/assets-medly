@@ -5,7 +5,7 @@ const X0 = 60, X1 = 640, lg = (v) => X0 + (X1 - X0) * (Math.log10(v) - 2) / 2;
 const zonas = [[100, 400, VERDE], [400, 500, AMBAR], [500, 1000, NARANJA], [1000, 5000, ROJO], [5000, 10000, "#991B1B"]];
 const M = [
   [400, "≥400", "sin lípidos IV", AMBAR, 1, "end"],
-  [1000, "&gt;1.000", "confirma la causa; meta aguda: bajar de aquí", ROJO, 1, "start"],
+  [1000, "&gt;1.000", "causa si no hay otra; meta aguda: bajar de aquí", ROJO, 1, "start"],
   [500, "&lt;500", "meta tras el alta", AZUL, 0, "end"],
   [5000, "&gt;5.000", "sin respuesta: depuración", "#991B1B", 0, "middle"],
 ];
@@ -24,6 +24,14 @@ const svg = `<svg width="668" height="250" viewBox="0 0 668 250">
   }).join("")}
 </svg>`;
 lienzo("Los cortes de los triglicéridos", "Qué significa cada cifra en la pancreatitis por hipertrigliceridemia",
-  `${svg}<div class="caja" style="background:#F3F4F6"><b>&gt;500 mg/dL</b> sin otra causa ya hace sospechar; el tratamiento agudo es <b>ayuno e insulina</b>, y después un fibrato.</div>`,
-  "Gráfico. Fuente: iLATAM-PA 2026 (suplemento, p. 27); IAP 2025, recomendaciones 65-67 (p. 775).");
+  `${svg}<div class="caja" style="background:#F3F4F6"><b>&gt;500 mg/dL</b> sin otra causa ya hace sospechar; el tratamiento agudo es <b>ayuno e insulina</b>, y después un fibrato.</div>
+   <div style="display:flex;gap:10px;margin-top:10px">
+     ${[["Ayuno", "las primeras <b>48 h</b>; después, dieta blanda baja en grasa", MORADO],
+        ["Insulina", "<b>0,1 UI/kg/h</b> con diabetes; <b>1-2 UI/kg/día</b> sin ella", AZUL],
+        ["HBPM", "por menos de <b>3 días</b>; no con coagulopatía ni falla renal", AMBAR]].map(([t, d, c]) =>
+       `<div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:8px 10px">
+          <div style="font-weight:900;font-size:15px;color:${c === AMBAR ? "#B26B10" : c}">${t}</div>
+          <div style="font-size:12.8px;line-height:1.3;margin-top:2px">${d}</div></div>`).join("")}
+   </div>`,
+  "Gráfico. Fuente: iLATAM-PA 2026 (suplemento, p. 27-28); IAP 2025, recomendaciones 64-67 (p. 775 y 793).");
 </script></body></html>
