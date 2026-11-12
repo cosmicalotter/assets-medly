@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Los cortes de triglicéridos en la pancreatitis (iLATAM-PA 2026, suplemento p. 27; IAP 2025 recs. 65-67; ACG 2024).
+// Escala logarítmica de 100 a 10.000 mg/dL.
+const X0 = 60, X1 = 640, lg = (v) => X0 + (X1 - X0) * (Math.log10(v) - 2) / 2;
+const zonas = [[100, 400, VERDE], [400, 500, AMBAR], [500, 1000, NARANJA], [1000, 5000, ROJO], [5000, 10000, "#991B1B"]];
+const M = [
+  [400, "≥400", "sin lípidos IV", AMBAR, 1, "end"],
+  [1000, "&gt;1.000", "confirma la causa; meta aguda: bajar de aquí", ROJO, 1, "start"],
+  [500, "&lt;500", "meta tras el alta", AZUL, 0, "end"],
+  [5000, "&gt;5.000", "sin respuesta: depuración", "#991B1B", 0, "middle"],
+];
+const svg = `<svg width="668" height="250" viewBox="0 0 668 250">
+  ${zonas.map(([a, b, c]) => `<rect x="${lg(a)}" y="110" width="${lg(b) - lg(a)}" height="34" fill="${tinte(c, 45)}"/>`).join("")}
+  <rect x="${X0}" y="110" width="${X1 - X0}" height="34" fill="none" stroke="#94A3B8" rx="4"/>
+  ${[100, 1000, 10000].map((v) => `<text x="${lg(v)}" y="162" text-anchor="middle" font-size="12" fill="#6B7280">${v.toLocaleString("es-CO")}</text>`).join("")}
+  <text x="434" y="180" text-anchor="middle" font-size="11.5" fill="#6B7280">triglicéridos (mg/dL), escala logarítmica</text>
+  ${M.map(([v, cifra, txt, c, arriba, ancla]) => {
+    const x = lg(v), ct = c === AMBAR ? "#B26B10" : c;
+    const dx = ancla === "end" ? -6 : ancla === "start" ? 6 : 0;
+    const y1 = arriba ? 40 : 194, l1 = arriba ? 58 : 144, l2 = arriba ? 110 : 206;
+    return `<line x1="${x}" y1="${l1}" x2="${x}" y2="${l2}" stroke="${c}" stroke-width="3"/>
+      <text x="${x + dx}" y="${arriba ? y1 : y1 + 26}" text-anchor="${ancla}" font-size="16" font-weight="900" fill="${ct}">${cifra}</text>
+      <text x="${x + dx}" y="${arriba ? y1 + 16 : y1 + 42}" text-anchor="${ancla}" font-size="12" font-weight="700" fill="#374151">${txt}</text>`;
+  }).join("")}
+</svg>`;
+lienzo("Los cortes de los triglicéridos", "Qué significa cada cifra en la pancreatitis por hipertrigliceridemia",
+  `${svg}<div class="caja" style="background:#F3F4F6"><b>&gt;500 mg/dL</b> sin otra causa ya hace sospechar; el tratamiento agudo es <b>ayuno e insulina</b>, y después un fibrato.</div>`,
+  "Gráfico. Fuente: iLATAM-PA 2026 (suplemento, p. 27); IAP 2025, recomendaciones 65-67 (p. 775).");
+</script></body></html>

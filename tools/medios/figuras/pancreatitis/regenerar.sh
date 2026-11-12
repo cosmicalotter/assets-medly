@@ -21,9 +21,15 @@ png enzimas "$D/pancreatitis_enzimas.png"
 png liquidos "$D/pancreatitis_liquidos.png"
 png fases_liquidos "$D/pancreatitis_fases_liquidos.png"
 png colecciones "$D/pancreatitis_colecciones.png"
-png escalonado "$D/pancreatitis_escalonado.png"
+png destino "$D/pancreatitis_destino.png"
+png biliar_decisiones "$D/pancreatitis_biliar_decisiones.png"
+png nutricion "$D/pancreatitis_nutricion.png"
+png trigliceridos "$D/pancreatitis_trigliceridos.png"
 png atlanta_tiempo "$D/pancreatitis_atlanta_tiempo.png"
 png seguimiento "$D/pancreatitis_seguimiento.png"
+# Esquemas animados de flujo (GIF)
+gif primeras72 "$D/pancreatitis_primeras72.gif" 30 220 3000 128
+gif escalonado_gif "$D/pancreatitis_escalonado.gif" 30 220 3000 128
 # Recorrido animado sobre TC reales (GIF)
 gif tc_recorrido "$D/pancreatitis_tc_recorrido.gif" 60 330 2600 256
 # Fotos e imágenes diagnósticas reales con licencia libre (fuentes/), recortadas y rotuladas

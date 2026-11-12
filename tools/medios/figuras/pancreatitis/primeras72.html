@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Las primeras 72 h de la pancreatitis aguda (IAP 2025 recs. 11, 22-24; ACG 2024 conceptos 8 y 12; Atlanta revisada 2012).
+// GIF: cada etapa se enciende en orden y un marcador recorre la línea de tiempo.
+const E = [
+  { c: AMBAR, tit: "Al llegar", txt: "ABCDE, lipasa, ecografía, <b>triglicéridos y calcio</b>; lactato de Ringer a <b>1,5 mL/kg/h</b>" },
+  { c: AZUL, tit: "Primeras 24-48 h", txt: "Analgesia; <b>vía oral</b> si tiene apetito; metas de los líquidos cada <b>6 h</b>" },
+  { c: MORADO, tit: "A las 48 h", txt: "¿SIRS <b>persistente</b>? ¿La falla orgánica dura <b>&gt;48 h</b>? Clasificar con Atlanta" },
+  { c: ROJO, tit: "A las 72 h, si no mejora", txt: "<b>TC con contraste</b>; si no come, <b>sonda nasogástrica</b>" },
+];
+function caja(e, op) {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:9px 11px;width:310px">
+    <div style="font-weight:900;color:${ct};font-size:15px">${e.tit}</div><div style="font-size:12.8px;line-height:1.3;margin-top:2px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const op = (a) => 0.18 + 0.82 * suave(tramo(t, a, a + 0.08));
+  const X = [40, 225, 410, 600];
+  let xm = X[0];
+  [[0.22, 1], [0.44, 2], [0.66, 3]].forEach(([a, k]) => { xm += (X[k] - X[k - 1]) * suave(tramo(t, a, a + 0.07)); });
+  const linea = `<svg width="668" height="64" viewBox="0 0 668 64">
+    <line x1="40" y1="30" x2="600" y2="30" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="${xm}" y2="30" stroke="${TEAL}" stroke-width="6" stroke-linecap="round"/>
+    ${X.map((x, k) => `<circle cx="${x}" cy="30" r="7" fill="#fff" stroke="#94A3B8" stroke-width="3"/>
+      <text x="${x}" y="58" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151">${["Ingreso", "24 h", "48 h", "72 h"][k]}</text>`).join("")}
+    <circle cx="${xm}" cy="30" r="11" fill="${TEAL}" stroke="#fff" stroke-width="3"/></svg>`;
+  lienzo("Las primeras 72 horas", "Qué se hace y qué se reevalúa en cada momento",
+    `${linea}
+     <div style="display:flex;gap:12px;justify-content:center">${caja(E[0], op(0.02))}${caja(E[1], op(0.24))}</div>
+     <div style="display:flex;gap:12px;justify-content:center">${caja(E[2], op(0.46))}${caja(E[3], op(0.68))}</div>
+     <div class="caja" style="opacity:${op(0.84)};background:#1F2A37;color:#fff;font-weight:700">La <b style="color:#FCA5A5">falla orgánica persistente</b> es lo que más pesa en la mortalidad: reevaluar a las 24 h, 48 h y 7 días.</div>`,
+    "Esquema. Fuente: IAP 2025, recomendaciones 5, 11 y 22-24; ACG 2024, conceptos 8 y 12; Atlanta revisada 2012 (p. 108).");
+};
+window.cuadro(39, 40);
+</script></body></html>
