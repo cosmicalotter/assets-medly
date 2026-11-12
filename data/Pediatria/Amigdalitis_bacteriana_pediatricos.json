@@ -7851,7 +7851,25 @@
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/westley.json",
         "etiqueta": "Calcular la escala de Westley",
         "ramificar": false
-      }
+      },
+      "discrepancias": [
+        {
+          "asunto": "Cortes de la escala de Westley",
+          "posturas": [
+            {
+              "fuente": "AIEPI 2026 (MinSalud)",
+              "dice": "Leve **menos de 3**; moderado **3-7**; grave **más de 7**.",
+              "paginas": "Módulo 6, crup leve, moderado y grave"
+            },
+            {
+              "fuente": "Calculadora de Westley",
+              "dice": "Leve **0-2**; moderado **3-5**; grave **6-11**; inminente **12 o más**.",
+              "paginas": "Johnson 2014 (BMJ Clin Evid)"
+            }
+          ],
+          "nota": "Con **6-7 puntos** la calculadora dice grave y la AIEPI, moderado; la rama la decide la **clínica**."
+        }
+      ]
     },
     "crup_leve": {
       "tipo": "resultado",
@@ -8048,7 +8066,7 @@
         },
         {
           "nombre": "L-adrenalina (epinefrina) 1 mg/mL nebulizada, menor de 2 años",
-          "dosis": "**0,25-0,5 mg/kg**, máximo **2,5 ampollas**, con monitorización",
+          "dosis": "**0,25-0,5 mg/kg**, máximo **2,5 ampollas** (2,5 mL de 1 mg/mL), con monitorización",
           "paginas": "Módulo 6, crup moderado (AIEPI)",
           "por_kg": {
             "unidad": "mg",
@@ -8063,7 +8081,7 @@
         },
         {
           "nombre": "L-adrenalina (epinefrina) 1 mg/mL nebulizada, 2 años o más",
-          "dosis": "**0,25-0,5 mg/kg**, máximo **5 ampollas**, con monitorización",
+          "dosis": "**0,25-0,5 mg/kg**, máximo **5 ampollas** (5 mL de 1 mg/mL), con monitorización",
           "paginas": "Módulo 6, crup moderado (AIEPI)",
           "por_kg": {
             "unidad": "mg",
@@ -8105,12 +8123,13 @@
           "nota": "Este algoritmo sigue a la **AIEPI** y al texto de la CPS: en el moderado se nebuliza **adrenalina**; la figura 1 de la CPS la reserva para el grave."
         }
       ],
-      "pie_nodo": "¿Cómo evoluciona en las 4 h siguientes a la dexametasona?",
+      "pie_nodo": "¿Cómo evoluciona tras la dexametasona y la adrenalina?",
       "opciones": [
         {
           "texto": "Mejora: sin tiraje ni estridor en reposo",
-          "siguiente_nodo": "crup_alta",
-          "color": "verde"
+          "siguiente_nodo": "crup_observacion",
+          "color": "verde",
+          "descripcion": "Observar al menos 2 h desde la adrenalina antes del alta"
         },
         {
           "texto": "Aún no: sigue igual, menos de 4 h",
@@ -8276,12 +8295,37 @@
       "tipo": "pregunta",
       "estilo": "peligro",
       "titulo": "Nebulizar adrenalina y dar dexametasona",
-      "texto": "- Intervenir lo **mínimo**; el oxígeno por flujo libre es **opcional** salvo si hay **cianosis** o hipoxia.\n- Nebulizar **5 mL** de L-adrenalina **1 mg/mL** (1:1000).\n- Dar **dexametasona oral 0,6 mg/kg** si no la ha recibido; si ya la recibió, se puede **repetir una sola vez**.\n- Si vomita o está muy agitado para tragar → valorar dexametasona **IM** y budesonida **2 mg** nebulizada con la adrenalina.\n- Manejarlo como enfermedad **grave** y remitir con la norma **REFIERA** si el sitio no puede atenderlo.",
+      "texto": "- Intervenir lo **mínimo** y dar oxígeno hasta una **saturación adecuada** para la altura.\n- Nebulizar L-adrenalina 1 mg/mL, **0,25-0,5 mg/kg**, con **monitorización**.\n- Dar **dexametasona 0,6 mg/kg** (máximo 10 mg) si no la ha recibido; si ya la recibió, se puede **repetir una sola vez**.\n- Si vomita o está muy agitado → dexametasona **IM**, budesonida **2 mg** nebulizada con la adrenalina y líquidos IV.\n- Manejarlo como enfermedad **grave** y remitir con la norma **REFIERA**.",
       "farmacos": [
         {
-          "nombre": "L-adrenalina (epinefrina) 1 mg/mL nebulizada",
-          "dosis": "**5 mL**, a cualquier edad y peso",
-          "paginas": "Adrenalina y figura 1 (CPS)"
+          "nombre": "L-adrenalina (epinefrina) 1 mg/mL nebulizada, menor de 2 años",
+          "dosis": "**0,25-0,5 mg/kg**, máximo **2,5 ampollas** (2,5 mL de 1 mg/mL), con monitorización",
+          "paginas": "Módulo 6, crup moderado y grave (AIEPI)",
+          "por_kg": {
+            "unidad": "mg",
+            "desde": 0.25,
+            "hasta": 0.5,
+            "tope": 2.5,
+            "concentracion": {
+              "cantidad": 1,
+              "ml": 1
+            }
+          }
+        },
+        {
+          "nombre": "L-adrenalina (epinefrina) 1 mg/mL nebulizada, 2 años o más",
+          "dosis": "**0,25-0,5 mg/kg**, máximo **5 ampollas** (5 mL de 1 mg/mL), con monitorización",
+          "paginas": "Módulo 6, crup moderado y grave (AIEPI)",
+          "por_kg": {
+            "unidad": "mg",
+            "desde": 0.25,
+            "hasta": 0.5,
+            "tope": 5,
+            "concentracion": {
+              "cantidad": 1,
+              "ml": 1
+            }
+          }
         },
         {
           "nombre": "Dexametasona oral o IM",
@@ -8319,7 +8363,23 @@
               "paginas": "Módulo 6, crup grave"
             }
           ],
-          "nota": "Con la CPS son **5 mL** fijos; con la AIEPI y la revisión de Wei la dosis va por **peso** y es menor en los **lactantes**."
+          "nota": "Este algoritmo usa la dosis por **peso** de la AIEPI, como en el moderado; la CPS da **5 mL** fijos a cualquier edad."
+        },
+        {
+          "asunto": "Vía de la dexametasona en el crup grave",
+          "posturas": [
+            {
+              "fuente": "CPS 2026",
+              "dice": "Dexametasona **oral**, repetible una vez; **IM** con budesonida si vomita o está muy agitado.",
+              "paginas": "Figura 1"
+            },
+            {
+              "fuente": "AIEPI 2026 (MinSalud)",
+              "dice": "Dexametasona **IM**, máximo **10 mg**; **suspender la vía oral** y dar líquidos IV.",
+              "paginas": "Módulo 6, crup grave"
+            }
+          ],
+          "nota": "Si tolera la vía oral, sirve la **oral**; si vomita o está muy agitado, se sigue a la **AIEPI**: **IM** y líquidos IV."
         }
       ],
       "nota_adicional": "La adrenalina sube de forma **transitoria** la frecuencia cardíaca (**15-20 lpm**) y la presión sistólica; suele ceder en **60-90 min**.",
@@ -8507,6 +8567,16 @@
           "url": "https://herramientaclinicaprimerainfancia.minsalud.gov.co/alarmas/M006/M6-017/M6-017.pdf#page=1",
           "cita": "Ministerio de Salud y Protección Social. Herramienta clínica para el abordaje inicial de las condiciones prevalentes en la primera infancia: actualización del AIEPI clínico. Módulo 6, infección respiratoria aguda. 2026.",
           "imagen_evidencia": "evidencia_ivas_crup_a_grave_adr.png"
+        },
+        {
+          "titulo": "Crup grave: líquidos IV y sin vía oral",
+          "paginas": "Módulo 6, crup grave",
+          "texto": "Líquidos endovenosos y suspender la vía oral. Manejo de la fiebre con acetaminofén. Minimice situaciones de agitación",
+          "fuente": "AIEPI 2026 (MinSalud)",
+          "anio": "2026",
+          "url": "https://herramientaclinicaprimerainfancia.minsalud.gov.co/alarmas/M006/M6-017/M6-017.pdf#page=1",
+          "cita": "Ministerio de Salud y Protección Social. Herramienta clínica para el abordaje inicial de las condiciones prevalentes en la primera infancia: actualización del AIEPI clínico. Módulo 6, infección respiratoria aguda. 2026.",
+          "imagen_evidencia": "evidencia_ivas_crup_a_grave_lev.png"
         }
       ]
     },
@@ -8792,7 +8862,7 @@
       "estilo": "peligro",
       "titulo": "Repetir la adrenalina y llamar a la UCI",
       "contexto": "Se pasa a **cuidados intensivos** cuando la respuesta al tratamiento inicial es **mala** o no se **sostiene**.",
-      "texto": "- Repetir la adrenalina nebulizada **cada hora** si hace falta.\n- Contactar a la **UCI pediátrica** o a anestesia para el manejo avanzado.\n- Pedir a **ORL** que evalúe la vía aérea si sigue **grave** pese al tratamiento.\n- Si tras **3 dosis** de adrenalina en **90 min** no mejora → considerar la **intubación** con el profesional más experto.",
+      "texto": "- Repetir la adrenalina nebulizada **cada hora** si hace falta.\n- Contactar a la **UCI pediátrica** o a anestesia para el manejo avanzado.\n- Pedir a **ORL** que evalúe la vía aérea si sigue **grave** pese al tratamiento.\n- Si no mejora tras **3 dosis** de adrenalina → considerar la **intubación** con apoyo del profesional más **experto**.",
       "nota_adicional": "El **heliox** puede aliviar la dificultad en el crup **grave**, pero no supera al tratamiento estándar: **no es de rutina**.",
       "referencias": [
         {
@@ -8858,6 +8928,16 @@
           "url": "https://herramientaclinicaprimerainfancia.minsalud.gov.co/alarmas/M006/M6-017/M6-017.pdf#page=1",
           "cita": "Ministerio de Salud y Protección Social. Herramienta clínica para el abordaje inicial de las condiciones prevalentes en la primera infancia: actualización del AIEPI clínico. Módulo 6, infección respiratoria aguda. 2026.",
           "imagen_evidencia": "evidencia_ivas_crup_a_grave_intub.png"
+        },
+        {
+          "titulo": "Apoyo del más experto para intubar",
+          "paginas": "Módulo 6, crup grave",
+          "texto": "Solicite apoyo del profesional más experto de su institución si requiere intubación de urgencia.",
+          "fuente": "AIEPI 2026 (MinSalud)",
+          "anio": "2026",
+          "url": "https://herramientaclinicaprimerainfancia.minsalud.gov.co/alarmas/M006/M6-017/M6-017.pdf#page=1",
+          "cita": "Ministerio de Salud y Protección Social. Herramienta clínica para el abordaje inicial de las condiciones prevalentes en la primera infancia: actualización del AIEPI clínico. Módulo 6, infección respiratoria aguda. 2026.",
+          "imagen_evidencia": "evidencia_ivas_crup_a_grave_experto.png"
         }
       ]
     },
