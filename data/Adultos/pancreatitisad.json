@@ -1,5 +1,4 @@
 {
-  "oculto": true,
   "titulo": "Pancreatitis aguda",
   "version": "IAP 2025 · iLATAM-PA 2026 · ACG 2024 · UNAL/HUN 2025 · WSES 2019",
   "descripcion": "En este algoritmo se aborda al adulto con pancreatitis aguda: la llegada, el diagnóstico y la causa, la gravedad y dónde tratarlo, el tratamiento, las complicaciones locales y el seguimiento. No incluye a niños.",
@@ -474,13 +473,6 @@
         "fuente": "IAP 2025",
         "texto": "IAP 2025, declaraciones de buena práctica 15 y 16 (UCI con Marshall ≥2 y soporte de órganos como en cualquier paciente crítico)."
       },
-      "enlaces": [
-        {
-          "texto": "Sepsis",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json",
-          "nodo_objetivo": "trat_vasopresores"
-        }
-      ],
       "opciones": [
         {
           "texto": "Vasopresor en marcha",
@@ -1084,38 +1076,7 @@
       "tipo": "pregunta",
       "titulo": "Predecir la gravedad y elegir dónde tratarlo",
       "contexto": "Ninguna escala predice bien quién se agravará; su valor está en reconocer al **leve**, que casi nunca progresa (**≈3 %**).",
-      "texto": "- Contar los criterios de SIRS al ingreso y repetirlos a las **48 h**: si **persisten**, sube el riesgo; sumar la **PCR** si está alta.\n- Calcular el **BISAP** (**la tabla**); el derrame pleural sale en la radiografía de tórax.\n- Medir la falla orgánica con la escala de **Marshall** modificada.\n- Considerar **mayor riesgo** si tiene **>65 años**, **obesidad mórbida** o una comorbilidad importante (índice de Charlson).",
-      "tabla": {
-        "titulo": "BISAP (0-5 puntos)",
-        "columnas": [
-          "Criterio",
-          "Suma 1 punto si"
-        ],
-        "filas": [
-          [
-            "BUN",
-            "**>25 mg/dL**"
-          ],
-          [
-            "Conciencia",
-            "**Alterada**"
-          ],
-          [
-            "SIRS",
-            "**Presente**"
-          ],
-          [
-            "Edad",
-            "**>60 años**"
-          ],
-          [
-            "Derrame pleural",
-            "Se ve en la **radiografía**"
-          ]
-        ],
-        "resaltar_primera_columna": true,
-        "en_texto": "la tabla"
-      },
+      "texto": "- Contar los criterios de SIRS al ingreso y repetirlos a las **48 h**: si **persisten**, sube el riesgo; sumar la **PCR** si está alta.\n- Calcular el **BISAP**; el derrame pleural sale en la radiografía de tórax.\n- Medir la falla orgánica con la escala de **Marshall** modificada.\n- Considerar **mayor riesgo** si tiene **>65 años**, **obesidad mórbida** o una comorbilidad importante (índice de Charlson).",
       "calculadora": {
         "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/marshall_modificado.json",
         "etiqueta": "Calcular el Marshall modificado",
@@ -1183,6 +1144,11 @@
         }
       ],
       "enlaces": [
+        {
+          "texto": "Calcular el BISAP",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/bisap.json"
+        },
         {
           "texto": "Calcular el SIRS",
           "tipo": "calculadora",
@@ -1521,6 +1487,11 @@
           "texto": "Clasificar la gravedad a las 48 h",
           "archivo_objetivo": "INTERNO",
           "nodo_objetivo": "estr_atlanta"
+        },
+        {
+          "texto": "Calcular el BISAP",
+          "tipo": "calculadora",
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/bisap.json"
         }
       ],
       "opciones": [
@@ -1604,10 +1575,6 @@
         {
           "texto": "Lesión renal aguda",
           "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/aki.json"
-        },
-        {
-          "texto": "Sepsis",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
         }
       ],
       "opciones": [
@@ -4494,10 +4461,6 @@
           "texto": "Calcular el SIRS",
           "tipo": "calculadora",
           "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/SirsSepsisAdultos.json"
-        },
-        {
-          "texto": "Sepsis",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
         }
       ],
       "opciones": [
@@ -4608,57 +4571,11 @@
       "tipo": "pregunta",
       "titulo": "Pedir la TC con contraste a las 72-96 h",
       "contexto": "La necrosis tarda días en definirse: una TC **temprana la subestima** y no cambia el tratamiento.",
-      "texto": "- Pedir la TC con contraste si no mejora o empeora, idealmente **≥72-96 h** tras el inicio del dolor.\n- Con **falla renal**, empezar sin contraste o usar **RM**.\n- Calificar con el índice de gravedad por TC (**la tabla**).",
-      "tabla": {
-        "titulo": "Índice de gravedad por TC (suma: inflamación + necrosis, 0-10)",
-        "columnas": [
-          "Hallazgo",
-          "Puntos"
-        ],
-        "filas": [
-          [
-            "Páncreas normal (A)",
-            "**0**"
-          ],
-          [
-            "Páncreas aumentado (B)",
-            "**1**"
-          ],
-          [
-            "Inflamación del páncreas o la grasa (C)",
-            "**2**"
-          ],
-          [
-            "Una colección (D)",
-            "**3**"
-          ],
-          [
-            "Dos o más colecciones o aire (E)",
-            "**4**"
-          ],
-          [
-            "Sin necrosis",
-            "**0**"
-          ],
-          [
-            "Necrosis <30 %",
-            "**2**"
-          ],
-          [
-            "Necrosis 30-50 %",
-            "**4**"
-          ],
-          [
-            "Necrosis >50 %",
-            "**6**"
-          ],
-          [
-            "Índice 7-10",
-            "Morbilidad **92 %**, mortalidad **17 %**"
-          ]
-        ],
-        "resaltar_primera_columna": true,
-        "en_texto": "la tabla"
+      "texto": "- Pedir la TC con contraste si no mejora o empeora, idealmente **≥72-96 h** tras el inicio del dolor.\n- Con **falla renal**, empezar sin contraste o usar **RM**.\n- Calificar la TC con el **índice de gravedad por TC**.",
+      "calculadora": {
+        "archivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/ctsi_balthazar.json",
+        "etiqueta": "Calcular el índice de gravedad por TC",
+        "ramificar": false
       },
       "burbujas": [
         {
@@ -5037,12 +4954,6 @@
         "fuente": "IAP 2025",
         "texto": "IAP 2025, recomendación 31 (diagnóstico clínico, serológico y por imagen, sin PAAF de rutina): recomendación fuerte, calidad de la evidencia baja."
       },
-      "enlaces": [
-        {
-          "texto": "Sepsis",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
-        }
-      ],
       "pie_nodo": "¿Hay signos de infección de la necrosis?",
       "opciones": [
         {
@@ -5747,12 +5658,6 @@
         "fuente": "IAP 2025",
         "texto": "IAP 2025, recomendaciones 43 y 44 (indicación y técnica de la necrosectomía): recomendación fuerte, calidad de la evidencia alta."
       },
-      "enlaces": [
-        {
-          "texto": "Sepsis",
-          "archivo_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/Adultos/sepsis.json"
-        }
-      ],
       "opciones": [
         {
           "texto": "Necrosectomía hecha",
