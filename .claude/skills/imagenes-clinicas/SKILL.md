@@ -1,6 +1,6 @@
 ---
 name: imagenes-clinicas
-description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), buscadas con tools/medios/commons_buscar.py, y si no hay, gráficos propios de datos y de flujo hechos con tools/medios (nunca personas ni partes del cuerpo dibujadas, ni modelos 3D) — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
+description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), buscadas con tools/medios/commons_buscar.py, y animaciones propias de fisiología (flujos, cavidades, curvas) y gráficos de datos y de flujo hechos con tools/medios (nunca personas dibujadas ni modelos 3D) — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
 argument-hint: "<algoritmo> [nodo]"
 ---
 
@@ -22,15 +22,22 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   (título escrito dentro, señaladores gruesos) y se lee al tocarla. Más de
   cuatro alargan la tarjeta.
 - **GIF** cuando algo se mueve: la técnica, la maniobra, el signo dinámico
-  (tiraje, llenado capilar), la cuenta atrás de un protocolo. Si lo que se
-  mueve es una persona (una maniobra, una postura), el GIF sale de una foto o
-  un vídeo **real** con licencia libre; nunca de un dibujo propio (ver
-  «Nunca personas dibujadas»).
+  (tiraje, llenado capilar), la cuenta atrás de un protocolo y, sobre todo,
+  **la fisiología que se entiende en movimiento**: el flujo coronario o entre
+  cavidades, el trombo que viaja, el ventrículo que se dilata, la curva de la
+  espirometría, el pliegue cutáneo que vuelve lento. Esas **animaciones
+  propias** son uno de los fuertes de Empirica frente a otras plataformas
+  (dueño, noviembre de 2026): se hacen **siempre que el tema tenga algo así**
+  (ver «Animaciones propias de fisiología»). Si lo que se mueve es una
+  persona (una maniobra, una postura), el GIF sale de una foto o un vídeo
+  **real** con licencia libre; nunca de un dibujo propio (ver «Nunca
+  personas dibujadas»).
 - Meta (subida con el dueño, noviembre de 2026): **1 de cada 3 nodos
   clínicos con imagen**, la **mayoría reales** (foto, Rx, ecografía, TC,
   microscopía, dispositivo) y **editadas** (recortadas, rotuladas en español,
   señaladas o trazadas), y **al menos 1 GIF hecho sobre una imagen real**
-  cuando el tema tiene imagen diagnóstica, técnica o dispositivo. Los
+  cuando el tema tiene imagen diagnóstica, técnica o dispositivo, y **las
+  animaciones propias de fisiología que el tema admita** (al menos una). Los
   gráficos propios de datos completan, no sustituyen: si hay foto libre que
   enseñe lo mismo, va la foto. `python3 tools/norma.py <algoritmo>` mide la
   proporción y lista los nodos que hablan de algo visible y no lo enseñan;
@@ -67,18 +74,40 @@ el dibujo propio desde cero va después.
    DermNet, materiales OMS/OPS con licencia NC, ni capturas de Google
    Imágenes.
 3. **Propias**, dibujadas en HTML/SVG con `tools/medios`, cuando no hay
-   imagen real que sirva, y **sólo de datos y de flujo**: gráficas de
+   imagen real que sirva: **de datos y de flujo** (gráficas de
    tiempos, dosis, umbrales o porcentajes, líneas de tiempo, pasos
    numerados, cuadrículas que comparan entidades, papel de monitoría o de
-   ECG. Nada con personas (ver abajo).
+   ECG) y **animaciones de fisiología** en esquema plano (ver abajo). Nada
+   con personas.
 4. Nunca una imagen generada por IA presentada como foto clínica real.
+
+### Animaciones propias de fisiología (decidido con el dueño, 12 de noviembre de 2026)
+
+Lo que en la clínica se entiende **en movimiento** se anima con un esquema
+plano propio (SVG/HTML con `tools/medios`, `window.cuadro(i, n)` →
+`capturar.js` → `armar_gif.py`): el flujo coronario, la sangre entre las
+cavidades, el trombo que viaja de la pierna al pulmón, el ventrículo derecho
+que se dilata y empuja el tabique, el desajuste ventilación-perfusión, la
+curva de la espirometría, el pliegue cutáneo que vuelve lento. El órgano o la
+región se dibuja **sólo como esquema** (cavidades, vasos, bronquios, una
+porción de piel), limpio, con los colores de la app, rótulos en español y
+la misma fuente que el nodo para cada cifra. Es uno de los fuertes de
+Empirica: se busca uno por algoritmo **siempre que el tema lo tenga**, además
+de las imágenes reales editadas (no en su lugar: si hay una imagen real que
+enseñe lo mismo, va también).
+
+- Hecho con cuidado: trazos redondos, movimiento suave en bucle (3-8 s),
+  una sola idea por animación, el rótulo que se enciende cuando pasa lo que
+  nombra. Mejor ninguna que una pobre.
+- Sigue la regla de abajo: ni personas, ni siluetas, ni manos haciendo una
+  maniobra, ni 3D.
 
 ### Nunca personas dibujadas (decidido con el dueño, noviembre de 2026)
 
-No se dibujan **personas ni partes del cuerpo** con las herramientas propias
-(SVG, `base.js`, plantillas): ni siluetas, ni cortes anatómicos esquemáticos,
-ni manos, ni la gestante y el bebé de una maniobra, ni GIF de una técnica
-hecha con figuras geométricas. Quedan simples y no se ven bien. Tampoco
+No se dibujan **personas** con las herramientas propias (SVG, `base.js`,
+plantillas): ni siluetas, ni cuerpos enteros, ni manos, ni la gestante y el
+bebé de una maniobra, ni GIF de una técnica hecha con figuras geométricas.
+El órgano en esquema de una animación de fisiología (arriba) sí se dibuja. Quedan simples y no se ven bien. Tampoco
 **modelos 3D ni renders** de terceros (simulaciones por computador, maniquíes
 virtuales), aunque sean CC BY.
 
@@ -337,9 +366,10 @@ hiperglucémicas son el modelo (plantillas en
 | **barras de porcentaje** | comparar el resultado de varias opciones (éxito de cada maniobra) | `parto/hombros_exito.html` |
 | **GIF sobre papel de monitoría** | cuándo hacer algo respecto de una señal (auscultar durante la contracción y 30 s después) | `parto/auscultacion.html` |
 
-- **Sin personas ni partes del cuerpo** (ver «Nunca personas dibujadas»):
-  si el nodo es una maniobra, la figura es una foto real o un gráfico de
-  datos sobre ella, no un dibujo.
+- **Sin personas** (ver «Nunca personas dibujadas»): si el nodo es una
+  maniobra, la figura es una foto real o un gráfico de datos sobre ella, no
+  un dibujo. La fisiología sí se anima en esquema («Animaciones propias de
+  fisiología»).
 - La figura dice **exactamente lo que dice su nodo**: las mismas cifras,
   umbrales, tiempos y nombres (si el texto dice «lactato de Ringer», la
   figura también). Si el nodo cambia, se rehace la figura.
