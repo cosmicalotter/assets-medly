@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// Bloqueo AV completo (James Heilman, MD, CC BY-SA 3.0; Wikimedia Commons): tira de ritmo de II, en dos mitades.
+const AZ = "#2563EB", RJ = "#DC2626";
+const P = [126, 253, 380, 510, 638, 766, 893, 1020, 1148, 1275, 1405, 1530], Q = [255, 582, 900, 1185, 1525];
+const ticks = (xs, y1, y2, c) => xs.map((x) => ({ x1: x, y1, x2: x, y2, c }));
+fotos({
+  titulo: "Bloqueo AV completo",
+  sub: "Tira de ritmo: las P y los QRS van cada uno a su ritmo",
+  dir: "columna",
+  paneles: [
+    { src: "fuentes/commons_bloqueo_av.jpg", tam: [1600, 780], recorte: [0, 655, 800, 115], rotulo: "II · primera mitad",
+      lineas: [...ticks(P.filter((x) => x < 800), 668, 690, AZ), ...ticks(Q.filter((x) => x < 800), 752, 768, RJ)] },
+    { src: "fuentes/commons_bloqueo_av.jpg", tam: [1600, 780], recorte: [800, 655, 800, 115], rotulo: "II · segunda mitad",
+      lineas: [...ticks(P.filter((x) => x >= 800), 668, 690, AZ), ...ticks(Q.filter((x) => x >= 800), 752, 768, RJ)] },
+  ],
+  alto: 260,
+  notas: [
+    [AZ, "<b>Marcas azules</b>: ondas P, regulares y más rápidas."],
+    [RJ, "<b>Marcas rojas</b>: QRS lentos, sin relación con las P."],
+    ["#64748B", "Con mala tolerancia: atropina, adrenalina y <b>marcapasos temporal</b>."],
+  ],
+  fuente: "ECG: James Heilman, MD (CC BY-SA 3.0), vía Wikimedia Commons. Rotulado por Empirica; se comparte igual.",
+});
+</script></body></html>

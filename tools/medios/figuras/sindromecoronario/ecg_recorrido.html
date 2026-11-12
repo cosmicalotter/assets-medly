@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body><script>
+// Recorrido por un ECG real de IAMCEST anterior (Displaced, Wikimedia Commons, dominio público):
+// la elevación del ST en V2-V3, en V4-V5 y la regla de las dos derivaciones contiguas.
+const AMA = "#FDE047", ROJ = "#EF4444", CIA = "#22D3EE";
+recorrido({
+  titulo: "Leer un IAMCEST en el ECG",
+  subtitulo: "Elevación del ST en las derivaciones precordiales",
+  credito: "ECG: Displaced, Wikimedia Commons, dominio público, rotulado por Empirica. Fuente: Guía ESC 2023 de SCA, p. 19.",
+  escenas: [{
+    img: "fuentes/commons_iamcest_anterior.jpg", w: 1600, h: 939, vista: [790, 20, 810, 805],
+    pasos: [
+      { texto: "Mirar el ST en el <b>punto J</b>, al final del QRS, en las precordiales", vista: [790, 20, 810, 805],
+        dibujo: (u, e) => D.rotulo(800, 425, "V2", CIA, e, { op: u, tam: 17 }) + D.rotulo(800, 692, "V3", CIA, e, { op: u, tam: 17 }) +
+          D.rotulo(1192, 198, "V4", CIA, e, { op: u, tam: 17 }) + D.rotulo(1192, 428, "V5", CIA, e, { op: u, tam: 17 }) },
+      { texto: "<b>V2 y V3</b>: el ST sale muy por encima de la línea de base", vista: [800, 300, 420, 420],
+        dibujo: (u, e) => D.elipse(958, 372, 34, 34, 0, AMA, e, u) + D.elipse(962, 642, 34, 26, 0, AMA, e, u) +
+          D.rotulo(1000, 342, "ST elevado", AMA, e, { op: u, tam: 15 }) },
+      { texto: "<b>V4 y V5</b>: la elevación sigue y se funde con la onda T", vista: [1180, 60, 420, 420],
+        dibujo: (u, e) => D.elipse(1310, 142, 32, 40, 0, AMA, e, u) + D.elipse(1322, 380, 34, 20, 0, AMA, e, u) +
+          D.rotulo(1350, 98, "ST elevado", AMA, e, { op: u, tam: 15 }) },
+      { texto: "<b>Dos o más derivaciones contiguas</b>: de V2 a V5, la cara anterior", vista: [790, 20, 810, 805],
+        dibujo: (u, e) => D.zona("830,330 1180,330 1180,720 830,720", ROJ, e, u) + D.zona("1190,90 1590,90 1590,450 1190,450", ROJ, e, u) },
+    ],
+  }],
+  final: `Elevación del ST en <b style="color:#FDE047">V2-V5</b>: diagnóstico de trabajo de <b style="color:#FCA5A5">IAMCEST</b>: activar el código infarto y la reperfusión.`,
+});
+</script></body></html>

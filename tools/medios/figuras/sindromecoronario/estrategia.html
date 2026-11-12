@@ -1,0 +1,16 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Momento de la angiografía en el SCASEST según el riesgo (ESC 2023, fig. 8 p. 29 y tabla de recomendaciones 4 p. 31).
+// Colores de las ramas del nodo: rojo inmediata, naranja temprana, amarillo durante el ingreso, verde selectiva.
+const AMA = "#E8B10C";
+const fila = (c, cuando, quien, crit) => `<div style="display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:8px 10px">
+  <div><div style="font-weight:900;font-size:17px;color:${c}">${cuando}</div><div style="font-size:12px;color:#374151;font-weight:700">${quien}</div></div>
+  <ul style="font-size:12.8px;line-height:1.3;margin:0;padding-left:16px;columns:${crit.length > 3 ? 2 : 1};column-gap:18px">${crit.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
+lienzo("¿Cuándo la angiografía en el SCASEST?", "El riesgo decide el momento; basta un criterio de cada nivel",
+  `<div style="display:flex;flex-direction:column;gap:7px">
+    ${fila(ROJO, "Inmediata<br>&lt;2 h", "Muy alto riesgo", ["<b>Choque</b> o inestabilidad", "Dolor <b>refractario</b>", "Falla cardíaca aguda", "Arritmias graves o paro", "Complicación <b>mecánica</b>", "Cambios <b>dinámicos</b> recurrentes"])}
+    ${fila(NARANJA, "Temprana<br>&lt;24 h", "Alto riesgo", ["IAMSEST <b>confirmado</b>", "Cambios dinámicos del ST o de la T", "Elevación <b>transitoria</b> del ST", "<b>GRACE &gt;140</b>"])}
+    ${fila(AMA, "Durante<br>el ingreso", "Sospecha alta", ["Sin alto riesgo, pero con sospecha alta de <b>angina inestable</b>"])}
+    ${fila(VERDE, "Selectiva", "Sospecha baja", ["Sin criterios de riesgo: prueba de <b>isquemia</b> con imagen o angio-TC antes de decidir"])}
+  </div>`,
+  "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), fig. 8, p. 29, y recomendaciones de la p. 31.");
+</script></body></html>
