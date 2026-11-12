@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Lactato de Ringer: lo que trae cada litro (AAP 2018, tabla 1). Foto: Jcb10, Wikimedia Commons, dominio público.
+const SRC = "fuentes/commons_LactateRingers.jpg", REC = [235, 70, 560, 1150];
+const ITEMS = [
+  ["Sodio", "130", "mEq/L", AZUL, "Menos que la solución salina 0,9 % (<b>154</b>)"],
+  ["Cloro", "109", "mEq/L", TEAL, "Cerca del plasma (<b>95-105</b>)"],
+  ["Potasio", "4", "mEq/L", MORADO, "Poco: el cloruro de potasio se añade aparte"],
+  ["Calcio", "3", "mEq/L", AMBAR, "La salina 0,9 % no trae calcio"],
+  ["Lactato", "28", "mEq/L", VERDE, "Es el amortiguador: hace de bicarbonato"],
+  ["Osmolaridad", "273", "mOsm/L", GRIS, "<b>Ligeramente hipotónico</b>"],
+];
+function foto(paso) {
+  const k = 404 / REC[3], w = Math.round(REC[2] * k);
+  const anillo = paso === 0 ? `<ellipse cx="512" cy="520" rx="190" ry="105" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="${8 / k}"/><ellipse cx="512" cy="520" rx="190" ry="105" fill="none" stroke="${AMBAR}" stroke-width="${4 / k}"/>` : "";
+  return `<div style="position:relative;flex:none"><svg width="${w}" height="404" viewBox="${REC.join(" ")}" style="display:block;border-radius:12px">
+    <image href="${SRC}" x="0" y="0" width="1000" height="1333"/>${anillo}</svg>
+    <div style="position:absolute;left:8px;top:8px;background:rgba(17,24,39,.8);color:#fff;font-size:13px;font-weight:800;padding:4px 9px;border-radius:7px">1000 mL = 1 litro</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const paso = Math.min(ITEMS.length, i);          // 0: la bolsa; 1-6: cada componente; 7: final
+  const lista = ITEMS.map(([nom, val, u, c, nota], j) => {
+    const vis = j < paso, act = j === paso - 1;
+    return `<div class="item" style="display:flex;align-items:center;gap:10px;opacity:${vis ? 1 : 0.18};background:${act ? tinte(c, 16) : "#F7F8FA"};border:1.5px solid ${act ? c : "transparent"}">
+      <span style="width:12px;height:12px;border-radius:6px;background:${c};flex:none"></span>
+      <span style="flex:1"><b>${nom}</b> <span style="color:var(--suave)">· ${nota}</span></span>
+      <span style="font-size:19px;font-weight:800;color:${c};white-space:nowrap">${val} <span style="font-size:11px;font-weight:700">${u}</span></span></div>`;
+  }).join("");
+  const final = i >= ITEMS.length + 1
+    ? `<div class="caja" style="background:${tinte(ROJO, 12)};border:1.5px solid ${ROJO}"><span><b>Sin dextrosa</b>: añadirla si el niño la necesita. La AAP no hace recomendaciones sobre su <b>seguridad</b> como mantenimiento.</span></div>`
+    : `<div class="caja" style="background:#F8FAFC;color:var(--suave)"><span>${i === 0 ? "Cada litro de la bolsa trae…" : "Composición por litro, como en la tabla 1 de la AAP"}</span></div>`;
+  lienzo("Lactato de Ringer: lo que trae cada litro", "Bolsa de 1000 mL en el soporte; composición de la tabla 1 de la AAP 2018",
+    `<div style="display:flex;gap:16px;align-items:center">${foto(paso)}<div style="flex:1;display:flex;flex-direction:column;gap:7px">${lista}${final}</div></div>`,
+    "Foto: Jcb10 (John Baker), Wikimedia Commons, dominio público. Datos: AAP 2018 (Feld LG et al., Pediatrics), tabla 1. Rotulada por Empirica.");
+};
+window.cuadro(7, 8);
+</script></body></html>

@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Peso del recién nacido a término en las tres fases: ESPGHAN 2018 (líquidos), R 6.1 y R 6.8.
+const X0 = 70, W = 570, Y0 = 20, H = 270, DM = 14;
+const xd = (d) => X0 + (d / DM) * W, yp = (p) => Y0 + H - ((p - 86) / 20) * H;
+const P = [[0, 100], [1, 96], [2, 93.5], [3, 92], [4, 91.5], [5, 92], [6, 94], [7, 96.5], [8, 99], [9, 100.5], [10, 101.5], [12, 103], [14, 104.5]];
+let s = `<svg width="668" height="${H + 60}" style="flex:none">`;
+s += `<rect x="${xd(0)}" y="${Y0}" width="${xd(4.5) - xd(0)}" height="${H}" fill="${tinte(AZUL, 10)}"/>`;
+s += `<rect x="${xd(4.5)}" y="${Y0}" width="${xd(9) - xd(4.5)}" height="${H}" fill="${tinte(MORADO, 10)}"/>`;
+s += `<rect x="${xd(9)}" y="${Y0}" width="${xd(14) - xd(9)}" height="${H}" fill="${tinte(VERDE, 10)}"/>`;
+[["I · Transición", 2.2, AZUL], ["II · Intermedia", 6.7, MORADO], ["III · Crecimiento", 11.5, VERDE]].forEach(([t, d, c]) => s += `<text x="${xd(d)}" y="${Y0 + 18}" text-anchor="middle" font-size="12.5" font-weight="800" fill="${c}">${t}</text>`);
+for (const p of [90, 100]) s += `<line x1="${X0}" y1="${yp(p)}" x2="${X0 + W}" y2="${yp(p)}" stroke="${p === 90 ? ROJO : GRIS}" stroke-dasharray="6 5" stroke-width="1.5"/><text x="${X0 - 8}" y="${yp(p) + 4}" text-anchor="end" font-size="11.5" font-weight="700" fill="${p === 90 ? ROJO : GRIS}">${p} %</text>`;
+s += `<text x="${X0 + W - 4}" y="${yp(90) + 16}" text-anchor="end" font-size="11.5" font-weight="700" fill="${ROJO}">No perder más del 10 %</text>`;
+s += `<path d="${P.map(([d, p], i) => `${i ? "L" : "M"}${xd(d)} ${yp(p)}`).join(" ")}" fill="none" stroke="${TINTA}" stroke-width="3.5" stroke-linejoin="round"/>`;
+s += `<circle cx="${xd(8.5)}" cy="${yp(100)}" r="6" fill="${MORADO}" stroke="#fff" stroke-width="2"/><text x="${xd(8.5)}" y="${yp(100) - 30}" text-anchor="end" font-size="11.5" font-weight="700" fill="${MORADO}">Peso al nacer: días 7-10</text>`;
+for (let d = 0; d <= 14; d += 2) s += `<text x="${xd(d)}" y="${Y0 + H + 18}" text-anchor="middle" font-size="11" fill="${GRIS}">Día ${d}</text>`;
+s += `<text x="${X0 - 8}" y="${Y0 + 12}" text-anchor="end" font-size="10.5" font-weight="700" fill="${GRIS}">Peso</text></svg>`;
+lienzo("Las tres fases del recién nacido", "Esquema del peso del de término frente a su peso al nacer (100 %)",
+  s + `<div class="caja" style="background:#F7F8FA"><span>Pierde peso en los días <b>2-5</b>, sin pasar del <b>10 %</b>; lo recupera hacia los <b>7-10 días</b> y después crece.</span></div>`,
+  "Datos: ESPGHAN 2018 (líquidos), R 6.1 y R 6.8. Curva esquemática. Elaboración de Empirica.");
+</script></body></html>

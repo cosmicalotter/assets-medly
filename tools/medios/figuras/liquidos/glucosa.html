@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Glucosa IV por peso y fase: ESPGHAN 2018 (carbohidratos), R 5.6.
+const F = [["Aguda", ROJO], ["Estable", AMBAR], ["Recuperación", VERDE]];
+const P = [["28 días a 10 kg", [[2, 4], [4, 6], [6, 10]]], ["11 a 30 kg", [[1.5, 2.5], [2, 4], [3, 6]]],
+           ["31 a 45 kg", [[1, 1.5], [1.5, 3], [3, 4]]], ["Más de 45 kg", [[0.5, 1], [1, 2], [2, 3]]]];
+const X0 = 150, W = 480, VM = 10, xv = (v) => X0 + (v / VM) * W, FILA = 74;
+let s = `<svg width="668" height="${P.length * FILA + 30}" style="flex:none">`;
+for (let v = 0; v <= 10; v += 2) s += `<line x1="${xv(v)}" y1="0" x2="${xv(v)}" y2="${P.length * FILA}" stroke="#EEF0F3"/><text x="${xv(v)}" y="${P.length * FILA + 16}" text-anchor="middle" font-size="11" fill="${GRIS}">${v}</text>`;
+P.forEach(([n, r], i) => {
+  const y = i * FILA + 8;
+  s += `<text x="${X0 - 10}" y="${y + 30}" text-anchor="end" font-size="13" font-weight="700" fill="${TINTA}">${n}</text>`;
+  r.forEach(([a, b], f) => {
+    const yy = y + f * 20;
+    s += `<rect x="${xv(a)}" y="${yy}" width="${xv(b) - xv(a)}" height="15" rx="5" fill="${F[f][1]}"/>`;
+    s += `<text x="${xv(b) + 6}" y="${yy + 12}" font-size="11.5" font-weight="700" fill="${F[f][1]}">${String(a).replace(".", ",")}-${String(b).replace(".", ",")}</text>`;
+  });
+});
+s += `</svg>`;
+const ley = `<div style="display:flex;gap:8px">${F.map(([n, c]) => `<div class="item" style="background:${tinte(c, 14)};display:flex;gap:6px;align-items:center"><span style="width:11px;height:11px;border-radius:3px;background:${c}"></span><span>Fase <b>${n.toLowerCase()}</b></span></div>`).join("")}</div>`;
+lienzo("Glucosa IV según el peso y la fase", "En mg/kg/min; cuanto más pesa y más grave está, menos glucosa por kilo",
+  s + ley, "Datos: ESPGHAN 2018 (carbohidratos), R 5.6. Elaboración de Empirica.");
+</script></body></html>

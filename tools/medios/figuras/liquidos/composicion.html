@@ -1,0 +1,32 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Sodio y cloro de cada solución frente al plasma: AAP 2018, tabla 1.
+const SOL = [
+  ["Solución salina 0,9 %", 154, 154, AZUL, "Isotónica"],
+  ["PlasmaLyte", 140, 98, TEAL, "Isotónica"],
+  ["Lactato de Ringer", 130, 109, MORADO, "Ligeramente hipotónica"],
+  ["Solución salina 0,45 %", 77, 77, AMBAR, "Hipotónica"],
+  ["Solución salina 0,2 %", 34, 34, ROJO, "Hipotónica"],
+];
+const X0 = 190, AN = 440, MAX = 170, x = (v) => X0 + (v / MAX) * AN, FILA = 62;
+let s = `<svg width="668" height="${SOL.length * FILA + 44}" style="flex:none">`;
+// banda del plasma: sodio 135-145
+s += `<rect x="${x(135)}" y="0" width="${x(145) - x(135)}" height="${SOL.length * FILA}" fill="${tinte(VERDE, 22)}"/>`;
+s += `<text x="${x(140)}" y="${SOL.length * FILA + 16}" text-anchor="middle" font-size="11.5" font-weight="700" fill="${VERDE}">Sodio del plasma 135-145</text>`;
+for (let v = 0; v <= 160; v += 40) {
+  s += `<line x1="${x(v)}" y1="0" x2="${x(v)}" y2="${SOL.length * FILA}" stroke="#EEF0F3"/>`;
+  s += `<text x="${x(v)}" y="${SOL.length * FILA + 34}" text-anchor="middle" font-size="11" fill="${GRIS}">${v}</text>`;
+}
+SOL.forEach(([n, na, cl, c, tipo], i) => {
+  const y = i * FILA + 10;
+  s += `<text x="${X0 - 10}" y="${y + 16}" text-anchor="end" font-size="13" font-weight="700" fill="${TINTA}">${n}</text>`;
+  s += `<text x="${X0 - 10}" y="${y + 33}" text-anchor="end" font-size="11.5" fill="${c}" font-weight="700">${tipo}</text>`;
+  s += `<rect x="${X0}" y="${y}" width="${x(na) - X0}" height="20" rx="5" fill="${c}"/>`;
+  s += `<text x="${x(na) + 6}" y="${y + 15}" font-size="12.5" font-weight="800" fill="${c}">Na ${na}</text>`;
+  s += `<rect x="${X0}" y="${y + 24}" width="${x(cl) - X0}" height="12" rx="4" fill="${tinte(c, 40)}"/>`;
+  s += `<text x="${x(cl) + 6}" y="${y + 34}" font-size="11" font-weight="700" fill="${GRIS}">Cl ${cl}</text>`;
+});
+s += `</svg>`;
+lienzo("Sodio y cloro de cada solución", "En mEq/L; la banda verde es el sodio del plasma",
+  `${s}<div class="caja" style="background:#F7F8FA"><span>Las <b>hipotónicas</b> aumentan la hiponatremia; la salina 0,9 % trae tanto <b>cloro</b> como sodio.</span></div>`,
+  "Datos: AAP 2018 (Feld LG et al., Pediatrics), tabla 1; ESPGHAN 2018 (líquidos). Elaboración de Empirica.");
+</script></body></html>

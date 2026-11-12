@@ -1,0 +1,48 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Holliday y Segar según ESPGHAN 2018, tabla 4: 100 mL/kg hasta 10 kg, +50 de 10 a 20, +25 por kilo sobre 20.
+const T = [[AZUL, "Primeros 10 kg × 100"], [TEAL, "De 10 a 20 kg × 50"], [MORADO, "Sobre 20 kg × 25"]];
+const partes = (p) => [100 * Math.min(p, 10), 50 * Math.min(Math.max(p - 10, 0), 10), 25 * Math.max(p - 20, 0)];
+const PMAX = 40, VMAX = 2000;
+function bolsa(p) {
+  const [a, b, c] = partes(p), tot = a + b + c;
+  const X = 34, Y = 34, W = 150, H = 255;
+  const y = (v) => Y + H - (v / VMAX) * H;
+  let s = `<svg width="230" height="345" style="flex:none">`;
+  s += `<rect x="${X + 55}" y="${Y - 28}" width="40" height="22" rx="5" fill="#E5E7EB"/>`;
+  s += `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="22" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="3"/>`;
+  s += `<clipPath id="b"><rect x="${X + 3}" y="${Y + 3}" width="${W - 6}" height="${H - 6}" rx="19"/></clipPath><g clip-path="url(#b)">`;
+  let base = 0;
+  [a, b, c].forEach((v, i) => { if (v > 0) s += `<rect x="${X}" y="${y(base + v)}" width="${W}" height="${(v / VMAX) * H}" fill="${T[i][0]}" opacity=".85"/>`; base += v; });
+  s += `</g>`;
+  for (let v = 500; v < VMAX; v += 500) s += `<line x1="${X + W - 18}" y1="${y(v)}" x2="${X + W}" y2="${y(v)}" stroke="#94A3B8" stroke-width="2"/><text x="${X + W + 6}" y="${y(v) + 4}" font-size="11" fill="${GRIS}">${v}</text>`;
+  s += `<rect x="${X + W / 2 - 4}" y="${Y + H}" width="8" height="26" fill="#CBD5E1"/>`;
+  s += `<text x="${X + W / 2}" y="${Y + H + 44}" text-anchor="middle" font-size="16" font-weight="800" fill="${TINTA}">${Math.round(tot)} mL/día</text>`;
+  s += `</svg>`;
+  return s;
+}
+function curva(p) {
+  const X0 = 46, Y0 = 20, W = 330, H = 250;
+  const xs = (k) => X0 + (k / PMAX) * W, ys = (v) => Y0 + H - (v / VMAX) * H;
+  let s = `<svg width="400" height="300" style="flex:none">`;
+  for (let v = 0; v <= VMAX; v += 500) s += `<line x1="${X0}" y1="${ys(v)}" x2="${X0 + W}" y2="${ys(v)}" stroke="#EEF0F3"/><text x="${X0 - 6}" y="${ys(v) + 4}" text-anchor="end" font-size="10.5" fill="${GRIS}">${v}</text>`;
+  for (let k = 0; k <= PMAX; k += 10) s += `<text x="${xs(k)}" y="${Y0 + H + 16}" text-anchor="middle" font-size="10.5" fill="${GRIS}">${k} kg</text>`;
+  const tramo = (k0, k1, c) => { let d = ""; for (let k = k0; k <= k1; k += 0.5) { const t = partes(k).reduce((a, b) => a + b); d += `${k === k0 ? "M" : "L"}${xs(k).toFixed(1)} ${ys(t).toFixed(1)} `; } return `<path d="${d}" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/>`; };
+  s += tramo(0, 10, AZUL) + tramo(10, 20, TEAL) + tramo(20, PMAX, MORADO);
+  const t = partes(p).reduce((a, b) => a + b);
+  s += `<line x1="${xs(p)}" y1="${ys(t)}" x2="${xs(p)}" y2="${Y0 + H}" stroke="${GRIS}" stroke-dasharray="4 4"/>`;
+  s += `<circle cx="${xs(p)}" cy="${ys(t)}" r="7" fill="${TINTA}" stroke="#fff" stroke-width="2.5"/>`;
+  s += `<text x="${X0 + 6}" y="${Y0 + 12}" font-size="11" font-weight="700" fill="${GRIS}">mL/día</text>`;
+  s += `</svg>`;
+  return s;
+}
+window.cuadro = function (i, n) {
+  const p = n > 1 ? 2 + (i / (n - 1)) * 33 : 25;
+  const pr = Math.round(p * 2) / 2;
+  const [a, b, c] = partes(pr), tot = a + b + c;
+  const filas = T.map(([col, t], j) => `<div class="item" style="display:flex;gap:8px;align-items:center;background:${[a, b, c][j] > 0 ? tinte(col, 14) : "#F7F8FA"}"><span style="width:11px;height:11px;border-radius:3px;background:${col}"></span><span style="flex:1">${t}</span><b style="color:${col}">${Math.round([a, b, c][j])} mL</b></div>`).join("");
+  lienzo("Holliday y Segar: cómo se llena la bolsa", `Peso <b>${pr.toLocaleString("es-CO")} kg</b> → <b>${Math.round(tot)} mL/día</b> → <b>${(tot / 24).toLocaleString("es-CO", { maximumFractionDigits: 1 })} mL/h</b>`,
+    `<div style="display:flex;gap:10px;align-items:flex-start">${bolsa(pr)}<div style="display:flex;flex-direction:column;gap:6px">${curva(pr)}${filas}</div></div>`,
+    "Fórmula: ESPGHAN 2018 (líquidos), tabla 4 (Holliday y Segar). Elaboración de Empirica.");
+};
+window.cuadro(23, 24);
+</script></body></html>
