@@ -49,8 +49,9 @@ import norma  # noqa: E402  (resolver, todos, DATA)
 # --- qué es un PDF y qué página lleva ----------------------------------------
 
 #: `.pdf` en la ruta, o rutas que sirven un PDF sin extensión (NICE:
-#: `/resources/<nombre>-pdf-66141662244037`).
-_PDF = re.compile(r"\.pdf$|-pdf-\d+$", re.I)
+#: `/resources/<nombre>-pdf-66141662244037`; revistas de la AHA:
+#: `/doi/pdf/<doi>`; revistas de Elsevier como CHEST: `/article/<pii>/pdf`).
+_PDF = re.compile(r"\.pdf$|-pdf-\d+$|^/doi/pdf/|/article/[^/]+/pdf$", re.I)
 _PAGE = re.compile(r"^page=(\d+)$")
 
 

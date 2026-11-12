@@ -1,0 +1,209 @@
+{
+  "titulo": "Ginebra revisada para TEP",
+  "descripcion": "Estima la probabilidad clínica de tromboembolismo pulmonar con ocho datos objetivos, sin juicio clínico: la edad, los antecedentes, el cáncer, los síntomas de la pierna, la hemoptisis y la FC. Clasifica la probabilidad en baja (0-3), intermedia (4-10) o alta (11 o más). Es la alternativa a Wells que recoge la guía AHA/ACC 2026.",
+  "instrucciones": "Puntúa la FC una sola vez: 3 puntos entre 75 y 94 lpm, 5 puntos con 95 lpm o más.",
+  "limitaciones": "No se validó en gestantes ni en pacientes hospitalizados. En el paciente inestable no se usa.",
+  "referencias": [
+    {
+      "titulo": "Le Gal G, Righini M, Roy PM, et al. Prediction of pulmonary embolism in the emergency department: the revised Geneva score. Ann Intern Med 2006;144:165-171.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Prediction%20of%20pulmonary%20embolism%20in%20the%20emergency%20department%3A%20the%20revised%20Geneva%20score"
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Tabla 3: Ginebra revisada.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=9",
+      "paginas": "e985",
+      "texto": "Pain on lower limb deep vein palpation and unilateral edema 4 1 Intermediate: 4-10 High: ≥11"
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Tabla 3: puntos.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=9",
+      "paginas": "e985",
+      "texto": "Age >65 1 1 Revised Geneva: Previous DVT or PE 3 1 Low: 0-3"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "naranja"
+    },
+    {
+      "puntos": 4,
+      "titulo": "4",
+      "color": "naranja"
+    },
+    {
+      "puntos": 5,
+      "titulo": "5",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Edad > 65 años",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "años",
+        "min": 18,
+        "max": 120,
+        "tramos": [
+          {
+            "max": 65,
+            "puntos": 0
+          },
+          {
+            "min": 65.01,
+            "puntos": 1
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "TVP o TEP previos",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Cirugía o fractura reciente",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ],
+      "ayuda": "Cirugía con anestesia general o fractura de los miembros inferiores en el último mes."
+    },
+    {
+      "nombre": "Cáncer activo",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Dolor unilateral en la pierna",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "Sí",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Hemoptisis",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "nombre": "Frecuencia cardíaca",
+      "descripciones": [
+        "< 75 lpm",
+        "-",
+        "-",
+        "75-94 lpm",
+        "-",
+        "≥ 95 lpm"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 20,
+        "max": 250,
+        "tramos": [
+          {
+            "max": 74.99,
+            "puntos": 0
+          },
+          {
+            "min": 75,
+            "max": 94.99,
+            "puntos": 3
+          },
+          {
+            "min": 95,
+            "puntos": 5
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Dolor venoso y edema unilateral",
+      "descripciones": [
+        "No",
+        "-",
+        "-",
+        "-",
+        "Sí",
+        "-"
+      ],
+      "ayuda": "Dolor a la palpación de las venas profundas de la pierna y edema unilateral."
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 3,
+      "categoria": "Probabilidad baja (0-3)",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Probabilidad **baja**: aplicar los criterios **PERC** o pedir el **dímero D**."
+    },
+    {
+      "min": 4,
+      "max": 10,
+      "categoria": "Probabilidad intermedia (4-10)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Probabilidad **intermedia**: pedir el **dímero D** con el umbral ajustado a la **edad** o con **YEARS**."
+    },
+    {
+      "min": 11,
+      "max": 25,
+      "categoria": "Probabilidad alta (≥11)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Probabilidad **alta**: hacer la **angio-TC** sin pedir el dímero D."
+    }
+  ]
+}

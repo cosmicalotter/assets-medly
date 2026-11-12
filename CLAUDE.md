@@ -44,7 +44,7 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (12 de noviembre de 2026) hay
-  38 visibles. Adultos (27): patología biliar, crisis hiperglucémicas,
+  39 visibles. Adultos (28): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
@@ -52,7 +52,8 @@ abrirse.
   el PAI 2026, hemorragia posparto, hemorragias de la primera mitad del
   embarazo, hipertensión arterial, infección de vías urinarias, neumonía adquirida
   en la comunidad, parto pretérmino, ruptura prematura de membranas,
-  síndrome coronario agudo y violencia sexual (`violencia_sexual.json`,
+  síndrome coronario agudo, tromboembolismo pulmonar y violencia sexual
+  (`violencia_sexual.json`,
   todas las edades).
   Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
@@ -110,9 +111,10 @@ Firebase directamente, saltándose `indices/`.
 4. **Imágenes sólo propias, de la guía, o con licencia que permita uso
    comercial**, con su `creditos.json`. Ver la skill `imagenes-clinicas`.
    Primero **fotos reales libres** (Commons, PMC CC BY) editadas en español
-   (`tools/medios/commons_buscar.py` las busca y descarga). Lo propio, sólo
-   gráficos de datos y de flujo: **nunca personas ni partes del cuerpo
-   dibujadas**, ni modelos 3D; si no hay foto, el nodo va sin imagen.
+   (`tools/medios/commons_buscar.py` las busca y descarga). Lo propio:
+   gráficos de datos y de flujo y **animaciones de fisiología** en esquema
+   plano (flujos, cavidades, curvas); **nunca personas dibujadas** ni modelos
+   3D.
 5. **Los PDF de las guías no entran en este repositorio** (copyright). Se
    leen desde `guias-praxis` o desde el scratchpad.
 6. **De una guía de pago, cita textual y sin recorte.** Si el texto completo
@@ -189,7 +191,11 @@ Firebase directamente, saltándose `indices/`.
 - Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. **Meta (noviembre
   de 2026): 1 de cada 3 nodos clínicos con imagen, la mayoría fotos o
   imágenes diagnósticas reales libres editadas en español, y al menos un
-  GIF sobre una imagen real** (ejemplo: `neumonia.json`). **Se prioriza la cantidad**: el nivel de neumonía (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF) es la referencia de todo algoritmo que se crea o se reforma. Toda imagen lleva título, pie (`descripcion`) e
+  GIF sobre una imagen real** (ejemplo: `neumonia.json`), **más las
+  animaciones propias de fisiología que el tema admita** (flujos entre
+  cavidades, el trombo que viaja, curvas): son uno de los fuertes de
+  Empirica y se hacen siempre que haya algo que se entienda en movimiento.
+  **Se prioriza la cantidad**: el nivel de neumonía (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF) es la referencia de todo algoritmo que se crea o se reforma. Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
   con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o
   conducta, la imagen lleva sus propias `referencias` (sólo las que respaldan
