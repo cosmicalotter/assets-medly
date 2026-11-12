@@ -32,16 +32,24 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   persona (una maniobra, una postura), el GIF sale de una foto o un vídeo
   **real** con licencia libre; nunca de un dibujo propio (ver «Nunca
   personas dibujadas»).
-- Meta (subida con el dueño, noviembre de 2026): **1 de cada 3 nodos
-  clínicos con imagen**, la **mayoría reales** (foto, Rx, ecografía, TC,
-  microscopía, dispositivo) y **editadas** (recortadas, rotuladas en español,
-  señaladas o trazadas), y **al menos 1 GIF hecho sobre una imagen real**
-  cuando el tema tiene imagen diagnóstica, técnica o dispositivo, y **las
-  animaciones propias de fisiología que el tema admita** (al menos una). Los
-  gráficos propios de datos completan, no sustituyen: si hay foto libre que
-  enseñe lo mismo, va la foto. `python3 tools/norma.py <algoritmo>` mide la
-  proporción y lista los nodos que hablan de algo visible y no lo enseñan;
-  `data/Adultos/neumonia.json` es el ejemplo y la referencia (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF reales): **se prioriza la cantidad**, y 1 de cada 3 es el mínimo, no la meta.
+- Meta (decidida con el dueño, noviembre de 2026): **las imágenes de
+  `data/Adultos/sindromecoronario.json`, en cantidad y en diseño**, son el
+  modelo de todo algoritmo que se crea o se reforma.
+  - **Cantidad:** unos **4 de cada 10 nodos clínicos con imagen**. SCA tiene
+    16 de 42 (38 %), con 19 imágenes y 3 galerías; `pancreatitisad.json`,
+    23 de 53 (43 %). `python3 tools/norma.py <algoritmo>` pide al menos el
+    **38 %** y lista los nodos que hablan de algo visible y no lo enseñan.
+  - **Origen:** la **mayoría reales** (foto, Rx, ecografía, TC, angiografía,
+    ECG, dispositivo) y **editadas**: recortadas, rotuladas en español con
+    señaladores de varios colores y una caja de leyenda por color.
+  - **Esquemas propios** de decisión y de tiempo.
+  - **Al menos dos GIF:** uno sobre una imagen real y otro de flujo.
+  - **Las animaciones propias de fisiología** que el tema admita (al menos
+    una; ver «Animaciones propias de fisiología»).
+
+  Lo que hace falta para parecerse está en «El diseño de síndrome coronario
+  agudo», abajo. Los gráficos propios completan, no sustituyen: si hay una
+  foto libre que enseñe lo mismo, va la foto.
 
 ## De dónde salen, por orden de preferencia
 
@@ -346,6 +354,32 @@ Toda cifra que aparezca dibujada sale de la guía, igual que en el texto.
 
 **Mira siempre el resultado** (`Read` sobre el PNG, o sobre unos cuadros del
 GIF) antes de conectarlo: textos cortados, solapes, colores que no se leen.
+
+### El diseño de síndrome coronario agudo
+
+Es el modelo de imágenes (plantillas en `tools/medios/figuras/sindromecoronario/`,
+rehechas por su `regenerar.sh`; las de pancreatitis siguen el mismo patrón):
+
+| pieza | cómo es | plantillas |
+|---|---|---|
+| **foto rotulada de varios colores** | hasta tres señaladores (`AMARILLO`, `CIAN`, `ROSA` de `foto.js`), cada uno con su rótulo de borde oscuro junto a lo que señala, y **una caja de leyenda por color** debajo que dice qué es y qué importa | `ecmo.html`, `edema_pulmonar.html`, `coronaria_icp.html`, `pancreatitis/pseudoquiste.html` |
+| **foto de la escena** | el lugar, el equipo o el dispositivo del paso (la sala de hemodinamia, la ECMO, el introductor radial): el usuario ve dónde y con qué se hace lo que el nodo indica | `hemodinamia.html`, `introductor.html`, `ecmo.html` |
+| **antes y después** | dos paneles de la misma imagen real (oclusión y flujo restablecido) | `coronaria_icp.html`, `pancreatitis/necrosis_progresion.html` |
+| **esquema de decisión por categorías** | una tarjeta de color por nivel (inmediata, temprana, durante el ingreso, selectiva), con el nombre y el plazo a la izquierda y los criterios en viñetas a la derecha | `estrategia.html`, `pancreatitis/destino.html`, `pancreatitis/biliar_decisiones.html` |
+| **algoritmo de umbrales** | tres tarjetas (descartar, observar, confirmar) con sus cortes | `algoritmo_0h1h.html` |
+| **línea de tiempo del tratamiento** | barras por grupo a lo largo de semanas o meses | `tapd.html`, `tiempos.html` |
+| **GIF de flujo** | una línea de tiempo cuyo marcador avanza mientras se encienden en orden las tarjetas de cada paso o rama, y una franja final oscura con la alerta | `farmacoinvasiva.html`, `pancreatitis/primeras72.html`, `pancreatitis/escalonado_gif.html` |
+| **GIF sobre imagen real** | recorrido paso a paso de un ECG, una TC o una Rx | `ecg_recorrido.html`, `pancreatitis/tc_recorrido.html` |
+
+- **Galerías** donde se comparan dos hallazgos (bloqueo AV y fibrilación
+  auricular) o una imagen real y su esquema (la Rx del derrame y «¿Dónde
+  tratarlo?»).
+- **La imagen llena el lienzo**: el visor de una foto mide 330-390 px de alto
+  y la leyenda va debajo o al lado; si queda blanco, se sube `alto` o se
+  reparte la leyenda en más cajas.
+- Cada nodo que nombra un procedimiento, un dispositivo o una decisión por
+  niveles es candidato a imagen; los que hablan de algo visible y no lo
+  enseñan los lista `norma.py`.
 
 ### Esquemas propios que funcionan
 

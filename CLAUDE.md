@@ -188,14 +188,31 @@ Firebase directamente, saltándose `indices/`.
   calculadora (modelos tabla / fórmula / reglas, conducta con fuente en cada
   resultado); el formato está en `praxis/docs/calculadoras_json.md`. «Se usa
   en» lo calcula el workflow; no se escribe a mano.
-- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. **Meta (noviembre
-  de 2026): 1 de cada 3 nodos clínicos con imagen, la mayoría fotos o
-  imágenes diagnósticas reales libres editadas en español, y al menos un
-  GIF sobre una imagen real** (ejemplo: `neumonia.json`), **más las
-  animaciones propias de fisiología que el tema admita** (flujos entre
-  cavidades, el trombo que viaja, curvas): son uno de los fuertes de
-  Empirica y se hacen siempre que haya algo que se entienda en movimiento.
-  **Se prioriza la cantidad**: el nivel de neumonía (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF) es la referencia de todo algoritmo que se crea o se reforma. Toda imagen lleva título, pie (`descripcion`) e
+- Imágenes, galerías y GIF: skill **`imagenes-clinicas`**. **El modelo de
+  imágenes es `data/Adultos/sindromecoronario.json` (noviembre de 2026): todo
+  algoritmo que se crea o se reforma lleva imágenes como las suyas, en
+  cantidad y en diseño.**
+  - **Cantidad:** unos **4 de cada 10 nodos clínicos con imagen**. SCA tiene
+    16 de 42 (38 %) con 19 imágenes; `pancreatitisad.json`, 23 de 53 (43 %).
+    El mínimo que mide `norma.py` es el **38 %**. Galerías de dos donde se
+    compara o se ve un antes y un después.
+  - **Diseño:**
+    - la mayoría, **fotos o imágenes diagnósticas reales libres** rotuladas
+      en español con **señaladores de varios colores** (amarillo, cian, rosa)
+      y una **caja de leyenda por color**;
+    - **fotos de la escena** del procedimiento (la sala, el equipo, el
+      dispositivo);
+    - **esquemas de decisión** con una tarjeta de color por categoría y sus
+      criterios;
+    - **al menos dos GIF**: uno sobre una imagen real y otro **de flujo**,
+      una línea de tiempo cuyo marcador avanza mientras se encienden los
+      pasos (`sindromecoronario/farmacoinvasiva.html`).
+    - **animaciones propias de fisiología** siempre que el tema tenga algo
+      que se entienda en movimiento (flujos entre cavidades, el trombo que
+      viaja, curvas): son uno de los fuertes de Empirica.
+  - La imagen **llena el lienzo**, sin huecos en blanco.
+
+  Toda imagen lleva título, pie (`descripcion`) e
   **`info`**: el texto del visor a pantalla completa, con cada flecha teñida
   con su color exacto (`{#hex:…}`). Si el `info` da cifras, criterios o
   conducta, la imagen lleva sus propias `referencias` (sólo las que respaldan

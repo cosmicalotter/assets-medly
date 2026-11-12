@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Abordaje escalonado de la necrosis infectada (IAP 2025, recomendaciones 32, 37, 40-44).
+const P = [
+  ["1", "Antibiótico y soporte", "Amplio espectro que penetre el páncreas, nutrición y soporte de órganos.", "hasta 39 % se cura sin drenar", AMBAR],
+  ["2", "Esperar que se encapsule", "Retrasar la intervención <b>≥4 semanas</b> si está estable.", "pared definida", AZUL],
+  ["3", "Drenar", "Percutáneo o endoscópico, según dónde esté y la experiencia.", "basta en el 40-60 %", TEAL],
+  ["4", "Necrosectomía", "Mínimamente invasiva, si siguen la fiebre o la sepsis; idealmente a las <b>4-6 semanas</b>.", "endoscópica o retroperitoneal", ROJO],
+];
+const pasos = P.map(([n, t, d, dato, c]) => `<div style="display:flex;align-items:center;gap:12px">
+   <div style="width:40px;height:40px;border-radius:50%;background:${c};color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">${n}</div>
+   <div class="caja" style="flex:1;background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 45)}"><div style="font-size:15.5px;font-weight:800;color:${c === AMBAR ? "#B26B10" : c}">${t}</div><div style="margin-top:2px">${d}</div></div>
+   <div style="width:150px;flex:none;font-size:13px;font-weight:800;color:${c === AMBAR ? "#B26B10" : c}">${dato}</div></div>`).join(
+  `<div style="margin-left:18px;width:4px;height:10px;background:#E5E7EB;border-radius:2px"></div>`);
+lienzo("Necrosis infectada: el abordaje escalonado", "Cada paso sólo si el anterior no basta",
+  `<div style="display:flex;flex-direction:column;gap:2px">${pasos}</div>
+   <div class="caja" style="background:#F3F4F6;font-size:13.5px">La <b>necrosectomía abierta</b> temprana tiene peor evolución: queda para las colecciones sólidas o con fístula.</div>`,
+  "Gráfico. Fuente: IAP 2025, recomendaciones 32, 37, 40-44 (p. 774-775 y 784-788); WSES 2019 (p. 13).");
+</script></body></html>

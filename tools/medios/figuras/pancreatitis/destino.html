@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Dónde tratar la pancreatitis aguda según la falla orgánica y la predicción de gravedad
+// (iLATAM-PA 2026, suplemento p. 31; IAP 2025, buena práctica 15; ACG 2024, concepto 6).
+const F = [
+  { c: ROJO, tit: "UCI", sub: "Soporte de órganos", items: ["Falla orgánica (<b>Marshall ≥2</b>) que no responde a los líquidos", "Falla que dura <b>&gt;48 h</b>", "Necrosis infectada con <b>compromiso sistémico</b>"] },
+  { c: AMBAR, tit: "Cuidados intermedios", sub: "Monitorización estrecha", items: ["<b>BISAP ≥3</b> o SIRS persistente", "Falla aislada que <b>responde</b> al manejo inicial"] },
+  { c: VERDE, tit: "Hospitalización", sub: "Reevaluar a las 24 y 48 h", items: ["Sin falla orgánica", "Sin predicción de gravedad"] },
+];
+const filas = F.map((f) => {
+  const ct = f.c === AMBAR ? "#B26B10" : f.c;
+  return `<div style="display:flex;gap:12px;align-items:center;border:2px solid ${f.c};background:${tinte(f.c, 10)};border-radius:12px;padding:10px 12px">
+    <div style="width:170px;flex:none"><div style="font-size:18px;font-weight:900;color:${ct}">${f.tit}</div><div style="font-size:12px;font-weight:700;color:#4B5563;margin-top:2px">${f.sub}</div></div>
+    <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.45">${f.items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
+}).join("");
+lienzo("¿Dónde tratarlo?", "Basta un criterio de cada nivel; se empieza por el de arriba",
+  `<div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">${filas}</div>
+   <div class="caja" style="background:#F3F4F6">Ningún marcador <b>aislado</b> (lactato, PCR, hematocrito o BUN) decide la UCI. Sin experiencia local, <b>remitir</b> a un centro de alto volumen.</div>`,
+  "Esquema. Fuente: iLATAM-PA 2026 (suplemento, p. 31); IAP 2025, buenas prácticas 6 y 15 (p. 773 y 781).");
+</script></body></html>

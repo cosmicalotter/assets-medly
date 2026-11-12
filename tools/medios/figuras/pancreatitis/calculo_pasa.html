@@ -1,0 +1,99 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología (esquema propio): el cálculo baja por el colédoco, se detiene un tiempo en la ampolla,
+// donde el colédoco se une al conducto pancreático, y en la mayoría pasa solo al duodeno; la bilis vuelve a fluir
+// y la colestasis se normaliza (ACG 2024, p. 431: «the CBD stone passes to the duodenum»; iLATAM-PA 2026, supl. p. 52).
+const BILIS = "#65A30D", JUGO = TEAL, PIEDRA = "#78350F", TUBO = "#E2E8F0", BORDE_TUBO = "#94A3B8";
+// recorridos (coordenadas del esquema)
+const R_CALCULO = [[196, 116], [232, 140], [262, 156], [262, 210], [262, 262], [250, 282], [236, 290], [214, 296], [206, 318], [206, 348]];
+const R_BILIS = [[262, 34], [262, 156], [262, 262], [250, 282], [236, 290], [214, 296], [206, 318], [206, 348]];
+const R_JUGO = [[600, 282], [420, 286], [300, 290], [262, 290], [236, 290], [214, 296], [206, 318], [206, 348]];
+function ruta(R) {
+  const L = R.slice(1).map((p, k) => Math.hypot(p[0] - R[k][0], p[1] - R[k][1]));
+  const T = L.reduce((a, b) => a + b, 0);
+  const acum = L.reduce((a, l) => (a.push(a[a.length - 1] + l), a), [0]);
+  return {
+    largo: T,
+    punto(u) {
+      let d = Math.max(0, Math.min(1, u)) * T;
+      for (let k = 0; k < L.length; k++) { if (d <= L[k]) { const f = d / L[k]; return [lerp(R[k][0], R[k + 1][0], f), lerp(R[k][1], R[k + 1][1], f)]; } d -= L[k]; }
+      return R[R.length - 1];
+    },
+    // fracción del recorrido en la que está el vértice k
+    en(k) { return acum[k] / T; },
+  };
+}
+const rc = ruta(R_CALCULO), rb = ruta(R_BILIS), rj = ruta(R_JUGO);
+const U_AMPOLLA = rc.en(6);                 // el cálculo se detiene en la ampolla
+const camino = (pts) => "M" + pts.map((p) => p.join(",")).join(" L");
+const PASOS = ["Un cálculo sale de la vesícula y baja por el <b>colédoco</b>",
+  "Se detiene en la <b>ampolla</b>, donde se une con el conducto pancreático",
+  "En la mayoría, <b>pasa solo</b> al duodeno",
+  "La bilis vuelve a fluir y la colestasis se normaliza: <b>sin CPRE de rutina</b>"];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const baja = suave(tramo(t, 0.04, 0.28));
+  const atasco = tramo(t, 0.28, 0.58) > 0 && t < 0.6 ? 1 : 0;
+  const pasa = suave(tramo(t, 0.6, 0.78));
+  const fluye = suave(tramo(t, 0.66, 0.9));
+  const paso = t < 0.28 ? 0 : t < 0.6 ? 1 : t < 0.8 ? 2 : 3;
+  const uC = t < 0.6 ? U_AMPOLLA * baja : lerp(U_AMPOLLA, 1, pasa);
+  const [cx, cy] = rc.punto(uC);
+  const opC = t > 0.78 ? 1 - suave(tramo(t, 0.78, 0.86)) : 1;
+  const dil = atasco ? suave(tramo(t, 0.3, 0.45)) : (t >= 0.6 ? 1 - fluye : 0);  // colédoco que se dilata
+  const anchoCol = 15 + 8 * dil;
+  // gotas: se represan por encima del cálculo mientras está atascado
+  const uBloqueoB = rb.en(4), uBloqueoJ = rj.en(4);
+  function gotas(r, color, nGotas, vel, uBloqueo) {
+    let s = "";
+    for (let k = 0; k < nGotas; k++) {
+      let u = ((k / nGotas) + t * vel) % 1;
+      if (dil > 0.2 && u > uBloqueo - 0.01) {
+        if (u < uBloqueo + 0.25) u = uBloqueo - 0.02 - (k % 4) * 0.025; else continue;
+      }
+      const [x, y] = r.punto(u);
+      s += `<circle cx="${x}" cy="${y}" r="3.4" fill="${color}" opacity=".9"/>`;
+    }
+    return s;
+  }
+  const svg = `<svg width="668" height="356" viewBox="0 0 668 356">
+    <!-- páncreas y duodeno, sólo como esquema -->
+    <path d="M232,252 C300,236 420,240 520,250 C580,256 626,262 630,284 C634,306 590,316 520,314 C420,312 320,322 262,320 C238,318 226,300 232,252Z"
+      fill="#FDF2E9" stroke="#E8B48A" stroke-width="3"/>
+    <rect x="186" y="176" width="40" height="176" rx="18" fill="#FCE7F3" stroke="#E9A8C9" stroke-width="3"/>
+    <!-- vesícula -->
+    <ellipse cx="150" cy="104" rx="58" ry="32" transform="rotate(18 150 104)" fill="${tinte(BILIS, 22)}" stroke="${BILIS}" stroke-width="3"/>
+    <!-- conductos -->
+    <path d="${camino([[196, 116], [232, 140], [262, 156]])}" fill="none" stroke="${BORDE_TUBO}" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${camino([[196, 116], [232, 140], [262, 156]])}" fill="none" stroke="${TUBO}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${camino([[262, 34], [262, 262], [250, 282], [236, 290]])}" fill="none" stroke="${dil > 0.3 ? ROJO : BORDE_TUBO}" stroke-width="${anchoCol + 5}" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${camino([[262, 34], [262, 262], [250, 282], [236, 290]])}" fill="none" stroke="${TUBO}" stroke-width="${anchoCol}" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${camino([[600, 282], [420, 286], [300, 290], [262, 290], [236, 290]])}" fill="none" stroke="${BORDE_TUBO}" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${camino([[600, 282], [420, 286], [300, 290], [262, 290], [236, 290]])}" fill="none" stroke="${TUBO}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="232" cy="290" r="9" fill="none" stroke="${atasco ? ROJO : "#64748B"}" stroke-width="${atasco ? 4 : 2.5}"/>
+    ${gotas(rb, BILIS, 16, 1.4, uBloqueoB)}
+    ${gotas(rj, JUGO, 14, 1.2, uBloqueoJ)}
+    <circle cx="${cx}" cy="${cy}" r="9" fill="${PIEDRA}" stroke="#fff" stroke-width="2.5" opacity="${opC}"/>
+    <g font-size="13" font-weight="700" fill="${TINTA}">
+      <text x="96" y="58">Vesícula</text>
+      <text x="274" y="64">Colédoco</text>
+      <text x="420" y="276" text-anchor="middle" fill="#0F766E">Conducto pancreático</text>
+      <text x="560" y="336" text-anchor="middle" fill="#B45309">Páncreas</text>
+      <text x="178" y="190" text-anchor="end" fill="#9D174D">Duodeno</text>
+    </g>
+    <g font-size="13.5" font-weight="700" fill="${TINTA}">
+      ${[[PIEDRA, "Cálculo", 9], [BILIS, "Bilis", 5], [JUGO, "Jugo pancreático", 5]].map(([c, txt, r], k) =>
+        `<rect x="420" y="${52 + k * 44}" width="210" height="34" rx="10" fill="${tinte(c, 12)}" stroke="${tinte(c, 55)}" stroke-width="1.5"/>
+         <circle cx="442" cy="${69 + k * 44}" r="${r + 1}" fill="${c}"/><text x="462" y="${74 + k * 44}">${txt}</text>`).join("")}
+    </g>
+    <g font-size="14" font-weight="800">
+      <text x="302" y="${232}" fill="${ROJO}" opacity="${dil}">Colédoco dilatado: colestasis</text>
+      <text x="244" y="${312}" fill="${ROJO}" opacity="${atasco}">Ampolla obstruida</text>
+      <text x="236" y="352" fill="${VERDE}" opacity="${fluye}">Pasa solo y la bilis vuelve a fluir</text>
+    </g>
+  </svg>`;
+  lienzo("El cálculo que pasa solo", "Por qué no se hace CPRE de rutina sin colangitis",
+    `${svg}<div style="display:flex;gap:6px">${PASOS.map((p, k) => `<div class="item" style="flex:1;background:${k === paso ? tinte(AZUL, 14) : "#F3F4F6"};outline:${k === paso ? `2px solid ${AZUL}` : "none"};color:${k === paso ? TINTA : "#6B7280"}"><b>${k + 1}.</b> ${p}</div>`).join("")}</div>`,
+    "Esquema de Empirica. Fuente: ACG 2024 (p. 431); iLATAM-PA 2026 (suplemento, p. 52).");
+};
+window.cuadro(0, 1);
+</script></body></html>
