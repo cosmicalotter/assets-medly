@@ -49,8 +49,12 @@ LLAVES = {
     "titulo", "descripcion", "instrucciones", "limitaciones", "referencias",
     "tipoCalculo", "formula", "secciones", "prefijoResultado", "sufijoResultado",
     "mostrarPuntaje", "mostrar_puntaje", "decimales", "extras", "columnas",
-    "filas", "resultados", "imagenTopUrl", "imagenBottomUrl",
+    "filas", "resultados", "imagenTopUrl", "imagenBottomUrl", "calculo", "bolsa",
 }
+LLAVES_BOLSA = {"titulo", "volumen", "capacidad", "velocidad", "por_kg", "unidad_por_kg",
+                "rotulo", "capas", "aportes"}
+COLORES_BOLSA = {"azul", "teal", "turquesa", "morado", "violeta", "naranja", "amarillo", "ambar",
+                 "rojo", "verde", "rosa", "cyan", "indigo", "gris"}
 LLAVES_FILA = {"nombre", "descripciones", "detalles", "ayuda", "grupo", "entrada"}
 LLAVES_ELEMENTO = {"id", "tipo", "label", "unidad", "unidades", "opciones",
                    "intervalos", "ayuda", "min", "max"}
@@ -245,9 +249,23 @@ def chequear_comun(d: dict, inf: Informe) -> None:
     for i, ref in enumerate(d.get("referencias") or []):
         if not (ref.get("titulo") or ref.get("texto")):
             inf.errores.append(f"referencias[{i}] sin título")
-    for i, ex in enumerate(d.get("extras") or []):
-        if not ex.get("etiqueta") or not ex.get("formula"):
-            inf.errores.append(f"extras[{i}] necesita «etiqueta» y «formula»")
+    for llave in ("extras", "calculo"):
+        for i, ex in enumerate(d.get(llave) or []):
+            if not ex.get("etiqueta") or not ex.get("formula"):
+                inf.errores.append(f"{llave}[{i}] necesita «etiqueta» y «formula»")
+    b = d.get("bolsa")
+    if b is not None:
+        if not isinstance(b, dict):
+            inf.errores.append("«bolsa» tiene que ser un objeto")
+        else:
+            for k in sorted(set(b) - LLAVES_BOLSA):
+                inf.avisos.append(f"bolsa: llave desconocida «{k}»")
+            for lista in ("capas", "aportes"):
+                for i, c in enumerate(b.get(lista) or []):
+                    if not c.get("etiqueta") or not c.get("formula"):
+                        inf.errores.append(f"bolsa.{lista}[{i}] necesita «etiqueta» y «formula»")
+                    if c.get("color") and str(c["color"]).lower() not in COLORES_BOLSA:
+                        inf.avisos.append(f"bolsa.{lista}[{i}]: color «{c['color']}» desconocido (usa {', '.join(sorted(COLORES_BOLSA))})")
 
 
 def rangos_solapados(d: dict, inf: Informe) -> None:
@@ -440,9 +458,20 @@ def chequear_formulario(d: dict, inf: Informe) -> None:
                 inf.errores.append(f"variable «{v}»: las versiones antiguas de la app leen la «e» inicial como el número e (renómbrala)")
     elif not reglas:
         inf.errores.append("formulario sin «formula» ni reglas (resultados[].si)")
-    for i, ex in enumerate(d.get("extras") or []):
-        for v in sorted(identificadores(str(ex.get("formula") or "")) - producidas - {"total"}):
-            inf.errores.append(f"extras[{i}] usa «{v}» y ningún elemento la fija")
+    for llave in ("extras", "calculo"):
+        for i, ex in enumerate(d.get(llave) or []):
+            for v in sorted(identificadores(str(ex.get("formula") or "")) - producidas - {"total"}):
+                inf.errores.append(f"{llave}[{i}] usa «{v}» y ningún elemento la fija")
+    b = d.get("bolsa") if isinstance(d.get("bolsa"), dict) else None
+    if b:
+        formulas_bolsa = [("volumen", b.get("volumen") or "total"), ("velocidad", b.get("velocidad")), ("por_kg", b.get("por_kg"))]
+        formulas_bolsa += [(f"capas[{i}]", c.get("formula")) for i, c in enumerate(b.get("capas") or [])]
+        formulas_bolsa += [(f"aportes[{i}]", c.get("formula")) for i, c in enumerate(b.get("aportes") or [])]
+        for donde, f in formulas_bolsa:
+            for v in sorted(identificadores(str(f or "")) - producidas - {"total"}):
+                inf.errores.append(f"bolsa.{donde} usa «{v}» y ningún elemento la fija")
+        if b.get("rotulo") and b["rotulo"] not in {e.get("id") for e in els}:
+            inf.errores.append(f"bolsa.rotulo «{b['rotulo']}» no es el id de ningún elemento")
 
     if reglas:
         ids_reglas = {e.get("id") for e in els} | {f"{e.get('id')}_puntos" for e in els if e.get("intervalos")}
