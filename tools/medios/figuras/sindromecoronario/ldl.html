@@ -1,0 +1,30 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Escalones para bajar el LDL tras el SCA (ESC 2023, tabla de recomendaciones 16, p. 68) y las metas de las tres guías
+// (ESC 2023 <55 mg/dL; ACC/AHA 2025 añadir no estatina con ≥70; MinSalud 2013 <100, ideal <70).
+const paso = (n, c, tit, txt) => `<div style="display:flex;gap:10px;align-items:center;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:9px 10px">
+  <div style="width:30px;height:30px;border-radius:9px;background:${c};color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none">${n}</div>
+  <div><div style="font-weight:800;font-size:14.5px;color:${c}">${tit}</div><div style="font-size:12.5px">${txt}</div></div></div>`;
+const Y = (v) => 300 - v * 2.4;
+const linea = (v, c, t) => `<line x1="70" y1="${Y(v)}" x2="200" y2="${Y(v)}" stroke="${c}" stroke-width="3"/>
+  <text x="62" y="${Y(v) + 5}" text-anchor="end" font-size="13" font-weight="800" fill="${c}">${v}</text>
+  <text x="206" y="${Y(v) + 5}" font-size="12" font-weight="800" fill="${c}">${t}</text>`;
+const escala = `<svg width="330" height="320" viewBox="0 0 330 320">
+  <rect x="70" y="${Y(55)}" width="130" height="${Y(0) - Y(55)}" fill="${tinte(VERDE, 18)}"/>
+  <text x="135" y="${Y(25)}" text-anchor="middle" font-size="13" font-weight="800" fill="${VERDE}">meta ESC</text>
+  <text x="206" y="${Y(100) + 19}" font-size="11" font-weight="700" fill="${GRIS}">(ideal &lt;70)</text>
+  <text x="206" y="${Y(70) - 24}" font-size="11" font-weight="700" fill="${AMBAR}">añadir; razonable</text>
+  <text x="206" y="${Y(70) - 11}" font-size="11" font-weight="700" fill="${AMBAR}">desde 55</text>
+  <line x1="70" y1="${Y(0)}" x2="70" y2="${Y(115)}" stroke="#9CA3AF" stroke-width="2"/>
+  ${linea(55, VERDE, "ESC: meta")}${linea(70, AMBAR, "ACC/AHA")}${linea(100, GRIS, "MinSalud")}
+  <text x="8" y="16" font-size="12" font-weight="700" fill="#374151">LDL (mg/dL)</text>
+</svg>`;
+lienzo("Bajar el LDL tras el SCA", "Escalones cada 4-6 semanas hasta la meta, y la meta de cada guía",
+  `<div style="display:grid;grid-template-columns:1fr 330px;gap:12px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${paso(1, AZUL, "Estatina de alta intensidad", "Cuanto antes, sea cual sea el LDL")}
+      ${paso(2, TEAL, "+ Ezetimiba", "Si a las 4-6 semanas no llega a la meta")}
+      ${paso(3, MORADO, "+ Inhibidor de PCSK9", "Si a las 4-6 semanas sigue sin llegar")}
+      <div class="caja" style="background:#F1F5F9">Meta de la ESC: <b>&lt;55 mg/dL</b> y bajar <b>≥50 %</b> el LDL de base.</div>
+    </div>${escala}</div>`,
+  "Esquema. Fuente: Guía ESC 2023 de SCA, p. 68; ACC/AHA 2025, p. e773; MinSalud 2013 (GPC-2013-17), p. 40.");
+</script></body></html>

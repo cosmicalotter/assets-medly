@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Metas de tiempo de la reperfusión en el IAMCEST (ESC 2023, fig. 7 p. 27 y tabla de recomendaciones 4 p. 31).
+// Eje de 0 a 120 min desde el diagnóstico por ECG; una fila por escenario, con el color de su meta.
+const X0 = 150, X1 = 615, esc = (m) => X0 + (X1 - X0) * m / 120;
+const fila = (y, c, nombre, sub, hasta, rotulo) => `
+  <text x="10" y="${y + 4}" font-size="14" font-weight="800" fill="${c}">${nombre}</text>
+  <text x="10" y="${y + 21}" font-size="11.5" fill="#6B7280">${sub}</text>
+  <rect x="${X0}" y="${y - 12}" width="${esc(hasta) - X0}" height="26" rx="8" fill="${tinte(c, 22)}" stroke="${c}" stroke-width="2"/>
+  <text x="${esc(hasta) - 8}" y="${y + 6}" text-anchor="end" font-size="14" font-weight="800" fill="${c}">${rotulo}</text>`;
+const marcas = [0, 10, 60, 90, 120].map((m) => `<line x1="${esc(m)}" y1="40" x2="${esc(m)}" y2="300" stroke="#CBD5E1" stroke-dasharray="4 4"/>
+  <text x="${esc(m)}" y="320" text-anchor="middle" font-size="13" font-weight="700" fill="#374151">${m}${m ? " min" : ""}</text>`).join("");
+const svg = `<svg width="668" height="330" viewBox="0 0 668 330">
+  ${marcas}
+  <text x="${esc(0)}" y="30" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1F2A37">Diagnóstico por ECG</text>
+  ${fila(75, ROJO, "Centro con ICP", "ICP primaria", 60, "&lt;60 min")}
+  ${fila(145, NARANJA, "Traslado para ICP", "ICP primaria", 90, "&lt;90 min")}
+  ${fila(215, AMBAR, "Sin ICP en 120 min", "Fibrinólisis", 10, "")}
+  <text x="${esc(10) + 10}" y="221" font-size="14" font-weight="800" fill="${AMBAR}">bolo en &lt;10 min y traslado inmediato</text>
+  <line x1="${esc(120)}" y1="40" x2="${esc(120)}" y2="290" stroke="${ROJO}" stroke-width="3"/>
+  <text x="${esc(120) - 6}" y="275" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">límite para elegir la ICP</text>
+</svg>`;
+lienzo("Metas de tiempo en el IAMCEST", "Del diagnóstico por ECG a cruzar la guía metálica, con síntomas de ≤12 h",
+  svg + `<div class="caja" style="background:#F1F5F9">Si la ICP primaria <b>no llega en 120 min</b>, la fibrinólisis gana: se da el bolo y se traslada sin esperar.</div>`,
+  "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), fig. 7, p. 27, y recomendaciones de la p. 31.");
+</script></body></html>

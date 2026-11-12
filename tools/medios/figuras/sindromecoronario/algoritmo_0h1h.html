@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Algoritmo 0 h/1 h de la troponina de alta sensibilidad (ESC 2023, p. 20-21 y tabla S4 del suplemento, p. 12),
+// con los cortes de hs-cTnT Elecsys (ng/L). Colores de las ramas: verde descartar, amarillo observar, naranja confirmar.
+const AMA = "#E8B10C";
+const via = (c, tit, txt, sigue) => `<div style="flex:1;min-height:230px;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px">
+  <div style="font-weight:900;font-size:18px;color:${c};text-align:center">${tit}</div>
+  <div style="font-size:16px;line-height:1.45;text-align:center">${txt}</div>
+  <div style="margin-top:auto;font-size:13px;font-weight:700;color:#374151;border-top:1px solid ${tinte(c, 40)};padding-top:6px">${sigue}</div></div>`;
+lienzo("Algoritmo 0 h/1 h de la troponina", "Ejemplo con hs-cTnT (Elecsys), en ng/L; cada ensayo tiene sus cortes",
+  `<div style="display:flex;justify-content:center;gap:10px;align-items:center">
+     <div class="caja" style="background:#1F2A37;color:#fff;font-weight:800;font-size:14px">Troponina a las 0 h</div>
+     <div style="font-size:20px;color:#9CA3AF">→</div>
+     <div class="caja" style="background:#1F2A37;color:#fff;font-weight:800;font-size:14px;white-space:nowrap">Y a la 1 h: el cambio</div></div>
+   <div style="display:flex;gap:10px">
+     ${via(VERDE, "Descartar", "0 h <b>&lt;5</b>*<br>o 0 h <b>&lt;12</b> y cambio a la 1 h <b>&lt;3</b>", "Buscar otra causa del dolor")}
+     ${via(AMA, "Observar", "Ni descarta ni confirma", "Troponina a las <b>3 h</b> ± ecocardiograma")}
+     ${via(NARANJA, "Confirmar", "0 h <b>≥52</b><br>o cambio a la 1 h <b>≥5</b>", "IAMSEST: estimar el riesgo con GRACE")}
+   </div>
+   <div class="caja" style="background:#F1F5F9">* El corte de 0 h <b>&lt;5</b> sólo vale si el dolor empezó hace <b>más de 3 h</b>. Con un criterio de <b>muy alto riesgo</b> no se espera la troponina: angiografía inmediata.</div>`,
+  "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), p. 20-21, y suplemento, tabla S4, p. 12.");
+</script></body></html>
