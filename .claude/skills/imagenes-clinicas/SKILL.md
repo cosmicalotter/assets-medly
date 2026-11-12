@@ -1,6 +1,6 @@
 ---
 name: imagenes-clinicas
-description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), buscadas con tools/medios/commons_buscar.py, y si no hay, gráficos propios de datos y de flujo hechos con tools/medios (nunca personas ni partes del cuerpo dibujadas, ni modelos 3D) — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
+description: Añade imágenes, galerías y GIF a los nodos de un algoritmo de Empirica — primero figuras de la guía y fotos de internet con licencia que permite uso comercial, editadas y animadas (traducir, señalar, trazar, colorear, zoom), buscadas con tools/medios/commons_buscar.py, y animaciones propias de fisiología (flujos, cavidades, curvas) y gráficos de datos y de flujo hechos con tools/medios (nunca personas dibujadas ni modelos 3D) — con su ruta, nombre, peso y crédito correctos. Usar al enriquecer un algoritmo con imágenes o GIF, o cuando se pida una ilustración, animación, esquema o foto para un nodo.
 argument-hint: "<algoritmo> [nodo]"
 ---
 
@@ -22,19 +22,34 @@ si ayuda a **decidir o a hacer** algo en ese paso; si sólo adorna, no.
   (título escrito dentro, señaladores gruesos) y se lee al tocarla. Más de
   cuatro alargan la tarjeta.
 - **GIF** cuando algo se mueve: la técnica, la maniobra, el signo dinámico
-  (tiraje, llenado capilar), la cuenta atrás de un protocolo. Si lo que se
-  mueve es una persona (una maniobra, una postura), el GIF sale de una foto o
-  un vídeo **real** con licencia libre; nunca de un dibujo propio (ver
-  «Nunca personas dibujadas»).
-- Meta (subida con el dueño, noviembre de 2026): **1 de cada 3 nodos
-  clínicos con imagen**, la **mayoría reales** (foto, Rx, ecografía, TC,
-  microscopía, dispositivo) y **editadas** (recortadas, rotuladas en español,
-  señaladas o trazadas), y **al menos 1 GIF hecho sobre una imagen real**
-  cuando el tema tiene imagen diagnóstica, técnica o dispositivo. Los
-  gráficos propios de datos completan, no sustituyen: si hay foto libre que
-  enseñe lo mismo, va la foto. `python3 tools/norma.py <algoritmo>` mide la
-  proporción y lista los nodos que hablan de algo visible y no lo enseñan;
-  `data/Adultos/neumonia.json` es el ejemplo y la referencia (13 de 34 nodos, ≈40 %, 10 reales editadas y 2 GIF reales): **se prioriza la cantidad**, y 1 de cada 3 es el mínimo, no la meta.
+  (tiraje, llenado capilar), la cuenta atrás de un protocolo y, sobre todo,
+  **la fisiología que se entiende en movimiento**: el flujo coronario o entre
+  cavidades, el trombo que viaja, el ventrículo que se dilata, la curva de la
+  espirometría, el pliegue cutáneo que vuelve lento. Esas **animaciones
+  propias** son uno de los fuertes de Empirica frente a otras plataformas
+  (dueño, noviembre de 2026): se hacen **siempre que el tema tenga algo así**
+  (ver «Animaciones propias de fisiología»). Si lo que se mueve es una
+  persona (una maniobra, una postura), el GIF sale de una foto o un vídeo
+  **real** con licencia libre; nunca de un dibujo propio (ver «Nunca
+  personas dibujadas»).
+- Meta (decidida con el dueño, noviembre de 2026): **las imágenes de
+  `data/Adultos/sindromecoronario.json`, en cantidad y en diseño**, son el
+  modelo de todo algoritmo que se crea o se reforma.
+  - **Cantidad:** unos **4 de cada 10 nodos clínicos con imagen**. SCA tiene
+    16 de 42 (38 %), con 19 imágenes y 3 galerías; `pancreatitisad.json`,
+    23 de 53 (43 %). `python3 tools/norma.py <algoritmo>` pide al menos el
+    **38 %** y lista los nodos que hablan de algo visible y no lo enseñan.
+  - **Origen:** la **mayoría reales** (foto, Rx, ecografía, TC, angiografía,
+    ECG, dispositivo) y **editadas**: recortadas, rotuladas en español con
+    señaladores de varios colores y una caja de leyenda por color.
+  - **Esquemas propios** de decisión y de tiempo.
+  - **Al menos dos GIF:** uno sobre una imagen real y otro de flujo.
+  - **Las animaciones propias de fisiología** que el tema admita (al menos
+    una; ver «Animaciones propias de fisiología»).
+
+  Lo que hace falta para parecerse está en «El diseño de síndrome coronario
+  agudo», abajo. Los gráficos propios completan, no sustituyen: si hay una
+  foto libre que enseñe lo mismo, va la foto.
 
 ## De dónde salen, por orden de preferencia
 
@@ -67,18 +82,40 @@ el dibujo propio desde cero va después.
    DermNet, materiales OMS/OPS con licencia NC, ni capturas de Google
    Imágenes.
 3. **Propias**, dibujadas en HTML/SVG con `tools/medios`, cuando no hay
-   imagen real que sirva, y **sólo de datos y de flujo**: gráficas de
+   imagen real que sirva: **de datos y de flujo** (gráficas de
    tiempos, dosis, umbrales o porcentajes, líneas de tiempo, pasos
    numerados, cuadrículas que comparan entidades, papel de monitoría o de
-   ECG. Nada con personas (ver abajo).
+   ECG) y **animaciones de fisiología** en esquema plano (ver abajo). Nada
+   con personas.
 4. Nunca una imagen generada por IA presentada como foto clínica real.
+
+### Animaciones propias de fisiología (decidido con el dueño, 12 de noviembre de 2026)
+
+Lo que en la clínica se entiende **en movimiento** se anima con un esquema
+plano propio (SVG/HTML con `tools/medios`, `window.cuadro(i, n)` →
+`capturar.js` → `armar_gif.py`): el flujo coronario, la sangre entre las
+cavidades, el trombo que viaja de la pierna al pulmón, el ventrículo derecho
+que se dilata y empuja el tabique, el desajuste ventilación-perfusión, la
+curva de la espirometría, el pliegue cutáneo que vuelve lento. El órgano o la
+región se dibuja **sólo como esquema** (cavidades, vasos, bronquios, una
+porción de piel), limpio, con los colores de la app, rótulos en español y
+la misma fuente que el nodo para cada cifra. Es uno de los fuertes de
+Empirica: se busca uno por algoritmo **siempre que el tema lo tenga**, además
+de las imágenes reales editadas (no en su lugar: si hay una imagen real que
+enseñe lo mismo, va también).
+
+- Hecho con cuidado: trazos redondos, movimiento suave en bucle (3-8 s),
+  una sola idea por animación, el rótulo que se enciende cuando pasa lo que
+  nombra. Mejor ninguna que una pobre.
+- Sigue la regla de abajo: ni personas, ni siluetas, ni manos haciendo una
+  maniobra, ni 3D.
 
 ### Nunca personas dibujadas (decidido con el dueño, noviembre de 2026)
 
-No se dibujan **personas ni partes del cuerpo** con las herramientas propias
-(SVG, `base.js`, plantillas): ni siluetas, ni cortes anatómicos esquemáticos,
-ni manos, ni la gestante y el bebé de una maniobra, ni GIF de una técnica
-hecha con figuras geométricas. Quedan simples y no se ven bien. Tampoco
+No se dibujan **personas** con las herramientas propias (SVG, `base.js`,
+plantillas): ni siluetas, ni cuerpos enteros, ni manos, ni la gestante y el
+bebé de una maniobra, ni GIF de una técnica hecha con figuras geométricas.
+El órgano en esquema de una animación de fisiología (arriba) sí se dibuja. Quedan simples y no se ven bien. Tampoco
 **modelos 3D ni renders** de terceros (simulaciones por computador, maniquíes
 virtuales), aunque sean CC BY.
 
@@ -318,6 +355,32 @@ Toda cifra que aparezca dibujada sale de la guía, igual que en el texto.
 **Mira siempre el resultado** (`Read` sobre el PNG, o sobre unos cuadros del
 GIF) antes de conectarlo: textos cortados, solapes, colores que no se leen.
 
+### El diseño de síndrome coronario agudo
+
+Es el modelo de imágenes (plantillas en `tools/medios/figuras/sindromecoronario/`,
+rehechas por su `regenerar.sh`; las de pancreatitis siguen el mismo patrón):
+
+| pieza | cómo es | plantillas |
+|---|---|---|
+| **foto rotulada de varios colores** | hasta tres señaladores (`AMARILLO`, `CIAN`, `ROSA` de `foto.js`), cada uno con su rótulo de borde oscuro junto a lo que señala, y **una caja de leyenda por color** debajo que dice qué es y qué importa | `ecmo.html`, `edema_pulmonar.html`, `coronaria_icp.html`, `pancreatitis/pseudoquiste.html` |
+| **foto de la escena** | el lugar, el equipo o el dispositivo del paso (la sala de hemodinamia, la ECMO, el introductor radial): el usuario ve dónde y con qué se hace lo que el nodo indica | `hemodinamia.html`, `introductor.html`, `ecmo.html` |
+| **antes y después** | dos paneles de la misma imagen real (oclusión y flujo restablecido) | `coronaria_icp.html`, `pancreatitis/necrosis_progresion.html` |
+| **esquema de decisión por categorías** | una tarjeta de color por nivel (inmediata, temprana, durante el ingreso, selectiva), con el nombre y el plazo a la izquierda y los criterios en viñetas a la derecha | `estrategia.html`, `pancreatitis/destino.html`, `pancreatitis/biliar_decisiones.html` |
+| **algoritmo de umbrales** | tres tarjetas (descartar, observar, confirmar) con sus cortes | `algoritmo_0h1h.html` |
+| **línea de tiempo del tratamiento** | barras por grupo a lo largo de semanas o meses | `tapd.html`, `tiempos.html` |
+| **GIF de flujo** | una línea de tiempo cuyo marcador avanza mientras se encienden en orden las tarjetas de cada paso o rama, y una franja final oscura con la alerta | `farmacoinvasiva.html`, `pancreatitis/primeras72.html`, `pancreatitis/escalonado_gif.html` |
+| **GIF sobre imagen real** | recorrido paso a paso de un ECG, una TC o una Rx | `ecg_recorrido.html`, `pancreatitis/tc_recorrido.html` |
+
+- **Galerías** donde se comparan dos hallazgos (bloqueo AV y fibrilación
+  auricular) o una imagen real y su esquema (la Rx del derrame y «¿Dónde
+  tratarlo?»).
+- **La imagen llena el lienzo**: el visor de una foto mide 330-390 px de alto
+  y la leyenda va debajo o al lado; si queda blanco, se sube `alto` o se
+  reparte la leyenda en más cajas.
+- Cada nodo que nombra un procedimiento, un dispositivo o una decisión por
+  niveles es candidato a imagen; los que hablan de algo visible y no lo
+  enseñan los lista `norma.py`.
+
 ### Esquemas propios que funcionan
 
 Cuando no hay foto ni figura con licencia, un esquema propio hecho con
@@ -337,9 +400,10 @@ hiperglucémicas son el modelo (plantillas en
 | **barras de porcentaje** | comparar el resultado de varias opciones (éxito de cada maniobra) | `parto/hombros_exito.html` |
 | **GIF sobre papel de monitoría** | cuándo hacer algo respecto de una señal (auscultar durante la contracción y 30 s después) | `parto/auscultacion.html` |
 
-- **Sin personas ni partes del cuerpo** (ver «Nunca personas dibujadas»):
-  si el nodo es una maniobra, la figura es una foto real o un gráfico de
-  datos sobre ella, no un dibujo.
+- **Sin personas** (ver «Nunca personas dibujadas»): si el nodo es una
+  maniobra, la figura es una foto real o un gráfico de datos sobre ella, no
+  un dibujo. La fisiología sí se anima en esquema («Animaciones propias de
+  fisiología»).
 - La figura dice **exactamente lo que dice su nodo**: las mismas cifras,
   umbrales, tiempos y nombres (si el texto dice «lactato de Ringer», la
   figura también). Si el nodo cambia, se rehace la figura.

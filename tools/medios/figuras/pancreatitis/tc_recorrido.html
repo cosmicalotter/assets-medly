@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body>
+<script>
+// Dos TC reales de pancreatitis aguda exudativa (Hellerhoff, Wikimedia Commons, CC BY-SA 3.0), editadas por Empirica:
+//  - «Pankreatitis exsudativ CT axial»: según su autor, líquido alrededor del páncreas y realce conservado, sin necrosis;
+//    la flecha roja es del original.
+//  - «Akute exsudative Pankreatitis - CT axial»: líquido extenso alrededor del páncreas.
+const AMAR = "#FDE047", ROJA = "#E71629", TURQ = "#2DD4BF";
+recorrido({
+  titulo: "Leer la TC de la pancreatitis aguda",
+  subtitulo: "Dos pacientes con pancreatitis intersticial exudativa, sin necrosis",
+  credito: "Imágenes: Hellerhoff, Wikimedia Commons, CC BY-SA 3.0, editadas por Empirica. Fuente: Atlanta revisada 2012; IAP 2025 (p. 778-779).",
+  escenas: [
+    {
+      img: "fuentes/commons_Pankreatitis_exsudativ_CT_axial.jpg", w: 1280, h: 1142, vista: [110, 70, 1080, 1080],
+      pasos: [
+        { texto: "El <b>páncreas</b> está aumentado y realza entero: no hay necrosis", vista: [430, 300, 640, 640],
+          dibujo: (u, e) => D.rotulo(790, 395, "páncreas", ROJA, e, { op: u, tam: 16 }) },
+        { texto: "<b>Líquido</b> alrededor del páncreas: la forma exudativa", vista: [520, 380, 700, 700],
+          dibujo: (u, e) => D.zona("1005,600 1120,625 1170,725 1150,845 1060,865 1015,760", AMAR, e, u) +
+            D.rotulo(1090, 905, "líquido", AMAR, e, { op: u, tam: 16, ancla: "middle" }) },
+      ],
+    },
+    {
+      img: "fuentes/commons_Akute_exsudative_Pankreatitis_-_CT_axial.jpg", w: 1280, h: 1078, vista: [120, 40, 1040, 1040],
+      pasos: [
+        { texto: "Otro paciente: páncreas <b>engrosado</b> en el cuerpo y la cola", vista: [520, 220, 700, 700],
+          dibujo: (u, e) => D.zona("700,380 860,330 1030,380 1120,470 1100,560 960,560 820,500 720,470", TURQ, e, u) +
+            D.rotulo(900, 315, "páncreas", TURQ, e, { op: u, tam: 16, ancla: "middle" }) },
+        { texto: "Líquido <b>extenso</b> que rodea la glándula hacia el riñón izquierdo", vista: [600, 380, 680, 680],
+          dibujo: (u, e) => D.zona("980,560 1120,560 1180,660 1170,800 1060,830 990,740", AMAR, e, u) +
+            D.rotulo(1080, 870, "líquido", AMAR, e, { op: u, tam: 16, ancla: "middle" }) },
+      ],
+    },
+  ],
+  final: `Con dolor y lipasa típicos <b style="color:#FDE047">no hace falta la TC</b>. Se pide si hay <b style="color:#5EEAD4">duda diagnóstica</b> o si no mejora, idealmente <b>a las 72-96 h</b>.`,
+});
+</script></body></html>

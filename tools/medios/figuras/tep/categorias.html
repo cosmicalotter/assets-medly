@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Categorías clínicas AHA/ACC 2026 del TEP agudo (figura 2, p. e990; tabla 7, p. e1012): de la A a la E, con dónde se trata y su terapia avanzada.
+// GIF: la escalera se enciende peldaño a peldaño.
+const P = [
+  { k: "A", c: VERDE, tit: "Asintomático", txt: "Hallazgo <b>incidental</b>", que: "Anticoagular; casa si se puede" },
+  { k: "B", c: VERDE, tit: "Escala baja", txt: "PESI <b>≤85</b> · sPESI <b>0</b> · Bova <b>≤4</b>", que: "Casa con Hestia <b>negativo</b>" },
+  { k: "C", c: AMBAR, tit: "Escala alta", txt: "C1-C3 según el <b>VD</b> y los <b>biomarcadores</b>", que: "Hospitalizar con <b>PERT</b>; la C3, con monitor" },
+  { k: "D", c: MORADO, tit: "Insuficiencia incipiente", txt: "Hipotensión <b>transitoria</b> o choque <b>normotenso</b>", que: "Monitor y PERT; terapia avanzada <b>2b</b>" },
+  { k: "E", c: ROJO, tit: "Insuficiencia cardiopulmonar", txt: "Choque (E1), choque <b>refractario</b> o <b>paro</b> (E2)", que: "<b>Reperfusión</b> (2a); ECMO en la E2" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const filas = P.map((p, k) => {
+    const op = 0.15 + 0.85 * suave(tramo(t, 0.05 + k * 0.15, 0.13 + k * 0.15));
+    return `<div style="display:flex;align-items:stretch;gap:8px;opacity:${op};margin-left:${k * 34}px">
+      <div style="flex:none;width:46px;border-radius:12px;background:${p.c};color:#fff;font:900 26px/1 'Inter',sans-serif;display:grid;place-items:center">${p.k}</div>
+      <div class="caja" style="flex:1;border:2px solid ${p.c};background:${tinte(p.c, 10)}"><b style="color:${p.c}">${p.tit}</b> · ${p.txt}<div style="color:#475569;margin-top:2px">→ ${p.que}</div></div>
+    </div>`;
+  }).join("");
+  lienzo("Categorías clínicas del TEP (A-E)", "Se elige por el dato más grave y se reclasifica si cambia",
+    `<div style="display:flex;flex-direction:column;gap:8px">${filas}</div>
+     <div style="font-size:12.5px;color:#475569">Se añade <b>R</b> si hay hipoxemia, taquipnea o necesidad de oxígeno.</div>`,
+    "Fuente: Guía AHA/ACC 2026 del TEP agudo, figura 2 (p. e990) y tabla 7 (p. e1012). Esquema de Empirica.");
+};
+window.cuadro(0, 1);
+</script></body></html>

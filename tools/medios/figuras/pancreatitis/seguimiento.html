@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Controles tras la pancreatitis aguda (UNAL/HUN 2025 p. 12; iLATAM-PA 2026 supl. p. 20; IAP 2025 recomendaciones 88-89).
+const H = [
+  ["2 semanas", "Primer control tras el alta", TEAL],
+  ["3 meses", "Pacientes de riesgo: control clínico y de laboratorio; empieza el tamizaje de diabetes (3-6 meses)", AZUL],
+  ["6 meses", "Control; buscar esteatorrea y desnutrición", AMBAR],
+  ["12 meses", "Glucosa y HbA1c a todos, y luego cada 12 meses", MORADO],
+  ["Después", "Cada 6-12 meses si persiste alguna disfunción", GRIS],
+];
+const filas = H.map(([t, d, c]) => `<div style="display:flex;align-items:center;gap:12px">
+   <div style="width:110px;flex:none;text-align:right;font-size:17px;font-weight:800;color:${c}">${t}</div>
+   <div style="width:18px;height:18px;border-radius:50%;background:${c};flex:none;box-shadow:0 0 0 5px ${tinte(c, 22)}"></div>
+   <div class="caja" style="flex:1;background:${tinte(c, 10)};border:1.5px solid ${tinte(c, 40)};font-size:14.5px">${d}</div></div>`).join(
+  `<div style="margin-left:131px;width:4px;height:12px;background:#E5E7EB;border-radius:2px"></div>`);
+lienzo("Controles después del alta", "Qué revisar y cuándo tras una pancreatitis aguda",
+  `<div style="display:flex;flex-direction:column;gap:9px;margin-top:6px">${filas}</div>
+   <div class="caja" style="background:#F3F4F6;margin-top:6px">El <b>23 %</b> desarrolla diabetes tras un primer episodio: el tamizaje va en <b>todos</b>.</div>`,
+  "Gráfico. Fuente: UNAL/HUN 2025 (p. 12); iLATAM-PA 2026 (suplemento, p. 20); IAP 2025, recomendaciones 87-89.");
+</script></body></html>

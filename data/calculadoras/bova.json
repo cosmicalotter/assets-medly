@@ -1,0 +1,132 @@
+{
+  "titulo": "Escala de Bova",
+  "descripcion": "Estima el riesgo de complicaciones a 30 días del TEP en el paciente normotenso con cuatro datos: la PAS de 90-100 mmHg, la troponina elevada, la disfunción del VD y la FC de 110 lpm o más. Va de 0 a 7 en tres estadios. En las categorías AHA/ACC 2026, un Bova de 4 o menos es escala de gravedad baja.",
+  "instrucciones": "Úsala en el paciente con TEP confirmado y PAS de 90 mmHg o más. Necesita la troponina y la imagen del VD.",
+  "limitaciones": "No aplica con hipotensión ni choque, que ya son categorías D o E.",
+  "referencias": [
+    {
+      "titulo": "Bova C, Sanchez O, Prandoni P, et al. Identification of intermediate-risk patients with acute symptomatic pulmonary embolism. Eur Respir J 2014;44:694-703.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Identification%20of%20intermediate-risk%20patients%20with%20acute%20symptomatic%20pulmonary%20embolism"
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Tabla 6: Bova.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=16",
+      "paginas": "e992",
+      "texto": "Bova Score Systolic blood pressure 90-100 mm Hg (2 pts) 0 to 7 Stage I (lowest risk): 0-2 pts"
+    },
+    {
+      "titulo": "Creager MA, Barnes GD, Giri J, et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977-e1051. Bova ≤4 es escala baja.",
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001415#page=14",
+      "paginas": "e990",
+      "texto": "*Low Clinical Severity Score includes PESI ≤85 or sPESI =0 or Bova ≤ 4. †Elevated Clinical Severity Score includes PESI >85 or sPESI ≥1 or Bova > 4."
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "PAS 90-100 mmHg",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí"
+      ],
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 90,
+        "max": 260,
+        "tramos": [
+          {
+            "max": 100,
+            "puntos": 2
+          },
+          {
+            "min": 100.01,
+            "puntos": 0
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Troponina elevada",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí"
+      ]
+    },
+    {
+      "nombre": "Disfunción del VD",
+      "descripciones": [
+        "No",
+        "-",
+        "Sí"
+      ],
+      "ayuda": "En el eco o en la angio-TC."
+    },
+    {
+      "nombre": "FC ≥ 110 lpm",
+      "descripciones": [
+        "No",
+        "Sí",
+        "-"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 20,
+        "max": 250,
+        "tramos": [
+          {
+            "max": 109.99,
+            "puntos": 0
+          },
+          {
+            "min": 110,
+            "puntos": 1
+          }
+        ]
+      }
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 2,
+      "categoria": "Estadio I (0-2)",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Riesgo **más bajo**. Escala de gravedad **baja** en las categorías AHA/ACC."
+    },
+    {
+      "min": 3,
+      "max": 4,
+      "categoria": "Estadio II (3-4)",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Riesgo **intermedio**; sigue siendo escala de gravedad **baja** (Bova **≤4**) en las categorías AHA/ACC."
+    },
+    {
+      "min": 5,
+      "max": 7,
+      "categoria": "Estadio III (>4)",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Riesgo **más alto**: escala de gravedad **alta**, categoría **C** o mayor."
+    }
+  ]
+}

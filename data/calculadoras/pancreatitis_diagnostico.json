@@ -1,0 +1,151 @@
+{
+  "titulo": "Criterios diagnósticos de pancreatitis aguda (Atlanta revisada)",
+  "descripcion": "Confirma la pancreatitis aguda en el adulto con dolor abdominal con la definición de la Clasificación de Atlanta revisada (2012), que mantienen las guías IAP 2025 e iLATAM-PA 2026: dolor típico, enzima pancreática y hallazgos de imagen. Con dos de los tres criterios el diagnóstico está hecho; con uno, hace falta una imagen.",
+  "instrucciones": "Marca cada criterio. La enzima se compara con el límite superior de tu laboratorio. Con dolor y enzima típicos no hace falta la imagen.",
+  "limitaciones": "Si el paciente consulta tarde, la enzima puede haber bajado de 3 veces: con dolor típico, la imagen confirma. La enzima alta sin dolor típico no predice pancreatitis (falla renal, otras inflamaciones abdominales).",
+  "tipoCalculo": "formula",
+  "formula": "a + b + c",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "103",
+      "texto": "The diagnosis of acute pancreatitis requires two of the following three features: (1) abdominal pain consistent with acute pancreatitis",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "103",
+      "texto": "abdominal pain consistent with acute pancreatitis (acute onset of a persistent, severe, epigastric pain often radiating to the back)",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "103",
+      "texto": "serum lipase activity (or amylase activity) at least three times greater than the upper limit of normal",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "103",
+      "texto": "as may be the case with delayed presentation, imaging will be required to confirm the diagnosis",
+      "anio": "2013"
+    },
+    {
+      "titulo": "IAP/APA/EPC/IPC/JPS Working Group. International Association of Pancreatology Revised Guidelines on Acute Pancreatitis 2025. Pancreatology 2025;25(6):770-814.",
+      "url": "https://epc-pancreasacademy.com/wp-content/uploads/2026/07/International-Association-of-Pancreatology-revised-guidelines.pdf#page=3",
+      "paginas": "772",
+      "texto": "Acute pancreatitis (AP) should be diagnosed based on the fulfillment of two out of three criteria",
+      "anio": "2025"
+    },
+    {
+      "titulo": "Tenner S, Vege SS, Sheth SG, et al. American College of Gastroenterology Guidelines: Management of Acute Pancreatitis. Am J Gastroenterol 2024;119(3):419-437.",
+      "url": "https://doi.org/10.14309/ajg.0000000000002645",
+      "paginas": "421",
+      "texto": "In the absence of abdominal pain consistent with the disease, elevations of amylase and lipase do not predict the development of AP.",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "a",
+          "tipo": "opciones",
+          "label": "1 · Dolor: epigástrico agudo, persistente e intenso",
+          "ayuda": "Dolor de inicio agudo, persistente e intenso en el epigastrio, a menudo irradiado a la espalda.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "tipo": "opciones",
+          "label": "2 · Enzima: lipasa o amilasa ≥3 veces el límite superior",
+          "ayuda": "Se prefiere la lipasa: dura más elevada que la amilasa.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "tipo": "opciones",
+          "label": "3 · Imagen: hallazgos de pancreatitis",
+          "ayuda": "En la TC con contraste y, con menos frecuencia, en la RM o la ecografía.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 2,
+      "max": 3,
+      "categoria": "Pancreatitis aguda confirmada",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Buscar la causa (ecografía hepatobiliar, triglicéridos y calcio) y estratificar la gravedad con el SIRS, el BISAP y la escala de Marshall.",
+      "si": {
+        "suma": [
+          "a",
+          "b",
+          "c"
+        ],
+        "minimo": 2
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Dudosa: un solo criterio",
+      "color": "amarillo",
+      "match_opcion_index": 1,
+      "approach": "Si el criterio que tiene es el dolor o la enzima, confirmar con TC con contraste; en el embarazo, ecografía y, si no es concluyente, RM.",
+      "si": {
+        "suma": [
+          "a",
+          "b",
+          "c"
+        ],
+        "minimo": 1,
+        "maximo": 1
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "No cumple criterios",
+      "color": "verde",
+      "match_opcion_index": 2,
+      "approach": "Buscar otra causa del dolor abdominal; la enzima alta sin dolor típico no predice pancreatitis."
+    }
+  ]
+}

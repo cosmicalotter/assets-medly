@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// La nutrición paso a paso en la pancreatitis aguda (IAP 2025 recs. 22-27 y 66; iLATAM-PA 2026, suplemento p. 38;
+// ACG 2024, recs. 10-11 y concepto 20).
+const P = [
+  { c: VERDE, cuando: "24-48 h", tit: "Vía oral", txt: "Si tiene apetito y no vomita: dieta <b>sólida baja en grasa</b>, sin pasar por líquidos" },
+  { c: AZUL, cuando: "72 h", tit: "Sonda nasogástrica", txt: "Si no tolera o no cubre lo que necesita: fórmula <b>polimérica</b>; nasoyeyunal si vomita" },
+  { c: ROJO, cuando: "si no basta", tit: "Parenteral", txt: "Sólo si la enteral no cubre las metas o está contraindicada; mejor <b>parcial</b>" },
+];
+const pasos = P.map((p, k) => `<div style="display:flex;align-items:center;gap:12px">
+   <div style="width:96px;flex:none;text-align:right;font-size:15px;font-weight:900;color:${p.c}">${p.cuando}</div>
+   <div style="width:34px;height:34px;border-radius:50%;background:${p.c};color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none">${k + 1}</div>
+   <div class="caja" style="flex:1;background:${tinte(p.c, 10)};border:2px solid ${tinte(p.c, 55)}"><div style="font-size:15.5px;font-weight:900;color:${p.c}">${p.tit}</div><div style="margin-top:2px">${p.txt}</div></div></div>`).join(
+  `<div style="margin-left:124px;width:4px;height:12px;background:#E5E7EB;border-radius:2px"></div>`);
+lienzo("La comida, paso a paso", "Se pasa al siguiente escalón sólo si el anterior no basta",
+  `<div style="display:flex;flex-direction:column;gap:2px;margin-top:6px">${pasos}</div>
+   <div class="caja" style="background:${tinte(MORADO, 10)};border:2px solid ${tinte(MORADO, 50)}"><b style="color:${MORADO}">Hipertrigliceridemia:</b> ayuno las primeras <b>48 h</b> y después dieta blanda baja en grasa; sin lípidos IV con TG <b>≥400 mg/dL</b>.</div>`,
+  "Esquema. Fuente: IAP 2025, recomendaciones 22-27 y 66; iLATAM-PA 2026 (suplemento, p. 38); ACG 2024 (p. 430).");
+</script></body></html>

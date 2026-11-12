@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Ensayo WATERFALL: reanimación moderada frente a agresiva (iLATAM-PA 2026, suplemento p. 33; IAP 2025, p. 779-780).
+function col(titulo, color, bolo, ritmo, pct, ancho) {
+  return `<div style="flex:1;display:flex;flex-direction:column;gap:9px">
+   <div style="font-size:19px;font-weight:800;color:${color}">${titulo}</div>
+   <div class="caja" style="background:${tinte(color, 10)};border:1.5px solid ${tinte(color, 45)};font-size:14.5px">
+     <div><b>Bolo:</b> ${bolo}</div><div style="margin-top:4px"><b>Infusión:</b> ${ritmo}</div></div>
+   <div style="font-size:13px;color:#6B7280;margin-top:4px">Sobrecarga de volumen</div>
+   <div style="height:38px;background:#F3F4F6;border-radius:8px;position:relative">
+     <div style="position:absolute;left:0;top:0;bottom:0;width:${ancho}%;background:${color};border-radius:8px"></div>
+     <div style="position:absolute;left:${ancho + 2}%;top:7px;font-size:20px;font-weight:800;color:${color}">${pct}</div></div></div>`;
+}
+lienzo("Líquidos: ritmo moderado, no agresivo", "Ensayo WATERFALL: 249 pacientes, detenido por la sobrecarga del esquema agresivo",
+  `<div style="display:flex;gap:22px;margin-top:6px">
+     ${col("Moderado (el que se usa)", TEAL, "<b>10 mL/kg</b> en 2 h, sólo si hay <b>hipovolemia</b>", "<b>1,5 mL/kg/h</b> de lactato de Ringer", "6,3 %", 20)}
+     ${col("Agresivo (ya no se usa)", ROJO, "<b>20 mL/kg</b> a todos", "<b>3 mL/kg/h</b>", "20,5 %", 64)}
+   </div>
+   <div class="caja" style="background:#F3F4F6;font-size:14px;margin-top:6px">El esquema agresivo <b>triplicó la sobrecarga</b> y no evitó la forma moderadamente grave ni grave. Reevaluar con las <b>metas</b> en las primeras 6 h y a menudo durante 24-48 h.</div>`,
+  "Gráfico. Fuente: iLATAM-PA 2026 (suplemento, p. 32-33); IAP 2025, recomendación 11 (p. 779-780); ACG 2024 (p. 427).");
+</script></body></html>

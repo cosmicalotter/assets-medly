@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Pancreatitis biliar: cuándo la CPRE y cuándo la colecistectomía (IAP 2025 recs. 28-29 y 84-85;
+// iLATAM-PA 2026, suplemento p. 39, 51 y 52; ACG 2024).
+const F = [
+  { c: ROJO, tit: "CPRE urgente", cuando: "≤24 h", txt: "Si hay <b>colangitis</b> aguda" },
+  { c: AMBAR, tit: "CPRM o USE", cuando: "hasta 1 semana", txt: "Si la <b>colestasis persiste</b> o el colédoco está dilatado; CPRE <b>electiva</b> si hay cálculo" },
+  { c: VERDE, tit: "Sin CPRE", cuando: "—", txt: "Sin colangitis ni colestasis: el cálculo suele pasar solo al <b>duodeno</b>" },
+];
+const vesicula = [
+  { c: AZUL, tit: "Leve", txt: "Colecistectomía laparoscópica en el <b>mismo ingreso</b>" },
+  { c: MORADO, tit: "Moderadamente grave o grave", txt: "Diferirla hasta que las <b>colecciones</b> casi resuelvan" },
+];
+const fila = (f) => {
+  const ct = f.c === AMBAR ? "#B26B10" : f.c;
+  return `<div style="display:flex;gap:12px;align-items:center;border:2px solid ${f.c};background:${tinte(f.c, 10)};border-radius:12px;padding:9px 12px">
+    <div style="width:150px;flex:none"><div style="font-size:17px;font-weight:900;color:${ct}">${f.tit}</div><div style="font-size:12.5px;font-weight:800;color:#4B5563">${f.cuando}</div></div>
+    <div style="font-size:13.5px;line-height:1.35">${f.txt}</div></div>`;
+};
+const ves = vesicula.map((v) => `<div style="flex:1;border:2px solid ${v.c};background:${tinte(v.c, 10)};border-radius:12px;padding:9px 12px">
+   <div style="font-size:15px;font-weight:900;color:${v.c}">${v.tit}</div><div style="font-size:13px;line-height:1.35;margin-top:2px">${v.txt}</div></div>`).join("");
+lienzo("Pancreatitis biliar: CPRE y vesícula", "La colangitis decide la CPRE; la gravedad, el momento de operar",
+  `<div style="font-size:13px;font-weight:800;color:#6B7280">LA VÍA BILIAR</div>
+   <div style="display:flex;flex-direction:column;gap:8px">${F.map(fila).join("")}</div>
+   <div style="font-size:13px;font-weight:800;color:#6B7280;margin-top:4px">LA VESÍCULA</div>
+   <div style="display:flex;gap:10px">${ves}</div>`,
+  "Esquema. Fuente: IAP 2025, recomendaciones 28-29 y 84-85; iLATAM-PA 2026 (suplemento, p. 39, 51 y 52); ACG 2024 (p. 431).");
+</script></body></html>

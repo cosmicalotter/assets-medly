@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Colecciones de la pancreatitis según el tiempo y el tipo (Atlanta revisada 2012, Box 1, p. 107-108).
+function fila(tipo, color, antes, antesD, despues, despuesD) {
+  return `<div style="display:flex;align-items:stretch;gap:10px">
+    <div style="width:132px;flex:none;font-size:15px;font-weight:800;color:${color};display:flex;align-items:center">${tipo}</div>
+    <div class="caja" style="flex:1;background:${tinte(color, 10)};border:1.5px dashed ${color}"><div style="font-size:15px;font-weight:800">${antes}</div><div style="margin-top:3px">${antesD}</div></div>
+    <div style="display:flex;align-items:center;font-size:26px;color:${color};font-weight:800">→</div>
+    <div class="caja" style="flex:1;background:${tinte(color, 22)};border:3px solid ${color}"><div style="font-size:15px;font-weight:800">${despues}</div><div style="margin-top:3px">${despuesD}</div></div></div>`;
+}
+lienzo("Colecciones: qué son según el tiempo", "La pared tarda unas 4 semanas en formarse",
+  `<div style="display:flex;margin-left:142px;gap:10px;font-size:14px;font-weight:800;color:#6B7280">
+     <div style="flex:1;text-align:center">Antes de 4 semanas: sin pared</div><div style="width:26px"></div>
+     <div style="flex:1;text-align:center">Después de 4 semanas: con pared</div></div>
+   ${fila("Intersticial edematosa", AZUL, "Colección líquida aguda", "<b>Sólo líquido</b>, junto al páncreas; casi siempre se reabsorbe.", "Pseudoquiste", "Líquido encapsulado, <b>sin necrosis</b> o casi.")}
+   ${fila("Necrosante", ROJO, "Colección necrótica aguda", "<b>Líquido y necrosis</b> del páncreas o de la grasa vecina.", "Necrosis encapsulada", "Necrosis con <b>pared definida</b>: la que se drena si hace falta.")}
+   <div class="caja" style="background:#F3F4F6;font-size:13.5px">Una colección sin falla orgánica persistente hace la forma <b>moderadamente grave</b>; se drena sólo si se infecta o da síntomas, y mejor después de las <b>4 semanas</b>.</div>`,
+  "Gráfico. Fuente: Atlanta revisada 2012 (Box 1, p. 107-108); iLATAM-PA 2026 (suplemento, p. 45); IAP 2025, recomendación 37.");
+</script></body></html>

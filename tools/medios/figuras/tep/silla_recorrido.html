@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="recorrido.js"></script></head><body><script>
+// Recorrido por una angio-TC real con un émbolo en silla de montar (James Heilman, MD, CC BY-SA 3.0; Wikimedia Commons):
+// el contraste en las arterias, el defecto de llenado en la bifurcación y su extensión a las dos ramas.
+const AMA = "#FDE047", CIA = "#22D3EE", ROS = "#F9A8D4";
+recorrido({
+  titulo: "Leer el TEP en la angio-TC",
+  subtitulo: "Un émbolo en silla de montar",
+  credito: "Angio-TC: James Heilman, MD (CC BY-SA 3.0), vía Wikimedia Commons; rotulada por Empirica, se comparte igual. Fuente: AHA/ACC 2026, p. e985.",
+  escenas: [{
+    img: "fuentes/commons_silla.png", w: 1600, h: 1260, vista: [250, 120, 900, 900],
+    pasos: [
+      { texto: "El <b>contraste blanco</b> llena la aorta y las arterias pulmonares", vista: [250, 120, 900, 900],
+        dibujo: (u, e) => D.rotulo(665, 405, "Aorta", CIA, e, { op: u, ancla: "middle", tam: 16 }) +
+          D.rotulo(830, 300, "Tronco pulmonar", CIA, e, { op: u, ancla: "middle", tam: 16 }) },
+      { texto: "Las <b>flechas rojas</b> señalan el <b>defecto de llenado</b> gris sobre la bifurcación", vista: [600, 380, 480, 480],
+        dibujo: (u, e) => D.rotulo(845, 520, "Trombo en silla de montar", AMA, e, { op: u, ancla: "middle", tam: 15 }) },
+      { texto: "Se extiende a las <b>dos arterias pulmonares</b> principales", vista: [430, 380, 700, 700],
+        dibujo: (u, e) => D.rotulo(520, 720, "Derecha", ROS, e, { op: u, ancla: "middle", tam: 16 }) +
+          D.rotulo(1060, 760, "Izquierda", ROS, e, { op: u, ancla: "middle", tam: 16 }) },
+    ],
+  }],
+  final: `Defecto de llenado en la angio-TC: <b style="color:#FDE047">TEP confirmado</b>. Medir el cociente <b style="color:#22D3EE">VD/VI</b> y clasificar la <b style="color:#F9A8D4">gravedad</b>.`,
+});
+</script></body></html>
