@@ -1,0 +1,164 @@
+{
+  "titulo": "Gravedad de la pancreatitis aguda (Atlanta revisada)",
+  "descripcion": "Clasifica la pancreatitis aguda en leve, moderadamente grave o grave con la Clasificación de Atlanta revisada (2012), que adoptan la iLATAM-PA 2026 y la WSES 2019: según la falla orgánica y su duración, y las complicaciones locales o sistémicas. Se aplica a partir de las 48 h, cuando se sabe si la falla fue transitoria o persistente.",
+  "instrucciones": "Falla orgánica: Marshall modificado ≥2 en algún órgano. Mientras no haya cedido y no hayan pasado 48 h, trátalo como grave. Complicación sistémica: una enfermedad previa que se descompensa por la pancreatitis.",
+  "limitaciones": "Las complicaciones locales necesitan imagen, que no suele hacer falta en la primera semana. La necrosis infectada no cambia el grado, pero aumenta la mortalidad si se suma a la falla persistente.",
+  "tipoCalculo": "formula",
+  "formula": "2 * (falla * (falla - 1) / 2) + (1 - falla * (falla - 1) / 2) * (1 - (1 - falla * (2 - falla)) * (1 - local) * (1 - sist))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "107",
+      "texto": "Mild acute pancreatitis is characterised by the absence of organ failure and the absence of local or systemic complications.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "107",
+      "texto": "Moderately severe acute pancreatitis is characterised by the presence of transient organ failure or local or systemic complications in the absence of persistent organ failure.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "107",
+      "texto": "Transient organ failure is organ failure that is present for <48 h. Persistent organ failure is defined as organ failure that persists for >48 h.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "108",
+      "texto": "the patient does not have mild pancreatitis and should be classified and treated initially as potentially having severe acute pancreatitis",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "108",
+      "texto": "Patients who develop persistent organ failure within the first few days of the disease are at increased risk of death, with a mortality reported to be as great as 36–50%.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "107",
+      "texto": "Patients with mild acute pancreatitis will usually be discharged during the early phase. Patients with mild acute pancreatitis usually do not require pancreatic imaging",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Leppäniemi A, Tolonen M, Tarasconi A, et al. 2019 WSES guidelines for the management of severe acute pancreatitis. World J Emerg Surg 2019;14:27.",
+      "url": "https://doi.org/10.1186/s13017-019-0247-0",
+      "paginas": "4",
+      "texto": "All patients with severe acute pancreatitis need to be assessed with contrast-enhanced computed tomography (CE-CT) or magnetic resonance imaging (MRI).",
+      "anio": "2019"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "falla",
+          "tipo": "opciones",
+          "label": "1 · Falla orgánica: Marshall ≥2 en algún órgano",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí, cedió en menos de 48 h",
+              "puntos": 1
+            },
+            {
+              "label": "Sí, dura más de 48 h",
+              "puntos": 2
+            }
+          ]
+        },
+        {
+          "id": "local",
+          "tipo": "opciones",
+          "label": "2 · Complicación local: colección o necrosis",
+          "ayuda": "Colección líquida aguda, pseudoquiste, colección necrótica aguda o necrosis encapsulada.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "sist",
+          "tipo": "opciones",
+          "label": "3 · Complicación sistémica: descompensa una enfermedad previa",
+          "ayuda": "Por ejemplo, la enfermedad coronaria o la pulmonar crónica que empeoran por la pancreatitis.",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Grave",
+      "color": "rojo",
+      "match_opcion_index": 2,
+      "approach": "UCI y soporte de órganos; TC con contraste a las 72-96 h del inicio para buscar la necrosis. Su mortalidad llega al 36-50 %.",
+      "si": {
+        "id": "falla",
+        "igual": 2
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Moderadamente grave",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Seguir el tratamiento y buscar las complicaciones locales; TC con contraste si no mejora a las 72 h.",
+      "si": {
+        "alguno": [
+          {
+            "id": "falla",
+            "igual": 1
+          },
+          {
+            "id": "local",
+            "igual": 1
+          },
+          {
+            "id": "sist",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Leve",
+      "color": "verde",
+      "match_opcion_index": 0,
+      "approach": "Tratamiento de soporte y vía oral temprana; suele irse de alta en la fase temprana y no necesita imagen del páncreas."
+    }
+  ]
+}

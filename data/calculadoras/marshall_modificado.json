@@ -1,0 +1,244 @@
+{
+  "titulo": "Escala de Marshall modificada (falla orgánica en la pancreatitis)",
+  "descripcion": "Define la falla orgánica en la pancreatitis aguda según la Clasificación de Atlanta revisada (2012): puntúa de 0 a 4 el sistema respiratorio, el renal y el cardiovascular, y un puntaje de 2 o más en cualquiera de ellos es falla. Se repite cada día: su duración (menos o más de 48 h) separa la forma moderadamente grave de la grave.",
+  "instrucciones": "Escribe la PaO₂/FiO₂, la creatinina y elige la presión. Sin ventilación, estima la FiO₂: aire ambiente 21 %, 2 L/min 25 %, 4 L/min 30 %, 6-8 L/min 40 %, 9-10 L/min 50 %. La PAS, sin vasopresores.",
+  "limitaciones": "Con enfermedad renal crónica previa no hay corrección formal: si la creatinina basal es ≥1,4 mg/dL, el renal depende de cuánto empeora. Mide la falla, no decide sola la UCI.",
+  "tipoCalculo": "formula",
+  "formula": "0.5 * (1 + (resp_puntos - 1.5) / abs(resp_puntos - 1.5)) + 0.5 * (1 + (cr_puntos - 1.5) / abs(cr_puntos - 1.5)) + 0.5 * (1 + (cv - 1.5) / abs(cv - 1.5))",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Resultado",
+  "referencias": [
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "104",
+      "texto": "a score of 2 or more for one of these three organ systems using the modified Marshall scoring system",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "106",
+      "texto": "A score of 2 or more in any system defines the presence of organ failure.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "104",
+      "texto": "Three organ systems should be assessed to define organ failure: respiratory, cardiovascular and renal.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "107",
+      "texto": "Transient organ failure is organ failure that is present for <48 h. Persistent organ failure is defined as organ failure that persists for >48 h.",
+      "anio": "2013"
+    },
+    {
+      "titulo": "IAP/APA/EPC/IPC/JPS Working Group. International Association of Pancreatology Revised Guidelines on Acute Pancreatitis 2025. Pancreatology 2025;25(6):770-814.",
+      "url": "https://new2026.epc-pancreasacademy.com/wp-content/uploads/2026/07/International-Association-of-Pancreatology-revised-guidelines.pdf#page=4",
+      "paginas": "773",
+      "texto": "Organ failure of grade 2 or more as per the modified Marshall's classification is an indication for the transfer of a patient with acute pancreatitis to an intensive care unit (ICU).",
+      "anio": "2025"
+    },
+    {
+      "titulo": "Banks PA, Bollen TL, Dervenis C, et al. Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus. Gut 2013;62(1):102-111.",
+      "url": "https://doi.org/10.1136/gutjnl-2012-302779",
+      "paginas": "108",
+      "texto": "Convenient time points to re-evaluate are 24 h, 48 h and 7 days after admission to hospital.",
+      "anio": "2013"
+    }
+  ],
+  "secciones": [
+    {
+      "elementos": [
+        {
+          "id": "resp",
+          "tipo": "input_numero",
+          "label": "Respiratorio: PaO₂/FiO₂",
+          "unidad": "mmHg",
+          "min": 20,
+          "max": 700,
+          "ayuda": "0 puntos >400; 1: 301-400; 2: 201-300; 3: 101-200; 4: ≤101.",
+          "intervalos": [
+            {
+              "max": 101,
+              "puntos": 4
+            },
+            {
+              "min": 101.01,
+              "max": 200,
+              "puntos": 3
+            },
+            {
+              "min": 200.01,
+              "max": 300,
+              "puntos": 2
+            },
+            {
+              "min": 300.01,
+              "max": 400,
+              "puntos": 1
+            },
+            {
+              "min": 400.01,
+              "puntos": 0
+            }
+          ]
+        },
+        {
+          "id": "cr",
+          "tipo": "input_numero",
+          "label": "Renal: creatinina",
+          "unidad": "mg/dL",
+          "min": 0.1,
+          "max": 30,
+          "unidades": [
+            {
+              "unidad": "µmol/L",
+              "factor": 0.01131
+            }
+          ],
+          "ayuda": "0 puntos <1,4 mg/dL; 1: 1,4-1,8; 2: 1,9-3,6; 3: 3,6-4,9; 4: >4,9.",
+          "intervalos": [
+            {
+              "max": 1.39,
+              "puntos": 0
+            },
+            {
+              "min": 1.4,
+              "max": 1.89,
+              "puntos": 1
+            },
+            {
+              "min": 1.9,
+              "max": 3.59,
+              "puntos": 2
+            },
+            {
+              "min": 3.6,
+              "max": 4.9,
+              "puntos": 3
+            },
+            {
+              "min": 4.91,
+              "puntos": 4
+            }
+          ]
+        },
+        {
+          "id": "cv",
+          "tipo": "opciones",
+          "label": "Cardiovascular: presión arterial sistólica",
+          "ayuda": "Sin soporte inotrópico.",
+          "opciones": [
+            {
+              "label": "PAS >90 mmHg",
+              "puntos": 0
+            },
+            {
+              "label": "<90, responde a líquidos",
+              "puntos": 1
+            },
+            {
+              "label": "<90, no responde a líquidos",
+              "puntos": 2
+            },
+            {
+              "label": "<90 con pH <7,3",
+              "puntos": 3
+            },
+            {
+              "label": "<90 con pH <7,2",
+              "puntos": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 1.5,
+      "max": 3,
+      "categoria": "Falla de varios órganos",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Falla orgánica múltiple: UCI y soporte de órganos. Si dura más de 48 h, la pancreatitis es grave.",
+      "si": {
+        "alguno": [
+          {
+            "todos": [
+              {
+                "id": "resp_puntos",
+                "mayorIgual": 2
+              },
+              {
+                "id": "cr_puntos",
+                "mayorIgual": 2
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "resp_puntos",
+                "mayorIgual": 2
+              },
+              {
+                "id": "cv",
+                "mayorIgual": 2
+              }
+            ]
+          },
+          {
+            "todos": [
+              {
+                "id": "cr_puntos",
+                "mayorIgual": 2
+              },
+              {
+                "id": "cv",
+                "mayorIgual": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "min": 0.5,
+      "max": 1.49,
+      "categoria": "Falla de un órgano",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "UCI si no responde a la reanimación inicial. Si cede en menos de 48 h es moderadamente grave; si dura más, grave.",
+      "si": {
+        "alguno": [
+          {
+            "id": "resp_puntos",
+            "mayorIgual": 2
+          },
+          {
+            "id": "cr_puntos",
+            "mayorIgual": 2
+          },
+          {
+            "id": "cv",
+            "mayorIgual": 2
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0.49,
+      "categoria": "Sin falla orgánica",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Repetir la escala a las 24 h, 48 h y 7 días; sin falla ni complicaciones, la pancreatitis es leve."
+    }
+  ]
+}
