@@ -30,6 +30,8 @@ png seguimiento "$D/pancreatitis_seguimiento.png"
 # Esquemas animados de flujo (GIF)
 gif primeras72 "$D/pancreatitis_primeras72.gif" 30 220 3000 128
 gif escalonado_gif "$D/pancreatitis_escalonado.gif" 30 220 3000 128
+# Animación propia de fisiología (GIF)
+gif calculo_pasa "$D/pancreatitis_calculo_pasa.gif" 72 110 2400 128
 # Recorrido animado sobre TC reales (GIF)
 gif tc_recorrido "$D/pancreatitis_tc_recorrido.gif" 60 330 2600 256
 # Fotos e imágenes diagnósticas reales con licencia libre (fuentes/), recortadas y rotuladas
