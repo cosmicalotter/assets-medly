@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Curso de la lipasa y la amilasa en la pancreatitis aguda (iLATAM-PA 2026, suplemento p. 22).
+const X0 = 150, PX = 34; // 1 día = 34 px; eje de 0 a 15 días
+const dia = d => X0 + d * PX;
+function barra(nombre, color, sube, pico, dura0, dura1, y) {
+  return `<rect x="${dia(sube / 24)}" y="${y}" width="${dia(dura0) - dia(sube / 24)}" height="34" rx="8" fill="${tinte(color, 55)}"/>
+   <rect x="${dia(dura0)}" y="${y}" width="${dia(dura1) - dia(dura0)}" height="34" rx="8" fill="${tinte(color, 22)}" stroke="${color}" stroke-dasharray="5 4"/>
+   <circle cx="${dia(pico / 24)}" cy="${y + 17}" r="9" fill="${color}"/>
+   <text x="${X0 - 14}" y="${y + 23}" text-anchor="end" font-size="19" font-weight="800" fill="${color}">${nombre}</text>`;
+}
+const ejes = Array.from({length: 16}, (_, d) => `<line x1="${dia(d)}" y1="70" x2="${dia(d)}" y2="276" stroke="#E5E7EB"/>` +
+  (d % 2 === 0 ? `<text x="${dia(d)}" y="296" text-anchor="middle" font-size="13" fill="#6B7280">${d}</text>` : "")).join("");
+const svg = `<svg width="668" height="312" viewBox="0 0 668 312">${ejes}
+  <text x="${dia(7.5)}" y="312" text-anchor="middle" font-size="13" fill="#6B7280">días desde el inicio del dolor</text>
+  ${barra("Lipasa", TEAL, 4, 24, 8, 14, 100)}
+  <text x="${dia(1) + 6}" y="92" font-size="13" fill="${TEAL}"><tspan font-weight="800">sube a las 4 h · pico a las 24 h</tspan></text>
+  <text x="${dia(8)}" y="152" font-size="13" fill="${TEAL}" font-weight="700">sigue alta 8-14 días</text>
+  ${barra("Amilasa", AMBAR, 6, 48, 5, 7, 196)}
+  <text x="${dia(2) + 14}" y="188" font-size="13" fill="#B26B10"><tspan font-weight="800">sube a las 6 h · pico a las 48 h</tspan></text>
+  <text x="${dia(5)}" y="248" font-size="13" fill="#B26B10" font-weight="700">sigue alta 5-7 días</text>
+</svg>`;
+lienzo("Cuánto dura alta cada enzima", "La lipasa dura casi el doble: sirve aunque el paciente consulte tarde",
+  `${svg}<div style="display:flex;gap:10px">
+    <div class="caja" style="flex:1;background:${tinte(TEAL, 10)};border:1.5px solid ${tinte(TEAL, 45)}"><b>≥3 veces</b> el límite superior, con dolor típico, confirma la pancreatitis.</div>
+    <div class="caja" style="flex:1;background:#F3F4F6">La cifra <b>no predice la gravedad</b>: no hace falta repetirla.</div></div>`,
+  "Gráfico. Fuente: iLATAM-PA 2026 (suplemento, p. 22); IAP 2025 (p. 777); Atlanta revisada 2012.");
+</script></body></html>

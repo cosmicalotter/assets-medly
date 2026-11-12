@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// La duración de la falla orgánica decide la gravedad (Atlanta revisada 2012, p. 106-108).
+const X0 = 170, PX = 4.4; // 1 h = 4,4 px, eje de 0 a 96 h
+const h = v => X0 + v * PX;
+function barra(y, fin, color, nombre, detalle) {
+  return `<rect x="${h(0)}" y="${y}" width="${h(fin) - h(0)}" height="30" rx="7" fill="${tinte(color, 45)}" stroke="${color}" stroke-width="2"/>
+    <text x="${X0 - 12}" y="${y + 13}" text-anchor="end" font-size="16" font-weight="800" fill="${color}">${nombre}</text>
+    <text x="${X0 - 12}" y="${y + 30}" text-anchor="end" font-size="12" fill="#6B7280">${detalle}</text>`;
+}
+const marcas = [0, 24, 48, 72, 96].map(v => `<line x1="${h(v)}" y1="40" x2="${h(v)}" y2="262" stroke="${v === 48 ? ROJO : "#E5E7EB"}" stroke-width="${v === 48 ? 3 : 1}" ${v === 48 ? 'stroke-dasharray="7 5"' : ""}/>
+  <text x="${h(v)}" y="282" text-anchor="middle" font-size="13" fill="${v === 48 ? ROJO : "#6B7280"}" font-weight="${v === 48 ? 800 : 400}">${v} h</text>`).join("");
+const svg = `<svg width="668" height="300" viewBox="0 0 668 300">${marcas}
+  <text x="${h(48)}" y="30" text-anchor="middle" font-size="13" font-weight="800" fill="${ROJO}">48 h</text>
+  ${barra(60, 0.01, VERDE, "Leve", "sin falla orgánica")}
+  <text x="${h(2)}" y="80" font-size="13" fill="${VERDE}" font-weight="700">ni complicaciones</text>
+  ${barra(130, 30, AMBAR, "Mod. grave", "falla que cede")}
+  ${barra(200, 96, ROJO, "Grave", "falla persistente")}
+</svg>`;
+lienzo("La duración de la falla decide la gravedad", "Falla orgánica: Marshall modificado ≥2 en algún órgano",
+  `${svg}<div class="caja" style="background:#F3F4F6">Mientras la falla no se resuelva, se trata como <b>grave</b>. La forma moderadamente grave incluye también las <b>complicaciones</b> sin falla persistente.</div>`,
+  "Gráfico. Fuente: Atlanta revisada 2012 (p. 106-108); iLATAM-PA 2026.");
+</script></body></html>

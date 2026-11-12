@@ -1,0 +1,16 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Las cuatro fases de los líquidos en la enfermedad aguda (IAP 2025, p. 780).
+const F = [
+  ["Rescate", "Choque: bolos de líquido.", ROJO],
+  ["Optimización", "Mejoró el choque, pero sigue en riesgo: más líquido sólo con cautela.", NARANJA],
+  ["Estabilización", "Estable: sólo el mantenimiento.", AZUL],
+  ["Desescalada", "Sobrecarga: buscar un balance negativo.", VERDE],
+];
+const caja = F.map(([t, d, c], i) => `<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+   <div style="height:${150 - i * 30}px;background:${tinte(c, 30)};border:2px solid ${c};border-radius:10px;margin-top:${i * 30}px;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-size:15px;font-weight:800;color:${c}">${i + 1}</div>
+   <div style="font-size:16px;font-weight:800;color:${c}">${t}</div><div style="font-size:13px;line-height:1.3">${d}</div></div>`).join("");
+lienzo("Los líquidos cambian con la fase", "Cuánto líquido hace falta baja a medida que el paciente se estabiliza",
+  `<div style="display:flex;gap:14px;margin-top:8px">${caja}</div>
+   <div class="caja" style="background:#F3F4F6;font-size:13.5px;margin-top:6px">En la forma <b>grave</b> hay <b>fuga capilar</b>: el exceso se acumula y sube la <b>presión intraabdominal</b>.</div>`,
+  "Gráfico. Fuente: IAP 2025 (p. 780) y recomendación 47.");
+</script></body></html>
