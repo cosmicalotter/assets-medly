@@ -17,8 +17,8 @@ function caja(e, op, ancho) {
 window.cuadro = function (i, n) {
   const t = n > 1 ? i / (n - 1) : 1;
   const op = (a) => 0.18 + 0.82 * suave(tramo(t, a, a + 0.08));
-  const m = suave(tramo(t, 0.05, 0.62));            // marcador sobre la línea
-  const xm = 40 + m * 560;
+  // el marcador avanza con las cajas: 0 min con el bolo, 60-90 min con el ECG, 2-24 h con las ramas
+  const xm = 40 + 195 * suave(tramo(t, 0.2, 0.27)) + 285 * suave(tramo(t, 0.45, 0.52));
   const linea = `<svg width="668" height="64" viewBox="0 0 668 64">
     <line x1="40" y1="30" x2="600" y2="30" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
     <line x1="40" y1="30" x2="${xm}" y2="30" stroke="${TEAL}" stroke-width="6" stroke-linecap="round"/>

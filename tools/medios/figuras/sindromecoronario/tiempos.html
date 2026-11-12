@@ -12,14 +12,14 @@ const marcas = [0, 10, 60, 90, 120].map((m) => `<line x1="${esc(m)}" y1="40" x2=
 const svg = `<svg width="668" height="330" viewBox="0 0 668 330">
   ${marcas}
   <text x="${esc(0)}" y="30" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1F2A37">Diagnóstico por ECG</text>
-  ${fila(75, ROJO, "Centro con ICP", "ICP primaria", 60, "&lt;60 min hasta pasar la guía")}
-  ${fila(145, NARANJA, "Traslado para ICP", "ICP primaria", 90, "&lt;90 min hasta pasar la guía")}
+  ${fila(75, ROJO, "Centro con ICP", "ICP primaria", 60, "&lt;60 min")}
+  ${fila(145, NARANJA, "Traslado para ICP", "ICP primaria", 90, "&lt;90 min")}
   ${fila(215, AMBAR, "Sin ICP en 120 min", "Fibrinólisis", 10, "")}
   <text x="${esc(10) + 10}" y="221" font-size="14" font-weight="800" fill="${AMBAR}">bolo en &lt;10 min y traslado inmediato</text>
   <line x1="${esc(120)}" y1="40" x2="${esc(120)}" y2="290" stroke="${ROJO}" stroke-width="3"/>
   <text x="${esc(120) - 6}" y="275" text-anchor="end" font-size="13" font-weight="800" fill="${ROJO}">límite para elegir la ICP</text>
 </svg>`;
-lienzo("Metas de tiempo en el IAMCEST", "Desde el diagnóstico por ECG hasta la reperfusión, con síntomas de ≤12 h",
+lienzo("Metas de tiempo en el IAMCEST", "Del diagnóstico por ECG a cruzar la guía metálica, con síntomas de ≤12 h",
   svg + `<div class="caja" style="background:#F1F5F9">Si la ICP primaria <b>no llega en 120 min</b>, la fibrinólisis gana: se da el bolo y se traslada sin esperar.</div>`,
   "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), fig. 7, p. 27, y recomendaciones de la p. 31.");
 </script></body></html>

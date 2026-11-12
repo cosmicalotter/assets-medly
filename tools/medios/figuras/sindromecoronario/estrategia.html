@@ -7,9 +7,9 @@ const fila = (c, cuando, quien, crit) => `<div style="display:grid;grid-template
   <ul style="font-size:12.8px;line-height:1.3;margin:0;padding-left:16px;columns:${crit.length > 3 ? 2 : 1};column-gap:18px">${crit.map((x) => `<li>${x}</li>`).join("")}</ul></div>`;
 lienzo("¿Cuándo la angiografía en el SCASEST?", "El riesgo decide el momento; basta un criterio de cada nivel",
   `<div style="display:flex;flex-direction:column;gap:7px">
-    ${fila(ROJO, "Inmediata<br>&lt;2 h", "Muy alto riesgo", ["<b>Choque</b> o inestabilidad", "Dolor <b>refractario</b>", "Falla cardíaca aguda", "Arritmias graves o paro", "Complicación <b>mecánica</b>", "Cambios <b>dinámicos</b> recurrentes"])}
+    ${fila(ROJO, "Inmediata", "Muy alto riesgo: lo antes posible", ["<b>Choque</b> o inestabilidad", "Dolor <b>refractario</b>", "Falla cardíaca aguda", "Arritmias graves o paro", "Complicación <b>mecánica</b>", "Cambios <b>dinámicos</b> recurrentes"])}
     ${fila(NARANJA, "Temprana<br>&lt;24 h", "Alto riesgo", ["IAMSEST <b>confirmado</b>", "Cambios dinámicos del ST o de la T", "Elevación <b>transitoria</b> del ST", "<b>GRACE &gt;140</b>"])}
-    ${fila(AMA, "Durante<br>el ingreso", "Sospecha alta", ["Sin alto riesgo, pero con sospecha alta de <b>angina inestable</b>"])}
+    ${fila(AMA, "Durante la<br>hospitalización", "Sospecha alta", ["Sin alto riesgo, pero con sospecha alta de <b>angina inestable</b>"])}
     ${fila(VERDE, "Selectiva", "Sospecha baja", ["Sin criterios de riesgo: prueba de <b>isquemia</b> con imagen o angio-TC antes de decidir"])}
   </div>`,
   "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), fig. 8, p. 29, y recomendaciones de la p. 31.");

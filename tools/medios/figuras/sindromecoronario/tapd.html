@@ -10,17 +10,17 @@ const ejes = [[0, "0", "end"], [1, "1 mes", "start"], [3, "3 meses", "middle"], 
 const svg = `<svg width="668" height="325" viewBox="0 0 668 325">${ejes}
   ${nombre(40, VERDE, "Sin alto riesgo", "de sangrado")}
   ${barra(40, 0, 12, VERDE, "Aspirina + prasugrel o ticagrelor")}
-  ${barra(80, 3, 12, VERDE, "Sin eventos: un antiagregante", true)}
+  ${barra(80, 3, 12, VERDE, "3-6 meses sin eventos: un antiagregante", true)}
   ${nombre(140, NARANJA, "Alto riesgo", "de sangrado (ARC-HBR)")}
   ${barra(140, 0, 1, NARANJA, "Doble")}
   ${barra(140, 1, 12, NARANJA, "Un antiagregante: aspirina o P2Y12", true)}
   ${nombre(210, MORADO, "Anticoagulación", "oral (FA)")}
   <rect x="${mes(0)}" y="210" width="16" height="34" rx="5" fill="${MORADO}"/>
   <text x="${mes(0) + 22}" y="203" font-size="11.5" font-weight="800" fill="${MORADO}">triple ≤1 semana</text>
-  ${barra(210, 0.4, 12, MORADO, "ACOD + clopidogrel", true)}
+  ${barra(210, 0.4, 12, MORADO, "ACOD (AVK si hay válvula mecánica) + clopidogrel", true)}
   <text x="${mes(12) - 4}" y="268" text-anchor="end" font-size="12" font-weight="800" fill="${MORADO}">desde los 12 meses: sólo el anticoagulante</text>
 </svg>`;
 lienzo("Antiagregación tras el SCA", "Los 12 meses siguientes, según el riesgo de sangrado y la anticoagulación",
-  svg + `<div class="caja" style="background:#F1F5F9">Nunca se <b>desescala</b> en los primeros 30 días; con riesgo digestivo alto, siempre <b>IBP</b>.</div>`,
+  svg + `<div class="caja" style="background:#F1F5F9">Un solo antiagregante a los 3-6 meses sólo sin alto <b>riesgo isquémico</b>. Nunca se <b>desescala</b> en los primeros 30 días; con riesgo digestivo alto, <b>IBP</b>.</div>`,
   "Esquema. Fuente: Guía ESC 2023 de SCA (Eur Heart J 2023;44:3720-3826), recomendaciones de las p. 39-40.");
 </script></body></html>
