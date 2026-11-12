@@ -152,7 +152,11 @@ Firebase directamente, saltándose `indices/`.
   (definiciones, metas, dosis, tablas, discrepancias). No se sustituye por
   fuentes secundarias sin que el usuario lo decida, ni se intenta saltar el
   bloqueo. Lo mismo con la publicación original de una calculadora (o el
-  suplemento con sus coeficientes).
+  suplemento con sus coeficientes). **Si el dueño aporta una guía en el chat**
+  (y no en el repositorio), Claude la sube él mismo a
+  `guias-praxis/<carpeta_evidencia>/` al terminar el trabajo: con nombre
+  descriptivo en ASCII (autor, año, sociedad y tema), en un commit propio y
+  con su push, para que las sesiones siguientes la encuentren ahí.
 - **La portada define.** En el nodo raíz, `titulo` es el nombre del tema y
   `texto` es la lista de definiciones explícitas y técnicas que da la guía de
   cada entidad del algoritmo (`- **Colangitis aguda:** …`): dos a cinco
