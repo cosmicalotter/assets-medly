@@ -50,7 +50,9 @@ Si la publicación original o la guía (o el suplemento con los coeficientes)
 no se puede descargar (de pago, bloqueo anti-bots, sin copia libre), **se le
 pide al usuario al empezar**, antes de construir la escala: que la adjunte
 al chat o la suba a `guias-praxis/`. No se reconstruye desde otra fuente ni
-de memoria, ni se intenta saltar el bloqueo.
+de memoria, ni se intenta saltar el bloqueo. Si la adjunta al chat en vez de
+subirla, súbela tú a `guias-praxis/<carpeta>/` al terminar (nombre
+descriptivo en ASCII, commit propio y push).
 
 ## 3. Elegir el modelo (NORMA §1)
 

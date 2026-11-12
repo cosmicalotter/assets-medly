@@ -51,7 +51,10 @@ referencias.
    bloqueo. Sólo si el usuario no puede conseguirla: **no se escribe
    contenido clínico nuevo** de esa guía; se hace lo que no la necesita
    (lenguaje, enlaces, calculadoras que ya existen, estructura) y se dice
-   en el PR.
+   en el PR. **Si el usuario la adjunta al chat** en vez de subirla al
+   repositorio, súbela tú a `guias-praxis/<carpeta_evidencia>/` al terminar
+   (nombre descriptivo en ASCII, commit propio y push), para que la próxima
+   sesión la encuentre ahí.
 4. Léela con `Read` (parámetro `pages`) por las secciones que tocan al
    algoritmo. Los PDF no se copian nunca dentro de `assets-medly`.
 
