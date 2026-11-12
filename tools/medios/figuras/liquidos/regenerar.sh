@@ -24,8 +24,6 @@ jpg foto_bomba "$D/liquidos_bomba.jpg"
 # Gráficos de datos propios
 gif holliday "$D/liquidos_holliday.gif" 24 420 3500 128
 png composicion "$D/liquidos_composicion.png"
-png neo_volumen "$D/liquidos_neo_volumen.png"
 png glucosa "$D/liquidos_glucosa.png"
 png fases_iv "$D/liquidos_fases_iv.png"
 png neo_peso "$D/liquidos_neo_peso.png"
-png neo_hipona "$D/liquidos_neo_hipona.png"

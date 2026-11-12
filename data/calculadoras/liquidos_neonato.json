@@ -1,7 +1,7 @@
 {
   "titulo": "Líquidos y electrolitos del recién nacido (ESPGHAN)",
   "descripcion": "Da el volumen de líquidos y el sodio, el potasio y el cloro parenterales que recomienda ESPGHAN 2018 para el recién nacido según su madurez y su peso al nacer, día a día en la fase de transición (días 1 a 5), en la fase intermedia y en el crecimiento estable del primer mes, con el volumen diario y la velocidad de la bomba.",
-  "instrucciones": "Elegir el grupo y el momento y escribir el peso. Ajustar después a la clínica: la fototerapia suma 10-20 % del volumen; la asfixia, el distrés respiratorio y la ventilación con gases humidificados restan 10-20 %.",
+  "instrucciones": "Elegir el grupo y el momento y escribir el peso; si escribes el volumen y la dextrosa, calcula la bomba y la glucosa. Ajustar después a la clínica: la fototerapia suma 10-20 % del volumen; la asfixia, el distrés respiratorio y la ventilación con gases humidificados restan 10-20 %.",
   "limitaciones": "Son rangos de opinión de expertos que se adaptan a cada niño. En el prematuro, el sodio puede necesitar hasta 3 mEq/kg/día los días 1-2 y hasta 7 en el de menos de 1500 g; el potasio se difiere si hay oliguria o riesgo de hiperkalemia no oligúrica.",
   "tipoCalculo": "formula",
   "formula": "(ga * va + gb * vb + gc * vc + gd * vd)",
@@ -85,6 +85,20 @@
       "url": "https://doi.org/10.1016/j.clnu.2018.06.948",
       "texto": "the needs of individual patients may deviate markedly from the ranges of recommended fluid intakes depending on clinical circumstances such as fluid retention, dehydration or excessive water losses",
       "paginas": "2345",
+      "anio": "2018"
+    },
+    {
+      "titulo": "ESPGHAN 2018 (carbohidratos): R 5.4: glucosa del recién nacido. Mesotten D, Joosten K, van Kempen A, Verbruggen S; ESPGHAN/ESPEN/ESPR/CSPEN working group on pediatric parenteral nutrition. Guidelines on pediatric parenteral nutrition: Carbohydrates. Clin Nutr 2018;37(6 Pt B):2337-43.",
+      "url": "https://doi.org/10.1016/j.clnu.2018.06.947",
+      "texto": "Day 1 Day 2 onwards Start with Increase gradually over 2-3 days to Preterm newborn 4-8 (5.8-11.5) Target 8-10 (11.5-14.4) Min 4 (5.8); max 12 (17.3)",
+      "paginas": "2338",
+      "anio": "2018"
+    },
+    {
+      "titulo": "ESPGHAN 2018 (carbohidratos): R 5.4: recién nacido a término. Mesotten D, Joosten K, van Kempen A, Verbruggen S; ESPGHAN/ESPEN/ESPR/CSPEN working group on pediatric parenteral nutrition. Guidelines on pediatric parenteral nutrition: Carbohydrates. Clin Nutr 2018;37(6 Pt B):2337-43.",
+      "url": "https://doi.org/10.1016/j.clnu.2018.06.947",
+      "texto": "Term newborn 2.5-5 (3.6-7.2) Target 5-10 (7.2-14.4) Min 2.5 (3.6); max 12 (17.3)",
+      "paginas": "2338",
       "anio": "2018"
     }
   ],
@@ -375,6 +389,45 @@
           ]
         }
       ]
+    },
+    {
+      "nombre": "Lo que vas a dar (opcional)",
+      "elementos": [
+        {
+          "id": "vol",
+          "tipo": "input_numero",
+          "label": "Volumen que vas a dar",
+          "unidad": "mL/kg/día",
+          "min": 20,
+          "max": 250,
+          "ayuda": "Para calcular la bomba y la glucosa de tu mezcla."
+        },
+        {
+          "id": "dextrosa",
+          "tipo": "opciones",
+          "label": "Dextrosa de la mezcla",
+          "opciones": [
+            {
+              "label": "Dextrosa 5 %",
+              "valoresVariables": {
+                "dx": 5
+              }
+            },
+            {
+              "label": "Dextrosa 10 %",
+              "valoresVariables": {
+                "dx": 10
+              }
+            },
+            {
+              "label": "Dextrosa 12,5 %",
+              "valoresVariables": {
+                "dx": 12.5
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "resultados": [
@@ -384,87 +437,192 @@
       "categoria": "Rango recomendado por ESPGHAN",
       "color": "verde",
       "match_opcion_index": -1,
-      "approach": "Empezar por el **mínimo** y subir poco a poco (R 6.3). Ajustar a la fototerapia, la ventilación y las pérdidas, y vigilar a diario el **peso**, la diuresis y los electrolitos. Debe recuperar el peso al nacer a los **7-10 días** (R 6.8)."
+      "approach": "Subir el volumen poco a poco (R 6.3). Ajustar a la fototerapia, la ventilación y las pérdidas, y vigilar a diario el peso, la diuresis y los electrolitos. Debe recuperar el peso al nacer a los 7-10 días (R 6.8)."
     }
   ],
   "extras": [
     {
-      "etiqueta": "Volumen hasta",
+      "etiqueta": "Volumen hasta (tabla de ESPGHAN)",
       "formula": "(ga * wa + gb * wb + gc * wc + gd * wd)",
       "sufijo": "mL/kg/día",
       "decimales": 0
     },
     {
-      "etiqueta": "Al día · desde × peso",
-      "formula": "(ga * va + gb * vb + gc * vc + gd * vd) * peso",
-      "sufijo": "mL/día",
-      "decimales": 0
-    },
-    {
-      "etiqueta": "Al día · hasta × peso",
-      "formula": "(ga * wa + gb * wb + gc * wc + gd * wd) * peso",
-      "sufijo": "mL/día",
-      "decimales": 0
-    },
-    {
-      "etiqueta": "Velocidad · desde × peso ÷ 24 h",
+      "etiqueta": "Bomba, desde = desde × peso ÷ 24 h",
       "formula": "(ga * va + gb * vb + gc * vc + gd * vd) * peso / 24",
       "sufijo": "mL/h",
       "decimales": 1
     },
     {
-      "etiqueta": "Velocidad · hasta × peso ÷ 24 h",
+      "etiqueta": "Bomba, hasta = hasta × peso ÷ 24 h",
       "formula": "(ga * wa + gb * wb + gc * wc + gd * wd) * peso / 24",
       "sufijo": "mL/h",
       "decimales": 1
     },
     {
-      "etiqueta": "Sodio · desde",
+      "etiqueta": "Glucosa con tu volumen = mL/kg/día × dextrosa % × 10 ÷ 1440",
+      "formula": "vol * dx * 10 / 1440",
+      "sufijo": "mg/kg/min",
+      "decimales": 1
+    }
+  ],
+  "calculo": [
+    {
+      "etiqueta": "Volumen desde (tabla de ESPGHAN para el grupo y el momento)",
+      "formula": "(ga * va + gb * vb + gc * vc + gd * vd)",
+      "sufijo": "mL/kg/día",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Volumen hasta (tabla de ESPGHAN)",
+      "formula": "(ga * wa + gb * wb + gc * wc + gd * wd)",
+      "sufijo": "mL/kg/día",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Al día, desde = desde × peso",
+      "formula": "(ga * va + gb * vb + gc * vc + gd * vd) * peso",
+      "sufijo": "mL/día",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Al día, hasta = hasta × peso",
+      "formula": "(ga * wa + gb * wb + gc * wc + gd * wd) * peso",
+      "sufijo": "mL/día",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Bomba, desde = al día ÷ 24 h",
+      "formula": "(ga * va + gb * vb + gc * vc + gd * vd) * peso / 24",
+      "sufijo": "mL/h",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Bomba, hasta = al día ÷ 24 h",
+      "formula": "(ga * wa + gb * wb + gc * wc + gd * wd) * peso / 24",
+      "sufijo": "mL/h",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Sodio desde (tabla de ESPGHAN)",
       "formula": "(ga * sa + gb * sb + (gc + gd) * sc)",
       "sufijo": "mEq/kg/día",
       "decimales": 1
     },
     {
-      "etiqueta": "Sodio · hasta",
+      "etiqueta": "Sodio hasta (tabla de ESPGHAN)",
       "formula": "(ga * ta + gb * tb + (gc + gd) * tc)",
       "sufijo": "mEq/kg/día",
       "decimales": 1
     },
     {
-      "etiqueta": "Potasio · desde",
-      "formula": "(ga * ka + gb * kb + (gc + gd) * kc)",
-      "sufijo": "mEq/kg/día",
+      "etiqueta": "Sodio al día = desde × peso",
+      "formula": "(ga * sa + gb * sb + (gc + gd) * sc) * peso",
+      "sufijo": "mEq/día",
       "decimales": 1
     },
     {
-      "etiqueta": "Potasio · hasta",
-      "formula": "(ga * la + gb * lb + (gc + gd) * lc)",
-      "sufijo": "mEq/kg/día",
-      "decimales": 1
-    },
-    {
-      "etiqueta": "Cloro · desde",
-      "formula": "(ga * ca + gb * cb + (gc + gd) * cc)",
-      "sufijo": "mEq/kg/día",
-      "decimales": 1
-    },
-    {
-      "etiqueta": "Cloro · hasta",
-      "formula": "(ga * da + gb * db + (gc + gd) * dc)",
-      "sufijo": "mEq/kg/día",
-      "decimales": 1
-    },
-    {
-      "etiqueta": "Sodio al día · hasta × peso",
+      "etiqueta": "Sodio al día = hasta × peso",
       "formula": "(ga * ta + gb * tb + (gc + gd) * tc) * peso",
       "sufijo": "mEq/día",
       "decimales": 1
     },
     {
-      "etiqueta": "Potasio al día · hasta × peso",
+      "etiqueta": "Potasio desde (tabla de ESPGHAN)",
+      "formula": "(ga * ka + gb * kb + (gc + gd) * kc)",
+      "sufijo": "mEq/kg/día",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Potasio hasta (tabla de ESPGHAN)",
+      "formula": "(ga * la + gb * lb + (gc + gd) * lc)",
+      "sufijo": "mEq/kg/día",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Potasio al día = hasta × peso",
       "formula": "(ga * la + gb * lb + (gc + gd) * lc) * peso",
       "sufijo": "mEq/día",
       "decimales": 1
+    },
+    {
+      "etiqueta": "Cloro desde (tabla de ESPGHAN)",
+      "formula": "(ga * ca + gb * cb + (gc + gd) * cc)",
+      "sufijo": "mEq/kg/día",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Cloro hasta (tabla de ESPGHAN)",
+      "formula": "(ga * da + gb * db + (gc + gd) * dc)",
+      "sufijo": "mEq/kg/día",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Cloro al día = hasta × peso",
+      "formula": "(ga * da + gb * db + (gc + gd) * dc) * peso",
+      "sufijo": "mEq/día",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Tu volumen al día = mL/kg/día × peso",
+      "formula": "vol * peso",
+      "sufijo": "mL/día",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Tu bomba = tu volumen al día ÷ 24 h",
+      "formula": "vol * peso / 24",
+      "sufijo": "mL/h",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Glucosa = mL/kg/día × dextrosa % × 10 ÷ 1440",
+      "formula": "vol * dx * 10 / 1440",
+      "sufijo": "mg/kg/min",
+      "decimales": 1
     }
-  ]
+  ],
+  "bolsa": {
+    "titulo": "Líquidos del día del recién nacido",
+    "volumen": "vol * peso",
+    "velocidad": "vol * peso / 24",
+    "por_kg": "vol",
+    "unidad_por_kg": "mL/kg/día",
+    "rotulo": "dextrosa",
+    "aportes": [
+      {
+        "etiqueta": "Glucosa",
+        "formula": "vol * dx * 10 / 1440",
+        "sufijo": "mg/kg/min",
+        "decimales": 1,
+        "color": "verde"
+      },
+      {
+        "etiqueta": "Volumen desde (ESPGHAN)",
+        "formula": "(ga * va + gb * vb + gc * vc + gd * vd)",
+        "sufijo": "mL/kg/día",
+        "color": "azul"
+      },
+      {
+        "etiqueta": "Volumen hasta (ESPGHAN)",
+        "formula": "(ga * wa + gb * wb + gc * wc + gd * wd)",
+        "sufijo": "mL/kg/día",
+        "color": "azul"
+      },
+      {
+        "etiqueta": "Sodio (ESPGHAN), hasta",
+        "formula": "(ga * ta + gb * tb + (gc + gd) * tc)",
+        "sufijo": "mEq/kg/día",
+        "decimales": 1,
+        "color": "teal"
+      },
+      {
+        "etiqueta": "Potasio (ESPGHAN), hasta",
+        "formula": "(ga * la + gb * lb + (gc + gd) * lc)",
+        "sufijo": "mEq/kg/día",
+        "decimales": 1,
+        "color": "morado"
+      }
+    ]
+  }
 }

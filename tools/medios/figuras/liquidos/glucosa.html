@@ -1,6 +1,6 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // Glucosa IV por peso y fase: ESPGHAN 2018 (carbohidratos), R 5.6.
-const F = [["Aguda", ROJO], ["Estable", AMBAR], ["Recuperación", VERDE]];
+const F = [["aguda", ROJO], ["estable", AMBAR], ["de recuperación", VERDE]];
 const P = [["28 días a 10 kg", [[2, 4], [4, 6], [6, 10]]], ["11 a 30 kg", [[1.5, 2.5], [2, 4], [3, 6]]],
            ["31 a 45 kg", [[1, 1.5], [1.5, 3], [3, 4]]], ["Más de 45 kg", [[0.5, 1], [1, 2], [2, 3]]]];
 const X0 = 150, W = 480, VM = 10, xv = (v) => X0 + (v / VM) * W, FILA = 74;
@@ -16,7 +16,7 @@ P.forEach(([n, r], i) => {
   });
 });
 s += `</svg>`;
-const ley = `<div style="display:flex;gap:8px">${F.map(([n, c]) => `<div class="item" style="background:${tinte(c, 14)};display:flex;gap:6px;align-items:center"><span style="width:11px;height:11px;border-radius:3px;background:${c}"></span><span>Fase <b>${n.toLowerCase()}</b></span></div>`).join("")}</div>`;
+const ley = `<div style="display:flex;gap:8px">${F.map(([n, c]) => `<div class="item" style="background:${tinte(c, 14)};display:flex;gap:6px;align-items:center"><span style="width:11px;height:11px;border-radius:3px;background:${c}"></span><span>Fase <b>${n}</b></span></div>`).join("")}</div>`;
 lienzo("Glucosa IV según el peso y la fase", "En mg/kg/min; cuanto más pesa y más grave está, menos glucosa por kilo",
   s + ley, "Datos: ESPGHAN 2018 (carbohidratos), R 5.6. Elaboración de Empirica.");
 </script></body></html>
