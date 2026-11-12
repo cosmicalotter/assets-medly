@@ -1,0 +1,318 @@
+{
+  "titulo": "Estrategia invasiva en el SCASEST (ESC 2023)",
+  "descripcion": "Decide cuándo llevar a angiografía al paciente con síndrome coronario agudo sin elevación del ST, según los criterios de riesgo de la guía ESC 2023: inmediata (<2 h), temprana (<24 h), durante el ingreso o selectiva. Se aplica tras el ECG y el algoritmo de troponina de alta sensibilidad, y apoya la elección del momento y del centro.",
+  "instrucciones": "Marca primero los criterios de muy alto riesgo: basta uno. Si no hay ninguno, los de alto riesgo. Calcula antes el GRACE si no lo tienes.",
+  "limitaciones": "No aplica a la elevación persistente del ST ni a sus equivalentes, que van a reperfusión inmediata. La sospecha de angina inestable la juzga el clínico con la historia y las pruebas.",
+  "tipoCalculo": "formula",
+  "formula": "(1 - (1 - v_choque) * (1 - v_dolor) * (1 - v_falla) * (1 - v_arritmia) * (1 - v_mecanica) * (1 - v_st)) * 3 + (1 - (1 - (1 - v_choque) * (1 - v_dolor) * (1 - v_falla) * (1 - v_arritmia) * (1 - v_mecanica) * (1 - v_st))) * ((1 - (1 - a_iamsest) * (1 - a_dinamicos) * (1 - a_transitoria) * (1 - a_grace)) * 2 + (1 - (1 - (1 - a_iamsest) * (1 - a_dinamicos) * (1 - a_transitoria) * (1 - a_grace))) * s_sospecha)",
+  "mostrarPuntaje": false,
+  "prefijoResultado": "Estrategia",
+  "referencias": [
+    {
+      "titulo": "Byrne RA, Rossello X, Coughlan JJ, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44(38):3720-3826.",
+      "url": "https://academic.oup.com/eurheartj/article-pdf/44/38/3720/56728087/ehad191.pdf#page=31",
+      "paginas": "31",
+      "texto": "An immediate invasive strategy is recommended in patients with a working diagnosis of NSTE-ACS and with at least one of the following very high-risk criteria"
+    },
+    {
+      "titulo": "Byrne RA, Rossello X, Coughlan JJ, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44(38):3720-3826. Alto riesgo.",
+      "url": "https://academic.oup.com/eurheartj/article-pdf/44/38/3720/56728087/ehad191.pdf#page=31",
+      "paginas": "31",
+      "texto": "An early invasive strategy within 24 h should be considered in patients with at least one of the following high-risk criteria"
+    },
+    {
+      "titulo": "Byrne RA, Rossello X, Coughlan JJ, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44(38):3720-3826. Durante el ingreso.",
+      "url": "https://academic.oup.com/eurheartj/article-pdf/44/38/3720/56728087/ehad191.pdf#page=31",
+      "paginas": "31",
+      "texto": "An invasive strategy during hospital admission is recommended in NSTE-ACS patients with high-risk criteria or a high index of suspicion for unstable angina."
+    },
+    {
+      "titulo": "Byrne RA, Rossello X, Coughlan JJ, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44(38):3720-3826. Selectiva.",
+      "url": "https://academic.oup.com/eurheartj/article-pdf/44/38/3720/56728087/ehad191.pdf#page=31",
+      "paginas": "31",
+      "texto": "A selective invasive approach is recommended in patients without very high- or high-risk NSTE-ACS criteria and with a low index of suspicion for NSTE-ACS."
+    },
+    {
+      "titulo": "Byrne RA, Rossello X, Coughlan JJ, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. Eur Heart J 2023;44(38):3720-3826. Figura 8.",
+      "url": "https://academic.oup.com/eurheartj/article-pdf/44/38/3720/56728087/ehad191.pdf#page=29",
+      "paginas": "29",
+      "texto": "Haemodynamic instability or cardiogenic shock Recurrent or ongoing chest pain refractory to medical treatment Acute heart failure presumed secondary to ongoing myocardial ischaemia"
+    }
+  ],
+  "secciones": [
+    {
+      "titulo": "Muy alto riesgo (basta uno)",
+      "elementos": [
+        {
+          "id": "v_choque",
+          "tipo": "opciones",
+          "label": "Inestabilidad hemodinámica o choque cardiogénico",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "v_dolor",
+          "tipo": "opciones",
+          "label": "Dolor: recurrente o refractario al tratamiento médico",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "v_falla",
+          "tipo": "opciones",
+          "label": "Falla cardíaca aguda por isquemia en curso",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "v_arritmia",
+          "tipo": "opciones",
+          "label": "Arritmia: que amenaza la vida o paro tras llegar",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "v_mecanica",
+          "tipo": "opciones",
+          "label": "Complicación mecánica del infarto",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "v_st",
+          "tipo": "opciones",
+          "label": "ECG: cambios dinámicos recurrentes",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Cambios del ECG que sugieren isquemia y se repiten, sobre todo la elevación intermitente del ST."
+        }
+      ]
+    },
+    {
+      "titulo": "Alto riesgo (basta uno)",
+      "elementos": [
+        {
+          "id": "a_iamsest",
+          "tipo": "opciones",
+          "label": "IAMSEST confirmado con la troponina",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Confirmado con el algoritmo 0 h/1 h o 0 h/2 h de la ESC."
+        },
+        {
+          "id": "a_dinamicos",
+          "tipo": "opciones",
+          "label": "Cambios dinámicos del ST o de la T",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "a_transitoria",
+          "tipo": "opciones",
+          "label": "Elevación transitoria del ST",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ]
+        },
+        {
+          "id": "a_grace",
+          "tipo": "opciones",
+          "label": "GRACE mayor de 140",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Calcúlalo con la calculadora GRACE."
+        }
+      ]
+    },
+    {
+      "titulo": "Sin criterios de riesgo",
+      "elementos": [
+        {
+          "id": "s_sospecha",
+          "tipo": "opciones",
+          "label": "Sospecha alta de angina inestable",
+          "opciones": [
+            {
+              "label": "No",
+              "puntos": 0
+            },
+            {
+              "label": "Sí",
+              "puntos": 1
+            }
+          ],
+          "ayuda": "Por la historia, el ECG y las pruebas: si la sospecha es baja, la estrategia es selectiva."
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 3,
+      "max": 3,
+      "categoria": "Inmediata (<2 h)",
+      "color": "rojo",
+      "match_opcion_index": 0,
+      "approach": "Hacer la angiografía en **menos de 2 h**; si está en un centro sin ICP, **trasladar de inmediato**.",
+      "si": {
+        "alguno": [
+          {
+            "id": "v_choque",
+            "igual": 1
+          },
+          {
+            "id": "v_dolor",
+            "igual": 1
+          },
+          {
+            "id": "v_falla",
+            "igual": 1
+          },
+          {
+            "id": "v_arritmia",
+            "igual": 1
+          },
+          {
+            "id": "v_mecanica",
+            "igual": 1
+          },
+          {
+            "id": "v_st",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 2,
+      "max": 2,
+      "categoria": "Temprana (<24 h)",
+      "color": "naranja",
+      "match_opcion_index": 1,
+      "approach": "Hacer la angiografía en las primeras **24 h**; trasladar pronto si el centro no tiene ICP.",
+      "si": {
+        "alguno": [
+          {
+            "id": "a_iamsest",
+            "igual": 1
+          },
+          {
+            "id": "a_dinamicos",
+            "igual": 1
+          },
+          {
+            "id": "a_transitoria",
+            "igual": 1
+          },
+          {
+            "id": "a_grace",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 1,
+      "max": 1,
+      "categoria": "Durante el ingreso",
+      "color": "amarillo",
+      "match_opcion_index": 2,
+      "approach": "Hacer la angiografía **antes del alta**.",
+      "si": {
+        "todos": [
+          {
+            "id": "s_sospecha",
+            "igual": 1
+          }
+        ]
+      }
+    },
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Selectiva",
+      "color": "verde",
+      "match_opcion_index": 3,
+      "approach": "Buscar isquemia con una prueba de imagen o una **angio-TC coronaria** y hacer la angiografía sólo si resulta positiva."
+    }
+  ]
+}
