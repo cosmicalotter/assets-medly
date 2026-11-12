@@ -1,0 +1,34 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Algoritmo YEARS (AHA/ACC 2026, p. e983 y e985): el umbral del dímero D depende de cuántos criterios YEARS hay.
+// GIF: se encienden los criterios, el umbral que toca y un marcador recorre el dímero D de 0 a 1.500 µg/L.
+const CRIT = ["Signos clínicos de <b>TVP</b>", "<b>Hemoptisis</b>", "TEP como el diagnóstico <b>más probable</b>"];
+const X0 = 60, X1 = 620, MAX = 1500, px = (v) => X0 + (X1 - X0) * v / MAX;
+function barra(umbral, col, v) {
+  return `<rect x="${X0}" y="0" width="${px(umbral) - X0}" height="30" rx="8" fill="${tinte(VERDE, 30)}"/>
+    <rect x="${px(umbral)}" y="0" width="${X1 - px(umbral)}" height="30" rx="8" fill="${tinte(NARANJA, 30)}"/>
+    <line x1="${px(umbral)}" y1="-6" x2="${px(umbral)}" y2="36" stroke="${col}" stroke-width="4"/>
+    <text x="${px(umbral)}" y="52" text-anchor="middle" font-size="14" font-weight="800" fill="${col}">${umbral === 1000 ? "1.000" : "500"} µg/L</text>
+    <text x="${(X0 + px(umbral)) / 2}" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">Se descarta</text>
+    <text x="${(px(umbral) + X1) / 2}" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#9A3412">Angio-TC</text>
+    <circle cx="${px(v)}" cy="15" r="9" fill="#fff" stroke="${TINTA}" stroke-width="4"/>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const opC = (k) => 0.25 + 0.75 * suave(tramo(t, 0.04 + k * 0.06, 0.1 + k * 0.06));
+  const op0 = 0.25 + 0.75 * suave(tramo(t, 0.25, 0.32)), op1 = 0.25 + 0.75 * suave(tramo(t, 0.32, 0.39));
+  const v = 1450 * suave(tramo(t, 0.42, 0.95));
+  const vs = Math.round(v / 10) * 10;
+  const leyenda = (u) => t <= 0.42 ? "" : (v < u ? `<b style="color:#166534">${vs.toLocaleString("es-CO")} µg/L: se descarta</b>` : `<b style="color:#9A3412">${vs.toLocaleString("es-CO")} µg/L: angio-TC</b>`);
+  lienzo("Algoritmo YEARS con el dímero D", "Sin criterios, el umbral es más alto: menos angio-TC",
+    `<div style="display:flex;gap:10px">${CRIT.map((c, k) => `<div class="caja" style="flex:1;opacity:${opC(k)};background:${tinte(AZUL, 12)};border:2px solid ${AZUL}">${k + 1}. ${c}</div>`).join("")}</div>
+     <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
+       <div style="font-size:15px;opacity:${op0}"><b style="color:${AZUL}">Ningún criterio</b> → umbral de <b>1.000 µg/L</b> · ${leyenda(1000)}</div>
+       <svg width="668" height="64" viewBox="0 -8 668 64" style="opacity:${op0}">${barra(1000, AZUL, v)}</svg>
+       <div style="font-size:15px;opacity:${op1}"><b style="color:${MORADO}">Uno o más criterios</b> → umbral de <b>500 µg/L</b> · ${leyenda(500)}</div>
+       <svg width="668" height="64" viewBox="0 -8 668 64" style="opacity:${op1}">${barra(500, MORADO, v)}</svg>
+     </div>
+     <div class="caja" style="background:#F7F8FA">Con <b>más de 50 años</b>, la alternativa es el umbral ajustado: <b>edad × 10 µg/L</b>. Con probabilidad clínica <b>alta</b>, angio-TC directa.</div>`,
+    "Fuente: Guía AHA/ACC 2026 del TEP agudo, p. e983 (recomendaciones 2 y 3) y p. e985. Esquema de Empirica.");
+};
+window.cuadro(0, 1);
+</script></body></html>

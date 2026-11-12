@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquemas de alteplasa en el TEP (ESC/ERS 2019, tabla 10, p. 28; AHA/ACC 2026, p. e1013).
+const E = [
+  { c: ROJO, tit: "Esquema habitual", dosis: "100 mg", min: 120, txt: "En infusión IV durante <b>2 h</b>" },
+  { c: MORADO, tit: "Paro o inestabilidad extrema", dosis: "0,6 mg/kg (máx. 50 mg)", min: 15, txt: "En <b>15 min</b>: esquema acelerado" },
+  { c: AZUL, tit: "Dosis baja (2b)", dosis: "25-50 mg", min: 0, txt: "Puede ser igual de eficaz y <b>sangrar menos</b>; el ritmo varía entre estudios" },
+];
+const W = 430, px = (m) => W * m / 120;
+lienzo("Alteplasa en el TEP", "Dosis y tiempo de cada esquema",
+  `<div style="display:flex;flex-direction:column;gap:12px">${E.map((e) => `<div style="display:flex;align-items:center;gap:12px">
+     <div style="width:190px"><b style="color:${e.c}">${e.tit}</b><div style="font-size:20px;font-weight:900">${e.dosis}</div></div>
+     <div><svg width="${W + 10}" height="28"><rect x="0" y="4" width="${W}" height="20" rx="10" fill="#EEF2F6"/><rect x="0" y="4" width="${px(e.min)}" height="20" rx="10" fill="${e.c}"/></svg>
+       <div style="font-size:13px">${e.txt}</div></div></div>`).join("")}
+     <svg width="668" height="26"><text x="202" y="18" font-size="12" fill="#64748B">0 min</text><text x="${202 + px(15) + 10}" y="18" font-size="12" fill="#64748B">15 min</text><text x="${202 + W - 44}" y="18" font-size="12" fill="#64748B">120 min</text></svg>
+   </div>
+   <div class="caja" style="background:${tinte(ROJO, 8)};border:2px solid ${tinte(ROJO, 50)}">Antes de darla, revisar las <b>contraindicaciones</b>: el riesgo es la <b>hemorragia intracraneal</b>.</div>`,
+  "Fuente: Guía ESC/ERS 2019 del TEP, tabla 10 (p. 28); AHA/ACC 2026, p. e1013. Esquema de Empirica.");
+</script></body></html>

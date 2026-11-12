@@ -1,0 +1,55 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología (esquema propio en eje corto): el TEP sube la poscarga del VD, el VD se dilata y empuja el
+// tabique hacia el VI (forma de D), el VI se llena menos y cae el gasto; el exceso de líquidos distiende más el VD y
+// empeora la interdependencia (ESC/ERS 2019, p. 9 y tabla 9, p. 25; AHA/ACC 2026, p. e1007).
+const CX = 330, CY = 165;
+function vi(f, r) {                           // contorno del VI: f = cuánto se aplana el lado del tabique (0-1)
+  let d = "";
+  for (let k = 0; k <= 72; k++) {
+    const a = (k / 72) * 2 * Math.PI, c = Math.cos(a), s = Math.sin(a);
+    const x = CX + r * c * (c < 0 ? 1 - f * Math.abs(c) * 0.9 : 1), y = CY + r * s;
+    d += (k ? " L" : "M") + x.toFixed(1) + "," + y.toFixed(1);
+  }
+  return d + " Z";
+}
+function vd(dil) {                            // VD en media luna a la izquierda: dil = dilatación (0-1)
+  const rx = 72 + 58 * dil, ry = 96 + 22 * dil, cx = CX - 30 - 34 * dil;
+  // los extremos se apoyan en la pared del VI y el cierre pasa por dentro del VI (que se dibuja encima)
+  const pared = `M${CX - 20},${CY - 74} C${cx - rx * 0.4},${CY - ry} ${cx - rx},${CY - ry * 0.6} ${cx - rx},${CY}
+          C${cx - rx},${CY + ry * 0.6} ${cx - rx * 0.4},${CY + ry} ${CX - 20},${CY + 74}`;
+  return `<path d="${pared} L${CX + 20},${CY + 74} L${CX + 20},${CY - 74} Z" fill="#BFDBFE"/><path d="${pared}" fill="none" stroke="#E9A0A0" stroke-width="8" stroke-linecap="round"/>`;
+}
+const ETAPAS = [
+  { t: 0.0, dil: 0, f: 0, gasto: 1, tit: "Normal", txt: "VD en <b>media luna</b>; VI redondo" },
+  { t: 0.3, dil: 0.55, f: 0.55, gasto: 0.62, tit: "TEP", txt: "Sube la <b>poscarga</b>: el VD se dilata y el tabique se <b>aplana</b>" },
+  { t: 0.62, dil: 1, f: 0.95, gasto: 0.32, tit: "Exceso de líquidos", txt: "El VD se <b>distiende</b> más y aplasta al VI" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const u1 = suave(tramo(t, 0.12, 0.3)), u2 = suave(tramo(t, 0.46, 0.62));
+  const dil = lerp(lerp(0, 0.55, u1), 1, u2), f = lerp(lerp(0, 0.55, u1), 0.95, u2), gasto = lerp(lerp(1, 0.62, u1), 0.32, u2);
+  const etapa = t < 0.3 ? 0 : t < 0.62 ? 1 : 2;
+  const latido = 1 - 0.04 * (0.5 - 0.5 * Math.cos(2 * Math.PI * 5 * t));
+  const rOut = 78 * latido, rIn = 54 * latido;
+  const svg = `<svg width="668" height="320" viewBox="0 0 668 320">
+    ${vd(dil)}
+    <path d="${vi(f, rOut)}" fill="#E9A0A0"/>
+    <path d="${vi(f * 1.02, rIn)}" fill="#FECACA"/>
+    <text x="${CX - 70 - 60 * dil}" y="${CY + 6}" text-anchor="middle" font-size="18" font-weight="800" fill="#1E3A8A">VD</text>
+    <text x="${CX + 8 + 10 * f}" y="${CY + 6}" text-anchor="middle" font-size="18" font-weight="800" fill="#991B1B">VI</text>
+    <g opacity="${suave(tramo(t, 0.22, 0.3))}"><text x="${CX - 26}" y="${CY - 104}" text-anchor="middle" font-size="13" font-weight="800" fill="${ROJO}">Tabique aplanado: forma de D</text></g>
+    <g opacity="${u2}">${flecha(30, CY, 126, CY, AZUL, 6, 16)}<text x="78" y="${CY - 16}" text-anchor="middle" font-size="13" font-weight="800" fill="${AZUL}">Más volumen</text></g>
+    <g transform="translate(560,40)">
+      <text x="30" y="-12" text-anchor="middle" font-size="13" font-weight="800" fill="${TINTA}">Gasto del VI</text>
+      <rect x="10" y="0" width="40" height="220" rx="10" fill="#EEF2F6"/>
+      <rect x="10" y="${220 - 220 * gasto}" width="40" height="${220 * gasto}" rx="10" fill="${gasto > 0.7 ? VERDE : gasto > 0.45 ? AMBAR : ROJO}"/>
+      <text x="30" y="246" text-anchor="middle" font-size="13" font-weight="700" fill="${gasto > 0.45 ? "#64748B" : ROJO}">${gasto > 0.7 ? "Normal" : gasto > 0.45 ? "Baja" : "Cae: hipotensión"}</text>
+    </g>
+  </svg>`;
+  lienzo("Por qué el VD falla en el TEP grave", "Eje corto de los ventrículos: interdependencia",
+    `${svg}<div style="display:flex;gap:6px">${ETAPAS.map((e, k) => `<div class="item" style="flex:1;background:${k === etapa ? tinte(MORADO, 14) : "#F3F4F6"};outline:${k === etapa ? `2px solid ${MORADO}` : "none"};color:${k === etapa ? TINTA : "#6B7280"}"><b>${e.tit}:</b> ${e.txt}</div>`).join("")}</div>
+     <div style="font-size:12.5px;color:#475569">Por eso, líquidos sólo si la precarga es baja y con cautela: <b>≤500 mL</b>.</div>`,
+    "Esquema de Empirica. Fuente: Guía ESC/ERS 2019 del TEP, p. 9 y tabla 9 (p. 25); AHA/ACC 2026, p. e1007.");
+};
+window.cuadro(0, 1);
+</script></body></html>

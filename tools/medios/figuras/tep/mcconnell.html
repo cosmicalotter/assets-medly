@@ -1,0 +1,54 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología (esquema propio de un eco apical de cuatro cámaras): en el TEP con sobrecarga del VD,
+// el VD es más grande que el VI, su pared libre casi no se mueve mientras el ápex sí se contrae (signo de McConnell)
+// y el tabique se desplaza hacia el VI (AHA/ACC 2026, p. e986; ESC/ERS 2019, p. 9 y 17; corrección de la tabla 4).
+const MIO = "#9CA3AF", CAV = "#0B0F19";
+// contorno de una cavidad con contracción por segmentos: puntos base y cuánto se mueven hacia el centro
+function cavidad(pts, centro, sis, peso) {
+  return "M" + pts.map(([x, y], k) => {
+    const w = peso[k] * sis;
+    return `${(x + (centro[0] - x) * w).toFixed(1)},${(y + (centro[1] - y) * w).toFixed(1)}`;
+  }).join(" L") + " Z";
+}
+// VD (a la izquierda de la pantalla): ápex arriba, pared libre a la izquierda, tabique a la derecha
+const VD = [[322, 70], [300, 82], [268, 112], [240, 152], [226, 196], [230, 236], [300, 244], [340, 236], [348, 196], [348, 150], [342, 104]];
+const PESO_VD = [0.32, 0.3, 0.05, 0.03, 0.03, 0.02, 0.06, 0.04, 0.03, 0.06, 0.18];    // ápex sí, pared libre casi nada
+const VI = [[350, 70], [372, 92], [394, 130], [404, 176], [402, 222], [382, 240], [362, 240], [356, 200], [362, 150], [356, 104]];
+const PESO_VI = [0.15, 0.22, 0.22, 0.2, 0.18, 0.1, 0.06, 0.05, 0.05, 0.08];
+const PASOS = ["El <b>VD</b> es más grande que el VI (VD/VI <b>>0,9</b>)", "La <b>pared libre</b> del VD casi no se mueve",
+  "El <b>ápex</b> del VD sí se contrae: <b>signo de McConnell</b>", "El <b>tabique</b> se desplaza hacia el VI"];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const sis = 0.5 - 0.5 * Math.cos(2 * Math.PI * 4 * t);          // cuatro latidos
+  const paso = Math.min(3, Math.floor(t * 4));
+  const resalta = (k) => paso === k ? 1 : 0;
+  const vd = cavidad(VD, [300, 170], sis, PESO_VD), vi = cavidad(VI, [380, 165], sis, PESO_VI);
+  const svg = `<svg width="668" height="330" viewBox="60 0 548 330">
+    <defs><clipPath id="sector"><path d="M334,10 L120,300 A270,270 0 0 0 548,300 Z"/></clipPath></defs>
+    <path d="M334,10 L120,300 A270,270 0 0 0 548,300 Z" fill="#111827"/>
+    <g clip-path="url(#sector)">
+      <path d="M334,40 C250,60 200,150 205,250 L465,250 C470,150 420,60 334,40Z" fill="${MIO}" opacity=".9"/>
+      <path d="${vd}" fill="${CAV}"/><path d="${vi}" fill="${CAV}"/>
+      <ellipse cx="282" cy="282" rx="52" ry="30" fill="${CAV}" stroke="${MIO}" stroke-width="10"/>
+      <ellipse cx="392" cy="280" rx="44" ry="28" fill="${CAV}" stroke="${MIO}" stroke-width="10"/>
+    </g>
+    <g font-size="15" font-weight="800" fill="#E5E7EB">
+      <text x="282" y="180" text-anchor="middle">VD</text><text x="382" y="180" text-anchor="middle">VI</text>
+      <text x="282" y="287" text-anchor="middle" font-size="12">AD</text><text x="392" y="285" text-anchor="middle" font-size="12">AI</text>
+    </g>
+    <g opacity="${resalta(0)}"><line x1="230" y1="205" x2="346" y2="205" stroke="#F472B6" stroke-width="4"/><line x1="360" y1="205" x2="402" y2="205" stroke="#22D3EE" stroke-width="4"/>
+      <text x="288" y="225" text-anchor="middle" font-size="13" font-weight="800" fill="#F472B6">VD</text><text x="381" y="225" text-anchor="middle" font-size="13" font-weight="800" fill="#22D3EE">VI</text></g>
+    <g opacity="${resalta(1)}"><path d="M298,80 C258,108 232,150 222,200 L228,240" fill="none" stroke="${AMBAR}" stroke-width="6" stroke-dasharray="9 6" stroke-linecap="round"/>
+      <text x="200" y="130" text-anchor="end" font-size="14" font-weight="800" fill="${AMBAR}">Pared libre quieta</text></g>
+    <g opacity="${resalta(2)}"><circle cx="318" cy="76" r="22" fill="none" stroke="${VERDE}" stroke-width="5"/>
+      <text x="290" y="48" text-anchor="end" font-size="14" font-weight="800" fill="#4ADE80">Ápex que se contrae</text></g>
+    <g opacity="${resalta(3)}"><path d="M346,100 C362,150 362,200 346,238" fill="none" stroke="#F472B6" stroke-width="6" stroke-linecap="round"/>
+      ${flecha(352, 168, 384, 168, "#F472B6", 4, 12)}
+      <text x="470" y="140" font-size="14" font-weight="800" fill="#F472B6">Tabique hacia el VI</text></g>
+  </svg>`;
+  lienzo("Signo de McConnell en el eco", "Esquema de un eco apical de cuatro cámaras en el TEP",
+    `${svg}<div style="display:flex;gap:6px">${PASOS.map((p, k) => `<div class="item" style="flex:1;background:${k === paso ? tinte(TEAL, 14) : "#F3F4F6"};outline:${k === paso ? `2px solid ${TEAL}` : "none"};color:${k === paso ? TINTA : "#6B7280"}"><b>${k + 1}.</b> ${p}</div>`).join("")}</div>`,
+    "Esquema de Empirica. Fuente: Guía AHA/ACC 2026 del TEP, p. e986 y tabla 4 corregida (Circulation 2026;154:e24); ESC/ERS 2019, p. 9 y 17.");
+};
+window.cuadro(0, 1);
+</script></body></html>

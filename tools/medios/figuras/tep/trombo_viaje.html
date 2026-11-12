@@ -1,0 +1,71 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología (esquema propio): el trombo se forma en las venas profundas de la pierna, sube por la
+// vena cava, cruza el corazón derecho y se enclava en la arteria pulmonar; el pulmón que irrigaba deja de
+// perfundirse y el VD se sobrecarga (ESC/ERS 2019: TVP en el 30-50 % de los TEP, p. 17; fisiopatología, p. 9).
+const VENA = "#4F8CF6", ARTP = "#6366F1", PULMON = "#FBD5D5", PULMON_B = "#E8A0A0", TROMBO = "#7F1D1D";
+// recorrido del trombo (coordenadas del esquema)
+const RUTA = [[70, 338], [180, 338], [262, 338], [290, 322], [290, 290], [290, 258], [318, 262], [344, 266], [342, 232], [336, 196], [332, 168], [300, 150], [262, 143], [236, 140]];
+const L = RUTA.slice(1).map((p, k) => Math.hypot(p[0] - RUTA[k][0], p[1] - RUTA[k][1]));
+const TOT = L.reduce((a, b) => a + b, 0);
+function punto(u) {                       // posición a lo largo de la ruta (0-1)
+  let d = u * TOT;
+  for (let k = 0; k < L.length; k++) { if (d <= L[k]) { const f = d / L[k]; return [lerp(RUTA[k][0], RUTA[k + 1][0], f), lerp(RUTA[k][1], RUTA[k + 1][1], f)]; } d -= L[k]; }
+  return RUTA[RUTA.length - 1];
+}
+const camino = (pts) => "M" + pts.map((p) => p.join(",")).join(" L");
+const PASOS = ["Se forma en las <b>venas profundas</b> de la pierna", "Se suelta y sube por la <b>vena cava</b>",
+  "Cruza la aurícula y el <b>VD</b>", "Tapa la <b>arteria pulmonar</b>: el pulmón no se perfunde y el VD se sobrecarga"];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const crece = suave(tramo(t, 0.02, 0.16));
+  const viaje = suave(tramo(t, 0.2, 0.7));
+  const isquemia = suave(tramo(t, 0.72, 0.86));
+  const paso = t < 0.2 ? 0 : t < 0.47 ? 1 : t < 0.7 ? 2 : 3;
+  const [tx, ty] = t < 0.2 ? RUTA[0] : punto(viaje);
+  const rt = 3 + 7 * crece;
+  const rv = 34 + 9 * isquemia;           // el VD se dilata cuando el trombo se enclava
+  // gotas de flujo venoso (se detienen más allá del trombo cuando se enclava)
+  let gotas = "";
+  for (let k = 0; k < 14; k++) {
+    const u = ((k / 14) + t * 1.6) % 1;
+    const [x, y] = punto(u);
+    const tapada = isquemia > 0.2 && u > 0.93;
+    if (!tapada) gotas += `<circle cx="${x}" cy="${y}" r="3" fill="#fff" opacity=".85"/>`;
+  }
+  const arterias = (lado) => {
+    const s = lado === "d" ? -1 : 1, x0 = 335 + s * 100;
+    return [[335, 160, x0, 142], [x0, 142, x0 + s * 45, 92], [x0, 142, x0 + s * 52, 170], [x0, 142, x0 + s * 20, 200], [x0 + s * 45, 92, x0 + s * 62, 60]]
+      .map(([a, b, c, d]) => `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${lado === "d" && isquemia > 0 ? `color-mix(in srgb, ${ARTP} ${100 - 60 * isquemia}%, #CBD5E1)` : ARTP}" stroke-width="${a === 335 ? 12 : 6}" stroke-linecap="round"/>`).join("");
+  };
+  const svg = `<svg width="668" height="350" viewBox="0 0 668 350">
+    <path d="M200,28 C140,30 118,110 122,170 C126,218 176,232 222,226 C262,220 276,196 276,150 C276,90 252,26 200,28Z"
+      fill="color-mix(in srgb, ${PULMON} ${100 - 85 * isquemia}%, #E5E7EB)" stroke="${PULMON_B}" stroke-width="3" ${isquemia > 0.5 ? 'stroke-dasharray="7 5"' : ""}/>
+    <path d="M470,28 C530,30 552,110 548,170 C544,218 494,232 448,226 C408,220 396,196 396,150 C396,90 418,26 470,28Z" fill="${PULMON}" stroke="${PULMON_B}" stroke-width="3"/>
+    ${arterias("d")}${arterias("i")}
+    <line x1="335" y1="160" x2="342" y2="236" stroke="${ARTP}" stroke-width="16" stroke-linecap="round"/>
+    <ellipse cx="398" cy="248" rx="40" ry="34" fill="#FECACA" stroke="#DC8C8C" stroke-width="3"/>
+    <ellipse cx="344" cy="268" rx="${rv}" ry="${26 + 6 * isquemia}" fill="#BFDBFE" stroke="${isquemia > 0.3 ? ROJO : VENA}" stroke-width="${3 + 2 * isquemia}"/>
+    <circle cx="290" cy="258" r="25" fill="#BFDBFE" stroke="${VENA}" stroke-width="3"/>
+    <path d="M70,338 L262,338 Q290,338 290,318 L290,282" fill="none" stroke="${VENA}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    ${gotas}
+    <circle cx="${tx}" cy="${ty}" r="${rt}" fill="${TROMBO}" stroke="#fff" stroke-width="2"/>
+    <g font-size="13" font-weight="700" fill="${TINTA}">
+      <text x="62" y="318">Venas profundas de la pierna</text>
+      <text x="302" y="318">Vena cava inferior</text>
+      <text x="261" y="232" text-anchor="end">Aurícula derecha</text>
+      <text x="344" y="273" text-anchor="middle" fill="#1E3A8A">VD</text>
+      <text x="398" y="253" text-anchor="middle" fill="#991B1B">VI</text>
+      <text x="352" y="200">Arteria pulmonar</text>
+      <text x="200" y="20" text-anchor="middle">Pulmón derecho</text><text x="470" y="20" text-anchor="middle">Pulmón izquierdo</text>
+    </g>
+    <g opacity="${isquemia}" font-weight="800" font-size="14">
+      <text x="198" y="186" text-anchor="middle" fill="#475569">Sin perfusión</text>
+      <text x="${344 + rv + 8}" y="300" fill="${ROJO}">VD sobrecargado</text>
+    </g>
+  </svg>`;
+  lienzo("Del trombo de la pierna al pulmón", "Cómo se produce el TEP",
+    `${svg}<div style="display:flex;gap:6px">${PASOS.map((p, k) => `<div class="item" style="flex:1;background:${k === paso ? tinte(ROJO, 14) : "#F3F4F6"};outline:${k === paso ? `2px solid ${ROJO}` : "none"};color:${k === paso ? TINTA : "#6B7280"}"><b>${k + 1}.</b> ${p}</div>`).join("")}</div>`,
+    "Esquema de Empirica. Fuente: Guía ESC/ERS 2019 del TEP: TVP en el 30-50 % de los TEP (p. 17) y fisiopatología (p. 9).");
+};
+window.cuadro(0, 1);
+</script></body></html>
