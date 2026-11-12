@@ -4,14 +4,14 @@ const F = [
   { c: ROJO, tit: "Inicio", t: "días a semanas", txt: "Apixabán 10 mg c/12 h <b>7 días</b>, rivaroxabán 15 mg c/12 h <b>21 días</b>, o heparina <b>≥5 días</b>" },
   { c: AMBAR, tit: "Fase inicial", t: "hasta los 3-6 meses", txt: "Dosis <b>plena</b>: apixabán 5 mg c/12 h o rivaroxabán 20 mg al día" },
 ];
-lienzo("Fases de la anticoagulación", "La decisión de seguir se toma a los 3-6 meses",
+lienzo("Fases de la anticoagulación", "La decisión de seguir se toma a los 3-6 meses (ejemplos de cada factor en la tabla)",
   `<div style="display:flex;gap:8px">${F.map((f) => `<div class="caja" style="flex:1;border:2px solid ${f.c};background:${tinte(f.c, 10)}"><b style="color:${f.c};font-size:15px">${f.tit}</b> <span style="color:#64748B">· ${f.t}</span><div style="margin-top:3px">${f.txt}</div></div>`).join("")}</div>
    <svg width="668" height="40" viewBox="0 0 668 40"><line x1="20" y1="20" x2="560" y2="20" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
      <circle cx="20" cy="20" r="8" fill="${ROJO}"/><circle cx="300" cy="20" r="8" fill="${AMBAR}"/><circle cx="560" cy="20" r="11" fill="#fff" stroke="${TINTA}" stroke-width="4"/>
      <text x="578" y="26" font-size="15" font-weight="800" fill="${TINTA}">3-6 meses</text></svg>
    <div style="display:flex;gap:8px">
-     <div class="caja" style="flex:1;border:2px solid ${VERDE};background:${tinte(VERDE, 10)}"><b style="color:${VERDE}">Suspender</b><div>Factor <b>mayor reversible</b>: cirugía ≥30 min, hospitalización ≥72 h, cesárea o fractura de la pierna</div></div>
-     <div class="caja" style="flex:1;border:2px solid ${AMBAR};background:${tinte(AMBAR, 10)}"><b style="color:#B45309">Decidir juntos</b><div>Factor <b>menor reversible</b>: estrógenos, cirugía corta o trauma con poca movilidad</div></div>
+     <div class="caja" style="flex:1;border:2px solid ${VERDE};background:${tinte(VERDE, 10)}"><b style="color:${VERDE}">Suspender</b><div>Factor <b>mayor reversible</b></div></div>
+     <div class="caja" style="flex:1;border:2px solid ${AMBAR};background:${tinte(AMBAR, 10)}"><b style="color:#B45309">Decidir juntos</b><div>Factor <b>menor reversible</b>: decisión compartida</div></div>
      <div class="caja" style="flex:1;border:2px solid ${MORADO};background:${tinte(MORADO, 10)}"><b style="color:${MORADO}">Fase extendida</b><div>Sin factor o <b>persistente</b>: ACOD a <b>mitad de dosis</b>, sin fecha de fin</div></div>
    </div>`,
   "Fuente: Guía AHA/ACC 2026 del TEP agudo, p. e1022 y tabla 9 (p. e1023); CHEST 2021, p. e547-e548. Esquema de Empirica.");
