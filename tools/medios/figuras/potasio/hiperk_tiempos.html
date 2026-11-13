@@ -5,9 +5,9 @@ const FILAS = [
   ["Gluconato de calcio 10 %", "0,5-1 mL/kg (máx. 20)", [5, 5], [30, 60], ROJO, 0],
   ["Dextrosa 10 % + insulina", "5 mL/kg + 0,1 U/kg", [10, 20], null, AZUL, 1],
   ["Salbutamol", "IV 5 µg/kg o nebulizado", [30, 30], [120, 120], AZUL, 1],
-  ["Bicarbonato 8,4 %", "1 mmol/kg (con acidosis)", [60, 60], [120, 120], AZUL, 1],
+  ["Bicarbonato 8,4 %", "1 mEq/kg (con acidosis)", [60, 60], [120, 120], AZUL, 1],
   ["Furosemida", "1 mg/kg", [60, 120], [360, 480], MORADO, 2],
-  ["Resina (poliestireno)", "1 g/kg; rectal en 30 min", [60, 120], [240, 360], MORADO, 2],
+  ["Resina (poliestireno)", "1 g/kg; rectal desde 30 min", [30, 120], [240, 360], MORADO, 2],
 ];
 const PASOS = [["1. Estabilizar el miocardio", "Calcio IV <b>lento</b> con el ECG; dura poco: puede repetirse.", ROJO],
                ["2. Meter el potasio en las células", "Dextrosa con insulina (vigilar la <b>glucemia</b>), salbutamol y bicarbonato si hay acidosis.", AZUL],
@@ -26,10 +26,11 @@ window.cuadro = function (i, n) {
     const y = TOP + j * RH, activa = ahora >= ini[0];
     g += `<text x="0" y="${y + 15}" font-size="12.5" font-weight="800" fill="${activa ? c : "#B6BCC6"}">${nom}</text>
       <text x="0" y="${y + 29}" font-size="10.5" fill="${activa ? GRIS : "#C9CED6"}">${dosis}</text>`;
-    const a = X(ini[0]), b = fin ? X(fin[1]) : X(480), b0 = fin ? X(fin[0]) : X(240);
+    const a = X(ini[0]), a1 = X(ini[1]), b = fin ? X(fin[1]) : X(480), b0 = fin ? X(fin[0]) : a1;
     const hasta = Math.min(b, X(ahora));
     if (hasta > a) {
-      g += `<rect x="${a}" y="${y + 8}" width="${Math.max(0, Math.min(b0, hasta) - a)}" height="18" rx="6" fill="${c}"/>`;
+      if (a1 > a) g += `<rect x="${a}" y="${y + 8}" width="${Math.max(0, Math.min(a1, hasta) - a)}" height="18" rx="6" fill="${c}" opacity=".35"/>`;
+      if (hasta > a1 && b0 > a1) g += `<rect x="${a1}" y="${y + 8}" width="${Math.max(0, Math.min(b0, hasta) - a1)}" height="18" rx="6" fill="${c}"/>`;
       if (hasta > b0) g += `<rect x="${b0}" y="${y + 8}" width="${hasta - b0}" height="18" rx="6" fill="${c}" opacity="${fin ? 0.4 : 0.25}"/>`;
       if (!fin && hasta >= b - 1) g += `<text x="${b - 4}" y="${y + 21}" font-size="10" font-weight="800" fill="${c}" text-anchor="end">según la terapia</text>`;
     }
@@ -40,7 +41,7 @@ window.cuadro = function (i, n) {
     <text x="${Math.min(X(ahora), 636)}" y="13" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${ahora < 60 ? Math.round(ahora) + " min" : (ahora / 60).toFixed(1).replace(".", ",") + " h"}</text>`;
   const activo = FILAS.reduce((s, f) => (ahora >= f[2][0] ? Math.max(s, f[5]) : s), 0);
   const tarjetas = PASOS.map(([t, d, c], j) => `<div class="item" style="flex:1;opacity:${j <= activo ? 1 : 0.25};background:${j === activo ? tinte(c, 15) : "#F7F8FA"};border:1.5px solid ${j === activo ? c : "transparent"};font-size:12.6px"><b style="color:${c}">${t}</b><br>${d}</div>`).join("");
-  lienzo("Hiperpotasemia: cuándo actúa cada fármaco", "Inicio (círculo) y duración del efecto desde que se da; la barra clara es el rango",
+  lienzo("Hiperpotasemia: cuándo actúa cada fármaco", "Inicio (círculo) y duración del efecto desde que se da; la barra clara es un rango",
     `<svg width="668" height="${TOP + RH * FILAS.length + 24}" viewBox="0 0 668 ${TOP + RH * FILAS.length + 24}">${g}</svg>
      <div style="display:flex;gap:8px;flex:1">${tarjetas}</div>`,
     "Datos: Zieg J et al. BMC Nephrol 2024, tabla 5 (adaptada de las referencias 18 y 48). Elaboración de Empirica.");

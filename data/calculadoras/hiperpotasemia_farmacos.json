@@ -1,13 +1,13 @@
 {
   "titulo": "Fármacos de la hiperpotasemia aguda (dosis por peso)",
   "descripcion": "Calcula, con el peso del niño, las dosis de la tabla 5 de Zieg 2024 para la hiperpotasemia aguda: calcio para estabilizar el miocardio, dextrosa con insulina, salbutamol y bicarbonato para meter el potasio en las células, y furosemida y resina para sacarlo.",
-  "instrucciones": "Escribir el peso. El resultado principal es el gluconato de calcio al 10 %; los demás fármacos están en la cuenta paso a paso. Dar el calcio IV lento, con el ECG monitorizado.",
-  "limitaciones": "No reemplaza el criterio clínico ni el protocolo de la institución. El bicarbonato no se da con pH mayor de 7,4. Las resinas no tienen evidencia de calidad en la hiperpotasemia aguda. Si persiste pese al tratamiento, la hemodiálisis es la terapia de reemplazo preferida.",
+  "instrucciones": "Escribir el peso y decir si es un recién nacido (cambia el salbutamol nebulizado). El resultado principal es el gluconato de calcio al 10 %; los demás fármacos están en la cuenta paso a paso. Dar el calcio IV lento, con el ECG monitorizado.",
+  "limitaciones": "No reemplaza el criterio clínico ni el protocolo de la institución. El bicarbonato no se da con pH mayor de 7,4. Las resinas no tienen evidencia de calidad en la hiperpotasemia aguda. Si persiste pese al tratamiento, la hemodiálisis es la terapia de reemplazo preferida. En la misma tabla, el albuterol nebulizado da 10 mg por encima de 50 kg (máximo 20 mg) y el salbutamol, 5 mg: la calculadora usa la fila del salbutamol.",
   "tipoCalculo": "formula",
   "formula": "0.5 * ((peso) + (20) - abs((peso) - (20)))",
   "mostrarPuntaje": true,
   "decimales": 1,
-  "prefijoResultado": "Gluconato de calcio 10 %: hasta",
+  "prefijoResultado": "Gluconato de calcio 10 % a 1 mL/kg",
   "sufijoResultado": "mL",
   "referencias": [
     {
@@ -56,6 +56,13 @@
       "titulo": "Zieg 2024 (BMC Nephrol): Tabla 5: poliestireno sulfonato de sodio. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
       "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=9",
       "texto": "SPS 1 g/kg Oral: 1-2 h Rectal: 30 min 4—6 h Ensure adequate hydration to prevent constipation",
+      "paginas": "9",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Tabla 5: albuterol nebulizado por peso. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=9",
+      "texto": "Inhaled albuterol neonates 0.4 mg < 25 kg 2.5 mg 25-50 kg 5 mg > 50 kg 10 mg (max. 20 mg) 5—10 min 4–8h",
       "paginas": "9",
       "anio": "2024"
     },
@@ -134,6 +141,26 @@
             }
           ],
           "ayuda": "El peso actual del niño."
+        },
+        {
+          "id": "rn",
+          "tipo": "opciones",
+          "label": "¿Es un recién nacido?",
+          "opciones": [
+            {
+              "label": "No",
+              "valoresVariables": {
+                "rnv": 0
+              }
+            },
+            {
+              "label": "Sí",
+              "detalle": "Salbutamol nebulizado de 0,4 mg",
+              "valoresVariables": {
+                "rnv": 1
+              }
+            }
+          ]
         }
       ]
     }
@@ -141,19 +168,11 @@
   "resultados": [
     {
       "min": 0,
-      "max": 19.99,
-      "categoria": "Gluconato de calcio: 0,5-1 mL/kg",
-      "color": "rojo",
-      "match_opcion_index": -1,
-      "approach": "Estabilizar el miocardio con gluconato de calcio al 10 % IV lento (actúa en 5 min y dura 30-60 min); medir el calcio iónico después de cada dosis. Luego meter el potasio en las células y sacarlo (Zieg 2024, tabla 5)."
-    },
-    {
-      "min": 19.9901,
       "max": 20,
-      "categoria": "Gluconato de calcio: tope de 20 mL",
+      "categoria": "Gluconato de calcio al 10 %",
       "color": "rojo",
       "match_opcion_index": -1,
-      "approach": "Con 20 kg o más, el gluconato de calcio al 10 % llega al tope de 20 mL. Darlo IV lento con el ECG monitorizado y medir el calcio iónico después de cada dosis (Zieg 2024, tabla 5)."
+      "approach": "0,5-1 mL/kg (máximo 20 mL) IV lento con el ECG monitorizado: actúa en 5 min y dura 30-60 min. Medir el calcio iónico tras cada dosis; luego meter el potasio en las células y sacarlo (Zieg 2024, tabla 5)."
     }
   ],
   "extras": [
@@ -174,65 +193,71 @@
       "formula": "0.5 * ((0.1 * peso) + (10) - abs((0.1 * peso) - (10)))",
       "sufijo": "U",
       "decimales": 1
+    },
+    {
+      "etiqueta": "Salbutamol nebulizado · 0,4, 2,5 o 5 mg",
+      "formula": "rnv * 0.4 + (1 - rnv) * (2.5 + 2.5 * 0.5 * ((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) + (1) - abs((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) - (1))))",
+      "sufijo": "mg",
+      "decimales": 1
     }
   ],
   "calculo": [
     {
-      "etiqueta": "1. Estabilizar · gluconato de calcio 10 %: desde 0,5 mL/kg (máx. 20)",
+      "etiqueta": "Estabilizar · gluconato de calcio 10 %, dosis baja = 0,5 mL/kg × peso (máx. 20)",
       "formula": "0.5 * ((0.5 * peso) + (20) - abs((0.5 * peso) - (20)))",
       "sufijo": "mL",
       "decimales": 1
     },
     {
-      "etiqueta": "… hasta 1 mL/kg (máx. 20)",
+      "etiqueta": "Estabilizar · gluconato de calcio 10 %, dosis alta = 1 mL/kg × peso (máx. 20)",
       "formula": "0.5 * ((peso) + (20) - abs((peso) - (20)))",
       "sufijo": "mL",
       "decimales": 1
     },
     {
-      "etiqueta": "… o cloruro de calcio 10 %: 0,2 mL/kg (máx. 10)",
+      "etiqueta": "Estabilizar · cloruro de calcio 10 % = 0,2 mL/kg × peso (máx. 10)",
       "formula": "0.5 * ((0.2 * peso) + (10) - abs((0.2 * peso) - (10)))",
       "sufijo": "mL",
       "decimales": 1
     },
     {
-      "etiqueta": "2. Meter el potasio · dextrosa 10 %: 5 mL/kg",
+      "etiqueta": "Meter el potasio · dextrosa 10 % = 5 mL/kg × peso",
       "formula": "5 * peso",
       "sufijo": "mL",
       "decimales": 0
     },
     {
-      "etiqueta": "… con insulina: 0,1 U/kg (máx. 10)",
+      "etiqueta": "Meter el potasio · insulina = 0,1 U/kg × peso (máx. 10)",
       "formula": "0.5 * ((0.1 * peso) + (10) - abs((0.1 * peso) - (10)))",
       "sufijo": "U",
       "decimales": 1
     },
     {
-      "etiqueta": "… salbutamol IV: 5 µg/kg",
+      "etiqueta": "Meter el potasio · salbutamol IV = 5 µg/kg × peso",
       "formula": "5 * peso",
       "sufijo": "µg",
       "decimales": 0
     },
     {
-      "etiqueta": "… salbutamol nebulizado: 2,5 mg hasta 25 kg; 5 mg si pesa más",
-      "formula": "2.5 + 2.5 * 0.5 * ((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) + (1) - abs((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) - (1)))",
+      "etiqueta": "Meter el potasio · salbutamol nebulizado = 0,4 mg en el recién nacido; 2,5 mg hasta 25 kg; 5 mg si pesa más",
+      "formula": "rnv * 0.4 + (1 - rnv) * (2.5 + 2.5 * 0.5 * ((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) + (1) - abs((0.5 * (((peso - 25) * 1000) + (0) + abs(((peso - 25) * 1000) - (0)))) - (1))))",
       "sufijo": "mg",
       "decimales": 1
     },
     {
-      "etiqueta": "… bicarbonato de sodio 8,4 %: 1 mmol/kg (sólo si hay acidosis)",
+      "etiqueta": "Meter el potasio · bicarbonato de sodio 8,4 % = 1 mEq/kg × peso (sólo si hay acidosis)",
       "formula": "peso",
-      "sufijo": "mmol",
+      "sufijo": "mEq",
       "decimales": 1
     },
     {
-      "etiqueta": "3. Sacar el potasio · furosemida: 1 mg/kg",
+      "etiqueta": "Sacar el potasio · furosemida = 1 mg/kg × peso",
       "formula": "peso",
       "sufijo": "mg",
       "decimales": 1
     },
     {
-      "etiqueta": "… poliestireno sulfonato de sodio: 1 g/kg",
+      "etiqueta": "Sacar el potasio · resina de poliestireno = 1 g/kg × peso",
       "formula": "peso",
       "sufijo": "g",
       "decimales": 1

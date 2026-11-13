@@ -1,11 +1,11 @@
 {
-  "titulo": "Gradiente transtubular de potasio (TTKG)",
-  "descripcion": "Calcula el gradiente transtubular de potasio con el potasio y la osmolalidad de la orina y del plasma. En la hipopotasemia separa la pérdida renal de la que no lo es (Kermond 2023); en la hiperpotasemia, la menor excreción de la carga de potasio (Zieg 2024).",
-  "instrucciones": "Tomar la orina y la sangre al mismo tiempo. El TTKG sólo es válido si la osmolalidad urinaria es mayor que la plasmática: la calculadora enseña ese cociente en la cuenta.",
-  "limitaciones": "Si la osmolalidad urinaria no supera la plasmática, el TTKG no es válido. Se interpreta según el potasio del niño: los cortes de la hipopotasemia (2 y 4) y de la hiperpotasemia (6) son distintos.",
+  "titulo": "TTKG en la hiperpotasemia",
+  "descripcion": "Calcula el gradiente transtubular de potasio del niño con hiperpotasemia: menor de 6, el riñón excreta poco; 6 o más, el riñón excreta y sobra potasio (Zieg 2024, figura 4).",
+  "instrucciones": "Tomar la orina y la sangre a la vez. El TTKG sólo es válido si la osmolalidad urinaria es mayor que la plasmática.",
+  "limitaciones": "La figura 4 de Zieg 2024 da el corte como «mayor de 6-8». Con la diuresis baja, la causa suele ser renal.",
   "tipoCalculo": "formula",
-  "formula": "(ku * osms) / (ks * osmu)",
-  "mostrarPuntaje": true,
+  "formula": "0.5 * ((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) + (1) - abs((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) - (1))) * (ku * osms) / (ks * osmu) + (0.5 * ((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) + (1) - abs((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) - (1))) - 1) * 1000",
+  "mostrarPuntaje": false,
   "decimales": 1,
   "prefijoResultado": "TTKG",
   "sufijoResultado": "",
@@ -16,13 +16,6 @@
       "texto": "The urinary K/creatinine ratio and transtubular potassium gradient (TTKG) are useful tools to assess potassium urinary wasting. Importantly, TTKG is valid only if urinary osmolality exceeds plasma osmolality",
       "paginas": "6",
       "anio": "2024"
-    },
-    {
-      "titulo": "Kermond 2023 (Pediatr Nephrol): TTKG en la hipopotasemia. Kermond R, Mallett A, McCarthy H. A clinical approach to tubulopathies in children and young adults. Pediatr Nephrol 2023;38(3):651-662. doi:10.1007/s00467-022-05606-1",
-      "url": "https://link.springer.com/content/pdf/10.1007/s00467-022-05606-1.pdf#page=3",
-      "texto": "In hypokalaemic states – <2% suggests appropriate kidney handling – >4% suggests kidney losses",
-      "paginas": "653",
-      "anio": "2023"
     },
     {
       "titulo": "Zieg 2024 (BMC Nephrol): TTKG mayor o menor de 6. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
@@ -42,6 +35,13 @@
       "titulo": "Zieg 2024 (BMC Nephrol): Figura 4: aldosterona. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
       "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=8",
       "texto": "Plasma aldosterone level is used to further discriminate individuals with reduced potassium wasting and adequate urine output.",
+      "paginas": "8",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Figura 4: carga de potasio. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=8",
+      "texto": "Increased K excretion TTKG > 6-8 Endogenous/exogenous increased K load high oral/IV K intake penicilin G RBC transfusions rhabdomyolysis tumor lysis syndrome",
       "paginas": "8",
       "anio": "2024"
     }
@@ -92,36 +92,42 @@
   ],
   "resultados": [
     {
-      "min": 0,
-      "max": 1.999,
-      "categoria": "TTKG menor de 2",
-      "color": "verde",
-      "match_opcion_index": -1,
-      "approach": "Con hipopotasemia: el riñón maneja bien el potasio; buscar una pérdida extrarrenal o una redistribución (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
-    },
-    {
-      "min": 2,
-      "max": 4,
-      "categoria": "TTKG de 2 a 4",
+      "min": -100000,
+      "max": -0.0001,
+      "categoria": "TTKG no válido",
       "color": "amarillo",
       "match_opcion_index": -1,
-      "approach": "Con hipopotasemia queda entre los dos cortes (2 y 4): decidir con la clínica (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
+      "approach": "La orina no está más concentrada que el plasma: el TTKG no es válido. Decidir con la historia y el cociente potasio/creatinina urinario (Zieg 2024)."
     },
     {
-      "min": 4.0001,
-      "max": 6,
-      "categoria": "TTKG de 4 a 6",
-      "color": "naranja",
+      "min": 0,
+      "max": 5.999,
+      "categoria": "TTKG menor de 6: excreta poco",
+      "color": "rojo",
       "match_opcion_index": -1,
-      "approach": "Con hipopotasemia: el riñón pierde potasio; mirar el pH y la presión arterial (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
+      "approach": "Menor excreción: si la diuresis es baja, lesión renal; si es normal, medir la aldosterona (Zieg 2024, figura 4)."
     },
     {
-      "min": 6.0001,
+      "min": 6,
       "max": 100000,
-      "categoria": "TTKG mayor de 6",
+      "categoria": "TTKG de 6 o más: sobra potasio",
       "color": "naranja",
       "match_opcion_index": -1,
-      "approach": "Con hipopotasemia: el riñón pierde potasio (Kermond 2023). Con hiperpotasemia: el riñón excreta, pero hay una carga de potasio endógena o exógena (Zieg 2024)."
+      "approach": "El riñón excreta: buscar una carga exógena (dieta, penicilina G, transfusiones) o endógena (rabdomiólisis, lisis tumoral) (Zieg 2024, figura 4)."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "TTKG calculado · (K orina ÷ K suero) ÷ (osm orina ÷ osm plasma)",
+      "formula": "(ku * osms) / (ks * osmu)",
+      "sufijo": "",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Osmolalidad orina ÷ plasma · válido si es mayor de 1",
+      "formula": "osmu / osms",
+      "sufijo": "",
+      "decimales": 2
     }
   ],
   "calculo": [

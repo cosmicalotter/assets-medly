@@ -1,10 +1,10 @@
 {
   "titulo": "Cloruro de potasio IV en la hipopotasemia",
-  "descripcion": "Calcula la reposición IV de cloruro de potasio de 1 mEq/kg en 1-2 horas que propone Zieg 2024 para la hipopotasemia, con el volumen de la mezcla según su concentración y la velocidad de la bomba.",
-  "instrucciones": "Escribir el peso, la concentración de la mezcla y las horas de la infusión. Por vena periférica, no pasar de 40 mEq/L; una concentración mayor va por catéter central. La mezcla no lleva dextrosa.",
-  "limitaciones": "La dosis de 1 mEq/kg en 1-2 h se probó en niños pequeños en cuidado intensivo con hipopotasemia leve a moderada; la grave puede necesitar más. Con 40 mEq/L el volumen es grande (25 mL/kg): vigilar el balance. Siempre que se pueda, la vía oral es la más segura.",
+  "descripcion": "Calcula la reposición IV de cloruro de potasio de 1 mEq/kg en 1-2 horas (Zieg 2024) con un tope de 20 mEq por dosis (protocolo de una UCI pediátrica, Miller 2024), el volumen de la mezcla según su concentración y la velocidad de la bomba.",
+  "instrucciones": "Escribir el peso y la concentración de la mezcla, y elegir si pasa en 1 o en 2 horas. Por vena periférica, no pasar de 40 mEq/L; una concentración mayor va por catéter central, salvo en una amenaza para la vida. La mezcla no lleva dextrosa.",
+  "limitaciones": "La dosis de 1 mEq/kg en 1-2 h se probó en niños pequeños en cuidado intensivo con hipopotasemia leve a moderada; la grave puede necesitar más. Zieg 2024 no da tope: el de 20 mEq es el de un protocolo de UCI pediátrica que usa 0,4 mEq/kg en 1 h. Con 40 mEq/L el volumen es grande (25 mL/kg): vigilar el balance. Siempre que se pueda, la vía oral es la más segura.",
   "tipoCalculo": "formula",
-  "formula": "peso",
+  "formula": "0.5 * ((peso) + (20) - abs((peso) - (20)))",
   "mostrarPuntaje": true,
   "decimales": 1,
   "prefijoResultado": "Cloruro de potasio",
@@ -32,9 +32,30 @@
       "anio": "2024"
     },
     {
+      "titulo": "Miller 2024 (Crit Care Sci): Corrección de potasio en una UCI pediátrica. Miller J, Dewar A, Wignell A, Davies P. The effect of pediatric acute potassium chloride correction infusions on the serum potassium concentration. Crit Care Sci 2024;36:e20240113. doi:10.62675/2965-2774.20240113-en",
+      "url": "https://doi.org/10.62675/2965-2774.20240113-en",
+      "texto": "A common treatment for hypokalemia in pediatric ICU is potassium 'correction', an intravenous infusion of 0.4mmol/kg (maximum 20mmol) potassium chloride 0.5mmol/mL over 1 hour.",
+      "paginas": "e20240113",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Miller 2024 (Crit Care Sci): Dosis habituales por hora. Miller J, Dewar A, Wignell A, Davies P. The effect of pediatric acute potassium chloride correction infusions on the serum potassium concentration. Crit Care Sci 2024;36:e20240113. doi:10.62675/2965-2774.20240113-en",
+      "url": "https://doi.org/10.62675/2965-2774.20240113-en",
+      "texto": "Concentrated potassium correction protocols vary among pediatric ICUs in the United Kingdom, with doses usually ranging from 0.4 - 0.5mmol/kg/hour.",
+      "paginas": "e20240113",
+      "anio": "2024"
+    },
+    {
       "titulo": "Zieg 2024 (BMC Nephrol): Concentración por vena periférica. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
       "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=6",
       "texto": "When administering potassium via peripheral veins, the concentration should not exceed 40 mmol/L to prevent phlebitis and pain. For higher concentrations, central venous lines are recommended",
+      "paginas": "6",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): La vía periférica tiene una excepción. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=6",
+      "texto": "For higher concentrations, central venous lines are recommended, however, this does not apply to life-threatening conditions.",
       "paginas": "6",
       "anio": "2024"
     },
@@ -110,9 +131,9 @@
           "tipo": "input_numero",
           "label": "Concentración de potasio en la mezcla",
           "unidad": "mEq/L",
-          "min": 10,
+          "min": 20,
           "max": 200,
-          "ayuda": "Por vena periférica, no más de 40 mEq/L (Zieg 2024); más alta, por catéter central."
+          "ayuda": "Por vena periférica, no más de 40 mEq/L (Zieg 2024); más alta, por catéter central. Con 40 mEq/L, cada mEq necesita 25 mL de mezcla."
         },
         {
           "id": "horas",
@@ -140,80 +161,86 @@
     {
       "min": 0,
       "max": 100000,
-      "categoria": "Dosis de 1 mEq/kg",
+      "categoria": "1 mEq/kg, máximo 20 mEq",
       "color": "naranja",
       "match_opcion_index": -1,
-      "approach": "Pasar la dosis en 1-2 h, sin dextrosa en la mezcla, con el ECG monitorizado y el potasio cada 1-2 h. Bajar la reposición cuando el potasio pase de 3,5 mEq/L y corregir el magnesio si está bajo (Zieg 2024)."
+      "approach": "Sin dextrosa en la mezcla, con el ECG monitorizado y el potasio cada 1-2 h. Bajar la reposición cuando pase de 3,5 mEq/L y corregir el magnesio si está bajo (Zieg 2024)."
     }
   ],
   "extras": [
     {
       "etiqueta": "Volumen de la mezcla · dosis ÷ concentración × 1000",
-      "formula": "peso / conc * 1000",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000",
       "sufijo": "mL",
       "decimales": 0
     },
     {
       "etiqueta": "Velocidad · volumen ÷ horas",
-      "formula": "peso / conc * 1000 / hr",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000 / hr",
       "sufijo": "mL/h",
       "decimales": 1
     },
     {
-      "etiqueta": "Ritmo · dosis ÷ horas ÷ peso",
-      "formula": "peso / hr / peso",
-      "sufijo": "mEq/kg/h",
-      "decimales": 2
+      "etiqueta": "Ritmo de potasio · dosis ÷ horas",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / hr",
+      "sufijo": "mEq/h",
+      "decimales": 1
     }
   ],
   "calculo": [
     {
-      "etiqueta": "Dosis = 1 mEq/kg × peso",
+      "etiqueta": "Dosis por peso = 1 mEq/kg × peso",
       "formula": "peso",
       "sufijo": "mEq",
       "decimales": 1
     },
     {
+      "etiqueta": "Dosis = la menor entre la dosis por peso y 20 mEq",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20)))",
+      "sufijo": "mEq",
+      "decimales": 1
+    },
+    {
       "etiqueta": "Volumen de la mezcla = dosis ÷ concentración × 1000",
-      "formula": "peso / conc * 1000",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000",
       "sufijo": "mL",
       "decimales": 0
     },
     {
       "etiqueta": "Volumen por kilo = volumen ÷ peso",
-      "formula": "peso / conc * 1000 / peso",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000 / peso",
       "sufijo": "mL/kg",
       "decimales": 0
     },
     {
       "etiqueta": "Velocidad = volumen ÷ horas",
-      "formula": "peso / conc * 1000 / hr",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000 / hr",
       "sufijo": "mL/h",
       "decimales": 1
     },
     {
       "etiqueta": "Ritmo de potasio = dosis ÷ horas",
-      "formula": "peso / hr",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / hr",
       "sufijo": "mEq/h",
       "decimales": 1
     },
     {
-      "etiqueta": "Ritmo por kilo = 1 mEq/kg ÷ horas",
-      "formula": "peso / hr / peso",
+      "etiqueta": "Ritmo por kilo = dosis ÷ peso ÷ horas",
+      "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / hr / peso",
       "sufijo": "mEq/kg/h",
       "decimales": 2
     }
   ],
   "bolsa": {
     "titulo": "Reposición de cloruro de potasio",
-    "volumen": "peso / conc * 1000",
-    "velocidad": "peso / conc * 1000 / hr",
-    "por_kg": "peso / conc * 1000 / peso",
+    "volumen": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000",
+    "velocidad": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000 / hr",
+    "por_kg": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000 / peso",
     "unidad_por_kg": "mL/kg",
     "capas": [
       {
-        "etiqueta": "Cloruro de potasio: 1 mEq/kg",
-        "formula": "peso / conc * 1000",
+        "etiqueta": "Mezcla con 1 mEq/kg de potasio (máx. 20)",
+        "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / conc * 1000",
         "sufijo": "mL",
         "color": "morado"
       }
@@ -221,22 +248,16 @@
     "aportes": [
       {
         "etiqueta": "Potasio de la mezcla",
-        "formula": "peso",
+        "formula": "0.5 * ((peso) + (20) - abs((peso) - (20)))",
         "sufijo": "mEq",
         "decimales": 1,
         "color": "morado"
       },
       {
-        "etiqueta": "Concentración",
-        "formula": "conc",
-        "sufijo": "mEq/L",
-        "color": "gris"
-      },
-      {
-        "etiqueta": "Ritmo por kilo",
-        "formula": "peso / hr / peso",
-        "sufijo": "mEq/kg/h",
-        "decimales": 2,
+        "etiqueta": "Ritmo de potasio",
+        "formula": "0.5 * ((peso) + (20) - abs((peso) - (20))) / hr",
+        "sufijo": "mEq/h",
+        "decimales": 1,
         "color": "naranja"
       }
     ]

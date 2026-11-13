@@ -38,6 +38,40 @@ const ESC = {
       ["T invertida", "También típica de la grave: la onda T se <b>invierte</b>.", ROSA_, "T"],
     ],
   },
+  hipoca: {
+    titulo: "Hipocalcemia: cómo cambia el ECG", ion: "Ca",
+    sub: "Al bajar el calcio, el QT se alarga",
+    color: TEAL, flecha: "↓",
+    etapas: [
+      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.34 },
+      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.46 },
+      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.54 },
+    ],
+    pasos: [
+      ["ECG normal", "Onda T a su distancia del QRS.", TEAL, null],
+      ["QT largo", "El segmento ST se <b>alarga</b> y la onda T se aleja del QRS.", AMBAR, "QT"],
+      ["Monitor durante el calcio IV", "El calcio IV se da con el <b>monitor cardíaco</b> puesto.", ROSA_, "QT"],
+    ],
+    fuente: "Datos: Kim SY. Ann Pediatr Endocrinol Metab 2015 (CC BY-NC 3.0), citado. Trazos esquemáticos, no a escala. Elaboración de Empirica.",
+  },
+  hiperca: {
+    titulo: "Hipercalcemia: cómo cambia el ECG", ion: "Ca",
+    sub: "Por encima de 13 mg/dL, en este orden",
+    color: NARANJA, flecha: "↑",
+    etapas: [
+      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.36 },
+      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.06], u: 0, qt: 0.26 },
+      { p: [0.15, 0.045], pr: 0.24, qrs: [0.9, 0.055], st: 0, t: [0.3, 0.06], u: 0, qt: 0.3 },
+      { p: [0.15, 0.045], pr: 0.24, qrs: [0.9, 0.055], st: 0, t: [0.3, 0.06], u: 0, qt: 0.3, bloqueo: 1 },
+    ],
+    pasos: [
+      ["ECG normal", "QT de duración normal.", TEAL, null],
+      ["QT corto", "Pasando de <b>13 mg/dL</b>, el QT se <b>acorta</b>.", AMBAR, "QT"],
+      ["PR y QRS largos", "Se alargan el <b>PR</b> y el <b>QRS</b>.", CELESTE, "QRS"],
+      ["Bloqueo AV", "Puede progresar a <b>bloqueo</b> completo; con 15-20 mg/dL, paro cardíaco.", ROJO, null],
+    ],
+    fuente: "Datos: Zieg J et al. BMC Nephrol 2024 (citado, sin reproducir figuras). Trazos esquemáticos, no a escala. Elaboración de Empirica.",
+  },
 }[window.MODO];
 var ROSA_ = "#E11D74";
 
@@ -57,7 +91,8 @@ function latido(x, e) {     // x en segundos desde el inicio del latido (dura 0,
 function mezclar(a, b, k) {
   const m = (u, v) => Array.isArray(u) ? u.map((x, i) => lerp(x, v[i], k)) : lerp(u, v, k);
   const o = {};
-  for (const c of Object.keys(a)) o[c] = m(a[c], b[c]);
+  for (const c of Object.keys(a)) o[c] = c in b ? m(a[c], b[c]) : a[c];
+  for (const c of Object.keys(b)) if (!(c in a)) o[c] = k > 0.5 ? b[c] : undefined;
   return o;
 }
 function trazo(e, desplaz, onda) {
@@ -66,6 +101,7 @@ function trazo(e, desplaz, onda) {
     const t = (px / PX + desplaz);
     let y;
     if (onda) y = 0.55 * Math.sin(t * 2 * Math.PI * 2.6) + 0.18 * Math.sin(t * 2 * Math.PI * 4.1 + 1);
+    else if (e.bloqueo && Math.floor(t / 0.8) % 2 === 1) y = e.p[0] * g(t % 0.8, 0.1, e.p[1]);
     else y = latido(t % 0.8, e);
     d += `${px === 0 ? "M" : "L"}${px} ${Y0 - y * AMP}`;
   }
@@ -90,9 +126,9 @@ window.cuadro = function (i, n) {
   let marca = "";
   if (onda_ && !onda) {
     const tq = 0.1 + e.pr, x0 = 0.8 * 2;
-    const tx = { P: 0.1, QRS: tq + e.qrs[1], T: tq + e.qt - 0.08, U: tq + e.qt + 0.08, ST: tq + 3 * e.qrs[1] + 0.05 }[onda_];
+    const tx = { P: 0.1, QRS: tq + e.qrs[1], T: tq + e.qt - 0.08, U: tq + e.qt + 0.08, ST: tq + 3 * e.qrs[1] + 0.05, QT: tq + e.qt / 2 }[onda_];
     const X = (x0 + tx) * PX, Yv = Y0 - latido(tx, e) * AMP;
-    const arriba = onda_ === "QRS" || onda_ === "P" || (onda_ === "T" && e.t[0] > 0) || onda_ === "U";
+    const arriba = onda_ === "QRS" || onda_ === "P" || (onda_ === "T" && e.t[0] > 0) || onda_ === "U" || onda_ === "QT";
     const yl = arriba ? Math.max(18, Yv - 58) : Math.min(H - 14, Yv + 58);
     marca = `<line x1="${X}" y1="${yl + (arriba ? 14 : -14)}" x2="${X}" y2="${Yv + (arriba ? -10 : 10)}" stroke="${cpaso}" stroke-width="4" stroke-linecap="round"/>
       <rect x="${X - 26}" y="${yl - 13}" width="52" height="24" rx="7" fill="${cpaso}"/><text x="${X}" y="${yl + 4}" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">${onda_}</text>`;
@@ -105,11 +141,11 @@ window.cuadro = function (i, n) {
        <svg width="${W - 58}" height="${H}" viewBox="0 0 ${W - 58} ${H}" style="display:block;border-radius:12px;background:#FFF5F5">${rej}
          <path d="${trazo(e, 0, onda)}" fill="none" stroke="#1F2937" stroke-width="2.6" stroke-linejoin="round"/>${marca}</svg>
        <div style="width:48px;display:flex;flex-direction:column;align-items:center;gap:6px">
-         <div style="font-size:11px;font-weight:800;color:${ESC.color}">K ${ESC.flecha}</div>
+         <div style="font-size:11px;font-weight:800;color:${ESC.color}">${ESC.ion || "K"} ${ESC.flecha}</div>
          <div style="flex:1;width:18px;border-radius:9px;background:#EEF0F3;position:relative;overflow:hidden">
            <div style="position:absolute;left:0;right:0;${window.MODO === "hiper" ? "bottom" : "top"}:0;height:${Math.round(nivel * 100)}%;background:${ESC.color}"></div></div></div>
      </div>
      <div style="display:flex;gap:7px;flex:1">${lista}</div>`,
-    "Datos: Zieg J et al. BMC Nephrol 2024. Trazos esquemáticos, no a escala. Elaboración de Empirica.");
+    ESC.fuente || "Datos: Zieg J et al. BMC Nephrol 2024. Trazos esquemáticos, no a escala. Elaboración de Empirica.");
 };
 window.cuadro(1, 1);
