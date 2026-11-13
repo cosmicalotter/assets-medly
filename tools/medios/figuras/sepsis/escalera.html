@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Escalera de vasopresores en el choque séptico (SSC 2026, recs. 53-61 y 79, pp. 898-901 y 907; SSC 2021, recs. 38 y 58).
+// GIF: los peldaños se encienden en orden.
+const P = [
+  { c: AZUL, n: "1", tit: "Norepinefrina", txt: "Primera línea, por vía periférica si hace falta. PAM <b>65 mmHg</b> (60-65 en ≥65 años)" },
+  { c: MORADO, n: "2", tit: "+ Vasopresina", txt: "Si la norepinefrina va en aumento (hacia <b>0,25-0,5 µg/kg/min</b>). <b>Hidrocortisona</b> si sigue en ≥0,25 al menos 4 h" },
+  { c: NARANJA, n: "3", tit: "+ Adrenalina", txt: "Si la PAM sigue baja; o directamente si <b>no hay vasopresina</b>" },
+  { c: ROJO, n: "!", tit: "Disfunción cardiaca", txt: "Con hipoperfusión pese a volumen y PAM: <b>+ dobutamina</b>, o adrenalina sola" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const op = (a) => 0.15 + 0.85 * suave(tramo(t, a, a + 0.1));
+  const filas = P.map((p, k) => {
+    const ct = p.c;
+    return `<div style="opacity:${op(0.04 + 0.21 * k)};display:flex;gap:10px;align-items:center;margin-left:${k * 34}px;border:2px solid ${p.c};background:${tinte(p.c, 11)};border-radius:12px;padding:10px 12px;width:${560 - k * 34}px">
+      <div style="flex:none;width:40px;height:40px;border-radius:20px;background:${p.c};color:#fff;font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center">${p.n}</div>
+      <div><div style="font-weight:900;color:${ct};font-size:17px">${p.tit}</div><div style="font-size:13.6px;line-height:1.35"><span>${p.txt}</span></div></div></div>`;
+  }).join("");
+  lienzo("Escalera de vasopresores", "Qué se añade cuando la PAM no llega a la meta",
+    `<div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">${filas}</div>
+     <div class="caja" style="opacity:${op(0.88)};background:#1F2A37;color:#fff;font-weight:700;font-size:13.8px;padding:11px 13px">El inotrópico va <b style="color:#FCA5A5">además</b> del vasopresor, nunca en su lugar. Sin dopamina, terlipresina ni levosimendán.</div>`,
+    "Esquema de Empirica. Fuente: Surviving Sepsis Campaign 2026, recomendaciones 53-62 y 79 (pp. 898-901 y 907); SSC 2021, recomendaciones 38 y 58.");
+};
+window.cuadro(29, 30);
+</script></body></html>

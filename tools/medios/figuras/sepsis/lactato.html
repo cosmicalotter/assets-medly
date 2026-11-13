@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Lactato seriado cada 2 h y llenado capilar (SSC 2026, recs. 51-52, pp. 897-898). Curvas ilustrativas.
+const W = 668, H = 300, X0 = 58, X1 = 580, Y0 = 256, Y1 = 18, TMAX = 6, LMAX = 6;
+const x = (h) => X0 + (X1 - X0) * h / TMAX, y = (l) => Y0 - (Y0 - Y1) * l / LMAX;
+const BUENA = [5.0, 4.0, 3.1, 2.4], MALA = [5.0, 5.0, 5.3, 5.5];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const k = Math.min(3, Math.floor(t * 3.999));
+  const pts = (v, c) => v.slice(0, k + 1).map((l, j) => `<circle cx="${x(2 * j)}" cy="${y(l)}" r="8" fill="${c}" stroke="#fff" stroke-width="3"/>`).join("");
+  const lin = (v, c) => `<polyline points="${v.slice(0, k + 1).map((l, j) => `${x(2 * j)},${y(l)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const pct = (v) => k ? Math.round(100 * (v[k - 1] - v[k]) / v[k - 1]) : 0;
+  const ejeX = [0, 2, 4, 6].map((h) => `<line x1="${x(h)}" y1="${Y0}" x2="${x(h)}" y2="${Y0 + 5}" stroke="#9CA3AF"/><text x="${x(h)}" y="${Y0 + 19}" font-size="11.5" text-anchor="middle" fill="#6B7280">${h} h</text>`).join("");
+  const ejeY = [0, 2, 4, 6].map((l) => `<text x="${X0 - 8}" y="${y(l) + 4}" font-size="11.5" text-anchor="end" fill="#6B7280">${l}</text>`).join("");
+  const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <rect x="${X0}" y="${y(2)}" width="${X1 - X0}" height="${Y0 - y(2)}" fill="${tinte(VERDE, 12)}"/>
+    <text x="${X1 - 6}" y="${y(2) + 16}" text-anchor="end" font-size="12" font-weight="700" fill="#15803D">≤2 mmol/L</text>
+    <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>${ejeX}${ejeY}
+    <text x="18" y="${(Y0 + Y1) / 2}" font-size="12" fill="#6B7280" transform="rotate(-90 18 ${(Y0 + Y1) / 2})" text-anchor="middle">Lactato (mmol/L)</text>
+    ${lin(MALA, ROJO)}${lin(BUENA, VERDE)}${pts(MALA, ROJO)}${pts(BUENA, VERDE)}
+    ${k ? `<text x="${x(2 * k) + 14}" y="${y(BUENA[k]) + 5}" font-size="13.5" font-weight="800" fill="#15803D">−${pct(BUENA)} %</text>
+           <text x="${x(2 * k) + 14}" y="${y(MALA[k]) - 8}" font-size="13.5" font-weight="800" fill="${ROJO}">${pct(MALA) <= 0 ? "+" + -pct(MALA) : "−" + pct(MALA)} %</text>` : ""}</svg>`;
+  lienzo("¿Baja el lactato con la reanimación?", "Medirlo cada 2 h y mirar cuánto cae, no sólo si se normaliza",
+    `${svg}<div style="display:flex;gap:8px">
+      <div class="item" style="flex:1;font-size:13.4px;background:${tinte(VERDE, 14)}"><b style="color:#15803D">Buena respuesta</b>: <span>cae al menos un <b>10 %</b> cada 2 h y el llenado capilar baja a <b>≤3 s</b>.</span></div>
+      <div class="item" style="flex:1;font-size:13.4px;background:${tinte(ROJO, 12)}"><b style="color:${ROJO}">Sin respuesta</b>: <span>no baja o sube; comprobar si responde a volumen. No dar líquidos sólo para <b>normalizarlo</b>.</span></div></div>`,
+    "Esquema ilustrativo de Empirica, no datos de un paciente. Fuente: Surviving Sepsis Campaign 2026, recomendaciones 51 y 52, pp. 897-898.");
+};
+window.cuadro(0, 1);
+</script></body></html>

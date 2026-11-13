@@ -1,0 +1,16 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Después de la sepsis: secuelas y servicios (SSC 2026, recs. 113-129, pp. 915-918).
+const T = [
+  { c: AZUL, tit: "Físicas", items: ["Valorarlas después del <b>alta</b>", "Si estuvo en ventilación mecánica <b>&gt;48 h</b>: rehabilitación física"] },
+  { c: MORADO, tit: "Cognitivas", items: ["Valorarlas en el <b>seguimiento</b>", "Sin evidencia suficiente para una <b>terapia cognitiva</b> específica"] },
+  { c: ROSA_C, tit: "Emocionales", items: ["Ofrecer apoyo de <b>salud mental</b>", "Con síntomas: <b>remitir</b> al profesional"] },
+  { c: TEAL, tit: "Al alta", items: ["Resumen <b>escrito y verbal</b>", "Cita con quien maneje las <b>secuelas nuevas</b>"] },
+];
+const caja = (e) => `<div style="border:2px solid ${e.c};background:${tinte(e.c, 10)};border-radius:14px;padding:12px 14px">
+  <div style="font-weight:900;color:${e.c};font-size:18px">${e.tit}</div>
+  ${e.items.map((it) => `<div style="font-size:14px;line-height:1.38;margin-top:5px">• <span>${it}</span></div>`).join("")}</div>`;
+lienzo("Después de la sepsis", "Qué buscar y qué ofrecer a quien sobrevive",
+  `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px">${T.map(caja).join("")}</div>
+   <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:14px;padding:12px 14px">Ofrecer <b style="color:#5EEAD4">seguimiento</b> tras la enfermedad crítica: el formato depende de los recursos y las necesidades.</div>`,
+  "Esquema de Empirica. Fuente: Surviving Sepsis Campaign 2026, recomendaciones 113-129, pp. 915-918.");
+</script></body></html>
