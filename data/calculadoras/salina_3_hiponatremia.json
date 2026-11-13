@@ -1,7 +1,7 @@
 {
   "titulo": "Bolo de solución salina 3 % (hiponatremia sintomática)",
   "descripcion": "Calcula el bolo de solución salina 3 % de la encefalopatía hiponatrémica del niño: 2 mL/kg con un máximo de 100 mL, que se repite hasta 2 veces más si siguen los síntomas. Con el sodio actual, enseña la meta de la primera corrección y los topes de 24 y 48 horas (Zieg 2024).",
-  "instrucciones": "Escribir el peso y el sodio sérico actual. Dar el bolo sin esperar el resto del estudio y medir el sodio después de cada bolo.",
+  "instrucciones": "Escribir el peso y el sodio sérico actual. Dar el bolo sin esperar el resto del estudio y medir el sodio de forma regular mientras se corrige.",
   "limitaciones": "Es para la hiponatremia con síntomas de encefalopatía, no para la asintomática. La revisión no fija el tiempo de infusión del bolo. En la hiponatremia crónica no hace falta corregir rápido y la sobrecorrección puede causar desmielinización.",
   "tipoCalculo": "formula",
   "formula": "0.5 * ((2 * peso) + (100) - abs((2 * peso) - (100)))",
@@ -101,24 +101,16 @@
   "resultados": [
     {
       "min": 0,
-      "max": 99.99,
-      "categoria": "Bolo de 2 mL/kg",
-      "color": "rojo",
-      "match_opcion_index": -1,
-      "approach": "Pasar el bolo de solución salina 3 % de inmediato. Si siguen los síntomas, repetirlo hasta 2 veces más. Buscar una subida de 5-6 mEq/L en las primeras 1-2 h, sin pasar de 10 mEq/L en 24 h ni de 20 mEq/L en 48 h (Zieg 2024)."
-    },
-    {
-      "min": 99.9901,
       "max": 100,
-      "categoria": "Bolo máximo: 100 mL",
+      "categoria": "Bolo de 2 mL/kg, máximo 100 mL",
       "color": "rojo",
       "match_opcion_index": -1,
-      "approach": "Con 50 kg o más, el bolo llega al máximo de 100 mL. Si siguen los síntomas, repetirlo hasta 2 veces más. Buscar una subida de 5-6 mEq/L en 1-2 h, sin pasar de 10 mEq/L en 24 h ni de 20 mEq/L en 48 h (Zieg 2024)."
+      "approach": "Pasarlo de inmediato y repetirlo hasta 2 veces más si siguen los síntomas. Subir el sodio 5-6 mEq/L en 1-2 h, sin pasar de 10 mEq/L en 24 h ni de 20 en 48 h (Zieg 2024)."
     }
   ],
   "extras": [
     {
-      "etiqueta": "Meta en 1-2 h · sodio + 5 a + 6",
+      "etiqueta": "Meta en 1-2 h · hasta sodio + 6",
       "formula": "na + 6",
       "sufijo": "mEq/L",
       "decimales": 0
@@ -168,7 +160,7 @@
       "decimales": 0
     },
     {
-      "etiqueta": "… hasta sodio + 6",
+      "etiqueta": "Meta de la primera corrección: hasta sodio + 6",
       "formula": "na + 6",
       "sufijo": "mEq/L",
       "decimales": 0
@@ -201,19 +193,19 @@
     ],
     "aportes": [
       {
-        "etiqueta": "Meta en 1-2 h (sodio + 5 a + 6)",
+        "etiqueta": "Sodio sérico meta en 1-2 h (hasta + 6)",
         "formula": "na + 6",
         "sufijo": "mEq/L",
         "color": "ambar"
       },
       {
-        "etiqueta": "Tope a las 24 h (sodio + 10)",
+        "etiqueta": "Tope del sodio a las 24 h (+ 10)",
         "formula": "na + 10",
         "sufijo": "mEq/L",
         "color": "morado"
       },
       {
-        "etiqueta": "Tope a las 48 h (sodio + 20)",
+        "etiqueta": "Tope del sodio a las 48 h (+ 20)",
         "formula": "na + 20",
         "sufijo": "mEq/L",
         "color": "morado"

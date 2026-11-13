@@ -1,14 +1,14 @@
 {
   "titulo": "Déficit de agua libre (hipernatremia)",
   "descripcion": "Estima el agua libre que falta en el niño con hipernatremia con la fórmula de Zieg 2024: 4 mL × peso × cambio deseado del sodio. Separa el déficit total hasta 145 mEq/L de lo que se puede reponer en las primeras 24 horas sin bajar el sodio más de 15 mEq/L.",
-  "instrucciones": "Primero restablecer el volumen con una solución isotónica si hay hipovolemia o choque. Luego escribir el peso y el sodio sérico, y medir el sodio con frecuencia mientras se corrige.",
-  "limitaciones": "Es una estimación del agua libre, no del volumen de una solución: una solución que trae sodio aporta menos agua libre que su volumen. No incluye el mantenimiento ni las pérdidas que siguen. En la diabetes insípida la pérdida de agua continúa.",
+  "instrucciones": "Primero restablecer el volumen con una solución isotónica si hay hipovolemia o choque. Luego escribir el peso y el sodio sérico. El resultado es agua libre, no el volumen de la solución: una solución con sodio aporta menos agua libre que su volumen. Medir el sodio de forma regular.",
+  "limitaciones": "La fórmula es para la deshidratación hipernatrémica que necesita líquidos: no se aplica a la intoxicación por sal. No incluye el mantenimiento ni las pérdidas que siguen; en la diabetes insípida la pérdida de agua continúa. La revisión no define cuándo la hipernatremia es leve.",
   "tipoCalculo": "formula",
-  "formula": "na",
-  "mostrarPuntaje": false,
+  "formula": "4 * peso * 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
+  "mostrarPuntaje": true,
   "decimales": 0,
-  "prefijoResultado": "Sodio",
-  "sufijoResultado": "mEq/L",
+  "prefijoResultado": "Agua libre en 24 h",
+  "sufijoResultado": "mL",
   "referencias": [
     {
       "titulo": "Zieg 2024 (BMC Nephrol): Hipernatremia: definición. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
@@ -100,29 +100,15 @@
   ],
   "resultados": [
     {
-      "min": 146,
-      "max": 175,
-      "categoria": "Hipernatremia",
+      "min": 0,
+      "max": 1000000,
+      "categoria": "Agua libre del primer día",
       "color": "naranja",
       "match_opcion_index": -1,
-      "approach": "Con hipovolemia, isotónica primero. Luego bajar el sodio menos de 1 mEq/L por hora y no más de 15 mEq/L en 24 h, con una solución hipotónica: sodio de 75 mEq/L si es grave y de 30 mEq/L si es leve. Medir el sodio con frecuencia (Zieg 2024)."
-    },
-    {
-      "min": 175.0001,
-      "max": 200,
-      "categoria": "Hipernatremia de más de 175 mEq/L",
-      "color": "rojo",
-      "match_opcion_index": -1,
-      "approach": "Algunos expertos usan una solución con 10-15 mEq/L menos sodio que el sérico, para que no baje de golpe. Bajarlo menos de 1 mEq/L por hora y no más de 15 mEq/L en 24 h, y medirlo con frecuencia (Zieg 2024)."
+      "approach": "Si hay hipovolemia, dar primero una solución isotónica. Bajar el sodio menos de 1 mEq/L por hora y no más de 15 en 24 h; con más de 175 mEq/L, algunos expertos usan 10-15 mEq/L menos sodio que el sérico (Zieg 2024)."
     }
   ],
   "extras": [
-    {
-      "etiqueta": "Agua libre en 24 h · 4 × peso × descenso",
-      "formula": "4 * peso * 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
-      "sufijo": "mL",
-      "decimales": 0
-    },
     {
       "etiqueta": "Déficit total hasta 145 · 4 × peso × (sodio − 145)",
       "formula": "4 * peso * (na - 145)",
@@ -130,9 +116,15 @@
       "decimales": 0
     },
     {
-      "etiqueta": "Sodio meta a las 24 h · sodio − descenso",
+      "etiqueta": "Sodio esperado a las 24 h · sodio − descenso",
       "formula": "na - 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
       "sufijo": "mEq/L",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Agua libre para los días siguientes · total − 24 h",
+      "formula": "4 * peso * (na - 145) - 4 * peso * 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
+      "sufijo": "mL",
       "decimales": 0
     }
   ],
@@ -193,7 +185,7 @@
     "unidad_por_kg": "mL/kg",
     "capas": [
       {
-        "etiqueta": "4 mL × peso × descenso del sodio",
+        "etiqueta": "Agua libre (no es el volumen de la solución)",
         "formula": "4 * peso * 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
         "sufijo": "mL",
         "color": "azul"
@@ -201,20 +193,20 @@
     ],
     "aportes": [
       {
-        "etiqueta": "Descenso del sodio en 24 h",
+        "etiqueta": "Baja el sodio",
         "formula": "0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
         "sufijo": "mEq/L",
         "color": "naranja"
       },
       {
-        "etiqueta": "Sodio meta a las 24 h",
+        "etiqueta": "Sodio esperado a las 24 h",
         "formula": "na - 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
         "sufijo": "mEq/L",
         "color": "verde"
       },
       {
-        "etiqueta": "Déficit total hasta 145",
-        "formula": "4 * peso * (na - 145)",
+        "etiqueta": "Agua libre que queda para los días siguientes",
+        "formula": "4 * peso * (na - 145) - 4 * peso * 0.5 * ((na - 145) + (15) - abs((na - 145) - (15)))",
         "sufijo": "mL",
         "color": "gris"
       }

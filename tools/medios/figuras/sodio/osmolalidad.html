@@ -1,21 +1,22 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
 // Hiponatremia: la osmolalidad plasmática separa los tres tipos (Zieg J. Front Pediatr 2017, figura 2; CC BY 4.0).
 const ZONAS = [
-  [260, 285, AZUL, "Baja", "&lt;285", "Hipotónica", "La más frecuente: <b>exceso de agua libre</b>. Sigue la volemia y la <b>FENa</b>."],
-  [285, 300, GRIS, "Normal", "285-300", "Pseudohiponatremia", "<b>Lípidos</b> o <b>proteínas</b> muy altos: repetir el sodio con electrodo <b>directo</b>."],
-  [300, 320, MORADO, "Alta", "&gt;300", "Hipertónica", "<b>Glucosa</b>, manitol o contraste IV sacan agua de las células."],
+  [260, 285, AZUL, "Baja", "&lt;285", "Hipotónica", "La más frecuente: <b>exceso de agua libre</b>. Sigue la <b>volemia</b> y la <b>FENa</b>."],
+  [285, 295, GRIS, "Normal", "285-295", "Pseudohiponatremia", "<b>Lípidos</b> o <b>proteínas</b> muy altos: el electrodo indirecto da un sodio <b>falsamente bajo</b>."],
+  [295, 320, MORADO, "Alta", "&gt;295", "Hipertónica", "<b>Glucosa</b>, manitol, sacarosa, contraste IV o dextranos sacan agua de las células."],
 ];
 const W = 668, X = (v) => 20 + (v - 260) / 60 * (W - 40);
 let barra = ZONAS.map(([a, b, c, n, r]) => `<rect x="${X(a)}" y="40" width="${X(b) - X(a)}" height="54" fill="${c}"/>
   <text x="${(X(a) + X(b)) / 2}" y="64" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">${n}</text>
-  <text x="${(X(a) + X(b)) / 2}" y="84" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">${r} mOsm/kg</text>`).join("");
-for (let v = 260; v <= 320; v += 10) barra += `<text x="${X(v)}" y="114" font-size="12" fill="${GRIS}" text-anchor="middle">${v}</text><line x1="${X(v)}" x2="${X(v)}" y1="94" y2="101" stroke="${GRIS}"/>`;
+  <text x="${(X(a) + X(b)) / 2}" y="84" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">${r}</text>`).join("");
+barra += `<text x="${W - 20}" y="114" font-size="11" font-weight="700" fill="${GRIS}" text-anchor="end">mOsm/kg</text>`;
+for (let v = 260; v <= 310; v += 10) barra += `<text x="${X(v)}" y="114" font-size="12" fill="${GRIS}" text-anchor="middle">${v}</text><line x1="${X(v)}" x2="${X(v)}" y1="94" y2="101" stroke="${GRIS}"/>`;
 barra += `<rect x="${X(285)}" y="20" width="${X(295) - X(285)}" height="12" rx="6" fill="${VERDE}"/><text x="${X(295) + 8}" y="30" font-size="12" font-weight="800" fill="${VERDE}">Rango normal: 285-295</text>`;
-const tarjetas = ZONAS.map(([a, b, c, n, r, t, d]) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-top:5px solid ${c};font-size:14px;display:flex;flex-direction:column;gap:6px">
-  <b style="color:${c};font-size:16px">${t}</b><span>${d}</span></div>`).join("");
+const tarjetas = ZONAS.map(([a, b, c, n, r, t, d]) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-top:5px solid ${c};font-size:16px;line-height:1.4;display:flex;flex-direction:column;gap:8px;padding:14px">
+  <b style="color:${c};font-size:19px">${t}</b><span>${d}</span></div>`).join("");
 lienzo("Hiponatremia: primero, la osmolalidad", "La osmolalidad plasmática dice qué tipo de hiponatremia es",
   `<svg width="${W}" height="122" viewBox="0 0 ${W} 122">${barra}</svg>
    <div style="display:flex;gap:10px;flex:1">${tarjetas}</div>
-   <div class="caja" style="background:#F7F8FA;font-size:14px"><b>Si no se puede medir:</b> osmolalidad = 2 × Na + K + glucosa/18 + BUN/2,8 (Na y K en mEq/L; glucosa y BUN en mg/dL).</div>`,
-  "Datos: Zieg J. Pathophysiology of hyponatremia in children. Front Pediatr 2017 (CC BY 4.0), figura 2 y texto. Elaboración de Empirica.");
+   <div class="caja" style="background:#F7F8FA;font-size:14px"><b>Antes:</b> repetir el sodio con electrodo <b>directo</b> (descarta la pseudohiponatremia) y medir la <b>glucosa</b>.</div>`,
+  "Datos: Zieg J. Front Pediatr 2017 (CC BY 4.0): &lt;285 de la figura 2 y &gt;295 del texto; Zieg J et al. BMC Nephrol 2024. Elaboración de Empirica.");
 </script></body></html>

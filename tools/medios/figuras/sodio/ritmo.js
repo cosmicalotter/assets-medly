@@ -25,7 +25,7 @@ const R = {
     pasos: [
       [0, "0 h", "Si hay hipovolemia, <b>isotónica</b> primero", ROJO],
       [1, "1 h", "Calcular el <b>agua libre</b>: 4 mL × kg × Δ sodio", AZUL],
-      [8, "Cada pocas horas", "<b>Medir el sodio</b>: bajar menos de <b>1 mEq/L</b> por hora", AMBAR],
+      [8, "Durante la corrección", "<b>Medir el sodio</b>: bajar menos de <b>1 mEq/L</b> por hora", AMBAR],
       [24, "24 h", "No bajar más de <b>15 mEq/L</b>", MORADO],
     ],
   },
