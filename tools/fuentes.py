@@ -51,8 +51,9 @@ import norma  # noqa: E402  (resolver, todos, DATA)
 #: `.pdf` en la ruta, o rutas que sirven un PDF sin extensión (NICE:
 #: `/resources/<nombre>-pdf-66141662244037`; revistas de la AHA:
 #: `/doi/pdf/<doi>`; revistas de Elsevier como CHEST: `/article/<pii>/pdf`;
-#: revistas en OJS, como la Rev Fac Med de la UNAL: `/article/download/<artículo>/<galerada>`).
-_PDF = re.compile(r"\.pdf$|-pdf-\d+$|^/doi/pdf/|/article/[^/]+/pdf$|/article/download/\d+/\d+$", re.I)
+#: revistas en OJS, como la Rev Fac Med de la UNAL: `/article/download/<artículo>/<galerada>`;
+#: Frontiers: `/articles/<doi>/pdf`).
+_PDF = re.compile(r"\.pdf$|-pdf-\d+$|^/doi/pdf/|/article/[^/]+/pdf$|/article/download/\d+/\d+$|^/articles/10\.\d+/[^/]+/pdf$", re.I)
 _PAGE = re.compile(r"^page=(\d+)$")
 
 

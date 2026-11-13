@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hipernatremia: peso, FENa y osmolalidad urinaria (Zieg J et al. BMC Nephrol 2024; Kermond R et al. Pediatr Nephrol 2023).
+const caja = (t, d, c) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-left:5px solid ${c};display:flex;flex-direction:column;gap:4px;font-size:13.5px"><b style="color:${c};font-size:15px">${t}</b><span>${d}</span></div>`;
+const cab = (t, s, c) => `<div style="background:${c};color:#fff;border-radius:12px;padding:9px 10px;text-align:center"><div style="font-size:17px;font-weight:800">${t}</div><div style="font-size:12.5px;opacity:.92">${s}</div></div>`;
+lienzo("Hipernatremia: ¿falta agua o sobra sal?", "El peso y la FENa separan las dos; la orina dice si el riñón concentra",
+  `<div style="display:flex;gap:12px;flex:1">
+     <div style="flex:2;display:flex;flex-direction:column;gap:8px">
+       ${cab("Perdió peso", "FENa &lt;1 %: falta agua", NARANJA)}
+       <div style="display:flex;gap:8px;flex:1">
+         <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+           <div class="caja" style="background:#F7F8FA;text-align:center;font-weight:800;font-size:13px">Orina concentrada<br><span style="font-weight:600;color:var(--suave)">más que el plasma</span></div>
+           ${caja("Pérdida extrarrenal", "Gastroenteritis (la más común), sudor, pérdidas insensibles", NARANJA)}
+           ${caja("Poca ingesta", "Lactantes, discapacidad neurológica, sed alterada", AMBAR)}</div>
+         <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+           <div class="caja" style="background:#F7F8FA;text-align:center;font-weight:800;font-size:13px">Orina diluida<br><span style="font-weight:600;color:var(--suave)">menos que el plasma</span></div>
+           ${caja("Diabetes insípida central", "Falta la ADH: <b>responde</b> a la desmopresina", AZUL)}
+           ${caja("Diabetes insípida nefrogénica", "El túbulo <b>no responde</b> a la ADH", ROJO)}</div></div></div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+       ${cab("Ganó peso", "FENa &gt;2 %: sobra sal", MORADO)}
+       ${caja("Exceso de sal", "<b>Iatrogénico</b> o intoxicación por sal; el sodio urinario es <b>alto</b>", MORADO)}
+       <div class="caja" style="background:${tinte(ROJO, 10)};font-size:13px"><b>Si hay choque:</b> primero solución salina 0,9 % hasta estabilizar.</div></div>
+   </div>`,
+  "Datos: Zieg J et al. BMC Nephrol 2024 y Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0). Elaboración de Empirica.");
+</script></body></html>

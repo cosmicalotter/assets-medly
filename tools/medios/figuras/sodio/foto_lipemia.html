@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script><script src="../liquidos/foto.js"></script></head><body><script>
+// Pseudohiponatremia: tubo centrifugado con lípidos (dominio público) y dos bolsas de plasma (CC BY-SA 3.0).
+const tubo = { src: "fuentes/commons_Hyperlipidaemia_-_lipid_in_EDTA_tube.jpg", tam: [1280, 3269], recorte: [150, 1100, 870, 1900],
+  marcas: [{ x: 585, y: 1700, rx: 320, ry: 390, c: AMARILLO, t: "Lípidos" }, { x: 585, y: 2620, rx: 320, ry: 300, c: CIAN, t: "Glóbulos rojos" }] };
+const bolsas = { src: "fuentes/commons_Lipemic_plasma.jpg", tam: [1280, 513], recorte: [0, 0, 1280, 513], rotulo: "Dos bolsas de plasma",
+  marcas: [{ x: 330, y: 260, rx: 255, ry: 165, c: AMARILLO, t: "Lipémico" }, { x: 930, y: 200, rx: 250, ry: 155, c: ROSA, t: "Otro donante", ty: 410 }] };
+const nota = (c, t) => `<div class="item" style="background:#F7F8FA;font-size:13.5px"><b style="color:${c === AMARILLO ? "#B59A00" : c}">●</b> ${t}</div>`;
+lienzo("Pseudohiponatremia: plasma lipémico", "Los lípidos ocupan parte del plasma: el sodio medido sale bajo",
+  `<div style="display:flex;gap:12px">
+     ${panelSvg(tubo, 404 / 1900)}
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+       ${panelSvg(bolsas, 446 / 1280)}
+       ${nota(AMARILLO, "<b>Triglicéridos</b>, colesterol o <b>proteínas</b> muy altos: el electrodo <b>indirecto</b> mide un sodio falsamente bajo")}
+       ${nota(CIAN, "La <b>osmolalidad</b> es normal (<b>285-300 mOsm/kg</b>): no es una hiponatremia verdadera")}
+       ${nota(ROSA, "Repetir el sodio con electrodo <b>directo</b>, que mide la muestra sin diluir")}
+     </div></div>`,
+  "Fotos: Mark-shea (dominio público) y DiverDave (CC BY-SA 3.0), Wikimedia Commons. Datos: Zieg J. Front Pediatr 2017 (CC BY 4.0). Rotulada por Empirica.");
+</script></body></html>
