@@ -1,0 +1,140 @@
+{
+  "titulo": "TTKG en la hipopotasemia",
+  "descripcion": "Calcula el gradiente transtubular de potasio del niño con hipopotasemia para saber si el riñón pierde potasio: menor de 2, el riñón lo maneja bien; mayor de 4, lo pierde (Kermond 2023).",
+  "instrucciones": "Tomar la orina y la sangre a la vez. El TTKG sólo es válido si la osmolalidad urinaria es mayor que la plasmática.",
+  "limitaciones": "Kermond 2023 escribe sus cortes en «%», pero corresponden al TTKG sin unidades (el normal es 4-6). Entre 2 y 4 el resultado no separa las causas: decidir con la historia.",
+  "tipoCalculo": "formula",
+  "formula": "0.5 * ((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) + (1) - abs((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) - (1))) * (ku * osms) / (ks * osmu) + (0.5 * ((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) + (1) - abs((0.5 * (((osmu - osms) * 1000) + (0) + abs(((osmu - osms) * 1000) - (0)))) - (1))) - 1) * 1000",
+  "mostrarPuntaje": false,
+  "decimales": 1,
+  "prefijoResultado": "TTKG",
+  "sufijoResultado": "",
+  "referencias": [
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Cociente K/creatinina urinario y TTKG. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=6",
+      "texto": "The urinary K/creatinine ratio and transtubular potassium gradient (TTKG) are useful tools to assess potassium urinary wasting. Importantly, TTKG is valid only if urinary osmolality exceeds plasma osmolality",
+      "paginas": "6",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Kermond 2023 (Pediatr Nephrol): TTKG en la hipopotasemia. Kermond R, Mallett A, McCarthy H. A clinical approach to tubulopathies in children and young adults. Pediatr Nephrol 2023;38(3):651-662. doi:10.1007/s00467-022-05606-1",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00467-022-05606-1.pdf#page=3",
+      "texto": "In hypokalaemic states – <2% suggests appropriate kidney handling – >4% suggests kidney losses",
+      "paginas": "653",
+      "anio": "2023"
+    }
+  ],
+  "secciones": [
+    {
+      "nombre": "Sangre",
+      "elementos": [
+        {
+          "id": "ks",
+          "tipo": "input_numero",
+          "label": "Potasio sérico",
+          "unidad": "mEq/L",
+          "min": 1,
+          "max": 12
+        },
+        {
+          "id": "osms",
+          "tipo": "input_numero",
+          "label": "Osmolalidad plasmática",
+          "unidad": "mOsm/kg",
+          "min": 200,
+          "max": 400
+        }
+      ]
+    },
+    {
+      "nombre": "Orina (tomada a la vez)",
+      "elementos": [
+        {
+          "id": "ku",
+          "tipo": "input_numero",
+          "label": "Potasio urinario",
+          "unidad": "mEq/L",
+          "min": 1,
+          "max": 300
+        },
+        {
+          "id": "osmu",
+          "tipo": "input_numero",
+          "label": "Osmolalidad urinaria",
+          "unidad": "mOsm/kg",
+          "min": 50,
+          "max": 1400
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": -100000,
+      "max": -0.0001,
+      "categoria": "TTKG no válido",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "La orina no está más concentrada que el plasma: el TTKG no es válido. Decidir con la historia y el cociente potasio/creatinina urinario (Zieg 2024)."
+    },
+    {
+      "min": 0,
+      "max": 1.999,
+      "categoria": "TTKG menor de 2: ahorra potasio",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "El riñón maneja bien el potasio: buscar una pérdida extrarrenal (diarrea, vómito, sonda, sudor) o una redistribución (Kermond 2023)."
+    },
+    {
+      "min": 2,
+      "max": 4,
+      "categoria": "TTKG de 2 a 4: dudoso",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Queda entre los dos cortes de Kermond 2023: decidir con la historia y el cociente potasio/creatinina urinario."
+    },
+    {
+      "min": 4.0001,
+      "max": 100000,
+      "categoria": "TTKG mayor de 4: pierde potasio",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Pérdida renal: mirar los gases y la presión arterial para buscar la tubulopatía o el exceso de mineralocorticoides (Kermond 2023)."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "TTKG calculado · (K orina ÷ K suero) ÷ (osm orina ÷ osm plasma)",
+      "formula": "(ku * osms) / (ks * osmu)",
+      "sufijo": "",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Osmolalidad orina ÷ plasma · válido si es mayor de 1",
+      "formula": "osmu / osms",
+      "sufijo": "",
+      "decimales": 2
+    }
+  ],
+  "calculo": [
+    {
+      "etiqueta": "Cociente de potasio = potasio urinario ÷ potasio sérico",
+      "formula": "ku / ks",
+      "sufijo": "",
+      "decimales": 2
+    },
+    {
+      "etiqueta": "Cociente de osmolalidad = osmolalidad urinaria ÷ plasmática (debe ser mayor de 1)",
+      "formula": "osmu / osms",
+      "sufijo": "",
+      "decimales": 2
+    },
+    {
+      "etiqueta": "TTKG = cociente de potasio ÷ cociente de osmolalidad",
+      "formula": "(ku * osms) / (ks * osmu)",
+      "sufijo": "",
+      "decimales": 1
+    }
+  ]
+}
