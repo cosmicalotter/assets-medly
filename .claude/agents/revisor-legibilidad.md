@@ -61,7 +61,8 @@ como lo haría un usuario y revisa:
    respuesta, es un hallazgo; la de entidad lleva `color` y, en la
    `descripcion`, los criterios.
 3. **Estructura** (NORMA §1; el modelo es
-   `data/Adultos/crisishiperglicemica.json`): dibuja el mapa de ramas (nodo
+   `data/Adultos/crisishiperglicemica.json`, y en las urgencias completas,
+   también `data/Adultos/sepsis.json`): dibuja el mapa de ramas (nodo
    → pregunta → opciones → destino) y compáralo con las reglas:
    - si la guía trata distinto a cada entidad, ¿hay una pregunta «¿Cuál es
      el trastorno que vas a tratar?» que abre una cadena por entidad, cada

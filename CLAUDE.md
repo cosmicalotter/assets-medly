@@ -229,9 +229,16 @@ Firebase directamente, saltándose `indices/`.
   modelo es `data/Adultos/patologia_biliar.json`**: un paso común (el
   antibiótico) dentro del flujo, saltos laterales a pasos con rama, un paso
   al que se llega desde lejos escrito para entenderse solo y nodos-enlace con
-  `contexto` (`NORMA.md` §1).
+  `contexto` (`NORMA.md` §1). **El tercer modelo es
+  `data/Adultos/sepsis.json`** (noviembre de 2026), el de las urgencias
+  completas: un ABCDE cuya pregunta reparte por el dato, plazos según el
+  grado de sospecha, una escalera de tratamiento con su bucle de vigilancia
+  (pregunta de dos datos que devuelve al peldaño que toca), un paso que
+  sirve a dos entradas, saltos laterales desde el bucle a las medidas de
+  todo el ingreso y la guía internacional como eje con los esquemas
+  colombianos y los de otros algoritmos de la app (`NORMA.md` §1).
 - **Texto de los enlaces:** a otro algoritmo, sólo el nombre («Sepsis y
-  shock séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
+  choque séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
   («Calcular el índice de Charlson»), que se ve igual que la calculadora
   principal (`NORMA.md` §3).
 - **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una
