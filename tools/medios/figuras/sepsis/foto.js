@@ -4,7 +4,7 @@
 // marca: { x, y, r } (anillo) o { x, y, rx, ry, rot } (elipse), con color c y texto t opcional.
 // Con solo: true es sólo el rótulo (tx, ty): para nombrar lo que ya señala una flecha del original
 // sin añadir un segundo señalador.
-// tapar: [[x, y, w, h]] rectángulos blancos sobre los rótulos del original; textos: [{ x, y, t, ancla }]
+// tapar: [[x, y, w, h, color, radio]] rectángulos (blancos por defecto) sobre los rótulos del original; textos: [{ x, y, t, ancla }]
 // rótulos traducidos en negro (fondo blanco, como en las figuras dibujadas); c y peso opcionales.
 // lineas: [{ x1, y1, x2, y2, c }] trazos de color con borde oscuro.
 const AMARILLO = "#FDE047", ROSA = "#E11D74", CIAN = "#22D3EE";
@@ -22,7 +22,8 @@ function panelSvg(p, k) {
     ${m.t ? `<text x="${m.tx ?? m.x}" y="${m.ty ?? m.y - (m.ry || m.r) - 8 / k}" text-anchor="${m.ancla || "middle"}" font-size="${15 / k}" font-weight="800" fill="${m.c}" stroke="#111" stroke-width="${3.5 / k}" paint-order="stroke">${m.t}</text>` : ""}`).join("");
   const lineas = (p.lineas || []).map((l) => [["#000", 11, 0.35], [l.c, 6, 1]].map(([c, a, o]) =>
     `<line x1="${l.x1}" y1="${l.y1}" x2="${l.x2}" y2="${l.y2}" stroke="${c}" stroke-opacity="${o}" stroke-width="${a / k}" stroke-linecap="round"/>`).join("")).join("");
-  const tapas = (p.tapar || []).map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#fff"/>`).join("");
+  // tapar: [x, y, w, h, color = blanco, radio = 0]; un color oscuro hace de chapa para un rótulo sobre una imagen oscura
+  const tapas = (p.tapar || []).map(([x, y, w, h, c = "#fff", r = 0]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${c}"/>`).join("");
   const textos = (p.textos || []).map((t) => `<text x="${t.x}" y="${t.y}" text-anchor="${t.ancla || "start"}" font-size="${t.tam || 15 / k}" font-weight="${t.peso || 600}" fill="${t.c || "#1F2937"}">${t.t}</text>`).join("");
   return `<div style="position:relative;flex:none">
     <svg width="${W}" height="${H}" viewBox="${x0} ${y0} ${w} ${h}" style="display:block;border-radius:10px">
