@@ -1,0 +1,61 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Regulación del calcio (fisiología, esquema plano): paratiroides, hueso, riñón e intestino.
+// Fuentes: Zieg J et al. BMC Nephrol 2024 (citado) y Kim SY. Ann Pediatr Endocrinol Metab 2015 (CC BY-NC 3.0, citado).
+const PTH = MORADO, CA = TEAL, VD = NARANJA, FOS = AMBAR;
+const FASES = [
+  { t: "Calcio bajo", d: "La paratiroides lo detecta y libera <b>PTH</b>. Para secretarla necesita <b>magnesio</b>.", c: AZUL, ca: 0.22, pth: 1 },
+  { t: "Hueso y riñón", d: "La PTH saca <b>calcio</b> y fósforo del hueso; el riñón retiene el calcio y <b>elimina el fósforo</b>.", c: PTH, ca: 0.45, pth: 1, hueso: 1, rinon: 1 },
+  { t: "Vitamina D activa", d: "El riñón activa la <b>vitamina D</b>, que hace absorber calcio y fósforo en el <b>intestino</b>.", c: VD, ca: 0.7, pth: 0.6, rinon: 1, vd: 1, intestino: 1 },
+  { t: "Calcio normal", d: "El calcio vuelve a su rango y la PTH <b>baja</b>. Si falla la PTH o la vitamina D, aparece la <b>hipocalcemia</b>.", c: VERDE, ca: 0.9, pth: 0.15 },
+];
+function organo(x, y, w, h, nombre, color, activo) {
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="${activo ? tinte(color, 22) : "#F3F4F6"}" stroke="${activo ? color : "#CBD5E1"}" stroke-width="${activo ? 3.5 : 2}"/>
+    <text x="${x + w / 2}" y="${y + h / 2 + 5}" font-size="15" font-weight="800" fill="${activo ? color : GRIS}" text-anchor="middle">${nombre}</text>`;
+}
+function particulas(x1, y1, x2, y2, color, k, n = 5, r = 5) {
+  let s = "";
+  for (let j = 0; j < n; j++) {
+    const f = (k * 1.6 + j / n) % 1;
+    s += `<circle cx="${lerp(x1, x2, f)}" cy="${lerp(y1, y2, f)}" r="${r}" fill="${color}" opacity="${0.35 + 0.65 * Math.sin(f * Math.PI)}"/>`;
+  }
+  return s;
+}
+window.cuadro = function (i, n) {
+  const u = n > 1 ? i / (n - 1) : 1;
+  const fi = Math.min(FASES.length - 1, Math.floor(u * FASES.length * 0.9999));
+  const k = (u * FASES.length) % 1;
+  const f = FASES[fi], prev = FASES[Math.max(0, fi - 1)];
+  const ca = lerp(fi ? prev.ca : f.ca, f.ca, suave(Math.min(1, k * 1.5)));
+  const W = 420, H = 392, cx = 210, cy = 196;
+  let s = "";
+  // plasma con su medidor de calcio
+  s += `<rect x="${cx - 52}" y="${cy - 70}" width="104" height="140" rx="18" fill="${tinte(ROJO, 8)}" stroke="${ROJO}" stroke-width="2"/>
+    <text x="${cx}" y="${cy - 50}" font-size="13" font-weight="800" fill="${ROJO}" text-anchor="middle">Plasma</text>
+    <rect x="${cx - 14}" y="${cy - 38}" width="28" height="96" rx="10" fill="#fff" stroke="${CA}" stroke-width="2"/>
+    <rect x="${cx - 12}" y="${cy + 56 - 92 * ca}" width="24" height="${92 * ca}" rx="8" fill="${CA}"/>
+    <text x="${cx}" y="${cy + 82}" font-size="12" font-weight="800" fill="${CA}" text-anchor="middle">Calcio</text>`;
+  s += organo(cx - 80, 14, 160, 50, "Paratiroides", PTH, f.pth > 0.5);
+  s += organo(10, cy - 30, 120, 60, "Hueso", CA, !!f.hueso);
+  s += organo(W - 130, cy - 30, 120, 60, "Riñón", VD, !!f.rinon || !!f.vd);
+  s += organo(cx - 80, H - 66, 160, 50, "Intestino", VD, !!f.intestino);
+  // PTH hacia hueso y riñón
+  if (f.pth > 0.5) s += particulas(cx - 30, 64, 80, cy - 30, PTH, k, 4, 6) + particulas(cx + 30, 64, W - 80, cy - 30, PTH, k, 4, 6);
+  if (f.hueso) s += particulas(130, cy, cx - 52, cy, CA, k, 5) + particulas(130, cy + 18, cx - 52, cy + 18, FOS, k, 3, 4);
+  if (f.rinon) s += particulas(W - 130, cy - 10, cx + 52, cy - 10, CA, k, 4) + particulas(W - 70, cy + 30, W - 70, H - 90, FOS, k, 3, 4)
+    + `<text x="${W - 64}" y="${H - 80}" font-size="11" font-weight="800" fill="#B7791F" text-anchor="middle">Fósforo a la orina</text>`;
+  if (f.vd) s += particulas(W - 90, cy + 30, cx + 70, H - 66, VD, k, 4, 6);
+  if (f.intestino) s += particulas(cx, H - 66, cx, cy + 70, CA, k, 5) + particulas(cx + 22, H - 66, cx + 22, cy + 70, FOS, k, 3, 4);
+  // leyenda
+  s += `<g font-size="11" font-weight="700"><circle cx="18" cy="${H - 50}" r="5" fill="${PTH}"/><text x="28" y="${H - 46}" fill="${GRIS}">PTH</text>
+    <circle cx="18" cy="${H - 32}" r="5" fill="${CA}"/><text x="28" y="${H - 28}" fill="${GRIS}">Calcio</text>
+    <circle cx="18" cy="${H - 14}" r="5" fill="${FOS}"/><text x="28" y="${H - 10}" fill="${GRIS}">Fósforo</text>
+    <circle cx="${W - 92}" cy="${H - 14}" r="5" fill="${VD}"/><text x="${W - 82}" y="${H - 10}" fill="${GRIS}">Vitamina D</text></g>`;
+  const lista = FASES.map((x, j) => `<div class="item" style="font-size:12.8px;line-height:1.32;padding:7px 10px;opacity:${j <= fi ? 1 : 0.22};background:${j === fi ? tinte(x.c, 15) : "#F7F8FA"};border:1.5px solid ${j === fi ? x.c : "transparent"}">
+      <b style="color:${x.c}">${j + 1}. ${x.t}</b><br><span>${x.d}</span></div>`).join("");
+  lienzo("Cómo se regula el calcio", "La PTH y la vitamina D: dónde puede fallar en la hipocalcemia",
+    `<div style="display:flex;gap:14px;align-items:flex-start"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block;border-radius:14px;background:#FCFCFD">${s}</svg>
+      <div style="flex:1;display:flex;flex-direction:column;gap:6px">${lista}</div></div>`,
+    "Datos: Zieg J et al. BMC Nephrol 2024 y Kim SY. Ann Pediatr Endocrinol Metab 2015, citados. Elaboración de Empirica.");
+};
+window.cuadro(2, 4);
+</script></body></html>

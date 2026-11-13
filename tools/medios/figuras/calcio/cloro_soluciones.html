@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Cloro de cada solución frente al plasma (Hayes W 2019, tabla 1, CC BY 4.0; AAP 2018, tabla 1). Gráfico propio.
+const FILAS = [["Solución salina 0,9 %", 154, ROJO], ["Lactato de Ringer", 109, AMBAR], ["PlasmaLyte", 98, TEAL], ["Solución salina 0,45 %", 77, AZUL]];
+const W = 668, X0 = 190, XW = 440, MAX = 170, X = (v) => X0 + v / MAX * XW;
+let g = `<rect x="${X(95)}" y="0" width="${X(108) - X(95)}" height="${FILAS.length * 58}" fill="${tinte(VERDE, 22)}"/>
+  <text x="${(X(95) + X(108)) / 2}" y="${FILAS.length * 58 + 16}" font-size="12" font-weight="800" fill="${VERDE}" text-anchor="middle">Plasma 95-108</text>`;
+FILAS.forEach(([n, v, c], i) => {
+  const y = i * 58 + 10;
+  g += `<text x="0" y="${y + 24}" font-size="15" font-weight="800" fill="${TINTA}">${n}</text>
+    <rect x="${X0}" y="${y + 6}" width="${X(v) - X0}" height="28" rx="8" fill="${c}"/>
+    <text x="${X(v) + 8}" y="${y + 26}" font-size="16" font-weight="800" fill="${c}">${v}</text>`;
+});
+lienzo("El cloro de cada solución", "Cloro en mEq/L frente al del plasma (banda verde)",
+  `<svg width="${W}" height="${FILAS.length * 58 + 24}" viewBox="0 0 ${W} ${FILAS.length * 58 + 24}">${g}</svg>
+   <div style="display:flex;gap:10px;flex:1">
+     <div class="caja" style="flex:1;background:${tinte(ROJO, 12)};border-left:5px solid ${ROJO};font-size:13.5px"><b style="color:${ROJO}">Mucho cloro: acidosis</b><br>La solución salina 0,9 % trae cerca de un <b>60 %</b> más cloro que el plasma: tras grandes volúmenes aparece la <b>acidosis hiperclorémica</b>.</div>
+     <div class="caja" style="flex:1;background:${tinte(TEAL, 12)};border-left:5px solid ${TEAL};font-size:13.5px"><b style="color:${TEAL}">Balanceadas</b><br>Las soluciones <b>balanceadas</b>, como el PlasmaLyte, tienen un cloro cercano al del plasma.</div>
+     <div class="caja" style="flex:1;background:${tinte(GRIS, 12)};border-left:5px solid ${GRIS};font-size:13.5px"><b style="color:${GRIS}">Falta cloro: alcalosis</b><br>Con vómito persistente, Bartter o fibrosis quística se pierde cloro: se repone con un líquido <b>rico en cloro</b>.</div>
+   </div>`,
+  "Datos: Hayes W. Pediatr Nephrol 2019 (CC BY 4.0), tabla 1; lactato de Ringer: AAP 2018, tabla 1. Elaboración de Empirica.");
+</script></body></html>

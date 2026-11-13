@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hipomagnesemia: la FEMg separa la pérdida renal de la extrarrenal (Zieg 2024, texto y tabla 6). Esquema propio.
+const caja = (t, d, c) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-left:5px solid ${c};display:flex;flex-direction:column;gap:4px;font-size:13.5px"><b style="color:${c};font-size:15px">${t}</b><span>${d}</span></div>`;
+const cab = (t, s, c) => `<div style="background:${c};color:#fff;border-radius:12px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:800">${t}</div><div style="font-size:13px;opacity:.92">${s}</div></div>`;
+lienzo("Hipomagnesemia: ¿dónde se pierde el magnesio?", "La fracción excretada de magnesio (FEMg) separa el riñón del resto",
+  `<div style="display:flex;gap:12px;flex:1">
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("FEMg menor de 2 %", "Pérdida extrarrenal", TEAL)}
+       ${caja("Poca ingesta", "Desnutrición, nutrición parenteral inadecuada, trastornos alimentarios", TEAL)}
+       ${caja("Pérdida digestiva", "Malabsorción, intestino corto, diarrea prolongada, cirugía bariátrica", CELESTE)}
+       ${caja("Otras", "Realimentación y hueso hambriento", GRIS)}</div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("FEMg mayor de 2 %", "Pérdida renal", MORADO)}
+       ${caja("Congénita", "Gitelman, Bartter III-V, hipomagnesemia con hipercalciuria y nefrocalcinosis", MORADO)}
+       ${caja("Adquirida", "Diuréticos de asa, aminoglucósidos, cisplatino, inhibidores de la calcineurina, anfotericina B, omeprazol", ROJO)}
+       ${caja("Endocrina", "Hiperaldosteronismo y diabetes", AMBAR)}</div>
+   </div>
+   <div class="caja" style="background:#F7F8FA;font-size:13.5px"><b>FEMg</b> = (Mg urinario × creatinina sérica) / (Mg sérico × creatinina urinaria) × 100</div>`,
+  "Datos: Zieg J et al. BMC Nephrol 2024, texto y tabla 6, citados. Elaboración de Empirica.");
+</script></body></html>
