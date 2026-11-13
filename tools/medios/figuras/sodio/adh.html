@@ -1,0 +1,78 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// La ADH en el túbulo colector (fisiología, esquema plano): receptor V2, acuaporina 2 y paso del agua.
+// Fuentes: Zieg J. Front Pediatr 2017 (CC BY 4.0) y Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0).
+const FASES = [
+  { t: "Con ADH", d: "Se une al receptor <b>V2</b>; las <b>acuaporinas</b> van a la membrana y el agua vuelve a la sangre: orina <b>concentrada</b>.", c: TEAL, hormona: 3, color: MORADO, v2: true, aqp: 1, agua: 1, orina: "Concentrada" },
+  { t: "Diabetes insípida central", d: "<b>Falta la ADH</b>: las acuaporinas no llegan a la membrana y la orina sale <b>diluida</b>.", c: NARANJA, hormona: 0, v2: true, aqp: 0, agua: 0, orina: "Diluida" },
+  { t: "Desmopresina", d: "Reemplaza la ADH en la <b>central</b>: el receptor responde y la orina se concentra.", c: AZUL, hormona: 3, color: AZUL, v2: true, aqp: 1, agua: 1, orina: "Concentrada" },
+  { t: "Diabetes insípida nefrogénica", d: "Hay ADH, pero el túbulo <b>no responde</b>, ni a la <b>desmopresina</b>: orina diluida.", c: ROJO, hormona: 3, color: MORADO, v2: false, aqp: 0, agua: 0, orina: "Diluida" },
+  { t: "SIADH", d: "ADH alta <b>sin necesidad</b>: retiene agua y <b>diluye</b> el plasma; la orina está concentrada.", c: MORADO, hormona: 6, color: MORADO, v2: true, aqp: 1.4, agua: 1.6, orina: "Concentrada" },
+];
+
+function escena(f, k) {
+  // k: progreso dentro de la fase (0-1)
+  const W = 420, H = 392, x0 = 128, x1 = 292;   // membrana luminal (x0) y basolateral (x1)
+  const ap = suave(tramo(k, 0.05, 0.45));       // entrada de las acuaporinas
+  let s = `<rect x="0" y="0" width="${x0}" height="${H}" fill="${tinte(AMBAR, f.orina === "Diluida" ? 8 : 22)}"/>
+    <rect x="${x1}" y="0" width="${W - x1}" height="${H}" fill="${tinte(ROJO, 9)}"/>
+    <rect x="${x0}" y="40" width="${x1 - x0}" height="${H - 80}" rx="18" fill="${tinte(TEAL, 9)}" stroke="${GRIS}" stroke-width="3"/>
+    <text x="${x0 / 2}" y="22" font-size="12.5" font-weight="800" fill="#B7791F" text-anchor="middle">Orina</text>
+    <text x="${(x0 + x1) / 2}" y="28" font-size="12.5" font-weight="800" fill="${GRIS}" text-anchor="middle">Célula del túbulo</text>
+    <text x="${(x1 + W) / 2}" y="22" font-size="12.5" font-weight="800" fill="${ROJO}" text-anchor="middle">Sangre</text>
+    <text x="${x0 / 2}" y="${H - 14}" font-size="12.5" font-weight="800" fill="#B7791F" text-anchor="middle">${f.orina}</text>`;
+  // receptores V2 en la membrana basolateral
+  const ys = [110, 196, 282];
+  ys.forEach((y) => {
+    s += `<path d="M${x1 - 2} ${y - 16} h12 v32 h-12" fill="${f.v2 ? MORADO : GRIS}" stroke="#fff" stroke-width="1.5"/>`;
+    if (!f.v2) s += `<path d="M${x1 + 1} ${y - 12} l12 24 M${x1 + 13} ${y - 12} l-12 24" stroke="${ROJO}" stroke-width="3.5" stroke-linecap="round"/>`;
+  });
+  s += `<text x="${x1 + 16}" y="${ys[0] - 22}" font-size="11" font-weight="800" fill="${f.v2 ? MORADO : ROJO}">${f.v2 ? "Receptor V2" : "No responde"}</text>`;
+  // hormona: llega desde la sangre y se une al receptor
+  for (let j = 0; j < f.hormona; j++) {
+    const y = ys[j % 3] + (j >= 3 ? 26 : 0) - 8;
+    const lleg = suave(tramo(k, 0, 0.3));
+    const x = lerp(W - 18, x1 + 22, lleg) + (j >= 3 ? 18 : 0);
+    s += `<rect x="${x - 7}" y="${y - 7}" width="14" height="14" transform="rotate(45 ${x} ${y})" fill="${f.color}" stroke="#fff" stroke-width="1.5"/>`;
+  }
+  s += `<text x="${W - 8}" y="${H - 14}" font-size="11" font-weight="800" fill="${f.hormona ? f.color : GRIS}" text-anchor="end">${f.hormona ? (f.color === AZUL ? "Desmopresina" : "ADH") : "Sin ADH"}</text>`;
+  // acuaporinas: dentro de la célula (vesículas) o en la membrana luminal
+  const n = 4;
+  for (let j = 0; j < n; j++) {
+    const y = 84 + j * 74;
+    const xin = (x0 + x1) / 2 + (j % 2 ? 22 : -8);
+    const x = f.aqp ? lerp(xin, x0 + 2, ap) : xin;
+    s += `<rect x="${x - 6}" y="${y - 15}" width="12" height="30" rx="5" fill="${TEAL}" stroke="#fff" stroke-width="1.5"/>
+      <rect x="${x - 1.5}" y="${y - 11}" width="3" height="22" fill="#fff" opacity=".85"/>`;
+  }
+  s += `<text x="${(x0 + x1) / 2}" y="${H - 52}" font-size="11" font-weight="800" fill="${TEAL}" text-anchor="middle">Acuaporina 2</text>`;
+  // gotas de agua: de la orina a la sangre si hay acuaporinas en la membrana
+  if (f.agua && k > 0.35) {
+    const m = Math.round(6 * f.agua);
+    for (let j = 0; j < m; j++) {
+      const fase = ((k - 0.35) * 2.2 + j / m) % 1;
+      const y = 84 + (j % 4) * 74 + (j >= 4 ? 30 : 0);
+      const x = lerp(36, W - 30, fase);
+      s += `<path d="M${x} ${y - 8} q6 8 0 12 q-6 -4 0 -12z" fill="${CELESTE}" opacity="${0.4 + 0.6 * Math.sin(fase * Math.PI)}"/>`;
+    }
+  } else if (!f.agua) {
+    for (let j = 0; j < 5; j++) {
+      const y = 70 + j * 62, x = 30 + (j % 2) * 34;
+      s += `<path d="M${x} ${y - 8} q6 8 0 12 q-6 -4 0 -12z" fill="${CELESTE}" opacity=".85"/>`;
+    }
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block;border-radius:14px;overflow:hidden">${s}</svg>`;
+}
+
+window.cuadro = function (i, n) {
+  const u = n > 1 ? i / (n - 1) : 1;
+  const fi = Math.min(FASES.length - 1, Math.floor(u * FASES.length * 0.9999));
+  const k = n > 1 ? (u * FASES.length) % 1 || (u >= 1 ? 1 : 0) : 1;
+  const f = FASES[fi];
+  const lista = FASES.map((x, j) => `<div class="item" style="font-size:12.4px;line-height:1.28;padding:5px 9px;opacity:${j <= fi ? 1 : 0.22};background:${j === fi ? tinte(x.c, 15) : "#F7F8FA"};border:1.5px solid ${j === fi ? x.c : "transparent"}">
+      <b style="color:${x.c}">${j + 1}. ${x.t}</b><br><span>${x.d}</span></div>`).join("");
+  lienzo("La ADH y el túbulo colector", "Qué falla en la diabetes insípida y qué sobra en el SIADH",
+    `<div style="display:flex;gap:14px;align-items:flex-start">${escena(f, k)}<div style="flex:1;display:flex;flex-direction:column;gap:5px">${lista}</div></div>`,
+    "Datos: Zieg J. Front Pediatr 2017 y Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0). Elaboración de Empirica.");
+};
+window.cuadro(4, 5);
+</script></body></html>
