@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: respuesta a volumen con la curva de Frank-Starling y la elevación pasiva de las piernas
+// (SSC 2026, rec. 49, p. 895: subir 10-15 % el volumen sistólico tras un bolo o la elevación pasiva indica respuesta).
+const W = 668, H = 318, X0 = 56, X1 = 640, Y0 = 276, Y1 = 18;
+const x = (v) => X0 + (X1 - X0) * v, y = (s) => Y0 - (Y0 - Y1) * s;
+const vs = (p) => 0.95 * (1 - Math.exp(-3.2 * p));                       // curva ilustrativa: empinada y luego plana
+const curva = (() => { let d = ""; for (let p = 0; p <= 1.0001; p += 0.01) d += `${d ? "L" : "M"}${x(p).toFixed(1)},${y(vs(p)).toFixed(1)}`; return d; })();
+function punto(p0, dp, u, color, rot) {
+  const p = p0 + dp * u, s0 = vs(p0), s = vs(p), pct = Math.round(100 * (s - s0) / s0);
+  return `<line x1="${x(p0)}" y1="${y(s0)}" x2="${x(p)}" y2="${y(s0)}" stroke="${color}" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="${x(p)}" y1="${y(s0)}" x2="${x(p)}" y2="${y(s)}" stroke="${color}" stroke-width="3"/>
+    <circle cx="${x(p0)}" cy="${y(s0)}" r="7" fill="#fff" stroke="${color}" stroke-width="3"/>
+    <circle cx="${x(p)}" cy="${y(s)}" r="10" fill="${color}" stroke="#fff" stroke-width="3"/>
+    <text x="${x(p) + 14}" y="${y((s + s0) / 2) + 5}" font-size="14" font-weight="800" fill="${color}" opacity="${u > 0.15 ? 1 : 0}">+${pct} %</text>
+    <text x="${x(p0) + (rot === "abajo" ? 6 : -10)}" y="${y(s0) + (rot === "abajo" ? 24 : -16)}" text-anchor="${rot === "abajo" ? "start" : "end"}" font-size="12.5" font-weight="700" fill="${color}">${rot === "abajo" ? "Precarga baja" : "Precarga alta"}</text>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const u1 = suave(tramo(t, 0.08, 0.35)), u2 = suave(tramo(t, 0.52, 0.8));
+  const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#9CA3AF"/><line x1="${X0}" y1="${Y1}" x2="${X0}" y2="${Y0}" stroke="#9CA3AF"/>
+    <text x="${(X0 + X1) / 2}" y="${Y0 + 24}" text-anchor="middle" font-size="12" fill="#6B7280">Precarga (llenado del ventrículo)</text>
+    <text x="18" y="${(Y0 + Y1) / 2}" font-size="12" fill="#6B7280" transform="rotate(-90 18 ${(Y0 + Y1) / 2})" text-anchor="middle">Volumen sistólico</text>
+    <path d="${curva}" fill="none" stroke="${AZUL}" stroke-width="5" stroke-linecap="round"/>
+    ${punto(0.2, 0.06, u1, VERDE, "abajo")}
+    <g opacity="${t > 0.45 ? 1 : 0.25}">${punto(0.7, 0.06, u2, ROJO, "arriba")}</g></svg>`;
+  const etapa = t < 0.45 ? 0 : 1;
+  lienzo("¿Responde a más volumen?", "Elevar las piernas o dar un bolo y medir el volumen sistólico",
+    `${svg}<div style="display:flex;gap:8px">
+      <div class="item" style="flex:1;font-size:13.4px;background:${etapa === 0 ? tinte(VERDE, 14) : "#F3F4F6"};outline:${etapa === 0 ? `2px solid ${VERDE}` : "none"}"><b style="color:#15803D">Responde</b>: <span>en la parte empinada, el volumen sistólico sube <b>10-15 %</b> o más. Otro bolo puede ayudar.</span></div>
+      <div class="item" style="flex:1;font-size:13.4px;background:${etapa === 1 ? tinte(ROJO, 12) : "#F3F4F6"};outline:${etapa === 1 ? `2px solid ${ROJO}` : "none"}"><b style="color:${ROJO}">No responde</b>: <span>en la meseta apenas sube. Más líquido sólo <b>sobrecarga</b>: buscar disfunción cardiaca.</span></div></div>`,
+    "Esquema ilustrativo de Empirica, no datos de un paciente. Fuente: Surviving Sepsis Campaign 2026, recomendación 49, p. 895.");
+};
+window.cuadro(0, 1);
+</script></body></html>

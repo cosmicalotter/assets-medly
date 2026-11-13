@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Metas de SpO2 en la sepsis con insuficiencia respiratoria hipoxémica (SSC 2026, recs. 65-66, pp. 903-904).
+const W = 668, H = 262, X0 = 30, X1 = 640, S0 = 86, S1 = 100;
+const x = (s) => X0 + (X1 - X0) * (s - S0) / (S1 - S0);
+const banda = (a, b, yy, h, c, t, t2, tc) => `<rect x="${x(a)}" y="${yy}" width="${x(b) - x(a)}" height="${h}" rx="9" fill="${tinte(c, 22)}" stroke="${c}" stroke-width="2"/>
+  <text x="${(x(a) + x(b)) / 2}" y="${yy + 21}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${tc}">${t}</text>
+  <text x="${(x(a) + x(b)) / 2}" y="${yy + 39}" text-anchor="middle" font-size="13" font-weight="700" fill="${tc}">${t2}</text>`;
+const reg = [86, 88, 90, 92, 94, 96, 98, 100].map((s) => `<line x1="${x(s)}" y1="200" x2="${x(s)}" y2="208" stroke="#9CA3AF"/><text x="${x(s)}" y="224" text-anchor="middle" font-size="12" fill="#6B7280">${s} %</text>`).join("");
+const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+  <rect x="${x(86)}" y="14" width="${x(90) - x(86)}" height="186" fill="#F3F4F6"/><rect x="${x(97)}" y="14" width="${x(100) - x(97)}" height="186" fill="#F3F4F6"/>
+  <text x="${(x(86) + x(90)) / 2}" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">Oxímetro</text>
+  <text x="${(x(86) + x(90)) / 2}" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">poco fiable</text>
+  <text x="${(x(97) + x(100)) / 2}" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">Poco</text>
+  <text x="${(x(97) + x(100)) / 2}" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">fiable</text>
+  ${banda(90, 93, 64, 50, AZUL, "Conservadora", "90-93 %", "#1D4ED8")}
+  ${banda(94, 97, 130, 50, TEAL, "Razonable", "94-97 %", "#0F766E")}
+  ${banda(96, 100, 64, 50, MORADO, "Liberal", "≥96 %", "#6D28D9")}
+  <line x1="${X0}" y1="200" x2="${X1}" y2="200" stroke="#9CA3AF"/>${reg}
+  <text x="${(X0 + X1) / 2}" y="250" text-anchor="middle" font-size="12" fill="#6B7280">SpO₂</text></svg>`;
+lienzo("Metas de SpO₂ en la sepsis", "Con insuficiencia respiratoria hipoxémica: ajustar la FiO₂ a una franja",
+  `${svg}<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="item" style="font-size:13.4px;background:${tinte(AZUL, 10)}"><b style="color:#1D4ED8">Con poco oxígeno</b> <span>o pocos ventiladores, la meta <b>conservadora</b> rinde más.</span></div>
+    <div class="item" style="font-size:13.4px;background:#F3F4F6"><b>Con choque, piel oscura</b> <span>o SpO₂ fuera de <b>90-97 %</b>, confirmar con gases arteriales.</span></div></div>`,
+  "Esquema de Empirica. Fuente: Surviving Sepsis Campaign 2026, recomendaciones 65 y 66, pp. 903-904.");
+</script></body></html>

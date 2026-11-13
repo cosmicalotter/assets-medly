@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre una foto real: el llenado capilar paso a paso (Thailand2021, CC BY-SA 4.0, Wikimedia Commons).
+// SSC 2026, rec. 52 (pp. 897-898): meta ≤3 s; cambia en minutos, antes que el lactato.
+const SRC = "fuentes/commons_llenado_capilar_dedo.jpg", TAM = [1280, 2160];
+const PASOS = [
+  { y: 100, rot: "1. Presionar", m: { x: 650, y: 300, r: 80, c: AMARILLO, t: "Pulpejo", tx: 600, ty: 200 }, txt: "Presionar el <b>pulpejo</b> hasta que palidezca" },
+  { y: 820, rot: "2. Soltar", m: { x: 690, y: 1030, r: 85, c: "#FFFFFF", t: "Pálido", tx: 640, ty: 920 }, txt: "Soltar y empezar a <b>contar</b>" },
+  { y: 1540, rot: "3. Vuelve el color", m: { x: 680, y: 1765, r: 80, c: CIAN, t: "Rosado otra vez", tx: 640, ty: 1665 }, txt: "Parar al volver el color: meta <b>≤3 s</b>" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const k = t < 0.3 ? 0 : t < 0.55 ? 1 : 2;
+  const p = PASOS[k];
+  const panel = panelSvg({ src: SRC, tam: TAM, recorte: [380, p.y, 560, 520], rotulo: p.rot, marcas: [p.m] }, 380 / 520);
+  const seg = k === 2 ? 2.4 * suave(tramo(t, 0.58, 0.8)) : k === 1 ? 0.8 * tramo(t, 0.32, 0.53) : 0;
+  const reloj = `<div style="margin-top:6px;font-size:13px;font-weight:700;color:#374151">Tiempo de llenado</div>
+    <div style="position:relative;height:22px;border-radius:11px;background:#EEF2F6;margin-top:4px">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:${(seg / 4) * 100}%;border-radius:11px;background:${seg <= 3 ? VERDE : ROJO}"></div>
+      <div style="position:absolute;left:75%;top:-4px;bottom:-4px;border-left:2px dashed #334155"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#6B7280;margin-top:2px"><span>0 s</span><span style="margin-left:52%">3 s</span><span>4 s</span></div>
+    <div style="font-size:26px;font-weight:900;color:${seg <= 3 ? "#15803D" : ROJO};margin-top:4px">${seg.toFixed(1).replace(".", ",")} s</div>`;
+  const lista = PASOS.map((q, j) => `<div class="item" style="font-size:13.6px;margin-top:6px;background:${j === k ? tinte(TEAL, 16) : "#F3F4F6"};outline:${j === k ? `2px solid ${TEAL}` : "none"};color:${j === k ? TINTA : "#6B7280"}"><span>${q.txt}</span></div>`).join("");
+  lienzo("Llenado capilar paso a paso", "Repetirlo durante la reanimación: cambia en minutos",
+    `<div style="display:flex;gap:14px;align-items:flex-start">${panel}<div style="flex:1">${lista}${reloj}
+      <div class="item" style="margin-top:8px;font-size:12.8px;background:#1F2A37;color:#fff">Más de <b style="color:#FCA5A5">3 s</b>: hipoperfusión; seguir la reanimación.</div></div></div>`,
+    "Foto: Thailand2021, Wikimedia Commons, CC BY-SA 4.0. Recortada, rotulada y animada por Empirica. Meta: Surviving Sepsis Campaign 2026, p. 898.");
+};
+window.cuadro(39, 40);
+</script></body></html>
