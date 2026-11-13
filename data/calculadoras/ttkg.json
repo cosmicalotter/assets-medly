@@ -1,0 +1,147 @@
+{
+  "titulo": "Gradiente transtubular de potasio (TTKG)",
+  "descripcion": "Calcula el gradiente transtubular de potasio con el potasio y la osmolalidad de la orina y del plasma. En la hipopotasemia separa la pérdida renal de la que no lo es (Kermond 2023); en la hiperpotasemia, la menor excreción de la carga de potasio (Zieg 2024).",
+  "instrucciones": "Tomar la orina y la sangre al mismo tiempo. El TTKG sólo es válido si la osmolalidad urinaria es mayor que la plasmática: la calculadora enseña ese cociente en la cuenta.",
+  "limitaciones": "Si la osmolalidad urinaria no supera la plasmática, el TTKG no es válido. Se interpreta según el potasio del niño: los cortes de la hipopotasemia (2 y 4) y de la hiperpotasemia (6) son distintos.",
+  "tipoCalculo": "formula",
+  "formula": "(ku * osms) / (ks * osmu)",
+  "mostrarPuntaje": true,
+  "decimales": 1,
+  "prefijoResultado": "TTKG",
+  "sufijoResultado": "",
+  "referencias": [
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Cociente K/creatinina urinario y TTKG. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=6",
+      "texto": "The urinary K/creatinine ratio and transtubular potassium gradient (TTKG) are useful tools to assess potassium urinary wasting. Importantly, TTKG is valid only if urinary osmolality exceeds plasma osmolality",
+      "paginas": "6",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Kermond 2023 (Pediatr Nephrol): TTKG en la hipopotasemia. Kermond R, Mallett A, McCarthy H. A clinical approach to tubulopathies in children and young adults. Pediatr Nephrol 2023;38(3):651-662. doi:10.1007/s00467-022-05606-1",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00467-022-05606-1.pdf#page=3",
+      "texto": "In hypokalaemic states – <2% suggests appropriate kidney handling – >4% suggests kidney losses",
+      "paginas": "653",
+      "anio": "2023"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): TTKG mayor o menor de 6. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=7",
+      "texto": "Differential diagnosis of hyperkalemia is shown in Fig. 4 using a TTGK threshold of greater or less than 6",
+      "paginas": "7",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Figura 4: TTKG y diuresis. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=8",
+      "texto": "After excluding pseudohyperkalemia, urinary potassium wasting using TTKG and urine output volume are assessed to divide hyperkalemic children into three groups.",
+      "paginas": "8",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Figura 4: aldosterona. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=8",
+      "texto": "Plasma aldosterone level is used to further discriminate individuals with reduced potassium wasting and adequate urine output.",
+      "paginas": "8",
+      "anio": "2024"
+    }
+  ],
+  "secciones": [
+    {
+      "nombre": "Sangre",
+      "elementos": [
+        {
+          "id": "ks",
+          "tipo": "input_numero",
+          "label": "Potasio sérico",
+          "unidad": "mEq/L",
+          "min": 1,
+          "max": 12
+        },
+        {
+          "id": "osms",
+          "tipo": "input_numero",
+          "label": "Osmolalidad plasmática",
+          "unidad": "mOsm/kg",
+          "min": 200,
+          "max": 400
+        }
+      ]
+    },
+    {
+      "nombre": "Orina (tomada a la vez)",
+      "elementos": [
+        {
+          "id": "ku",
+          "tipo": "input_numero",
+          "label": "Potasio urinario",
+          "unidad": "mEq/L",
+          "min": 1,
+          "max": 300
+        },
+        {
+          "id": "osmu",
+          "tipo": "input_numero",
+          "label": "Osmolalidad urinaria",
+          "unidad": "mOsm/kg",
+          "min": 50,
+          "max": 1400
+        }
+      ]
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 1.999,
+      "categoria": "TTKG menor de 2",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Con hipopotasemia: el riñón maneja bien el potasio; buscar una pérdida extrarrenal o una redistribución (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
+    },
+    {
+      "min": 2,
+      "max": 4,
+      "categoria": "TTKG de 2 a 4",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Con hipopotasemia queda entre los dos cortes (2 y 4): decidir con la clínica (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
+    },
+    {
+      "min": 4.0001,
+      "max": 6,
+      "categoria": "TTKG de 4 a 6",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Con hipopotasemia: el riñón pierde potasio; mirar el pH y la presión arterial (Kermond 2023). Con hiperpotasemia: menor excreción (TTKG menor de 6); mirar la diuresis y la aldosterona (Zieg 2024)."
+    },
+    {
+      "min": 6.0001,
+      "max": 100000,
+      "categoria": "TTKG mayor de 6",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Con hipopotasemia: el riñón pierde potasio (Kermond 2023). Con hiperpotasemia: el riñón excreta, pero hay una carga de potasio endógena o exógena (Zieg 2024)."
+    }
+  ],
+  "calculo": [
+    {
+      "etiqueta": "Cociente de potasio = potasio urinario ÷ potasio sérico",
+      "formula": "ku / ks",
+      "sufijo": "",
+      "decimales": 2
+    },
+    {
+      "etiqueta": "Cociente de osmolalidad = osmolalidad urinaria ÷ plasmática (debe ser mayor de 1)",
+      "formula": "osmu / osms",
+      "sufijo": "",
+      "decimales": 2
+    },
+    {
+      "etiqueta": "TTKG = cociente de potasio ÷ cociente de osmolalidad",
+      "formula": "(ku * osms) / (ks * osmu)",
+      "sufijo": "",
+      "decimales": 1
+    }
+  ]
+}

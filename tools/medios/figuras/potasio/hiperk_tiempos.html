@@ -1,0 +1,49 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hiperpotasemia: cuándo empieza y cuánto dura cada fármaco (Zieg J et al. BMC Nephrol 2024, tabla 5). GIF de flujo.
+// filas: [fármaco, dosis, inicio (min, desde-hasta), fin del efecto (min, desde-hasta), color, paso]; fin null = depende de la terapia
+const FILAS = [
+  ["Gluconato de calcio 10 %", "0,5-1 mL/kg (máx. 20)", [5, 5], [30, 60], ROJO, 0],
+  ["Dextrosa 10 % + insulina", "5 mL/kg + 0,1 U/kg", [10, 20], null, AZUL, 1],
+  ["Salbutamol", "IV 5 µg/kg o nebulizado", [30, 30], [120, 120], AZUL, 1],
+  ["Bicarbonato 8,4 %", "1 mmol/kg (con acidosis)", [60, 60], [120, 120], AZUL, 1],
+  ["Furosemida", "1 mg/kg", [60, 120], [360, 480], MORADO, 2],
+  ["Resina (poliestireno)", "1 g/kg; rectal en 30 min", [60, 120], [240, 360], MORADO, 2],
+];
+const PASOS = [["1. Estabilizar el miocardio", "Calcio IV <b>lento</b> con el ECG; dura poco: puede repetirse.", ROJO],
+               ["2. Meter el potasio en las células", "Dextrosa con insulina (vigilar la <b>glucemia</b>), salbutamol y bicarbonato si hay acidosis.", AZUL],
+               ["3. Sacar el potasio", "Furosemida si orina, resina y, si persiste, <b>hemodiálisis</b>.", MORADO]];
+const X0 = 200, XW = 456, TOP = 22, RH = 37;
+const X = (m) => X0 + (m <= 120 ? m / 120 * 0.62 : 0.62 + (Math.min(m, 480) - 120) / 360 * 0.38) * XW;   // 0-2 h ancho; 2-8 h comprimido
+window.cuadro = function (i, n) {
+  const u = n > 1 ? i / (n - 1) : 1;
+  const ahora = u <= 0.62 ? (u / 0.62) * 120 : 120 + (u - 0.62) / 0.38 * 360;
+  let g = "";
+  [0, 30, 60, 120, 240, 360, 480].forEach((m) => {
+    g += `<line x1="${X(m)}" x2="${X(m)}" y1="${TOP - 6}" y2="${TOP + RH * FILAS.length}" stroke="#EEF0F3"/>
+      <text x="${X(m)}" y="${TOP + RH * FILAS.length + 16}" font-size="11" fill="${GRIS}" text-anchor="middle">${m === 0 ? "0" : m < 60 ? m + " min" : m / 60 + " h"}</text>`;
+  });
+  FILAS.forEach(([nom, dosis, ini, fin, c, p], j) => {
+    const y = TOP + j * RH, activa = ahora >= ini[0];
+    g += `<text x="0" y="${y + 15}" font-size="12.5" font-weight="800" fill="${activa ? c : "#B6BCC6"}">${nom}</text>
+      <text x="0" y="${y + 29}" font-size="10.5" fill="${activa ? GRIS : "#C9CED6"}">${dosis}</text>`;
+    const a = X(ini[0]), b = fin ? X(fin[1]) : X(480), b0 = fin ? X(fin[0]) : X(240);
+    const hasta = Math.min(b, X(ahora));
+    if (hasta > a) {
+      g += `<rect x="${a}" y="${y + 8}" width="${Math.max(0, Math.min(b0, hasta) - a)}" height="18" rx="6" fill="${c}"/>`;
+      if (hasta > b0) g += `<rect x="${b0}" y="${y + 8}" width="${hasta - b0}" height="18" rx="6" fill="${c}" opacity="${fin ? 0.4 : 0.25}"/>`;
+      if (!fin && hasta >= b - 1) g += `<text x="${b - 4}" y="${y + 21}" font-size="10" font-weight="800" fill="${c}" text-anchor="end">según la terapia</text>`;
+    }
+    g += `<circle cx="${a}" cy="${y + 17}" r="5" fill="#fff" stroke="${activa ? c : "#C9CED6"}" stroke-width="2.5"/>`;
+  });
+  g += `<line x1="${X(ahora)}" x2="${X(ahora)}" y1="${TOP - 10}" y2="${TOP + RH * FILAS.length + 2}" stroke="${TINTA}" stroke-width="2.5"/>
+    <rect x="${Math.min(X(ahora), 636) - 30}" y="0" width="60" height="18" rx="6" fill="${TINTA}"/>
+    <text x="${Math.min(X(ahora), 636)}" y="13" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${ahora < 60 ? Math.round(ahora) + " min" : (ahora / 60).toFixed(1).replace(".", ",") + " h"}</text>`;
+  const activo = FILAS.reduce((s, f) => (ahora >= f[2][0] ? Math.max(s, f[5]) : s), 0);
+  const tarjetas = PASOS.map(([t, d, c], j) => `<div class="item" style="flex:1;opacity:${j <= activo ? 1 : 0.25};background:${j === activo ? tinte(c, 15) : "#F7F8FA"};border:1.5px solid ${j === activo ? c : "transparent"};font-size:12.6px"><b style="color:${c}">${t}</b><br>${d}</div>`).join("");
+  lienzo("Hiperpotasemia: cuándo actúa cada fármaco", "Inicio (círculo) y duración del efecto desde que se da; la barra clara es el rango",
+    `<svg width="668" height="${TOP + RH * FILAS.length + 24}" viewBox="0 0 668 ${TOP + RH * FILAS.length + 24}">${g}</svg>
+     <div style="display:flex;gap:8px;flex:1">${tarjetas}</div>`,
+    "Datos: Zieg J et al. BMC Nephrol 2024, tabla 5 (adaptada de las referencias 18 y 48). Elaboración de Empirica.");
+};
+window.cuadro(1, 1);
+</script></body></html>

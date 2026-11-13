@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hiperpotasemia: causas según el TTKG, la diuresis y la aldosterona (Zieg 2024, texto y tabla 4; Kermond 2023, CC BY 4.0).
+const caja = (t, d, c) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-left:5px solid ${c};display:flex;flex-direction:column;gap:4px;font-size:13px"><b style="color:${c};font-size:14.5px">${t}</b><span>${d}</span></div>`;
+const cab = (t, s, c) => `<div style="background:${c};color:#fff;border-radius:12px;padding:9px 8px;text-align:center"><div style="font-size:16px;font-weight:800">${t}</div><div style="font-size:12px;opacity:.92">${s}</div></div>`;
+lienzo("Hiperpotasemia: ¿de dónde sale el potasio?", "Descartada la pseudohiperpotasemia, el TTKG y la diuresis separan tres grupos",
+  `<div style="display:flex;gap:10px;flex:1">
+     <div style="flex:1.25;display:flex;flex-direction:column;gap:8px">${cab("El riñón excreta poco", "TTKG menor de 6", ROJO)}
+       <div style="display:flex;gap:8px;flex:1">
+         <div style="flex:1;display:flex;flex-direction:column;gap:8px">${caja("Diuresis baja", "Lesión renal aguda o enfermedad renal crónica", ROJO)}</div>
+         <div style="flex:1;display:flex;flex-direction:column;gap:8px">${caja("Diuresis normal", "Falta o resistencia a la <b>aldosterona</b>: insuficiencia suprarrenal, hiperplasia suprarrenal, ATR tipo 4 (en el niño, sobre todo por <b>urosepsis</b>), seudohipoaldosteronismo y fármacos", NARANJA)}</div></div></div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("Sobra potasio", "TTKG mayor de 6", MORADO)}
+       ${caja("Carga exógena", "Dieta, penicilina G, transfusiones masivas, infusiones con mucho potasio", MORADO)}
+       ${caja("Carga endógena", "Rabdomiólisis, hemólisis, lisis tumoral, daño de tejidos", AZUL)}</div>
+     <div style="flex:0.85;display:flex;flex-direction:column;gap:8px">${cab("Redistribución", "Sale de las células", AMBAR)}
+       ${caja("Causas", "Acidosis metabólica y parálisis periódica hiperpotasémica", AMBAR)}
+       <div class="caja" style="background:#F7F8FA;font-size:12.5px"><b>Fármacos que suben el potasio:</b> ahorradores de potasio, bloqueadores del sistema renina-angiotensina, inhibidores de la calcineurina, heparina, AINE, trimetoprim</div></div>
+   </div>`,
+  "Datos: Zieg J et al. BMC Nephrol 2024 (texto y tabla 4) y Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0). Elaboración de Empirica.");
+</script></body></html>

@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hipopotasemia con pérdida renal: el pH y la presión arterial llevan a la causa (Kermond R et al. Pediatr Nephrol 2023, CC BY 4.0; Zieg 2024, tabla 3).
+const caja = (t, d, c) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-left:5px solid ${c};display:flex;flex-direction:column;gap:4px;font-size:13px"><b style="color:${c};font-size:14.5px">${t}</b><span>${d}</span></div>`;
+const cab = (t, s, c) => `<div style="background:${c};color:#fff;border-radius:12px;padding:9px 8px;text-align:center"><div style="font-size:16px;font-weight:800">${t}</div><div style="font-size:12px;opacity:.92">${s}</div></div>`;
+lienzo("Hipopotasemia renal: el pH y la presión arterial", "Con TTKG mayor de 4, el riñón pierde potasio: los gases y la presión llevan a la causa",
+  `<div style="display:flex;gap:10px;flex:1">
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("Acidosis metabólica", "Pierde bicarbonato o no excreta ácido", AZUL)}
+       ${caja("Tubulopatía proximal", "Fanconi: pierde sodio, potasio, fosfato, glucosa, aminoácidos y bicarbonato; ATR tipo 2", AZUL)}
+       ${caja("ATR distal (tipo 1)", "Hipercalciuria, nefrocalcinosis, raquitismo y a veces sordera", CELESTE)}</div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("Alcalosis, presión normal o baja", "Pierde sal: aldosterona alta", NARANJA)}
+       ${caja("Bartter", "Asa de Henle; inicio prenatal o temprano; <b>hipercalciuria</b> y nefrocalcinosis", NARANJA)}
+       ${caja("Gitelman", "Túbulo distal; niño mayor o adolescente; <b>hipomagnesemia</b> e hipocalciuria", AMBAR)}
+       <div class="caja" style="background:#F7F8FA;font-size:12.5px"><b>Descartar antes:</b> estenosis pilórica, diarrea congénita de cloro, fibrosis quística, laxantes o diuréticos</div></div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">${cab("Alcalosis con hipertensión", "Exceso real o aparente de mineralocorticoides", MORADO)}
+       ${caja("Hiperaldosteronismo primario", "Aldosterona <b>alta</b> y renina baja", MORADO)}
+       ${caja("Liddle o exceso aparente", "Renina y aldosterona <b>bajas</b>; también el regaliz", ROJO)}
+       ${caja("Otras", "Hiperplasia suprarrenal congénita, Cushing, hipertensión renovascular", GRIS)}</div>
+   </div>`,
+  "Datos: Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0), figuras 2 y 3, y Zieg J et al. BMC Nephrol 2024, tabla 3. Elaboración de Empirica.");
+</script></body></html>
