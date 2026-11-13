@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hiponatremia hipotónica: volemia y FENa (Zieg J. Front Pediatr 2017, figura 2; CC BY 4.0).
+const COL = [
+  ["Hipovolemia", TEAL, "Deshidratación", [
+    ["FENa &lt;0,5 %", "Pérdida extrarrenal", "Vómito, diarrea, sangrado, quemaduras, sudor", TEAL],
+    ["FENa ≥0,5 %", "Pérdida renal de sal", "Diuréticos, déficit de mineralocorticoides, tubulopatías", "#E11D74"]]],
+  ["Euvolemia", AZUL, "Sin deshidratación ni edemas", [
+    ["FENa ≥0,5 %", "Exceso de agua", "<b>SIADH</b>: osmolalidad urinaria mayor de 200 mOsm/kg<br><b>Polidipsia</b>: menor de 200<br>Tiazidas, hipotiroidismo, insuficiencia suprarrenal o déficit de glucocorticoides", AZUL]]],
+  ["Hipervolemia", MORADO, "Edemas", [
+    ["FENa &lt;0,5 %", "Estado edematoso", "Síndrome nefrótico, cirrosis, falla cardíaca", MORADO],
+    ["FENa ≥0,5 %", "Riñón que falla", "Lesión renal aguda o enfermedad renal crónica", ROJO]]],
+];
+const cols = COL.map(([t, c, s, filas]) => `<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+  <div style="background:${c};color:#fff;border-radius:12px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:800">${t}</div><div style="font-size:12.5px;opacity:.92">${s}</div></div>
+  ${filas.map(([f, n, d, cc]) => `<div class="caja" style="flex:1;background:${tinte(cc, 12)};border-left:5px solid ${cc};display:flex;flex-direction:column;gap:4px;font-size:13.5px">
+     <b style="color:${cc};font-size:13px">${f}</b><b style="font-size:15px">${n}</b><span>${d}</span></div>`).join("")}</div>`).join("");
+lienzo("Hiponatremia hipotónica: volemia y FENa", "La volemia y la fracción excretada de sodio llevan a la causa",
+  `<div style="display:flex;gap:10px;flex:1">${cols}</div>
+   <div class="caja" style="background:#F7F8FA;font-size:13.5px"><b>FENa</b> = (Na urinario × creatinina sérica) / (creatinina urinaria × Na sérico) × 100</div>`,
+  "Datos: Zieg J. Front Pediatr 2017 (CC BY 4.0), figura 2, y Zieg J et al. BMC Nephrol 2024. Elaboración de Empirica.");
+</script></body></html>

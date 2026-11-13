@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="../liquidos/base.js"></script></head><body><script>
+// Hipernatremia: peso, osmolalidad y sodio urinario (Zieg J et al. BMC Nephrol 2024, texto y figura 3, citada sin reproducirla;
+// Kermond R et al. Pediatr Nephrol 2023, CC BY 4.0).
+const caja = (t, s, d, c) => `<div class="caja" style="flex:1;background:${tinte(c, 12)};border-left:5px solid ${c};display:flex;flex-direction:column;gap:4px;font-size:13px"><b style="color:${c};font-size:11.5px">${s}</b><b style="font-size:14.5px">${t}</b><span>${d}</span></div>`;
+const cab = (t, s, c) => `<div style="background:${c};color:#fff;border-radius:12px;padding:9px 10px;text-align:center"><div style="font-size:17px;font-weight:800">${t}</div><div style="font-size:12.5px;opacity:.92">${s}</div></div>`;
+lienzo("Hipernatremia: ¿falta agua o sobra sal?", "El peso separa las dos; la osmolalidad y el sodio urinario llevan a la causa",
+  `<div style="display:flex;gap:12px;flex:1">
+     <div style="flex:3;display:flex;flex-direction:column;gap:8px">
+       ${cab("Perdió peso o está deshidratado", "Falta agua libre", NARANJA)}
+       <div style="display:flex;gap:8px;flex:1">
+         ${caja("Pérdida extrarrenal o poca ingesta", "Orina concentrada · sodio urinario bajo", "Gastroenteritis, sonda nasogástrica, taquipnea, quemaduras, sudor, calor; lactante o niño con discapacidad neurológica", NARANJA)}
+         ${caja("Pérdida renal", "Orina no diluida · sodio urinario alto", "Diuréticos de asa, diuresis osmótica, enfermedad renal", "#E11D74")}
+         <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+           ${caja("Diabetes insípida central", "Orina diluida · sodio urinario bajo", "Falta la ADH: <b>responde</b> a la desmopresina", "#0891B2")}
+           ${caja("Diabetes insípida nefrogénica", "Orina diluida · sodio urinario bajo", "El túbulo <b>no responde</b> a la ADH", ROJO)}</div></div></div>
+     <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+       ${cab("Ganó peso", "Sobra sal", MORADO)}
+       ${caja("Exceso de sal", "Orina concentrada · sodio urinario alto", "Intoxicación por sal o exceso de sodio administrado (<b>iatrogénico</b>)", MORADO)}
+       <div class="caja" style="flex:1;background:${tinte(ROJO, 10)};font-size:13px;display:flex;flex-direction:column;gap:6px"><b style="color:${ROJO}">Si hay choque</b><span>Primero solución salina 0,9 % hasta estabilizar.</span><b style="color:${ROJO}">Antes de todo</b><span>Repetir el sodio con electrodo selectivo: descarta la pseudohipernatremia.</span></div></div>
+   </div>`,
+  "Datos: Zieg J et al. BMC Nephrol 2024 (CC BY-NC-ND 4.0), citado sin reproducir figuras, y Kermond R et al. Pediatr Nephrol 2023 (CC BY 4.0). Elaboración de Empirica.");
+</script></body></html>
