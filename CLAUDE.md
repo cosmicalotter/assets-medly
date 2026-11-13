@@ -43,8 +43,8 @@ abrirse.
   recientes, ni Nodo) y la app no lo abre aunque se llegue por un enlace o
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
-  aunque el algoritmo ya esté terminado. Hoy (12 de noviembre de 2026) hay
-  40 visibles. Adultos (29): patología biliar, crisis hiperglucémicas,
+  aunque el algoritmo ya esté terminado. Hoy (13 de noviembre de 2026) hay
+  41 visibles. Adultos (30): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
@@ -52,7 +52,7 @@ abrirse.
   el PAI 2026, hemorragia posparto, hemorragias de la primera mitad del
   embarazo, hipertensión arterial, infección de vías urinarias, neumonía adquirida
   en la comunidad, pancreatitis aguda, parto pretérmino, ruptura prematura de membranas,
-  síndrome coronario agudo, tromboembolismo pulmonar y violencia sexual
+  sepsis y choque séptico, síndrome coronario agudo, tromboembolismo pulmonar y violencia sexual
   (`violencia_sexual.json`,
   todas las edades).
   Pediatría (11): hipoglucemia, enfermedad diarreica aguda, infecciones
@@ -229,9 +229,16 @@ Firebase directamente, saltándose `indices/`.
   modelo es `data/Adultos/patologia_biliar.json`**: un paso común (el
   antibiótico) dentro del flujo, saltos laterales a pasos con rama, un paso
   al que se llega desde lejos escrito para entenderse solo y nodos-enlace con
-  `contexto` (`NORMA.md` §1).
+  `contexto` (`NORMA.md` §1). **El tercer modelo es
+  `data/Adultos/sepsis.json`** (noviembre de 2026), el de las urgencias
+  completas: un ABCDE cuya pregunta reparte por el dato, plazos según el
+  grado de sospecha, una escalera de tratamiento con su bucle de vigilancia
+  (pregunta de dos datos que devuelve al peldaño que toca), un paso que
+  sirve a dos entradas, saltos laterales desde el bucle a las medidas de
+  todo el ingreso y la guía internacional como eje con los esquemas
+  colombianos y los de otros algoritmos de la app (`NORMA.md` §1).
 - **Texto de los enlaces:** a otro algoritmo, sólo el nombre («Sepsis y
-  shock séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
+  choque séptico»; la app antepone «Algoritmo»); a una calculadora, la acción
   («Calcular el índice de Charlson»), que se ve igual que la calculadora
   principal (`NORMA.md` §3).
 - **Ramas (`NORMA.md` §1):** cada sección es un algoritmo de verdad, no una

@@ -9,7 +9,9 @@ argument-hint: "<algoritmo> [--guia RUTA_O_URL] [--sin-pausas]"
 Una sesión, un algoritmo, una rama, un PR. Lee primero `NORMA.md` (en esta
 carpeta): es la definición de terminado. El resultado tiene que parecerse a
 `data/Adultos/crisishiperglicemica.json`, el modelo: ábrelo (o su mapa en
-`NORMA.md` §1) antes de diseñar.
+`NORMA.md` §1) antes de diseñar. Si el tema es una urgencia completa (de la
+llegada al alta, con reanimación y escalera de tratamiento), el modelo es
+también `data/Adultos/sepsis.json` (`NORMA.md` §1, «El tercer modelo»).
 
 Argumentos: `$ARGUMENTS`. El algoritmo puede venir como `sepsis`,
 `sepsis.json` o `Adultos/sepsis.json`. Con `--sin-pausas` no se espera la

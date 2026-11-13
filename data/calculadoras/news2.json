@@ -1,0 +1,338 @@
+{
+  "titulo": "NEWS2 (National Early Warning Score 2)",
+  "descripcion": "Suma siete constantes (frecuencia respiratoria, SpO₂, oxígeno suplementario, PAS, pulso, conciencia y temperatura) para detectar el deterioro agudo y graduar la respuesta. El Royal College of Physicians la actualizó en 2017; en el hospital, la Surviving Sepsis Campaign 2026 recomienda tamizar la sepsis con NEWS, NEWS2, MEWS o SIRS antes que con el qSOFA como herramienta única.",
+  "instrucciones": "Escribe cada constante o marca su tramo. Usa la escala 2 de SpO₂ sólo si la meta es 88-92 % por insuficiencia respiratoria hipercápnica. Conciencia: confusión nueva, respuesta a la voz, al dolor o ninguna suman 3.",
+  "limitaciones": "Es una alerta de deterioro, no un diagnóstico de sepsis. Una sola constante con 3 puntos pide valoración urgente aunque el total sea bajo. No se usa en embarazadas ni en menores de 16 años.",
+  "prefijoResultado": "NEWS2",
+  "referencias": [
+    {
+      "titulo": "Royal College of Physicians. NEWS2: puntuación y oxígeno suplementario (2017)",
+      "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf#page=51",
+      "paginas": "28",
+      "texto": "If supplemental oxygen is required to maintain oxygen saturations, two additional points are added to the aggregate NEW score."
+    },
+    {
+      "titulo": "Royal College of Physicians. NEWS2: umbral de 5 o más (2017)",
+      "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf#page=16",
+      "paginas": "xv",
+      "texto": "the importance of considering serious sepsis in patients with known or suspected infection, or at risk of infection, is emphasised. A NEW score of 5 or more is the key trigger threshold"
+    },
+    {
+      "titulo": "Royal College of Physicians. NEWS2: una constante con 3 puntos pide valoración urgente (2017)",
+      "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf#page=53",
+      "paginas": "30",
+      "texto": "should prompt an urgent review by a clinician (usually a ward-based doctor) to determine the cause and decide whether an escalation of care is required"
+    },
+    {
+      "titulo": "Royal College of Physicians. NEWS2: frecuencia de la vigilancia (2017)",
+      "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf#page=61",
+      "paginas": "38",
+      "texto": "the frequency of monitoring should be increased to a minimum of every hour for those patients with an aggregate NEW score of 5–6, or a red score of 3 in a single parameter"
+    },
+    {
+      "titulo": "Royal College of Physicians. NEWS2: no en niños ni embarazadas (2017)",
+      "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf#page=18",
+      "paginas": "xvii",
+      "texto": "The NEWS should not be used in children (ie aged <16 years) or in women who are pregnant, because the physiological response to acute illness can be modified"
+    },
+    {
+      "titulo": "Prescott HC, Antonelli M, Alhazzani W, et al. Surviving Sepsis Campaign 2026. Intensive Care Med 2026;52:863-936. Recomendación 4.",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00134-026-08361-1.pdf#page=13",
+      "paginas": "875",
+      "texto": "For acutely ill patients in hospital, we “recommend” using NEWS, NEW2, MEWS, or SIRS over qSOFA as a single tool to screen for sepsis"
+    }
+  ],
+  "columnas": [
+    {
+      "puntos": 0,
+      "titulo": "0",
+      "color": "verde"
+    },
+    {
+      "puntos": 1,
+      "titulo": "1",
+      "color": "amarillo"
+    },
+    {
+      "puntos": 2,
+      "titulo": "2",
+      "color": "naranja"
+    },
+    {
+      "puntos": 3,
+      "titulo": "3",
+      "color": "rojo"
+    }
+  ],
+  "filas": [
+    {
+      "nombre": "Frecuencia respiratoria",
+      "descripciones": [
+        "12-20",
+        "9-11",
+        "21-24",
+        "≤ 8 / ≥ 25"
+      ],
+      "entrada": {
+        "unidad": "rpm",
+        "min": 0,
+        "max": 80,
+        "tramos": [
+          {
+            "max": 8.99,
+            "puntos": 3
+          },
+          {
+            "min": 9,
+            "max": 11.99,
+            "puntos": 1
+          },
+          {
+            "min": 12,
+            "max": 20.99,
+            "puntos": 0
+          },
+          {
+            "min": 21,
+            "max": 24.99,
+            "puntos": 2
+          },
+          {
+            "min": 25,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "SpO₂, escala 1",
+      "descripciones": [
+        "≥ 96 %",
+        "94-95 %",
+        "92-93 %",
+        "≤ 91 %"
+      ],
+      "grupo": "spo2",
+      "ayuda": "La de casi todos los pacientes.",
+      "entrada": {
+        "unidad": "%",
+        "min": 50,
+        "max": 100,
+        "tramos": [
+          {
+            "max": 91.99,
+            "puntos": 3
+          },
+          {
+            "min": 92,
+            "max": 93.99,
+            "puntos": 2
+          },
+          {
+            "min": 94,
+            "max": 95.99,
+            "puntos": 1
+          },
+          {
+            "min": 96,
+            "puntos": 0
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "SpO₂, escala 2 (hipercapnia)",
+      "descripciones": [
+        "88-92 % o ≥ 93 % con aire",
+        "86-87 % o 93-94 % con oxígeno",
+        "84-85 % o 95-96 % con oxígeno",
+        "≤ 83 % o ≥ 97 % con oxígeno"
+      ],
+      "grupo": "spo2",
+      "ayuda": "Sólo si un clínico fijó una meta de 88-92 % por insuficiencia respiratoria hipercápnica (sobre todo EPOC)."
+    },
+    {
+      "nombre": "Aire u oxígeno",
+      "descripciones": [
+        "Aire ambiente",
+        "-",
+        "Oxígeno suplementario",
+        "-"
+      ]
+    },
+    {
+      "nombre": "PAS",
+      "descripciones": [
+        "111-219",
+        "101-110",
+        "91-100",
+        "≤ 90 / ≥ 220"
+      ],
+      "ayuda": "Presión arterial sistólica, en mmHg.",
+      "entrada": {
+        "unidad": "mmHg",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 90.99,
+            "puntos": 3
+          },
+          {
+            "min": 91,
+            "max": 100.99,
+            "puntos": 2
+          },
+          {
+            "min": 101,
+            "max": 110.99,
+            "puntos": 1
+          },
+          {
+            "min": 111,
+            "max": 219.99,
+            "puntos": 0
+          },
+          {
+            "min": 220,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Pulso",
+      "descripciones": [
+        "51-90",
+        "41-50 / 91-110",
+        "111-130",
+        "≤ 40 / ≥ 131"
+      ],
+      "entrada": {
+        "unidad": "lpm",
+        "min": 0,
+        "max": 300,
+        "tramos": [
+          {
+            "max": 40.99,
+            "puntos": 3
+          },
+          {
+            "min": 41,
+            "max": 50.99,
+            "puntos": 1
+          },
+          {
+            "min": 51,
+            "max": 90.99,
+            "puntos": 0
+          },
+          {
+            "min": 91,
+            "max": 110.99,
+            "puntos": 1
+          },
+          {
+            "min": 111,
+            "max": 130.99,
+            "puntos": 2
+          },
+          {
+            "min": 131,
+            "puntos": 3
+          }
+        ]
+      }
+    },
+    {
+      "nombre": "Conciencia",
+      "descripciones": [
+        "Alerta",
+        "-",
+        "-",
+        "Confusión nueva, voz, dolor o no responde"
+      ],
+      "ayuda": "ACVPU: la confusión nueva (desorientación, delirium o cualquier cambio nuevo del estado mental) suma igual que no responder a la voz."
+    },
+    {
+      "nombre": "Temperatura",
+      "descripciones": [
+        "36,1-38,0",
+        "35,1-36,0 / 38,1-39,0",
+        "≥ 39,1",
+        "≤ 35,0"
+      ],
+      "entrada": {
+        "unidad": "°C",
+        "unidades": [
+          {
+            "unidad": "°F",
+            "factor": 0.5556,
+            "suma": -17.778
+          }
+        ],
+        "min": 25,
+        "max": 45,
+        "tramos": [
+          {
+            "max": 35.0,
+            "puntos": 3
+          },
+          {
+            "min": 35.01,
+            "max": 36.0,
+            "puntos": 1
+          },
+          {
+            "min": 36.01,
+            "max": 38.0,
+            "puntos": 0
+          },
+          {
+            "min": 38.01,
+            "max": 39.0,
+            "puntos": 1
+          },
+          {
+            "min": 39.01,
+            "puntos": 2
+          }
+        ]
+      }
+    }
+  ],
+  "resultados": [
+    {
+      "min": 0,
+      "max": 0,
+      "categoria": "Riesgo bajo",
+      "color": "verde",
+      "match_opcion_index": -1,
+      "approach": "Seguir con la vigilancia del servicio: constantes al menos cada **12 h**."
+    },
+    {
+      "min": 1,
+      "max": 4,
+      "categoria": "Riesgo bajo",
+      "color": "amarillo",
+      "match_opcion_index": -1,
+      "approach": "Respuesta del equipo del servicio y constantes cada **4-6 h**. Si una sola constante suma **3**, valoración urgente por un clínico y constantes cada hora."
+    },
+    {
+      "min": 5,
+      "max": 6,
+      "categoria": "Riesgo medio",
+      "color": "naranja",
+      "match_opcion_index": -1,
+      "approach": "Umbral clave: valoración **urgente** por un clínico competente en el paciente agudo y constantes al menos cada hora. Con infección conocida o sospechada, pensar en **sepsis**."
+    },
+    {
+      "min": 7,
+      "max": 20,
+      "categoria": "Riesgo alto",
+      "color": "rojo",
+      "match_opcion_index": -1,
+      "approach": "Respuesta **urgente o de emergencia** con personal de cuidados críticos y manejo de la vía aérea; monitorización **continua**."
+    }
+  ]
+}

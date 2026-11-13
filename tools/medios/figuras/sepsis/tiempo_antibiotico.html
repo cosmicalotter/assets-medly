@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Plazo del antibiótico según la sospecha y el choque (SSC 2026, recs. 16-20, tabla 3 y fig. 2, pp. 874 y 881-883).
+// Esquema de decisión: una tarjeta de color por categoría.
+const C = [
+  { c: ROJO, cat: "Choque", sub: "posible, probable o definitivo", plazo: "Inmediato", det: ["Idealmente en la <b>primera hora</b>", "Recomendación <b>fuerte</b>"] },
+  { c: NARANJA, cat: "Sepsis definitiva o probable", sub: "sin choque", plazo: "Inmediato", det: ["Idealmente en la <b>primera hora</b>", "Recomendación <b>fuerte</b>"] },
+  { c: AMBAR, cat: "Sepsis posible", sub: "sin choque", plazo: "≤ 3 h", det: ["Evaluación <b>rápida</b> de otras causas", "Si persiste la sospecha, antibiótico antes de <b>3 h</b>"] },
+  { c: GRIS, cat: "Sepsis improbable", sub: "sin choque", plazo: "Diferir", det: ["No dar el antibiótico todavía", "<b>Vigilar</b> de cerca y reevaluar"] },
+];
+const fila = (e) => {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="display:flex;gap:10px;align-items:stretch;border:2px solid ${e.c};background:${tinte(e.c, 10)};border-radius:12px;padding:13px 12px">
+    <div style="width:230px;flex:none"><div style="font-weight:900;color:${ct};font-size:17px;line-height:1.15">${e.cat}</div>
+      <div style="font-size:13px;color:#6B7280;margin-top:2px">${e.sub}</div></div>
+    <div style="width:100px;flex:none;display:flex;align-items:center;justify-content:center;background:${e.c};color:#fff;border-radius:9px;font-weight:900;font-size:16px">${e.plazo}</div>
+    <div style="flex:1;font-size:14px;line-height:1.45">${e.det.map((d) => `<div>• <span>${d}</span></div>`).join("")}</div></div>`;
+};
+lienzo("¿Cuándo dar el antibiótico?", "Según el grado de sospecha de sepsis y si hay choque",
+  `<div style="display:flex;flex-direction:column;gap:11px">${C.map(fila).join("")}</div>
+   <div class="caja" style="background:#F3F4F6;font-size:13.6px;padding:11px 12px">El plazo cuenta desde que se <b>reconoce</b> la sepsis. Los hemocultivos van antes del antibiótico sólo si <b>no lo retrasan</b>.</div>`,
+  "Esquema de Empirica. Fuente: Surviving Sepsis Campaign 2026, recomendaciones 16-20 y tabla 3 (pp. 874 y 881).");
+</script></body></html>

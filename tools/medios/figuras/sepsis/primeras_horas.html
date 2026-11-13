@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Las primeras horas de la sepsis (SSC 2026: recs. 7, 8, 10, 11, 15-18, 24, 91 y 101; fig. 3, p. 893).
+// GIF de flujo: un marcador recorre la línea de tiempo y se encienden en orden las tarjetas de cada plazo.
+const E = [
+  { c: AMBAR, tit: "Primera hora", txt: "<b>Lactato</b> y llenado capilar, <b>hemocultivos</b> y antibiótico IV en el choque o la sepsis probable" },
+  { c: AZUL, tit: "Hasta 3 h", txt: "Al menos <b>30 mL/kg</b> de cristaloide si hay hipoperfusión; en la sepsis <b>posible</b>, decidir el antibiótico" },
+  { c: MORADO, tit: "Hasta 6 h", txt: "<b>Control del foco</b> e ingreso en la <b>UCI</b> si lo necesita" },
+  { c: VERDE, tit: "Hasta 72 h", txt: "Hablar de los <b>objetivos de cuidado</b> y empezar la <b>nutrición enteral</b>" },
+];
+function caja(e, op) {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:12px 13px;width:316px;min-height:122px">
+    <div style="font-weight:900;color:${ct};font-size:17.5px">${e.tit}</div><div style="font-size:14.6px;line-height:1.38;margin-top:5px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const op = (a) => 0.16 + 0.84 * suave(tramo(t, a, a + 0.08));
+  const X = [40, 225, 410, 600];
+  let xm = X[0];
+  [[0.22, 1], [0.44, 2], [0.66, 3]].forEach(([a, k]) => { xm += (X[k] - X[k - 1]) * suave(tramo(t, a, a + 0.07)); });
+  const linea = `<svg width="668" height="64" viewBox="0 0 668 64">
+    <line x1="40" y1="30" x2="600" y2="30" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="${xm}" y2="30" stroke="${TEAL}" stroke-width="6" stroke-linecap="round"/>
+    ${X.map((x, k) => `<circle cx="${x}" cy="30" r="7" fill="#fff" stroke="#94A3B8" stroke-width="3"/>
+      <text x="${x}" y="58" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151">${["Se reconoce", "3 h", "6 h", "72 h"][k]}</text>`).join("")}
+    <circle cx="${xm}" cy="30" r="11" fill="${TEAL}" stroke="#fff" stroke-width="3"/></svg>`;
+  lienzo("Sepsis: las primeras horas", "Qué se hace en cada plazo desde que se reconoce",
+    `${linea}
+     <div style="display:flex;gap:12px;justify-content:center">${caja(E[0], op(0.02))}${caja(E[1], op(0.24))}</div>
+     <div style="display:flex;gap:12px;justify-content:center">${caja(E[2], op(0.46))}${caja(E[3], op(0.68))}</div>
+     <div class="caja" style="opacity:${op(0.84)};background:#1F2A37;color:#fff;font-weight:700;font-size:14.5px;padding:12px 13px">Choque <b style="color:#FCA5A5">inestable</b>: la norepinefrina puede ir a la vez que los líquidos, caso a caso.</div>`,
+    "Esquema de Empirica. Fuente: Surviving Sepsis Campaign 2026 (Intensive Care Med 2026;52:863-936), recomendaciones 7-24, 91 y 101, y fig. 3.");
+};
+window.cuadro(39, 40);
+</script></body></html>

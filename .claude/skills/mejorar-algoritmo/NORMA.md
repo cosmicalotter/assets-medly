@@ -204,6 +204,42 @@ cambian, se cambian allí y aquí a la vez.
     opciones»).
   - **Saltos entre secciones** al nodo de sección y **varias calculadoras
     por paso** (Charlson y ASA) con su texto de acción.
+
+  **El tercer modelo** (Sepsis y choque séptico, `data/Adultos/sepsis.json`,
+  noviembre de 2026) es el de una urgencia completa, de la llegada al
+  seguimiento tras el alta, en cinco secciones (Diagnóstico, Reanimación,
+  Infección, Soporte, Seguimiento). Enseña:
+  - **Un ABCDE que reparte por el dato**: su pregunta («¿Tiene hipotensión o
+    lactato alto al llegar?») tiene tres respuestas con los límites de la
+    guía (hipotensión → Reanimación con el antibiótico en 1 h; lactato
+    >2 mmol/L con PA normal → Reanimación, con el plazo según la sospecha;
+    ninguno → estimar la sospecha), cada una con su `contexto`.
+  - **Plazos según el grado de sospecha**: una tabla de grados (definitiva,
+    probable, posible, improbable) y un paso por grado (antibiótico en 1 h,
+    buscar otra causa antes de 3 h, diferir y vigilar), cada uno con su
+    pregunta de vuelta si el paciente empeora.
+  - **Una escalera de tratamiento** (norepinefrina → vasopresina →
+    adrenalina → choque refractario), cada peldaño con su pregunta «¿Alcanza
+    la meta?» y su salida a la vigilancia.
+  - **Un bucle de vigilancia con una pregunta de dos datos** («¿Cómo están
+    la PAM y la perfusión?») y cuatro respuestas sin huecos que devuelven al
+    peldaño que toca (sin vasopresor, con norepinefrina, sin respuesta a
+    volumen), y un paso de salida con su «Aún no» («¿Ya no necesita
+    vasopresor?»).
+  - **Un paso que sirve a dos entradas** (el choque refractario: hipoperfusión
+    sin disfunción cardiaca o choque con tres vasopresores), escrito para las
+    dos, con un `contexto` que lo dice.
+  - **Saltos laterales desde el bucle** a lo que se hace durante todo el
+    ingreso (medidas, riñón, objetivos de cuidado) y la vuelta desde Soporte
+    a la vigilancia del choque.
+  - **La guía internacional como eje** y, donde decide lo local, el consenso
+    colombiano (con su discrepancia) y los esquemas de otros algoritmos de
+    la app copiados con su cita exacta (neumonía, ITU, vía biliar), con
+    enlace a esos algoritmos.
+  - **Citas comprobadas antes de escribir**: el JSON se generó con un script
+    que busca cada `referencias[].texto` en el texto de su página del PDF y
+    se niega a escribir si alguna no aparece; las que siguen en la página
+    siguiente llevan el rango («878-879»).
 - **Color por rama.** La app da a cada rama hermana un tono distinto (azul,
   turquesa, púrpura, rosa, cian) y sus pasos siguientes lo heredan: la
   tarjeta, su título, su pill y su línea. No hace falta escribir nada; un
@@ -297,7 +333,7 @@ es un hueco; lo que la guía no trae, no se escribe.
 | `media` | ver ayuda a decidir: exploración, signo, técnica, imagen diagnóstica, ECG, lesión, dispositivo. Toda imagen lleva **su título escrito dentro** (las figuras de `base.js` ya lo traen; a una foto se le pone con `franja_credito.py --titulo`) y un pie (`descripcion`) **breve, ≤18 palabras**, que diga qué se ve, sin crédito. Y un **`info`** (texto del visor a pantalla completa): un párrafo de 25-60 palabras en frases completas, sin saltos de línea, que explica qué señala cada flecha, qué significa y por qué importa (§4) —teñida con su hex exacto, `{#FDE047:flecha amarilla}`— y aporta lo que el pie no dice, con fuente. Si afirma una cifra, un criterio o una conducta, la imagen lleva sus **`referencias`**: sólo las que respaldan ese texto (copia de las que ya cita el algoritmo, `imagen_evidencia` por URL raw), que el visor abre con el botón del libro; ver «Texto de información» en la skill `imagenes-clinicas`. Una foto o figura real va en el lienzo de Empirica (título y subtítulo dentro, imagen recortada, leyenda debajo con una caja por señalador y su color, crédito; skill `imagenes-clinicas`, «Foto o figura real rotulada»). **Si el original ya trae flechas o recuadros, se usan y se citan con su color («Flechas rojas: …», sin escribir «del original»): no se añade otro señalador encima**; como mucho, un rótulo en español sin forma. **Un flujograma de la guía que repite el algoritmo no va en `media`** (ni en GIF): va como imagen fija en las fuentes del paso (`referencias[].imagen_evidencia` con la URL raw). **Con dos o más imágenes en un nodo, la app las pone de dos en dos y lado a lado** (la que sobra, a todo el ancho): en media columna la imagen sólo se reconoce y se lee al tocarla, así que el título escrito dentro y el pie corto cuentan aún más, y más de cuatro alargan la tarjeta | **El nivel de síndrome coronario agudo** (`sindromecoronario.json`, noviembre de 2026; skill `imagenes-clinicas`, «El diseño de síndrome coronario agudo»): **≈4 de cada 10 nodos clínicos** (el mínimo de `norma.py` es el **38 %**), la mayoría **reales editadas** (foto, Rx, ecografía, TC, angiografía, ECG, dispositivo) con **señaladores de varios colores** y una caja de leyenda por color; **fotos de la escena** del procedimiento (sala, equipo, dispositivo); **esquemas de decisión** con tarjetas de color por categoría; galería (2-4) donde se comparan hallazgos o se ve un antes y un después. Una figura puede repetirse en **cadenas paralelas** (el ECG del potasio bajo en la CAD y en el EHH), con su `en_texto` y su `info` adaptados a cada paso; nunca en dos pasos seguidos del mismo camino |
 | `media[].en_texto` | la frase del texto que la imagen ilustra («signo de Murphy»): la app la subraya con un icono de imagen y al tocarla abre la imagen o el GIF. Nunca «(GIF)» ni «(ver imagen)» en el texto | toda imagen que tenga su frase en el texto |
 | GIF en `media` | algo que se mueve: técnica, maniobra, signo dinámico, secuencia de un protocolo, o el recorrido de una imagen real hallazgo por hallazgo | **al menos 2 por algoritmo**: uno **hecho sobre una imagen real** cuando hay imagen diagnóstica, técnica o dispositivo, y uno **de flujo** (línea de tiempo cuyo marcador avanza mientras se encienden los pasos de una decisión: `sindromecoronario/farmacoinvasiva.html`, `pancreatitis/primeras72.html`) |
-| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone al final de la tarjeta, **una pieza por fila y a todo el ancho** (con la tabla, la dosis, la perla y las discrepancias; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos **Texto de cada enlace:** a otro algoritmo, sólo su nombre («Sepsis y shock séptico», no «Ver algoritmo de sepsis»): la app antepone «Algoritmo»; a una calculadora, la acción («Calcular el índice de Charlson», «Clasificación ASA»): la app la dibuja igual que la calculadora principal, a todo el ancho y en naranja, sólo que no elige rama. Un salto interno lateral lleva a un paso con rama propia (§4). | al menos 2 hacia fuera |
+| `enlaces` | otro algoritmo relacionado (complicación, diagnóstico diferencial), una calculadora fuera del flujo, un salto interno para reevaluar. La app los pone al final de la tarjeta, **una pieza por fila y a todo el ancho** (con la tabla, la dosis, la perla y las discrepancias; las calculadoras primero, en naranja): el `texto` tiene que caber en media tarjeta, **corto** («ACV isquémico», «Fósforo bajo: fosfato»; no «ACV isquémico (desencadenante)»). En un paso **sin ramas**, el **primer enlace interno** es el que sigue el camino («Ir al tratamiento»): la app lo pone en el pie, a la derecha, y «mantener ↓» lo sigue («Fin de ruta» sólo sale en un paso sin ramas ni enlaces); por eso va **primero** el principal y después los demás saltos **Texto de cada enlace:** a otro algoritmo, sólo su nombre («Sepsis y choque séptico», no «Ver algoritmo de sepsis»): la app antepone «Algoritmo»; a una calculadora, la acción («Calcular el índice de Charlson», «Clasificación ASA»): la app la dibuja igual que la calculadora principal, a todo el ancho y en naranja, sólo que no elige rama. Un salto interno lateral lleva a un paso con rama propia (§4). | al menos 2 hacia fuera |
 | `discrepancias` | dos guías dicen cosas distintas para el mismo paciente **y eso cambia lo que se hace**: la dosis, el destino (planta, intermedios, UCI), el momento de un tratamiento o un umbral que cambia la conducta. Una diferencia de redondeo o de unidades (>198 frente a ≥200 mg/dL, ≤90 frente a ≤90-120 mg/dL/h) **no** se escribe: el algoritmo ya eligió y sólo confunde. La app las enseña como un aviso pequeño en la cabecera de la tarjeta, junto a las fuentes, que abre una hoja | sólo las que cambian la conducta; nunca inventadas (en Crisis hiperglucémicas, 15 en 58 pasos) |
 | `chips` | población, urgencia, clase. Van en la cabecera, a la derecha del tipo de paso («CRÍTICO · UCI»): una o dos palabras cada uno | 1-3, no en todos los nodos |
 | `contexto` | el porqué del paso **cuando no es obvio** (§4): la app lo pinta en un cuadro teñido, como el de las definiciones de la portada | sólo donde aporta: un tercio de los nodos clínicos más o menos (en Crisis hiperglucémicas, 14 de 53), con **25 palabras** como mucho |
