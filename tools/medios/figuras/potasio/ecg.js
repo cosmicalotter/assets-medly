@@ -41,7 +41,7 @@ const ESC = {
   hipoca: {
     titulo: "Hipocalcemia: cómo cambia el ECG", ion: "Ca",
     sub: "Al bajar el calcio, el QT se alarga",
-    color: TEAL, flecha: "↓",
+    color: TEAL, flecha: "↓", marca: AMBAR,
     etapas: [
       { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.34 },
       { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.46 },
@@ -56,19 +56,17 @@ const ESC = {
   },
   hiperca: {
     titulo: "Hipercalcemia: cómo cambia el ECG", ion: "Ca",
-    sub: "Por encima de 13 mg/dL, en este orden",
-    color: NARANJA, flecha: "↑",
+    sub: "El QT se acorta y, a la vez, se alargan el PR y el QRS",
+    color: NARANJA, flecha: "↑", marca: AMBAR,
     etapas: [
       { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.07], u: 0, qt: 0.36 },
-      { p: [0.15, 0.045], pr: 0.16, qrs: [1, 0.03], st: 0, t: [0.3, 0.06], u: 0, qt: 0.26 },
-      { p: [0.15, 0.045], pr: 0.24, qrs: [0.9, 0.055], st: 0, t: [0.3, 0.06], u: 0, qt: 0.3 },
+      { p: [0.15, 0.045], pr: 0.24, qrs: [0.9, 0.055], st: 0, t: [0.3, 0.06], u: 0, qt: 0.27 },
       { p: [0.15, 0.045], pr: 0.24, qrs: [0.9, 0.055], st: 0, t: [0.3, 0.06], u: 0, qt: 0.3, bloqueo: 1 },
     ],
     pasos: [
       ["ECG normal", "QT de duración normal.", TEAL, null],
-      ["QT corto", "Pasando de <b>13 mg/dL</b>, el QT se <b>acorta</b>.", AMBAR, "QT"],
-      ["PR y QRS largos", "Se alargan el <b>PR</b> y el <b>QRS</b>.", CELESTE, "QRS"],
-      ["Bloqueo AV", "Puede progresar a <b>bloqueo</b> completo; con 15-20 mg/dL, paro cardíaco.", ROJO, null],
+      ["QT corto; PR y QRS largos", "Por encima de <b>13 mg/dL</b>, el QT se <b>acorta</b> y a la vez se alargan el PR y el QRS.", AMBAR, "QT"],
+      ["Bloqueo AV", "Puede progresar a <b>bloqueo</b> completo. Entre <b>15 y 20 mg/dL</b> puede haber un <b>paro cardíaco</b>.", ROJO, null],
     ],
     fuente: "Datos: Zieg J et al. BMC Nephrol 2024 (citado, sin reproducir figuras). Trazos esquemáticos, no a escala. Elaboración de Empirica.",
   },
@@ -130,12 +128,21 @@ window.cuadro = function (i, n) {
     const X = (x0 + tx) * PX, Yv = Y0 - latido(tx, e) * AMP;
     const arriba = onda_ === "QRS" || onda_ === "P" || (onda_ === "T" && e.t[0] > 0) || onda_ === "U" || onda_ === "QT";
     const yl = arriba ? Math.max(18, Yv - 58) : Math.min(H - 14, Yv + 58);
-    marca = `<line x1="${X}" y1="${yl + (arriba ? 14 : -14)}" x2="${X}" y2="${Yv + (arriba ? -10 : 10)}" stroke="${cpaso}" stroke-width="4" stroke-linecap="round"/>
-      <rect x="${X - 26}" y="${yl - 13}" width="52" height="24" rx="7" fill="${cpaso}"/><text x="${X}" y="${yl + 4}" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">${onda_}</text>`;
+    const cm = ESC.marca || cpaso;
+    if (onda_ === "QT") {
+      // el QT es un intervalo: corchete desde el inicio del QRS hasta el final de la T
+      const xa = (x0 + tq - e.qrs[1]) * PX, xb = (x0 + tq + e.qt) * PX, yc = Y0 + 46;
+      marca = `<path d="M${xa} ${yc - 12} V${yc} H${xb} V${yc - 12}" fill="none" stroke="${cm}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="${(xa + xb) / 2 - 26}" y="${yc + 6}" width="52" height="24" rx="7" fill="${cm}"/><text x="${(xa + xb) / 2}" y="${yc + 23}" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">QT</text>`;
+    } else {
+      marca = `<line x1="${X}" y1="${yl + (arriba ? 14 : -14)}" x2="${X}" y2="${Yv + (arriba ? -10 : 10)}" stroke="${cm}" stroke-width="4" stroke-linecap="round"/>
+        <rect x="${X - 26}" y="${yl - 13}" width="52" height="24" rx="7" fill="${cm}"/><text x="${X}" y="${yl + 4}" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">${onda_}</text>`;
+    }
   }
   const lista = ESC.pasos.map(([t, d, c], j) => `<div class="item" style="flex:1;opacity:${j <= paso ? 1 : 0.22};background:${j === paso ? tinte(c, 16) : "#F7F8FA"};border:1.5px solid ${j === paso ? c : "transparent"};font-size:12.4px">
       <b style="color:${c}">${t}</b><br>${d}</div>`).join("");
-  const nivel = (paso + 1) / ESC.pasos.length;
+  const sube = ESC.flecha === "↑";
+  const nivel = sube ? (paso + 1) / ESC.pasos.length : 1 - 0.75 * paso / Math.max(1, ESC.pasos.length - 1);
   lienzo(ESC.titulo, ESC.sub,
     `<div style="display:flex;gap:10px;align-items:stretch">
        <svg width="${W - 58}" height="${H}" viewBox="0 0 ${W - 58} ${H}" style="display:block;border-radius:12px;background:#FFF5F5">${rej}
@@ -143,7 +150,7 @@ window.cuadro = function (i, n) {
        <div style="width:48px;display:flex;flex-direction:column;align-items:center;gap:6px">
          <div style="font-size:11px;font-weight:800;color:${ESC.color}">${ESC.ion || "K"} ${ESC.flecha}</div>
          <div style="flex:1;width:18px;border-radius:9px;background:#EEF0F3;position:relative;overflow:hidden">
-           <div style="position:absolute;left:0;right:0;${window.MODO === "hiper" ? "bottom" : "top"}:0;height:${Math.round(nivel * 100)}%;background:${ESC.color}"></div></div></div>
+           <div style="position:absolute;left:0;right:0;bottom:0;height:${Math.round(nivel * 100)}%;background:${ESC.color}"></div></div></div>
      </div>
      <div style="display:flex;gap:7px;flex:1">${lista}</div>`,
     ESC.fuente || "Datos: Zieg J et al. BMC Nephrol 2024. Trazos esquemáticos, no a escala. Elaboración de Empirica.");

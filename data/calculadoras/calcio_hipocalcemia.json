@@ -1,10 +1,10 @@
 {
   "titulo": "Calcio IV en la hipocalcemia sintomática",
-  "descripcion": "Calcula el bolo de gluconato de calcio al 10 % de la hipocalcemia sintomática (unos 2 mL/kg, 20 mg/kg de calcio elemental, en 10-20 min) y la infusión que sigue: 200 mg/kg de gluconato en 24 h, 500 mg/kg en el recién nacido (Zieg 2024).",
+  "descripcion": "Calcula el bolo de gluconato de calcio al 10 % de la hipocalcemia sintomática (2 mL/kg, unos 20 mg/kg de calcio elemental, máximo 20 mL, en 10-20 min) y la infusión que sigue: 200 mg/kg de gluconato en 24 h, 500 mg/kg en el recién nacido (Zieg 2024).",
   "instrucciones": "Escribir el peso y decir si es un recién nacido. Pasar el bolo con el monitor cardíaco y vigilando la extravasación; medir el calcio cada 4-6 h.",
-  "limitaciones": "Las fuentes no dan un máximo por dosis. Kim 2015 propone repetir el bolo de 2 mL/kg cada 6-8 h en lugar de la infusión. Si no responde, medir y corregir el magnesio.",
+  "limitaciones": "Zieg 2024 no da un máximo para el bolo de la hipocalcemia: se usa el de su tabla de la hiperpotasemia (20 mL de gluconato; 10 mL de cloruro). Kim 2015 propone repetir el bolo de 2 mL/kg cada 6-8 h en lugar de la infusión. Si no responde, medir y corregir el magnesio.",
   "tipoCalculo": "formula",
-  "formula": "2 * peso",
+  "formula": "0.5 * ((2 * peso) + (20) - abs((2 * peso) - (20)))",
   "mostrarPuntaje": true,
   "decimales": 1,
   "prefijoResultado": "Gluconato de calcio 10 % en bolo",
@@ -36,6 +36,27 @@
       "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=11",
       "texto": "1 ml of 10% calcium gluconate contains 100 mg of calcium gluconate, which is equivalent to 9.3 mg of elementary calcium",
       "paginas": "11",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Calcio elemental del cloruro. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=11",
+      "texto": "Contrastingly, 1 ml of 10% calcium chloride contains 100 mg of calcium chloride which is equal to 27 mg of elementary calcium per milliliter.",
+      "paginas": "11",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Tabla 5: gluconato de calcio 10 %. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=9",
+      "texto": "10% Calcium gluconate 0.5 - 1 ml/kg (max. 20 ml) 5 min 30 – 60 min Ensure IV access and monitor ECG",
+      "paginas": "9",
+      "anio": "2024"
+    },
+    {
+      "titulo": "Zieg 2024 (BMC Nephrol): Tabla 5: cloruro de calcio 10 %. Zieg J, Ghose S, Raina R. Electrolyte disorders related emergencies in children. BMC Nephrol 2024;25:282. doi:10.1186/s12882-024-03725-5",
+      "url": "https://bmcnephrol.biomedcentral.com/counter/pdf/10.1186/s12882-024-03725-5.pdf#page=9",
+      "texto": "10% Calcium chloride 0.2 ml/kg (max 10ml) 5 min 30 – 60 min Ensure IV access and monitor ECG",
+      "paginas": "9",
       "anio": "2024"
     },
     {
@@ -83,6 +104,7 @@
           "id": "rn",
           "tipo": "opciones",
           "label": "¿Es un recién nacido?",
+          "ayuda": "Menos de 28 días de vida.",
           "opciones": [
             {
               "label": "No",
@@ -105,7 +127,7 @@
     {
       "min": 0,
       "max": 100000,
-      "categoria": "Bolo de 2 mL/kg en 10-20 min",
+      "categoria": "Bolo de 2 mL/kg, máximo 20 mL",
       "color": "rojo",
       "match_opcion_index": -1,
       "approach": "Con monitor cardíaco y vigilando la extravasación. Luego, la infusión de 24 h y el calcio cada 4-6 h hasta 7-9 mg/dL de calcio total (Zieg 2024; Kim 2015)."
@@ -114,7 +136,7 @@
   "extras": [
     {
       "etiqueta": "Calcio elemental del bolo · mL × 9,3 mg",
-      "formula": "2 * peso * 9.3",
+      "formula": "0.5 * ((2 * peso) + (20) - abs((2 * peso) - (20))) * 9.3",
       "sufijo": "mg",
       "decimales": 0
     },
@@ -133,26 +155,32 @@
   ],
   "calculo": [
     {
-      "etiqueta": "Bolo = 2 mL/kg × peso de gluconato de calcio al 10 %",
+      "etiqueta": "Bolo por peso = 2 mL/kg × peso de gluconato de calcio al 10 %",
       "formula": "2 * peso",
       "sufijo": "mL",
       "decimales": 1
     },
     {
+      "etiqueta": "Bolo = el menor entre el bolo por peso y 20 mL",
+      "formula": "0.5 * ((2 * peso) + (20) - abs((2 * peso) - (20)))",
+      "sufijo": "mL",
+      "decimales": 1
+    },
+    {
       "etiqueta": "Calcio elemental del bolo = mL × 9,3 mg",
-      "formula": "2 * peso * 9.3",
+      "formula": "0.5 * ((2 * peso) + (20) - abs((2 * peso) - (20))) * 9.3",
       "sufijo": "mg",
       "decimales": 0
     },
     {
-      "etiqueta": "Calcio elemental por kilo = 2 × 9,3",
+      "etiqueta": "Calcio elemental por kilo = 2 mL × 9,3 mg (≈ 20 mg/kg)",
       "formula": "18.6",
       "sufijo": "mg/kg",
       "decimales": 1
     },
     {
-      "etiqueta": "O cloruro de calcio al 10 % = 0,7 mL/kg × peso",
-      "formula": "0.7 * peso",
+      "etiqueta": "O cloruro de calcio al 10 % = 0,7 mL/kg × peso, máximo 10 mL",
+      "formula": "0.5 * ((0.7 * peso) + (10) - abs((0.7 * peso) - (10)))",
       "sufijo": "mL",
       "decimales": 1
     },

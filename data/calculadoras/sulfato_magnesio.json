@@ -96,7 +96,7 @@
         {
           "id": "dosis",
           "tipo": "opciones",
-          "label": "Dosis",
+          "label": "Dosis por kilo",
           "opciones": [
             {
               "label": "25 mg/kg",
@@ -116,6 +116,7 @@
           "id": "rn",
           "tipo": "opciones",
           "label": "¿Es un recién nacido?",
+          "ayuda": "Menos de 28 días de vida.",
           "opciones": [
             {
               "label": "No",
@@ -152,9 +153,15 @@
       "decimales": 1
     },
     {
-      "etiqueta": "Tiempo mínimo · a 125 mg/kg/h",
-      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / (125 * peso)",
-      "sufijo": "h",
+      "etiqueta": "Ritmo si pasa en 4 h · al 10 %",
+      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / 100 / 4",
+      "sufijo": "mL/h",
+      "decimales": 1
+    },
+    {
+      "etiqueta": "Ritmo si pasa en 2 h · al 10 %",
+      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / 100 / 2",
+      "sufijo": "mL/h",
       "decimales": 1
     },
     {
@@ -196,10 +203,22 @@
       "decimales": 2
     },
     {
-      "etiqueta": "Tiempo mínimo = dosis ÷ (125 mg/kg/h × peso)",
-      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / (125 * peso)",
-      "sufijo": "h",
-      "decimales": 1
+      "etiqueta": "Ritmo en 4 h = dosis ÷ 4",
+      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / 4",
+      "sufijo": "mg/h",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Ritmo en 2 h = dosis ÷ 2",
+      "formula": "0.5 * ((dmg * peso) + (2000) - abs((dmg * peso) - (2000))) / 2",
+      "sufijo": "mg/h",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Techo que no se debe pasar = 125 mg/kg/h × peso",
+      "formula": "125 * peso",
+      "sufijo": "mg/h",
+      "decimales": 0
     },
     {
       "etiqueta": "Intervalo = 4-6 h; 8 h en el recién nacido (horas mínimas)",
