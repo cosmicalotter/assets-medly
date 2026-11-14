@@ -12,13 +12,13 @@ window.cuadro = function (i, n) {
   const dia = n > 1 ? Math.min(14, 1 + Math.floor((i / (n - 1)) * 15)) : 14;
   const x0 = 128, w = 36;
   const filas = F.map((f, k) => {
-    const y = 34 + k * 66;
+    const y = 30 + k * 68;
     const celdas = f.d.map((v, j) => {
       const on = j < dia, frac = f.n === "Etambutol" ? (v ? 1 : 0) : v / MAX[f.n];
       const h = 42 * frac;
       return `<rect x="${x0 + j * w + 3}" y="${y}" width="${w - 6}" height="42" rx="5" fill="#F1F5F9"/>
         ${on && frac ? `<rect x="${x0 + j * w + 3}" y="${y + 42 - h}" width="${w - 6}" height="${h}" rx="5" fill="${f.c}"/>` : ""}
-        ${on && v && f.n !== "Etambutol" && (j === 0 || f.d[j - 1] !== v) ? `<text x="${x0 + j * w + w / 2}" y="${y - 4}" text-anchor="middle" font-size="11" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${v}</text>` : ""}`;
+        ${on && v && f.n !== "Etambutol" && (j === 0 || f.d[j - 1] !== v) ? `<text x="${x0 + j * w + w / 2}" y="${y - 2}" text-anchor="middle" font-size="11" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${v}</text>` : ""}`;
     }).join("");
     return `<text x="${x0 - 10}" y="${y + 27}" text-anchor="end" font-size="14.5" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${f.n}</text>${celdas}`;
   }).join("");
