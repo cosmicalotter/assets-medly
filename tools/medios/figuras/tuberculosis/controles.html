@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Calendario de controles de la TB sensible (Res. 227 de 2020, tabla 19, p. 91-93; 3.1, p. 51).
+const M = [0, 1, 2, 3, 4, 5, 6];
+const F = [
+  { n: "Enfermería", c: TEAL, m: [0, 1, 2, 3, 4, 5, 6] },
+  { n: "Medicina general", c: AZUL, m: [0, 2, 4, 6] },
+  { n: "Baciloscopia", c: AMBAR, m: [2, 4, 6] },
+  { n: "Laboratorios y VIH", c: MORADO, m: [0] },
+  { n: "Psicología y trabajo social", c: ROSA_C, m: [0] },
+];
+const x0 = 250, w = 60;
+const svg = `<svg width="668" height="330" viewBox="0 0 668 330">
+  ${M.map((m) => `<text x="${x0 + m * w}" y="20" text-anchor="middle" font-size="13" font-weight="800" fill="#475569">${m === 0 ? "Inicio" : `Mes ${m}`}</text>`).join("")}
+  <rect x="${x0 - 26}" y="30" width="${2 * w + 6}" height="290" rx="10" fill="${tinte(ROJO, 9)}"/>
+  <rect x="${x0 + 2 * w - 18}" y="30" width="${4 * w + 44}" height="290" rx="10" fill="${tinte(AZUL, 8)}"/>
+  ${F.map((f, k) => { const y = 66 + k * 56; return `<text x="${x0 - 40}" y="${y + 5}" text-anchor="end" font-size="13.5" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${f.n}</text>
+    <line x1="${x0}" y1="${y}" x2="${x0 + 6 * w}" y2="${y}" stroke="#E2E8F0" stroke-width="3"/>
+    ${f.m.map((m) => `<circle cx="${x0 + m * w}" cy="${y}" r="13" fill="${f.c}" stroke="#fff" stroke-width="3"/>`).join("")}`; }).join("")}
+  <text x="${x0 + w / 2 - 10}" y="314" text-anchor="middle" font-size="12" font-weight="800" fill="${ROJO}">Fase intensiva</text>
+  <text x="${x0 + 4 * w}" y="314" text-anchor="middle" font-size="12" font-weight="800" fill="${AZUL}">Continuación</text>
+</svg>`;
+lienzo("Calendario de controles", "TB sensible en 6 meses, con el TDO cada día",
+  `${svg}
+   <div style="display:flex;gap:10px">
+     <div class="caja" style="flex:1;background:#F1F5F9">Si se diagnosticó por <b>cultivo</b>, los controles son con cultivo.</div>
+     <div class="caja" style="flex:1;background:#F1F5F9">Control médico a los <b>6 meses</b> de terminar.</div></div>`,
+  "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), tabla 19 (p. 91-93) y numeral 3.1 (p. 51).");
+</script></body></html>

@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Umbrales de la hepatotoxicidad (Res. 227 de 2020, 4.2, p. 69-71).
+const y0 = 40, alto = 300, max = 11, Y = (v) => y0 + alto - (v / max) * alto;
+const nivel = (v, c, t, lado = "der") => `<line x1="150" y1="${Y(v)}" x2="330" y2="${Y(v)}" stroke="${c}" stroke-width="3" stroke-dasharray="${v === 2 ? "8 6" : "0"}"/>
+  <text x="${lado === "der" ? 342 : 80}" y="${Y(v) + 5}" text-anchor="${lado === "der" ? "start" : "end"}" font-size="14" font-weight="800" fill="${c}">${t}</text>`;
+const svg = `<svg width="668" height="360" viewBox="0 0 668 360">
+  <rect x="150" y="${y0}" width="120" height="${alto}" rx="12" fill="url(#g)"/>
+  <defs><linearGradient id="g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${tinte(VERDE, 45)}"/><stop offset=".25" stop-color="${tinte(AMBAR, 45)}"/><stop offset=".6" stop-color="${tinte(ROJO, 45)}"/><stop offset="1" stop-color="${tinte(ROJO, 75)}"/></linearGradient></defs>
+  ${[0, 1, 2, 3, 5, 10].map((v) => `<text x="138" y="${Y(v) + 5}" text-anchor="end" font-size="12.5" font-weight="700" fill="#64748B">${v}×</text>`).join("")}
+  ${nivel(2, VERDE, "<2×: se puede reintroducir")}
+  ${nivel(3, AMBAR, "AST ≥3× con síntomas: suspender")}
+  ${nivel(5, ROJO, "ALT ≥5× sin síntomas: suspender")}
+  ${nivel(10, "#991B1B", "ALT >10×: sin pirazinamida")}
+  <text x="210" y="${y0 + alto + 18}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#475569">Veces el valor normal</text>
+</svg>`;
+lienzo("¿Cuándo es hepatotoxicidad?", "Transaminasas frente al valor normal",
+  `${svg}
+   <div style="display:flex;gap:10px">
+     <div class="caja" style="flex:1;background:${tinte(ROJO, 10)}">También suspender con <b>bilirrubina >2 mg/dL</b> o reacción grave de la piel.</div>
+     <div class="caja" style="flex:1;background:${tinte(AMBAR, 14)}">Más frecuente en los <b>2 primeros meses</b>: dolor abdominal, náuseas, vómito, astenia.</div></div>`,
+  "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), numeral 4.2 (p. 69-71).");
+</script></body></html>

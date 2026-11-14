@@ -1,0 +1,14 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cómo se arma el esquema largo: grupos A, B y C (Res. 227 de 2020, anexo 4, tabla 32 y p. 157).
+const pel = (c, letra, tit, farm, w, nota) => `<div style="display:flex;gap:12px;align-items:stretch;min-height:98px">
+  <div style="flex:none;width:${w}px;border-radius:12px;background:${c};color:#fff;display:flex;flex-direction:column;justify-content:center;padding:10px 14px">
+    <div style="font-size:30px;font-weight:900;line-height:1">${letra}</div><div style="font-size:14px;font-weight:800;margin-top:3px">${tit}</div></div>
+  <div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:17px;font-weight:700;line-height:1.4">${farm}</div><div style="font-size:14.5px;color:#475569;margin-top:5px">${nota}</div></div></div>`;
+lienzo("Armar el esquema largo", "Primero el grupo A; los otros completan",
+  `${pel(ROJO, "A", "Priorizar", "Levofloxacina o moxifloxacina · <b>Bedaquilina</b> · <b>Linezolid</b>", 150, "Usar los <b>3</b>. La bedaquilina sólo durante <b>6 meses</b>.")}
+   ${pel(NARANJA, "B", "Añadir", "<b>Clofazimina</b> · Cicloserina o terizidona", 185, "Si sólo caben 1 o 2 del grupo A, añadir los <b>2</b> del B.")}
+   ${pel(AMBAR, "C", "Completar", "Etambutol · Delamanid · Pirazinamida · Imipenem o meropenem · Amikacina · Etionamida · Ácido paraaminosalicílico", 220, "Cuando no se completa el esquema con los grupos A y B.")}
+   <div class="caja" style="background:#F1F5F9;font-size:15px;padding:12px 14px">Esquemas <b>100 % orales</b>: los inyectables se evitan en niños, adolescentes y adultos.</div>`,
+  "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), anexo 4, tabla 32 y texto (p. 156-157).");
+</script></body></html>

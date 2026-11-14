@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cuándo iniciar el TAR en la persona con TB y VIH (Res. 227 de 2020, 4.4.2, p. 72-73; OMS 2026, módulo 4, p. 25).
+const x0 = 100, x1 = 640, sem = (x1 - x0) / 12, X = (s) => x0 + s * sem;
+const banda = (y, a, b, c, txt) => `<rect x="${X(a)}" y="${y}" width="${X(b) - X(a)}" height="40" rx="9" fill="${tinte(c, 28)}" stroke="${c}" stroke-width="2.5"/>
+  <text x="${(X(a) + X(b)) / 2}" y="${y + 26}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${TINTA}">${txt}</text>`;
+const rot = (y, t, c) => `<text x="${x0 - 8}" y="${y + 26}" text-anchor="end" font-size="13" font-weight="800" fill="${c}">${t}</text>`;
+const svg = `<svg width="668" height="300" viewBox="0 0 668 300">
+  <rect x="${X(0)}" y="12" width="${X(12) - X(0)}" height="30" rx="8" fill="${tinte(ROJO, 18)}"/>
+  <text x="${X(0) + 10}" y="32" font-size="13.5" font-weight="800" fill="${ROJO}">Tratamiento antituberculoso desde el día 0 →</text>
+  ${rot(56, "CD4 <50", MORADO)}${banda(56, 0, 2, MORADO, "≤2 sem")}
+  ${rot(112, "CD4 ≥50", AZUL)}${banda(112, 2, 8, AZUL, "Entre la 2.ª y la 8.ª semana")}
+  ${rot(168, "Meningitis", AMBAR)}${banda(168, 8, 12, AMBAR, "Después de la 8.ª")}
+  ${rot(232, "OMS 2026", TEAL)}<rect x="${X(0)}" y="232" width="${X(2) - X(0)}" height="40" rx="9" fill="${tinte(TEAL, 28)}" stroke="${TEAL}" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="${X(2) + 10}" y="258" font-size="13.5" font-weight="700" fill="${TINTA}">Dentro de 2 semanas, sin importar los CD4</text>
+  <line x1="${X(0)}" y1="218" x2="${X(12)}" y2="218" stroke="#CBD5E1" stroke-width="2"/>
+  ${[0, 2, 4, 6, 8, 10, 12].map((s) => `<line x1="${X(s)}" y1="214" x2="${X(s)}" y2="222" stroke="#94A3B8" stroke-width="2"/><text x="${X(s)}" y="292" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">${s === 0 ? "Día 0" : `Sem ${s}`}</text>`).join("")}
+</svg>`;
+lienzo("TB y VIH: cuándo iniciar el TAR", "Primero la TB; luego, el TAR según los CD4",
+  `${svg}
+   <div style="display:flex;gap:10px">
+     <div class="caja" style="flex:1;background:${tinte(MORADO, 12)}">Mismo esquema antituberculoso que sin VIH; sin TAR, la continuación sube a <b>196 dosis</b>.</div>
+     <div class="caja" style="flex:1;background:${tinte(AMBAR, 16)}">El riesgo de <b>SIRI</b> no supera el de <b>morir</b> si se retrasa el TAR.</div></div>`,
+  "Esquema de Empirica. Fuentes: Resolución 227 de 2020 (MinSalud), numeral 4.4.2 (p. 72-73) y anexo 4 (p. 152); OMS, módulo 4 de tuberculosis, 2.ª ed., 2026 (p. 25).");
+</script></body></html>

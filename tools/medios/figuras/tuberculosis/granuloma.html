@@ -1,0 +1,56 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// De la inhalación a la TB activa: infección latente contenida en el granuloma y reactivación.
+// OMS 2024, tratamiento preventivo (p. 1 y 3); Res. 227 de 2020, 3.2.3 (p. 56) y 8.7 (p. 116).
+const PASOS = [
+  { c: CELESTE, t: "1. Inhalación", x: "Los bacilos llegan al <b>alvéolo</b> en las gotitas que expulsa al toser una persona con TB pulmonar." },
+  { c: MORADO, t: "2. Macrófago", x: "El <b>macrófago</b> alveolar engloba los bacilos." },
+  { c: VERDE, t: "3. Granuloma", x: "Linfocitos y macrófagos los encierran: <b>infección latente</b>, sin síntomas y <b>sin contagio</b>." },
+  { c: ROJO, t: "4. Reactivación", x: "Si cae la <b>inmunidad</b>, el granuloma se rompe, se forma una <b>cavidad</b> y los bacilos salen al esputo." },
+];
+const bac = (x, y, r = 0, op = 1) => `<rect x="${x - 7}" y="${y - 2.6}" width="14" height="5.2" rx="2.6" fill="#DC2626" opacity="${op}" transform="rotate(${r} ${x} ${y})"/>`;
+const B0 = [[-14, -8, 20], [10, -12, -35], [2, 10, 60], [-8, 14, -10], [16, 6, 15]];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const fase = Math.min(3, Math.floor(t * 4)), u = suave(tramo(t * 4 - fase, 0.1, 0.85));
+  const cx = 190, cy = 250;
+  let escena = "";
+  // vía aérea y alvéolo
+  escena += `<path d="M150 0 C150 80 158 120 168 150 L212 150 C222 120 230 80 230 0 Z" fill="${tinte(ROSA_C, 10)}" stroke="#E7A3BE" stroke-width="4"/>
+    <circle cx="${cx}" cy="${cy}" r="112" fill="${tinte(ROSA_C, 8)}" stroke="#E7A3BE" stroke-width="5"/>`;
+  if (fase === 0) {
+    B0.forEach(([dx, dy, r], k) => { const yy = lerp(-10 - k * 18, cy + dy, u); escena += `<circle cx="${cx + dx}" cy="${yy}" r="11" fill="${tinte(CELESTE, 40)}" opacity="${0.8 - 0.6 * u}"/>${bac(cx + dx, yy, r)}`; });
+  }
+  if (fase >= 1) {
+    const rm = fase === 1 ? lerp(30, 46, u) : 46;
+    if (fase <= 2 || u < 0.3) escena += `<path d="M${cx - rm} ${cy} C${cx - rm} ${cy - rm * 1.1} ${cx + rm * 1.2} ${cy - rm} ${cx + rm} ${cy} C${cx + rm * 1.1} ${cy + rm} ${cx - rm * 0.8} ${cy + rm * 1.15} ${cx - rm} ${cy} Z" fill="${tinte(MORADO, 30)}" stroke="${MORADO}" stroke-width="3"/>
+      <circle cx="${cx + 18}" cy="${cy - 16}" r="9" fill="${tinte(MORADO, 70)}"/>`;
+    B0.forEach(([dx, dy, r]) => { const k = fase === 1 ? 1 - 0.45 * u : 0.55; escena += bac(cx + dx * k, cy + dy * k, r); });
+  }
+  if (fase >= 2) {
+    const nL = 22, R = 70;
+    for (let k = 0; k < nL; k++) {
+      const a = (k / nL) * Math.PI * 2, op = fase === 2 ? suave(tramo(u * nL, k * 0.6, k * 0.6 + 1.2)) : 1;
+      const rr = fase === 3 ? R + 40 * u * (k % 3 === 0 ? 1 : 0.4) : R;
+      escena += `<circle cx="${cx + rr * Math.cos(a)}" cy="${cy + rr * Math.sin(a)}" r="10" fill="${AZUL}" opacity="${op * (fase === 3 ? 1 - 0.7 * u : 1)}"/>`;
+    }
+    escena += `<circle cx="${cx}" cy="${cy}" r="${fase === 2 ? 52 : 52 + 30 * u}" fill="none" stroke="${tinte(VERDE, 60)}" stroke-width="6" opacity="${fase === 2 ? u : 1 - u}"/>`;
+  }
+  if (fase === 3) {
+    escena += `<circle cx="${cx}" cy="${cy}" r="${52 + 40 * u}" fill="#FEF3C7" opacity="${0.5 + 0.5 * u}" stroke="#D97706" stroke-width="3"/>`;
+    for (let k = 0; k < 9; k++) { const a = k * 0.7, d = 20 + 30 * ((k * 37) % 10) / 10; escena += bac(cx + d * Math.cos(a), cy + d * Math.sin(a) - 120 * u * (k % 2), k * 40); }
+    escena += `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-size="15" font-weight="900" fill="#92400E" opacity="${u}">Cavidad</text>`;
+  }
+  const rot = (x, y, t, c, anc = "middle") => `<text x="${x}" y="${y}" text-anchor="${anc}" font-size="14" font-weight="800" fill="${c}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`;
+  escena += rot(238, 30, "Bronquiolo", "#B4537A", "start") + rot(318, 368, "Alvéolo", "#B4537A");
+  if (fase === 1) escena += rot(cx, cy + 74, "Macrófago", MORADO);
+  if (fase === 2) escena += rot(cx, cy + 102, "Linfocitos", AZUL);
+  if (fase === 3) escena += rot(238, 100, "Bacilos al esputo", "#DC2626", "start");
+  const svg = `<svg width="380" height="380" viewBox="0 0 380 380">${escena}</svg>`;
+  const pasos = PASOS.map((p, k) => `<div style="opacity:${k === fase ? 1 : k < fase ? 0.55 : 0.22};border:2px solid ${p.c};background:${tinte(p.c, k === fase ? 16 : 6)};border-radius:12px;padding:9px 11px">
+    <div style="font-weight:900;font-size:15.5px;color:${p.c}">${p.t}</div><div style="font-size:13.5px;line-height:1.35;margin-top:2px">${p.x}</div></div>`).join("");
+  lienzo("De la infección a la enfermedad", "Qué pasa en el pulmón desde que se inhala el bacilo",
+    `<div style="display:flex;gap:14px;align-items:center"><div style="flex:none">${svg}</div><div style="display:flex;flex-direction:column;gap:8px;flex:1">${pasos}</div></div>`,
+    "Animación de Empirica. Fuentes: OMS, tratamiento preventivo de la TB, 2.ª ed., 2024 (p. 1 y 3); Resolución 227 de 2020 (MinSalud), 3.2.3 y 8.7.");
+};
+window.cuadro(70, 96);
+</script></body></html>
