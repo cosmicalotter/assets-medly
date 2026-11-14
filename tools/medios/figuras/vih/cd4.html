@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Profilaxis primarias por umbral de CD4: Vía clínica VIH 2024, tabla 14 (p. 53-55); OMS 2025, recuadro 5 (p. 54).
+const x0 = 236, x1 = 650, max = 400, X = (v) => x0 + (x1 - x0) * v / max;
+const filas = [
+  { c: ROJO, n: "Neumocistosis", s: "TMP-SMX 160/800 mg/día", v: 200, extra: 350 },
+  { c: NARANJA, n: "Toxoplasmosis", s: "IgG positiva: TMP-SMX", v: 200 },
+  { c: AMBAR, n: "Histoplasmosis", s: "alto riesgo: itraconazol", v: 150 },
+  { c: MORADO, n: "Criptococosis", s: "fluconazol 400 mg/día", v: 100 },
+  { c: AZUL, n: "MAC", s: "sin TAR en 4 semanas", v: 50 },
+];
+const alto = 62, y0 = 30;
+const barras = filas.map((f, i) => {
+  const y = y0 + i * alto;
+  return `<text x="0" y="${y + 18}" font-size="15" font-weight="900" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${f.n}</text>
+    <text x="0" y="${y + 36}" font-size="12.5" font-weight="600" fill="#374151">${f.s}</text>
+    ${f.extra ? `<rect x="${x0}" y="${y + 6}" width="${X(f.extra) - x0}" height="30" rx="7" fill="none" stroke="${f.c}" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="${X(f.extra) - 6}" y="${y + 26}" text-anchor="end" font-size="12" font-weight="800" fill="${f.c}">OMS &lt;350</text>` : ""}
+    <rect x="${x0}" y="${y + 6}" width="${X(f.v) - x0}" height="30" rx="7" fill="${tinte(f.c, 45)}" stroke="${f.c}" stroke-width="2"/>
+    <text x="${X(f.v) - 8}" y="${y + 26}" text-anchor="end" font-size="13.5" font-weight="900" fill="${TINTA}">&lt;${f.v}</text>`;
+}).join("");
+const eje = [0, 50, 100, 150, 200, 250, 300, 350, 400].map((v) => `<line x1="${X(v)}" y1="${y0}" x2="${X(v)}" y2="${y0 + filas.length * alto}" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="${X(v)}" y="${y0 + filas.length * alto + 18}" text-anchor="middle" font-size="12" font-weight="700" fill="#4B5563">${v}</text>`).join("");
+const svg = `<svg width="668" height="370" viewBox="0 0 668 370">
+  <text x="${(x0 + x1) / 2}" y="14" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">CD4 (células/mm³) por debajo de los cuales se da la profilaxis</text>
+  ${eje}${barras}</svg>`;
+lienzo("Profilaxis primarias según los CD4", "Barras: umbral colombiano; línea discontinua: umbral de la OMS", svg +
+  banda(`<b style="color:#5EEAD4">TB latente</b> con cualquier CD4 si la tuberculina o el IGRA son positivos o hay contacto estrecho. Sin profilaxis de <b style="color:#FCA5A5">candidiasis</b> ni de CMV.`),
+  "Esquema de Empirica. Fuentes: Vía clínica VIH 2024 (MinSalud), tabla 14 (p. 53-55); OMS 2025, enfermedad avanzada, recuadro 5 (p. 54).");
+</script></body></html>

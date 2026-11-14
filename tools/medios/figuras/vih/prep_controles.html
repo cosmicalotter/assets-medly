@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Controles de la PrEP: Vía clínica VIH 2024, tablas 3 y 4 (p. 21-22); Lineamiento PrEP 2023, tabla 4 (p. 29).
+const hitos = [
+  { c: TEAL, t: "Inicio", s: "30 tabletas", it: ["Prueba de <b>VIH</b> no reactiva", "Creatinina, HBsAg, anti-VHC, sífilis"] },
+  { c: AZUL, t: "Mes 1", s: "60 tabletas", it: ["<b>VIH</b>, cumplimiento y efectos", "Revisar la <b>creatinina</b>"] },
+  { c: MORADO, t: "Cada 3 meses", s: "90 tabletas", it: ["<b>VIH</b> y <b>sífilis</b>", "Clamidia y gonorrea"] },
+  { c: NARANJA, t: "Cada 6 meses", s: "PrEP oral", it: ["<b>Creatinina</b>", "TFG &lt;60: pasar a TAF/FTC"] },
+  { c: ROSA_C, t: "Cada 12 meses", s: "", it: ["Hepatitis <b>B y C</b>", "Vacuna de hepatitis B si falta"] },
+];
+const xs = [58, 186, 314, 442, 570];
+const svg = `<svg width="668" height="70" viewBox="0 0 668 70">
+  <line x1="40" y1="34" x2="628" y2="34" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+  ${hitos.map((h, i) => `<circle cx="${xs[i] + 40}" cy="34" r="13" fill="${h.c}"/><text x="${xs[i] + 40}" y="39" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">${i + 1}</text>`).join("")}
+</svg>`;
+lienzo("Los controles de la PrEP", "Al mes y luego cada 3 meses, con la prueba de VIH en cada cita", svg +
+  filaC(hitos.map((h) => tarjeta(h.c, h.t, h.it, { sub: h.s, alto: 250, fs: 13.5 })).join(""), 8) +
+  banda(`Hay <b style="color:#5EEAD4">cumplimiento</b> si tomó 4 o más dosis en la última semana o olvidó 5 o menos en el mes.`),
+  "Esquema de Empirica. Fuentes: Vía clínica VIH 2024 (MinSalud), tablas 3 y 4 (p. 21-22); Lineamiento técnico de PrEP (MinSalud 2023), tabla 4 (p. 29).");
+</script></body></html>

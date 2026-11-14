@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// TAR y tuberculosis: Res. 227 de 2020 (p. 72-74); OMS 2021, tabla 4.2 (p. 117); Vía clínica VIH 2024, tabla 11 (p. 37).
+const x0 = 40, x1 = 640, sem = (x1 - x0) / 10, X = (s) => x0 + s * sem;
+const svg = `<svg width="668" height="206" viewBox="0 0 668 206">
+  <rect x="${X(0)}" y="18" width="${X(10) - X(0)}" height="28" rx="8" fill="${tinte(ROJO, 25)}" stroke="${ROJO}" stroke-width="2"/>
+  <text x="${X(0) + 10}" y="37" font-size="13" font-weight="800" fill="${TINTA}">Tratamiento de la TB con rifampicina</text>
+  <rect x="${X(0)}" y="62" width="${X(2) - X(0)}" height="28" rx="8" fill="${tinte(VERDE, 45)}" stroke="${VERDE}" stroke-width="2"/>
+  <text x="${(X(0) + X(2)) / 2}" y="81" text-anchor="middle" font-size="12.5" font-weight="900" fill="${TINTA}">TAR</text>
+  <rect x="${X(2)}" y="62" width="${X(8) - X(2)}" height="28" rx="8" fill="${tinte(AMBAR, 30)}" stroke="${AMBAR}" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="${(X(2) + X(8)) / 2}" y="81" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">hasta la 8.ª semana (Res. 227)</text>
+  <rect x="${X(4)}" y="106" width="${X(8) - X(4)}" height="28" rx="8" fill="${tinte(MORADO, 30)}" stroke="${MORADO}" stroke-width="2"/>
+  <text x="${(X(4) + X(8)) / 2}" y="125" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">meningitis TB: TAR (OMS)</text>
+  <rect x="${X(2)}" y="150" width="${X(10) - X(2)}" height="28" rx="8" fill="${tinte(AZUL, 30)}" stroke="${AZUL}" stroke-width="2"/>
+  <text x="${(X(2) + X(10)) / 2}" y="169" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">DTG 50 mg cada 12 h, hasta 2 semanas después de la rifampicina</text>
+  ${[0, 2, 4, 6, 8, 10].map((s) => `<text x="${X(s)}" y="196" text-anchor="middle" font-size="11.5" font-weight="700" fill="#4B5563">${s === 0 ? "Inicio" : `sem ${s}`}</text>`).join("")}
+</svg>`;
+lienzo("TB y VIH: primero la TB, pronto la TAR", "Semanas desde el inicio del antituberculoso", svg +
+  filaC(
+    tarjeta(VERDE, "En las 2 primeras semanas", ["<b>Obligatorio</b> con CD4 menor de 50", "OMS: <b>todos</b>, sin importar los CD4"]) +
+    tarjeta(MORADO, "Meningitis tuberculosa", ["OMS: entre la <b>4.ª y la 8.ª</b> semana", "Res. 227: considerar <b>después</b> de la 8.ª"]) +
+    tarjeta(ROJO, "No usar con rifampicina", ["<b>Doravirina</b>, bictegravir", "<b>IP</b> y cobicistat"])
+  ),
+  "Esquema de Empirica. Fuentes: Resolución 227 de 2020 (MinSalud), p. 72-74; OMS 2021, tabla 4.2 (p. 117); Vía clínica VIH 2024, tabla 11 (p. 37).");
+</script></body></html>

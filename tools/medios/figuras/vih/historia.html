@@ -1,0 +1,44 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Historia natural sin y con TAR: carga viral y CD4 (animación propia, curvas esquemáticas sin escala de tiempo).
+// Umbral de enfermedad avanzada: OMS 2025 (p. xii); indetectable = intransmisible: Protocolo PEP 2025 (p. 50).
+const W = 620, H = 300, x0 = 46, y0 = 20, y1 = 270;
+// curvas en coordenadas [0,1] de tiempo
+const cv = (s) => s < 0.12 ? 0.15 + 0.8 * Math.sin(Math.PI * s / 0.24) : s < 0.2 ? lerp(0.95, 0.5, (s - 0.12) / 0.08) : s < 0.66 ? lerp(0.5, 0.72, (s - 0.2) / 0.46) : s < 0.76 ? lerp(0.72, 0.06, suave((s - 0.66) / 0.1)) : 0.06;
+const cd4 = (s) => s < 0.1 ? lerp(0.85, 0.55, s / 0.1) : s < 0.2 ? lerp(0.55, 0.72, (s - 0.1) / 0.1) : s < 0.66 ? lerp(0.72, 0.16, (s - 0.2) / 0.46) : lerp(0.16, 0.62, suave(Math.min(1, (s - 0.66) / 0.34)));
+const X = (s) => x0 + (W - x0 - 10) * s, Y = (v) => y1 - (y1 - y0) * v;
+const camino = (f, hasta) => { let d = ""; for (let k = 0; k <= 200; k++) { const s = hasta * k / 200; d += `${k ? "L" : "M"}${X(s).toFixed(1)},${Y(f(s)).toFixed(1)} `; } return d; };
+const FASES = [
+  { a: 0, b: 0.2, c: ROJO, t: "Infección aguda", d: "Carga viral muy alta y caída transitoria de los CD4" },
+  { a: 0.2, b: 0.5, c: AMBAR, t: "Fase crónica", d: "Sin síntomas: los CD4 bajan año tras año" },
+  { a: 0.5, b: 0.66, c: MORADO, t: "Enfermedad avanzada", d: "CD4 ≤200: infecciones oportunistas" },
+  { a: 0.66, b: 1, c: VERDE, t: "Con TAR", d: "Carga viral indetectable y CD4 que suben" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const s = 0.02 + 0.98 * tramo(t, 0, 0.9);
+  const f = FASES.findIndex((F) => s >= F.a && s <= F.b + 1e-9);
+  const svg = `<svg width="668" height="${H + 24}" viewBox="0 0 668 ${H + 24}">
+    ${FASES.map((F, k) => `<rect x="${X(F.a)}" y="${y0}" width="${X(F.b) - X(F.a)}" height="${y1 - y0}" fill="${tinte(F.c, k === f ? 16 : 6)}"/>`).join("")}
+    <line x1="${x0}" y1="${Y(0.2)}" x2="${X(1)}" y2="${Y(0.2)}" stroke="${MORADO}" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="${X(1) - 4}" y="${Y(0.2) - 6}" text-anchor="end" font-size="12.5" font-weight="800" fill="${MORADO}">CD4 200</text>
+    <line x1="${x0}" y1="${Y(0.09)}" x2="${X(1)}" y2="${Y(0.09)}" stroke="${GRIS}" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="${X(1) - 4}" y="${Y(0.09) + 15}" text-anchor="end" font-size="12" font-weight="700" fill="${GRIS}">límite de detección</text>
+    <path d="${camino(cv, s)}" fill="none" stroke="${ROJO}" stroke-width="4" stroke-linecap="round"/>
+    <path d="${camino(cd4, s)}" fill="none" stroke="${AZUL}" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="${X(s)}" cy="${Y(cv(s))}" r="7" fill="#fff" stroke="${ROJO}" stroke-width="3"/>
+    <circle cx="${X(s)}" cy="${Y(cd4(s))}" r="7" fill="#fff" stroke="${AZUL}" stroke-width="3"/>
+    <line x1="${X(0.66)}" y1="${y0}" x2="${X(0.66)}" y2="${y1}" stroke="${VERDE}" stroke-width="2.5" opacity="${s > 0.66 ? 1 : 0.25}"/>
+    <text x="${X(0.66) + 6}" y="${y0 + 16}" font-size="13" font-weight="900" fill="${VERDE}" opacity="${s > 0.66 ? 1 : 0.25}">Inicia la TAR</text>
+    <line x1="${x0}" y1="${y1}" x2="${X(1)}" y2="${y1}" stroke="#94A3B8" stroke-width="2"/>
+    <text x="${x0}" y="${y1 + 18}" font-size="12" font-weight="700" fill="#4B5563">semanas</text>
+    <text x="${X(0.4)}" y="${y1 + 18}" text-anchor="middle" font-size="12" font-weight="700" fill="#4B5563">años</text>
+    <text x="${X(1)}" y="${y1 + 18}" text-anchor="end" font-size="12" font-weight="700" fill="#4B5563">tiempo →</text>
+  </svg>`;
+  const F = FASES[Math.max(0, f)];
+  lienzo("Carga viral y CD4: sin y con TAR", "Curvas esquemáticas de la historia natural de la infección",
+    `<div style="display:flex;gap:18px;font-size:14px;font-weight:900;padding-left:46px"><span style="color:${ROJO}">━ Carga viral</span><span style="color:${AZUL}">━ Linfocitos CD4</span></div>` + svg +
+    `<div class="caja" style="border:2px solid ${F.c};background:${tinte(F.c, 14)};font-size:15px"><b style="color:${F.c === AMBAR ? "#B26B10" : F.c}">${F.t}:</b> ${F.d}</div>`,
+    "Animación de Empirica, sin escala. Fuentes: OMS 2025, definición de enfermedad avanzada (p. xii); Protocolo PEP 2025 (MinSalud), indetectable = intransmisible (p. 50).");
+};
+window.cuadro(59, 60);
+</script></body></html>

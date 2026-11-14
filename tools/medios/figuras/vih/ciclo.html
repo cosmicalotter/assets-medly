@@ -1,0 +1,55 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Ciclo del VIH en el linfocito CD4 y dónde actúa cada grupo de antirretrovirales (animación propia, esquema plano).
+// Grupos: Vía clínica VIH 2024, tabla 13 (abreviaturas, p. 46) y 4.3.2 (maraviroc y CCR5, p. 23); OMS 2025, lenacapavir (p. 10).
+const PASOS = [
+  { c: TEAL, t: "1 · Unión y entrada", d: "El virus se une al <b>CD4</b> y al correceptor <b>CCR5</b>", f: "Maraviroc (anti-CCR5)" },
+  { c: ROJO, t: "2 · Transcripción inversa", d: "El <b>ARN</b> viral se copia a <b>ADN</b>", f: "INTR: TDF, TAF, 3TC, FTC · INNTR: EFV, DOR" },
+  { c: VERDE, t: "3 · Integración", d: "El ADN viral entra en el <b>ADN</b> de la célula", f: "Integrasa: DTG, BIC, RAL, cabotegravir" },
+  { c: AMBAR, t: "4 · Ensamblaje", d: "Se arman la <b>cápside</b> y los virus nuevos", f: "Cápside: lenacapavir" },
+  { c: MORADO, t: "5 · Maduración", d: "La <b>proteasa</b> corta las proteínas y el virus madura", f: "IP potenciados: DRV, ATV" },
+];
+function virion(x, y, r, c, op = 1, capside = false) {
+  const espigas = Array.from({ length: 10 }, (_, k) => {
+    const a = k * Math.PI / 5;
+    return `<line x1="${x + r * Math.cos(a)}" y1="${y + r * Math.sin(a)}" x2="${x + (r + 8) * Math.cos(a)}" y2="${y + (r + 8) * Math.sin(a)}" stroke="${c}" stroke-width="3.5" stroke-linecap="round"/><circle cx="${x + (r + 9) * Math.cos(a)}" cy="${y + (r + 9) * Math.sin(a)}" r="3.5" fill="${c}"/>`;
+  }).join("");
+  const nucleo = capside ? `<path d="M${x - 10},${y - 12} L${x + 10},${y - 5} L${x + 6},${y + 13} L${x - 6},${y + 13} Z" fill="${tinte(AMBAR, 60)}" stroke="${AMBAR}" stroke-width="2.5"/>`
+    : `<circle cx="${x}" cy="${y}" r="${r * 0.45}" fill="${tinte(AMBAR, 60)}" stroke="${AMBAR}" stroke-width="2.5"/>`;
+  return `<g opacity="${op}"><circle cx="${x}" cy="${y}" r="${r}" fill="${tinte(c, 25)}" stroke="${c}" stroke-width="3.5"/>${espigas}${nucleo}</g>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const fase = Math.min(4, Math.floor(t * 5.4));
+  const u = (k) => suave(tramo(t, k / 5.4, (k + 0.8) / 5.4));
+  const on = (k) => (fase === k ? 1 : fase > k ? 0.45 : 0.15);
+  const vx = lerp(70, 150, u(0)), vy = lerp(50, 160, u(0));
+  const arn = `<path d="M110,270 q18,-16 36,0 t36,0 t36,0" fill="none" stroke="${ROJO}" stroke-width="5" stroke-linecap="round" opacity="${0.15 + 0.85 * on(1)}"/>
+    <text x="250" y="276" font-size="17" font-weight="800" fill="${ROJO}" opacity="${0.15 + 0.85 * on(1)}">ARN</text>`;
+  const adn = `<g opacity="${(0.15 + 0.85 * on(1)) * (0.25 + 0.75 * u(1))}"><path d="M110,305 q18,-14 36,0 t36,0 t36,0" fill="none" stroke="${AZUL}" stroke-width="5"/><path d="M110,317 q18,14 36,0 t36,0 t36,0" fill="none" stroke="${AZUL}" stroke-width="5"/>
+    <text x="250" y="318" font-size="17" font-weight="800" fill="${AZUL}">ADN</text></g>`;
+  const ix = lerp(200, 300, u(2));
+  const nucleo = `<circle cx="300" cy="470" r="118" fill="${tinte(VERDE, 10)}" stroke="${VERDE}" stroke-width="4" opacity="${0.4 + 0.6 * on(2)}"/>
+    <path d="M210,470 q22,-18 45,0 t45,0 t45,0 t45,0" fill="none" stroke="#64748B" stroke-width="5"/>
+    <rect x="${ix - 22}" y="459" width="44" height="22" rx="7" fill="${AZUL}" opacity="${0.15 + 0.85 * on(2)}"/>
+    <text x="300" y="565" text-anchor="middle" font-size="17" font-weight="800" fill="${VERDE}" opacity="${0.4 + 0.6 * on(2)}">Núcleo</text>`;
+  const nuevo = virion(lerp(400, 430, u(3)), lerp(300, 205, u(3)), 22, AMBAR, 0.15 + 0.85 * on(3));
+  const maduro = virion(lerp(430, 450, u(4)), lerp(205, 80, u(4)), 24, MORADO, 0.15 + 0.85 * on(4), true);
+  const svg = `<svg width="330" height="404" viewBox="0 0 520 636" style="flex:none">
+    <path d="M0,215 Q260,165 520,215 L520,636 L0,636 Z" fill="${tinte(AZUL, 6)}"/>
+    <path d="M0,215 Q260,165 520,215" fill="none" stroke="${AZUL}" stroke-width="7"/>
+    <text x="16" y="625" font-size="19" font-weight="900" fill="${AZUL}">Linfocito T CD4</text>
+    <rect x="132" y="168" width="18" height="30" rx="6" fill="${TEAL}" opacity="${0.3 + 0.7 * on(0)}"/><rect x="156" y="166" width="14" height="28" rx="6" fill="${TINTA}" opacity="${0.3 + 0.7 * on(0)}"/>
+    <text x="140" y="236" font-size="14" font-weight="800" fill="${TINTA}" opacity="${0.3 + 0.7 * on(0)}">CD4 · CCR5</text>
+    ${virion(vx, vy, 26, TEAL, 0.25 + 0.75 * (fase === 0 ? 1 : 0.4))}
+    ${arn}${adn}${nucleo}${nuevo}${maduro}
+  </svg>`;
+  const lista = PASOS.map((p, k) => `<div style="opacity:${k === fase ? 1 : 0.42};border:2px solid ${p.c};background:${k === fase ? tinte(p.c, 16) : "#fff"};border-radius:11px;padding:6px 10px">
+      <div style="font-weight:900;font-size:14.5px;color:${p.c === AMBAR ? "#B26B10" : p.c}">${p.t}</div>
+      ${k === fase ? `<div style="font-size:13px;line-height:1.3">${p.d}</div>` : ""}
+      <div style="font-size:12.5px;line-height:1.3;font-weight:800;margin-top:1px">${p.f}</div></div>`).join("");
+  lienzo("Dónde actúa cada antirretroviral", "El ciclo del VIH en el linfocito CD4, paso a paso",
+    `<div style="display:flex;gap:12px;align-items:center">${svg}<div style="display:flex;flex-direction:column;gap:7px;flex:1">${lista}</div></div>`,
+    "Animación de Empirica. Fuentes: Vía clínica VIH 2024 (MinSalud), tabla 13 (p. 46) y 4.3.2 (p. 23); OMS 2025, lenacapavir (p. 10). El DLT une dos INTR y un inhibidor de integrasa.");
+};
+window.cuadro(59, 60);
+</script></body></html>

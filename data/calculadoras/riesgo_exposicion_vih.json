@@ -1,0 +1,189 @@
+{
+ "titulo": "Riesgo de transmisión del VIH tras una exposición (PEP)",
+ "descripcion": "Clasifica una exposición ocupacional o no ocupacional al VIH en riesgo apreciable, bajo o mínimo, o despreciable, según el tipo de exposición y el estado de la fuente, con la tabla 11 y la tabla 6 del Protocolo de profilaxis posexposición del Ministerio de Salud (2025, adaptado del consenso GESIDA). De la categoría sale si se recomienda, se valora o no se da la PEP.",
+ "instrucciones": "Elige la exposición de más riesgo que tuvo la persona y lo que se sabe de la fuente. Si no se puede conocer el estado de la fuente, márcala como desconocida con factores de riesgo.",
+ "limitaciones": "No sirve pasadas 72 horas: la PEP ya no se inicia. Con riesgo bajo o mínimo la decisión es individual; la fuente indetectable sólo evita la PEP en la exposición sexual y si cumple las cuatro condiciones del protocolo.",
+ "tipoCalculo": "formula",
+ "formula": "2 * ((contacto * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 4)) / 120) + (1 - (contacto * (contacto - 1) * (contacto - 2) * (contacto - 3) * (contacto - 4)) / 120) * (1 - ((contacto - 3) * (contacto - 4) * (contacto - 5) * (-(contacto ^ 2) / 20 + contacto / 40 - 1 / 60)) * (1 - fuente + fuente * (fuente - 1) - (2 / 3) * fuente * (fuente - 1) * (fuente - 2)))",
+ "decimales": 0,
+ "mostrarPuntaje": false,
+ "prefijoResultado": "Riesgo",
+ "secciones": [
+  {
+   "nombre": "Exposición",
+   "elementos": [
+    {
+     "id": "contacto",
+     "tipo": "opciones",
+     "label": "Tipo de exposición",
+     "ayuda": "Fluidos infectantes: sangre, semen, secreciones vaginales, LCR, líquidos de serosas, amniótico y leche humana. La orina, las heces, la saliva, el vómito, el sudor y el esputo sin sangre visible no lo son.",
+     "opciones": [
+      {
+       "label": "Sexo anal o vaginal sin condón",
+       "puntos": 0,
+       "detalle": "Receptivo o insertivo, o condón roto o mal usado"
+      },
+      {
+       "label": "Agujas o jeringas compartidas",
+       "puntos": 1
+      },
+      {
+       "label": "Pinchazo o mordedura con herida",
+       "puntos": 2,
+       "detalle": "Con sangre u otro fluido infectante, también en el trabajo"
+      },
+      {
+       "label": "Sexo oral sin barrera",
+       "puntos": 3,
+       "detalle": "Pene, vagina o ano, con o sin eyaculación"
+      },
+      {
+       "label": "Mucosa o piel no intacta",
+       "puntos": 4,
+       "detalle": "Salpicadura de sangre u otro fluido infectante"
+      },
+      {
+       "label": "Sin riesgo real",
+       "puntos": 5,
+       "detalle": "Fluido no infectante, piel intacta, besos, caricias o mordedura sin herida"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Fuente",
+   "elementos": [
+    {
+     "id": "fuente",
+     "tipo": "opciones",
+     "label": "Estado de la fuente",
+     "ayuda": "Factores de riesgo: HSH, personas que se inyectan drogas, mujeres trans, trabajo sexual, situación de calle, prisión, país con prevalencia mayor del 1 % o agresor sexual.",
+     "opciones": [
+      {
+       "label": "VIH positiva, carga detectable o desconocida",
+       "puntos": 0
+      },
+      {
+       "label": "VIH positiva, carga indetectable",
+       "puntos": 1
+      },
+      {
+       "label": "Desconocida con factores de riesgo",
+       "puntos": 2
+      },
+      {
+       "label": "Desconocida sin factores de riesgo",
+       "puntos": 3
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 2,
+   "max": 2,
+   "categoria": "Despreciable o nulo",
+   "color": "verde",
+   "match_opcion_index": 2,
+   "si": {
+    "id": "contacto",
+    "igual": 5
+   },
+   "approach": "PEP no recomendada. Informar que el riesgo es nulo y ofrecer la prevención combinada."
+  },
+  {
+   "min": 0,
+   "max": 0,
+   "categoria": "Apreciable",
+   "color": "rojo",
+   "match_opcion_index": 0,
+   "si": {
+    "todos": [
+     {
+      "id": "contacto",
+      "en": [
+       0,
+       1,
+       2
+      ]
+     },
+     {
+      "id": "fuente",
+      "en": [
+       0,
+       2
+      ]
+     }
+    ]
+   },
+   "approach": "Recomendar la PEP con DLT, 1 tableta al día por 30 días: idealmente en 2 horas, si no en 24 horas y nunca después de 72 horas."
+  },
+  {
+   "min": 1,
+   "max": 1,
+   "categoria": "Bajo o mínimo",
+   "color": "naranja",
+   "match_opcion_index": 1,
+   "approach": "Valorar caso a caso. En general, dar PEP si la fuente es VIH positiva detectable o desconocida, o desconocida con factores de riesgo; con exposición sexual y fuente indetectable que cumple las cuatro condiciones, se puede no dar."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11: exposición con riesgo apreciable)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=53",
+   "paginas": "53",
+   "texto": "Relación sexual anal o vaginal, receptiva o insertiva, sin preservativo o mal uso de este. Compartir jeringuillas o agujas con personas que se inyectan drogas"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11: fuente que obliga a recomendar PEP)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=53",
+   "paginas": "53",
+   "texto": "Fuente VIH positiva con Carga Viral Plasmática (CVP) detectable o desconocida (3) Fuente VIH desconocido con factores de riesgo (4)"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11: sexo oral y otras mucosas, riesgo bajo o mínimo)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=53",
+   "paginas": "53",
+   "texto": "Relación sexual oro genital (pene, vagina, ano), receptiva o insertiva, con o sin eyaculación, sin preservativo u otro método de barrera o mal uso de este"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11: riesgo despreciable o nulo, PEP no recomendada)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=54",
+   "paginas": "54",
+   "texto": "Mordeduras sin rotura de piel ni sangrado Besos Reanimación boca a boca sin lesiones mucocutáneas Caricias Masturbación sin rotura de piel"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11, nota 5: valorar caso a caso)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=54",
+   "paginas": "54",
+   "texto": "En general se recomienda iniciar PEP si la fuente es VIH+ con CVP detectable o desconocida o si es VIH desconocido con factores de riesgo"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 6, recomendación 5: exposición ocupacional percutánea)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=47",
+   "paginas": "47",
+   "texto": "En las ERB-O percutáneas a sangre con riesgo alto y muy alto se recomienda realizar PEP. Recomendación fuerte a favor, calidad de la evidencia moderada"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 5, nota b: fluidos potencialmente infectantes)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=46",
+   "paginas": "46",
+   "texto": "Los fluidos corporales potencialmente infectantes incluyen sangre, fluidos que contengan sangre visible, semen, secreciones vaginales, líquido cefalorraquídeo (LCR) y líquidos: pleural, pericárdico, peritoneal, sinovial, amniótico y leche humana"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 5, nota d: fluidos no infectantes)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=46",
+   "paginas": "46",
+   "texto": "Los fluidos corporales no infectantes incluyen la orina, heces, saliva, vómitos, secreciones nasales, lágrimas, sudor y esputo, si no contienen sangre visible"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Protocolo de profilaxis posexposición: pasos a seguir ante una exposición de riesgo biológico ocupacional o no ocupacional al VIH, el virus de la hepatitis B, el virus de la hepatitis C y otras infecciones de transmisión sexual. Actualización 2025. Bogotá: MinSalud; 2025. (Tabla 11, nota 4: fuente con factores de riesgo)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/protocolo-pep-riesgo-biologico-its-vih-hepatitis-actualizacion-2025.pdf#page=54",
+   "paginas": "54",
+   "texto": "Poblaciones con prevalencia de VIH mayor a la reportada para la población general (HSH, PID, mujeres transgénero, personas en situación de calle, personas que realizan actividades sexuales pagas)"
+  }
+ ]
+}

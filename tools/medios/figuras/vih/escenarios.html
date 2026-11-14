@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Algoritmo diagnóstico en mayores de 18 meses (no gestantes): Vía clínica VIH 2024, algoritmo 3 (p. 27), tablas 6-7 (p. 28-29).
+const nodo = (x, y, w, h, c, t, s) => `<g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="11" fill="${tinte(c, 14)}" stroke="${c}" stroke-width="2.2"/>
+  <text x="${x + w / 2}" y="${y + (s ? 23 : h / 2 + 6)}" text-anchor="middle" font-size="15" font-weight="900" fill="${c === AMBAR ? "#B26B10" : c}">${t}</text>
+  ${s ? `<text x="${x + w / 2}" y="${y + 43}" text-anchor="middle" font-size="12.5" font-weight="600" fill="${TINTA}">${s}</text>` : ""}</g>`;
+const r = (x, y, t) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151" paint-order="stroke" stroke="#fff" stroke-width="4">${t}</text>`;
+const svg = `<svg width="668" height="356" viewBox="0 0 668 356">
+  ${flecha(160, 52, 160, 92, GRIS, 3, 11)}${flecha(250, 30, 420, 30, GRIS, 3, 11)}
+  ${flecha(160, 146, 160, 186, GRIS, 3, 11)}${flecha(250, 124, 420, 124, GRIS, 3, 11)}
+  ${flecha(110, 240, 70, 286, GRIS, 3, 11)}${flecha(160, 240, 260, 286, GRIS, 3, 11)}${flecha(210, 240, 470, 286, GRIS, 3, 11)}
+  ${nodo(70, 4, 180, 48, AZUL, "1.ª prueba", "4.ª generación preferida")}
+  ${nodo(70, 98, 180, 48, NARANJA, "2.ª prueba", "otra plataforma y muestra")}
+  ${nodo(70, 192, 180, 48, MORADO, "3.ª prueba", "carga viral, ELISA o WB")}
+  ${nodo(426, 4, 230, 52, VERDE, "A · Negativo", "no reactiva: informar")}
+  ${nodo(426, 98, 230, 52, ROJO, "B · Positivo", "reactiva: notificar y vincular")}
+  ${nodo(6, 290, 200, 60, ROJO, "C · Positivo", "positiva o detectable")}
+  ${nodo(222, 290, 200, 60, AMBAR, "D · Indeterminado", "repetir en 1 mes")}
+  ${nodo(438, 290, 222, 60, VERDE, "E · Negativo", "negativa o indetectable")}
+  ${r(335, 22, "No reactiva")}${r(335, 116, "Reactiva")}${r(184, 172, "No reactiva")}${r(184, 78, "Reactiva")}
+</svg>`;
+lienzo("Diagnóstico: tres pruebas, cinco escenarios", "Personas mayores de 18 meses que no están en gestación", svg +
+  banda(`Cada prueba en una <b style="color:#5EEAD4">muestra nueva</b>, aunque sea el mismo día. Positiva: por encima del <b style="color:#FCA5A5">límite de detección</b> del método.`),
+  "Esquema de Empirica. Fuente: Vía clínica VIH 2024 (MinSalud), algoritmo 3 (p. 27) y tablas 6 y 7 (p. 28-29).");
+</script></body></html>
