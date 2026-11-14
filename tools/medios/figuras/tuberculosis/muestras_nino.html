@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Diagnóstico de la TB en el menor de 15 años (Res. 227 de 2020, 3.1 y 3.3.4; OMS 2026, módulo 3, recomendación 8).
+const m = (c, tit, txt) => `<div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:13px 14px">
+  <div style="font-weight:900;font-size:16.5px;color:${c}">${tit}</div><div style="font-size:14.8px;line-height:1.4;margin-top:4px">${txt}</div></div>`;
+const fl = `<div style="text-align:center;color:#94A3B8;font-size:20px;line-height:1">▼</div>`;
+lienzo("TB en el niño: muestras y apoyo", "La enfermedad es paucibacilar: se suman pruebas",
+  `<div style="display:flex;gap:8px">
+     ${m(ROSA_C, "Aspirado gástrico", "Cuando el niño <b>no expectora</b>.")}
+     ${m(MORADO, "Esputo inducido", "Otra opción si no expectora.")}
+     ${m(AZUL, "Esputo espontáneo", "Mayores de <b>7 años</b> que expectoran.")}
+   </div>${fl}
+   <div class="caja" style="background:${tinte(TEAL, 14)};border:2px solid ${TEAL};font-size:15.5px;padding:14px 14px"><b>Al menos 2 especímenes</b>, cada uno con <b>prueba molecular</b> y <b>cultivo</b>.</div>${fl}
+   <div style="display:flex;gap:8px">
+     ${m(GRIS, "Radiografía y PPD", "Apoyan el diagnóstico; una prueba negativa <b>no</b> descarta.")}
+     ${m(VERDE, "Valoración integral", "Prueba de <b>VIH</b>, nutrición, vacunación y crecimiento.")}
+   </div>
+   <div class="caja" style="background:#1F2A37;color:#fff;font-size:14px;padding:11px 13px"><b style="color:#5EEAD4">OMS 2026:</b> también prueba molecular en <b>heces</b>.</div>`,
+  "Esquema de Empirica. Fuentes: Resolución 227 de 2020 (MinSalud), numerales 3.1 y 3.3.4 (p. 51-61); OMS, módulo 3 de tuberculosis, 2.ª ed., 2026, recomendación 8.");
+</script></body></html>

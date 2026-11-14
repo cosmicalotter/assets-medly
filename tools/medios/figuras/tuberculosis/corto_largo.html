@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquema corto o largo de la TB resistente a rifampicina (Res. 227 de 2020, anexo 4, p. 159-161; OMS 2026, recomendación B1.1, p. 55).
+const fase = (m, txt, c) => `<div style="display:flex;gap:8px;align-items:center;margin-top:16px"><div style="flex:none;width:84px;font-weight:900;font-size:15px;color:${c}">${m}</div><div style="font-size:16.5px;line-height:1.42">${txt}</div></div>`;
+const tarjeta = (c, tit, dur, cuando, fases) => `<div style="flex:1;border:2px solid ${c};background:${tinte(c, 9)};border-radius:14px;padding:16px 16px;min-height:330px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-weight:900;font-size:18px;color:${c}">${tit}</div><div style="font-weight:900;font-size:16px">${dur}</div></div>
+  <div style="font-size:13.5px;color:#475569;margin-top:3px">${cuando}</div>${fases}</div>`;
+lienzo("TB resistente a rifampicina: ¿corto o largo?", "El corto, si no hay ninguna exclusión; si no, el largo oral",
+  `   <div style="display:flex;gap:12px">
+   ${tarjeta(NARANJA, "Corto", "9-11 meses", "Sin ninguna exclusión",
+     fase("4-6 meses", "Amikacina, <b>moxifloxacina</b>, etionamida, clofazimina, pirazinamida, isoniacida en dosis altas y etambutol", NARANJA) +
+     fase("5 meses", "Moxifloxacina, clofazimina, pirazinamida y etambutol", NARANJA))}
+   ${tarjeta(ROJO, "Largo oral", "18-20 meses", "Con alguna exclusión",
+     fase("6 meses", "Levofloxacina, linezolid, <b>bedaquilina</b> y clofazimina", ROJO) +
+     fase("12-14 meses", "Levofloxacina, linezolid y clofazimina", ROJO) +
+     fase("<6 años", "<b>Cicloserina</b> en lugar de bedaquilina", ROJO))}
+   </div>
+   <div class="caja" style="background:#1F2A37;color:#fff;font-size:14px;padding:11px 13px"><b style="color:#5EEAD4">OMS 2026:</b> prefiere <b>BPaLM</b> (bedaquilina, pretomanid, linezolid y moxifloxacina) durante <b>6 meses</b>; lo evalúa el <b>CERCET</b>.</div>`,
+  "Esquema de Empirica. Fuentes: Resolución 227 de 2020 (MinSalud), anexo 4 (p. 159-161); OMS, módulo 4 de tuberculosis, 2.ª ed., 2026, recomendación B1.1 (p. 55).");
+</script></body></html>

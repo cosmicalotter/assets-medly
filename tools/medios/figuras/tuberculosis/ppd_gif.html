@@ -1,0 +1,49 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// La PPD sobre la foto real de su aplicación (Greg Knobloch, CDC, dominio público). Res. 227 de 2020, 3.2.4 y tabla 8 (p. 57-58).
+// GIF: aplicación → acercamiento y lectura (esquema) → puntos de corte.
+const SRC = "fuentes/commons_Mantoux_tuberculin_skin_test.jpg", W0 = 1600, H0 = 1050;
+const A = [0, 330, 1400, 690], B = [90, 488, 470, 232];
+const P = [
+  { c: CIAN, t: "1. Aplicar", x: "<b>0,1 mL</b> intradérmica en la cara externa del antebrazo." },
+  { c: AMARILLO, t: "2. Leer a las 48-72 h", x: "Medir la <b>induración</b>, no el eritema, en milímetros." },
+  { c: ROSA, t: "3. Interpretar", x: "Positiva desde <b>5 mm</b> (VIH, contacto, niño contacto) o <b>10 mm</b>." },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const paso = t < 0.33 ? 0 : t < 0.66 ? 1 : 2;
+  const z = t >= 0.33 ? 1 : 0;
+  const vb = A.map((a, k) => lerp(a, B[k], z));
+  const k = vb[2] / 668;                                  // px de imagen por px de pantalla
+  const cx = 310, cy = 600;
+  let capa = "";
+  const op1 = t >= 0.33 ? 0 : 1;
+  capa += `<circle cx="${cx}" cy="${cy}" r="${70}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="${8 * k}" opacity="${op1}"/>
+    <circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="${CIAN}" stroke-width="${4 * k}" opacity="${op1}"/>
+    <text x="${cx}" y="${cy - 90}" text-anchor="middle" font-size="${17 * k}" font-weight="800" fill="${CIAN}" stroke="#111" stroke-width="${3.5 * k}" paint-order="stroke" opacity="${op1}">Habón de la aplicación</text>`;
+  if (t >= 0.33) {
+    const o = 1, mm = 9, x0 = cx - 53, yR = cy + 50;
+    capa += `<g opacity="${o}">
+      <ellipse cx="${cx}" cy="${cy}" rx="${10 * mm / 2 + 8}" ry="${10 * mm / 2}" fill="${AMARILLO}" fill-opacity=".18" stroke="${AMARILLO}" stroke-width="${3 * k}" stroke-dasharray="${8 * k} ${5 * k}"/>
+      <rect x="${x0 - 10}" y="${yR}" width="${20 * mm + 20}" height="34" rx="4" fill="#FFFBEB" stroke="#B59A00" stroke-width="${1.5 * k}"/>
+      ${Array.from({ length: 21 }, (_, j) => `<line x1="${x0 + j * mm}" y1="${yR}" x2="${x0 + j * mm}" y2="${yR + (j % 5 ? 9 : 16)}" stroke="#1F2937" stroke-width="${1.2 * k}"/>`).join("")}
+      ${[0, 5, 10, 15, 20].map((v) => `<text x="${x0 + v * mm}" y="${yR + 29}" text-anchor="middle" font-size="${11 * k}" font-weight="700" fill="#1F2937">${v}</text>`).join("")}
+      <text x="${cx}" y="${cy - 62}" text-anchor="middle" font-size="${15 * k}" font-weight="800" fill="${AMARILLO}" stroke="#111" stroke-width="${3.5 * k}" paint-order="stroke">Induración (esquema)</text></g>`;
+  }
+  if (t >= 0.66) {
+    const o = 1, mm = 9, x0 = cx - 53, yR = cy + 50;
+    capa += `<g opacity="${o}">
+      <line x1="${x0 + 5 * mm}" y1="${yR - 26}" x2="${x0 + 5 * mm}" y2="${yR + 2}" stroke="${ROSA}" stroke-width="${4 * k}"/>
+      <line x1="${x0 + 10 * mm}" y1="${yR - 26}" x2="${x0 + 10 * mm}" y2="${yR + 2}" stroke="${ROSA}" stroke-width="${4 * k}"/>
+      <text x="${x0 + 5 * mm}" y="${yR - 32}" text-anchor="middle" font-size="${13 * k}" font-weight="900" fill="${ROSA}" stroke="#fff" stroke-width="${3 * k}" paint-order="stroke">5 mm</text>
+      <text x="${x0 + 10 * mm}" y="${yR - 32}" text-anchor="middle" font-size="${13 * k}" font-weight="900" fill="${ROSA}" stroke="#fff" stroke-width="${3 * k}" paint-order="stroke">10 mm</text></g>`;
+  }
+  const svg = `<svg width="668" height="330" viewBox="${vb.join(" ")}" preserveAspectRatio="xMidYMid slice" style="display:block;border-radius:10px">
+    <image href="${SRC}" x="0" y="0" width="${W0}" height="${H0}"/>${capa}</svg>`;
+  const pasos = P.map((p, j) => `<div style="flex:1;opacity:${j === paso ? 1 : j < paso ? 0.55 : 0.25};border:2px solid ${p.c === AMARILLO ? "#D4B400" : p.c};background:${tinte(p.c === AMARILLO ? "#EAB308" : p.c, j === paso ? 16 : 6)};border-radius:12px;padding:8px 10px">
+    <div style="font-weight:900;font-size:14.5px;color:${p.c === AMARILLO ? "#A16207" : p.c === CIAN ? "#0E7490" : p.c}">${p.t}</div><div style="font-size:13px;line-height:1.33;margin-top:2px">${p.x}</div></div>`).join("");
+  lienzo("Aplicar y leer la PPD", "Técnica de Mantoux",
+    `<div style="border-radius:10px;overflow:hidden">${svg}</div><div style="display:flex;gap:8px">${pasos}</div>`,
+    "Foto: Greg Knobloch, CDC, Wikimedia Commons, dominio público; la induración y la regla son un esquema de Empirica. Fuente: Resolución 227 de 2020, 3.2.4 y tabla 8.");
+};
+window.cuadro(46, 48);
+</script></body></html>

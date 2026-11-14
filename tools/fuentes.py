@@ -52,8 +52,10 @@ import norma  # noqa: E402  (resolver, todos, DATA)
 #: `/resources/<nombre>-pdf-66141662244037`; revistas de la AHA:
 #: `/doi/pdf/<doi>`; revistas de Elsevier como CHEST: `/article/<pii>/pdf`;
 #: revistas en OJS, como la Rev Fac Med de la UNAL: `/article/download/<artículo>/<galerada>`;
-#: Frontiers: `/articles/<doi>/pdf`).
-_PDF = re.compile(r"\.pdf$|-pdf-\d+$|^/doi/pdf/|/article/[^/]+/pdf$|/article/download/\d+/\d+$|^/articles/10\.\d+/[^/]+/pdf$", re.I)
+#: Frontiers: `/articles/<doi>/pdf`; repositorio IRIS de la OMS:
+#: `/server/api/core/bitstreams/<uuid>/content`).
+_PDF = re.compile(r"\.pdf$|-pdf-\d+$|^/doi/pdf/|/article/[^/]+/pdf$|/article/download/\d+/\d+$|^/articles/10\.\d+/[^/]+/pdf$"
+                  r"|^/server/api/core/bitstreams/[0-9a-f-]{36}/content$", re.I)
 _PAGE = re.compile(r"^page=(\d+)$")
 
 

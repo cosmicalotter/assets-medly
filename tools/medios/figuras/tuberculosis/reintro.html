@@ -1,0 +1,37 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Reintroducción escalonada tras la hepatotoxicidad (Res. 227 de 2020, tabla 12 y numeral 4.2, p. 70).
+// GIF: avanza día a día y cada fármaco sube su dosis en la fila de su color.
+const F = [
+  { n: "Etambutol", c: VERDE, d: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], et: ["dosis completa"] },
+  { n: "Rifampicina", c: ROJO, d: [150, 150, 300, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600] },
+  { n: "Isoniacida", c: AZUL, d: [0, 0, 0, 0, 100, 100, 200, 300, 300, 300, 300, 300, 300, 300] },
+  { n: "Pirazinamida", c: AMBAR, d: [0, 0, 0, 0, 0, 0, 0, 0, 400, 400, 800, 800, 1200, 1200] },
+];
+const MAX = { Rifampicina: 600, Isoniacida: 300, Pirazinamida: 1200 };
+window.cuadro = function (i, n) {
+  const dia = n > 1 ? Math.min(14, 1 + Math.floor((i / (n - 1)) * 15)) : 14;
+  const x0 = 128, w = 36;
+  const filas = F.map((f, k) => {
+    const y = 30 + k * 68;
+    const celdas = f.d.map((v, j) => {
+      const on = j < dia, frac = f.n === "Etambutol" ? (v ? 1 : 0) : v / MAX[f.n];
+      const h = 42 * frac;
+      return `<rect x="${x0 + j * w + 3}" y="${y}" width="${w - 6}" height="42" rx="5" fill="#F1F5F9"/>
+        ${on && frac ? `<rect x="${x0 + j * w + 3}" y="${y + 42 - h}" width="${w - 6}" height="${h}" rx="5" fill="${f.c}"/>` : ""}
+        ${on && v && f.n !== "Etambutol" && (j === 0 || f.d[j - 1] !== v) ? `<text x="${x0 + j * w + w / 2}" y="${y - 2}" text-anchor="middle" font-size="11" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${v}</text>` : ""}`;
+    }).join("");
+    return `<text x="${x0 - 10}" y="${y + 27}" text-anchor="end" font-size="14.5" font-weight="800" fill="${f.c === AMBAR ? "#B26B10" : f.c}">${f.n}</text>${celdas}`;
+  }).join("");
+  const dias = Array.from({ length: 14 }, (_, j) => `<text x="${x0 + j * w + w / 2}" y="306" text-anchor="middle" font-size="12" font-weight="${j + 1 === dia ? 900 : 600}" fill="${j + 1 === dia ? TINTA : "#94A3B8"}">${j + 1}</text>`).join("");
+  const svg = `<svg width="668" height="318" viewBox="0 0 668 318">${filas}${dias}
+    <text x="${x0 - 10}" y="306" text-anchor="end" font-size="12" font-weight="700" fill="#64748B">Día</text>
+    <rect x="${x0 + (dia - 1) * w}" y="20" width="${w}" height="272" rx="7" fill="none" stroke="${TINTA}" stroke-width="2.5"/></svg>`;
+  lienzo("Reintroducir tras la hepatotoxicidad", "Un fármaco cada vez, con transaminasas por debajo de 2 veces lo normal (dosis en mg)",
+    `${svg}
+     <div style="display:flex;gap:10px">
+       <div class="caja" style="flex:1;background:${tinte(AZUL, 12)}">Perfil hepático <b>2 veces por semana</b> mientras se reintroduce.</div>
+       <div class="caja" style="flex:1;background:${tinte(AMBAR, 16)}">Día 14: la dosis <b>por peso</b>. Según la lesión, puede no volver la <b>pirazinamida</b>.</div></div>`,
+    "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), tabla 12 y numeral 4.2 (p. 70).");
+};
+window.cuadro(29, 30);
+</script></body></html>

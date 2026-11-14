@@ -1,0 +1,39 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Tratamiento de la TB sensible en 6 meses (Res. 227 de 2020: tabla 28, p. 151; 3.1, p. 51; tabla 2, p. 33).
+// GIF de flujo: el marcador recorre los 6 meses y se encienden en orden las tarjetas de cada momento.
+const E = [
+  { c: TEAL, tit: "Antes de iniciar", txt: "Prueba de <b>sensibilidad</b>, VIH y laboratorios; concertar el <b>TDO</b>" },
+  { c: ROJO, tit: "Fase intensiva", txt: "<b>RHZE</b> diario, de lunes a sábado: <b>56 dosis</b>" },
+  { c: AMBAR, tit: "Al terminar la intensiva", txt: "<b>Baciloscopia</b>: negativa, sigue; positiva, molecular y cultivo" },
+  { c: AZUL, tit: "Continuación", txt: "<b>RH</b> diario, de lunes a sábado: <b>112 dosis</b>" },
+  { c: MORADO, tit: "4.º mes y final", txt: "Baciloscopia: positiva en el <b>4.º mes</b> o después es <b>fracaso</b>" },
+];
+function caja(e, op, w) {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:10px 12px;width:${w}px;min-height:96px">
+    <div style="font-weight:900;color:${ct};font-size:16px">${e.tit}</div><div style="font-size:14px;line-height:1.36;margin-top:4px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const op = (a) => 0.16 + 0.84 * suave(tramo(t, a, a + 0.07));
+  const x0 = 36, x1 = 632, mes = (x1 - x0) / 6;
+  const xm = x0 + (x1 - x0) * suave(tramo(t, 0.08, 0.86));
+  const seg = (a, b, c, txt) => `<rect x="${x0 + a * mes}" y="18" width="${(b - a) * mes}" height="26" rx="8" fill="${tinte(c, 30)}" stroke="${c}" stroke-width="2"/>
+    <text x="${x0 + (a + b) / 2 * mes}" y="36" text-anchor="middle" font-size="13" font-weight="800" fill="${TINTA}">${txt}</text>`;
+  const hito = (m, c) => `<path d="M${x0 + m * mes - 8},2 h16 l-8,12 z" fill="${c}"/>`;
+  const linea = `<svg width="668" height="86" viewBox="0 0 668 86">
+    ${seg(0, 2, ROJO, "56 dosis · RHZE")}${seg(2, 6, AZUL, "112 dosis · RH")}
+    <rect x="${x0}" y="18" width="${Math.max(0, xm - x0)}" height="26" rx="8" fill="${TINTA}" opacity=".10"/>
+    ${[0, 2, 4, 6].map((m) => hito(m, m === 0 ? TEAL : m === 2 ? AMBAR : MORADO)).join("")}
+    ${[0, 1, 2, 3, 4, 5, 6].map((m) => `<line x1="${x0 + m * mes}" y1="48" x2="${x0 + m * mes}" y2="56" stroke="#94A3B8" stroke-width="2"/>
+      <text x="${x0 + m * mes}" y="72" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${m === 0 ? "Inicio" : `Mes ${m}`}</text>`).join("")}
+    <line x1="${xm}" y1="10" x2="${xm}" y2="52" stroke="${TINTA}" stroke-width="3"/><circle cx="${xm}" cy="31" r="8" fill="#fff" stroke="${TINTA}" stroke-width="3"/></svg>`;
+  lienzo("TB sensible: las dos fases", "56 dosis de RHZE y 112 de RH, con sus controles",
+    `${linea}
+     <div style="display:flex;gap:10px;justify-content:center">${caja(E[0], op(0.02), 212)}${caja(E[1], op(0.12), 212)}${caja(E[2], op(0.36), 212)}</div>
+     <div style="display:flex;gap:10px;justify-content:center">${caja(E[3], op(0.48), 322)}${caja(E[4], op(0.72), 322)}</div>
+     <div class="caja" style="opacity:${op(0.88)};background:#1F2A37;color:#fff;font-weight:700;font-size:14px;padding:11px 13px">Cada dosis, <b style="color:#5EEAD4">supervisada</b>: el número de dosis manda, no el calendario.</div>`,
+    "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), tabla 28 (p. 151), numeral 3.1 (p. 51) y tabla 2 (p. 33).");
+};
+window.cuadro(39, 40);
+</script></body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Duración de la segunda fase según la situación (Res. 227 de 2020, tabla 30, p. 154; anexo 4, p. 153).
+const G = [
+  { d: 112, c: AZUL, tot: "6 meses", g: ["Pulmonar y ganglionar", "Embarazo y diabetes", "Miliar, sin compromiso meníngeo", "VIH con CD4 ≥200 y en TAR"] },
+  { d: 196, c: MORADO, tot: "≈9 meses", g: ["Silicotuberculosis y genitourinaria", "Enfermedad renal crónica", "VIH con CD4 ≤200 sin TAR", "TB diseminada"] },
+  { d: 280, c: ROJO, tot: "12 meses", g: ["Meníngea", "Ósea"] },
+];
+const esc = 1.32;
+const filas = G.map((g) => `<div style="display:flex;gap:12px;align-items:center;padding:6px 0">
+  <div style="width:250px;flex:none">${g.g.map((t) => `<div style="font-size:15px;line-height:1.45">• ${t}</div>`).join("")}</div>
+  <div style="flex:1"><svg width="400" height="64" viewBox="0 0 400 64">
+    <rect x="0" y="8" width="${56 * esc}" height="40" rx="7" fill="${tinte(ROJO, 35)}" stroke="${ROJO}" stroke-width="2"/>
+    <text x="${28 * esc}" y="33" text-anchor="middle" font-size="14" font-weight="800" fill="${TINTA}">56</text>
+    <rect x="${56 * esc + 3}" y="8" width="${g.d * esc * 0.86}" height="40" rx="7" fill="${tinte(g.c, 32)}" stroke="${g.c}" stroke-width="2"/>
+    <text x="${56 * esc + 3 + g.d * esc * 0.43}" y="33" text-anchor="middle" font-size="14.5" font-weight="800" fill="${TINTA}">${g.d} dosis</text>
+    <text x="${Math.min(396, 56 * esc + 9 + g.d * esc * 0.86)}" y="33" text-anchor="${56 * esc + 9 + g.d * esc * 0.86 > 340 ? "end" : "start"}" font-size="12.5" font-weight="800" fill="${g.c}" ${56 * esc + 9 + g.d * esc * 0.86 > 340 ? 'dy="30"' : ""}>${g.tot}</text>
+  </svg></div></div>`).join(`<div style="height:1px;background:#E5E7EB"></div>`);
+lienzo("Cuánto dura la segunda fase", "La fase intensiva es igual para todos: 56 dosis de RHZE",
+  `<div style="display:flex;gap:10px;font-size:12.5px;font-weight:700;color:#64748B;padding-left:262px"><span style="color:${ROJO}">■ Fase intensiva</span><span>■ Segunda fase (RH diario)</span></div>
+   ${filas}
+   <div class="caja" style="background:${tinte(AMBAR, 16)};font-size:14.5px;padding:12px 14px">En la <b>meníngea</b>, corticoides desde el inicio, con retiro gradual en <b>6-8 semanas</b>.</div>`,
+  "Esquema de Empirica. Fuente: Resolución 227 de 2020 (MinSalud), tabla 30 (p. 154) y anexo 4 (p. 153).");
+</script></body></html>

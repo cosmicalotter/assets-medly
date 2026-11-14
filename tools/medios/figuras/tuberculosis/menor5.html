@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Contacto menor de 5 años (Res. 227 de 2020, anexo 2b, p. 148; OMS 2024, módulo 1, recomendación 5).
+const t = (c, tit, txt, w) => `<div style="width:${w}px;border:2px solid ${c};background:${tinte(c, 11)};border-radius:12px;padding:9px 11px">
+  <div style="font-weight:900;font-size:15px;color:${c === AMBAR ? "#B26B10" : c}">${tit}</div><div style="font-size:13.6px;line-height:1.35;margin-top:3px">${txt}</div></div>`;
+const fl = `<svg width="20" height="18" viewBox="0 0 20 18"><path d="M10 0 v10 M4 8 l6 8 l6 -8" stroke="#94A3B8" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`;
+lienzo("Contacto menor de 5 años", "Del tamizaje clínico a la profilaxis",
+  `<div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    ${t(TEAL, "1. Tamizaje clínico", "Tos ≥<b>15 días</b>, fiebre >8 días, no gana peso, juega menos. Con un síntoma: <b>estudiar la TB activa</b>.", 640)}
+    ${fl}
+    ${t(AZUL, "2. Sin síntomas: PPD y radiografía", "Leer la PPD a las <b>48-72 horas</b>; en el niño contacto es positiva desde <b>5 mm</b>.", 640)}
+    ${fl}
+    <div style="display:flex;gap:8px">
+      ${t(ROJO, "Rx alterada", "Investigar la <b>TB activa</b>, pulmonar o extrapulmonar.", 204)}
+      ${t(VERDE, "PPD ≥5 mm y Rx normal", "Tratar la <b>infección latente</b>.", 204)}
+      ${t(AMBAR, "PPD <5 mm y Rx normal", "Con <b>inmunosupresión</b>: tratar 6 meses. Sin ella: 3 meses y repetir la PPD.", 216)}
+    </div>
+    ${fl}
+    ${t(MORADO, "3. PPD a los 3 meses", "≥<b>5 mm</b>: completar 6 meses · <5 mm y sin síntomas: <b>suspender</b>.", 640)}
+  </div>`,
+  "Esquema de Empirica. Fuentes: Resolución 227 de 2020 (MinSalud), anexo 2b (p. 148) y tabla 8 (p. 57); OMS, tratamiento preventivo de la TB, 2.ª ed., 2024, recomendación 5.");
+</script></body></html>
