@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre la micrografía electrónica real (CDC/C. Goldsmith, dominio público): acercamiento a los viriones que salen del linfocito.
+const IW = 1600, IH = 1063, VW = 668, VH = 336;
+const PX = 1100, PY = 560; // centro del acercamiento (coordenadas de la imagen)
+const VIRIONES = [[1092, 447], [1300, 530], [1005, 417]];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const z = 1 + 1.6 * suave(tramo(t, 0.1, 0.55));
+  const k0 = Math.max(VW / IW, VH / IH);           // escala que llena el visor
+  const k = k0 * z;
+  const cx = lerp(IW / 2, PX, suave(tramo(t, 0.1, 0.55))), cy = lerp(IH / 2, PY, suave(tramo(t, 0.1, 0.55)));
+  const ox = VW / 2 - cx * k, oy = VH / 2 - cy * k;
+  const P = (x, y) => [ox + x * k, oy + y * k];
+  const om = suave(tramo(t, 0.6, 0.72)), oc = suave(tramo(t, 0.74, 0.86));
+  const anillos = VIRIONES.map(([x, y]) => { const [a, b] = P(x, y); return `<circle cx="${a}" cy="${b}" r="${24 * k}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="7"/><circle cx="${a}" cy="${b}" r="${24 * k}" fill="none" stroke="${AMARILLO}" stroke-width="3.5"/>`; }).join("");
+  const [lx, ly] = P(1280, 800);
+  const rot = (x, y, txt, c, op) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="17" font-weight="800" fill="${c}" stroke="#111" stroke-width="4" paint-order="stroke" opacity="${op}">${txt}</text>`;
+  const [vx, vy] = P(1150, 360);
+  lienzo("El VIH saliendo de un linfocito", "Micrografía electrónica de barrido coloreada: los viriones son las esferas verdes",
+    `<div style="position:relative;flex:none;width:${VW}px;height:${VH}px;overflow:hidden;border-radius:12px;align-self:center">
+       <div style="position:absolute;inset:0;background-image:url(fuentes/commons_HIV-budding-Color.jpg);background-repeat:no-repeat;background-size:${IW * k}px ${IH * k}px;background-position:${ox}px ${oy}px"></div>
+       <svg width="${VW}" height="${VH}" style="position:absolute;left:0;top:0">
+         <g opacity="${om}">${anillos}${rot(VW / 2, 34, "Viriones del VIH-1", AMARILLO, 1)}</g>
+         ${rot(VW - 130, VH - 22, "Superficie del linfocito", CIAN, oc)}
+       </svg></div>
+     <div style="display:flex;gap:8px"><div class="item" style="background:#F7F8FA;flex:1"><b style="color:#B59A00">●</b> <b>Viriones</b>: cada esfera verde es un virus que brota de la célula.</div>
+       <div class="item" style="background:#F7F8FA;flex:1"><b style="color:${CIAN}">●</b> <b>Linfocito</b>: la célula infectada (en azul) que los fabrica.</div></div>`,
+    "Foto: CDC/C. Goldsmith, P. Feorino, E. L. Palmer y W. R. McManus, Wikimedia Commons, dominio público. Animada y rotulada por Empirica.");
+};
+window.cuadro(39, 40);
+</script></body></html>
