@@ -1,0 +1,216 @@
+{
+ "titulo": "miniPIERS (riesgo materno sin laboratorio)",
+ "descripcion": "Estima la probabilidad de un desenlace materno grave en la gestante con un trastorno hipertensivo usando sólo la clínica y la tira reactiva: paridad, semanas, presión sistólica, proteinuria y síntomas. Se derivó en 2.081 mujeres de países de ingresos bajos y medios (Payne, PLoS Med 2014).",
+ "instrucciones": "Usar los datos al ingreso. La proteinuria es la de la tira reactiva y la presión, la sistólica.",
+ "limitaciones": "Discrimina menos que fullPIERS: con laboratorio a mano, usar fullPIERS. No reconoce a todas las gestantes que van a complicarse.",
+ "tipoCalculo": "formula",
+ "formula": "100 / (1 + exp(-(-5.77 - 0.298 * multipara - 1.07 * ln(sg) + 1.34 * ln(pas) - 0.218 * tira2 + 0.424 * tira3 + 0.512 * tira4 + 1.18 * sangrado + 0.422 * cefalea + 0.847 * dolor)))",
+ "decimales": 1,
+ "mostrarPuntaje": true,
+ "prefijoResultado": "Riesgo",
+ "sufijoResultado": "%",
+ "secciones": [
+  {
+   "nombre": "Datos",
+   "elementos": [
+    {
+     "id": "multipara",
+     "tipo": "opciones",
+     "label": "Partos previos",
+     "opciones": [
+      {
+       "label": "Ninguno (nulípara)",
+       "puntos": 0
+      },
+      {
+       "label": "Uno o más",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "sg",
+     "tipo": "input_numero",
+     "label": "Edad gestacional al ingreso",
+     "unidad": "semanas",
+     "min": 20,
+     "max": 43
+    },
+    {
+     "id": "pas",
+     "tipo": "input_numero",
+     "label": "Presión sistólica",
+     "unidad": "mmHg",
+     "min": 70,
+     "max": 260
+    },
+    {
+     "id": "tira",
+     "tipo": "opciones",
+     "label": "Proteinuria en la tira",
+     "opciones": [
+      {
+       "label": "Negativa, trazas o 1+",
+       "valoresVariables": {
+        "tira2": 0,
+        "tira3": 0,
+        "tira4": 0
+       }
+      },
+      {
+       "label": "2+",
+       "valoresVariables": {
+        "tira2": 1,
+        "tira3": 0,
+        "tira4": 0
+       }
+      },
+      {
+       "label": "3+",
+       "valoresVariables": {
+        "tira2": 0,
+        "tira3": 1,
+        "tira4": 0
+       }
+      },
+      {
+       "label": "4+",
+       "valoresVariables": {
+        "tira2": 0,
+        "tira3": 0,
+        "tira4": 1
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Síntomas",
+   "elementos": [
+    {
+     "id": "sangrado",
+     "tipo": "opciones",
+     "label": "Sangrado vaginal con dolor abdominal",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "cefalea",
+     "tipo": "opciones",
+     "label": "Cefalea o alteraciones visuales",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "dolor",
+     "tipo": "opciones",
+     "label": "Dolor torácico o disnea",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 0,
+   "max": 15,
+   "categoria": "Riesgo bajo",
+   "color": "verde",
+   "match_opcion_index": -1,
+   "approach": "Seguir la **vigilancia** del trastorno hipertensivo; recalcular si cambian los síntomas o la presión."
+  },
+  {
+   "min": 15.01,
+   "max": 24.99,
+   "categoria": "Riesgo intermedio",
+   "color": "naranja",
+   "match_opcion_index": -1,
+   "approach": "Por encima del **15 %**: aumentar la **vigilancia**."
+  },
+  {
+   "min": 25,
+   "max": 100,
+   "categoria": "Riesgo alto",
+   "color": "rojo",
+   "match_opcion_index": -1,
+   "approach": "Con **25 %** o más: iniciar el **traslado** a un centro con atención obstétrica de urgencia."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Ecuación final de miniPIERS)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=4",
+   "paginas": "4",
+   "texto": "The final miniPIERS equation was: logit (logarithm of the odds)(pi) = −5.77+[−2.98×10−1× indicator for multiparity]+[(−1.07)×log gestational age at admission]",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Logaritmo natural)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=3",
+   "paginas": "3",
+   "texto": "Variables with a skewed distribution were log-transformed (natural log). Inclusion of the transformed variable in the final model was based on comparison",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Presión sistólica y semanas en logaritmo)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=4",
+   "paginas": "4",
+   "texto": "Systolic blood pressure measurements were log transformed for final model development as was gestational age at admission due to the highly skewed distribution",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Riesgo alto con 25 % o más)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=8",
+   "paginas": "8",
+   "texto": "The miniPIERS model was used to designate women as being high-risk if their predicted probability of adverse outcome was ≥ 25%",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Umbrales de 15 y 25 %)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=8",
+   "paginas": "8",
+   "texto": "to initiate increased surveillance and use the higher threshold of ≥25% to initiate transport to a facility where emergency obstetric care is available",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Payne BA, Hutcheon JA, Ansermino JM, et al. A risk prediction model for the assessment and triage of women with hypertensive disorders of pregnancy in low-resourced settings: the miniPIERS (Pre-eclampsia Integrated Estimate of RiSk) multi-country prospective cohort study. PLoS Med. 2014;11(1):e1001589. Licencia CC BY 4.0. (Para centros con pocos recursos)",
+   "url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001589&type=printable#page=8",
+   "paginas": "8",
+   "texto": "potential to significantly improve care in resource limited areas and community settings where no or minimal monitoring of women with the HDP currently occurs",
+   "anio": "2014"
+  },
+  {
+   "titulo": "Magee LA, Brown MA, Hall DR, et al. The 2021 International Society for the Study of Hypertension in Pregnancy classification, diagnosis & management recommendations for international practice. Pregnancy Hypertens. 2022;27:148-169. (miniPIERS sin laboratorio)",
+   "url": "https://isshp.org/wp-content/uploads/2023/09/ISSHP-2021-guidelines.pdf#page=7",
+   "paginas": "154",
+   "texto": "Without ready access to laboratory results, miniPIERS includes: sBP, dipstick proteinuria, parity, gestational age, and symptoms",
+   "anio": "2021"
+  }
+ ]
+}

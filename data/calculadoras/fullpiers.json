@@ -1,0 +1,207 @@
+{
+ "titulo": "fullPIERS (riesgo materno en la preeclampsia)",
+ "descripcion": "Estima la probabilidad de un desenlace materno grave (muerte, eclampsia, edema pulmonar, falla renal o hepática, transfusión, abrupcio…) en las 48 horas siguientes, en la gestante hospitalizada con preeclampsia. Se derivó en 2.023 mujeres de ocho centros terciarios (von Dadelszen, Lancet 2011).",
+ "instrucciones": "Usar los datos de las primeras 48 horas del ingreso y repetirlo al menos dos veces por semana. Si no hay AST, usar la ALT. Sin pulsioxímetro, los autores imputaron una saturación de 97 %.",
+ "limitaciones": "Se derivó en hospitales de países de ingresos altos. No predice los desenlaces del feto. Sin laboratorio, usar miniPIERS.",
+ "tipoCalculo": "formula",
+ "formula": "100 / (1 + exp(-(2.68 - 0.0541 * sg + 1.23 * dolor - 0.0271 * (creat * 88.4) + 0.207 * plq + 0.00004 * plq ^ 2 + 0.0101 * ast - 0.00000305 * ast ^ 2 + 0.00025 * (creat * 88.4) * plq - 0.0000699 * plq * ast - 0.00256 * plq * spo)))",
+ "decimales": 1,
+ "mostrarPuntaje": true,
+ "prefijoResultado": "Riesgo a 48 horas",
+ "sufijoResultado": "%",
+ "secciones": [
+  {
+   "nombre": "Datos clínicos",
+   "elementos": [
+    {
+     "id": "sg",
+     "tipo": "input_numero",
+     "label": "Edad gestacional",
+     "unidad": "semanas",
+     "min": 20,
+     "max": 43
+    },
+    {
+     "id": "dolor",
+     "tipo": "opciones",
+     "label": "Dolor torácico o disnea",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "spo",
+     "tipo": "input_numero",
+     "label": "Saturación de oxígeno",
+     "unidad": "%",
+     "min": 50,
+     "max": 100,
+     "ayuda": "Pulsioximetría al aire ambiente."
+    }
+   ]
+  },
+  {
+   "nombre": "Laboratorio",
+   "elementos": [
+    {
+     "id": "plq",
+     "tipo": "input_numero",
+     "label": "Plaquetas",
+     "unidad": "miles/mm³",
+     "min": 1,
+     "max": 1000,
+     "ayuda": "Miles por mm³, igual a ×10⁹/L (150.000/mm³ = 150)."
+    },
+    {
+     "id": "creat",
+     "tipo": "input_numero",
+     "label": "Creatinina",
+     "unidad": "mg/dL",
+     "min": 0.1,
+     "max": 20,
+     "unidades": [
+      {
+       "unidad": "µmol/L",
+       "factor": 0.01131
+      }
+     ]
+    },
+    {
+     "id": "ast",
+     "tipo": "input_numero",
+     "label": "AST (o ALT)",
+     "unidad": "UI/L",
+     "min": 1,
+     "max": 5000
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 0,
+   "max": 2.49,
+   "categoria": "Riesgo bajo",
+   "color": "verde",
+   "match_opcion_index": -1,
+   "approach": "Uno de cada cien se complicó en 48 horas: puede valorarse el **manejo expectante** con la vigilancia de su trastorno."
+  },
+  {
+   "min": 2.5,
+   "max": 9.99,
+   "categoria": "Riesgo intermedio",
+   "color": "amarillo",
+   "match_opcion_index": -1,
+   "approach": "Del **3 al 5 %** se complicó: mantener la vigilancia estrecha y recalcularlo **dos veces por semana**."
+  },
+  {
+   "min": 10,
+   "max": 29.99,
+   "categoria": "Riesgo alto",
+   "color": "naranja",
+   "match_opcion_index": -1,
+   "approach": "Del **14 al 28 %** se complicó: usarlo para decidir el **lugar de atención** y el traslado a un nivel mayor."
+  },
+  {
+   "min": 30,
+   "max": 100,
+   "categoria": "Riesgo muy alto",
+   "color": "rojo",
+   "match_opcion_index": -1,
+   "approach": "**Seis de cada diez** se complicaron en 48 horas: atender en un centro de alto nivel y decidir el **parto** o el traslado."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Ecuación final de fullPIERS)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=13",
+   "paginas": "13",
+   "texto": "The final fullPIERS equation was: logit(pi) = 2.68 + -5.41 x 10-2 (gestational age (eligibility)) + 1.23 (chest pain/dyspnoea) + -2.71 x 10-2 (creatinine)",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (fullPIERS predice a 48 horas)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=12",
+   "paginas": "12",
+   "texto": "fullPIERS, predicts adverse maternal outcomes within 48 hours of eligibility (AUC ROC 0.88 [95% CI 0.84, 0.92])",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Tabla 5: riesgo menor de 2,5 %)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=13",
+   "paginas": "13",
+   "texto": "the adverse outcome only occurred in 1.1% ((11+3)/(671+586)) of women with a predicted probability of <0.025",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Tabla 5: riesgo de 2,5 a 9,9 %)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=37",
+   "paginas": "37",
+   "texto": "0.025 – 0.049 314 (16.2%) 9 (2.9%) 305 (97.1%) 0.857 0.323 0.050 - 0.099 160 (8.3%) 8 (5.0%)",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Tabla 5: riesgo de 10 a 29 %)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=37",
+   "paginas": "37",
+   "texto": "0.10 - 0.19 98 (5.1%) 14 (14.3%) 84 (85.7%) 0.684 0.073 0.20 - 0.29 32 (1.65%) 9 (28.13%)",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Tabla 5: riesgo de 30 % o más)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=13",
+   "paginas": "13",
+   "texto": "4% of women into the highest risk group (predicted probability ≥0.30). The majority (60%) of women with a predicted probability ≥0.30 had an adverse outcome",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Usar la probabilidad como valor continuo)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=13",
+   "paginas": "13",
+   "texto": "In practice, the predicted probability would best be used as a continuous value, “probability of an adverse outcome,” to customise management",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Riesgo bajo y manejo expectante)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=18",
+   "paginas": "18",
+   "texto": "An important impact of fullPIERS may be to identify women at lowest risk of adverse outcomes, who can be offered expectant management",
+   "anio": "2011"
+  },
+  {
+   "titulo": "von Dadelszen P, Payne B, Li J, et al. Prediction of adverse maternal outcomes in pre-eclampsia: development and validation of the fullPIERS model. Lancet. 2011;377(9761):219-227. (Lugar del parto o traslado)",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61351-7#page=10",
+   "paginas": "10",
+   "texto": "would inform decisions about the place of delivery/in utero transfer from level 1 and 2 units",
+   "anio": "2011"
+  },
+  {
+   "titulo": "Magee LA, Brown MA, Hall DR, et al. The 2021 International Society for the Study of Hypertension in Pregnancy classification, diagnosis & management recommendations for international practice. Pregnancy Hypertens. 2022;27:148-169. (fullPIERS: qué incluye)",
+   "url": "https://isshp.org/wp-content/uploads/2023/09/ISSHP-2021-guidelines.pdf#page=7",
+   "paginas": "154",
+   "texto": "The fullPIERS model includes: gestational age, chest pain/dyspnoea, pulse oximetry, platelet count, serum creatinine, and AST or ALT",
+   "anio": "2021"
+  },
+  {
+   "titulo": "Magee LA, Brown MA, Hall DR, et al. The 2021 International Society for the Study of Hypertension in Pregnancy classification, diagnosis & management recommendations for international practice. Pregnancy Hypertens. 2022;27:148-169. (Tabla 4: repetir dos veces por semana)",
+   "url": "https://isshp.org/wp-content/uploads/2023/09/ISSHP-2021-guidelines.pdf#page=6",
+   "paginas": "153",
+   "texto": "Maternal testing, at least twice weekly, should include re-evaluation of the following components of the fullPIERS model",
+   "anio": "2021"
+  },
+  {
+   "titulo": "National Institute for Health and Care Excellence. Hypertension in pregnancy: diagnosis and management. NICE guideline NG133. London: NICE; 2019 (actualizada en 2023). (1.5.3: fullPIERS para decidir el lugar de atención)",
+   "url": "https://www.nice.org.uk/guidance/ng133/resources/hypertension-in-pregnancy-diagnosis-and-management-pdf-66141717671365#page=20",
+   "paginas": "20",
+   "texto": "Consider using either the fullPIERS or PREP-S validated risk prediction models to help guide decisions about the most appropriate place of care",
+   "anio": "2023"
+  }
+ ]
+}
