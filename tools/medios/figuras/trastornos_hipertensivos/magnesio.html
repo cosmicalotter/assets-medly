@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Niveles de magnesio y toxicidad (ACOG 2020, tabla 2, p. e248, y p. e247); ISSHP 2021, tabla 9 (p. 161).
+const nivel = (c, cifra, txt) => `<div style="display:flex;gap:10px;flex:1">
+  <div style="width:170px;flex:none;background:${c};color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px">${cifra}</div>
+  <div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:8px 12px;font-size:15px;line-height:1.35;display:flex;align-items:center"><div>${txt}</div></div></div>`;
+lienzo("Magnesio sérico y toxicidad", "Mientras haya reflejo patelar, la toxicidad grave es poco probable",
+  `<div style="display:flex;flex-direction:column;gap:8px;flex:1">
+    ${nivel(ROJO, ">30 mg/dL", "<b>Paro cardiaco</b>")}
+    ${nivel(NARANJA, ">12 mg/dL", "<b>Parálisis respiratoria</b>: intubar")}
+    ${nivel(AMBAR, ">9 mg/dL", "Se <b>pierde el reflejo patelar</b>: suspender la infusión")}
+    ${nivel(VERDE, "5-9 mg/dL", "Rango <b>terapéutico</b>")}
+  </div>
+  ${banda(`Antídoto: <span style="color:#5EEAD4">gluconato de calcio al 10 %</span>, 10 mL IV en 10 minutos.`)}`,
+  "Esquema de Empirica. Fuentes: ACOG 2020, tabla 2 (p. e248) y p. e247; ISSHP 2021, tabla 9 (p. 161).");
+</script></body></html>

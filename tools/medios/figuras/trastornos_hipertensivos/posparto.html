@@ -1,0 +1,38 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// GIF de flujo: el seguimiento después del parto (ISSHP 2021, tabla 9 y recomendaciones 33, 39, 40 y 43, p. 149-150 y 161;
+// NICE 2023, 1.5.13, 1.5.21-1.5.23, p. 24-26; SDS Bogotá 8.6, p. 16).
+const P = [
+  { c: ROJO, tit: "0-24 horas", txt: "<b>Sulfato</b> hasta 24 h después del parto; PA <b>4 veces</b> al día" },
+  { c: NARANJA, tit: "48-72 horas", txt: "Plaquetas, transaminasas y <b>creatinina</b>" },
+  { c: AMBAR, tit: "Días 3 a 7", txt: "La PA llega a su <b>pico</b>: tomarla al menos una vez" },
+  { c: AZUL, tit: "2 y 6-8 semanas", txt: "Revisar el <b>tratamiento</b> y la tira reactiva de orina" },
+  { c: MORADO, tit: "3 y 6 meses", txt: "¿Se <b>normalizó</b>? A los 6 meses, PA <b>&lt;120/80</b>" },
+  { c: VERDE, tit: "Cada año", txt: "Revisión por <b>5-10 años</b>: riesgo cardiovascular de por vida" },
+];
+function caja(e, op) {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:9px 11px;width:212px;min-height:112px">
+    <div style="font-weight:900;color:${ct};font-size:15.5px">${e.tit}</div><div style="font-size:13.5px;line-height:1.34;margin-top:3px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const u = suave(tramo(t, 0.05, 0.9));
+  const X0 = 30, X1 = 640, cortes = [0, 0.14, 0.3, 0.5, 0.7, 0.86, 1];
+  const x = (k) => X0 + (X1 - X0) * cortes[k];
+  const xm = X0 + (X1 - X0) * u;
+  const op = (k) => 0.16 + 0.84 * suave(tramo(u, cortes[k] - 0.02, cortes[k] + 0.06));
+  const et = ["Parto", "24 h", "72 h", "7 días", "8 sem", "6 meses", "años"];
+  const linea = `<svg width="668" height="80" viewBox="0 0 668 80">
+    <rect x="${X0}" y="20" width="${X1 - X0}" height="22" rx="8" fill="#F1F5F9" stroke="#CBD5E1"/>
+    <rect x="${X0}" y="20" width="${xm - X0}" height="22" rx="8" fill="${tinte(TEAL, 40)}"/>
+    ${et.map((s, k) => `<line x1="${x(k)}" y1="42" x2="${x(k)}" y2="50" stroke="#94A3B8" stroke-width="2"/><text x="${x(k)}" y="66" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${s}</text>`).join("")}
+    <line x1="${xm}" y1="12" x2="${xm}" y2="48" stroke="${TINTA}" stroke-width="3"/><circle cx="${xm}" cy="31" r="8" fill="#fff" stroke="${TINTA}" stroke-width="3"/>
+    <text x="${X0}" y="10" font-size="12" font-weight="800" fill="${TINTA}">Escala distinta en cada tramo</text></svg>`;
+  lienzo("Después del parto, la vigilancia sigue", "La preeclampsia y la eclampsia pueden aparecer por primera vez en el posparto",
+    `${linea}
+     <div style="display:flex;gap:10px;justify-content:center">${caja(P[0], op(0))}${caja(P[1], op(1))}${caja(P[2], op(2))}</div>
+     <div style="display:flex;gap:10px;justify-content:center">${caja(P[3], op(3))}${caja(P[4], op(4))}${caja(P[5], op(5))}</div>`,
+    "Esquema de Empirica. Fuentes: ISSHP 2021, recomendaciones 33, 39, 40 y 43 y tabla 9 (p. 149-150 y 161); NICE 2023 (p. 24-26); SDS Bogotá (p. 16).");
+};
+window.cuadro(47, 48);
+</script></body></html>

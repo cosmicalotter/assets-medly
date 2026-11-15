@@ -1,0 +1,16 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Probabilidad de repetir en el próximo embarazo (NICE 2023, 1.10.1 y tabla 5, p. 37-38).
+const D = [["Cualquier trastorno hipertensivo", 21, AZUL, "1 de cada 5"], ["Preeclampsia tras una preeclampsia", 16, NARANJA, "1 de cada 6"],
+  ["…con parto entre las 34 y 37 semanas", 23, ROJO, "1 de cada 4"], ["…con parto entre las 28 y 34 semanas", 33, ROJO, "1 de cada 3"],
+  ["Preeclampsia tras una gestacional", 7, AMBAR, "1 de cada 14"]];
+const X0 = 300, X1 = 600, x = (v) => X0 + (X1 - X0) * v / 35;
+lienzo("¿Se repite en el próximo embarazo?", "Probabilidad de un nuevo trastorno hipertensivo",
+  `<svg width="668" height="330" viewBox="0 0 668 330">
+    ${D.map(([n, v, c, f], i) => { const y = 14 + i * 62; return `<text x="8" y="${y + 25}" font-size="14" font-weight="800" fill="${TINTA}">${n}</text>
+      <rect x="${X0}" y="${y + 6}" width="${X1 - X0}" height="30" rx="7" fill="#F1F5F9"/>
+      <rect x="${X0}" y="${y + 6}" width="${x(v) - X0}" height="30" rx="7" fill="${c}"/>
+      <text x="${x(v) + 8}" y="${y + 27}" font-size="14.5" font-weight="900" fill="${TINTA}">${v} %</text>
+      <text x="${X0}" y="${y + 52}" font-size="12" fill="#6B7280">${f}</text>`; }).join("")}
+  </svg>`,
+  "Gráfico de Empirica con los datos de NICE 2023, 1.10.1 y tabla 5 (p. 37-38). Valores aproximados.");
+</script></body></html>

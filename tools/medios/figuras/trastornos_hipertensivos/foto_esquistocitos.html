@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// Esquistocitos en un frotis de sangre periférica (Paulo Henrique Orlandi Mourão, CC BY-SA 3.0; síndrome hemolítico urémico).
+// Las flechas negras son del original. SDS Bogotá 8.5 (p. 15): esquistocitos, bilirrubina >1,2 mg/dL y LDH >600 U/L.
+// GIF sobre la imagen real: se acerca a los glóbulos rojos fragmentados y aparecen los rótulos.
+const TAM = [1280, 961];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const u = suave(tramo(t, 0.12, 0.62));
+  const ini = [0, 0, 1280, 961], fin = [380, 210, 600, 470];
+  const rec = ini.map((a, k) => lerp(a, fin[k], u));
+  const ver = t > 0.66;
+  fotos({
+    titulo: "Hemólisis del HELLP en el frotis",
+    sub: "Esquistocitos: glóbulos rojos rotos al pasar por vasos dañados",
+    paneles: [{ src: "fuentes/commons_Schizocyte_smear_2009-12-22.JPG", tam: TAM, recorte: rec,
+      marcas: ver ? [
+        { solo: true, x: 0, y: 0, c: AMARILLO, t: "Esquistocito", tx: 560, ty: 300, ancla: "middle" },
+        { solo: true, x: 0, y: 0, c: CIAN, t: "Esquistocito", tx: 780, ty: 600, ancla: "middle" },
+        { x: 786, y: 470, r: 55, c: ROSA, t: "Normal", ty: 400 },
+      ] : [] }],
+    alto: 330,
+    notas: [
+      ["#111827", "<b>Flechas</b>: fragmentos de glóbulo rojo (esquistocitos)."],
+      [ROSA, "<b>Glóbulo rojo</b> entero, de borde liso."],
+      [AMARILLO, "Con <b>LDH >600</b> y bilirrubina <b>>1,2 mg/dL</b>: hemólisis."],
+    ],
+    fuente: "Foto: P. H. Orlandi Mourão (frotis de un síndrome hemolítico urémico), Wikimedia Commons, CC BY-SA 3.0. Rotulada por Empirica. SDS Bogotá (p. 15).",
+  });
+};
+window.cuadro(23, 24);
+</script></body></html>

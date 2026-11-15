@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Calendario de la aspirina y el calcio (GPC MinSalud 2013, p. 38-39; Res. 3280, p. 269 y 272; ISSHP 2021, recomendación 18, p. 149).
+const X0 = 70, X1 = 650, x = (s) => X0 + (X1 - X0) * s / 40;
+const barra = (y, a, b, c, txt, dash = false) => `<rect x="${x(a)}" y="${y}" width="${x(b) - x(a)}" height="34" rx="8" fill="${tinte(c, dash ? 12 : 30)}" stroke="${c}" stroke-width="2.5" ${dash ? 'stroke-dasharray="8 5"' : ""}/>
+  <text x="${x(a) + 10}" y="${y + 22}" font-size="14" font-weight="800" fill="${TINTA}">${txt}</text>`;
+const marca = (s, t) => `<line x1="${x(s)}" y1="40" x2="${x(s)}" y2="300" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="${x(s)}" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#374151">${t}</text>`;
+lienzo("Aspirina y calcio: cuándo empezar y hasta cuándo", "Semanas de gestación",
+  `<svg width="668" height="330" viewBox="0 0 668 330">
+     ${[0, 12, 14, 16, 20, 28, 36, 40].map((s) => marca(s, s)).join("")}
+     <text x="10" y="76" font-size="13" font-weight="800" fill="${ROJO}">Aspirina</text>
+     ${barra(56, 12, 40, ROJO, "75-100 mg cada noche hasta el parto (Colombia)")}
+     ${barra(100, 12, 36, ROJO, "ISSHP: 100-162 mg, suspender a la semana 36", true)}
+     <rect x="${x(12)}" y="146" width="${x(16) - x(12)}" height="22" rx="6" fill="${tinte(VERDE, 40)}" stroke="${VERDE}" stroke-width="2"/>
+     <text x="${x(16) + 8}" y="162" font-size="13" font-weight="700" fill="#166534">Mejor si empieza antes de la semana 16</text>
+     <text x="10" y="222" font-size="13" font-weight="800" fill="${AZUL}">Calcio</text>
+     ${barra(202, 14, 40, AZUL, "1.200 mg al día a todas, hasta el parto")}
+     <text x="${x(20)}" y="270" font-size="12.5" fill="#374151">Si consulta tarde, la aspirina se inicia igual</text>
+   </svg>
+   ${banda(`Aspirina desde la <span style="color:#FCA5A5">semana 12</span> y calcio desde la <span style="color:#5EEAD4">semana 14</span>: el calcio <b>no reemplaza</b> a la aspirina.`)}`,
+  "Esquema de Empirica. Fuentes: GPC MinSalud 2013 (p. 38-39); Resolución 3280 de 2018 (p. 269 y 272); ISSHP 2021, recomendaciones 18-20 (p. 149) y 5.3 (p. 156).");
+</script></body></html>

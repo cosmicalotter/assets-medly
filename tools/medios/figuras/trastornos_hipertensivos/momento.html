@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Momento del parto (ISSHP 2021, tabla 10, p. 162; NICE 2023, 1.3.14, 1.4.7 y tabla 3, p. 13-24; ACOG 2020, p. e252; SDS Bogotá, p. 14-16).
+const X0 = 190, X1 = 660, s0 = 24, s1 = 41, x = (s) => X0 + (X1 - X0) * (s - s0) / (s1 - s0);
+const seg = (y, a, b, c, txt = "", dash = false) => `<rect x="${x(a)}" y="${y}" width="${x(b) - x(a)}" height="38" rx="8" fill="${tinte(c, dash ? 14 : 45)}" stroke="${c}" stroke-width="2" ${dash ? 'stroke-dasharray="6 4"' : ""}/>
+  ${txt ? `<text x="${(x(a) + x(b)) / 2}" y="${y + 24}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${TINTA}">${txt}</text>` : ""}`;
+const filaE = (y, nombre, c, partes) => `<text x="8" y="${y + 24}" font-size="14.5" font-weight="800" fill="${c === AMBAR ? "#B26B10" : c}">${nombre}</text>${partes}`;
+const filas = [
+  [AZUL, "HTA crónica", seg(0, 24, 38, GRIS, "Vigilar", true) + seg(0, 38, 41, VERDE, "38-39+6")],
+  ["#14B8A6", "HTA gestacional", seg(0, 24, 37, GRIS, "Vigilar", true) + seg(0, 37, 41, VERDE, "Desde la 37")],
+  [NARANJA, "Preeclampsia", seg(0, 24, 37, GRIS, "Vigilar", true) + seg(0, 37, 41, VERDE, "37: 24-48 h")],
+  [ROJO, "Con gravedad", seg(0, 24, 34, AMBAR, "Expectante si está estable") + seg(0, 34, 41, ROJO, "Tras estabilizar")],
+  ["#DB2777", "Eclampsia o HELLP", seg(0, 24, 41, ROJO, "Tras estabilizar, a cualquier edad")],
+];
+lienzo("¿Cuándo terminar el embarazo?", "Si no hay antes una indicación de parto",
+  `<svg width="668" height="392" viewBox="0 0 668 392">
+    ${[24, 28, 32, 34, 37, 40].map((s) => `<line x1="${x(s)}" y1="10" x2="${x(s)}" y2="352" stroke="#CBD5E1" stroke-dasharray="4 4"/><text x="${x(s)}" y="370" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${s}</text>`).join("")}
+    <text x="${(X0 + X1) / 2}" y="388" text-anchor="middle" font-size="12" fill="#6B7280">Semanas de gestación</text>
+    ${filas.map(([c, n, p], i) => `<g transform="translate(0, ${14 + i * 68})">${filaE(0, n, c, p)}</g>`).join("")}
+  </svg>`,
+  "Esquema de Empirica. Fuentes: ISSHP 2021, tabla 10 (p. 162); NICE 2023 (p. 13, 17 y 24); ACOG 2020 (p. e252); SDS Bogotá (p. 14 y 16).");
+</script></body></html>
