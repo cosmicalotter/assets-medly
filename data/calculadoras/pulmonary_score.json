@@ -46,28 +46,32 @@
               "puntos": 0,
               "valoresVariables": {
                 "fr": 0
-              }
+              },
+              "detalle": "Suma 0 puntos"
             },
             {
               "label": "<6 años: 31-45 · ≥6 años: 21-35",
               "puntos": 1,
               "valoresVariables": {
                 "fr": 1
-              }
+              },
+              "detalle": "Suma 1 punto"
             },
             {
               "label": "<6 años: 46-60 · ≥6 años: 36-50",
               "puntos": 2,
               "valoresVariables": {
                 "fr": 2
-              }
+              },
+              "detalle": "Suma 2 puntos"
             },
             {
               "label": "<6 años: >60 · ≥6 años: >50",
               "puntos": 3,
               "valoresVariables": {
                 "fr": 3
-              }
+              },
+              "detalle": "Suma 3 puntos"
             }
           ],
           "ayuda": "Respiraciones por minuto. La tabla de GEMA salta de <30 a 31-45 (<6 años) y de <20 a 21-35 (≥6 años)."
@@ -82,28 +86,32 @@
               "puntos": 0,
               "valoresVariables": {
                 "sb": 0
-              }
+              },
+              "detalle": "Suma 0 puntos"
             },
             {
               "label": "Final de la espiración",
               "puntos": 1,
               "valoresVariables": {
                 "sb": 1
-              }
+              },
+              "detalle": "Suma 1 punto"
             },
             {
               "label": "Toda la espiración (con estetoscopio)",
               "puntos": 2,
               "valoresVariables": {
                 "sb": 2
-              }
+              },
+              "detalle": "Suma 2 puntos"
             },
             {
               "label": "Inspiración y espiración, sin estetoscopio",
               "puntos": 3,
               "valoresVariables": {
                 "sb": 3
-              }
+              },
+              "detalle": "Suma 3 puntos"
             }
           ],
           "ayuda": "Sin sibilancias y con el esternocleidomastoideo más activo: marcar 3."
@@ -118,28 +126,32 @@
               "puntos": 0,
               "valoresVariables": {
                 "cm": 0
-              }
+              },
+              "detalle": "Suma 0 puntos"
             },
             {
               "label": "Incremento leve",
               "puntos": 1,
               "valoresVariables": {
                 "cm": 1
-              }
+              },
+              "detalle": "Suma 1 punto"
             },
             {
               "label": "Aumentado",
               "puntos": 2,
               "valoresVariables": {
                 "cm": 2
-              }
+              },
+              "detalle": "Suma 2 puntos"
             },
             {
               "label": "Actividad máxima",
               "puntos": 3,
               "valoresVariables": {
                 "cm": 3
-              }
+              },
+              "detalle": "Suma 3 puntos"
             }
           ]
         },
@@ -150,7 +162,7 @@
           "unidad": "%",
           "min": 50,
           "max": 100,
-          "ayuda": "Antes del oxígeno. >94 %: leve; 91-94 %: moderada; <91 %: grave.",
+          "ayuda": "Antes del oxígeno. No se suma: >94 % es leve; 91-94 %, moderada; <91 %, grave. Si indica más gravedad que el puntaje, manda la saturación.",
           "intervalos": [
             {
               "min": 50,
@@ -228,6 +240,51 @@
       "color": "rojo",
       "match_opcion_index": 2,
       "approach": "Oxígeno, salbutamol 10 pulsaciones + ipratropio 2-4 pulsaciones cada 20 min hasta 3 dosis, prednisona 2 mg/kg (máx. 40 mg); remitir al hospital en ambulancia medicalizada (GEMA)."
+    }
+  ],
+  "extras": [
+    {
+      "etiqueta": "Pulmonary Score",
+      "formula": "fr + sb + cm",
+      "sufijo": "de 9",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Saturación al aire",
+      "formula": "sat",
+      "sufijo": "%",
+      "decimales": 0
+    }
+  ],
+  "calculo": [
+    {
+      "etiqueta": "Frecuencia respiratoria",
+      "formula": "fr",
+      "sufijo": "puntos",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Sibilancias",
+      "formula": "sb",
+      "sufijo": "puntos",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Esternocleidomastoideo",
+      "formula": "cm",
+      "sufijo": "puntos",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Pulmonary Score (suma)",
+      "formula": "fr + sb + cm",
+      "sufijo": "de 9: 0-3 leve · 4-6 moderada · 7-9 grave",
+      "decimales": 0
+    },
+    {
+      "etiqueta": "Gravedad por saturación (0 leve · 1 moderada · 2 grave)",
+      "formula": "sat_puntos",
+      "decimales": 0
     }
   ]
 }
