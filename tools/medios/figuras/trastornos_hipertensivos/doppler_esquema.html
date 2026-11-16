@@ -1,0 +1,25 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Patrones del Doppler umbilical (ISSHP 2021, tabla 1, p. 152: Doppler umbilical anormal = disfunción uteroplacentaria;
+// ACOG 2020, recuadro 4, p. e246: flujo diastólico reverso persistente impide el manejo expectante).
+function onda(tipo, c) {
+  const pts = [];
+  for (let i = 0; i <= 300; i++) {
+    const f = (i % 100) / 100;
+    let v = f < 0.18 ? Math.sin(f / 0.18 * Math.PI / 2) : Math.exp(-(f - 0.18) * 4.2);
+    v = tipo === "normal" ? 0.32 + 0.68 * v : tipo === "ausente" ? v * 1.0 - 0.02 : v * 1.15 - 0.3;
+    pts.push(`${20 + i * 1.95},${110 - v * 80}`);
+  }
+  return `<svg width="620" height="150" viewBox="0 0 620 150"><line x1="20" y1="110" x2="610" y2="110" stroke="#94A3B8" stroke-width="2"/>
+    <text x="22" y="140" font-size="12" fill="#6B7280">Línea de base</text>
+    <polyline points="${pts.join(" ")}" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/></svg>`;
+}
+const caja = (c, tit, txt, svg) => `<div style="flex:1;border:2px solid ${c};background:${tinte(c, 8)};border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:10px">
+  <div style="width:170px;flex:none"><div style="font-weight:900;color:${c};font-size:16px">${tit}</div><div style="font-size:13px;line-height:1.3">${txt}</div></div>
+  <div style="transform:scale(.72);transform-origin:left center;width:446px;height:108px">${svg}</div></div>`;
+lienzo("Doppler umbilical: tres patrones", "Esquema del flujo de la arteria umbilical en cada latido",
+  `<div style="display:flex;flex-direction:column;gap:8px;flex:1">
+   ${caja(VERDE, "Normal", "Flujo en la <b>diástole</b>", onda("normal", VERDE))}
+   ${caja(NARANJA, "Diástole ausente", "<b>Disfunción</b> uteroplacentaria", onda("ausente", NARANJA))}
+   ${caja(ROJO, "Diástole reversa", "Si persiste, <b>impide</b> el manejo expectante", onda("reverso", ROJO))}</div>`,
+  "Esquema de Empirica. Fuentes: ISSHP 2021, tabla 1 (p. 152); ACOG 2020, recuadro 4 (p. e246).");
+</script></body></html>

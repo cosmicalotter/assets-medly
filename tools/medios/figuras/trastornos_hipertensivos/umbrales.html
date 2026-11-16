@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Umbrales de presión en el embarazo (ISSHP 2021, rec. 3, 4 y 23, p. 149; GPC MinSalud 2013, p. 41-44; ACOG 2020, p. e238).
+const nivel = (c, cifra, nombre, txt) => `<div style="display:flex;gap:10px;align-items:stretch;flex:1">
+  <div style="width:178px;flex:none;background:${c};color:#fff;border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:900;text-align:center">
+    <div style="font-size:18px">${cifra}</div><div style="font-size:12.5px;opacity:.95">${nombre}</div></div>
+  <div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:8px 12px;font-size:14.5px;line-height:1.35;display:flex;flex-direction:column;justify-content:center"><div>${txt}</div></div></div>`;
+lienzo("Cifras de presión que cambian la conducta", "Promedio de dos tomas, con la gestante sentada",
+  `<div style="display:flex;flex-direction:column;gap:8px;flex:1">
+    ${nivel(ROJO, "≥160/110", "grave", "Repetir en <b>15 minutos</b> y tratar en menos de <b>60 minutos</b>, en un lugar con monitoría.")}
+    ${nivel(NARANJA, "150-159/100-109", "", "Repetir a las <b>4 horas</b>; si se confirma, <b>tratar</b> (GPC: labetalol o nifedipino) y estudiar la <b>preeclampsia</b>.")}
+    ${nivel(AMBAR, "140-149/90-99", "hipertensión", "Repetir a las <b>4 horas</b>; si se confirma, ISSHP y NICE <b>tratan</b>. La GPC no trata la gestacional.")}
+    ${nivel(VERDE, "<140/90", "normal", "Seguir el control prenatal; si se normalizó al repetir, vigilar con <b>AMPA</b>.")}
+  </div>`,
+  "Esquema de Empirica. Fuentes: ISSHP 2021, recomendaciones 3, 4, 22 y 23 (p. 149); NICE 2023 (p. 16 y 21); GPC MinSalud 2013 (p. 41-44); ACOG 2020 (p. e238).");
+</script></body></html>

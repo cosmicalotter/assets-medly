@@ -1,0 +1,314 @@
+{
+ "titulo": "Riesgo de preeclampsia e indicación de aspirina",
+ "descripcion": "Identifica a la gestante con riesgo alto de preeclampsia en la primera consulta: basta un factor de alto riesgo o dos o más de riesgo moderado. Usa las listas de la guía colombiana de 2013 (las mismas de NICE), que adopta la Resolución 3280 de 2018 para formular la aspirina desde la semana 12.",
+ "instrucciones": "Responder cada factor con lo que diga la historia clínica. El resultado sale en cuanto hay un factor alto o dos moderados.",
+ "limitaciones": "No reemplaza la tamización combinada de las 11-14 semanas (presión, Doppler de las uterinas y PlGF) donde exista. La ISSHP cuenta como factores altos la preeclampsia previa (no cualquier trastorno hipertensivo), el IMC >30 y la reproducción asistida; la ACOG, el embarazo múltiple, y como moderada la edad de 35 años o más.",
+ "tipoCalculo": "formula",
+ "formula": "2 * (1 - (1 - alto_the) * (1 - alto_erc) * (1 - alto_autoinmune) * (1 - alto_diabetes) * (1 - alto_hta)) + (1 - (1 - (1 - alto_the) * (1 - alto_erc) * (1 - alto_autoinmune) * (1 - alto_diabetes) * (1 - alto_hta))) * (0.5 * (((0.5 * (((mod_primer + mod_edad + mod_intervalo + mod_imc + mod_familia + mod_multiple) - 1) + abs((mod_primer + mod_edad + mod_intervalo + mod_imc + mod_familia + mod_multiple) - 1)))) + 1 - abs(((0.5 * (((mod_primer + mod_edad + mod_intervalo + mod_imc + mod_familia + mod_multiple) - 1) + abs((mod_primer + mod_edad + mod_intervalo + mod_imc + mod_familia + mod_multiple) - 1)))) - 1)))",
+ "decimales": 0,
+ "mostrarPuntaje": false,
+ "prefijoResultado": "Riesgo",
+ "secciones": [
+  {
+   "nombre": "Factores de alto riesgo (basta uno)",
+   "elementos": [
+    {
+     "id": "alto_the",
+     "tipo": "opciones",
+     "label": "Trastorno hipertensivo en un embarazo anterior",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "alto_erc",
+     "tipo": "opciones",
+     "label": "Enfermedad renal crónica",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "alto_autoinmune",
+     "tipo": "opciones",
+     "label": "Lupus o síndrome antifosfolípido",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "alto_diabetes",
+     "tipo": "opciones",
+     "label": "Diabetes tipo 1 o tipo 2",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "alto_hta",
+     "tipo": "opciones",
+     "label": "Hipertensión crónica",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Factores de riesgo moderado (dos o más)",
+   "elementos": [
+    {
+     "id": "mod_primer",
+     "tipo": "opciones",
+     "label": "Primer embarazo",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "mod_edad",
+     "tipo": "opciones",
+     "label": "Edad de 40 años o más",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "mod_intervalo",
+     "tipo": "opciones",
+     "label": "Intervalo entre embarazos de más de 10 años",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "mod_imc",
+     "tipo": "opciones",
+     "label": "IMC ≥35 kg/m² en la primera consulta",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "mod_familia",
+     "tipo": "opciones",
+     "label": "Madre o hermana con preeclampsia",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "mod_multiple",
+     "tipo": "opciones",
+     "label": "Embarazo múltiple",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 2,
+   "max": 2,
+   "categoria": "Riesgo alto",
+   "color": "rojo",
+   "match_opcion_index": 0,
+   "si": {
+    "alguno": [
+     {
+      "id": "alto_the",
+      "igual": 1
+     },
+     {
+      "id": "alto_erc",
+      "igual": 1
+     },
+     {
+      "id": "alto_autoinmune",
+      "igual": 1
+     },
+     {
+      "id": "alto_diabetes",
+      "igual": 1
+     },
+     {
+      "id": "alto_hta",
+      "igual": 1
+     }
+    ]
+   },
+   "approach": "Formular ácido acetilsalicílico **75-100 mg** al día desde la **semana 12** hasta el parto, además del calcio."
+  },
+  {
+   "min": 1,
+   "max": 1,
+   "categoria": "Riesgo alto (dos moderados)",
+   "color": "naranja",
+   "match_opcion_index": 0,
+   "si": {
+    "suma": [
+     "mod_primer",
+     "mod_edad",
+     "mod_intervalo",
+     "mod_imc",
+     "mod_familia",
+     "mod_multiple"
+    ],
+    "minimo": 2
+   },
+   "approach": "Formular ácido acetilsalicílico **75-100 mg** al día desde la **semana 12** hasta el parto, además del calcio."
+  },
+  {
+   "min": 0,
+   "max": 0,
+   "categoria": "Riesgo bajo",
+   "color": "verde",
+   "match_opcion_index": 1,
+   "approach": "No formular aspirina. Dar **calcio** desde la semana 14 y medir la presión en cada control."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 1: factores de alto riesgo)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=38",
+   "paginas": "38",
+   "texto": "Factores de alto riesgo: Trastorno hipertensivo en embarazo anterior. Enfermedad renal crónica. Enfermedad autoinmune como lupus eritematoso sistémico o síndrome antifosfolípidos. Diabetes tipo 1 y 2. Hipertensión crónica",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 1: factores de riesgo moderado)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=38",
+   "paginas": "38",
+   "texto": "Factores de riesgo moderado: Primer embarazo. Edad mayor o igual a 40 años. Intervalo intergenésico mayor a 10 años. IMC mayor o igual a 35 kg/m2 en la primera consulta",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 1: más factores moderados)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=38",
+   "paginas": "38",
+   "texto": "IMC mayor o igual a 35 kg/m2 en la primera consulta. Embarazo múltiple. Antecedente familiar de preeclampsia",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 2: aspirina en alto riesgo)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=38",
+   "paginas": "38",
+   "texto": "Se recomienda la administración oral de 75 a 100 mg de aspirina todos los días a partir de la semana 12 de gestación y hasta el día del parto a las mujeres con alto riesgo de preeclampsia",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 2: aspirina con dos factores moderados)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=39",
+   "paginas": "39",
+   "texto": "hasta el día del parto a las mujeres con dos o más factores de riesgo moderado para preeclampsia",
+   "anio": "2013"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social. Resolución 3280 de 2018: lineamientos técnicos y operativos de la Ruta Integral de Atención en Salud para la población materno perinatal. Bogotá: MinSalud; 2018. (4.3.6.1: plan de cuidado, aspirina)",
+   "url": "https://www.minsalud.gov.co/Normatividad_Nuevo/Resoluci%C3%B3n%20No.%203280%20de%2020183280.pdf#page=272",
+   "paginas": "272",
+   "texto": "Prescripción de ácido acetilsalicílico de 75 a 100 mg, a partir de la semana 12 de gestación y hasta el día del parto en mujeres con un criterio de alto riesgo",
+   "anio": "2018"
+  },
+  {
+   "titulo": "Magee LA, Brown MA, Hall DR, et al. The 2021 International Society for the Study of Hypertension in Pregnancy classification, diagnosis & management recommendations for international practice. Pregnancy Hypertens. 2022;27:148-169. (Tabla 5: quién tiene riesgo aumentado)",
+   "url": "https://isshp.org/wp-content/uploads/2023/09/ISSHP-2021-guidelines.pdf#page=8",
+   "paginas": "155",
+   "texto": "Women are considered to be at increased risk if they have at one ‘high risk’ factor or two or more ‘moderate risk’ factors",
+   "anio": "2021"
+  },
+  {
+   "titulo": "Magee LA, Brown MA, Hall DR, et al. The 2021 International Society for the Study of Hypertension in Pregnancy classification, diagnosis & management recommendations for international practice. Pregnancy Hypertens. 2022;27:148-169. (Recomendación 18: aspirina, de noche y antes de la semana 16)",
+   "url": "https://isshp.org/wp-content/uploads/2023/09/ISSHP-2021-guidelines.pdf#page=2",
+   "paginas": "149",
+   "texto": "Low-dose aspirin is recommended (⊕⊕⊕⊕/Strong), to be taken at bedtime (⊕⊕⊕O/Strong), preferably before 16 weeks and discontinued by 36 weeks",
+   "anio": "2021"
+  },
+  {
+   "titulo": "Ministerio de Salud y Protección Social, Colciencias. Guías de práctica clínica para la prevención, detección temprana y tratamiento de las complicaciones del embarazo, parto o puerperio. Guías No. 11-15. Versión para profesionales de la salud. Bogotá: MinSalud; 2013. (Sección 2, pregunta 2: calcio)",
+   "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/G.Corta.Embarazo.y.parto.Prof.Salud.2013%20(1).pdf#page=39",
+   "paginas": "39",
+   "texto": "Se recomienda la ingesta de calcio en dosis de 1.200 mg por día a todas las mujeres embarazadas a partir de la semana 14 de gestación",
+   "anio": "2013"
+  }
+ ]
+}
