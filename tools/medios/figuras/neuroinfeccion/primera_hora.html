@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// GIF de flujo: la primera hora y los primeros días (NICE NG240 1.4.1, 1.4.16, 1.8.5; OMS 2025; Kneen 2012).
+const H = [
+  { f: 0.00, r: "Llegada", c: TEAL, tit: "Al llegar", txt: "<b>Hemocultivo</b> y glucosa; punción si es <b>segura</b>" },
+  { f: 0.22, r: "1 h", c: ROJO, tit: "Antes de 1 hora", txt: "<b>Ceftriaxona</b> y vancomicina con la <b>dexametasona</b>" },
+  { f: 0.43, r: "4 h", c: AMBAR, tit: "Antes de 4 horas", txt: "<b>Citoquímico</b> del LCR listo para leer el patrón" },
+  { f: 0.60, r: "6 h", c: MORADO, tit: "Antes de 6 horas", txt: "<b>Aciclovir</b> si se sospecha <b>encefalitis</b>" },
+  { f: 0.86, r: "24-48 h", c: AZUL, tit: "En 24 a 48 horas", txt: "<b>RM</b> y <b>neurología</b>; repetir la punción si no fue diagnóstica" },
+];
+function caja(e, op, w) {
+  const ct = e.c === AMBAR ? "#B26B10" : e.c;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:9px 11px;width:${w}px;min-height:84px">
+    <div style="font-weight:900;color:${ct};font-size:15.5px">${e.tit}</div><div style="font-size:13.5px;line-height:1.34;margin-top:3px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const x0 = 40, x1 = 628, xm = x0 + (x1 - x0) * suave(tramo(t, 0.05, 0.85));
+  const op = (f) => 0.16 + 0.84 * suave(tramo(t, 0.05 + f * 0.8 - 0.02, 0.05 + f * 0.8 + 0.06));
+  const linea = `<svg width="668" height="80" viewBox="0 0 668 80">
+    <rect x="${x0}" y="22" width="${x1 - x0}" height="20" rx="8" fill="#EEF2F7" stroke="#CBD5E1"/>
+    <rect x="${x0}" y="22" width="${Math.max(0, xm - x0)}" height="20" rx="8" fill="${TINTA}" opacity=".14"/>
+    ${H.map((h) => { const x = x0 + h.f * (x1 - x0); return `<circle cx="${x}" cy="32" r="9" fill="${h.c}"/>
+      <text x="${x}" y="66" text-anchor="middle" font-size="13" font-weight="800" fill="#374151">${h.r}</text>`; }).join("")}
+    <line x1="${xm}" y1="10" x2="${xm}" y2="54" stroke="${TINTA}" stroke-width="3"/><circle cx="${xm}" cy="32" r="7" fill="#fff" stroke="${TINTA}" stroke-width="3"/></svg>`;
+  lienzo("Las primeras horas", "Lo que se hace y antes de cuándo, desde que llega el niño",
+    `${linea}
+     <div style="display:flex;gap:9px;justify-content:center">${caja(H[0], op(H[0].f), 212)}${caja(H[1], op(H[1].f), 212)}${caja(H[2], op(H[2].f), 212)}</div>
+     <div style="display:flex;gap:9px;justify-content:center">${caja(H[3], op(H[3].f), 322)}${caja(H[4], op(H[4].f), 322)}</div>
+     <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.88, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:14px;padding:10px 13px">El antibiótico <b style="color:#5EEAD4">no espera</b> a la punción ni a la imagen.</div>`,
+    "Esquema de Empirica. Fuentes: NICE NG240 (1.4.1, 1.4.16, 1.8.5), OMS 2025 y Kneen 2012 (BPAIIG).");
+};
+window.cuadro(39, 40);
+</script></body></html>
