@@ -1,0 +1,42 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: por qué no se pincha con el cerebro desplazado (Kneen 2012, p. 460; OMS 2025, 1.5).
+// Esquema plano: compartimento de arriba con una lesión, fosa posterior, foramen magno y conducto raquídeo con LCR.
+const P = [
+  { c: AMBAR, t: "1. Lesión o edema", x: "La presión <b>sube arriba</b> y empuja el encéfalo hacia abajo." },
+  { c: CELESTE, t: "2. La punción saca LCR", x: "La presión <b>cae por debajo</b> de la lesión." },
+  { c: ROJO, t: "3. Hernia", x: "Las amígdalas del cerebelo y el tronco <b>bajan</b> por el foramen." },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const f1 = suave(tramo(t, 0.04, 0.28)), f2 = suave(tramo(t, 0.36, 0.58)), f3 = suave(tramo(t, 0.64, 0.84));
+  const paso = t < 0.33 ? 0 : t < 0.62 ? 1 : 2;
+  const r = 6 + 38 * f1, dy = 20 * f3, nivel = 268 + 46 * f2;
+  const fl = (x, y, l, o) => `<g opacity="${o}">${flecha(x, y, x, y + l, AMBAR, 5, 13)}</g>`;
+  const gotas = f2 > 0 && f2 < 1 ? [0, 1, 2].map((k) => { const u = (f2 * 3 + k / 3) % 1; return `<circle cx="${334 + 30 * u}" cy="${318 + 10 * u}" r="4" fill="${CELESTE}" opacity="${1 - u}"/>`; }).join("") : "";
+  const svg = `<svg width="380" height="380" viewBox="0 0 400 400">
+    <path d="M176,380 L176,276 L150,270 C100,262 60,240 60,190 L60,150 C60,40 340,40 340,150 L340,190 C340,240 300,262 250,270 L224,276 L224,380" fill="#F8FAFC" stroke="#94A3B8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="182" y="${nivel}" width="36" height="${Math.max(0, 378 - nivel)}" fill="${tinte(CELESTE, 45)}"/>
+    <ellipse cx="200" cy="138" rx="124" ry="64" fill="#FCE7F3" stroke="${ROSA_C}" stroke-width="3"/>
+    <path d="M88,214 Q200,196 312,214" fill="none" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="200" cy="${238 + dy * 0.5}" rx="66" ry="20" fill="#EDE9FE" stroke="${MORADO}" stroke-width="3"/>
+    <rect x="192" y="${236 + dy}" width="16" height="${40 + dy * 0.3}" rx="7" fill="#E2E8F0" stroke="#64748B" stroke-width="2"/>
+    <ellipse cx="200" cy="${258 + dy}" rx="17" ry="11" fill="${f3 > 0.05 ? ROJO : "#DDD6FE"}" stroke="${f3 > 0.05 ? "#991B1B" : MORADO}" stroke-width="2.5"/>
+    <circle cx="140" cy="118" r="${Math.min(r, 40)}" fill="${ROJO}" fill-opacity=".85" stroke="#991B1B" stroke-width="2"/>
+    ${fl(200, 150, 38, f1)}${fl(265, 140, 34, f1)}${fl(140, 170, 26, f1)}
+    <line x1="${380 - 80 * f2}" y1="322" x2="${380 - 160 * f2}" y2="322" stroke="#475569" stroke-width="5" stroke-linecap="round" opacity="${f2 > 0 ? 1 : 0}"/>${gotas}
+    <text x="200" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#B26B10" opacity="${f1}">Presión alta arriba</text>
+    <text x="300" y="360" text-anchor="middle" font-size="14" font-weight="800" fill="#0E7490" opacity="${f2}">Presión baja abajo</text>
+    <text x="128" y="${296 + dy}" text-anchor="middle" font-size="14" font-weight="900" fill="${ROJO}" opacity="${f3}">Hernia</text>
+    <text x="140" y="123" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff" opacity="${f1 > 0.5 ? 1 : 0}">Lesión</text>
+    <text x="236" y="300" font-size="11.5" fill="#64748B">LCR</text>
+  </svg>`;
+  const pasos = P.map((p, j) => `<div style="border:2px solid ${p.c};border-radius:12px;padding:8px 10px;background:${tinte(p.c, j === paso ? 16 : 5)};opacity:${j === paso ? 1 : j < paso ? 0.55 : 0.25}">
+    <div style="font-weight:900;font-size:15px;color:${p.c === AMBAR ? "#B26B10" : p.c}">${p.t}</div><div style="font-size:13.5px;line-height:1.35;margin-top:2px">${p.x}</div></div>`).join("");
+  lienzo("Por qué no se pincha con hipertensión endocraneal", "Esquema: la diferencia de presión empuja el encéfalo hacia abajo",
+    `<div style="display:flex;gap:14px;align-items:center"><div style="flex:none">${svg}</div>
+      <div style="display:flex;flex-direction:column;gap:9px;flex:1">${pasos}
+      <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px;opacity:${0.2 + 0.8 * suave(tramo(t, 0.86, 0.94))}">Con desplazamiento o una lesión: <b style="color:#FCA5A5">no puncionar</b>; tratar y hacer la TC.</div></div></div>`,
+    "Esquema de Empirica. Fuentes: Kneen 2012 (BPAIIG), p. 460; OMS 2025, 1.5.");
+};
+window.cuadro(47, 48);
+</script></body></html>

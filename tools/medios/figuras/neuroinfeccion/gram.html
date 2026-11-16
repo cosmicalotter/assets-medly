@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// GIF sobre fotos reales: qué germen sugiere cada Gram (OMS 2025, resumen A.2, p. xi).
+// Fotos: Microman12345 (CC BY-SA 4.0), Arnold Kaufman (CC0), Bobjgalindo (CC BY-SA 4.0), Ajay Kumar Chaurasiya (CC BY-SA 4.0).
+const ESC = [
+  { src: "fuentes/commons_Neisseria_meningitidis_CSF_Gram_1000.jpg", W: 1280, H: 800, a: [0, 60, 1280, 574], b: [380, 330, 520, 233],
+    c: ROSA_C, tit: "Diplococos gramnegativos", g: "Meningococo", sub: "En el LCR, entre neutrófilos" },
+  { src: "fuentes/commons_Gram_stain_of_Streptococcus_pneumoniae.jpg", W: 1280, H: 997, a: [0, 120, 1280, 574], b: [380, 330, 620, 278],
+    c: MORADO, tit: "Diplococos grampositivos", g: "Neumococo", sub: "Cocos en pares, en forma de lanceta" },
+  { src: "fuentes/commons_Haemophilus_influenzae_Gram.jpg", W: 1280, H: 1071, a: [0, 200, 1280, 574], b: [200, 430, 800, 358],
+    c: ROSA_C, tit: "Cocobacilos gramnegativos", g: "Haemophilus influenzae", sub: "Bacilos cortos y rosados" },
+  { src: "fuentes/commons_Gram_staining_footage_of_Listeria_monocytogenes_in_Gram_stai.jpg", W: 1280, H: 720, a: [180, 100, 900, 403], b: [400, 270, 380, 170],
+    c: MORADO, tit: "Bacilos grampositivos", g: "Listeria", sub: "Imagen de un cultivo, no de LCR" },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const k = Math.min(3, Math.floor(t * 4)), u = t * 4 - k;      // escena y avance dentro de ella
+  const e = ESC[k];
+  const z = suave(tramo(u, 0.12, 0.3));
+  const vb = e.a.map((a, j) => lerp(a, e.b[j], z));
+  const op = suave(tramo(u, 0.2, 0.35));
+  const img = `<svg width="668" height="300" viewBox="${vb.join(" ")}" preserveAspectRatio="xMidYMid slice" style="display:block;border-radius:10px">
+    <image href="${e.src}" x="0" y="0" width="${e.W}" height="${e.H}"/></svg>`;
+  const fichas = ESC.map((x, j) => `<div style="flex:1;border:2px solid ${x.c};border-radius:10px;padding:5px 8px;background:${tinte(x.c, j === k ? 16 : 4)};opacity:${j === k ? 1 : j < k ? 0.55 : 0.25}">
+    <div style="font-size:12.5px;font-weight:800;color:${x.c}">${x.tit}</div><div style="font-size:13px;font-weight:700">${x.g}</div></div>`).join("");
+  lienzo("Qué sugiere el Gram del LCR", "Cuatro patrones y el germen que orienta cada uno",
+    `<div style="position:relative;border-radius:10px;overflow:hidden">${img}
+      <div style="position:absolute;left:10px;bottom:10px;background:rgba(17,24,39,.82);color:#fff;border-radius:10px;padding:8px 12px;opacity:${0.3 + 0.7 * op}">
+        <div style="font-weight:900;font-size:16px;color:${e.c === MORADO ? "#C4B5FD" : "#F9A8D4"}">${e.tit} → ${e.g}</div><div style="font-size:12.5px">${e.sub}</div></div></div>
+     <div style="display:flex;gap:8px">${fichas}</div>`,
+    "Fotos: Microman12345, CC BY-SA 4.0; Arnold Kaufman, CC0; Bobjgalindo, CC BY-SA 4.0; Ajay Kumar Chaurasiya, CC BY-SA 4.0 (Wikimedia Commons). Recortadas y rotuladas por Empirica. Fuente: OMS 2025.");
+};
+window.cuadro(5, 48);
+</script></body></html>

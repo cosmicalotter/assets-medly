@@ -1,0 +1,34 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Curva propia: qué prueba encuentra el VHS según el día de la enfermedad (Kneen 2012, p. 462-463).
+const D = 21, X0 = 150, X1 = 640, dx = (X1 - X0) / D;
+const xd = (d) => X0 + d * dx;
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const dia = D * suave(tramo(t, 0.04, 0.9));
+  const xm = xd(dia);
+  const fase = dia < 2 ? 0 : dia < 10 ? 1 : 2;
+  const fila = (y, txt) => `<text x="${X0 - 12}" y="${y + 21}" text-anchor="end" font-size="13.5" font-weight="800" fill="${TINTA}">${txt}</text>`;
+  const barra = (a, b, y, c, txt, op, dash) => `<g opacity="${op}"><rect x="${xd(a)}" y="${y}" width="${(b - a) * dx}" height="32" rx="8" fill="${tinte(c, 28)}" stroke="${c}" stroke-width="2"${dash ? ' stroke-dasharray="6 4"' : ""}/>
+    <text x="${xd((a + b) / 2)}" y="${y + 21}" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">${txt}</text></g>`;
+  const svg = `<svg width="668" height="230" viewBox="0 0 668 230">
+    ${fila(22, "PCR del LCR")}${fila(70, "Segunda punción")}${fila(124, "IgG en el LCR")}
+    ${barra(0, 2, 22, "#94A3B8", "", fase === 0 ? 1 : 0.5, true)}<text x="${xd(0)}" y="10" font-size="12" font-weight="800" fill="#475569" opacity="${fase === 0 ? 1 : 0.5}">Puede salir negativa</text>
+    ${barra(2, 10, 22, MORADO, "Sensibilidad >95 %", fase === 1 ? 1 : 0.5)}
+    <g opacity="${fase === 0 ? 1 : 0.5}">${flecha(xd(1), 86, xd(2.9), 86, CELESTE, 4, 11)}<text x="${xd(3.2)}" y="91" font-size="12.5" font-weight="800" fill="#0E7490">a las 24-48 h, con aciclovir en marcha</text></g>
+    ${barra(10, 14, 124, CELESTE, "10-14 días", fase === 2 ? 1 : 0.5, true)}${barra(14, 21, 124, CELESTE, "IgG específica", fase === 2 ? 1 : 0.5)}
+    <line x1="${X0}" y1="176" x2="${X1}" y2="176" stroke="#94A3B8" stroke-width="2"/>
+    ${[0, 2, 5, 10, 14, 21].map((d) => `<line x1="${xd(d)}" y1="176" x2="${xd(d)}" y2="184" stroke="#94A3B8" stroke-width="2"/><text x="${xd(d)}" y="200" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${d}</text>`).join("")}
+    <text x="${X1}" y="222" text-anchor="end" font-size="12" fill="#6B7280">días desde el inicio</text>
+    <line x1="${xm}" y1="6" x2="${xm}" y2="180" stroke="${TINTA}" stroke-width="3"/><circle cx="${xm}" cy="176" r="7" fill="#fff" stroke="${TINTA}" stroke-width="3"/></svg>`;
+  const textos = [
+    ["#64748B", "Primeros días: la PCR puede salir <b>negativa</b>. Seguir el <b>aciclovir</b> y repetir la punción."],
+    [MORADO, "Días 2 a 10: la PCR encuentra el VHS en <b>más del 95 %</b> (datos de adultos inmunocompetentes)."],
+    [CELESTE, "Desde los 10-14 días: si no hubo PCR a tiempo, buscar la <b>IgG específica</b> en el LCR."],
+  ];
+  const [c, x] = textos[fase];
+  lienzo("Cuándo se encuentra el VHS en el LCR", "La prueba útil cambia con los días de enfermedad",
+    `${svg}<div class="caja" style="border:2px solid ${c};background:${tinte(c, 12)};font-size:14.5px;padding:11px 13px">${x}</div>`,
+    "Esquema de Empirica. Fuente: Kneen 2012 (BPAIIG), p. 462-463.");
+};
+window.cuadro(30, 48);
+</script></body></html>
