@@ -1,14 +1,14 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // Riesgo cardiovascular después de una preeclampsia (NICE 2023, tabla 6, p. 39): veces el riesgo de las que no la tuvieron.
 const D = [["Hipertensión", 2, 5, ROJO], ["ACV", 2, 3, NARANJA], ["Evento cardiovascular mayor", 1.5, 3, AMBAR], ["Muerte cardiovascular", 2, 2, MORADO]];
-const X0 = 230, X1 = 640, x = (v) => X0 + (X1 - X0) * (v - 1) / 5;
+const X0 = 262, X1 = 640, x = (v) => X0 + (X1 - X0) * (v - 1) / 5;
 lienzo("Después de una preeclampsia, el riesgo sigue", "Veces el riesgo de una mujer sin trastorno hipertensivo del embarazo",
-  `<svg width="668" height="300" viewBox="0 0 668 300">
-    ${[1, 2, 3, 4, 5, 6].map((v) => `<line x1="${x(v)}" y1="10" x2="${x(v)}" y2="262" stroke="${v === 1 ? "#94A3B8" : "#E5E7EB"}" ${v === 1 ? 'stroke-width="2"' : ""}/><text x="${x(v)}" y="282" text-anchor="middle" font-size="12.5" fill="#6B7280">×${v}</text>`).join("")}
-    ${D.map(([n, a, b, c], i) => { const y = 24 + i * 60; return `<text x="8" y="${y + 24}" font-size="14.5" font-weight="800" fill="${TINTA}">${n}</text>
-      ${a > 1 ? `<rect x="${x(1)}" y="${y + 6}" width="${x(a) - x(1)}" height="28" rx="6" fill="${tinte(c, 30)}"/>` : ""}
-      ${b > a ? `<rect x="${x(a)}" y="${y + 6}" width="${x(b) - x(a)}" height="28" rx="6" fill="${c}"/>` : `<rect x="${x(a) - 4}" y="${y + 6}" width="8" height="28" rx="3" fill="${c}"/>`}
-      <text x="${x(b) + 8}" y="${y + 26}" font-size="14" font-weight="800" fill="${TINTA}">${b > a ? `×${String(a).replace(".", ",")}-${b}` : `×${a}`}</text>`; }).join("")}
+  `<svg width="668" height="370" viewBox="0 0 668 370">
+    ${[1, 2, 3, 4, 5, 6].map((v) => `<line x1="${x(v)}" y1="10" x2="${x(v)}" y2="328" stroke="${v === 1 ? "#94A3B8" : "#E5E7EB"}" ${v === 1 ? 'stroke-width="2"' : ""}/><text x="${x(v)}" y="350" text-anchor="middle" font-size="13.5" fill="#6B7280">×${v}</text>`).join("")}
+    ${D.map(([n, a, b, c], i) => { const y = 22 + i * 78; return `<text x="8" y="${y + 24}" font-size="15.5" font-weight="800" fill="${TINTA}">${n}</text>
+      ${a > 1 ? `<rect x="${x(1)}" y="${y + 6}" width="${x(a) - x(1)}" height="36" rx="7" fill="${tinte(c, 30)}"/>` : ""}
+      ${b > a ? `<rect x="${x(a)}" y="${y + 6}" width="${x(b) - x(a)}" height="36" rx="7" fill="${c}"/>` : `<rect x="${x(a) - 4}" y="${y + 6}" width="8" height="36" rx="3" fill="${c}"/>`}
+      <text x="${x(b) + 8}" y="${y + 30}" font-size="15" font-weight="800" fill="${TINTA}">${b > a ? `×${String(a).replace(".", ",")}-${b}` : `×${a}`}</text>`; }).join("")}
   </svg>
   ${banda(`Revisarla <span style="color:#5EEAD4">cada año</span> por 5-10 años y buscar una presión de <span style="color:#5EEAD4">menos de 120/80</span>.`)}`,
   "Gráfico de Empirica con los datos de NICE 2023, tabla 6 (p. 39); ISSHP 2021, recomendaciones 43 y 44 (p. 150).");

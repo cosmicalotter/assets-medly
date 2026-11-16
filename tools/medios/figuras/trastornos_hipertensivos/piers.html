@@ -1,15 +1,15 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // fullPIERS, tabla 5 (von Dadelszen 2011, manuscrito p. 37): porcentaje con desenlace materno grave en 48 h por probabilidad estimada.
 const D = [["<1 %", 0.4, VERDE], ["1-2,4 %", 1.9, VERDE], ["2,5-4,9 %", 2.9, AMBAR], ["5-9,9 %", 5.0, AMBAR], ["10-19 %", 14.3, NARANJA], ["20-29 %", 28.1, NARANJA], ["≥30 %", 59.5, ROJO]];
-const W = 668, H = 330, X0 = 60, Y0 = 290, Y1 = 30, bw = 70, paso = (W - X0 - 20) / D.length;
+const W = 668, H = 420, X0 = 60, Y0 = 380, Y1 = 22, bw = 70, paso = (W - X0 - 20) / D.length;
 const y = (v) => Y0 - (Y0 - Y1) * v / 70;
 lienzo("fullPIERS: cuántas se complicaron en 48 horas", "Mujeres con desenlace materno grave según la probabilidad que dio el modelo",
-  `<svg width="${W}" height="${H + 30}" viewBox="0 0 ${W} ${H + 30}">
+  `<svg width="${W}" height="${Y0 + 58}" viewBox="0 0 ${W} ${Y0 + 58}">
     ${[0, 20, 40, 60].map((v) => `<line x1="${X0}" y1="${y(v)}" x2="${W - 10}" y2="${y(v)}" stroke="#E5E7EB"/><text x="${X0 - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#6B7280">${v} %</text>`).join("")}
     ${D.map(([e, v, c], i) => { const xx = X0 + 12 + i * paso; return `<rect x="${xx}" y="${y(v)}" width="${bw}" height="${Y0 - y(v)}" rx="6" fill="${c}"/>
       <text x="${xx + bw / 2}" y="${y(v) - 7}" text-anchor="middle" font-size="14" font-weight="800" fill="${TINTA}">${String(v).replace(".", ",")} %</text>
       <text x="${xx + bw / 2}" y="${Y0 + 20}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${e}</text>`; }).join("")}
-    <text x="${(W + X0) / 2}" y="${H + 26}" text-anchor="middle" font-size="12.5" fill="#6B7280">Probabilidad estimada por fullPIERS</text>
+    <text x="${(W + X0) / 2}" y="${Y0 + 50}" text-anchor="middle" font-size="12.5" fill="#6B7280">Probabilidad estimada por fullPIERS</text>
   </svg>`,
   "Gráfico de Empirica con los datos de la tabla 5 de fullPIERS (von Dadelszen et al., Lancet 2011; 2.023 mujeres).");
 </script></body></html>

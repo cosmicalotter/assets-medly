@@ -1,18 +1,18 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // GIF de flujo: los primeros 60 minutos de la hipertensión grave (ACOG 2020, tabla 3, p. e249, y p. e248;
-// SDS Bogotá 8.3.4, p. 12; ISSHP 2021, tabla 8, p. 160; GPC MinSalud 2013, p. 44-45).
+// SDS Bogotá 8.3.1-8.3.4, p. 10-12; ISSHP 2021, tabla 8, p. 160; GPC MinSalud 2013, p. 44-45).
 const P = [
   { m: 0, c: ROJO, tit: "Minuto 0", txt: "PA <b>≥160/110</b> confirmada a los 15 min: tratar ya" },
-  { m: 10, c: AMBAR, tit: "Primera dosis", txt: "Nifedipino <b>10 mg</b> VO, o labetalol <b>20 mg</b> IV, o hidralazina <b>5 mg</b> IV" },
-  { m: 30, c: NARANJA, tit: "¿No baja?", txt: "Repetir: nifedipino <b>10 mg</b>, labetalol <b>40 mg</b>, hidralazina <b>5-10 mg</b>" },
-  { m: 45, c: MORADO, tit: "Sigue grave", txt: "Labetalol <b>80 mg</b>; tras 2 dosis, cambiar de <b>clase</b>" },
+  { m: 10, c: AMBAR, tit: "Primera dosis", txt: "Nifedipino <b>10 mg</b> VO, o labetalol <b>20 mg</b> IV en 2 minutos" },
+  { m: 30, c: NARANJA, tit: "¿No baja?", txt: "Repetir el nifedipino <b>10 mg</b>; el labetalol, <b>20-80 mg</b> cada 10-30 min" },
+  { m: 60, c: MORADO, tit: "Sigue grave a la hora", txt: "Del nifedipino al labetalol <b>20 mg</b> IV: otra <b>clase</b>" },
   { m: 60, c: VERDE, tit: "Meta", txt: "<b>&lt;160/110</b> de forma gradual; luego diastólica de unos <b>85</b>" },
   { m: 60, c: AZUL, tit: "Además", txt: "<b>Sulfato de magnesio</b> y PA cada <b>15-30 min</b>" },
 ];
 function caja(e, op) {
   const ct = e.c === AMBAR ? "#B26B10" : e.c;
-  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:9px 11px;width:212px;min-height:118px">
-    <div style="font-weight:900;color:${ct};font-size:15.5px">${e.tit}</div><div style="font-size:13.5px;line-height:1.34;margin-top:3px">${e.txt}</div></div>`;
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:9px 11px;width:212px;min-height:150px">
+    <div style="font-weight:900;color:${ct};font-size:16.5px">${e.tit}</div><div style="font-size:14.5px;line-height:1.36;margin-top:4px">${e.txt}</div></div>`;
 }
 window.cuadro = function (i, n) {
   const t = n > 1 ? i / (n - 1) : 1;
@@ -25,11 +25,11 @@ window.cuadro = function (i, n) {
     ${[0, 10, 20, 30, 40, 50, 60].map((m) => `<line x1="${x(m)}" y1="44" x2="${x(m)}" y2="52" stroke="#94A3B8" stroke-width="2"/><text x="${x(m)}" y="68" text-anchor="middle" font-size="12.5" font-weight="700" fill="#374151">${m} min</text>`).join("")}
     <line x1="${xm}" y1="14" x2="${xm}" y2="50" stroke="${TINTA}" stroke-width="3"/><circle cx="${xm}" cy="33" r="8" fill="#fff" stroke="${TINTA}" stroke-width="3"/>
     <text x="${X0}" y="12" font-size="12" font-weight="800" fill="${TINTA}">Minutos desde que se confirma la presión grave</text></svg>`;
-  lienzo("Hipertensión grave: los primeros 60 minutos", "Un solo fármaco a la vez, con las dosis de la tabla",
+  lienzo("Hipertensión grave: los primeros 60 minutos", "Un solo fármaco a la vez; si a la hora no baja, otra clase",
     `${linea}
      <div style="display:flex;gap:10px;justify-content:center">${caja(P[0], op(0))}${caja(P[1], op(10))}${caja(P[2], op(30))}</div>
-     <div style="display:flex;gap:10px;justify-content:center">${caja(P[3], op(45))}${caja(P[4], op(58))}${caja(P[5], op(60))}</div>`,
-    "Esquema de Empirica. Fuentes: ACOG 2020, tabla 3 (p. e249) y p. e248; SDS Bogotá (p. 12); ISSHP 2021, tabla 8 (p. 160); GPC MinSalud 2013 (p. 44-45).");
+     <div style="display:flex;gap:10px;justify-content:center">${caja(P[3], op(52))}${caja(P[4], op(56))}${caja(P[5], op(60))}</div>`,
+    "Esquema de Empirica. Fuentes: SDS Bogotá (p. 10-12); ACOG 2020, tabla 3 (p. e249); ISSHP 2021, tabla 8 (p. 160); GPC MinSalud 2013 (p. 44-45).");
 };
 window.cuadro(47, 48);
 </script></body></html>
