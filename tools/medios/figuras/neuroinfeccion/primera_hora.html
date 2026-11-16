@@ -1,11 +1,12 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
 // GIF de flujo: la primera hora y los primeros días (NICE NG240 1.4.1, 1.4.16, 1.8.5; OMS 2025; Kneen 2012).
 const H = [
-  { f: 0.00, r: "Llegada", c: TEAL, tit: "Al llegar", txt: "<b>Hemocultivo</b> y glucosa; punción si es <b>segura</b>" },
-  { f: 0.22, r: "1 h", c: ROJO, tit: "Antes de 1 hora", txt: "<b>Ceftriaxona</b> y vancomicina con la <b>dexametasona</b>" },
-  { f: 0.43, r: "4 h", c: AMBAR, tit: "Antes de 4 horas", txt: "<b>Citoquímico</b> del LCR listo para leer el patrón" },
-  { f: 0.60, r: "6 h", c: MORADO, tit: "Antes de 6 horas", txt: "<b>Aciclovir</b> si se sospecha <b>encefalitis</b>" },
-  { f: 0.86, r: "24-48 h", c: AZUL, tit: "En 24 a 48 horas", txt: "<b>RM</b> y <b>neurología</b>; repetir la punción si no fue diagnóstica" },
+  { f: 0.00, r: "Llegada", c: TEAL, tit: "Al llegar", txt: "<b>Hemocultivo</b> y laboratorios; punción si es <b>segura</b>" },
+  { f: 0.20, r: "1 h", c: ROJO, tit: "Antes de 1 hora", txt: "<b>Antibiótico</b>; <b>dexametasona</b> si es mayor de 3 meses" },
+  { f: 0.38, r: "4 h", c: AMBAR, tit: "4 h tras la punción", txt: "<b>Citoquímico</b> del LCR listo para leer" },
+  { f: 0.54, r: "6 h", c: MORADO, tit: "Antes de 6 horas", txt: "<b>Aciclovir</b> si se sospecha <b>encefalitis</b>" },
+  { f: 0.76, r: "24 h", c: CELESTE, tit: "Antes de 24 horas", txt: "Valoración por <b>neurología</b> pediátrica" },
+  { f: 0.94, r: "48 h", c: AZUL, tit: "En 24 a 48 horas", txt: "<b>RM</b> con difusión" },
 ];
 function caja(e, op, w) {
   const ct = e.c === AMBAR ? "#B26B10" : e.c;
@@ -25,7 +26,7 @@ window.cuadro = function (i, n) {
   lienzo("Las primeras horas", "Lo que se hace y antes de cuándo, desde que llega el niño",
     `${linea}
      <div style="display:flex;gap:9px;justify-content:center">${caja(H[0], op(H[0].f), 212)}${caja(H[1], op(H[1].f), 212)}${caja(H[2], op(H[2].f), 212)}</div>
-     <div style="display:flex;gap:9px;justify-content:center">${caja(H[3], op(H[3].f), 322)}${caja(H[4], op(H[4].f), 322)}</div>
+     <div style="display:flex;gap:9px;justify-content:center">${caja(H[3], op(H[3].f), 212)}${caja(H[4], op(H[4].f), 212)}${caja(H[5], op(H[5].f), 212)}</div>
      <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.88, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:14px;padding:10px 13px">El antibiótico <b style="color:#5EEAD4">no espera</b> a la punción ni a la imagen.</div>`,
     "Esquema de Empirica. Fuentes: NICE NG240 (1.4.1, 1.4.16, 1.8.5), OMS 2025 y Kneen 2012 (BPAIIG).");
 };
