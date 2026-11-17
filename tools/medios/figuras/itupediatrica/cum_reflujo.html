@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre una CUM real: reflujo vesicoureteral grado III bilateral (RadsWiki, CC BY-SA 3.0).
+// Grados: EAU 2026, tabla 2 del capítulo de RVU (International Reflux Study Committee).
+const SRC = "fuentes/commons_Vesicoureteral-reflux-004.jpg", R = [250, 150, 760, 1080];
+const URD = [[560, 1200], [548, 1060], [560, 900], [538, 760], [520, 620], [505, 530]];
+const URI = [[800, 1200], [812, 1060], [792, 900], [762, 760], [748, 640], [762, 540]];
+const largo = (p) => p.slice(1).reduce((s, q, k) => s + Math.hypot(q[0] - p[k][0], q[1] - p[k][1]), 0);
+const P = [
+  { c: AMBAR, t: "1. Uréteres", x: "El contraste <b>sube</b> desde la vejiga por los dos uréteres, algo dilatados." },
+  { c: CIAN, t: "2. Pelvis y cálices", x: "Llega a la <b>pelvis</b> y la vía se dilata; los fórnices casi no se deforman." },
+  { c: ROJO, t: "3. Grado III bilateral", x: "Uréter con dilatación <b>leve o moderada</b> y vía colectora <b>moderadamente</b> dilatada." },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const f1 = suave(tramo(t, 0.05, 0.4)), f2 = suave(tramo(t, 0.42, 0.66)), f3 = suave(tramo(t, 0.7, 0.82));
+  const paso = t < 0.41 ? 0 : t < 0.69 ? 1 : 2;
+  const traza = (p, c) => { const L = largo(p); const d = p.map((q) => q.join(",")).join(" ");
+    return `<polyline points="${d}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="30" stroke-linecap="round" stroke-dasharray="${L * f1} ${L}"/>
+      <polyline points="${d}" fill="none" stroke="${c}" stroke-width="13" stroke-opacity=".9" stroke-linecap="round" stroke-dasharray="${L * f1} ${L}"/>`; };
+  const anillo = (x, y, rx, ry, c, o) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="none" stroke="#000" stroke-opacity="${0.35 * o}" stroke-width="16"/><ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="none" stroke="${c}" stroke-opacity="${o}" stroke-width="9"/>`;
+  const k = 405 / R[3];
+  const svg = `<svg width="${Math.round(R[2] * k)}" height="405" viewBox="${R.join(" ")}" style="display:block;border-radius:10px">
+    <image href="${SRC}" x="0" y="0" width="1280" height="1292"/>
+    ${traza(URD, AMBAR)}${traza(URI, AMBAR)}
+    ${anillo(400, 410, 120, 150, CIAN, f2)}${anillo(800, 360, 120, 175, CIAN, f2)}
+    <text x="625" y="230" text-anchor="middle" font-size="44" font-weight="900" fill="${ROJO}" stroke="#111" stroke-width="10" paint-order="stroke" opacity="${f3}">Grado III</text>
+  </svg>`;
+  const pasos = P.map((p, j) => `<div style="border:2px solid ${p.c};border-radius:12px;padding:8px 10px;background:${tinte(p.c, j === paso ? 18 : 5)};opacity:${j === paso ? 1 : j < paso ? 0.55 : 0.25}">
+    <div style="font-weight:900;font-size:15px;color:${p.c === AMBAR ? "#B26B10" : p.c === CIAN ? "#0E7490" : p.c}">${p.t}</div><div style="font-size:13.5px;line-height:1.35;margin-top:2px">${p.x}</div></div>`).join("");
+  lienzo("Reflujo en la cistouretrografía", "CUM real: el contraste de la vejiga sube a los dos riñones",
+    `<div style="display:flex;gap:14px;align-items:center"><div style="flex:none;position:relative">${svg}<div style="position:absolute;left:7px;top:7px;background:rgba(17,24,39,.78);color:#fff;font-size:12.5px;font-weight:700;padding:3px 8px;border-radius:6px">CUM</div></div>
+      <div style="display:flex;flex-direction:column;gap:9px;flex:1">${pasos}</div></div>`,
+    "Imagen: RadsWiki, Wikimedia Commons, CC BY-SA 3.0. Recortada y señalada por Empirica. Grados: EAU 2026 (International Reflux Study Committee).");
+};
+window.cuadro(39, 40);
+</script></body></html>
