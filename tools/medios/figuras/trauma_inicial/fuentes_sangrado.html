@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// «El piso y cuatro más» (ATLS 10.ª ed., cap. 3, p. 47 y 51; cap. 1, p. 12): dónde buscar el sangrado y con qué.
+const S = [
+  [ROJO, "Piso", "Sangre <b>externa</b>", "Mirar heridas, ropa y camilla", "Presión directa o <b>torniquete</b>"],
+  [MORADO, "Tórax", "<b>Hemotórax</b>", "Rx de tórax y <b>eFAST</b>", "Tubo de tórax; toracotomía si drena mucho"],
+  [NARANJA, "Abdomen", "<b>Hemoperitoneo</b>", "<b>FAST</b> o LPD", "Laparotomía si está inestable"],
+  [AZUL, "Pelvis y retroperitoneo", "Fractura del <b>anillo</b>", "Rx AP de <b>pelvis</b>", "<b>Fajero</b>, angioembolización o empaquetamiento"],
+  [AMBAR, "Huesos largos", "Fémur hasta <b>1500 mL</b>; tibia o húmero, <b>750 mL</b>", "Deformidad y <b>Rx</b>", "<b>Inmovilizar</b> y apósito compresivo"],
+];
+const col = (c, tit, que, como, trat) => `<div style="flex:1;border:2px solid ${c};background:${tinte(c, 10)};border-radius:12px;padding:9px 9px;display:flex;flex-direction:column;gap:7px">
+  <div style="font-weight:900;font-size:16px;line-height:1.15;color:${c === AMBAR ? "#B26B10" : c}">${tit}</div>
+  <div style="font-size:14.6px;line-height:1.32">${que}</div>
+  <div style="font-size:12px;font-weight:800;color:#64748B;letter-spacing:.04em">CÓMO SE BUSCA</div><div style="font-size:14.6px;line-height:1.32">${como}</div>
+  <div style="font-size:12px;font-weight:800;color:#64748B;letter-spacing:.04em">QUÉ SE HACE</div><div style="font-size:14.6px;line-height:1.32">${trat}</div></div>`;
+lienzo("Dónde sangra: el piso y cuatro más", "Las cinco fuentes de la hemorragia que causa choque",
+  `<div style="display:flex;gap:8px;flex:1 0 auto">${S.map((s) => col(...s)).join("")}</div>
+   ${banda("Usar Rx de tórax y pelvis y <b style=\"color:#FDBA74\">FAST</b> sin frenar la reanimación; el retroperitoneo <b style=\"color:#93C5FD\">no</b> se ve con FAST ni LPD.")}`,
+  "Esquema. Fuente: ATLS 10.ª ed., cap. 1, p. 12; cap. 3, p. 47 y 51; cap. 5, p. 84 y 92.");
+</script></body></html>

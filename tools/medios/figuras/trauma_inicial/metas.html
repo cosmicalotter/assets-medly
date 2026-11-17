@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Metas de presión mientras se controla el sangrado (guía europea 2023, recomendación 13; ATLS 10.ª ed., cap. 3, p. 53
+// y 57, y cap. 6, p. 119; NICE NG39 1.5.18-1.5.21).
+const X = (p) => 150 + (p - 40) * 5.1; // mmHg → píxeles
+const fila1 = (y, tit, sub, a, b, c, txt) => `
+  <text x="8" y="${y + 17}" font-size="14.5" font-weight="900" fill="${c === AMBAR ? "#B26B10" : c}">${tit}</text>
+  <text x="8" y="${y + 35}" font-size="12.5" font-weight="700" fill="#64748B">${sub}</text>
+  <rect x="${X(a)}" y="${y + 4}" width="${X(b) - X(a)}" height="30" rx="8" fill="${tinte(c, 30)}" stroke="${c}" stroke-width="2.5"/>
+  <text x="${X(b) - X(a) < 100 ? X(b) + 8 : (X(a) + X(b)) / 2}" y="${y + 25}" text-anchor="${X(b) - X(a) < 100 ? "start" : "middle"}" font-size="15" font-weight="900" fill="${TINTA}">${txt}</text>`;
+const svg = `<svg width="668" height="350" viewBox="0 0 668 350">
+  ${[40, 50, 60, 70, 80, 90, 100, 110, 120].map((p) => `<line x1="${X(p)}" y1="0" x2="${X(p)}" y2="312" stroke="#EEF2F7" stroke-width="2"/>
+    <text x="${X(p)}" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#64748B">${p}</text>`).join("")}
+  <text x="${X(120)}" y="348" text-anchor="end" font-size="12" font-weight="700" fill="#64748B">mmHg</text>
+  ${fila1(8, "Sangrado sin TCE", "PAS · guía europea", 80, 90, ROJO, "PAS 80-90")}
+  ${fila1(70, "Sangrado sin TCE", "PAM · guía europea", 50, 60, NARANJA, "PAM 50-60")}
+  ${fila1(132, "TCE grave (GCS ≤8)", "PAM · guía europea", 80, 120, MORADO, "PAM ≥80")}
+  ${fila1(194, "TCE, 50-69 años", "PAS · ATLS", 100, 120, AZUL, "PAS ≥100")}
+  ${fila1(256, "TCE, 15-49 o >70 años", "PAS · ATLS", 110, 120, CELESTE, "PAS ≥110")}
+</svg>`;
+lienzo("Metas de presión mientras sangra", "Hipotensión permisiva hasta controlar el sangrado, salvo en el TCE",
+  `${svg}${banda("Sin TCE se acepta una PAS de <b style=\"color:#FCA5A5\">80-90</b> hasta parar el sangrado; con TCE grave, <b style=\"color:#C4B5FD\">no</b> se usa la hipotensión permisiva.")}`,
+  "Esquema. Fuente: Guía europea 2023 (Crit Care 2023;27:80), recomendación 13; ATLS 10.ª ed., cap. 6, p. 119.");
+</script></body></html>

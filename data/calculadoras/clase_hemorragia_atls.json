@@ -1,0 +1,419 @@
+{
+ "titulo": "Clase de hemorragia (ATLS)",
+ "descripcion": "Estima la clase de hemorragia aguda del adulto con trauma (I a IV) y la pérdida aproximada de volemia a partir de los signos clínicos y el déficit de base, según la tabla 3-1 y el capítulo de choque del ATLS 10.ª edición. Por convención de esta calculadora manda el peor parámetro, para no subestimar el choque; orienta la reanimación inicial, que después se ajusta a la respuesta.",
+ "instrucciones": "Marcar cada signo tal como está ahora. Manda el parámetro que indica la clase más alta. No esperar a que el paciente encaje en una clase para reanimar.",
+ "limitaciones": "La regla del peor parámetro es una convención de Empirica: el ATLS presenta los signos como un continuo, y un signo aislado puede sobrestimar la clase. Los signos sólo guían el tratamiento inicial. El anciano, el atleta, el niño, el embarazo y los betabloqueadores cambian la respuesta: una PAS de 100 mmHg puede ser choque en el anciano. No sirve para el choque que no es hemorrágico.",
+ "tipoCalculo": "formula",
+ "formula": "(0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) + conciencia + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) - conciencia))) + base + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) + conciencia + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) - conciencia))) - base)))",
+ "decimales": 0,
+ "mostrarPuntaje": false,
+ "prefijoResultado": "Hemorragia",
+ "secciones": [
+  {
+   "nombre": "Circulación",
+   "elementos": [
+    {
+     "id": "fc",
+     "tipo": "opciones",
+     "label": "Frecuencia cardíaca",
+     "opciones": [
+      {
+       "label": "Normal o taquicardia mínima",
+       "puntos": 1
+      },
+      {
+       "label": "Taquicardia: más de 100 lpm",
+       "puntos": 2
+      },
+      {
+       "label": "Taquicardia marcada",
+       "puntos": 3
+      }
+     ],
+     "ayuda": "Los betabloqueadores y el buen estado físico del atleta pueden esconder la taquicardia."
+    },
+    {
+     "id": "pas",
+     "tipo": "opciones",
+     "label": "Presión arterial sistólica",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 1
+      },
+      {
+       "label": "Baja",
+       "puntos": 3,
+       "detalle": "Cae de forma medible"
+      },
+      {
+       "label": "Muy baja",
+       "puntos": 4,
+       "detalle": "Descenso importante"
+      }
+     ],
+     "ayuda": "Cae de forma constante desde la clase III (pérdida de más del 30 %)."
+    },
+    {
+     "id": "pp",
+     "tipo": "opciones",
+     "label": "Presión de pulso",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 1
+      },
+      {
+       "label": "Disminuida",
+       "puntos": 2
+      },
+      {
+       "label": "Muy estrecha o diastólica que no se mide",
+       "puntos": 4
+      }
+     ],
+     "ayuda": "Se estrecha antes de que caiga la sistólica: mírala en la clase II."
+    }
+   ]
+  },
+  {
+   "nombre": "Perfusión de órganos",
+   "elementos": [
+    {
+     "id": "fr",
+     "tipo": "opciones",
+     "label": "Frecuencia respiratoria",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 1
+      },
+      {
+       "label": "Taquipnea",
+       "puntos": 2
+      }
+     ]
+    },
+    {
+     "id": "diuresis",
+     "tipo": "opciones",
+     "label": "Diuresis",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 1
+      },
+      {
+       "label": "Algo baja: 20-30 mL/h",
+       "puntos": 2
+      },
+      {
+       "label": "Disminuida",
+       "puntos": 3
+      },
+      {
+       "label": "Mínima o nula",
+       "puntos": 4
+      }
+     ]
+    },
+    {
+     "id": "conciencia",
+     "tipo": "opciones",
+     "label": "Estado mental",
+     "opciones": [
+      {
+       "label": "Normal",
+       "puntos": 1
+      },
+      {
+       "label": "Ansiedad, miedo u hostilidad",
+       "puntos": 2
+      },
+      {
+       "label": "Cambio importante: confusión",
+       "puntos": 3
+      },
+      {
+       "label": "Muy deprimido",
+       "puntos": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Gases arteriales",
+   "elementos": [
+    {
+     "id": "base",
+     "tipo": "opciones",
+     "label": "Déficit de base",
+     "opciones": [
+      {
+       "label": "Sin gases, o de 0 a −2 mEq/L",
+       "puntos": 1
+      },
+      {
+       "label": "Más negativo que −2 y hasta −6 mEq/L",
+       "puntos": 2
+      },
+      {
+       "label": "Más negativo que −6 y hasta −10 mEq/L",
+       "puntos": 3
+      },
+      {
+       "label": "Más negativo que −10 mEq/L",
+       "puntos": 4
+      }
+     ],
+     "ayuda": "Es el exceso de base negativo de los gases arteriales. La tabla del ATLS repite los límites (−2, −6, −10); aquí cada límite va con la clase más leve."
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 4,
+   "max": 4,
+   "categoria": "Clase IV (grave): pérdida >40 %",
+   "color": "rojo",
+   "match_opcion_index": 3,
+   "si": {
+    "alguno": [
+     {
+      "id": "fc",
+      "igual": 4
+     },
+     {
+      "id": "pas",
+      "igual": 4
+     },
+     {
+      "id": "pp",
+      "igual": 4
+     },
+     {
+      "id": "fr",
+      "igual": 4
+     },
+     {
+      "id": "diuresis",
+      "igual": 4
+     },
+     {
+      "id": "conciencia",
+      "igual": 4
+     },
+     {
+      "id": "base",
+      "igual": 4
+     }
+    ]
+   },
+   "approach": "Es un evento **preterminal**: activar el **protocolo de transfusión masiva** y controlar el sangrado con cirugía inmediata."
+  },
+  {
+   "min": 3,
+   "max": 3,
+   "categoria": "Clase III (moderada): pérdida 31-40 %",
+   "color": "naranja",
+   "match_opcion_index": 2,
+   "si": {
+    "alguno": [
+     {
+      "id": "fc",
+      "igual": 3
+     },
+     {
+      "id": "pas",
+      "igual": 3
+     },
+     {
+      "id": "pp",
+      "igual": 3
+     },
+     {
+      "id": "fr",
+      "igual": 3
+     },
+     {
+      "id": "diuresis",
+      "igual": 3
+     },
+     {
+      "id": "conciencia",
+      "igual": 3
+     },
+     {
+      "id": "base",
+      "igual": 3
+     }
+    ]
+   },
+   "approach": "Detener el sangrado con cirugía o **embolización** y transfundir **glóbulos rojos** y hemoderivados."
+  },
+  {
+   "min": 2,
+   "max": 2,
+   "categoria": "Clase II (leve): pérdida 15-30 %",
+   "color": "amarillo",
+   "match_opcion_index": 1,
+   "si": {
+    "alguno": [
+     {
+      "id": "fc",
+      "igual": 2
+     },
+     {
+      "id": "pas",
+      "igual": 2
+     },
+     {
+      "id": "pp",
+      "igual": 2
+     },
+     {
+      "id": "fr",
+      "igual": 2
+     },
+     {
+      "id": "diuresis",
+      "igual": 2
+     },
+     {
+      "id": "conciencia",
+      "igual": 2
+     },
+     {
+      "id": "base",
+      "igual": 2
+     }
+    ]
+   },
+   "approach": "Reanimar con **cristaloide** y buscar la fuente; algunos necesitarán **transfusión**."
+  },
+  {
+   "min": 1,
+   "max": 1,
+   "categoria": "Clase I: pérdida <15 %",
+   "color": "verde",
+   "match_opcion_index": 0,
+   "approach": "Signos **mínimos**: en el sano no suele hacer falta reponer. Vigilar y **reevaluar**: el sangrado puede seguir."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: tabla 3-1, clases de hemorragia)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "49",
+   "texto": "TABLE 3-1 outlines the estimated blood loss and other critical measures for patients in each classification of shock",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: clase I sin reposición)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "49",
+   "texto": "For otherwise healthy patients, this amount of blood loss does not require replacement, because transcapillary refill and other compensatory mechanisms will restore blood volume within 24 hours",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: signos de la clase II)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Clinical signs of class II hemorrhage include tachycardia, tachypnea, and decreased pulse pressure",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: diuresis en la clase II)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "The measured urine flow is usually 20 to 30 mL/hour in an adult with class II hemorrhage",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: la clase II se estabiliza con cristaloide)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Some patients in this category may eventually require blood transfusion, but most are stabilized initially with crystalloid solutions",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: signos de la clase III)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Patients with class III hemorrhage typically present with the classic signs of inadequate perfusion, including marked tachycardia and tachypnea, significant changes in mental status, and a measurable fall in systolic blood pressure",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: clase III, la PAS cae)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "In an uncomplicated case, this is the least amount of blood loss that consistently causes a drop in systolic blood pressure",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: tratamiento de la clase III)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "The priority of initial management is to stop the hemorrhage, by emergency operation or embolization, if necessary. Most patients in this category will require packed red blood cells (pRBCs) and blood products",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: signos de la clase IV)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Symptoms include marked tachycardia, a significant decrease in systolic blood pressure, and a very narrow pulse pressure or unmeasurable diastolic blood pressure",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: diuresis y conciencia en la clase IV)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Urinary output is negligible, and mental status is markedly depressed. The skin is cold and pale",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: tratamiento de la clase IV)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Patients with class IV hemorrhage frequently require rapid transfusion and immediate surgical intervention",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: transfusión masiva)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "55",
+   "texto": "massive transfusion, most often defined as > 10 units of pRBCs within the first 24 hours of admission or more than 4 units in 1 hour",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: no esperar a una clase precisa)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "It is dangerous to wait until a trauma patient fits a precise physiologic classification of shock before initiating appropriate volume restoration",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: no basta un solo parámetro)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "50",
+   "texto": "Diagnosis of shock can be missed when only a single parameter is used. • Use all clinical information, including heart rate, blood pressure, skin perfusion, and mental status",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: PAS de 100 en el anciano)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "57",
+   "texto": "For example, a systolic blood pressure of 100 mm Hg may represent shock in an elderly patient",
+   "anio": "2018"
+  },
+  {
+   "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: betabloqueadores)",
+   "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+   "paginas": "57",
+   "texto": "ß-adrenergic blockade can mask tachycardia as an early indicator of shock",
+   "anio": "2018"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Respuesta a la reanimación inicial (ATLS 10.ª ed., cap. 3, tabla 3-2, p. 53-54): rápida, transitoria o mínima.
+// Curvas cualitativas de los signos vitales tras el bolo o la sangre.
+const X = (m) => 62 + m * 8.6, Y = (v) => 228 - v * 1.86; // minutos y «signos vitales» (0 = muy alterados, 100 = normales)
+const curva = (pts, c) => `<polyline points="${pts.map(([m, v]) => `${X(m)},${Y(v)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`;
+const suaviza = (f) => Array.from({ length: 61 }, (_, i) => [i, f(i)]);
+const svg = `<svg width="668" height="262" viewBox="0 0 668 262">
+  <rect x="${X(0)}" y="${Y(100)}" width="${X(60) - X(0)}" height="${Y(80) - Y(100)}" fill="${tinte(VERDE, 14)}"/>
+  <text x="${X(60)}" y="${Y(100) - 7}" text-anchor="end" font-size="12.5" font-weight="800" fill="#15803D">Franja de signos vitales normales</text>
+  <line x1="${X(0)}" y1="${Y(0)}" x2="${X(60)}" y2="${Y(0)}" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="${X(0)}" y1="${Y(0)}" x2="${X(0)}" y2="${Y(100)}" stroke="#94A3B8" stroke-width="3"/>
+  ${flecha(X(2), Y(0) + 26, X(2), Y(0) + 4, TINTA, 3, 9)}
+  <text x="${X(2) + 8}" y="${Y(0) + 26}" font-size="12.5" font-weight="800" fill="${TINTA}">Bolo o primera sangre</text>
+  <text x="${X(60)}" y="${Y(0) + 24}" text-anchor="end" font-size="12.5" font-weight="700" fill="#64748B">tiempo →</text>
+  <text x="${X(0) - 14}" y="${Y(50)}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#64748B" transform="rotate(-90 ${X(0) - 14} ${Y(50)})">Signos vitales</text>
+  ${curva(suaviza((m) => 30 + 62 * suave(tramo(m, 2, 16))), VERDE)}
+  ${curva(suaviza((m) => 30 + 46 * suave(tramo(m, 2, 14)) - 50 * suave(tramo(m, 24, 44))), NARANJA)}
+  ${curva(suaviza((m) => 24 + 6 * suave(tramo(m, 2, 10)) - 8 * suave(tramo(m, 30, 58))), ROJO)}
+  <text x="${X(60) + 6}" y="${Y(92) + 5}" font-size="14" font-weight="900" fill="#15803D">Rápida</text>
+  <text x="${X(60) + 6}" y="${Y(26) + 5}" font-size="14" font-weight="900" fill="${NARANJA}">Transitoria</text>
+  <text x="${X(60) + 6}" y="${Y(16) + 10}" font-size="14" font-weight="900" fill="${ROJO}">Mínima</text>
+</svg>`;
+lienzo("Respuesta a la reanimación inicial", "Cómo cambian los signos vitales tras el bolo o la primera sangre",
+  `${svg}${filaC(
+    tarjeta(VERDE, "Rápida", ["Se normaliza y <b>se mantiene</b>", "Pérdida <b>&lt;15 %</b>", "Valoración por <b>cirugía</b>"], { fs: 14.5 }) +
+    tarjeta(NARANJA, "Transitoria", ["Mejora y <b>vuelve a caer</b>", "Pérdida del <b>15-40 %</b>: sigue sangrando", "Cirugía probable; <b>transfusión masiva</b>"], { fs: 14.5 }) +
+    tarjeta(ROJO, "Mínima o ninguna", ["Sigue <b>anormal</b>", "Pérdida <b>&gt;40 %</b> o choque no hemorrágico", "Control <b>inmediato</b> del sangrado"], { fs: 14.5 }))}`,
+  "Esquema cualitativo. Fuente: ATLS 10.ª ed., cap. 3, tabla 3-2, p. 53-54.");
+</script></body></html>
