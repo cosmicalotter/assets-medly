@@ -1,0 +1,47 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: los cinco grados del reflujo vesicoureteral en la CUM (EAU 2026, tabla 2 del
+// capítulo de RVU, International Reflux Study Committee); riesgo según la AAP 2026 (KAS 6).
+const G = [
+  { g: "I", c: "#2FB36D", x: "No llega a la <b>pelvis</b>; el uréter puede dilatarse algo." },
+  { g: "II", c: "#3BA7E0", x: "Llega a la <b>pelvis</b> sin dilatarla; fórnices normales." },
+  { g: "III", c: "#F2A23A", x: "Dilatación <b>leve o moderada</b> del uréter y de la vía; fórnices casi normales." },
+  { g: "IV", c: "#F07F3C", x: "Dilatación <b>moderada</b>; fórnices romos, aún se ven las papilas." },
+  { g: "V", c: "#EF5454", x: "Dilatación y acodamiento <b>marcados</b>; sin papilas; reflujo <b>intrarrenal</b>." },
+];
+const CONTRASTE = "#7B6CF6";
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.999;
+  const seg = Math.min(4, Math.floor(t * 5)), u = t * 5 - seg; // grado actual y avance dentro del grado
+  const g = seg + 1, sube = suave(tramo(u, 0.08, 0.6)), vej = 1 - 0.28 * Math.sin(Math.PI * tramo(u, 0.02, 0.7));
+  const ancho = [7, 8, 13, 18, 24][seg], dil = [0, 0, 0.35, 0.65, 1][seg];
+  // uréter de la vejiga (200,330) a la pelvis (200,150); en el grado V, tortuoso
+  const ondas = g === 5 ? 26 : g === 4 ? 9 : 0;
+  const pts = Array.from({ length: 21 }, (_, k) => { const y = 330 - k * 9; return [200 + ondas * Math.sin(k * 0.9), y]; });
+  const tope = g === 1 ? 0.7 : 1, alto = sube * tope, m = Math.max(1, Math.round(alto * 20));
+  const ur = pts.slice(0, m + 1).map((p) => p.join(",")).join(" ");
+  const pelvis = alto >= 0.98 && g >= 2 ? `<ellipse cx="200" cy="138" rx="${18 + 14 * dil}" ry="${12 + 8 * dil}" fill="${CONTRASTE}"/>` : "";
+  const caliz = (x, y, a) => alto >= 0.98 && g >= 2 ? (g >= 4
+      ? `<circle cx="${x}" cy="${y}" r="${9 + 5 * dil}" fill="${CONTRASTE}"/>`
+      : `<path d="M${x - 9},${y + 4} Q${x},${y - 12} ${x + 9},${y + 4} L${x + 4},${y + 14} L${x - 4},${y + 14} Z" fill="${CONTRASTE}" transform="rotate(${a} ${x} ${y})"/>`) : "";
+  const intra = g === 5 && alto >= 0.98 ? [[160, 92], [240, 92], [148, 140], [252, 140], [200, 74]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5" fill="${CONTRASTE}" opacity=".55"/>`).join("") : "";
+  const svg = `<svg width="300" height="372" viewBox="0 0 400 420">
+    <ellipse cx="200" cy="118" rx="88" ry="66" fill="#FCE7F3" stroke="${ROSA_C}" stroke-width="4"/>
+    <polyline points="${pts.map((p) => p.join(",")).join(" ")}" fill="none" stroke="#CBD5E1" stroke-width="${ancho + 8}" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="${ur}" fill="none" stroke="${CONTRASTE}" stroke-width="${ancho}" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pelvis}${caliz(166, 96, -40)}${caliz(234, 96, 40)}${caliz(200, 82, 0)}${caliz(160, 140, -90)}${caliz(240, 140, 90)}${intra}
+    <ellipse cx="200" cy="${352 + 10 * (1 - vej)}" rx="${92 * vej}" ry="${50 * vej}" fill="${tinte(CONTRASTE, 60)}" stroke="#94A3B8" stroke-width="5"/>
+    <text x="200" y="${358 + 10 * (1 - vej)}" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">Vejiga</text>
+    <text x="320" y="70" text-anchor="middle" font-size="15" font-weight="800" fill="${ROSA_C}">Riñón</text>
+    <text x="296" y="250" font-size="14" font-weight="700" fill="#64748B">Uréter</text>
+    <text x="200" y="412" text-anchor="middle" font-size="14" font-weight="800" fill="#475569">La vejiga se contrae al orinar</text>
+  </svg>`;
+  const lista = G.map((e, j) => `<div style="display:flex;gap:9px;align-items:center;border:2px solid ${e.c};border-radius:11px;padding:5px 9px;background:${tinte(e.c, j === seg ? 18 : 4)};opacity:${j === seg ? 1 : 0.42}">
+    <div style="flex:none;width:34px;font-weight:900;font-size:19px;color:${e.c === "#F2A23A" ? "#B26B10" : e.c};text-align:center">${e.g}</div><div style="font-size:12.8px;line-height:1.3">${e.x}</div></div>`).join("");
+  lienzo("Los grados del reflujo", "Hasta dónde sube el contraste cuando el niño orina y cuánto dilata la vía",
+    `<div style="display:flex;gap:12px;align-items:center"><div style="flex:none">${svg}</div>
+      <div style="display:flex;flex-direction:column;gap:6px;flex:1">${lista}
+      <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13px">Bajo riesgo: <b style="color:#86EFAC">I-II</b> sin disfunción. Alto riesgo: <b style="color:#FCA5A5">IV-V</b>, intrarrenal o cicatrices.</div></div></div>`,
+    "Esquema de Empirica. Fuentes: EAU 2026 (tabla 2 del reflujo vesicoureteral, International Reflux Study Committee); AAP 2026 (KAS 6).");
+};
+window.cuadro(59, 60);
+</script></body></html>
