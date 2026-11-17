@@ -1,8 +1,8 @@
 {
  "titulo": "Clase de hemorragia (ATLS)",
- "descripcion": "Estima la clase de hemorragia aguda del adulto con trauma (I a IV) y la pérdida aproximada de volemia a partir de los signos clínicos y el déficit de base, según la tabla 3-1 y el capítulo de choque del ATLS 10.ª edición. Manda el peor parámetro: orienta la reanimación inicial, que después se ajusta a la respuesta.",
+ "descripcion": "Estima la clase de hemorragia aguda del adulto con trauma (I a IV) y la pérdida aproximada de volemia a partir de los signos clínicos y el déficit de base, según la tabla 3-1 y el capítulo de choque del ATLS 10.ª edición. Por convención de esta calculadora manda el peor parámetro, para no subestimar el choque; orienta la reanimación inicial, que después se ajusta a la respuesta.",
  "instrucciones": "Marcar cada signo tal como está ahora. Manda el parámetro que indica la clase más alta. No esperar a que el paciente encaje en una clase para reanimar.",
- "limitaciones": "Los signos son un continuo y sólo guían el tratamiento inicial. El anciano, el atleta, el niño, el embarazo y los betabloqueadores cambian la respuesta: una PAS de 100 mmHg puede ser choque en el anciano. No sirve para el choque que no es hemorrágico.",
+ "limitaciones": "La regla del peor parámetro es una convención de Empirica: el ATLS presenta los signos como un continuo, y un signo aislado puede sobrestimar la clase. Los signos sólo guían el tratamiento inicial. El anciano, el atleta, el niño, el embarazo y los betabloqueadores cambian la respuesta: una PAS de 100 mmHg puede ser choque en el anciano. No sirve para el choque que no es hemorrágico.",
  "tipoCalculo": "formula",
  "formula": "(0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) + conciencia + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) - conciencia))) + base + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) + conciencia + abs((0.5 * ((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) + diuresis + abs((0.5 * ((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) + fr + abs((0.5 * ((0.5 * (fc + pas + abs(fc - pas))) + pp + abs((0.5 * (fc + pas + abs(fc - pas))) - pp))) - fr))) - diuresis))) - conciencia))) - base)))",
  "decimales": 0,
@@ -18,7 +18,7 @@
      "label": "Frecuencia cardíaca",
      "opciones": [
       {
-       "label": "Normal",
+       "label": "Normal o taquicardia mínima",
        "puntos": 1
       },
       {
@@ -109,8 +109,7 @@
       },
       {
        "label": "Disminuida",
-       "puntos": 3,
-       "detalle": "Menos de 20 mL/h"
+       "puntos": 3
       },
       {
        "label": "Mínima o nula",
@@ -152,23 +151,23 @@
      "label": "Déficit de base",
      "opciones": [
       {
-       "label": "Sin gases o de 0 a −2 mEq/L",
+       "label": "Sin gases, o de 0 a −2 mEq/L",
        "puntos": 1
       },
       {
-       "label": "De −2 a −6 mEq/L",
+       "label": "Más negativo que −2 y hasta −6 mEq/L",
        "puntos": 2
       },
       {
-       "label": "De −6 a −10 mEq/L",
+       "label": "Más negativo que −6 y hasta −10 mEq/L",
        "puntos": 3
       },
       {
-       "label": "−10 mEq/L o menos",
+       "label": "Más negativo que −10 mEq/L",
        "puntos": 4
       }
      ],
-     "ayuda": "Es el exceso de base negativo de los gases arteriales."
+     "ayuda": "Es el exceso de base negativo de los gases arteriales. La tabla del ATLS repite los límites (−2, −6, −10); aquí cada límite va con la clase más leve."
     }
    ]
   }
@@ -308,7 +307,7 @@
    "titulo": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support (ATLS): Student Course Manual. 10th ed. Chicago: American College of Surgeons; 2018. (Cap. 3: tabla 3-1, clases de hemorragia)",
    "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
    "paginas": "49",
-   "texto": "Approximate blood loss <15% 15–30% 31–40% >40% Heart rate",
+   "texto": "TABLE 3-1 outlines the estimated blood loss and other critical measures for patients in each classification of shock",
    "anio": "2018"
   },
   {

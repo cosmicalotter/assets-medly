@@ -2,7 +2,7 @@
 // Taponamiento cardíaco (ATLS 10.ª ed., cap. 3, p. 47, y cap. 4, p. 69-70): el saco pericárdico es una estructura fibrosa
 // fija; poca sangre basta para comprimir el corazón e impedir su llenado, y cae el gasto. Se trata con toracotomía o
 // esternotomía por un cirujano; sin cirujano, la pericardiocentesis es el último recurso.
-const LIQ = "#7F1D1D", VD = "#93C5FD", BVD = "#2563EB", VI = "#FCA5A5", BVI = "#DC2626", AGUJA = "#FDE047";
+const LIQ = "#7F1D1D", VD = "#93C5FD", BVD = "#2563EB", VI = "#FCA5A5", BVI = "#DC2626", AGUJA = "#F2A23A";
 
 function escena(t) {
   const sube = suave(tramo(t, 0.04, 0.58)), baja = suave(tramo(t, 0.72, 0.95));
@@ -38,7 +38,7 @@ function escena(t) {
     <div style="font-size:13.5px;font-weight:800;color:#374151">${tit}</div>
     <div style="height:15px;border-radius:8px;background:#E5E7EB;overflow:hidden"><div style="height:100%;width:${Math.round(100 * v)}%;background:${c}"></div></div></div>`;
   const etapa = t < 0.3 ? ["Saco fijo", "El pericardio <b>no se estira</b>: poca sangre basta para comprimir"]
-    : t < 0.6 ? ["Sin llenado", "El ventrículo derecho <b>colapsa</b> y cae el gasto: hipotensión que no responde"]
+    : t < 0.6 ? ["Sin llenado", "El corazón <b>no se llena</b> y cae el gasto: hipotensión que no responde"]
     : t < 0.72 ? ["Drenaje", "<b>Toracotomía</b> o esternotomía por un cirujano; sin cirujano, pericardiocentesis"]
     : ["Se recupera", "Sale la sangre, el corazón se <b>llena</b> y sube la presión"];
   const malo = t < 0.6;

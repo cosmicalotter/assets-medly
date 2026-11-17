@@ -35,7 +35,7 @@ jpg foto_bazo "$D/tra_ruptura_bazo_real.jpg"
 jpg foto_collar "$D/tra_collar_cervical_real.jpg"
 jpg foto_thomas "$D/tra_ferula_traccion_real.jpg"
 # GIF sobre la imagen real
-gif fast "$D/tra_fast_morison.gif" 32 110 2600 128
+gif fast "$D/tra_fast_morison.gif" 32 110 2600 255
 # GIF de flujo y de fisiología
 gif xabcde "$D/tra_xabcde.gif" 40 130 3200 48
 gif tension "$D/tra_neumotorax_tension.gif" 40 120 1800 64
