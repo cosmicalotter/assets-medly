@@ -58,7 +58,7 @@ abrirse.
   (`vih.json`, adolescentes y adultos, con gestantes) y violencia sexual
   (`violencia_sexual.json`,
   todas las edades).
-  Pediatría (13): hipoglucemia, neuroinfección (`neuroinfeccion_pediatrica.json`), líquidos y electrolitos (`deshidratacion.json`),
+  Pediatría (14): hipoglucemia, infección urinaria (`itupediatrica.json`), neuroinfección (`neuroinfeccion_pediatrica.json`), líquidos y electrolitos (`deshidratacion.json`),
   enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
