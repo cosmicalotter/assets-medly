@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Plan de la vía aérea definitiva en el trauma (ATLS 10.ª ed., cap. 2, p. 30, 32, 35-36; NICE NG39 1.2.1-1.2.2):
+// secuencia rápida; si falla y oxigena, extraglótico como puente; si no intuba ni oxigena, vía quirúrgica.
+const caja3 = (c, letra, tit, items) => `<div style="flex:1;display:flex;gap:10px;align-items:stretch">
+  <div style="flex:none;width:52px;border-radius:12px;background:${c};color:#fff;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05">${letra}</div>
+  ${tarjeta(c, tit, items, { fs: 15.6, grande: true })}</div>`;
+const nexo = (txt, c) => `<div style="display:flex;align-items:center;gap:8px;margin-left:16px;font-size:13.5px;font-weight:800;color:${c}">
+  <svg width="20" height="24" viewBox="0 0 20 24">${flecha(10, 0, 10, 22, c, 4, 10)}</svg>${txt}</div>`;
+lienzo("Plan de la vía aérea definitiva", "Del tubo orotraqueal a la vía quirúrgica, sin dejar de oxigenar",
+  `<div style="display:flex;flex-direction:column;gap:5px;flex:1 0 auto">
+   ${caja3(VERDE, "A", "Secuencia rápida", ["Preoxigenar al <b>100 %</b>; etomidato <b>0,3 mg/kg</b> y succinilcolina <b>1-2 mg/kg</b>", "Intubar por la boca con <b>restricción cervical</b>", "Confirmar con <b>CO2 exhalado</b>"])}
+   ${nexo("No intuba, pero oxigena", NARANJA)}
+   ${caja3(NARANJA, "B", "Extraglótico como puente", ["<b>Máscara laríngea</b> u otro dispositivo", "No es definitivo: optimizar y otro intento con el más <b>experto</b>"])}
+   ${nexo("No intuba ni oxigena", ROJO)}
+   ${caja3(ROJO, "C", "Vía aérea quirúrgica", ["<b>Cricotiroidotomía quirúrgica</b> con tubo con balón", "En menores de <b>12 años</b>, con aguja de 16-18 G"])}
+   </div>`,
+  "Esquema. Fuente: ATLS 10.ª ed., cap. 2, p. 30, 32 y 35-36; NICE NG39, 1.2.1-1.2.2.");
+</script></body></html>

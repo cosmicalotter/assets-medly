@@ -1,0 +1,62 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Taponamiento cardíaco (ATLS 10.ª ed., cap. 3, p. 47, y cap. 4, p. 69-70): el saco pericárdico es una estructura fibrosa
+// fija; poca sangre basta para comprimir el corazón e impedir su llenado, y cae el gasto. Se trata con toracotomía o
+// esternotomía por un cirujano; sin cirujano, la pericardiocentesis es el último recurso.
+const LIQ = "#7F1D1D", VD = "#93C5FD", BVD = "#2563EB", VI = "#FCA5A5", BVI = "#DC2626", AGUJA = "#FDE047";
+
+function escena(t) {
+  const sube = suave(tramo(t, 0.04, 0.58)), baja = suave(tramo(t, 0.72, 0.95));
+  const liq = sube * (1 - 0.85 * baja);              // sangre en el saco (0-1)
+  const lat = Math.sin(t * Math.PI * 2 * 8);         // latido
+  const k = 1 - 0.26 * liq + 0.025 * lat;            // tamaño del corazón
+  const kd = Math.max(0.28, 1 - 0.72 * liq + 0.04 * lat); // el ventrículo derecho, de pared fina, colapsa antes
+  const cx = 226, cy = 190;
+  // ventrículo derecho (a la izquierda de la imagen) y ventrículo izquierdo
+  const vd = `<ellipse cx="${cx - 40 * k - 30 * (1 - kd)}" cy="${cy + 10}" rx="${58 * k * kd}" ry="${92 * k}" fill="${VD}" stroke="${BVD}" stroke-width="4"/>`;
+  const vi = `<ellipse cx="${cx + 42 * k}" cy="${cy + 6}" rx="${66 * k}" ry="${100 * k}" fill="${VI}" stroke="${BVI}" stroke-width="5"/>`;
+  const llenado = 1 - 0.8 * liq;
+  const entrada = flecha(26, 40, 26 + 84 * llenado, 40 + 84 * llenado, BVD, 7, 18);
+  const cat = suave(tramo(t, 0.6, 0.68));
+  const sale = t > 0.72 && t < 0.97 && ((t * 9) % 1) < 0.6;
+  const svg = `<svg width="440" height="370" viewBox="0 0 440 370">
+    <!-- saco pericárdico fijo con la sangre -->
+    <ellipse cx="${cx}" cy="${cy}" rx="140" ry="142" fill="${LIQ}" fill-opacity="${0.05 + 0.85 * liq}" stroke="#334155" stroke-width="6"/>
+    ${vd}${vi}
+    <text x="${kd < 0.55 ? cx - 40 * k - 30 * (1 - kd) - 30 : cx - 40 * k - 30 * (1 - kd)}" y="${cy + 16}" text-anchor="middle" font-size="17" font-weight="900" fill="${kd < 0.55 ? "#fff" : "#1E3A8A"}">VD</text>
+    <text x="${cx + 42 * k}" y="${cy + 12}" text-anchor="middle" font-size="17" font-weight="900" fill="#7F1D1D">VI</text>
+    <!-- retorno venoso que entra al corazón derecho -->
+    ${entrada}
+    <text x="8" y="24" font-size="14" font-weight="800" fill="${BVD}">Retorno venoso</text>
+    <!-- drenaje del saco -->
+    <g opacity="${cat}">
+      <line x1="${cx - 34}" y1="${cy + 176}" x2="${cx - 12}" y2="${cy + 118}" stroke="#111" stroke-width="10" stroke-linecap="round" stroke-opacity=".35"/>
+      <line x1="${cx - 34}" y1="${cy + 176}" x2="${cx - 12}" y2="${cy + 118}" stroke="${AGUJA}" stroke-width="6" stroke-linecap="round"/>
+      ${sale ? flecha(cx + 2, cy + 136, cx + 26, cy + 176, LIQ, 5, 13) : ""}
+    </g>
+  </svg>`;
+  const barra = (tit, v, c) => `<div style="display:flex;flex-direction:column;gap:3px">
+    <div style="font-size:13.5px;font-weight:800;color:#374151">${tit}</div>
+    <div style="height:15px;border-radius:8px;background:#E5E7EB;overflow:hidden"><div style="height:100%;width:${Math.round(100 * v)}%;background:${c}"></div></div></div>`;
+  const etapa = t < 0.3 ? ["Saco fijo", "El pericardio <b>no se estira</b>: poca sangre basta para comprimir"]
+    : t < 0.6 ? ["Sin llenado", "El ventrículo derecho <b>colapsa</b> y cae el gasto: hipotensión que no responde"]
+    : t < 0.72 ? ["Drenaje", "<b>Toracotomía</b> o esternotomía por un cirujano; sin cirujano, pericardiocentesis"]
+    : ["Se recupera", "Sale la sangre, el corazón se <b>llena</b> y sube la presión"];
+  const malo = t < 0.6;
+  const lado = `<div style="width:212px;display:flex;flex-direction:column;gap:12px">
+    <div class="caja" style="background:${tinte(malo ? ROJO : VERDE, 12)};border:2px solid ${malo ? ROJO : VERDE}">
+      <div style="font-weight:900;font-size:16px;color:${malo ? ROJO : "#15803D"}">${etapa[0]}</div><div style="font-size:14px;line-height:1.35;margin-top:3px">${etapa[1]}</div></div>
+    ${barra("Sangre en el pericardio", liq, LIQ)}
+    ${barra("Llenado del corazón", llenado, BVD)}
+    ${barra("Presión arterial", 1 - 0.7 * liq, ROJO)}
+    <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;line-height:1.3">
+      <div><b style="color:#334155">■</b> Saco pericárdico</div><div><b style="color:${LIQ}">■</b> Sangre en el saco</div>
+      <div><b style="color:${BVD}">■</b> Ventrículo derecho (VD)</div><div><b style="color:${BVI}">■</b> Ventrículo izquierdo (VI)</div></div></div>`;
+  return `<div style="display:flex;gap:12px;align-items:center;flex:1 0 auto">${svg}${lado}</div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  lienzo("Taponamiento cardíaco", "La sangre en un saco que no se estira impide que el corazón se llene",
+    escena(t), "Esquema de fisiología. Fuente: ATLS 10.ª ed., cap. 3, p. 47, y cap. 4, p. 69-70.");
+};
+window.cuadro(20, 40);
+</script></body></html>

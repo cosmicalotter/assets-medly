@@ -1,0 +1,16 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Paro circulatorio traumático (ATLS 10.ª ed., cap. 4, p. 70): las medidas van a la vez y en este orden de prioridad.
+const P = [
+  [ROJO, "1", "RCP y vía aérea", ["RCP cerrada <b>a la vez</b> que el ABC", "Intubar por la boca <b>sin secuencia rápida</b>", "Ventilar con oxígeno al <b>100 %</b>"]],
+  [CELESTE, "2", "Tórax", ["<b>Toracostomías bilaterales</b> con el dedo o con tubo", "Sin anestesia local: está inconsciente"]],
+  [NARANJA, "3", "Volumen", ["Líquidos rápidos por vena gruesa o <b>intraósea</b>", "<b>Adrenalina 1 mg</b>"]],
+  [MORADO, "4", "Sin pulso", ["<b>Toracotomía de reanimación</b> si no recupera la circulación", "Sin cirujano y con taponamiento: <b>pericardiocentesis</b>"]],
+];
+const paso = ([c, n, tit, items]) => `<div style="display:flex;gap:10px;align-items:stretch">
+  <div style="flex:none;width:44px;border-radius:12px;background:${c};color:#fff;font-weight:900;font-size:26px;display:flex;align-items:center;justify-content:center">${n}</div>
+  ${tarjeta(c, tit, items, { fs: 14 })}</div>`;
+lienzo("Paro circulatorio traumático", "Inconsciente y sin pulso: AESP, fibrilación ventricular o asistolia",
+  `<div style="display:flex;flex-direction:column;gap:7px">${P.map(paso).join("")}</div>
+   ${banda("Cada segundo cuenta: no esperar el ECG ni la ecocardiografía para empezar.")}`,
+  "Esquema. Fuente: ATLS 10.ª ed., cap. 4, p. 70.");
+</script></body></html>
