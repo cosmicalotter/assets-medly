@@ -44,7 +44,7 @@ abrirse.
   una nota. Su entrada se queda en `indices/` para volver a enseñarlo con sólo
   quitar la llave. **Desocultar lo decide el dueño**: se le pregunta antes,
   aunque el algoritmo ya esté terminado. Hoy (17 de noviembre de 2026) hay
-  47 visibles. Adultos (34): patología biliar, crisis hiperglucémicas,
+  48 visibles. Adultos (34): patología biliar, crisis hiperglucémicas,
   atención del parto y distocias, cardiotocografía, anemia, lesión renal
   aguda, asma, ACV isquémico, ACV hemorrágico, cefalea, diabetes tipo 2,
   dengue, enfermedad renal crónica, EPOC, insuficiencia cardíaca,
@@ -58,7 +58,7 @@ abrirse.
   (`vih.json`, adolescentes y adultos, con gestantes) y violencia sexual
   (`violencia_sexual.json`,
   todas las edades).
-  Pediatría (14): hipoglucemia, infección urinaria (`itupediatrica.json`), neuroinfección (`neuroinfeccion_pediatrica.json`), líquidos y electrolitos (`deshidratacion.json`),
+  Pediatría (15): hipoglucemia, falla de medro (`falla_medro.json`), infección urinaria (`itupediatrica.json`), neuroinfección (`neuroinfeccion_pediatrica.json`), líquidos y electrolitos (`deshidratacion.json`),
   enfermedad diarreica aguda, infecciones
   respiratorias altas (`Amigdalitis_bacteriana_pediatricos.json`), asma,
   neumonía y bronquiolitis, epilepsia, desnutrición aguda, síndrome
