@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre una foto real: pesar, leer y graficar (Oliver H, Wikimedia Commons, CC BY-SA 3.0).
+// NICE NG75 (1.2.2 y 1.2.5); Res. 3280 de 2018 (pág. 110).
+const SRC = "fuentes/commons_Baby_weight_Necker_2014.jpg", R = [40, 90, 1320, 900];
+const P = [
+  { c: AMARILLO, t: "1. Pesar", x: "En una <b>balanza para bebés</b>.", m: { x: 1010, y: 690, rx: 300, ry: 140, rot: 12 }, ty: 515 },
+  { c: CIAN, t: "2. Leer el peso", x: "En <b>gramos</b>, en la pantalla de la balanza.", m: { x: 872, y: 768, rx: 85, ry: 34, rot: 10 }, ty: 860 },
+  { c: ROSA, t: "3. Graficar", x: "Con los <b>controles anteriores</b>, en la curva de la <b>OMS</b>.", m: { x: 270, y: 705, rx: 210, ry: 85, rot: 8 }, ty: 600 },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const ops = P.map((_, k) => suave(tramo(t, 0.08 + k * 0.28, 0.2 + k * 0.28)));
+  const k = 318 / R[3];
+  const el = (m, c, o) => `<ellipse cx="${m.x}" cy="${m.y}" rx="${m.rx}" ry="${m.ry}" transform="rotate(${m.rot} ${m.x} ${m.y})" fill="none" stroke="#000" stroke-opacity="${0.35 * o}" stroke-width="16"/>
+    <ellipse cx="${m.x}" cy="${m.y}" rx="${m.rx}" ry="${m.ry}" transform="rotate(${m.rot} ${m.x} ${m.y})" fill="none" stroke="${c}" stroke-opacity="${o}" stroke-width="8"/>`;
+  const svg = `<svg width="${Math.round(R[2] * k)}" height="318" viewBox="${R.join(" ")}" style="display:block;border-radius:10px">
+    <image href="${SRC}" x="0" y="0" width="1400" height="1050"/>
+    ${P.map((p, j) => el(p.m, p.c, ops[j]) + `<text x="${p.m.x}" y="${p.ty}" text-anchor="middle" font-size="40" font-weight="900" fill="${p.c}" fill-opacity="${ops[j]}" stroke="#111" stroke-opacity="${ops[j]}" stroke-width="9" paint-order="stroke">${p.t}</text>`).join("")}
+  </svg>`;
+  const caja = (p, o) => `<div class="item" style="flex:1;font-size:12px;padding:6px 9px;opacity:${0.18 + 0.82 * o};background:#F7F8FA;border-left:5px solid ${p.c === AMARILLO ? "#EAB308" : p.c}"><b style="color:${p.c === AMARILLO ? "#A16207" : p.c === CIAN ? "#0E7490" : p.c}">${p.t}</b><br>${p.x}</div>`;
+  lienzo("Pesar, leer y graficar", "Cada medida se lee junto a las anteriores",
+    `<div style="display:flex;justify-content:center">${svg}</div><div style="display:flex;gap:8px">${P.map((p, j) => caja(p, ops[j])).join("")}</div>`,
+    "Foto: Oliver H, Wikimedia Commons, CC BY-SA 3.0. Rotulada y animada por Empirica. Fuentes: NICE NG75 (1.2.2 y 1.2.5); Res. 3280 de 2018.");
+};
+window.cuadro(39, 40);
+</script></body></html>
