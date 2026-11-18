@@ -21,8 +21,8 @@ jpg foto_talla "$D/medro_talla.jpg"
 jpg foto_sns "$D/medro_suplemento_al_pecho.jpg"
 jpg foto_sonda "$D/medro_sonda.jpg"
 # Fotos de escena con título y crédito
-franja commons_Newborn_breastfeeding_in_the_NICU.jpg medro_observar_toma.jpg "Foto: Czechpeas, Wikimedia Commons, CC BY-SA 4.0. Editada por Empirica." "Observar una toma" "Recién nacido al pecho: el agarre y la succión"
-franja commons_Baby_milk_bottle_Moscow.jpg medro_biberon.jpg "Foto: Vyacheslav Argenberg, Wikimedia Commons, CC BY 4.0. Editada por Empirica." "La toma con biberón" "Ver cómo succiona y cómo se le ofrece"
+franja commons_Newborn_breastfeeding_in_the_NICU.jpg medro_observar_toma.jpg "Foto: Czechpeas, Wikimedia Commons, CC BY-SA 4.0. Editada por Empirica." "Observar una toma" "Recién nacido al pecho durante una toma"
+franja commons_Baby_milk_bottle_Moscow.jpg medro_tetero.jpg "Foto: Vyacheslav Argenberg, Wikimedia Commons, CC BY 4.0. Editada por Empirica." "La toma con tetero" "Ver cómo succiona y cómo se le ofrece"
 "$PY" -c "from PIL import Image; Image.open('$H/fuentes/commons_Child-Messy-8207.jpg').crop((0, 300, 1400, 1350)).save('$TMP/comer_solo.jpg', quality=92)"
 python3 tools/medios/franja_credito.py "$TMP/comer_solo.jpg" "$D/medro_comer_solo.jpg" "Foto: Loadmaster (David R. Tribble), Wikimedia Commons, CC BY-SA 3.0. Recortada por Empirica." --titulo "Comer solo y ensuciarse" --subtitulo "Es parte de aprender a comer"
 # Esquemas de decisión
