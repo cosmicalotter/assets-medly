@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Esquema: puntos de corte de la Res. 2465 de 2016 (cuadros 2 y 3) y de la Res. 2350 de 2020 (tabla 5).
+const ZMIN = -4, ZMAX = 2, X0 = 150, X1 = 690;
+const xz = (z) => X0 + (X1 - X0) * (z - ZMIN) / (ZMAX - ZMIN);
+const FILAS = [
+  { t: "P/T", s: "menor de 5 años", b: [[-4, -3, ROJO, "Severa"], [-3, -2, NARANJA, "Moderada"], [-2, -1, AMBAR, "Riesgo"], [-1, 1, VERDE, "Adecuado"], [1, 2, "#94A3B8", "Exceso"]] },
+  { t: "T/E", s: "todas las edades", b: [[-4, -2, MORADO, "Talla baja"], [-2, -1, tinte(MORADO, 45), "Riesgo"], [-1, 2, VERDE, "Adecuada"]] },
+  { t: "IMC/E", s: "5 a 17 años", b: [[-4, -2, ROJO, "Delgadez"], [-2, -1, AMBAR, "Riesgo"], [-1, 1, VERDE, "Adecuado"], [1, 2, "#94A3B8", "Exceso"]] },
+  { t: "PC/E", s: "menor de 5 años", b: [[-4, -2, CELESTE, "Riesgo"], [-2, 2, VERDE, "Normal"]] },
+];
+const H = 58, G = 20, Y0 = 18;
+const filas = FILAS.map((f, k) => {
+  const y = Y0 + k * (H + G);
+  return `<text x="0" y="${y + 24}" font-size="19" font-weight="900" fill="${TINTA}">${f.t}</text>
+    <text x="0" y="${y + 44}" font-size="12.5" fill="#6B7280">${f.s}</text>
+    ${f.b.map(([a, b, c, r]) => `<rect x="${xz(a) + 1.5}" y="${y}" width="${xz(b) - xz(a) - 3}" height="${H}" rx="9" fill="${c}"/>
+      <text x="${(xz(a) + xz(b)) / 2}" y="${y + 33}" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">${r}</text>`).join("")}`;
+}).join("");
+const yb = Y0 + FILAS.length * (H + G);
+const eje = [-3, -2, -1, 0, 1].map((z) => `<line x1="${xz(z)}" y1="${Y0 - 6}" x2="${xz(z)}" y2="${yb - G + 6}" stroke="${TINTA}" stroke-width="${z === -2 ? 2.5 : 1}" stroke-dasharray="${z === -2 ? "" : "3 5"}" opacity="${z === -2 ? 0.8 : 0.35}"/>
+  <text x="${xz(z)}" y="${yb + 8}" text-anchor="middle" font-size="15" font-weight="800" fill="${TINTA}">${z > 0 ? "+" + z : z}</text>`).join("");
+lienzo("Clasificar con el puntaje Z", "Puntos de corte individuales de la Resolución 2465 de 2016",
+  `<svg width="668" height="330" viewBox="0 0 700 330">${eje}${filas}
+     <text x="${X1}" y="${yb + 30}" text-anchor="end" font-size="13" fill="#6B7280">puntaje Z (desviaciones estándar)</text></svg>
+   <div style="display:flex;gap:8px">
+     <div class="item" style="flex:1;background:${tinte(ROJO, 12)}"><b style="color:${ROJO}">●</b> El <b>edema bilateral</b> es desnutrición aguda <b>severa</b> con cualquier P/T.</div>
+     <div class="item" style="flex:1;background:#F1F5F9"><b style="color:${GRIS}">●</b> Antes de los 5 años, el <b>P/E</b> y el <b>IMC/E</b> sólo son poblacionales.</div></div>`,
+  "Esquema de Empirica. Fuentes: Resolución 2465 de 2016 (cuadros 2 y 3); Resolución 2350 de 2020 (tabla 5).");
+</script></body></html>

@@ -1,0 +1,37 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación: incrementos mensuales de peso frente al percentil 5 (OMS 2009, pág. xix). Valores de ejemplo.
+const V = [0.86, 0.26, 0.8, 0.76, 0.24, 0.2];   // fracción de la escala; la línea del p5 está en 0.36
+const P5 = 0.36, X0 = 80, X1 = 650, Y0 = 30, Y1 = 300;
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const w = (X1 - X0) / V.length, yv = (v) => Y1 - (Y1 - Y0) * v;
+  const barras = V.map((v, k) => {
+    const f = suave(tramo(t, 0.04 + k * 0.1, 0.12 + k * 0.1));
+    const bajo = v < P5, par = k >= 4;
+    const c = !bajo ? AZUL : par ? ROJO : GRIS;
+    const h = (Y1 - yv(v)) * f;
+    return `<rect x="${X0 + k * w + 16}" y="${Y1 - h}" width="${w - 32}" height="${h}" rx="8" fill="${c}"/>
+      <text x="${X0 + k * w + w / 2}" y="${Y1 + 22}" text-anchor="middle" font-size="14" fill="#6B7280">mes ${k + 1}</text>`;
+  }).join("");
+  const o1 = suave(tramo(t, 0.2, 0.28)), o2 = suave(tramo(t, 0.66, 0.76));
+  const svg = `<svg width="668" height="330" viewBox="0 0 700 330">
+    <line x1="${X0}" y1="${Y1}" x2="${X1}" y2="${Y1}" stroke="#9CA3AF"/>
+    <text x="${X0 - 12}" y="${Y0 + 10}" text-anchor="end" font-size="13" fill="#6B7280">más</text>
+    <text x="${X0 - 12}" y="${Y1 - 4}" text-anchor="end" font-size="13" fill="#6B7280">menos</text>
+    ${barras}
+    <line x1="${X0}" y1="${yv(P5)}" x2="${X1}" y2="${yv(P5)}" stroke="${AMBAR}" stroke-width="3" stroke-dasharray="9 6"/>
+    <text x="${X0 - 10}" y="${yv(P5) - 4}" text-anchor="end" font-size="14" font-weight="800" fill="#B26B10">p5</text>
+    <g opacity="${o1}"><text x="${X0 + 1.5 * w}" y="${yv(P5) - 42}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${GRIS}">Uno aislado:</text>
+      <text x="${X0 + 1.5 * w}" y="${yv(P5) - 22}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${GRIS}">no informa</text></g>
+    <g opacity="${o2}"><rect x="${X0 + 4 * w + 6}" y="${yv(0.2) - 10}" width="${2 * w - 12}" height="${Y1 - yv(0.2) + 16}" rx="12" fill="none" stroke="${ROJO}" stroke-width="3"/>
+      <text x="${X0 + 5 * w}" y="${yv(P5) - 42}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${ROJO}">Dos seguidos:</text>
+      <text x="${X0 + 5 * w}" y="${yv(P5) - 22}" text-anchor="middle" font-size="14.5" font-weight="800" fill="${ROJO}">preocupan</text></g>
+  </svg>`;
+  lienzo("La velocidad de aumento de peso", "Incremento de cada mes frente al percentil 5 de la OMS (valores de ejemplo)",
+    `${svg}<div style="display:flex;gap:8px">
+      <div class="item" style="flex:1;background:#F1F5F9"><b style="color:${GRIS}">●</b> Un incremento bajo <b>aislado</b> es común en el niño sano.</div>
+      <div class="item" style="flex:1;background:${tinte(ROJO, 12)}"><b style="color:${ROJO}">●</b> <b>Dos seguidos</b> bajo el percentil 5 sólo pasan en el <b>0,3 %</b> de los sanos.</div></div>`,
+    "Esquema de Empirica con valores de ejemplo. Fuente: OMS 2009, patrones de velocidad de crecimiento (pág. xix).");
+};
+window.cuadro(39, 40);
+</script></body></html>
