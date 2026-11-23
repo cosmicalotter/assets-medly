@@ -1,0 +1,413 @@
+{
+ "titulo": "LRINEC modificada (Borschitz)",
+ "descripcion": "Variante de la LRINEC que cambia el sodio y la glucosa por el recuento de eritrocitos y el fibrinógeno, y suma el dolor, la fiebre, la taquicardia y la lesión renal aguda. Estima la sospecha de fascitis necrosante en la infección grave de partes blandas; es la que recomiendan las guías colombianas cuando hay duda clínica.",
+ "instrucciones": "Escribir los valores del ingreso y marcar los datos clínicos. Hacen falta todos para dar el resultado.",
+ "limitaciones": "Se derivó en 29 pacientes con fascitis y 59 con celulitis, sin validación externa. Un puntaje bajo no descarta la fascitis. La tabla 1 del artículo omite el tramo de PCR de 100 a 149 mg/L (2 puntos) que el texto y la figura 5 sí usan y que recoge la guía colombiana: aquí se incluye. La figura 5 rotula el corte de sospecha alta como «≥8/9»; se usa 8 o más, como la tabla 1, la ACIN y el HUN. La tabla 7 del HUN escribe la PCR como 0,5 mg/dL, una errata. La WSES y el HUN redondean la creatinina a más de 1,6 mg/dL; aquí se usa el corte exacto del artículo, más de 141 µmol/L.",
+ "tipoCalculo": "formula",
+ "formula": "pcr_puntos + leu_puntos + gr_puntos + hb_puntos + cr_puntos + fib_puntos + dolor + temp_puntos + fc_puntos + lra",
+ "decimales": 0,
+ "prefijoResultado": "LRINEC modificada",
+ "secciones": [
+  {
+   "nombre": "Laboratorio del ingreso",
+   "elementos": [
+    {
+     "id": "pcr",
+     "tipo": "input_numero",
+     "label": "Proteína C reactiva",
+     "unidad": "mg/L",
+     "min": 0,
+     "max": 1000,
+     "intervalos": [
+      {
+       "min": 150,
+       "puntos": 4
+      },
+      {
+       "min": 100,
+       "puntos": 2
+      },
+      {
+       "max": 100,
+       "puntos": 0
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "mg/dL",
+       "factor": 10
+      }
+     ],
+     "ayuda": "100 mg/L son 10 mg/dL y 150 mg/L son 15 mg/dL: revisar la unidad del laboratorio."
+    },
+    {
+     "id": "leu",
+     "tipo": "input_numero",
+     "label": "Leucocitos",
+     "unidad": "/mm³",
+     "min": 100,
+     "max": 200000,
+     "intervalos": [
+      {
+       "min": 15000,
+       "max": 25000,
+       "puntos": 1
+      },
+      {
+       "max": 15000,
+       "puntos": 0
+      },
+      {
+       "min": 25000,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "×10³/µL",
+       "factor": 1000
+      }
+     ]
+    },
+    {
+     "id": "gr",
+     "tipo": "input_numero",
+     "label": "Eritrocitos",
+     "unidad": "×10⁶/µL",
+     "min": 0.5,
+     "max": 9,
+     "intervalos": [
+      {
+       "min": 4,
+       "puntos": 0
+      },
+      {
+       "max": 4,
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "hb",
+     "tipo": "input_numero",
+     "label": "Hemoglobina",
+     "unidad": "g/dL",
+     "min": 2,
+     "max": 25,
+     "intervalos": [
+      {
+       "min": 11,
+       "max": 13.5,
+       "puntos": 1
+      },
+      {
+       "min": 13.5,
+       "puntos": 0
+      },
+      {
+       "max": 11,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "g/L",
+       "factor": 0.1
+      }
+     ]
+    },
+    {
+     "id": "cr",
+     "tipo": "input_numero",
+     "label": "Creatinina",
+     "unidad": "mg/dL",
+     "min": 0.1,
+     "max": 30,
+     "intervalos": [
+      {
+       "max": 1.5948,
+       "puntos": 0
+      },
+      {
+       "min": 1.5948,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "µmol/L",
+       "factor": 0.01131
+      }
+     ],
+     "ayuda": "El corte es más de 141 µmol/L, que son 1,59 mg/dL: desde 1,6 mg/dL suma 2 puntos."
+    },
+    {
+     "id": "fib",
+     "tipo": "input_numero",
+     "label": "Fibrinógeno",
+     "unidad": "mg/dL",
+     "min": 20,
+     "max": 2000,
+     "intervalos": [
+      {
+       "max": 750,
+       "puntos": 0
+      },
+      {
+       "min": 750,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "g/L",
+       "factor": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Datos clínicos",
+   "elementos": [
+    {
+     "id": "dolor",
+     "tipo": "opciones",
+     "label": "Dolor",
+     "opciones": [
+      {
+       "label": "Ninguno o leve",
+       "puntos": 0
+      },
+      {
+       "label": "Intermedio",
+       "puntos": 1
+      },
+      {
+       "label": "Fuerte",
+       "puntos": 2,
+       "detalle": "Desproporcionado a lo que se ve"
+      }
+     ]
+    },
+    {
+     "id": "temp",
+     "tipo": "input_numero",
+     "label": "Temperatura",
+     "unidad": "°C",
+     "min": 30,
+     "max": 43,
+     "intervalos": [
+      {
+       "max": 37.5,
+       "puntos": 0
+      },
+      {
+       "min": 38,
+       "puntos": 2
+      },
+      {
+       "min": 37.5,
+       "puntos": 1
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "°F",
+       "factor": 0.5556,
+       "suma": -17.778
+      }
+     ]
+    },
+    {
+     "id": "fc",
+     "tipo": "input_numero",
+     "label": "Frecuencia cardiaca",
+     "unidad": "lpm",
+     "min": 20,
+     "max": 250,
+     "intervalos": [
+      {
+       "max": 100,
+       "puntos": 0
+      },
+      {
+       "min": 100,
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "lra",
+     "tipo": "opciones",
+     "label": "Lesión renal aguda",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1,
+       "detalle": "Oliguria o creatinina en ascenso sin enfermedad renal previa"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 0,
+   "max": 5,
+   "categoria": "Sospecha baja (5 o menos)",
+   "color": "verde",
+   "match_opcion_index": 2,
+   "approach": "Sospecha **baja**, pero **no la descarta**: si la duda persiste, pedir resonancia o TAC con contraste."
+  },
+  {
+   "min": 6,
+   "max": 7,
+   "categoria": "Sospecha (6-7)",
+   "color": "naranja",
+   "match_opcion_index": 1,
+   "approach": "Hay **sospecha** de fascitis: pedir **resonancia** o TAC con contraste sin demora y valoración por cirugía; operar si la clínica avanza."
+  },
+  {
+   "min": 8,
+   "max": 19,
+   "categoria": "Sospecha alta (8 o más)",
+   "color": "rojo",
+   "match_opcion_index": 0,
+   "approach": "**Sospecha alta** de fascitis: llevar a **cirugía** de inmediato; las imágenes no deben retrasarla."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (La LRINEC de base)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=6",
+   "paginas": "6",
+   "texto": "It uses six different serologic parameters: C-reactive protein (CRP, >150 mg/l – 4 points), total white cell count (<15 x106/mm3 - 0 points, 15–25 - 1 point, >25 - 2 points)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Hemoglobina, sodio, creatinina y glucosa)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=6",
+   "paginas": "6",
+   "texto": "haemoglobin (>13.5 g/dl – 0 points, 11–13.5 - 1 point, <11 - 2 points), sodium (<135 mmol/L - 2 points), creatinine (>141 μmol/L – 2 points) and glucose (>10 mmol/L – 1 point)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (PCR: 2 puntos desde 100 mg/L)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "First, a CRP >100 mg/l received 2 points, and >150 mg/l received 4 points (second panel from left, Fig 5B)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Valderrama-Beltrán S, Cortés JA, Caro MA, et al. Guía de práctica clínica para el diagnóstico y manejo de las infecciones de piel y tejidos blandos en Colombia. Infectio. 2019;23(4):318-346. (La LRINEC modificada en la guía colombiana)",
+   "url": "https://revistainfectio.org/P_OJS/index.php/infectio/article/download/805/846/2574#page=10",
+   "paginas": "327",
+   "texto": "al ajustar los valores de proteína C reactiva (150 mg/l: 4 puntos y 100 mg/L: 2 puntos), intercambiar sodio y glucosa por conteo de eritrocitos y agregar niveles de fibrinógeno",
+   "anio": "2019"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Eritrocitos y fibrinógeno en vez de sodio y glucosa)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "we suggested to exchange glucose and sodium levels for erythrocyte count (<4 x106/μl– 1 point) and fibrinogen levels (>750 mg/dl– 2 points)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Dolor y fiebre)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "adding relevant clinical parameters to the score such as pain (severe– 2 points, intermediate– 1 point, mild/none– 0 points), fever (38°C– 2 points, 37.6–37.9°C– 1 point, 37.5°C– 0 points)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Taquicardia y lesión renal aguda)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "tachycardia (>100 heart beats/minute– 1 point), and signs of acute kidney injury (– 1 point) further optimized the score",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Tabla 1: cortes)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=10",
+   "paginas": "10",
+   "texto": "Score results: 8: strong suspicion for NF; 6–7 suspicion¸ 5 no suspicion",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Cómo clasificó a los pacientes)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "Our cases of NF were now rated as 83% ‘strong suspicion’, 10% ‘suspicion’, and 7% ‘no signs of NF’",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Valores predictivos)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "the positive predictive value (PPV) for cases with ‘strong suspicion’ was improved from 0.76 to 0.8, together with an improvement of the negative predictive value (NPV) from 0.77 to 0.91",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Cómo se gradúa el dolor)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=3",
+   "paginas": "3",
+   "texto": "Pain assessment was performed by categorization into ‘no pain/mild pain’ = 0, ‘intermediate pain’ = 1, and ‘strong pain’ = 2",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Qué es la lesión renal aguda)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=3",
+   "paginas": "3",
+   "texto": "Patients without prior renal disease that developed oliguria and/or elevated creatinine levels were graded as those with ‘acute renal injury’ as a result of the present condition",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Estudio pequeño)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=3",
+   "paginas": "3",
+   "texto": "The age of all 29 NF patients was 57.1±17.1 years (mean ±SD, range 20–91 years), amongst whom 18 (62%) were male and 11 (38%) female",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Meléndez Rhenals S, et al. Estándar clínico basado en la evidencia: diagnóstico y tratamiento del paciente adulto con infección de piel y tejidos blandos en el Hospital Universitario Nacional de Colombia. Bogotá: Universidad Nacional de Colombia; 2025. (Tabla 7: LRINEC modificada en mg/dL)",
+   "url": "https://www.hun.edu.co/sites/default/files/2025-07/Infeccion-de-piel.pdf#page=58",
+   "paginas": "58",
+   "texto": "Hemoglobina > 13.5 g/dl 0 puntos 11-13.5 g/dl 1 punto < 11 g/dl 2 puntos 903895 Creatinina > 1.6 mg/dl 2 puntos 902024 Niveles de fibrinógeno > 750 mg/dl 2 puntos",
+   "anio": "2025"
+  },
+  {
+   "titulo": "Valderrama-Beltrán S, Cortés JA, Caro MA, et al. Guía de práctica clínica para el diagnóstico y manejo de las infecciones de piel y tejidos blandos en Colombia. Infectio. 2019;23(4):318-346. (Recomendación 18: LRINEC modificada si hay duda)",
+   "url": "https://revistainfectio.org/P_OJS/index.php/infectio/article/download/805/846/2574#page=18",
+   "paginas": "335",
+   "texto": "En pacientes con duda clínica, se recomienda usar la escala de LRINEC modificado para orientar la decisión del manejo quirúrgico",
+   "anio": "2019"
+  },
+  {
+   "titulo": "Meléndez Rhenals S, et al. Estándar clínico basado en la evidencia: diagnóstico y tratamiento del paciente adulto con infección de piel y tejidos blandos en el Hospital Universitario Nacional de Colombia. Bogotá: Universidad Nacional de Colombia; 2025. (R. LRINEC modificada sin alta sospecha)",
+   "url": "https://www.hun.edu.co/sites/default/files/2025-07/Infeccion-de-piel.pdf#page=57",
+   "paginas": "57",
+   "texto": "En caso de no tener una alta sospecha frente al diagnóstico de iptb necrosante, se recomienda que, adicional al inicio de la antibioticoterapia de amplio espectro, se aplique la escala",
+   "anio": "2025"
+  },
+  {
+   "titulo": "Sartelli M, Guirao X, Hardcastle TC, et al. 2018 WSES/SIS-E consensus conference: recommendations for the management of skin and soft-tissue infections. World J Emerg Surg. 2018;13:58. Licencia CC BY 4.0. (La LRINEC no sirve para descartar)",
+   "url": "https://wjes.biomedcentral.com/counter/pdf/10.1186/s13017-018-0219-9.pdf#page=11",
+   "paginas": "11",
+   "texto": "The authors concluded that due to poor sensitivity, LRINEC should not be used to rule-out NSTIs",
+   "anio": "2018"
+  },
+  {
+   "titulo": "Valderrama-Beltrán S, Cortés JA, Caro MA, et al. Guía de práctica clínica para el diagnóstico y manejo de las infecciones de piel y tejidos blandos en Colombia. Infectio. 2019;23(4):318-346. (Recomendación 17: no retrasar el tratamiento)",
+   "url": "https://revistainfectio.org/P_OJS/index.php/infectio/article/download/805/846/2574#page=18",
+   "paginas": "335",
+   "texto": "Se recomienda que el uso de escalas o procedimientos diagnósticos no retrase el inicio de tratamiento en pacientes con alta sospecha clínica",
+   "anio": "2019"
+  }
+ ]
+}

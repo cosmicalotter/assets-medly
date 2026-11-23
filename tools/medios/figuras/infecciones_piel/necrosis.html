@@ -1,0 +1,87 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Cómo avanza la fascitis necrosante (IDSA 2014, p. e28 y e30; WSES 2018, p. 12 y 14): la infección corre por la fascia más
+// allá de lo que se ve en la piel (induración leñosa y edema más allá del eritema, dolor desproporcionado); las toxinas
+// trombosan vénulas y arteriolas y la piel se necrosa (equimosis, ampollas); aparecen anestesia y gas (crepitación).
+// El desbridamiento quirúrgico temprano y completo es lo que más cambia el pronóstico.
+const DERMIS = "#F0AE93", SUB = "#FBE3A1", FASCIA = "#D8DEE6", MUSC = "#C9505A", NEC = "#3F3F46", VASO = "#DC2626", NERVIO = "#F59E0B";
+const W0 = 16, W1 = 590;
+const ETAPAS = [
+  [0.0, "Entra por una herida", "Las bacterias llegan a la <b>fascia</b> desde una herida, a veces mínima", "#7C3AED"],
+  [0.2, "Corre por la fascia", "Debajo avanza más de lo que se ve: <b>dolor desproporcionado</b> y edema más allá del eritema", "#7C3AED"],
+  [0.46, "Trombosis de los vasos", "Las toxinas trombosan los vasos: <b>equimosis</b>, <b>ampollas</b> y necrosis de la piel", ROJO],
+  [0.7, "Anestesia y gas", "La piel pierde la sensibilidad (<b>anestesia</b>) y el gas da <b>crepitación</b>", ROJO],
+  [0.86, "Sólo la cirugía la detiene", "<b>Desbridamiento</b> temprano y completo de todo el tejido muerto", VERDE],
+];
+
+function escena(t) {
+  const xe = 120;                                   // herida de entrada
+  const av = suave(tramo(t, 0.08, 0.8));             // avance por la fascia
+  const der = xe + (W1 - 40 - xe) * av, izq = xe - (xe - W0 - 10) * Math.min(1, av * 3);
+  const eritema = Math.min(100, 40 + 60 * suave(tramo(t, 0.15, 0.75))); // el eritema visible crece mucho menos
+  const trombo = suave(tramo(t, 0.46, 0.66));
+  const gas = suave(tramo(t, 0.7, 0.82));
+  const anest = suave(tramo(t, 0.72, 0.84));
+  let s = "";
+  // capas
+  s += `<rect x="${W0}" y="40" width="${W1 - W0}" height="16" fill="#F6CBA8"/>`;
+  s += `<rect x="${W0}" y="56" width="${W1 - W0}" height="44" fill="${DERMIS}"/>`;
+  s += `<rect x="${W0}" y="100" width="${W1 - W0}" height="110" fill="${SUB}"/>`;
+  for (let i = 0; i < 15; i++) s += `<ellipse cx="${W0 + 22 + i * 44}" cy="${128 + (i % 2) * 44}" rx="19" ry="16" fill="#FDF0C4" stroke="#E8C86E" stroke-width="1.5"/>`;
+  s += `<rect x="${W0}" y="210" width="${W1 - W0}" height="16" fill="${FASCIA}"/>`;
+  s += `<rect x="${W0}" y="226" width="${W1 - W0}" height="100" fill="${MUSC}"/>`;
+  for (let k = 0; k < 7; k++) s += `<line x1="${W0}" y1="${238 + k * 13}" x2="${W1}" y2="${238 + k * 13}" stroke="#B23E49" stroke-width="2"/>`;
+  // nervio cutáneo
+  s += `<path d="M${W0} 92 Q200 82 340 92 T${W1} 90" stroke="${NERVIO}" stroke-width="3" fill="none" stroke-dasharray="${anest > 0 ? "8 6" : "none"}" opacity="${1 - 0.7 * anest}"/>`;
+  // vasos perforantes de la fascia a la dermis
+  for (let x = 70; x < W1; x += 80) {
+    const tocado = x > izq && x < der;
+    const c = tocado && trombo > 0 ? `color-mix(in srgb, #111 ${Math.round(85 * trombo)}%, ${VASO})` : VASO;
+    s += `<path d="M${x} 212 C${x - 10} 170 ${x + 12} 130 ${x} 70" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+  }
+  // necrosis de la fascia
+  s += `<rect x="${izq}" y="206" width="${der - izq}" height="24" rx="6" fill="${NEC}"/>`;
+  s += `<rect x="${izq}" y="206" width="${der - izq}" height="24" rx="6" fill="#7C3AED" fill-opacity="0.35"/>`;
+  if (av > 0.05 && av < 0.98) s += flecha(der - 30, 218, der + 22, 218, "#fff", 3, 10);
+  // edema e induración del subcutáneo sobre la necrosis
+  s += `<rect x="${izq}" y="100" width="${der - izq}" height="106" fill="#A78BFA" fill-opacity="${0.18 * av}"/>`;
+  // lo que se ve en la piel: eritema, luego equimosis y ampollas
+  s += `<rect x="${xe - eritema}" y="40" width="${2 * eritema}" height="16" fill="${ROJO}" fill-opacity="0.55"/>`;
+  if (trombo > 0) {
+    s += `<rect x="${xe - 60}" y="40" width="${Math.max(0, (der - xe) * 0.55 * trombo + 60)}" height="16" fill="#6D28D9" fill-opacity="${0.6 * trombo}"/>`;
+    for (const [x, r] of [[150, 13], [210, 10], [265, 15]]) if (x < der) s += `<ellipse cx="${x}" cy="36" rx="${r * trombo}" ry="${r * 0.7 * trombo}" fill="#BFDBFE" stroke="#1D4ED8" stroke-width="2"/>`;
+  }
+  // gas
+  for (const [x, y] of [[180, 150], [240, 175], [300, 140], [360, 165], [420, 150], [270, 120]]) if (x < der)
+    s += `<circle cx="${x}" cy="${y}" r="${7 * gas}" fill="#fff" stroke="#334155" stroke-width="2" opacity="${gas}"/>`;
+  // herida
+  s += `<path d="M${xe - 8} 40 L${xe} 64 L${xe + 8} 40" fill="#7F1D1D"/>`;
+  // llave: lo que se ve frente a lo que hay
+  const llave = (a, b, y, c, txt) => b - a < 8 ? "" : `<path d="M${a} ${y} L${a} ${y + 8} L${b} ${y + 8} L${b} ${y}" stroke="${c}" stroke-width="3" fill="none"/>
+    <text x="${(a + b) / 2}" y="${y + 26}" text-anchor="middle" font-size="14" font-weight="800" fill="${c}">${txt}</text>`;
+  const rotulos = [["Piel", 78], ["Subcutáneo", 160], ["Fascia", 222], ["Músculo", 280]]
+    .map(([n, y]) => `<text x="${W1 + 8}" y="${y + 36}" font-size="14" font-weight="700" fill="${n === "Fascia" ? "#7C3AED" : "#64748B"}">${n}</text>`).join("");
+  const a = xe - eritema, b = xe + eritema;
+  return `<svg width="640" height="372" viewBox="0 0 680 396">
+    <text x="${(a + b) / 2}" y="14" text-anchor="middle" font-size="14" font-weight="800" fill="${ROJO}">Eritema que se ve</text>
+    <path d="M${a} 20 L${a} 28 M${a} 20 L${b} 20 L${b} 28" stroke="${ROJO}" stroke-width="3" fill="none"/>
+    <defs><clipPath id="corte"><rect x="${W0}" y="0" width="${W1 - W0}" height="330"/></clipPath></defs><g transform="translate(0,32)"><g clip-path="url(#corte)">${s}</g></g>${rotulos}
+    <path d="M${izq} 366 L${izq} 374 L${der} 374 L${der} 366" stroke="#7C3AED" stroke-width="3" fill="none" opacity="${av > 0.3 ? 1 : 0}"/>
+    <text x="${(izq + der) / 2}" y="${392}" text-anchor="middle" font-size="14" font-weight="800" fill="#7C3AED" opacity="${av > 0.3 ? 1 : 0}">Necrosis bajo la piel</text>
+  </svg>`;
+}
+
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const k = ETAPAS.filter((e) => t >= e[0]).length - 1;
+  const [, tit, txt, c] = ETAPAS[k];
+  const pasos = ETAPAS.map((e, j) => `<div style="flex:1;height:7px;border-radius:4px;background:${j <= k ? e[3] : "#E5E7EB"}"></div>`).join("");
+  lienzo("Fascitis necrosante: lo que no se ve", "La necrosis corre por la fascia mucho más allá del eritema de la piel",
+    `${escena(t)}
+     <div style="display:flex;gap:5px">${pasos}</div>
+     <div class="caja" style="border:2px solid ${c};background:${tinte(c, 10)};display:flex;gap:12px;align-items:center">
+       <div style="font-size:17px;font-weight:900;color:${c};width:205px;flex:none">${k + 1}. ${tit}</div>
+       <div style="font-size:14.5px;line-height:1.35"><span>${txt}</span></div></div>`,
+    "Esquema de fisiología. Fuente: IDSA 2014, p. e28 y e30; WSES 2018, p. 12 y 14.");
+};
+window.cuadro(30, 60);
+</script></body></html>

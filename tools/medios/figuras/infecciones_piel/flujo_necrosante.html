@@ -1,0 +1,40 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Primeras horas de la infección necrosante (ACIN 2019, recs. 17, 21-23, p. 335; HUN 2025, información adicional Q, S, T, U y
+// V, p. 56-60, y punto de control 4, p. 73; WSES 2018, p. 13-14): hemocultivos y antibiótico de inmediato, cirugía sin pasar
+// de 6 h (HUN; WSES: antes de 12 h del ingreso), cuidado intensivo, revisión a las 12-24 h y ajuste al cultivo a las 48-72 h.
+// GIF de flujo: un marcador recorre la línea de tiempo y las tarjetas se encienden en orden.
+const PASOS = [
+  { c: "#7C3AED", t: "0 h", tit: "Sospecha", txt: "Dolor desproporcionado, <b>progresión rápida</b>, ampollas, crepitación" },
+  { c: ROJO, t: "Ya", tit: "Hemocultivos y antibiótico", txt: "Vancomicina + <b>piperacilina-tazobactam</b> o cefepime + <b>clindamicina</b>" },
+  { c: ROJO, t: "< 6 h", tit: "Cirugía", txt: "Desbridar <b>todo</b> el tejido muerto; tejido profundo para Gram, cultivo y biopsia" },
+  { c: AZUL, t: "", tit: "Cuidado intensivo", txt: "Soporte de órganos; vigilar la <b>hipoperfusión</b>" },
+  { c: AMBAR, t: "12-24 h", tit: "Revisión en quirófano", txt: "Repetirla hasta que <b>no quede necrosis</b>" },
+  { c: VERDE, t: "48-72 h", tit: "Cultivo", txt: "Estrechar el antibiótico: estreptococo o clostridio, <b>penicilina + clindamicina</b>" },
+];
+function caja(e, op) {
+  return `<div style="opacity:${op};flex:1;border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:10px 12px;min-height:128px">
+    <div style="font-weight:900;color:${e.c === AMBAR ? "#B26B10" : e.c};font-size:17px">${e.tit}</div><div style="font-size:14.5px;line-height:1.35;margin-top:4px"><span>${e.txt}</span></div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const a = (k) => 0.03 + k * 0.14;
+  const op = (k) => 0.16 + 0.84 * suave(tramo(t, a(k), a(k) + 0.06));
+  const xs = [40, 150, 260, 370, 480, 600];
+  let xm = xs[0];
+  for (let k = 1; k < xs.length; k++) xm += (xs[k] - xs[k - 1]) * suave(tramo(t, a(k) - 0.04, a(k) + 0.02));
+  const linea = `<svg width="668" height="64" viewBox="0 0 668 64">
+    <line x1="40" y1="26" x2="600" y2="26" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+    <line x1="40" y1="26" x2="${xm}" y2="26" stroke="${ROJO}" stroke-width="6" stroke-linecap="round"/>
+    ${xs.map((x, k) => `<circle cx="${x}" cy="26" r="7" fill="#fff" stroke="${PASOS[k].c}" stroke-width="3"/>
+      <text x="${x}" y="54" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151">${PASOS[k].t}</text>`).join("")}
+    <circle cx="${xm}" cy="26" r="11" fill="${ROJO}" stroke="#fff" stroke-width="3"/>
+  </svg>`;
+  const html = `${linea}
+    <div style="display:flex;gap:10px">${PASOS.slice(0, 3).map((e, k) => caja(e, op(k))).join("")}</div>
+    <div style="display:flex;gap:10px">${PASOS.slice(3).map((e, k) => caja(e, op(k + 3))).join("")}</div>
+    <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.86, 0.92))};background:#1F2A37;color:#fff;font-weight:700;font-size:14px">Con alta sospecha, ni las escalas ni las imágenes deben <b style="color:#FCA5A5">retrasar</b> la cirugía.</div>`;
+  lienzo("Infección necrosante: las primeras horas", "Del momento de la sospecha al antibiótico dirigido",
+    html, "Esquema. Fuente: ACIN 2019, recs. 17 y 21-23, p. 335; HUN 2025, p. 56-60 y 73; WSES 2018, p. 13-14.");
+};
+window.cuadro(59, 60);
+</script></body></html>

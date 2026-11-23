@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Antibiótico en la mordedura (IDSA 2014, recs. 40 y 42, p. e17; evidencia y tabla 5, p. e33-e34): amoxicilina-clavulanato
+// cubre aerobios y anaerobios; las alternativas necesitan cubrir anaerobios; la clindamicina sola no cubre Pasteurella y la
+// Eikenella de la mordedura humana resiste las cefalosporinas de 1.ª generación, los macrólidos y la clindamicina.
+const html = filaC(
+    tarjeta(TEAL, "Primera elección", ["<b>Amoxicilina-clavulanato</b> VO", "Si necesita IV: <b>ampicilina-sulbactam</b>", "Preventivo: <b>3 a 5 días</b>"], { grande: true }) +
+    tarjeta(AMBAR, "Si hay alergia", ["<b>Doxiciclina</b>", "TMP-SMX o una quinolona <b>+ metronidazol</b>", "Embarazo: sin doxiciclina ni quinolonas"], { grande: true })) +
+  filaC(
+    tarjeta(ROJO, "No usar solos", ["<b>Clindamicina</b>: no cubre Pasteurella", "<b>Macrólidos</b>: actividad variable"], { grande: true }) +
+    tarjeta(MORADO, "Mordedura humana", ["<b>Eikenella</b> resiste las cefalosporinas de 1.ª generación, los macrólidos y la clindamicina", "Sirven amoxicilina-clavulanato o ampicilina-sulbactam"], { grande: true })) +
+  banda("La mordedura con pus suele ser <b style=\"color:#FDE68A\">polimicrobiana</b>: aerobios y anaerobios.");
+lienzo("Antibióticos en la mordedura", "Deben cubrir aerobios y anaerobios de la boca del animal o la persona",
+  `<div style="display:flex;flex-direction:column;gap:9px;flex:1 0 auto">${html}</div>`,
+  "Esquema. Fuente: IDSA 2014, recomendaciones 40 y 42, p. e17; tabla 5 y texto, p. e33-e34.");
+</script></body></html>

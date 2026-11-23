@@ -1,0 +1,488 @@
+{
+ "titulo": "Infección del pie diabético (IWGDF/IDSA)",
+ "descripcion": "Clasifica la infección del pie en la persona con diabetes en cuatro grados, de no infectado a grave, con signos locales, la extensión y los criterios de SIRS, y añade (O) si hay osteomielitis. El grado orienta la hospitalización, la vía del antibiótico y la urgencia de la cirugía (IWGDF/IDSA 2023).",
+ "instrucciones": "Marcar los signos locales de inflamación en cualquier parte del pie, la extensión, los criterios de SIRS y si hay osteomielitis. Los signos locales cuentan sólo si no hay otra causa de inflamación.",
+ "limitaciones": "No aplica si la inflamación tiene otra causa: trauma, gota, neuroartropatía de Charcot aguda, fractura, trombosis o estasis venosa. La isquemia del pie dificulta el diagnóstico y el tratamiento.",
+ "tipoCalculo": "formula",
+ "formula": "1 + ((1 - ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo)))) * (1 - ((1 - ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo)))) * (1 - (1 - osteo) * (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1))) * prof)))) * (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) + 2 * ((1 - ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo)))) * (1 - (1 - osteo) * (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1))) * prof))) + 3 * ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo))) + 0.5 * osteo * (((1 - ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo)))) * (1 - (1 - osteo) * (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1))) * prof))) + ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo)))) - ((0.5 * ((s_temp + s_fc + s_fr + s_leu) + 2 - abs((s_temp + s_fc + s_fr + s_leu) - 2)) - 0.5 * ((s_temp + s_fc + s_fr + s_leu) + 1 - abs((s_temp + s_fc + s_fr + s_leu) - 1))) * (1 - (0.5 * ((hinch + rubor + dolor + calor + pus) + 2 - abs((hinch + rubor + dolor + calor + pus) - 2)) - 0.5 * ((hinch + rubor + dolor + calor + pus) + 1 - abs((hinch + rubor + dolor + calor + pus) - 1)))) * (1 - osteo))",
+ "decimales": 1,
+ "mostrarPuntaje": false,
+ "prefijoResultado": "Grado",
+ "secciones": [
+  {
+   "nombre": "Signos locales",
+   "elementos": [
+    {
+     "id": "hinch",
+     "tipo": "opciones",
+     "label": "A · Edema: hinchazón o induración local",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ],
+     "ayuda": "Cuentan sólo si no hay otra causa: trauma, gota, Charcot agudo, fractura, trombosis o estasis venosa."
+    },
+    {
+     "id": "rubor",
+     "tipo": "opciones",
+     "label": "B · Eritema: más de 0,5 cm alrededor de la herida",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "dolor",
+     "tipo": "opciones",
+     "label": "C · Dolor: sensibilidad o dolor local",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "calor",
+     "tipo": "opciones",
+     "label": "D · Calor local aumentado",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "pus",
+     "tipo": "opciones",
+     "label": "E · Pus: secreción purulenta",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Extensión",
+   "elementos": [
+    {
+     "id": "prof",
+     "tipo": "opciones",
+     "label": "F · Extensión de la infección",
+     "opciones": [
+      {
+       "label": "Eritema de 0,5 a 2 cm, sólo piel y subcutáneo",
+       "puntos": 0
+      },
+      {
+       "label": "Eritema de 2 cm o más, o tejidos profundos",
+       "puntos": 1,
+       "detalle": "Tendón, músculo, articulación o hueso"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Respuesta sistémica (SIRS)",
+   "elementos": [
+    {
+     "id": "s_temp",
+     "tipo": "opciones",
+     "label": "1 · Temperatura: más de 38 °C o menos de 36 °C",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "s_fc",
+     "tipo": "opciones",
+     "label": "2 · Frecuencia cardíaca: más de 90 lpm",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "s_fr",
+     "tipo": "opciones",
+     "label": "3 · Respiración: más de 20 rpm o PaCO₂ menor de 32 mmHg",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    },
+    {
+     "id": "s_leu",
+     "tipo": "opciones",
+     "label": "4 · Leucocitos: más de 12 000 o menos de 4000/mm³, o más del 10 % de cayados",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Hueso",
+   "elementos": [
+    {
+     "id": "osteo",
+     "tipo": "opciones",
+     "label": "O · Osteomielitis demostrada",
+     "opciones": [
+      {
+       "label": "No",
+       "puntos": 0
+      },
+      {
+       "label": "Sí",
+       "puntos": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 4.5,
+   "max": 4.5,
+   "categoria": "Grado 4 (O): grave con osteomielitis",
+   "color": "rojo",
+   "match_opcion_index": 3,
+   "si": {
+    "todos": [
+     {
+      "suma": [
+       "s_temp",
+       "s_fc",
+       "s_fr",
+       "s_leu"
+      ],
+      "minimo": 2
+     },
+     {
+      "id": "osteo",
+      "igual": 1
+     }
+    ]
+   },
+   "approach": "**Hospitalizar**, antibiótico **IV** y valoración quirúrgica **urgente**; cultivar **hueso** y planear la duración por la osteomielitis."
+  },
+  {
+   "min": 4,
+   "max": 4,
+   "categoria": "Grado 4: grave",
+   "color": "rojo",
+   "match_opcion_index": 3,
+   "si": {
+    "todos": [
+     {
+      "suma": [
+       "s_temp",
+       "s_fc",
+       "s_fr",
+       "s_leu"
+      ],
+      "minimo": 2
+     },
+     {
+      "suma": [
+       "hinch",
+       "rubor",
+       "dolor",
+       "calor",
+       "pus"
+      ],
+      "minimo": 2
+     }
+    ]
+   },
+   "approach": "**Hospitalizar**, antibiótico **IV** (el oral, sólo después) y valoración quirúrgica **urgente**."
+  },
+  {
+   "min": 3.5,
+   "max": 3.5,
+   "categoria": "Grado 3 (O): moderada con osteomielitis",
+   "color": "naranja",
+   "match_opcion_index": 2,
+   "si": {
+    "id": "osteo",
+    "igual": 1
+   },
+   "approach": "Cultivar **hueso** y dar el antibiótico según lo hecho: **2-5 días** si se resecó todo, **3 semanas** con margen positivo y **6** sin cirugía."
+  },
+  {
+   "min": 3,
+   "max": 3,
+   "categoria": "Grado 3: moderada",
+   "color": "naranja",
+   "match_opcion_index": 2,
+   "si": {
+    "todos": [
+     {
+      "suma": [
+       "hinch",
+       "rubor",
+       "dolor",
+       "calor",
+       "pus"
+      ],
+      "minimo": 2
+     },
+     {
+      "id": "prof",
+      "igual": 1
+     }
+    ]
+   },
+   "approach": "Hospitalizar si hay **enfermedad arterial** u otra comorbilidad; considerar desbridar en **24-48 h**; antibiótico de **1 a 2 semanas** en los tejidos blandos."
+  },
+  {
+   "min": 2,
+   "max": 2,
+   "categoria": "Grado 2: leve",
+   "color": "amarillo",
+   "match_opcion_index": 1,
+   "si": {
+    "suma": [
+     "hinch",
+     "rubor",
+     "dolor",
+     "calor",
+     "pus"
+    ],
+    "minimo": 2
+   },
+   "approach": "Tratar en **casa** contra los **grampositivos** de 1 a 2 semanas; tomar una muestra de **tejido** para cultivo."
+  },
+  {
+   "min": 0,
+   "max": 0,
+   "categoria": "SIRS sin infección local",
+   "color": "rojo",
+   "match_opcion_index": 3,
+   "si": {
+    "suma": [
+     "s_temp",
+     "s_fc",
+     "s_fr",
+     "s_leu"
+    ],
+    "minimo": 2
+   },
+   "approach": "**No** es grado 1: la tabla no lo clasifica, pero el SIRS también define la infección. Buscar otro **foco**; si no lo hay, buscar una infección profunda (absceso bajo la fascia, osteomielitis), manejar como **grave** y pedir valoración quirúrgica **urgente**."
+  },
+  {
+   "min": 1,
+   "max": 1,
+   "categoria": "Grado 1: sin infección",
+   "color": "verde",
+   "match_opcion_index": 0,
+   "approach": "No dar **antibiótico**: cuidar la úlcera según el algoritmo de **diabetes**."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 1b: clasificar con IWGDF/IDSA)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=2",
+   "paginas": "2",
+   "texto": "Asses the severity of any Diabetes‐related foot infection (DFI) using the International Working Group on the Diabetic Foot (IWGDF)/Infectious Diseases Society of America (IDSA) classification scheme",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Definición de infección del pie diabético)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "we define a DFI based on the presence of evidence of (a) inflammation of any part of the foot, not just of an ulcer, or (b) findings of SIRS",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: infección leve)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "Infected: At least two of these items are present: Local swelling or induration Erythema >0.5 but <2 cm around the wound Local tenderness or pain Local increased warmth Purulent discharge 2/Mild",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: descartar otra causa de inflamación)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "And, no other cause of an inflammatory response of the skin (e.g., trauma, gout, acute charcot neuro‐arthropathy, fracture, thrombosis, or venous stasis)",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: infección moderada)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "Infection with no systemic manifestations and involving: Erythema extending ≥2 cm from the wound margin, and/or Tissue deeper than skin and subcutaneous tissues (e.g., tendon, muscle, joint, and bone)",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: infección grave)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "Any foot infection with associated systemic manifestations (of the systemic inflammatory response syndrome [SIRS]), as manifested by ≥2 of the following",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: los criterios de SIRS)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "Temperature, >38°C or <36°C Heart rate, >90 beats/min Respiratory rate, >20 breaths/min, or PaCO2 < 4.3 kPa (32 mmHg) White blood cell count >12,000/mm3, or < 4G/L, or >10% immature (band) forms",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 1: añadir (O) si hay osteomielitis)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=7",
+   "paginas": "7",
+   "texto": "if osteomyelitis is demonstrated in the absence of ≥2 signs/symptoms of local or systemic inflammation, classify the foot as either grade 3(O) (if <2 SIRS criteria) or grade 4(O)",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Falla multiorgánica sin signos locales)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=4",
+   "paginas": "4",
+   "texto": "may need to undergo lower extremity amputation to control infection or develop multiorgan failure without local clinical signs that define a DFI, but this is highly uncommon",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 11: sin antibiótico en la úlcera no infectada)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=13",
+   "paginas": "13",
+   "texto": "Do not treat clinically uninfected foot ulcers with systemic or local antibiotic therapy when the goal is to reduce the risk of new infection or to promote ulcer healing",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (La infección leve es por grampositivos)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=14",
+   "paginas": "14",
+   "texto": "In case of mild infections, the most likely causative organisms are gram‐positive pathogens (beta‐haemolytic streptococci and S. aureus). For these mild infections, there is also time to adjust the antibiotic therapy",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (La leve se trata en casa)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=8",
+   "paginas": "8",
+   "texto": "almost all patients with a mild infection, and many with a moderate infection but without any key relevant morbidities, can be treated in an ambulatory setting",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 5: cultivo de tejido)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=10",
+   "paginas": "10",
+   "texto": "consider a sample for culture to determine the causative microorganisms, preferably by aseptically collecting a tissue specimen (by curettage or biopsy) from the wound",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 12b: 1 a 2 semanas)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=3",
+   "paginas": "3",
+   "texto": "Administer antibiotic therapy to a patient with a skin or soft tissue diabetic foot infection for a duration of 1–2 weeks. (Strong; High)",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 2: cuándo hospitalizar)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=8",
+   "paginas": "8",
+   "texto": "Consider hospitalising all persons with diabetes and a foot infection who have either a severe foot infection as classified by the IWGDF/ IDSA classification or a moderate infection which is associated with key relevant morbidities",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 19: cirugía en 24-48 horas)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=3",
+   "paginas": "3",
+   "texto": "Consider performing early (within 24–48 h) surgery combined with antibiotics for moderate and severe DFIs to remove the infected and necrotic tissue. (Conditional; Low)",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 18: cirugía urgente)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=3",
+   "paginas": "3",
+   "texto": "The urgent surgical consultation should be obtained in cases of severe infection or moderate DFI complicated by extensive gangrene, necrotising infection, signs suggesting deep (below the fascia) abscess, compartment syndrome, or severe lower limb ischaemia",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 4: sin oral en la grave)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=15",
+   "paginas": "15",
+   "texto": "Oral antibiotic agents should generally not be used for severe infections, except as a follow‐on (switch) after initial parenteral therapy",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 10: cultivar hueso)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=3",
+   "paginas": "3",
+   "texto": "In a person with diabetes for whom there is a suspicion of osteomyelitis of the foot (before or after treatment), bone (rather than soft tissue) samples should be obtained for culture",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Recomendación 16: 3 o 6 semanas)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=3",
+   "paginas": "3",
+   "texto": "Consider a duration of up to 3 weeks of antibiotic therapy after minor amputation for diabetes‐related osteomyelitis of the foot and positive bone margin culture and 6 weeks for diabetes‐ related foot osteomyelitis without bone resection",
+   "anio": "2023"
+  },
+  {
+   "titulo": "Senneville É, Albalawi Z, van Asten SA, et al. IWGDF/IDSA guidelines on the diagnosis and treatment of diabetes-related foot infections (IWGDF/IDSA 2023). Diabetes Metab Res Rev. 2024;40(3):e3687. Licencia CC BY 4.0. (Tabla 5: duración en el hueso)",
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/dmrr.3687#page=16",
+   "paginas": "16",
+   "texto": "Resected Oral/initially iv 2–5 days Debrided (soft tissue infection) Oral/initially iv 1–2 weeks Positive culture or histology of bone margins after bone resection Oral/initially iv 3 weeks No surgery or dead bone Oral/initially iv 6 weeks",
+   "anio": "2023"
+  }
+ ]
+}
