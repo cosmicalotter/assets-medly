@@ -2,7 +2,7 @@
  "titulo": "LRINEC modificada (Borschitz)",
  "descripcion": "Variante de la LRINEC que cambia el sodio y la glucosa por el recuento de eritrocitos y el fibrinógeno, y suma el dolor, la fiebre, la taquicardia y la lesión renal aguda. Estima la sospecha de fascitis necrosante en la infección grave de partes blandas; es la que recomiendan las guías colombianas cuando hay duda clínica.",
  "instrucciones": "Escribir los valores del ingreso y marcar los datos clínicos. Hacen falta todos para dar el resultado.",
- "limitaciones": "Se derivó en 29 pacientes con fascitis y 59 con celulitis, sin validación externa. Su tabla original escribe la PCR en mg/dL y la creatinina como «<135 mmol/L»: aquí se usan los cortes del propio artículo para la LRINEC (PCR mayor de 150 mg/L, creatinina mayor de 141 µmol/L, es decir 1,6 mg/dL, como la tabla 7 del HUN). Un puntaje bajo no descarta la fascitis.",
+ "limitaciones": "Se derivó en 29 pacientes con fascitis y 59 con celulitis, sin validación externa. Un puntaje bajo no descarta la fascitis. La tabla 1 del artículo omite el tramo de PCR de 100 a 149 mg/L (2 puntos) que el texto y la figura 5 sí usan y que recoge la guía colombiana: aquí se incluye. La figura 5 rotula el corte de sospecha alta como «≥8/9»; se usa 8 o más, como la tabla 1, la ACIN y el HUN. La tabla 7 del HUN escribe la PCR como 0,5 mg/dL, una errata. La WSES y el HUN redondean la creatinina a más de 1,6 mg/dL; aquí se usa el corte exacto del artículo, más de 141 µmol/L.",
  "tipoCalculo": "formula",
  "formula": "pcr_puntos + leu_puntos + gr_puntos + hb_puntos + cr_puntos + fib_puntos + dolor + temp_puntos + fc_puntos + lra",
  "decimales": 0,
@@ -20,12 +20,16 @@
      "max": 1000,
      "intervalos": [
       {
-       "max": 149.99,
-       "puntos": 0
-      },
-      {
        "min": 150,
        "puntos": 4
+      },
+      {
+       "min": 100,
+       "puntos": 2
+      },
+      {
+       "max": 100,
+       "puntos": 0
       }
      ],
      "unidades": [
@@ -34,7 +38,7 @@
        "factor": 10
       }
      ],
-     "ayuda": "150 mg/L son 15 mg/dL: revisar la unidad del laboratorio."
+     "ayuda": "100 mg/L son 10 mg/dL y 150 mg/L son 15 mg/dL: revisar la unidad del laboratorio."
     },
     {
      "id": "leu",
@@ -45,16 +49,16 @@
      "max": 200000,
      "intervalos": [
       {
-       "max": 14999.99,
-       "puntos": 0
-      },
-      {
        "min": 15000,
        "max": 25000,
        "puntos": 1
       },
       {
-       "min": 25000.01,
+       "max": 15000,
+       "puntos": 0
+      },
+      {
+       "min": 25000,
        "puntos": 2
       }
      ],
@@ -78,7 +82,7 @@
        "puntos": 0
       },
       {
-       "max": 3.99,
+       "max": 4,
        "puntos": 1
       }
      ]
@@ -92,16 +96,16 @@
      "max": 25,
      "intervalos": [
       {
-       "min": 13.51,
-       "puntos": 0
-      },
-      {
        "min": 11,
        "max": 13.5,
        "puntos": 1
       },
       {
-       "max": 10.99,
+       "min": 13.5,
+       "puntos": 0
+      },
+      {
+       "max": 11,
        "puntos": 2
       }
      ],
@@ -121,11 +125,11 @@
      "max": 30,
      "intervalos": [
       {
-       "max": 1.6,
+       "max": 1.5948,
        "puntos": 0
       },
       {
-       "min": 1.6,
+       "min": 1.5948,
        "puntos": 2
       }
      ],
@@ -135,7 +139,7 @@
        "factor": 0.01131
       }
      ],
-     "ayuda": "1,6 mg/dL equivalen a 141 µmol/L."
+     "ayuda": "El corte es más de 141 µmol/L, que son 1,59 mg/dL: desde 1,6 mg/dL suma 2 puntos."
     },
     {
      "id": "fib",
@@ -150,7 +154,7 @@
        "puntos": 0
       },
       {
-       "min": 750.01,
+       "min": 750,
        "puntos": 2
       }
      ],
@@ -199,13 +203,12 @@
        "puntos": 0
       },
       {
-       "min": 37.51,
-       "max": 37.99,
-       "puntos": 1
-      },
-      {
        "min": 38,
        "puntos": 2
+      },
+      {
+       "min": 37.5,
+       "puntos": 1
       }
      ],
      "unidades": [
@@ -219,7 +222,7 @@
     {
      "id": "fc",
      "tipo": "input_numero",
-     "label": "Frecuencia cardíaca",
+     "label": "Frecuencia cardiaca",
      "unidad": "lpm",
      "min": 20,
      "max": 250,
@@ -229,7 +232,7 @@
        "puntos": 0
       },
       {
-       "min": 100.01,
+       "min": 100,
        "puntos": 1
       }
      ]
@@ -257,10 +260,10 @@
   {
    "min": 0,
    "max": 5,
-   "categoria": "Sin sospecha (5 o menos)",
+   "categoria": "Sospecha baja (5 o menos)",
    "color": "verde",
    "match_opcion_index": 2,
-   "approach": "Valor predictivo negativo del **91 %**, pero **no la descarta**: si la duda persiste, pedir resonancia o TAC con contraste."
+   "approach": "Sospecha **baja**, pero **no la descarta**: si la duda persiste, pedir resonancia o TAC con contraste."
   },
   {
    "min": 6,
@@ -273,10 +276,10 @@
   {
    "min": 8,
    "max": 19,
-   "categoria": "Sospecha fuerte (8 o más)",
+   "categoria": "Sospecha alta (8 o más)",
    "color": "rojo",
    "match_opcion_index": 0,
-   "approach": "**Fuerte sospecha** de fascitis: llevar a **cirugía** de inmediato; las imágenes no deben retrasarla."
+   "approach": "**Sospecha alta** de fascitis: llevar a **cirugía** de inmediato; las imágenes no deben retrasarla."
   }
  ],
  "referencias": [
@@ -293,6 +296,20 @@
    "paginas": "6",
    "texto": "haemoglobin (>13.5 g/dl – 0 points, 11–13.5 - 1 point, <11 - 2 points), sodium (<135 mmol/L - 2 points), creatinine (>141 μmol/L – 2 points) and glucose (>10 mmol/L – 1 point)",
    "anio": "2015"
+  },
+  {
+   "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (PCR: 2 puntos desde 100 mg/L)",
+   "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0132775&type=printable#page=9",
+   "paginas": "9",
+   "texto": "First, a CRP >100 mg/l received 2 points, and >150 mg/l received 4 points (second panel from left, Fig 5B)",
+   "anio": "2015"
+  },
+  {
+   "titulo": "Valderrama-Beltrán S, Cortés JA, Caro MA, et al. Guía de práctica clínica para el diagnóstico y manejo de las infecciones de piel y tejidos blandos en Colombia. Infectio. 2019;23(4):318-346. (La LRINEC modificada en la guía colombiana)",
+   "url": "https://revistainfectio.org/P_OJS/index.php/infectio/article/download/805/846/2574#page=10",
+   "paginas": "327",
+   "texto": "al ajustar los valores de proteína C reactiva (150 mg/l: 4 puntos y 100 mg/L: 2 puntos), intercambiar sodio y glucosa por conteo de eritrocitos y agregar niveles de fibrinógeno",
+   "anio": "2019"
   },
   {
    "titulo": "Borschitz T, Schlicht S, Siegel E, Hanke E, von Stebut E. Improvement of a clinical score for necrotizing fasciitis: ‘pain out of proportion’ and high CRP levels aid the diagnosis. PLoS One. 2015;10(7):e0132775. Licencia CC BY 4.0. (Eritrocitos y fibrinógeno en vez de sodio y glucosa)",
