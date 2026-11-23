@@ -33,7 +33,20 @@ function panelSvg(p, k) {
   </div>`;
 }
 
-function fotos({ titulo, sub, paneles, dir = "fila", alto = 380, ancho = 668, hueco = 8, notas = [], fuente }) {
+function fotos({ titulo, sub, paneles, dir = "fila", alto = 380, ancho = 668, hueco = 8, notas = [], fuente, lado = null }) {
+  // Foto casi cuadrada o vertical: la leyenda va en una columna al lado para que la imagen llene el lienzo.
+  const asp1 = paneles.length === 1 ? paneles[0].recorte[2] / paneles[0].recorte[3] : 9;
+  if (lado === null) lado = dir === "fila" && asp1 < 1.35;
+  if (lado) {
+    const H = 392, Wn = 230;
+    const w = Math.min(H * asp1, ancho - 14 - Wn), k = w / paneles[0].recorte[2];
+    lienzo(titulo, sub,
+      `<div style="display:flex;gap:14px;align-items:center;flex:1 0 auto">${panelSvg(paneles[0], k)}
+         <div style="flex:1;display:flex;flex-direction:column;gap:9px;justify-content:center">${notas.map(([c, t]) =>
+           `<div class="item" style="background:#F7F8FA;font-size:14px;line-height:1.35;padding:9px 12px"><b style="color:${c === AMARILLO ? "#B59A00" : c}">●</b> ${t}</div>`).join("")}</div></div>`,
+      fuente);
+    return;
+  }
   let ks;
   if (dir === "fila") {
     // misma altura para todos los paneles

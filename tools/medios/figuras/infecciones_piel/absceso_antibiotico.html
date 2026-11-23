@@ -1,15 +1,17 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
-// Antibiótico después del drenaje del absceso (IDSA 2014, recs. 5-6, p. e12-e13; ACIN 2019, recs. 8-10, p. 334; WSES 2018,
-// p. 6; HUN 2025, tablas 8-9, p. 65-66; ACIN 2023 pediátrica, p. 124).
-const html = banda("Primero, <b style=\"color:#FDE68A\">drenar</b>: incisión, Gram y cultivo del pus; sin empaquetar la cavidad.", "#7C2D12") +
+// Antibiótico después del drenaje del absceso (IDSA 2014, recs. 4-6, p. e12-e13; ACIN 2019, recs. 8-10 y 36, p. 334-336;
+// WSES 2018, p. 6; WSES 2022, p. 5; HUN 2025, apartado H y tablas 8-9, p. 48 y 65-66; ACIN 2023 pediátrica, p. 124).
+const html = banda("Primero, <b style=\"color:#FDE68A\">drenar</b>: incisión y cultivo del pus, salvo en el quiste epidermoide.", "#7C2D12") +
   filaC(
-    tarjeta(VERDE, "Sólo drenaje", ["Absceso <b>simple</b>", "Sin ningún criterio", "Revisar en <b>48-72 h</b>"], { grande: true }) +
-    tarjeta(AMBAR, "Drenaje + oral", ["SIRS, inmunosupresión", "Absceso de <b>más de 5 cm</b>", "Celulitis extensa, drenaje incompleto o recurrencia",
-                                       "<b>TMP-SMX o clindamicina</b> 5-7 días"], { grande: true }) +
-    tarjeta(ROJO, "Drenaje + IV", ["Hipotensión", "Falla del drenaje y del oral", "Defensas muy comprometidas",
-                                    "<b>Vancomicina</b> 7-14 días"], { grande: true })) +
-  `<div class="caja" style="background:#F1F5F9;font-size:14px"><b style="color:#0E7490">En el niño</b>, el corte del tamaño depende de la edad: más de <b>3 cm</b> de 6 a 11 meses, más de <b>4 cm</b> de 1 a 8 años y más de <b>5 cm</b> después.</div>`;
+    tarjeta(VERDE, "Sólo drenaje", ["Absceso <b>simple</b>: eritema e induración sólo sobre la colección", "Ningún criterio de antibiótico",
+                                     "Revisar en <b>48-72 h</b>", "Consultar si <b>empeora</b>"], { grande: true }) +
+    tarjeta(AMBAR, "Drenaje + oral", ["Algún <b>criterio</b> de antibiótico", "Sin criterios de <b>hospitalización</b>",
+                                       "<b>TMP-SMX o clindamicina</b> 5-7 días", "Revisar en <b>48-72 h</b>"], { grande: true }) +
+    tarjeta(ROJO, "Hospitalizar + IV", ["Sepsis o <b>inmunosupresión</b>", "Cara, cabeza o mano, o falla del tratamiento",
+                                         "<b>Vancomicina</b> 7-14 días", "En el niño grave, <b>+ oxacilina</b>"], { grande: true })) +
+  `<div class="caja" style="background:#F1F5F9;font-size:14px"><b style="color:#0E7490">En el niño</b>, antibiótico si el absceso mide más de <b>3 cm</b> de 6 a 11 meses, más de <b>4 cm</b> de 1 a 8 años o más de <b>5 cm</b> después.</div>` +
+  `<div class="caja" style="background:#FEF2F2;font-size:14px"><b style="color:#B91C1C">Absceso complejo</b> (perianal, perirrectal o de drogas IV): cubrir también <b>gramnegativos y anaerobios</b>.</div>`;
 lienzo("¿Antibiótico después de drenar?", "El drenaje cura el absceso simple; el antibiótico se suma según los criterios",
   `<div style="display:flex;flex-direction:column;gap:9px;flex:1 0 auto">${html}</div>`,
-  "Esquema. Fuente: IDSA 2014, p. e12-e13; ACIN 2019, recomendaciones 8-10, p. 334; WSES 2018, p. 6; HUN 2025, p. 65-66; ACIN 2023 pediátrica, p. 124.");
+  "Esquema. Fuente: IDSA 2014, p. e12-e13; ACIN 2019, recomendaciones 8-10 y 36, p. 334-336; WSES 2018, p. 6; WSES 2022, p. 5; HUN 2025, p. 48 y 65-66; ACIN 2023 pediátrica, p. 124.");
 </script></body></html>
