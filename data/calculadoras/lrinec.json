@@ -1,0 +1,286 @@
+{
+ "titulo": "LRINEC (riesgo de fascitis necrosante)",
+ "descripcion": "Estima, con seis datos de laboratorio del ingreso, el riesgo de que una infección grave de partes blandas sea una fascitis necrosante y no una celulitis o un absceso. De 0 a 13 puntos: 6 o más debe aumentar la sospecha y 8 o más la predice con fuerza. Ayuda a decidir la imagen o la exploración quirúrgica cuando la clínica es dudosa.",
+ "instrucciones": "Escribir los valores del ingreso. Cada dato suma según su tramo; hacen falta los seis para dar el resultado.",
+ "limitaciones": "Su sensibilidad es baja: un puntaje bajo no descarta la fascitis y la WSES desaconseja usarla para descartarla. Se derivó en un estudio retrospectivo; sólo vale en la infección de partes blandas sin otro foco séptico. Si la sospecha clínica es alta, no se espera el puntaje: se opera.",
+ "tipoCalculo": "formula",
+ "formula": "pcr_puntos + leu_puntos + hb_puntos + na_puntos + cr_puntos + glu_puntos",
+ "decimales": 0,
+ "prefijoResultado": "LRINEC",
+ "secciones": [
+  {
+   "nombre": "Laboratorio del ingreso",
+   "elementos": [
+    {
+     "id": "pcr",
+     "tipo": "input_numero",
+     "label": "Proteína C reactiva",
+     "unidad": "mg/L",
+     "min": 0,
+     "max": 1000,
+     "intervalos": [
+      {
+       "max": 149.99,
+       "puntos": 0
+      },
+      {
+       "min": 150,
+       "puntos": 4
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "mg/dL",
+       "factor": 10
+      }
+     ],
+     "ayuda": "150 mg/L son 15 mg/dL: revisar la unidad del laboratorio."
+    },
+    {
+     "id": "leu",
+     "tipo": "input_numero",
+     "label": "Leucocitos",
+     "unidad": "/mm³",
+     "min": 100,
+     "max": 200000,
+     "intervalos": [
+      {
+       "max": 14999.99,
+       "puntos": 0
+      },
+      {
+       "min": 15000,
+       "max": 25000,
+       "puntos": 1
+      },
+      {
+       "min": 25000.01,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "×10³/µL",
+       "factor": 1000
+      }
+     ]
+    },
+    {
+     "id": "hb",
+     "tipo": "input_numero",
+     "label": "Hemoglobina",
+     "unidad": "g/dL",
+     "min": 2,
+     "max": 25,
+     "intervalos": [
+      {
+       "min": 13.51,
+       "puntos": 0
+      },
+      {
+       "min": 11,
+       "max": 13.5,
+       "puntos": 1
+      },
+      {
+       "max": 10.99,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "g/L",
+       "factor": 0.1
+      }
+     ]
+    },
+    {
+     "id": "na",
+     "tipo": "input_numero",
+     "label": "Sodio",
+     "unidad": "mEq/L",
+     "min": 100,
+     "max": 180,
+     "intervalos": [
+      {
+       "min": 135,
+       "puntos": 0
+      },
+      {
+       "max": 134.99,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "mmol/L",
+       "factor": 1
+      }
+     ]
+    },
+    {
+     "id": "cr",
+     "tipo": "input_numero",
+     "label": "Creatinina",
+     "unidad": "mg/dL",
+     "min": 0.1,
+     "max": 30,
+     "intervalos": [
+      {
+       "max": 1.6,
+       "puntos": 0
+      },
+      {
+       "min": 1.6,
+       "puntos": 2
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "µmol/L",
+       "factor": 0.01131
+      }
+     ],
+     "ayuda": "1,6 mg/dL equivalen a 141 µmol/L."
+    },
+    {
+     "id": "glu",
+     "tipo": "input_numero",
+     "label": "Glucosa",
+     "unidad": "mg/dL",
+     "min": 10,
+     "max": 2000,
+     "intervalos": [
+      {
+       "max": 180.15,
+       "puntos": 0
+      },
+      {
+       "min": 180.16,
+       "puntos": 1
+      }
+     ],
+     "unidades": [
+      {
+       "unidad": "mmol/L",
+       "factor": 18.015
+      }
+     ],
+     "ayuda": "180 mg/dL equivalen a 10 mmol/L."
+    }
+   ]
+  }
+ ],
+ "resultados": [
+  {
+   "min": 0,
+   "max": 5,
+   "categoria": "Riesgo bajo (5 o menos)",
+   "color": "verde",
+   "match_opcion_index": 2,
+   "approach": "Probabilidad de fascitis **menor del 50 %**. **No la descarta**: si la clínica la sugiere, pedir resonancia o TAC, o explorar."
+  },
+  {
+   "min": 6,
+   "max": 7,
+   "categoria": "Riesgo intermedio (6-7)",
+   "color": "naranja",
+   "match_opcion_index": 1,
+   "approach": "Probabilidad del **50-75 %**: debe aumentar la sospecha. Si la clínica es dudosa, hacer **resonancia**, biopsia por congelación o la **prueba del dedo**."
+  },
+  {
+   "min": 8,
+   "max": 13,
+   "categoria": "Riesgo alto (8 o más)",
+   "color": "rojo",
+   "match_opcion_index": 0,
+   "approach": "Probabilidad **mayor del 75 %** (valor predictivo positivo del 93,4 %). Con clínica compatible, **cirugía** inmediata, sin esperar más estudios."
+  }
+ ],
+ "referencias": [
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Las seis variables)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1537",
+   "texto": "The final fitted model contains six variables: white cell count and CRP, hemoglobin, serum sodium, glucose, and serum Cr concentrations",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Tabla 2: puntos de la LRINEC)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1536",
+   "texto": "C-Reactive Protein, mg/L <150 0 0 ≥150 3.5 4 Total white cell count, per mm3 <15 0 0 15–25 0.5 1 >25 2.1 2 Hemoglobin, g/dL >13.5 0 0 11–13.5 0.6 1 <11 1.8 2",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Tabla 2: sodio, creatinina y glucosa)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1536",
+   "texto": "Sodium, mmol/L ≥135 0 0 <135 1.8 2 Creatinine, μmol/L ≤141 0 0 >141 1.8 2 Glucose, mmol/L ≤10 0 0 >10 1.2 1",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Puntaje máximo y cortes)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1536",
+   "texto": "The maximum score is 13; a score of ≥6 should raise the suspicion of necrotizing fasciitis and a score of ≥8 is strongly predictive of this disease",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Tres grupos de riesgo)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1538",
+   "texto": "stratified the patients into three groups, low (LRINEC score ≤5), moderate (LRINEC score 6– 7), or high (LRINEC score ≥8) risk categories for necrotizing soft tissue infections",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Probabilidad por grupo)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1538",
+   "texto": "These risk groups corresponded to a probability of developing necrotizing soft tissue infections of <50%, 50–75%, and >75%, respectively",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Valor predictivo de 8 o más)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1538",
+   "texto": "A score of ≥8 is strongly predictive of necrotizing fasciitis (positive predictive value, 93.4%; 95% CI, 85.5–97.2)",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Qué hacer con riesgo moderado o alto)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1539",
+   "texto": "Depending on availability, frozen section biopsy, MRI scan, or a bedside finger test should be considered for patients with equivocal clinical findings but found to have moderate or high risks",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (El diagnóstico es clínico)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1539",
+   "texto": "the diagnosis of necrotizing soft tissue infections is a clinical diagnosis, and this diagnosis or even suspicion of it warrants immediate operative debridement",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Wong CH, Khin LW, Heng KS, Tan KC, Low CO. The LRINEC (Laboratory Risk Indicator for Necrotizing Fasciitis) score: a tool for distinguishing necrotizing fasciitis from other soft tissue infections. Crit Care Med. 2004;32(7):1535-1541. (Sólo en la infección de partes blandas sin otro foco)",
+   "url": "https://doi.org/10.1097/01.CCM.0000129486.35458.7D",
+   "paginas": "1538",
+   "texto": "Used in the right context (patients with soft tissue infections with no other septic foci), the LRINEC score can significantly",
+   "anio": "2004"
+  },
+  {
+   "titulo": "Sartelli M, Guirao X, Hardcastle TC, et al. 2018 WSES/SIS-E consensus conference: recommendations for the management of skin and soft-tissue infections. World J Emerg Surg. 2018;13:58. Licencia CC BY 4.0. (La LRINEC no sirve para descartar)",
+   "url": "https://wjes.biomedcentral.com/counter/pdf/10.1186/s13017-018-0219-9.pdf#page=11",
+   "paginas": "11",
+   "texto": "The authors concluded that due to poor sensitivity, LRINEC should not be used to rule-out NSTIs",
+   "anio": "2018"
+  },
+  {
+   "titulo": "Valderrama-Beltrán S, Cortés JA, Caro MA, et al. Guía de práctica clínica para el diagnóstico y manejo de las infecciones de piel y tejidos blandos en Colombia. Infectio. 2019;23(4):318-346. (Recomendación 17: no retrasar el tratamiento)",
+   "url": "https://revistainfectio.org/P_OJS/index.php/infectio/article/download/805/846/2574#page=18",
+   "paginas": "335",
+   "texto": "Se recomienda que el uso de escalas o procedimientos diagnósticos no retrase el inicio de tratamiento en pacientes con alta sospecha clínica",
+   "anio": "2019"
+  }
+ ]
+}
