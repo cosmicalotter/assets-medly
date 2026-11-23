@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Clasificación IWGDF/IDSA de la infección del pie diabético (IWGDF/IDSA 2023, tabla 1, p. 7; recs. 2, 11, 12 y 19, p. 2-4;
+// tabla 5, p. 16) y la conducta de cada grado.
+const G = [
+  ["#64748B", "1 · Sin infección", "Ningún signo local ni sistémico", ["<b>Sin</b> antibiótico", "Cuidar la úlcera"]],
+  [VERDE, "2 · Leve", "2 o más signos locales; eritema de 0,5 a 2 cm; sólo piel y subcutáneo", ["En <b>casa</b>", "Contra grampositivos, 1-2 semanas"]],
+  [AMBAR, "3 · Moderada", "Eritema de 2 cm o más, o tendón, músculo, articulación o hueso; sin SIRS", ["Hospitalizar si hay <b>enfermedad arterial</b>", "Desbridar en 24-48 h; 2-4 semanas"]],
+  [ROJO, "4 · Grave", "Cualquiera de las anteriores con SIRS (2 o más criterios)", ["<b>Hospitalizar</b>, antibiótico IV", "Cirugía <b>urgente</b>"]],
+];
+const html = G.map(([c, tit, def, items]) => `<div style="display:flex;gap:10px;flex:1">
+    <div style="width:258px;flex:none;border-radius:12px;background:${c};color:#fff;padding:8px 12px;display:flex;flex-direction:column;justify-content:center">
+      <div style="font-size:18px;font-weight:900">${tit}</div><div style="font-size:12.8px;line-height:1.28;margin-top:2px;font-weight:600">${def}</div></div>
+    ${tarjeta(c, "Qué hacer", items, { fs: 14 })}</div>`).join("") +
+  banda("Si hay <b style=\"color:#C4B5FD\">osteomielitis</b>, se añade (O) al grado 3 o 4: cultivar el hueso.");
+lienzo("Clasificación IWGDF/IDSA del pie diabético", "El grado decide dónde se trata, por qué vía y cuándo operar",
+  `<div style="display:flex;flex-direction:column;gap:8px;flex:1 0 auto">${html}</div>`,
+  "Esquema. Fuente: IWGDF/IDSA 2023 (Diabetes Metab Res Rev 2024;40:e3687), tabla 1, p. 7; recomendaciones 2, 11, 12 y 19; tabla 5, p. 16. CC BY 4.0.");
+</script></body></html>

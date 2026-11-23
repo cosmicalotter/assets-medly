@@ -1,0 +1,94 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Profundidad de cada infección de piel y tejidos blandos (HUN 2025, información adicional C-D y glosario, p. 43-45 y 89-90;
+// WSES 2018, p. 2): impétigo en la epidermis; ectima hasta la dermis; erisipela en la dermis superior con los linfáticos;
+// celulitis en la dermis profunda y el subcutáneo; absceso en la dermis y la hipodermis; fascitis necrosante en la fascia;
+// piomiositis en el músculo.
+const CAPAS = [
+  // nombre, y0, y1, relleno
+  ["Epidermis", 52, 64, "#F6CBA8"],
+  ["Dermis superior", 64, 98, "#F0AE93"],
+  ["Dermis profunda", 98, 138, "#E79A80"],
+  ["Subcutáneo", 138, 226, "#FBE3A1"],
+  ["Fascia", 226, 240, "#D8DEE6"],
+  ["Músculo", 240, 390, "#C9505A"],
+];
+const ETAPAS = [
+  { n: "Impétigo", capa: "Epidermis", c: AMBAR, tipo: "No purulenta, superficial", txt: "Pústulas que se rompen y dejan <b>costras melicéricas</b>", sel: [0] },
+  { n: "Ectima", capa: "Epidermis y dermis", c: NARANJA, tipo: "No purulenta, superficial", txt: "<b>Úlcera en sacabocado</b> con costra; deja cicatriz", sel: [0, 1, 2] },
+  { n: "Erisipela", capa: "Dermis superior y linfáticos", c: ROSA_C, tipo: "No purulenta", txt: "Placa roja, edematosa, con <b>borde neto</b>", sel: [1] },
+  { n: "Celulitis", capa: "Dermis profunda y subcutáneo", c: ROJO, tipo: "No purulenta", txt: "Eritema de <b>bordes mal definidos</b>, con calor y dolor", sel: [2, 3] },
+  { n: "Absceso", capa: "Dermis e hipodermis", c: AMBAR, tipo: "Purulenta", txt: "<b>Cavidad llena de pus</b>: se drena", sel: [2, 3] },
+  { n: "Fascitis necrosante", capa: "Fascia", c: "#7C3AED", tipo: "Necrosante", txt: "Necrosis que corre por la fascia: <b>dolor desproporcionado</b>", sel: [4] },
+  { n: "Piomiositis", capa: "Músculo", c: "#0E7490", tipo: "Purulenta, profunda", txt: "<b>Absceso dentro del músculo</b>: se confirma con resonancia", sel: [5] },
+];
+const X0 = 16, X1 = 390;
+
+function piel(et, u) {
+  // capas de base
+  let s = CAPAS.map(([n, a, b, f]) => `<rect x="${X0}" y="${a}" width="${X1 - X0}" height="${b - a}" fill="${f}"/>`).join("");
+  // lóbulos de grasa y fibras del músculo
+  for (let i = 0; i < 9; i++) for (let j = 0; j < 2; j++)
+    s += `<ellipse cx="${X0 + 22 + i * 44 + (j ? 22 : 0)}" cy="${160 + j * 40}" rx="19" ry="15" fill="#FDF0C4" stroke="#E8C86E" stroke-width="1.5"/>`;
+  for (let k = 0; k < 10; k++) s += `<line x1="${X0}" y1="${254 + k * 14}" x2="${X1}" y2="${254 + k * 14}" stroke="#B23E49" stroke-width="2"/>`;
+  // folículos y vasos
+  for (const x of [80, 200, 330]) s += `<path d="M${x} 40 L${x} 120" stroke="#5B3A29" stroke-width="3" stroke-linecap="round"/><ellipse cx="${x}" cy="124" rx="7" ry="10" fill="#8A5A3B"/>`;
+  s += `<path d="M${X0} 92 Q120 84 200 92 T${X1} 92" stroke="#93C5FD" stroke-width="3" fill="none"/>`;
+  // lesión de la etapa
+  const a = 0.25 + 0.55 * u, c = et.c;
+  const banda = (i, op) => { const [, y0, y1] = CAPAS[i]; return `<rect x="${X0}" y="${y0}" width="${X1 - X0}" height="${y1 - y0}" fill="${c}" fill-opacity="${op}"/>`; };
+  if (et.n === "Impétigo") {
+    s += banda(0, a * 0.6);
+    for (const x of [120, 175, 260]) s += `<ellipse cx="${x}" cy="49" rx="${16 * u + 4}" ry="${6 * u + 2}" fill="#E7B53C" stroke="#9A6B12" stroke-width="2"/>`;
+  } else if (et.n === "Ectima") {
+    s += `<path d="M${200 - 46 * u} 52 Q200 ${52 + 86 * u} ${200 + 46 * u} 52 Z" fill="#7C2D12" fill-opacity="${0.35 + 0.4 * u}"/>`;
+    s += `<ellipse cx="200" cy="50" rx="${50 * u}" ry="${7 * u}" fill="#C8A14A" stroke="#7C5A12" stroke-width="2" opacity="${u}"/>`;
+    s += `<path d="M${200 - 70 * u} 64 Q200 ${64 + 90 * u} ${200 + 70 * u} 64" fill="${c}" fill-opacity="${a * 0.5}"/>`;
+  } else if (et.n === "Erisipela") {
+    s += `<rect x="${X0 + 60}" y="64" width="${280 * u}" height="34" fill="${c}" fill-opacity="${a}"/>`;
+    s += `<line x1="${X0 + 60 + 280 * u}" y1="40" x2="${X0 + 60 + 280 * u}" y2="104" stroke="${c}" stroke-width="4" stroke-dasharray="6 4"/>`;
+    s += `<path d="M${X0} 92 Q120 84 200 92 T${X1} 92" stroke="${c}" stroke-width="5" fill="none" opacity="${u}"/>`;
+  } else if (et.n === "Celulitis") {
+    s += `<defs><radialGradient id="g"><stop offset="0" stop-color="${c}" stop-opacity="${a}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs>`;
+    s += `<ellipse cx="200" cy="${150}" rx="${90 + 120 * u}" ry="${50 + 40 * u}" fill="url(#g)"/>`;
+  } else if (et.n === "Absceso") {
+    s += `<ellipse cx="200" cy="150" rx="${120 * u + 20}" ry="${50 * u + 10}" fill="${ROJO}" fill-opacity="0.22"/>`;
+    s += `<ellipse cx="200" cy="150" rx="${70 * u + 10}" ry="${42 * u + 6}" fill="#F5D76E" stroke="#B7791F" stroke-width="3"/>`;
+    s += `<text x="200" y="156" text-anchor="middle" font-size="16" font-weight="900" fill="#7C5A12" opacity="${u}">pus</text>`;
+  } else if (et.n === "Fascitis necrosante") {
+    s += `<rect x="${200 - 200 * u}" y="222" width="${400 * u}" height="22" fill="#4B5563"/>`;
+    s += `<rect x="${200 - 200 * u}" y="222" width="${400 * u}" height="22" fill="${c}" fill-opacity="0.45"/>`;
+    s += flecha(200, 233, 200 - 190 * u, 233, "#fff", 3, 10) + flecha(200, 233, 200 + 190 * u, 233, "#fff", 3, 10);
+  } else {
+    s += `<ellipse cx="200" cy="315" rx="${80 * u + 10}" ry="${34 * u + 6}" fill="#F5D76E" stroke="#B7791F" stroke-width="3"/>`;
+    s += `<ellipse cx="200" cy="315" rx="${110 * u + 14}" ry="${44 * u + 8}" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="6 4"/>`;
+  }
+  // rótulos de las capas a la izquierda... a la derecha del corte
+  const rot = CAPAS.map(([n, y0, y1], i) => {
+    const on = et.sel.includes(i);
+    return `<text x="${X1 + 10}" y="${(y0 + y1) / 2 + 5}" font-size="${on ? 14 : 13}" font-weight="${on ? 900 : 600}" fill="${on ? et.c : "#6B7280"}">${on ? "▸ " : ""}${n}</text>`;
+  }).join("");
+  return `<svg width="540" height="412" viewBox="0 30 540 362">
+    <defs><clipPath id="corte"><rect x="${X0}" y="30" width="${X1 - X0}" height="360"/></clipPath></defs>
+    <rect x="${X0}" y="30" width="${X1 - X0}" height="22" fill="#F1F5F9"/><g clip-path="url(#corte)">${s}</g>
+    <rect x="${X0}" y="52" width="${X1 - X0}" height="338" fill="none" stroke="#94A3B8" stroke-width="2"/>${rot}</svg>`;
+}
+
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / n : 0;
+  const k = Math.min(ETAPAS.length - 1, Math.floor(t * ETAPAS.length));
+  const u = suave(tramo(t * ETAPAS.length - k, 0.05, 0.55));
+  const et = ETAPAS[k];
+  const lista = ETAPAS.map((e, j) => `<div style="padding:3px 8px;border-radius:7px;font-size:12.5px;font-weight:${j === k ? 900 : 600};
+      color:${j === k ? "#fff" : j < k ? "#374151" : "#9CA3AF"};background:${j === k ? e.c : "transparent"}">${e.n}</div>`).join("");
+  const tarjetaEt = `<div class="caja" style="border:2px solid ${et.c};background:${tinte(et.c, 10)};padding:10px 12px">
+      <div style="font-size:19px;font-weight:900;color:${et.c}">${et.n}</div>
+      <div style="font-size:13.5px;font-weight:800;color:#374151;margin-top:2px">${et.capa}</div>
+      <div style="font-size:12.5px;color:#6B7280;margin-top:1px">${et.tipo}</div>
+      <div style="font-size:14px;line-height:1.35;margin-top:6px"><span>${et.txt}</span></div></div>`;
+  lienzo("¿Hasta dónde llega cada infección?", "Cada infección toma una capa distinta, de la epidermis al músculo",
+    `<div style="display:flex;gap:6px;align-items:center;flex:1 0 auto">${piel(et, u)}
+      <div style="width:150px;display:flex;flex-direction:column;gap:8px">${tarjetaEt}<div style="display:flex;flex-direction:column;gap:1px">${lista}</div></div></div>`,
+    "Esquema de un corte de la piel. Fuente: HUN 2025, información adicional C-D y glosario, p. 43-45 y 89-90; WSES 2018, p. 2.");
+};
+window.cuadro(10, 70);
+</script></body></html>

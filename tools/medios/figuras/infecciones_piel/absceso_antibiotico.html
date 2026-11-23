@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Antibiótico después del drenaje del absceso (IDSA 2014, recs. 5-6, p. e12-e13; ACIN 2019, recs. 8-10, p. 334; WSES 2018,
+// p. 6; HUN 2025, tablas 8-9, p. 65-66; ACIN 2023 pediátrica, p. 124).
+const html = banda("Primero, <b style=\"color:#FDE68A\">drenar</b>: incisión, Gram y cultivo del pus; sin empaquetar la cavidad.", "#7C2D12") +
+  filaC(
+    tarjeta(VERDE, "Sólo drenaje", ["Absceso <b>simple</b>", "Sin ningún criterio", "Revisar en <b>48-72 h</b>"], { grande: true }) +
+    tarjeta(AMBAR, "Drenaje + oral", ["SIRS, inmunosupresión", "Absceso de <b>más de 5 cm</b>", "Celulitis extensa, drenaje incompleto o recurrencia",
+                                       "<b>TMP-SMX o clindamicina</b> 5-7 días"], { grande: true }) +
+    tarjeta(ROJO, "Drenaje + IV", ["Hipotensión", "Falla del drenaje y del oral", "Defensas muy comprometidas",
+                                    "<b>Vancomicina</b> 7-14 días"], { grande: true })) +
+  `<div class="caja" style="background:#F1F5F9;font-size:14px"><b style="color:#0E7490">En el niño</b>, el corte del tamaño depende de la edad: más de <b>3 cm</b> de 6 a 11 meses, más de <b>4 cm</b> de 1 a 8 años y más de <b>5 cm</b> después.</div>`;
+lienzo("¿Antibiótico después de drenar?", "El drenaje cura el absceso simple; el antibiótico se suma según los criterios",
+  `<div style="display:flex;flex-direction:column;gap:9px;flex:1 0 auto">${html}</div>`,
+  "Esquema. Fuente: IDSA 2014, p. e12-e13; ACIN 2019, recomendaciones 8-10, p. 334; WSES 2018, p. 6; HUN 2025, p. 65-66; ACIN 2023 pediátrica, p. 124.");
+</script></body></html>
