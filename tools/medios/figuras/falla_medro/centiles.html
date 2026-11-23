@@ -1,0 +1,39 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación: el peso que cruza espacios de centil (NICE NG75, 1.2.1). Líneas y curva de ejemplo, no son las de la OMS.
+const X0 = 70, X1 = 560, Y0 = 26, Y1 = 330;
+const C = [["99,6", 2.67], ["98", 2.0], ["91", 1.33], ["75", 0.67], ["50", 0], ["25", -0.67], ["9", -1.33], ["2", -2.0], ["0,4", -2.67]];
+const base = (m) => 2.0 * Math.sqrt(m / 12);              // forma de las curvas: suben rápido y se aplanan
+const yz = (m, z) => Y1 - (Y1 - Y0) * (0.08 + 0.3 * base(m) / 2 + (z + 3.0) * 0.11);
+const xm = (m) => X0 + (X1 - X0) * m / 12;
+const NINO = (m) => (m < 3 ? 0.67 : 0.67 - 1.5 * suave(Math.min(1, (m - 3) / 7)));
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const f = suave(tramo(t, 0.05, 0.75)), mf = 12 * f;
+  const lineas = C.map(([r, z]) => {
+    const pts = []; for (let m = 0; m <= 12; m += 0.25) pts.push(`${xm(m)},${yz(m, z)}`);
+    const fuerte = r === "50";
+    return `<polyline points="${pts.join(" ")}" fill="none" stroke="${fuerte ? "#64748B" : "#94A3B8"}" stroke-width="${fuerte ? 2.4 : 1.5}"/>
+      <text x="${X1 + 8}" y="${yz(12, z) + 5}" font-size="13" fill="#475569">${r}</text>`;
+  }).join("");
+  const pts = []; for (let m = 0; m <= mf; m += 0.1) pts.push(`${xm(m)},${yz(m, NINO(m))}`);
+  const z = NINO(mf), cruzados = [0.67, 0, -0.67].filter((zz) => z < zz - 0.001).length - 1;
+  const esp = Math.max(0, cruzados);
+  const q = [xm(mf), yz(mf, z)];
+  const svg = `<svg width="668" height="360" viewBox="0 0 700 360">
+    <rect x="${xm(0)}" y="${Y0}" width="${X1 - X0}" height="${Y1 - Y0}" fill="#F8FAFC"/>
+    ${lineas}
+    <line x1="${X0}" y1="${Y1 + 4}" x2="${X1}" y2="${Y1 + 4}" stroke="#9CA3AF"/>
+    ${[0, 3, 6, 9, 12].map((m) => `<text x="${xm(m)}" y="${Y1 + 24}" text-anchor="middle" font-size="13.5" fill="#6B7280">${m} m</text>`).join("")}
+    <text x="${X1 + 8}" y="${yz(12, -2.67) + 24}" font-size="12.5" font-weight="700" fill="#475569">centil</text>
+    <polyline points="${pts.join(" ")}" fill="none" stroke="${ROJO}" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="${q[0]}" cy="${q[1]}" r="8" fill="${ROJO}" stroke="#fff" stroke-width="3"/>
+    <rect x="${X1 - 224}" y="${Y1 - 76}" width="210" height="58" rx="12" fill="#fff" stroke="${esp >= 2 ? ROJO : "#CBD5E1"}" stroke-width="2.5"/>
+    <text x="${X1 - 208}" y="${Y1 - 52}" font-size="14" fill="#475569">Espacios de centil cruzados</text>
+    <text x="${X1 - 208}" y="${Y1 - 28}" font-size="21" font-weight="900" fill="${esp >= 2 ? ROJO : TINTA}">${esp}${esp >= 2 ? "  · preocupa" : ""}</text>
+  </svg>`;
+  lienzo("El peso que cruza los centiles", "Nació entre los centiles 9 y 91: preocupa si cae 2 espacios o más",
+    `${svg}<div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Un <b style="color:#FCD34D">espacio de centil</b> es la franja entre dos líneas vecinas. Umbral: <b style="color:#FCA5A5">1</b> si nació bajo el centil 9, <b style="color:#FCA5A5">2</b> entre el 9 y el 91, <b style="color:#FCA5A5">3</b> sobre el 91.</div>`,
+    "Esquema de Empirica: líneas de centil como las de las curvas UK-WHO y curva de ejemplo. Fuente: NICE NG75 (1.2.1).");
+};
+window.cuadro(39, 40);
+</script></body></html>

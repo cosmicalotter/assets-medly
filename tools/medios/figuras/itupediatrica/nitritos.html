@@ -1,0 +1,42 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: los nitritos necesitan unas 4 horas de orina en la vejiga (EAU 2026, 12.4.3);
+// el lactante orina muy seguido y la tira sale negativa (consenso suizo 2021, rec. 4; ESPID 2025).
+function vejiga(llen, nit, vacia, etiqueta, c) {
+  const h = 150 * llen, y = 196 - h;
+  const pts = Array.from({ length: 14 }, (_, k) => {
+    const x = 72 + ((k * 37) % 120), yy = 190 - ((k * 53) % Math.max(8, h - 12));
+    const esN = k / 14 < nit;
+    return h > 14 ? `<circle cx="${x}" cy="${yy}" r="${esN ? 6 : 4.5}" fill="${esN ? ROSA_C : "#94A3B8"}"/>` : "";
+  }).join("");
+  return `<svg width="250" height="250" viewBox="0 0 260 250">
+    <defs><clipPath id="cv${c}"><path d="M50,60 Q50,30 80,30 L180,30 Q210,30 210,60 L210,170 Q210,200 170,205 L150,206 L150,236 L110,236 L110,206 L90,205 Q50,200 50,170 Z"/></clipPath></defs>
+    <rect x="40" y="${y}" width="180" height="${h + 40}" fill="${tinte(AMBAR, 38)}" clip-path="url(#cv${c})"/>
+    <g clip-path="url(#cv${c})">${pts}</g>
+    <path d="M50,60 Q50,30 80,30 L180,30 Q210,30 210,60 L210,170 Q210,200 170,205 L150,206 L150,236 L110,236 L110,206 L90,205 Q50,200 50,170 Z" fill="none" stroke="#94A3B8" stroke-width="6" stroke-linejoin="round"/>
+    ${vacia ? `<g>${flecha(130, 214, 130, 246, AMBAR, 6, 12)}</g>` : ""}
+    <text x="130" y="20" text-anchor="middle" font-size="14" font-weight="800" fill="${c}">${etiqueta}</text>
+  </svg>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const horas = 4 * t;
+  // Niño mayor: retiene 4 h; los nitritos se forman poco a poco
+  const nitM = suave(tramo(horas, 0.6, 3.8));
+  // Lactante: orina cada hora; se vacía y vuelve a empezar
+  const ciclo = horas % 1, vaciaL = ciclo > 0.85;
+  const llenL = vaciaL ? lerp(0.9, 0.05, tramo(ciclo, 0.85, 1)) : lerp(0.05, 0.9, tramo(ciclo, 0, 0.85));
+  const nitL = 0.12 * tramo(ciclo, 0.3, 0.85) * (vaciaL ? 0 : 1);
+  const reloj = `<div style="font-size:30px;font-weight:900;font-family:SpaceGrotesk,Inter,sans-serif;color:${TINTA}">${Math.floor(horas)} h ${String(Math.floor((horas % 1) * 60)).padStart(2, "0")} min</div>`;
+  const tira = (pos, c) => `<div style="display:flex;align-items:center;gap:8px;font-size:13.5px"><div style="width:26px;height:26px;border-radius:5px;border:2px solid #CBD5E1;background:${pos ? tinte(ROSA_C, 55) : "#F8FAFC"}"></div><b style="color:${c}">Nitritos ${pos ? "positivos" : "negativos"}</b></div>`;
+  lienzo("Por qué los nitritos fallan en el lactante", "Las bacterias tardan unas 4 horas en la vejiga en convertir los nitratos en nitritos",
+    `<div style="display:flex;justify-content:center;align-items:center;gap:6px">${reloj}</div>
+     <div style="display:flex;justify-content:space-around">
+       <div style="display:flex;flex-direction:column;align-items:center;gap:6px">${vejiga(0.9, nitM, false, "Niño que retiene la orina", VERDE)}${tira(nitM > 0.75, VERDE)}</div>
+       <div style="display:flex;flex-direction:column;align-items:center;gap:6px">${vejiga(llenL, nitL, vaciaL, "Lactante que orina muy seguido", ROJO)}${tira(false, ROJO)}</div>
+     </div>
+     <div style="display:flex;gap:10px;font-size:12.5px;justify-content:center"><span><b style="color:#94A3B8">●</b> Nitrato</span><span><b style="color:${ROSA_C}">●</b> Nitrito</span></div>
+     <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:14px">Con nitritos negativos <b style="color:#FCA5A5">no se descarta</b> la ITU del lactante: decide la <b style="color:#5EEAD4">piuria</b> y el urocultivo.</div>`,
+    "Esquema de Empirica. Fuentes: EAU 2026 (12.4.3); consenso suizo 2021 (recomendación 4); ESPID 2025.");
+};
+window.cuadro(47, 48);
+</script></body></html>
