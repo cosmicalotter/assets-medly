@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Duración del tratamiento de la meningitis neonatal frente a la sepsis con cultivo positivo sin meningitis.
+// NICE NG195 (1.21.1 y 1.27.4); OMS AWaRe 2022 (tabla 25.7 y tabla 26.4).
+const F = [
+  { g: "Sepsis sin meningitis", c: AZUL, barras: [{ n: "Antibiótico", d: 7, t: "7 días" }] },
+  { g: "Meningitis por EGB", c: ROJO, barras: [{ n: "Bencilpenicilina", d: 14, mas: true, t: "14 días o más" }, { n: "Gentamicina", d: 5, t: "5 días", claro: true }] },
+  { g: "Meningitis por Listeria", c: MORADO, barras: [{ n: "Antibiótico", d: 21, t: "21 días" }] },
+  { g: "Meningitis sin germen", c: NARANJA, barras: [{ n: "Antibiótico", d: 21, t: "3 semanas (OMS)", marca: 14 }] },
+];
+const X0 = 190, X1 = 600, xd = (d) => X0 + (X1 - X0) * d / 21;
+let y = 18, s = "";
+for (const f of F) {
+  s += `<text x="0" y="${y + 15}" font-size="16" font-weight="900" fill="${f.c}">${f.g}</text>`; y += 26;
+  for (const b of f.barras) {
+    const col = b.claro ? tinte(f.c, 55) : f.c;
+    s += `<text x="${X0 - 12}" y="${y + 22}" text-anchor="end" font-size="14.5" font-weight="800" fill="${TINTA}">${b.n}</text>
+      <rect x="${X0}" y="${y}" width="${xd(b.d) - X0}" height="32" rx="8" fill="${col}"/>
+      ${b.mas ? `<rect x="${xd(b.d)}" y="${y}" width="${xd(21) - xd(b.d)}" height="32" rx="8" fill="${tinte(f.c, 18)}" stroke="${f.c}" stroke-dasharray="6 5"/>` : ""}
+      ${b.marca ? `<line x1="${xd(b.marca)}" y1="${y - 6}" x2="${xd(b.marca)}" y2="${y + 38}" stroke="${TINTA}" stroke-width="3" stroke-dasharray="5 4"/>
+        <text x="${xd(b.marca)}" y="${y + 54}" text-anchor="middle" font-size="12.5" font-weight="800" fill="${TINTA}">14 días en la tabla de sepsis</text>` : ""}
+      <text x="${(b.mas || b.d === 21 ? xd(21) : xd(b.d)) + 10}" y="${y + 22}" font-size="14.5" font-weight="900" fill="${TINTA}">${b.t}</text>`;
+    y += b.marca ? 62 : 42;
+  }
+  y += 10;
+}
+const eje = [0, 7, 14, 21].map((d) => `<line x1="${xd(d)}" y1="8" x2="${xd(d)}" y2="${y - 6}" stroke="#E5E7EB"/><text x="${xd(d)}" y="${y + 10}" text-anchor="middle" font-size="12.5" fill="#6B7280">${d} días</text>`).join("");
+lienzo("Cuánto dura el tratamiento", "Meningitis neonatal según el germen, frente a la sepsis sin meningitis",
+  `<svg width="668" height="${y + 22}" viewBox="0 0 720 ${y + 22}">${eje}${s}</svg>
+   <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">La meningitis <b style="color:#FCA5A5">no</b> se suspende a las 36 horas: la duración la marcan el <b style="color:#FCD34D">germen</b>, el <b style="color:#FCD34D">LCR</b> y los cultivos estériles.</div>`,
+  "Gráfico de Empirica. Fuentes: NICE NG195 (1.21.1 y 1.27.4); OMS AWaRe 2022 (tablas 25.7 y 26.4).");
+</script></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// GIF de flujo: de la primera dosis a la decisión de suspender (NICE NG195 1.15.2, 1.17.1, 1.21.3, 1.24.1, 1.35.1;
+// AAP 2018; GPC Colombia 2013, 19-A).
+const H = [
+  { h: 1, r: "1 h", c: ROJO, tit: "Primera hora", txt: "<b>Hemocultivo</b> y primera dosis" },
+  { h: 21, r: "18-24 h", c: AMBAR, tit: "18 a 24 horas", txt: "Segunda <b>PCR</b>; <b>valle</b> de gentamicina antes de la segunda dosis" },
+  { h: 36, r: "36 h", c: AZUL, tit: "36 horas", txt: "Con cultivo negativo y bebé bien, <b>suspender</b> la temprana (NICE)" },
+  { h: 48, r: "48 h", c: MORADO, tit: "48 horas", txt: "Último plazo de la <b>AAP</b>; considerar suspender la <b>tardía</b> (NICE)" },
+  { h: 72, r: "72 h", c: GRIS, tit: "72 horas", txt: "Último plazo de la <b>GPC</b> colombiana" },
+];
+function caja(e, op) {
+  return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:8px 10px;flex:1;min-height:94px">
+    <div style="font-weight:900;color:${e.c === AMBAR ? "#B26B10" : e.c};font-size:14.5px">${e.tit}</div><div style="font-size:12.8px;line-height:1.32;margin-top:3px">${e.txt}</div></div>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const x0 = 40, x1 = 628, xh = (h) => x0 + (x1 - x0) * h / 72, hm = 72 * suave(tramo(t, 0.05, 0.82));
+  const op = (e) => 0.16 + 0.84 * suave(tramo(hm, e.h - 5, e.h - 0.5));
+  const linea = `<svg width="668" height="84" viewBox="0 0 668 84">
+    <rect x="${x0}" y="22" width="${x1 - x0}" height="20" rx="8" fill="#EEF2F7" stroke="#CBD5E1"/>
+    <rect x="${x0}" y="22" width="${Math.max(0, xh(hm) - x0)}" height="20" rx="8" fill="${TINTA}" opacity=".14"/>
+    ${H.map((e) => `<circle cx="${xh(e.h)}" cy="32" r="9" fill="${e.c}"/><text x="${xh(e.h)}" y="66" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151">${e.r}</text>`).join("")}
+    <line x1="${xh(hm)}" y1="10" x2="${xh(hm)}" y2="54" stroke="${TINTA}" stroke-width="3"/><circle cx="${xh(hm)}" cy="32" r="7" fill="#fff" stroke="${TINTA}" stroke-width="3"/></svg>`;
+  lienzo("De la primera dosis a la decisión", "Qué mirar en las primeras 72 horas de antibiótico", `${linea}
+    <div style="display:flex;gap:8px">${caja(H[0], op(H[0]))}${caja(H[1], op(H[1]))}${caja(H[2], op(H[2]))}</div>
+    <div style="display:flex;gap:8px">${caja(H[3], op(H[3]))}${caja(H[4], op(H[4]))}</div>
+    <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.86, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Sospecha <b style="color:#FCA5A5">fuerte</b> o cultivo positivo: <b style="color:#5EEAD4">7 días</b> o más según el germen; la meningitis, de <b style="color:#5EEAD4">14 días</b> a <b style="color:#5EEAD4">3 semanas</b>.</div>`,
+    "Esquema de Empirica. Fuentes: NICE NG195; AAP 2018; GPC Colombia 2013 (19-A); OMS AWaRe 2022.");
+};
+window.cuadro(39, 40);
+</script></body></html>
