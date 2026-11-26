@@ -3,8 +3,8 @@
 // AAP 2018; GPC Colombia 2013, 19-A).
 const H = [
   { h: 1, r: "1 h", c: ROJO, tit: "Primera hora", txt: "<b>Hemocultivo</b> y primera dosis" },
-  { h: 21, r: "18-24 h", c: AMBAR, tit: "18 a 24 horas", txt: "Segunda <b>PCR</b>; la mitad de los cultivos positivos ya <b>creció</b>" },
-  { h: 36, r: "36 h", c: AZUL, tit: "36 horas", txt: "Valle de <b>gentamicina</b>; con cultivo negativo y bebé bien, <b>suspender</b> la temprana (NICE)" },
+  { h: 21, r: "18-24 h", c: AMBAR, tit: "18 a 24 horas", txt: "Segunda <b>PCR</b>; <b>valle</b> de gentamicina antes de la segunda dosis" },
+  { h: 36, r: "36 h", c: AZUL, tit: "36 horas", txt: "Con cultivo negativo y bebé bien, <b>suspender</b> la temprana (NICE)" },
   { h: 48, r: "48 h", c: MORADO, tit: "48 horas", txt: "Último plazo de la <b>AAP</b>; considerar suspender la <b>tardía</b> (NICE)" },
   { h: 72, r: "72 h", c: GRIS, tit: "72 horas", txt: "Último plazo de la <b>GPC</b> colombiana" },
 ];
@@ -24,8 +24,8 @@ window.cuadro = function (i, n) {
   lienzo("De la primera dosis a la decisión", "Qué mirar en las primeras 72 horas de antibiótico", `${linea}
     <div style="display:flex;gap:8px">${caja(H[0], op(H[0]))}${caja(H[1], op(H[1]))}${caja(H[2], op(H[2]))}</div>
     <div style="display:flex;gap:8px">${caja(H[3], op(H[3]))}${caja(H[4], op(H[4]))}</div>
-    <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.86, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Con sospecha inicial <b style="color:#FCA5A5">fuerte</b> o cultivo positivo, se sigue: <b style="color:#5EEAD4">7 días</b> en total.</div>`,
-    "Esquema de Empirica. Fuentes: NICE NG195; AAP 2018; GPC Colombia 2013 (19-A).");
+    <div class="caja" style="opacity:${0.16 + 0.84 * suave(tramo(t, 0.86, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Sospecha <b style="color:#FCA5A5">fuerte</b> o cultivo positivo: <b style="color:#5EEAD4">7 días</b> o más según el germen; la meningitis, de <b style="color:#5EEAD4">14 días</b> a <b style="color:#5EEAD4">3 semanas</b>.</div>`,
+    "Esquema de Empirica. Fuentes: NICE NG195; AAP 2018; GPC Colombia 2013 (19-A); OMS AWaRe 2022.");
 };
 window.cuadro(39, 40);
 </script></body></html>

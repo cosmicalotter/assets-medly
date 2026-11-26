@@ -27,6 +27,7 @@ jpg prematuro "$D/sn_prematuro_riesgo.jpg"
 jpg cobertura "$D/sn_ampicilina_gentamicina.jpg"
 jpg lr_hemograma "$D/sn_hemograma_lr.jpg"
 jpg germenes "$D/sn_germenes.jpg"
+jpg meningitis_duracion "$D/sn_meningitis_duracion.jpg"
 # GIF sobre fotos reales, de flujo y de fisiología
 gif frascos "$D/sn_hemocultivo.gif" 30 200 3000 128
 gif vigilancia "$D/sn_observacion.gif" 40 180 3000 96

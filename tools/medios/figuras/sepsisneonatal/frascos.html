@@ -2,7 +2,8 @@
 // GIF sobre fotos reales: frasco de hemocultivo sin y con crecimiento (Ajay Kumar Chaurasiya, CC BY-SA 4.0).
 // AAP 2018 (≥35 semanas): diagnóstico por cultivo; positividad <24 h; 1 mL.
 const P = [
-  { src: "fuentes/commons_blood_culture_clear.jpg", r: [380, 300, 700, 700], m: { x: 730, y: 760, rx: 190, ry: 110 }, c: CIAN, t: "Sin crecimiento", x: "Caldo <b>transparente</b>: el cultivo sigue <b>negativo</b>." },
+  { src: "fuentes/commons_blood_culture_clear.jpg", r: [380, 300, 700, 700], m: { x: 745, y: 720, rx: 190, ry: 80 }, c: CIAN, t: "Sin crecimiento", x: "Caldo <b>transparente</b> sobre la <b>sangre</b> sedimentada: sigue <b>negativo</b>.",
+    m2: { x: 750, y: 850, rx: 190, ry: 34 }, c2: ROSA, t2: "Sangre" },
   { src: "fuentes/commons_blood_culture_growth.jpg", r: [360, 260, 700, 700], m: { x: 700, y: 680, rx: 200, ry: 120 }, c: ROJO, t: "Con crecimiento", x: "Caldo <b>turbio</b>: hay bacterias; sigue el <b>Gram</b> y el antibiograma." },
 ];
 window.cuadro = function (i, n) {
@@ -16,6 +17,9 @@ window.cuadro = function (i, n) {
         <ellipse cx="${p.m.x}" cy="${p.m.y}" rx="${p.m.rx}" ry="${p.m.ry}" fill="none" stroke="#000" stroke-opacity="${0.35 * o[k]}" stroke-width="16"/>
         <ellipse cx="${p.m.x}" cy="${p.m.y}" rx="${p.m.rx}" ry="${p.m.ry}" fill="none" stroke="${p.c}" stroke-opacity="${o[k]}" stroke-width="8"/>
         <text x="${p.m.x}" y="${p.m.y - p.m.ry - 22}" text-anchor="middle" font-size="44" font-weight="900" fill="${p.c}" fill-opacity="${o[k]}" stroke="#111" stroke-opacity="${o[k]}" stroke-width="9" paint-order="stroke">${p.t}</text>
+        ${p.m2 ? `<ellipse cx="${p.m2.x}" cy="${p.m2.y}" rx="${p.m2.rx}" ry="${p.m2.ry}" fill="none" stroke="#000" stroke-opacity="${0.35 * o[k]}" stroke-width="14"/>
+        <ellipse cx="${p.m2.x}" cy="${p.m2.y}" rx="${p.m2.rx}" ry="${p.m2.ry}" fill="none" stroke="${p.c2}" stroke-opacity="${o[k]}" stroke-width="7"/>
+        <text x="${p.m2.x - p.m2.rx - 14}" y="${p.m2.y + 14}" text-anchor="end" font-size="40" font-weight="900" fill="${p.c2}" fill-opacity="${o[k]}" stroke="#111" stroke-opacity="${o[k]}" stroke-width="9" paint-order="stroke">${p.t2}</text>` : ""}
       </svg>
       <div class="item" style="background:#F7F8FA;width:${W}px;border-left:5px solid ${p.c}">${p.x}</div></div>`;
   };

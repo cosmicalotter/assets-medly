@@ -1,13 +1,20 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="tarjetas.js"></script></head><body><script>
-// Riesgo de sepsis temprana del prematuro por las circunstancias del parto (AAP 2018 ≤34 6/7 semanas).
-tarjetas("El prematuro: por qué nació", "34 6/7 semanas o menos", [
+// Riesgo de sepsis temprana del prematuro por las circunstancias del parto (AAP 2018 ≤34 6/7 semanas)
+// y la hospitalización con vigilancia de la GPC Colombia 2013 (14-C).
+tarjetas("El prematuro: por qué nació", "Menos de 35 semanas", [
   { c: VERDE, t: "Bajo riesgo", sub: "Cesárea sin trabajo de parto", filas: [
-    ["Motivo", "Enfermedad materna <b>no infecciosa</b> o insuficiencia placentaria"], ["Hacer", "Sin estudios, o <b>hemocultivo</b> y vigilancia"]] },
-  { c: NARANJA, t: "Intermedio", sub: "Tras inducción o ruptura", filas: [
-    ["Motivo", "Inducción o <b>ruptura de membranas</b> sin sospecha de infección"], ["Hacer", "<b>Hemocultivo</b>; antibiótico si hay <b>inestabilidad</b>"]] },
+    ["Motivo", "Enfermedad materna <b>no infecciosa</b> o insuficiencia placentaria"],
+    ["Hacer", "Sin estudios, o <b>hemocultivo</b> y vigilancia"],
+    ["Antibiótico", "Si no mejora o hay <b>inestabilidad grave</b>"]] },
+  { c: NARANJA, t: "Intermedio", sub: "Indicación materna con inducción o ruptura", filas: [
+    ["Motivo", "Indicación <b>no infecciosa</b>, pero tras intentar <b>inducir</b> o con ruptura en el parto"],
+    ["Hacer", "<b>Hemocultivo</b> a todos"],
+    ["Antibiótico", "Si hay <b>inestabilidad</b> respiratoria o cardiovascular"]] },
   { c: ROJO, t: "Alto riesgo", sub: "La infección pudo causar el parto", filas: [
-    ["Motivo", "Trabajo de parto, <b>RPM</b>, infección intraamniótica, incompetencia cervical"], ["Hacer", "<b>Hemocultivo</b> y antibiótico empírico"]] },
-], "Antes de las <b style='color:#FCD34D'>34 semanas</b>, la calculadora de riesgo <b style='color:#FCA5A5'>no se aplica</b>.",
-  "Esquema de Empirica. Fuente: AAP 2018 (≤34 6/7 semanas).");
-document.head.insertAdjacentHTML("beforeend", "<style>#lienzo div[style*='font-size:14.6px']{font-size:16.5px!important}#lienzo div[style*='font-size:12px;font-weight:800']{font-size:13.5px!important}</style>");
+    ["Motivo", "Trabajo de parto pretérmino, <b>RPM</b> pretérmino, corioamnionitis, incompetencia cervical"],
+    ["Hacer", "<b>Hemocultivo</b> y antibiótico empírico"],
+    ["Considerar", "<b>LCR</b> antes del antibiótico si lo tolera"]] },
+], "Si surge <b style='color:#FCD34D'>sospecha de infección</b> en el parto, el intermedio pasa a <b style='color:#FCA5A5'>alto riesgo</b>.",
+  "Esquema de Empirica. Fuentes: AAP 2018 (≤34 6/7 semanas); GPC Colombia 2013 (14-C).");
+document.head.insertAdjacentHTML("beforeend", "<style>#lienzo div[style*='font-size:14.6px']{font-size:16px!important}#lienzo div[style*='font-size:12px;font-weight:800']{font-size:13.5px!important}</style>");
 </script></body></html>

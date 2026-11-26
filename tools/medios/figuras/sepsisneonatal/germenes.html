@@ -7,15 +7,15 @@ const B = [
 const X0 = 170, X1 = 640, xp = (p) => X0 + (X1 - X0) * p / 60;
 let y = 20, s = "";
 for (const b of B) {
-  s += `<text x="0" y="${y + 14}" font-size="15.5" font-weight="900" fill="${b.c}">${b.g}</text>`; y += 28;
+  s += `<text x="0" y="${y + 16}" font-size="17" font-weight="900" fill="${b.c}">${b.g}</text>`; y += 32;
   for (const [n, a, z] of b.v) {
-    s += `<text x="${X0 - 12}" y="${y + 22}" text-anchor="end" font-size="15" font-weight="800" fill="${TINTA}">${n}</text>
-      <rect x="${X0}" y="${y}" width="${xp(a) - X0}" height="34" rx="8" fill="${b.c}"/>
-      ${z > a ? `<rect x="${xp(a)}" y="${y}" width="${xp(z) - xp(a)}" height="34" rx="8" fill="${tinte(b.c, 45)}"/>` : ""}
-      <text x="${xp(z) + 10}" y="${y + 23}" font-size="15" font-weight="900" fill="${TINTA}">${a === z ? "~" + a : a + "-" + z} %</text>`;
-    y += 46;
+    s += `<text x="${X0 - 12}" y="${y + 28}" text-anchor="end" font-size="16.5" font-weight="800" fill="${TINTA}">${n}</text>
+      <rect x="${X0}" y="${y}" width="${xp(a) - X0}" height="44" rx="9" fill="${b.c}"/>
+      ${z > a ? `<rect x="${xp(a)}" y="${y}" width="${xp(z) - xp(a)}" height="44" rx="9" fill="${tinte(b.c, 45)}"/>` : ""}
+      <text x="${xp(z) + 10}" y="${y + 29}" font-size="16.5" font-weight="900" fill="${TINTA}">${a === z ? "~" + a : a + "-" + z} %</text>`;
+    y += 58;
   }
-  y += 16;
+  y += 22;
 }
 const eje = [0, 20, 40, 60].map((p) => `<line x1="${xp(p)}" y1="10" x2="${xp(p)}" y2="${y - 10}" stroke="#E5E7EB"/><text x="${xp(p)}" y="${y + 6}" text-anchor="middle" font-size="12.5" fill="#6B7280">${p} %</text>`).join("");
 lienzo("Los gérmenes de la sepsis temprana", "Porcentaje de los casos con cultivo positivo",
