@@ -1,7 +1,7 @@
 {
   "titulo": "Sepsis neonatal",
-  "version": "NICE NG195 2026 · AAP 2018 · GPC Colombia 2013 · OMS AWaRe 2022",
-  "descripcion": "En este algoritmo se aborda al recién nacido con riesgo o sospecha de sepsis, temprana o tardía: a quién estudiar, qué cultivos tomar, el antibiótico empírico, cuándo suspenderlo y la meningitis neonatal.",
+  "version": "NICE NG195 2026 · NICE NG254 2025 · AAP 2018 · GPC Colombia 2013 · OMS AWaRe 2022",
+  "descripcion": "En este algoritmo se aborda al recién nacido con riesgo o sospecha de sepsis, temprana o tardía: cómo estabilizarlo, a quién estudiar, el antibiótico empírico, cuándo suspenderlo y la meningitis neonatal.",
   "especialidad": "Neonatología",
   "actualizado": "Noviembre 2026",
   "oculto": true,
@@ -18,6 +18,13 @@
       "anio": "2026",
       "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653",
       "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026."
+    },
+    {
+      "titulo": "NICE NG254: sospecha de sepsis en menores de 16 años",
+      "fuente": "NICE NG254",
+      "anio": "2025",
+      "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669",
+      "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025."
     },
     {
       "titulo": "AAP 2018: sepsis temprana en el nacido a las 35 semanas o más",
@@ -133,8 +140,8 @@
       "texto": "Diagnóstico",
       "opciones": [
         {
-          "texto": "Horas de vida al sospechar",
-          "siguiente_nodo": "diag_tipo"
+          "texto": "Valoración al llegar",
+          "siguiente_nodo": "diag_abcde"
         }
       ],
       "referencias": [
@@ -146,6 +153,461 @@
           "anio": "2026",
           "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
           "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=55"
+        },
+        {
+          "titulo": "Algún criterio de alto riesgo: valoración y pruebas",
+          "paginas": "24",
+          "texto": "For people under 16 who have suspected sepsis and meet 1 or more high risk criteria: arrange for the senior clinical decision maker to urgently assess the person's condition",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=24"
+        }
+      ]
+    },
+    "diag_abcde": {
+      "tipo": "pregunta",
+      "titulo": "Buscar al llegar la apnea, la hipoxia y el choque",
+      "contexto": "En el neonato, el **choque** se trata a la vez que se toman los **cultivos**: el antibiótico va antes de **1 hora**.",
+      "texto": "- **A-B, vía aérea y respiración:** buscar **apnea** y quejido; dar **oxígeno** si hay choque o SpO₂ **<92 %** al aire.\n- **C, circulación:** canalizar una vena y tomar los **gases venosos** con lactato y el **hemocultivo** (la lista).\n- **D, neurológico:** vigilar el **estado mental** y medir la **glucemia**.\n- **E, exposición:** medir la **temperatura** y buscar piel **moteada** o con petequias.\n- Comparar con los criterios de **alto riesgo** (la tabla).",
+      "checklist": {
+        "titulo": "Pruebas de la primera hora",
+        "items": [
+          "**Gases venosos** con glucosa y lactato",
+          "**Hemocultivo** antes del antibiótico",
+          "Hemograma y **PCR**",
+          "BUN, electrolitos y **creatinina**",
+          "Pruebas **hepáticas**",
+          "**Coagulación**"
+        ]
+      },
+      "tabla": {
+        "titulo": "Criterios de alto riesgo en el menor de 1 año",
+        "columnas": [
+          "Área",
+          "Criterio"
+        ],
+        "filas": [
+          [
+            "Conducta",
+            "- No responde a los **estímulos** sociales\n- Parece **enfermo** al personal\n- No despierta o no se mantiene despierto\n- Llanto **débil**, agudo o continuo"
+          ],
+          [
+            "Respiración",
+            "- **Quejido** o apnea\n- SpO₂ **<90 %** al aire o más oxígeno que antes\n- FR de **60** o más"
+          ],
+          [
+            "Circulación",
+            "- FC de **160** o más\n- FC **<60**"
+          ],
+          [
+            "Piel",
+            "- **Moteada** o cenicienta\n- **Cianosis** de piel, labios o lengua\n- Exantema **petequial** o purpúrico que no blanquea"
+          ],
+          [
+            "Temperatura",
+            "- **<36 °C**\n- **38 °C** o más antes de los 3 meses"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
+      },
+      "pie_nodo": "¿Tiene algún criterio de alto riesgo de la tabla?",
+      "opciones": [
+        {
+          "texto": "Sí",
+          "siguiente_nodo": "diag_alto_riesgo",
+          "color": "rojo",
+          "descripcion": "Uno o más criterios de alto riesgo"
+        },
+        {
+          "texto": "No",
+          "siguiente_nodo": "diag_tipo",
+          "color": "verde"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Oxígeno con choque o saturación menor de 92 %",
+          "paginas": "35",
+          "texto": "Oxygen should be given to people under 16 with suspected sepsis who have signs of shock or oxygen saturation (SpO2) of less than 92% when breathing air.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=35"
+        },
+        {
+          "titulo": "Gases venosos con glucosa y lactato, y hemocultivo",
+          "paginas": "24",
+          "texto": "carry out a venous blood test, including for: blood gas, including glucose and lactate measurement blood culture full blood count",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=24"
+        },
+        {
+          "titulo": "PCR, función renal y hepática, coagulación",
+          "paginas": "25",
+          "texto": "C-reactive protein urea and electrolytes creatinine liver function tests a clotting screen",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+        },
+        {
+          "titulo": "Vigilar el estado mental",
+          "paginas": "27",
+          "texto": "Monitor the mental state of people under 16 with suspected sepsis. Consider using the Glasgow Coma Scale (GCS) or AVPU",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=27"
+        },
+        {
+          "titulo": "Alto riesgo: conducta",
+          "paginas": "15",
+          "texto": "No response to social cues Appears ill to a healthcare professional Does not wake, or if roused does not stay awake Weak high-pitched or continuous cry",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=15"
+        },
+        {
+          "titulo": "Alto riesgo: respiración",
+          "paginas": "16",
+          "texto": "Grunting Apnoea Oxygen saturation of less than 90% in air or increased oxygen requirement over baseline",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=16"
+        },
+        {
+          "titulo": "Alto riesgo: FR de 60 o más en el menor de 1 año",
+          "paginas": "16",
+          "texto": "Respiratory Under 1 year Raised respiratory rate: 60 breaths per minute or more",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=16"
+        },
+        {
+          "titulo": "Alto riesgo: bradicardia menor de 60",
+          "paginas": "16",
+          "texto": "Circulation and hydration Any Bradycardia: heart rate less than 60 beats per minute",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=16"
+        },
+        {
+          "titulo": "Alto riesgo: FC de 160 o más en el menor de 1 año",
+          "paginas": "16",
+          "texto": "Circulation and hydration Under 1 year Rapid heart rate: 160 beats per minute or more",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=16"
+        },
+        {
+          "titulo": "Alto riesgo: piel",
+          "paginas": "17",
+          "texto": "Mottled or ashen appearance Cyanosis of skin, lips or tongue Non-blanching petechial or purpuric rash",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=17"
+        },
+        {
+          "titulo": "Alto riesgo: temperatura",
+          "paginas": "17",
+          "texto": "Temperature Any Less than 36ºC - Temperature Under 3 months 38°C or more",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=17"
+        },
+        {
+          "titulo": "Antibiótico en la primera hora del alto riesgo",
+          "paginas": "25",
+          "texto": "give a broad-spectrum antimicrobial without delay (within 1 hour of identifying that they meet any high risk criteria)",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+        },
+        {
+          "titulo": "Bandera roja: infección en el otro gemelo",
+          "paginas": "19",
+          "texto": "Red flag risk factor: suspected or confirmed infection in another baby in the case of a multiple pregnancy",
+          "fuente": "NICE NG195",
+          "anio": "2026",
+          "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
+          "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=19"
+        },
+        {
+          "titulo": "Indicadores bandera roja",
+          "paginas": "21",
+          "texto": "Red flag clinical indicators: apnoea (temporary stopping of breathing) seizures need for cardiopulmonary resuscitation need for mechanical ventilation signs of shock",
+          "fuente": "NICE NG195",
+          "anio": "2026",
+          "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
+          "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=21"
+        }
+      ]
+    },
+    "diag_alto_riesgo": {
+      "tipo": "pregunta",
+      "titulo": "Dar el antibiótico y los líquidos según el lactato",
+      "texto": "- Pedir la valoración **urgente** del especialista y dar el **antibiótico** antes de **1 hora**.\n- Dar el bolo según el **lactato** (la tabla) y revalorar al terminarlo.\n- Si no mejora, dar un **segundo bolo**.\n- Vigilar de forma **continua** o cada **30 minutos**.",
+      "alertas": [
+        {
+          "titulo": "Sin respuesta en 1 hora",
+          "texto": "Si no responde en **1 hora** o tras el **segundo bolo**, llamar al **especialista** para que venga en persona."
+        }
+      ],
+      "tabla": {
+        "titulo": "Líquidos según el lactato",
+        "columnas": [
+          "Lactato",
+          "Qué hacer"
+        ],
+        "filas": [
+          [
+            ">4 mmol/L",
+            "- **Bolo** sin demora\n- Remitir a **cuidado crítico**: acceso central e inotrópicos"
+          ],
+          [
+            "2 a 4 mmol/L",
+            "- **Bolo** sin demora"
+          ],
+          [
+            "<2 mmol/L",
+            "- **Considerar** el bolo"
+          ]
+        ],
+        "resaltar_primera_columna": true,
+        "en_texto": "la tabla"
+      },
+      "farmacos": [
+        {
+          "nombre": "Bolo de cristaloide sin glucosa",
+          "dosis": "**10-20 mL/kg** IV en menos de **10 minutos**",
+          "pauta": "Sodio de **130-154 mEq/L**: **solución salina 0,9 %** o lactato de Ringer.",
+          "paginas": "34",
+          "por_kg": {
+            "desde": 10,
+            "hasta": 20,
+            "unidad": "mL"
+          }
+        }
+      ],
+      "pie_nodo": "¿Cuántas horas de vida tiene el bebé?",
+      "opciones": [
+        {
+          "texto": "Menos de 72 horas",
+          "siguiente_nodo": "diag_cultivos",
+          "color": "azul",
+          "descripcion": "Sepsis temprana",
+          "contexto": "- Se debe tomar el **hemocultivo** y decidir la **punción lumbar** sin retrasar el antibiótico."
+        },
+        {
+          "texto": "72 horas o más",
+          "siguiente_nodo": "diag_cultivos_los",
+          "color": "naranja",
+          "descripcion": "Sepsis tardía"
+        }
+      ],
+      "referencias": [
+        {
+          "titulo": "Algún criterio de alto riesgo: valoración y pruebas",
+          "paginas": "24",
+          "texto": "For people under 16 who have suspected sepsis and meet 1 or more high risk criteria: arrange for the senior clinical decision maker to urgently assess the person's condition",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=24"
+        },
+        {
+          "titulo": "Antibiótico en la primera hora del alto riesgo",
+          "paginas": "25",
+          "texto": "give a broad-spectrum antimicrobial without delay (within 1 hour of identifying that they meet any high risk criteria)",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+        },
+        {
+          "titulo": "Lactato mayor de 4: bolo y cuidado crítico",
+          "paginas": "25-26",
+          "texto": "For children under 12 with suspected sepsis, any high risk criteria and lactate over 4 mmol/litre: give intravenous fluid bolus without delay",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+        },
+        {
+          "titulo": "Remitir a cuidado crítico: acceso central e inotrópicos",
+          "paginas": "26",
+          "texto": "refer to a critical care specialist or team for them to review the management of the person's condition, including their need for central venous access",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+        },
+        {
+          "titulo": "Lactato de 2 a 4: bolo",
+          "paginas": "26",
+          "texto": "For people under 16 with suspected sepsis, any high risk criteria and lactate between 2 and 4 mmol/litre, give intravenous fluid bolus without delay",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+        },
+        {
+          "titulo": "Lactato menor de 2: considerar el bolo",
+          "paginas": "26",
+          "texto": "For people under 16 with suspected sepsis, any high risk criteria and lactate below 2 mmol/litre, consider giving an intravenous fluid bolus",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+        },
+        {
+          "titulo": "Bolo del neonato: 10-20 mL/kg",
+          "paginas": "34",
+          "texto": "use glucose-free crystalloids that contain sodium in the range 130 to 154 mmol/litre, with a bolus of 10 to 20 ml/kg over less than 10 minutes",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=34"
+        },
+        {
+          "titulo": "Revalorar tras el bolo; segundo bolo si no mejora",
+          "paginas": "35",
+          "texto": "Reassess the person after completion of the intravenous fluid bolus, and if there is no improvement give a second bolus.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=35"
+        },
+        {
+          "titulo": "Sin mejoría tras el segundo bolo: especialista",
+          "paginas": "35",
+          "texto": "If there is no improvement after a second bolus, alert a consultant to attend in person (in line with recommendation 1.7.11).",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=35"
+        },
+        {
+          "titulo": "Vigilar de forma continua o cada 30 minutos",
+          "paginas": "27",
+          "texto": "Monitor people under 16 with suspected sepsis who meet any high risk criteria continuously, or a minimum of once every 30 minutes depending on setting.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=27"
+        },
+        {
+          "titulo": "Sin respuesta en 1 hora: especialista en persona",
+          "paginas": "27",
+          "texto": "Alert a consultant to attend in person if a person under 16 with suspected sepsis and any high risk criteria does not respond within 1 hour of any intervention.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=27"
+        },
+        {
+          "titulo": "Primeras 72 horas: penicilina y gentamicina",
+          "paginas": "33",
+          "texto": "Treat babies presenting in hospital with suspected sepsis in their first 72 hours after birth with intravenous benzylpenicillin and gentamicin.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=33"
+        }
+      ],
+      "media": [
+        {
+          "recurso": "sn_liquidos_lactato.jpg",
+          "titulo": "Líquidos según el lactato",
+          "descripcion": "Qué hacer con el bolo y la vigilancia según el lactato del neonato de alto riesgo.",
+          "info": "Con algún criterio de **alto riesgo**, el antibiótico va antes de **1 hora**. Con lactato **>4 mmol/L** o de **2 a 4**, bolo sin demora; con **<2**, se considera. El bolo del neonato es de **10-20 mL/kg** de cristaloide sin glucosa en menos de **10 minutos**.",
+          "en_texto": "Dar el bolo según el",
+          "referencias": [
+            {
+              "titulo": "Antibiótico en la primera hora del alto riesgo",
+              "paginas": "25",
+              "texto": "give a broad-spectrum antimicrobial without delay (within 1 hour of identifying that they meet any high risk criteria)",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+            },
+            {
+              "titulo": "Lactato mayor de 4: bolo y cuidado crítico",
+              "paginas": "25-26",
+              "texto": "For children under 12 with suspected sepsis, any high risk criteria and lactate over 4 mmol/litre: give intravenous fluid bolus without delay",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+            },
+            {
+              "titulo": "Remitir a cuidado crítico: acceso central e inotrópicos",
+              "paginas": "26",
+              "texto": "refer to a critical care specialist or team for them to review the management of the person's condition, including their need for central venous access",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+            },
+            {
+              "titulo": "Lactato de 2 a 4: bolo",
+              "paginas": "26",
+              "texto": "For people under 16 with suspected sepsis, any high risk criteria and lactate between 2 and 4 mmol/litre, give intravenous fluid bolus without delay",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+            },
+            {
+              "titulo": "Lactato menor de 2: considerar el bolo",
+              "paginas": "26",
+              "texto": "For people under 16 with suspected sepsis, any high risk criteria and lactate below 2 mmol/litre, consider giving an intravenous fluid bolus",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=26"
+            },
+            {
+              "titulo": "Bolo del neonato: 10-20 mL/kg",
+              "paginas": "34",
+              "texto": "use glucose-free crystalloids that contain sodium in the range 130 to 154 mmol/litre, with a bolus of 10 to 20 ml/kg over less than 10 minutes",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=34"
+            },
+            {
+              "titulo": "Revalorar tras el bolo; segundo bolo si no mejora",
+              "paginas": "35",
+              "texto": "Reassess the person after completion of the intravenous fluid bolus, and if there is no improvement give a second bolus.",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=35"
+            },
+            {
+              "titulo": "Vigilar de forma continua o cada 30 minutos",
+              "paginas": "27",
+              "texto": "Monitor people under 16 with suspected sepsis who meet any high risk criteria continuously, or a minimum of once every 30 minutes depending on setting.",
+              "fuente": "NICE NG254",
+              "anio": "2025",
+              "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+              "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=27"
+            }
+          ]
         }
       ]
     },
@@ -644,7 +1106,7 @@
         {
           "texto": "Calcular el riesgo de sepsis temprana",
           "tipo": "calculadora",
-          "calculadora_objetivo": "TODO_CALC_eos_kaiser.json"
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/eos_kaiser.json"
         }
       ],
       "pie_nodo": "¿Cuántos factores de riesgo e indicadores suma?",
@@ -1200,7 +1662,7 @@
         {
           "texto": "Calcular el riesgo de sepsis temprana",
           "tipo": "calculadora",
-          "calculadora_objetivo": "TODO_CALC_eos_kaiser.json"
+          "calculadora_objetivo": "https://raw.githubusercontent.com/cosmicalotter/assets-medly/main/data/calculadoras/eos_kaiser.json"
         }
       ],
       "pie_nodo": "¿En qué circunstancias nació?",
@@ -1772,7 +2234,7 @@
     "diag_cultivos_los": {
       "tipo": "pregunta",
       "titulo": "Tomar los cultivos de la sepsis tardía antes del antibiótico",
-      "texto": "- Tomar el **hemocultivo** antes de la primera dosis y una **PCR** basal.\n- En el bebé que viene de **casa**, tomar también **urocultivo**; en la unidad neonatal, **no** de rutina.\n- No tomar **frotis de piel** sin signos de infección local.\n- Dar el **antibiótico** en la primera **hora**.",
+      "texto": "- Tomar el **hemocultivo** antes de la primera dosis y una **PCR** basal.\n- En el bebé que viene de **casa**, tomar también **urocultivo**; en la unidad neonatal, **no** de rutina.\n- No tomar **frotis de piel** sin signos de infección local.\n- Dar el **antibiótico** en la primera **hora**; en el menor de 1 mes, la **fiebre** sola ya lo indica.",
       "enlaces": [
         {
           "texto": "Elegir el antibiótico",
@@ -1788,14 +2250,16 @@
       "pie_nodo": "¿Necesita una punción lumbar para descartar meningitis?",
       "opciones": [
         {
-          "texto": "Sí: sospecha fuerte o signos de meningitis",
+          "texto": "Sí",
           "siguiente_nodo": "diag_lcr",
-          "color": "rojo"
+          "color": "rojo",
+          "descripcion": "Viene de casa con menos de 1 mes, sospecha fuerte o signos de meningitis"
         },
         {
           "texto": "No",
           "siguiente_nodo": "diag_presepsina",
-          "color": "verde"
+          "color": "verde",
+          "descripcion": "En la unidad neonatal, sin sospecha fuerte ni signos de meningitis"
         }
       ],
       "referencias": [
@@ -1854,6 +2318,15 @@
           "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=32"
         },
         {
+          "titulo": "Menor de 1 mes con fiebre: antibiótico parenteral",
+          "paginas": "25",
+          "texto": "Give parenteral antibiotics to children under 3 months as follows: children younger than 1 month with fever",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=25"
+        },
+        {
           "titulo": "Cuándo hacer la punción lumbar",
           "paginas": "29",
           "texto": "perform a lumbar puncture to obtain a cerebrospinal fluid sample when: there is a strong clinical suspicion of neonatal infection or there are clinical symptoms or signs suggesting meningitis.",
@@ -1861,6 +2334,24 @@
           "anio": "2026",
           "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
           "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=29"
+        },
+        {
+          "titulo": "Punción lumbar en el menor de 1 mes",
+          "paginas": "37",
+          "texto": "Perform lumbar puncture in the following babies with suspected sepsis (unless contraindicated, see the section on lumbar puncture",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=37"
+        },
+        {
+          "titulo": "Punción lumbar: menor de 1 mes",
+          "paginas": "37",
+          "texto": "bacterial meningitis and meningococcal disease): babies younger than 1 month all babies aged 1 to 3 months who appear unwell",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=37"
         }
       ]
     },
@@ -3395,13 +3886,23 @@
       ]
     },
     "trat_los_comunitaria": {
-      "titulo": "Tratar la sepsis tardía del bebé que viene de casa",
-      "texto": "- Dar **ampicilina** y **gentamicina** de primera elección.\n- Dejar la **cefotaxima** como segunda elección de la **OMS**.\n- Si hay pústulas, abscesos u onfalitis, pensar en **S. aureus** y dar **cloxacilina**; con mucho **SAMR** en la comunidad, vancomicina.\n- Buscar el **foco** con el urocultivo ya tomado y considerar la **punción lumbar**.",
+      "titulo": "Dar cefotaxima y ampicilina al bebé que viene de casa",
+      "texto": "- Dar **cefotaxima** IV y añadir **ampicilina** para cubrir la **Listeria**.\n- Si tiene más de 40 semanas corregidas y no recibe **calcio** IV, puede darse **ceftriaxona** en vez de cefotaxima.\n- Si hay pústulas, abscesos u onfalitis, pensar en **S. aureus** y dar **cloxacilina**; con mucho **SAMR** en la comunidad, vancomicina.\n- Buscar el **foco** con el urocultivo ya tomado.",
       "farmacos": [
+        {
+          "nombre": "Cefotaxima",
+          "dosis": "**50 mg/kg** IV cada **6 a 12 h** según la edad",
+          "pauta": "Con **ampicilina**.",
+          "paginas": "33",
+          "por_kg": {
+            "cantidad": 50,
+            "unidad": "mg"
+          }
+        },
         {
           "nombre": "Ampicilina",
           "dosis": "**50 mg/kg** IV cada **12 h** la primera semana y cada **8 h** después",
-          "pauta": "Con **gentamicina**.",
+          "pauta": "Cubre la **Listeria**.",
           "paginas": "331",
           "por_kg": {
             "cantidad": 50,
@@ -3409,20 +3910,10 @@
           }
         },
         {
-          "nombre": "Gentamicina",
-          "dosis": "**5 mg/kg** IV cada **24 h**",
-          "pauta": "Con **ampicilina**.",
-          "paginas": "331",
-          "por_kg": {
-            "cantidad": 5,
-            "unidad": "mg"
-          }
-        },
-        {
-          "nombre": "Cefotaxima",
-          "dosis": "**50 mg/kg** IV cada **8 h**",
-          "pauta": "**Segunda** elección.",
-          "paginas": "331",
+          "nombre": "Ceftriaxona",
+          "dosis": "**50 mg/kg** IV cada **24 h**",
+          "pauta": "Sólo con más de **40 semanas** corregidas y sin **calcio** IV.",
+          "paginas": "33",
           "por_kg": {
             "cantidad": 50,
             "unidad": "mg"
@@ -3440,6 +3931,24 @@
           }
         }
       ],
+      "discrepancias": [
+        {
+          "asunto": "Esquema del bebé que viene de casa",
+          "posturas": [
+            {
+              "fuente": "NICE NG254",
+              "dice": "**Cefotaxima** (o ceftriaxona) con **ampicilina** o amoxicilina.",
+              "paginas": "33"
+            },
+            {
+              "fuente": "OMS AWaRe 2022",
+              "dice": "**Ampicilina** con **gentamicina**; la cefotaxima, de segunda elección.",
+              "paginas": "331"
+            }
+          ],
+          "nota": "Con NICE, la **cefalosporina** reemplaza a la gentamicina; las dos guías mantienen la **ampicilina** para la Listeria."
+        }
+      ],
       "referencias": [
         {
           "titulo": "Tardía que viene de casa",
@@ -3449,6 +3958,33 @@
           "anio": "2026",
           "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
           "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=40"
+        },
+        {
+          "titulo": "Comunitaria: ceftriaxona desde 40 semanas corregidas",
+          "paginas": "33",
+          "texto": "Treat newborn babies under 28 days who present with community acquired sepsis with ceftriaxone 50 mg/kg once daily if they are: more than 40 weeks corrected gestational age",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=33"
+        },
+        {
+          "titulo": "Comunitaria: cefotaxima si no",
+          "paginas": "33",
+          "texto": "or receiving an intravenous calcium infusion, use cefotaxime 50 mg/kg every 6 to 12 hours, depending on the age of the baby.",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=33"
+        },
+        {
+          "titulo": "Menor de 3 meses: cubrir la Listeria",
+          "paginas": "33",
+          "texto": "For babies younger than 3 months, give an additional antibiotic active against listeria (for example, ampicillin or amoxicillin).",
+          "fuente": "NICE NG254",
+          "anio": "2025",
+          "cita": "National Institute for Health and Care Excellence. Suspected sepsis in under 16s: recognition, diagnosis and early management (NG254). London: NICE; 2025.",
+          "url": "https://www.nice.org.uk/guidance/ng254/resources/suspected-sepsis-in-under-16s-recognition-diagnosis-and-early-management-pdf-66144017065669#page=33"
         },
         {
           "titulo": "Ampicilina neonatal",
@@ -3505,13 +4041,13 @@
           "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=28"
         },
         {
-          "titulo": "Cuándo hacer la punción lumbar",
-          "paginas": "29",
-          "texto": "perform a lumbar puncture to obtain a cerebrospinal fluid sample when: there is a strong clinical suspicion of neonatal infection or there are clinical symptoms or signs suggesting meningitis.",
-          "fuente": "NICE NG195",
-          "anio": "2026",
-          "cita": "National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
-          "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=29"
+          "titulo": "Ceftriaxona: sólo desde las 41 semanas corregidas",
+          "paginas": "343",
+          "texto": "Ceftriaxone should not be used in neonates with hyperbilirubinaemia and should not be administered with calcium. Age restriction: use only in neonates of > 41 weeks corrected gestational age.",
+          "fuente": "OMS AWaRe 2022",
+          "anio": "2022",
+          "cita": "World Health Organization. The WHO AWaRe (Access, Watch, Reserve) antibiotic book. Geneva: WHO; 2022. Licence: CC BY-NC-SA 3.0 IGO.",
+          "url": "https://iris.who.int/bitstream/handle/10665/365237/9789240062382-eng.pdf#page=359"
         }
       ],
       "opciones": [
