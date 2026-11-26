@@ -1,12 +1,12 @@
 {
-  "titulo": "Riesgo de sepsis temprana (calculadora de Kaiser)",
-  "descripcion": "Estima la probabilidad de sepsis bacteriana temprana del recién nacido de 34 semanas o más con cinco datos del parto y la corrige con el aspecto del bebé. El modelo se derivó en 608 014 nacimientos de California y Massachusetts (Puopolo 2011) y se aplicó en Kaiser Permanente (Kuzniewicz 2017). Apoya la decisión de tomar hemocultivo, vigilar de cerca o dar antibiótico empírico.",
-  "instrucciones": "Usar la temperatura materna más alta del parto, las horas de ruptura de membranas hasta el parto y la hora del antibiótico antes del parto. Clasificar el aspecto del bebé con su valoración clínica seriada de las primeras 12 horas.",
-  "limitaciones": "Sólo para recién nacidos de 34 semanas o más: antes no se aplica (AAP). NICE la acepta como alternativa a su marco de factores sólo dentro de una auditoría prospectiva. No sustituye la valoración clínica: un bebé que se ve enfermo se estudia y se trata según la guía.",
+  "titulo": "Riesgo de sepsis neonatal temprana (Kaiser)",
+  "descripcion": "Estima la probabilidad de sepsis bacteriana temprana del recién nacido de 34 semanas o más con cinco datos del parto y la corrige con el aspecto del bebé. El modelo se derivó en 608.014 nacimientos de California y Massachusetts (Puopolo 2011) y se aplicó en Kaiser Permanente (Kuzniewicz 2017). Apoya la decisión de tomar hemocultivo, vigilar de cerca o dar antibiótico empírico.",
+  "instrucciones": "Calcularla al nacer con los datos del parto y repetirla si cambia el aspecto del bebé en las primeras 24 horas. Clasificar el aspecto con la definición de cada opción, no con la impresión general.",
+  "limitaciones": "No se aplica antes de las 34 semanas (AAP) y se validó desde las 35 (Kuzniewicz). Los interceptos llegan hasta una incidencia de 0,6 por 1000: si la local es mayor, el riesgo calculado se queda corto. NICE la acepta, en lugar de su lista de factores de riesgo e indicadores clínicos, sólo dentro de una auditoría prospectiva.",
   "tipoCalculo": "formula",
   "formula": "1000 * lr * exp(b0 - 6.9325 * (sem + dias / 7) + 0.0877 * (sem + dias / 7)^2 + 0.868 * (1.8 * temp + 32) + 1.2256 * (rom + 0.05)^0.2 + cgbs + cabx) / (1 + lr * exp(b0 - 6.9325 * (sem + dias / 7) + 0.0877 * (sem + dias / 7)^2 + 0.868 * (1.8 * temp + 32) + 1.2256 * (rom + 0.05)^0.2 + cgbs + cabx))",
   "decimales": 2,
-  "prefijoResultado": "Riesgo",
+  "prefijoResultado": "Riesgo tras el examen",
   "sufijoResultado": "por 1000 nacidos vivos",
   "referencias": [
     {
@@ -31,6 +31,27 @@
       "anio": "2011"
     },
     {
+      "titulo": "Puopolo 2011, tabla 4: antibiótico específico para EGB y de amplio espectro. Puopolo KM, Draper D, Wi S, et al. Estimating the probability of neonatal early-onset infection on the basis of maternal risk factors. Pediatrics 2011;128(5):e1155-63. doi:10.1542/peds.2010-3464",
+      "url": "https://doi.org/10.1542/peds.2010-3464",
+      "texto": "GBS IAP: penicillin, ampicillin, clindamycin, erythromycin, cefazolin, vancomycin Broad-spectrum antibiotics: other cephalosporins, fluoroquinolone",
+      "paginas": "e1160",
+      "anio": "2011"
+    },
+    {
+      "titulo": "Kuzniewicz 2017: la incidencia local ajusta el riesgo. Kuzniewicz MW, Puopolo KM, Fischer A, et al. A quantitative, risk-based approach to the management of neonatal early-onset sepsis. JAMA Pediatr 2017;171(4):365-71. doi:10.1001/jamapediatrics.2016.4678",
+      "url": "https://doi.org/10.1001/jamapediatrics.2016.4678",
+      "texto": "in lower-resource settings may differ from those in the KPNC; however, the EOS calculator adjusts for this by allowing for the input of the baseline EOS incidence",
+      "paginas": "E6",
+      "anio": "2017"
+    },
+    {
+      "titulo": "Kuzniewicz 2017: validada desde las 35 semanas. Kuzniewicz MW, Puopolo KM, Fischer A, et al. A quantitative, risk-based approach to the management of neonatal early-onset sepsis. JAMA Pediatr 2017;171(4):365-71. doi:10.1001/jamapediatrics.2016.4678",
+      "url": "https://doi.org/10.1001/jamapediatrics.2016.4678",
+      "texto": "because this study evaluated the implementation of the EOS calculator in infants born at 35 weeks' gestation or later, the results are not applicable to infants born earlier.",
+      "paginas": "E6",
+      "anio": "2017"
+    },
+    {
       "titulo": "AAP 2018 (≥35 semanas): riesgo de 1 por 1000 o más. Puopolo KM, Benitz WE, Zaoutis TE; AAP Committee on Fetus and Newborn, Committee on Infectious Diseases. Management of neonates born at ≥35 0/7 weeks' gestation with suspected or proven early-onset bacterial sepsis. Pediatrics 2018;142(6):e20182894.",
       "url": "https://doi.org/10.1542/peds.2018-2894",
       "texto": "Blood culture and enhanced clinical observation are recommended for infants with an EOS risk estimated at ≥1 per 1000 live births",
@@ -43,6 +64,27 @@
       "texto": "blood culture and empirical antibiotic therapy are recommended for infants with an EOS risk estimated at ≥3 per 1000 live births.",
       "paginas": "4",
       "anio": "2018"
+    },
+    {
+      "titulo": "AAP 2018 (≥35 semanas): el bebé que se ve enfermo. Puopolo KM, Benitz WE, Zaoutis TE; AAP Committee on Fetus and Newborn, Committee on Infectious Diseases. Management of neonates born at ≥35 0/7 weeks' gestation with suspected or proven early-onset bacterial sepsis. Pediatrics 2018;142(6):e20182894.",
+      "url": "https://doi.org/10.1542/peds.2018-2894",
+      "texto": "Risk factors used in such algorithms included (1) any newborn infant who is ill appearing; (2) a mother with a clinical diagnosis of chorioamnionitis",
+      "paginas": "3",
+      "anio": "2018"
+    },
+    {
+      "titulo": "AAP 2018 (≥35 semanas): exámenes y antibiótico al que se ve enfermo. Puopolo KM, Benitz WE, Zaoutis TE; AAP Committee on Fetus and Newborn, Committee on Infectious Diseases. Management of neonates born at ≥35 0/7 weeks' gestation with suspected or proven early-onset bacterial sepsis. Pediatrics 2018;142(6):e20182894.",
+      "url": "https://doi.org/10.1542/peds.2018-2894",
+      "texto": "laboratory testing and empirical antibiotic therapy for infants in categories 1 and 2",
+      "paginas": "3",
+      "anio": "2018"
+    },
+    {
+      "titulo": "NICE NG195: con una bandera roja, tratar. National Institute for Health and Care Excellence. Neonatal infection: antibiotics for prevention and treatment (NG195). London: NICE; 2021, actualizada en mayo de 2026.",
+      "url": "https://www.nice.org.uk/guidance/ng195/resources/neonatal-infection-antibiotics-for-prevention-and-treatment-pdf-66142083827653#page=22",
+      "texto": "In babies with any red flag, or with 2 or more 'non-red-flag' risk factors or clinical indicators:",
+      "paginas": "22",
+      "anio": "2026"
     },
     {
       "titulo": "AAP 2018 (≤34 6/7 semanas): no se aplica antes de las 34 semanas. Puopolo KM, Benitz WE, Zaoutis TE; AAP Committee on Fetus and Newborn, Committee on Infectious Diseases. Management of neonates born at ≤34 6/7 weeks' gestation with suspected or proven early-onset bacterial sepsis. Pediatrics 2018;142(6):e20182896.",
@@ -74,7 +116,7 @@
           "id": "incidencia",
           "tipo": "opciones",
           "label": "Incidencia local de sepsis temprana",
-          "ayuda": "Casos de sepsis temprana confirmada por cultivo por cada 1000 nacidos vivos en tu institución o región.",
+          "ayuda": "Casos de sepsis temprana confirmada por cultivo por cada 1000 nacidos vivos en tu institución o región. Si es mayor de 0,6 por 1000, el riesgo calculado se queda corto.",
           "opciones": [
             {
               "label": "0,3 por 1000",
@@ -148,6 +190,7 @@
           "id": "gbs",
           "tipo": "opciones",
           "label": "EGB materno",
+          "ayuda": "Resultado del tamizaje materno de estreptococo del grupo B; «Desconocido» si no se hizo.",
           "opciones": [
             {
               "label": "Negativo",
@@ -173,6 +216,7 @@
           "id": "abx",
           "tipo": "opciones",
           "label": "Antibiótico intraparto",
+          "ayuda": "Amplio espectro: otras cefalosporinas, quinolonas, betalactámicos de espectro extendido, o un antibiótico de la profilaxis del EGB junto con un aminoglucósido.",
           "opciones": [
             {
               "label": "Ninguno, o menos de 2 h antes del parto",
@@ -188,18 +232,16 @@
               "detalle": "Penicilina, ampicilina, clindamicina, eritromicina, cefazolina o vancomicina"
             },
             {
-              "label": "Amplio espectro, de 2 a 3,9 h antes",
+              "label": "Amplio espectro, de 2 a menos de 4 h antes",
               "valoresVariables": {
                 "cabx": -1.0488
-              },
-              "detalle": "Otras cefalosporinas, quinolonas, betalactámicos de espectro extendido o un antibiótico de profilaxis con aminoglucósido"
+              }
             },
             {
               "label": "Amplio espectro, 4 h o más antes",
               "valoresVariables": {
                 "cabx": -1.1861
-              },
-              "detalle": "Otras cefalosporinas, quinolonas, betalactámicos de espectro extendido o un antibiótico de profilaxis con aminoglucósido"
+              }
             }
           ]
         }
@@ -212,7 +254,7 @@
           "id": "clinica",
           "tipo": "opciones",
           "label": "Aspecto del bebé",
-          "ayuda": "Según la valoración clínica seriada de las primeras 12 horas de vida.",
+          "ayuda": "Según la valoración clínica seriada de las primeras 24 horas de vida.",
           "opciones": [
             {
               "label": "Buen aspecto",
@@ -222,18 +264,18 @@
               "detalle": "Sin alteraciones fisiológicas persistentes"
             },
             {
-              "label": "Equívoco",
+              "label": "Dudoso",
               "valoresVariables": {
                 "lr": 5.0
               },
-              "detalle": "Una alteración persistente 4 h o más, o dos o más durante 2 h o más: FC ≥160, FR ≥60, temperatura ≥38 °C o <36,4 °C, o quejido, aleteo o retracciones sin oxígeno"
+              "detalle": "Una alteración persistente 4 h o más, o dos o más durante 2 h o más: FC ≥160 lpm, FR ≥60 rpm, temperatura ≥38 °C o <36,4 °C, o dificultad respiratoria (quejido, aleteo o retracciones) que no necesita oxígeno"
             },
             {
               "label": "Clínicamente enfermo",
               "valoresVariables": {
                 "lr": 21.2
               },
-              "detalle": "CPAP, alto flujo o ventilación persistentes; inestabilidad que pide vasoactivos; encefalopatía (convulsión o Apgar <5 a los 5 minutos); u oxígeno 2 h o más para saturar ≥90 %"
+              "detalle": "CPAP, alto flujo o ventilación persistentes; inestabilidad que necesita vasoactivos; encefalopatía (convulsión o Apgar <5 a los 5 minutos); o necesita oxígeno 2 h o más para saturar ≥90 %"
             }
           ]
         }
@@ -244,7 +286,7 @@
     {
       "etiqueta": "Riesgo al nacer, sólo con los datos del parto",
       "formula": "1000 * exp(b0 - 6.9325 * (sem + dias / 7) + 0.0877 * (sem + dias / 7)^2 + 0.868 * (1.8 * temp + 32) + 1.2256 * (rom + 0.05)^0.2 + cgbs + cabx) / (1 + exp(b0 - 6.9325 * (sem + dias / 7) + 0.0877 * (sem + dias / 7)^2 + 0.868 * (1.8 * temp + 32) + 1.2256 * (rom + 0.05)^0.2 + cgbs + cabx))",
-      "sufijo": "por 1000",
+      "sufijo": "por 1000 nacidos vivos",
       "decimales": 2
     }
   ],
@@ -291,7 +333,7 @@
       "categoria": "Riesgo bajo",
       "color": "verde",
       "match_opcion_index": -1,
-      "approach": "Menos de **1 por 1000**: el riesgo no indica **hemocultivo** ni **antibiótico** empírico; seguir la valoración clínica del bebé."
+      "approach": "Menos de **1 por 1000**: el riesgo no indica **hemocultivo** ni antibiótico. Si está **clínicamente enfermo**, tomar el hemocultivo y dar el **antibiótico** sea cual sea el riesgo."
     },
     {
       "min": 1,
@@ -299,7 +341,7 @@
       "categoria": "Riesgo intermedio",
       "color": "naranja",
       "match_opcion_index": -1,
-      "approach": "De **1 a 3 por 1000**: tomar **hemocultivo** y hacer **vigilancia clínica estrecha**; el riesgo aún no indica antibiótico empírico."
+      "approach": "De **1 a menos de 3 por 1000**: tomar el **hemocultivo** y vigilar de cerca; el riesgo aún no indica antibiótico. Si está **clínicamente enfermo**, dar el **antibiótico** sea cual sea el riesgo."
     },
     {
       "min": 3,

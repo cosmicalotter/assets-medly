@@ -1,23 +1,22 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="tarjetas.js"></script></head><body><script>
 // Neonato con sospecha de sepsis y algún criterio de alto riesgo: líquidos según el lactato,
-// antibiótico y vigilancia (NICE NG254: 1.7.2, 1.7.5, 1.7.7, 1.7.8, 1.7.9, 1.9.1 y 1.9.5).
+// antibiótico y vigilancia (NICE NG254: 1.7.2, 1.7.5, 1.7.7, 1.7.8, 1.7.9, 1.7.11, 1.9.1 y 1.9.5).
+const VIGILAR = ["Vigilar", "Continuo o cada <b>30 minutos</b>"];
 tarjetas("Líquidos según el lactato", "Neonato con sospecha de sepsis y algún criterio de alto riesgo", [
-  { c: AMBAR, t: "Menos de 2 mmol/L", sub: "Lactato normal", filas: [
+  { c: AMBAR, t: "Menos de 2 mmol/L", filas: [
     ["Bolo", "<b>Considerarlo</b>"],
-    ["Antibiótico", "Antes de <b>1 hora</b>"],
-    ["Vigilar", "Continuo o cada <b>30 minutos</b>"],
-    ["Si no mejora", "<b>Segundo bolo</b>; sin respuesta en 1 hora, especialista en persona"]] },
-  { c: NARANJA, t: "De 2 a 4 mmol/L", sub: "Lactato alto", filas: [
+    VIGILAR,
+    ["Si no responde en 1 hora", "<b>Especialista</b> en persona"]] },
+  { c: NARANJA, t: "De 2 a 4 mmol/L", filas: [
     ["Bolo", "<b>Sin demora</b>"],
-    ["Antibiótico", "Antes de <b>1 hora</b>"],
-    ["Vigilar", "Continuo o cada <b>30 minutos</b>"],
-    ["Si no mejora", "<b>Segundo bolo</b>; sin respuesta en 1 hora, especialista en persona"]] },
-  { c: ROJO, t: "Más de 4 mmol/L", sub: "Lactato muy alto", filas: [
+    VIGILAR,
+    ["Si no mejora", "<b>Segundo bolo</b>; luego, especialista en persona"]] },
+  { c: ROJO, t: "Más de 4 mmol/L", filas: [
     ["Bolo", "<b>Sin demora</b>"],
-    ["Antibiótico", "Antes de <b>1 hora</b>"],
-    ["Además", "<b>Cuidado crítico</b>: acceso central e inotrópicos"],
-    ["Si no mejora", "<b>Segundo bolo</b>; sin respuesta en 1 hora, especialista en persona"]] },
-], "Bolo del neonato: cristaloide sin glucosa, <b style='color:#FCD34D'>10-20 mL/kg</b> en menos de <b style='color:#FCD34D'>10 minutos</b>; revalorar y repetir si no mejora.",
+    ["Además", "<b>Cuidado intensivo</b>: acceso central e inotrópicos"],
+    VIGILAR,
+    ["Si no mejora", "<b>Segundo bolo</b>; luego, especialista en persona"]] },
+], "En los tres, <b style='color:#FCA5A5'>antibiótico antes de 1 hora</b>. Bolo del neonato: cristaloide sin glucosa, <b style='color:#FCD34D'>10-20 mL/kg</b> en menos de <b style='color:#FCD34D'>10 minutos</b>.",
   "Esquema de Empirica. Fuente: NICE NG254 (1.7 y 1.9).");
-document.head.insertAdjacentHTML("beforeend", "<style>#lienzo div[style*='font-size:14.6px']{font-size:16.5px!important}#lienzo div[style*='font-size:12px;font-weight:800']{font-size:13.5px!important}</style>");
+document.head.insertAdjacentHTML("beforeend", "<style>#lienzo div[style*='font-size:14.6px']{font-size:16px!important}#lienzo div[style*='font-size:12px;font-weight:800']{font-size:13.5px!important}</style>");
 </script></body></html>
