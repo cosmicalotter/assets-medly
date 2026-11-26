@@ -1,0 +1,46 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: cómo llega la infección al recién nacido (AAP 2018 ≥35 semanas, pág. 2;
+// GPC Colombia 2013: temprana vertical, tardía comunitaria u hospitalaria).
+const ETAPAS = [
+  { y: 372, t: "Flora vaginal y rectal", s: "de la madre", c: GRIS },
+  { y: 278, t: "Cuello uterino", s: "en el trabajo de parto", c: AMBAR },
+  { y: 184, t: "Cavidad amniótica", s: "líquido y membranas", c: NARANJA },
+  { y: 90, t: "Feto", s: "aspira el líquido infectado", c: ROJO },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const X = 160;
+  const cajas = ETAPAS.map((e, k) => {
+    const o = suave(tramo(t, 0.05 + k * 0.14, 0.15 + k * 0.14));
+    return `<rect x="${X - 140}" y="${e.y - 32}" width="280" height="64" rx="12" fill="${tinte(e.c, 14)}" stroke="${e.c}" stroke-width="2.5" opacity="${0.3 + 0.7 * o}"/>
+      <text x="${X}" y="${e.y - 6}" text-anchor="middle" font-size="18.5" font-weight="800" fill="${TINTA}" opacity="${0.3 + 0.7 * o}">${e.t}</text>
+      <text x="${X}" y="${e.y + 17}" text-anchor="middle" font-size="15" fill="#475569" opacity="${0.3 + 0.7 * o}">${e.s}</text>`;
+  }).join("");
+  const flechas = [0, 1, 2].map((k) => { const o = suave(tramo(t, 0.12 + k * 0.14, 0.2 + k * 0.14));
+    return `<g opacity="${o}">${flecha(X, ETAPAS[k].y - 34, X, ETAPAS[k + 1].y + 34, ETAPAS[k + 1].c, 4, 11)}</g>`; }).join("");
+  // puntos que suben (bacterias)
+  const fase = (t * 3) % 1, puntos = [0, 0.33, 0.66].map((d) => { const u = (fase + d) % 1; const y = lerp(390, 80, u);
+    return `<circle cx="${X + 100 + 8 * Math.sin(u * 12)}" cy="${y}" r="5" fill="${ROJO}" opacity="${0.8 * suave(tramo(t, 0.05, 0.6))}"/>`; }).join("");
+  // vía transplacentaria
+  const oL = suave(tramo(t, 0.62, 0.74));
+  const listeria = `<g opacity="${oL}"><rect x="400" y="58" width="280" height="64" rx="12" fill="${tinte(MORADO, 14)}" stroke="${MORADO}" stroke-width="2.5"/>
+    <text x="540" y="84" text-anchor="middle" font-size="18.5" font-weight="800" fill="${TINTA}">Placenta</text>
+    <text x="540" y="107" text-anchor="middle" font-size="15" fill="#475569">Listeria, antes del parto</text>
+    ${flecha(400, 90, 304, 90, MORADO, 4, 12)}</g>`;
+  // línea de 72 horas
+  const oT = suave(tramo(t, 0.76, 0.88));
+  const linea = `<g opacity="${oT}" transform="translate(360,215)">
+    <rect x="0" y="0" width="320" height="32" rx="10" fill="#EEF2F7" stroke="#CBD5E1"/>
+    <rect x="0" y="0" width="125" height="32" rx="10" fill="${AZUL}"/>
+    <text x="62" y="22" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">Temprana</text>
+    <text x="222" y="22" text-anchor="middle" font-size="15" font-weight="800" fill="${NARANJA}">Tardía</text>
+    <line x1="125" y1="-10" x2="125" y2="42" stroke="${TINTA}" stroke-width="3"/>
+    <text x="125" y="64" text-anchor="middle" font-size="16" font-weight="800" fill="${TINTA}">72 horas</text>
+    <text x="0" y="100" font-size="15" fill="#475569">Temprana: de la <tspan font-weight="800">madre</tspan>, en el parto</text>
+    <text x="0" y="126" font-size="15" fill="#475569">Tardía: de la <tspan font-weight="800">comunidad</tspan> o del <tspan font-weight="800">hospital</tspan></text></g>`;
+  lienzo("Cómo llega la infección", "La vía ascendente del parto y la vía transplacentaria",
+    `<svg width="668" height="400" viewBox="0 30 700 400">${cajas}${flechas}${puntos}${listeria}${linea}</svg>`,
+    "Esquema de Empirica. Fuentes: AAP 2018 (≥35 semanas); GPC Colombia 2013.");
+};
+window.cuadro(39, 40);
+</script></body></html>

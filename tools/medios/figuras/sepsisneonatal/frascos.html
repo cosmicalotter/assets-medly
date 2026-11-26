@@ -1,0 +1,28 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre fotos reales: frasco de hemocultivo sin y con crecimiento (Ajay Kumar Chaurasiya, CC BY-SA 4.0).
+// AAP 2018 (≥35 semanas): diagnóstico por cultivo; positividad <24 h; 1 mL.
+const P = [
+  { src: "fuentes/commons_blood_culture_clear.jpg", r: [380, 300, 700, 700], m: { x: 730, y: 760, rx: 190, ry: 110 }, c: CIAN, t: "Sin crecimiento", x: "Caldo <b>transparente</b>: el cultivo sigue <b>negativo</b>." },
+  { src: "fuentes/commons_blood_culture_growth.jpg", r: [360, 260, 700, 700], m: { x: 700, y: 680, rx: 200, ry: 120 }, c: ROJO, t: "Con crecimiento", x: "Caldo <b>turbio</b>: hay bacterias; sigue el <b>Gram</b> y el antibiograma." },
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 0.99;
+  const o = [suave(tramo(t, 0.08, 0.3)), suave(tramo(t, 0.5, 0.72))];
+  const panel = (p, k) => {
+    const H = 300, W = Math.round(p.r[2] * H / p.r[3]);
+    return `<div style="display:flex;flex-direction:column;gap:6px;opacity:${0.35 + 0.65 * o[k]}">
+      <svg width="${W}" height="${H}" viewBox="${p.r.join(" ")}" style="display:block;border-radius:10px">
+        <image href="${p.src}" x="0" y="0" width="1400" height="1050"/>
+        <ellipse cx="${p.m.x}" cy="${p.m.y}" rx="${p.m.rx}" ry="${p.m.ry}" fill="none" stroke="#000" stroke-opacity="${0.35 * o[k]}" stroke-width="16"/>
+        <ellipse cx="${p.m.x}" cy="${p.m.y}" rx="${p.m.rx}" ry="${p.m.ry}" fill="none" stroke="${p.c}" stroke-opacity="${o[k]}" stroke-width="8"/>
+        <text x="${p.m.x}" y="${p.m.y - p.m.ry - 22}" text-anchor="middle" font-size="44" font-weight="900" fill="${p.c}" fill-opacity="${o[k]}" stroke="#111" stroke-opacity="${o[k]}" stroke-width="9" paint-order="stroke">${p.t}</text>
+      </svg>
+      <div class="item" style="background:#F7F8FA;width:${W}px;border-left:5px solid ${p.c}">${p.x}</div></div>`;
+  };
+  lienzo("El hemocultivo", "Sólo el cultivo confirma la sepsis; la mitad de los positivos crece en menos de 24 horas",
+    `<div style="display:flex;gap:16px;justify-content:center">${P.map(panel).join("")}</div>
+     <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px;opacity:${0.25 + 0.75 * suave(tramo(t, 0.8, 0.92))}">Inocular al menos <b style="color:#FCD34D">1 mL</b> de sangre, antes de la primera dosis del antibiótico.</div>`,
+    "Fotos: Ajay Kumar Chaurasiya, Wikimedia Commons, CC BY-SA 4.0. Animadas por Empirica. Fuente: AAP 2018 (≥35 semanas).");
+};
+window.cuadro(39, 40);
+</script></body></html>
