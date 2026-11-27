@@ -2,10 +2,10 @@
 // GIF de flujo: de iniciar la fototerapia a la bilirrubina de rebote (AAP 2022, KAS 12, 15 y 16; NICE CG98, 1.4.4 y 1.4.9).
 const H = [
   { p: 0.0, r: "Inicio", c: AZUL, tit: "Inicio", txt: "Fototerapia <b>intensiva</b> en el umbral" },
-  { p: 0.22, r: "6 h", c: AMBAR, tit: "A las 6 horas", txt: "Si no baja o sube, <b>intensificar</b> (NICE)" },
-  { p: 0.4, r: "12 h", c: NARANJA, tit: "Antes de 12 horas", txt: "Primera bilirrubina <b>sérica</b> (AAP)" },
-  { p: 0.68, r: "−2 mg/dL", c: VERDE, tit: "Suspender", txt: "Al bajar <b>2 mg/dL</b> del umbral de inicio" },
-  { p: 0.92, r: "Rebote", c: MORADO, tit: "Rebote", txt: "<b>6-12 h</b> y al día siguiente si hay riesgo; si no, al día siguiente" },
+  { p: 0.22, r: "4-6 h", c: AMBAR, tit: "A las 4-6 horas (NICE)", txt: "Primera <b>sérica</b>; si sube o no baja, <b>intensificar</b>" },
+  { p: 0.4, r: "12 h", c: NARANJA, tit: "Antes de 12 horas (AAP)", txt: "Primera bilirrubina <b>sérica</b>" },
+  { p: 0.68, r: "−2 mg/dL", c: VERDE, tit: "Suspender", txt: "A <b>2 mg/dL</b> o más bajo el umbral de inicio" },
+  { p: 0.92, r: "Rebote", c: MORADO, tit: "Rebote", txt: "Con riesgo, a las <b>6-12 h</b> y al día siguiente; sin él, al <b>día siguiente</b>; tras la fototerapia en casa, en <b>1-2 días</b>" },
 ];
 function caja(e, op) {
   return `<div style="opacity:${op};border:2px solid ${e.c};background:${tinte(e.c, 12)};border-radius:12px;padding:10px 12px;flex:1;min-height:104px">
@@ -20,7 +20,7 @@ window.cuadro = function (i, n) {
     <rect x="${x0}" y="22" width="${Math.max(0, xp(pm) - x0)}" height="20" rx="8" fill="${AZUL}" opacity=".18"/>
     ${H.map((e) => `<circle cx="${xp(e.p)}" cy="32" r="9" fill="${e.c}"/><text x="${xp(e.p)}" y="66" text-anchor="middle" font-size="12.5" font-weight="800" fill="#374151">${e.r}</text>`).join("")}
     <line x1="${xp(pm)}" y1="10" x2="${xp(pm)}" y2="54" stroke="${TINTA}" stroke-width="3"/><circle cx="${xp(pm)}" cy="32" r="7" fill="#fff" stroke="${TINTA}" stroke-width="3"/></svg>`;
-  lienzo("De la fototerapia al rebote", "Qué medir y cuándo durante y después de la fototerapia", `${linea}
+  lienzo("De la fototerapia al rebote", "Qué medir y cuándo: la AAP, con lo que añade NICE", `${linea}
     <div style="display:flex;gap:8px">${caja(H[0], op(H[0]))}${caja(H[1], op(H[1]))}${caja(H[2], op(H[2]))}</div>
     <div style="display:flex;gap:8px">${caja(H[3], op(H[3]))}${caja(H[4], op(H[4]))}</div>
     <div class="caja" style="opacity:${0.25 + 0.75 * suave(tramo(t, 0.86, 0.95))};background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Si llega al umbral de <b style="color:#FCA5A5">escalada</b>: UCIN y bilirrubina cada <b style="color:#FCD34D">2 horas</b>.</div>`,

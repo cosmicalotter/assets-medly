@@ -13,7 +13,7 @@ mkdir -p "$D"
 jpg() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1.png" >/dev/null
         "$PY" -c "from PIL import Image; Image.open('$TMP/$1.png').convert('RGB').save('$2', quality=${3:-86}, subsampling=0, optimize=True)"; echo "$2"; }
 gif() { node tools/medios/capturar.js "$H/$1.html" "$TMP/$1" --cuadros "$3" >/dev/null
-        "$PY" tools/medios/armar_gif.py "$TMP/$1" "$2" --ms "$4" --pausa "$5" --colores "$6" | tail -1; }
+        "$PY" tools/medios/armar_gif.py "$TMP/$1" "$2" --ms "$4" --pausa "$5" --colores "$6" ${7:+--tonos "$7"} | tail -1; }
 
 # Fotos reales (Commons), rotuladas en español
 jpg foto_ictericia "$D/ict_piel_amarilla.jpg"
@@ -25,6 +25,6 @@ jpg umbrales "$D/ict_escalera_umbrales.jpg"
 jpg escalada "$D/ict_escalada.jpg"
 jpg seguimiento "$D/ict_seguimiento_alta.jpg"
 # GIF sobre foto real, de flujo y de fisiología
-gif foto_fototerapia "$D/ict_fototerapia.gif" 30 200 3000 128
+gif foto_fototerapia "$D/ict_fototerapia.gif" 30 200 3000 128 "#FDE047,#E11D74,#22D3EE,#B59A00"
 gif flujo "$D/ict_fototerapia_rebote.gif" 40 200 3000 96
 gif metabolismo "$D/ict_bilirrubina.gif" 40 160 3000 96
