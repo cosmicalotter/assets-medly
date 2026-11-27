@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Seguimiento tras el alta según la diferencia entre el umbral de fototerapia y la bilirrubina (AAP 2022, KAS 24 y fig. 7).
+const F = [
+  ["0,1-1,9", ROJO, "Menos de 24 horas de vida: <b>retrasar el alta</b>, considerar fototerapia y sérica en <b>4-8 h</b>."],
+  ["0,1-1,9", ROJO, "24 horas o más: sérica en <b>4-24 h</b>. Retrasar el alta, fototerapia <b>en casa</b> o control <b>estrecho</b>."],
+  ["2,0-3,4", NARANJA, "Bilirrubina en <b>4-24 horas</b>."],
+  ["3,5-5,4", AMBAR, "Bilirrubina en <b>1-2 días</b>."],
+  ["5,5-6,9", TEAL, "Alta antes de 72 h: control en los <b>2 días</b> siguientes; después, según la clínica."],
+  ["7,0 o más", VERDE, "Alta antes de 72 h: control en los <b>3 días</b> siguientes; después, según la clínica."],
+];
+const fila = ([d, c, t]) => `<div style="display:flex;align-items:stretch;border-radius:12px;overflow:hidden;border:2px solid ${c};flex:1">
+  <div style="background:${c};color:#fff;width:150px;display:flex;flex-direction:column;justify-content:center;padding:6px 12px"><div style="font-weight:900;font-size:19px">${d}</div><div style="font-size:12.5px;opacity:.95">mg/dL bajo el umbral</div></div>
+  <div style="background:${tinte(c, 10)};flex:1;display:flex;align-items:center;padding:4px 14px;font-size:15px;line-height:1.3"><div>${t}</div></div></div>`;
+lienzo("Cuándo volver a medir", "Umbral de fototerapia menos la bilirrubina antes del alta (35 semanas o más)", `<div style="display:flex;flex-direction:column;gap:6px;flex:1">${F.map(fila).join("")}</div>
+  <div class="caja" style="background:#1F2A37;color:#fff;font-weight:700;font-size:13.5px">Alta antes de <b style="color:#FCD34D">12 horas</b>: bilirrubina entre las 24 y 48 horas. Sin control posible, puede <b style="color:#FCA5A5">retrasarse el alta</b>.</div>`,
+  "Esquema de Empirica. Fuente: AAP 2022 (KAS 8 y 24; fig. 7).");
+</script></body></html>

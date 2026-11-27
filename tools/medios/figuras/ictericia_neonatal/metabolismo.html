@@ -1,0 +1,42 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script></head><body><script>
+// Animación de fisiología: de dónde sale la bilirrubina y adónde va (NICE CG98, contexto; NASPGHAN-ESPGHAN 2017).
+const AMAR = "#E8B100", VERDOSO = "#7A8F2E";
+function caja(x, y, w, h, c, t1, t2, o) {
+  return `<g opacity="${o}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${tinte(c, 14)}" stroke="${c}" stroke-width="3"/>
+    <text x="${x + w / 2}" y="${y + 30}" text-anchor="middle" font-size="16" font-weight="900" fill="${c}">${t1}</text>
+    <text x="${x + w / 2}" y="${y + 52}" text-anchor="middle" font-size="13" font-weight="600" fill="#374151">${t2}</text></g>`;
+}
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const a = suave(tramo(t, 0.02, 0.5)), b = suave(tramo(t, 0.55, 0.72)), c = suave(tramo(t, 0.76, 0.92));
+  const P = [[95, 95], [255, 95], [420, 95], [585, 95], [585, 185]];
+  const seg = (u) => { const k = Math.min(P.length - 2, Math.floor(u * (P.length - 1))), f = u * (P.length - 1) - k;
+    return [P[k][0] + (P[k + 1][0] - P[k][0]) * f, P[k][1] + (P[k + 1][1] - P[k][1]) * f]; };
+  const puntos = [0, 0.12, 0.24].map((d) => { const u = Math.max(0, Math.min(1, a * 1.1 - d)); const [x, y] = seg(u);
+    const col = u < 0.5 ? AMAR : VERDOSO; return u > 0 ? `<circle cx="${x}" cy="${y}" r="9" fill="${col}" stroke="#fff" stroke-width="2"/>` : ""; }).join("");
+  const punta = (id, col) => `<marker id="${id}" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,0 L14,7 L0,14 z" fill="${col}"/></marker>`;
+  const svg = `<svg width="668" height="300" viewBox="0 40 668 300">
+    <defs>${punta("f", "#94A3B8")}${punta("fr", ROJO)}${punta("fm", MORADO)}</defs>
+    ${caja(20, 60, 150, 70, ROJO, "Glóbulo rojo", "se destruye", 1)}
+    ${caja(185, 60, 140, 70, AMBAR, "Sangre", "indirecta + albúmina", 1)}
+    ${caja(345, 60, 150, 70, "#8B5A2B", "Hígado", "la conjuga", 1)}
+    ${caja(515, 60, 140, 70, VERDE, "Bilis", "directa", 1)}
+    ${caja(515, 200, 140, 70, TEAL, "Intestino", "sale en las heces", 1)}
+    ${caja(20, 200, 150, 70, ROJO, "Cerebro", "la libre puede entrar", 0.15 + 0.85 * c)}
+    <line x1="170" y1="95" x2="185" y2="95" stroke="#94A3B8" stroke-width="3" marker-end="url(#f)"/>
+    <line x1="325" y1="95" x2="345" y2="95" stroke="#94A3B8" stroke-width="3" marker-end="url(#f)"/>
+    <line x1="495" y1="95" x2="515" y2="95" stroke="#94A3B8" stroke-width="3" marker-end="url(#f)"/>
+    <line x1="585" y1="130" x2="585" y2="200" stroke="#94A3B8" stroke-width="3" marker-end="url(#f)"/>
+    <g opacity="${0.15 + 0.85 * b}"><path d="M515,240 C 420,240 300,225 270,132" fill="none" stroke="${MORADO}" stroke-width="4" stroke-dasharray="9 6" marker-end="url(#fm)"/>
+      <text x="230" y="300" font-size="14" font-weight="800" fill="${MORADO}">La leche materna la desconjuga y la devuelve a la sangre</text></g>
+    <g opacity="${0.15 + 0.85 * c}"><path d="M225,130 C 215,170 190,200 172,215" fill="none" stroke="${ROJO}" stroke-width="4" marker-end="url(#fr)"/></g>
+    ${puntos}
+  </svg>`;
+  lienzo("De dónde sale la bilirrubina", "La indirecta viaja con la albúmina; el hígado la convierte en directa", `${svg}
+    <div style="display:flex;gap:8px">
+      <div class="item" style="flex:1;font-size:14px;background:${tinte(AMBAR, 14)};border-left:5px solid ${AMBAR}"><b>Indirecta</b> alta: se produce de más o el hígado aún no la conjuga; se trata con <b>luz</b>.</div>
+      <div class="item" style="flex:1;font-size:14px;background:${tinte(VERDE, 14)};border-left:5px solid ${VERDE}"><b>Directa</b> alta: la bilis no sale; es <b>colestasis</b> y nunca es normal.</div></div>`,
+    "Animación de Empirica. Fuentes: NICE CG98 (contexto); NASPGHAN-ESPGHAN 2017.");
+};
+window.cuadro(39, 40);
+</script></body></html>

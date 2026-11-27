@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="base.js"></script><script src="foto.js"></script></head><body><script>
+// GIF sobre foto real: recién nacido en fototerapia (Jeremy Kemp, Wikimedia Commons, dominio público).
+// AAP 2022 (fototerapia intensiva); NICE CG98 (1.4.12-1.4.13).
+const M = [
+  { x: 700, y: 195, rx: 580, ry: 120, c: CIAN, t: "Equipo de luz azul", ty: 60 },
+  { x: 470, y: 690, rx: 100, ry: 80, c: AMARILLO, t: "Antifaz", tx: 330, ty: 560 },
+  { x: 850, y: 690, rx: 120, ry: 80, c: ROSA, t: "Pañal pequeño", ty: 830 },
+];
+const NOTAS = [
+  [CIAN, "Luz <b>azul</b> sobre la mayor superficie posible"],
+  [AMARILLO, "<b>Antifaz</b> para proteger los ojos"],
+  [ROSA, "Boca arriba y con la <b>piel</b> al aire"],
+];
+window.cuadro = function (i, n) {
+  const t = n > 1 ? i / (n - 1) : 1;
+  const k = t < 0.2 ? 1 : t < 0.45 ? 2 : 3;
+  fotos({
+    titulo: "La fototerapia",
+    sub: "Recién nacido en fototerapia con antifaz",
+    paneles: [{ src: "fuentes/commons_Bili_light_with_newborn.jpg", tam: [1400, 971], recorte: [0, 0, 1400, 971], marcas: M.slice(0, k) }],
+    alto: 300,
+    notas: NOTAS.slice(0, k).concat(t > 0.7 ? [["transparent", "Hoy se prefiere la luz <b>LED</b> azul de al menos <b>30 µW/cm²/nm</b>."]] : []),
+    fuente: "Foto: Jeremy Kemp, Wikimedia Commons, dominio público. Animada por Empirica. Fuentes: AAP 2022; NICE CG98 (1.4.12 y 1.4.13).",
+  });
+};
+window.cuadro(39, 40);
+</script></body></html>
